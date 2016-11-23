@@ -3,3 +3,4 @@ config.js
 .svn
 .idea
 node_modules
+.DS_Store
