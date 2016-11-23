@@ -1,3 +1,5 @@
+config.js
+*.log
+.svn
 .idea
-.log
 node_modules

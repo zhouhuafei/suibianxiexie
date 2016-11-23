@@ -1,0 +1,24 @@
+{
+  "name": "mysql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "start": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/zhouhuafei/mysql.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhouhuafei/mysql/issues"
+  },
+  "homepage": "https://github.com/zhouhuafei/mysql#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mysql2": "^1.1.2"
+  }
+}

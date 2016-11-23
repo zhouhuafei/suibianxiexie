@@ -1,0 +1,29 @@
+/**
+ * Created by zhouhuafei on 2016/11/22.
+ */
+function Routes(opt){
+    if(!opt||!opt.app){return;}
+    this.app=opt.app;
+    this.init();
+}
+Routes.prototype.init=function(){
+    this.home();
+    this.login();
+    this.register();
+};
+Routes.prototype.home=function(){
+    this.app.get('/',function(req,res){
+        res.end('<h1>欢迎来到我的首页</h1>');
+    })
+};
+Routes.prototype.login=function(){
+    this.app.get('/login',function(req,res){
+        res.end('<h1>欢迎来到我的登录页</h1>');
+    })
+};
+Routes.prototype.register=function(){
+    this.app.get('/register',function(req,res){
+        res.end('<h1>欢迎来到我的注册页</h1>');
+    })
+};
+module.exports=Routes;
