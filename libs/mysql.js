@@ -1,12 +1,22 @@
 /**
  * Created by zhouhuafei on 2016/11/22.
  */
-function Mysql(){
-    this.host='127.0.0.1';
-    this.port='3306';
-    this.user='root';
-    this.password='root';
-    this.database='zhouhuafei';
+function Mysql(opt){
+    this.opt=opt||{};
+    this.opt.isLocal=opt.isLocal||true;
+    if(this.opt.isLocal){//本地
+        this.host='127.0.0.1';
+        this.port='3306';
+        this.user='root';
+        this.password='zhouhuafei';
+        this.database='test';
+    }else{//远程
+        this.host='192.168.10.12';
+        this.port='3307';
+        this.user='b2b_platform';
+        this.password='bpf_zova_hspt';
+        this.database='zhouhuafei';
+    }
 }
 Mysql.prototype.getHost=function(){
     return this.host;
