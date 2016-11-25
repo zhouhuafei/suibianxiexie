@@ -3,7 +3,7 @@
  */
 function Mysql(opt){
     this.opt=opt||{};
-    this.opt.isLocal=opt.isLocal||true;
+    this.opt.isLocal=this.opt.isLocal&&true;
     if(this.opt.isLocal){//本地
         this.host='127.0.0.1';
         this.port='3306';
@@ -17,6 +17,7 @@ function Mysql(opt){
         this.password='bpf_zova_hspt';
         this.database='zhouhuafei';
     }
+    this.init();
 }
 Mysql.prototype.getHost=function(){
     return this.host;
@@ -32,5 +33,16 @@ Mysql.prototype.getPassword=function(){
 };
 Mysql.prototype.getDatabase=function(){
     return this.database;
+};
+Mysql.prototype.init=function(){
+    var self=this;
+    this.mysql=require('mysql2');
+    this.connection=this.mysql.createConnection({
+        host:self.getHost(),
+        port:self.getPort(),
+        user:self.getUser(),
+        password:self.getPassword(),
+        database:self.getDatabase()
+    });
 };
 module.exports=Mysql;

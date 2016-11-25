@@ -23,8 +23,13 @@ app.use(function(err,req,res,next){//500
     res.send('500 - Server Error');
 });
 
+var Mysql=require('./libs/mysql');//mysql
+var mysql=new Mysql({isLocal:false});
+console.log(mysql);
+
+
 app.set('port',config.getPort());
 var server=app.listen(app.get('port'),function(){//端口
     var port=server.address().port;
-    console.log('访问地址:http://127.0.0.1:'+port);
+    console.log('>>>>>>>>>>>>>>>>>>>>访问地址:http://127.0.0.1:'+port+'<<<<<<<<<<<<<<<<<<<<');
 });
