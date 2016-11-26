@@ -9,7 +9,7 @@ function Mysql(opt){
         this.port='3306';
         this.user='root';
         this.password='zhouhuafei';
-        this.database='test';
+        this.database='zhouhuafei';
     }else{//远程
         this.host='192.168.10.12';
         this.port='3307';

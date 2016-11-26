@@ -24,7 +24,7 @@ app.use(function(err,req,res,next){//500
 });
 
 var Mysql=require('./libs/mysql');//mysql
-var mysql=new Mysql({isLocal:false});
+var mysql=new Mysql({isLocal:true});
 console.log(mysql);
 
 
