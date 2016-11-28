@@ -24,8 +24,21 @@ app.use(function(err,req,res,next){//500
 });
 
 var Mysql=require('./libs/mysql');//mysql
-var mysql=new Mysql({isLocal:true});
-console.log(mysql);
+var oMysql=new Mysql({isLocal:false});
+var mysql=oMysql.connection;
+var tableName='user';
+mysql.query(
+    'SELECT * FROM '+tableName,
+    function selectCb(err,results,fields){
+        if(err){
+            throw err;
+        }
+        if(results){
+            console.log(results);
+        }
+        mysql.end();
+    }
+);
 
 
 app.set('port',config.getPort());
