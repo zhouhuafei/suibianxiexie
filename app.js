@@ -25,6 +25,7 @@ app.use(function(err,req,res,next){//500
 
 var Mysql=require('./libs/mysql');//mysql
 var oMysql=new Mysql({isLocal:false});
+oMysql.init();
 var mysql=oMysql.connection;
 var tableName='user';
 mysql.query(

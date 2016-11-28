@@ -17,7 +17,6 @@ function Mysql(opt){
         this.password='bpf_zova_hspt';
         this.database='zhouhuafei';
     }
-    this.init();
 }
 Mysql.prototype.getHost=function(){
     return this.host;
