@@ -1,30 +1,31 @@
 /**
  * Created by zhouhuafei on 2016/11/22.
  */
-var Config=require('./libs/config');//配置
+//配置
+var Config=require('./libs/config');
 var config=new Config();
-
-var express=require('express');//express
+//express
+var express=require('express');
 var app=express();
-
-var Routes=require('./routes/routes');//路由
+//路由
+var Routes=require('./routes/routes');
 new Routes({app:app});
-
-app.use(function(req,res){//404
+//404
+app.use(function(req,res){
     res.type('text/plain');
     res.status('404');
     res.send('404 - Not Found');
 });
-
-app.use(function(err,req,res,next){//500
+//500
+app.use(function(err,req,res,next){
     console.log(err.stack);
     res.type('text/plain');
     res.status('500');
     res.send('500 - Server Error');
 });
-
-var Mysql=require('./libs/mysql');//mysql
-var oMysql=new Mysql({isLocal:false});
+//mysql
+var Mysql=require('./libs/mysql');
+var oMysql=new Mysql({isLocal:true});
 oMysql.init();
 var mysql=oMysql.connection;
 var tableName='user';
@@ -40,10 +41,9 @@ mysql.query(
         mysql.end();
     }
 );
-
-
+//端口
 app.set('port',config.getPort());
-var server=app.listen(app.get('port'),function(){//端口
+var server=app.listen(app.get('port'),function(){
     var port=server.address().port;
     console.log('>>>>>>>>>>>>>>>>>>>>访问地址:http://127.0.0.1:'+port+'<<<<<<<<<<<<<<<<<<<<');
 });
