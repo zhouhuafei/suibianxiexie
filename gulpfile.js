@@ -99,7 +99,7 @@ function task(opt){
         gulp.watch(path.imagesEnterPath,[`${type}imagesmin`]);
     });
 
-    //concat(有问题待续...)
+    //concat(有问题待续...前台和后台怎么分...应该是两个项目)
     gulp.task(`${type}concat`,function(){
         return gulp.src([`${path.distPath}/js/base/base.js`,`${path.distPath}/js/page/index.js`])
             .pipe(concat('common.js'))
