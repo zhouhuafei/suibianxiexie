@@ -42,7 +42,7 @@ function task(opt){
     }
     const path=opt.path;
     const type=opt.type;
-    //合并
+    //合并(不应该出现合并,应该万物皆模块,待续...)
     gulp.task(`${type}concatScss`,function(){//scss合并
         return gulp.src([`${path.distPath}/scss/base/base.css`,`${path.distPath}/scss/page/index.css`])
             .pipe(concat('common.css'))
