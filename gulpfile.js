@@ -6,34 +6,28 @@ const scss=require('gulp-sass');
 const autoprefixer=require('gulp-autoprefixer');
 const minifycss=require('gulp-minify-css');
 const babel=require('gulp-babel');
-const concat=require('gulp-concat');
 const uglify=require('gulp-uglify');
 const imagemin=require('gulp-imagemin');
 const base64=require('gulp-base64');
-class phone {
-    constructor(){
-        this.basePath=`${__dirname}/public/phone`;
-        this.devPath=`${this.basePath}/dev`;
-        this.distPath=`${this.basePath}/dist`;
-        this.scssEnterPath=`${this.devPath}/scss/**/*.scss`;
-        this.scssExitPath=`${this.distPath}/scss/`;
-        this.jsEnterPath=`${this.devPath}/js/**/*.js`;
-        this.jsExitPath=`${this.distPath}/js/`;
-        this.imagesEnterPath=`${this.devPath}/images/**/*.*`;
-        this.imagesExitPath=`${this.distPath}/images/`
-    }
-}
-class pc {
-    constructor(){
-        this.basePath=`${__dirname}/public/pc`;
-        this.devPath=`${this.basePath}/dev`;
-        this.distPath=`${this.basePath}/dist`;
-        this.scssEnterPath=`${this.devPath}/scss/**/*.scss`;
-        this.scssExitPath=`${this.distPath}/scss/`;
-        this.jsEnterPath=`${this.devPath}/js/**/*.js`;
-        this.jsExitPath=`${this.distPath}/js/`;
-        this.imagesEnterPath=`${this.devPath}/images/**/*.*`;
-        this.imagesExitPath=`${this.distPath}/images/`
+const fs=require('fs');
+class Path {
+    constructor(opt){
+        this.publicPath=`${__dirname}/public`;
+        if(opt){
+            this.basePath=`${this.publicPath}/${opt.type}`;
+            this.devPath=`${this.basePath}/dev`;
+            this.distPath=`${this.basePath}/dist`;
+            this.scssEnterPath=`${this.devPath}/scss/**/*.scss`;
+            this.scssExitPath=`${this.distPath}/scss/`;
+            this.jsEnterPath=`${this.devPath}/js/**/*.js`;
+            this.jsExitPath=`${this.distPath}/js/`;
+            this.imagesEnterPath=`${this.devPath}/images/**/*.*`;
+            this.imagesExitPath=`${this.distPath}/images/`;
+            this.fontEnterPath=`${this.devPath}/font/**/*.*`;
+            this.fontExitPath=`${this.distPath}/font/`;
+            this.uiEnterPath=`${this.devPath}/ui/**/*.*`;
+            this.uiExitPath=`${this.distPath}/ui/`;
+        }
     }
 }
 function task(opt){
@@ -42,16 +36,14 @@ function task(opt){
     }
     const path=opt.path;
     const type=opt.type;
-    //合并(不应该出现合并,应该万物皆模块,待续...)
-    gulp.task(`${type}concatScss`,function(){//scss合并
-        return gulp.src([`${path.distPath}/scss/base/base.css`,`${path.distPath}/scss/page/index.css`])
-            .pipe(concat('common.css'))
-            .pipe(gulp.dest(`${path.distPath}/scss/common/`));
+    //转移
+    gulp.task(`${type}font`,function(){//font转移
+        return gulp.src(path.fontEnterPath)
+            .pipe(gulp.dest(path.fontExitPath))
     });
-    gulp.task(`${type}concatJs`,function(){//js合并
-        return gulp.src([`${path.distPath}/js/base/base.js`,`${path.distPath}/js/page/index.js`])
-            .pipe(concat('common.js'))
-            .pipe(gulp.dest(`${path.distPath}/js/common/`));
+    gulp.task(`${type}ui`,function(){//ui转移
+        return gulp.src(path.uiEnterPath)
+            .pipe(gulp.dest(path.uiExitPath))
     });
     //开发
     gulp.task(`${type}scss`,function(){//scss转移
@@ -75,6 +67,8 @@ function task(opt){
         gulp.watch(path.scssEnterPath,[`${type}scss`]);//scss监听
         gulp.watch(path.jsEnterPath,[`${type}js`]);//js监听
         gulp.watch(path.imagesEnterPath,[`${type}images`]);//images监听
+        gulp.watch(path.fontEnterPath,[`${type}font`]);//font监听
+        gulp.watch(path.uiEnterPath,[`${type}ui`]);//ui监听
     });
     //压缩
     gulp.task(`${type}scssMin`,function(){//scss压缩
@@ -101,14 +95,21 @@ function task(opt){
         gulp.watch(path.scssEnterPath,[`${type}scssMin`]);//scss监听
         gulp.watch(path.jsEnterPath,[`${type}jsMin`]);//js监听
         gulp.watch(path.imagesEnterPath,[`${type}imagesMin`]);//images监听
+        gulp.watch(path.fontEnterPath,[`${type}font`]);//font监听
+        gulp.watch(path.uiEnterPath,[`${type}ui`]);//ui监听
     });
     //执行任务
-    gulp.task(`${type}Dev`,[`${type}scss`,`${type}js`,`${type}images`,`${type}:watch`],function(){//开发
-        gulp.start(`${type}concatScss`,`${type}concatJs`);
-    });
-    gulp.task(`${type}Build`,[`${type}scssMin`,`${type}jsMin`,`${type}imagesMin`,`${type}min:watch`],function(){//上线
-        gulp.start(`${type}concatScss`,`${type}concatJs`);
+    gulp.task(`${type}Dev`,[`${type}font`,`${type}ui`,`${type}scss`,`${type}js`,`${type}images`,`${type}:watch`]);//开发
+    gulp.task(`${type}Build`,[`${type}font`,`${type}ui`,`${type}scssMin`,`${type}jsMin`,`${type}imagesMin`,`${type}min:watch`]);//上线
+}
+{
+    const path=new Path();
+    const publicPath=path.publicPath;
+    const result=fs.readdirSync(publicPath);
+    result.forEach(function(v){
+        var lsTat=fs.lstatSync(`${publicPath}/${v}`);
+        if(lsTat.isDirectory()){
+            task({path:new Path({type:v}),type:v});
+        }
     });
 }
-task({path:new phone(),type:'phone'});
-task({path:new pc(),type:'pc'});
