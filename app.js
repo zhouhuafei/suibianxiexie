@@ -7,8 +7,10 @@ var config=new Config();
 //express
 var express=require('express');
 var app=express();
+//托管静态文件
+app.use(express.static('public'));
 //路由
-var Routes=require('./routes/routes');
+var Routes=require('./router/router');
 new Routes({app:app});
 //404
 app.use(function(req,res){
