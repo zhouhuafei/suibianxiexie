@@ -1,4 +1,12 @@
 @import "../base/base";
-h2{
-    height:100px;
+
+.page-index{
+    @include habit-zhouhuafei;
+
+    div{
+        height:px2rem(200);
+        line-height:px2rem(200);
+        text-align:center;
+        background:#000000;
+    }
 }

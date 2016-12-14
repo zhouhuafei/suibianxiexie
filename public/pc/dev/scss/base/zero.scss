@@ -1,0 +1,34 @@
+//清零样式
+body, div, menu, ol, ul, li, dl, dd, dt, h1, h2, h3, h4, h5, h6, input, p, form, header, nav, article, section, aside, footer, video, audio, figure, textarea{
+    padding:0;
+    margin:0;
+}
+li{
+    list-style-type:none;
+}
+a{
+    text-decoration:none;
+    outline:none;
+    color:inherit;
+}
+input, select, textarea, img, textarea{
+    outline:none;
+    border:none;
+    color:inherit;
+    vertical-align:middle;
+}
+input, select, textarea{
+    background:#ffffff;
+}
+textarea{
+    resize:none;
+}
+mark{
+    background:none;
+}
+html, body{
+    overflow-x:hidden;
+}
+body{
+    font:12px/1 "Microsoft Yahei", Arial, Helvetica, "sans-serif";
+}

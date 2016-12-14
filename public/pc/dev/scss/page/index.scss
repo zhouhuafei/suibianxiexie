@@ -1,3 +1,10 @@
-h2{
-    height:100px;
+@import "../base/base";
+
+@include habit-zhouhuafei;
+
+div{
+    height:px2rem(200);
+    line-height:px2rem(200);
+    text-align:center;
+    background:#000000;
 }

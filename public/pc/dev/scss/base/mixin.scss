@@ -1,0 +1,55 @@
+//周华飞的个人习惯
+@mixin habit-zhouhuafei() {
+    em, i, strong, b, small, h1, h2, h3, h4, h5, h6, address{
+        font-style:normal;
+        font-weight:normal;
+        font-size:100%;
+    }
+    span, b, em, i, strong, small, label, mark{
+        display:inline-block;
+    }
+    a{
+        display:block;
+        height:100%;
+    }
+    img{
+        max-width:100%;
+        max-height:100%;
+    }
+}
+//清除浮动
+@mixin clear-fix() {
+    &:after{
+        content:'';
+        clear:both;
+        display:block;
+        height:0;
+        overflow:hidden;
+    }
+}
+//垂直居中
+@mixin center-xy() {
+    &:before{
+        content:'';
+        display:inline-block;
+        height:100%;
+        vertical-align:middle;
+    }
+}
+//单行省略号
+@mixin ellipsis() {
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+//多行省略号
+@mixin ellipsis-more-line($lineNum) {
+    overflow:hidden;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:$lineNum;
+}
+//px转rem
+@function px2rem($px,$psd:375) {
+    @return $px / $psd * 10rem;
+}
