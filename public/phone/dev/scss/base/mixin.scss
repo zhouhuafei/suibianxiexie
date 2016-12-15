@@ -37,14 +37,85 @@
 //mixin待续...
 
 //周华飞的个人习惯
-@mixin habit-zhouhuafei() {
+@mixin habit-zhouhuafei() {    
+    overflow-x:hidden;
+    font-family:"Microsoft Yahei", Arial, Helvetica, "sans-serif";
+    line-height:1;    
     font-size:px2rem(12);
+    menu, ul, ol, body, dl, dd, h1, h2, h3, h4, h5, h6, p, figure,textarea,input{
+        margin:0;
+    }
+    menu, ul, ol, input, textarea,button{
+        padding:0;
+    }
+    li{
+        list-style-type:none;
+    }
+    input, select,textarea,button{
+        border:none;
+    }
+    textarea,a,select,input,button{
+        outline:none;
+    }
+    a,s{
+        text-decoration:none;
+    }
+    a,mark,select,input,textarea,button{
+        color:inherit;
+    }
     a{
-        height:100%;
-        width:100%;
+        -webkit-tap-highlight-color:rgba(0,0,0,0);
+    }
+    mark,button,input,select,textarea{
+        background:none;
+    }
+    textarea{
+        overflow:hidden;
+    }
+    textarea{
+        font-family:inherit;
+    }
+    textarea{
+        line-height:inherit;
+    }
+    h1, h2, h3, h4, h5, h6,small,input,select,textarea,button{
+        font-size:inherit;
+    }
+    h1, h2, h3, h4, h5, h6,b,strong{
+        font-weight:normal;
+    }
+    em,i{
+        font-style:normal;
     }
     img{
+        vertical-align:middle;
+    }
+    textarea{
+        vertical-align:top;
+    }
+    label,em,i,span,small,b,s,strong,mark,a{
+        display:inline-block;
+    }
+    .display-none{
+        display:none;
+    }
+    .display-block{
+        display:block;
+    }
+    .display-inline-block{
+        display:inline-block;
+    }
+    //以上和清零样式相同
+    a{
+        width:100%;       
+    }
+    a{
+        height:100%;
+    }
+    img{        
         max-width:100%;
+    }
+    img{
         max-height:100%;
     }
 }
