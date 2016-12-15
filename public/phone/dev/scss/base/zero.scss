@@ -45,8 +45,11 @@ h1, h2, h3, h4, h5, h6,b,strong{
 em,i{
     font-style:normal;
 }
-img,textarea{
+img{
     vertical-align:middle;
+}
+textarea{
+    vertical-align:top;
 }
 label,em,i,span,small,b,s,strong,mark,a{
     display:inline-block;
