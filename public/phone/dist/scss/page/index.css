@@ -1,0 +1,84 @@
+@charset "UTF-8";
+html, body {
+  overflow-x: hidden; }
+
+body {
+  font-family: "Microsoft Yahei", Arial, Helvetica, "sans-serif";
+  margin: 0; }
+
+.g-mask, .g-mask-transparent {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%; }
+
+.g-mask {
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 500; }
+
+.g-mask-transparent {
+  background: transparent;
+  z-index: 1000; }
+
+/*
+@import "../../font/iconfont.css";//字体图标引入不了,明天再做思考
+*/
+.page-index {
+  line-height: 1;
+  font-size: 0.32rem; }
+  .page-index menu, .page-index ul, .page-index ol, .page-index dl, .page-index dd, .page-index h1, .page-index h2, .page-index h3, .page-index h4, .page-index h5, .page-index h6, .page-index p, .page-index figure, .page-index textarea, .page-index input {
+    margin: 0; }
+  .page-index menu, .page-index ul, .page-index ol, .page-index input, .page-index textarea, .page-index button {
+    padding: 0; }
+  .page-index li {
+    list-style-type: none; }
+  .page-index input, .page-index select, .page-index textarea, .page-index button {
+    border: none; }
+  .page-index textarea, .page-index a, .page-index select, .page-index input, .page-index button {
+    outline: none; }
+  .page-index a, .page-index s {
+    text-decoration: none; }
+  .page-index a, .page-index mark, .page-index select, .page-index input, .page-index textarea, .page-index button {
+    color: inherit; }
+  .page-index a {
+    -webkit-tap-highlight-color: transparent; }
+  .page-index mark, .page-index button, .page-index input, .page-index select, .page-index textarea {
+    background: none; }
+  .page-index textarea {
+    overflow: hidden; }
+  .page-index textarea {
+    font-family: inherit; }
+  .page-index textarea {
+    line-height: inherit; }
+  .page-index h1, .page-index h2, .page-index h3, .page-index h4, .page-index h5, .page-index h6, .page-index small, .page-index input, .page-index select, .page-index textarea, .page-index button {
+    font-size: inherit; }
+  .page-index h1, .page-index h2, .page-index h3, .page-index h4, .page-index h5, .page-index h6, .page-index b, .page-index strong {
+    font-weight: normal; }
+  .page-index em, .page-index i {
+    font-style: normal; }
+  .page-index img {
+    vertical-align: middle; }
+  .page-index textarea {
+    vertical-align: top; }
+  .page-index label, .page-index em, .page-index i, .page-index span, .page-index small, .page-index b, .page-index s, .page-index strong, .page-index mark, .page-index a {
+    display: inline-block; }
+  .page-index a {
+    width: 100%; }
+  .page-index a {
+    height: 100%; }
+  .page-index img {
+    max-width: 100%; }
+  .page-index img {
+    max-height: 100%; }
+  .page-index .display-none {
+    display: none; }
+  .page-index .display-block {
+    display: block; }
+  .page-index .display-inline-block {
+    display: inline-block; }
+  .page-index div {
+    height: 5.33333rem;
+    line-height: 5.33333rem;
+    text-align: center;
+    background: #000000; }
