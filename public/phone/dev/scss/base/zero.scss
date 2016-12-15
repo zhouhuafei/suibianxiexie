@@ -1,18 +1,27 @@
 //清零样式
+html,body{
+    overflow-x:hidden;
+}
+body{
+    font-family:"Microsoft Yahei", Arial, Helvetica, "sans-serif";
+}
+body{
+    line-height:1;
+}
 menu, ul, ol, body, dl, dd, h1, h2, h3, h4, h5, h6, p, figure,textarea,input{
     margin:0;
 }
 menu, ul, ol, input, textarea,button{
     padding:0;
 }
+li{
+    list-style-type:none;
+}
 input, select,textarea,button{
     border:none;
 }
 textarea,a,select,input,button{
     outline:none;
-}
-li{
-    list-style-type:none;
 }
 a,s{
     text-decoration:none;
@@ -27,14 +36,13 @@ mark,button,input,select,textarea{
     background:none;
 }
 textarea{
-    overflow-y:hidden;
+    overflow:hidden;
 }
-html,body{
-    overflow-x:hidden;
+textarea{
+    font-family:inherit;
 }
-body,textarea{
-    font-family:"Microsoft Yahei", Arial, Helvetica, "sans-serif";
-    line-height:1;
+textarea{
+    line-height:inherit;
 }
 h1, h2, h3, h4, h5, h6,small,input,select,textarea,button{
     font-size:inherit;
