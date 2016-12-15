@@ -1,53 +1,53 @@
 //清零样式
-    menu, ul, ol, body, dl, dd, h1, h2, h3, h4, h5, h6, p, figure,textarea,input{
-        margin:0;
-    }
-    menu, ul, ol, input, textarea,button{
-        padding:0;
-    }
-    input, select,textarea,button{
-        border:none;
-    }
-    textarea,a,select,input,button{
-        outline:none;
-    }
-    li{
-        list-style-type:none;
-    }
-    a,s{
-        text-decoration:none;
-    }
-    a,mark,select,input,textarea,button{
-        color:inherit;
-    }
-    a{
-        -webkit-tap-highlight-color:rgba(0,0,0,0);
-    }
-    mark,button,input,select,textarea{
-        background:none;
-    }
-    textarea{
-        overflow-y:hidden;
-    }
-    html,body{
-        overflow-x:hidden;
-    }
-    body,textarea{
-        font-family:"Microsoft Yahei", Arial, Helvetica, "sans-serif";
-        line-height:1;
-    }
-    h1, h2, h3, h4, h5, h6,small,input,select,textarea,button{
-        font-size:inherit;
-    }
-    h1, h2, h3, h4, h5, h6,b,strong{
-        font-weight:normal;
-    }
-    em,i{
-        font-style:normal;
-    }
-    label,textarea,input,select,img,button,em,i,span,small,b,s,strong,mark,a{
-        vertical-align:middle;
-    }
-    label,em,i,span,small,b,s,strong,mark,a{
-        display:inline-block;
-    }
+menu, ul, ol, body, dl, dd, h1, h2, h3, h4, h5, h6, p, figure,textarea,input{
+    margin:0;
+}
+menu, ul, ol, input, textarea,button{
+    padding:0;
+}
+input, select,textarea,button{
+    border:none;
+}
+textarea,a,select,input,button{
+    outline:none;
+}
+li{
+    list-style-type:none;
+}
+a,s{
+    text-decoration:none;
+}
+a,mark,select,input,textarea,button{
+    color:inherit;
+}
+a{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+mark,button,input,select,textarea{
+    background:none;
+}
+textarea{
+    overflow-y:hidden;
+}
+html,body{
+    overflow-x:hidden;
+}
+body,textarea{
+    font-family:"Microsoft Yahei", Arial, Helvetica, "sans-serif";
+    line-height:1;
+}
+h1, h2, h3, h4, h5, h6,small,input,select,textarea,button{
+    font-size:inherit;
+}
+h1, h2, h3, h4, h5, h6,b,strong{
+    font-weight:normal;
+}
+em,i{
+    font-style:normal;
+}
+label,textarea,input,select,img,button,em,i,span,small,b,s,strong,mark,a{
+    vertical-align:middle;
+}
+label,em,i,span,small,b,s,strong,mark,a{
+    display:inline-block;
+}
