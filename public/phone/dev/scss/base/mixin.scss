@@ -37,9 +37,10 @@
 //mixin待续...
 
 //周华飞的个人习惯
-@mixin habit-zhouhuafei() {    
+@mixin habit-zhouhuafei() {
     font-size:px2rem(12);
     line-height:1;
+    overflow-x:hidden;
     .display-none{
         display:none;
     }
@@ -49,6 +50,17 @@
     .display-inline-block{
         display:inline-block;
     }
+    input, select, textarea, img{
+        outline:none;
+        border:none;
+        color:inherit;
+        vertical-align:middle;
+        font-size:100%;
+        background:#ffffff;
+    }
+    textarea{
+        resize:none;
+    }
     em, i, strong, b, small, h1, h2, h3, h4, h5, h6, address{
         font-style:normal;
         font-weight:normal;
@@ -57,9 +69,16 @@
     span, b, em, i, strong, small, label, mark{
         display:inline-block;
     }
+    mark{
+        background:none;
+    }
     a{
         display:block;
+        outline:none;
+        text-decoration:none;
+        color:inherit;
         height:100%;
+        -webkit-tap-highlight-color:rgba(0,0,0,0);
     }
     img{
         max-width:100%;
