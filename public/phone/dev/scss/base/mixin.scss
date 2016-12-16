@@ -42,7 +42,7 @@
 @mixin habit-zhouhuafei() {
     line-height:1;
     font-size:px2rem(12);
-    select, input, button{
+    select, input, button, textarea{
         color:inherit;
         background:none;
         outline:none;
@@ -50,15 +50,10 @@
         font-size:inherit;
     }
     textarea{
-        color:inherit;
-        background:none;
-        outline:none;
-        border:none;
-        font-size:inherit;
         font-family:inherit;
         line-height:inherit;
-        overflow:hidden;
         vertical-align:top;
+        overflow:hidden;
     }
     h1, h2, h3, h4, h5, h6{
         font-size:inherit;
