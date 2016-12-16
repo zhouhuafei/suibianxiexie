@@ -42,80 +42,51 @@
 @mixin habit-zhouhuafei() {
     line-height:1;
     font-size:px2rem(12);
-    menu, ul, ol, dl, dd, h1, h2, h3, h4, h5, h6, p, figure, textarea, input{
-        margin:0;
-    }
-    menu, ul, ol, input, textarea, button{
-        padding:0;
-    }
-    li{
-        list-style-type:none;
-    }
-    input, select, textarea, button{
-        border:none;
-    }
-    textarea, a, select, input, button{
-        outline:none;
-    }
-    a, s{
-        text-decoration:none;
-    }
-    a, mark, select, input, textarea, button{
+    select, input, button{
         color:inherit;
-    }
-    a{
-        -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
-    }
-    mark, button, input, select, textarea{
         background:none;
-    }
-    textarea{
-        overflow:hidden;
-    }
-    textarea{
-        font-family:inherit;
-    }
-    textarea{
-        line-height:inherit;
-    }
-    h1, h2, h3, h4, h5, h6, small, input, select, textarea, button{
+        outline:none;
+        border:none;
         font-size:inherit;
     }
-    h1, h2, h3, h4, h5, h6, b, strong{
-        font-weight:normal;
-    }
-    em, i{
-        font-style:normal;
-    }
-    img{
-        vertical-align:middle;
-    }
     textarea{
+        color:inherit;
+        background:none;
+        outline:none;
+        border:none;
+        font-size:inherit;
+        font-family:inherit;
+        line-height:inherit;
+        overflow:hidden;
         vertical-align:top;
     }
-    label, em, i, span, small, b, s, strong, mark, a{
+    h1, h2, h3, h4, h5, h6{
+        font-size:inherit;
+        font-weight:normal;
+    }
+    label, em, i, span, small, b, strong{
+        font-size:inherit;
+        font-style:normal;
+        font-weight:normal;
         display:inline-block;
     }
-    a{
-        width:100%;
+    mark{
+        color:inherit;
+        background:none;
     }
     a{
+        text-decoration:none;
+        outline:none;
+        color:inherit;
+        -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+        display:inline-block;
+        width:100%;
         height:100%;
     }
     img{
         max-width:100%;
-    }
-    img{
         max-height:100%;
-    }
-    .display-none{
-        display:none;
-    }
-    .display-block{
-        display:block;
-    }
-    .display-inline-block{
-        display:inline-block;
+        vertical-align:middle;
     }
 }
 //xxx的个人习惯待续...
