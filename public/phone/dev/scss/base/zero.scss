@@ -1,15 +1,14 @@
 //清零样式
-html,body{
+html, body{
     overflow-x:hidden;
 }
 body{
     font-family:"Microsoft Yahei", Arial, Helvetica, "sans-serif";
+}
+body, menu, ul, ol, dl, dd, h1, h2, h3, h4, h5, h6, p, figure, textarea, input{
     margin:0;
 }
-menu, ul, ol, dl, dd, h1, h2, h3, h4, h5, h6, p, figure,textarea,input{
-    margin:0;
-}
-menu, ul, ol, input, textarea,button{
+menu, ul, ol, input, textarea, button{
     padding:0;
 }
 li{
