@@ -14,6 +14,7 @@
 }
 //垂直居中
 @mixin center-xy() {
+    font-size:0;
     &:before{
         content:'';
         display:inline-block;
