@@ -1,0 +1,131 @@
+/**
+ * Created by zhouhuafei on 16/12/17.
+ */
+.m-product {
+  line-height: 1;
+  color: #383838;
+  font-size: 0.32rem; }
+  .m-product a {
+    text-decoration: none;
+    outline: none;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    width: 100%;
+    height: 100%; }
+  .m-product span {
+    display: inline-block; }
+  .m-product img {
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: middle; }
+  .m-product .m-product-img {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #dddddd;
+    text-align: center; }
+    .m-product .m-product-img a {
+      font-size: 0; }
+      .m-product .m-product-img a:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle; }
+  .m-product .m-product-txt {
+    position: relative;
+    overflow: hidden; }
+  .m-product .m-product-goods-name {
+    font-size: 0.42667rem; }
+  .m-product .m-product-cart {
+    width: 1.6rem;
+    text-align: center;
+    height: 0.58667rem;
+    line-height: 0.58667rem;
+    background: #ee3400;
+    color: #ffffff;
+    border-radius: 53.33333rem; }
+    .m-product .m-product-cart .icon-cart {
+      font-size: 0.53333rem; }
+  .m-product .m-product-price {
+    font-size: 0; }
+    .m-product .m-product-price span {
+      font-size: 0.32rem; }
+      .m-product .m-product-price span.m-product-price-new-money-symbol, .m-product .m-product-price span.m-product-price-new-money-big, .m-product .m-product-price span.m-product-price-new-money-point, .m-product .m-product-price span.m-product-price-new-money-small {
+        color: #ee3400; }
+      .m-product .m-product-price span.m-product-price-new-money-big {
+        font-size: 0.48rem; }
+      .m-product .m-product-price span.m-product-price-old-money-symbol {
+        margin-left: 0.10667rem; }
+      .m-product .m-product-price span.m-product-price-old-money-symbol, .m-product .m-product-price span.m-product-price-old-money-small {
+        color: #bfbfbf;
+        text-decoration: line-through; }
+  .m-product .m-product-price-like-num {
+    font-size: 0; }
+    .m-product .m-product-price-like-num span {
+      font-size: 0.32rem;
+      color: #bfbfbf; }
+  .m-product .m-product-seckill-now-get {
+    width: 1.6rem;
+    text-align: center;
+    height: 0.58667rem;
+    line-height: 0.58667rem;
+    background: #ee3400;
+    color: #ffffff;
+    border-radius: 53.33333rem; }
+  .m-product .m-product-seckill-count-down {
+    font-size: 0; }
+    .m-product .m-product-seckill-count-down span {
+      font-size: 0.32rem; }
+      .m-product .m-product-seckill-count-down span.m-product-seckill-count-down-num {
+        color: #ee3400; }
+  .m-product .m-product-seckill-mark {
+    font-size: 0;
+    width: 1.17333rem;
+    text-align: center;
+    height: 0.48rem;
+    line-height: 0.48rem;
+    border-radius: 53.33333rem;
+    color: #ffffff;
+    background: #ee3400;
+    margin-right: 0.16rem; }
+    .m-product .m-product-seckill-mark span {
+      font-size: 0.32rem; }
+  .m-product.m-product-list {
+    margin: 0.21333rem;
+    display: -webkit-box;
+    -webkit-box-pack: justify; }
+    .m-product.m-product-list .m-product-img {
+      width: 3.46667rem;
+      height: 3.46667rem; }
+    .m-product.m-product-list .m-product-txt {
+      width: 5.86667rem;
+      height: 3.46667rem; }
+    .m-product.m-product-list.m-product-long .m-product-img {
+      height: 5.30667rem; }
+    .m-product.m-product-list.m-product-long .m-product-txt {
+      height: 5.30667rem; }
+  .m-product.m-product-window {
+    width: 4.66667rem; }
+    .m-product.m-product-window:nth-of-type(n) {
+      margin: 0.21333rem 0 0.21333rem 0.21333rem;
+      float: left; }
+    .m-product.m-product-window:nth-of-type(2n) {
+      margin: 0.21333rem 0.21333rem 0.21333rem 0;
+      float: right; }
+    .m-product.m-product-window .m-product-img {
+      height: 4.66667rem; }
+    .m-product.m-product-window .m-product-txt {
+      height: 3.06667rem; }
+    .m-product.m-product-window.m-product-long .m-product-img {
+      height: 7.14667rem; }
+  .m-product.m-product-placard {
+    margin: 0.21333rem;
+    width: 9.57333rem; }
+    .m-product.m-product-placard .m-product-img {
+      height: 9.57333rem;
+      border-radius: 0; }
+    .m-product.m-product-placard .m-product-txt {
+      height: 2.4rem; }
+    .m-product.m-product-placard.m-product-long .m-product-img {
+      height: 14.66667rem; }

@@ -1,0 +1,216 @@
+/**
+ * Created by zhouhuafei on 16/12/17.
+ */
+@import "../base/mixin";
+.m-product{
+    //模块色调开始
+    $color1:#ee3400;
+    $color2:#bfbfbf;
+    $color3:#383838;
+    $color4:#ffffff;
+    //模块色调结束
+    line-height:1;
+    color:$color3;
+    font-size:px2rem(12);
+    a{
+        text-decoration:none;
+        outline:none;
+        color:inherit;
+        -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+        display:inline-block;
+        width:100%;
+        height:100%;
+    }
+    span{
+        display:inline-block;
+    }
+    img{
+        max-width:100%;
+        max-height:100%;
+        vertical-align:middle;
+    }
+    .m-product-img{//图片容器
+        position:relative;
+        overflow:hidden;
+        border-radius:10px;
+        background:#dddddd;
+        text-align:center;
+        a{
+            @include center-xy;
+        }
+    }
+    .m-product-txt{//文字容器
+        position:relative;
+        overflow:hidden;
+    }
+    .m-product-goods-name{//商品名称
+        font-size:px2rem(16);
+    }
+    &.m-product-goods-name-show .m-product-goods-name{//商品名称显示
+
+    }
+    .m-product-cart{//购物车
+        width:px2rem(60);
+        text-align:center;
+        height:px2rem(22);
+        line-height:px2rem(22);
+        background:$color1;
+        color:$color4;
+        border-radius:px2rem(2000);
+        .icon-cart{
+            font-size:px2rem(20);
+        }
+    }
+    &.m-product-cart-show .m-product-cart{//购物车显示
+
+    }
+    .m-product-price{//商品价格
+        font-size:0;
+        span{
+            font-size:px2rem(12);
+            &.m-product-price-new-money-symbol,&.m-product-price-new-money-big,&.m-product-price-new-money-point,&.m-product-price-new-money-small{
+                color:$color1;
+            }
+            &.m-product-price-new-money-big{
+                font-size:px2rem(18);
+            }
+            &.m-product-price-old-money-symbol{
+                margin-left:px2rem(4);
+            }
+            &.m-product-price-old-money-symbol,&.m-product-price-old-money-small{
+                color:$color2;
+                text-decoration:line-through;
+            }
+        }
+    }
+    &.m-product-price-show .m-product-price{//商品价格显示
+
+    }
+    .m-product-price-like-num{//多少人想买
+        font-size:0;
+        span{
+            font-size:px2rem(12);
+            color:$color2;
+        }
+    }
+    &.m-product-price-like-num-show .m-product-price-like-num{//多少人想买显示
+
+    }
+    .m-product-seckill-now-get{//秒杀马上抢
+        width:px2rem(60);
+        text-align:center;
+        height:px2rem(22);
+        line-height:px2rem(22);
+        background:$color1;
+        color:$color4;
+        border-radius:px2rem(2000);
+    }
+    &.m-product-seckill-now-get-show .m-product-seckill-now-get{//秒杀马上抢显示
+
+    }
+    .m-product-seckill-count-down{//秒杀倒计时
+        font-size:0;
+        span{
+            font-size:px2rem(12);
+            &.m-product-seckill-count-down-num{
+                color:$color1;
+            }
+        }
+    }
+    &.m-product-seckill-count-down-show .m-product-seckill-count-down{//秒杀倒计时显示
+
+    }
+
+    .m-product-seckill-mark{//秒杀标识
+        font-size:0;
+        width:px2rem(44);
+        text-align:center;
+        height:px2rem(18);
+        line-height:px2rem(18);
+        border-radius:px2rem(2000);
+        color:$color4;
+        background:$color1;
+        margin-right:px2rem(6);
+        span{
+            font-size:px2rem(12);
+        }
+    }
+    &.m-product-seckill-mark-show .m-product-seckill-mark{//秒杀标识显示
+        
+    }
+
+    .m-product-seckill-hint{//秒杀提醒
+
+    }
+    &.m-product-seckill-hint-show .m-product-seckill-hint{//秒杀提醒显示
+
+    }
+    &.m-product-list{//列表式默认正方形
+        margin:px2rem(8);
+        display:-webkit-box;
+        -webkit-box-pack:justify;
+        .m-product-img{
+            width:px2rem(130);
+            height:px2rem(130);
+        }
+        .m-product-txt{
+            width:px2rem(220);
+            height:px2rem(130);
+        }
+        .m-product-goods-name{
+
+        }
+        .m-product-cart{
+
+        }
+        .m-product-price-like-num{
+
+        }
+        &.m-product-long{//列表式的长方形
+            .m-product-img{
+                height:px2rem(199);
+            }
+            .m-product-txt{
+                height:px2rem(199);
+            }
+        }
+    }
+    &.m-product-window{//橱窗式
+        &:nth-of-type(n){
+            margin:px2rem(8) 0 px2rem(8) px2rem(8);
+            float:left;
+        }
+        &:nth-of-type(2n){
+            margin:px2rem(8) px2rem(8) px2rem(8) 0;
+            float:right;
+        }
+        width:px2rem(175);
+        .m-product-img{
+            height:px2rem(175);
+        }
+        .m-product-txt{
+            height:px2rem(115);
+        }
+        &.m-product-long{//列表式的长方形
+            .m-product-img{
+                height:px2rem(268);
+            }
+        }
+    }
+    &.m-product-placard{//海报式
+        margin:px2rem(8);
+        width:px2rem(359);
+        .m-product-img{
+            height:px2rem(359);
+            border-radius:0;
+        }
+        .m-product-txt{
+            height:px2rem(90);
+        }
+        &.m-product-long{//列表式的长方形
+            .m-product-img{
+                height:px2rem(550);
+            }
+        }
+    }
+}

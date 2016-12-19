@@ -1,10 +1,11 @@
 @import "../base/base";
-
-@include habit-zhouhuafei;
-
-div{
-    height:px2rem(200);
-    line-height:px2rem(200);
-    text-align:center;
-    background:#000000;
+.page-index{
+    @include habit-zhouhuafei;
+    font-size:px2rem(30);
+    div{
+        height:px2rem(200);
+        line-height:px2rem(200);
+        text-align:center;
+        background:#000000;
+    }
 }
