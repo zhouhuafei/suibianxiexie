@@ -102,7 +102,7 @@
         background:$color1;
         color:$color4;
         border-radius:px2rem(2000);
-        .icon-cart{
+        .iconfont{
             font-size:px2rem(20);
         }
     }
@@ -120,6 +120,9 @@
         background:$color1;
         span{
             font-size:px2rem(12);
+            &.iconfont{
+                margin-right:px2rem(1);
+            }
         }
     }
     .m-product-seckill-logo{ //秒杀的logo

@@ -85,7 +85,7 @@
     background: #ee3400;
     color: #ffffff;
     border-radius: 53.33333rem; }
-    .m-product .m-product-cart .icon-cart {
+    .m-product .m-product-cart .iconfont {
       font-size: 0.53333rem; }
   .m-product .m-product-seckill-mark {
     position: absolute;
@@ -101,6 +101,8 @@
     background: #ee3400; }
     .m-product .m-product-seckill-mark span {
       font-size: 0.32rem; }
+      .m-product .m-product-seckill-mark span.iconfont {
+        margin-right: 0.02667rem; }
   .m-product .m-product-seckill-logo {
     position: absolute;
     right: 0.10667rem;
