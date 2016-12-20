@@ -19,7 +19,7 @@ function ProductList(opt){
         isShowSeckillWillBeginTime:this.configData.isShowSeckillWillBeginTime==true?this.configData.isShowSeckillWillBeginTime:false,//是否显示秒杀即将开始的时间(默认不显示)
         isShowSeckillHintBtn:this.configData.isShowSeckillHintBtn==true?this.configData.isShowSeckillHintBtn:false,//是否显示秒杀提醒按钮(默认不显示)
         isShowSeckillNowGetBtn:this.configData.isShowSeckillNowGetBtn==true?this.configData.isShowSeckillNowGetBtn:false,//是否显示秒杀马上抢按钮(默认不显示)
-        isShowSeckillWillEndTime:this.configData.isShowSeckillWillEndTime==true?this.configData.isShowSeckillWillEndTime:false,//是否显示秒杀即将结束的倒计时(默认不显示)
+        isShowSeckillWillEndTime:this.configData.isShowSeckillWillEndTime==true?this.configData.isShowSeckillWillEndTime:false//是否显示秒杀即将结束的倒计时(默认不显示)
     };
     this.ajaxData={
         goodsName:this.ajaxData.goodsName||'商品名称',//商品名称
@@ -33,7 +33,7 @@ function ProductList(opt){
         aHref:this.ajaxData.aHref||'',//商品详情的链接
         seckillWillBeginTime:this.ajaxData.seckillWillBeginTime||'6',//秒杀即将开始的时间
         seckillWillBeginBtnShowTime:this.ajaxData.seckillWillBeginBtnShowTime||'60',//秒杀即将开始按钮出现的时间(剩余最后60秒的时候出现)
-        seckillWillEndTime:this.ajaxData.seckillWillEndTime||'6',//秒杀即将结束的时间
+        seckillWillEndTime:this.ajaxData.seckillWillEndTime||'6'//秒杀即将结束的时间
     };
 }
 //以下是渲染结构
@@ -126,7 +126,7 @@ ProductList.prototype.renderLikeNum=function(){//渲染多少人喜欢
 };
 ProductList.prototype.renderCart=function(){//渲染购物车
     if(this.configData.isShowCart){
-        return `<div class="m-product-cart"><span class="icon-cart"></span></div>`;
+        return `<div class="m-product-cart"><span class="iconfont icon-gouwuche"></span></div>`;
     }else{
         return ``;
     }
@@ -136,7 +136,7 @@ ProductList.prototype.renderSeckillMark=function(){//渲染秒杀标识
         this.parentDOM.classList.add('m-product-seckill');
         return `
             <div class="m-product-seckill-mark">
-                <span class="icon-clock"></span>
+                <span class="iconfont icon-naozhong"></span>
                 <span>秒杀</span>
             </div>
         `;
@@ -238,28 +238,25 @@ ProductList.prototype.renderSeckillWillEndTime=function(){//渲染秒杀结束�
     }
 };
 ProductList.prototype.render=function(callback){//渲染整个结构
+    this.requireBase();
     this.renderParent();
+    this.init();
     callback&&callback(this.parentDOM);
 };
 //以下是渲染功能
 ProductList.prototype.init=function(){//初始化
 
+
+
+
     this.seckillWillBeginTime();
     this.seckillWillEndTime();
 };
-ProductList.prototype.timeCountDown=base.timeCountDown;//倒计时
-ProductList.prototype.htmlToDom=function(html){//html转成DOM节点
-    var div=document.createElement('div');
-    div.innerHTML=html;
-    return div.children[0];
-};
-ProductList.prototype.secondsToTime=function(opt){
-    var seconds=opt.seconds;
-    var d=Math.floor(seconds/3600/24);
-    var h=Math.floor(seconds/3600%24);
-    var m=Math.floor(seconds%3600/60);
-    var s=Math.floor(seconds%60);
-    return {d:d,h:h,m:m,s:s,a:seconds};
+ProductList.prototype.requireBase=function(){//需要用到的小功能函数
+    this.base=require("../base/base.js");//base小功能
+    this.timeCountDown=this.base.timeCountDown;//倒计时
+    this.htmlToDom=this.base.htmlToDom;//html转成DOM
+    this.secondsToTime=this.base.secondsToTime;//秒转时间
 };
 ProductList.prototype.seckillWillBeginTime=function(){//秒杀即将开始的倒计时功能
     if(this.configData.isShowSeckillWillBeginTime){
@@ -271,7 +268,7 @@ ProductList.prototype.seckillWillBeginTime=function(){//秒杀即将开始的倒
         var txtParent=self.txtParentDOM;
         var hintTime=ajaxData.seckillWillBeginBtnShowTime;
         self.configData.isShowSeckillWillBeginBtn=true;
-        var seckillWillBeginBtn=self.htmlToDom(self.renderSeckillWillBeginBtn());
+        var seckillWillBeginBtn=self.htmlToDom({html:self.renderSeckillWillBeginBtn()});
         self.timeCountDown({
             seconds:seconds,
             runCallback:function(obj){
@@ -291,11 +288,11 @@ ProductList.prototype.seckillWillBeginTime=function(){//秒杀即将开始的倒
                 var seckillWillBeginTime=parent.querySelector('.m-product-seckill-will-begin-time');
                 txtParent.removeChild(seckillWillBeginTime);
                 self.configData.isShowSeckillWillEndTime=true;
-                var seckillWillEndTime=self.htmlToDom(self.renderSeckillWillEndTime());
+                var seckillWillEndTime=self.htmlToDom({html:self.renderSeckillWillEndTime()});
                 txtParent.appendChild(seckillWillEndTime);
                 txtParent.removeChild(seckillWillBeginBtn);
                 self.configData.isShowSeckillNowGetBtn=true;
-                var nowGetBtn=self.htmlToDom(self.renderSeckillNowGetBtn());
+                var nowGetBtn=self.htmlToDom({html:self.renderSeckillNowGetBtn()});
                 txtParent.appendChild(nowGetBtn);
                 self.seckillWillEndTime();
             }
@@ -326,7 +323,7 @@ ProductList.prototype.seckillWillEndTime=function(){//秒杀即将结束的倒�
                 var seckillMark=txtParent.querySelector('.m-product-seckill-mark');
                 var seckillNowGet=txtParent.querySelector('.m-product-seckill-now-get-btn');
                 self.configData.isShowCart=true;
-                var cart=self.htmlToDom(self.renderCart());
+                var cart=self.htmlToDom({html:self.renderCart()});
                 txtParent.removeChild(seckillWillEndTime);
                 txtParent.removeChild(seckillMark);
                 txtParent.removeChild(seckillNowGet);
@@ -335,4 +332,4 @@ ProductList.prototype.seckillWillEndTime=function(){//秒杀即将结束的倒�
         })
     }
 };
-module.exports = ProductList;
+module.exports=ProductList;
