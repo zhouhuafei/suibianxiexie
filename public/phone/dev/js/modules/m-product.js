@@ -23,6 +23,7 @@ function ProductList(opt){
     };
     this.ajaxData={
         goodsName:this.ajaxData.goodsName||'商品名称',//商品名称
+        gid:this.ajaxData.gid,//商品的id
         marketPrice:this.ajaxData.marketPrice||'66666.66',//市场价格
         nowPrice:this.ajaxData.nowPrice||'6666.66',//现在的价格
         vipPrice:this.ajaxData.vipPrice||'666.66',//会员价格
