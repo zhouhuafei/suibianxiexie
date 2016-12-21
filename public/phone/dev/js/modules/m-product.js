@@ -457,10 +457,7 @@ ProductList.prototype.render=function(callback){//渲染整个结构
 };
 //以下是渲染功能
 ProductList.prototype.init=function(){//初始化
-
-
-
-
+    this.events();
     this.seckillWillBeginTime();
     this.seckillWillEndTime();
 };
@@ -470,16 +467,34 @@ ProductList.prototype.requireBase=function(){//需要用到的小功能函数
     this.htmlToDom=this.base.htmlToDom;//html转成DOM
     this.secondsToTime=this.base.secondsToTime;//秒转时间
 };
-ProductList.prototype.seckillHintClick=function(){//点击秒杀提醒我
+ProductList.prototype.events=function(){//事件集合
+    this.cartClick();
+    this.seckillHintClick();
+};
+ProductList.prototype.cartClick=function(){//购物车的点击
+    var self=this;
+    $(self.parentDom).on('click','.m-product-cart',function(){
+        self.cartFn();
+    })
+};
+ProductList.prototype.cartFn=function(){//购物车的功能
+    var self=this;
+    console.log(123);
+};
+ProductList.prototype.seckillHintClick=function(){//秒杀提醒我的点击
+    var self=this;
+    $(self.parentDom).on('click','.m-product-seckill-hint-btn',function(){
+        self.seckillHintFn();
+    })
+};
+ProductList.prototype.seckillHintFn=function(){//秒杀提醒我的功能
     var self=this;
     var hintBtn=self.parentDom.querySelector('.m-product-seckill-hint-btn');
     self.configData.isShowSeckillHintBtnSetOk=true;
     var hintBtnSetOk=self.htmlToDom({html:self.renderSeckillHintBtnSetOk()});
     var parentTxt=self.parentDomTxt;
-    $(self.parentDom).on('click','.m-product-seckill-hint-btn',function(){
-        parentTxt.removeChild(hintBtn);
-        parentTxt.appendChild(hintBtnSetOk);
-    })
+    parentTxt.removeChild(hintBtn);
+    parentTxt.appendChild(hintBtnSetOk);
 };
 ProductList.prototype.seckillWillBeginTime=function(){//秒杀即将开始的倒计时功能
     if(this.configData.isShowSeckillWillBeginTime){
