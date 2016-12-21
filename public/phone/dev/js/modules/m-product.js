@@ -480,7 +480,7 @@ ProductList.prototype.cartClick=function(){//购物车的点击
 };
 ProductList.prototype.cartFn=function(){//购物车的功能
     var self=this;
-    console.log(123);
+    console.log(123,self);
 };
 ProductList.prototype.seckillHintClick=function(){//秒杀提醒我的点击
     var self=this;
