@@ -84,6 +84,20 @@ ProductList.prototype.renderGoodsName=function(){//渲染商品名称
         return ``;
     }
 };
+ProductList.prototype.renderGoodsNameAdd=function(opts){
+    var opt=opts||{};
+    this.domAdd({
+        isRepeat:opt.isRepeat,
+        isShowName:'isShowGoodsName',
+        renderName:'renderGoodsName',
+        className:'.m-product-goods-name'
+    });
+};
+ProductList.prototype.renderGoodsNameRemove=function(){
+    this.domRemove({
+        className:'.m-product-goods-name'
+    });
+};
 ProductList.prototype.renderPrice=function(){//渲染商品价格
     if(this.configData.isShowPrice){
         var isVip=this.configData.isVipCustom;
@@ -114,6 +128,20 @@ ProductList.prototype.renderPrice=function(){//渲染商品价格
         return ``;
     }
 };
+ProductList.prototype.renderPriceAdd=function(opts){
+    var opt=opts||{};
+    this.domAdd({
+        isRepeat:opt.isRepeat,
+        isShowName:'isShowPrice',
+        renderName:'renderPrice',
+        className:'.m-product-price'
+    });
+};
+ProductList.prototype.renderPriceRemove=function(){
+    this.domRemove({
+        className:'.m-product-price'
+    });
+};
 ProductList.prototype.renderLikeNum=function(){//渲染多少人喜欢
     if(this.configData.isShowLikeNum){
         return `
@@ -125,6 +153,20 @@ ProductList.prototype.renderLikeNum=function(){//渲染多少人喜欢
     }else{
         return ``;
     }
+};
+ProductList.prototype.renderLikeNumAdd=function(opts){
+    var opt=opts||{};
+    this.domAdd({
+        isRepeat:opt.isRepeat,
+        isShowName:'isShowLikeNum',
+        renderName:'renderLikeNum',
+        className:'.m-product-price-like-num'
+    });
+};
+ProductList.prototype.renderLikeNumRemove=function(){
+    this.domRemove({
+        className:'.m-product-price-like-num'
+    });
 };
 ProductList.prototype.renderCart=function(){//渲染购物车
     if(this.configData.isShowCart){
