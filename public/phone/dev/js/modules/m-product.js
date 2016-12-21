@@ -207,7 +207,7 @@ ProductList.prototype.renderSeckillHintBtn=function(){//渲染秒杀提醒按钮
 };
 ProductList.prototype.renderSeckillNowGetBtn=function(){//渲染秒杀马上抢按钮
     if(this.configData.isShowSeckillNowGetBtn){
-        return `<div class="m-product-seckill-now-get-btn">马上抢</div>`;
+        return `<div class="m-product-seckill-now-get-btn"><a href="javascript:;">马上抢</a></div>`;
     }else{
         return ``;
     }
