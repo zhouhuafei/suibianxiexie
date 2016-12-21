@@ -453,6 +453,7 @@ ProductList.prototype.domRemove=function(opt){//移除结构
 };
 ProductList.prototype.render=function(callback){//渲染整个结构
     this.renderParent();
+    this.init();
     callback&&callback(this.parentDom);
 };
 //以下是渲染功能
