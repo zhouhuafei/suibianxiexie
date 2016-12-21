@@ -18,6 +18,7 @@ function ProductList(opt){
         isShowSeckillWillBeginBtn:this.configData.isShowSeckillWillBeginBtn==true?this.configData.isShowSeckillWillBeginBtn:false,//是否显示秒杀即将开始按钮(默认不显示)
         isShowSeckillWillBeginTime:this.configData.isShowSeckillWillBeginTime==true?this.configData.isShowSeckillWillBeginTime:false,//是否显示秒杀即将开始的时间(默认不显示)
         isShowSeckillHintBtn:this.configData.isShowSeckillHintBtn==true?this.configData.isShowSeckillHintBtn:false,//是否显示秒杀提醒按钮(默认不显示)
+        isShowSeckillHintBtnSetOk:this.configData.isShowSeckillHintBtnSetOk==true?this.configData.isShowSeckillHintBtnSetOk:false,//是否显示已设置秒杀提醒按钮(默认不显示)
         isShowSeckillNowGetBtn:this.configData.isShowSeckillNowGetBtn==true?this.configData.isShowSeckillNowGetBtn:false,//是否显示秒杀马上抢按钮(默认不显示)
         isShowSeckillWillEndTime:this.configData.isShowSeckillWillEndTime==true?this.configData.isShowSeckillWillEndTime:false//是否显示秒杀即将结束的倒计时(默认不显示)
     };
@@ -72,6 +73,7 @@ ProductList.prototype.renderTxt=function(){//渲染文字区域
             ${this.renderSeckillHintBtn()}
             ${this.renderSeckillNowGetBtn()}
             ${this.renderSeckillWillEndTime()}
+            ${this.renderSeckillHintBtnSetOk()}
         </div>
     `;
 };
@@ -201,6 +203,18 @@ ProductList.prototype.renderSeckillWillBeginTime=function(){//渲染秒杀即将
 ProductList.prototype.renderSeckillHintBtn=function(){//渲染秒杀提醒按钮
     if(this.configData.isShowSeckillHintBtn){
         return `<div class="m-product-seckill-hint-btn">提醒我</div>`;
+    }else{
+        return ``;
+    }
+};
+ProductList.prototype.renderSeckillHintBtnSetOk=function(){//渲染已设置秒杀提醒按钮
+    if(this.configData.isShowSeckillHintBtnSetOk){
+        return `
+            <div class="m-product-seckill-hint-btn-ok">
+                <div>已设置</div>
+                <div>提醒</div>
+            </div>
+        `;
     }else{
         return ``;
     }
