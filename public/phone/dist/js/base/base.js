@@ -17,6 +17,88 @@
          * Created by zhouhuafei on 16/12/4.
          */
         var base = {};
+        base.goTop = function (opt) {
+            //返回顶部
+            var obj = opt.obj;
+            if (!obj) {
+                console.log('parameter error');
+                return false;
+            }
+            var doc = document;
+            var scale = 6;
+            var scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
+            var speed = 0;
+            var timer = null;
+            var fn = function fn() {
+                speed = Math.ceil(scrollT / scale);
+                scrollT -= speed;
+                window.scrollTo(0, scrollT);
+                timer = requestAnimationFrame(fn);
+                if (scrollT == 0) {
+                    cancelAnimationFrame(timer);
+                }
+            };
+            obj.addEventListener('click', function (ev) {
+                ev.stopPropagation();
+                ev.preventDefault();
+                scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
+                requestAnimationFrame(fn);
+            });
+            doc.addEventListener('touchstart', function () {
+                cancelAnimationFrame(timer);
+            });
+        };
+        base.mask = function () {
+            //普通黑色遮罩
+            var doc = document;
+            var body = doc.body;
+            var mask = doc.createElement('div');
+            mask.className = 'mask';
+            mask.style.background = 'rgba(0,0,0,0.4)';
+            mask.style.position = 'fixed';
+            mask.style.left = '0';
+            mask.style.top = '0';
+            mask.style.width = '100%';
+            mask.style.height = '100%';
+            mask.style.zIndex = '500';
+            return {
+                show: function show() {
+                    body.appendChild(mask);
+                },
+                hide: function hide() {
+                    body.removeChild(mask);
+                }
+            };
+        };
+        base.yesNoScroll = function () {
+            //浏览器禁止滚动
+            var doc = document;
+            return {
+                //阻止冒泡
+                stopPropagation: function stopPropagation(ev) {
+                    ev.stopPropagation();
+                },
+                //阻止默认事件
+                preventDefault: function preventDefault(ev) {
+                    ev.preventDefault();
+                },
+                //阻止冒泡,阻止默认事件
+                returnFalse: function returnFalse(ev) {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                },
+                //禁止滚动
+                noScroll: function noScroll() {
+                    doc.addEventListener('touchmove', this.preventDefault, false);
+                    doc.documentElement.style.overflow = 'hidden';
+                },
+                //解除禁止浏览器滚动
+                yesScroll: function yesScroll() {
+                    doc.removeEventListener('touchmove', this.preventDefault, false);
+                    doc.documentElement.style.overflow = 'auto';
+                }
+            };
+        };
         base.fillZero = function (opt) {
             //补零函数
             var num = opt.num;
@@ -53,8 +135,10 @@
                 var timer = setInterval(function () {
                     seconds--;
                     runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
-                    if (seconds <= 0) {
+                    if (seconds < 0) {
+                        seconds = 0;
                         clearInterval(timer);
+                        runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
                         overCallback && overCallback(); //结束时的回调
                     }
                 }, 1000);

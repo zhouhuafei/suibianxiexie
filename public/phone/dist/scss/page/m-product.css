@@ -159,7 +159,7 @@ a {
         text-shadow: 0 0 0.16rem rgba(0, 0, 0, 0.8); }
         .m-product .m-product-seckill-logo .m-product-seckill-price span.m-product-seckill-price-money-big {
           font-size: 0.8rem; }
-  .m-product .m-product-seckill-will-begin-btn {
+  .m-product .m-product-seckill-will-begin-btn, .m-product .m-product-seckill-hint-btn-set-ok {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -169,9 +169,9 @@ a {
     border-radius: 2000px;
     height: 0.85333rem;
     font-size: 0.32rem; }
-    .m-product .m-product-seckill-will-begin-btn div {
+    .m-product .m-product-seckill-will-begin-btn div, .m-product .m-product-seckill-hint-btn-set-ok div {
       color: #ffffff; }
-      .m-product .m-product-seckill-will-begin-btn div:first-of-type {
+      .m-product .m-product-seckill-will-begin-btn div:first-of-type, .m-product .m-product-seckill-hint-btn-set-ok div:first-of-type {
         padding-top: 0.13333rem; }
   .m-product .m-product-seckill-will-begin-time {
     position: absolute;

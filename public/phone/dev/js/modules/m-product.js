@@ -170,7 +170,7 @@ ProductList.prototype.renderLikeNumRemove=function(){
 };
 ProductList.prototype.renderCart=function(){//渲染购物车
     if(this.configData.isShowCart){
-        return `<div class="m-product-cart"><span class="icon-cart"></span></div>`;
+        return `<div class="m-product-cart"><span class="iconfont icon-gouwuche"></span></div>`;
     }else{
         return ``;
     }
@@ -227,7 +227,7 @@ ProductList.prototype.renderSeckillMark=function(){//渲染秒杀标识
         this.parentDom.classList.add('m-product-seckill');
         return `
             <div class="m-product-seckill-mark">
-                <span class="icon-clock"></span>
+                <span class="iconfont icon-naozhong"></span>
                 <span>秒杀</span>
             </div>
         `;
@@ -452,6 +452,7 @@ ProductList.prototype.domRemove=function(opt){//移除结构
     }
 };
 ProductList.prototype.render=function(callback){//渲染整个结构
+    this.requireBase();
     this.renderParent();
     this.init();
     callback&&callback(this.parentDom);
@@ -474,9 +475,12 @@ ProductList.prototype.events=function(){//事件集合
 };
 ProductList.prototype.cartClick=function(){//购物车的点击
     var self=this;
-    $(self.parentDom).on('click','.m-product-cart',function(){
-        self.cartFn();
-    })
+    self.parentDom.addEventListener('click',function(ev){
+        var target=ev.target;
+        if(target.classList.contains('m-product-cart')){
+            self.cartFn();
+        }
+    });
 };
 ProductList.prototype.cartFn=function(){//购物车的功能
     var self=this;
@@ -484,9 +488,12 @@ ProductList.prototype.cartFn=function(){//购物车的功能
 };
 ProductList.prototype.seckillHintClick=function(){//秒杀提醒我的点击
     var self=this;
-    $(self.parentDom).on('click','.m-product-seckill-hint-btn',function(){
-        self.seckillHintFn();
-    })
+    self.parentDom.addEventListener('click',function(ev){
+        var target=ev.target;
+        if(target.classList.contains('m-product-seckill-hint-btn')){
+            self.seckillHintFn();
+        }
+    });
 };
 ProductList.prototype.seckillHintFn=function(){//秒杀提醒我的功能
     var self=this;

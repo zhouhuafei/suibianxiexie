@@ -17,6 +17,88 @@
          * Created by zhouhuafei on 16/12/4.
          */
         var base = {};
+        base.goTop = function (opt) {
+            //返回顶部
+            var obj = opt.obj;
+            if (!obj) {
+                console.log('parameter error');
+                return false;
+            }
+            var doc = document;
+            var scale = 6;
+            var scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
+            var speed = 0;
+            var timer = null;
+            var fn = function fn() {
+                speed = Math.ceil(scrollT / scale);
+                scrollT -= speed;
+                window.scrollTo(0, scrollT);
+                timer = requestAnimationFrame(fn);
+                if (scrollT == 0) {
+                    cancelAnimationFrame(timer);
+                }
+            };
+            obj.addEventListener('click', function (ev) {
+                ev.stopPropagation();
+                ev.preventDefault();
+                scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
+                requestAnimationFrame(fn);
+            });
+            doc.addEventListener('touchstart', function () {
+                cancelAnimationFrame(timer);
+            });
+        };
+        base.mask = function () {
+            //普通黑色遮罩
+            var doc = document;
+            var body = doc.body;
+            var mask = doc.createElement('div');
+            mask.className = 'mask';
+            mask.style.background = 'rgba(0,0,0,0.4)';
+            mask.style.position = 'fixed';
+            mask.style.left = '0';
+            mask.style.top = '0';
+            mask.style.width = '100%';
+            mask.style.height = '100%';
+            mask.style.zIndex = '500';
+            return {
+                show: function show() {
+                    body.appendChild(mask);
+                },
+                hide: function hide() {
+                    body.removeChild(mask);
+                }
+            };
+        };
+        base.yesNoScroll = function () {
+            //浏览器禁止滚动
+            var doc = document;
+            return {
+                //阻止冒泡
+                stopPropagation: function stopPropagation(ev) {
+                    ev.stopPropagation();
+                },
+                //阻止默认事件
+                preventDefault: function preventDefault(ev) {
+                    ev.preventDefault();
+                },
+                //阻止冒泡,阻止默认事件
+                returnFalse: function returnFalse(ev) {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                },
+                //禁止滚动
+                noScroll: function noScroll() {
+                    doc.addEventListener('touchmove', this.preventDefault, false);
+                    doc.documentElement.style.overflow = 'hidden';
+                },
+                //解除禁止浏览器滚动
+                yesScroll: function yesScroll() {
+                    doc.removeEventListener('touchmove', this.preventDefault, false);
+                    doc.documentElement.style.overflow = 'auto';
+                }
+            };
+        };
         base.fillZero = function (opt) {
             //补零函数
             var num = opt.num;
@@ -53,8 +135,10 @@
                 var timer = setInterval(function () {
                     seconds--;
                     runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
-                    if (seconds <= 0) {
+                    if (seconds < 0) {
+                        seconds = 0;
                         clearInterval(timer);
+                        runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
                         overCallback && overCallback(); //结束时的回调
                     }
                 }, 1000);
@@ -89,6 +173,7 @@
                 isShowSeckillWillBeginBtn: this.configData.isShowSeckillWillBeginBtn == true ? this.configData.isShowSeckillWillBeginBtn : false, //是否显示秒杀即将开始按钮(默认不显示)
                 isShowSeckillWillBeginTime: this.configData.isShowSeckillWillBeginTime == true ? this.configData.isShowSeckillWillBeginTime : false, //是否显示秒杀即将开始的时间(默认不显示)
                 isShowSeckillHintBtn: this.configData.isShowSeckillHintBtn == true ? this.configData.isShowSeckillHintBtn : false, //是否显示秒杀提醒按钮(默认不显示)
+                isShowSeckillHintBtnSetOk: this.configData.isShowSeckillHintBtnSetOk == true ? this.configData.isShowSeckillHintBtnSetOk : false, //是否显示已设置秒杀提醒按钮(默认不显示)
                 isShowSeckillNowGetBtn: this.configData.isShowSeckillNowGetBtn == true ? this.configData.isShowSeckillNowGetBtn : false, //是否显示秒杀马上抢按钮(默认不显示)
                 isShowSeckillWillEndTime: this.configData.isShowSeckillWillEndTime == true ? this.configData.isShowSeckillWillEndTime : false //是否显示秒杀即将结束的倒计时(默认不显示)
             };
@@ -113,10 +198,10 @@
             var div = document.createElement('div');
             div.classList.add("m-product");
             div.classList.add("" + this.configData.showType);
-            this.parentDOM = div;
-            this.parentDOM.innerHTML = "            \n        " + this.renderImg() + "        \n        " + this.renderTxt() + "\n    ";
-            this.imgParentDOM = this.parentDOM.querySelector('.m-product-img a');
-            this.txtParentDOM = this.parentDOM.querySelector('.m-product-txt');
+            this.parentDom = div;
+            this.parentDom.innerHTML = "            \n        " + this.renderImg() + "        \n        " + this.renderTxt() + "\n    ";
+            this.parentDomImg = this.parentDom.querySelector('.m-product-img a');
+            this.parentDomTxt = this.parentDom.querySelector('.m-product-txt');
         };
         ProductList.prototype.renderImg = function () {
             //渲染图片区域
@@ -124,7 +209,7 @@
         };
         ProductList.prototype.renderTxt = function () {
             //渲染文字区域
-            return "\n        <div class=\"m-product-txt\">\n            " + this.renderGoodsName() + "\n            " + this.renderPrice() + "\n            " + this.renderLikeNum() + "\n            " + this.renderCart() + "\n            " + this.renderSeckillMark() + "\n            " + this.renderSeckillWillBeginBtn() + "\n            " + this.renderSeckillWillBeginTime() + "\n            " + this.renderSeckillHintBtn() + "\n            " + this.renderSeckillNowGetBtn() + "\n            " + this.renderSeckillWillEndTime() + "\n        </div>\n    ";
+            return "\n        <div class=\"m-product-txt\">\n            " + this.renderGoodsName() + "\n            " + this.renderPrice() + "\n            " + this.renderLikeNum() + "\n            " + this.renderCart() + "\n            " + this.renderSeckillMark() + "\n            " + this.renderSeckillWillBeginBtn() + "\n            " + this.renderSeckillWillBeginTime() + "\n            " + this.renderSeckillHintBtn() + "\n            " + this.renderSeckillNowGetBtn() + "\n            " + this.renderSeckillWillEndTime() + "\n            " + this.renderSeckillHintBtnSetOk() + "\n        </div>\n    ";
         };
         ProductList.prototype.renderGoodsName = function () {
             //渲染商品名称
@@ -133,6 +218,20 @@
             } else {
                 return "";
             }
+        };
+        ProductList.prototype.renderGoodsNameAdd = function (opts) {
+            var opt = opts || {};
+            this.domAdd({
+                isRepeat: opt.isRepeat,
+                isShowName: 'isShowGoodsName',
+                renderName: 'renderGoodsName',
+                className: '.m-product-goods-name'
+            });
+        };
+        ProductList.prototype.renderGoodsNameRemove = function () {
+            this.domRemove({
+                className: '.m-product-goods-name'
+            });
         };
         ProductList.prototype.renderPrice = function () {
             //渲染商品价格
@@ -155,6 +254,20 @@
                 return "";
             }
         };
+        ProductList.prototype.renderPriceAdd = function (opts) {
+            var opt = opts || {};
+            this.domAdd({
+                isRepeat: opt.isRepeat,
+                isShowName: 'isShowPrice',
+                renderName: 'renderPrice',
+                className: '.m-product-price'
+            });
+        };
+        ProductList.prototype.renderPriceRemove = function () {
+            this.domRemove({
+                className: '.m-product-price'
+            });
+        };
         ProductList.prototype.renderLikeNum = function () {
             //渲染多少人喜欢
             if (this.configData.isShowLikeNum) {
@@ -162,6 +275,20 @@
             } else {
                 return "";
             }
+        };
+        ProductList.prototype.renderLikeNumAdd = function (opts) {
+            var opt = opts || {};
+            this.domAdd({
+                isRepeat: opt.isRepeat,
+                isShowName: 'isShowLikeNum',
+                renderName: 'renderLikeNum',
+                className: '.m-product-price-like-num'
+            });
+        };
+        ProductList.prototype.renderLikeNumRemove = function () {
+            this.domRemove({
+                className: '.m-product-price-like-num'
+            });
         };
         ProductList.prototype.renderCart = function () {
             //渲染购物车
@@ -171,14 +298,19 @@
                 return "";
             }
         };
-        ProductList.prototype.renderSeckillMark = function () {
-            //渲染秒杀标识
-            if (this.configData.isShowSeckillMark) {
-                this.parentDOM.classList.add('m-product-seckill');
-                return "\n            <div class=\"m-product-seckill-mark\">\n                <span class=\"iconfont icon-naozhong\"></span>\n                <span>\u79D2\u6740</span>\n            </div>\n        ";
-            } else {
-                return "";
-            }
+        ProductList.prototype.renderCartAdd = function (opts) {
+            var opt = opts || {};
+            this.domAdd({
+                isRepeat: opt.isRepeat,
+                isShowName: 'isShowCart',
+                renderName: 'renderCart',
+                className: '.m-product-cart'
+            });
+        };
+        ProductList.prototype.renderCartRemove = function () {
+            this.domRemove({
+                className: '.m-product-cart'
+            });
         };
         ProductList.prototype.renderSeckillLogo = function () {
             //渲染秒杀Logo
@@ -188,6 +320,46 @@
                 return "";
             }
         };
+        ProductList.prototype.renderSeckillLogoAdd = function (opts) {
+            var opt = opts || {};
+            this.domAdd({
+                isRepeat: opt.isRepeat,
+                isShowName: 'isShowSeckillLogo',
+                renderName: 'renderSeckillLogo',
+                className: '.m-product-seckill-logo',
+                parent: this.parentDomImg
+            });
+        };
+        ProductList.prototype.renderSeckillLogoRemove = function () {
+            this.domRemove({
+                className: '.m-product-seckill-logo',
+                parent: this.parentDomImg
+            });
+        };
+        ProductList.prototype.renderSeckillMark = function () {
+            //渲染秒杀标识
+            if (this.configData.isShowSeckillMark) {
+                this.parentDom.classList.add('m-product-seckill');
+                return "\n            <div class=\"m-product-seckill-mark\">\n                <span class=\"iconfont icon-naozhong\"></span>\n                <span>\u79D2\u6740</span>\n            </div>\n        ";
+            } else {
+                return "";
+            }
+        };
+        ProductList.prototype.renderSeckillMarkAdd = function (opts) {
+            var opt = opts || {};
+            this.domAdd({
+                isRepeat: opt.isRepeat,
+                isShowName: 'isShowSeckillMark',
+                renderName: 'renderSeckillMark',
+                className: '.m-product-seckill-mark'
+            });
+        };
+        ProductList.prototype.renderSeckillMarkRemove = function () {
+            this.domRemove({
+                className: '.m-product-seckill-mark'
+            });
+            this.parentDom.classList.remove('m-product-seckill');
+        };
         ProductList.prototype.renderSeckillWillBeginBtn = function () {
             //渲染秒杀即将开始的按钮
             if (this.configData.isShowSeckillWillBeginBtn) {
@@ -195,6 +367,20 @@
             } else {
                 return "";
             }
+        };
+        ProductList.prototype.renderSeckillWillBeginBtnAdd = function (opts) {
+            var opt = opts || {};
+            this.domAdd({
+                isRepeat: opt.isRepeat,
+                isShowName: 'isShowSeckillWillBeginBtn',
+                renderName: 'renderSeckillWillBeginBtn',
+                className: '.m-product-seckill-will-begin-btn'
+            });
+        };
+        ProductList.prototype.renderSeckillWillBeginBtnRemove = function () {
+            this.domRemove({
+                className: '.m-product-seckill-will-begin-btn'
+            });
         };
         ProductList.prototype.renderSeckillWillBeginTime = function () {
             //渲染秒杀即将开始的时间
@@ -210,6 +396,20 @@
                 return "";
             }
         };
+        ProductList.prototype.renderSeckillWillBeginTimeAdd = function (opts) {
+            var opt = opts || {};
+            this.domAdd({
+                isRepeat: opt.isRepeat,
+                isShowName: 'isShowSeckillWillBeginTime',
+                renderName: 'renderSeckillWillBeginTime',
+                className: '.m-product-seckill-will-begin-time'
+            });
+        };
+        ProductList.prototype.renderSeckillWillBeginTimeRemove = function () {
+            this.domRemove({
+                className: '.m-product-seckill-will-begin-time'
+            });
+        };
         ProductList.prototype.renderSeckillHintBtn = function () {
             //渲染秒杀提醒按钮
             if (this.configData.isShowSeckillHintBtn) {
@@ -218,13 +418,63 @@
                 return "";
             }
         };
-        ProductList.prototype.renderSeckillNowGetBtn = function () {
-            //渲染秒杀马上抢按钮
-            if (this.configData.isShowSeckillNowGetBtn) {
-                return "<div class=\"m-product-seckill-now-get-btn\">\u9A6C\u4E0A\u62A2</div>";
+        ProductList.prototype.renderSeckillHintBtnAdd = function (opts) {
+            var opt = opts || {};
+            this.domAdd({
+                isRepeat: opt.isRepeat,
+                isShowName: 'isShowSeckillHintBtn',
+                renderName: 'renderSeckillHintBtn',
+                className: '.m-product-seckill-hint-btn'
+            });
+        };
+        ProductList.prototype.renderSeckillHintBtnRemove = function () {
+            this.domRemove({
+                className: '.m-product-seckill-hint-btn'
+            });
+        };
+        ProductList.prototype.renderSeckillHintBtnSetOk = function () {
+            //渲染已设置秒杀提醒按钮
+            if (this.configData.isShowSeckillHintBtnSetOk) {
+                return "\n            <div class=\"m-product-seckill-hint-btn-set-ok\">\n                <div>\u5DF2\u8BBE\u7F6E</div>\n                <div>\u63D0\u9192</div>\n            </div>\n        ";
             } else {
                 return "";
             }
+        };
+        ProductList.prototype.renderSeckillHintBtnSetOkAdd = function (opts) {
+            var opt = opts || {};
+            this.domAdd({
+                isRepeat: opt.isRepeat,
+                isShowName: 'isShowSeckillHintBtnSetOk',
+                renderName: 'renderSeckillHintBtnSetOk',
+                className: '.m-product-seckill-hint-btn-set-ok'
+            });
+        };
+        ProductList.prototype.renderSeckillHintBtnSetOkRemove = function () {
+            this.domRemove({
+                className: '.m-product-seckill-hint-btn-set-ok'
+            });
+        };
+        ProductList.prototype.renderSeckillNowGetBtn = function () {
+            //渲染秒杀马上抢按钮
+            if (this.configData.isShowSeckillNowGetBtn) {
+                return "<div class=\"m-product-seckill-now-get-btn\"><a href=\"javascript:;\">\u9A6C\u4E0A\u62A2</a></div>";
+            } else {
+                return "";
+            }
+        };
+        ProductList.prototype.renderSeckillNowGetBtnAdd = function (opts) {
+            var opt = opts || {};
+            this.domAdd({
+                isRepeat: opt.isRepeat,
+                isShowName: 'isShowSeckillNowGetBtn',
+                renderName: 'renderSeckillNowGetBtn',
+                className: '.m-product-seckill-now-get-btn'
+            });
+        };
+        ProductList.prototype.renderSeckillNowGetBtnRemove = function () {
+            this.domRemove({
+                className: '.m-product-seckill-now-get-btn'
+            });
         };
         ProductList.prototype.renderSeckillWillEndTime = function () {
             //渲染秒杀结束倒计时
@@ -240,18 +490,62 @@
                 return "";
             }
         };
+        ProductList.prototype.renderSeckillWillEndTimeAdd = function (opts) {
+            var opt = opts || {};
+            this.domAdd({
+                isRepeat: opt.isRepeat,
+                isShowName: 'isShowSeckillWillEndTime',
+                renderName: 'renderSeckillWillEndTime',
+                className: '.m-product-seckill-will-end-time'
+            });
+        };
+        ProductList.prototype.renderSeckillWillEndTimeRemove = function () {
+            this.domRemove({
+                className: '.m-product-seckill-will-end-time'
+            });
+        };
+        ProductList.prototype.domAdd = function (opt) {
+            //添加结构
+            if (!opt) {
+                console.log('no find param');
+                return false;
+            }
+            var isRepeat = opt.isRepeat == true ? opt.isRepeat : false;
+            var parent = opt.parent || this.parentDomTxt;
+            var className = opt.className;
+            this.configData[opt.isShowName] = true;
+            var dom = this.htmlToDom({ html: this[opt.renderName]() });
+            if (isRepeat) {
+                parent.appendChild(dom);
+            } else {
+                if (!parent.querySelector(className)) {
+                    parent.appendChild(dom);
+                }
+            }
+        };
+        ProductList.prototype.domRemove = function (opt) {
+            //移除结构
+            if (!opt) {
+                console.log('no find param');
+                return false;
+            }
+            var parent = opt.parent || this.parentDomTxt;
+            var dom = parent.querySelector(opt.className);
+            if (dom) {
+                parent.removeChild(dom);
+            }
+        };
         ProductList.prototype.render = function (callback) {
             //渲染整个结构
             this.requireBase();
             this.renderParent();
             this.init();
-            callback && callback(this.parentDOM);
+            callback && callback(this.parentDom);
         };
         //以下是渲染功能
         ProductList.prototype.init = function () {
             //初始化
-
-
+            this.events();
             this.seckillWillBeginTime();
             this.seckillWillEndTime();
         };
@@ -262,18 +556,51 @@
             this.htmlToDom = this.base.htmlToDom; //html转成DOM
             this.secondsToTime = this.base.secondsToTime; //秒转时间
         };
+        ProductList.prototype.events = function () {
+            //事件集合
+            this.cartClick();
+            this.seckillHintClick();
+        };
+        ProductList.prototype.cartClick = function () {
+            //购物车的点击
+            var self = this;
+            self.parentDom.addEventListener('click', function (ev) {
+                var target = ev.target;
+                if (target.classList.contains('m-product-cart')) {
+                    self.cartFn();
+                }
+            });
+        };
+        ProductList.prototype.cartFn = function () {
+            //购物车的功能
+            var self = this;
+            console.log(123, self);
+        };
+        ProductList.prototype.seckillHintClick = function () {
+            //秒杀提醒我的点击
+            var self = this;
+            self.parentDom.addEventListener('click', function (ev) {
+                var target = ev.target;
+                if (target.classList.contains('m-product-seckill-hint-btn')) {
+                    self.seckillHintFn();
+                }
+            });
+        };
+        ProductList.prototype.seckillHintFn = function () {
+            //秒杀提醒我的功能
+            var self = this;
+            self.renderSeckillHintBtnRemove();
+            self.renderSeckillHintBtnSetOkAdd();
+        };
         ProductList.prototype.seckillWillBeginTime = function () {
             //秒杀即将开始的倒计时功能
             if (this.configData.isShowSeckillWillBeginTime) {
                 var self = this;
-                var aSpan = [].slice.call(self.parentDOM.querySelectorAll('.m-product-seckill-will-begin-time-num'));
+                var aSpan = [].slice.call(self.parentDom.querySelectorAll('.m-product-seckill-will-begin-time-num'));
                 var ajaxData = self.ajaxData;
                 var seconds = ajaxData.seckillWillBeginTime;
-                var parent = self.parentDOM;
-                var txtParent = self.txtParentDOM;
                 var hintTime = ajaxData.seckillWillBeginBtnShowTime;
                 self.configData.isShowSeckillWillBeginBtn = true;
-                var seckillWillBeginBtn = self.htmlToDom({ html: self.renderSeckillWillBeginBtn() });
                 self.timeCountDown({
                     seconds: seconds,
                     runCallback: function runCallback(obj) {
@@ -282,23 +609,16 @@
                         aSpan[2].innerHTML = obj.m;
                         aSpan[3].innerHTML = obj.s;
                         if (hintTime >= obj.a) {
-                            if (!parent.querySelector('.m-product-seckill-will-begin-btn')) {
-                                txtParent.appendChild(seckillWillBeginBtn);
-                                var hintBtn = parent.querySelector('.m-product-seckill-hint-btn');
-                                txtParent.removeChild(hintBtn);
-                            }
+                            self.renderSeckillWillBeginBtnAdd();
+                            self.renderSeckillHintBtnRemove();
                         }
                     },
                     overCallback: function overCallback() {
-                        var seckillWillBeginTime = parent.querySelector('.m-product-seckill-will-begin-time');
-                        txtParent.removeChild(seckillWillBeginTime);
-                        self.configData.isShowSeckillWillEndTime = true;
-                        var seckillWillEndTime = self.htmlToDom({ html: self.renderSeckillWillEndTime() });
-                        txtParent.appendChild(seckillWillEndTime);
-                        txtParent.removeChild(seckillWillBeginBtn);
-                        self.configData.isShowSeckillNowGetBtn = true;
-                        var nowGetBtn = self.htmlToDom({ html: self.renderSeckillNowGetBtn() });
-                        txtParent.appendChild(nowGetBtn);
+                        self.renderSeckillWillBeginTimeRemove();
+                        self.renderSeckillWillEndTimeAdd();
+                        self.renderSeckillWillBeginBtnRemove();
+                        self.renderSeckillNowGetBtnAdd();
+                        self.renderSeckillHintBtnSetOkRemove();
                         self.seckillWillEndTime();
                     }
                 });
@@ -308,7 +628,7 @@
             //秒杀即将结束的倒计时功能
             if (this.configData.isShowSeckillWillEndTime) {
                 var self = this;
-                var aSpan = [].slice.call(self.parentDOM.querySelectorAll('.m-product-seckill-will-end-time-num'));
+                var aSpan = [].slice.call(self.parentDom.querySelectorAll('.m-product-seckill-will-end-time-num'));
                 var seconds = self.ajaxData.seckillWillEndTime;
                 self.timeCountDown({
                     seconds: seconds,
@@ -319,21 +639,11 @@
                         aSpan[3].innerHTML = obj.s;
                     },
                     overCallback: function overCallback() {
-                        var parent = self.parentDOM;
-                        parent.classList.remove('m-product-seckill');
-                        var imgParent = self.imgParentDOM;
-                        var txtParent = self.txtParentDOM;
-                        var seckillLogo = imgParent.querySelector('.m-product-seckill-logo');
-                        imgParent.removeChild(seckillLogo);
-                        var seckillWillEndTime = txtParent.querySelector('.m-product-seckill-will-end-time');
-                        var seckillMark = txtParent.querySelector('.m-product-seckill-mark');
-                        var seckillNowGet = txtParent.querySelector('.m-product-seckill-now-get-btn');
-                        self.configData.isShowCart = true;
-                        var cart = self.htmlToDom({ html: self.renderCart() });
-                        txtParent.removeChild(seckillWillEndTime);
-                        txtParent.removeChild(seckillMark);
-                        txtParent.removeChild(seckillNowGet);
-                        txtParent.appendChild(cart);
+                        self.renderSeckillMarkRemove();
+                        self.renderSeckillWillEndTimeRemove();
+                        self.renderSeckillLogoRemove();
+                        self.renderSeckillNowGetBtnRemove();
+                        self.renderCartAdd();
                     }
                 });
             }
