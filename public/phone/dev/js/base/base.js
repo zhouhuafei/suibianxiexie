@@ -112,7 +112,8 @@ base.timeCountDown=function(opt){//倒计时
         var timer=setInterval(function(){
             seconds--;
             runCallback&&runCallback(timeTransform({seconds:seconds}));//运行时的回调
-            if(seconds<0){
+            if(seconds<0){                
+                seconds=0;
                 clearInterval(timer);
                 overCallback&&overCallback();//结束时的回调
             }
