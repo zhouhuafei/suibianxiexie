@@ -470,17 +470,25 @@ ProductList.prototype.requireBase=function(){//需要用到的小功能函数
     this.htmlToDom=this.base.htmlToDom;//html转成DOM
     this.secondsToTime=this.base.secondsToTime;//秒转时间
 };
+ProductList.prototype.seckillHintClick=function(){//点击秒杀提醒我
+    var self=this;
+    var hintBtn=self.parentDom.querySelector('.m-product-seckill-hint-btn');
+    self.configData.isShowSeckillHintBtnSetOk=true;
+    var hintBtnSetOk=self.htmlToDom({html:self.renderSeckillHintBtnSetOk()});
+    var parentTxt=self.parentDomTxt;
+    $(self.parentDom).on('click','.m-product-seckill-hint-btn',function(){
+        parentTxt.removeChild(hintBtn);
+        parentTxt.appendChild(hintBtnSetOk);
+    })
+};
 ProductList.prototype.seckillWillBeginTime=function(){//秒杀即将开始的倒计时功能
     if(this.configData.isShowSeckillWillBeginTime){
         var self=this;
         var aSpan=[].slice.call(self.parentDom.querySelectorAll('.m-product-seckill-will-begin-time-num'));
         var ajaxData=self.ajaxData;
         var seconds=ajaxData.seckillWillBeginTime;
-        var parent=self.parentDom;
-        var txtParent=self.parentDomTxt;
         var hintTime=ajaxData.seckillWillBeginBtnShowTime;
         self.configData.isShowSeckillWillBeginBtn=true;
-        var seckillWillBeginBtn=self.htmlToDom({html:self.renderSeckillWillBeginBtn()});
         self.timeCountDown({
             seconds:seconds,
             runCallback:function(obj){
@@ -489,23 +497,16 @@ ProductList.prototype.seckillWillBeginTime=function(){//秒杀即将开始的倒
                 aSpan[2].innerHTML=obj.m;
                 aSpan[3].innerHTML=obj.s;
                 if(hintTime>=obj.a){
-                    if(!parent.querySelector('.m-product-seckill-will-begin-btn')){
-                        txtParent.appendChild(seckillWillBeginBtn);
-                        var hintBtn=parent.querySelector('.m-product-seckill-hint-btn');
-                        txtParent.removeChild(hintBtn);
-                    }
+                    self.renderSeckillWillBeginBtnAdd();
+                    self.renderSeckillHintBtnRemove();
                 }
             },
             overCallback:function(){
-                var seckillWillBeginTime=parent.querySelector('.m-product-seckill-will-begin-time');
-                txtParent.removeChild(seckillWillBeginTime);
-                self.configData.isShowSeckillWillEndTime=true;
-                var seckillWillEndTime=self.htmlToDom({html:self.renderSeckillWillEndTime()});
-                txtParent.appendChild(seckillWillEndTime);
-                txtParent.removeChild(seckillWillBeginBtn);
-                self.configData.isShowSeckillNowGetBtn=true;
-                var nowGetBtn=self.htmlToDom({html:self.renderSeckillNowGetBtn()});
-                txtParent.appendChild(nowGetBtn);
+                self.renderSeckillWillBeginTimeRemove();
+                self.renderSeckillWillEndTimeAdd();
+                self.renderSeckillWillBeginBtnRemove();
+                self.renderSeckillNowGetBtnAdd();
+                self.renderSeckillHintBtnSetOkRemove();
                 self.seckillWillEndTime();
             }
         })
