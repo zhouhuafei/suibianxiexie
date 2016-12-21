@@ -490,12 +490,8 @@ ProductList.prototype.seckillHintClick=function(){//秒杀提醒我的点击
 };
 ProductList.prototype.seckillHintFn=function(){//秒杀提醒我的功能
     var self=this;
-    var hintBtn=self.parentDom.querySelector('.m-product-seckill-hint-btn');
-    self.configData.isShowSeckillHintBtnSetOk=true;
-    var hintBtnSetOk=self.htmlToDom({html:self.renderSeckillHintBtnSetOk()});
-    var parentTxt=self.parentDomTxt;
-    parentTxt.removeChild(hintBtn);
-    parentTxt.appendChild(hintBtnSetOk);
+    self.renderSeckillHintBtnRemove();
+    self.renderSeckillHintBtnSetOkAdd();
 };
 ProductList.prototype.seckillWillBeginTime=function(){//秒杀即将开始的倒计时功能
     if(this.configData.isShowSeckillWillBeginTime){
