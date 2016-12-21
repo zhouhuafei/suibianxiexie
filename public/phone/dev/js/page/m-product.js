@@ -14,6 +14,7 @@ const product=new Product({
         //isShowSeckillWillBeginBtn:true,
         isShowSeckillWillBeginTime:true,
         isShowSeckillHintBtn:true,
+        //isShowSeckillHintBtnSetOk:true,
         //isShowSeckillNowGetBtn:true,
         //isShowSeckillWillEndTime:true
     },
