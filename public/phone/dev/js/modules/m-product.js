@@ -524,22 +524,12 @@ ProductList.prototype.seckillWillEndTime=function(){//秒杀即将结束的倒�
                 aSpan[2].innerHTML=obj.m;
                 aSpan[3].innerHTML=obj.s;
             },
-            overCallback:function(){
-                var parent=self.parentDom;
-                parent.classList.remove('m-product-seckill');
-                var imgParent=self.parentDomImg;
-                var txtParent=self.parentDomTxt;
-                var seckillLogo=imgParent.querySelector('.m-product-seckill-logo');
-                imgParent.removeChild(seckillLogo);
-                var seckillWillEndTime=txtParent.querySelector('.m-product-seckill-will-end-time');
-                var seckillMark=txtParent.querySelector('.m-product-seckill-mark');
-                var seckillNowGet=txtParent.querySelector('.m-product-seckill-now-get-btn');
-                self.configData.isShowCart=true;
-                var cart=self.htmlToDom({html:self.renderCart()});
-                txtParent.removeChild(seckillWillEndTime);
-                txtParent.removeChild(seckillMark);
-                txtParent.removeChild(seckillNowGet);
-                txtParent.appendChild(cart);
+            overCallback:function(){                
+                self.renderSeckillMarkRemove();
+                self.renderSeckillWillEndTimeRemove();
+                self.renderSeckillLogoRemove();
+                self.renderSeckillNowGetBtnRemove();
+                self.renderCartAdd();
             }
         })
     }
