@@ -210,7 +210,7 @@ ProductList.prototype.renderSeckillHintBtn=function(){//渲染秒杀提醒按钮
 ProductList.prototype.renderSeckillHintBtnSetOk=function(){//渲染已设置秒杀提醒按钮
     if(this.configData.isShowSeckillHintBtnSetOk){
         return `
-            <div class="m-product-seckill-hint-btn-ok">
+            <div class="m-product-seckill-hint-btn-set-ok">
                 <div>已设置</div>
                 <div>提醒</div>
             </div>
