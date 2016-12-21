@@ -42,13 +42,13 @@ ProductList.prototype.renderParent=function(){//渲染父级容器
     var div=document.createElement('div');
     div.classList.add(`m-product`);
     div.classList.add(`${this.configData.showType}`);
-    this.parentDOM=div;
-    this.parentDOM.innerHTML=`            
+    this.parentDom=div;
+    this.parentDom.innerHTML=`            
         ${this.renderImg()}        
         ${this.renderTxt()}
     `;
-    this.imgParentDOM=this.parentDOM.querySelector('.m-product-img a');
-    this.txtParentDOM=this.parentDOM.querySelector('.m-product-txt');
+    this.parentDomImg=this.parentDom.querySelector('.m-product-img a');
+    this.parentDomTxt=this.parentDom.querySelector('.m-product-txt');
 };
 ProductList.prototype.renderImg=function(){//渲染图片区域
     return `
@@ -135,7 +135,7 @@ ProductList.prototype.renderCart=function(){//渲染购物车
 };
 ProductList.prototype.renderSeckillMark=function(){//渲染秒杀标识
     if(this.configData.isShowSeckillMark){
-        this.parentDOM.classList.add('m-product-seckill');
+        this.parentDom.classList.add('m-product-seckill');
         return `
             <div class="m-product-seckill-mark">
                 <span class="iconfont icon-naozhong"></span>
@@ -255,7 +255,7 @@ ProductList.prototype.render=function(callback){//渲染整个结构
     this.requireBase();
     this.renderParent();
     this.init();
-    callback&&callback(this.parentDOM);
+    callback&&callback(this.parentDom);
 };
 //以下是渲染功能
 ProductList.prototype.init=function(){//初始化
@@ -275,11 +275,11 @@ ProductList.prototype.requireBase=function(){//需要用到的小功能函数
 ProductList.prototype.seckillWillBeginTime=function(){//秒杀即将开始的倒计时功能
     if(this.configData.isShowSeckillWillBeginTime){
         var self=this;
-        var aSpan=[].slice.call(self.parentDOM.querySelectorAll('.m-product-seckill-will-begin-time-num'));
+        var aSpan=[].slice.call(self.parentDom.querySelectorAll('.m-product-seckill-will-begin-time-num'));
         var ajaxData=self.ajaxData;
         var seconds=ajaxData.seckillWillBeginTime;
-        var parent=self.parentDOM;
-        var txtParent=self.txtParentDOM;
+        var parent=self.parentDom;
+        var txtParent=self.parentDomTxt;
         var hintTime=ajaxData.seckillWillBeginBtnShowTime;
         self.configData.isShowSeckillWillBeginBtn=true;
         var seckillWillBeginBtn=self.htmlToDom({html:self.renderSeckillWillBeginBtn()});
@@ -316,7 +316,7 @@ ProductList.prototype.seckillWillBeginTime=function(){//秒杀即将开始的倒
 ProductList.prototype.seckillWillEndTime=function(){//秒杀即将结束的倒计时功能
     if(this.configData.isShowSeckillWillEndTime){
         var self=this;
-        var aSpan=[].slice.call(self.parentDOM.querySelectorAll('.m-product-seckill-will-end-time-num'));
+        var aSpan=[].slice.call(self.parentDom.querySelectorAll('.m-product-seckill-will-end-time-num'));
         var seconds=self.ajaxData.seckillWillEndTime;
         self.timeCountDown({
             seconds:seconds,
@@ -327,10 +327,10 @@ ProductList.prototype.seckillWillEndTime=function(){//秒杀即将结束的倒�
                 aSpan[3].innerHTML=obj.s;
             },
             overCallback:function(){
-                var parent=self.parentDOM;
+                var parent=self.parentDom;
                 parent.classList.remove('m-product-seckill');
-                var imgParent=self.imgParentDOM;
-                var txtParent=self.txtParentDOM;
+                var imgParent=self.parentDomImg;
+                var txtParent=self.parentDomTxt;
                 var seckillLogo=imgParent.querySelector('.m-product-seckill-logo');
                 imgParent.removeChild(seckillLogo);
                 var seckillWillEndTime=txtParent.querySelector('.m-product-seckill-will-end-time');
