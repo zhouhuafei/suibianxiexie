@@ -16,3 +16,10 @@ a {
   outline: none;
   color: inherit;
   -webkit-tap-highlight-color: transparent; }
+
+.clear-fix:after {
+  content: '';
+  clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden; }

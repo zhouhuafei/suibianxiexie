@@ -17,6 +17,13 @@ a {
   color: inherit;
   -webkit-tap-highlight-color: transparent; }
 
+.clear-fix:after {
+  content: '';
+  clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden; }
+
 .g-mask, .g-mask-transparent {
   position: fixed;
   left: 0;
@@ -255,5 +262,9 @@ a {
   .m-product.m-product-seckill .m-product-goods-name {
     text-indent: 1.22667rem; }
 
-.main {
+.main:after {
+  content: '';
+  clear: both;
+  display: block;
+  height: 0;
   overflow: hidden; }

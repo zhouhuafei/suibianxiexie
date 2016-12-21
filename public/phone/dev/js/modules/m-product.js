@@ -54,7 +54,7 @@ ProductList.prototype.renderImg=function(){//渲染图片区域
     return `
         <div class="m-product-img">
             <a href="${this.ajaxData.aHref}">
-                <img src="${this.ajaxData.imgSrc}" alt="">
+                <img data-src="${this.ajaxData.imgSrc}" alt="">
                 ${this.renderSeckillLogo()}
             </a>
         </div>

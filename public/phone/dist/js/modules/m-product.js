@@ -205,7 +205,7 @@
         };
         ProductList.prototype.renderImg = function () {
             //渲染图片区域
-            return "\n        <div class=\"m-product-img\">\n            <a href=\"" + this.ajaxData.aHref + "\">\n                <img src=\"" + this.ajaxData.imgSrc + "\" alt=\"\">\n                " + this.renderSeckillLogo() + "\n            </a>\n        </div>\n    ";
+            return "\n        <div class=\"m-product-img\">\n            <a href=\"" + this.ajaxData.aHref + "\">\n                <img data-src=\"" + this.ajaxData.imgSrc + "\" alt=\"\">\n                " + this.renderSeckillLogo() + "\n            </a>\n        </div>\n    ";
         };
         ProductList.prototype.renderTxt = function () {
             //渲染文字区域
