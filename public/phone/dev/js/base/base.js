@@ -102,7 +102,7 @@ base.timeCountDown=function(opt){//倒计时
     var runCallback=opt.runCallback;//运行的回调
     var overCallback=opt.overCallback;//结束的回调
     var timeTransform=base.secondsToTime;//时间转换
-    if(seconds<=0){//时间小于0秒
+    if(seconds<0){//时间小于0秒
         seconds=0;
         runCallback&&runCallback(timeTransform({seconds:seconds}));//运行时的回调
         overCallback&&overCallback();//结束时的回调
@@ -112,7 +112,7 @@ base.timeCountDown=function(opt){//倒计时
         var timer=setInterval(function(){
             seconds--;
             runCallback&&runCallback(timeTransform({seconds:seconds}));//运行时的回调
-            if(seconds<=0){
+            if(seconds<0){
                 clearInterval(timer);
                 overCallback&&overCallback();//结束时的回调
             }
