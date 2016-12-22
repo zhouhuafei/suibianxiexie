@@ -135,8 +135,8 @@ base.scrollLoad=function(callback){
     var re=function(){
         var allH=doc.body.offsetHeight;
         var scrollTop=doc.documentElement.scrollTop||doc.body.scrollTop;
-        var clientHieght=doc.documentElement.clientHeight;
-        if(scrollTop+clientHieght>=allH-100&&self.scrollLoadIsBottom){
+        var clientHeight=doc.documentElement.clientHeight;
+        if(scrollTop+clientHeight>=allH-100&&self.scrollLoadIsBottom){
             self.scrollLoadIsBottom=false;
             fn();
             setTimeout(()=>{//假设1000毫秒之后数据加载完毕

@@ -14,11 +14,11 @@ for(var i=0;i<200;i++){
             isShowSeckillMark:true,
             isShowSeckillLogo:true,
             //isShowSeckillWillBeginBtn:true,
-            isShowSeckillWillBeginTime:true,
-            isShowSeckillHintBtn:true,
+            //isShowSeckillWillBeginTime:true,
+            //isShowSeckillHintBtn:true,
             //isShowSeckillHintBtnSetOk:true,
-            //isShowSeckillNowGetBtn:true,
-            //isShowSeckillWillEndTime:true
+            isShowSeckillNowGetBtn:true,
+            isShowSeckillWillEndTime:true
         },
         ajaxData:{
             goodsName:'商品名称商品名称商品名称商品名称商品名称商品名称',
@@ -31,7 +31,7 @@ for(var i=0;i<200;i++){
             aHref:'http://www.baidu.com',
             seckillWillBeginTime:'6',
             seckillWillBeginBtnShowTime:'3',
-            seckillWillEndTime:'3'
+            seckillWillEndTime:'300'
         }
     });
     product.render(function(dom){

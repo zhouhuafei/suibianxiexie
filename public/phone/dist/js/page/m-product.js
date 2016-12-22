@@ -161,8 +161,8 @@
             var re = function re() {
                 var allH = doc.body.offsetHeight;
                 var scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
-                var clientHieght = doc.documentElement.clientHeight;
-                if (scrollTop + clientHieght >= allH - 100 && self.scrollLoadIsBottom) {
+                var clientHeight = doc.documentElement.clientHeight;
+                if (scrollTop + clientHeight >= allH - 100 && self.scrollLoadIsBottom) {
                     self.scrollLoadIsBottom = false;
                     fn();
                     setTimeout(function () {
@@ -191,8 +191,11 @@
                     isShowSeckillMark: true,
                     isShowSeckillLogo: true,
                     //isShowSeckillWillBeginBtn:true,
-                    isShowSeckillWillBeginTime: true,
-                    isShowSeckillHintBtn: true
+                    //isShowSeckillWillBeginTime:true,
+                    //isShowSeckillHintBtn:true,
+                    //isShowSeckillHintBtnSetOk:true,
+                    isShowSeckillNowGetBtn: true,
+                    isShowSeckillWillEndTime: true
                 },
                 ajaxData: {
                     goodsName: '商品名称商品名称商品名称商品名称商品名称商品名称',
@@ -205,7 +208,7 @@
                     aHref: 'http://www.baidu.com',
                     seckillWillBeginTime: '6',
                     seckillWillBeginBtnShowTime: '3',
-                    seckillWillEndTime: '3'
+                    seckillWillEndTime: '300'
                 }
             });
             product.render(function (dom) {
