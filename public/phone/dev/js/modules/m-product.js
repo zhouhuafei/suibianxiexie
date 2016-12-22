@@ -54,7 +54,7 @@ ProductList.prototype.renderImg=function(){//渲染图片区域
     return `
         <div class="m-product-img">
             <a href="${this.ajaxData.aHref}">
-                <img data-src="${this.ajaxData.imgSrc}" alt="">
+                <img class="lazy-load" data-src="${this.ajaxData.imgSrc}" alt="">
                 ${this.renderSeckillLogo()}
             </a>
         </div>
@@ -455,7 +455,7 @@ ProductList.prototype.render=function(callback){//渲染整个结构
     this.requireBase();
     this.renderParent();
     this.init();
-    callback&&callback({dom:this.parentDom});
+    callback&&callback(this.parentDom);
 };
 //以下是渲染功能
 ProductList.prototype.init=function(){//初始化
