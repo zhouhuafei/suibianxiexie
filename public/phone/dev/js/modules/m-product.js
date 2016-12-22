@@ -455,7 +455,7 @@ ProductList.prototype.render=function(callback){//渲染整个结构
     this.requireBase();
     this.renderParent();
     this.init();
-    callback&&callback(this.parentDom);
+    callback&&callback({dom:this.parentDom});
 };
 //以下是渲染功能
 ProductList.prototype.init=function(){//初始化
