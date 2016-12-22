@@ -151,6 +151,28 @@
             div.innerHTML = html;
             return div.children[0];
         };
+        base.scrollLoadIsBottom = true; //假设到达了底部
+        base.scrollLoad = function (callback) {
+            var self = this;
+            var fn = callback || function () {
+                console.log('no find callback');
+            };
+            var doc = document;
+            var re = function re() {
+                var allH = doc.body.offsetHeight;
+                var scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
+                var clientHieght = doc.documentElement.clientHeight;
+                if (scrollTop + clientHieght >= allH - 100 && self.scrollLoadIsBottom) {
+                    self.scrollLoadIsBottom = false;
+                    fn();
+                    setTimeout(function () {
+                        //假设1000毫秒之后数据加载完毕
+                        self.scrollLoadIsBottom = true;
+                    }, 1000);
+                }
+            };
+            re();
+        };
         module.exports = base;
     }, {}], 2: [function (require, module, exports) {
         /**
@@ -243,7 +265,7 @@
         };
         ProductList.prototype.renderImg = function () {
             //渲染图片区域
-            return "\n        <div class=\"m-product-img\">\n            <a href=\"" + this.ajaxData.aHref + "\">\n                <img data-src=\"" + this.ajaxData.imgSrc + "\" alt=\"\">\n                " + this.renderSeckillLogo() + "\n            </a>\n        </div>\n    ";
+            return "\n        <div class=\"m-product-img\">\n            <a href=\"" + this.ajaxData.aHref + "\">\n                <img class=\"lazy-load\" data-src=\"" + this.ajaxData.imgSrc + "\" alt=\"\">\n                " + this.renderSeckillLogo() + "\n            </a>\n        </div>\n    ";
         };
         ProductList.prototype.renderTxt = function () {
             //渲染文字区域

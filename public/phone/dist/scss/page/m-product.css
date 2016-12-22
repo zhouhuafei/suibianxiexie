@@ -1,8 +1,5 @@
-html, body {
-  overflow-x: hidden; }
-
 body {
-  font-family: "Microsoft Yahei", Arial, Helvetica, "sans-serif"; }
+  font-family: "Microsoft Yahei", "sans-serif"; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
   margin: 0;
@@ -10,19 +7,6 @@ body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, te
 
 li {
   list-style-type: none; }
-
-a {
-  text-decoration: none;
-  outline: none;
-  color: inherit;
-  -webkit-tap-highlight-color: transparent; }
-
-.clear-fix:after {
-  content: '';
-  clear: both;
-  display: block;
-  height: 0;
-  overflow: hidden; }
 
 .g-mask, .g-mask-transparent {
   position: fixed;
