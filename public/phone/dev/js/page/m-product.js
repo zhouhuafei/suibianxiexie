@@ -34,7 +34,7 @@ for(var i=0;i<200;i++){
             seckillWillEndTime:'3'
         }
     });
-    product.render(function(dom){
-        main.appendChild(dom);
+    product.render(function(opt){
+        main.appendChild(opt.dom);
     });
 }
