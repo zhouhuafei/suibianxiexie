@@ -127,4 +127,23 @@ base.htmlToDom=function(opt){//html转成DOM节点
     div.innerHTML=html;
     return div.children[0];
 };
+base.scrollLoadIsBottom=true;//假设到达了底部
+base.scrollLoad=function(callback){
+    var self=this;
+    var fn=callback||function(){console.log('no find callback')};
+    var doc=document;
+    var re=function(){
+        var allH=doc.body.offsetHeight;
+        var scrollTop=doc.documentElement.scrollTop||doc.body.scrollTop;
+        var clientHieght=doc.documentElement.clientHeight;
+        if(scrollTop+clientHieght>=allH-100&&self.scrollLoadIsBottom){
+            self.scrollLoadIsBottom=false;
+            fn();
+            setTimeout(()=>{//假设1000毫秒之后数据加载完毕
+                self.scrollLoadIsBottom=true;
+            },1000)
+        }
+    };
+    re();
+};
 module.exports=base;
