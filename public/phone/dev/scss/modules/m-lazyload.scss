@@ -1,7 +1,7 @@
-.m-lazy-load{
+.m-lazyload{
     opacity:0;
     transition:opacity 0.4s;
-    &.m-lazy-load-show{
+    &.m-lazyload-show{
         opacity:1;
     }
 }
