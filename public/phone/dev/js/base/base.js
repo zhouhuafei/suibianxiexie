@@ -147,7 +147,9 @@ base.scrollLoad=function(callback){
     re();
 };
 base.jsonToArray = function(obj){
-    if(!obj){return {};};
+    if(!obj){
+        return {};
+    }
     var arr=[];
     for(var attr in opts){
         arr.push(opts[attr]);
