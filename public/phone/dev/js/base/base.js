@@ -146,4 +146,12 @@ base.scrollLoad=function(callback){
     };
     re();
 };
+base.jsonToArray = function(obj){
+    if(!obj){return {};};
+    var arr=[];
+    for(var attr in opts){
+        arr.push(opts[attr]);
+    }
+    return arr;
+};
 module.exports=base;
