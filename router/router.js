@@ -7,22 +7,22 @@ function Routes(opt){
     this.init();
 }
 Routes.prototype.init=function(){
-    this.home();
-    this.login();
-    this.register();
+    this.phoneHome();
+    this.phoneLogin();
+    this.phoneRegister();
 };
-Routes.prototype.home=function(){
-    this.app.get('/',function(req,res){
-        res.end('<h1>欢迎来到我的首页</h1>');
+Routes.prototype.phoneHome=function(){
+    this.app.get('/phone/',function(req,res){
+        res.render('phone/index',{num:2});
     })
 };
-Routes.prototype.login=function(){
-    this.app.get('/login',function(req,res){
+Routes.prototype.phoneLogin=function(){
+    this.app.get('/phone/login',function(req,res){
         res.end('<h1>欢迎来到我的登录页</h1>');
     })
 };
-Routes.prototype.register=function(){
-    this.app.get('/register',function(req,res){
+Routes.prototype.phoneRegister=function(){
+    this.app.get('/phone/register',function(req,res){
         res.end('<h1>欢迎来到我的注册页</h1>');
     })
 };

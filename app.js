@@ -9,6 +9,14 @@ var express=require('express');
 var app=express();
 //托管静态文件
 app.use(express.static('public'));
+//模版引擎(handlebars)
+var handlebars=require('express-handlebars');
+app.engine('html',handlebars({
+    layoutsDir:'views',
+    extname:'.html'
+}));
+app.set('view engine','html');
+app.set('views',__dirname+'/views');
 //路由
 var Routes=require('./router/router');
 new Routes({app:app});
