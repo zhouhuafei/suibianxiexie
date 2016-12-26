@@ -7,6 +7,7 @@ function ProductList(opt){
     this.ajaxData=this.opt.ajaxData||{};//商品信息
     this.configData={
         showType:this.configData.showType||'m-product-window',//默认的展现形式(默认为列表式:'m-product-list',橱窗式:'m-product-window',海报式:'m-product-placard')
+        isShowImgSrc:this.configData.isShowImgSrc==true?this.configData.isShowImgSrc:false,//是否直接显示图片(默认不直接显示)
         isShowLong:this.configData.isShowLong==true?this.configData.isShowLong:false,//是否显示为长方形(默认不显示)
         isShowCart:this.configData.isShowCart==true?this.configData.isShowCart:false,//是否显示购物车(默认不显示)
         isShowGoodsName:this.configData.isShowGoodsName==true?this.configData.isShowGoodsName:false,//是否显示商品名称(默认不显示)
@@ -51,10 +52,16 @@ ProductList.prototype.renderParent=function(){//渲染父级容器
     this.parentDomTxt=this.parentDom.querySelector('.m-product-txt');
 };
 ProductList.prototype.renderImg=function(){//渲染图片区域
+    var imgHTML=``;
+    if(this.configData.isShowImgSrc){
+        imgHTML=`<img src="${this.ajaxData.imgSrc}" alt="">`;
+    }else{
+        imgHTML=`<img class="lazy-load" data-src="${this.ajaxData.imgSrc}" src="" alt="">`;
+    }
     return `
         <div class="m-product-img">
             <a href="${this.ajaxData.aHref}">
-                <img class="lazy-load" data-src="${this.ajaxData.imgSrc}" alt="">
+                ${imgHTML}
                 ${this.renderSeckillLogo()}
             </a>
         </div>
