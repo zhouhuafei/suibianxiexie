@@ -146,13 +146,14 @@ base.scrollLoad=function(callback){
     };
     re();
 };
-base.jsonToArray = function(obj){
-    if(!obj){
+base.jsonToArray = function(opt){
+    if(!opt){
         return {};
     }
+    var obj=opt.obj;
     var arr=[];
-    for(var attr in opts){
-        arr.push(opts[attr]);
+    for(var attr in obj){
+        arr.push(obj[attr]);
     }
     return arr;
 };
