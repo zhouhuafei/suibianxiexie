@@ -36,14 +36,7 @@ base.mask=function(){//普通黑色遮罩
     var doc=document;
     var body=doc.body;
     var mask=doc.createElement('div');
-    mask.className='mask';
-    mask.style.background='rgba(0,0,0,0.4)';
-    mask.style.position='fixed';
-    mask.style.left='0';
-    mask.style.top='0';
-    mask.style.width='100%';
-    mask.style.height='100%';
-    mask.style.zIndex='500';
+    mask.className='g-mask';
     return {
         show:function(){
             body.appendChild(mask);
