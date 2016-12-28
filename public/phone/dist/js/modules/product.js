@@ -16,6 +16,7 @@
         /**
          * Created by zhouhuafei on 16/12/4.
          */
+        //base里的方法应该是由一些小的模块组合起来的
         var base = {};
         base.goTop = function (opt) {
             //返回顶部
