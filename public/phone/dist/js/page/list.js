@@ -53,14 +53,8 @@
             var doc = document;
             var body = doc.body;
             var mask = doc.createElement('div');
-            mask.className = 'mask';
-            mask.style.background = 'rgba(0,0,0,0.4)';
-            mask.style.position = 'fixed';
-            mask.style.left = '0';
-            mask.style.top = '0';
-            mask.style.width = '100%';
-            mask.style.height = '100%';
-            mask.style.zIndex = '500';
+            mask.className = 'g-mask';
+            mask.setAttribute('style', 'background:rgba(0,0,0,0.4);position:fixed;left:0;top:0;width:100%;height:100%;z-index:500;');
             return {
                 show: function show() {
                     body.appendChild(mask);
@@ -161,8 +155,8 @@
             var re = function re() {
                 var allH = doc.body.offsetHeight;
                 var scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
-                var clientHeight = doc.documentElement.clientHeight;
-                if (scrollTop + clientHeight >= allH - 100 && self.scrollLoadIsBottom) {
+                var clientHieght = doc.documentElement.clientHeight;
+                if (scrollTop + clientHieght >= allH - 100 && self.scrollLoadIsBottom) {
                     self.scrollLoadIsBottom = false;
                     fn();
                     setTimeout(function () {
@@ -173,12 +167,25 @@
             };
             re();
         };
+        base.jsonToArray = function (opt) {
+            if (!opt) {
+                return {};
+            }
+            var obj = opt.obj;
+            var arr = [];
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) {
+                    arr.push(obj[attr]);
+                }
+            }
+            return arr;
+        };
         module.exports = base;
     }, {}], 2: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
-        var Product = require('../modules/m-product');
+        var Product = require('../modules/product');
         var main = document.querySelector('.main');
         for (var i = 0; i < 200; i++) {
             var product = new Product({
@@ -215,7 +222,7 @@
                 main.appendChild(dom);
             });
         }
-    }, { "../modules/m-product": 3 }], 3: [function (require, module, exports) {
+    }, { "../modules/product": 3 }], 3: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
@@ -225,6 +232,7 @@
             this.ajaxData = this.opt.ajaxData || {}; //商品信息
             this.configData = {
                 showType: this.configData.showType || 'm-product-window', //默认的展现形式(默认为列表式:'m-product-list',橱窗式:'m-product-window',海报式:'m-product-placard')
+                isShowImgSrc: this.configData.isShowImgSrc == true ? this.configData.isShowImgSrc : false, //是否直接显示图片(默认不直接显示)
                 isShowLong: this.configData.isShowLong == true ? this.configData.isShowLong : false, //是否显示为长方形(默认不显示)
                 isShowCart: this.configData.isShowCart == true ? this.configData.isShowCart : false, //是否显示购物车(默认不显示)
                 isShowGoodsName: this.configData.isShowGoodsName == true ? this.configData.isShowGoodsName : false, //是否显示商品名称(默认不显示)
@@ -268,7 +276,13 @@
         };
         ProductList.prototype.renderImg = function () {
             //渲染图片区域
-            return "\n        <div class=\"m-product-img\">\n            <a href=\"" + this.ajaxData.aHref + "\">\n                <img class=\"lazy-load\" data-src=\"" + this.ajaxData.imgSrc + "\" alt=\"\">\n                " + this.renderSeckillLogo() + "\n            </a>\n        </div>\n    ";
+            var imgHTML = "";
+            if (this.configData.isShowImgSrc) {
+                imgHTML = "<img src=\"" + this.ajaxData.imgSrc + "\" alt=\"\">";
+            } else {
+                imgHTML = "<img class=\"lazy-load\" data-src=\"" + this.ajaxData.imgSrc + "\" src=\"\" alt=\"\">";
+            }
+            return "\n        <div class=\"m-product-img\">\n            <a href=\"" + this.ajaxData.aHref + "\">\n                " + imgHTML + "\n                " + this.renderSeckillLogo() + "\n            </a>\n        </div>\n    ";
         };
         ProductList.prototype.renderTxt = function () {
             //渲染文字区域

@@ -1,54 +1,6 @@
 /**
  * Created by zhouhuafei on 16/12/4.
  */
-
-//是不是空
-            var isSpace=function(opt){
-                var obj=opt||{};
-                var value=obj.value||" ";
-                var valueTrim=value.trim();
-                var b=false;
-                if(valueTrim==''){
-                    b=true;
-                }
-                return b;
-            };
-            //是不是0
-            var isZero=function(opt){
-                var obj=opt||{};
-                var value=obj.value||" ";
-                var valueTrim=value.trim();
-                var b=false;
-                if(valueTrim==0){
-                    b=true;
-                }
-                return b;
-            };
-            //是不是正整数
-            var isPositiveInteger=function(opt){
-                var obj=opt||{};
-                var value=obj.value||" ";
-                var valueTrim=value.trim();
-                var re=/^\d+$/;
-                var b=false;
-                if(re.test(valueTrim)){
-                    b=true;
-                }
-                return b;
-            };
-            //是不是保留了num位小数
-            var isReservedDecimal=function(opt){
-                var obj=opt||{};
-                var num=obj.num||2;
-                var value=obj.value||" ";
-                var valueTrim=value.trim();
-                var re=new RegExp("^\\d+\\.\\d{"+num+"}$");
-                var b=false;
-                if(re.test(valueTrim)){
-                    b=true;
-                }
-                return b;
-            };
 var base={};
 base.goTop=function(opt){//返回顶部
     var obj=opt.obj;
@@ -85,13 +37,7 @@ base.mask=function(){//普通黑色遮罩
     var body=doc.body;
     var mask=doc.createElement('div');
     mask.className='g-mask';
-    mask.style.background='rgba(0,0,0,0.4)';
-    mask.style.position='fixed';
-    mask.style.left='0';
-    mask.style.top='0';
-    mask.style.width='100%';
-    mask.style.height='100%';
-    mask.style.zIndex='500';
+    mask.setAttribute('style','background:rgba(0,0,0,0.4);position:fixed;left:0;top:0;width:100%;height:100%;z-index:500;');
     return {
         show:function(){
             body.appendChild(mask);
@@ -201,7 +147,9 @@ base.jsonToArray = function(opt){
     var obj=opt.obj;
     var arr=[];
     for(var attr in obj){
-        arr.push(obj[attr]);
+        if(obj.hasOwnProperty(attr)){
+            arr.push(obj[attr]);
+        }
     }
     return arr;
 };

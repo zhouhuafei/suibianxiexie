@@ -1,7 +1,7 @@
 /**
  * Created by zhouhuafei on 16/12/17.
  */
-const Product=require('../modules/m-product');
+const Product=require('../modules/product');
 const main=document.querySelector('.main');
 for(var i=0;i<200;i++){
     const product=new Product({

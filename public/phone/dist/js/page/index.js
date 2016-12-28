@@ -16,9 +16,9 @@
     /**
      * Created by zhouhuafei on 16/12/4.
      */
-    var Popup = require('../plugs/popup');
+    var Popup = require('../component/popup');
     Popup();
-  }, { "../plugs/popup": 2 }], 2: [function (require, module, exports) {
+  }, { "../component/popup": 2 }], 2: [function (require, module, exports) {
     /**
      * Created by zhouhuafei on 16/12/13.
      */

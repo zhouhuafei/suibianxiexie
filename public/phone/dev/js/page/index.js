@@ -1,5 +1,5 @@
 /**
  * Created by zhouhuafei on 16/12/4.
  */
-var Popup=require('../plugs/popup');
+var Popup=require('../component/popup');
 Popup();

@@ -53,14 +53,8 @@
             var doc = document;
             var body = doc.body;
             var mask = doc.createElement('div');
-            mask.className = 'mask';
-            mask.style.background = 'rgba(0,0,0,0.4)';
-            mask.style.position = 'fixed';
-            mask.style.left = '0';
-            mask.style.top = '0';
-            mask.style.width = '100%';
-            mask.style.height = '100%';
-            mask.style.zIndex = '500';
+            mask.className = 'g-mask';
+            mask.setAttribute('style', 'background:rgba(0,0,0,0.4);position:fixed;left:0;top:0;width:100%;height:100%;z-index:500;');
             return {
                 show: function show() {
                     body.appendChild(mask);
@@ -161,8 +155,8 @@
             var re = function re() {
                 var allH = doc.body.offsetHeight;
                 var scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
-                var clientHeight = doc.documentElement.clientHeight;
-                if (scrollTop + clientHeight >= allH - 100 && self.scrollLoadIsBottom) {
+                var clientHieght = doc.documentElement.clientHeight;
+                if (scrollTop + clientHieght >= allH - 100 && self.scrollLoadIsBottom) {
                     self.scrollLoadIsBottom = false;
                     fn();
                     setTimeout(function () {
@@ -172,6 +166,19 @@
                 }
             };
             re();
+        };
+        base.jsonToArray = function (opt) {
+            if (!opt) {
+                return {};
+            }
+            var obj = opt.obj;
+            var arr = [];
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) {
+                    arr.push(obj[attr]);
+                }
+            }
+            return arr;
         };
         module.exports = base;
     }, {}] }, {}, [1]);
