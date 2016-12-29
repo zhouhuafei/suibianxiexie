@@ -37,7 +37,7 @@ validate.isPositiveInteger=function(opt){
     }
     return b;
 };
-//是不是保留了num位小数
+//是不是保留了num位小数的正整数
 validate.isReservedDecimal=function(opt){
     var obj=opt||{};
     var num=obj.num||2;
