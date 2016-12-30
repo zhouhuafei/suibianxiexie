@@ -11,6 +11,9 @@ validate.isSpace=function(opt){
     var b=false;
     if(valueTrim==''){
         b=true;
+        //成功的回调
+    }else{
+        //失败的回调
     }
     return b;
 };
