@@ -1,6 +1,19 @@
 /**
  * Created by zhouhuafei on 16/12/4.
  */
+//字符数量限制
+            var limitTxt=function(opt){
+                if(!opt){
+                    return false;
+                }
+                var str=opt.str;
+                var length=str.length;
+                var max=opt.max;
+                if(length>max){
+                    str=str.substring(0,max);
+                }
+                return str;
+            };
 //base里的方法应该是由一些小的模块组合起来的
 var base={};
 base.goTop=function(opt){//返回顶部
