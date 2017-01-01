@@ -26,7 +26,10 @@
             var b = false;
             if (valueTrim == '') {
                 b = true;
-            }
+                //成功的回调
+            } else {
+                    //失败的回调
+                }
             return b;
         };
         //是不是0
@@ -40,8 +43,8 @@
             }
             return b;
         };
-        //是不是正整数
-        validate.isPositiveInteger = function (opt) {
+        //是不是整数(包含0)
+        validate.isInteger = function (opt) {
             var obj = opt || {};
             var value = obj.value || " ";
             var valueTrim = value.trim();
@@ -52,7 +55,7 @@
             }
             return b;
         };
-        //是不是保留了num位小数
+        //是不是保留了num位小数点
         validate.isReservedDecimal = function (opt) {
             var obj = opt || {};
             var num = obj.num || 2;

@@ -4,3 +4,5 @@
 <p>3.modules里放一些依赖css的模块功能</p>
 <p>4.component里放一些有模块组合起来的组件</p>
 <p>5.page里放一个页面对应的一个js</p>
+<p>6.function里放一些绝对不会依赖到别的文件的js文件</p>
+<p>7.gulp browserify的默认根目录是js目录下的base目录(引入文件时需要注意,否则会报错)</p>

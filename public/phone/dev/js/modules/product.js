@@ -1,8 +1,9 @@
 /**
  * Created by zhouhuafei on 16/12/17.
  */
-function ProductList(opt){
-    this.opt=opt||{};
+//商品列表
+function ProductList(json){
+    this.opt=json||{};
     this.configData=this.opt.configData||{};//配置信息
     this.ajaxData=this.opt.ajaxData||{};//商品信息
     this.configData={
@@ -472,7 +473,7 @@ ProductList.prototype.init=function(){//初始化
 };
 ProductList.prototype.requireBase=function(){//需要用到的小功能函数
     this.base=require("../base/base.js");//base小功能
-    this.timeCountDown=this.base.timeCountDown;//倒计时
+    this.timeCountDown=this.base.secondsToTimeTimeCountDown;//倒计时
     this.htmlToDom=this.base.htmlToDom;//html转成DOM
     this.secondsToTime=this.base.secondsToTime;//秒转时间
 };

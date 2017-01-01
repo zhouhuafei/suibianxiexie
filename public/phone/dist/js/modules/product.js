@@ -16,178 +16,27 @@
         /**
          * Created by zhouhuafei on 16/12/4.
          */
-        //base里的方法应该是由一些小的模块组合起来的
-        var base = {};
-        base.goTop = function (opt) {
-            //返回顶部
-            var obj = opt.obj;
-            if (!obj) {
-                console.log('parameter error');
-                return false;
-            }
-            var doc = document;
-            var scale = 6;
-            var scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
-            var speed = 0;
-            var timer = null;
-            var fn = function fn() {
-                speed = Math.ceil(scrollT / scale);
-                scrollT -= speed;
-                window.scrollTo(0, scrollT);
-                timer = requestAnimationFrame(fn);
-                if (scrollT == 0) {
-                    cancelAnimationFrame(timer);
-                }
-            };
-            obj.addEventListener('click', function (ev) {
-                ev.stopPropagation();
-                ev.preventDefault();
-                scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
-                requestAnimationFrame(fn);
-            });
-            doc.addEventListener('touchstart', function () {
-                cancelAnimationFrame(timer);
-            });
+        //一些小方法
+        module.exports = {
+            cookie: require('../function/cookie'),
+            fillZero: require('../function/fill-zero'),
+            getParent: require('../function/get-parent'),
+            goTop: require('../function/go-top'),
+            htmlToDom: require('../function/html-to-dom'),
+            isScroll: require('../function/is-scroll-navigator'),
+            jsonToArray: require('../function/json-to-array'),
+            mask: require('../function/mask'),
+            secondsToTime: require('../function/seconds-to-time'),
+            secondsToTimeTimeCountDown: require('../function/seconds-to-time-count-down'),
+            strLimit: require('../function/str-limit')
         };
-        base.mask = function () {
-            //普通黑色遮罩
-            var doc = document;
-            var body = doc.body;
-            var mask = doc.createElement('div');
-            mask.className = 'g-mask';
-            mask.setAttribute('style', 'background:rgba(0,0,0,0.4);position:fixed;left:0;top:0;width:100%;height:100%;z-index:500;');
-            return {
-                show: function show() {
-                    body.appendChild(mask);
-                },
-                hide: function hide() {
-                    body.removeChild(mask);
-                }
-            };
-        };
-        base.yesNoScroll = function () {
-            //浏览器禁止滚动
-            var doc = document;
-            return {
-                //阻止冒泡
-                stopPropagation: function stopPropagation(ev) {
-                    ev.stopPropagation();
-                },
-                //阻止默认事件
-                preventDefault: function preventDefault(ev) {
-                    ev.preventDefault();
-                },
-                //阻止冒泡,阻止默认事件
-                returnFalse: function returnFalse(ev) {
-                    ev.preventDefault();
-                    ev.stopPropagation();
-                },
-                //禁止滚动
-                noScroll: function noScroll() {
-                    doc.addEventListener('touchmove', this.preventDefault, false);
-                    doc.documentElement.style.overflow = 'hidden';
-                },
-                //解除禁止浏览器滚动
-                yesScroll: function yesScroll() {
-                    doc.removeEventListener('touchmove', this.preventDefault, false);
-                    doc.documentElement.style.overflow = 'auto';
-                }
-            };
-        };
-        base.fillZero = function (opt) {
-            //补零函数
-            var num = opt.num;
-            if (num < 10) {
-                return '0' + num;
-            } else {
-                return '' + num;
-            }
-        };
-        base.secondsToTime = function (opt) {
-            //秒转时间
-            var seconds = opt.seconds;
-            var d = Math.floor(seconds / 3600 / 24); //天
-            var h = Math.floor(seconds / 3600 % 24); //小时
-            var m = Math.floor(seconds % 3600 / 60); //分钟
-            var s = Math.floor(seconds % 60); //秒数
-            return { d: d, h: h, m: m, s: s, a: seconds };
-        };
-        base.timeCountDown = function (opt) {
-            //倒计时
-            var seconds = opt.seconds;
-            var runCallback = opt.runCallback; //运行的回调
-            var overCallback = opt.overCallback; //结束的回调
-            var timeTransform = base.secondsToTime; //时间转换
-            if (seconds <= 0) {
-                //时间小于0秒
-                seconds = 0;
-                runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
-                overCallback && overCallback(); //结束时的回调
-            } else {
-                //时间大于0秒
-                runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
-                //倒计时走你
-                var timer = setInterval(function () {
-                    seconds--;
-                    runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
-                    if (seconds < 0) {
-                        seconds = 0;
-                        clearInterval(timer);
-                        runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
-                        overCallback && overCallback(); //结束时的回调
-                    }
-                }, 1000);
-            }
-        };
-        base.htmlToDom = function (opt) {
-            //html转成DOM节点
-            var html = opt.html;
-            var div = document.createElement('div');
-            div.innerHTML = html;
-            return div.children[0];
-        };
-        base.scrollLoadIsBottom = true; //假设到达了底部
-        base.scrollLoad = function (callback) {
-            var self = this;
-            var fn = callback || function () {
-                console.log('no find callback');
-            };
-            var doc = document;
-            var re = function re() {
-                var allH = doc.body.offsetHeight;
-                var scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
-                var clientHieght = doc.documentElement.clientHeight;
-                if (scrollTop + clientHieght >= allH - 100 && self.scrollLoadIsBottom) {
-                    self.scrollLoadIsBottom = false;
-                    fn();
-                    setTimeout(function () {
-                        //假设1000毫秒之后数据加载完毕
-                        self.scrollLoadIsBottom = true;
-                    }, 1000);
-                }
-            };
-            re();
-        };
-        base.jsonToArray = function (opt) {
-            if (!opt) {
-                return {};
-            }
-            var obj = opt.obj;
-            var arr = [];
-            for (var attr in obj) {
-                if (obj.hasOwnProperty(attr)) {
-                    arr.push(obj[attr]);
-                }
-            }
-            return arr;
-        };
-        module.exports = base;
-    }, {}], 2: [function (require, module, exports) {
+    }, { "../function/cookie": 3, "../function/fill-zero": 4, "../function/get-parent": 5, "../function/go-top": 6, "../function/html-to-dom": 7, "../function/is-scroll-navigator": 8, "../function/json-to-array": 9, "../function/mask": 10, "../function/seconds-to-time": 12, "../function/seconds-to-time-count-down": 11, "../function/str-limit": 13 }], 2: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
-        function ProductList(opt) {
-            this.opt = opt || {};
+        //商品列表
+        function ProductList(json) {
+            this.opt = json || {};
             this.configData = this.opt.configData || {}; //配置信息
             this.ajaxData = this.opt.ajaxData || {}; //商品信息
             this.configData = {
@@ -589,7 +438,7 @@
         ProductList.prototype.requireBase = function () {
             //需要用到的小功能函数
             this.base = require("../base/base.js"); //base小功能
-            this.timeCountDown = this.base.timeCountDown; //倒计时
+            this.timeCountDown = this.base.secondsToTimeTimeCountDown; //倒计时
             this.htmlToDom = this.base.htmlToDom; //html转成DOM
             this.secondsToTime = this.base.secondsToTime; //秒转时间
         };
@@ -686,4 +535,348 @@
             }
         };
         module.exports = ProductList;
-    }, { "../base/base.js": 1 }] }, {}, [2]);
+    }, { "../base/base.js": 1 }], 3: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //设置cookie
+        function setCookie(json) {
+            var opt = json || {};
+            var name = opt.name;
+            var value = opt.value;
+            var expires = opt.expires;
+            var myDate = new Date();
+            var myTime = myDate.getTime();
+            myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000);
+            document.cookie = name + '=' + value + '; expires=' + myDate;
+        }
+        //获取cookie
+        function getCookie(json) {
+            var opt = json || {};
+            var name = opt.name;
+            var cookie = document.cookie;
+            var arr = cookie.split('; ');
+            var value = '';
+            arr.forEach(function (v) {
+                var arr2 = v.split('=');
+                if (arr2[0] == name) {
+                    value = arr2[1];
+                    return false;
+                }
+            });
+            return value;
+        }
+        //清除cookie
+        function removeCookie(json) {
+            var opt = json || {};
+            var name = opt.name;
+            setCookie(name, '', -1);
+        }
+        var obj = {
+            setCookie: setCookie,
+            getCookie: getCookie,
+            removeCookie: removeCookie
+        };
+        module.exports = obj;
+    }, {}], 4: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //补零函数
+        function fillZero(json) {
+            var opt = json || {};
+            var num = opt.num;
+            if (num < 10) {
+                return '0' + num;
+            } else {
+                return '' + num;
+            }
+        }
+        module.exports = fillZero;
+    }, {}], 5: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        "use strict";
+        //获取指定父级
+
+        function getParent(json) {
+            var opt = json || {};
+            var obj = opt.obj;
+            var selector = opt.selector;
+            if (!obj) {
+                //第一参数不符合规范
+                console.log('参数错误,第一参数需要一个元素节点对象');
+                return null;
+            }
+            if (!selector) {
+                //没有第二参数默认选取直接父级
+                return obj.parentNode;
+            } else if (typeof selector == 'string') {
+                obj = obj.parentNode;
+                switch (selector.charAt(0)) {
+                    case '.':
+                        //通过class获取父级
+                        while (obj) {
+                            if (!obj.classList) {
+                                console.log('no find class');
+                                return null;
+                            }
+                            if (obj.classList.contains(selector.substring(1))) {
+                                return obj;
+                            } else {
+                                obj = obj.parentNode;
+                            }
+                        }
+                        break;
+                    case '#':
+                        //通过id获取父级
+                        while (obj) {
+                            if (obj == document) {
+                                console.log('no find id');
+                                return null;
+                            }
+                            if (obj.id == selector.substring(1)) {
+                                return obj;
+                            } else {
+                                obj = obj.parentNode;
+                            }
+                        }
+                        break;
+                    default:
+                        //通过标签名获取父级
+                        while (obj) {
+                            if (obj == document) {
+                                console.log('no find tagName');
+                                return null;
+                            }
+                            if (obj.tagName.toLowerCase() == selector) {
+                                return obj;
+                            } else {
+                                obj = obj.parentNode;
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+        module.exports = getParent;
+    }, {}], 6: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //返回顶部
+        function goTop(json) {
+            var opt = json || {};
+            var obj = opt.obj;
+            if (!obj) {
+                console.log('parameter error');
+                return false;
+            }
+            var doc = document;
+            var scale = 6;
+            var scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
+            var speed = 0;
+            var timer = null;
+            var fn = function fn() {
+                speed = Math.ceil(scrollT / scale);
+                scrollT -= speed;
+                window.scrollTo(0, scrollT);
+                timer = requestAnimationFrame(fn);
+                if (scrollT == 0) {
+                    cancelAnimationFrame(timer);
+                }
+            };
+            obj.addEventListener('click', function (ev) {
+                ev.stopPropagation();
+                ev.preventDefault();
+                scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
+                requestAnimationFrame(fn);
+            });
+            doc.addEventListener('touchstart', function () {
+                cancelAnimationFrame(timer);
+            });
+        }
+        module.exports = goTop;
+    }, {}], 7: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //html转成DOM节点
+        function htmlToDom(json) {
+            var opt = json || {};
+            var html = opt.html;
+            var div = document.createElement('div');
+            div.innerHTML = html;
+            return div.children[0];
+        }
+        module.exports = htmlToDom;
+    }, {}], 8: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //是否禁止浏览器滚动
+        function isScrollNavigator() {
+            var doc = document;
+            return {
+                //阻止冒泡
+                stopPropagation: function stopPropagation(ev) {
+                    ev.stopPropagation();
+                },
+                //阻止默认事件
+                preventDefault: function preventDefault(ev) {
+                    ev.preventDefault();
+                },
+                //阻止冒泡,阻止默认事件
+                returnFalse: function returnFalse(ev) {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                },
+                //禁止滚动
+                noScroll: function noScroll() {
+                    doc.addEventListener('touchmove', this.preventDefault, false);
+                    doc.documentElement.style.overflow = 'hidden';
+                },
+                //解除禁止浏览器滚动
+                yesScroll: function yesScroll() {
+                    doc.removeEventListener('touchmove', this.preventDefault, false);
+                    doc.documentElement.style.overflow = 'auto';
+                }
+            };
+        }
+        module.exports = isScrollNavigator;
+    }, {}], 9: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //对象转数组
+        function jsonToArray(json) {
+            var opt = json || {};
+            var obj = opt.obj;
+            var arr = [];
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) {
+                    arr.push(obj[attr]);
+                }
+            }
+            return arr;
+        }
+        module.exports = jsonToArray;
+    }, {}], 10: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //遮罩
+        function mask(json) {
+            var opt = json || {};
+            var status = opt.status;
+            var bg = 'rgba(0,0,0,0.4)';
+            var zIndex = 500;
+            var className = 'g-mask';
+            if (status == 'transparent') {
+                //如果是透明遮罩
+                bg = 'rgba(0,0,0,0)';
+                zIndex = 1000;
+                className = 'g-mask-transparent';
+            }
+            var doc = document;
+            var body = doc.body;
+            var mask = doc.createElement('div');
+            mask.className = className;
+            mask.setAttribute('style', "background-color:" + bg + ";position:fixed;left:0;top:0;width:100%;height:100%;z-index:" + zIndex + ";");
+            return {
+                show: function show() {
+                    body.appendChild(mask);
+                },
+                hide: function hide() {
+                    body.removeChild(mask);
+                }
+            };
+        }
+        module.exports = mask;
+    }, {}], 11: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //倒计时
+        function secondsToTimeCountDown(json) {
+            var opt = json || {};
+            var seconds = opt.seconds;
+            //运行的回调
+            var runCallback = opt.runCallback;
+            //结束的回调
+            var overCallback = opt.overCallback;
+            //时间转换
+            var timeTransform = function timeTransform(opt) {
+                var seconds = opt.seconds;
+                //天
+                var d = Math.floor(seconds / 3600 / 24);
+                //时
+                var h = Math.floor(seconds / 3600 % 24);
+                //分
+                var m = Math.floor(seconds % 3600 / 60);
+                //秒
+                var s = Math.floor(seconds % 60);
+                return { d: d, h: h, m: m, s: s, a: seconds };
+            };
+            if (seconds <= 0) {
+                //时间小于等于0秒
+                seconds = 0;
+                runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
+                overCallback && overCallback(); //结束时的回调
+            } else {
+                //时间大于0秒
+                runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
+                //倒计时走你
+                var timer = setInterval(function () {
+                    seconds--;
+                    runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
+                    if (seconds < 0) {
+                        seconds = 0;
+                        clearInterval(timer);
+                        runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
+                        overCallback && overCallback(); //结束时的回调
+                    }
+                }, 1000);
+            }
+        }
+        module.exports = secondsToTimeCountDown;
+    }, {}], 12: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //秒转时间
+        function secondsToTime(json) {
+            var opt = json || {};
+            var seconds = opt.seconds;
+            //天
+            var d = Math.floor(seconds / 3600 / 24);
+            //时
+            var h = Math.floor(seconds / 3600 % 24);
+            //分
+            var m = Math.floor(seconds % 3600 / 60);
+            //秒
+            var s = Math.floor(seconds % 60);
+            return { d: d, h: h, m: m, s: s, a: seconds };
+        }
+        module.exports = secondsToTime;
+    }, {}], 13: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //字符数量限制
+        function strLimit(json) {
+            var opt = json || {};
+            var max = opt.max;
+            var str = opt.str;
+            if (!str) {
+                return '';
+            }
+            var length = str.length;
+            if (length > max) {
+                str = str.substring(0, max);
+            }
+            return str;
+        }
+        module.exports = strLimit;
+    }, {}] }, {}, [2]);

@@ -38,3 +38,7 @@ for(var i=0;i<200;i++){
         main.appendChild(dom);
     });
 }
+
+
+
+require('../modules/lazyload')();//延迟加载
