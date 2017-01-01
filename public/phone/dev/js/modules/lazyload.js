@@ -53,6 +53,7 @@ function lazyload(json){
             }
         })
     };
+    fn();
     var timer=null;
     var fnScroll=function(){
         clearTimeout(timer);
@@ -60,7 +61,6 @@ function lazyload(json){
             fn();
         },interval);
     };
-    fnScroll();
     window.addEventListener('scroll',function(){
         fnScroll();
     });

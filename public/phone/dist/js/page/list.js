@@ -17,26 +17,28 @@
          * Created by zhouhuafei on 16/12/4.
          */
         //一些小方法
-        module.exports = {
+        var base = {
             cookie: require('../function/cookie'),
             fillZero: require('../function/fill-zero'),
             getParent: require('../function/get-parent'),
             goTop: require('../function/go-top'),
             htmlToDom: require('../function/html-to-dom'),
-            isScroll: require('../function/is-scroll-navigator'),
+            isScrollNavigator: require('../function/is-scroll-navigator'),
+            isScrollNavigatorBottom: require('../function/is-scroll-navigator-bottom'),
             jsonToArray: require('../function/json-to-array'),
             mask: require('../function/mask'),
             secondsToTime: require('../function/seconds-to-time'),
-            secondsToTimeTimeCountDown: require('../function/seconds-to-time-count-down'),
+            secondsToTimeCountDown: require('../function/seconds-to-time-count-down'),
             strLimit: require('../function/str-limit')
         };
-    }, { "../function/cookie": 3, "../function/fill-zero": 4, "../function/get-parent": 5, "../function/go-top": 6, "../function/html-to-dom": 7, "../function/is-scroll-navigator": 8, "../function/json-to-array": 9, "../function/mask": 10, "../function/seconds-to-time": 12, "../function/seconds-to-time-count-down": 11, "../function/str-limit": 13 }], 2: [function (require, module, exports) {
+        module.exports = base;
+    }, { "../function/cookie": 3, "../function/fill-zero": 4, "../function/get-parent": 5, "../function/go-top": 6, "../function/html-to-dom": 7, "../function/is-scroll-navigator": 9, "../function/is-scroll-navigator-bottom": 8, "../function/json-to-array": 10, "../function/mask": 11, "../function/seconds-to-time": 13, "../function/seconds-to-time-count-down": 12, "../function/str-limit": 14 }], 2: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
         var Product = require('../modules/product');
         var main = document.querySelector('.main');
-        for (var i = 0; i < 200; i++) {
+        for (var i = 0; i < 20; i++) {
             var product = new Product({
                 configData: {
                     isShowGoodsName: true,
@@ -71,9 +73,8 @@
                 main.appendChild(dom);
             });
         }
-
         require('../modules/lazyload')(); //延迟加载
-    }, { "../modules/lazyload": 14, "../modules/product": 15 }], 3: [function (require, module, exports) {
+    }, { "../modules/lazyload": 15, "../modules/product": 16 }], 3: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -253,6 +254,46 @@
         /**
          * Created by zhouhuafei on 17/1/1.
          */
+        //是否滚动到了浏览器的底部
+        function isScrollNavigatorBottom(json) {
+            var opt = json || {};
+            var success = opt.success || function () {};
+            var fail = opt.fail || function () {};
+            var doc = document;
+            var interval = opt.interval || 80; //延迟时间
+            var isBottom = true; //假设到达了底部
+            var fn = function fn() {
+                var allH = doc.body.offsetHeight;
+                var scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
+                var clientHeight = doc.documentElement.clientHeight;
+                if (scrollTop + clientHeight >= allH - 100 && isBottom) {
+                    isBottom = false;
+                    success();
+                    //假设1000毫秒之后数据加载完毕
+                    setTimeout(function () {
+                        isBottom = true;
+                    }, 1000);
+                } else {
+                    fail();
+                }
+            };
+            fn();
+            var timer = null;
+            var fnScroll = function fnScroll() {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    fn();
+                }, interval);
+            };
+            window.addEventListener('scroll', function () {
+                fnScroll();
+            });
+        }
+        module.exports = isScrollNavigatorBottom;
+    }, {}], 9: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
         //是否禁止浏览器滚动
         function isScrollNavigator() {
             var doc = document;
@@ -283,7 +324,7 @@
             };
         }
         module.exports = isScrollNavigator;
-    }, {}], 9: [function (require, module, exports) {
+    }, {}], 10: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -300,7 +341,7 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 10: [function (require, module, exports) {
+    }, {}], 11: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -332,7 +373,7 @@
             };
         }
         module.exports = mask;
-    }, {}], 11: [function (require, module, exports) {
+    }, {}], 12: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -379,7 +420,7 @@
             }
         }
         module.exports = secondsToTimeCountDown;
-    }, {}], 12: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -398,7 +439,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -417,7 +458,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 14: [function (require, module, exports) {
+    }, {}], 15: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
@@ -473,6 +514,7 @@
                     }
                 });
             };
+            fn();
             var timer = null;
             var fnScroll = function fnScroll() {
                 clearTimeout(timer);
@@ -480,13 +522,12 @@
                     fn();
                 }, interval);
             };
-            fnScroll();
             window.addEventListener('scroll', function () {
                 fnScroll();
             });
         }
         module.exports = lazyload;
-    }, {}], 15: [function (require, module, exports) {
+    }, {}], 16: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
@@ -894,7 +935,7 @@
         ProductList.prototype.requireBase = function () {
             //需要用到的小功能函数
             this.base = require("../base/base.js"); //base小功能
-            this.timeCountDown = this.base.secondsToTimeTimeCountDown; //倒计时
+            this.timeCountDown = this.base.secondsToTimeCountDown; //倒计时
             this.htmlToDom = this.base.htmlToDom; //html转成DOM
             this.secondsToTime = this.base.secondsToTime; //秒转时间
         };

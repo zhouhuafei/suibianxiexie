@@ -3,7 +3,7 @@
  */
 const Product=require('../modules/product');
 const main=document.querySelector('.main');
-for(var i=0;i<200;i++){
+for(var i=0;i<20;i++){
     const product=new Product({
         configData:{
             isShowGoodsName:true,
@@ -38,7 +38,4 @@ for(var i=0;i<200;i++){
         main.appendChild(dom);
     });
 }
-
-
-
 require('../modules/lazyload')();//延迟加载

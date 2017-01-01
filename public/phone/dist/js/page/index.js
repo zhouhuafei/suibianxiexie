@@ -16,14 +16,5 @@
     /**
      * Created by zhouhuafei on 16/12/4.
      */
-    var Popup = require('../component/popup');
-    Popup();
-  }, { "../component/popup": 2 }], 2: [function (require, module, exports) {
-    /**
-     * Created by zhouhuafei on 16/12/13.
-     */
-    //弹层
-    module.exports = function () {
-      console.log('模块化测试');
-    };
+    console.log('首页待续...');
   }, {}] }, {}, [1]);

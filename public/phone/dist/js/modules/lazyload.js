@@ -68,6 +68,7 @@
                     }
                 });
             };
+            fn();
             var timer = null;
             var fnScroll = function fnScroll() {
                 clearTimeout(timer);
@@ -75,7 +76,6 @@
                     fn();
                 }, interval);
             };
-            fnScroll();
             window.addEventListener('scroll', function () {
                 fnScroll();
             });

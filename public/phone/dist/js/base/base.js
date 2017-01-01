@@ -17,20 +17,22 @@
          * Created by zhouhuafei on 16/12/4.
          */
         //一些小方法
-        module.exports = {
+        var base = {
             cookie: require('../function/cookie'),
             fillZero: require('../function/fill-zero'),
             getParent: require('../function/get-parent'),
             goTop: require('../function/go-top'),
             htmlToDom: require('../function/html-to-dom'),
-            isScroll: require('../function/is-scroll-navigator'),
+            isScrollNavigator: require('../function/is-scroll-navigator'),
+            isScrollNavigatorBottom: require('../function/is-scroll-navigator-bottom'),
             jsonToArray: require('../function/json-to-array'),
             mask: require('../function/mask'),
             secondsToTime: require('../function/seconds-to-time'),
-            secondsToTimeTimeCountDown: require('../function/seconds-to-time-count-down'),
+            secondsToTimeCountDown: require('../function/seconds-to-time-count-down'),
             strLimit: require('../function/str-limit')
         };
-    }, { "../function/cookie": 2, "../function/fill-zero": 3, "../function/get-parent": 4, "../function/go-top": 5, "../function/html-to-dom": 6, "../function/is-scroll-navigator": 7, "../function/json-to-array": 8, "../function/mask": 9, "../function/seconds-to-time": 11, "../function/seconds-to-time-count-down": 10, "../function/str-limit": 12 }], 2: [function (require, module, exports) {
+        module.exports = base;
+    }, { "../function/cookie": 2, "../function/fill-zero": 3, "../function/get-parent": 4, "../function/go-top": 5, "../function/html-to-dom": 6, "../function/is-scroll-navigator": 8, "../function/is-scroll-navigator-bottom": 7, "../function/json-to-array": 9, "../function/mask": 10, "../function/seconds-to-time": 12, "../function/seconds-to-time-count-down": 11, "../function/str-limit": 13 }], 2: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -210,6 +212,46 @@
         /**
          * Created by zhouhuafei on 17/1/1.
          */
+        //是否滚动到了浏览器的底部
+        function isScrollNavigatorBottom(json) {
+            var opt = json || {};
+            var success = opt.success || function () {};
+            var fail = opt.fail || function () {};
+            var doc = document;
+            var interval = opt.interval || 80; //延迟时间
+            var isBottom = true; //假设到达了底部
+            var fn = function fn() {
+                var allH = doc.body.offsetHeight;
+                var scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
+                var clientHeight = doc.documentElement.clientHeight;
+                if (scrollTop + clientHeight >= allH - 100 && isBottom) {
+                    isBottom = false;
+                    success();
+                    //假设1000毫秒之后数据加载完毕
+                    setTimeout(function () {
+                        isBottom = true;
+                    }, 1000);
+                } else {
+                    fail();
+                }
+            };
+            fn();
+            var timer = null;
+            var fnScroll = function fnScroll() {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    fn();
+                }, interval);
+            };
+            window.addEventListener('scroll', function () {
+                fnScroll();
+            });
+        }
+        module.exports = isScrollNavigatorBottom;
+    }, {}], 8: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
         //是否禁止浏览器滚动
         function isScrollNavigator() {
             var doc = document;
@@ -240,7 +282,7 @@
             };
         }
         module.exports = isScrollNavigator;
-    }, {}], 8: [function (require, module, exports) {
+    }, {}], 9: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -257,7 +299,7 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 9: [function (require, module, exports) {
+    }, {}], 10: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -289,7 +331,7 @@
             };
         }
         module.exports = mask;
-    }, {}], 10: [function (require, module, exports) {
+    }, {}], 11: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -336,7 +378,7 @@
             }
         }
         module.exports = secondsToTimeCountDown;
-    }, {}], 11: [function (require, module, exports) {
+    }, {}], 12: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -355,7 +397,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 12: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
