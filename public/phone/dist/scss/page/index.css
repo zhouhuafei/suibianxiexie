@@ -45,7 +45,8 @@ li {
     height: 30px;
     line-height: 30px;
     outline: none;
-    padding: 0 5px; }
+    padding: 0 5px;
+    width: 200px; }
   .main-input .input-txt {
     width: 50px;
     text-align: right;

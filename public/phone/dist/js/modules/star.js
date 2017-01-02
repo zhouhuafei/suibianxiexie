@@ -15,11 +15,11 @@
 })({ 1: [function (require, module, exports) {
         //手机极简星级评论
         function Star(json) {
-            var opt = json || {};
-            this.allStar = opt.allStar || '5'; //总共几颗星(默认五颗星)
-            this.nowStar = opt.nowStar || '0'; //现在几颗星(默认零颗星)
-            this.isEvent = opt.isEvent == false ? opt.isEvent : true; //是否具备事件(默认具备)
-            this.eventCallback = opt.eventCallback || function () {
+            this.opt = json || {};
+            this.allStar = this.opt.allStar || '5'; //总共几颗星(默认五颗星)
+            this.nowStar = this.opt.nowStar || '0'; //现在几颗星(默认零颗星)
+            this.isEvent = this.opt.isEvent == false ? this.opt.isEvent : true; //是否具备事件(默认具备)
+            this.eventCallback = this.opt.eventCallback || function () {
                 console.log('no find callback');
             }; //事件回调
         }

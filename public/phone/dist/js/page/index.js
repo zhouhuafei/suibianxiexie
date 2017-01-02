@@ -37,7 +37,14 @@
          * Created by zhouhuafei on 16/12/4.
          */
         //验证
-        (function () {})();
+        (function () {
+            var ValidateInput = require('../modules/validate-input');
+            var aInput = [].slice.call(document.querySelectorAll('.m-validate-input'));
+            aInput.forEach(function (v) {
+                var validate = new ValidateInput({ input: v });
+                validate.validateEventBlur();
+            });
+        })();
         //星评
         (function () {
             var Star = require('../modules/star');
@@ -91,7 +98,7 @@
         })();
 
         require('../function/lazyload')(); //延迟加载
-    }, { "../function/lazyload": 11, "../modules/product": 16, "../modules/star": 17 }], 3: [function (require, module, exports) {
+    }, { "../function/lazyload": 11, "../modules/product": 17, "../modules/star": 18, "../modules/validate-input": 19 }], 3: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -547,6 +554,81 @@
         }
         module.exports = strLimit;
     }, {}], 16: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 16/12/4.
+         */
+        //验证
+        var validate = {
+            //是不是空
+            isSpace: function isSpace(json) {
+                var opt = json || {};
+                var success = opt.success || function () {};
+                var fail = opt.fail || function () {};
+                var value = opt.value || " ";
+                var valueTrim = value.trim();
+                var b = false;
+                if (valueTrim == '') {
+                    b = true;
+                    success();
+                } else {
+                    fail();
+                }
+                return b;
+            },
+            //是不是0
+            isZero: function isZero(json) {
+                var opt = json || {};
+                var success = opt.success || function () {};
+                var fail = opt.fail || function () {};
+                var value = opt.value || " ";
+                var valueTrim = value.trim();
+                var b = false;
+                if (valueTrim == 0) {
+                    b = true;
+                    success();
+                } else {
+                    fail();
+                }
+                return b;
+            },
+            //是不是整数(包含0)
+            isInteger: function isInteger(json) {
+                var opt = json || {};
+                var success = opt.success || function () {};
+                var fail = opt.fail || function () {};
+                var value = opt.value || " ";
+                var valueTrim = value.trim();
+                var re = /^\d+$/;
+                var b = false;
+                if (re.test(valueTrim)) {
+                    b = true;
+                    success();
+                } else {
+                    fail();
+                }
+                return b;
+            },
+            //是不是保留了num位小数点
+            isReservedDecimal: function isReservedDecimal(json) {
+                var opt = json || {};
+                var success = opt.success || function () {};
+                var fail = opt.fail || function () {};
+                var num = opt.num || 2;
+                var value = opt.value || " ";
+                var valueTrim = value.trim();
+                var re = new RegExp("^\\d+\\.\\d{" + num + "}$");
+                var b = false;
+                if (re.test(valueTrim)) {
+                    b = true;
+                    success();
+                } else {
+                    fail();
+                }
+                return b;
+            }
+        };
+        module.exports = validate;
+    }, {}], 17: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
@@ -1055,14 +1137,14 @@
             }
         };
         module.exports = ProductList;
-    }, { "../base/base.js": 1 }], 17: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 18: [function (require, module, exports) {
         //手机极简星级评论
         function Star(json) {
-            var opt = json || {};
-            this.allStar = opt.allStar || '5'; //总共几颗星(默认五颗星)
-            this.nowStar = opt.nowStar || '0'; //现在几颗星(默认零颗星)
-            this.isEvent = opt.isEvent == false ? opt.isEvent : true; //是否具备事件(默认具备)
-            this.eventCallback = opt.eventCallback || function () {
+            this.opt = json || {};
+            this.allStar = this.opt.allStar || '5'; //总共几颗星(默认五颗星)
+            this.nowStar = this.opt.nowStar || '0'; //现在几颗星(默认零颗星)
+            this.isEvent = this.opt.isEvent == false ? this.opt.isEvent : true; //是否具备事件(默认具备)
+            this.eventCallback = this.opt.eventCallback || function () {
                 console.log('no find callback');
             }; //事件回调
         }
@@ -1115,4 +1197,91 @@
             callback(this.parentDom);
         };
         module.exports = Star;
-    }, {}] }, {}, [2]);
+    }, {}], 19: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/2.
+         */
+        function ValidateInput(json) {
+            this.opt = json || {};
+            this.input = this.opt.input;
+            this.validateType = this.input.dataset.validate || [];
+            this.inputClassError = this.opt.inputClassError || 'm-validate-input-error';
+            this.init();
+        }
+        ValidateInput.prototype.init = function () {
+            this.require();
+            this.render();
+        };
+        ValidateInput.prototype.require = function () {
+            this.validate = require('../function/validate');
+        };
+        ValidateInput.prototype.render = function () {
+            this.renderParent();
+            this.renderHint();
+        };
+        ValidateInput.prototype.renderParent = function () {
+            this.parentDom = this.input.parentNode;
+            this.parentDom.classList.add('m-validate-input-parent');
+        };
+        ValidateInput.prototype.renderHint = function () {
+            this.hintDom = document.createElement('em');
+            this.hintDom.classList.add('m-validate-input-hint');
+        };
+        ValidateInput.prototype.renderHintAdd = function (json) {
+            var opt = json || {};
+            this.hintDom.innerHTML = opt.txt || '本项必填';
+            this.parentDom.appendChild(this.hintDom);
+            this.input.classList.add(this.inputClassError);
+        };
+        ValidateInput.prototype.renderHintRemove = function () {
+            this.parentDom.removeChild(this.hintDom);
+            this.input.classList.remove(this.inputClassError);
+        };
+        ValidateInput.prototype.validateSave = function () {
+            var self = this;
+            var type = self.validateType.split(' ');
+            var value = this.input.value;
+            type.forEach(function (v) {
+                if (v == 'no-space') {
+                    //非空
+                    self.validate.isSpace({
+                        value: value,
+                        success: function success() {
+                            //空
+                            self.renderHintAdd();
+                        },
+                        fail: function fail() {
+                            //非空
+                            self.renderHintRemove();
+                        }
+                    });
+                }
+                if (v == 'no-zero') {
+                    //非零
+                    self.validate.isZero({ success: function success() {//零
+
+                        }, fail: function fail() {//非零
+
+                        } });
+                }
+                if (v == 'yes-integer') {
+                    //整数
+                    self.validate.isInteger({ success: function success() {//整数
+
+                        }, fail: function fail() {//非整数
+
+                        } });
+                }
+            });
+        };
+        ValidateInput.prototype.validateEventBlur = function () {
+            var self = this;
+            if (self.input) {
+                self.input.addEventListener('blur', function () {
+                    self.validateSave();
+                });
+            }
+        };
+
+        module.exports = ValidateInput;
+    }, { "../function/validate": 16 }] }, {}, [2]);

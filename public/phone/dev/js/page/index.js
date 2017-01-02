@@ -3,7 +3,12 @@
  */
 //验证
 (function(){
-    
+    const ValidateInput=require('../modules/validate-input');
+    const aInput=[].slice.call(document.querySelectorAll('.m-validate-input'));
+    aInput.forEach(function(v){
+        var validate=new ValidateInput({input:v});
+        validate.validateEventBlur();
+    });
 })();
 //星评
 (function(){
