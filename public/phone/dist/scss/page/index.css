@@ -9,8 +9,7 @@ li {
   list-style-type: none; }
 
 .m-validate-input-parent {
-  position: relative;
-  display: inline-block; }
+  position: relative; }
   .m-validate-input-parent .m-validate-input-hint {
     color: #ffffff;
     background: rgba(255, 0, 0, 0.6);

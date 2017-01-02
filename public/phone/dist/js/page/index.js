@@ -1205,6 +1205,7 @@
             this.opt = json || {};
             this.input = this.opt.input;
             this.validateType = this.input.dataset.validate || [];
+            this.validateHintTxt = this.input.dataset.hint || [];
             this.inputClassError = this.opt.inputClassError || 'm-validate-input-error';
             this.init();
         }
@@ -1240,15 +1241,16 @@
         ValidateInput.prototype.validateSave = function () {
             var self = this;
             var type = self.validateType.split(' ');
+            var hintTxt = self.validateHintTxt.split(' ');
             var value = this.input.value;
-            type.forEach(function (v) {
+            type.forEach(function (v, i) {
                 if (v == 'no-space') {
-                    //非空
+                    //设置了非空验证
                     self.validate.isSpace({
                         value: value,
                         success: function success() {
                             //空
-                            self.renderHintAdd();
+                            self.renderHintAdd({ txt: hintTxt[i] });
                         },
                         fail: function fail() {
                             //非空
@@ -1257,19 +1259,23 @@
                     });
                 }
                 if (v == 'no-zero') {
-                    //非零
-                    self.validate.isZero({ success: function success() {//零
-
-                        }, fail: function fail() {//非零
-
+                    //设置了非零验证
+                    self.validate.isZero({ success: function success() {
+                            //零
+                            self.renderHintAdd({ txt: hintTxt[i] });
+                        }, fail: function fail() {
+                            //非零
+                            self.renderHintRemove();
                         } });
                 }
                 if (v == 'yes-integer') {
-                    //整数
-                    self.validate.isInteger({ success: function success() {//整数
-
-                        }, fail: function fail() {//非整数
-
+                    //设置了整数验证
+                    self.validate.isInteger({ success: function success() {
+                            //整数
+                            self.renderHintRemove();
+                        }, fail: function fail() {
+                            //非整数
+                            self.renderHintAdd({ txt: hintTxt[i] });
                         } });
                 }
             });
