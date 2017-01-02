@@ -27,12 +27,15 @@
     text-align: center; }
     .m-product .m-product-img a {
       position: relative;
-      font-size: 0; }
+      font-size: 0;
+      border-radius: inherit; }
       .m-product .m-product-img a:before {
         content: '';
         display: inline-block;
         height: 100%;
         vertical-align: middle; }
+      .m-product .m-product-img a img {
+        border-radius: inherit; }
   .m-product .m-product-txt {
     position: relative;
     overflow: hidden; }

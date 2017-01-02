@@ -1,11 +1,33 @@
 @import "../base/base";
-.page-index{
-    @include habit-zhouhuafei;
-    font-size:px2rem(30);
-    div{
-        height:px2rem(200);
-        line-height:px2rem(200);
-        text-align:center;
-        background:#000000;
+//input验证
+@import "../modules/validate-input";
+.main-input{
+    padding-top:px2rem(60);
+    font-size:14px;
+    label,span,em{
+        display:inline-block;
     }
+    input{
+        border:1px solid #ccc;
+        height:30px;
+        line-height:30px;
+        outline:none;
+        padding:0 5px;
+    }
+    .input-txt{
+        width:50px;
+        text-align:right;
+        margin-right:10px;
+    }
+}
+//星评
+@import "../modules/star";
+.main-star{
+    text-align:center;
+    padding-top:px2rem(8);
+}
+//列表
+@import "../modules/product";
+.main-product{
+    @include clear-fix;
 }

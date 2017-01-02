@@ -1,4 +1,8 @@
-.m-star {
-  color: #cccccc; }
-  .m-star.m-star-active {
-    color: #ff0000; }
+.m-star-main {
+  font-size: 0; }
+  .m-star-main .m-star {
+    display: inline-block;
+    color: #cccccc;
+    font-size: 1.06667rem; }
+    .m-star-main .m-star.m-star-active {
+      color: #ee3400; }

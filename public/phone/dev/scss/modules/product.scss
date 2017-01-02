@@ -40,6 +40,10 @@
         a{
             position:relative;
             @include center-xy;
+            border-radius:inherit;
+            img{
+                border-radius:inherit;
+            }
         }
     }
     .m-product-txt{ //文字容器

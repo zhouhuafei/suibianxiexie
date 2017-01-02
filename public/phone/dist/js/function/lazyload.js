@@ -22,7 +22,7 @@
             var interval = opt.interval || 80; //延迟时间
             var doc = document;
             var fn = function fn() {
-                var aImg = [].slice.call(doc.getElementsByClassName('lazy-load')); //所有的img元素节点
+                var aImg = [].slice.call(doc.getElementsByClassName('m-lazy-load')); //所有的img元素节点
                 var iLen = aImg.length;
                 if (!iLen) {
                     return false;
@@ -42,6 +42,8 @@
                         v.src = src;
                         v.setAttribute('height', '100%');
                         v.setAttribute('width', '100%');
+                        v.style.opacity = '0';
+                        v.style.transition = 'opacity 0.4s';
                     }
                 });
                 var iClientH = doc.documentElement.clientHeight;
@@ -57,14 +59,14 @@
                                 v.src = v.dataset.src;
                                 v.removeAttribute('height');
                                 v.removeAttribute('width');
-                                v.classList.add('m-lazy-load-show');
                             }
                         } else {
                             v.style.backgroundImage = 'url(' + v.dataset.src + ')';
                             v.style.backgroundPosition = 'center center';
                             v.style.backgroundRepeat = 'no-repeat';
-                            v.classList.add('m-lazy-load-show');
                         }
+                        v.style.opacity = '1';
+                        v.classList.add('m-lazy-load-show');
                     }
                 });
             };

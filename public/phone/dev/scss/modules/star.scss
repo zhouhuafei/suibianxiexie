@@ -1,6 +1,12 @@
-.m-star{
-    color:#cccccc;
-    &.m-star-active{
-        color:#ff0000;
+@import "../base/mixin";
+.m-star-main{
+    font-size:0;
+    .m-star{
+        display:inline-block;
+        color:#cccccc;
+        font-size:px2rem(40);
+        &.m-star-active{
+            color:#ee3400;
+        }
     }
 }

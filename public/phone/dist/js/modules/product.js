@@ -91,7 +91,7 @@
             if (this.configData.isShowImgSrc) {
                 imgHTML = "<img src=\"" + this.ajaxData.imgSrc + "\" alt=\"\">";
             } else {
-                imgHTML = "<img class=\"lazy-load\" data-src=\"" + this.ajaxData.imgSrc + "\" src=\"\" alt=\"\">";
+                imgHTML = "<img class=\"m-lazy-load\" data-src=\"" + this.ajaxData.imgSrc + "\" src=\"\" alt=\"\">";
             }
             return "\n        <div class=\"m-product-img\">\n            <a href=\"" + this.ajaxData.aHref + "\">\n                " + imgHTML + "\n                " + this.renderSeckillLogo() + "\n            </a>\n        </div>\n    ";
         };
@@ -423,12 +423,16 @@
                 parent.removeChild(dom);
             }
         };
-        ProductList.prototype.render = function (callback) {
+        ProductList.prototype.render = function (json) {
             //渲染整个结构
+            var opt = json || {};
+            var callback = opt.callback || function () {
+                console.log('no find callback');
+            };
             this.requireBase();
             this.renderParent();
             this.init();
-            callback && callback(this.parentDom);
+            callback(this.parentDom);
         };
         //以下是渲染功能
         ProductList.prototype.init = function () {

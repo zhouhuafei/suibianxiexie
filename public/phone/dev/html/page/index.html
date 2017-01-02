@@ -19,20 +19,28 @@
     </head>
     <body>
         <link rel="stylesheet" href="../../../dist/scss/page/index.css">
-
         <div class="page-index">
-            <div><img src="../../images/bg.png" alt=""></div>
-            <p>
-                <i class="iconfont icon-iconfont5"></i>
-                <i class="iconfont icon-iconfont5"></i>
-                <i class="iconfont icon-iconfont5"></i>
-                <i class="iconfont icon-iconfont5"></i>
-                <i class="iconfont icon-iconfont5"></i>
-            </p>
-            <p><i class="iconfont icon-iconfont5"></i></p>
-            <p><em>关注</em><i>简介</i><span>收藏</span></p>
+            <div class="main-input">
+                <label>
+                    <span class="input-txt">账号:</span>
+                    <span class="m-validate-input-parent">
+                        <em class="m-validate-input-hint">本项必填</em>
+                        <input placeholder="请输入账号" class="m-validate-input m-validate-input-error" type="text" data-validate="no-space no-zero yes-integer">
+                    </span>
+                </label>
+            </div>
+            <div class="main-input">
+                <label>
+                    <span class="input-txt">密码:</span>
+                    <span class="m-validate-input-parent">
+                        <em class="m-validate-input-hint">本项必填</em>
+                        <input placeholder="请输入密码" class="m-validate-input m-validate-input-error" type="text" data-validate="no-space no-zero yes-integer">
+                    </span>
+                </label>
+            </div>
+            <div class="main-star"></div>
+            <div class="main-product"></div>
         </div>
-
         <script src="../../../dist/js/page/index.js"></script>
     </body>
 </html>
