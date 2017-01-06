@@ -49,13 +49,13 @@ define(function (require, exports, module) {
         var dom2=[].slice.call(document.querySelectorAll(this.radioButton));
         var self=this;
         if(dom1&&dom2.length>=1){
-            dom1.addEventListener('click',function(){
+            dom1.onclick=function(){
                 if(this.checked==true){
                     self.selectAllYes();
                 }else{
                     self.selectAllNo();
                 }
-            })
+            }
         }
     };
     Select.prototype.selectOneToAll=function(){//单选导致全选
@@ -64,7 +64,7 @@ define(function (require, exports, module) {
         var self=this;
         if(dom1&&dom2.length>=1){
             dom2.forEach(function(v){
-                v.addEventListener('click',function(){
+                v.onclick=function(){
                     var isAll=true;//假设全部都被选中了
                     var dom3=[].slice.call(document.querySelectorAll(self.radioButton));
                     dom3.forEach(function(v2){
@@ -76,7 +76,7 @@ define(function (require, exports, module) {
                     dom1.checked=false;
                     isAll&&(dom1.checked=true);
                     self.oneSelectCallback&&self.oneSelectCallback();
-                })
+                }
             })
         }
     };
