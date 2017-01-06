@@ -6,6 +6,9 @@ define(function (require, exports, module) {
         this.opt=json||{};
         this.selectAllButton=this.opt.selectAllButton;
         this.radioButton=this.opt.radioButton;
+        this.allSelectYesCallback=this.opt.allSelectYesCallback;//全选的回调
+        this.allSelectNoCallback=this.opt.allSelectNoCallback;//返选的回调
+        this.oneSelectCallback=this.opt.oneSelectCallback;//单选的回调
         if(this.selectAllButton&&this.radioButton){
             this.init();
         }else{
@@ -28,6 +31,7 @@ define(function (require, exports, module) {
                 v.checked=true;
             })
         }
+        this.allSelectYesCallback&&this.allSelectYesCallback();
     };
     Select.prototype.selectAllNo=function(){//反选
         var dom1=document.querySelector(this.selectAllButton);
@@ -38,6 +42,7 @@ define(function (require, exports, module) {
                 v.checked=false;
             })
         }
+        this.allSelectNoCallback&&this.allSelectNoCallback();
     };
     Select.prototype.selectAllClick=function(){//全选反选事件
         var dom1=document.querySelector(this.selectAllButton);
@@ -70,6 +75,7 @@ define(function (require, exports, module) {
                     });
                     dom1.checked=false;
                     isAll&&(dom1.checked=true);
+                    self.oneSelectCallback&&self.oneSelectCallback();
                 })
             })
         }
