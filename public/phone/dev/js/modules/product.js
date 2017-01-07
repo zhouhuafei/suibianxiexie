@@ -33,7 +33,7 @@ function ProductList(json){
         seckillPrice:this.ajaxData.seckillPrice||'66.66',//秒杀价格
         likeNum:this.ajaxData.likeNum||'66',//多少人喜欢
         imgSrc:this.ajaxData.imgSrc||'',//图片的地址
-        aHref:this.ajaxData.aHref||'',//商品详情的链接
+        aHref:this.ajaxData.aHref||'javascript:;',//商品详情的链接
         seckillWillBeginTime:this.ajaxData.seckillWillBeginTime||'6',//秒杀即将开始的时间
         seckillWillBeginBtnShowTime:this.ajaxData.seckillWillBeginBtnShowTime||'60',//秒杀即将开始按钮出现的时间(剩余最后60秒的时候出现)
         seckillWillEndTime:this.ajaxData.seckillWillEndTime||'6'//秒杀即将结束的时间
