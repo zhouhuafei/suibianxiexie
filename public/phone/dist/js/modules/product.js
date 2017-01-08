@@ -42,7 +42,7 @@
             this.configData = this.opt.configData || {}; //配置信息
             this.ajaxData = this.opt.ajaxData || {}; //商品信息
             this.configData = {
-                showType: this.configData.showType || 'm-product-window', //默认的展现形式(默认为列表式:'m-product-list',橱窗式:'m-product-window',海报式:'m-product-placard')
+                showType: this.configData.showType || 'm-product-list', //默认的展现形式(默认为列表式:'m-product-list',橱窗式:'m-product-window',海报式:'m-product-placard')
                 isShowImgSrc: this.configData.isShowImgSrc == true ? this.configData.isShowImgSrc : false, //是否直接显示图片(默认不直接显示)
                 isShowLong: this.configData.isShowLong == true ? this.configData.isShowLong : false, //是否显示为长方形(默认不显示)
                 isShowCart: this.configData.isShowCart == true ? this.configData.isShowCart : false, //是否显示购物车(默认不显示)
@@ -60,7 +60,7 @@
                 isShowSeckillWillEndTime: this.configData.isShowSeckillWillEndTime == true ? this.configData.isShowSeckillWillEndTime : false //是否显示秒杀即将结束的倒计时(默认不显示)
             };
             this.ajaxData = {
-                goodsName: this.ajaxData.goodsName, //商品名称
+                goodsName: this.ajaxData.goodsName || '商品名称', //商品名称
                 gid: this.ajaxData.gid, //商品的id
                 marketPrice: this.ajaxData.marketPrice || 'undefined.undefined', //市场价格
                 nowPrice: this.ajaxData.nowPrice || 'undefined.undefined', //现在的价格
