@@ -27,10 +27,10 @@ function ProductList(json){
     this.ajaxData={
         goodsName:this.ajaxData.goodsName||'商品名称',//商品名称
         gid:this.ajaxData.gid,//商品的id
-        marketPrice:this.ajaxData.marketPrice||||'undefined.undefined',//市场价格
-        nowPrice:this.ajaxData.nowPrice||||'undefined.undefined',//现在的价格
-        vipPrice:this.ajaxData.vipPrice||||'undefined.undefined',//会员价格
-        seckillPrice:this.ajaxData.seckillPrice||||'undefined.undefined',//秒杀价格
+        marketPrice:this.ajaxData.marketPrice||'undefined.undefined',//市场价格
+        nowPrice:this.ajaxData.nowPrice||'undefined.undefined',//现在的价格
+        vipPrice:this.ajaxData.vipPrice||'undefined.undefined',//会员价格
+        seckillPrice:this.ajaxData.seckillPrice||'undefined.undefined',//秒杀价格
         likeNum:this.ajaxData.likeNum,//多少人喜欢
         imgSrc:this.ajaxData.imgSrc||'',//图片的地址
         aHref:this.ajaxData.aHref||'javascript:;',//商品详情的链接
