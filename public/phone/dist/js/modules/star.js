@@ -17,7 +17,7 @@
         function Star(json) {
             this.opt = json || {};
             this.allStar = this.opt.allStar || '5'; //总共几颗星(默认五颗星)
-            this.nowStar = this.opt.nowStar || '0'; //现在几颗星(默认零颗星)
+            this.nowStar = this.opt.nowStar || '5'; //现在几颗星(默认五颗星)
             this.isEvent = this.opt.isEvent == false ? this.opt.isEvent : true; //是否具备事件(默认具备)
             this.eventCallback = this.opt.eventCallback || function () {
                 console.log('no find callback');
@@ -33,15 +33,18 @@
             var self = this;
             if (this.isEvent) {
                 this.parentDom.addEventListener('click', function (ev) {
-                    var index = ev.target.dataset.index;
-                    for (var j = 0; j < self.allStar; j++) {
-                        if (j <= index) {
-                            self.star[j].classList.add('m-star-active');
-                        } else {
-                            self.star[j].classList.remove('m-star-active');
+                    var target = ev.target;
+                    if (target.classList.contains('m-star')) {
+                        var index = target.dataset.index;
+                        for (var j = 0; j < self.allStar; j++) {
+                            if (j <= index) {
+                                self.star[j].classList.add('m-star-active');
+                            } else {
+                                self.star[j].classList.remove('m-star-active');
+                            }
                         }
+                        self.eventCallback({ index: index });
                     }
-                    self.eventCallback({ index: index });
                 });
             }
         };
