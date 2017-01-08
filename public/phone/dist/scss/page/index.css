@@ -88,7 +88,7 @@ li {
   .m-product .m-product-img {
     position: relative;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 0.26667rem;
     background: #dddddd;
     text-align: center; }
     .m-product .m-product-img a {
