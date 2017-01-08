@@ -656,7 +656,7 @@
                 isShowSeckillWillEndTime: this.configData.isShowSeckillWillEndTime == true ? this.configData.isShowSeckillWillEndTime : false //是否显示秒杀即将结束的倒计时(默认不显示)
             };
             this.ajaxData = {
-                goodsName: this.ajaxData.goodsName || '商品名称', //商品名称
+                goodsName: this.ajaxData.goodsName, //商品名称
                 gid: this.ajaxData.gid, //商品的id
                 marketPrice: this.ajaxData.marketPrice || 'undefined.undefined', //市场价格
                 nowPrice: this.ajaxData.nowPrice || 'undefined.undefined', //现在的价格
