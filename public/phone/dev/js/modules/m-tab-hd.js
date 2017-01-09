@@ -12,7 +12,7 @@ function Fn(json){
 }
 Fn.prototype.renderParent=function(){
     this.parentDom=document.createElement('div');
-    this.parentDom.classList.add('m-record-tab');
+    this.parentDom.classList.add('m-tab-hd');
     this.parentDom.innerHTML=`
             ${this.renderData()}
         `;
@@ -24,9 +24,9 @@ Fn.prototype.renderData=function(){
         var className=``;
         var link=self.link[i];
         if(i==self.index){
-            className=`m-record-tab-btn-on`;
+            className=`m-tab-hd-btn-on`;
         }
-        str+=`<div class="m-record-tab-btn ${className}"><a href="${link}">${v}</a></div>`;
+        str+=`<div class="m-tab-hd-btn ${className}"><a href="${link}">${v}</a></div>`;
     });
     return str;
 };
