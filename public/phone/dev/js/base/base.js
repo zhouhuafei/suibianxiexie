@@ -31,21 +31,9 @@ function touchLeft(obj, iWidth){
         obj.css({'left': (Math.abs(obj.position().left) > iWidth/2 ? -iWidth : 0) });
     });
 }
-function arrToIndex(json){
-    var opt=json||{};
-    var arr=opt.arr||[];
-    var info=opt.info;
-    var index=null;
-    arr.forEach(function(v,i){
-        if(v==info){
-            index=i;
-            return false;
-        }
-    });
-    return index;
-}
 //一些小方法
 var base={
+    arrToIndex:require('../function/arr-to-index'),
     cookie:require('../function/cookie'),
     fillZero:require('../function/fill-zero'),
     getParent:require('../function/get-parent'),

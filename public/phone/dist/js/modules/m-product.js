@@ -16,8 +16,41 @@
         /**
          * Created by zhouhuafei on 16/12/4.
          */
+        function touchLeft(obj, iWidth) {
+            if (!obj) {
+                return false;
+            }
+            var startPosition, endPosition, iTarget, iLeft;
+
+            obj.on('touchstart', function (e) {
+                var touch = e.touches[0];
+                startPosition = {
+                    x: touch.pageX,
+                    y: touch.pageY
+                };
+                iLeft = obj.position().left;
+            });
+
+            obj.on('touchmove', function (e) {
+                var touch = e.touches[0];
+                endPosition = {
+                    x: touch.pageX,
+                    y: touch.pageY
+                };
+                iTarget = {
+                    x: endPosition.x - startPosition.x + iLeft,
+                    y: endPosition.y - startPosition.y
+                };
+                obj.css({ 'left': iTarget.x > 0 ? 0 : iTarget.x });
+            });
+
+            obj.on('touchend', function () {
+                obj.css({ 'left': Math.abs(obj.position().left) > iWidth / 2 ? -iWidth : 0 });
+            });
+        }
         //一些小方法
         var base = {
+            arrToIndex: require('../function/arr-to-index'),
             cookie: require('../function/cookie'),
             fillZero: require('../function/fill-zero'),
             getParent: require('../function/get-parent'),
@@ -32,7 +65,7 @@
             strLimit: require('../function/str-limit')
         };
         module.exports = base;
-    }, { "../function/cookie": 3, "../function/fill-zero": 4, "../function/get-parent": 5, "../function/go-top": 6, "../function/html-to-dom": 7, "../function/is-scroll-navigator": 9, "../function/is-scroll-navigator-bottom": 8, "../function/json-to-array": 10, "../function/mask": 11, "../function/seconds-to-time": 13, "../function/seconds-to-time-count-down": 12, "../function/str-limit": 14 }], 2: [function (require, module, exports) {
+    }, { "../function/arr-to-index": 3, "../function/cookie": 4, "../function/fill-zero": 5, "../function/get-parent": 6, "../function/go-top": 7, "../function/html-to-dom": 8, "../function/is-scroll-navigator": 10, "../function/is-scroll-navigator-bottom": 9, "../function/json-to-array": 11, "../function/mask": 12, "../function/seconds-to-time": 14, "../function/seconds-to-time-count-down": 13, "../function/str-limit": 15 }], 2: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
@@ -73,6 +106,7 @@
                 seckillWillBeginBtnShowTime: this.ajaxData.seckillWillBeginBtnShowTime || '60', //秒杀即将开始按钮出现的时间(剩余最后60秒的时候出现)
                 seckillWillEndTime: this.ajaxData.seckillWillEndTime || '6' //秒杀即将结束的时间
             };
+            this.render();
         }
         //以下是渲染结构
         ProductList.prototype.renderParent = function () {
@@ -423,16 +457,11 @@
                 parent.removeChild(dom);
             }
         };
-        ProductList.prototype.render = function (json) {
+        ProductList.prototype.render = function () {
             //渲染整个结构
-            var opt = json || {};
-            var callback = opt.callback || function () {
-                console.log('no find callback');
-            };
             this.requireBase();
             this.renderParent();
             this.init();
-            callback(this.parentDom);
         };
         //以下是渲染功能
         ProductList.prototype.init = function () {
@@ -543,6 +572,24 @@
         module.exports = ProductList;
     }, { "../base/base.js": 1 }], 3: [function (require, module, exports) {
         /**
+         * Created by zhouhuafei on 17/1/10.
+         */
+        function arrToIndex(json) {
+            var opt = json || {};
+            var arr = opt.arr || [];
+            var info = opt.info;
+            var index = null;
+            arr.forEach(function (v, i) {
+                if (v == info) {
+                    index = i;
+                    return false;
+                }
+            });
+            return index;
+        }
+        module.exports = arrToIndex;
+    }, {}], 4: [function (require, module, exports) {
+        /**
          * Created by zhouhuafei on 17/1/1.
          */
         //设置cookie
@@ -584,7 +631,7 @@
             removeCookie: removeCookie
         };
         module.exports = obj;
-    }, {}], 4: [function (require, module, exports) {
+    }, {}], 5: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -599,7 +646,7 @@
             }
         }
         module.exports = fillZero;
-    }, {}], 5: [function (require, module, exports) {
+    }, {}], 6: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -667,7 +714,7 @@
             }
         }
         module.exports = getParent;
-    }, {}], 6: [function (require, module, exports) {
+    }, {}], 7: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -704,7 +751,7 @@
             });
         }
         module.exports = goTop;
-    }, {}], 7: [function (require, module, exports) {
+    }, {}], 8: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -717,7 +764,7 @@
             return div.children[0];
         }
         module.exports = htmlToDom;
-    }, {}], 8: [function (require, module, exports) {
+    }, {}], 9: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -757,7 +804,7 @@
             });
         }
         module.exports = isScrollNavigatorBottom;
-    }, {}], 9: [function (require, module, exports) {
+    }, {}], 10: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -791,7 +838,7 @@
             };
         }
         module.exports = isScrollNavigator;
-    }, {}], 10: [function (require, module, exports) {
+    }, {}], 11: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -808,7 +855,7 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 11: [function (require, module, exports) {
+    }, {}], 12: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -840,7 +887,7 @@
             };
         }
         module.exports = mask;
-    }, {}], 12: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -887,7 +934,7 @@
             }
         }
         module.exports = secondsToTimeCountDown;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -906,7 +953,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 14: [function (require, module, exports) {
+    }, {}], 15: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */

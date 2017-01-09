@@ -16,8 +16,41 @@
         /**
          * Created by zhouhuafei on 16/12/4.
          */
+        function touchLeft(obj, iWidth) {
+            if (!obj) {
+                return false;
+            }
+            var startPosition, endPosition, iTarget, iLeft;
+
+            obj.on('touchstart', function (e) {
+                var touch = e.touches[0];
+                startPosition = {
+                    x: touch.pageX,
+                    y: touch.pageY
+                };
+                iLeft = obj.position().left;
+            });
+
+            obj.on('touchmove', function (e) {
+                var touch = e.touches[0];
+                endPosition = {
+                    x: touch.pageX,
+                    y: touch.pageY
+                };
+                iTarget = {
+                    x: endPosition.x - startPosition.x + iLeft,
+                    y: endPosition.y - startPosition.y
+                };
+                obj.css({ 'left': iTarget.x > 0 ? 0 : iTarget.x });
+            });
+
+            obj.on('touchend', function () {
+                obj.css({ 'left': Math.abs(obj.position().left) > iWidth / 2 ? -iWidth : 0 });
+            });
+        }
         //一些小方法
         var base = {
+            arrToIndex: require('../function/arr-to-index'),
             cookie: require('../function/cookie'),
             fillZero: require('../function/fill-zero'),
             getParent: require('../function/get-parent'),
@@ -32,13 +65,13 @@
             strLimit: require('../function/str-limit')
         };
         module.exports = base;
-    }, { "../function/cookie": 3, "../function/fill-zero": 4, "../function/get-parent": 5, "../function/go-top": 6, "../function/html-to-dom": 7, "../function/is-scroll-navigator": 9, "../function/is-scroll-navigator-bottom": 8, "../function/json-to-array": 10, "../function/mask": 12, "../function/seconds-to-time": 14, "../function/seconds-to-time-count-down": 13, "../function/str-limit": 15 }], 2: [function (require, module, exports) {
+    }, { "../function/arr-to-index": 3, "../function/cookie": 4, "../function/fill-zero": 5, "../function/get-parent": 6, "../function/go-top": 7, "../function/html-to-dom": 8, "../function/is-scroll-navigator": 10, "../function/is-scroll-navigator-bottom": 9, "../function/json-to-array": 11, "../function/mask": 13, "../function/seconds-to-time": 15, "../function/seconds-to-time-count-down": 14, "../function/str-limit": 16 }], 2: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/4.
          */
         //验证
         (function () {
-            var ValidateInput = require('../modules/validate-input');
+            var ValidateInput = require('../modules/m-validate-input');
             var aInput = [].slice.call(document.querySelectorAll('.m-validate-input'));
             aInput.forEach(function (v) {
                 var validate = new ValidateInput({ input: v });
@@ -47,58 +80,69 @@
         })();
         //星评
         (function () {
-            var Star = require('../modules/star');
+            var Star = require('../modules/m-star');
             var main = document.querySelector('.main-star');
             var star = new Star({ eventCallback: function eventCallback(json) {
                     console.log("\u6709\u70B9\u610F\u601D" + json.index);
                 } });
-            star.render({ callback: function callback(dom) {
-                    main.appendChild(dom);
-                } });
+            main.appendChild(star.parentDom);
         })();
         //列表
         (function () {
-            var Product = require('../modules/product');
+            var Product = require('../modules/m-product');
             var main = document.querySelector('.main-product');
-            for (var i = 0; i < 20; i++) {
-                var product = new Product({
-                    configData: {
-                        isShowGoodsName: true,
-                        isShowPrice: true,
-                        isVipCustom: true,
-                        isShowLikeNum: true,
-                        //isShowCart:true,
-                        isShowSeckillMark: true,
-                        isShowSeckillLogo: true,
-                        //isShowSeckillWillBeginBtn:true,
-                        //isShowSeckillWillBeginTime:true,
-                        //isShowSeckillHintBtn:true,
-                        //isShowSeckillHintBtnSetOk:true,
-                        isShowSeckillNowGetBtn: true,
-                        isShowSeckillWillEndTime: true
-                    },
-                    ajaxData: {
-                        goodsName: '商品名称商品名称商品名称商品名称商品名称商品名称',
-                        marketPrice: '200.00',
-                        nowPrice: '100.00',
-                        vipPrice: '10.00',
-                        seckillPrice: '1.00',
-                        likeNum: '300',
-                        imgSrc: 'http://qmfx-s84664.s3.fy.shopex.cn/gpic/20160627/be7c4eafe8063a94bf2da631299bec6b.jpg?imageView2/2/w/600/h/600/interlace/1',
-                        aHref: 'http://www.baidu.com',
-                        seckillWillBeginTime: '6',
-                        seckillWillBeginBtnShowTime: '3',
-                        seckillWillEndTime: '300'
-                    }
-                });
-                product.render({ callback: function callback(dom) {
-                        main.appendChild(dom);
-                    } });
-            }
+            var product = new Product({
+                configData: {
+                    isShowGoodsName: true,
+                    isShowPrice: true,
+                    isVipCustom: true,
+                    isShowLikeNum: true,
+                    //isShowCart:true,
+                    isShowSeckillMark: true,
+                    isShowSeckillLogo: true,
+                    //isShowSeckillWillBeginBtn:true,
+                    //isShowSeckillWillBeginTime:true,
+                    //isShowSeckillHintBtn:true,
+                    //isShowSeckillHintBtnSetOk:true,
+                    isShowSeckillNowGetBtn: true,
+                    isShowSeckillWillEndTime: true
+                },
+                ajaxData: {
+                    goodsName: '商品名称商品名称商品名称商品名称商品名称商品名称',
+                    marketPrice: '200.00',
+                    nowPrice: '100.00',
+                    vipPrice: '10.00',
+                    seckillPrice: '1.00',
+                    likeNum: '300',
+                    imgSrc: 'http://qmfx-s84664.s3.fy.shopex.cn/gpic/20160627/be7c4eafe8063a94bf2da631299bec6b.jpg?imageView2/2/w/600/h/600/interlace/1',
+                    aHref: 'http://www.baidu.com',
+                    seckillWillBeginTime: '6',
+                    seckillWillBeginBtnShowTime: '3',
+                    seckillWillEndTime: '300'
+                }
+            });
+            main.appendChild(product.parentDom);
         })();
-
         require('../function/lazyload')(); //延迟加载
-    }, { "../function/lazyload": 11, "../modules/product": 17, "../modules/star": 18, "../modules/validate-input": 19 }], 3: [function (require, module, exports) {
+    }, { "../function/lazyload": 12, "../modules/m-product": 18, "../modules/m-star": 19, "../modules/m-validate-input": 20 }], 3: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/10.
+         */
+        function arrToIndex(json) {
+            var opt = json || {};
+            var arr = opt.arr || [];
+            var info = opt.info;
+            var index = null;
+            arr.forEach(function (v, i) {
+                if (v == info) {
+                    index = i;
+                    return false;
+                }
+            });
+            return index;
+        }
+        module.exports = arrToIndex;
+    }, {}], 4: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -141,7 +185,7 @@
             removeCookie: removeCookie
         };
         module.exports = obj;
-    }, {}], 4: [function (require, module, exports) {
+    }, {}], 5: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -156,7 +200,7 @@
             }
         }
         module.exports = fillZero;
-    }, {}], 5: [function (require, module, exports) {
+    }, {}], 6: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -224,7 +268,7 @@
             }
         }
         module.exports = getParent;
-    }, {}], 6: [function (require, module, exports) {
+    }, {}], 7: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -261,7 +305,7 @@
             });
         }
         module.exports = goTop;
-    }, {}], 7: [function (require, module, exports) {
+    }, {}], 8: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -274,7 +318,7 @@
             return div.children[0];
         }
         module.exports = htmlToDom;
-    }, {}], 8: [function (require, module, exports) {
+    }, {}], 9: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -314,7 +358,7 @@
             });
         }
         module.exports = isScrollNavigatorBottom;
-    }, {}], 9: [function (require, module, exports) {
+    }, {}], 10: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -348,7 +392,7 @@
             };
         }
         module.exports = isScrollNavigator;
-    }, {}], 10: [function (require, module, exports) {
+    }, {}], 11: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -365,7 +409,7 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 11: [function (require, module, exports) {
+    }, {}], 12: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
@@ -436,7 +480,7 @@
             });
         }
         module.exports = lazyload;
-    }, {}], 12: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -468,7 +512,7 @@
             };
         }
         module.exports = mask;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -515,7 +559,7 @@
             }
         }
         module.exports = secondsToTimeCountDown;
-    }, {}], 14: [function (require, module, exports) {
+    }, {}], 15: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -534,7 +578,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 15: [function (require, module, exports) {
+    }, {}], 16: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -553,7 +597,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 16: [function (require, module, exports) {
+    }, {}], 17: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/4.
          */
@@ -628,7 +672,7 @@
             }
         };
         module.exports = validate;
-    }, {}], 17: [function (require, module, exports) {
+    }, {}], 18: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
@@ -669,6 +713,7 @@
                 seckillWillBeginBtnShowTime: this.ajaxData.seckillWillBeginBtnShowTime || '60', //秒杀即将开始按钮出现的时间(剩余最后60秒的时候出现)
                 seckillWillEndTime: this.ajaxData.seckillWillEndTime || '6' //秒杀即将结束的时间
             };
+            this.render();
         }
         //以下是渲染结构
         ProductList.prototype.renderParent = function () {
@@ -1019,16 +1064,11 @@
                 parent.removeChild(dom);
             }
         };
-        ProductList.prototype.render = function (json) {
+        ProductList.prototype.render = function () {
             //渲染整个结构
-            var opt = json || {};
-            var callback = opt.callback || function () {
-                console.log('no find callback');
-            };
             this.requireBase();
             this.renderParent();
             this.init();
-            callback(this.parentDom);
         };
         //以下是渲染功能
         ProductList.prototype.init = function () {
@@ -1137,70 +1177,66 @@
             }
         };
         module.exports = ProductList;
-    }, { "../base/base.js": 1 }], 18: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 19: [function (require, module, exports) {
         //手机极简星级评论
-        function Star(json) {
+        function Fn(json) {
             this.opt = json || {};
-            this.allStar = this.opt.allStar || '5'; //总共几颗星(默认五颗星)
-            this.nowStar = this.opt.nowStar || '5'; //现在几颗星(默认五颗星)
-            this.isEvent = this.opt.isEvent == false ? this.opt.isEvent : true; //是否具备事件(默认具备)
-            this.eventCallback = this.opt.eventCallback || function () {
+            this.opt.allStar = this.opt.allStar || '5'; //总共几颗星(默认五颗星)
+            this.opt.nowStar = this.opt.nowStar || '5'; //现在几颗星(默认五颗星)
+            this.opt.isEvent = this.opt.isEvent == false ? this.opt.isEvent : true; //是否具备事件(默认具备)
+            this.opt.eventCallback = this.opt.eventCallback || function () {
                 console.log('no find callback');
             }; //事件回调
+            this.render();
         }
-        Star.prototype.init = function () {
+        Fn.prototype.init = function () {
             this.event();
         };
-        Star.prototype.event = function () {
+        Fn.prototype.event = function () {
             this.starClick();
         };
-        Star.prototype.starClick = function () {
+        Fn.prototype.starClick = function () {
             var self = this;
-            if (this.isEvent) {
+            if (this.opt.isEvent) {
                 this.parentDom.addEventListener('click', function (ev) {
                     var target = ev.target;
                     if (target.classList.contains('m-star')) {
                         var index = target.dataset.index;
-                        for (var j = 0; j < self.allStar; j++) {
+                        for (var j = 0; j < self.opt.allStar; j++) {
                             if (j <= index) {
-                                self.star[j].classList.add('m-star-active');
+                                self.opt.star[j].classList.add('m-star-active');
                             } else {
-                                self.star[j].classList.remove('m-star-active');
+                                self.opt.star[j].classList.remove('m-star-active');
                             }
                         }
-                        self.eventCallback({ index: index });
+                        self.opt.eventCallback({ index: index });
                     }
                 });
             }
         };
-        Star.prototype.renderParent = function () {
+        Fn.prototype.renderParent = function () {
             this.parentDom = document.createElement('div');
             this.parentDom.classList.add('m-star-main');
             this.renderStar();
         };
-        Star.prototype.renderStar = function () {
+        Fn.prototype.renderStar = function () {
             var html = "";
-            for (var i = 0; i < this.allStar; i++) {
+            for (var i = 0; i < this.opt.allStar; i++) {
                 var className = '';
-                if (i < this.nowStar) {
+                if (i < this.opt.nowStar) {
                     className = 'm-star-active';
                 }
                 html += "<div data-index=\"" + i + "\" class=\"iconfont icon-pingxing m-star " + className + "\"></div>";
             }
             this.parentDom.innerHTML = html;
-            this.star = this.parentDom.children;
+            this.opt.star = this.parentDom.children;
         };
-        Star.prototype.render = function (json) {
-            var opt = json || {};
-            var callback = opt.callback || function () {
-                console.log('no find callback');
-            };
+        Fn.prototype.render = function () {
             this.renderParent();
             this.init();
-            callback(this.parentDom);
         };
-        module.exports = Star;
-    }, {}], 19: [function (require, module, exports) {
+        module.exports = Fn;
+    }, {}], 20: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/2.
          */
@@ -1313,4 +1349,4 @@
         };
 
         module.exports = ValidateInput;
-    }, { "../function/validate": 16 }] }, {}, [2]);
+    }, { "../function/validate": 17 }] }, {}, [2]);

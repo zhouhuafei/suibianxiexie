@@ -1,0 +1,21 @@
+.m-tab-hd {
+  display: -webkit-box;
+  height: 1.06667rem;
+  line-height: 1.06667rem;
+  text-align: center;
+  background: #ffffff;
+  font-size: 0.37333rem; }
+  .m-tab-hd a {
+    text-decoration: none;
+    outline: none;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    width: 100%;
+    height: 100%; }
+  .m-tab-hd-btn {
+    -webkit-box-flex: 1;
+    color: #888888; }
+    .m-tab-hd-btn-on {
+      color: #fc1521;
+      border-bottom: 2px solid #fc1521; }

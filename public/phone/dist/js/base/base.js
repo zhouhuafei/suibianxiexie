@@ -16,8 +16,41 @@
         /**
          * Created by zhouhuafei on 16/12/4.
          */
+        function touchLeft(obj, iWidth) {
+            if (!obj) {
+                return false;
+            }
+            var startPosition, endPosition, iTarget, iLeft;
+
+            obj.on('touchstart', function (e) {
+                var touch = e.touches[0];
+                startPosition = {
+                    x: touch.pageX,
+                    y: touch.pageY
+                };
+                iLeft = obj.position().left;
+            });
+
+            obj.on('touchmove', function (e) {
+                var touch = e.touches[0];
+                endPosition = {
+                    x: touch.pageX,
+                    y: touch.pageY
+                };
+                iTarget = {
+                    x: endPosition.x - startPosition.x + iLeft,
+                    y: endPosition.y - startPosition.y
+                };
+                obj.css({ 'left': iTarget.x > 0 ? 0 : iTarget.x });
+            });
+
+            obj.on('touchend', function () {
+                obj.css({ 'left': Math.abs(obj.position().left) > iWidth / 2 ? -iWidth : 0 });
+            });
+        }
         //一些小方法
         var base = {
+            arrToIndex: require('../function/arr-to-index'),
             cookie: require('../function/cookie'),
             fillZero: require('../function/fill-zero'),
             getParent: require('../function/get-parent'),
@@ -32,7 +65,25 @@
             strLimit: require('../function/str-limit')
         };
         module.exports = base;
-    }, { "../function/cookie": 2, "../function/fill-zero": 3, "../function/get-parent": 4, "../function/go-top": 5, "../function/html-to-dom": 6, "../function/is-scroll-navigator": 8, "../function/is-scroll-navigator-bottom": 7, "../function/json-to-array": 9, "../function/mask": 10, "../function/seconds-to-time": 12, "../function/seconds-to-time-count-down": 11, "../function/str-limit": 13 }], 2: [function (require, module, exports) {
+    }, { "../function/arr-to-index": 2, "../function/cookie": 3, "../function/fill-zero": 4, "../function/get-parent": 5, "../function/go-top": 6, "../function/html-to-dom": 7, "../function/is-scroll-navigator": 9, "../function/is-scroll-navigator-bottom": 8, "../function/json-to-array": 10, "../function/mask": 11, "../function/seconds-to-time": 13, "../function/seconds-to-time-count-down": 12, "../function/str-limit": 14 }], 2: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/10.
+         */
+        function arrToIndex(json) {
+            var opt = json || {};
+            var arr = opt.arr || [];
+            var info = opt.info;
+            var index = null;
+            arr.forEach(function (v, i) {
+                if (v == info) {
+                    index = i;
+                    return false;
+                }
+            });
+            return index;
+        }
+        module.exports = arrToIndex;
+    }, {}], 3: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -75,7 +126,7 @@
             removeCookie: removeCookie
         };
         module.exports = obj;
-    }, {}], 3: [function (require, module, exports) {
+    }, {}], 4: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -90,7 +141,7 @@
             }
         }
         module.exports = fillZero;
-    }, {}], 4: [function (require, module, exports) {
+    }, {}], 5: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -158,7 +209,7 @@
             }
         }
         module.exports = getParent;
-    }, {}], 5: [function (require, module, exports) {
+    }, {}], 6: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -195,7 +246,7 @@
             });
         }
         module.exports = goTop;
-    }, {}], 6: [function (require, module, exports) {
+    }, {}], 7: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -208,7 +259,7 @@
             return div.children[0];
         }
         module.exports = htmlToDom;
-    }, {}], 7: [function (require, module, exports) {
+    }, {}], 8: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -248,7 +299,7 @@
             });
         }
         module.exports = isScrollNavigatorBottom;
-    }, {}], 8: [function (require, module, exports) {
+    }, {}], 9: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -282,7 +333,7 @@
             };
         }
         module.exports = isScrollNavigator;
-    }, {}], 9: [function (require, module, exports) {
+    }, {}], 10: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -299,7 +350,7 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 10: [function (require, module, exports) {
+    }, {}], 11: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -331,7 +382,7 @@
             };
         }
         module.exports = mask;
-    }, {}], 11: [function (require, module, exports) {
+    }, {}], 12: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -378,7 +429,7 @@
             }
         }
         module.exports = secondsToTimeCountDown;
-    }, {}], 12: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -397,7 +448,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */

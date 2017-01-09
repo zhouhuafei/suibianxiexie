@@ -17,26 +17,26 @@
          * Created by zhouhuafei on 16/12/17.
          */
         //加载更多的底部加载中
-        function LoadingBottom() {
+        function Fn() {
             this.render();
         }
-        LoadingBottom.prototype.render = function () {
+        Fn.prototype.render = function () {
             this.parentDOM = document.createElement('div');
             this.parentDOM.classList.add('m-loading-bottom');
             document.body.appendChild(this.parentDOM);
         };
-        LoadingBottom.prototype.show = function () {
+        Fn.prototype.show = function () {
             this.parentDOM.innerHTML = '';
             this.parentDOM.innerHTML = "\n        <div class=\"m-loading-bottom-show\">\u52A0\u8F7D\u4E2D</div>\n    ";
             this.parentDOM.classList.add('show');
         };
-        LoadingBottom.prototype.hide = function () {
+        Fn.prototype.hide = function () {
             this.parentDOM.classList.remove('show');
         };
-        LoadingBottom.prototype.over = function () {
+        Fn.prototype.over = function () {
             this.parentDOM.innerHTML = '';
             this.parentDOM.innerHTML = "\n        <div class=\"m-loading-bottom-over\">\u6CA1\u6709\u66F4\u591A\u6570\u636E</div>\n    ";
             this.parentDOM.classList.add('show');
         };
-        module.exports = LoadingBottom;
+        module.exports = Fn;
     }, {}] }, {}, [1]);

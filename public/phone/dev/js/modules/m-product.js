@@ -38,6 +38,7 @@ function ProductList(json){
         seckillWillBeginBtnShowTime:this.ajaxData.seckillWillBeginBtnShowTime||'60',//秒杀即将开始按钮出现的时间(剩余最后60秒的时候出现)
         seckillWillEndTime:this.ajaxData.seckillWillEndTime||'6'//秒杀即将结束的时间
     };
+    this.render();
 }
 //以下是渲染结构
 ProductList.prototype.renderParent=function(){//渲染父级容器
@@ -459,13 +460,10 @@ ProductList.prototype.domRemove=function(opt){//移除结构
         parent.removeChild(dom);
     }
 };
-ProductList.prototype.render=function(json){//渲染整个结构
-    var opt=json||{};
-    var callback=opt.callback||function(){console.log('no find callback');};
+ProductList.prototype.render=function(){//渲染整个结构
     this.requireBase();
     this.renderParent();
     this.init();
-    callback(this.parentDom);
 };
 //以下是渲染功能
 ProductList.prototype.init=function(){//初始化

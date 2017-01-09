@@ -14,65 +14,61 @@
     }return s;
 })({ 1: [function (require, module, exports) {
         //手机极简星级评论
-        function Star(json) {
+        function Fn(json) {
             this.opt = json || {};
-            this.allStar = this.opt.allStar || '5'; //总共几颗星(默认五颗星)
-            this.nowStar = this.opt.nowStar || '5'; //现在几颗星(默认五颗星)
-            this.isEvent = this.opt.isEvent == false ? this.opt.isEvent : true; //是否具备事件(默认具备)
-            this.eventCallback = this.opt.eventCallback || function () {
+            this.opt.allStar = this.opt.allStar || '5'; //总共几颗星(默认五颗星)
+            this.opt.nowStar = this.opt.nowStar || '5'; //现在几颗星(默认五颗星)
+            this.opt.isEvent = this.opt.isEvent == false ? this.opt.isEvent : true; //是否具备事件(默认具备)
+            this.opt.eventCallback = this.opt.eventCallback || function () {
                 console.log('no find callback');
             }; //事件回调
+            this.render();
         }
-        Star.prototype.init = function () {
+        Fn.prototype.init = function () {
             this.event();
         };
-        Star.prototype.event = function () {
+        Fn.prototype.event = function () {
             this.starClick();
         };
-        Star.prototype.starClick = function () {
+        Fn.prototype.starClick = function () {
             var self = this;
-            if (this.isEvent) {
+            if (this.opt.isEvent) {
                 this.parentDom.addEventListener('click', function (ev) {
                     var target = ev.target;
                     if (target.classList.contains('m-star')) {
                         var index = target.dataset.index;
-                        for (var j = 0; j < self.allStar; j++) {
+                        for (var j = 0; j < self.opt.allStar; j++) {
                             if (j <= index) {
-                                self.star[j].classList.add('m-star-active');
+                                self.opt.star[j].classList.add('m-star-active');
                             } else {
-                                self.star[j].classList.remove('m-star-active');
+                                self.opt.star[j].classList.remove('m-star-active');
                             }
                         }
-                        self.eventCallback({ index: index });
+                        self.opt.eventCallback({ index: index });
                     }
                 });
             }
         };
-        Star.prototype.renderParent = function () {
+        Fn.prototype.renderParent = function () {
             this.parentDom = document.createElement('div');
             this.parentDom.classList.add('m-star-main');
             this.renderStar();
         };
-        Star.prototype.renderStar = function () {
+        Fn.prototype.renderStar = function () {
             var html = "";
-            for (var i = 0; i < this.allStar; i++) {
+            for (var i = 0; i < this.opt.allStar; i++) {
                 var className = '';
-                if (i < this.nowStar) {
+                if (i < this.opt.nowStar) {
                     className = 'm-star-active';
                 }
                 html += "<div data-index=\"" + i + "\" class=\"iconfont icon-pingxing m-star " + className + "\"></div>";
             }
             this.parentDom.innerHTML = html;
-            this.star = this.parentDom.children;
+            this.opt.star = this.parentDom.children;
         };
-        Star.prototype.render = function (json) {
-            var opt = json || {};
-            var callback = opt.callback || function () {
-                console.log('no find callback');
-            };
+        Fn.prototype.render = function () {
             this.renderParent();
             this.init();
-            callback(this.parentDom);
         };
-        module.exports = Star;
+        module.exports = Fn;
     }, {}] }, {}, [1]);
