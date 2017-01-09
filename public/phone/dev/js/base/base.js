@@ -1,6 +1,19 @@
 /**
  * Created by zhouhuafei on 16/12/4.
  */
+function arrToIndex(json){
+    var opt=json||{};
+    var arr=opt.arr||[];
+    var info=opt.info;
+    var index=null;
+    arr.forEach(function(v,i){
+        if(v==info){
+            index=i;
+            return false;
+        }
+    });
+    return index;
+}
 //一些小方法
 var base={
     cookie:require('../function/cookie'),
