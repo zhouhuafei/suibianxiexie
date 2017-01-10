@@ -22,7 +22,7 @@ function uploadImg(){
                 img.insertBefore(input);
                 file.push(fn.imgData[opt.index]);
                 num++;
-                //上传图片
+                //上传图片(这一部分可以再封装一次)
                 var oFormData=new FormData();
                 oFormData.append('files',fn.imgData[opt.index]);
                 var ajax=new XMLHttpRequest();
