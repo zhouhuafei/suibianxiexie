@@ -19,7 +19,7 @@ function addSubtractInput(json){//购物加减商品系列
     var buyNowCallback=json.buyNowCallback||function(){
             console.log('no find buyNowCallback')
         };//立即购买的回调
-    var inventoryNum=json.inventoryNum;//商品库存
+    var inventoryNum=parseInt(json.inventoryNum);//商品库存
     var space=function(){
         if(input["value"].trim()==''){
             input["value"]=minNUm;
