@@ -93,7 +93,6 @@
                 font-size:px2rem(13);
                 color:$color1;
                 line-height:px2rem(17);
-                text-align:justify;
                 @include ellipsis2(1);
             }
             &-standard{
