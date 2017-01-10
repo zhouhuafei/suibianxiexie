@@ -1,6 +1,32 @@
 /**
  * Created by zhouhuafei on 16/12/4.
  */
+
+    /*function Fn(json){
+        //opt对象上请绑定外部可以传进来的那些数据的键值作为属性
+        this.opt=json||{};
+        //初始化
+        this.init();
+    }
+    Fn.prototype.init=function(){
+        //渲染结构
+        this.render();
+        //渲染功能
+        this.power();
+    };
+    Fn.prototype.render=function(){
+        
+    };
+    Fn.prototype.power=function(){
+        //事件相关
+        this.events();
+    };
+    Fn.prototype.events=function(){
+        
+    };
+    //其他待续(加新的方法,请在下面进行添加)...
+    module.exports=Fn;*/
+
 function touchLeft(obj, iWidth){
     if(!obj){ return false; }
     var startPosition, endPosition, iTarget, iLeft;
