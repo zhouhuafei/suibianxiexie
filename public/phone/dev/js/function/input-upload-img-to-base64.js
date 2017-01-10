@@ -44,7 +44,7 @@ Fn.prototype.eventsInputChange=function(){
             var isImages=/image/ig.test(f.type);
             //不是图片
             if(!isImages){
-                return false;
+                continue;
             }
             //是图片
             if(isImages){
