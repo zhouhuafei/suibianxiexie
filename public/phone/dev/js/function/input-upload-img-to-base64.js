@@ -5,7 +5,7 @@ function Fn(json){
         console.log('no find input');
         return;
     }
-    //限制几张图片
+    //一次上传限制几张图片
     this.opt.limitNum=this.opt.limitNum||'5';
     //选择图片的回调
     this.opt.changeCallback=this.opt.changeCallback||function(){console.log('no find changeCallback');};
@@ -33,8 +33,8 @@ Fn.prototype.events=function(){
 Fn.prototype.eventsInputChange=function(){
     var self=this;
     var limitNum=this.opt.limitNum;
-    var imagesNum=0;
     this.opt.input.addEventListener('change',function(){
+        var imagesNum=0;
         //图片的相关信息
         self.imgData=[];
         var files=this.files;
