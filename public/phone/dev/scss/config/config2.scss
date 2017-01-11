@@ -1,7 +1,8 @@
 //字体颜色
-$color-font-default:#000000;//默认
+$color-font-default-black:#000000;//默认黑
+$color-font-default-white:#ffffff;//默认白
 $color-font-highlight:#ff0000;//高亮
-$color-font-lowlight:#ffffff;//低亮
+$color-font-lowlight:rgba(255,0,0,0.6);//低亮
 $color-font-gloomy:#dddddd;//灰暗
 
 
