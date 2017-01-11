@@ -20,6 +20,9 @@
         function jsonToArray(json) {
             var opt = json || {};
             var obj = opt.obj;
+            if (obj instanceof Array) {
+                return obj;
+            }
             var arr = [];
             for (var attr in obj) {
                 if (obj.hasOwnProperty(attr)) {

@@ -16,38 +16,6 @@
         /**
          * Created by zhouhuafei on 16/12/4.
          */
-        function touchLeft(obj, iWidth) {
-            if (!obj) {
-                return false;
-            }
-            var startPosition, endPosition, iTarget, iLeft;
-
-            obj.on('touchstart', function (e) {
-                var touch = e.touches[0];
-                startPosition = {
-                    x: touch.pageX,
-                    y: touch.pageY
-                };
-                iLeft = obj.position().left;
-            });
-
-            obj.on('touchmove', function (e) {
-                var touch = e.touches[0];
-                endPosition = {
-                    x: touch.pageX,
-                    y: touch.pageY
-                };
-                iTarget = {
-                    x: endPosition.x - startPosition.x + iLeft,
-                    y: endPosition.y - startPosition.y
-                };
-                obj.css({ 'left': iTarget.x > 0 ? 0 : iTarget.x });
-            });
-
-            obj.on('touchend', function () {
-                obj.css({ 'left': Math.abs(obj.position().left) > iWidth / 2 ? -iWidth : 0 });
-            });
-        }
         //一些小方法
         var base = {
             arrToIndex: require('../function/arr-to-index'),
@@ -400,6 +368,9 @@
         function jsonToArray(json) {
             var opt = json || {};
             var obj = opt.obj;
+            if (obj instanceof Array) {
+                return obj;
+            }
             var arr = [];
             for (var attr in obj) {
                 if (obj.hasOwnProperty(attr)) {

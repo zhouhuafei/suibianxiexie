@@ -1,24 +1,36 @@
-//配色标准
-
-//字体的默认色调
-//字体的高亮色调
-//字体的其他色调
-
-
-
-//背景的默认色调
-//背景的高亮色调
-//背景的其他色调
+//黑
+$colorBlack:rgba(0,0,0,1);
+//白
+$colorWhite:rgba(255,255,255,1);
+//红
+$colorRed:rgba(255,0,0,1);
 
 
-//边框的默认色调
-//边框的高亮色调
-//边框的其他色调
 
 
-//成功的色调
-//失败的色调
 
+//字体的默认色值
+$colorFontDefault:rgba(0,0,0,1);
+//字体的高亮色值
+$colorFontHighlight:rgba(255,0,0,1);
+//字体的浅淡色值
+$colorGrey:rgba(222,222,222,1);
+
+
+//成功色值
+$colorSuccess:rgba(0,255,0,1);
+//失败色值
+$colorFail:rgba(255,0,0,1);
+
+
+
+
+//边框的默认色值
+$colorBorderDefault:rgba(222,222,222,1);
+//边框的成功色值
+$colorBorderSuccess:rgba(0,255,0,1);
+//边框的失败色值
+$colorBorderFail:rgba(255,0,0,1);
 
 
 

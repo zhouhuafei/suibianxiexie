@@ -40,7 +40,7 @@ li {
   .main-input label, .main-input span, .main-input em {
     display: inline-block; }
   .main-input input {
-    border: 1px solid #ccc;
+    border: 1px solid #dedede;
     height: 30px;
     line-height: 30px;
     outline: none;
