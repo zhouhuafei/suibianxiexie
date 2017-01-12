@@ -1,6 +1,29 @@
 //全局的样式,可以在这里引入模块的样式文件
 
-
+.g-input-circle {
+  -webkit-appearance:none;
+  width:px2rem(20);
+  height:px2rem(20);
+  border:1px solid #ddd;
+  border-radius:px2rem(1000);
+  box-sizing:border-box;
+  position:relative;
+  &:checked{
+    border:none;
+    background:#fc1521;
+    &:after{
+      content:'';
+      position:absolute;
+      left:px2rem(6);
+      top:px2rem(1);
+      width:px2rem(6);
+      height:px2rem(12);
+      border-right:2px solid #fff;
+      border-bottom:2px solid #fff;
+      transform:rotate(45deg);
+    }
+  }
+}
 .g-button{
 
 }
