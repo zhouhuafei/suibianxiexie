@@ -17,7 +17,7 @@
          * Created by zhouhuafei on 17/1/1.
          */
         //是否滚动到了浏览器的底部
-        function isScrollNavigatorBottom(json) {
+        function isBrowserScrollToTheBottom(json) {
             var opt = json || {};
             var success = opt.success || function () {};
             var fail = opt.fail || function () {};
@@ -51,5 +51,5 @@
                 fnScroll();
             });
         }
-        module.exports = isScrollNavigatorBottom;
+        module.exports = isBrowserScrollToTheBottom;
     }, {}] }, {}, [1]);

@@ -17,7 +17,7 @@
          * Created by zhouhuafei on 17/1/1.
          */
         //是否禁止浏览器滚动
-        function isScrollNavigator() {
+        function isDisableBrowserScrolling() {
             var doc = document;
             return {
                 //阻止冒泡
@@ -45,5 +45,5 @@
                 }
             };
         }
-        module.exports = isScrollNavigator;
+        module.exports = isDisableBrowserScrolling;
     }, {}] }, {}, [1]);

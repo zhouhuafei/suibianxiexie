@@ -24,8 +24,8 @@
             getParent: require('../function/get-parent'),
             goTop: require('../function/go-top'),
             htmlToDom: require('../function/html-to-dom'),
-            isScrollNavigator: require('../function/is-scroll-navigator'),
-            isScrollNavigatorBottom: require('../function/is-scroll-navigator-bottom'),
+            isDisableBrowserScrolling: require('../function/is-disable-browser-scrolling'),
+            isBrowserScrollToTheBottom: require('../function/is-browser-scroll-to-the-bottom'),
             jsonToArray: require('../function/json-to-array'),
             mask: require('../function/mask'),
             secondsToTime: require('../function/seconds-to-time'),
@@ -33,7 +33,7 @@
             strLimit: require('../function/str-limit')
         };
         module.exports = base;
-    }, { "../function/arr-to-index": 3, "../function/cookie": 4, "../function/fill-zero": 5, "../function/get-parent": 6, "../function/go-top": 7, "../function/html-to-dom": 8, "../function/is-scroll-navigator": 10, "../function/is-scroll-navigator-bottom": 9, "../function/json-to-array": 11, "../function/mask": 12, "../function/seconds-to-time": 14, "../function/seconds-to-time-count-down": 13, "../function/str-limit": 15 }], 2: [function (require, module, exports) {
+    }, { "../function/arr-to-index": 3, "../function/cookie": 4, "../function/fill-zero": 5, "../function/get-parent": 6, "../function/go-top": 7, "../function/html-to-dom": 8, "../function/is-browser-scroll-to-the-bottom": 9, "../function/is-disable-browser-scrolling": 10, "../function/json-to-array": 11, "../function/mask": 12, "../function/seconds-to-time": 14, "../function/seconds-to-time-count-down": 13, "../function/str-limit": 15 }], 2: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
@@ -737,7 +737,7 @@
          * Created by zhouhuafei on 17/1/1.
          */
         //是否滚动到了浏览器的底部
-        function isScrollNavigatorBottom(json) {
+        function isBrowserScrollToTheBottom(json) {
             var opt = json || {};
             var success = opt.success || function () {};
             var fail = opt.fail || function () {};
@@ -771,13 +771,13 @@
                 fnScroll();
             });
         }
-        module.exports = isScrollNavigatorBottom;
+        module.exports = isBrowserScrollToTheBottom;
     }, {}], 10: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
         //是否禁止浏览器滚动
-        function isScrollNavigator() {
+        function isDisableBrowserScrolling() {
             var doc = document;
             return {
                 //阻止冒泡
@@ -805,7 +805,7 @@
                 }
             };
         }
-        module.exports = isScrollNavigator;
+        module.exports = isDisableBrowserScrolling;
     }, {}], 11: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
