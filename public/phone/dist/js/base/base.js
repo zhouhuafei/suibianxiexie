@@ -309,13 +309,16 @@
         function jsonToArray(json) {
             var opt = json || {};
             var obj = opt.obj;
-            if (obj instanceof Array) {
-                return obj;
-            }
             var arr = [];
-            for (var attr in obj) {
-                if (obj.hasOwnProperty(attr)) {
-                    arr.push(obj[attr]);
+            if (obj instanceof Array) {
+                obj.forEach(function (v, i) {
+                    arr.push([i, v]);
+                });
+            } else {
+                for (var attr in obj) {
+                    if (obj.hasOwnProperty(attr)) {
+                        arr.push([attr, obj[attr]]);
+                    }
                 }
             }
             return arr;

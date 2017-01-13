@@ -8,6 +8,28 @@ body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, te
 li {
   list-style-type: none; }
 
+.g-input-circle {
+  -webkit-appearance: none;
+  width: 0.53333rem;
+  height: 0.53333rem;
+  border: 1px solid #ddd;
+  border-radius: 26.66667rem;
+  box-sizing: border-box;
+  position: relative; }
+  .g-input-circle:checked {
+    border: none;
+    background: #fc1521; }
+    .g-input-circle:checked:after {
+      content: '';
+      position: absolute;
+      left: 0.16rem;
+      top: 0.02667rem;
+      width: 0.16rem;
+      height: 0.32rem;
+      border-right: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(45deg); }
+
 .m-validate-input-parent {
   position: relative; }
   .m-validate-input-parent .m-validate-input-hint {
@@ -40,7 +62,7 @@ li {
   .main-input label, .main-input span, .main-input em {
     display: inline-block; }
   .main-input input {
-    border: 1px solid #dedede;
+    border: 1px solid #dddddd;
     height: 30px;
     line-height: 30px;
     outline: none;

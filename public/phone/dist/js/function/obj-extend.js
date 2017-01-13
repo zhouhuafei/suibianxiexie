@@ -13,26 +13,16 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
-        //对象转数组
-        function jsonToArray(json) {
+        function extend(json) {
             var opt = json || {};
-            var obj = opt.obj;
-            var arr = [];
-            if (obj instanceof Array) {
-                obj.forEach(function (v, i) {
-                    arr.push([i, v]);
-                });
-            } else {
-                for (var attr in obj) {
-                    if (obj.hasOwnProperty(attr)) {
-                        arr.push([attr, obj[attr]]);
-                    }
+            var defult = opt.default;
+            var inherit = opt.inherit;
+            for (var attr in defult) {
+                if (defult.hasOwnProperty(attr)) {
+                    defult[attr] = JSON.parse(JSON.stringify(inherit[attr]));
                 }
             }
-            return arr;
+            return defult;
         }
-        module.exports = jsonToArray;
+        module.exports = extend;
     }, {}] }, {}, [1]);
