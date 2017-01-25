@@ -8,7 +8,7 @@ module.exports = {
         type:'post',
         data:{
             name:'product_id',
-            num:'num',
+            num:'num'
         }
     }
 };

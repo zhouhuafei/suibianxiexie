@@ -1111,16 +1111,17 @@
                         aSpan[2].innerHTML = obj.m;
                         aSpan[3].innerHTML = obj.s;
                         if (hintTime >= obj.a) {
-                            self.renderSeckillWillBeginBtnAdd();
-                            self.renderSeckillHintBtnRemove();
+                            self.renderCartRemove(); //移除购物车按钮
+                            self.renderSeckillHintBtnSetOkRemove(); //移除已设置按钮
+                            self.renderSeckillHintBtnRemove(); //移除提醒我按钮
+                            self.renderSeckillWillBeginBtnAdd(); //添加即将开始按钮
                         }
                     },
                     overCallback: function overCallback() {
                         self.renderSeckillWillBeginTimeRemove();
-                        self.renderSeckillWillEndTimeAdd();
                         self.renderSeckillWillBeginBtnRemove();
                         self.renderSeckillNowGetBtnAdd();
-                        self.renderSeckillHintBtnSetOkRemove();
+                        self.renderSeckillWillEndTimeAdd();
                         self.seckillWillEndTime();
                     }
                 });
