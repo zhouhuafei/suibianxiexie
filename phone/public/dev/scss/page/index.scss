@@ -1,0 +1,37 @@
+@import "../base/base";
+//input验证
+@import "../modules/m-validate-input";
+
+.main-input {
+    padding-top: px2rem(60);
+    font-size: 14px;
+    label, span, em {
+        display: inline-block;
+    }
+    input {
+        border: 1px solid $color-border-default;
+        height: 30px;
+        line-height: 30px;
+        outline: none;
+        padding: 0 5px;
+        width: 200px;
+    }
+    .input-txt {
+        width: 50px;
+        text-align: right;
+        margin-right: 10px;
+    }
+}
+
+//星评
+@import "../modules/m-star";
+.main-star {
+    text-align: center;
+    padding-top: px2rem(8);
+}
+
+//列表
+@import "../modules/m-product";
+.main-product {
+    @include clear-fix;
+}
