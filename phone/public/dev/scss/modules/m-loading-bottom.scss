@@ -1,28 +1,28 @@
-@import "../base/mixin";
+@import "../base/base";
 /*加载更多的底部加载中*/
-.m-loading-bottom{
-    display:none;
-    &.show{
-        display:block;
+.m-loading-bottom {
+    display: none;
+    &.show {
+        display: block;
     }
-    .m-loading-bottom-show{
-        position:fixed;
-        bottom:0;
-        left:0;
-        width:100%;
-        text-align:center;
-        font-size:px2rem(16);
-        height:px2rem(30);
-        line-height:px2rem(30);
-        background:rgba(0,0,0,0.4);
-        color:#ffffff;
+    .m-loading-bottom-show {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: px2rem(16);
+        height: px2rem(30);
+        line-height: px2rem(30);
+        background: rgba(0, 0, 0, 0.4);
+        color: #ffffff;
     }
-    .m-loading-bottom-over{
-        width:100%;
-        text-align:center;
-        font-size:px2rem(16);
-        height:px2rem(30);
-        line-height:px2rem(30);
-        padding:px2rem(20) 0 px2rem(30);
+    .m-loading-bottom-over {
+        width: 100%;
+        text-align: center;
+        font-size: px2rem(16);
+        height: px2rem(30);
+        line-height: px2rem(30);
+        padding: px2rem(20) 0 px2rem(30);
     }
 }

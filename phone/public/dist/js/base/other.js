@@ -57,14 +57,16 @@
             $('.file-box').on('click', '.file-img', function () {
                 var $this = $(this);
                 var index = $this.data('index');
-                popup.confirm({ contentInfo: '确定删除？', callback: function callback() {
+                popup.confirm({
+                    contentInfo: '确定删除？', callback: function callback() {
                         $this.remove();
                         input.removeClass('file-input-hide');
                         file.splice(index, 1);
                         num--;
                         //popup.alert({contentInfo:'删除成功'});
                         //console.log(file);
-                    } });
+                    }
+                });
             });
         }
 

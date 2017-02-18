@@ -30,6 +30,38 @@ li {
       border-bottom: 2px solid #fff;
       transform: rotate(45deg); }
 
+body {
+  font-family: "Microsoft Yahei", "sans-serif"; }
+
+body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
+  margin: 0;
+  padding: 0; }
+
+li {
+  list-style-type: none; }
+
+.g-input-circle {
+  -webkit-appearance: none;
+  width: 0.53333rem;
+  height: 0.53333rem;
+  border: 1px solid #ddd;
+  border-radius: 26.66667rem;
+  box-sizing: border-box;
+  position: relative; }
+  .g-input-circle:checked {
+    border: none;
+    background: #fc1521; }
+    .g-input-circle:checked:after {
+      content: '';
+      position: absolute;
+      left: 0.16rem;
+      top: 0.02667rem;
+      width: 0.16rem;
+      height: 0.32rem;
+      border-right: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(45deg); }
+
 .m-validate-input-parent {
   position: relative; }
   .m-validate-input-parent .m-validate-input-hint {
@@ -118,9 +150,38 @@ li {
   text-align: center;
   padding-top: 0.21333rem; }
 
-/**
- * Created by zhouhuafei on 16/12/17.
- */
+body {
+  font-family: "Microsoft Yahei", "sans-serif"; }
+
+body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
+  margin: 0;
+  padding: 0; }
+
+li {
+  list-style-type: none; }
+
+.g-input-circle {
+  -webkit-appearance: none;
+  width: 0.53333rem;
+  height: 0.53333rem;
+  border: 1px solid #ddd;
+  border-radius: 26.66667rem;
+  box-sizing: border-box;
+  position: relative; }
+  .g-input-circle:checked {
+    border: none;
+    background: #fc1521; }
+    .g-input-circle:checked:after {
+      content: '';
+      position: absolute;
+      left: 0.16rem;
+      top: 0.02667rem;
+      width: 0.16rem;
+      height: 0.32rem;
+      border-right: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(45deg); }
+
 .m-product {
   line-height: 1;
   color: #383838;
@@ -165,9 +226,14 @@ li {
     top: 0rem;
     font-size: 0.42667rem;
     line-height: 0.53333rem;
-    overflow: hidden;
+    display: block;
+    line-height: 0.48rem;
+    height: 0.96rem;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
     display: -webkit-box;
-    -webkit-line-clamp: 2; }
+    overflow: hidden;
+    white-space: normal; }
   .m-product .m-product-price {
     position: absolute;
     left: 0;

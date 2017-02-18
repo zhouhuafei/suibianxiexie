@@ -1,12 +1,13 @@
 @import "../base/base";
-.m-star-main{
-    font-size:0;
-    .m-star{
-        display:inline-block;
-        color:$color-font-gloomy;
-        font-size:px2rem(40);
-        &.m-star-active{
-            color:$color-font-highlight;
+
+.m-star-main {
+    font-size: 0;
+    .m-star {
+        display: inline-block;
+        color: $color-font-gloomy;
+        font-size: px2rem(40);
+        &.m-star-active {
+            color: $color-font-highlight;
         }
     }
 }

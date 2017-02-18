@@ -582,8 +582,12 @@
             //是不是空
             isSpace: function isSpace(json) {
                 var opt = json || {};
-                var success = opt.success || function () {};
-                var fail = opt.fail || function () {};
+                var success = opt.success || function () {
+                    console.log('no find success callback');
+                };
+                var fail = opt.fail || function () {
+                    console.log('no find fail callback');
+                };
                 var value = opt.value || " ";
                 var valueTrim = value.trim();
                 var b = false;
@@ -598,8 +602,12 @@
             //是不是0
             isZero: function isZero(json) {
                 var opt = json || {};
-                var success = opt.success || function () {};
-                var fail = opt.fail || function () {};
+                var success = opt.success || function () {
+                    console.log('no find success callback');
+                };
+                var fail = opt.fail || function () {
+                    console.log('no find fail callback');
+                };
                 var value = opt.value || " ";
                 var valueTrim = value.trim();
                 var b = false;
@@ -614,8 +622,12 @@
             //是不是整数(包含0)
             isInteger: function isInteger(json) {
                 var opt = json || {};
-                var success = opt.success || function () {};
-                var fail = opt.fail || function () {};
+                var success = opt.success || function () {
+                    console.log('no find success callback');
+                };
+                var fail = opt.fail || function () {
+                    console.log('no find fail callback');
+                };
                 var value = opt.value || " ";
                 var valueTrim = value.trim();
                 var re = /^\d+$/;
@@ -631,8 +643,12 @@
             //是不是保留了num位小数点
             isReservedDecimal: function isReservedDecimal(json) {
                 var opt = json || {};
-                var success = opt.success || function () {};
-                var fail = opt.fail || function () {};
+                var success = opt.success || function () {
+                    console.log('no find success callback');
+                };
+                var fail = opt.fail || function () {
+                    console.log('no find fail callback');
+                };
                 var num = opt.num || 2;
                 var value = opt.value || " ";
                 var valueTrim = value.trim();

@@ -1,31 +1,32 @@
-@import "../base/mixin";
-.m-validate-input-parent{
-    $color1:rgba(255,0,0,0.6);
-    position:relative;
-    .m-validate-input-hint{
-        color:#ffffff;
-        background:$color1;
-        height:30px;
-        line-height:30px;
-        font-size:14px;
-        padding:0 10px;
-        position:absolute;
-        left:0;
-        top:-40px;
-        font-style:normal;
-        font-weight:normal;
-        &:after{
-            content:'';
-            position:absolute;
-            width:0;
-            height:0;
-            border:8px solid transparent;
-            border-top-color:$color1;
-            left:10px;
-            bottom:-16px;
+@import "../base/base";
+
+.m-validate-input-parent {
+    $color1: rgba(255, 0, 0, 0.6);
+    position: relative;
+    .m-validate-input-hint {
+        color: #ffffff;
+        background: $color1;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        padding: 0 10px;
+        position: absolute;
+        left: 0;
+        top: -40px;
+        font-style: normal;
+        font-weight: normal;
+        &:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: 8px solid transparent;
+            border-top-color: $color1;
+            left: 10px;
+            bottom: -16px;
         }
     }
-    .m-validate-input-error{
-        border:1px solid $color1;
+    .m-validate-input-error {
+        border: 1px solid $color1;
     }
 }
