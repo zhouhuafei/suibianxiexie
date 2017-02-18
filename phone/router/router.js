@@ -12,17 +12,17 @@ Routes.prototype.init=function(){
     this.phoneRegister();
 };
 Routes.prototype.phoneHome=function(){
-    this.app.get('/phone/',function(req,res){
-        res.render('phone/index',{num:2});
+    this.app.get('/',function(req,res){
+        res.render('index',{num:2});
     })
 };
 Routes.prototype.phoneLogin=function(){
-    this.app.get('/phone/login',function(req,res){
+    this.app.get('/login',function(req,res){
         res.end('<h1>欢迎来到我的登录页</h1>');
     })
 };
 Routes.prototype.phoneRegister=function(){
-    this.app.get('/phone/register',function(req,res){
+    this.app.get('/register',function(req,res){
         res.end('<h1>欢迎来到我的注册页</h1>');
     })
 };
