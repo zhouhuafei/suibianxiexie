@@ -15,14 +15,15 @@
 })({ 1: [function (require, module, exports) {
         function extend(json) {
             var opt = json || {};
-            var defult = opt.default;
+            var defaults = opt.default;
             var inherit = opt.inherit;
-            for (var attr in defult) {
-                if (defult.hasOwnProperty(attr)) {
-                    defult[attr] = JSON.parse(JSON.stringify(inherit[attr]));
+            for (var attr in inherit) {
+                if (inherit.hasOwnProperty(attr)) {
+                    defaults[attr] = JSON.parse(JSON.stringify(inherit[attr]));
                 }
             }
-            return defult;
+            return defaults;
         }
+        console.log(extend({ default: { a: 1, b: { s: 2 } }, inherit: { a: 2 } }));
         module.exports = extend;
     }, {}] }, {}, [1]);
