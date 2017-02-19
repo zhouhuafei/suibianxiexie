@@ -53,8 +53,7 @@
         left: 0;
         top: px2rem(0);
         font-size: px2rem(16);
-        line-height: px2rem(20);
-        @include ellipsis(2);
+        @include ellipsis(2, px2rem(23));
     }
     .m-product-price { //商品价格
         position: absolute;

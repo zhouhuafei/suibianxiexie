@@ -225,10 +225,9 @@ li {
     left: 0;
     top: 0rem;
     font-size: 0.42667rem;
-    line-height: 0.53333rem;
     display: block;
-    line-height: 0.48rem;
-    height: 0.96rem;
+    line-height: 0.61333rem;
+    height: 1.22667rem;
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;
     display: -webkit-box;
