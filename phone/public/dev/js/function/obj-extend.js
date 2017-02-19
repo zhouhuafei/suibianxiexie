@@ -9,5 +9,4 @@ function extend(json) {
     }
     return defaults;
 }
-console.log(extend({default:{a:1,b:{s:2}},inherit:{a:2}}));
 module.exports = extend;
