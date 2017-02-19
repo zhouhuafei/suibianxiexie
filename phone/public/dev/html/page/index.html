@@ -14,14 +14,16 @@
         <meta name="full-screen" content="yes">
         <meta name="x5-fullscreen" content="true">
         <link rel="stylesheet" href="../../../dist/font/iconfont.css">
-        <script>(function (win, doc) {
-            "use strict";
-            var re = function () {
-                doc.getElementsByTagName('html')[0].style.fontSize = doc.documentElement.clientWidth / 10 + 'px';
-            };
-            re();
-            win.addEventListener('resize', re);
-        })(window, document);</script>
+        <script>
+            (function (win, doc) {
+                "use strict";
+                var re = function () {
+                    doc.getElementsByTagName('html')[0].style.fontSize = doc.documentElement.clientWidth / 10 + 'px';
+                };
+                re();
+                win.addEventListener('resize', re);
+            })(window, document);
+        </script>
         <title>index</title>
         <!--
             头部区域,至于title要不要留给后台控制,需要另外再看,
