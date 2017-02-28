@@ -37,6 +37,13 @@
         /**
          * Created by zhouhuafei on 16/12/4.
          */
+        //表格
+        (function () {
+            var Table = require('../modules/m-table');
+            var main = document.querySelector('.main-table');
+            var table = new Table({});
+            main.appendChild(table.parentDom);
+        })();
         //验证
         (function () {
             var ValidateInput = require('../modules/m-validate-input');
@@ -94,7 +101,7 @@
             main.appendChild(product.parentDom);
         })();
         require('../function/lazyload')(); //延迟加载
-    }, { "../function/lazyload": 12, "../modules/m-product": 18, "../modules/m-star": 19, "../modules/m-validate-input": 20 }], 3: [function (require, module, exports) {
+    }, { "../function/lazyload": 12, "../modules/m-product": 18, "../modules/m-star": 19, "../modules/m-table": 20, "../modules/m-validate-input": 21 }], 3: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/10.
          */
@@ -1230,6 +1237,20 @@
         };
         module.exports = Fn;
     }, {}], 20: [function (require, module, exports) {
+        function Fn(json) {
+            this.opt = json || {};
+            this.init();
+        }
+        Fn.prototype.init = function () {
+            this.render();
+        };
+        Fn.prototype.render = function () {
+            this.parentDom = document.createElement('div');
+            this.parentDom.classList.add('m-table');
+            this.parentDom.innerHTML = "\n        <div class=\"m-table-row m-table-header\">\n            <div class=\"m-table-col\">0</div>\n            <div class=\"m-table-col\">1</div>\n            <div class=\"m-table-col\">2</div>\n        </div>\n        <div class=\"m-table-row\">\n            <div class=\"m-table-col\">0</div>\n            <div class=\"m-table-col\">1</div>\n            <div class=\"m-table-col\">2</div>\n        </div>\n    ";
+        };
+        module.exports = Fn;
+    }, {}], 21: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/2.
          */

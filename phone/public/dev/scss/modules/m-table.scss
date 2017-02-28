@@ -1,0 +1,25 @@
+@import "../base/base";
+
+.m-table {
+    position: relative;
+    .m-table-row {
+        position: relative;
+        display: flex;
+        min-height: px2rem($height-row);
+        line-height: px2rem($height-row);
+        text-align: center;
+        border-bottom: 1px solid $color-border-default;
+        &:hover {
+            background: $color-background-dark;
+        }
+        &.m-table-header {
+            background: $color-background-dark;
+            border-top: 1px solid $color-border-default;
+            color: $color-font-default;
+        }
+        .m-table-col {
+            position: relative;
+            flex: 1;
+        }
+    }
+}

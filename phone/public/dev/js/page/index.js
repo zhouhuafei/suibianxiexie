@@ -1,6 +1,13 @@
 /**
  * Created by zhouhuafei on 16/12/4.
  */
+//表格
+(function () {
+    const Table = require('../modules/m-table');
+    const main = document.querySelector('.main-table');
+    const table = new Table({});
+    main.appendChild(table.parentDom);
+})();
 //验证
 (function () {
     const ValidateInput = require('../modules/m-validate-input');
