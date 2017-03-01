@@ -9,7 +9,7 @@
         text-align: center;
         border-bottom: 1px solid $color-border-default;
         &:hover {
-            background: $color-background-dark;
+            background: $color-background-default;
         }
         .m-table-col {
             position: relative;
@@ -24,7 +24,7 @@
         }
     }
     .m-table-header {
-        background: $color-background-dark;
+        background: $color-background-default;
         border-top: 1px solid $color-border-default;
     }
 }
