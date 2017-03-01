@@ -4,8 +4,8 @@
     color: $color-font-default;
     .m-table-row {
         display: flex;
-        min-height: px2rem($height-row);
-        line-height: px2rem($height-row);
+        min-height: px2rem($height-table-row);
+        line-height: px2rem($height-table-row);
         text-align: center;
         border-bottom: 1px solid $color-border-default;
         &:hover {
