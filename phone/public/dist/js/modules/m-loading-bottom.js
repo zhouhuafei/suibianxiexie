@@ -29,9 +29,9 @@
             this.power();
         };
         Fn.prototype.render = function () {
-            this.parentDOM = document.createElement('div');
-            this.parentDOM.classList.add('m-loading-bottom');
-            document.body.appendChild(this.parentDOM);
+            this.parentDom = document.createElement('div');
+            this.parentDom.classList.add('m-loading-bottom');
+            document.body.appendChild(this.parentDom);
         };
         Fn.prototype.power = function () {
             //事件相关
@@ -40,15 +40,15 @@
         Fn.prototype.events = function () {};
         //其他功能写在下面吧,尽量保持格式统一
         Fn.prototype.show = function () {
-            this.parentDOM.innerHTML = "<div class=\"m-loading-bottom-show\">\u52A0\u8F7D\u4E2D</div>";
-            this.parentDOM.classList.add('show');
+            this.parentDom.innerHTML = "<div class=\"m-loading-bottom-show\">\u52A0\u8F7D\u4E2D</div>";
+            this.parentDom.classList.add('show');
         };
         Fn.prototype.hide = function () {
-            this.parentDOM.classList.remove('show');
+            this.parentDom.classList.remove('show');
         };
         Fn.prototype.over = function () {
-            this.parentDOM.innerHTML = "<div class=\"m-loading-bottom-over\">\u6CA1\u6709\u66F4\u591A\u6570\u636E</div>";
-            this.parentDOM.classList.add('show');
+            this.parentDom.innerHTML = "<div class=\"m-loading-bottom-over\">\u6CA1\u6709\u66F4\u591A\u6570\u636E</div>";
+            this.parentDom.classList.add('show');
         };
         module.exports = Fn;
     }, {}] }, {}, [1]);

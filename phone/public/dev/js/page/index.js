@@ -1,6 +1,24 @@
 /**
  * Created by zhouhuafei on 16/12/4.
  */
+//单选开关
+(function(){
+
+    const Radio = require('../modules/m-radio-switch');
+    const main = document.querySelector('.main-radio-switch');
+    const radio=new Radio({
+        checkTxt:{
+            on:'开',
+            off:'关'
+        },
+        status:'off',
+        isHand:false,
+        clickCallback:function(result){
+            console.log(result);
+        }
+    });
+    main.appendChild(radio.parentDom);
+})();
 //表格
 (function () {
     const Table = require('../modules/m-table');
@@ -52,7 +70,7 @@
                 }
             ]
         ],
-        footer:``,
+        footer:``
     });
     main.appendChild(table.parentDom);
 })();

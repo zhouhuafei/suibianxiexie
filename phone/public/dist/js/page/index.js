@@ -37,11 +37,58 @@
         /**
          * Created by zhouhuafei on 16/12/4.
          */
+        //单选开关
+        (function () {
+
+            var Radio = require('../modules/m-radio-switch');
+            var main = document.querySelector('.main-radio-switch');
+            var radio = new Radio({
+                checkTxt: {
+                    on: '开',
+                    off: '关'
+                },
+                status: 'off',
+                isHand: false,
+                clickCallback: function clickCallback(result) {
+                    console.log(result);
+                }
+            });
+            main.appendChild(radio.parentDom);
+        })();
+
         //表格
         (function () {
             var Table = require('../modules/m-table');
             var main = document.querySelector('.main-table');
-            var table = new Table({});
+            var table = new Table({
+                header: [{
+                    html: "<div>header0</div>"
+                }, {
+                    html: "<div>header1</div>"
+                }, {
+                    html: "<div>header2</div>"
+                }],
+                body: [[{
+                    html: "<div>body0-0</div>"
+                }, {
+                    html: "<div>body1-0</div>"
+                }, {
+                    html: "<div>body2-0</div>"
+                }], [{
+                    html: "<div>body0-1</div>"
+                }, {
+                    html: "<div>body1-1</div>"
+                }, {
+                    html: "<div>body2-1</div>"
+                }], [{
+                    html: "<div>body0-2</div>"
+                }, {
+                    html: "<div>body1-2</div>"
+                }, {
+                    html: "<div>body2-2</div>"
+                }]],
+                footer: ""
+            });
             main.appendChild(table.parentDom);
         })();
         //验证
@@ -101,7 +148,7 @@
             main.appendChild(product.parentDom);
         })();
         require('../function/lazyload')(); //延迟加载
-    }, { "../function/lazyload": 12, "../modules/m-product": 18, "../modules/m-star": 19, "../modules/m-table": 20, "../modules/m-validate-input": 21 }], 3: [function (require, module, exports) {
+    }, { "../function/lazyload": 12, "../modules/m-product": 18, "../modules/m-radio-switch": 19, "../modules/m-star": 20, "../modules/m-table": 21, "../modules/m-validate-input": 22 }], 3: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/10.
          */
@@ -1178,6 +1225,74 @@
         };
         module.exports = ProductList;
     }, { "../base/base.js": 1 }], 19: [function (require, module, exports) {
+        function Fn(json) {
+            this.opt = json || {};
+            this.opt.checkTxt = this.opt.checkTxt || { on: '已开启', off: '已关闭' };
+            this.opt.status = this.opt.status || 'off';
+            this.opt.isHand = this.opt.isHand ? true : false;
+            this.opt.clickCallback = this.opt.clickCallback || function () {
+                console.log('点击的回调');
+            };
+            this.onClass = 'm-radio-switch-active'; //打开时对应状态的class
+            this.init();
+        }
+        Fn.prototype.init = function () {
+            this.render();
+            this.events();
+        };
+        Fn.prototype.render = function () {
+            var className = "";
+            var status = this.opt.status;
+            if (status == 'on') {
+                className = this.onClass;
+            }
+            this.parentDom = document.createElement('div');
+            this.parentDom.classList.add("m-radio-switch");
+            if (className) {
+                this.parentDom.classList.add(className);
+            }
+            this.parentDom.innerHTML = "            \n        <div class=\"m-radio-switch-box\">\n            <div class=\"m-radio-switch-run\"></div>\n        </div>\n        <div class=\"m-radio-switch-txt\">" + this.opt.checkTxt[status] + "</div>            \n    ";
+        };
+        Fn.prototype.on = function () {
+            //开
+            this.parentDom.classList.add(this.onClass);
+            this.opt.status = 'on';
+            this.changeTxt();
+        };
+        Fn.prototype.off = function () {
+            //关
+            this.parentDom.classList.remove(this.onClass);
+            this.opt.status = 'off';
+            this.changeTxt();
+        };
+        Fn.prototype.changeTxt = function () {
+            this.parentDom.querySelector('.m-radio-switch-txt').innerHTML = this.opt.checkTxt[this.opt.status];
+        };
+        Fn.prototype.clickFn = function () {
+            var self = this;
+            if (!self.opt.isHand) {
+                if (self.opt.status == 'off') {
+                    self.on();
+                } else {
+                    self.off();
+                }
+            }
+            self.opt.clickCallback({
+                parentDom: this.parentDom,
+                status: self.opt.status
+            });
+        };
+        Fn.prototype.events = function () {
+            var self = this;
+            this.parentDom.addEventListener('click', function () {
+                self.clickFn();
+            });
+        };
+        Fn.prototype.remove = function () {
+            this.parentDom.parentNode.removeChild(this.parentDom);
+        };
+        module.exports = Fn;
+    }, {}], 20: [function (require, module, exports) {
         //手机极简星级评论
         function Fn(json) {
             this.opt = json || {};
@@ -1236,7 +1351,7 @@
             this.init();
         };
         module.exports = Fn;
-    }, {}], 20: [function (require, module, exports) {
+    }, {}], 21: [function (require, module, exports) {
         function Fn(json) {
             this.opt = json || {};
             this.init();
@@ -1247,10 +1362,31 @@
         Fn.prototype.render = function () {
             this.parentDom = document.createElement('div');
             this.parentDom.classList.add('m-table');
-            this.parentDom.innerHTML = "\n        <div class=\"m-table-row m-table-header\">\n            <div class=\"m-table-col\">0</div>\n            <div class=\"m-table-col\">1</div>\n            <div class=\"m-table-col\">2</div>\n        </div>\n        <div class=\"m-table-row\">\n            <div class=\"m-table-col\">0</div>\n            <div class=\"m-table-col\">1</div>\n            <div class=\"m-table-col\">2</div>\n        </div>\n    ";
+            this.parentDom.innerHTML = "\n        <div class=\"m-table-header\">\n            <div class=\"m-table-row\">\n                " + this.renderHeader() + "\n            </div>\n        </div>\n        <div class=\"m-table-body\">\n            " + this.renderBody() + "\n        </div>\n        <div class=\"m-table-footer\">\n            " + this.renderFooter() + "\n        </div>\n    ";
+        };
+        Fn.prototype.renderHeader = function () {
+            var html = "";
+            this.opt.header.forEach(function (v) {
+                html += "\n            <div class=\"m-table-col\">\n                <div class=\"m-table-col-wrap\">\n                    " + v.html + "\n                </div>\n            </div>\n        ";
+            });
+            return html;
+        };
+        Fn.prototype.renderBody = function () {
+            var html = "";
+            this.opt.body.forEach(function (v0) {
+                var row = "";
+                v0.forEach(function (v1) {
+                    row += "\n                <div class=\"m-table-col\">\n                    <div class=\"m-table-col-wrap\">\n                        " + v1.html + "\n                    </div>\n                </div>\n            ";
+                });
+                html += "<div class=\"m-table-row\">" + row + "</div>";
+            });
+            return html;
+        };
+        Fn.prototype.renderFooter = function () {
+            return this.opt.footer;
         };
         module.exports = Fn;
-    }, {}], 21: [function (require, module, exports) {
+    }, {}], 22: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/2.
          */

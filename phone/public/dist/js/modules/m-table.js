@@ -23,7 +23,28 @@
         Fn.prototype.render = function () {
             this.parentDom = document.createElement('div');
             this.parentDom.classList.add('m-table');
-            this.parentDom.innerHTML = "\n        <div class=\"m-table-row m-table-header\">\n            <div class=\"m-table-col\">0</div>\n            <div class=\"m-table-col\">1</div>\n            <div class=\"m-table-col\">2</div>\n        </div>\n        <div class=\"m-table-row\">\n            <div class=\"m-table-col\">0</div>\n            <div class=\"m-table-col\">1</div>\n            <div class=\"m-table-col\">2</div>\n        </div>\n    ";
+            this.parentDom.innerHTML = "\n        <div class=\"m-table-header\">\n            <div class=\"m-table-row\">\n                " + this.renderHeader() + "\n            </div>\n        </div>\n        <div class=\"m-table-body\">\n            " + this.renderBody() + "\n        </div>\n        <div class=\"m-table-footer\">\n            " + this.renderFooter() + "\n        </div>\n    ";
+        };
+        Fn.prototype.renderHeader = function () {
+            var html = "";
+            this.opt.header.forEach(function (v) {
+                html += "\n            <div class=\"m-table-col\">\n                <div class=\"m-table-col-wrap\">\n                    " + v.html + "\n                </div>\n            </div>\n        ";
+            });
+            return html;
+        };
+        Fn.prototype.renderBody = function () {
+            var html = "";
+            this.opt.body.forEach(function (v0) {
+                var row = "";
+                v0.forEach(function (v1) {
+                    row += "\n                <div class=\"m-table-col\">\n                    <div class=\"m-table-col-wrap\">\n                        " + v1.html + "\n                    </div>\n                </div>\n            ";
+                });
+                html += "<div class=\"m-table-row\">" + row + "</div>";
+            });
+            return html;
+        };
+        Fn.prototype.renderFooter = function () {
+            return this.opt.footer;
         };
         module.exports = Fn;
     }, {}] }, {}, [1]);

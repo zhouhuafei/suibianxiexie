@@ -1,0 +1,64 @@
+body {
+  font-family: "Microsoft Yahei", "sans-serif"; }
+
+body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
+  margin: 0;
+  padding: 0; }
+
+li {
+  list-style-type: none; }
+
+.g-input-circle {
+  -webkit-appearance: none;
+  width: 0.53333rem;
+  height: 0.53333rem;
+  border: 1px solid #ddd;
+  border-radius: 26.66667rem;
+  box-sizing: border-box;
+  position: relative; }
+  .g-input-circle:checked {
+    border: none;
+    background: #fc1521; }
+    .g-input-circle:checked:after {
+      content: '';
+      position: absolute;
+      left: 0.16rem;
+      top: 0.02667rem;
+      width: 0.16rem;
+      height: 0.32rem;
+      border-right: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(45deg); }
+
+.m-radio-switch {
+  cursor: pointer;
+  display: -webkit-box;
+  height: 20px;
+  line-height: 20px;
+  font-size: 0.42667rem; }
+  .m-radio-switch .m-radio-switch-box {
+    position: relative;
+    width: 40px;
+    height: 100%;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 100px;
+    background: #bbbbbb; }
+  .m-radio-switch .m-radio-switch-run {
+    width: 18px;
+    height: 18px;
+    background: #ffffff;
+    border-radius: 100px;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    transition: 0.4s; }
+  .m-radio-switch .m-radio-switch-txt {
+    margin-left: 4px; }
+  .m-radio-switch.m-radio-switch-active .m-radio-switch-box {
+    background: #1fce69; }
+  .m-radio-switch.m-radio-switch-active .m-radio-switch-run {
+    position: absolute;
+    left: calc(100% - 19px); }
+  .m-radio-switch.m-radio-switch-active .m-radio-switch-txt {
+    color: #1fce69; }

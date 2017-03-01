@@ -14,9 +14,9 @@ Fn.prototype.init=function(){
     this.power();
 };
 Fn.prototype.render=function(){
-    this.parentDOM=document.createElement('div');
-    this.parentDOM.classList.add('m-loading-bottom');
-    document.body.appendChild(this.parentDOM);
+    this.parentDom=document.createElement('div');
+    this.parentDom.classList.add('m-loading-bottom');
+    document.body.appendChild(this.parentDom);
 };
 Fn.prototype.power=function(){
     //事件相关
@@ -27,14 +27,14 @@ Fn.prototype.events=function(){
 };
 //其他功能写在下面吧,尽量保持格式统一
 Fn.prototype.show=function(){
-    this.parentDOM.innerHTML=`<div class="m-loading-bottom-show">加载中</div>`;
-    this.parentDOM.classList.add('show');
+    this.parentDom.innerHTML=`<div class="m-loading-bottom-show">加载中</div>`;
+    this.parentDom.classList.add('show');
 };
 Fn.prototype.hide=function(){
-    this.parentDOM.classList.remove('show');
+    this.parentDom.classList.remove('show');
 };
 Fn.prototype.over=function(){
-    this.parentDOM.innerHTML=`<div class="m-loading-bottom-over">没有更多数据</div>`;
-    this.parentDOM.classList.add('show');
+    this.parentDom.innerHTML=`<div class="m-loading-bottom-over">没有更多数据</div>`;
+    this.parentDom.classList.add('show');
 };
 module.exports=Fn;

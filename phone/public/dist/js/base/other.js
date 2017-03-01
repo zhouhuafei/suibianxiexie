@@ -13,6 +13,7 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
+
         function uploadImg() {
             var oF = document.querySelector('#fileField');
             var num = 0;

@@ -1,0 +1,43 @@
+@import "../base/base";
+
+.m-radio-switch{
+    cursor: pointer;
+    display: -webkit-box;
+    height: 20px;
+    line-height: 20px;
+    font-size: px2rem(16);
+    .m-radio-switch-box{
+        position: relative;
+        width: 40px;
+        height: 100%;
+        text-align: center;
+        line-height: 20px;
+        border-radius: 100px;
+        background: #bbbbbb;
+    }
+    .m-radio-switch-run{
+        width: 18px;
+        height: 18px;
+        background: #ffffff;
+        border-radius: 100px;
+        position: absolute;
+        left: 1px;
+        top: 1px;
+        transition: 0.4s;
+    }
+    .m-radio-switch-txt{
+        margin-left: 4px;
+    }
+    &.m-radio-switch-active{
+        .m-radio-switch-box{
+            background: $color-success;
+        }
+        .m-radio-switch-run{
+            position: absolute;
+            left: calc(100% - 19px);
+        }
+        .m-radio-switch-txt{
+            color: #1fce69;
+        }
+    }
+}
