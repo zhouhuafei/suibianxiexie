@@ -10,14 +10,26 @@ Fn.prototype.render = function () {
     this.parentDom.classList.add('m-table');
     this.parentDom.innerHTML=`
         <div class="m-table-row m-table-header">
-            <div class="m-table-col">0</div>
-            <div class="m-table-col">1</div>
-            <div class="m-table-col">2</div>
+            <div class="m-table-col">
+                <div class="m-table-col-wrap">0</div>
+            </div>
+            <div class="m-table-col">
+                <div class="m-table-col-wrap">0</div>
+            </div>
+            <div class="m-table-col">
+                <div class="m-table-col-wrap">0</div>
+            </div>
         </div>
         <div class="m-table-row">
-            <div class="m-table-col">0</div>
-            <div class="m-table-col">1</div>
-            <div class="m-table-col">2</div>
+            <div class="m-table-col">
+                <div class="m-table-col-wrap">0</div>
+            </div>
+            <div class="m-table-col">
+                <div class="m-table-col-wrap">0</div>
+            </div>
+            <div class="m-table-col">
+                <div class="m-table-col-wrap">0</div>
+            </div>
         </div>
     `;
 };
