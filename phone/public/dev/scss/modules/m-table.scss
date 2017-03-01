@@ -20,6 +20,13 @@
         .m-table-col {
             position: relative;
             flex: 1;
+            .m-table-col-wrap{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+            }
         }
     }
 }
