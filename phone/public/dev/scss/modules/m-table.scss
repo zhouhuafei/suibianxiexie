@@ -1,10 +1,8 @@
 @import "../base/base";
 
 .m-table {
-    position: relative;
     color: $color-font-default;
     .m-table-row {
-        position: relative;
         display: flex;
         min-height: px2rem($height-row);
         line-height: px2rem($height-row);
@@ -24,13 +22,9 @@
                 height: 100%;
             }
         }
-    }    
+    }
     .m-table-header {
-        position: relative;
         background: $color-background-dark;
         border-top: 1px solid $color-border-default;
-    }
-    .m-table-footer {
-        position: relative;
     }
 }
