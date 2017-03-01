@@ -5,7 +5,55 @@
 (function () {
     const Table = require('../modules/m-table');
     const main = document.querySelector('.main-table');
-    const table = new Table({});
+    const table = new Table({
+        header:[
+            {
+                html:`<div>header0</div>`
+            },
+            {
+                html:`<div>header1</div>`
+            },
+            {
+                html:`<div>header2</div>`
+            }
+        ],
+        body:[
+            [
+                {
+                    html:`<div>body0-0</div>`
+                },
+                {
+                    html:`<div>body1-0</div>`
+                },
+                {
+                    html:`<div>body2-0</div>`
+                }
+            ],
+            [
+                {
+                    html:`<div>body0-1</div>`
+                },
+                {
+                    html:`<div>body1-1</div>`
+                },
+                {
+                    html:`<div>body2-1</div>`
+                }
+            ],
+            [
+                {
+                    html:`<div>body0-2</div>`
+                },
+                {
+                    html:`<div>body1-2</div>`
+                },
+                {
+                    html:`<div>body2-2</div>`
+                }
+            ]
+        ],
+        footer:``,
+    });
     main.appendChild(table.parentDom);
 })();
 //验证
