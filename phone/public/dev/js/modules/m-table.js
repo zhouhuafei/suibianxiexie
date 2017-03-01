@@ -14,10 +14,10 @@ Fn.prototype.render = function () {
                 <div class="m-table-col-wrap">0</div>
             </div>
             <div class="m-table-col">
-                <div class="m-table-col-wrap">0</div>
+                <div class="m-table-col-wrap">1</div>
             </div>
             <div class="m-table-col">
-                <div class="m-table-col-wrap">0</div>
+                <div class="m-table-col-wrap">2</div>
             </div>
         </div>
         <div class="m-table-row">
@@ -25,10 +25,10 @@ Fn.prototype.render = function () {
                 <div class="m-table-col-wrap">0</div>
             </div>
             <div class="m-table-col">
-                <div class="m-table-col-wrap">0</div>
+                <div class="m-table-col-wrap">1</div>
             </div>
             <div class="m-table-col">
-                <div class="m-table-col-wrap">0</div>
+                <div class="m-table-col-wrap">2</div>
             </div>
         </div>
     `;
