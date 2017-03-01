@@ -1,7 +1,7 @@
 @import "../base/base";
 
 .m-table {
-    position: relative;
+    position: relative;    
     .m-table-row {
         position: relative;
         display: flex;
@@ -11,11 +11,6 @@
         border-bottom: 1px solid $color-border-default;
         &:hover {
             background: $color-background-dark;
-        }
-        &.m-table-header {
-            background: $color-background-dark;
-            border-top: 1px solid $color-border-default;
-            color: $color-font-default;
         }
         .m-table-col {
             position: relative;
@@ -28,5 +23,16 @@
                 height: 100%;
             }
         }
+    }    
+    .m-table-header {
+        position: relative;
+        .m-table-row {
+            background: $color-background-dark;
+            border-top: 1px solid $color-border-default;
+            color: $color-font-default;
+        }
+    }    
+    .m-table-footer{
+        position: relative;
     }
 }
