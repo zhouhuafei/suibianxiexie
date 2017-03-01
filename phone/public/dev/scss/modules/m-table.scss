@@ -1,7 +1,8 @@
 @import "../base/base";
 
 .m-table {
-    position: relative;    
+    position: relative;
+    color: $color-font-default;
     .m-table-row {
         position: relative;
         display: flex;
@@ -26,13 +27,10 @@
     }    
     .m-table-header {
         position: relative;
-        .m-table-row {
-            background: $color-background-dark;
-            border-top: 1px solid $color-border-default;
-            color: $color-font-default;
-        }
-    }    
-    .m-table-footer{
+        background: $color-background-dark;
+        border-top: 1px solid $color-border-default;
+    }
+    .m-table-footer {
         position: relative;
     }
 }
