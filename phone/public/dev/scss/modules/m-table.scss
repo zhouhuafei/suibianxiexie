@@ -3,6 +3,7 @@
 .m-table {
     color: $color-font-default;
     font-size: px2rem(16);
+    text-align:center;
     .m-table-row {
         display: flex;
         min-height: px2rem($height-table-row);
