@@ -1,5 +1,8 @@
 function Fn(json) {
     this.opt = json || {};
+    this.opt.header=this.opt.header||[];
+    this.opt.body=this.opt.body||[];
+    this.opt.footer=this.opt.footer||``;
     this.init();
 }
 Fn.prototype.init = function () {
