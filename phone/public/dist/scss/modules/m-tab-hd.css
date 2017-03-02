@@ -1,5 +1,11 @@
+html {
+  height: 100%; }
+
 body {
-  font-family: "Microsoft Yahei", "sans-serif"; }
+  min-height: 100%;
+  color: #000000;
+  font-family: "Microsoft Yahei", "sans-serif";
+  font-size: 0.42667rem; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
   margin: 0;
@@ -8,7 +14,67 @@ body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, te
 li {
   list-style-type: none; }
 
-.g-input-circle {
+a {
+  text-decoration: none;
+  outline: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent; }
+
+select, input, button, textarea {
+  color: inherit;
+  background: none;
+  outline: none;
+  border: none;
+  font-size: inherit; }
+
+textarea {
+  font-family: inherit;
+  line-height: inherit;
+  vertical-align: top;
+  overflow: hidden; }
+
+img {
+  vertical-align: middle; }
+
+html {
+  height: 100%; }
+
+body {
+  min-height: 100%;
+  color: #000000;
+  font-family: "Microsoft Yahei", "sans-serif";
+  font-size: 0.42667rem; }
+
+body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
+  margin: 0;
+  padding: 0; }
+
+li {
+  list-style-type: none; }
+
+a {
+  text-decoration: none;
+  outline: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent; }
+
+select, input, button, textarea {
+  color: inherit;
+  background: none;
+  outline: none;
+  border: none;
+  font-size: inherit; }
+
+textarea {
+  font-family: inherit;
+  line-height: inherit;
+  vertical-align: top;
+  overflow: hidden; }
+
+img {
+  vertical-align: middle; }
+
+.g-radio {
   -webkit-appearance: none;
   width: 0.53333rem;
   height: 0.53333rem;
@@ -16,10 +82,10 @@ li {
   border-radius: 26.66667rem;
   box-sizing: border-box;
   position: relative; }
-  .g-input-circle:checked {
+  .g-radio:checked {
     border: none;
     background: #fc1521; }
-    .g-input-circle:checked:after {
+    .g-radio:checked:after {
       content: '';
       position: absolute;
       left: 0.16rem;
@@ -29,6 +95,40 @@ li {
       border-right: 2px solid #fff;
       border-bottom: 2px solid #fff;
       transform: rotate(45deg); }
+
+.g-input {
+  color: inherit;
+  background: none;
+  outline: none;
+  border: none;
+  font-size: inherit; }
+
+.g-select {
+  color: inherit;
+  background: #fff;
+  outline: none;
+  border: none;
+  font-size: inherit; }
+
+.g-textarea {
+  color: inherit;
+  background: #fff;
+  outline: none;
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  vertical-align: top;
+  overflow: hidden; }
+
+.g-center {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  word-break: break-all; }
 
 .m-tab-hd {
   display: -webkit-box;

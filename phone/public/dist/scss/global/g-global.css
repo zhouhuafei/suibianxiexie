@@ -36,44 +36,6 @@ textarea {
 img {
   vertical-align: middle; }
 
-html {
-  height: 100%; }
-
-body {
-  min-height: 100%;
-  color: #000000;
-  font-family: "Microsoft Yahei", "sans-serif";
-  font-size: 0.42667rem; }
-
-body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
-  margin: 0;
-  padding: 0; }
-
-li {
-  list-style-type: none; }
-
-a {
-  text-decoration: none;
-  outline: none;
-  color: inherit;
-  -webkit-tap-highlight-color: transparent; }
-
-select, input, button, textarea {
-  color: inherit;
-  background: none;
-  outline: none;
-  border: none;
-  font-size: inherit; }
-
-textarea {
-  font-family: inherit;
-  line-height: inherit;
-  vertical-align: top;
-  overflow: hidden; }
-
-img {
-  vertical-align: middle; }
-
 .g-radio {
   -webkit-appearance: none;
   width: 0.53333rem;
@@ -129,12 +91,3 @@ img {
   -ms-flex-align: center;
       align-items: center;
   word-break: break-all; }
-
-.m-star-main {
-  font-size: 0; }
-  .m-star-main .m-star {
-    display: inline-block;
-    color: #bfbfbf;
-    font-size: 1.06667rem; }
-    .m-star-main .m-star.m-star-active {
-      color: #0089ff; }

@@ -1,7 +1,15 @@
 @import "../base/base";
 
+.page-index>div{
+    margin-top: px2rem(10);
+}
+
 //单选开关
 @import "../modules/m-radio-switch";
+.main-radio-switch{
+    display: flex;
+    justify-content: center;
+}
 
 //表格
 @import "../modules/m-table";
@@ -10,8 +18,6 @@
 @import "../modules/m-validate-input";
 
 .main-input {
-    padding-top: px2rem(60);
-    font-size: 14px;
     label, span, em {
         display: inline-block;
     }
@@ -34,7 +40,6 @@
 @import "../modules/m-star";
 .main-star {
     text-align: center;
-    padding-top: px2rem(8);
 }
 
 //列表

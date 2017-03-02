@@ -1,43 +1,41 @@
 @import "../base/base";
 
-.m-radio-switch{
+.m-radio-switch {
     cursor: pointer;
     display: -webkit-box;
-    height: 20px;
-    line-height: 20px;
+    height: px2rem(20);
     font-size: px2rem(16);
-    .m-radio-switch-box{
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    .m-radio-switch-box {
         position: relative;
-        width: 40px;
+        width: px2rem(40);
         height: 100%;
         text-align: center;
-        line-height: 20px;
-        border-radius: 100px;
-        background: #bbbbbb;
+        border-radius: px2rem(100);
+        background: $color-background-dark;
     }
-    .m-radio-switch-run{
-        width: 18px;
-        height: 18px;
+    .m-radio-switch-run {
+        width: px2rem(18);
+        height: px2rem(18);
         background: #ffffff;
-        border-radius: 100px;
+        border-radius: px2rem(100);
         position: absolute;
-        left: 1px;
-        top: 1px;
+        left: px2rem(1);
+        top: px2rem(1);
         transition: 0.4s;
     }
-    .m-radio-switch-txt{
-        margin-left: 4px;
+    .m-radio-switch-txt {
+        margin-left: px2rem(4);
     }
-    &.m-radio-switch-active{
-        .m-radio-switch-box{
+    &.m-radio-switch-active {
+        .m-radio-switch-box {
             background: $color-background-highlight;
         }
-        .m-radio-switch-run{
-            position: absolute;
-            left: calc(100% - 19px);
+        .m-radio-switch-run {
+            left: px2rem(21);
         }
-        .m-radio-switch-txt{
-            color: #1fce69;
+        .m-radio-switch-txt {
+            color: $color-font-highlight;
         }
     }
 }

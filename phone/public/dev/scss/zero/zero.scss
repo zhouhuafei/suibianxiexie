@@ -1,6 +1,17 @@
+@import "../config/config";
+@import "../mixin/mixin";
+
 //清零样式
+
+html{
+    height: 100%;
+}
+
 body {
+    min-height:100%;
+    color: $color-font-default;
     font-family: "Microsoft Yahei", "sans-serif";
+    font-size: px2rem(16);
 }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
@@ -34,8 +45,9 @@ textarea {
     overflow: hidden;
 }
 
-img{
+img {
     vertical-align: middle;
 }
+
 //待改...(感觉a一下的东西,都要改一下,img有没有必要要也需要考量,都改成g系列也许会更好)
 //不要在这里写其他的css样式,自己的样式写自己的页面好吧,清零样式尽量保持通用,模块保持模块样式的完整

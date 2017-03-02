@@ -1,6 +1,8 @@
-//全局的样式,可以在这里引入模块的样式文件
-@import "../base/mixin";
 @import "../config/config";
+@import "../mixin/mixin";
+@import "../zero/zero";
+
+//全局的样式
 
 .g-radio {
     -webkit-appearance: none;
@@ -31,15 +33,35 @@
 
 }
 
+.g-input{
+    color: inherit;
+    background: none;
+    outline: none;
+    border: none;
+    font-size: inherit;
+}
+
 .g-select {
-    
+    color: inherit;
+    background: #fff;
+    outline: none;
+    border: none;
+    font-size: inherit;
 }
 
 .g-textarea {
-    
+    color: inherit;
+    background: #fff;
+    outline: none;
+    border: none;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    vertical-align: top;
+    overflow: hidden;
 }
 
-.g-center{
+.g-center {
     display: flex;
     justify-content: center;
     align-items: center;
