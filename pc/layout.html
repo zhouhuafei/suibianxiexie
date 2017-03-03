@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            html,body{
+                height: 100%;
+            }
+            ::-webkit-scrollbar{
+                width:6px;
+                background:#f1f1f1;
+            }
+            ::-webkit-scrollbar-thumb{
+                background:#0089ff;
+                border-radius: 100px;
+            }
+            .g-container{
+                height: 100%;
+                display: flex;
+                color: #ffffff;
+                text-align: center;
+            }
+            .g-aside{
+                width: 200px;
+            }
+            .g-menu{
+                display: flex;
+                position: fixed;
+                height: 100%;
+                width: inherit;
+            }
+            .g-menu-one{
+                flex: 1;
+                background: #252834;
+            }
+            .g-menu-two{
+                flex: 1;
+                background: #5f626b;
+            }
+            .g-menu-switch{
+                background: #ff0000;
+                width: 20px;
+            }
+            .g-main{
+                flex: 1;
+            }
+            .g-content{
+                min-height: 100%;
+            }
+            .g-crumbs{
+                background: #cccccc;
+                height: 100px;
+                line-height: 100px;
+            }
+            .g-page{
+                padding-bottom: 100px;
+                background: #000;
+            }
+            .g-copyright{
+                margin-top: -100px;
+                background: #333333;
+                height: 100px;
+                line-height: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <!--明明要不要采用 g-container-aside g-container-aside-menu g-container-main-->
+        <!--主容器-->
+        <div class="g-container">
+            <!--侧边栏-->
+            <div class="g-aside">
+                <!--菜单-->
+                <div class="g-menu">
+                    <div class="g-menu-one">g-menu-one</div>
+                    <div class="g-menu-two">g-menu-two</div>
+                    <div class="g-menu-switch">
+                        <div>关闭一级菜单</div>
+                        <div>关闭二级菜单</div>
+                        <div>关闭全部菜单</div>
+                    </div>
+                </div>
+            </div>
+            <!--主体-->
+            <div class="g-main">
+                <!--内容-->
+                <div class="g-content">
+                    <!--面包屑-->
+                    <div class="g-crumbs">面包屑</div>
+                    <!--页面-->
+                    <div class="g-page">
+                        <p style="line-height: 300px;">哈哈</p>
+                        <p style="line-height: 300px;">哈哈</p>
+                        <p style="line-height: 300px;">哈哈</p>
+                        <p style="line-height: 300px;">哈哈</p>
+                        <p style="line-height: 300px;">哈哈</p>
+                        <p style="line-height: 300px;">哈哈</p>
+                        <p style="line-height: 300px;">哈哈</p>
+                        <p style="line-height: 300px;">哈哈</p>
+                        <p style="line-height: 300px;">哈哈</p>
+                        <p style="line-height: 300px;">哈哈</p>
+                        <p style="line-height: 300px;">哈哈</p>
+                        <p style="line-height: 300px;">哈哈</p>
+                        <p style="line-height: 300px;">哈哈</p>
+                        <p style="line-height: 300px;">哈哈</p>
+                    </div>
+                </div>
+                <!--版权-->
+                <div class="g-copyright">版权</div>
+            </div>
+        </div>
+        <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+            console.log($(document).height())
+        </script>
+    </body>
+</html>
