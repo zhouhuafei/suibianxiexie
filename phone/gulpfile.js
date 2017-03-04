@@ -11,6 +11,7 @@ const imagemin = require('gulp-imagemin');
 const base64 = require('gulp-base64');
 const browserify = require('gulp-browserify');
 const htmlmin = require('gulp-htmlmin');
+const del = require('del');
 const fs = require('fs');
 class Path {
     constructor() {
@@ -32,6 +33,10 @@ class Path {
     }
 }
 const path = new Path();
+//清空dist目录
+gulp.task(`del`, function () {
+    return del.sync([`${path.distPath}`]);
+});
 //转移
 gulp.task(`font`, function () {//font转移
     return gulp.src(path.fontEnterPath)
@@ -105,4 +110,4 @@ gulp.task(`min:watch`, function () {
 });
 //执行任务
 gulp.task(`dev`, [`font`, `ui`, `html`, `scss`, `js`, `images`, `:watch`]);//开发
-gulp.task(`min`, [`font`, `ui`, `html`, `scssMin`, `jsMin`, `imagesMin`]);//上线
+gulp.task(`min`, [`del`, `font`, `ui`, `html`, `scssMin`, `jsMin`, `imagesMin`]);//上线
