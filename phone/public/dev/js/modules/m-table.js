@@ -3,6 +3,7 @@ function Fn(json) {
     this.opt.header=this.opt.header||[];
     this.opt.body=this.opt.body||[];
     this.opt.footer=this.opt.footer||``;
+    this.opt.parentSelector=this.opt.parentSelector||``;
     this.init();
 }
 Fn.prototype.init = function () {
@@ -24,6 +25,12 @@ Fn.prototype.render = function () {
             ${this.renderFooter()}
         </div>
     `;
+    if(this.opt.parentSelector){
+        this.parentSelectorDom=document.querySelector(this.opt.parentSelector);
+    }
+    if(this.parentSelectorDom){
+        this.parentSelectorDom.appendChild(this.parentDom);
+    }
 };
 Fn.prototype.renderHeader=function(){
     var html=``;

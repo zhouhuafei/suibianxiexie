@@ -163,8 +163,6 @@ img {
         display: inline-block;
         height: 100%;
         vertical-align: middle; }
-      .m-product .m-product-img a img {
-        border-radius: inherit; }
   .m-product .m-product-txt {
     position: relative;
     overflow: hidden; }

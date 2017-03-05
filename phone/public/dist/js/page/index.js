@@ -58,8 +58,8 @@
         //表格
         (function () {
             var Table = require('../modules/m-table');
-            var main = document.querySelector('.main-table');
             var table = new Table({
+                parentSelector: ".main-table",
                 header: [{
                     html: "<div>header0</div>"
                 }, {
@@ -88,7 +88,6 @@
                 }]],
                 footer: ""
             });
-            main.appendChild(table.parentDom);
         })();
         //验证
         (function () {
@@ -137,7 +136,7 @@
                     vipPrice: '10.00',
                     seckillPrice: '1.00',
                     likeNum: '300',
-                    imgSrc: 'http://qmfx-s84664.s3.fy.shopex.cn/gpic/20160627/be7c4eafe8063a94bf2da631299bec6b.jpg?imageView2/2/w/600/h/600/interlace/1',
+                    imgSrc: '../../images/desktop.png',
                     aHref: 'http://www.baidu.com',
                     seckillWillBeginTime: '6',
                     seckillWillBeginBtnShowTime: '3',
@@ -1356,6 +1355,7 @@
             this.opt.header = this.opt.header || [];
             this.opt.body = this.opt.body || [];
             this.opt.footer = this.opt.footer || "";
+            this.opt.parentSelector = this.opt.parentSelector || "";
             this.init();
         }
         Fn.prototype.init = function () {
@@ -1365,6 +1365,12 @@
             this.parentDom = document.createElement('div');
             this.parentDom.classList.add('m-table');
             this.parentDom.innerHTML = "\n        <div class=\"m-table-header\">\n            <div class=\"m-table-row\">\n                " + this.renderHeader() + "\n            </div>\n        </div>\n        <div class=\"m-table-body\">\n            " + this.renderBody() + "\n        </div>\n        <div class=\"m-table-footer\">\n            " + this.renderFooter() + "\n        </div>\n    ";
+            if (this.opt.parentSelector) {
+                this.parentSelectorDom = document.querySelector(this.opt.parentSelector);
+            }
+            if (this.parentSelectorDom) {
+                this.parentSelectorDom.appendChild(this.parentDom);
+            }
         };
         Fn.prototype.renderHeader = function () {
             var html = "";

@@ -22,8 +22,8 @@
 //表格
 (function () {
     const Table = require('../modules/m-table');
-    const main = document.querySelector('.main-table');
     const table = new Table({
+        parentSelector:`.main-table`,
         header:[
             {
                 html:`<div>header0</div>`
@@ -72,7 +72,6 @@
         ],
         footer:``
     });
-    main.appendChild(table.parentDom);
 })();
 //验证
 (function () {
@@ -121,7 +120,7 @@
             vipPrice: '10.00',
             seckillPrice: '1.00',
             likeNum: '300',
-            imgSrc: 'http://qmfx-s84664.s3.fy.shopex.cn/gpic/20160627/be7c4eafe8063a94bf2da631299bec6b.jpg?imageView2/2/w/600/h/600/interlace/1',
+            imgSrc: '../../images/desktop.png',
             aHref: 'http://www.baidu.com',
             seckillWillBeginTime: '6',
             seckillWillBeginBtnShowTime: '3',
