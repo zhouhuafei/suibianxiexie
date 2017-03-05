@@ -53,6 +53,7 @@
             }
             return defaults;
         }
+        /*
         var obj1 = extend({
             defaults: {
                 a: 'a',
@@ -74,15 +75,23 @@
                 }
             }
         });
-        console.log(obj1); //{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
+        console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
         var obj2 = extend({
             defaults: {
-                b: [{ a1: 'a1' }, { a2: 'a2' }]
+                b: [
+                    {a1: 'a1'},
+                    {a2: 'a2'}
+                ]
             },
             inherits: {
-                b: ['what?', { b1: 'b1' }, { b2: 'b2' }]
+                b: [
+                    'what?',
+                    {b1: 'b1'},
+                    {b2: 'b2'}
+                ]
             }
         });
-        console.log(obj2); //{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
+        console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
+        */
         module.exports = extend;
     }, {}] }, {}, [1]);

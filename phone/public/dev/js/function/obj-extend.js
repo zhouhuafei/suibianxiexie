@@ -34,6 +34,7 @@ function extend(json) {
     }
     return defaults;
 }
+/*
 var obj1 = extend({
     defaults: {
         a: 'a',
@@ -72,4 +73,5 @@ var obj2 = extend({
     }
 });
 console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
+*/
 module.exports = extend;
