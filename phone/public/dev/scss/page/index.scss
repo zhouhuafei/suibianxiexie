@@ -47,3 +47,10 @@
 .main-product {
     @include clear-fix;
 }
+
+.g-class{
+    padding-left:px2rem(10);
+}
+.g-class > div {
+    padding-bottom:px2rem(10);
+}

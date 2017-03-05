@@ -33,32 +33,62 @@
 
 }
 
-.g-input{
-    color: inherit;
-    background: none;
+.g-input {
     outline: none;
-    border: none;
+    color: inherit;
     font-size: inherit;
+    background: #fff;
+    border: 1px solid $color-border-default;
+    width: px2rem(300);
+    height: px2rem(40);
+    line-height: px2rem(40);
+    padding: 0 px2rem(10);
+    box-sizing: border-box;
 }
 
 .g-select {
-    color: inherit;
-    background: #fff;
     outline: none;
-    border: none;
+    color: inherit;
     font-size: inherit;
+    background: #fff;
+    border: px2rem(1) solid $color-border-default;
+    height: px2rem(40);
+    line-height: px2rem(40);
+    box-sizing: border-box;
+    width: px2rem(300);
+    -webkit-appearance: none;
+    border-radius: 0;
+    padding-left: px2rem(10);
+    padding-right: px2rem(50);
+    position: relative;
+    &::before {
+        content: '';
+        display: inline-block;
+        width: px2rem(40);
+        height: inherit;
+        background: $color-background-default;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    &::after {
+
+    }
 }
 
 .g-textarea {
-    color: inherit;
-    background: #fff;
     outline: none;
-    border: none;
+    color: inherit;
     font-size: inherit;
-    font-family: inherit;
-    line-height: inherit;
-    vertical-align: top;
-    overflow: hidden;
+    background: #fff;
+    border: 1px solid $color-border-default;
+    width: px2rem(300);
+    height: px2rem(200);
+    line-height: px2rem(30);
+    padding: px2rem(10);
+    text-align: justify;
+    box-sizing: border-box;
+    resize: none;
 }
 
 .g-center {
