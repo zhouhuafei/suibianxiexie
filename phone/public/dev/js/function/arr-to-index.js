@@ -14,4 +14,7 @@ function arrToIndex(json) {
     });
     return index;
 }
+/*
+    arr.indexOf这个方法原生的提供的有,你为毛还要重新写一个？智障么？
+*/
 module.exports = arrToIndex;
