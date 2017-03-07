@@ -32,6 +32,9 @@ Fn.prototype.render = function () {
         this.parentSelectorDom.appendChild(this.parentDom);
     }
 };
+Fn.prototype.removeRender = function () {
+    this.parentDom.parentNode.removeChild(this.parentDom);
+};
 Fn.prototype.renderHeader=function(){
     var html=``;
     this.opt.header.forEach(function(v){
