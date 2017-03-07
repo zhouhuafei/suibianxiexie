@@ -15,6 +15,7 @@ var base = {
     mask: require('../function/mask'),
     secondsToTime: require('../function/seconds-to-time'),
     secondsToTimeCountDown: require('../function/seconds-to-time-count-down'),
-    strLimit: require('../function/str-limit')
+    strLimit: require('../function/str-limit'),
+    objExtend: require('../function/obj-extend')
 };
 module.exports = base;

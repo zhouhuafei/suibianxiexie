@@ -47,32 +47,49 @@
 }
 
 .g-select {
-    outline: none;
-    color: inherit;
-    font-size: inherit;
-    background: #fff;
-    border: px2rem(1) solid $color-border-default;
-    height: px2rem(40);
-    line-height: px2rem(40);
-    box-sizing: border-box;
-    width: px2rem(300);
-    -webkit-appearance: none;
-    border-radius: 0;
-    padding-left: px2rem(10);
-    padding-right: px2rem(50);
+    $height: 40;
+    $width: 300;
+    $triangle-width: 10;
+    $select-padding-left: 10;
+    $triangle-position-right: ( $height - $triangle-width*2 ) / 2;
+    $triangle-margin-top: - $triangle-width / 2;
+    $select-padding-right: $height + $select-padding-left;
     position: relative;
-    &::before {
-        content: '';
-        display: inline-block;
-        width: px2rem(40);
+    width: px2rem($width);
+    height: px2rem($height);
+    line-height: px2rem($height);
+    background: #fff;
+    label{
+        display: block;
+        width: inherit;
         height: inherit;
-        background: $color-background-default;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-    &::after {
-
+        line-height: inherit;
+        select{
+            position: relative;
+            z-index: 2;
+            outline: none;
+            color: inherit;
+            font-size: inherit;
+            width: inherit;
+            height: inherit;
+            line-height: inherit;
+            border: px2rem(1) solid $color-border-default;
+            box-sizing: border-box;
+            -webkit-appearance: none;
+            border-radius: 0;
+            padding-left: px2rem($select-padding-left);
+            padding-right: px2rem($select-padding-right);
+        }
+        .g-select-icon{
+            width: px2rem($height);
+            text-align: center;
+            height: inherit;
+            background: $color-background-default;
+            position: absolute;
+            right: 0;
+            top: 0;
+            border-left: px2rem(1) solid $color-border-default;
+        }
     }
 }
 

@@ -71,29 +71,40 @@ img {
   box-sizing: border-box; }
 
 .g-select {
-  outline: none;
-  color: inherit;
-  font-size: inherit;
-  background: #fff;
-  border: 0.02667rem solid #e6e7ed;
+  position: relative;
+  width: 8rem;
   height: 1.06667rem;
   line-height: 1.06667rem;
-  box-sizing: border-box;
-  width: 8rem;
-  -webkit-appearance: none;
-  border-radius: 0;
-  padding-left: 0.26667rem;
-  padding-right: 1.33333rem;
-  position: relative; }
-  .g-select::before {
-    content: '';
-    display: inline-block;
-    width: 1.06667rem;
+  background: #fff; }
+  .g-select label {
+    display: block;
+    width: inherit;
     height: inherit;
-    background: #f5f5f5;
-    position: absolute;
-    right: 0;
-    top: 0; }
+    line-height: inherit; }
+    .g-select label select {
+      position: relative;
+      z-index: 2;
+      outline: none;
+      color: inherit;
+      font-size: inherit;
+      width: inherit;
+      height: inherit;
+      line-height: inherit;
+      border: 0.02667rem solid #e6e7ed;
+      box-sizing: border-box;
+      -webkit-appearance: none;
+      border-radius: 0;
+      padding-left: 0.26667rem;
+      padding-right: 1.33333rem; }
+    .g-select label .g-select-icon {
+      width: 1.06667rem;
+      text-align: center;
+      height: inherit;
+      background: #f5f5f5;
+      position: absolute;
+      right: 0;
+      top: 0;
+      border-left: 0.02667rem solid #e6e7ed; }
 
 .g-textarea {
   outline: none;

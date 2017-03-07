@@ -3,7 +3,6 @@
  */
 //单选开关
 (function(){
-
     const Radio = require('../modules/m-radio-switch');
     const main = document.querySelector('.main-radio-switch');
     const radio=new Radio({

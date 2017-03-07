@@ -30,16 +30,16 @@
             mask: require('../function/mask'),
             secondsToTime: require('../function/seconds-to-time'),
             secondsToTimeCountDown: require('../function/seconds-to-time-count-down'),
-            strLimit: require('../function/str-limit')
+            strLimit: require('../function/str-limit'),
+            objExtend: require('../function/obj-extend')
         };
         module.exports = base;
-    }, { "../function/arr-to-index": 3, "../function/cookie": 4, "../function/fill-zero": 5, "../function/get-parent": 6, "../function/go-top": 7, "../function/html-to-dom": 8, "../function/is-browser-scroll-to-the-bottom": 9, "../function/is-disable-browser-scrolling": 10, "../function/json-to-array": 11, "../function/mask": 13, "../function/seconds-to-time": 15, "../function/seconds-to-time-count-down": 14, "../function/str-limit": 16 }], 2: [function (require, module, exports) {
+    }, { "../function/arr-to-index": 3, "../function/cookie": 4, "../function/fill-zero": 5, "../function/get-parent": 6, "../function/go-top": 7, "../function/html-to-dom": 8, "../function/is-browser-scroll-to-the-bottom": 9, "../function/is-disable-browser-scrolling": 10, "../function/json-to-array": 11, "../function/mask": 13, "../function/obj-extend": 14, "../function/seconds-to-time": 16, "../function/seconds-to-time-count-down": 15, "../function/str-limit": 17 }], 2: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/4.
          */
         //单选开关
         (function () {
-
             var Radio = require('../modules/m-radio-switch');
             var main = document.querySelector('.main-radio-switch');
             var radio = new Radio({
@@ -146,7 +146,7 @@
             main.appendChild(product.parentDom);
         })();
         require('../function/lazyload')(); //延迟加载
-    }, { "../function/lazyload": 12, "../modules/m-product": 18, "../modules/m-radio-switch": 19, "../modules/m-star": 20, "../modules/m-table": 21, "../modules/m-validate-input": 22 }], 3: [function (require, module, exports) {
+    }, { "../function/lazyload": 12, "../modules/m-product": 19, "../modules/m-radio-switch": 20, "../modules/m-star": 21, "../modules/m-table": 22, "../modules/m-validate-input": 23 }], 3: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/10.
          */
@@ -163,6 +163,9 @@
             });
             return index;
         }
+        /*
+            arr.indexOf这个方法原生的提供的有,你为毛还要重新写一个？智障么？
+        */
         module.exports = arrToIndex;
     }, {}], 4: [function (require, module, exports) {
         /**
@@ -541,6 +544,88 @@
         }
         module.exports = mask;
     }, {}], 14: [function (require, module, exports) {
+        function extend(json) {
+            var opt = json || {};
+            var defaults = opt.defaults || {};
+            var inherits = opt.inherits || {};
+            var isDeep = true; //默认进行深拷贝
+            for (var attr in inherits) {
+                if (inherits.hasOwnProperty(attr)) {
+                    var defaultsType = Object.prototype.toString.call(defaults[attr]).slice(8, -1).toLowerCase();
+                    var inheritsType = Object.prototype.toString.call(inherits[attr]).slice(8, -1).toLowerCase();
+                    if (defaultsType == inheritsType && isDeep) {
+                        //类型相同
+                        if (defaultsType == 'object') {
+                            //当为对象
+                            extend({ defaults: defaults[attr], inherits: inherits[attr] });
+                        } else if (defaultsType == 'array') {
+                            //当为数组时
+                            inherits[attr].forEach(function (v, i) {
+                                var vDefaultsType = Object.prototype.toString.call(defaults[attr][i]).slice(8, -1).toLowerCase();
+                                var vInheritsType = Object.prototype.toString.call(inherits[attr][i]).slice(8, -1).toLowerCase();
+                                if (vInheritsType == vDefaultsType && isDeep) {
+                                    if (vDefaultsType == 'object') {
+                                        extend({ defaults: defaults[attr][i], inherits: inherits[attr][i] });
+                                    } else {
+                                        defaults[attr][i] = JSON.parse(JSON.stringify(inherits[attr][i]));
+                                    }
+                                } else {
+                                    defaults[attr][i] = JSON.parse(JSON.stringify(inherits[attr][i]));
+                                }
+                            });
+                        } else {
+                            defaults[attr] = JSON.parse(JSON.stringify(inherits[attr]));
+                        }
+                    } else {
+                        //类型不同,直接后面的覆盖前面的
+                        defaults[attr] = JSON.parse(JSON.stringify(inherits[attr]));
+                    }
+                }
+            }
+            return defaults;
+        }
+        /*
+        var obj1 = extend({
+            defaults: {
+                a: 'a',
+                b: {
+                    b1: 'b1',
+                    b2: 'b2',
+                    b3: {
+                        c1: 'c1'
+                    }
+                }
+            },
+            inherits: {
+                a: 0,
+                b: {
+                    b2: 1,
+                    b3: {
+                        c2: 2
+                    }
+                }
+            }
+        });
+        console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
+        var obj2 = extend({
+            defaults: {
+                b: [
+                    {a1: 'a1'},
+                    {a2: 'a2'}
+                ]
+            },
+            inherits: {
+                b: [
+                    'what?',
+                    {b1: 'b1'},
+                    {b2: 'b2'}
+                ]
+            }
+        });
+        console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
+        */
+        module.exports = extend;
+    }, {}], 15: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -587,7 +672,7 @@
             }
         }
         module.exports = secondsToTimeCountDown;
-    }, {}], 15: [function (require, module, exports) {
+    }, {}], 16: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -606,7 +691,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 16: [function (require, module, exports) {
+    }, {}], 17: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -625,7 +710,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 17: [function (require, module, exports) {
+    }, {}], 18: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/4.
          */
@@ -716,7 +801,7 @@
             }
         };
         module.exports = validate;
-    }, {}], 18: [function (require, module, exports) {
+    }, {}], 19: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
@@ -1222,7 +1307,7 @@
             }
         };
         module.exports = ProductList;
-    }, { "../base/base.js": 1 }], 19: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 20: [function (require, module, exports) {
         function Fn(json) {
             this.opt = json || {};
             this.opt.checkTxt = this.opt.checkTxt || { on: '已开启', off: '已关闭' };
@@ -1290,7 +1375,7 @@
             this.parentDom.parentNode.removeChild(this.parentDom);
         };
         module.exports = Fn;
-    }, {}], 20: [function (require, module, exports) {
+    }, {}], 21: [function (require, module, exports) {
         //手机极简星级评论
         function Fn(json) {
             this.opt = json || {};
@@ -1349,7 +1434,7 @@
             this.init();
         };
         module.exports = Fn;
-    }, {}], 21: [function (require, module, exports) {
+    }, {}], 22: [function (require, module, exports) {
         function Fn(json) {
             this.opt = json || {};
             this.opt.header = this.opt.header || [];
@@ -1368,6 +1453,16 @@
             if (this.opt.parentSelector) {
                 this.parentSelectorDom = document.querySelector(this.opt.parentSelector);
             }
+            if (this.parentSelectorDom) {
+                this.parentSelectorDom.appendChild(this.parentDom);
+            }
+        };
+        Fn.prototype.removeParentDom = function () {
+            this.parentDom.parentNode.removeChild(this.parentDom);
+        };
+        Fn.prototype.refreshRender = function () {
+            this.removeParentDom();
+            this.render();
             if (this.parentSelectorDom) {
                 this.parentSelectorDom.appendChild(this.parentDom);
             }
@@ -1394,7 +1489,7 @@
             return this.opt.footer;
         };
         module.exports = Fn;
-    }, {}], 22: [function (require, module, exports) {
+    }, {}], 23: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/2.
          */
@@ -1507,4 +1602,4 @@
         };
 
         module.exports = ValidateInput;
-    }, { "../function/validate": 17 }] }, {}, [2]);
+    }, { "../function/validate": 18 }] }, {}, [2]);

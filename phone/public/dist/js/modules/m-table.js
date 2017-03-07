@@ -35,6 +35,16 @@
                 this.parentSelectorDom.appendChild(this.parentDom);
             }
         };
+        Fn.prototype.removeParentDom = function () {
+            this.parentDom.parentNode.removeChild(this.parentDom);
+        };
+        Fn.prototype.refreshRender = function () {
+            this.removeParentDom();
+            this.render();
+            if (this.parentSelectorDom) {
+                this.parentSelectorDom.appendChild(this.parentDom);
+            }
+        };
         Fn.prototype.renderHeader = function () {
             var html = "";
             this.opt.header.forEach(function (v) {

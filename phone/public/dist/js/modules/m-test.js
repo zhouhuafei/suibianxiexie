@@ -34,7 +34,44 @@
             objExtend: require('../function/obj-extend')
         };
         module.exports = base;
-    }, { "../function/arr-to-index": 2, "../function/cookie": 3, "../function/fill-zero": 4, "../function/get-parent": 5, "../function/go-top": 6, "../function/html-to-dom": 7, "../function/is-browser-scroll-to-the-bottom": 8, "../function/is-disable-browser-scrolling": 9, "../function/json-to-array": 10, "../function/mask": 11, "../function/obj-extend": 12, "../function/seconds-to-time": 14, "../function/seconds-to-time-count-down": 13, "../function/str-limit": 15 }], 2: [function (require, module, exports) {
+    }, { "../function/arr-to-index": 3, "../function/cookie": 4, "../function/fill-zero": 5, "../function/get-parent": 6, "../function/go-top": 7, "../function/html-to-dom": 8, "../function/is-browser-scroll-to-the-bottom": 9, "../function/is-disable-browser-scrolling": 10, "../function/json-to-array": 11, "../function/mask": 12, "../function/obj-extend": 13, "../function/seconds-to-time": 15, "../function/seconds-to-time-count-down": 14, "../function/str-limit": 16 }], 2: [function (require, module, exports) {
+        var base = require('../base/base');
+
+        function Fn(json) {
+            this.opt = base.objExtend({
+                defaults: {
+                    parentSelectorDom: ""
+                },
+                inherits: json
+            });
+            this.init();
+        }
+
+        Fn.prototype.init = function () {
+            this.render();
+        };
+
+        Fn.prototype.render = function () {
+            this.parentDom = document.createElement('div');
+            this.parentDom.innerHTML = "";
+        };
+
+        Fn.prototype.renderParentSelectorDom = function () {};
+
+        Fn.prototype.removeParentDom = function () {
+            this.parentDom.parentNode.removeChild(this.parentDom);
+        };
+
+        Fn.prototype.refreshRender = function () {
+            this.removeParentDom();
+            this.render();
+            if (this.parentSelectorDom) {
+                this.parentSelectorDom.appendChild(this.parentDom);
+            }
+        };
+
+        module.exports = Fn;
+    }, { "../base/base": 1 }], 3: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/10.
          */
@@ -55,7 +92,7 @@
             arr.indexOf这个方法原生的提供的有,你为毛还要重新写一个？智障么？
         */
         module.exports = arrToIndex;
-    }, {}], 3: [function (require, module, exports) {
+    }, {}], 4: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -98,7 +135,7 @@
             removeCookie: removeCookie
         };
         module.exports = obj;
-    }, {}], 4: [function (require, module, exports) {
+    }, {}], 5: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -113,7 +150,7 @@
             }
         }
         module.exports = fillZero;
-    }, {}], 5: [function (require, module, exports) {
+    }, {}], 6: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -181,7 +218,7 @@
             }
         }
         module.exports = getParent;
-    }, {}], 6: [function (require, module, exports) {
+    }, {}], 7: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -218,7 +255,7 @@
             });
         }
         module.exports = goTop;
-    }, {}], 7: [function (require, module, exports) {
+    }, {}], 8: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -231,7 +268,7 @@
             return div.children[0];
         }
         module.exports = htmlToDom;
-    }, {}], 8: [function (require, module, exports) {
+    }, {}], 9: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -271,7 +308,7 @@
             });
         }
         module.exports = isBrowserScrollToTheBottom;
-    }, {}], 9: [function (require, module, exports) {
+    }, {}], 10: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -305,7 +342,7 @@
             };
         }
         module.exports = isDisableBrowserScrolling;
-    }, {}], 10: [function (require, module, exports) {
+    }, {}], 11: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -328,7 +365,7 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 11: [function (require, module, exports) {
+    }, {}], 12: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -360,7 +397,7 @@
             };
         }
         module.exports = mask;
-    }, {}], 12: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
         function extend(json) {
             var opt = json || {};
             var defaults = opt.defaults || {};
@@ -442,7 +479,7 @@
         console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
         */
         module.exports = extend;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -489,7 +526,7 @@
             }
         }
         module.exports = secondsToTimeCountDown;
-    }, {}], 14: [function (require, module, exports) {
+    }, {}], 15: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -508,7 +545,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 15: [function (require, module, exports) {
+    }, {}], 16: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -527,4 +564,4 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}] }, {}, [1]);
+    }, {}] }, {}, [2]);
