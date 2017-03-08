@@ -16,6 +16,6 @@ var base = {
     secondsToTime: require('../function/seconds-to-time'),
     secondsToTimeCountDown: require('../function/seconds-to-time-count-down'),
     strLimit: require('../function/str-limit'),
-    objExtend: require('../function/obj-extend')
+    extend: require('../function/extend')
 };
 module.exports = base;

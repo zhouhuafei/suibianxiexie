@@ -1,11 +1,8 @@
-html {
-  height: 100%; }
-
 body {
-  min-height: 100%;
   color: #000000;
   font-family: "Microsoft Yahei", "sans-serif";
-  font-size: 0.42667rem; }
+  font-size: 0.42667rem;
+  line-height: 1; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
   margin: 0;

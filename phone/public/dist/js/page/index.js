@@ -31,13 +31,28 @@
             secondsToTime: require('../function/seconds-to-time'),
             secondsToTimeCountDown: require('../function/seconds-to-time-count-down'),
             strLimit: require('../function/str-limit'),
-            objExtend: require('../function/obj-extend')
+            extend: require('../function/extend')
         };
         module.exports = base;
-    }, { "../function/arr-to-index": 3, "../function/cookie": 4, "../function/fill-zero": 5, "../function/get-parent": 6, "../function/go-top": 7, "../function/html-to-dom": 8, "../function/is-browser-scroll-to-the-bottom": 9, "../function/is-disable-browser-scrolling": 10, "../function/json-to-array": 11, "../function/mask": 13, "../function/obj-extend": 14, "../function/seconds-to-time": 16, "../function/seconds-to-time-count-down": 15, "../function/str-limit": 17 }], 2: [function (require, module, exports) {
+    }, { "../function/arr-to-index": 3, "../function/cookie": 4, "../function/extend": 5, "../function/fill-zero": 6, "../function/get-parent": 7, "../function/go-top": 8, "../function/html-to-dom": 9, "../function/is-browser-scroll-to-the-bottom": 10, "../function/is-disable-browser-scrolling": 11, "../function/json-to-array": 12, "../function/mask": 14, "../function/seconds-to-time": 16, "../function/seconds-to-time-count-down": 15, "../function/str-limit": 17 }], 2: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/4.
          */
+        //测试
+        (function () {
+            var Test = require('../modules/m-test');
+            var test = new Test({
+                parent: ".main-test",
+                data: {
+                    config: {},
+                    ajax: {
+                        info: "\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770"
+                    }
+                }
+            });
+            //test.opt.data.ajax.info=`侯丽杰爱周华飞`;
+            //test.init();
+        })();
         //单选开关
         (function () {
             var Radio = require('../modules/m-radio-switch');
@@ -146,7 +161,7 @@
             main.appendChild(product.parentDom);
         })();
         require('../function/lazyload')(); //延迟加载
-    }, { "../function/lazyload": 12, "../modules/m-product": 19, "../modules/m-radio-switch": 20, "../modules/m-star": 21, "../modules/m-table": 22, "../modules/m-validate-input": 23 }], 3: [function (require, module, exports) {
+    }, { "../function/lazyload": 13, "../modules/m-product": 19, "../modules/m-radio-switch": 20, "../modules/m-star": 21, "../modules/m-table": 22, "../modules/m-test": 23, "../modules/m-validate-input": 24 }], 3: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/10.
          */
@@ -211,6 +226,88 @@
         };
         module.exports = obj;
     }, {}], 5: [function (require, module, exports) {
+        function extend(json) {
+            var opt = json || {};
+            var defaults = opt.defaults || {};
+            var inherits = opt.inherits || {};
+            var isDeep = true; //默认进行深拷贝
+            for (var attr in inherits) {
+                if (inherits.hasOwnProperty(attr)) {
+                    var defaultsType = Object.prototype.toString.call(defaults[attr]).slice(8, -1).toLowerCase();
+                    var inheritsType = Object.prototype.toString.call(inherits[attr]).slice(8, -1).toLowerCase();
+                    if (defaultsType == inheritsType && isDeep) {
+                        //类型相同
+                        if (defaultsType == 'object') {
+                            //当为对象
+                            extend({ defaults: defaults[attr], inherits: inherits[attr] });
+                        } else if (defaultsType == 'array') {
+                            //当为数组时
+                            inherits[attr].forEach(function (v, i) {
+                                var vDefaultsType = Object.prototype.toString.call(defaults[attr][i]).slice(8, -1).toLowerCase();
+                                var vInheritsType = Object.prototype.toString.call(inherits[attr][i]).slice(8, -1).toLowerCase();
+                                if (vInheritsType == vDefaultsType && isDeep) {
+                                    if (vDefaultsType == 'object') {
+                                        extend({ defaults: defaults[attr][i], inherits: inherits[attr][i] });
+                                    } else {
+                                        defaults[attr][i] = inherits[attr][i];
+                                    }
+                                } else {
+                                    defaults[attr][i] = inherits[attr][i];
+                                }
+                            });
+                        } else {
+                            defaults[attr] = inherits[attr];
+                        }
+                    } else {
+                        //类型不同,直接后面的覆盖前面的
+                        defaults[attr] = inherits[attr];
+                    }
+                }
+            }
+            return defaults;
+        }
+        /*
+        var obj1 = extend({
+            defaults: {
+                a: 'a',
+                b: {
+                    b1: 'b1',
+                    b2: 'b2',
+                    b3: {
+                        c1: 'c1'
+                    }
+                }
+            },
+            inherits: {
+                a: 0,
+                b: {
+                    b2: 1,
+                    b3: {
+                        c2: 2
+                    }
+                }
+            }
+        });
+        console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
+        var obj2 = extend({
+            defaults: {
+                b: [
+                    {a1: 'a1'},
+                    {a2: 'a2'}
+                ]
+            },
+            inherits: {
+                b: [
+                    'what?',
+                    {b1: 'b1'},
+                    {b2: 'b2'}
+                ]
+            }
+        });
+        console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
+        */
+        module.exports = extend;
+    }, {}], 6: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -225,7 +322,7 @@
             }
         }
         module.exports = fillZero;
-    }, {}], 6: [function (require, module, exports) {
+    }, {}], 7: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -293,7 +390,7 @@
             }
         }
         module.exports = getParent;
-    }, {}], 7: [function (require, module, exports) {
+    }, {}], 8: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -330,7 +427,7 @@
             });
         }
         module.exports = goTop;
-    }, {}], 8: [function (require, module, exports) {
+    }, {}], 9: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -343,7 +440,7 @@
             return div.children[0];
         }
         module.exports = htmlToDom;
-    }, {}], 9: [function (require, module, exports) {
+    }, {}], 10: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -383,7 +480,7 @@
             });
         }
         module.exports = isBrowserScrollToTheBottom;
-    }, {}], 10: [function (require, module, exports) {
+    }, {}], 11: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -417,7 +514,7 @@
             };
         }
         module.exports = isDisableBrowserScrolling;
-    }, {}], 11: [function (require, module, exports) {
+    }, {}], 12: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -440,7 +537,7 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 12: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
@@ -511,7 +608,7 @@
             });
         }
         module.exports = lazyload;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -543,88 +640,6 @@
             };
         }
         module.exports = mask;
-    }, {}], 14: [function (require, module, exports) {
-        function extend(json) {
-            var opt = json || {};
-            var defaults = opt.defaults || {};
-            var inherits = opt.inherits || {};
-            var isDeep = true; //默认进行深拷贝
-            for (var attr in inherits) {
-                if (inherits.hasOwnProperty(attr)) {
-                    var defaultsType = Object.prototype.toString.call(defaults[attr]).slice(8, -1).toLowerCase();
-                    var inheritsType = Object.prototype.toString.call(inherits[attr]).slice(8, -1).toLowerCase();
-                    if (defaultsType == inheritsType && isDeep) {
-                        //类型相同
-                        if (defaultsType == 'object') {
-                            //当为对象
-                            extend({ defaults: defaults[attr], inherits: inherits[attr] });
-                        } else if (defaultsType == 'array') {
-                            //当为数组时
-                            inherits[attr].forEach(function (v, i) {
-                                var vDefaultsType = Object.prototype.toString.call(defaults[attr][i]).slice(8, -1).toLowerCase();
-                                var vInheritsType = Object.prototype.toString.call(inherits[attr][i]).slice(8, -1).toLowerCase();
-                                if (vInheritsType == vDefaultsType && isDeep) {
-                                    if (vDefaultsType == 'object') {
-                                        extend({ defaults: defaults[attr][i], inherits: inherits[attr][i] });
-                                    } else {
-                                        defaults[attr][i] = JSON.parse(JSON.stringify(inherits[attr][i]));
-                                    }
-                                } else {
-                                    defaults[attr][i] = JSON.parse(JSON.stringify(inherits[attr][i]));
-                                }
-                            });
-                        } else {
-                            defaults[attr] = JSON.parse(JSON.stringify(inherits[attr]));
-                        }
-                    } else {
-                        //类型不同,直接后面的覆盖前面的
-                        defaults[attr] = JSON.parse(JSON.stringify(inherits[attr]));
-                    }
-                }
-            }
-            return defaults;
-        }
-        /*
-        var obj1 = extend({
-            defaults: {
-                a: 'a',
-                b: {
-                    b1: 'b1',
-                    b2: 'b2',
-                    b3: {
-                        c1: 'c1'
-                    }
-                }
-            },
-            inherits: {
-                a: 0,
-                b: {
-                    b2: 1,
-                    b3: {
-                        c2: 2
-                    }
-                }
-            }
-        });
-        console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
-        var obj2 = extend({
-            defaults: {
-                b: [
-                    {a1: 'a1'},
-                    {a2: 'a2'}
-                ]
-            },
-            inherits: {
-                b: [
-                    'what?',
-                    {b1: 'b1'},
-                    {b2: 'b2'}
-                ]
-            }
-        });
-        console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
-        */
-        module.exports = extend;
     }, {}], 15: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
@@ -1490,6 +1505,99 @@
         };
         module.exports = Fn;
     }, {}], 23: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base');
+
+        //构造函数
+        function Fn(json) {
+            this.opt = base.extend({
+                defaults: {
+                    parent: "",
+                    data: {
+                        config: {
+                            isShow: true
+                        },
+                        ajax: {
+                            info: "\u5468\u534E\u98DE\u6D4B\u8BD5"
+                        }
+                    }
+                },
+                inherits: json
+            });
+            this.init();
+        }
+
+        //初始化
+        Fn.prototype.init = function () {
+            this.render();
+            this.power();
+        };
+
+        //渲染
+        Fn.prototype.render = function () {
+            this.renderModuleDom();
+            this.renderParentDom();
+        };
+
+        //内部的模块
+        Fn.prototype.renderModuleDom = function () {
+            this.moduleDom = document.createElement('div');
+            this.moduleDom.className = "";
+            this.moduleDom.innerHTML = "\n        <div>\n            " + this.opt.data.ajax.info + "\n        </div>\n    ";
+        };
+
+        //外部的容器
+        Fn.prototype.renderParentDom = function () {
+            if (this.opt.parent) {
+                //如果是字符串
+                if (Object.prototype.toString.call(this.opt.parent).slice(8, -1).toLowerCase() == 'string') {
+                    this.parentDom = document.querySelector(this.opt.parent);
+                }
+                //如果是dom节点
+                if (this.opt.parent.nodeType && this.opt.parent.nodeType == 1) {
+                    this.parentDom = this.opt.parent;
+                }
+            }
+            if (this.parentDom) {
+                this.parentDom.innerHTML = "";
+                this.parentDom.appendChild(this.moduleDom);
+            }
+        };
+
+        //移除内部的模块
+        Fn.prototype.removeModuleDom = function () {
+            if (this.parentDom) {
+                this.parentDom.innerHTML = "";
+            }
+        };
+
+        //移除外部的容器
+        Fn.prototype.removeParentDom = function () {
+            if (this.parentDom) {
+                this.parentDom.parentNode.removeChild(this.parentDom);
+            }
+        };
+
+        //功能
+        Fn.prototype.power = function () {
+            //如果有定时器,那么初始化的时候要先清除定时器,多个定时器可以存储成一个对象
+            this.timer = {
+                one: null,
+                two: null
+            };
+            // 重新初始化待续...
+            // 1.事件会不会叠加(应该不对),
+            // 2.定时器能清除掉么(应该可以清除),
+            // 3.选人父级的那段判断是不是dom的代码是否可以封装成一个函数
+            // 4.mask函数重新制作,变成模块
+            // 5.function文件夹里的arrFindIndex删除
+            // 6.function文件夹里能制作成模块的东西,进行模块制作,例如懒加载
+            // 7.有些函数名字太长,需要进行重新命名,有些没必要的模块文件进行删除或者重写
+            // 8.清零样式修改scss修改
+        };
+
+        module.exports = Fn;
+    }, { "../base/base": 1 }], 24: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/2.
          */

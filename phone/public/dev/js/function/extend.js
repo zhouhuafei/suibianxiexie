@@ -18,17 +18,17 @@ function extend(json) {
                             if (vDefaultsType == 'object') {
                                 extend({defaults: defaults[attr][i], inherits: inherits[attr][i]});
                             } else {
-                                defaults[attr][i] = JSON.parse(JSON.stringify(inherits[attr][i]));
+                                defaults[attr][i] = inherits[attr][i];
                             }
                         } else {
-                            defaults[attr][i] = JSON.parse(JSON.stringify(inherits[attr][i]));
+                            defaults[attr][i] = inherits[attr][i];
                         }
                     });
                 } else {
-                    defaults[attr] = JSON.parse(JSON.stringify(inherits[attr]));
+                    defaults[attr] = inherits[attr];
                 }
             } else {//类型不同,直接后面的覆盖前面的
-                defaults[attr] = JSON.parse(JSON.stringify(inherits[attr]));
+                defaults[attr] = inherits[attr];
             }
         }
     }

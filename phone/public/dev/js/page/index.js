@@ -1,6 +1,23 @@
 /**
  * Created by zhouhuafei on 16/12/4.
  */
+//测试
+(function(){
+    var Test=require('../modules/m-test');
+    var test=new Test({
+        parent:`.main-test`,
+        data:{
+            config:{
+
+            },
+            ajax:{
+                info:`周华飞爱侯丽杰`
+            }
+        }
+    });
+    //test.opt.data.ajax.info=`侯丽杰爱周华飞`;
+    //test.init();
+})();
 //单选开关
 (function(){
     const Radio = require('../modules/m-radio-switch');
