@@ -68,6 +68,7 @@ Fn.prototype.removeModuleDom = function () {
     if(this.parentDom){
         this.parentDom.innerHTML=``;
     }
+    //继续清除一些其他东西,例如定时器
 };
 
 //移除外部的容器
