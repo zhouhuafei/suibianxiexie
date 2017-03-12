@@ -92,6 +92,7 @@ img {
       width: inherit;
       height: inherit;
       line-height: inherit;
+      background: inherit;
       box-sizing: border-box;
       -webkit-appearance: none;
       position: relative;
@@ -101,6 +102,7 @@ img {
       padding-right: 1.33333rem;
       border: 0.02667rem solid #e6e7ed; }
     .g-select .g-select-label .g-select-icon {
+      font-size: inherit;
       color: #bfbfbf;
       width: 1.06667rem;
       text-align: center;
@@ -305,6 +307,7 @@ img {
       width: inherit;
       height: inherit;
       line-height: inherit;
+      background: inherit;
       box-sizing: border-box;
       -webkit-appearance: none;
       position: relative;
@@ -314,6 +317,7 @@ img {
       padding-right: 1.33333rem;
       border: 0.02667rem solid #e6e7ed; }
     .g-select .g-select-label .g-select-icon {
+      font-size: inherit;
       color: #bfbfbf;
       width: 1.06667rem;
       text-align: center;
@@ -555,6 +559,7 @@ img {
       width: inherit;
       height: inherit;
       line-height: inherit;
+      background: inherit;
       box-sizing: border-box;
       -webkit-appearance: none;
       position: relative;
@@ -564,6 +569,7 @@ img {
       padding-right: 1.33333rem;
       border: 0.02667rem solid #e6e7ed; }
     .g-select .g-select-label .g-select-icon {
+      font-size: inherit;
       color: #bfbfbf;
       width: 1.06667rem;
       text-align: center;
@@ -801,6 +807,7 @@ img {
       width: inherit;
       height: inherit;
       line-height: inherit;
+      background: inherit;
       box-sizing: border-box;
       -webkit-appearance: none;
       position: relative;
@@ -810,6 +817,7 @@ img {
       padding-right: 1.33333rem;
       border: 0.02667rem solid #e6e7ed; }
     .g-select .g-select-label .g-select-icon {
+      font-size: inherit;
       color: #bfbfbf;
       width: 1.06667rem;
       text-align: center;
@@ -950,17 +958,18 @@ img {
   display: inline-block; }
 
 .main-input input {
-  border: 1px solid #e6e7ed;
-  height: 30px;
-  line-height: 30px;
+  border: 0.02667rem solid #e6e7ed;
+  height: 0.8rem;
+  line-height: 0.8rem;
   outline: none;
-  padding: 0 5px;
-  width: 200px; }
+  padding: 0 0.13333rem;
+  width: 5.33333rem;
+  font-size: inherit; }
 
 .main-input .input-txt {
-  width: 50px;
+  width: 1.33333rem;
   text-align: right;
-  margin-right: 10px; }
+  margin-right: 0.26667rem; }
 
 body {
   color: #f5b508;
@@ -1056,6 +1065,7 @@ img {
       width: inherit;
       height: inherit;
       line-height: inherit;
+      background: inherit;
       box-sizing: border-box;
       -webkit-appearance: none;
       position: relative;
@@ -1065,6 +1075,7 @@ img {
       padding-right: 1.33333rem;
       border: 0.02667rem solid #e6e7ed; }
     .g-select .g-select-label .g-select-icon {
+      font-size: inherit;
       color: #bfbfbf;
       width: 1.06667rem;
       text-align: center;
@@ -1281,6 +1292,7 @@ img {
       width: inherit;
       height: inherit;
       line-height: inherit;
+      background: inherit;
       box-sizing: border-box;
       -webkit-appearance: none;
       position: relative;
@@ -1290,6 +1302,7 @@ img {
       padding-right: 1.33333rem;
       border: 0.02667rem solid #e6e7ed; }
     .g-select .g-select-label .g-select-icon {
+      font-size: inherit;
       color: #bfbfbf;
       width: 1.06667rem;
       text-align: center;

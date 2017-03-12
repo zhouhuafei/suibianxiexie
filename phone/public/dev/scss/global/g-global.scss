@@ -74,6 +74,7 @@
             width: inherit;
             height: inherit;
             line-height: inherit;
+            background: inherit;
             box-sizing: border-box;
             -webkit-appearance: none;
             position: relative;
@@ -84,6 +85,7 @@
             border: px2rem(1) solid $color-border-default;
         }
         .g-select-icon {
+            font-size: inherit;
             color: $color-font-dark;
             width: px2rem($height);
             text-align: center;

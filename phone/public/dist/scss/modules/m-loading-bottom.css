@@ -93,6 +93,7 @@ img {
       width: inherit;
       height: inherit;
       line-height: inherit;
+      background: inherit;
       box-sizing: border-box;
       -webkit-appearance: none;
       position: relative;
@@ -102,6 +103,7 @@ img {
       padding-right: 1.33333rem;
       border: 0.02667rem solid #e6e7ed; }
     .g-select .g-select-label .g-select-icon {
+      font-size: inherit;
       color: #bfbfbf;
       width: 1.06667rem;
       text-align: center;
