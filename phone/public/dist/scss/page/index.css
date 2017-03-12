@@ -238,9 +238,6 @@ img {
       align-items: center;
   word-break: break-all; }
 
-.page-index > div {
-  padding-top: 0.26667rem; }
-
 body {
   color: #f5b508;
   font-family: "Microsoft Yahei", "sans-serif";
@@ -1796,8 +1793,10 @@ img {
   height: 0;
   overflow: hidden; }
 
-.g-class {
-  padding-left: 0.26667rem; }
+.page-module-show > div {
+  padding-top: 0.26667rem; }
 
-.g-class > div {
-  padding-bottom: 0.26667rem; }
+.page-global-show {
+  padding-left: 0.26667rem; }
+  .page-global-show > div {
+    padding-bottom: 0.26667rem; }
