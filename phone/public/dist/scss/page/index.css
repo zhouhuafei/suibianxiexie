@@ -1,8 +1,7 @@
 body {
   color: #f5b508;
   font-family: "Microsoft Yahei", "sans-serif";
-  font-size: 0.42667rem;
-  line-height: 1; }
+  font-size: 0.42667rem; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
   margin: 0;
@@ -16,19 +15,6 @@ a {
   outline: none;
   color: inherit;
   -webkit-tap-highlight-color: transparent; }
-
-select, input, button, textarea {
-  color: inherit;
-  background: none;
-  outline: none;
-  border: none;
-  font-size: inherit; }
-
-textarea {
-  font-family: inherit;
-  line-height: inherit;
-  vertical-align: top;
-  overflow: hidden; }
 
 img {
   vertical-align: middle; }
@@ -36,8 +22,7 @@ img {
 body {
   color: #f5b508;
   font-family: "Microsoft Yahei", "sans-serif";
-  font-size: 0.42667rem;
-  line-height: 1; }
+  font-size: 0.42667rem; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
   margin: 0;
@@ -51,19 +36,6 @@ a {
   outline: none;
   color: inherit;
   -webkit-tap-highlight-color: transparent; }
-
-select, input, button, textarea {
-  color: inherit;
-  background: none;
-  outline: none;
-  border: none;
-  font-size: inherit; }
-
-textarea {
-  font-family: inherit;
-  line-height: inherit;
-  vertical-align: top;
-  overflow: hidden; }
 
 img {
   vertical-align: middle; }
@@ -155,6 +127,7 @@ img {
     font-size: inherit;
     width: inherit;
     height: inherit;
+    font-family: inherit;
     line-height: inherit;
     box-sizing: border-box;
     text-align: justify;
@@ -241,8 +214,7 @@ img {
 body {
   color: #f5b508;
   font-family: "Microsoft Yahei", "sans-serif";
-  font-size: 0.42667rem;
-  line-height: 1; }
+  font-size: 0.42667rem; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
   margin: 0;
@@ -256,19 +228,6 @@ a {
   outline: none;
   color: inherit;
   -webkit-tap-highlight-color: transparent; }
-
-select, input, button, textarea {
-  color: inherit;
-  background: none;
-  outline: none;
-  border: none;
-  font-size: inherit; }
-
-textarea {
-  font-family: inherit;
-  line-height: inherit;
-  vertical-align: top;
-  overflow: hidden; }
 
 img {
   vertical-align: middle; }
@@ -276,8 +235,7 @@ img {
 body {
   color: #f5b508;
   font-family: "Microsoft Yahei", "sans-serif";
-  font-size: 0.42667rem;
-  line-height: 1; }
+  font-size: 0.42667rem; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
   margin: 0;
@@ -291,19 +249,6 @@ a {
   outline: none;
   color: inherit;
   -webkit-tap-highlight-color: transparent; }
-
-select, input, button, textarea {
-  color: inherit;
-  background: none;
-  outline: none;
-  border: none;
-  font-size: inherit; }
-
-textarea {
-  font-family: inherit;
-  line-height: inherit;
-  vertical-align: top;
-  overflow: hidden; }
 
 img {
   vertical-align: middle; }
@@ -395,6 +340,7 @@ img {
     font-size: inherit;
     width: inherit;
     height: inherit;
+    font-family: inherit;
     line-height: inherit;
     box-sizing: border-box;
     text-align: justify;
@@ -518,8 +464,7 @@ img {
 body {
   color: #f5b508;
   font-family: "Microsoft Yahei", "sans-serif";
-  font-size: 0.42667rem;
-  line-height: 1; }
+  font-size: 0.42667rem; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
   margin: 0;
@@ -533,19 +478,6 @@ a {
   outline: none;
   color: inherit;
   -webkit-tap-highlight-color: transparent; }
-
-select, input, button, textarea {
-  color: inherit;
-  background: none;
-  outline: none;
-  border: none;
-  font-size: inherit; }
-
-textarea {
-  font-family: inherit;
-  line-height: inherit;
-  vertical-align: top;
-  overflow: hidden; }
 
 img {
   vertical-align: middle; }
@@ -553,8 +485,7 @@ img {
 body {
   color: #f5b508;
   font-family: "Microsoft Yahei", "sans-serif";
-  font-size: 0.42667rem;
-  line-height: 1; }
+  font-size: 0.42667rem; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
   margin: 0;
@@ -568,19 +499,6 @@ a {
   outline: none;
   color: inherit;
   -webkit-tap-highlight-color: transparent; }
-
-select, input, button, textarea {
-  color: inherit;
-  background: none;
-  outline: none;
-  border: none;
-  font-size: inherit; }
-
-textarea {
-  font-family: inherit;
-  line-height: inherit;
-  vertical-align: top;
-  overflow: hidden; }
 
 img {
   vertical-align: middle; }
@@ -672,6 +590,7 @@ img {
     font-size: inherit;
     width: inherit;
     height: inherit;
+    font-family: inherit;
     line-height: inherit;
     box-sizing: border-box;
     text-align: justify;
@@ -791,8 +710,7 @@ img {
 body {
   color: #f5b508;
   font-family: "Microsoft Yahei", "sans-serif";
-  font-size: 0.42667rem;
-  line-height: 1; }
+  font-size: 0.42667rem; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
   margin: 0;
@@ -806,19 +724,6 @@ a {
   outline: none;
   color: inherit;
   -webkit-tap-highlight-color: transparent; }
-
-select, input, button, textarea {
-  color: inherit;
-  background: none;
-  outline: none;
-  border: none;
-  font-size: inherit; }
-
-textarea {
-  font-family: inherit;
-  line-height: inherit;
-  vertical-align: top;
-  overflow: hidden; }
 
 img {
   vertical-align: middle; }
@@ -826,8 +731,7 @@ img {
 body {
   color: #f5b508;
   font-family: "Microsoft Yahei", "sans-serif";
-  font-size: 0.42667rem;
-  line-height: 1; }
+  font-size: 0.42667rem; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
   margin: 0;
@@ -841,19 +745,6 @@ a {
   outline: none;
   color: inherit;
   -webkit-tap-highlight-color: transparent; }
-
-select, input, button, textarea {
-  color: inherit;
-  background: none;
-  outline: none;
-  border: none;
-  font-size: inherit; }
-
-textarea {
-  font-family: inherit;
-  line-height: inherit;
-  vertical-align: top;
-  overflow: hidden; }
 
 img {
   vertical-align: middle; }
@@ -945,6 +836,7 @@ img {
     font-size: inherit;
     width: inherit;
     height: inherit;
+    font-family: inherit;
     line-height: inherit;
     box-sizing: border-box;
     text-align: justify;
@@ -1073,8 +965,7 @@ img {
 body {
   color: #f5b508;
   font-family: "Microsoft Yahei", "sans-serif";
-  font-size: 0.42667rem;
-  line-height: 1; }
+  font-size: 0.42667rem; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
   margin: 0;
@@ -1088,19 +979,6 @@ a {
   outline: none;
   color: inherit;
   -webkit-tap-highlight-color: transparent; }
-
-select, input, button, textarea {
-  color: inherit;
-  background: none;
-  outline: none;
-  border: none;
-  font-size: inherit; }
-
-textarea {
-  font-family: inherit;
-  line-height: inherit;
-  vertical-align: top;
-  overflow: hidden; }
 
 img {
   vertical-align: middle; }
@@ -1108,8 +986,7 @@ img {
 body {
   color: #f5b508;
   font-family: "Microsoft Yahei", "sans-serif";
-  font-size: 0.42667rem;
-  line-height: 1; }
+  font-size: 0.42667rem; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
   margin: 0;
@@ -1123,19 +1000,6 @@ a {
   outline: none;
   color: inherit;
   -webkit-tap-highlight-color: transparent; }
-
-select, input, button, textarea {
-  color: inherit;
-  background: none;
-  outline: none;
-  border: none;
-  font-size: inherit; }
-
-textarea {
-  font-family: inherit;
-  line-height: inherit;
-  vertical-align: top;
-  overflow: hidden; }
 
 img {
   vertical-align: middle; }
@@ -1227,6 +1091,7 @@ img {
     font-size: inherit;
     width: inherit;
     height: inherit;
+    font-family: inherit;
     line-height: inherit;
     box-sizing: border-box;
     text-align: justify;
@@ -1325,8 +1190,7 @@ img {
 body {
   color: #f5b508;
   font-family: "Microsoft Yahei", "sans-serif";
-  font-size: 0.42667rem;
-  line-height: 1; }
+  font-size: 0.42667rem; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
   margin: 0;
@@ -1340,19 +1204,6 @@ a {
   outline: none;
   color: inherit;
   -webkit-tap-highlight-color: transparent; }
-
-select, input, button, textarea {
-  color: inherit;
-  background: none;
-  outline: none;
-  border: none;
-  font-size: inherit; }
-
-textarea {
-  font-family: inherit;
-  line-height: inherit;
-  vertical-align: top;
-  overflow: hidden; }
 
 img {
   vertical-align: middle; }
@@ -1360,8 +1211,7 @@ img {
 body {
   color: #f5b508;
   font-family: "Microsoft Yahei", "sans-serif";
-  font-size: 0.42667rem;
-  line-height: 1; }
+  font-size: 0.42667rem; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
   margin: 0;
@@ -1375,19 +1225,6 @@ a {
   outline: none;
   color: inherit;
   -webkit-tap-highlight-color: transparent; }
-
-select, input, button, textarea {
-  color: inherit;
-  background: none;
-  outline: none;
-  border: none;
-  font-size: inherit; }
-
-textarea {
-  font-family: inherit;
-  line-height: inherit;
-  vertical-align: top;
-  overflow: hidden; }
 
 img {
   vertical-align: middle; }
@@ -1479,6 +1316,7 @@ img {
     font-size: inherit;
     width: inherit;
     height: inherit;
+    font-family: inherit;
     line-height: inherit;
     box-sizing: border-box;
     text-align: justify;
