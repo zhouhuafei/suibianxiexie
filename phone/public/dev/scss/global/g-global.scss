@@ -4,48 +4,37 @@
 
 //全局的样式
 
-.g-radio {
-    -webkit-appearance: none;
-    width: px2rem(20);
-    height: px2rem(20);
-    border: 1px solid #ddd;
-    border-radius: px2rem(1000);
-    box-sizing: border-box;
-    position: relative;
-    &:checked {
-        border: none;
-        background: #fc1521;
-        &:after {
-            content: '';
-            position: absolute;
-            left: px2rem(6);
-            top: px2rem(1);
-            width: px2rem(6);
-            height: px2rem(12);
-            border-right: 2px solid #fff;
-            border-bottom: 2px solid #fff;
-            transform: rotate(45deg);
-        }
-    }
-}
-
+//按钮
 .g-button {
 
 }
 
+//输入框
 .g-input {
-    outline: none;
-    color: inherit;
-    font-size: inherit;
-    background: #fff;
-    border: 1px solid $color-border-default;
     width: px2rem(300);
     height: px2rem(40);
     line-height: px2rem(40);
-    padding: 0 px2rem(10);
-    box-sizing: border-box;
+    background: #fff;
+    .g-input-label {
+        display: block;
+        width: inherit;
+        height: inherit;
+        line-height: inherit;
+    }
+    .g-input-input {
+        outline: none;
+        color: inherit;
+        font-size: inherit;
+        width: inherit;
+        height: inherit;
+        line-height: inherit;
+        box-sizing: border-box;
+        padding: 0 px2rem(10);
+        border: px2rem(1) solid $color-border-default;
+    }
 }
 
+//下拉框
 .g-select {
     $height: 40;
     $width: 300;
@@ -59,28 +48,29 @@
     height: px2rem($height);
     line-height: px2rem($height);
     background: #fff;
-    label{
+    .g-select-label {
         display: block;
         width: inherit;
         height: inherit;
         line-height: inherit;
-        select{
-            position: relative;
-            z-index: 2;
+        .g-select-select {
             outline: none;
             color: inherit;
             font-size: inherit;
             width: inherit;
             height: inherit;
             line-height: inherit;
-            border: px2rem(1) solid $color-border-default;
             box-sizing: border-box;
             -webkit-appearance: none;
+            position: relative;
+            z-index: 2;
             border-radius: 0;
             padding-left: px2rem($select-padding-left);
             padding-right: px2rem($select-padding-right);
+            border: px2rem(1) solid $color-border-default;
         }
-        .g-select-icon{
+        .g-select-icon {
+            color: $color-font-dark;
             width: px2rem($height);
             text-align: center;
             height: inherit;
@@ -93,19 +83,110 @@
     }
 }
 
+//文本框
 .g-textarea {
-    outline: none;
-    color: inherit;
-    font-size: inherit;
-    background: #fff;
-    border: 1px solid $color-border-default;
     width: px2rem(300);
     height: px2rem(200);
     line-height: px2rem(30);
-    padding: px2rem(10);
-    text-align: justify;
-    box-sizing: border-box;
-    resize: none;
+    background: #fff;
+    .g-textarea-label {
+        display: block;
+        width: inherit;
+        height: inherit;
+        line-height: inherit;
+    }
+    .g-textarea-textarea {
+        outline: none;
+        color: inherit;
+        font-size: inherit;
+        width: inherit;
+        height: inherit;
+        line-height: inherit;
+        box-sizing: border-box;
+        text-align: justify;
+        resize: none;
+        padding: px2rem(10);
+        border: px2rem(1) solid $color-border-default;
+    }
+}
+
+//单选框
+.g-radio {
+    width: px2rem(20);
+    height: px2rem(20);
+    .g-radio-label {
+        display: block;
+        width: inherit;
+        height: inherit;
+        line-height: inherit;
+    }
+    .g-radio-radio {
+        outline: none;
+        color: inherit;
+        font-size: inherit;
+        width: inherit;
+        height: inherit;
+        line-height: inherit;
+        box-sizing: border-box;
+        -webkit-appearance: none;
+        border: px2rem(1) solid $color-border-default;
+        border-radius: px2rem(100);
+        position: relative;
+        &:checked {
+            border-color: $color-border-highlight;
+            &:after {
+                content: '';
+                width: 38%;
+                height: 38%;
+                background: $color-background-highlight;
+                display: block;
+                border-radius: inherit;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+}
+
+//多选框
+.g-checkbox {
+    width: px2rem(20);
+    height: px2rem(20);
+    .g-checkbox-label {
+        display: block;
+        width: inherit;
+        height: inherit;
+        line-height: inherit;
+    }
+    .g-checkbox-checkbox {
+        outline: none;
+        color: inherit;
+        font-size: inherit;
+        width: inherit;
+        height: inherit;
+        line-height: inherit;
+        box-sizing: border-box;
+        -webkit-appearance: none;
+        border: px2rem(1) solid $color-border-default;
+        border-radius: px2rem(4);
+        position: relative;
+        &:checked {
+            border-color: $color-border-highlight;
+            &:after {
+                content: '';
+                position: absolute;
+                left: px2rem(5);
+                top: px2rem(0);
+                width: px2rem(6);
+                height: px2rem(12);
+                border-right: 2px solid $color-border-highlight;
+                border-bottom: 2px solid $color-border-highlight;
+                transform: rotate(45deg);
+            }
+        }
+    }
 }
 
 .g-center {

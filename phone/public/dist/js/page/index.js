@@ -1558,8 +1558,10 @@
                     this.parentDom = this.opt.parent;
                 }
             }
+            //先清空
+            this.removeModuleDom();
+            //再填充
             if (this.parentDom) {
-                this.parentDom.innerHTML = "";
                 this.parentDom.appendChild(this.moduleDom);
             }
         };
@@ -1569,6 +1571,7 @@
             if (this.parentDom) {
                 this.parentDom.innerHTML = "";
             }
+            //继续清除一些其他东西,例如定时器
         };
 
         //移除外部的容器
@@ -1587,7 +1590,7 @@
             };
             // 重新初始化待续...
             // 1.事件会不会叠加(应该不对),
-            // 2.定时器能清除掉么(应该可以清除),
+            // 2.定时器能清除掉么(应该可以清除,在移除内部的模块方法里进行清除),
             // 3.选人父级的那段判断是不是dom的代码是否可以封装成一个函数
             // 4.mask函数重新制作,变成模块
             // 5.function文件夹里的arrFindIndex删除
