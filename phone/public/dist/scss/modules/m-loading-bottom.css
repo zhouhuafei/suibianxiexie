@@ -69,6 +69,19 @@ textarea {
 img {
   vertical-align: middle; }
 
+.g-button {
+  width: 5.33333rem;
+  text-align: center;
+  height: 1.06667rem;
+  line-height: 1.06667rem;
+  border-radius: 0.10667rem; }
+  .g-button.g-button-default {
+    background: #bbbbbb;
+    color: #fff; }
+  .g-button.g-button-highlight {
+    background: #0089ff;
+    color: #fff; }
+
 .g-input {
   width: 8rem;
   height: 1.06667rem;

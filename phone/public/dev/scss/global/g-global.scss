@@ -6,7 +6,21 @@
 
 //按钮
 .g-button {
-
+    width: px2rem(200);
+    text-align: center;
+    height: px2rem(40);
+    line-height: px2rem(40);
+    border-radius: px2rem(4);
+    //默认
+    &.g-button-default{
+        background: $color-background-dark;
+        color: #fff;
+    }
+    //高亮
+    &.g-button-highlight{
+        background: $color-background-highlight;
+        color: #fff;
+    }
 }
 
 //输入框
@@ -189,6 +203,7 @@
     }
 }
 
+//让子集水平垂直居中
 .g-center {
     display: flex;
     justify-content: center;
