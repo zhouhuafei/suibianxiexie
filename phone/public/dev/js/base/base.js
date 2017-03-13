@@ -9,12 +9,12 @@ var base = {
     getParent: require('../function/get-parent'),
     goTop: require('../function/go-top'),
     htmlToDom: require('../function/html-to-dom'),
-    isDisableBrowserScrolling: require('../function/is-disable-browser-scrolling'),
-    isBrowserScrollToTheBottom: require('../function/is-browser-scroll-to-the-bottom'),
+    isDisableBrowserScrolling: require('../function/wether-disable-scroll'),
+    isBrowserScrollToTheBottom: require('../function/when-scroll-bottom'),
     jsonToArray: require('../function/json-to-array'),
     mask: require('../function/mask'),
     secondsToTime: require('../function/seconds-to-time'),
-    secondsToTimeCountDown: require('../function/seconds-to-time-count-down'),
+    secondsToTimeCountDown: require('../function/time-count-down'),
     strLimit: require('../function/str-limit'),
     extend: require('../function/extend')
 };
