@@ -6,7 +6,7 @@ function Fn(json) {
     //外部传进来的参数
     this.opt = base.extend({
         defaults: {
-            parent: ``,//这个仅支持传入选择器或者原生dom节点
+            parent: ``,//这个仅支持传入选择器和原生dom节点
             data:{
                 config:{
                     isShow:true
