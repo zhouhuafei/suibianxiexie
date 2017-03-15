@@ -18,23 +18,23 @@
          */
         //一些小方法
         var base = {
-            arrToIndex: require('../function/arr-to-index'),
             cookie: require('../function/cookie'),
             fillZero: require('../function/fill-zero'),
             getParent: require('../function/get-parent'),
             goTop: require('../function/go-top'),
             htmlToDom: require('../function/html-to-dom'),
-            isDisableBrowserScrolling: require('../function/is-disable-browser-scrolling'),
-            isBrowserScrollToTheBottom: require('../function/is-browser-scroll-to-the-bottom'),
+            whetherDisableScroll: require('../function/whether-disable-scroll'),
+            whenScrollBottom: require('../function/when-scroll-bottom'),
             jsonToArray: require('../function/json-to-array'),
             mask: require('../function/mask'),
             secondsToTime: require('../function/seconds-to-time'),
-            secondsToTimeCountDown: require('../function/seconds-to-time-count-down'),
+            timeCountDown: require('../function/time-count-down'),
             strLimit: require('../function/str-limit'),
+            getOneDom: require('../function/get-one-dom'),
             extend: require('../function/extend')
         };
         module.exports = base;
-    }, { "../function/arr-to-index": 3, "../function/cookie": 4, "../function/extend": 5, "../function/fill-zero": 6, "../function/get-parent": 7, "../function/go-top": 8, "../function/html-to-dom": 9, "../function/is-browser-scroll-to-the-bottom": 10, "../function/is-disable-browser-scrolling": 11, "../function/json-to-array": 12, "../function/mask": 13, "../function/seconds-to-time": 15, "../function/seconds-to-time-count-down": 14, "../function/str-limit": 16 }], 2: [function (require, module, exports) {
+    }, { "../function/cookie": 3, "../function/extend": 4, "../function/fill-zero": 5, "../function/get-one-dom": 6, "../function/get-parent": 7, "../function/go-top": 8, "../function/html-to-dom": 9, "../function/json-to-array": 10, "../function/mask": 11, "../function/seconds-to-time": 12, "../function/str-limit": 13, "../function/time-count-down": 14, "../function/when-scroll-bottom": 15, "../function/whether-disable-scroll": 16 }], 2: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
@@ -442,7 +442,7 @@
         ProductList.prototype.requireBase = function () {
             //需要用到的小功能函数
             this.base = require("../base/base.js"); //base小功能
-            this.timeCountDown = this.base.secondsToTimeCountDown; //倒计时
+            this.timeCountDown = this.base.timeCountDown; //倒计时
             this.htmlToDom = this.base.htmlToDom; //html转成DOM
             this.secondsToTime = this.base.secondsToTime; //秒转时间
         };
@@ -542,27 +542,6 @@
         module.exports = ProductList;
     }, { "../base/base.js": 1 }], 3: [function (require, module, exports) {
         /**
-         * Created by zhouhuafei on 17/1/10.
-         */
-        function arrToIndex(json) {
-            var opt = json || {};
-            var arr = opt.arr || [];
-            var info = opt.info;
-            var index = null;
-            arr.forEach(function (v, i) {
-                if (v == info) {
-                    index = i;
-                    return false;
-                }
-            });
-            return index;
-        }
-        /*
-            arr.indexOf这个方法原生的提供的有,你为毛还要重新写一个？智障么？
-        */
-        module.exports = arrToIndex;
-    }, {}], 4: [function (require, module, exports) {
-        /**
          * Created by zhouhuafei on 17/1/1.
          */
         //设置cookie
@@ -604,7 +583,7 @@
             removeCookie: removeCookie
         };
         module.exports = obj;
-    }, {}], 5: [function (require, module, exports) {
+    }, {}], 4: [function (require, module, exports) {
         function extend(json) {
             var opt = json || {};
             var defaults = opt.defaults || {};
@@ -686,7 +665,7 @@
         console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
         */
         module.exports = extend;
-    }, {}], 6: [function (require, module, exports) {
+    }, {}], 5: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -701,6 +680,25 @@
             }
         }
         module.exports = fillZero;
+    }, {}], 6: [function (require, module, exports) {
+        //获取一个原生的dom节点,当传入的是dom,或者是选择器的时候
+        function getOneDom(json) {
+            var opt = json || {};
+            opt.dom = opt.dom || ""; //这个仅支持传入选择器和原生dom节点
+            var resultDom = null;
+            if (opt.dom) {
+                //如果是字符串
+                if (Object.prototype.toString.call(opt.dom).slice(8, -1).toLowerCase() == 'string') {
+                    resultDom = document.querySelector(opt.dom);
+                }
+                //如果是dom节点
+                if (opt.dom.nodeType && opt.dom.nodeType == 1) {
+                    resultDom = opt.dom;
+                }
+            }
+            return resultDom;
+        }
+        module.exports = getOneDom;
     }, {}], 7: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
@@ -823,80 +821,6 @@
         /**
          * Created by zhouhuafei on 17/1/1.
          */
-        //是否滚动到了浏览器的底部
-        function isBrowserScrollToTheBottom(json) {
-            var opt = json || {};
-            var success = opt.success || function () {};
-            var fail = opt.fail || function () {};
-            var doc = document;
-            var interval = opt.interval || 80; //延迟时间
-            var isBottom = true; //假设到达了底部
-            var fn = function fn() {
-                var allH = doc.body.offsetHeight;
-                var scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
-                var clientHeight = doc.documentElement.clientHeight;
-                if (scrollTop + clientHeight >= allH - 100 && isBottom) {
-                    isBottom = false;
-                    success();
-                    //假设1000毫秒之后数据加载完毕
-                    setTimeout(function () {
-                        isBottom = true;
-                    }, 1000);
-                } else {
-                    fail();
-                }
-            };
-            fn();
-            var timer = null;
-            var fnScroll = function fnScroll() {
-                clearTimeout(timer);
-                timer = setTimeout(function () {
-                    fn();
-                }, interval);
-            };
-            window.addEventListener('scroll', function () {
-                fnScroll();
-            });
-        }
-        module.exports = isBrowserScrollToTheBottom;
-    }, {}], 11: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
-        //是否禁止浏览器滚动
-        function isDisableBrowserScrolling() {
-            var doc = document;
-            return {
-                //阻止冒泡
-                stopPropagation: function stopPropagation(ev) {
-                    ev.stopPropagation();
-                },
-                //阻止默认事件
-                preventDefault: function preventDefault(ev) {
-                    ev.preventDefault();
-                },
-                //阻止冒泡,阻止默认事件
-                returnFalse: function returnFalse(ev) {
-                    ev.preventDefault();
-                    ev.stopPropagation();
-                },
-                //禁止滚动
-                noScroll: function noScroll() {
-                    doc.addEventListener('touchmove', this.preventDefault, false);
-                    doc.documentElement.style.overflow = 'hidden';
-                },
-                //解除禁止浏览器滚动
-                yesScroll: function yesScroll() {
-                    doc.removeEventListener('touchmove', this.preventDefault, false);
-                    doc.documentElement.style.overflow = 'auto';
-                }
-            };
-        }
-        module.exports = isDisableBrowserScrolling;
-    }, {}], 12: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
         //对象转数组
         function jsonToArray(json) {
             var opt = json || {};
@@ -916,7 +840,7 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 11: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -948,12 +872,50 @@
             };
         }
         module.exports = mask;
+    }, {}], 12: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //秒转时间
+        function secondsToTime(json) {
+            var opt = json || {};
+            var seconds = opt.seconds;
+            //天
+            var d = Math.floor(seconds / 3600 / 24);
+            //时
+            var h = Math.floor(seconds / 3600 % 24);
+            //分
+            var m = Math.floor(seconds % 3600 / 60);
+            //秒
+            var s = Math.floor(seconds % 60);
+            return { d: d, h: h, m: m, s: s, a: seconds };
+        }
+        module.exports = secondsToTime;
+    }, {}], 13: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //字符数量限制
+        function strLimit(json) {
+            var opt = json || {};
+            var max = opt.max;
+            var str = opt.str;
+            if (!str) {
+                return '';
+            }
+            var length = str.length;
+            if (length > max) {
+                str = str.substring(0, max);
+            }
+            return str;
+        }
+        module.exports = strLimit;
     }, {}], 14: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
         //倒计时
-        function secondsToTimeCountDown(json) {
+        function timeCountDown(json) {
             var opt = json || {};
             var seconds = opt.seconds;
             //运行的回调
@@ -994,43 +956,79 @@
                 }, 1000);
             }
         }
-        module.exports = secondsToTimeCountDown;
+        module.exports = timeCountDown;
     }, {}], 15: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
-        //秒转时间
-        function secondsToTime(json) {
+        //当滚动到了浏览器的底部
+        function whenScrollBottom(json) {
             var opt = json || {};
-            var seconds = opt.seconds;
-            //天
-            var d = Math.floor(seconds / 3600 / 24);
-            //时
-            var h = Math.floor(seconds / 3600 % 24);
-            //分
-            var m = Math.floor(seconds % 3600 / 60);
-            //秒
-            var s = Math.floor(seconds % 60);
-            return { d: d, h: h, m: m, s: s, a: seconds };
+            var success = opt.success || function () {};
+            var fail = opt.fail || function () {};
+            var doc = document;
+            var interval = opt.interval || 80; //延迟时间
+            var isBottom = true; //假设到达了底部
+            var fn = function fn() {
+                var allH = doc.body.offsetHeight;
+                var scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
+                var clientHeight = doc.documentElement.clientHeight;
+                if (scrollTop + clientHeight >= allH - 100 && isBottom) {
+                    isBottom = false;
+                    success();
+                    //假设1000毫秒之后数据加载完毕
+                    setTimeout(function () {
+                        isBottom = true;
+                    }, 1000);
+                } else {
+                    fail();
+                }
+            };
+            fn();
+            var timer = null;
+            var fnScroll = function fnScroll() {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    fn();
+                }, interval);
+            };
+            window.addEventListener('scroll', function () {
+                fnScroll();
+            });
         }
-        module.exports = secondsToTime;
+        module.exports = whenScrollBottom;
     }, {}], 16: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
-        //字符数量限制
-        function strLimit(json) {
-            var opt = json || {};
-            var max = opt.max;
-            var str = opt.str;
-            if (!str) {
-                return '';
-            }
-            var length = str.length;
-            if (length > max) {
-                str = str.substring(0, max);
-            }
-            return str;
+        //是否禁止浏览器滚动
+        function whetherDisableScroll() {
+            var doc = document;
+            return {
+                //阻止冒泡
+                stopPropagation: function stopPropagation(ev) {
+                    ev.stopPropagation();
+                },
+                //阻止默认事件
+                preventDefault: function preventDefault(ev) {
+                    ev.preventDefault();
+                },
+                //阻止冒泡,阻止默认事件
+                returnFalse: function returnFalse(ev) {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                },
+                //禁止滚动
+                noScroll: function noScroll() {
+                    doc.addEventListener('touchmove', this.preventDefault, false);
+                    doc.documentElement.style.overflow = 'hidden';
+                },
+                //解除禁止浏览器滚动
+                yesScroll: function yesScroll() {
+                    doc.removeEventListener('touchmove', this.preventDefault, false);
+                    doc.documentElement.style.overflow = 'auto';
+                }
+            };
         }
-        module.exports = strLimit;
+        module.exports = whetherDisableScroll;
     }, {}] }, {}, [2]);

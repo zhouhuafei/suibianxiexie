@@ -14,15 +14,24 @@
     }
 }
 
-//垂直居中
-@mixin center-xy() {
+//垂直水平居中(伪类)
+@mixin center-xy-sham() {
     font-size: 0;
+    text-align: center;
     &:before {
         content: '';
         display: inline-block;
         height: 100%;
         vertical-align: middle;
     }
+}
+
+//垂直水平居中(flex)
+@mixin center-xy-flex(){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-break: break-all;
 }
 
 //省略号
@@ -38,12 +47,7 @@
     white-space: normal;
 }
 
-//mixin待续...
-@mixin daixu() {
-
-}
-
-//周华飞的个人习惯
+//周华飞的个人习惯(已经废弃,请不要使用)
 @mixin habit-zhouhuafei() {
     line-height: 1;
     font-size: px2rem(12);

@@ -71,12 +71,12 @@ gulp.task(`images`, function () {//images转移
 });
 //开发监听
 gulp.task(`:watch`, function () {
-    gulp.watch(path.scssEnterPath, [`scss`]);//scss监听
-    gulp.watch(path.jsEnterPath, [`js`]);//js监听
-    gulp.watch(path.imagesEnterPath, [`images`]);//images监听
     gulp.watch(path.fontEnterPath, [`font`]);//font监听
     gulp.watch(path.uiEnterPath, [`ui`]);//ui监听
     gulp.watch(path.htmlEnterPath, [`html`]);//html监听
+    gulp.watch(path.scssEnterPath, [`scss`]);//scss监听
+    gulp.watch(path.jsEnterPath, [`js`]);//js监听
+    gulp.watch(path.imagesEnterPath, [`images`]);//images监听
 });
 //压缩
 gulp.task(`scssMin`, function () {//scss压缩
@@ -101,13 +101,13 @@ gulp.task(`imagesMin`, function () {//images压缩
 });
 //压缩监听
 gulp.task(`min:watch`, function () {
-    gulp.watch(path.scssEnterPath, [`scssMin`]);//scss监听
-    gulp.watch(path.jsEnterPath, [`jsMin`]);//js监听
-    gulp.watch(path.imagesEnterPath, [`imagesMin`]);//images监听
     gulp.watch(path.fontEnterPath, [`font`]);//font监听
     gulp.watch(path.uiEnterPath, [`ui`]);//ui监听
     gulp.watch(path.htmlEnterPath, [`html`]);//html监听
+    gulp.watch(path.scssEnterPath, [`scssMin`]);//scss监听
+    gulp.watch(path.jsEnterPath, [`jsMin`]);//js监听
+    gulp.watch(path.imagesEnterPath, [`imagesMin`]);//images监听
 });
 //执行任务
-gulp.task(`dev`, [`font`, `ui`, `html`, `scss`, `js`, `images`, `:watch`]);//开发
-gulp.task(`min`, [`del`, `font`, `ui`, `html`, `scssMin`, `jsMin`, `imagesMin`]);//上线
+gulp.task(`dev`, [`del`, `font`, `ui`, `html`, `scssMin`, `js`, `images`, `:watch`]);//开发
+gulp.task(`min`, [`del`, `font`, `ui`, `html`, `scssMin`, `jsMin`, `imagesMin`, `:watch`]);//上线

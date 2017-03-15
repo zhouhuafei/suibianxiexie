@@ -39,29 +39,19 @@ Fn.prototype.render = function () {
 
 //内部的模块
 Fn.prototype.renderModuleDom = function () {
-    var div = document.createElement('div');
-    div.innerHTML = `
-        <div class="m-test">
-            ${this.opt.data.ajax.info}
-        </div>
+    this.moduleDom = document.createElement('div');
+    this.moduleDom.className = `m-test`;
+    this.moduleDom.innerHTML = `
+        <div class="m-test-timer">0</div>
+        <div class="m-test-info">${this.opt.data.ajax.info}</div>
     `;
-    this.moduleDom = div.firstElementChild;
 };
 
 //外部的容器
 Fn.prototype.renderParentDom = function () {
-    if (this.opt.parent) {
-        //如果是字符串
-        if (Object.prototype.toString.call(this.opt.parent).slice(8, -1).toLowerCase() == 'string') {
-            this.parentDom = document.querySelector(this.opt.parent);
-        }
-        //如果是dom节点
-        if (this.opt.parent.nodeType && this.opt.parent.nodeType == 1) {
-            this.parentDom = this.opt.parent;
-        }
-    }
+    this.parentDom=base.getOneDom({dom:this.opt.parent});
     //先清空
-    this.removeModuleDom();
+    this.clearParentDom();
     //再填充
     if (this.parentDom) {
         this.parentDom.appendChild(this.moduleDom);
@@ -84,6 +74,9 @@ Fn.prototype.clearParentDom = function () {
 
 //移除外部的容器
 Fn.prototype.removeParentDom = function () {
+    //先清空外部的容器
+    this.clearParentDom();
+    //再移除外部的容器
     if (this.parentDom) {
         this.parentDom.parentNode.removeChild(this.parentDom);
     }
@@ -91,6 +84,10 @@ Fn.prototype.removeParentDom = function () {
 
 //功能
 Fn.prototype.power=function(){
+    var interval=this.moduleDom.querySelector('.m-test-timer')
+    this.timer.timer1=setInterval(function(){
+        interval.innerHTML=interval.innerHTML*1+1;
+    },1000);
     // 3.选人父级的那段判断是不是dom的代码是否可以封装成一个函数
     // 4.mask函数重新制作,变成模块
     // 5.function文件夹里的arrFindIndex删除

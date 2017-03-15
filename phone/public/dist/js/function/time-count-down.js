@@ -17,7 +17,7 @@
          * Created by zhouhuafei on 17/1/1.
          */
         //倒计时
-        function secondsToTimeCountDown(json) {
+        function timeCountDown(json) {
             var opt = json || {};
             var seconds = opt.seconds;
             //运行的回调
@@ -58,5 +58,5 @@
                 }, 1000);
             }
         }
-        module.exports = secondsToTimeCountDown;
+        module.exports = timeCountDown;
     }, {}] }, {}, [1]);

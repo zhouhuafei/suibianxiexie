@@ -25,9 +25,8 @@ a {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-img {
-    vertical-align: middle;
+.iconfont {
+    font-size: inherit;
 }
 
-//待改...(img有没有必要保留也需要考量,都改成g系列也许会更好)
 //不要在这里写其他的css样式,自己的样式写自己的页面好吧,清零样式尽量保持通用,模块保持模块样式的完整

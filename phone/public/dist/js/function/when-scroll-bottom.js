@@ -16,8 +16,8 @@
         /**
          * Created by zhouhuafei on 17/1/1.
          */
-        //是否滚动到了浏览器的底部
-        function isBrowserScrollToTheBottom(json) {
+        //当滚动到了浏览器的底部
+        function whenScrollBottom(json) {
             var opt = json || {};
             var success = opt.success || function () {};
             var fail = opt.fail || function () {};
@@ -51,5 +51,5 @@
                 fnScroll();
             });
         }
-        module.exports = isBrowserScrollToTheBottom;
+        module.exports = whenScrollBottom;
     }, {}] }, {}, [1]);

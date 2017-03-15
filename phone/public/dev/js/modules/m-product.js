@@ -473,7 +473,7 @@ ProductList.prototype.init=function(){//初始化
 };
 ProductList.prototype.requireBase=function(){//需要用到的小功能函数
     this.base=require("../base/base.js");//base小功能
-    this.timeCountDown=this.base.secondsToTimeCountDown;//倒计时
+    this.timeCountDown=this.base.timeCountDown;//倒计时
     this.htmlToDom=this.base.htmlToDom;//html转成DOM
     this.secondsToTime=this.base.secondsToTime;//秒转时间
 };

@@ -5,7 +5,7 @@
 (function(){
     var Test=require('../modules/m-test');
     var test=new Test({
-        parent:`.main-test`,
+        parent:document.querySelector(`.main-test`),
         data:{
             config:{
 
@@ -15,8 +15,17 @@
             }
         }
     });
-    //test.opt.data.ajax.info=`侯丽杰爱周华飞`;
-    //test.init();
+
+    /*
+        setTimeout(function(){
+            test.removeParentDom();
+        },4000);
+    */
+
+    /*
+        test.opt.data.ajax.info=`侯丽杰爱周华飞`;
+        test.init();
+    */
 })();
 //单选开关
 (function(){

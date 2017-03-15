@@ -37,7 +37,7 @@
         text-align: center;
         a {
             position: relative;
-            @include center-xy;
+            @include center-xy-sham;
             border-radius: inherit;
         }
     }

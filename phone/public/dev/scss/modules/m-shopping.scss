@@ -73,7 +73,7 @@
         background: $color9;
         a {
             position: relative;
-            @include center-xy;
+            @include center-xy-sham;
             border-radius: inherit;
             img {
                 border-radius: inherit;

@@ -13,24 +13,22 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/10.
-         */
-        function arrToIndex(json) {
+        //获取一个原生的dom节点,当传入的是dom,或者是选择器的时候
+        function getOneDom(json) {
             var opt = json || {};
-            var arr = opt.arr || [];
-            var info = opt.info;
-            var index = null;
-            arr.forEach(function (v, i) {
-                if (v == info) {
-                    index = i;
-                    return false;
+            opt.dom = opt.dom || ""; //这个仅支持传入选择器和原生dom节点
+            var resultDom = null;
+            if (opt.dom) {
+                //如果是字符串
+                if (Object.prototype.toString.call(opt.dom).slice(8, -1).toLowerCase() == 'string') {
+                    resultDom = document.querySelector(opt.dom);
                 }
-            });
-            return index;
+                //如果是dom节点
+                if (opt.dom.nodeType && opt.dom.nodeType == 1) {
+                    resultDom = opt.dom;
+                }
+            }
+            return resultDom;
         }
-        /*
-            arr.indexOf这个方法原生的提供的有,你为毛还要重新写一个？智障么？
-        */
-        module.exports = arrToIndex;
+        module.exports = getOneDom;
     }, {}] }, {}, [1]);

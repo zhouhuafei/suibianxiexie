@@ -18,23 +18,23 @@
          */
         //一些小方法
         var base = {
-            arrToIndex: require('../function/arr-to-index'),
             cookie: require('../function/cookie'),
             fillZero: require('../function/fill-zero'),
             getParent: require('../function/get-parent'),
             goTop: require('../function/go-top'),
             htmlToDom: require('../function/html-to-dom'),
-            isDisableBrowserScrolling: require('../function/is-disable-browser-scrolling'),
-            isBrowserScrollToTheBottom: require('../function/is-browser-scroll-to-the-bottom'),
+            whetherDisableScroll: require('../function/whether-disable-scroll'),
+            whenScrollBottom: require('../function/when-scroll-bottom'),
             jsonToArray: require('../function/json-to-array'),
             mask: require('../function/mask'),
             secondsToTime: require('../function/seconds-to-time'),
-            secondsToTimeCountDown: require('../function/seconds-to-time-count-down'),
+            timeCountDown: require('../function/time-count-down'),
             strLimit: require('../function/str-limit'),
+            getOneDom: require('../function/get-one-dom'),
             extend: require('../function/extend')
         };
         module.exports = base;
-    }, { "../function/arr-to-index": 3, "../function/cookie": 4, "../function/extend": 5, "../function/fill-zero": 6, "../function/get-parent": 7, "../function/go-top": 8, "../function/html-to-dom": 9, "../function/is-browser-scroll-to-the-bottom": 10, "../function/is-disable-browser-scrolling": 11, "../function/json-to-array": 12, "../function/mask": 14, "../function/seconds-to-time": 16, "../function/seconds-to-time-count-down": 15, "../function/str-limit": 17 }], 2: [function (require, module, exports) {
+    }, { "../function/cookie": 3, "../function/extend": 4, "../function/fill-zero": 5, "../function/get-one-dom": 6, "../function/get-parent": 7, "../function/go-top": 8, "../function/html-to-dom": 9, "../function/json-to-array": 10, "../function/mask": 12, "../function/seconds-to-time": 13, "../function/str-limit": 14, "../function/time-count-down": 15, "../function/when-scroll-bottom": 17, "../function/whether-disable-scroll": 18 }], 2: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/4.
          */
@@ -42,7 +42,7 @@
         (function () {
             var Test = require('../modules/m-test');
             var test = new Test({
-                parent: ".main-test",
+                parent: document.querySelector(".main-test"),
                 data: {
                     config: {},
                     ajax: {
@@ -50,8 +50,17 @@
                     }
                 }
             });
-            //test.opt.data.ajax.info=`侯丽杰爱周华飞`;
-            //test.init();
+
+            /*
+                setTimeout(function(){
+                    test.removeParentDom();
+                },4000);
+            */
+
+            /*
+                test.opt.data.ajax.info=`侯丽杰爱周华飞`;
+                test.init();
+            */
         })();
         //单选开关
         (function () {
@@ -161,28 +170,7 @@
             main.appendChild(product.parentDom);
         })();
         require('../function/lazyload')(); //延迟加载
-    }, { "../function/lazyload": 13, "../modules/m-product": 19, "../modules/m-radio-switch": 20, "../modules/m-star": 21, "../modules/m-table": 22, "../modules/m-test": 23, "../modules/m-validate-input": 24 }], 3: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/10.
-         */
-        function arrToIndex(json) {
-            var opt = json || {};
-            var arr = opt.arr || [];
-            var info = opt.info;
-            var index = null;
-            arr.forEach(function (v, i) {
-                if (v == info) {
-                    index = i;
-                    return false;
-                }
-            });
-            return index;
-        }
-        /*
-            arr.indexOf这个方法原生的提供的有,你为毛还要重新写一个？智障么？
-        */
-        module.exports = arrToIndex;
-    }, {}], 4: [function (require, module, exports) {
+    }, { "../function/lazyload": 11, "../modules/m-product": 19, "../modules/m-radio-switch": 20, "../modules/m-star": 21, "../modules/m-table": 22, "../modules/m-test": 23, "../modules/m-validate-input": 24 }], 3: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -225,7 +213,7 @@
             removeCookie: removeCookie
         };
         module.exports = obj;
-    }, {}], 5: [function (require, module, exports) {
+    }, {}], 4: [function (require, module, exports) {
         function extend(json) {
             var opt = json || {};
             var defaults = opt.defaults || {};
@@ -307,7 +295,7 @@
         console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
         */
         module.exports = extend;
-    }, {}], 6: [function (require, module, exports) {
+    }, {}], 5: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -322,6 +310,25 @@
             }
         }
         module.exports = fillZero;
+    }, {}], 6: [function (require, module, exports) {
+        //获取一个原生的dom节点,当传入的是dom,或者是选择器的时候
+        function getOneDom(json) {
+            var opt = json || {};
+            opt.dom = opt.dom || ""; //这个仅支持传入选择器和原生dom节点
+            var resultDom = null;
+            if (opt.dom) {
+                //如果是字符串
+                if (Object.prototype.toString.call(opt.dom).slice(8, -1).toLowerCase() == 'string') {
+                    resultDom = document.querySelector(opt.dom);
+                }
+                //如果是dom节点
+                if (opt.dom.nodeType && opt.dom.nodeType == 1) {
+                    resultDom = opt.dom;
+                }
+            }
+            return resultDom;
+        }
+        module.exports = getOneDom;
     }, {}], 7: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
@@ -444,80 +451,6 @@
         /**
          * Created by zhouhuafei on 17/1/1.
          */
-        //是否滚动到了浏览器的底部
-        function isBrowserScrollToTheBottom(json) {
-            var opt = json || {};
-            var success = opt.success || function () {};
-            var fail = opt.fail || function () {};
-            var doc = document;
-            var interval = opt.interval || 80; //延迟时间
-            var isBottom = true; //假设到达了底部
-            var fn = function fn() {
-                var allH = doc.body.offsetHeight;
-                var scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
-                var clientHeight = doc.documentElement.clientHeight;
-                if (scrollTop + clientHeight >= allH - 100 && isBottom) {
-                    isBottom = false;
-                    success();
-                    //假设1000毫秒之后数据加载完毕
-                    setTimeout(function () {
-                        isBottom = true;
-                    }, 1000);
-                } else {
-                    fail();
-                }
-            };
-            fn();
-            var timer = null;
-            var fnScroll = function fnScroll() {
-                clearTimeout(timer);
-                timer = setTimeout(function () {
-                    fn();
-                }, interval);
-            };
-            window.addEventListener('scroll', function () {
-                fnScroll();
-            });
-        }
-        module.exports = isBrowserScrollToTheBottom;
-    }, {}], 11: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
-        //是否禁止浏览器滚动
-        function isDisableBrowserScrolling() {
-            var doc = document;
-            return {
-                //阻止冒泡
-                stopPropagation: function stopPropagation(ev) {
-                    ev.stopPropagation();
-                },
-                //阻止默认事件
-                preventDefault: function preventDefault(ev) {
-                    ev.preventDefault();
-                },
-                //阻止冒泡,阻止默认事件
-                returnFalse: function returnFalse(ev) {
-                    ev.preventDefault();
-                    ev.stopPropagation();
-                },
-                //禁止滚动
-                noScroll: function noScroll() {
-                    doc.addEventListener('touchmove', this.preventDefault, false);
-                    doc.documentElement.style.overflow = 'hidden';
-                },
-                //解除禁止浏览器滚动
-                yesScroll: function yesScroll() {
-                    doc.removeEventListener('touchmove', this.preventDefault, false);
-                    doc.documentElement.style.overflow = 'auto';
-                }
-            };
-        }
-        module.exports = isDisableBrowserScrolling;
-    }, {}], 12: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
         //对象转数组
         function jsonToArray(json) {
             var opt = json || {};
@@ -537,7 +470,7 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 11: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
@@ -608,7 +541,7 @@
             });
         }
         module.exports = lazyload;
-    }, {}], 14: [function (require, module, exports) {
+    }, {}], 12: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -640,12 +573,50 @@
             };
         }
         module.exports = mask;
+    }, {}], 13: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //秒转时间
+        function secondsToTime(json) {
+            var opt = json || {};
+            var seconds = opt.seconds;
+            //天
+            var d = Math.floor(seconds / 3600 / 24);
+            //时
+            var h = Math.floor(seconds / 3600 % 24);
+            //分
+            var m = Math.floor(seconds % 3600 / 60);
+            //秒
+            var s = Math.floor(seconds % 60);
+            return { d: d, h: h, m: m, s: s, a: seconds };
+        }
+        module.exports = secondsToTime;
+    }, {}], 14: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //字符数量限制
+        function strLimit(json) {
+            var opt = json || {};
+            var max = opt.max;
+            var str = opt.str;
+            if (!str) {
+                return '';
+            }
+            var length = str.length;
+            if (length > max) {
+                str = str.substring(0, max);
+            }
+            return str;
+        }
+        module.exports = strLimit;
     }, {}], 15: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
         //倒计时
-        function secondsToTimeCountDown(json) {
+        function timeCountDown(json) {
             var opt = json || {};
             var seconds = opt.seconds;
             //运行的回调
@@ -686,46 +657,8 @@
                 }, 1000);
             }
         }
-        module.exports = secondsToTimeCountDown;
+        module.exports = timeCountDown;
     }, {}], 16: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
-        //秒转时间
-        function secondsToTime(json) {
-            var opt = json || {};
-            var seconds = opt.seconds;
-            //天
-            var d = Math.floor(seconds / 3600 / 24);
-            //时
-            var h = Math.floor(seconds / 3600 % 24);
-            //分
-            var m = Math.floor(seconds % 3600 / 60);
-            //秒
-            var s = Math.floor(seconds % 60);
-            return { d: d, h: h, m: m, s: s, a: seconds };
-        }
-        module.exports = secondsToTime;
-    }, {}], 17: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
-        //字符数量限制
-        function strLimit(json) {
-            var opt = json || {};
-            var max = opt.max;
-            var str = opt.str;
-            if (!str) {
-                return '';
-            }
-            var length = str.length;
-            if (length > max) {
-                str = str.substring(0, max);
-            }
-            return str;
-        }
-        module.exports = strLimit;
-    }, {}], 18: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/4.
          */
@@ -816,6 +749,80 @@
             }
         };
         module.exports = validate;
+    }, {}], 17: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //当滚动到了浏览器的底部
+        function whenScrollBottom(json) {
+            var opt = json || {};
+            var success = opt.success || function () {};
+            var fail = opt.fail || function () {};
+            var doc = document;
+            var interval = opt.interval || 80; //延迟时间
+            var isBottom = true; //假设到达了底部
+            var fn = function fn() {
+                var allH = doc.body.offsetHeight;
+                var scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
+                var clientHeight = doc.documentElement.clientHeight;
+                if (scrollTop + clientHeight >= allH - 100 && isBottom) {
+                    isBottom = false;
+                    success();
+                    //假设1000毫秒之后数据加载完毕
+                    setTimeout(function () {
+                        isBottom = true;
+                    }, 1000);
+                } else {
+                    fail();
+                }
+            };
+            fn();
+            var timer = null;
+            var fnScroll = function fnScroll() {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    fn();
+                }, interval);
+            };
+            window.addEventListener('scroll', function () {
+                fnScroll();
+            });
+        }
+        module.exports = whenScrollBottom;
+    }, {}], 18: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //是否禁止浏览器滚动
+        function whetherDisableScroll() {
+            var doc = document;
+            return {
+                //阻止冒泡
+                stopPropagation: function stopPropagation(ev) {
+                    ev.stopPropagation();
+                },
+                //阻止默认事件
+                preventDefault: function preventDefault(ev) {
+                    ev.preventDefault();
+                },
+                //阻止冒泡,阻止默认事件
+                returnFalse: function returnFalse(ev) {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                },
+                //禁止滚动
+                noScroll: function noScroll() {
+                    doc.addEventListener('touchmove', this.preventDefault, false);
+                    doc.documentElement.style.overflow = 'hidden';
+                },
+                //解除禁止浏览器滚动
+                yesScroll: function yesScroll() {
+                    doc.removeEventListener('touchmove', this.preventDefault, false);
+                    doc.documentElement.style.overflow = 'auto';
+                }
+            };
+        }
+        module.exports = whetherDisableScroll;
     }, {}], 19: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
@@ -1224,7 +1231,7 @@
         ProductList.prototype.requireBase = function () {
             //需要用到的小功能函数
             this.base = require("../base/base.js"); //base小功能
-            this.timeCountDown = this.base.secondsToTimeCountDown; //倒计时
+            this.timeCountDown = this.base.timeCountDown; //倒计时
             this.htmlToDom = this.base.htmlToDom; //html转成DOM
             this.secondsToTime = this.base.secondsToTime; //秒转时间
         };
@@ -1439,7 +1446,7 @@
                 if (i < this.opt.nowStar) {
                     className = 'm-star-active';
                 }
-                html += "<div data-index=\"" + i + "\" class=\"iconfont icon-pingxing m-star " + className + "\"></div>";
+                html += "<div data-index=\"" + i + "\" class=\"iconfont icon-xingping m-star " + className + "\"></div>";
             }
             this.parentDom.innerHTML = html;
             this.opt.star = this.parentDom.children;
@@ -1510,9 +1517,10 @@
 
         //构造函数
         function Fn(json) {
+            //外部传进来的参数
             this.opt = base.extend({
                 defaults: {
-                    parent: "",
+                    parent: "", //这个仅支持传入选择器和原生dom节点
                     data: {
                         config: {
                             isShow: true
@@ -1524,7 +1532,11 @@
                 },
                 inherits: json
             });
-            this.init();
+            //内部的一些属性
+            this.moduleDom = null; //内部的模块
+            this.parentDom = null; //内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+            this.timer = {}; //假设内部有定时器
+            this.init(); //初始化
         }
 
         //初始化
@@ -1542,40 +1554,40 @@
         //内部的模块
         Fn.prototype.renderModuleDom = function () {
             this.moduleDom = document.createElement('div');
-            this.moduleDom.className = "";
-            this.moduleDom.innerHTML = "\n        <div>\n            " + this.opt.data.ajax.info + "\n        </div>\n    ";
+            this.moduleDom.className = "m-test";
+            this.moduleDom.innerHTML = "\n        <div class=\"m-test-timer\">0</div>\n        <div class=\"m-test-info\">" + this.opt.data.ajax.info + "</div>\n    ";
         };
 
         //外部的容器
         Fn.prototype.renderParentDom = function () {
-            if (this.opt.parent) {
-                //如果是字符串
-                if (Object.prototype.toString.call(this.opt.parent).slice(8, -1).toLowerCase() == 'string') {
-                    this.parentDom = document.querySelector(this.opt.parent);
-                }
-                //如果是dom节点
-                if (this.opt.parent.nodeType && this.opt.parent.nodeType == 1) {
-                    this.parentDom = this.opt.parent;
-                }
-            }
+            this.parentDom = base.getOneDom({ dom: this.opt.parent });
             //先清空
-            this.removeModuleDom();
+            this.clearParentDom();
             //再填充
             if (this.parentDom) {
                 this.parentDom.appendChild(this.moduleDom);
             }
         };
 
-        //移除内部的模块
-        Fn.prototype.removeModuleDom = function () {
+        //清空外部的容器
+        Fn.prototype.clearParentDom = function () {
             if (this.parentDom) {
                 this.parentDom.innerHTML = "";
             }
-            //继续清除一些其他东西,例如定时器
+            //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
+            for (var attr in this.timer) {
+                if (this.timer.hasOwnProperty(attr)) {
+                    clearInterval(this.timer[attr]);
+                    clearTimeout(this.timer[attr]);
+                }
+            }
         };
 
         //移除外部的容器
         Fn.prototype.removeParentDom = function () {
+            //先清空外部的容器
+            this.clearParentDom();
+            //再移除外部的容器
             if (this.parentDom) {
                 this.parentDom.parentNode.removeChild(this.parentDom);
             }
@@ -1583,14 +1595,10 @@
 
         //功能
         Fn.prototype.power = function () {
-            //如果有定时器,那么初始化的时候要先清除定时器,多个定时器可以存储成一个对象
-            this.timer = {
-                one: null,
-                two: null
-            };
-            // 重新初始化待续...
-            // 1.事件会不会叠加(应该不对),
-            // 2.定时器能清除掉么(应该可以清除,在移除内部的模块方法里进行清除),
+            var interval = this.moduleDom.querySelector('.m-test-timer');
+            this.timer.timer1 = setInterval(function () {
+                interval.innerHTML = interval.innerHTML * 1 + 1;
+            }, 1000);
             // 3.选人父级的那段判断是不是dom的代码是否可以封装成一个函数
             // 4.mask函数重新制作,变成模块
             // 5.function文件夹里的arrFindIndex删除
@@ -1713,4 +1721,4 @@
         };
 
         module.exports = ValidateInput;
-    }, { "../function/validate": 18 }] }, {}, [2]);
+    }, { "../function/validate": 16 }] }, {}, [2]);
