@@ -18,7 +18,7 @@ function Fn(json) {
         },
         inherits: json
     });
-    //内部的一些东西
+    //内部的一些属性
     this.moduleDom=null;//内部的模块
     this.parentDom=null;//内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
     this.timer={};//假设内部有定时器
