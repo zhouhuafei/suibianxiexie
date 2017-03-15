@@ -39,13 +39,13 @@ Fn.prototype.render = function () {
 
 //内部的模块
 Fn.prototype.renderModuleDom = function () {
-    this.moduleDom = document.createElement('div');
-    this.moduleDom.className = ``;
-    this.moduleDom.innerHTML = `
-        <div>
+    var div = document.createElement('div');
+    div.innerHTML = `
+        <div class="m-test">
             ${this.opt.data.ajax.info}
         </div>
     `;
+    this.moduleDom = div.firstElementChild;
 };
 
 //外部的容器
