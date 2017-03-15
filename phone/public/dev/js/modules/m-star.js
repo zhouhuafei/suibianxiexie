@@ -44,7 +44,7 @@ Fn.prototype.renderStar=function(){
         if(i<this.opt.nowStar){
             className='m-star-active';
         }
-        html+=`<div data-index="${i}" class="iconfont icon-pingxing m-star ${className}"></div>`;
+        html+=`<div data-index="${i}" class="iconfont icon-xingping m-star ${className}"></div>`;
     }
     this.parentDom.innerHTML=html;
     this.opt.star=this.parentDom.children;
