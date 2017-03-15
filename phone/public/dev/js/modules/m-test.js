@@ -67,9 +67,9 @@ Fn.prototype.renderParentDom = function () {
         this.parentDom.appendChild(this.moduleDom);
     }
 };
-
-//移除内部的模块
-Fn.prototype.removeModuleDom = function () {
+    
+//清空外部的容器
+Fn.prototype.clearParentDom = function () {
     if(this.parentDom){
         this.parentDom.innerHTML=``;
     }
