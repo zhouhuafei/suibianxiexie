@@ -3,6 +3,7 @@ var base = require('../base/base');
 
 //构造函数
 function Fn(json) {
+    //外部传进来的参数
     this.opt = base.extend({
         defaults: {
             parent: ``,
@@ -17,7 +18,11 @@ function Fn(json) {
         },
         inherits: json
     });
-    this.init();
+    //内部的一些东西
+    this.moduleDom=null;//内部的模块
+    this.parentDom=null;//内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+    this.timer={};//假设内部有定时器
+    this.init();//初始化
 }
 
 //初始化
@@ -68,7 +73,13 @@ Fn.prototype.removeModuleDom = function () {
     if(this.parentDom){
         this.parentDom.innerHTML=``;
     }
-    //继续清除一些其他东西,例如定时器
+    //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
+    for(var attr in this.timer){
+        if(this.timer.hasOwnProperty(attr)){
+            clearInterval(this.timer[attr]);
+            clearTimeout(this.timer[attr]);
+        }
+    }
 };
 
 //移除外部的容器
@@ -80,14 +91,6 @@ Fn.prototype.removeParentDom = function () {
 
 //功能
 Fn.prototype.power=function(){
-    //如果有定时器,那么初始化的时候要先清除定时器,多个定时器可以存储成一个对象
-    this.timer={
-        one:null,
-        two:null
-    };
-    // 重新初始化待续...
-    // 1.事件会不会叠加(应该不对),
-    // 2.定时器能清除掉么(应该可以清除,在移除内部的模块方法里进行清除),
     // 3.选人父级的那段判断是不是dom的代码是否可以封装成一个函数
     // 4.mask函数重新制作,变成模块
     // 5.function文件夹里的arrFindIndex删除
