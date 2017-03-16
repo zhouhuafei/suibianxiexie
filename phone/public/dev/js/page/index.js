@@ -6,7 +6,7 @@
     var Test=require('../modules/m-test');
     var test=new Test({
         parent:document.querySelector(`.main-test`),
-        dataCconfig:{
+        dataConfig:{
             
         },
         dataAjax:{
