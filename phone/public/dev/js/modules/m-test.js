@@ -7,13 +7,11 @@ function Fn(json) {
     this.opt = base.extend({
         defaults: {
             parent: ``,//这个仅支持传入选择器和原生dom节点
-            data:{
-                config:{
-                    isShow:true
-                },
-                ajax:{
-                    info:`周华飞测试`
-                }
+            dataConfig:{
+                isClearTimer:true
+            },
+            dataAjax:{
+                info:`周华飞测试`
             }
         },
         inherits: json
@@ -43,7 +41,7 @@ Fn.prototype.renderModuleDom = function () {
     this.moduleDom.className = `m-test`;
     this.moduleDom.innerHTML = `
         <div class="m-test-timer">0</div>
-        <div class="m-test-info">${this.opt.data.ajax.info}</div>
+        <div class="m-test-info">${this.opt.dataAjax.info}</div>
     `;
 };
 
@@ -64,10 +62,12 @@ Fn.prototype.clearParentDom = function () {
         this.parentDom.innerHTML=``;
     }
     //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
-    for(var attr in this.timer){
-        if(this.timer.hasOwnProperty(attr)){
-            clearInterval(this.timer[attr]);
-            clearTimeout(this.timer[attr]);
+    if(this.opt.dataConfig.isClearTimer){
+        for(var attr in this.timer){
+            if(this.timer.hasOwnProperty(attr)){
+                clearInterval(this.timer[attr]);
+                clearTimeout(this.timer[attr]);
+            }
         }
     }
 };
