@@ -123,12 +123,6 @@
                 interval.innerHTML = interval.innerHTML * 1 + 1;
                 console.log(interval.innerHTML);
             }, 1000);
-            // 3.选人父级的那段判断是不是dom的代码是否可以封装成一个函数
-            // 4.mask函数重新制作,变成模块
-            // 5.function文件夹里的arrFindIndex删除
-            // 6.function文件夹里能制作成模块的东西,进行模块制作,例如懒加载
-            // 7.有些函数名字太长,需要进行重新命名,有些没必要的模块文件进行删除或者重写
-            // 8.清零样式修改scss修改
         };
 
         module.exports = Fn;
