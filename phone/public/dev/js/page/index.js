@@ -6,13 +6,11 @@
     var Test=require('../modules/m-test');
     var test=new Test({
         parent:document.querySelector(`.main-test`),
-        data:{
-            config:{
-
-            },
-            ajax:{
-                info:`周华飞爱侯丽杰`
-            }
+        dataCconfig:{
+            
+        },
+        dataAjax:{
+            info:`周华飞爱侯丽杰`
         }
     });
 
@@ -23,7 +21,7 @@
     */
 
     /*
-        test.opt.data.ajax.info=`侯丽杰爱周华飞`;
+        test.opt.dataAjax.info=`侯丽杰爱周华飞`;
         test.init();
     */
 })();
