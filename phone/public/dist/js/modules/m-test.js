@@ -44,13 +44,11 @@
             this.opt = base.extend({
                 defaults: {
                     parent: "", //这个仅支持传入选择器和原生dom节点
-                    data: {
-                        config: {
-                            isShow: true
-                        },
-                        ajax: {
-                            info: "\u5468\u534E\u98DE\u6D4B\u8BD5"
-                        }
+                    dataConfig: {
+                        isClearTimer: true //默认清除所有定时器
+                    },
+                    dataAjax: {
+                        info: "\u5468\u534E\u98DE\u6D4B\u8BD5"
                     }
                 },
                 inherits: json
@@ -78,7 +76,7 @@
         Fn.prototype.renderModuleDom = function () {
             this.moduleDom = document.createElement('div');
             this.moduleDom.className = "m-test";
-            this.moduleDom.innerHTML = "\n        <div class=\"m-test-timer\">0</div>\n        <div class=\"m-test-info\">" + this.opt.data.ajax.info + "</div>\n    ";
+            this.moduleDom.innerHTML = "\n        <div class=\"m-test-timer\">0</div>\n        <div class=\"m-test-info\">" + this.opt.dataAjax.info + "</div>\n    ";
         };
 
         //外部的容器
@@ -98,10 +96,12 @@
                 this.parentDom.innerHTML = "";
             }
             //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
-            for (var attr in this.timer) {
-                if (this.timer.hasOwnProperty(attr)) {
-                    clearInterval(this.timer[attr]);
-                    clearTimeout(this.timer[attr]);
+            if (this.opt.dataConfig.isClearTimer) {
+                for (var attr in this.timer) {
+                    if (this.timer.hasOwnProperty(attr)) {
+                        clearInterval(this.timer[attr]);
+                        clearTimeout(this.timer[attr]);
+                    }
                 }
             }
         };
@@ -121,6 +121,7 @@
             var interval = this.moduleDom.querySelector('.m-test-timer');
             this.timer.timer1 = setInterval(function () {
                 interval.innerHTML = interval.innerHTML * 1 + 1;
+                console.log(interval.innerHTML);
             }, 1000);
             // 3.选人父级的那段判断是不是dom的代码是否可以封装成一个函数
             // 4.mask函数重新制作,变成模块

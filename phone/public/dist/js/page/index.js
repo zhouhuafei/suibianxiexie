@@ -43,22 +43,22 @@
             var Test = require('../modules/m-test');
             var test = new Test({
                 parent: document.querySelector(".main-test"),
-                data: {
-                    config: {},
-                    ajax: {
-                        info: "\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770"
-                    }
+                dataConfig: {
+                    isClearTimer: false
+                },
+                dataAjax: {
+                    info: "\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770"
                 }
             });
 
             /*
                 setTimeout(function(){
                     test.removeParentDom();
-                },4000);
+                },2000);
             */
 
             /*
-                test.opt.data.ajax.info=`侯丽杰爱周华飞`;
+                test.opt.dataAjax.info=`侯丽杰爱周华飞`;
                 test.init();
             */
         })();
@@ -160,7 +160,7 @@
                     vipPrice: '10.00',
                     seckillPrice: '1.00',
                     likeNum: '300',
-                    imgSrc: '../../images/desktop.png',
+                    imgSrc: '../../images/modules/desktop.png',
                     aHref: 'http://www.baidu.com',
                     seckillWillBeginTime: '6',
                     seckillWillBeginBtnShowTime: '3',
@@ -1521,13 +1521,11 @@
             this.opt = base.extend({
                 defaults: {
                     parent: "", //这个仅支持传入选择器和原生dom节点
-                    data: {
-                        config: {
-                            isShow: true
-                        },
-                        ajax: {
-                            info: "\u5468\u534E\u98DE\u6D4B\u8BD5"
-                        }
+                    dataConfig: {
+                        isClearTimer: true //默认清除所有定时器
+                    },
+                    dataAjax: {
+                        info: "\u5468\u534E\u98DE\u6D4B\u8BD5"
                     }
                 },
                 inherits: json
@@ -1555,7 +1553,7 @@
         Fn.prototype.renderModuleDom = function () {
             this.moduleDom = document.createElement('div');
             this.moduleDom.className = "m-test";
-            this.moduleDom.innerHTML = "\n        <div class=\"m-test-timer\">0</div>\n        <div class=\"m-test-info\">" + this.opt.data.ajax.info + "</div>\n    ";
+            this.moduleDom.innerHTML = "\n        <div class=\"m-test-timer\">0</div>\n        <div class=\"m-test-info\">" + this.opt.dataAjax.info + "</div>\n    ";
         };
 
         //外部的容器
@@ -1575,10 +1573,12 @@
                 this.parentDom.innerHTML = "";
             }
             //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
-            for (var attr in this.timer) {
-                if (this.timer.hasOwnProperty(attr)) {
-                    clearInterval(this.timer[attr]);
-                    clearTimeout(this.timer[attr]);
+            if (this.opt.dataConfig.isClearTimer) {
+                for (var attr in this.timer) {
+                    if (this.timer.hasOwnProperty(attr)) {
+                        clearInterval(this.timer[attr]);
+                        clearTimeout(this.timer[attr]);
+                    }
                 }
             }
         };
@@ -1598,6 +1598,7 @@
             var interval = this.moduleDom.querySelector('.m-test-timer');
             this.timer.timer1 = setInterval(function () {
                 interval.innerHTML = interval.innerHTML * 1 + 1;
+                console.log(interval.innerHTML);
             }, 1000);
             // 3.选人父级的那段判断是不是dom的代码是否可以封装成一个函数
             // 4.mask函数重新制作,变成模块

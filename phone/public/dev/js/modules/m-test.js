@@ -8,7 +8,7 @@ function Fn(json) {
         defaults: {
             parent: ``,//这个仅支持传入选择器和原生dom节点
             dataConfig:{
-                isClearTimer:true
+                isClearTimer:true//默认清除所有定时器
             },
             dataAjax:{
                 info:`周华飞测试`
@@ -87,6 +87,7 @@ Fn.prototype.power=function(){
     var interval=this.moduleDom.querySelector('.m-test-timer')
     this.timer.timer1=setInterval(function(){
         interval.innerHTML=interval.innerHTML*1+1;
+        console.log(interval.innerHTML);
     },1000);
     // 3.选人父级的那段判断是不是dom的代码是否可以封装成一个函数
     // 4.mask函数重新制作,变成模块

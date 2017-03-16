@@ -7,7 +7,7 @@
     var test=new Test({
         parent:document.querySelector(`.main-test`),
         dataConfig:{
-            
+            isClearTimer:false
         },
         dataAjax:{
             info:`周华飞爱侯丽杰`
@@ -17,13 +17,14 @@
     /*
         setTimeout(function(){
             test.removeParentDom();
-        },4000);
+        },2000);
     */
 
     /*
         test.opt.dataAjax.info=`侯丽杰爱周华飞`;
         test.init();
     */
+
 })();
 //单选开关
 (function(){
@@ -143,7 +144,7 @@
             vipPrice: '10.00',
             seckillPrice: '1.00',
             likeNum: '300',
-            imgSrc: '../../images/desktop.png',
+            imgSrc: '../../images/modules/desktop.png',
             aHref: 'http://www.baidu.com',
             seckillWillBeginTime: '6',
             seckillWillBeginBtnShowTime: '3',
