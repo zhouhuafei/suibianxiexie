@@ -84,7 +84,7 @@ Fn.prototype.removeParentDom = function () {
 
 //功能
 Fn.prototype.power=function(){
-    var interval=this.moduleDom.querySelector('.m-test-timer')
+    var interval=this.moduleDom.querySelector('.m-test-timer');
     this.timer.timer1=setInterval(function(){
         interval.innerHTML=interval.innerHTML*1+1;
     },1000);
