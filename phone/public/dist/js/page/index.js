@@ -47,12 +47,12 @@
                     isClearTimer: true
                 },
                 dataAjax: {
-                    info: "\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770"
+                    info: "\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE"
                 }
             });
 
             setTimeout(function () {
-                test.opt.dataAjax.info = "\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE";
+                test.opt.dataAjax.info = "\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770";
                 test.init();
             }, 5000);
         })();
@@ -1600,6 +1600,8 @@
         /**
          * Created by zhouhuafei on 17/1/2.
          */
+        var base = require('../base/base');
+
         function ValidateInput(json) {
             this.opt = json || {};
             this.input = this.opt.input;
@@ -1709,4 +1711,4 @@
         };
 
         module.exports = ValidateInput;
-    }, { "../function/validate": 16 }] }, {}, [2]);
+    }, { "../base/base": 1, "../function/validate": 16 }] }, {}, [2]);

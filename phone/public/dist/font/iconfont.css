@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1489588217772'); /* IE9*/
-  src: url('iconfont.eot?t=1489588217772#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1489588217772') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1489588217772') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1489588217772#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1489848634478'); /* IE9*/
+  src: url('iconfont.eot?t=1489848634478#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1489848634478') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1489848634478') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1489848634478#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -118,4 +118,8 @@
 .icon-jiangjin:before { content: "\e656"; }
 
 .icon-select:before { content: "\e657"; }
+
+.icon-checkbox:before { content: "\e658"; }
+
+.icon-radio:before { content: "\e659"; }
 

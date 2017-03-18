@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20120731 at Wed Mar 15 22:30:17 2017
+Created by FontForge 20120731 at Sat Mar 18 22:50:34 2017
  By admin
 </metadata>
 <defs>
@@ -19,7 +19,7 @@ Created by FontForge 20120731 at Wed Mar 15 22:30:17 2017
     bbox="36 -92 990 864"
     underline-thickness="0"
     underline-position="0"
-    unicode-range="U+0078-E657"
+    unicode-range="U+0078-E659"
   />
 <missing-glyph 
  />
@@ -228,5 +228,9 @@ q2 -4 3 -8v0q0 4 2 8l45 83q4 6 11 8.5t13.5 -1.5t8.5 -12t-2 -14l-39 -72h41q8 0 14
 q0 8 -6 14t-15 6zM334 652l226 139l85 -139h-311zM641 546h-238q-9 0 -15 -6t-6 -14.5t6 -14.5t15 -6h238q9 0 15 6t6 14.5t-6 14.5t-15 6z" />
     <glyph glyph-name="select" unicode="&#xe657;" 
 d="M512 97l450 562h-900z" />
+    <glyph glyph-name="checkbox" unicode="&#xe658;" 
+d="M378.5 76q-17.5 0 -29.5 13l-282 282q-12 12 -12 29t12 29.5t29.5 12.5t29.5 -12l253 -253l522 522q12 12 29 12t29.5 -12t12.5 -29.5t-13 -29.5l-551 -551q-12 -13 -29.5 -13zM379 76z" />
+    <glyph glyph-name="radio" unicode="&#xe659;" 
+d="M512 825q90 0 171.5 -35t140.5 -94t94 -140.5t35 -171.5t-35 -171.5t-94 -140.5t-140.5 -94t-171.5 -35t-171.5 35t-140.5 94t-94 140.5t-35 171.5t35 171.5t94 140.5t140.5 94t171.5 35z" />
   </font>
 </defs></svg>

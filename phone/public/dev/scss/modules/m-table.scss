@@ -1,14 +1,14 @@
 @import "../base/base";
 
 .m-table {
-    color: $color-font-default;
+    color: $g-color-font-default;
     text-align:center;
     .m-table-row {
         display: flex;
-        min-height: px2rem($height-table-row);
-        border-bottom: 1px solid $color-border-default;
+        min-height: px2rem($g-table-row-height);
+        border-bottom: 1px solid $g-color-border-default;
         &:hover {
-            background: $color-background-default;
+            background: $g-color-background-default;
         }
         .m-table-col {
             position: relative;
@@ -29,7 +29,7 @@
         }
     }
     .m-table-header {
-        background: $color-background-default;
-        border-top: 1px solid $color-border-default;
+        background: $g-color-background-default;
+        border-top: 1px solid $g-color-border-default;
     }
 }

@@ -4,10 +4,10 @@
     font-size: 0;
     .m-star {
         display: inline-block;
-        color: $color-font-dark;
+        color: $g-color-font-dark;
         font-size: px2rem(40);
         &.m-star-active {
-            color: $color-font-highlight;
+            color: $g-color-font-highlight;
         }
     }
 }

@@ -1,18 +1,17 @@
 @import "../base/base";
 
 .m-validate-input-parent {
-    $color1: rgba(255, 0, 0, 0.6);
     position: relative;
     .m-validate-input-hint {
         color: #ffffff;
-        background: $color1;
-        height: 30px;
-        line-height: 30px;
-        font-size: 14px;
-        padding: 0 10px;
+        background: $g-color-validate-fail;
+        height: px2rem(30);
+        line-height: px2rem(30);
+        font-size: px2rem(14);
+        padding: 0 px2rem(10);
         position: absolute;
         left: 0;
-        top: -40px;
+        top: px2rem(-40);
         font-style: normal;
         font-weight: normal;
         &:after {
@@ -20,13 +19,13 @@
             position: absolute;
             width: 0;
             height: 0;
-            border: 8px solid transparent;
-            border-top-color: $color1;
-            left: 10px;
-            bottom: -16px;
+            border: px2rem(8) solid transparent;
+            border-top-color: $g-color-validate-fail;
+            left: px2rem(10);
+            top: px2rem(30);
         }
     }
     .m-validate-input-error {
-        border: 1px solid $color1;
+        border: px2rem(1) solid $g-color-validate-fail !important;
     }
 }

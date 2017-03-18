@@ -62,7 +62,8 @@ a {
     display: block;
     width: inherit;
     height: inherit;
-    line-height: inherit; }
+    line-height: inherit;
+    position: relative; }
   .g-input .g-input-input {
     outline: none;
     color: inherit;
@@ -75,7 +76,6 @@ a {
     border: 0.02667rem solid #e6e7ed; }
 
 .g-select {
-  position: relative;
   width: 8rem;
   height: 1.06667rem;
   line-height: 1.06667rem;
@@ -84,7 +84,8 @@ a {
     display: block;
     width: inherit;
     height: inherit;
-    line-height: inherit; }
+    line-height: inherit;
+    position: relative; }
     .g-select .g-select-label .g-select-select {
       outline: none;
       color: inherit;
@@ -139,70 +140,67 @@ a {
 
 .g-radio {
   width: 0.53333rem;
-  height: 0.53333rem; }
+  text-align: center;
+  height: 0.53333rem;
+  line-height: 0.53333rem; }
   .g-radio .g-radio-label {
     display: block;
     width: inherit;
     height: inherit;
-    line-height: inherit; }
-  .g-radio .g-radio-radio {
-    outline: none;
-    color: inherit;
-    font-size: inherit;
+    line-height: inherit;
+    position: relative; }
+  .g-radio .g-radio-icon {
+    color: #0089ff;
+    font-size: 0.32rem;
+    position: absolute;
+    left: 0;
+    top: 0;
     width: inherit;
     height: inherit;
-    line-height: inherit;
-    box-sizing: border-box;
+    display: none; }
+  .g-radio .g-radio-radio {
+    outline: none;
+    width: inherit;
+    height: inherit;
     -webkit-appearance: none;
     border: 0.02667rem solid #e6e7ed;
-    border-radius: 2.66667rem;
-    position: relative; }
+    border-radius: 50%; }
     .g-radio .g-radio-radio:checked {
       border-color: #0089ff; }
-      .g-radio .g-radio-radio:checked:after {
-        content: '';
-        width: 38%;
-        height: 38%;
-        background: #0089ff;
-        display: block;
-        border-radius: inherit;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%); }
+      .g-radio .g-radio-radio:checked + .g-radio-icon {
+        display: block; }
 
 .g-checkbox {
   width: 0.53333rem;
-  height: 0.53333rem; }
+  text-align: center;
+  height: 0.53333rem;
+  line-height: 0.53333rem; }
   .g-checkbox .g-checkbox-label {
     display: block;
     width: inherit;
     height: inherit;
-    line-height: inherit; }
-  .g-checkbox .g-checkbox-checkbox {
-    outline: none;
-    color: inherit;
-    font-size: inherit;
+    line-height: inherit;
+    position: relative; }
+  .g-checkbox .g-checkbox-icon {
+    color: #0089ff;
+    font-size: 0.42667rem;
+    position: absolute;
+    left: 0;
+    top: 0;
     width: inherit;
     height: inherit;
-    line-height: inherit;
-    box-sizing: border-box;
+    display: none; }
+  .g-checkbox .g-checkbox-checkbox {
+    outline: none;
+    width: inherit;
+    height: inherit;
     -webkit-appearance: none;
     border: 0.02667rem solid #e6e7ed;
-    border-radius: 0.10667rem;
-    position: relative; }
+    border-radius: 0.10667rem; }
     .g-checkbox .g-checkbox-checkbox:checked {
       border-color: #0089ff; }
-      .g-checkbox .g-checkbox-checkbox:checked:after {
-        content: '';
-        position: absolute;
-        left: 0.13333rem;
-        top: 0rem;
-        width: 0.16rem;
-        height: 0.32rem;
-        border-right: 2px solid #0089ff;
-        border-bottom: 2px solid #0089ff;
-        transform: rotate(45deg); }
+      .g-checkbox .g-checkbox-checkbox:checked + .g-checkbox-icon {
+        display: block; }
 
 /*search*/
 .m-search {

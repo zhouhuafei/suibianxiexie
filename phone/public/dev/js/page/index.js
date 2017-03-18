@@ -10,12 +10,12 @@
             isClearTimer:true
         },
         dataAjax:{
-            info:`周华飞爱侯丽杰`
+            info:`侯丽杰爱周华飞`
         }
     });
 
     setTimeout(function(){
-        test.opt.dataAjax.info=`侯丽杰爱周华飞`;
+        test.opt.dataAjax.info=`周华飞爱侯丽杰`;
         test.init();
     },5000);
 

@@ -13,8 +13,8 @@
         <!--uc和qq强制全屏-->
         <meta name="full-screen" content="yes">
         <meta name="x5-fullscreen" content="true">
-        <link rel="stylesheet" href="../../../dist/font/iconfont.css">
         <link rel="shortcut icon" href="../../../../favicon.ico" />
+        <link rel="stylesheet" href="../../../dist/font/iconfont.css">
         <script>
             (function (win, doc) {
                 "use strict";
@@ -33,28 +33,33 @@
     </head>
     <body>
         <link rel="stylesheet" href="../../../dist/scss/page/index.css">
+        <div>begin</div>
         <div class="page-module-show">
             <div class="main-test"></div>
             <div class="main-radio-switch"></div>
             <div class="main-table"></div>
             <div class="main-input">
-                <label>
-                    <span class="input-txt">账号:</span>
-                    <span><input placeholder="请输入账号" class="m-validate-input" type="text" data-validate="no-space no-zero yes-integer" data-hint="本项必填 本项不可为零 请输入正整数"></span>
-                </label>
+                <div class="input-txt"><label for="username">账号:</label></div>
+                <div class="g-input">
+                    <label class="g-input-label">
+                        <input type="text" name="username" id="username" value="请输入..." placeholder="请输入..." class="g-input-input m-validate-input" data-validate="no-space no-zero yes-integer" data-hint="0-本项必填 0-本项不可为零 0-请输入正整数">
+                    </label>
+                </div>
             </div>
             <div class="main-input">
-                <label>
-                    <span class="input-txt">密码:</span>
-                    <span><input placeholder="请输入密码" class="m-validate-input" type="text" data-validate="no-space no-zero yes-integer" data-hint="本项必填 本项不可为零 请输入正整数"></span>
-                </label>
+                <div class="input-txt"><label for="password">密码:</label></div>
+                <div class="g-input">
+                    <label class="g-input-label">
+                        <input type="text" name="password" id="password" value="请输入..." placeholder="请输入..." class="g-input-input m-validate-input" data-validate="no-space no-zero yes-integer" data-hint="1-本项必填 1-本项不可为零 1-请输入正整数">
+                    </label>
+                </div>
             </div>
             <div class="main-star"></div>
             <div class="main-product"></div>
         </div>
+        <div class="page-des">以上是全局的模块</div>
+        <div class="page-des">以下是全局的样式</div>
         <div class="page-global-show">
-            <div>以上是全局的模块</div>
-            <div>以下是全局的样式</div>
             <div>
                 <div class="g-button g-button-default">按钮默认</div>
             </div>
@@ -88,21 +93,40 @@
                     </label>
                 </div>
             </div>
-            <div>
+            <div style="display: flex;align-items: center;">
                 <div class="g-radio">
                     <label class="g-radio-label">
-                        <input checked type="radio" name="" value="" class="g-radio-radio">
+                        <input checked type="radio" name="sex" id="sex-boy" value="" class="g-radio-radio">
+                        <span class="g-radio-icon iconfont icon-radio"></span>
                     </label>
                 </div>
+                <div><label for="sex-boy">男</label></div>
+                <div class="g-radio">
+                    <label class="g-radio-label">
+                        <input type="radio" name="sex" id="sex-girl" value="" class="g-radio-radio">
+                        <span class="g-radio-icon iconfont icon-radio"></span>
+                    </label>
+                </div>
+                <div><label for="sex-girl">女</label></div>
             </div>
-            <div>
+            <div style="display: flex;align-items: center;">
                 <div class="g-checkbox">
                     <label class="g-checkbox-label">
-                        <input checked type="checkbox" name="" value="" class="g-checkbox-checkbox">
+                        <input checked type="checkbox" name="" id="haha" value="" class="g-checkbox-checkbox">
+                        <span class="g-checkbox-icon iconfont icon-checkbox"></span>
                     </label>
                 </div>
+                <div><label for="haha">哈哈</label></div>
+                <div class="g-checkbox">
+                    <label class="g-checkbox-label">
+                        <input type="checkbox" name="" id="heihei" value="" class="g-checkbox-checkbox">
+                        <span class="g-checkbox-icon iconfont icon-checkbox"></span>
+                    </label>
+                </div>
+                <div><label for="heihei">嘿嘿</label></div>
             </div>
         </div>
+        <div>end</div>
         <script src="../../../dist/js/page/index.js"></script>
     </body>
 </html>

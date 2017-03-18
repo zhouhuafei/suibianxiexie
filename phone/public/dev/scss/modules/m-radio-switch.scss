@@ -12,7 +12,7 @@
         height: 100%;
         text-align: center;
         border-radius: px2rem(100);
-        background: $color-background-dark;
+        background: $g-color-background-dark;
     }
     .m-radio-switch-run {
         width: px2rem(18);
@@ -29,13 +29,13 @@
     }
     &.m-radio-switch-active {
         .m-radio-switch-box {
-            background: $color-background-highlight;
+            background: $g-color-background-highlight;
         }
         .m-radio-switch-run {
             left: px2rem(21);
         }
         .m-radio-switch-txt {
-            color: $color-font-highlight;
+            color: $g-color-font-highlight;
         }
     }
 }

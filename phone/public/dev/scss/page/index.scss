@@ -1,60 +1,49 @@
 @import "../base/base";
-
-//单选开关
-@import "../modules/m-radio-switch";
-.main-radio-switch {
-    display: flex;
-    justify-content: center;
-}
-
-//表格
-@import "../modules/m-table";
-
-//input验证
-@import "../modules/m-validate-input";
-.main-input {
-    label, span, em {
-        display: inline-block;
-    }
-    input {
-        border: px2rem(1) solid $color-border-default;
-        height: px2rem(30);
-        line-height: px2rem(30);
-        outline: none;
-        padding: 0 px2rem(5);
-        width: px2rem(200);
-        font-size: inherit;
-    }
-    .input-txt {
-        width: px2rem(50);
-        text-align: right;
-        margin-right: px2rem(10);
-    }
-}
-
-//星评
-@import "../modules/m-star";
-.main-star {
-    text-align: center;
-}
-
-//列表
-@import "../modules/m-product";
-.main-product {
-    @include clear-fix;
-}
-
-//模块展示
+//模块显示
 .page-module-show {
     & > div {
-        padding-top: px2rem(10);
+        padding: 0 px2rem(4) px2rem(20);
+    }
+    //单选开关
+    @import "../modules/m-radio-switch";
+    .main-radio-switch {
+        display: flex;
+        justify-content: center;
+    }
+
+    //表格
+    @import "../modules/m-table";
+
+    //input验证
+    @import "../modules/m-validate-input";
+    .main-input {
+        display: flex;
+        align-items: center;
+        .input-txt {
+            text-align: right;
+            margin-right: px2rem(10);
+        }
+    }
+
+    //星评
+    @import "../modules/m-star";
+
+    //列表
+    @import "../modules/m-product";
+    .main-product {
+        @include clear-fix;
+        padding: 0 0 px2rem(20) 0;
     }
 }
 
-//全局展示
+.page-des {
+    font-size: px2rem(30);
+    color: $g-color-font-highlight;
+}
+
+//ui展示
 .page-global-show {
-    padding-left: px2rem(10);
     & > div {
-        padding-bottom: px2rem(10);
+        padding: px2rem(20) px2rem(4) 0;
     }
 }

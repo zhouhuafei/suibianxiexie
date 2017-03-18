@@ -2,7 +2,7 @@
 
 .m-product {
     line-height: 1;
-    color: $color-font-default;
+    color: $g-color-font-default;
     font-size: px2rem(12);
     span {
         display: inline-block;
@@ -52,12 +52,12 @@
         span {
             font-size: px2rem(12);
             &.m-product-price-vip-money {
-                color: $color-font-highlight;
+                color: $g-color-font-highlight;
                 font-size: px2rem(14);
                 margin-right: px2rem(2);
             }
             &.m-product-price-now-money-symbol, &.m-product-price-now-money-big, &.m-product-price-now-money-point, &.m-product-price-now-money-small {
-                color: $color-font-highlight;
+                color: $g-color-font-highlight;
             }
             &.m-product-price-now-money-big {
                 font-size: px2rem(18);
@@ -66,7 +66,7 @@
                 margin-left: px2rem(6);
             }
             &.m-product-price-market-money-symbol, &.m-product-price-market-money-small {
-                color: $color-font-dark;
+                color: $g-color-font-dark;
                 text-decoration: line-through;
             }
         }
@@ -78,7 +78,7 @@
         font-size: 0;
         span {
             font-size: px2rem(12);
-            color: $color-font-dark;
+            color: $g-color-font-dark;
         }
     }
     .m-product-cart { //购物车
@@ -89,7 +89,7 @@
         text-align: center;
         height: px2rem(22);
         line-height: px2rem(22);
-        background: $color-background-highlight;
+        background: $g-color-background-highlight;
         color: #ffffff;
         border-radius: px2rem(2000);
         .iconfont {
@@ -107,7 +107,7 @@
         line-height: px2rem(18);
         border-radius: px2rem(2000);
         color: #fff;
-        background: $color-background-highlight;
+        background: $g-color-background-highlight;
         span {
             font-size: px2rem(12);
             &.iconfont {
@@ -167,7 +167,7 @@
         span {
             font-size: px2rem(12);
             &.m-product-seckill-will-begin-time-num {
-                color: $color-font-highlight;
+                color: $g-color-font-highlight;
             }
         }
     }
@@ -191,7 +191,7 @@
         text-align: center;
         height: px2rem(22);
         line-height: px2rem(22);
-        background: $color-background-highlight;
+        background: $g-color-background-highlight;
         color: #ffffff;
         border-radius: px2rem(2000);
     }
@@ -203,7 +203,7 @@
         span {
             font-size: px2rem(12);
             &.m-product-seckill-will-end-time-num {
-                color: $color-font-highlight;
+                color: $g-color-font-highlight;
             }
         }
     }

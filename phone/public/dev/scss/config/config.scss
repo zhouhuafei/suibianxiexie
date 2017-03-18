@@ -1,35 +1,45 @@
-//字体颜色
-$color-font-default: rgba(0, 0, 0, 0.8); //默认
-$color-font-highlight: #0089ff; //高亮
-$color-font-dark: #bfbfbf; //黑暗
+//字体
+$g-color-font-default: rgba(0, 0, 0, 0.8); //颜色-默认
+$g-color-font-highlight: #0089ff; //颜色-高亮
+$g-color-font-dark: #bfbfbf; //颜色-黑暗
 
-//背景颜色
-$color-background-default: #f5f5f5; //默认
-$color-background-highlight: #0089ff; //高亮
-$color-background-dark: #bbbbbb; //黑暗
+//背景
+$g-color-background-default: #f5f5f5; //颜色-默认
+$g-color-background-highlight: #0089ff; //颜色-高亮
+$g-color-background-dark: #bbbbbb; //颜色-黑暗
 
-//边框颜色
-$color-border-default: #e6e7ed; //默认
-$color-border-highlight: #0089ff; //高亮
-$color-border-dark: #e6e7ed; //黑暗
+//边框
+$g-color-border-default: #e6e7ed; //颜色-默认
+$g-color-border-highlight: #0089ff; //颜色-高亮
+$g-color-border-dark: #e6e7ed; //颜色-黑暗
 
-//验证颜色
-$color-validate-success: #1fce69; //成功
-$color-validate-fail: rgba(255, 0, 0, 0.6); //失败
+//验证
+$g-color-validate-success: #1fce69; //颜色-成功
+$g-color-validate-fail: rgba(255, 0, 0, 0.6); //颜色-失败
 
 //单选框
-$color-radio-default: #f5f5f5; //默认
-$color-radio-highlight: #0089ff; //高亮
+$g-size-radio-wh: 20; //尺寸-宽高
+$g-color-radio-highlight: #0089ff; //颜色-高亮
 
 //多选框
-$color-checkbox-default: #f5f5f5; //默认
-$color-checkbox-highlight: #0089ff; //高亮
+$g-size-checkbox-wh: 20; //尺寸-宽高
+$g-color-checkbox-highlight: #0089ff; //颜色-高亮
 
-//高度
-$height-input: 40; //输入框
-$height-menu: 40; //菜单
-$height-table-row: 60; //表格一行的高度
+//输入框
+$g-size-input-width: 300; //尺寸-宽
+$g-size-input-height: 40; //尺寸-高
+
+//下拉选择框
+$g-size-select-width: 300; //尺寸-宽
+$g-size-select-height: 40; //尺寸-高
+
+//菜单
+$g-size-menu-height: 40; //尺寸-高
+
+//表格的一行
+$g-table-row-height: 60; //尺寸-高
 
 //间距
-$gap-small: 10;
-$gap-big: 20;
+$g-gap-small: 10;//小
+$g-gap-default: 20;//默认
+$g-gap-big: 30;//大
