@@ -7,23 +7,17 @@
     var test=new Test({
         parent:document.querySelector(`.main-test`),
         dataConfig:{
-            isClearTimer:false
+            isClearTimer:true
         },
         dataAjax:{
             info:`周华飞爱侯丽杰`
         }
     });
 
-    /*
-        setTimeout(function(){
-            test.removeParentDom();
-        },2000);
-    */
-
-    /*
+    setTimeout(function(){
         test.opt.dataAjax.info=`侯丽杰爱周华飞`;
         test.init();
-    */
+    },5000);
 
 })();
 //单选开关

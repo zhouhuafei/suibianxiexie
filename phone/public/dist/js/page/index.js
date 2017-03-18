@@ -44,23 +44,17 @@
             var test = new Test({
                 parent: document.querySelector(".main-test"),
                 dataConfig: {
-                    isClearTimer: false
+                    isClearTimer: true
                 },
                 dataAjax: {
                     info: "\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770"
                 }
             });
 
-            /*
-                setTimeout(function(){
-                    test.removeParentDom();
-                },2000);
-            */
-
-            /*
-                test.opt.dataAjax.info=`侯丽杰爱周华飞`;
+            setTimeout(function () {
+                test.opt.dataAjax.info = "\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE";
                 test.init();
-            */
+            }, 5000);
         })();
         //单选开关
         (function () {
@@ -1598,7 +1592,6 @@
             var interval = this.moduleDom.querySelector('.m-test-timer');
             this.timer.timer1 = setInterval(function () {
                 interval.innerHTML = interval.innerHTML * 1 + 1;
-                console.log(interval.innerHTML);
             }, 1000);
         };
 
