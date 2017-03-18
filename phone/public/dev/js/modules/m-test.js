@@ -88,6 +88,7 @@ Fn.prototype.power=function(){
     this.timer.timer1=setInterval(function(){
         interval.innerHTML=interval.innerHTML*1+1;
     },1000);
+    
 };
 
 module.exports = Fn;
