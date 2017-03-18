@@ -1592,7 +1592,7 @@
             var interval = this.moduleDom.querySelector('.m-test-timer');
             this.timer.timer1 = setInterval(function () {
                 interval.innerHTML = interval.innerHTML * 1 + 1;
-            }, 1000);
+            }, 2000);
         };
 
         module.exports = Fn;
