@@ -87,7 +87,7 @@ Fn.prototype.power=function(){
     var interval=this.moduleDom.querySelector('.m-test-timer');
     this.timer.timer1=setInterval(function(){
         interval.innerHTML=interval.innerHTML*1+1;
-    },2000);
+    },1000);
 };
 
 module.exports = Fn;
