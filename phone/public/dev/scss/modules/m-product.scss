@@ -1,16 +1,8 @@
 @import "../base/base";
 
 .m-product {
-    $color1: #ee3400;
-    $color2: #bfbfbf;
-    $color3: #383838;
-    $color4: #ffffff;
-    $color5: #64af2a;
-    $color6: #9b9b9b;
-    $color7: #f4e91e;
-    $color8: rgba(0, 0, 0, 0.8);
     line-height: 1;
-    color: $color3;
+    color: $color-font-default;
     font-size: px2rem(12);
     span {
         display: inline-block;
@@ -60,12 +52,12 @@
         span {
             font-size: px2rem(12);
             &.m-product-price-vip-money {
-                color: $color1;
+                color: $color-font-highlight;
                 font-size: px2rem(14);
                 margin-right: px2rem(2);
             }
             &.m-product-price-now-money-symbol, &.m-product-price-now-money-big, &.m-product-price-now-money-point, &.m-product-price-now-money-small {
-                color: $color1;
+                color: $color-font-highlight;
             }
             &.m-product-price-now-money-big {
                 font-size: px2rem(18);
@@ -74,7 +66,7 @@
                 margin-left: px2rem(6);
             }
             &.m-product-price-market-money-symbol, &.m-product-price-market-money-small {
-                color: $color2;
+                color: $color-font-dark;
                 text-decoration: line-through;
             }
         }
@@ -86,7 +78,7 @@
         font-size: 0;
         span {
             font-size: px2rem(12);
-            color: $color2;
+            color: $color-font-dark;
         }
     }
     .m-product-cart { //购物车
@@ -97,8 +89,8 @@
         text-align: center;
         height: px2rem(22);
         line-height: px2rem(22);
-        background: $color1;
-        color: $color4;
+        background: $color-background-highlight;
+        color: #ffffff;
         border-radius: px2rem(2000);
         .iconfont {
             font-size: px2rem(20);
@@ -114,8 +106,8 @@
         height: px2rem(18);
         line-height: px2rem(18);
         border-radius: px2rem(2000);
-        color: $color4;
-        background: $color1;
+        color: #fff;
+        background: $color-background-highlight;
         span {
             font-size: px2rem(12);
             &.iconfont {
@@ -142,11 +134,11 @@
             font-size: 0;
             span {
                 font-size: px2rem(16);
-                color: $color7;
+                color: #f4e91e;
                 &.m-product-seckill-price-money-big {
                     font-size: px2rem(30);
                 }
-                text-shadow: 0 0 px2rem(6) $color8;
+                text-shadow: 0 0 px2rem(6) rgba(0, 0, 0, 0.8);
             }
         }
     }
@@ -154,14 +146,14 @@
         position: absolute;
         right: 0;
         bottom: 0;
-        background: $color6;
+        background: #9b9b9b;
         width: px2rem(64);
         text-align: center;
         border-radius: 2000px;
         height: px2rem(32);
         font-size: px2rem(12);
         div {
-            color: $color4;
+            color: #ffffff;
             &:first-of-type {
                 padding-top: px2rem(5);
             }
@@ -175,7 +167,7 @@
         span {
             font-size: px2rem(12);
             &.m-product-seckill-will-begin-time-num {
-                color: $color1;
+                color: $color-font-highlight;
             }
         }
     }
@@ -187,9 +179,9 @@
         text-align: center;
         height: px2rem(22);
         line-height: px2rem(22);
-        color: $color4;
+        color: #ffffff;
         border-radius: px2rem(2000);
-        background: $color5;
+        background: #64af2a;
     }
     .m-product-seckill-now-get-btn { //秒杀马上抢
         position: absolute;
@@ -199,8 +191,8 @@
         text-align: center;
         height: px2rem(22);
         line-height: px2rem(22);
-        background: $color1;
-        color: $color4;
+        background: $color-background-highlight;
+        color: #ffffff;
         border-radius: px2rem(2000);
     }
     .m-product-seckill-will-end-time { //秒杀倒计时
@@ -211,7 +203,7 @@
         span {
             font-size: px2rem(12);
             &.m-product-seckill-will-end-time-num {
-                color: $color1;
+                color: $color-font-highlight;
             }
         }
     }
