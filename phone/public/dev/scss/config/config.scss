@@ -1,5 +1,5 @@
 //字体颜色
-$color-font-default: rgba(0,0,0,0.8); //默认
+$color-font-default: rgba(0, 0, 0, 0.8); //默认
 $color-font-highlight: #0089ff; //高亮
 $color-font-dark: #bfbfbf; //黑暗
 
@@ -14,14 +14,16 @@ $color-border-highlight: #0089ff; //高亮
 $color-border-dark: #e6e7ed; //黑暗
 
 //验证颜色
-$color-validate-success:#1fce69;//成功
-$color-validate-fail:rgba(255, 0, 0, 0.6);//失败
+$color-validate-success: #1fce69; //成功
+$color-validate-fail: rgba(255, 0, 0, 0.6); //失败
 
 //单选框
-$color-radio-checked: #0089ff; //单选被选中
+$color-radio-default: #f5f5f5; //默认
+$color-radio-highlight: #0089ff; //高亮
 
 //多选框
-$color-checkbox-checked: #0089ff; //多选框被选中
+$color-checkbox-default: #f5f5f5; //默认
+$color-checkbox-highlight: #0089ff; //高亮
 
 //高度
 $height-input: 40; //输入框
