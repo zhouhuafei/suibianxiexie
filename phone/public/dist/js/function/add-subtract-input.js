@@ -27,14 +27,6 @@
             var substractCallback = json.substractCallback; //减少的回调
             var input = json.input; //输入框的按钮
             var blurCallback = json.blurCallback; //失去焦点的回调
-            var addShopping = json.addShopping; //加入购物车的按钮
-            var addShoppingCallback = json.addShoppingCallback || function () {
-                console.log('no find addShoppingCallback');
-            }; //加入购物车的回调
-            var buyNow = json.buyNow; //立即购买的按钮
-            var buyNowCallback = json.buyNowCallback || function () {
-                console.log('no find buyNowCallback');
-            }; //立即购买的回调
             var inventoryNum = parseInt(json.inventoryNum); //商品库存
             var space = function space() {
                 if (input["value"].trim() == '') {
