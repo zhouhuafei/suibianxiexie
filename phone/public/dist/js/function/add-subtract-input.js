@@ -1,1 +1,91 @@
-"use strict";!function e(r,a,n){function t(u,i){if(!a[u]){if(!r[u]){var o="function"==typeof require&&require;if(!i&&o)return o(u,!0);if(s)return s(u,!0);throw new Error("Cannot find module '"+u+"'")}var l=a[u]={exports:{}};r[u][0].call(l.exports,function(e){var a=r[u][1][e];return t(a?a:e)},l,l.exports,e,r,a,n)}return a[u].exports}for(var s="function"==typeof require&&require,u=0;u<n.length;u++)t(n[u]);return t}({1:[function(e,r,a){function n(e){if(!e)return console.log("no find parameter"),!1;var r=e.noActiveClass||"on",a=e.minNUm||1,n=e.add,t=e.addCallback,s=e.substract,u=e.substractCallback,i=e.input,o=e.blurCallback,l=parseInt(e.inventoryNum),c=function(){""==i.value.trim()&&(i.value=a)};n.onclick=function(){c();var e=parseInt(i.value);e++,i.value=e,e>=l&&(0==l?i.value=a:i.value=l,n.classList.add(r)),s.classList.remove(r),t&&t()},s.onclick=function(){c();var e=parseInt(i.value);e--,i.value=e,e<=a&&(i.value=a,s.classList.add(r)),n.classList.remove(r),u&&u()},i.onfocus=function(){i.select()},i.onblur=function(){c();var e=parseInt(i.value);isNaN(e)&&(e=a),s.classList.remove(r),n.classList.remove(r),e>=l&&(i.value=l,n.classList.add(r)),e<=a&&(i.value=a,s.classList.add(r)),o&&o()}}r.exports=n},{}]},{},[1]);
+"use strict";
+
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);throw new Error("Cannot find module '" + o + "'");
+            }var f = n[o] = { exports: {} };t[o][0].call(f.exports, function (e) {
+                var n = t[o][1][e];return s(n ? n : e);
+            }, f, f.exports, e, t, n, r);
+        }return n[o].exports;
+    }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+        s(r[o]);
+    }return s;
+})({ 1: [function (require, module, exports) {
+        function addSubtractInput(json) {
+            //购物加减商品系列
+            if (!json) {
+                console.log('no find parameter');
+                return false;
+            }
+            var noActiveClass = json.noActiveClass || 'on'; //不能点的时候的class
+            var minNUm = json.minNUm || 1; //最小数量
+            var add = json.add; //加的按钮
+            var addCallback = json.addCallback; //加的回调
+            var substract = json.substract; //减少的按钮
+            var substractCallback = json.substractCallback; //减少的回调
+            var input = json.input; //输入框的按钮
+            var blurCallback = json.blurCallback; //失去焦点的回调
+            var inventoryNum = parseInt(json.inventoryNum); //商品库存
+            var space = function space() {
+                if (input["value"].trim() == '') {
+                    input["value"] = minNUm;
+                }
+            };
+            //增加
+            add.onclick = function () {
+                space();
+                var num = parseInt(input.value);
+                num++;
+                input["value"] = num;
+                if (num >= inventoryNum) {
+                    if (inventoryNum == 0) {
+                        input["value"] = minNUm;
+                    } else {
+                        input["value"] = inventoryNum;
+                    }
+                    add.classList.add(noActiveClass);
+                }
+                substract.classList.remove(noActiveClass);
+                addCallback && addCallback();
+            };
+            //减少
+            substract.onclick = function () {
+                space();
+                var num = parseInt(input.value);
+                num--;
+                input["value"] = num;
+                if (num <= minNUm) {
+                    input["value"] = minNUm;
+                    substract.classList.add(noActiveClass);
+                }
+                add.classList.remove(noActiveClass);
+                substractCallback && substractCallback();
+            };
+            //获取焦点
+            input["onfocus"] = function () {
+                input.select();
+            };
+            //失去焦点
+            input["onblur"] = function () {
+                space();
+                var num = parseInt(input.value);
+                if (isNaN(num)) {
+                    num = minNUm;
+                }
+                substract.classList.remove(noActiveClass);
+                add.classList.remove(noActiveClass);
+                if (num >= inventoryNum) {
+                    input["value"] = inventoryNum;
+                    add.classList.add(noActiveClass);
+                }
+                if (num <= minNUm) {
+                    input["value"] = minNUm;
+                    substract.classList.add(noActiveClass);
+                }
+                blurCallback && blurCallback();
+            };
+        }
+        module.exports = addSubtractInput;
+    }, {}] }, {}, [1]);

@@ -1,1 +1,86 @@
-"use strict";!function t(e,r,o){function n(a,s){if(!r[a]){if(!e[a]){var c="function"==typeof require&&require;if(!s&&c)return c(a,!0);if(i)return i(a,!0);throw new Error("Cannot find module '"+a+"'")}var u=r[a]={exports:{}};e[a][0].call(u.exports,function(t){var r=e[a][1][t];return n(r?r:t)},u,u.exports,t,e,r,o)}return r[a].exports}for(var i="function"==typeof require&&require,a=0;a<o.length;a++)n(o[a]);return n}({1:[function(t,e,r){function o(t){var e=t||{},r=e.height||0,o=e.interval||80,n=document,i=function(){var t=[].slice.call(n.getElementsByClassName("m-lazy-load")),e=t.length;if(!e)return!1;var o=function(t){for(var e=0;t;)e+=t.offsetTop,t=t.offsetParent;return e},i="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC";t.forEach(function(t){t.getAttribute("src")!=t.dataset.src&&"img"==t.tagName.toLowerCase()&&(t.src=i,t.setAttribute("height","100%"),t.setAttribute("width","100%"),t.style.opacity="0",t.style.transition="opacity 0.4s")});var a=n.documentElement.clientHeight,s=n.documentElement.scrollTop||n.body.scrollTop,c=a+s+r;t.forEach(function(t){var e=o(t)-r,n=o(t)+t.offsetHeight;(c>=e&&e>=s||n>s&&n<c)&&("img"==t.tagName.toLowerCase()?t.getAttribute("src")!=t.dataset.src&&(t.src=t.dataset.src,t.removeAttribute("height"),t.removeAttribute("width")):(t.style.backgroundImage="url("+t.dataset.src+")",t.style.backgroundPosition="center center",t.style.backgroundRepeat="no-repeat"),t.style.opacity="1",t.classList.add("m-lazy-load-show"))})};i();var a=null,s=function(){clearTimeout(a),a=setTimeout(function(){i()},o)};window.addEventListener("scroll",function(){s()})}e.exports=o},{}]},{},[1]);
+"use strict";
+
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);throw new Error("Cannot find module '" + o + "'");
+            }var f = n[o] = { exports: {} };t[o][0].call(f.exports, function (e) {
+                var n = t[o][1][e];return s(n ? n : e);
+            }, f, f.exports, e, t, n, r);
+        }return n[o].exports;
+    }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+        s(r[o]);
+    }return s;
+})({ 1: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 16/12/17.
+         */
+        function lazyload(json) {
+            var opt = json || {};
+            var height = opt.height || 0; //多加载一部分高度的图片
+            var interval = opt.interval || 80; //延迟时间
+            var doc = document;
+            var fn = function fn() {
+                var aImg = [].slice.call(doc.getElementsByClassName('m-lazy-load')); //所有的img元素节点
+                var iLen = aImg.length;
+                if (!iLen) {
+                    return false;
+                }
+                //获取top
+                var offsetTop = function offsetTop(obj) {
+                    var top = 0;
+                    while (obj) {
+                        top += obj.offsetTop;
+                        obj = obj.offsetParent;
+                    }
+                    return top;
+                };
+                var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
+                aImg.forEach(function (v) {
+                    if (v.getAttribute('src') != v.dataset.src && v.tagName.toLowerCase() == 'img') {
+                        v.src = src;
+                        v.setAttribute('height', '100%');
+                        v.setAttribute('width', '100%');
+                        v.style.opacity = '0';
+                        v.style.transition = 'opacity 0.4s';
+                    }
+                });
+                var iClientH = doc.documentElement.clientHeight;
+                var iScrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
+                var iResultTop = iClientH + iScrollTop + height;
+                aImg.forEach(function (v) {
+                    var iObjTop = offsetTop(v) - height;
+                    var iObjBottom = offsetTop(v) + v.offsetHeight;
+                    //height
+                    if (iResultTop >= iObjTop && iObjTop >= iScrollTop || iObjBottom > iScrollTop && iObjBottom < iResultTop) {
+                        if (v.tagName.toLowerCase() == 'img') {
+                            if (v.getAttribute('src') != v.dataset.src) {
+                                v.src = v.dataset.src;
+                                v.removeAttribute('height');
+                                v.removeAttribute('width');
+                            }
+                        } else {
+                            v.style.backgroundImage = 'url(' + v.dataset.src + ')';
+                            v.style.backgroundPosition = 'center center';
+                            v.style.backgroundRepeat = 'no-repeat';
+                        }
+                        v.style.opacity = '1';
+                        v.classList.add('m-lazy-load-show');
+                    }
+                });
+            };
+            fn();
+            var timer = null;
+            var fnScroll = function fnScroll() {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    fn();
+                }, interval);
+            };
+            window.addEventListener('scroll', function () {
+                fnScroll();
+            });
+        }
+        module.exports = lazyload;
+    }, {}] }, {}, [1]);

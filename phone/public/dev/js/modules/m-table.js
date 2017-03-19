@@ -15,13 +15,14 @@ function Fn(json) {
             },
             //数据
             data: {
-                header: ['header0','header1','header2'],
-                body:[['body0-0','body0-1','body0-2'],['body1-0','body1-1','body1-2']],
+                header: [{html:'header0'},{html:'header1'},{html:'header2'}],
+                body:[[{html:'body0-0'},{html:'body0-1'},{html:'body0-2'}],[{html:'body1-0'},{html:'body1-1'},{html:'body1-2'}]],
                 footer:''
             }
         },
         inherits: json
     });
+    console.log(this.opt);
     //内部的一些属性
     this.moduleDom = null;//内部的模块
     this.parentDom = null;//内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
