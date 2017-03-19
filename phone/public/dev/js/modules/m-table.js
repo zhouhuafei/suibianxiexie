@@ -8,6 +8,11 @@ function Fn(json) {
         defaults: {
             //父级
             parent: `body`,//这个仅支持传入选择器和原生dom节点
+            //回调
+            callback: {
+                click: function () {
+                }
+            },
             //配置
             config: {
                 isClearTimer: true,//是否清除所有定时器(默认清除)
