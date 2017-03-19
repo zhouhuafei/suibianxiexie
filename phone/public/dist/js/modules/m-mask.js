@@ -1,1 +1,643 @@
-"use strict";!function t(o,e,n){function r(a,c){if(!e[a]){if(!o[a]){var u="function"==typeof require&&require;if(!c&&u)return u(a,!0);if(i)return i(a,!0);throw new Error("Cannot find module '"+a+"'")}var s=e[a]={exports:{}};o[a][0].call(s.exports,function(t){var e=o[a][1][t];return r(e?e:t)},s,s.exports,t,o,e,n)}return e[a].exports}for(var i="function"==typeof require&&require,a=0;a<n.length;a++)r(n[a]);return r}({1:[function(t,o,e){var n={cookie:t("../function/cookie"),fillZero:t("../function/fill-zero"),getParent:t("../function/get-parent"),goTop:t("../function/go-top"),htmlToDom:t("../function/html-to-dom"),whetherDisableScroll:t("../function/whether-disable-scroll"),whenScrollBottom:t("../function/when-scroll-bottom"),jsonToArray:t("../function/json-to-array"),secondsToTime:t("../function/seconds-to-time"),timeCountDown:t("../function/time-count-down"),strLimit:t("../function/str-limit"),getOneDom:t("../function/get-one-dom"),createElement:t("../function/create-element"),extend:t("../function/extend")};o.exports=n},{"../function/cookie":3,"../function/create-element":4,"../function/extend":5,"../function/fill-zero":6,"../function/get-one-dom":7,"../function/get-parent":8,"../function/go-top":9,"../function/html-to-dom":10,"../function/json-to-array":11,"../function/seconds-to-time":12,"../function/str-limit":13,"../function/time-count-down":14,"../function/when-scroll-bottom":15,"../function/whether-disable-scroll":16}],2:[function(t,o,e){function n(t){this.opt=r.extend({defaults:{parent:"body",callback:{click:function(){}},config:{isClearTimer:!0,isShowModule:!1,isTransparent:!1},data:{info:"周华飞测试"}},inherits:t}),this.moduleDom=null,this.parentDom=null,this.timer={},this.init()}var r=t("../base/base");n.prototype.init=function(){this.render(),this.power()},n.prototype.render=function(){this.renderModuleDom(),this.renderParentDom()},n.prototype.renderModuleDom=function(){var t="";this.opt.config.isTransparent&&(t="m-mask-transparent"),this.moduleDom=r.createElement({attribute:{className:"m-mask "+t,innerHTML:""}})},n.prototype.renderParentDom=function(){return this.parentDom=r.getOneDom({dom:this.opt.parent}),!!this.parentDom&&void(this.parentDom&&this.opt.config.isShowModule&&this.parentDom.appendChild(this.moduleDom))},n.prototype.removeModuleDom=function(){if(this.moduleDom.parentNode&&this.moduleDom.parentNode.removeChild(this.moduleDom),this.opt.config.isClearTimer)for(var t in this.timer)this.timer.hasOwnProperty(t)&&(clearInterval(this.timer[t]),clearTimeout(this.timer[t]))},n.prototype.removeParentDom=function(){this.removeModuleDom(),this.parentDom&&this.parentDom.parentNode.removeChild(this.parentDom)},n.prototype.show=function(){this.parentDom&&this.parentDom.appendChild(this.moduleDom)},n.prototype.hide=function(){this.moduleDom.parentNode&&this.moduleDom.parentNode.removeChild(this.moduleDom)},n.prototype.power=function(){var t=this;this.moduleDom.addEventListener("click",function(o){t.opt.callback.click(),o.stopPropagation()})},o.exports=n},{"../base/base":1}],3:[function(t,o,e){function n(t){var o=t||{},e=o.name,n=o.value,r=o.expires,i=new Date,a=i.getTime();i.setTime(a+24*r*60*60*1e3),document.cookie=e+"="+n+"; expires="+i}function r(t){var o=t||{},e=o.name,n=document.cookie,r=n.split("; "),i="";return r.forEach(function(t){var o=t.split("=");if(o[0]==e)return i=o[1],!1}),i}function i(t){var o=t||{},e=o.name;n(e,"",-1)}var a={setCookie:n,getCookie:r,removeCookie:i};o.exports=a},{}],4:[function(t,o,e){function n(t){var o=t||{};o.tagName=o.tagName||"div",o.attribute=o.attribute||{},o.custom=o.custom||{};var e=document.createElement(""+o.tagName);for(var n in o.attribute)o.attribute.hasOwnProperty(n)&&(e[n]=o.attribute[n]);for(var r in o.custom)o.custom.hasOwnProperty(r)&&e.setAttribute("data-"+r,o.custom[r]);return e}o.exports=n},{}],5:[function(t,o,e){function n(t){var o=t||{},e=o.defaults||{},r=o.inherits||{},i=!0;for(var a in r)if(r.hasOwnProperty(a)){var c=Object.prototype.toString.call(e[a]).slice(8,-1).toLowerCase(),u=Object.prototype.toString.call(r[a]).slice(8,-1).toLowerCase();c==u&&i?"object"==c?n({defaults:e[a],inherits:r[a]}):"array"==c?r[a].forEach(function(t,o){var c=Object.prototype.toString.call(e[a][o]).slice(8,-1).toLowerCase(),u=Object.prototype.toString.call(r[a][o]).slice(8,-1).toLowerCase();u==c&&i&&"object"==c?n({defaults:e[a][o],inherits:r[a][o]}):e[a][o]=r[a][o]}):e[a]=r[a]:e[a]=r[a]}return e}o.exports=n},{}],6:[function(t,o,e){function n(t){var o=t||{},e=o.num;return e<10?"0"+e:""+e}o.exports=n},{}],7:[function(t,o,e){function n(t){var o=t||{};o.dom=o.dom||"body";var e=null;return o.dom&&("string"==Object.prototype.toString.call(o.dom).slice(8,-1).toLowerCase()&&(e=document.querySelector(o.dom)),o.dom.nodeType&&1==o.dom.nodeType&&(e=o.dom)),e}o.exports=n},{}],8:[function(t,o,e){function n(t){var o=t||{},e=o.obj,n=o.selector;if(!e)return console.log("参数错误,第一参数需要一个元素节点对象"),null;if(!n)return e.parentNode;if("string"==typeof n)switch(e=e.parentNode,n.charAt(0)){case".":for(;e;){if(!e.classList)return console.log("no find class"),null;if(e.classList.contains(n.substring(1)))return e;e=e.parentNode}break;case"#":for(;e;){if(e==document)return console.log("no find id"),null;if(e.id==n.substring(1))return e;e=e.parentNode}break;default:for(;e;){if(e==document)return console.log("no find tagName"),null;if(e.tagName.toLowerCase()==n)return e;e=e.parentNode}}}o.exports=n},{}],9:[function(t,o,e){function n(t){var o=t||{},e=o.obj;if(!e)return console.log("parameter error"),!1;var n=document,r=6,i=n.documentElement.scrollTop||n.body.scrollTop,a=0,c=null,u=function t(){a=Math.ceil(i/r),i-=a,window.scrollTo(0,i),c=requestAnimationFrame(t),0==i&&cancelAnimationFrame(c)};e.addEventListener("click",function(t){t.stopPropagation(),t.preventDefault(),i=n.documentElement.scrollTop||n.body.scrollTop,requestAnimationFrame(u)}),n.addEventListener("touchstart",function(){cancelAnimationFrame(c)})}o.exports=n},{}],10:[function(t,o,e){function n(t){var o=t||{},e=o.html,n=document.createElement("div");return n.innerHTML=e,n.children[0]}o.exports=n},{}],11:[function(t,o,e){function n(t){var o=t||{},e=o.obj,n=[];if(e instanceof Array)e.forEach(function(t,o){n.push([o,t])});else for(var r in e)e.hasOwnProperty(r)&&n.push([r,e[r]]);return n}o.exports=n},{}],12:[function(t,o,e){function n(t){var o=t||{},e=o.seconds,n=Math.floor(e/3600/24),r=Math.floor(e/3600%24),i=Math.floor(e%3600/60),a=Math.floor(e%60);return{d:n,h:r,m:i,s:a,a:e}}o.exports=n},{}],13:[function(t,o,e){function n(t){var o=t||{},e=o.max,n=o.str;if(!n)return"";var r=n.length;return r>e&&(n=n.substring(0,e)),n}o.exports=n},{}],14:[function(t,o,e){function n(t){var o=t||{},e=o.seconds,n=o.runCallback,r=o.overCallback,i=function(t){var o=t.seconds,e=Math.floor(o/3600/24),n=Math.floor(o/3600%24),r=Math.floor(o%3600/60),i=Math.floor(o%60);return{d:e,h:n,m:r,s:i,a:o}};if(e<=0)e=0,n&&n(i({seconds:e})),r&&r();else{n&&n(i({seconds:e}));var a=setInterval(function(){e--,n&&n(i({seconds:e})),e<0&&(e=0,clearInterval(a),n&&n(i({seconds:e})),r&&r())},1e3)}}o.exports=n},{}],15:[function(t,o,e){function n(t){var o=t||{},e=o.success||function(){},n=o.fail||function(){},r=document,i=o.interval||80,a=!0,c=function(){var t=r.body.offsetHeight,o=r.documentElement.scrollTop||r.body.scrollTop,i=r.documentElement.clientHeight;o+i>=t-100&&a?(a=!1,e(),setTimeout(function(){a=!0},1e3)):n()};c();var u=null,s=function(){clearTimeout(u),u=setTimeout(function(){c()},i)};window.addEventListener("scroll",function(){s()})}o.exports=n},{}],16:[function(t,o,e){function n(){var t=document;return{stopPropagation:function(t){t.stopPropagation()},preventDefault:function(t){t.preventDefault()},returnFalse:function(t){t.preventDefault(),t.stopPropagation()},noScroll:function(){t.addEventListener("touchmove",this.preventDefault,!1),t.documentElement.style.overflow="hidden"},yesScroll:function(){t.removeEventListener("touchmove",this.preventDefault,!1),t.documentElement.style.overflow="auto"}}}o.exports=n},{}]},{},[2]);
+"use strict";
+
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);throw new Error("Cannot find module '" + o + "'");
+            }var f = n[o] = { exports: {} };t[o][0].call(f.exports, function (e) {
+                var n = t[o][1][e];return s(n ? n : e);
+            }, f, f.exports, e, t, n, r);
+        }return n[o].exports;
+    }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+        s(r[o]);
+    }return s;
+})({ 1: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 16/12/4.
+         */
+        //一些小方法
+        var base = {
+            cookie: require('../function/cookie'),
+            fillZero: require('../function/fill-zero'),
+            getParent: require('../function/get-parent'),
+            goTop: require('../function/go-top'),
+            htmlToDom: require('../function/html-to-dom'),
+            whetherDisableScroll: require('../function/whether-disable-scroll'),
+            whenScrollBottom: require('../function/when-scroll-bottom'),
+            jsonToArray: require('../function/json-to-array'),
+            secondsToTime: require('../function/seconds-to-time'),
+            timeCountDown: require('../function/time-count-down'),
+            strLimit: require('../function/str-limit'),
+            getOneDom: require('../function/get-one-dom'),
+            createElement: require('../function/create-element'),
+            extend: require('../function/extend')
+        };
+        module.exports = base;
+    }, { "../function/cookie": 3, "../function/create-element": 4, "../function/extend": 5, "../function/fill-zero": 6, "../function/get-one-dom": 7, "../function/get-parent": 8, "../function/go-top": 9, "../function/html-to-dom": 10, "../function/json-to-array": 11, "../function/seconds-to-time": 12, "../function/str-limit": 13, "../function/time-count-down": 14, "../function/when-scroll-bottom": 15, "../function/whether-disable-scroll": 16 }], 2: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base');
+
+        //构造函数
+        function Fn(json) {
+            //外部传进来的参数
+            this.opt = base.extend({
+                defaults: {
+                    //父级
+                    parent: "body", //这个仅支持传入选择器和原生dom节点
+                    //回调
+                    callback: {
+                        click: function click() {}
+                    },
+                    //配置
+                    config: {
+                        isClearTimer: true, //是否清除所有定时器(默认清除)
+                        isShowModule: false, //是否显示模块(默认不显示)
+                        isTransparent: false //是不是透明的遮罩(默认不透明)
+                    },
+                    //数据
+                    data: {
+                        info: "\u5468\u534E\u98DE\u6D4B\u8BD5"
+                    }
+                },
+                inherits: json
+            });
+            //内部的一些属性
+            this.moduleDom = null; //内部的模块
+            this.parentDom = null; //内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+            this.timer = {}; //假设内部有定时器
+            this.init(); //初始化
+        }
+
+        //初始化
+        Fn.prototype.init = function () {
+            this.render();
+            this.power();
+        };
+
+        //渲染
+        Fn.prototype.render = function () {
+            this.renderModuleDom();
+            this.renderParentDom();
+        };
+
+        //内部的模块
+        Fn.prototype.renderModuleDom = function () {
+            var isTransparent = '';
+            if (this.opt.config.isTransparent) {
+                isTransparent = 'm-mask-transparent';
+            }
+            this.moduleDom = base.createElement({
+                attribute: {
+                    className: "m-mask " + isTransparent,
+                    innerHTML: ""
+                }
+            });
+        };
+
+        //外部的容器
+        Fn.prototype.renderParentDom = function () {
+            this.parentDom = base.getOneDom({ dom: this.opt.parent });
+            if (!this.parentDom) {
+                return false;
+            }
+            if (this.parentDom) {
+                if (this.opt.config.isShowModule) {
+                    this.parentDom.appendChild(this.moduleDom);
+                }
+            }
+        };
+
+        //移除内部的模块
+        Fn.prototype.removeModuleDom = function () {
+            if (this.moduleDom.parentNode) {
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+            }
+            //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
+            if (this.opt.config.isClearTimer) {
+                for (var attr in this.timer) {
+                    if (this.timer.hasOwnProperty(attr)) {
+                        clearInterval(this.timer[attr]);
+                        clearTimeout(this.timer[attr]);
+                    }
+                }
+            }
+        };
+
+        //移除外部的容器
+        Fn.prototype.removeParentDom = function () {
+            //先移除内部的模块
+            this.removeModuleDom();
+            //再移除外部的容器
+            if (this.parentDom) {
+                this.parentDom.parentNode.removeChild(this.parentDom);
+            }
+        };
+
+        //模块显示
+        Fn.prototype.show = function () {
+            if (this.parentDom) {
+                this.parentDom.appendChild(this.moduleDom);
+            }
+        };
+
+        //模块隐藏
+        Fn.prototype.hide = function () {
+            if (this.moduleDom.parentNode) {
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+            }
+        };
+
+        //功能
+        Fn.prototype.power = function () {
+            var self = this;
+            this.moduleDom.addEventListener('click', function (ev) {
+                self.opt.callback.click();
+                ev.stopPropagation();
+            });
+        };
+
+        module.exports = Fn;
+    }, { "../base/base": 1 }], 3: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //设置cookie
+        function setCookie(json) {
+            var opt = json || {};
+            var name = opt.name;
+            var value = opt.value;
+            var expires = opt.expires;
+            var myDate = new Date();
+            var myTime = myDate.getTime();
+            myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000);
+            document.cookie = name + '=' + value + '; expires=' + myDate;
+        }
+        //获取cookie
+        function getCookie(json) {
+            var opt = json || {};
+            var name = opt.name;
+            var cookie = document.cookie;
+            var arr = cookie.split('; ');
+            var value = '';
+            arr.forEach(function (v) {
+                var arr2 = v.split('=');
+                if (arr2[0] == name) {
+                    value = arr2[1];
+                    return false;
+                }
+            });
+            return value;
+        }
+        //清除cookie
+        function removeCookie(json) {
+            var opt = json || {};
+            var name = opt.name;
+            setCookie(name, '', -1);
+        }
+        var obj = {
+            setCookie: setCookie,
+            getCookie: getCookie,
+            removeCookie: removeCookie
+        };
+        module.exports = obj;
+    }, {}], 4: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/3/19.
+         */
+        function createElement(json) {
+            var opt = json || {};
+            opt.tagName = opt.tagName || 'div'; //普通属性
+            opt.attribute = opt.attribute || {}; //自定义属性,checked,selected
+            opt.custom = opt.custom || {};
+            var tag = document.createElement("" + opt.tagName);
+            for (var attr0 in opt.attribute) {
+                if (opt.attribute.hasOwnProperty(attr0)) {
+                    tag[attr0] = opt.attribute[attr0];
+                }
+            }
+            for (var attr1 in opt.custom) {
+                if (opt.custom.hasOwnProperty(attr1)) {
+                    tag.setAttribute('data-' + attr1, opt.custom[attr1]);
+                }
+            }
+            return tag;
+        }
+        module.exports = createElement;
+    }, {}], 5: [function (require, module, exports) {
+        function extend(json) {
+            var opt = json || {};
+            opt.defaults = opt.defaults || {};
+            opt.inherits = opt.inherits || {};
+            opt.isDeep = opt.isDeep == false ? opt.isDeep : true; //默认进行深拷贝
+            for (var attr in opt.inherits) {
+                if (opt.inherits.hasOwnProperty(attr)) {
+                    var defaultsType = Object.prototype.toString.call(opt.defaults[attr]).slice(8, -1).toLowerCase();
+                    var inheritsType = Object.prototype.toString.call(opt.inherits[attr]).slice(8, -1).toLowerCase();
+                    if (defaultsType == inheritsType && opt.isDeep) {
+                        //类型相同
+                        if (defaultsType == 'object') {
+                            //当为对象
+                            extend({ defaults: opt.defaults[attr], inherits: opt.inherits[attr] });
+                        } else if (defaultsType == 'array') {
+                            //当为数组时
+                            opt.inherits[attr].forEach(function (v, i) {
+                                var vDefaultsType = Object.prototype.toString.call(opt.defaults[attr][i]).slice(8, -1).toLowerCase();
+                                var vInheritsType = Object.prototype.toString.call(opt.inherits[attr][i]).slice(8, -1).toLowerCase();
+                                if (vInheritsType == vDefaultsType && opt.isDeep) {
+                                    if (vDefaultsType == 'object') {
+                                        extend({ defaults: opt.defaults[attr][i], inherits: opt.inherits[attr][i] });
+                                    } else {
+                                        opt.defaults[attr][i] = opt.inherits[attr][i];
+                                    }
+                                } else {
+                                    opt.defaults[attr][i] = opt.inherits[attr][i];
+                                }
+                            });
+                        } else {
+                            opt.defaults[attr] = opt.inherits[attr];
+                        }
+                    } else {
+                        //类型不同,直接后面的覆盖前面的
+                        opt.defaults[attr] = opt.inherits[attr];
+                    }
+                }
+            }
+            return opt.defaults;
+        }
+        /*
+        var obj1 = extend({
+            defaults: {
+                a: 'a',
+                b: {
+                    b1: 'b1',
+                    b2: 'b2',
+                    b3: {
+                        c1: 'c1'
+                    }
+                }
+            },
+            inherits: {
+                a: 0,
+                b: {
+                    b2: 1,
+                    b3: {
+                        c2: 2
+                    }
+                }
+            }
+        });
+        console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
+        var obj2 = extend({
+            defaults: {
+                b: [
+                    {a1: 'a1'},
+                    {a2: 'a2'}
+                ]
+            },
+            inherits: {
+                b: [
+                    'what?',
+                    {b1: 'b1'},
+                    {b2: 'b2'}
+                ]
+            }
+        });
+        console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
+        */
+        module.exports = extend;
+    }, {}], 6: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //补零函数
+        function fillZero(json) {
+            var opt = json || {};
+            var num = opt.num;
+            if (num < 10) {
+                return '0' + num;
+            } else {
+                return '' + num;
+            }
+        }
+        module.exports = fillZero;
+    }, {}], 7: [function (require, module, exports) {
+        //获取一个原生的dom节点,当传入的是dom,或者是选择器的时候
+        function getOneDom(json) {
+            var opt = json || {};
+            opt.dom = opt.dom || "body"; //这个仅支持传入选择器和原生dom节点
+            var resultDom = null;
+            if (opt.dom) {
+                //如果是字符串
+                if (Object.prototype.toString.call(opt.dom).slice(8, -1).toLowerCase() == 'string') {
+                    resultDom = document.querySelector(opt.dom);
+                }
+                //如果是dom节点
+                if (opt.dom.nodeType && opt.dom.nodeType == 1) {
+                    resultDom = opt.dom;
+                }
+            }
+            return resultDom;
+        }
+        module.exports = getOneDom;
+    }, {}], 8: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        "use strict";
+        //获取指定父级
+
+        function getParent(json) {
+            var opt = json || {};
+            var obj = opt.obj;
+            var selector = opt.selector;
+            if (!obj) {
+                //第一参数不符合规范
+                console.log('参数错误,第一参数需要一个元素节点对象');
+                return null;
+            }
+            if (!selector) {
+                //没有第二参数默认选取直接父级
+                return obj.parentNode;
+            } else if (typeof selector == 'string') {
+                obj = obj.parentNode;
+                switch (selector.charAt(0)) {
+                    case '.':
+                        //通过class获取父级
+                        while (obj) {
+                            if (!obj.classList) {
+                                console.log('no find class');
+                                return null;
+                            }
+                            if (obj.classList.contains(selector.substring(1))) {
+                                return obj;
+                            } else {
+                                obj = obj.parentNode;
+                            }
+                        }
+                        break;
+                    case '#':
+                        //通过id获取父级
+                        while (obj) {
+                            if (obj == document) {
+                                console.log('no find id');
+                                return null;
+                            }
+                            if (obj.id == selector.substring(1)) {
+                                return obj;
+                            } else {
+                                obj = obj.parentNode;
+                            }
+                        }
+                        break;
+                    default:
+                        //通过标签名获取父级
+                        while (obj) {
+                            if (obj == document) {
+                                console.log('no find tagName');
+                                return null;
+                            }
+                            if (obj.tagName.toLowerCase() == selector) {
+                                return obj;
+                            } else {
+                                obj = obj.parentNode;
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+        module.exports = getParent;
+    }, {}], 9: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //返回顶部
+        function goTop(json) {
+            var opt = json || {};
+            var obj = opt.obj;
+            if (!obj) {
+                console.log('parameter error');
+                return false;
+            }
+            var doc = document;
+            var scale = 6;
+            var scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
+            var speed = 0;
+            var timer = null;
+            var fn = function fn() {
+                speed = Math.ceil(scrollT / scale);
+                scrollT -= speed;
+                window.scrollTo(0, scrollT);
+                timer = requestAnimationFrame(fn);
+                if (scrollT == 0) {
+                    cancelAnimationFrame(timer);
+                }
+            };
+            obj.addEventListener('click', function (ev) {
+                ev.stopPropagation();
+                ev.preventDefault();
+                scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
+                requestAnimationFrame(fn);
+            });
+            doc.addEventListener('touchstart', function () {
+                cancelAnimationFrame(timer);
+            });
+        }
+        module.exports = goTop;
+    }, {}], 10: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //html转成DOM节点
+        function htmlToDom(json) {
+            var opt = json || {};
+            var html = opt.html;
+            var div = document.createElement('div');
+            div.innerHTML = html;
+            return div.children[0];
+        }
+        module.exports = htmlToDom;
+    }, {}], 11: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //对象转数组
+        function jsonToArray(json) {
+            var opt = json || {};
+            var obj = opt.obj;
+            var arr = [];
+            if (obj instanceof Array) {
+                obj.forEach(function (v, i) {
+                    arr.push([i, v]);
+                });
+            } else {
+                for (var attr in obj) {
+                    if (obj.hasOwnProperty(attr)) {
+                        arr.push([attr, obj[attr]]);
+                    }
+                }
+            }
+            return arr;
+        }
+        module.exports = jsonToArray;
+    }, {}], 12: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //秒转时间
+        function secondsToTime(json) {
+            var opt = json || {};
+            var seconds = opt.seconds;
+            //天
+            var d = Math.floor(seconds / 3600 / 24);
+            //时
+            var h = Math.floor(seconds / 3600 % 24);
+            //分
+            var m = Math.floor(seconds % 3600 / 60);
+            //秒
+            var s = Math.floor(seconds % 60);
+            return { d: d, h: h, m: m, s: s, a: seconds };
+        }
+        module.exports = secondsToTime;
+    }, {}], 13: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //字符数量限制
+        function strLimit(json) {
+            var opt = json || {};
+            var max = opt.max;
+            var str = opt.str;
+            if (!str) {
+                return '';
+            }
+            var length = str.length;
+            if (length > max) {
+                str = str.substring(0, max);
+            }
+            return str;
+        }
+        module.exports = strLimit;
+    }, {}], 14: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //倒计时
+        function timeCountDown(json) {
+            var opt = json || {};
+            var seconds = opt.seconds;
+            //运行的回调
+            var runCallback = opt.runCallback;
+            //结束的回调
+            var overCallback = opt.overCallback;
+            //时间转换
+            var timeTransform = function timeTransform(opt) {
+                var seconds = opt.seconds;
+                //天
+                var d = Math.floor(seconds / 3600 / 24);
+                //时
+                var h = Math.floor(seconds / 3600 % 24);
+                //分
+                var m = Math.floor(seconds % 3600 / 60);
+                //秒
+                var s = Math.floor(seconds % 60);
+                return { d: d, h: h, m: m, s: s, a: seconds };
+            };
+            if (seconds <= 0) {
+                //时间小于等于0秒
+                seconds = 0;
+                runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
+                overCallback && overCallback(); //结束时的回调
+            } else {
+                //时间大于0秒
+                runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
+                //倒计时走你
+                var timer = setInterval(function () {
+                    seconds--;
+                    runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
+                    if (seconds < 0) {
+                        seconds = 0;
+                        clearInterval(timer);
+                        runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
+                        overCallback && overCallback(); //结束时的回调
+                    }
+                }, 1000);
+            }
+        }
+        module.exports = timeCountDown;
+    }, {}], 15: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //当滚动到了浏览器的底部
+        function whenScrollBottom(json) {
+            var opt = json || {};
+            var success = opt.success || function () {};
+            var fail = opt.fail || function () {};
+            var doc = document;
+            var interval = opt.interval || 80; //延迟时间
+            var isBottom = true; //假设到达了底部
+            var fn = function fn() {
+                var allH = doc.body.offsetHeight;
+                var scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
+                var clientHeight = doc.documentElement.clientHeight;
+                if (scrollTop + clientHeight >= allH - 100 && isBottom) {
+                    isBottom = false;
+                    success();
+                    //假设1000毫秒之后数据加载完毕
+                    setTimeout(function () {
+                        isBottom = true;
+                    }, 1000);
+                } else {
+                    fail();
+                }
+            };
+            fn();
+            var timer = null;
+            var fnScroll = function fnScroll() {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    fn();
+                }, interval);
+            };
+            window.addEventListener('scroll', function () {
+                fnScroll();
+            });
+        }
+        module.exports = whenScrollBottom;
+    }, {}], 16: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 17/1/1.
+         */
+        //是否禁止浏览器滚动
+        function whetherDisableScroll() {
+            var doc = document;
+            return {
+                //阻止冒泡
+                stopPropagation: function stopPropagation(ev) {
+                    ev.stopPropagation();
+                },
+                //阻止默认事件
+                preventDefault: function preventDefault(ev) {
+                    ev.preventDefault();
+                },
+                //阻止冒泡,阻止默认事件
+                returnFalse: function returnFalse(ev) {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                },
+                //禁止滚动
+                noScroll: function noScroll() {
+                    doc.addEventListener('touchmove', this.preventDefault, false);
+                    doc.documentElement.style.overflow = 'hidden';
+                },
+                //解除禁止浏览器滚动
+                yesScroll: function yesScroll() {
+                    doc.removeEventListener('touchmove', this.preventDefault, false);
+                    doc.documentElement.style.overflow = 'auto';
+                }
+            };
+        }
+        module.exports = whetherDisableScroll;
+    }, {}] }, {}, [2]);

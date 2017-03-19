@@ -1,1 +1,106 @@
-"use strict";!function n(o,c,e){function i(l,t){if(!c[l]){if(!o[l]){var s="function"==typeof require&&require;if(!t&&s)return s(l,!0);if(r)return r(l,!0);throw new Error("Cannot find module '"+l+"'")}var u=c[l]={exports:{}};o[l][0].call(u.exports,function(n){var c=o[l][1][n];return i(c?c:n)},u,u.exports,n,o,c,e)}return c[l].exports}for(var r="function"==typeof require&&require,l=0;l<e.length;l++)i(e[l]);return i}({1:[function(n,o,c){var e={isSpace:function(n){var o=n||{},c=o.success||function(){console.log("no find success callback")},e=o.fail||function(){console.log("no find fail callback")},i=o.value||" ",r=i.trim(),l=!1;return""==r?(l=!0,c()):e(),l},isZero:function(n){var o=n||{},c=o.success||function(){console.log("no find success callback")},e=o.fail||function(){console.log("no find fail callback")},i=o.value||" ",r=i.trim(),l=!1;return 0==r?(l=!0,c()):e(),l},isInteger:function(n){var o=n||{},c=o.success||function(){console.log("no find success callback")},e=o.fail||function(){console.log("no find fail callback")},i=o.value||" ",r=i.trim(),l=/^\d+$/,t=!1;return l.test(r)?(t=!0,c()):e(),t},isReservedDecimal:function(n){var o=n||{},c=o.success||function(){console.log("no find success callback")},e=o.fail||function(){console.log("no find fail callback")},i=o.num||2,r=o.value||" ",l=r.trim(),t=new RegExp("^\\d+\\.\\d{"+i+"}$"),s=!1;return t.test(l)?(s=!0,c()):e(),s}};o.exports=e},{}]},{},[1]);
+"use strict";
+
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);throw new Error("Cannot find module '" + o + "'");
+            }var f = n[o] = { exports: {} };t[o][0].call(f.exports, function (e) {
+                var n = t[o][1][e];return s(n ? n : e);
+            }, f, f.exports, e, t, n, r);
+        }return n[o].exports;
+    }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+        s(r[o]);
+    }return s;
+})({ 1: [function (require, module, exports) {
+        /**
+         * Created by zhouhuafei on 16/12/4.
+         */
+        //验证
+        var validate = {
+            //是不是空
+            isSpace: function isSpace(json) {
+                var opt = json || {};
+                var success = opt.success || function () {
+                    console.log('no find success callback');
+                };
+                var fail = opt.fail || function () {
+                    console.log('no find fail callback');
+                };
+                var value = opt.value || " ";
+                var valueTrim = value.trim();
+                var b = false;
+                if (valueTrim == '') {
+                    b = true;
+                    success();
+                } else {
+                    fail();
+                }
+                return b;
+            },
+            //是不是0
+            isZero: function isZero(json) {
+                var opt = json || {};
+                var success = opt.success || function () {
+                    console.log('no find success callback');
+                };
+                var fail = opt.fail || function () {
+                    console.log('no find fail callback');
+                };
+                var value = opt.value || " ";
+                var valueTrim = value.trim();
+                var b = false;
+                if (valueTrim == 0) {
+                    b = true;
+                    success();
+                } else {
+                    fail();
+                }
+                return b;
+            },
+            //是不是整数(包含0)
+            isInteger: function isInteger(json) {
+                var opt = json || {};
+                var success = opt.success || function () {
+                    console.log('no find success callback');
+                };
+                var fail = opt.fail || function () {
+                    console.log('no find fail callback');
+                };
+                var value = opt.value || " ";
+                var valueTrim = value.trim();
+                var re = /^\d+$/;
+                var b = false;
+                if (re.test(valueTrim)) {
+                    b = true;
+                    success();
+                } else {
+                    fail();
+                }
+                return b;
+            },
+            //是不是保留了num位小数点
+            isReservedDecimal: function isReservedDecimal(json) {
+                var opt = json || {};
+                var success = opt.success || function () {
+                    console.log('no find success callback');
+                };
+                var fail = opt.fail || function () {
+                    console.log('no find fail callback');
+                };
+                var num = opt.num || 2;
+                var value = opt.value || " ";
+                var valueTrim = value.trim();
+                var re = new RegExp("^\\d+\\.\\d{" + num + "}$");
+                var b = false;
+                if (re.test(valueTrim)) {
+                    b = true;
+                    success();
+                } else {
+                    fail();
+                }
+                return b;
+            }
+        };
+        module.exports = validate;
+    }, {}] }, {}, [1]);

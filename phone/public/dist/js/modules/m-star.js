@@ -1,1 +1,74 @@
-"use strict";!function t(r,n,i){function e(a,s){if(!n[a]){if(!r[a]){var p="function"==typeof require&&require;if(!s&&p)return p(a,!0);if(o)return o(a,!0);throw new Error("Cannot find module '"+a+"'")}var c=n[a]={exports:{}};r[a][0].call(c.exports,function(t){var n=r[a][1][t];return e(n?n:t)},c,c.exports,t,r,n,i)}return n[a].exports}for(var o="function"==typeof require&&require,a=0;a<i.length;a++)e(i[a]);return e}({1:[function(t,r,n){function i(t){this.opt=t||{},this.opt.allStar=this.opt.allStar||"5",this.opt.nowStar=this.opt.nowStar||"5",this.opt.isEvent=0!=this.opt.isEvent||this.opt.isEvent,this.opt.eventCallback=this.opt.eventCallback||function(){console.log("no find callback")},this.render()}i.prototype.init=function(){this.event()},i.prototype.event=function(){this.starClick()},i.prototype.starClick=function(){var t=this;this.opt.isEvent&&this.parentDom.addEventListener("click",function(r){var n=r.target;if(n.classList.contains("m-star")){for(var i=n.dataset.index,e=0;e<t.opt.allStar;e++)e<=i?t.opt.star[e].classList.add("m-star-active"):t.opt.star[e].classList.remove("m-star-active");t.opt.eventCallback({index:i})}})},i.prototype.renderParent=function(){this.parentDom=document.createElement("div"),this.parentDom.classList.add("m-star-main"),this.renderStar()},i.prototype.renderStar=function(){for(var t="",r=0;r<this.opt.allStar;r++){var n="";r<this.opt.nowStar&&(n="m-star-active"),t+='<div data-index="'+r+'" class="iconfont icon-xingping m-star '+n+'"></div>'}this.parentDom.innerHTML=t,this.opt.star=this.parentDom.children},i.prototype.render=function(){this.renderParent(),this.init()},r.exports=i},{}]},{},[1]);
+"use strict";
+
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);throw new Error("Cannot find module '" + o + "'");
+            }var f = n[o] = { exports: {} };t[o][0].call(f.exports, function (e) {
+                var n = t[o][1][e];return s(n ? n : e);
+            }, f, f.exports, e, t, n, r);
+        }return n[o].exports;
+    }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+        s(r[o]);
+    }return s;
+})({ 1: [function (require, module, exports) {
+        //手机极简星级评论
+        function Fn(json) {
+            this.opt = json || {};
+            this.opt.allStar = this.opt.allStar || '5'; //总共几颗星(默认五颗星)
+            this.opt.nowStar = this.opt.nowStar || '5'; //现在几颗星(默认五颗星)
+            this.opt.isEvent = this.opt.isEvent == false ? this.opt.isEvent : true; //是否具备事件(默认具备)
+            this.opt.eventCallback = this.opt.eventCallback || function () {
+                console.log('no find callback');
+            }; //事件回调
+            this.render();
+        }
+        Fn.prototype.init = function () {
+            this.event();
+        };
+        Fn.prototype.event = function () {
+            this.starClick();
+        };
+        Fn.prototype.starClick = function () {
+            var self = this;
+            if (this.opt.isEvent) {
+                this.parentDom.addEventListener('click', function (ev) {
+                    var target = ev.target;
+                    if (target.classList.contains('m-star')) {
+                        var index = target.dataset.index;
+                        for (var j = 0; j < self.opt.allStar; j++) {
+                            if (j <= index) {
+                                self.opt.star[j].classList.add('m-star-active');
+                            } else {
+                                self.opt.star[j].classList.remove('m-star-active');
+                            }
+                        }
+                        self.opt.eventCallback({ index: index });
+                    }
+                });
+            }
+        };
+        Fn.prototype.renderParent = function () {
+            this.parentDom = document.createElement('div');
+            this.parentDom.classList.add('m-star-main');
+            this.renderStar();
+        };
+        Fn.prototype.renderStar = function () {
+            var html = "";
+            for (var i = 0; i < this.opt.allStar; i++) {
+                var className = '';
+                if (i < this.opt.nowStar) {
+                    className = 'm-star-active';
+                }
+                html += "<div data-index=\"" + i + "\" class=\"iconfont icon-xingping m-star " + className + "\"></div>";
+            }
+            this.parentDom.innerHTML = html;
+            this.opt.star = this.parentDom.children;
+        };
+        Fn.prototype.render = function () {
+            this.renderParent();
+            this.init();
+        };
+        module.exports = Fn;
+    }, {}] }, {}, [1]);
