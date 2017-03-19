@@ -94,6 +94,7 @@
             right: 0;
             top: 0;
             border-left: px2rem(1) solid $g-color-border-default;
+            box-sizing: border-box;
         }
     }
 }
@@ -141,7 +142,7 @@
     }
     .g-radio-icon{
         color: $g-color-radio-highlight;
-        font-size: px2rem(12);
+        font-size: px2rem(16);
         position: absolute;
         left: 0;
         top: 0;

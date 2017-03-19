@@ -1,49 +1,54 @@
 @import "../base/base";
-//模块显示
+
+//遮罩
+@import "../modules/m-mask";
+
+//单选开关
+@import "../modules/m-radio-switch";
+.main-radio-switch {
+    display: flex;
+    justify-content: center;
+}
+
+//表格
+@import "../modules/m-table";
+
+//input验证
+@import "../modules/m-validate-input";
+.main-input {
+    display: flex;
+    align-items: center;
+    .input-txt {
+        text-align: right;
+        margin-right: px2rem(10);
+    }
+}
+
+//星评
+@import "../modules/m-star";
+.main-star{
+    display: flex;
+    justify-content: center;
+}
+
+//page
 .page-module-show {
     & > div {
-        padding: 0 px2rem(4) px2rem(20);
-    }
-    //单选开关
-    @import "../modules/m-radio-switch";
-    .main-radio-switch {
-        display: flex;
-        justify-content: center;
-    }
-
-    //表格
-    @import "../modules/m-table";
-
-    //input验证
-    @import "../modules/m-validate-input";
-    .main-input {
-        display: flex;
-        align-items: center;
-        .input-txt {
-            text-align: right;
-            margin-right: px2rem(10);
-        }
-    }
-
-    //星评
-    @import "../modules/m-star";
-
-    //列表
-    @import "../modules/m-product";
-    .main-product {
-        @include clear-fix;
-        padding: 0 0 px2rem(20) 0;
+        padding: 0 px2rem(10) px2rem(20);
     }
 }
 
 .page-des {
     font-size: px2rem(30);
     color: $g-color-font-highlight;
+    text-align: center;
 }
 
-//ui展示
 .page-global-show {
     & > div {
-        padding: px2rem(20) px2rem(4) 0;
+        padding: px2rem(20) px2rem(20) 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }

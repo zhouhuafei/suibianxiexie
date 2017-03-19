@@ -11,11 +11,11 @@ var base = {
     whetherDisableScroll: require('../function/whether-disable-scroll'),
     whenScrollBottom: require('../function/when-scroll-bottom'),
     jsonToArray: require('../function/json-to-array'),
-    mask: require('../function/mask'),
     secondsToTime: require('../function/seconds-to-time'),
     timeCountDown: require('../function/time-count-down'),
     strLimit: require('../function/str-limit'),
     getOneDom:require('../function/get-one-dom'),
+    createElement:require('../function/create-element'),
     extend: require('../function/extend')
 };
 module.exports = base;

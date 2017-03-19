@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20120731 at Sat Mar 18 22:50:34 2017
+Created by FontForge 20120731 at Sun Mar 19 15:10:59 2017
  By admin
 </metadata>
 <defs>
@@ -229,8 +229,8 @@ q0 8 -6 14t-15 6zM334 652l226 139l85 -139h-311zM641 546h-238q-9 0 -15 -6t-6 -14.
     <glyph glyph-name="select" unicode="&#xe657;" 
 d="M512 97l450 562h-900z" />
     <glyph glyph-name="checkbox" unicode="&#xe658;" 
-d="M378.5 76q-17.5 0 -29.5 13l-282 282q-12 12 -12 29t12 29.5t29.5 12.5t29.5 -12l253 -253l522 522q12 12 29 12t29.5 -12t12.5 -29.5t-13 -29.5l-551 -551q-12 -13 -29.5 -13zM379 76z" />
+d="M387 96q-16 0 -28 11l-264 264q-12 12 -12 28t11.5 27.5t28 11.5t27.5 -11l237 -237l489 489q12 12 28 12t27.5 -11.5t11.5 -28t-12 -27.5l-516 -517q-12 -11 -28 -11v0zM387 96z" />
     <glyph glyph-name="radio" unicode="&#xe659;" 
-d="M512 825q90 0 171.5 -35t140.5 -94t94 -140.5t35 -171.5t-35 -171.5t-94 -140.5t-140.5 -94t-171.5 -35t-171.5 35t-140.5 94t-94 140.5t-35 171.5t35 171.5t94 140.5t140.5 94t171.5 35z" />
+d="M512 575q79 0 135 -56t56 -135t-56 -135t-135 -56t-135 56t-56 135t56 135t135 56z" />
   </font>
 </defs></svg>

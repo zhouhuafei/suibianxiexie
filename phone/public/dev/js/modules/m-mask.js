@@ -7,7 +7,7 @@ function Fn(json) {
     this.opt = base.extend({
         defaults: {
             //父级
-            parent: ``,//这个仅支持传入选择器和原生dom节点
+            parent: `body`,//这个仅支持传入选择器和原生dom节点
             //回调
             callback: {
                 click: function () {
@@ -16,7 +16,8 @@ function Fn(json) {
             //配置
             config: {
                 isClearTimer: true,//是否清除所有定时器(默认清除)
-                isShowModule: true//是否显示模块(默认显示)
+                isShowModule: false,//是否显示模块(默认不显示)
+                isTransparent: false//是不是透明的遮罩(默认不透明)
             },
             //数据
             data: {
@@ -46,16 +47,14 @@ Fn.prototype.render = function () {
 
 //内部的模块
 Fn.prototype.renderModuleDom = function () {
+    var isTransparent = '';
+    if (this.opt.config.isTransparent) {
+        isTransparent = 'm-mask-transparent';
+    }
     this.moduleDom = base.createElement({
-        custom: {
-            index: 0
-        },
         attribute: {
-            className: `m-test`,
-            innerHTML: `
-                <div class="m-test-timer">0</div>
-                <div class="m-test-info">${this.opt.data.info}</div>
-            `
+            className: `m-mask ${isTransparent}`,
+            innerHTML: ``
         }
     });
 };
@@ -115,10 +114,11 @@ Fn.prototype.hide = function () {
 
 //功能
 Fn.prototype.power = function () {
-    var interval = this.moduleDom.querySelector('.m-test-timer');
-    this.timer.timer1 = setInterval(function () {
-        interval.innerHTML = interval.innerHTML * 1 + 1;
-    }, 1000);
+    var self=this;
+    this.moduleDom.addEventListener('click',function(ev){
+        self.opt.callback.click();
+        ev.stopPropagation();
+    })
 };
 
 module.exports = Fn;

@@ -1,5 +1,5 @@
 //px转rem
-@function px2rem($px,$psd:375) {
+@function px2rem($px,$psd:320) {
     @return $px / $psd * 10rem;
 }
 
