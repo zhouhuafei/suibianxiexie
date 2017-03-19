@@ -63,54 +63,56 @@
 (function () {
     const Table = require('../modules/m-table');
     const table = new Table({
-        parentSelector: `.main-table`,
-        header: [
-            {
-                html: `<div>header0</div>`
-            },
-            {
-                html: `<div>header1</div>`
-            },
-            {
-                html: `<div>header2</div>`
-            }
-        ],
-        body: [
-            [
+        parent: `.main-table`,
+        data:{
+            header: [
                 {
-                    html: `<div>body0-0</div>`
+                    html: `<div>header0</div>`
                 },
                 {
-                    html: `<div>body1-0</div>`
+                    html: `<div>header1</div>`
                 },
                 {
-                    html: `<div>body2-0</div>`
+                    html: `<div>header2</div>`
                 }
             ],
-            [
-                {
-                    html: `<div>body0-1</div>`
-                },
-                {
-                    html: `<div>body1-1</div>`
-                },
-                {
-                    html: `<div>body2-1</div>`
-                }
+            body: [
+                [
+                    {
+                        html: `<div>body0-0</div>`
+                    },
+                    {
+                        html: `<div>body1-0</div>`
+                    },
+                    {
+                        html: `<div>body2-0</div>`
+                    }
+                ],
+                [
+                    {
+                        html: `<div>body0-1</div>`
+                    },
+                    {
+                        html: `<div>body1-1</div>`
+                    },
+                    {
+                        html: `<div>body2-1</div>`
+                    }
+                ],
+                [
+                    {
+                        html: `<div>body0-2</div>`
+                    },
+                    {
+                        html: `<div>body1-2</div>`
+                    },
+                    {
+                        html: `<div>body2-2</div>`
+                    }
+                ]
             ],
-            [
-                {
-                    html: `<div>body0-2</div>`
-                },
-                {
-                    html: `<div>body1-2</div>`
-                },
-                {
-                    html: `<div>body2-2</div>`
-                }
-            ]
-        ],
-        footer: ``
+            footer: ``
+        }
     });
 })();
 //验证

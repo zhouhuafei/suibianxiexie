@@ -1,50 +1,71 @@
+//底层方法
+var base = require('../base/base');
+
+//构造函数
 function Fn(json) {
-    this.opt = json || {};
-    this.opt.header=this.opt.header||[];
-    this.opt.body=this.opt.body||[];
-    this.opt.footer=this.opt.footer||``;
-    this.opt.parentSelector=this.opt.parentSelector||``;
-    this.init();
+    //外部传进来的参数
+    this.opt = base.extend({
+        defaults: {
+            //父级
+            parent: `body`,//这个仅支持传入选择器和原生dom节点
+            //配置
+            config: {
+                isClearTimer: true,//是否清除所有定时器(默认清除)
+                isShowModule: true//是否显示模块(默认显示)
+            },
+            //数据
+            data: {
+                header: ['header0','header1','header2'],
+                body:[['body0-0','body0-1','body0-2'],['body1-0','body1-1','body1-2']],
+                footer:''
+            }
+        },
+        inherits: json
+    });
+    //内部的一些属性
+    this.moduleDom = null;//内部的模块
+    this.parentDom = null;//内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+    this.timer = {};//假设内部有定时器
+    this.init();//初始化
 }
+
+//初始化
 Fn.prototype.init = function () {
     this.render();
+    this.power();
 };
+
+//渲染
 Fn.prototype.render = function () {
-    this.parentDom=document.createElement('div');
-    this.parentDom.classList.add('m-table');
-    this.parentDom.innerHTML=`
-        <div class="m-table-header">
-            <div class="m-table-row">
-                ${this.renderHeader()}
-            </div>
-        </div>
-        <div class="m-table-body">
-            ${this.renderBody()}
-        </div>
-        <div class="m-table-footer">
-            ${this.renderFooter()}
-        </div>
-    `;
-    if(this.opt.parentSelector){
-        this.parentSelectorDom=document.querySelector(this.opt.parentSelector);
-    }
-    if(this.parentSelectorDom){
-        this.parentSelectorDom.appendChild(this.parentDom);
-    }
+    this.renderModuleDom();
+    this.renderParentDom();
 };
-Fn.prototype.removeParentDom = function () {
-    this.parentDom.parentNode.removeChild(this.parentDom);
+
+//内部的模块
+Fn.prototype.renderModuleDom = function () {
+    this.moduleDom = base.createElement({
+        attribute: {
+            className: `m-table`,
+            innerHTML: `
+                <div class="m-table-header">
+                    <div class="m-table-row">
+                        ${this.renderHeader()}
+                    </div>
+                </div>
+                <div class="m-table-body">
+                    ${this.renderBody()}
+                </div>
+                <div class="m-table-footer">
+                    ${this.renderFooter()}
+                </div>
+            `
+        }
+    });
 };
-Fn.prototype.refreshRender = function () {
-    this.removeParentDom();
-    this.render();
-    if(this.parentSelectorDom){
-        this.parentSelectorDom.appendChild(this.parentDom);
-    }
-};
+
 Fn.prototype.renderHeader=function(){
     var html=``;
-    this.opt.header.forEach(function(v){
+    this.opt.data.header.forEach(function(v){
         html+=`
             <div class="m-table-col">
                 <div class="m-table-col-wrap">
@@ -55,9 +76,10 @@ Fn.prototype.renderHeader=function(){
     });
     return html;
 };
+
 Fn.prototype.renderBody=function(){
     var html=``;
-    this.opt.body.forEach(function(v0){
+    this.opt.data.body.forEach(function(v0){
         var row=``;
         v0.forEach(function(v1){
             row+=`
@@ -72,7 +94,67 @@ Fn.prototype.renderBody=function(){
     });
     return html;
 };
+
 Fn.prototype.renderFooter=function(){
-    return this.opt.footer;
+    return this.opt.data.footer;
 };
+
+//外部的容器
+Fn.prototype.renderParentDom = function () {
+    this.parentDom = base.getOneDom({dom: this.opt.parent});
+    if (!this.parentDom) {
+        return false;
+    }
+    if (this.parentDom) {
+        if (this.opt.config.isShowModule) {
+            this.parentDom.appendChild(this.moduleDom);
+        }
+    }
+};
+
+//移除内部的模块
+Fn.prototype.removeModuleDom = function () {
+    if (this.moduleDom.parentNode) {
+        this.moduleDom.parentNode.removeChild(this.moduleDom);
+    }
+    //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
+    if (this.opt.config.isClearTimer) {
+        for (var attr in this.timer) {
+            if (this.timer.hasOwnProperty(attr)) {
+                clearInterval(this.timer[attr]);
+                clearTimeout(this.timer[attr]);
+            }
+        }
+    }
+};
+
+//移除外部的容器
+Fn.prototype.removeParentDom = function () {
+    //先移除内部的模块
+    this.removeModuleDom();
+    //再移除外部的容器
+    if (this.parentDom) {
+        this.parentDom.parentNode.removeChild(this.parentDom);
+    }
+};
+
+//模块显示
+Fn.prototype.show = function () {
+    if(this.parentDom){
+        this.parentDom.appendChild(this.moduleDom);
+    }
+};
+
+//模块隐藏
+Fn.prototype.hide = function () {
+    if (this.moduleDom.parentNode) {
+        this.moduleDom.parentNode.removeChild(this.moduleDom);
+    }
+};
+
+//功能
+Fn.prototype.power = function () {
+
+};
+
 module.exports = Fn;
