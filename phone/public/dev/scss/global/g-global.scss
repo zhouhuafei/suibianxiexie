@@ -2,11 +2,13 @@
 @import "../mixin/mixin";
 @import "../zero/zero";
 
+//整站必须
 .g-page {
     position: relative;
     background: #fff;
 }
 
+//pc展示
 .g-pc {
     body {
         background: #ccc;
