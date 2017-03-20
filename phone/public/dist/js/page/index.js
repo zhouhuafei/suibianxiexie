@@ -859,9 +859,6 @@
         Fn.prototype.renderModuleDom = function () {
             var html = "\n        " + this.renderModuleType0() + "\n        " + this.renderModuleType1() + "\n        " + this.renderModuleType2() + "\n    ";
             this.moduleDom = base.createElement({
-                custom: {
-                    index: 0
-                },
                 attribute: {
                     className: "m-footer",
                     innerHTML: html

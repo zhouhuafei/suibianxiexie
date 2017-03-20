@@ -53,9 +53,6 @@ Fn.prototype.renderModuleDom = function () {
         ${this.renderModuleType2()}
     `;
     this.moduleDom = base.createElement({
-        custom: {
-            index: 0
-        },
         attribute: {
             className: `m-footer`,
             innerHTML: html
