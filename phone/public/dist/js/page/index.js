@@ -857,10 +857,11 @@
 
         //内部的模块
         Fn.prototype.renderModuleDom = function () {
+            this.moduleClass = "m-footer";
             var html = "\n        " + this.renderModuleType0() + "\n        " + this.renderModuleType1() + "\n        " + this.renderModuleType2() + "\n    ";
             this.moduleDom = base.createElement({
                 attribute: {
-                    className: "m-footer",
+                    className: this.moduleClass,
                     innerHTML: html
                 }
             });
@@ -868,20 +869,25 @@
 
         Fn.prototype.renderModuleType0 = function () {
             if (this.opt.config.moduleType == 0) {
-                return "\n            <div class=\"m-footer-type0\">\n                <div class=\"m-footer-menu\">0</div>\n                <div class=\"m-footer-\">" + this.opt.data.info + "</div>\n            </div>\n        ";
+                this.moduleClass = "m-footer m-footer-type0";
+                return "\n            <div class=\"m-footer-wrap\">\n                <div class=\"m-footer-header\">\n                    0\n                </div>\n                <div class=\"m-footer-body\">\n                    body\n                </div>\n                <div class=\"m-footer-body\">\n                    body\n                </div>\n            </div>\n        ";
             } else {
                 return "";
             }
         };
 
         Fn.prototype.renderModuleType1 = function () {
-            if (this.opt.config.moduleType == 1) {} else {
+            if (this.opt.config.moduleType == 1) {
+                this.moduleClass = "m-footer m-footer-type1";
+            } else {
                 return "";
             }
         };
 
         Fn.prototype.renderModuleType2 = function () {
-            if (this.opt.config.moduleType == 2) {} else {
+            if (this.opt.config.moduleType == 2) {
+                this.moduleClass = "m-footer m-footer-type2";
+            } else {
                 return "";
             }
         };

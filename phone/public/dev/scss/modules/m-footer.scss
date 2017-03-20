@@ -1,8 +1,29 @@
 @import "../base/base";
 
 .m-footer {
-    .m-footer-type0{
-
+    &.m-footer-type0{
+        $height:40;
+        height: px2rem($height);
+        text-align: center;
+        .m-footer-wrap{
+            box-sizing: border-box;
+            background: #ffffff;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: px2rem($height);
+            line-height: px2rem($height);
+            display: -webkit-box;
+            .m-footer-header{
+                width: px2rem($height);
+                border-right: 1px solid #ddd;
+            }
+            .m-footer-body{
+                -webkit-box-flex: 1;
+            }
+        }
     }
     .m-footer-type1{
 

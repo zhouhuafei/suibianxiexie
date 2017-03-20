@@ -47,6 +47,7 @@ Fn.prototype.render = function () {
 
 //内部的模块
 Fn.prototype.renderModuleDom = function () {
+    this.moduleClass=`m-footer`;
     var html=`
         ${this.renderModuleType0()}
         ${this.renderModuleType1()}
@@ -54,7 +55,7 @@ Fn.prototype.renderModuleDom = function () {
     `;
     this.moduleDom = base.createElement({
         attribute: {
-            className: `m-footer`,
+            className: this.moduleClass,
             innerHTML: html
         }
     });
@@ -62,10 +63,18 @@ Fn.prototype.renderModuleDom = function () {
 
 Fn.prototype.renderModuleType0=function(){
     if(this.opt.config.moduleType==0){
+        this.moduleClass=`m-footer m-footer-type0`;
         return `
-            <div class="m-footer-type0">
-                <div class="m-footer-menu">0</div>
-                <div class="m-footer-">${this.opt.data.info}</div>
+            <div class="m-footer-wrap">
+                <div class="m-footer-header">
+                    0
+                </div>
+                <div class="m-footer-body">
+                    body
+                </div>
+                <div class="m-footer-body">
+                    body
+                </div>
             </div>
         `;
     }else {
@@ -75,7 +84,7 @@ Fn.prototype.renderModuleType0=function(){
 
 Fn.prototype.renderModuleType1=function(){
     if(this.opt.config.moduleType==1){
-
+        this.moduleClass=`m-footer m-footer-type1`;
     }else {
         return ``;
     }
@@ -83,7 +92,7 @@ Fn.prototype.renderModuleType1=function(){
 
 Fn.prototype.renderModuleType2=function(){
     if(this.opt.config.moduleType==2){
-
+        this.moduleClass=`m-footer m-footer-type2`;
     }else {
         return ``;
     }
