@@ -3,22 +3,23 @@
 .m-footer {
     &.m-footer-type0{
         $height:40;
+        $width:320;
         height: px2rem($height);
         text-align: center;
         .m-footer-wrap{
             box-sizing: border-box;
             background: #ffffff;
-            border-top: 1px solid #ddd;
-            border-bottom: 1px solid #ddd;
+            border-top: px2rem(1) solid #ddd;
+            border-bottom: px2rem(1) solid #ddd;
             position: fixed;
             bottom: 0;
-            width: 100%;
+            width: px2rem($width);
             height: px2rem($height);
             line-height: px2rem($height);
             display: -webkit-box;
             .m-footer-header{
                 width: px2rem($height);
-                border-right: 1px solid #ddd;
+                border-right: px2rem(1) solid #ddd;
             }
             .m-footer-body{
                 -webkit-box-flex: 1;

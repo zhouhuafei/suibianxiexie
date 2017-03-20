@@ -18,6 +18,7 @@
          */
         //一些小方法
         var base = {
+            isPc: require('../function/is-pc'),
             cookie: require('../function/cookie'),
             fillZero: require('../function/fill-zero'),
             getParent: require('../function/get-parent'),
@@ -34,7 +35,7 @@
             extend: require('../function/extend')
         };
         module.exports = base;
-    }, { "../function/cookie": 3, "../function/create-element": 4, "../function/extend": 5, "../function/fill-zero": 6, "../function/get-one-dom": 7, "../function/get-parent": 8, "../function/go-top": 9, "../function/html-to-dom": 10, "../function/json-to-array": 11, "../function/seconds-to-time": 12, "../function/str-limit": 13, "../function/time-count-down": 14, "../function/when-scroll-bottom": 16, "../function/whether-disable-scroll": 17 }], 2: [function (require, module, exports) {
+    }, { "../function/cookie": 3, "../function/create-element": 4, "../function/extend": 5, "../function/fill-zero": 6, "../function/get-one-dom": 7, "../function/get-parent": 8, "../function/go-top": 9, "../function/html-to-dom": 10, "../function/is-pc": 11, "../function/json-to-array": 12, "../function/seconds-to-time": 13, "../function/str-limit": 14, "../function/time-count-down": 15, "../function/when-scroll-bottom": 17, "../function/whether-disable-scroll": 18 }], 2: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/2.
          */
@@ -149,7 +150,7 @@
         };
 
         module.exports = ValidateInput;
-    }, { "../base/base": 1, "../function/validate": 15 }], 3: [function (require, module, exports) {
+    }, { "../base/base": 1, "../function/validate": 16 }], 3: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -454,6 +455,20 @@
         }
         module.exports = htmlToDom;
     }, {}], 11: [function (require, module, exports) {
+        function isPc() {
+            var userAgentInfo = navigator.userAgent;
+            var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+            var flag = true;
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+        module.exports = isPc;
+    }, {}], 12: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -476,7 +491,7 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 12: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -495,7 +510,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -514,7 +529,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 14: [function (require, module, exports) {
+    }, {}], 15: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -561,7 +576,7 @@
             }
         }
         module.exports = timeCountDown;
-    }, {}], 15: [function (require, module, exports) {
+    }, {}], 16: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/4.
          */
@@ -652,7 +667,7 @@
             }
         };
         module.exports = validate;
-    }, {}], 16: [function (require, module, exports) {
+    }, {}], 17: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -692,7 +707,7 @@
             });
         }
         module.exports = whenScrollBottom;
-    }, {}], 17: [function (require, module, exports) {
+    }, {}], 18: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */

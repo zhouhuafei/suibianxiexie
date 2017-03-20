@@ -7,7 +7,7 @@ function Fn(json) {
     this.opt = base.extend({
         defaults: {
             //父级
-            parent: `body`,//这个仅支持传入选择器和原生dom节点
+            parent: `.g-page`,//这个仅支持传入选择器和原生dom节点
             //回调
             callback: {
                 click: function () {
@@ -122,6 +122,17 @@ Fn.prototype.hide = function () {
 
 //功能
 Fn.prototype.power = function () {
+    this.events();
+    this.others();
+};
+
+//事件
+Fn.prototype.events=function(){
+
+};
+
+//其他
+Fn.prototype.others=function(){
     var self = this;
     var interval = self.moduleDom.querySelector('.m-test-timer');
     this.timer.timer1 = setInterval(function () {

@@ -42,6 +42,17 @@ a {
 .iconfont {
   font-size: inherit; }
 
+.g-page {
+  position: relative;
+  background: #fff; }
+
+.g-pc body {
+  background: #ccc; }
+
+.g-pc .g-page {
+  margin: 0 auto;
+  max-width: 320px; }
+
 .g-button {
   width: 6.25rem;
   text-align: center;
@@ -205,11 +216,11 @@ a {
       .g-checkbox .g-checkbox-checkbox:checked + .g-checkbox-icon {
         display: block; }
 
-.m-star-main {
+.m-star {
   font-size: 0; }
-  .m-star-main .m-star {
+  .m-star .m-star-item {
     display: inline-block;
     color: #bfbfbf;
     font-size: 1.25rem; }
-    .m-star-main .m-star.m-star-active {
+    .m-star .m-star-item.m-star-item-active {
       color: #0089ff; }

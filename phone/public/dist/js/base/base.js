@@ -18,6 +18,7 @@
          */
         //一些小方法
         var base = {
+            isPc: require('../function/is-pc'),
             cookie: require('../function/cookie'),
             fillZero: require('../function/fill-zero'),
             getParent: require('../function/get-parent'),
@@ -34,7 +35,7 @@
             extend: require('../function/extend')
         };
         module.exports = base;
-    }, { "../function/cookie": 2, "../function/create-element": 3, "../function/extend": 4, "../function/fill-zero": 5, "../function/get-one-dom": 6, "../function/get-parent": 7, "../function/go-top": 8, "../function/html-to-dom": 9, "../function/json-to-array": 10, "../function/seconds-to-time": 11, "../function/str-limit": 12, "../function/time-count-down": 13, "../function/when-scroll-bottom": 14, "../function/whether-disable-scroll": 15 }], 2: [function (require, module, exports) {
+    }, { "../function/cookie": 2, "../function/create-element": 3, "../function/extend": 4, "../function/fill-zero": 5, "../function/get-one-dom": 6, "../function/get-parent": 7, "../function/go-top": 8, "../function/html-to-dom": 9, "../function/is-pc": 10, "../function/json-to-array": 11, "../function/seconds-to-time": 12, "../function/str-limit": 13, "../function/time-count-down": 14, "../function/when-scroll-bottom": 15, "../function/whether-disable-scroll": 16 }], 2: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -339,6 +340,20 @@
         }
         module.exports = htmlToDom;
     }, {}], 10: [function (require, module, exports) {
+        function isPc() {
+            var userAgentInfo = navigator.userAgent;
+            var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+            var flag = true;
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+        module.exports = isPc;
+    }, {}], 11: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -361,7 +376,7 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 11: [function (require, module, exports) {
+    }, {}], 12: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -380,7 +395,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 12: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -399,7 +414,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -446,7 +461,7 @@
             }
         }
         module.exports = timeCountDown;
-    }, {}], 14: [function (require, module, exports) {
+    }, {}], 15: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -486,7 +501,7 @@
             });
         }
         module.exports = whenScrollBottom;
-    }, {}], 15: [function (require, module, exports) {
+    }, {}], 16: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */

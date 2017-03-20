@@ -18,6 +18,7 @@
          */
         //一些小方法
         var base = {
+            isPc: require('../function/is-pc'),
             cookie: require('../function/cookie'),
             fillZero: require('../function/fill-zero'),
             getParent: require('../function/get-parent'),
@@ -34,7 +35,7 @@
             extend: require('../function/extend')
         };
         module.exports = base;
-    }, { "../function/cookie": 3, "../function/create-element": 4, "../function/extend": 5, "../function/fill-zero": 6, "../function/get-one-dom": 7, "../function/get-parent": 8, "../function/go-top": 9, "../function/html-to-dom": 10, "../function/json-to-array": 11, "../function/seconds-to-time": 13, "../function/str-limit": 14, "../function/time-count-down": 15, "../function/when-scroll-bottom": 17, "../function/whether-disable-scroll": 18 }], 2: [function (require, module, exports) {
+    }, { "../function/cookie": 3, "../function/create-element": 4, "../function/extend": 5, "../function/fill-zero": 6, "../function/get-one-dom": 7, "../function/get-parent": 8, "../function/go-top": 9, "../function/html-to-dom": 10, "../function/is-pc": 11, "../function/json-to-array": 12, "../function/seconds-to-time": 14, "../function/str-limit": 15, "../function/time-count-down": 16, "../function/when-scroll-bottom": 18, "../function/whether-disable-scroll": 19 }], 2: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/4.
          */
@@ -151,16 +152,17 @@
         //星评
         (function () {
             var Star = require('../modules/m-star');
-            var main = document.querySelector('.main-star');
             var star = new Star({
-                eventCallback: function eventCallback(json) {
-                    console.log("\u6709\u70B9\u610F\u601D" + json.index);
+                parent: ".main-star",
+                callback: {
+                    click: function click(json) {
+                        console.log("\u6709\u70B9\u610F\u601D" + json.index);
+                    }
                 }
             });
-            main.appendChild(star.parentDom);
         })();
         require('../function/lazyload')(); //延迟加载
-    }, { "../function/lazyload": 12, "../modules/m-footer": 19, "../modules/m-mask": 20, "../modules/m-radio-switch": 21, "../modules/m-star": 22, "../modules/m-table": 23, "../modules/m-test": 24, "../modules/m-validate-input": 25 }], 3: [function (require, module, exports) {
+    }, { "../function/lazyload": 13, "../modules/m-footer": 20, "../modules/m-mask": 21, "../modules/m-radio-switch": 22, "../modules/m-star": 23, "../modules/m-table": 24, "../modules/m-test": 25, "../modules/m-validate-input": 26 }], 3: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -465,6 +467,20 @@
         }
         module.exports = htmlToDom;
     }, {}], 11: [function (require, module, exports) {
+        function isPc() {
+            var userAgentInfo = navigator.userAgent;
+            var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+            var flag = true;
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+        module.exports = isPc;
+    }, {}], 12: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -487,7 +503,7 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 12: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
@@ -558,7 +574,7 @@
             });
         }
         module.exports = lazyload;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -577,7 +593,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 14: [function (require, module, exports) {
+    }, {}], 15: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -596,7 +612,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 15: [function (require, module, exports) {
+    }, {}], 16: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -643,7 +659,7 @@
             }
         }
         module.exports = timeCountDown;
-    }, {}], 16: [function (require, module, exports) {
+    }, {}], 17: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/4.
          */
@@ -734,7 +750,7 @@
             }
         };
         module.exports = validate;
-    }, {}], 17: [function (require, module, exports) {
+    }, {}], 18: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -774,7 +790,7 @@
             });
         }
         module.exports = whenScrollBottom;
-    }, {}], 18: [function (require, module, exports) {
+    }, {}], 19: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -808,7 +824,7 @@
             };
         }
         module.exports = whetherDisableScroll;
-    }, {}], 19: [function (require, module, exports) {
+    }, {}], 20: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -818,7 +834,7 @@
             this.opt = base.extend({
                 defaults: {
                     //父级
-                    parent: "body", //这个仅支持传入选择器和原生dom节点
+                    parent: ".g-page", //这个仅支持传入选择器和原生dom节点
                     //回调
                     callback: {
                         click: function click() {}
@@ -954,7 +970,7 @@
         Fn.prototype.power = function () {};
 
         module.exports = Fn;
-    }, { "../base/base": 1 }], 20: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 21: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -964,7 +980,7 @@
             this.opt = base.extend({
                 defaults: {
                     //父级
-                    parent: "body", //这个仅支持传入选择器和原生dom节点
+                    parent: ".g-page", //这个仅支持传入选择器和原生dom节点
                     //回调
                     callback: {
                         click: function click() {}
@@ -1077,6 +1093,11 @@
 
         //功能
         Fn.prototype.power = function () {
+            this.events();
+        };
+
+        //事件
+        Fn.prototype.events = function () {
             var self = this;
             this.moduleDom.addEventListener('click', function (ev) {
                 self.opt.callback.click();
@@ -1085,7 +1106,7 @@
         };
 
         module.exports = Fn;
-    }, { "../base/base": 1 }], 21: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 22: [function (require, module, exports) {
         function Fn(json) {
             this.opt = json || {};
             this.opt.checkTxt = this.opt.checkTxt || { on: '已开启', off: '已关闭' };
@@ -1153,65 +1174,6 @@
             this.parentDom.parentNode.removeChild(this.parentDom);
         };
         module.exports = Fn;
-    }, {}], 22: [function (require, module, exports) {
-        //手机极简星级评论
-        function Fn(json) {
-            this.opt = json || {};
-            this.opt.allStar = this.opt.allStar || '5'; //总共几颗星(默认五颗星)
-            this.opt.nowStar = this.opt.nowStar || '5'; //现在几颗星(默认五颗星)
-            this.opt.isEvent = this.opt.isEvent == false ? this.opt.isEvent : true; //是否具备事件(默认具备)
-            this.opt.eventCallback = this.opt.eventCallback || function () {
-                console.log('no find callback');
-            }; //事件回调
-            this.render();
-        }
-        Fn.prototype.init = function () {
-            this.event();
-        };
-        Fn.prototype.event = function () {
-            this.starClick();
-        };
-        Fn.prototype.starClick = function () {
-            var self = this;
-            if (this.opt.isEvent) {
-                this.parentDom.addEventListener('click', function (ev) {
-                    var target = ev.target;
-                    if (target.classList.contains('m-star')) {
-                        var index = target.dataset.index;
-                        for (var j = 0; j < self.opt.allStar; j++) {
-                            if (j <= index) {
-                                self.opt.star[j].classList.add('m-star-active');
-                            } else {
-                                self.opt.star[j].classList.remove('m-star-active');
-                            }
-                        }
-                        self.opt.eventCallback({ index: index });
-                    }
-                });
-            }
-        };
-        Fn.prototype.renderParent = function () {
-            this.parentDom = document.createElement('div');
-            this.parentDom.classList.add('m-star-main');
-            this.renderStar();
-        };
-        Fn.prototype.renderStar = function () {
-            var html = "";
-            for (var i = 0; i < this.opt.allStar; i++) {
-                var className = '';
-                if (i < this.opt.nowStar) {
-                    className = 'm-star-active';
-                }
-                html += "<div data-index=\"" + i + "\" class=\"iconfont icon-xingping m-star " + className + "\"></div>";
-            }
-            this.parentDom.innerHTML = html;
-            this.opt.star = this.parentDom.children;
-        };
-        Fn.prototype.render = function () {
-            this.renderParent();
-            this.init();
-        };
-        module.exports = Fn;
     }, {}], 23: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
@@ -1222,7 +1184,160 @@
             this.opt = base.extend({
                 defaults: {
                     //父级
-                    parent: "body", //这个仅支持传入选择器和原生dom节点
+                    parent: ".g-page", //这个仅支持传入选择器和原生dom节点
+                    //回调
+                    callback: {
+                        click: function click() {}
+                    },
+                    //配置
+                    config: {
+                        moduleStyle: "", //内部模块的样式(写法和css相同)
+                        isEvent: true, //默认具备事件
+                        isClearTimer: true, //是否清除所有定时器(默认清除)
+                        isShowModule: true //是否显示模块(默认显示)
+                    },
+                    //数据
+                    data: {
+                        allStarNum: 5,
+                        nowStarNum: 5
+                    }
+                },
+                inherits: json
+            });
+            //内部的一些属性
+            this.moduleDom = null; //内部的模块
+            this.parentDom = null; //内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+            this.timer = {}; //假设内部有定时器
+            this.init(); //初始化
+        }
+
+        //初始化
+        Fn.prototype.init = function () {
+            this.render();
+            this.power();
+        };
+
+        //渲染
+        Fn.prototype.render = function () {
+            this.renderModuleDom();
+            this.renderParentDom();
+        };
+
+        //内部的模块
+        Fn.prototype.renderModuleDom = function () {
+            var html = "";
+            for (var i = 0; i < this.opt.data.allStarNum; i++) {
+                var className = '';
+                if (i < this.opt.data.nowStarNum) {
+                    className = 'm-star-item-active';
+                }
+                html += "<div data-index=\"" + i + "\" class=\"iconfont icon-xingping m-star-item " + className + "\"></div>";
+            }
+            this.moduleDom = base.createElement({
+                attribute: {
+                    className: "m-star",
+                    innerHTML: html
+                }
+            });
+            this.opt.star = this.moduleDom.children;
+        };
+
+        //外部的容器
+        Fn.prototype.renderParentDom = function () {
+            this.parentDom = base.getOneDom({ dom: this.opt.parent });
+            if (!this.parentDom) {
+                return false;
+            }
+            if (this.parentDom) {
+                if (this.opt.config.isShowModule) {
+                    this.parentDom.appendChild(this.moduleDom);
+                }
+            }
+        };
+
+        //移除内部的模块
+        Fn.prototype.removeModuleDom = function () {
+            if (this.moduleDom.parentNode) {
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+            }
+            //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
+            this.clearTimer();
+        };
+
+        //清除内部的定时器
+        Fn.prototype.clearTimer = function () {
+            if (this.opt.config.isClearTimer) {
+                for (var attr in this.timer) {
+                    if (this.timer.hasOwnProperty(attr)) {
+                        clearInterval(this.timer[attr]);
+                        clearTimeout(this.timer[attr]);
+                    }
+                }
+            }
+        };
+
+        //移除外部的容器
+        Fn.prototype.removeParentDom = function () {
+            //先移除内部的模块
+            this.removeModuleDom();
+            //再移除外部的容器
+            if (this.parentDom) {
+                this.parentDom.parentNode.removeChild(this.parentDom);
+            }
+        };
+
+        //模块显示(显示隐藏和是否清除定时器无关)
+        Fn.prototype.show = function () {
+            if (this.parentDom) {
+                this.parentDom.appendChild(this.moduleDom);
+            }
+        };
+
+        //模块隐藏(显示隐藏和是否清除定时器无关)
+        Fn.prototype.hide = function () {
+            if (this.moduleDom.parentNode) {
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+            }
+        };
+
+        //功能
+        Fn.prototype.power = function () {
+            this.events();
+        };
+
+        //事件
+        Fn.prototype.events = function () {
+            var self = this;
+            if (this.opt.config.isEvent) {
+                this.moduleDom.addEventListener('click', function (ev) {
+                    var target = ev.target;
+                    if (target.classList.contains('m-star-item')) {
+                        var index = target.dataset.index;
+                        for (var j = 0; j < self.opt.data.allStarNum; j++) {
+                            if (j <= index) {
+                                self.opt.star[j].classList.add('m-star-item-active');
+                            } else {
+                                self.opt.star[j].classList.remove('m-star-item-active');
+                            }
+                        }
+                        self.opt.callback.click({ index: index });
+                    }
+                });
+            }
+        };
+
+        module.exports = Fn;
+    }, { "../base/base": 1 }], 24: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base');
+
+        //构造函数
+        function Fn(json) {
+            //外部传进来的参数
+            this.opt = base.extend({
+                defaults: {
+                    //父级
+                    parent: ".g-page", //这个仅支持传入选择器和原生dom节点
                     //回调
                     callback: {
                         click: function click() {}
@@ -1353,10 +1468,15 @@
         };
 
         //功能
-        Fn.prototype.power = function () {};
+        Fn.prototype.power = function () {
+            this.events();
+        };
+
+        //事件
+        Fn.prototype.events = function () {};
 
         module.exports = Fn;
-    }, { "../base/base": 1 }], 24: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 25: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1366,7 +1486,7 @@
             this.opt = base.extend({
                 defaults: {
                     //父级
-                    parent: "body", //这个仅支持传入选择器和原生dom节点
+                    parent: ".g-page", //这个仅支持传入选择器和原生dom节点
                     //回调
                     callback: {
                         click: function click() {}
@@ -1477,6 +1597,15 @@
 
         //功能
         Fn.prototype.power = function () {
+            this.events();
+            this.others();
+        };
+
+        //事件
+        Fn.prototype.events = function () {};
+
+        //其他
+        Fn.prototype.others = function () {
             var self = this;
             var interval = self.moduleDom.querySelector('.m-test-timer');
             this.timer.timer1 = setInterval(function () {
@@ -1485,7 +1614,7 @@
         };
 
         module.exports = Fn;
-    }, { "../base/base": 1 }], 25: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 26: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/2.
          */
@@ -1600,4 +1729,4 @@
         };
 
         module.exports = ValidateInput;
-    }, { "../base/base": 1, "../function/validate": 16 }] }, {}, [2]);
+    }, { "../base/base": 1, "../function/validate": 17 }] }, {}, [2]);

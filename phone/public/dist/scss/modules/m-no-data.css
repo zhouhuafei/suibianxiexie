@@ -42,6 +42,17 @@ a {
 .iconfont {
   font-size: inherit; }
 
+.g-page {
+  position: relative;
+  background: #fff; }
+
+.g-pc body {
+  background: #ccc; }
+
+.g-pc .g-page {
+  margin: 0 auto;
+  max-width: 320px; }
+
 .g-button {
   width: 6.25rem;
   text-align: center;

@@ -18,6 +18,7 @@
          */
         //一些小方法
         var base = {
+            isPc: require('../function/is-pc'),
             cookie: require('../function/cookie'),
             fillZero: require('../function/fill-zero'),
             getParent: require('../function/get-parent'),
@@ -34,7 +35,7 @@
             extend: require('../function/extend')
         };
         module.exports = base;
-    }, { "../function/cookie": 3, "../function/create-element": 4, "../function/extend": 5, "../function/fill-zero": 6, "../function/get-one-dom": 7, "../function/get-parent": 8, "../function/go-top": 9, "../function/html-to-dom": 10, "../function/json-to-array": 11, "../function/seconds-to-time": 12, "../function/str-limit": 13, "../function/time-count-down": 14, "../function/when-scroll-bottom": 15, "../function/whether-disable-scroll": 16 }], 2: [function (require, module, exports) {
+    }, { "../function/cookie": 3, "../function/create-element": 4, "../function/extend": 5, "../function/fill-zero": 6, "../function/get-one-dom": 7, "../function/get-parent": 8, "../function/go-top": 9, "../function/html-to-dom": 10, "../function/is-pc": 11, "../function/json-to-array": 12, "../function/seconds-to-time": 13, "../function/str-limit": 14, "../function/time-count-down": 15, "../function/when-scroll-bottom": 16, "../function/whether-disable-scroll": 17 }], 2: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -44,7 +45,7 @@
             this.opt = base.extend({
                 defaults: {
                     //父级
-                    parent: "body", //这个仅支持传入选择器和原生dom节点
+                    parent: ".g-page", //这个仅支持传入选择器和原生dom节点
                     //回调
                     callback: {
                         click: function click() {}
@@ -157,6 +158,11 @@
 
         //功能
         Fn.prototype.power = function () {
+            this.events();
+        };
+
+        //事件
+        Fn.prototype.events = function () {
             var self = this;
             this.moduleDom.addEventListener('click', function (ev) {
                 self.opt.callback.click();
@@ -470,6 +476,20 @@
         }
         module.exports = htmlToDom;
     }, {}], 11: [function (require, module, exports) {
+        function isPc() {
+            var userAgentInfo = navigator.userAgent;
+            var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+            var flag = true;
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+        module.exports = isPc;
+    }, {}], 12: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -492,7 +512,7 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 12: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -511,7 +531,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -530,7 +550,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 14: [function (require, module, exports) {
+    }, {}], 15: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -577,7 +597,7 @@
             }
         }
         module.exports = timeCountDown;
-    }, {}], 15: [function (require, module, exports) {
+    }, {}], 16: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -617,7 +637,7 @@
             });
         }
         module.exports = whenScrollBottom;
-    }, {}], 16: [function (require, module, exports) {
+    }, {}], 17: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */

@@ -134,12 +134,13 @@
 //星评
 (function () {
     const Star = require('../modules/m-star');
-    const main = document.querySelector('.main-star');
     const star = new Star({
-        eventCallback: function (json) {
-            console.log(`有点意思${json.index}`);
+        parent:`.main-star`,
+        callback:{
+            click:function (json) {
+                console.log(`有点意思${json.index}`);
+            }
         }
     });
-    main.appendChild(star.parentDom);
 })();
 require('../function/lazyload')();//延迟加载

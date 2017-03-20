@@ -7,7 +7,7 @@ function Fn(json) {
     this.opt = base.extend({
         defaults: {
             //父级
-            parent: `body`,//这个仅支持传入选择器和原生dom节点
+            parent: `.g-page`,//这个仅支持传入选择器和原生dom节点
             //回调
             callback: {
                 click: function () {
@@ -84,7 +84,7 @@ Fn.prototype.removeModuleDom = function () {
 };
 
 //清除内部的定时器
-Fn.prototype.clearTimer=function(){
+Fn.prototype.clearTimer = function () {
     if (this.opt.config.isClearTimer) {
         for (var attr in this.timer) {
             if (this.timer.hasOwnProperty(attr)) {
@@ -107,7 +107,7 @@ Fn.prototype.removeParentDom = function () {
 
 //模块显示
 Fn.prototype.show = function () {
-    if(this.parentDom){
+    if (this.parentDom) {
         this.parentDom.appendChild(this.moduleDom);
     }
 };
@@ -121,8 +121,13 @@ Fn.prototype.hide = function () {
 
 //功能
 Fn.prototype.power = function () {
-    var self=this;
-    this.moduleDom.addEventListener('click',function(ev){
+    this.events();
+};
+
+//事件
+Fn.prototype.events = function () {
+    var self = this;
+    this.moduleDom.addEventListener('click', function (ev) {
         self.opt.callback.click();
         ev.stopPropagation();
     })

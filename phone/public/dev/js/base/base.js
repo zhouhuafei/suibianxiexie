@@ -3,6 +3,7 @@
  */
 //一些小方法
 var base = {
+    isPc: require('../function/is-pc'),
     cookie: require('../function/cookie'),
     fillZero: require('../function/fill-zero'),
     getParent: require('../function/get-parent'),
@@ -14,8 +15,8 @@ var base = {
     secondsToTime: require('../function/seconds-to-time'),
     timeCountDown: require('../function/time-count-down'),
     strLimit: require('../function/str-limit'),
-    getOneDom:require('../function/get-one-dom'),
-    createElement:require('../function/create-element'),
+    getOneDom: require('../function/get-one-dom'),
+    createElement: require('../function/create-element'),
     extend: require('../function/extend')
 };
 module.exports = base;

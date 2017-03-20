@@ -2,6 +2,21 @@
 @import "../mixin/mixin";
 @import "../zero/zero";
 
+.g-page {
+    position: relative;
+    background: #fff;
+}
+
+.g-pc {
+    body {
+        background: #ccc;
+    }
+    .g-page {
+        margin: 0 auto;
+        max-width: 320px;
+    }
+}
+
 //按钮
 .g-button {
     width: px2rem(200);
@@ -10,12 +25,12 @@
     line-height: px2rem(40);
     border-radius: px2rem(4);
     //默认
-    &.g-button-default{
+    &.g-button-default {
         background: $g-color-background-dark;
         color: #fff;
     }
     //高亮
-    &.g-button-highlight{
+    &.g-button-highlight {
         background: $g-color-background-highlight;
         color: #fff;
     }
@@ -140,7 +155,7 @@
         line-height: inherit;
         position: relative;
     }
-    .g-radio-icon{
+    .g-radio-icon {
         color: $g-color-radio-highlight;
         font-size: px2rem(16);
         position: absolute;
@@ -159,7 +174,7 @@
         border-radius: 50%;
         &:checked {
             border-color: $g-color-radio-highlight;
-            & + .g-radio-icon{
+            & + .g-radio-icon {
                 display: block;
             }
         }
@@ -179,7 +194,7 @@
         line-height: inherit;
         position: relative;
     }
-    .g-checkbox-icon{
+    .g-checkbox-icon {
         color: $g-color-checkbox-highlight;
         font-size: px2rem(16);
         position: absolute;
@@ -198,7 +213,7 @@
         border-radius: px2rem(4);
         &:checked {
             border-color: $g-color-checkbox-highlight;
-            & + .g-checkbox-icon{
+            & + .g-checkbox-icon {
                 display: block;
             }
         }
