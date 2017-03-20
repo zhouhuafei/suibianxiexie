@@ -15,9 +15,10 @@ function Fn(json) {
             },
             //配置
             config: {
+                moduleStyle: ``,//内部模块的样式(写法和css相同)
+                isTransparent: false,//是不是透明的遮罩(默认不透明)
                 isClearTimer: true,//是否清除所有定时器(默认清除)
-                isShowModule: false,//是否显示模块(默认不显示)
-                isTransparent: false//是不是透明的遮罩(默认不透明)
+                isShowModule: false//是否显示模块(默认不显示)
             },
             //数据
             data: {
@@ -52,6 +53,7 @@ Fn.prototype.renderModuleDom = function () {
         isTransparent = 'm-mask-transparent';
     }
     this.moduleDom = base.createElement({
+        style: this.opt.config.moduleStyle,
         attribute: {
             className: `m-mask ${isTransparent}`,
             innerHTML: ``
@@ -78,6 +80,11 @@ Fn.prototype.removeModuleDom = function () {
         this.moduleDom.parentNode.removeChild(this.moduleDom);
     }
     //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
+    this.clearTimer();
+};
+
+//清除内部的定时器
+Fn.prototype.clearTimer=function(){
     if (this.opt.config.isClearTimer) {
         for (var attr in this.timer) {
             if (this.timer.hasOwnProperty(attr)) {

@@ -123,6 +123,11 @@ Fn.prototype.removeModuleDom = function () {
         this.moduleDom.parentNode.removeChild(this.moduleDom);
     }
     //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
+    this.clearTimer();
+};
+
+//清除内部的定时器
+Fn.prototype.clearTimer=function(){
     if (this.opt.config.isClearTimer) {
         for (var attr in this.timer) {
             if (this.timer.hasOwnProperty(attr)) {

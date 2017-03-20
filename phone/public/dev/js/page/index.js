@@ -14,17 +14,24 @@
             info: `侯丽杰爱周华飞`
         }
     });
+    //重新渲染才和是否清除定时器有关
     setTimeout(function () {
         test.opt.data.info = `周华飞爱侯丽杰`;
         test.removeModuleDom();
         test.init();
     }, 3000);
+    //显示隐藏和是否清除定时器无关
     setTimeout(function () {
         test.hide();
         setTimeout(function () {
             test.show();
         }, 2000);
     }, 5000);
+})();
+//底部
+(function(){
+    var Footer = require('../modules/m-footer');
+    new Footer();
 })();
 //遮罩
 (function () {

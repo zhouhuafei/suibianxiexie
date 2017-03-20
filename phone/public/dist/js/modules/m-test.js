@@ -51,6 +51,7 @@
                     },
                     //配置
                     config: {
+                        moduleStyle: "", //内部模块的样式(写法和css相同)
                         isClearTimer: true, //是否清除所有定时器(默认清除)
                         isShowModule: true //是否显示模块(默认显示)
                     },
@@ -83,6 +84,7 @@
         //内部的模块
         Fn.prototype.renderModuleDom = function () {
             this.moduleDom = base.createElement({
+                style: this.opt.config.moduleStyle,
                 custom: {
                     index: 0
                 },
@@ -112,6 +114,11 @@
                 this.moduleDom.parentNode.removeChild(this.moduleDom);
             }
             //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
+            this.clearTimer();
+        };
+
+        //清除内部的定时器
+        Fn.prototype.clearTimer = function () {
             if (this.opt.config.isClearTimer) {
                 for (var attr in this.timer) {
                     if (this.timer.hasOwnProperty(attr)) {
@@ -132,14 +139,14 @@
             }
         };
 
-        //模块显示
+        //模块显示(显示隐藏和是否清除定时器无关)
         Fn.prototype.show = function () {
             if (this.parentDom) {
                 this.parentDom.appendChild(this.moduleDom);
             }
         };
 
-        //模块隐藏
+        //模块隐藏(显示隐藏和是否清除定时器无关)
         Fn.prototype.hide = function () {
             if (this.moduleDom.parentNode) {
                 this.moduleDom.parentNode.removeChild(this.moduleDom);
@@ -148,7 +155,8 @@
 
         //功能
         Fn.prototype.power = function () {
-            var interval = this.moduleDom.querySelector('.m-test-timer');
+            var self = this;
+            var interval = self.moduleDom.querySelector('.m-test-timer');
             this.timer.timer1 = setInterval(function () {
                 interval.innerHTML = interval.innerHTML * 1 + 1;
             }, 1000);
@@ -207,6 +215,7 @@
             opt.elementName = opt.elementName || 'div'; //标签名称
             opt.attribute = opt.attribute || {}; //普通属性,checked,selected
             opt.custom = opt.custom || {}; //自定义属性
+            opt.style = opt.style || ""; //style样式
             var elementNode = document.createElement("" + opt.elementName); //元素节点
             for (var attr0 in opt.attribute) {
                 if (opt.attribute.hasOwnProperty(attr0)) {
@@ -217,6 +226,9 @@
                 if (opt.custom.hasOwnProperty(attr1)) {
                     elementNode.setAttribute('data-' + attr1, opt.custom[attr1]);
                 }
+            }
+            if (opt.style) {
+                elementNode.setAttribute('style', opt.style);
             }
             return elementNode;
         }

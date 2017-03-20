@@ -51,17 +51,24 @@
                     info: "\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE"
                 }
             });
+            //重新渲染才和是否清除定时器有关
             setTimeout(function () {
                 test.opt.data.info = "\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770";
                 test.removeModuleDom();
                 test.init();
             }, 3000);
+            //显示隐藏和是否清除定时器无关
             setTimeout(function () {
                 test.hide();
                 setTimeout(function () {
                     test.show();
                 }, 2000);
             }, 5000);
+        })();
+        //底部
+        (function () {
+            var Footer = require('../modules/m-footer');
+            new Footer();
         })();
         //遮罩
         (function () {
@@ -153,7 +160,7 @@
             main.appendChild(star.parentDom);
         })();
         require('../function/lazyload')(); //延迟加载
-    }, { "../function/lazyload": 12, "../modules/m-mask": 19, "../modules/m-radio-switch": 20, "../modules/m-star": 21, "../modules/m-table": 22, "../modules/m-test": 23, "../modules/m-validate-input": 24 }], 3: [function (require, module, exports) {
+    }, { "../function/lazyload": 12, "../modules/m-footer": 19, "../modules/m-mask": 20, "../modules/m-radio-switch": 21, "../modules/m-star": 22, "../modules/m-table": 23, "../modules/m-test": 24, "../modules/m-validate-input": 25 }], 3: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -205,6 +212,7 @@
             opt.elementName = opt.elementName || 'div'; //标签名称
             opt.attribute = opt.attribute || {}; //普通属性,checked,selected
             opt.custom = opt.custom || {}; //自定义属性
+            opt.style = opt.style || ""; //style样式
             var elementNode = document.createElement("" + opt.elementName); //元素节点
             for (var attr0 in opt.attribute) {
                 if (opt.attribute.hasOwnProperty(attr0)) {
@@ -215,6 +223,9 @@
                 if (opt.custom.hasOwnProperty(attr1)) {
                     elementNode.setAttribute('data-' + attr1, opt.custom[attr1]);
                 }
+            }
+            if (opt.style) {
+                elementNode.setAttribute('style', opt.style);
             }
             return elementNode;
         }
@@ -814,9 +825,153 @@
                     },
                     //配置
                     config: {
+                        moduleType: 0, //三种类型 0,1,2
                         isClearTimer: true, //是否清除所有定时器(默认清除)
-                        isShowModule: false, //是否显示模块(默认不显示)
-                        isTransparent: false //是不是透明的遮罩(默认不透明)
+                        isShowModule: true //是否显示模块(默认显示)
+                    },
+                    //数据
+                    data: {
+                        info: "\u5468\u534E\u98DE\u6D4B\u8BD5"
+                    }
+                },
+                inherits: json
+            });
+            //内部的一些属性
+            this.moduleDom = null; //内部的模块
+            this.parentDom = null; //内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+            this.timer = {}; //假设内部有定时器
+            this.init(); //初始化
+        }
+
+        //初始化
+        Fn.prototype.init = function () {
+            this.render();
+            this.power();
+        };
+
+        //渲染
+        Fn.prototype.render = function () {
+            this.renderModuleDom();
+            this.renderParentDom();
+        };
+
+        //内部的模块
+        Fn.prototype.renderModuleDom = function () {
+            var html = "\n        " + this.renderModuleType0() + "\n        " + this.renderModuleType1() + "\n        " + this.renderModuleType2() + "\n    ";
+            this.moduleDom = base.createElement({
+                custom: {
+                    index: 0
+                },
+                attribute: {
+                    className: "m-footer",
+                    innerHTML: html
+                }
+            });
+        };
+
+        Fn.prototype.renderModuleType0 = function () {
+            if (this.opt.config.moduleType == 0) {
+                return "\n            <div class=\"m-footer-type0\">\n                <div class=\"m-footer-menu\">0</div>\n                <div class=\"m-footer-\">" + this.opt.data.info + "</div>\n            </div>\n        ";
+            } else {
+                return "";
+            }
+        };
+
+        Fn.prototype.renderModuleType1 = function () {
+            if (this.opt.config.moduleType == 1) {} else {
+                return "";
+            }
+        };
+
+        Fn.prototype.renderModuleType2 = function () {
+            if (this.opt.config.moduleType == 2) {} else {
+                return "";
+            }
+        };
+
+        //外部的容器
+        Fn.prototype.renderParentDom = function () {
+            this.parentDom = base.getOneDom({ dom: this.opt.parent });
+            if (!this.parentDom) {
+                return false;
+            }
+            if (this.parentDom) {
+                if (this.opt.config.isShowModule) {
+                    this.parentDom.appendChild(this.moduleDom);
+                }
+            }
+        };
+
+        //移除内部的模块
+        Fn.prototype.removeModuleDom = function () {
+            if (this.moduleDom.parentNode) {
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+            }
+            //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
+            this.clearTimer();
+        };
+
+        //清除内部的定时器
+        Fn.prototype.clearTimer = function () {
+            if (this.opt.config.isClearTimer) {
+                for (var attr in this.timer) {
+                    if (this.timer.hasOwnProperty(attr)) {
+                        clearInterval(this.timer[attr]);
+                        clearTimeout(this.timer[attr]);
+                    }
+                }
+            }
+        };
+
+        //移除外部的容器
+        Fn.prototype.removeParentDom = function () {
+            //先移除内部的模块
+            this.removeModuleDom();
+            //再移除外部的容器
+            if (this.parentDom) {
+                this.parentDom.parentNode.removeChild(this.parentDom);
+            }
+        };
+
+        //模块显示
+        Fn.prototype.show = function () {
+            if (this.parentDom) {
+                this.parentDom.appendChild(this.moduleDom);
+            }
+        };
+
+        //模块隐藏
+        Fn.prototype.hide = function () {
+            if (this.moduleDom.parentNode) {
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+            }
+        };
+
+        //功能
+        Fn.prototype.power = function () {};
+
+        module.exports = Fn;
+    }, { "../base/base": 1 }], 20: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base');
+
+        //构造函数
+        function Fn(json) {
+            //外部传进来的参数
+            this.opt = base.extend({
+                defaults: {
+                    //父级
+                    parent: "body", //这个仅支持传入选择器和原生dom节点
+                    //回调
+                    callback: {
+                        click: function click() {}
+                    },
+                    //配置
+                    config: {
+                        moduleStyle: "", //内部模块的样式(写法和css相同)
+                        isTransparent: false, //是不是透明的遮罩(默认不透明)
+                        isClearTimer: true, //是否清除所有定时器(默认清除)
+                        isShowModule: false //是否显示模块(默认不显示)
                     },
                     //数据
                     data: {
@@ -851,6 +1006,7 @@
                 isTransparent = 'm-mask-transparent';
             }
             this.moduleDom = base.createElement({
+                style: this.opt.config.moduleStyle,
                 attribute: {
                     className: "m-mask " + isTransparent,
                     innerHTML: ""
@@ -877,6 +1033,11 @@
                 this.moduleDom.parentNode.removeChild(this.moduleDom);
             }
             //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
+            this.clearTimer();
+        };
+
+        //清除内部的定时器
+        Fn.prototype.clearTimer = function () {
             if (this.opt.config.isClearTimer) {
                 for (var attr in this.timer) {
                     if (this.timer.hasOwnProperty(attr)) {
@@ -921,7 +1082,7 @@
         };
 
         module.exports = Fn;
-    }, { "../base/base": 1 }], 20: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 21: [function (require, module, exports) {
         function Fn(json) {
             this.opt = json || {};
             this.opt.checkTxt = this.opt.checkTxt || { on: '已开启', off: '已关闭' };
@@ -989,7 +1150,7 @@
             this.parentDom.parentNode.removeChild(this.parentDom);
         };
         module.exports = Fn;
-    }, {}], 21: [function (require, module, exports) {
+    }, {}], 22: [function (require, module, exports) {
         //手机极简星级评论
         function Fn(json) {
             this.opt = json || {};
@@ -1048,7 +1209,7 @@
             this.init();
         };
         module.exports = Fn;
-    }, {}], 22: [function (require, module, exports) {
+    }, {}], 23: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1149,6 +1310,11 @@
                 this.moduleDom.parentNode.removeChild(this.moduleDom);
             }
             //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
+            this.clearTimer();
+        };
+
+        //清除内部的定时器
+        Fn.prototype.clearTimer = function () {
             if (this.opt.config.isClearTimer) {
                 for (var attr in this.timer) {
                     if (this.timer.hasOwnProperty(attr)) {
@@ -1187,7 +1353,7 @@
         Fn.prototype.power = function () {};
 
         module.exports = Fn;
-    }, { "../base/base": 1 }], 23: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 24: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1204,6 +1370,7 @@
                     },
                     //配置
                     config: {
+                        moduleStyle: "", //内部模块的样式(写法和css相同)
                         isClearTimer: true, //是否清除所有定时器(默认清除)
                         isShowModule: true //是否显示模块(默认显示)
                     },
@@ -1236,6 +1403,7 @@
         //内部的模块
         Fn.prototype.renderModuleDom = function () {
             this.moduleDom = base.createElement({
+                style: this.opt.config.moduleStyle,
                 custom: {
                     index: 0
                 },
@@ -1265,6 +1433,11 @@
                 this.moduleDom.parentNode.removeChild(this.moduleDom);
             }
             //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
+            this.clearTimer();
+        };
+
+        //清除内部的定时器
+        Fn.prototype.clearTimer = function () {
             if (this.opt.config.isClearTimer) {
                 for (var attr in this.timer) {
                     if (this.timer.hasOwnProperty(attr)) {
@@ -1285,14 +1458,14 @@
             }
         };
 
-        //模块显示
+        //模块显示(显示隐藏和是否清除定时器无关)
         Fn.prototype.show = function () {
             if (this.parentDom) {
                 this.parentDom.appendChild(this.moduleDom);
             }
         };
 
-        //模块隐藏
+        //模块隐藏(显示隐藏和是否清除定时器无关)
         Fn.prototype.hide = function () {
             if (this.moduleDom.parentNode) {
                 this.moduleDom.parentNode.removeChild(this.moduleDom);
@@ -1301,14 +1474,15 @@
 
         //功能
         Fn.prototype.power = function () {
-            var interval = this.moduleDom.querySelector('.m-test-timer');
+            var self = this;
+            var interval = self.moduleDom.querySelector('.m-test-timer');
             this.timer.timer1 = setInterval(function () {
                 interval.innerHTML = interval.innerHTML * 1 + 1;
             }, 1000);
         };
 
         module.exports = Fn;
-    }, { "../base/base": 1 }], 24: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 25: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/2.
          */

@@ -51,10 +51,9 @@
                     },
                     //配置
                     config: {
-                        moduleStyle: "", //内部模块的样式(写法和css相同)
-                        isTransparent: false, //是不是透明的遮罩(默认不透明)
+                        moduleType: 0, //三种类型 0,1,2
                         isClearTimer: true, //是否清除所有定时器(默认清除)
-                        isShowModule: false //是否显示模块(默认不显示)
+                        isShowModule: true //是否显示模块(默认显示)
                     },
                     //数据
                     data: {
@@ -84,17 +83,36 @@
 
         //内部的模块
         Fn.prototype.renderModuleDom = function () {
-            var isTransparent = '';
-            if (this.opt.config.isTransparent) {
-                isTransparent = 'm-mask-transparent';
-            }
+            var html = "\n        " + this.renderModuleType0() + "\n        " + this.renderModuleType1() + "\n        " + this.renderModuleType2() + "\n    ";
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleStyle,
+                custom: {
+                    index: 0
+                },
                 attribute: {
-                    className: "m-mask " + isTransparent,
-                    innerHTML: ""
+                    className: "m-footer",
+                    innerHTML: html
                 }
             });
+        };
+
+        Fn.prototype.renderModuleType0 = function () {
+            if (this.opt.config.moduleType == 0) {
+                return "\n            <div class=\"m-footer-type0\">\n                <div class=\"m-footer-menu\">0</div>\n                <div class=\"m-footer-\">" + this.opt.data.info + "</div>\n            </div>\n        ";
+            } else {
+                return "";
+            }
+        };
+
+        Fn.prototype.renderModuleType1 = function () {
+            if (this.opt.config.moduleType == 1) {} else {
+                return "";
+            }
+        };
+
+        Fn.prototype.renderModuleType2 = function () {
+            if (this.opt.config.moduleType == 2) {} else {
+                return "";
+            }
         };
 
         //外部的容器
@@ -156,13 +174,7 @@
         };
 
         //功能
-        Fn.prototype.power = function () {
-            var self = this;
-            this.moduleDom.addEventListener('click', function (ev) {
-                self.opt.callback.click();
-                ev.stopPropagation();
-            });
-        };
+        Fn.prototype.power = function () {};
 
         module.exports = Fn;
     }, { "../base/base": 1 }], 3: [function (require, module, exports) {

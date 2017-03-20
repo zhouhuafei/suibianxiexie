@@ -15,7 +15,7 @@ function Fn(json) {
             },
             //配置
             config: {
-                moduleStyle: ``,//内部模块的样式(写法和css相同)
+                moduleType:0,//三种类型 0,1,2
                 isClearTimer: true,//是否清除所有定时器(默认清除)
                 isShowModule: true//是否显示模块(默认显示)
             },
@@ -47,19 +47,49 @@ Fn.prototype.render = function () {
 
 //内部的模块
 Fn.prototype.renderModuleDom = function () {
+    var html=`
+        ${this.renderModuleType0()}
+        ${this.renderModuleType1()}
+        ${this.renderModuleType2()}
+    `;
     this.moduleDom = base.createElement({
-        style: this.opt.config.moduleStyle,
         custom: {
             index: 0
         },
         attribute: {
-            className: `m-test`,
-            innerHTML: `
-                <div class="m-test-timer">0</div>
-                <div class="m-test-info">${this.opt.data.info}</div>
-            `
+            className: `m-footer`,
+            innerHTML: html
         }
     });
+};
+
+Fn.prototype.renderModuleType0=function(){
+    if(this.opt.config.moduleType==0){
+        return `
+            <div class="m-footer-type0">
+                <div class="m-footer-menu">0</div>
+                <div class="m-footer-">${this.opt.data.info}</div>
+            </div>
+        `;
+    }else {
+        return ``;
+    }
+};
+
+Fn.prototype.renderModuleType1=function(){
+    if(this.opt.config.moduleType==1){
+
+    }else {
+        return ``;
+    }
+};
+
+Fn.prototype.renderModuleType2=function(){
+    if(this.opt.config.moduleType==2){
+
+    }else {
+        return ``;
+    }
 };
 
 //外部的容器
@@ -106,14 +136,14 @@ Fn.prototype.removeParentDom = function () {
     }
 };
 
-//模块显示(显示隐藏和是否清除定时器无关)
+//模块显示
 Fn.prototype.show = function () {
-    if (this.parentDom) {
+    if(this.parentDom){
         this.parentDom.appendChild(this.moduleDom);
     }
 };
 
-//模块隐藏(显示隐藏和是否清除定时器无关)
+//模块隐藏
 Fn.prototype.hide = function () {
     if (this.moduleDom.parentNode) {
         this.moduleDom.parentNode.removeChild(this.moduleDom);
@@ -122,11 +152,7 @@ Fn.prototype.hide = function () {
 
 //功能
 Fn.prototype.power = function () {
-    var self = this;
-    var interval = self.moduleDom.querySelector('.m-test-timer');
-    this.timer.timer1 = setInterval(function () {
-        interval.innerHTML = interval.innerHTML * 1 + 1;
-    }, 1000);
+
 };
 
 module.exports = Fn;

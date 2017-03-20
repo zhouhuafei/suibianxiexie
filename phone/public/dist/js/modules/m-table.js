@@ -135,6 +135,11 @@
                 this.moduleDom.parentNode.removeChild(this.moduleDom);
             }
             //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
+            this.clearTimer();
+        };
+
+        //清除内部的定时器
+        Fn.prototype.clearTimer = function () {
             if (this.opt.config.isClearTimer) {
                 for (var attr in this.timer) {
                     if (this.timer.hasOwnProperty(attr)) {
@@ -225,6 +230,7 @@
             opt.elementName = opt.elementName || 'div'; //标签名称
             opt.attribute = opt.attribute || {}; //普通属性,checked,selected
             opt.custom = opt.custom || {}; //自定义属性
+            opt.style = opt.style || ""; //style样式
             var elementNode = document.createElement("" + opt.elementName); //元素节点
             for (var attr0 in opt.attribute) {
                 if (opt.attribute.hasOwnProperty(attr0)) {
@@ -235,6 +241,9 @@
                 if (opt.custom.hasOwnProperty(attr1)) {
                     elementNode.setAttribute('data-' + attr1, opt.custom[attr1]);
                 }
+            }
+            if (opt.style) {
+                elementNode.setAttribute('style', opt.style);
             }
             return elementNode;
         }
