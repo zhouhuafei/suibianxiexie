@@ -2,20 +2,15 @@
 @import "../mixin/mixin";
 @import "../zero/zero";
 
-//整站必须
-.g-page {
-    position: relative;
-    background: #fff;
-}
-
 //pc展示
 .g-pc {
+    height: 100%;
+    background: #ccc;
     body {
-        background: #ccc;
-    }
-    .g-page {
+        min-height: 100%;
         margin: 0 auto;
         max-width: 320px;
+        background: #fff;
     }
 }
 
