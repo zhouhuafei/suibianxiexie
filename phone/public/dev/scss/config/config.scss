@@ -33,13 +33,22 @@ $g-size-input-height: 40; //尺寸-高
 $g-size-select-width: 240; //尺寸-宽
 $g-size-select-height: 40; //尺寸-高
 
+//文本框
+$g-size-textarea-width: 240; //尺寸-宽
+$g-size-textarea-height: 140; //尺寸-高
+
+
 //菜单
 $g-size-menu-height: 40; //尺寸-高
 
 //表格的一行
 $g-table-row-height: 60; //尺寸-高
 
-//间距
-$g-gap-small: 10;//小
-$g-gap-default: 20;//默认
-$g-gap-big: 30;//大
+
+//全局的方法
+@import "../mixin/mixin";
+
+//px转rem
+@function px2rem($px,$psd:320) {
+    @return $px / $psd * 10rem;
+}

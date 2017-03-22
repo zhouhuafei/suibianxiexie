@@ -1,5 +1,4 @@
 @import "../config/config";
-@import "../mixin/mixin";
 
 //清零样式
 
@@ -7,7 +6,6 @@ body {
     color: $g-color-font-default;
     font-family: "Microsoft Yahei", "sans-serif";
     font-size: px2rem(16);
-    position: relative;
 }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {

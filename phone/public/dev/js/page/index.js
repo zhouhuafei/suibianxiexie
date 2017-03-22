@@ -47,7 +47,7 @@
             isTransparent: false
         }
     });
-    //mask.show();
+    mask.show();
 })();
 //单选开关
 (function () {

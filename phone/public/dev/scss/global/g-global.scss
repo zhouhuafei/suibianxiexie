@@ -1,6 +1,4 @@
 @import "../config/config";
-@import "../mixin/mixin";
-@import "../zero/zero";
 
 //pc展示
 .g-pc {
@@ -113,9 +111,9 @@
 
 //文本框
 .g-textarea {
-    width: px2rem(300);
-    height: px2rem(200);
-    line-height: px2rem(30);
+    width: px2rem($g-size-textarea-width);
+    height: px2rem($g-size-textarea-height);
+    line-height: px2rem(20);
     background: #fff;
     .g-textarea-label {
         display: block;

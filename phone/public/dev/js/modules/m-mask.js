@@ -69,6 +69,9 @@ Fn.prototype.renderParentDom = function () {
     }
     if (this.parentDom) {
         if (this.opt.config.isShowModule) {
+            if(getComputedStyle(this.parentDom).position=='static'){
+                this.parentDom.style.position='relative';
+            }
             this.parentDom.appendChild(this.moduleDom);
         }
     }

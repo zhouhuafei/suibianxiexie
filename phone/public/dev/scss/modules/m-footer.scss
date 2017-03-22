@@ -1,9 +1,10 @@
-@import "../base/base";
+@import "../config/config";
 
 .m-footer {
     &.m-footer-type0{
         $height:40;
         $width:320;
+        margin-top:px2rem(20);
         height: px2rem($height);
         text-align: center;
         .m-footer-wrap{
