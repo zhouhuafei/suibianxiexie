@@ -3,7 +3,7 @@
  */
 //测试
 (function () {
-    var Test = require('../modules/m-test');
+    var Test = require('../../modules/m-test.js');
     var test = new Test({
         parent: document.querySelector(`.main-test`),
         config: {
@@ -30,12 +30,12 @@
 })();
 //底部
 (function(){
-    var Footer = require('../modules/m-footer');
+    var Footer = require('../../modules/m-footer.js');
     new Footer();
 })();
 //遮罩
 (function () {
-    var Mask = require('../modules/m-mask');
+    var Mask = require('../../modules/m-mask.js');
     var mask = new Mask({
         callback:{
             click:function(){
@@ -51,7 +51,7 @@
 })();
 //单选开关
 (function () {
-    const Radio = require('../modules/m-radio-switch');
+    const Radio = require('../../modules/m-radio-switch.js');
     const main = document.querySelector('.main-radio-switch');
     const radio = new Radio({
         checkTxt: {
@@ -68,7 +68,7 @@
 })();
 //表格
 (function () {
-    const Table = require('../modules/m-table');
+    const Table = require('../../modules/m-table.js');
     const table = new Table({
         parent: `.main-table`,
         data:{
@@ -124,7 +124,7 @@
 })();
 //验证
 (function () {
-    const ValidateInput = require('../modules/m-validate-input');
+    const ValidateInput = require('../../modules/m-validate-input.js');
     const aInput = [].slice.call(document.querySelectorAll('.m-validate-input'));
     aInput.forEach(function (v) {
         var validate = new ValidateInput({input: v});
@@ -133,7 +133,7 @@
 })();
 //星评
 (function () {
-    const Star = require('../modules/m-star');
+    const Star = require('../../modules/m-star.js');
     const star = new Star({
         parent:`.main-star`,
         callback:{
@@ -143,4 +143,5 @@
         }
     });
 })();
-require('../function/lazyload')();//延迟加载
+//延迟加载
+require('../../function/lazyload.js')();

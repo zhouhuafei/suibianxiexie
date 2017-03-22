@@ -1,23 +1,23 @@
-@import "../base/base";
+@import "../../base/base.scss";
 
 //底部
-@import "../modules/m-footer";
+@import "../../modules/m-footer.scss";
 
 //遮罩
-@import "../modules/m-mask";
+@import "../../modules/m-mask.scss";
 
 //单选开关
-@import "../modules/m-radio-switch";
+@import "../../modules/m-radio-switch.scss";
 .main-radio-switch {
     display: flex;
     justify-content: center;
 }
 
 //表格
-@import "../modules/m-table";
+@import "../../modules/m-table.scss";
 
 //input验证
-@import "../modules/m-validate-input";
+@import "../../modules/m-validate-input.scss";
 .main-input {
     display: flex;
     align-items: center;
@@ -28,7 +28,7 @@
 }
 
 //星评
-@import "../modules/m-star";
+@import "../../modules/m-star.scss";
 .main-star{
     display: flex;
     justify-content: center;

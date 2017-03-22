@@ -1,5 +1,5 @@
 //底层方法
-var base = require('../base/base');
+var base = require('../base/base.js');
 
 //构造函数
 function Fn(json) {
@@ -68,10 +68,10 @@ Fn.prototype.renderParentDom = function () {
         return false;
     }
     if (this.parentDom) {
+        if(getComputedStyle(this.parentDom).position=='static'){
+            this.parentDom.style.position='relative';
+        }
         if (this.opt.config.isShowModule) {
-            if(getComputedStyle(this.parentDom).position=='static'){
-                this.parentDom.style.position='relative';
-            }
             this.parentDom.appendChild(this.moduleDom);
         }
     }

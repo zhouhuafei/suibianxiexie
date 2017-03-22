@@ -3,20 +3,20 @@
  */
 //一些小方法
 var base = {
-    isPc: require('../function/is-pc'),
-    cookie: require('../function/cookie'),
-    fillZero: require('../function/fill-zero'),
-    getParent: require('../function/get-parent'),
-    goTop: require('../function/go-top'),
-    htmlToDom: require('../function/html-to-dom'),
-    whetherDisableScroll: require('../function/whether-disable-scroll'),
-    whenScrollBottom: require('../function/when-scroll-bottom'),
-    jsonToArray: require('../function/json-to-array'),
-    secondsToTime: require('../function/seconds-to-time'),
-    timeCountDown: require('../function/time-count-down'),
-    strLimit: require('../function/str-limit'),
-    getOneDom: require('../function/get-one-dom'),
-    createElement: require('../function/create-element'),
-    extend: require('../function/extend')
+    isPc: require('../function/is-pc.js'),
+    cookie: require('../function/cookie.js'),
+    fillZero: require('../function/fill-zero.js'),
+    getParent: require('../function/get-parent.js'),
+    goTop: require('../function/go-top.js'),
+    htmlToDom: require('../function/html-to-dom.js'),
+    whetherDisableScroll: require('../function/whether-disable-scroll.js'),
+    whenScrollBottom: require('../function/when-scroll-bottom.js'),
+    jsonToArray: require('../function/json-to-array.js'),
+    secondsToTime: require('../function/seconds-to-time.js'),
+    timeCountDown: require('../function/time-count-down.js'),
+    strLimit: require('../function/str-limit.js'),
+    getOneDom: require('../function/get-one-dom.js'),
+    createElement: require('../function/create-element.js'),
+    extend: require('../function/extend.js')
 };
 module.exports = base;

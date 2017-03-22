@@ -46,7 +46,7 @@ $g-table-row-height: 60; //尺寸-高
 
 
 //全局的方法
-@import "../mixin/mixin";
+@import "../mixin/mixin.scss";
 
 //px转rem
 @function px2rem($px,$psd:320) {

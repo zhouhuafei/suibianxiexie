@@ -19,7 +19,7 @@ class Path {
         this.devPath = `${this.publicPath}/dev`;
         this.distPath = `${this.publicPath}/dist`;
         this.scssEnterPath = `${this.devPath}/scss/**/*.scss`;
-        this.scssExitPath = `${this.distPath}/scss/`;
+        this.scssExitPath = `${this.distPath}/css/`;
         this.jsEnterPath = `${this.devPath}/js/**/*.js`;
         this.jsExitPath = `${this.distPath}/js/`;
         this.imagesEnterPath = `${this.devPath}/images/**/*.*`;

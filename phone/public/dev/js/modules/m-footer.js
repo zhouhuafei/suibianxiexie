@@ -1,5 +1,5 @@
 //底层方法
-var base = require('../base/base');
+var base = require('../base/base.js');
 
 //构造函数
 function Fn(json) {

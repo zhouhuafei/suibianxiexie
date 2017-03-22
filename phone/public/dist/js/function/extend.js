@@ -1,1 +1,97 @@
-"use strict";!function e(t,r,i){function n(o,a){if(!r[o]){if(!t[o]){var u="function"==typeof require&&require;if(!a&&u)return u(o,!0);if(s)return s(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=r[o]={exports:{}};t[o][0].call(f.exports,function(e){var r=t[o][1][e];return n(r?r:e)},f,f.exports,e,t,r,i)}return r[o].exports}for(var s="function"==typeof require&&require,o=0;o<i.length;o++)n(i[o]);return n}({1:[function(e,t,r){function i(e){var t=e||{};t.defaults=t.defaults||{},t.inherits=t.inherits||{},t.isDeep=0!=t.isDeep||t.isDeep;for(var r in t.inherits)if(t.inherits.hasOwnProperty(r)){var n=Object.prototype.toString.call(t.defaults[r]).slice(8,-1).toLowerCase(),s=Object.prototype.toString.call(t.inherits[r]).slice(8,-1).toLowerCase();n==s&&t.isDeep?"object"==n?i({defaults:t.defaults[r],inherits:t.inherits[r]}):"array"==n?t.inherits[r].forEach(function(e,n){var s=Object.prototype.toString.call(t.defaults[r][n]).slice(8,-1).toLowerCase();Object.prototype.toString.call(t.inherits[r][n]).slice(8,-1).toLowerCase()==s&&t.isDeep&&"object"==s?i({defaults:t.defaults[r][n],inherits:t.inherits[r][n]}):t.defaults[r][n]=t.inherits[r][n]}):t.defaults[r]=t.inherits[r]:t.defaults[r]=t.inherits[r]}return t.defaults}t.exports=i},{}]},{},[1]);
+"use strict";
+
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);throw new Error("Cannot find module '" + o + "'");
+            }var f = n[o] = { exports: {} };t[o][0].call(f.exports, function (e) {
+                var n = t[o][1][e];return s(n ? n : e);
+            }, f, f.exports, e, t, n, r);
+        }return n[o].exports;
+    }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+        s(r[o]);
+    }return s;
+})({ 1: [function (require, module, exports) {
+        function extend(json) {
+            var opt = json || {};
+            opt.defaults = opt.defaults || {};
+            opt.inherits = opt.inherits || {};
+            opt.isDeep = opt.isDeep == false ? opt.isDeep : true; //默认进行深拷贝
+            for (var attr in opt.inherits) {
+                if (opt.inherits.hasOwnProperty(attr)) {
+                    var defaultsType = Object.prototype.toString.call(opt.defaults[attr]).slice(8, -1).toLowerCase();
+                    var inheritsType = Object.prototype.toString.call(opt.inherits[attr]).slice(8, -1).toLowerCase();
+                    if (defaultsType == inheritsType && opt.isDeep) {
+                        //类型相同
+                        if (defaultsType == 'object') {
+                            //当为对象
+                            extend({ defaults: opt.defaults[attr], inherits: opt.inherits[attr] });
+                        } else if (defaultsType == 'array') {
+                            //当为数组时
+                            opt.inherits[attr].forEach(function (v, i) {
+                                var vDefaultsType = Object.prototype.toString.call(opt.defaults[attr][i]).slice(8, -1).toLowerCase();
+                                var vInheritsType = Object.prototype.toString.call(opt.inherits[attr][i]).slice(8, -1).toLowerCase();
+                                if (vInheritsType == vDefaultsType && opt.isDeep) {
+                                    if (vDefaultsType == 'object') {
+                                        extend({ defaults: opt.defaults[attr][i], inherits: opt.inherits[attr][i] });
+                                    } else {
+                                        opt.defaults[attr][i] = opt.inherits[attr][i];
+                                    }
+                                } else {
+                                    opt.defaults[attr][i] = opt.inherits[attr][i];
+                                }
+                            });
+                        } else {
+                            opt.defaults[attr] = opt.inherits[attr];
+                        }
+                    } else {
+                        //类型不同,直接后面的覆盖前面的
+                        opt.defaults[attr] = opt.inherits[attr];
+                    }
+                }
+            }
+            return opt.defaults;
+        }
+        /*
+        var obj1 = extend({
+            defaults: {
+                a: 'a',
+                b: {
+                    b1: 'b1',
+                    b2: 'b2',
+                    b3: {
+                        c1: 'c1'
+                    }
+                }
+            },
+            inherits: {
+                a: 0,
+                b: {
+                    b2: 1,
+                    b3: {
+                        c2: 2
+                    }
+                }
+            }
+        });
+        console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
+        var obj2 = extend({
+            defaults: {
+                b: [
+                    {a1: 'a1'},
+                    {a2: 'a2'}
+                ]
+            },
+            inherits: {
+                b: [
+                    'what?',
+                    {b1: 'b1'},
+                    {b2: 'b2'}
+                ]
+            }
+        });
+        console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
+        */
+        module.exports = extend;
+    }, {}] }, {}, [1]);
