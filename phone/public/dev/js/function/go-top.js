@@ -5,7 +5,7 @@
 function goTop(json) {
     var opt = json || {};
     var obj = opt.obj;
-    var to=opt.to;
+    var to=opt.to || '0';
     if (!obj) {
         console.log('parameter error');
         return false;
@@ -20,7 +20,7 @@ function goTop(json) {
         scrollT -= speed;
         window.scrollTo(0, scrollT);
         timer = requestAnimationFrame(fn);
-        if (scrollT == 0) {
+        if (scrollT <= to*1 ) {
             cancelAnimationFrame(timer);
         }
     };
