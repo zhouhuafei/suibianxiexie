@@ -1335,86 +1335,72 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/../../../../node_modules/process/browser.js", "/../../../../node_modules/process");
   }, { "buffer": 2, "r7L21G": 4 }], 5: [function (require, module, exports) {
     (function (process, global, Buffer, __argument0, __argument1, __argument2, __argument3, __filename, __dirname) {
-      function extend(json) {
-        var opt = json || {};
-        opt.defaults = opt.defaults || {};
-        opt.inherits = opt.inherits || {};
-        opt.isDeep = opt.isDeep == false ? opt.isDeep : true; //默认进行深拷贝
-        for (var attr in opt.inherits) {
-          if (opt.inherits.hasOwnProperty(attr)) {
-            var defaultsType = Object.prototype.toString.call(opt.defaults[attr]).slice(8, -1).toLowerCase();
-            var inheritsType = Object.prototype.toString.call(opt.inherits[attr]).slice(8, -1).toLowerCase();
-            if (defaultsType == inheritsType && opt.isDeep) {
-              //类型相同
-              if (defaultsType == 'object') {
-                //当为对象
-                extend({ defaults: opt.defaults[attr], inherits: opt.inherits[attr] });
-              } else if (defaultsType == 'array') {
-                //当为数组时
-                opt.inherits[attr].forEach(function (v, i) {
-                  var vDefaultsType = Object.prototype.toString.call(opt.defaults[attr][i]).slice(8, -1).toLowerCase();
-                  var vInheritsType = Object.prototype.toString.call(opt.inherits[attr][i]).slice(8, -1).toLowerCase();
-                  if (vInheritsType == vDefaultsType && opt.isDeep) {
-                    if (vDefaultsType == 'object') {
-                      extend({ defaults: opt.defaults[attr][i], inherits: opt.inherits[attr][i] });
-                    } else {
-                      opt.defaults[attr][i] = opt.inherits[attr][i];
-                    }
-                  } else {
-                    opt.defaults[attr][i] = opt.inherits[attr][i];
-                  }
-                });
-              } else {
-                opt.defaults[attr] = opt.inherits[attr];
-              }
-            } else {
-              //类型不同,直接后面的覆盖前面的
-              opt.defaults[attr] = opt.inherits[attr];
-            }
+      function Fn(json) {
+        this.opt = json || {};
+        this.opt.checkTxt = this.opt.checkTxt || { on: '已开启', off: '已关闭' };
+        this.opt.status = this.opt.status || 'off';
+        this.opt.isHand = this.opt.isHand ? true : false;
+        this.opt.clickCallback = this.opt.clickCallback || function () {
+          console.log('点击的回调');
+        };
+        this.onClass = 'm-radio-switch-active'; //打开时对应状态的class
+        this.init();
+      }
+      Fn.prototype.init = function () {
+        this.render();
+        this.events();
+      };
+      Fn.prototype.render = function () {
+        var className = "";
+        var status = this.opt.status;
+        if (status == 'on') {
+          className = this.onClass;
+        }
+        this.parentDom = document.createElement('div');
+        this.parentDom.classList.add("m-radio-switch");
+        if (className) {
+          this.parentDom.classList.add(className);
+        }
+        this.parentDom.innerHTML = "            \n        <div class=\"m-radio-switch-box\">\n            <div class=\"m-radio-switch-run\"></div>\n        </div>\n        <div class=\"m-radio-switch-txt\">" + this.opt.checkTxt[status] + "</div>            \n    ";
+      };
+      Fn.prototype.on = function () {
+        //开
+        this.parentDom.classList.add(this.onClass);
+        this.opt.status = 'on';
+        this.changeTxt();
+      };
+      Fn.prototype.off = function () {
+        //关
+        this.parentDom.classList.remove(this.onClass);
+        this.opt.status = 'off';
+        this.changeTxt();
+      };
+      Fn.prototype.changeTxt = function () {
+        this.parentDom.querySelector('.m-radio-switch-txt').innerHTML = this.opt.checkTxt[this.opt.status];
+      };
+      Fn.prototype.clickFn = function () {
+        var self = this;
+        if (!self.opt.isHand) {
+          if (self.opt.status == 'off') {
+            self.on();
+          } else {
+            self.off();
           }
         }
-        return opt.defaults;
-      }
-      /*
-      var obj1 = extend({
-          defaults: {
-              a: 'a',
-              b: {
-                  b1: 'b1',
-                  b2: 'b2',
-                  b3: {
-                      c1: 'c1'
-                  }
-              }
-          },
-          inherits: {
-              a: 0,
-              b: {
-                  b2: 1,
-                  b3: {
-                      c2: 2
-                  }
-              }
-          }
-      });
-      console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
-      var obj2 = extend({
-          defaults: {
-              b: [
-                  {a1: 'a1'},
-                  {a2: 'a2'}
-              ]
-          },
-          inherits: {
-              b: [
-                  'what?',
-                  {b1: 'b1'},
-                  {b2: 'b2'}
-              ]
-          }
-      });
-      console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
-      */
-      module.exports = extend;
-    }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_957ad97e.js", "/");
+        self.opt.clickCallback({
+          parentDom: this.parentDom,
+          status: self.opt.status
+        });
+      };
+      Fn.prototype.events = function () {
+        var self = this;
+        this.parentDom.addEventListener('click', function () {
+          self.clickFn();
+        });
+      };
+      Fn.prototype.remove = function () {
+        this.parentDom.parentNode.removeChild(this.parentDom);
+      };
+      module.exports = Fn;
+    }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_c0162fbc.js", "/");
   }, { "buffer": 2, "r7L21G": 4 }] }, {}, [5]);

@@ -1335,86 +1335,81 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/../../../../node_modules/process/browser.js", "/../../../../node_modules/process");
   }, { "buffer": 2, "r7L21G": 4 }], 5: [function (require, module, exports) {
     (function (process, global, Buffer, __argument0, __argument1, __argument2, __argument3, __filename, __dirname) {
-      function extend(json) {
-        var opt = json || {};
-        opt.defaults = opt.defaults || {};
-        opt.inherits = opt.inherits || {};
-        opt.isDeep = opt.isDeep == false ? opt.isDeep : true; //默认进行深拷贝
-        for (var attr in opt.inherits) {
-          if (opt.inherits.hasOwnProperty(attr)) {
-            var defaultsType = Object.prototype.toString.call(opt.defaults[attr]).slice(8, -1).toLowerCase();
-            var inheritsType = Object.prototype.toString.call(opt.inherits[attr]).slice(8, -1).toLowerCase();
-            if (defaultsType == inheritsType && opt.isDeep) {
-              //类型相同
-              if (defaultsType == 'object') {
-                //当为对象
-                extend({ defaults: opt.defaults[attr], inherits: opt.inherits[attr] });
-              } else if (defaultsType == 'array') {
-                //当为数组时
-                opt.inherits[attr].forEach(function (v, i) {
-                  var vDefaultsType = Object.prototype.toString.call(opt.defaults[attr][i]).slice(8, -1).toLowerCase();
-                  var vInheritsType = Object.prototype.toString.call(opt.inherits[attr][i]).slice(8, -1).toLowerCase();
-                  if (vInheritsType == vDefaultsType && opt.isDeep) {
-                    if (vDefaultsType == 'object') {
-                      extend({ defaults: opt.defaults[attr][i], inherits: opt.inherits[attr][i] });
-                    } else {
-                      opt.defaults[attr][i] = opt.inherits[attr][i];
-                    }
-                  } else {
-                    opt.defaults[attr][i] = opt.inherits[attr][i];
-                  }
-                });
-              } else {
-                opt.defaults[attr] = opt.inherits[attr];
+      function Fn(json) {
+        this.opt = json || {};
+        //如果没有选择文件的input,则不继续往下执行
+        if (!this.opt.input) {
+          console.log('no find input');
+          return;
+        }
+        //一次上传限制几张图片
+        this.opt.limitNum = this.opt.limitNum || '5';
+        //选择图片的回调
+        this.opt.changeCallback = this.opt.changeCallback || function () {
+          console.log('no find changeCallback');
+        };
+        //把图片读取成base64编码的回调
+        this.opt.base64Callback = this.opt.base64Callback || function () {
+          console.log('no find base64Callback');
+        };
+        //初始化
+        this.init();
+      }
+      Fn.prototype.init = function () {
+        //渲染结构
+        this.render();
+        //渲染功能
+        this.power();
+      };
+      Fn.prototype.render = function () {};
+      Fn.prototype.power = function () {
+        //事件相关
+        this.events();
+      };
+      Fn.prototype.events = function () {
+        this.eventsInputChange();
+      };
+      Fn.prototype.eventsInputChange = function () {
+        var self = this;
+        var limitNum = this.opt.limitNum;
+        this.opt.input.addEventListener('change', function () {
+          var imagesNum = 0;
+          //图片的相关信息
+          self.imgData = [];
+          var files = this.files;
+          var len = files.length;
+          for (var i = 0; i < len; i++) {
+            var f = files[i];
+            var isImages = /image/ig.test(f.type);
+            //不是图片
+            if (!isImages) {
+              continue;
+            }
+            //是图片
+            if (isImages) {
+              if (imagesNum < limitNum) {
+                //小于限制几张图片的数量
+                self.imgData.push(f);
+                imagesNum++;
+              } else {//大于限制几张图片的数量
+
               }
-            } else {
-              //类型不同,直接后面的覆盖前面的
-              opt.defaults[attr] = opt.inherits[attr];
             }
           }
-        }
-        return opt.defaults;
-      }
-      /*
-      var obj1 = extend({
-          defaults: {
-              a: 'a',
-              b: {
-                  b1: 'b1',
-                  b2: 'b2',
-                  b3: {
-                      c1: 'c1'
-                  }
-              }
-          },
-          inherits: {
-              a: 0,
-              b: {
-                  b2: 1,
-                  b3: {
-                      c2: 2
-                  }
-              }
-          }
-      });
-      console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
-      var obj2 = extend({
-          defaults: {
-              b: [
-                  {a1: 'a1'},
-                  {a2: 'a2'}
-              ]
-          },
-          inherits: {
-              b: [
-                  'what?',
-                  {b1: 'b1'},
-                  {b2: 'b2'}
-              ]
-          }
-      });
-      console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
-      */
-      module.exports = extend;
-    }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_957ad97e.js", "/");
+          self.opt.changeCallback({ imgData: self.imgData });
+          //把图片读成base64编码
+          self.fileReadAsDataURL();
+        });
+      };
+      Fn.prototype.fileReadAsDataURL = function () {
+        var self = this;
+        this.imgData.forEach(function (v, i) {
+          var fileRender = new FileReader();
+          fileRender.readAsDataURL(v);
+          fileRender.addEventListener('load', function () {
+            self.opt.base64Callback({ base64: this.result, index: i });
+          });
+        });
+      };
+    }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_6c0e71d7.js", "/");
   }, { "buffer": 2, "r7L21G": 4 }] }, {}, [5]);

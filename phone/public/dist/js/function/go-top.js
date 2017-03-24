@@ -1335,86 +1335,42 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/../../../../node_modules/process/browser.js", "/../../../../node_modules/process");
   }, { "buffer": 2, "r7L21G": 4 }], 5: [function (require, module, exports) {
     (function (process, global, Buffer, __argument0, __argument1, __argument2, __argument3, __filename, __dirname) {
-      function extend(json) {
+      /**
+       * Created by zhouhuafei on 17/1/1.
+       */
+      //返回顶部
+      function goTop(json) {
         var opt = json || {};
-        opt.defaults = opt.defaults || {};
-        opt.inherits = opt.inherits || {};
-        opt.isDeep = opt.isDeep == false ? opt.isDeep : true; //默认进行深拷贝
-        for (var attr in opt.inherits) {
-          if (opt.inherits.hasOwnProperty(attr)) {
-            var defaultsType = Object.prototype.toString.call(opt.defaults[attr]).slice(8, -1).toLowerCase();
-            var inheritsType = Object.prototype.toString.call(opt.inherits[attr]).slice(8, -1).toLowerCase();
-            if (defaultsType == inheritsType && opt.isDeep) {
-              //类型相同
-              if (defaultsType == 'object') {
-                //当为对象
-                extend({ defaults: opt.defaults[attr], inherits: opt.inherits[attr] });
-              } else if (defaultsType == 'array') {
-                //当为数组时
-                opt.inherits[attr].forEach(function (v, i) {
-                  var vDefaultsType = Object.prototype.toString.call(opt.defaults[attr][i]).slice(8, -1).toLowerCase();
-                  var vInheritsType = Object.prototype.toString.call(opt.inherits[attr][i]).slice(8, -1).toLowerCase();
-                  if (vInheritsType == vDefaultsType && opt.isDeep) {
-                    if (vDefaultsType == 'object') {
-                      extend({ defaults: opt.defaults[attr][i], inherits: opt.inherits[attr][i] });
-                    } else {
-                      opt.defaults[attr][i] = opt.inherits[attr][i];
-                    }
-                  } else {
-                    opt.defaults[attr][i] = opt.inherits[attr][i];
-                  }
-                });
-              } else {
-                opt.defaults[attr] = opt.inherits[attr];
-              }
-            } else {
-              //类型不同,直接后面的覆盖前面的
-              opt.defaults[attr] = opt.inherits[attr];
-            }
-          }
+        var obj = opt.obj;
+        var to = opt.to || '0';
+        if (!obj) {
+          console.log('parameter error');
+          return false;
         }
-        return opt.defaults;
+        var doc = document;
+        var scale = 6;
+        var scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
+        var speed = 0;
+        var timer = null;
+        var fn = function fn() {
+          speed = Math.ceil(scrollT - to / scale);
+          scrollT -= speed;
+          window.scrollTo(0, scrollT);
+          timer = requestAnimationFrame(fn);
+          if (scrollT <= to * 1) {
+            cancelAnimationFrame(timer);
+          }
+        };
+        obj.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          ev.preventDefault();
+          scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
+          requestAnimationFrame(fn);
+        });
+        doc.addEventListener('touchstart', function () {
+          cancelAnimationFrame(timer);
+        });
       }
-      /*
-      var obj1 = extend({
-          defaults: {
-              a: 'a',
-              b: {
-                  b1: 'b1',
-                  b2: 'b2',
-                  b3: {
-                      c1: 'c1'
-                  }
-              }
-          },
-          inherits: {
-              a: 0,
-              b: {
-                  b2: 1,
-                  b3: {
-                      c2: 2
-                  }
-              }
-          }
-      });
-      console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
-      var obj2 = extend({
-          defaults: {
-              b: [
-                  {a1: 'a1'},
-                  {a2: 'a2'}
-              ]
-          },
-          inherits: {
-              b: [
-                  'what?',
-                  {b1: 'b1'},
-                  {b2: 'b2'}
-              ]
-          }
-      });
-      console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
-      */
-      module.exports = extend;
-    }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_957ad97e.js", "/");
+      module.exports = goTop;
+    }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_86fb03d.js", "/");
   }, { "buffer": 2, "r7L21G": 4 }] }, {}, [5]);

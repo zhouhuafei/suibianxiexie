@@ -1335,86 +1335,37 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/../../../../node_modules/process/browser.js", "/../../../../node_modules/process");
   }, { "buffer": 2, "r7L21G": 4 }], 5: [function (require, module, exports) {
     (function (process, global, Buffer, __argument0, __argument1, __argument2, __argument3, __filename, __dirname) {
-      function extend(json) {
-        var opt = json || {};
-        opt.defaults = opt.defaults || {};
-        opt.inherits = opt.inherits || {};
-        opt.isDeep = opt.isDeep == false ? opt.isDeep : true; //默认进行深拷贝
-        for (var attr in opt.inherits) {
-          if (opt.inherits.hasOwnProperty(attr)) {
-            var defaultsType = Object.prototype.toString.call(opt.defaults[attr]).slice(8, -1).toLowerCase();
-            var inheritsType = Object.prototype.toString.call(opt.inherits[attr]).slice(8, -1).toLowerCase();
-            if (defaultsType == inheritsType && opt.isDeep) {
-              //类型相同
-              if (defaultsType == 'object') {
-                //当为对象
-                extend({ defaults: opt.defaults[attr], inherits: opt.inherits[attr] });
-              } else if (defaultsType == 'array') {
-                //当为数组时
-                opt.inherits[attr].forEach(function (v, i) {
-                  var vDefaultsType = Object.prototype.toString.call(opt.defaults[attr][i]).slice(8, -1).toLowerCase();
-                  var vInheritsType = Object.prototype.toString.call(opt.inherits[attr][i]).slice(8, -1).toLowerCase();
-                  if (vInheritsType == vDefaultsType && opt.isDeep) {
-                    if (vDefaultsType == 'object') {
-                      extend({ defaults: opt.defaults[attr][i], inherits: opt.inherits[attr][i] });
-                    } else {
-                      opt.defaults[attr][i] = opt.inherits[attr][i];
-                    }
-                  } else {
-                    opt.defaults[attr][i] = opt.inherits[attr][i];
-                  }
-                });
-              } else {
-                opt.defaults[attr] = opt.inherits[attr];
-              }
-            } else {
-              //类型不同,直接后面的覆盖前面的
-              opt.defaults[attr] = opt.inherits[attr];
-            }
-          }
-        }
-        return opt.defaults;
+      //我的记录里的商品
+      function Fn(json) {
+        //opt对象上请绑定外部可以传进来的那些数据的键值作为属性
+        this.opt = json || {};
+        this.opt.logoHref = this.opt.logoHref || 'javascript:;';
+        this.opt.logoSrc = this.opt.logoSrc || '';
+        this.opt.logoInfo = this.opt.logoInfo || '没有数据';
+        this.opt.btnHref = this.opt.btnHref || 'javascript:;';
+        this.opt.btnInfo = this.opt.btnInfo || '进店逛逛';
+        //不是外部传进来的值可以直接绑定到this上
+
+        //初始化
+        this.init();
       }
-      /*
-      var obj1 = extend({
-          defaults: {
-              a: 'a',
-              b: {
-                  b1: 'b1',
-                  b2: 'b2',
-                  b3: {
-                      c1: 'c1'
-                  }
-              }
-          },
-          inherits: {
-              a: 0,
-              b: {
-                  b2: 1,
-                  b3: {
-                      c2: 2
-                  }
-              }
-          }
-      });
-      console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
-      var obj2 = extend({
-          defaults: {
-              b: [
-                  {a1: 'a1'},
-                  {a2: 'a2'}
-              ]
-          },
-          inherits: {
-              b: [
-                  'what?',
-                  {b1: 'b1'},
-                  {b2: 'b2'}
-              ]
-          }
-      });
-      console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
-      */
-      module.exports = extend;
-    }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_957ad97e.js", "/");
+      Fn.prototype.init = function () {
+        //渲染结构
+        this.render();
+        //渲染功能
+        this.power();
+      };
+      Fn.prototype.render = function () {
+        this.parentDom = document.createElement('div');
+        this.parentDom.classList.add('m-no-data');
+        this.parentDom.innerHTML = "\n        <div class=\"m-no-data-img\">\n            <a href=\"" + this.opt.logoHref + "\"><img src=\"" + this.opt.logoSrc + "\" alt=\"\"></a>\n        </div>\n        <div class=\"m-no-data-txt\">" + this.opt.logoInfo + "</div>\n        <div class=\"m-no-data-btn\"><a href=\"" + this.opt.btnHref + "\">" + this.opt.btnInfo + "</a></div>\n    ";
+      };
+      Fn.prototype.power = function () {
+        //事件相关
+        this.events();
+      };
+      Fn.prototype.events = function () {};
+      //其他功能写在下面吧,尽量保持格式统一
+      module.exports = Fn;
+    }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_7965e487.js", "/");
   }, { "buffer": 2, "r7L21G": 4 }] }, {}, [5]);

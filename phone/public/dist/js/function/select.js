@@ -1335,86 +1335,91 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/../../../../node_modules/process/browser.js", "/../../../../node_modules/process");
   }, { "buffer": 2, "r7L21G": 4 }], 5: [function (require, module, exports) {
     (function (process, global, Buffer, __argument0, __argument1, __argument2, __argument3, __filename, __dirname) {
-      function extend(json) {
-        var opt = json || {};
-        opt.defaults = opt.defaults || {};
-        opt.inherits = opt.inherits || {};
-        opt.isDeep = opt.isDeep == false ? opt.isDeep : true; //默认进行深拷贝
-        for (var attr in opt.inherits) {
-          if (opt.inherits.hasOwnProperty(attr)) {
-            var defaultsType = Object.prototype.toString.call(opt.defaults[attr]).slice(8, -1).toLowerCase();
-            var inheritsType = Object.prototype.toString.call(opt.inherits[attr]).slice(8, -1).toLowerCase();
-            if (defaultsType == inheritsType && opt.isDeep) {
-              //类型相同
-              if (defaultsType == 'object') {
-                //当为对象
-                extend({ defaults: opt.defaults[attr], inherits: opt.inherits[attr] });
-              } else if (defaultsType == 'array') {
-                //当为数组时
-                opt.inherits[attr].forEach(function (v, i) {
-                  var vDefaultsType = Object.prototype.toString.call(opt.defaults[attr][i]).slice(8, -1).toLowerCase();
-                  var vInheritsType = Object.prototype.toString.call(opt.inherits[attr][i]).slice(8, -1).toLowerCase();
-                  if (vInheritsType == vDefaultsType && opt.isDeep) {
-                    if (vDefaultsType == 'object') {
-                      extend({ defaults: opt.defaults[attr][i], inherits: opt.inherits[attr][i] });
-                    } else {
-                      opt.defaults[attr][i] = opt.inherits[attr][i];
-                    }
-                  } else {
-                    opt.defaults[attr][i] = opt.inherits[attr][i];
-                  }
-                });
-              } else {
-                opt.defaults[attr] = opt.inherits[attr];
-              }
-            } else {
-              //类型不同,直接后面的覆盖前面的
-              opt.defaults[attr] = opt.inherits[attr];
-            }
-          }
+      /**
+       * Created by zhouhuafei on 2017/1/6.
+       */
+      function Select(json) {
+        this.opt = json || {};
+        this.selectAllButton = this.opt.selectAllButton;
+        this.radioButton = this.opt.radioButton;
+        this.allSelectYesCallback = this.opt.allSelectYesCallback; //全选的回调
+        this.allSelectNoCallback = this.opt.allSelectNoCallback; //返选的回调
+        this.oneSelectCallback = this.opt.oneSelectCallback; //单选的回调
+        if (this.selectAllButton && this.radioButton) {
+          this.init();
+        } else {
+          console.log('did not find the correct parameters');
         }
-        return opt.defaults;
       }
-      /*
-      var obj1 = extend({
-          defaults: {
-              a: 'a',
-              b: {
-                  b1: 'b1',
-                  b2: 'b2',
-                  b3: {
-                      c1: 'c1'
-                  }
-              }
-          },
-          inherits: {
-              a: 0,
-              b: {
-                  b2: 1,
-                  b3: {
-                      c2: 2
-                  }
-              }
-          }
-      });
-      console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
-      var obj2 = extend({
-          defaults: {
-              b: [
-                  {a1: 'a1'},
-                  {a2: 'a2'}
-              ]
-          },
-          inherits: {
-              b: [
-                  'what?',
-                  {b1: 'b1'},
-                  {b2: 'b2'}
-              ]
-          }
-      });
-      console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
-      */
-      module.exports = extend;
-    }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_957ad97e.js", "/");
+      Select.prototype.init = function () {
+        this.events();
+      };
+      Select.prototype.events = function () {
+        this.selectAllClick();
+        this.selectOneToAll();
+      };
+      Select.prototype.selectAllYes = function () {
+        //全选
+        var dom1 = document.querySelector(this.selectAllButton);
+        var dom2 = [].slice.call(document.querySelectorAll(this.radioButton));
+        if (dom1 && dom2.length >= 1) {
+          dom1.checked = true;
+          dom2.forEach(function (v) {
+            v.checked = true;
+          });
+        }
+        this.allSelectYesCallback && this.allSelectYesCallback();
+      };
+      Select.prototype.selectAllNo = function () {
+        //反选
+        var dom1 = document.querySelector(this.selectAllButton);
+        var dom2 = [].slice.call(document.querySelectorAll(this.radioButton));
+        if (dom1 && dom2.length >= 1) {
+          dom1.checked = false;
+          dom2.forEach(function (v) {
+            v.checked = false;
+          });
+        }
+        this.allSelectNoCallback && this.allSelectNoCallback();
+      };
+      Select.prototype.selectAllClick = function () {
+        //全选反选事件
+        var dom1 = document.querySelector(this.selectAllButton);
+        var dom2 = [].slice.call(document.querySelectorAll(this.radioButton));
+        var self = this;
+        if (dom1 && dom2.length >= 1) {
+          dom1.onclick = function () {
+            if (this.checked == true) {
+              self.selectAllYes();
+            } else {
+              self.selectAllNo();
+            }
+          };
+        }
+      };
+      Select.prototype.selectOneToAll = function () {
+        //单选导致全选
+        var dom1 = document.querySelector(this.selectAllButton);
+        var dom2 = [].slice.call(document.querySelectorAll(this.radioButton));
+        var self = this;
+        if (dom1 && dom2.length >= 1) {
+          dom2.forEach(function (v) {
+            v.onclick = function () {
+              var isAll = true; //假设全部都被选中了
+              var dom3 = [].slice.call(document.querySelectorAll(self.radioButton));
+              dom3.forEach(function (v2) {
+                if (v2.checked != true) {
+                  isAll = false;
+                  return false;
+                }
+              });
+              dom1.checked = false;
+              isAll && (dom1.checked = true);
+              self.oneSelectCallback && self.oneSelectCallback();
+            };
+          });
+        }
+      };
+      module.exports = Select;
+    }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_cb6359d7.js", "/");
   }, { "buffer": 2, "r7L21G": 4 }] }, {}, [5]);

@@ -61,9 +61,7 @@ gulp.task(`scss`, function () {//scss编译
 });
 gulp.task(`js`, function () {//js编译
     return gulp.src(path.jsEnterPath)
-        .pipe(browserify({
-            insertGlobals : true
-        }))
+        .pipe(browserify())
         .pipe(babel({presets: ['es2015']}))
         .pipe(gulp.dest(path.jsExitPath))
 });
@@ -91,9 +89,7 @@ gulp.task(`scssMin`, function () {//scss压缩
 });
 gulp.task(`jsMin`, function () {//js压缩
     return gulp.src(path.jsEnterPath)
-        .pipe(browserify({
-            insertGlobals : true
-        }))
+        .pipe(browserify())
         .pipe(babel({presets: ['es2015']}))
         .pipe(uglify())
         .pipe(gulp.dest(path.jsExitPath))

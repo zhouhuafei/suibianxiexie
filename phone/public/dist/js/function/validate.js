@@ -1335,86 +1335,95 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/../../../../node_modules/process/browser.js", "/../../../../node_modules/process");
   }, { "buffer": 2, "r7L21G": 4 }], 5: [function (require, module, exports) {
     (function (process, global, Buffer, __argument0, __argument1, __argument2, __argument3, __filename, __dirname) {
-      function extend(json) {
-        var opt = json || {};
-        opt.defaults = opt.defaults || {};
-        opt.inherits = opt.inherits || {};
-        opt.isDeep = opt.isDeep == false ? opt.isDeep : true; //默认进行深拷贝
-        for (var attr in opt.inherits) {
-          if (opt.inherits.hasOwnProperty(attr)) {
-            var defaultsType = Object.prototype.toString.call(opt.defaults[attr]).slice(8, -1).toLowerCase();
-            var inheritsType = Object.prototype.toString.call(opt.inherits[attr]).slice(8, -1).toLowerCase();
-            if (defaultsType == inheritsType && opt.isDeep) {
-              //类型相同
-              if (defaultsType == 'object') {
-                //当为对象
-                extend({ defaults: opt.defaults[attr], inherits: opt.inherits[attr] });
-              } else if (defaultsType == 'array') {
-                //当为数组时
-                opt.inherits[attr].forEach(function (v, i) {
-                  var vDefaultsType = Object.prototype.toString.call(opt.defaults[attr][i]).slice(8, -1).toLowerCase();
-                  var vInheritsType = Object.prototype.toString.call(opt.inherits[attr][i]).slice(8, -1).toLowerCase();
-                  if (vInheritsType == vDefaultsType && opt.isDeep) {
-                    if (vDefaultsType == 'object') {
-                      extend({ defaults: opt.defaults[attr][i], inherits: opt.inherits[attr][i] });
-                    } else {
-                      opt.defaults[attr][i] = opt.inherits[attr][i];
-                    }
-                  } else {
-                    opt.defaults[attr][i] = opt.inherits[attr][i];
-                  }
-                });
-              } else {
-                opt.defaults[attr] = opt.inherits[attr];
-              }
-            } else {
-              //类型不同,直接后面的覆盖前面的
-              opt.defaults[attr] = opt.inherits[attr];
-            }
+      /**
+       * Created by zhouhuafei on 16/12/4.
+       */
+      //验证
+      var validate = {
+        //是不是空
+        isSpace: function isSpace(json) {
+          var opt = json || {};
+          var success = opt.success || function () {
+            console.log('no find success callback');
+          };
+          var fail = opt.fail || function () {
+            console.log('no find fail callback');
+          };
+          var value = opt.value || " ";
+          var valueTrim = value.trim();
+          var b = false;
+          if (valueTrim == '') {
+            b = true;
+            success();
+          } else {
+            fail();
           }
+          return b;
+        },
+        //是不是0
+        isZero: function isZero(json) {
+          var opt = json || {};
+          var success = opt.success || function () {
+            console.log('no find success callback');
+          };
+          var fail = opt.fail || function () {
+            console.log('no find fail callback');
+          };
+          var value = opt.value || " ";
+          var valueTrim = value.trim();
+          var b = false;
+          if (valueTrim == 0) {
+            b = true;
+            success();
+          } else {
+            fail();
+          }
+          return b;
+        },
+        //是不是整数(包含0)
+        isInteger: function isInteger(json) {
+          var opt = json || {};
+          var success = opt.success || function () {
+            console.log('no find success callback');
+          };
+          var fail = opt.fail || function () {
+            console.log('no find fail callback');
+          };
+          var value = opt.value || " ";
+          var valueTrim = value.trim();
+          var re = /^\d+$/;
+          var b = false;
+          if (re.test(valueTrim)) {
+            b = true;
+            success();
+          } else {
+            fail();
+          }
+          return b;
+        },
+        //是不是保留了num位小数点
+        isReservedDecimal: function isReservedDecimal(json) {
+          var opt = json || {};
+          var success = opt.success || function () {
+            console.log('no find success callback');
+          };
+          var fail = opt.fail || function () {
+            console.log('no find fail callback');
+          };
+          var num = opt.num || 2;
+          var value = opt.value || " ";
+          var valueTrim = value.trim();
+          var re = new RegExp("^\\d+\\.\\d{" + num + "}$");
+          var b = false;
+          if (re.test(valueTrim)) {
+            b = true;
+            success();
+          } else {
+            fail();
+          }
+          return b;
         }
-        return opt.defaults;
-      }
-      /*
-      var obj1 = extend({
-          defaults: {
-              a: 'a',
-              b: {
-                  b1: 'b1',
-                  b2: 'b2',
-                  b3: {
-                      c1: 'c1'
-                  }
-              }
-          },
-          inherits: {
-              a: 0,
-              b: {
-                  b2: 1,
-                  b3: {
-                      c2: 2
-                  }
-              }
-          }
-      });
-      console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
-      var obj2 = extend({
-          defaults: {
-              b: [
-                  {a1: 'a1'},
-                  {a2: 'a2'}
-              ]
-          },
-          inherits: {
-              b: [
-                  'what?',
-                  {b1: 'b1'},
-                  {b2: 'b2'}
-              ]
-          }
-      });
-      console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
-      */
-      module.exports = extend;
-    }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_957ad97e.js", "/");
+      };
+      module.exports = validate;
+    }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_be00d849.js", "/");
   }, { "buffer": 2, "r7L21G": 4 }] }, {}, [5]);

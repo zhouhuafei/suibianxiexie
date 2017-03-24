@@ -1335,86 +1335,75 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/../../../../node_modules/process/browser.js", "/../../../../node_modules/process");
   }, { "buffer": 2, "r7L21G": 4 }], 5: [function (require, module, exports) {
     (function (process, global, Buffer, __argument0, __argument1, __argument2, __argument3, __filename, __dirname) {
-      function extend(json) {
+      /**
+       * Created by zhouhuafei on 16/12/17.
+       */
+      function lazyload(json) {
         var opt = json || {};
-        opt.defaults = opt.defaults || {};
-        opt.inherits = opt.inherits || {};
-        opt.isDeep = opt.isDeep == false ? opt.isDeep : true; //默认进行深拷贝
-        for (var attr in opt.inherits) {
-          if (opt.inherits.hasOwnProperty(attr)) {
-            var defaultsType = Object.prototype.toString.call(opt.defaults[attr]).slice(8, -1).toLowerCase();
-            var inheritsType = Object.prototype.toString.call(opt.inherits[attr]).slice(8, -1).toLowerCase();
-            if (defaultsType == inheritsType && opt.isDeep) {
-              //类型相同
-              if (defaultsType == 'object') {
-                //当为对象
-                extend({ defaults: opt.defaults[attr], inherits: opt.inherits[attr] });
-              } else if (defaultsType == 'array') {
-                //当为数组时
-                opt.inherits[attr].forEach(function (v, i) {
-                  var vDefaultsType = Object.prototype.toString.call(opt.defaults[attr][i]).slice(8, -1).toLowerCase();
-                  var vInheritsType = Object.prototype.toString.call(opt.inherits[attr][i]).slice(8, -1).toLowerCase();
-                  if (vInheritsType == vDefaultsType && opt.isDeep) {
-                    if (vDefaultsType == 'object') {
-                      extend({ defaults: opt.defaults[attr][i], inherits: opt.inherits[attr][i] });
-                    } else {
-                      opt.defaults[attr][i] = opt.inherits[attr][i];
-                    }
-                  } else {
-                    opt.defaults[attr][i] = opt.inherits[attr][i];
-                  }
-                });
-              } else {
-                opt.defaults[attr] = opt.inherits[attr];
-              }
-            } else {
-              //类型不同,直接后面的覆盖前面的
-              opt.defaults[attr] = opt.inherits[attr];
+        var height = opt.height || 0; //多加载一部分高度的图片
+        var interval = opt.interval || 80; //延迟时间
+        var doc = document;
+        var fn = function fn() {
+          var aImg = [].slice.call(doc.getElementsByClassName('m-lazy-load')); //所有的img元素节点
+          var iLen = aImg.length;
+          if (!iLen) {
+            return false;
+          }
+          //获取top
+          var offsetTop = function offsetTop(obj) {
+            var top = 0;
+            while (obj) {
+              top += obj.offsetTop;
+              obj = obj.offsetParent;
             }
-          }
-        }
-        return opt.defaults;
+            return top;
+          };
+          var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
+          aImg.forEach(function (v) {
+            if (v.getAttribute('src') != v.dataset.src && v.tagName.toLowerCase() == 'img') {
+              v.src = src;
+              v.setAttribute('height', '100%');
+              v.setAttribute('width', '100%');
+              v.style.opacity = '0';
+              v.style.transition = 'opacity 0.4s';
+            }
+          });
+          var iClientH = doc.documentElement.clientHeight;
+          var iScrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
+          var iResultTop = iClientH + iScrollTop + height;
+          aImg.forEach(function (v) {
+            var iObjTop = offsetTop(v) - height;
+            var iObjBottom = offsetTop(v) + v.offsetHeight;
+            //height
+            if (iResultTop >= iObjTop && iObjTop >= iScrollTop || iObjBottom > iScrollTop && iObjBottom < iResultTop) {
+              if (v.tagName.toLowerCase() == 'img') {
+                if (v.getAttribute('src') != v.dataset.src) {
+                  v.src = v.dataset.src;
+                  v.removeAttribute('height');
+                  v.removeAttribute('width');
+                }
+              } else {
+                v.style.backgroundImage = 'url(' + v.dataset.src + ')';
+                v.style.backgroundPosition = 'center center';
+                v.style.backgroundRepeat = 'no-repeat';
+              }
+              v.style.opacity = '1';
+              v.classList.add('m-lazy-load-show');
+            }
+          });
+        };
+        fn();
+        var timer = null;
+        var fnScroll = function fnScroll() {
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            fn();
+          }, interval);
+        };
+        window.addEventListener('scroll', function () {
+          fnScroll();
+        });
       }
-      /*
-      var obj1 = extend({
-          defaults: {
-              a: 'a',
-              b: {
-                  b1: 'b1',
-                  b2: 'b2',
-                  b3: {
-                      c1: 'c1'
-                  }
-              }
-          },
-          inherits: {
-              a: 0,
-              b: {
-                  b2: 1,
-                  b3: {
-                      c2: 2
-                  }
-              }
-          }
-      });
-      console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
-      var obj2 = extend({
-          defaults: {
-              b: [
-                  {a1: 'a1'},
-                  {a2: 'a2'}
-              ]
-          },
-          inherits: {
-              b: [
-                  'what?',
-                  {b1: 'b1'},
-                  {b2: 'b2'}
-              ]
-          }
-      });
-      console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
-      */
-      module.exports = extend;
-    }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_957ad97e.js", "/");
+      module.exports = lazyload;
+    }).call(this, require("r7L21G"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_86301e3b.js", "/");
   }, { "buffer": 2, "r7L21G": 4 }] }, {}, [5]);
