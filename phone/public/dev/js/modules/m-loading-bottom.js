@@ -27,14 +27,30 @@ Fn.prototype.events=function(){
 };
 //其他功能写在下面吧,尽量保持格式统一
 Fn.prototype.show=function(){
-    this.parentDom.innerHTML=`<div class="m-loading-bottom-show">加载中</div>`;
+    this.parentDom.innerHTML=`
+        <div class="m-loading-bottom-show">
+            <div class="m-loading-bottom-tip">
+                <div class="m-loading-bottom-tip-line"></div>
+                <div class="m-loading-bottom-tip-txt">加载中</div>
+                <div class="m-loading-bottom-tip-line"></div>
+            </div>
+        </div>
+    `;
     this.parentDom.classList.add('show');
 };
 Fn.prototype.hide=function(){
     this.parentDom.classList.remove('show');
 };
 Fn.prototype.over=function(){
-    this.parentDom.innerHTML=`<div class="m-loading-bottom-over">没有更多数据</div>`;
+    this.parentDom.innerHTML=`
+        <div class="m-loading-bottom-over">
+            <div class="m-loading-bottom-tip">
+                <div class="m-loading-bottom-tip-line"></div>
+                <div class="m-loading-bottom-tip-txt">没有更多数据</div>
+                <div class="m-loading-bottom-tip-line"></div>
+            </div>
+        </div>
+    `;
     this.parentDom.classList.add('show');
 };
 module.exports=Fn;
