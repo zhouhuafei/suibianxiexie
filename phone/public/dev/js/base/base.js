@@ -3,6 +3,7 @@
  */
 //一些小方法
 var base = {
+    constructorInherit: require('../function/constructor-inherit.js'),
     isPc: require('../function/is-pc.js'),
     cookie: require('../function/cookie.js'),
     fillZero: require('../function/fill-zero.js'),

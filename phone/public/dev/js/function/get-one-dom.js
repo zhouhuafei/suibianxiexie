@@ -1,7 +1,14 @@
+//对象的扩展方法
+var extend=require('../function/extend.js');
+
 //获取一个原生的dom节点,当传入的是dom,或者是选择器的时候
 function getOneDom(json) {
-    var opt = json || {};
-    opt.dom = opt.dom || `body`;//这个仅支持传入选择器和原生dom节点
+    var opt=extend({
+        default:{
+            dom:null
+        },
+        inherit:json
+    });
     var resultDom = null;
     if (opt.dom) {
         //如果是字符串

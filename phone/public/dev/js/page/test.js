@@ -3,30 +3,13 @@
  */
 //测试
 (function () {
-    var Test = require('../modules/m-test.js');
+    var Test = require('../modules/m-super-type.js');
     var test = new Test({
         parent: document.querySelector(`.main-test`),
         config: {
-            isClearTimer: true,
-            isShowModule: true
-        },
-        data: {
-            info: `侯丽杰爱周华飞`
+            moduleDomIsClearTimer: true
         }
     });
-    //重新渲染才和是否清除定时器有关
-    setTimeout(function () {
-        test.opt.data.info = `周华飞爱侯丽杰`;
-        test.removeModuleDom();
-        test.init();
-    }, 3000);
-    //显示隐藏和是否清除定时器无关
-    setTimeout(function () {
-        test.hide();
-        setTimeout(function () {
-            test.show();
-        }, 2000);
-    }, 5000);
 })();
 //底部
 (function(){
@@ -38,16 +21,13 @@
     var Mask = require('../modules/m-mask.js');
     var mask = new Mask({
         callback:{
-            click:function(){
+            moduleDomClick:function(){
                 console.log('m-mask click callback');
-                mask.hide();
+                mask.moduleDomHide();
             }
-        },
-        config: {
-            isTransparent: false
         }
     });
-    //mask.show();
+    mask.moduleDomShow();
 })();
 //单选开关
 (function () {

@@ -5,7 +5,7 @@ var base = require('../base/base.js');
 function Fn(json) {
     //外部传进来的参数
     this.opt = base.extend({
-        defaults: {
+        default: {
             //父级
             parent: `body`,//这个仅支持传入选择器和原生dom节点
             //回调
@@ -24,7 +24,7 @@ function Fn(json) {
                 info: `周华飞测试`
             }
         },
-        inherits: json
+        inherit: json
     });
     //内部的一些属性
     this.moduleDom = null;//内部的模块

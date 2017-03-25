@@ -1,9 +1,14 @@
-/**
- * Created by zhouhuafei on 17/1/1.
- */
+//对象的扩展方法
+var extend=require('../function/extend.js');
+
 //补零函数
 function fillZero(json) {
-    var opt = json || {};
+    var opt=extend({
+        default:{
+            num:null
+        },
+        inherit:json
+    });
     var num = opt.num;
     if (num < 10) {
         return '0' + num;

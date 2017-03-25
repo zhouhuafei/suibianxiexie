@@ -1,8 +1,1 @@
-.m-star {
-  font-size: 0; }
-  .m-star .m-star-item {
-    display: inline-block;
-    color: #bfbfbf;
-    font-size: 1.25rem; }
-    .m-star .m-star-item.m-star-item-active {
-      color: #0089ff; }
+.m-star{font-size:0}.m-star .m-star-item{display:inline-block;color:#bfbfbf;font-size:1.25rem}.m-star .m-star-item.m-star-item-active{color:#0089ff}
