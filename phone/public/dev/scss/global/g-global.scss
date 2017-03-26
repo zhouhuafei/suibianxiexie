@@ -4,10 +4,10 @@
 .g-pc {
     height: 100%;
     background: #ccc;
-    body {
+    .g-page{
         min-height: 100%;
         margin: 0 auto;
-        max-width: 320px;
+        width: 320px;
         background: #fff;
     }
 }

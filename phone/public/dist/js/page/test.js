@@ -136,8 +136,8 @@
             var star = new Star({
                 parent: ".main-star",
                 callback: {
-                    click: function click(json) {
-                        console.log("\u6709\u70B9\u610F\u601D" + json.index);
+                    moduleDomClick: function moduleDomClick(json) {
+                        console.log(json);
                     }
                 }
             });
@@ -870,149 +870,62 @@
         //底层方法
         var base = require('../base/base.js');
 
-        //构造函数
-        function Fn(json) {
-            //外部传进来的参数
-            this.opt = base.extend({
-                default: {
-                    //父级
-                    parent: "body", //这个仅支持传入选择器和原生dom节点
-                    //回调
-                    callback: {
-                        click: function click() {}
-                    },
-                    //配置
-                    config: {
-                        moduleType: 0, //三种类型 0,1,2
-                        isClearTimer: true, //是否清除所有定时器(默认清除)
-                        isShowModule: true //是否显示模块(默认显示)
-                    },
-                    //数据
-                    data: {
-                        info: "\u5468\u534E\u98DE\u6D4B\u8BD5"
-                    }
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type.js');
+
+        //子类型
+        var SubType = base.constructorInherit({
+            superType: SuperType,
+            parameter: {
+                //回调
+                callback: {
+                    moduleDomClick: function moduleDomClick() {}
                 },
-                inherit: json
-            });
-            //内部的一些属性
-            this.moduleDom = null; //内部的模块
-            this.parentDom = null; //内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
-            this.timer = {}; //假设内部有定时器
-            this.init(); //初始化
-        }
+                //配置
+                config: {
+                    moduleDomType: 0 //三种类型 0,1,2
+                }
+            }
+        });
 
-        //初始化
-        Fn.prototype.init = function () {
-            this.render();
-            this.power();
-        };
-
-        //渲染
-        Fn.prototype.render = function () {
-            this.renderModuleDom();
-            this.renderParentDom();
-        };
-
-        //内部的模块
-        Fn.prototype.renderModuleDom = function () {
-            this.moduleClass = "m-footer";
-            var html = "\n        " + this.renderModuleType0() + "\n        " + this.renderModuleType1() + "\n        " + this.renderModuleType2() + "\n    ";
+        SubType.prototype.moduleDomCreate = function () {
+            this.moduleDomClass = "m-footer";
+            var moduleDomHtml = "\n        " + this.moduleDomType0() + "\n        " + this.moduleDomType1() + "\n        " + this.moduleDomType2() + "\n    ";
             this.moduleDom = base.createElement({
                 attribute: {
-                    className: this.moduleClass,
-                    innerHTML: html
+                    className: this.moduleDomClass,
+                    innerHTML: moduleDomHtml
                 }
             });
         };
 
-        Fn.prototype.renderModuleType0 = function () {
-            if (this.opt.config.moduleType == 0) {
-                this.moduleClass = "m-footer m-footer-type0";
+        SubType.prototype.moduleDomType0 = function () {
+            if (this.opt.config.moduleDomType == 0) {
+                this.moduleDomClass = "m-footer m-footer-type0";
                 return "\n            <div class=\"m-footer-wrap\">\n                <div class=\"m-footer-header\">\n                    0\n                </div>\n                <div class=\"m-footer-body\">\n                    body\n                </div>\n                <div class=\"m-footer-body\">\n                    body\n                </div>\n            </div>\n        ";
             } else {
                 return "";
             }
         };
 
-        Fn.prototype.renderModuleType1 = function () {
-            if (this.opt.config.moduleType == 1) {
-                this.moduleClass = "m-footer m-footer-type1";
+        SubType.prototype.moduleDomType1 = function () {
+            if (this.opt.config.moduleDomType == 1) {
+                this.moduleDomClass = "m-footer m-footer-type1";
             } else {
                 return "";
             }
         };
 
-        Fn.prototype.renderModuleType2 = function () {
-            if (this.opt.config.moduleType == 2) {
-                this.moduleClass = "m-footer m-footer-type2";
+        SubType.prototype.moduleDomType2 = function () {
+            if (this.opt.config.moduleDomType == 2) {
+                this.moduleDomClass = "m-footer m-footer-type2";
             } else {
                 return "";
             }
         };
 
-        //外部的容器
-        Fn.prototype.renderParentDom = function () {
-            this.parentDom = base.getOneDom({ dom: this.opt.parent });
-            if (!this.parentDom) {
-                return false;
-            }
-            if (this.parentDom) {
-                if (this.opt.config.isShowModule) {
-                    this.parentDom.appendChild(this.moduleDom);
-                }
-            }
-        };
-
-        //移除内部的模块
-        Fn.prototype.removeModuleDom = function () {
-            if (this.moduleDom.parentNode) {
-                this.moduleDom.parentNode.removeChild(this.moduleDom);
-            }
-            //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
-            this.clearTimer();
-        };
-
-        //清除内部的定时器
-        Fn.prototype.clearTimer = function () {
-            if (this.opt.config.isClearTimer) {
-                for (var attr in this.timer) {
-                    if (this.timer.hasOwnProperty(attr)) {
-                        clearInterval(this.timer[attr]);
-                        clearTimeout(this.timer[attr]);
-                    }
-                }
-            }
-        };
-
-        //移除外部的容器
-        Fn.prototype.removeParentDom = function () {
-            //先移除内部的模块
-            this.removeModuleDom();
-            //再移除外部的容器
-            if (this.parentDom) {
-                this.parentDom.parentNode.removeChild(this.parentDom);
-            }
-        };
-
-        //模块显示
-        Fn.prototype.show = function () {
-            if (this.parentDom) {
-                this.parentDom.appendChild(this.moduleDom);
-            }
-        };
-
-        //模块隐藏
-        Fn.prototype.hide = function () {
-            if (this.moduleDom.parentNode) {
-                this.moduleDom.parentNode.removeChild(this.moduleDom);
-            }
-        };
-
-        //功能
-        Fn.prototype.power = function () {};
-
-        module.exports = Fn;
-    }, { "../base/base.js": 1 }], 22: [function (require, module, exports) {
+        module.exports = SubType;
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 25 }], 22: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1137,53 +1050,30 @@
         //底层方法
         var base = require('../base/base.js');
 
-        //构造函数
-        function Fn(json) {
-            //外部传进来的参数
-            this.opt = base.extend({
-                default: {
-                    //父级
-                    parent: "body", //这个仅支持传入选择器和原生dom节点
-                    //回调
-                    callback: {
-                        click: function click() {}
-                    },
-                    //配置
-                    config: {
-                        moduleStyle: "", //内部模块的样式(写法和css相同)
-                        isEvent: true, //默认具备事件
-                        isClearTimer: true, //是否清除所有定时器(默认清除)
-                        isShowModule: true //是否显示模块(默认显示)
-                    },
-                    //数据
-                    data: {
-                        allStarNum: 5,
-                        nowStarNum: 5
-                    }
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type.js');
+
+        //子类型
+        var SubType = base.constructorInherit({
+            superType: SuperType,
+            parameter: {
+                //回调
+                callback: {
+                    moduleDomClick: function moduleDomClick() {}
                 },
-                inherit: json
-            });
-            //内部的一些属性
-            this.moduleDom = null; //内部的模块
-            this.parentDom = null; //内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
-            this.timer = {}; //假设内部有定时器
-            this.init(); //初始化
-        }
+                //配置
+                config: {
+                    moduleDomIsHaveEvent: true //内部模块是否具备事件(默认具备)
+                },
+                //数据
+                data: {
+                    allStarNum: 5,
+                    nowStarNum: 4
+                }
+            }
+        });
 
-        //初始化
-        Fn.prototype.init = function () {
-            this.render();
-            this.power();
-        };
-
-        //渲染
-        Fn.prototype.render = function () {
-            this.renderModuleDom();
-            this.renderParentDom();
-        };
-
-        //内部的模块
-        Fn.prototype.renderModuleDom = function () {
+        SubType.prototype.moduleDomCreate = function () {
             var html = "";
             for (var i = 0; i < this.opt.data.allStarNum; i++) {
                 var className = '';
@@ -1201,73 +1091,9 @@
             this.opt.star = this.moduleDom.children;
         };
 
-        //外部的容器
-        Fn.prototype.renderParentDom = function () {
-            this.parentDom = base.getOneDom({ dom: this.opt.parent });
-            if (!this.parentDom) {
-                return false;
-            }
-            if (this.parentDom) {
-                if (this.opt.config.isShowModule) {
-                    this.parentDom.appendChild(this.moduleDom);
-                }
-            }
-        };
-
-        //移除内部的模块
-        Fn.prototype.removeModuleDom = function () {
-            if (this.moduleDom.parentNode) {
-                this.moduleDom.parentNode.removeChild(this.moduleDom);
-            }
-            //继续清除一些其他东西,例如定时器(假设有定时器需要被清除)
-            this.clearTimer();
-        };
-
-        //清除内部的定时器
-        Fn.prototype.clearTimer = function () {
-            if (this.opt.config.isClearTimer) {
-                for (var attr in this.timer) {
-                    if (this.timer.hasOwnProperty(attr)) {
-                        clearInterval(this.timer[attr]);
-                        clearTimeout(this.timer[attr]);
-                    }
-                }
-            }
-        };
-
-        //移除外部的容器
-        Fn.prototype.removeParentDom = function () {
-            //先移除内部的模块
-            this.removeModuleDom();
-            //再移除外部的容器
-            if (this.parentDom) {
-                this.parentDom.parentNode.removeChild(this.parentDom);
-            }
-        };
-
-        //模块显示(显示隐藏和是否清除定时器无关)
-        Fn.prototype.show = function () {
-            if (this.parentDom) {
-                this.parentDom.appendChild(this.moduleDom);
-            }
-        };
-
-        //模块隐藏(显示隐藏和是否清除定时器无关)
-        Fn.prototype.hide = function () {
-            if (this.moduleDom.parentNode) {
-                this.moduleDom.parentNode.removeChild(this.moduleDom);
-            }
-        };
-
-        //功能
-        Fn.prototype.power = function () {
-            this.events();
-        };
-
-        //事件
-        Fn.prototype.events = function () {
+        SubType.prototype.power = function () {
             var self = this;
-            if (this.opt.config.isEvent) {
+            if (this.opt.config.moduleDomIsHaveEvent) {
                 this.moduleDom.addEventListener('click', function (ev) {
                     var target = ev.target;
                     if (target.classList.contains('m-star-item')) {
@@ -1279,14 +1105,14 @@
                                 self.opt.star[j].classList.remove('m-star-item-active');
                             }
                         }
-                        self.opt.callback.click({ index: index });
+                        self.opt.callback.moduleDomClick({ obj: this, index: index });
                     }
                 });
             }
         };
 
-        module.exports = Fn;
-    }, { "../base/base.js": 1 }], 25: [function (require, module, exports) {
+        module.exports = SubType;
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 25 }], 25: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1296,7 +1122,7 @@
             this.opt = base.extend({
                 default: {
                     //父级
-                    parent: "body", //这个仅支持传入选择器和原生dom节点
+                    parent: ".g-page", //这个仅支持传入选择器和原生dom节点
                     //回调
                     callback: {
                         moduleDomCreateBefore: function moduleDomCreateBefore() {},

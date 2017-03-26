@@ -7,7 +7,7 @@ function SuperType(json) {
     this.opt = base.extend({
         default: {
             //父级
-            parent: `body`,//这个仅支持传入选择器和原生dom节点
+            parent: `.g-page`,//这个仅支持传入选择器和原生dom节点
             //回调
             callback: {
                 moduleDomCreateBefore: function () {

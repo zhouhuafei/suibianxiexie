@@ -117,8 +117,8 @@
     const star = new Star({
         parent:`.main-star`,
         callback:{
-            click:function (json) {
-                console.log(`有点意思${json.index}`);
+            moduleDomClick:function (json) {
+                console.log(json);
             }
         }
     });
