@@ -27,7 +27,7 @@
             }
         }
     });
-    mask.moduleDomShow();
+    //mask.moduleDomShow();
 })();
 //单选开关
 (function () {
