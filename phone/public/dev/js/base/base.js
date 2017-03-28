@@ -4,6 +4,8 @@
 //一些小方法
 var base = {
     constructorInherit: require('../function/constructor-inherit.js'),
+    isIPhone:function(){return window.navigator.appVersion.match(/iphone/gi);},
+    isAndroid:function(){return window.navigator.appVersion.match(/android/gi);},
     isPc: require('../function/is-pc.js'),
     cookie: require('../function/cookie.js'),
     fillZero: require('../function/fill-zero.js'),
