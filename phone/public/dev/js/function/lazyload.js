@@ -58,6 +58,7 @@ function lazyload(json) {
         })
     };
     fn();
+    lazyload.fn=fn;
     var timer = null;
     var fnScroll = function () {
         clearTimeout(timer);
