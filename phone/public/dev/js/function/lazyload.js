@@ -23,8 +23,10 @@ function lazyload(json) {
         };
         var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
         aImg.forEach(function (v) {
-            if (v.getAttribute('src') != v.dataset.src && v.tagName.toLowerCase() == 'img') {
-                v.src = src;
+            if (v.tagName.toLowerCase() == 'img') {
+                if(!v.getAttribute('src')){
+                    v.src = src;
+                }
                 v.setAttribute('height', '100%');
                 v.setAttribute('width', '100%');
                 v.style.opacity = '0';
