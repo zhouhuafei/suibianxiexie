@@ -28,10 +28,10 @@ function lazyload(json) {
                     v.src = src;
                     v.setAttribute('height', '100%');
                     v.setAttribute('width', '100%');
-                    v.style.opacity = '0';
-                    v.style.transition = 'opacity 0.4s';
                 }
             }
+            v.style.opacity = '0';
+            v.style.transition = 'opacity 0.4s';
         });
         var iClientH = doc.documentElement.clientHeight;
         var iScrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
