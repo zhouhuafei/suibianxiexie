@@ -26,11 +26,11 @@ function lazyload(json) {
             if (v.tagName.toLowerCase() == 'img') {
                 if(!v.getAttribute('src')){
                     v.src = src;
+                    v.setAttribute('height', '100%');
+                    v.setAttribute('width', '100%');
+                    v.style.opacity = '0';
+                    v.style.transition = 'opacity 0.4s';
                 }
-                v.setAttribute('height', '100%');
-                v.setAttribute('width', '100%');
-                v.style.opacity = '0';
-                v.style.transition = 'opacity 0.4s';
             }
         });
         var iClientH = doc.documentElement.clientHeight;
