@@ -1,4 +1,4 @@
-dataSrcHandle:function(json){
+function dataSrcHandle(json){
     var returnObj={};
     if(!json.image){
         return false;
