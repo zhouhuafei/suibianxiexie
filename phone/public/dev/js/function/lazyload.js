@@ -37,6 +37,7 @@ function lazyload(json) {
         var iScrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
         var iResultTop = iClientH + iScrollTop + height;
         aImg.forEach(function (v) {
+            if(!v.offsetWidth){return false;}
             var iObjTop = offsetTop(v) - height;
             var iObjBottom = offsetTop(v) + v.offsetHeight;
             //height
