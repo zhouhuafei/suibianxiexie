@@ -1,7 +1,7 @@
 function dataSrcHandle(json){
     var returnObj={};
     if(!json.image){
-        return false;
+        return returnObj;
     }
     var webp='';
     if(base.utils.isAndroid()){webp=`format/webp`;}
