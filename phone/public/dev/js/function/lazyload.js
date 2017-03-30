@@ -42,11 +42,11 @@ function lazyload(json) {
             //height
             if (iResultTop >= iObjTop && iObjTop >= iScrollTop || iObjBottom > iScrollTop && iObjBottom < iResultTop) {
                 if (v.tagName.toLowerCase() == 'img') {
-                    if (v.getAttribute('src') != v.dataset.src) {
+                    //if (v.getAttribute('src') != v.dataset.src) {
                         v.src = v.dataset.src;
                         v.removeAttribute('height');
                         v.removeAttribute('width');
-                    }
+                    //}
                 } else {
                     v.style.backgroundImage = 'url(' + v.dataset.src + ')';
                     v.style.backgroundPosition = 'center center';
