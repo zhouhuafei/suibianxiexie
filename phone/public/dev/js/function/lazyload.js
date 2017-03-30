@@ -53,7 +53,7 @@ function lazyload(json) {
                     v.style.backgroundRepeat = 'no-repeat';
                 }
                 v.style.opacity = '1';
-                v.classList.add('m-lazy-load-show');
+                //v.classList.add('m-lazy-load-show');
                 v.classList.remove('m-lazy-load');
             }
         })
