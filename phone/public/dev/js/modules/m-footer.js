@@ -15,7 +15,7 @@ var SubType = base.constructorInherit({
         },
         //配置
         config: {
-            moduleDomType: 0//三种类型 0,1,2
+            moduleDomType: 0//两种类型 0(微信),1(自定义)
         }
     }
 });
@@ -73,14 +73,6 @@ SubType.prototype.moduleDomType1=function(){
         `;
     }
     return ``;    
-};
-
-SubType.prototype.moduleDomType2=function(){
-    if(this.opt.config.moduleDomType==2){
-        this.moduleDomClass=`m-footer m-footer-type2`;
-    }else {
-        return ``;
-    }
 };
 
 module.exports = SubType;
