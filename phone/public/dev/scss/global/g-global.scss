@@ -3,9 +3,11 @@
 //pc展示
 .g-pc {
     height: 100%;
+    box-sizing: border-box;
     background: #ccc;
     body{
         height: inherit;
+        box-sizing: inherit;
     }
     .g-page{
         min-height: 100%;
