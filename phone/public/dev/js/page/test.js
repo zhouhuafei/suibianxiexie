@@ -5,7 +5,7 @@
 (function () {
     var Test = require('../modules/m-super-type.js');
     var test = new Test({
-        parent: document.querySelector(`.main-test`),
+        wrap: document.querySelector(`.main-test`),
         config: {
             moduleDomIsClearTimer: true
         }
@@ -50,7 +50,7 @@
 (function () {
     const Table = require('../modules/m-table.js');
     const table = new Table({
-        parent: `.main-table`,
+        wrap: `.main-table`,
         data:{
             header: [
                 {
@@ -115,7 +115,7 @@
 (function () {
     const Star = require('../modules/m-star.js');
     const star = new Star({
-        parent:`.main-star`,
+        wrap:`.main-star`,
         callback:{
             moduleDomClick:function (json) {
                 console.log(json);
