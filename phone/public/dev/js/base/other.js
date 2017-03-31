@@ -11,7 +11,7 @@ function dataSrcHandle(json){
         rule:/\?.*/g,//默认规则(?号以及？号之后的一切)
         replace:replace,//默认替换为
         isPinjie:true,//如果没有匹配到规则rule,图片data-src末尾是否拼接上replace(默认拼接)
-        domainRule:/\./g//域名规则(默认没有规则)
+        domainRule:/\./g,//域名规则(默认没有规则)
         isDomainRule:false//是否开启域名规则限制(默认不开启)
     },json);
     var image=opt.image;
