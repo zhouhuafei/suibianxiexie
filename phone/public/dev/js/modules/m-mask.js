@@ -13,8 +13,8 @@ var SubType = base.constructorInherit({
             moduleDomClick: function () {
             },
             moduleDomRenderBefore:function(self){
-                if(getComputedStyle(self.parentDom).position=='static'){
-                    self.parentDom.style.position='relative';
+                if(getComputedStyle(self.wrapDom).position=='static'){
+                    self.wrapDom.style.position='relative';
                 }
             }
         },
