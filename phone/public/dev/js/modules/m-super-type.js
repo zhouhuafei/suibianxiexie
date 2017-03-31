@@ -123,7 +123,7 @@ SuperType.prototype.wrapDomRender = function () {
     callback.wrapDomCreateBefore(this);
     this.wrapDomCreate();
     callback.wrapDomCreateAfter(this);
-    if (!this.wraptDom) {
+    if (!this.wrapDom) {
         return false;
     }
     if (this.wrapDom) {
