@@ -8,6 +8,7 @@
         -webkit-box-pack: center;
         height: px2rem($height);
         position: fixed;
+        z-index:2;
         width: px2rem($width);
         box-sizing: border-box;
         border-top:1px solid #d5d5d5;
@@ -87,7 +88,8 @@
         -webkit-box-align: center;
         -webkit-box-pack: center;
         height: px2rem($height);
-        position: fixed;
+        position: fixed;        
+        z-index:2;
         width: px2rem($width);
         box-sizing: border-box;
         left:50%;
