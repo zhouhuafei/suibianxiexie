@@ -50,7 +50,7 @@ SubType.prototype.moduleDomType0=function(){
                     <div class="m-footer-body-child-item"><a href="">child-item</a></div>
                 </div>
             </div>
-            <a href="" class="m-footer-body">
+            <a class="m-footer-body" href="">
                 <div class="m-footer-body-txt">上新</div>      
             </a>
             <div class="m-footer-body">
@@ -70,23 +70,23 @@ SubType.prototype.moduleDomType1=function(){
     if(this.opt.config.moduleDomType=='1'){
         this.moduleDomClass=`m-footer m-footer-type1`;        
         return `
-            <a class="m-footer-body m-footer-body-active">
+            <a class="m-footer-body m-footer-body-active" href="">
                 <div class="m-footer-body-icon icons icons-santiaogang"></div>
                 <div class="m-footer-body-txt">首页</div>
             </a>
-            <a class="m-footer-body">
+            <a class="m-footer-body" href="">
                 <div class="m-footer-body-icon icons icons-shoucang"></div>
                 <div class="m-footer-body-txt">我要开店</div>
             </a>
-            <a class="m-footer-body">
+            <a class="m-footer-body" href="">
                 <div class="m-footer-body-icon icons icons-shouji"></div>
                 <div class="m-footer-body-txt">购物车</div>
             </a>
-            <a class="m-footer-body">
+            <a class="m-footer-body" href="">
                 <div class="m-footer-body-icon icons icons-cart"></div>
                 <div class="m-footer-body-txt">客服</div>
             </a>
-            <a class="m-footer-body">
+            <a class="m-footer-body" href="">
                 <div class="m-footer-body-icon icons icons-jifen"></div>
                 <div class="m-footer-body-txt">我的</div>
             </a>
