@@ -35,7 +35,6 @@ SubType.prototype.moduleDomCreate = function () {
     });
 };
 
-
 SubType.prototype.moduleDomType0=function(){
     if(this.opt.config.moduleDomType==0){
         this.moduleDomClass=`m-footer m-footer-type0`;
@@ -52,17 +51,28 @@ SubType.prototype.moduleDomType0=function(){
                 </div>
             </div>
         `;
-    }else {
-        return ``;
     }
+    return ``;
 };
 
 SubType.prototype.moduleDomType1=function(){
     if(this.opt.config.moduleDomType==1){
-        this.moduleDomClass=`m-footer m-footer-type1`;
-    }else {
-        return ``;
+        this.moduleDomClass=`m-footer m-footer-type1`;        
+        return `
+            <div class="m-footer-wrap">
+                <div class="m-footer-header">
+                    0
+                </div>
+                <div class="m-footer-body">
+                    body
+                </div>
+                <div class="m-footer-body">
+                    body
+                </div>
+            </div>
+        `;
     }
+    return ``;    
 };
 
 SubType.prototype.moduleDomType2=function(){
