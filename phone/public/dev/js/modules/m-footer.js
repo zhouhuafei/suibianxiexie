@@ -61,13 +61,13 @@ SubType.prototype.moduleDomType1=function(){
         return `
             <div class="m-footer-wrap">
                 <div class="m-footer-header">
-                    0
+                    01
                 </div>
                 <div class="m-footer-body">
-                    body
+                    body1
                 </div>
                 <div class="m-footer-body">
-                    body
+                    body1
                 </div>
             </div>
         `;
