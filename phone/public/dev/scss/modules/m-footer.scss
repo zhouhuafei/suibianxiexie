@@ -11,7 +11,8 @@
         width: px2rem($width);
         box-sizing: border-box;
         border-top:1px solid #d5d5d5;
-        left:0;
+        left:50%;
+        margin-left: px2rem($width/2); 
         bottom: 0;
         background: #fafafa;
         .m-footer-header{
