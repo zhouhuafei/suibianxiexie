@@ -1,10 +1,6 @@
 @import "../config/config.scss";
 
 .m-footer{
-    a{
-        color: inherit;
-        outline: none;
-    }
     $width:375;
     &.m-footer-type0{
         $height:40;
