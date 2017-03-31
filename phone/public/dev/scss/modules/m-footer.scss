@@ -1,36 +1,122 @@
 @import "../config/config.scss";
-
-.m-footer {
+.m-footer{    
+    $width:320;
     &.m-footer-type0{
         $height:40;
-        $width:320;
-        margin-top:px2rem(20);
+        display: -webkit-box;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
         height: px2rem($height);
-        text-align: center;
-        .m-footer-wrap{
-            box-sizing: border-box;
-            background: #ffffff;
-            border-top: px2rem(1) solid #ddd;
-            border-bottom: px2rem(1) solid #ddd;
-            position: fixed;
-            bottom: 0;
-            width: px2rem($width);
-            height: px2rem($height);
-            line-height: px2rem($height);
+        position: fixed;
+        width: px2rem($width);
+        box-sizing: border-box;
+        border-top:1px solid #d5d5d5;
+        left:0;
+        bottom: 0;
+        background: #fafafa;
+        .m-footer-header{
+            width: px2rem($height);
             display: -webkit-box;
-            .m-footer-header{
-                width: px2rem($height);
-                border-right: px2rem(1) solid #ddd;
+            -webkit-box-align: center;
+            -webkit-box-pack: center;
+            .m-footer-header-icon{
+                font-size: px2rem(20);
             }
-            .m-footer-body{
-                -webkit-box-flex: 1;
+        }
+        .m-footer-body{
+            -webkit-box-flex: 1;
+            display: -webkit-box;
+            -webkit-box-align: center;
+            -webkit-box-pack: center;
+            position: relative;
+            height: 100%;
+            border-left:1px solid #d5d5d5;
+            .m-footer-body-icon{
+                font-size: px2rem(14);
+            }
+            .m-footer-body-txt{
+                font-size: px2rem(14);
+            }
+            .m-footer-body-child{
+                display: none;
+                position: absolute;
+                width: px2rem(78);
+                padding: 0 px2rem(6);
+                left: 50%;
+                margin-left:px2rem(-36);
+                text-align: center;
+                bottom: px2rem($height + 20);
+                border-radius: px2rem(5);
+                background: #fafafa;
+                border:1px solid #d5d5d5;
+                &:after{
+                    content: '';
+                    position: absolute;
+                    width: px2rem(10);
+                    height: px2rem(10);
+                    background: #fafafa;
+                    border-left:1px solid #d5d5d5;
+                    border-top:1px solid #d5d5d5;
+                    box-sizing: border-box;
+                    left: 50%;
+                    bottom:px2rem(-5.5);
+                    margin-left:px2rem(-5);
+                    transform: rotate(225deg);
+                }
+                .m-footer-body-child-item{
+                    font-size: px2rem(14);
+                    height: px2rem($height);
+                    line-height: px2rem($height);
+                    border-bottom:1px solid #d5d5d5;
+                    &:last-of-type{
+                        border-bottom: none;
+                    }
+                }
+            }
+            &.m-footer-body-active{
+                .m-footer-body-child{
+                    display: block;
+                }
             }
         }
     }
-    .m-footer-type1{
-
+    &.m-footer-type1{
+        $height:40;
+        display: -webkit-box;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+        height: px2rem($height);
+        position: fixed;
+        width: px2rem($width);
+        box-sizing: border-box;
+        left:0;
+        bottom: 0;
+        background: #fafafa;
+        border-top:1px solid #d5d5d5;
+        .m-footer-body{
+            -webkit-box-flex: 1;
+            display: -webkit-box;
+            -webkit-box-align: center;
+            -webkit-box-pack: center;
+            -webkit-box-orient: vertical;
+            position: relative;
+            height: 100%;
+            color: #888888;
+            .m-footer-body-icon{
+                font-size: px2rem(20);
+            }
+            .m-footer-body-txt{
+                font-size: px2rem(12);
+            }
+            &.m-footer-body-active{
+                background: #fff;
+                .m-footer-body-icon,.m-footer-body-txt{
+                    color: #006de7;
+                }
+            }
+        }
     }
-    .m-footer-type2{
+    &.m-footer-type2{
 
     }
 }
