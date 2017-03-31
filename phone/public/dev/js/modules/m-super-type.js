@@ -7,7 +7,7 @@ function SuperType(json) {
     this.opt = base.extend({
         default: {
             //父级
-            parent: `.g-page`,//这个仅支持传入选择器和原生dom节点
+            wrap: `.g-page`,//这个仅支持传入选择器和原生dom节点
             //回调
             callback: {
                 moduleDomCreateBefore: function () {
@@ -18,9 +18,9 @@ function SuperType(json) {
                 },
                 moduleDomRenderAfter: function () {
                 },
-                parentDomCreateBefore: function () {
+                wrapDomCreateBefore: function () {
                 },
-                parentDomCreateAfter: function () {
+                wrapDomCreateAfter: function () {
                 }
             },
             //配置
@@ -36,7 +36,7 @@ function SuperType(json) {
     });
     //函数内部自带的属性
     this.moduleDom = null;//内部的模块
-    this.parentDom = null;//内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+    this.wrapDom = null;//内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
     this.moduleDomTimer = {};//内部模块的定时器存储(假设内部模块有定时器)
     this.init();//初始化
 }
@@ -50,7 +50,7 @@ SuperType.prototype.init = function () {
 //渲染
 SuperType.prototype.render = function () {
     this.moduleDomRender();
-    this.parentDomRender();
+    this.wrapDomRender();
 };
 
 //功能(这个方法在其他模块的内部需要被重写)
@@ -100,8 +100,8 @@ SuperType.prototype.moduleDomClearTimer = function () {
 
 //内部模块的显示(显示隐藏和是否清除定时器无关)
 SuperType.prototype.moduleDomShow = function () {
-    if (this.parentDom) {
-        this.parentDom.appendChild(this.moduleDom);
+    if (this.wrapDom) {
+        this.wrapDom.appendChild(this.moduleDom);
     }
 };
 
@@ -113,35 +113,35 @@ SuperType.prototype.moduleDomHide = function () {
 };
 
 //外部容器的创建
-SuperType.prototype.parentDomCreate=function(){
-    this.parentDom = base.getOneDom({dom: this.opt.parent});
+SuperType.prototype.wrapDomCreate=function(){
+    this.wrapDom = base.getOneDom({dom: this.opt.wrap});
 };
 
 //外部容器的渲染
-SuperType.prototype.parentDomRender = function () {
+SuperType.prototype.wrapDomRender = function () {
     var callback = this.opt.callback;
-    callback.parentDomCreateBefore(this);
-    this.parentDomCreate();
-    callback.parentDomCreateAfter(this);
-    if (!this.parentDom) {
+    callback.wrapDomCreateBefore(this);
+    this.wrapDomCreate();
+    callback.wrapDomCreateAfter(this);
+    if (!this.wraptDom) {
         return false;
     }
-    if (this.parentDom) {
+    if (this.wrapDom) {
         callback.moduleDomRenderBefore(this);
         if (this.opt.config.moduleDomIsShow) {
-            this.parentDom.appendChild(this.moduleDom);
+            this.wrapDom.appendChild(this.moduleDom);
         }
         callback.moduleDomRenderAfter(this);
     }
 };
 
 //外部容器的移除
-SuperType.prototype.parentDomRemove = function () {
+SuperType.prototype.wrapDomRemove = function () {
     //先移除内部的模块
     this.moduleDomRemove();
     //再移除外部的容器
-    if (this.parentDom) {
-        this.parentDom.parentNode.removeChild(this.parentDom);
+    if (this.wrapDom) {
+        this.wrapDom.parentNode.removeChild(this.wrapDom);
     }
 };
 
