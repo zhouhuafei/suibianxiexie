@@ -36,18 +36,29 @@ SubType.prototype.moduleDomCreate = function () {
 };
 
 SubType.prototype.moduleDomType0=function(){
-    if(this.opt.config.moduleDomType==0){
+    if(this.opt.config.moduleDomType=='0'){
         this.moduleDomClass=`m-footer m-footer-type0`;
         return `
-            <div class="m-footer-wrap">
-                <div class="m-footer-header">
-                    0
+            <div class="m-footer-header">
+                <div class="m-footer-header-icon icons icons-store"></div>
+            </div>
+            <div class="m-footer-body m-footer-body-active">
+                <div class="m-footer-body-icon icons icons-jifen"></div>
+                <div class="m-footer-body-txt">全部商品</div>
+                <div class="m-footer-body-child">
+                    <div class="m-footer-body-child-item"><a href="">child-item</a></div>
+                    <div class="m-footer-body-child-item"><a href="">child-item</a></div>
                 </div>
-                <div class="m-footer-body">
-                    body
-                </div>
-                <div class="m-footer-body">
-                    body
+            </div>
+            <a href="" class="m-footer-body">
+                <div class="m-footer-body-txt">上新</div>      
+            </a>
+            <div class="m-footer-body">
+                <div class="m-footer-body-icon icons icons-jifen"></div>
+                <div class="m-footer-body-txt">店铺活动</div>
+                <div class="m-footer-body-child">
+                    <div class="m-footer-body-child-item"><a href="">child-item</a></div>
+                    <div class="m-footer-body-child-item"><a href="">child-item</a></div>
                 </div>
             </div>
         `;
@@ -56,19 +67,46 @@ SubType.prototype.moduleDomType0=function(){
 };
 
 SubType.prototype.moduleDomType1=function(){
-    if(this.opt.config.moduleDomType==1){
+    if(this.opt.config.moduleDomType=='1'){
         this.moduleDomClass=`m-footer m-footer-type1`;        
         return `
-            <div class="m-footer-wrap">
-                <div class="m-footer-header">
-                    01
-                </div>
-                <div class="m-footer-body">
-                    body1
-                </div>
-                <div class="m-footer-body">
-                    body1
-                </div>
+            <a class="m-footer-body m-footer-body-active">
+                <div class="m-footer-body-icon icons icons-santiaogang"></div>
+                <div class="m-footer-body-txt">首页</div>
+            </a>
+            <a class="m-footer-body">
+                <div class="m-footer-body-icon icons icons-shoucang"></div>
+                <div class="m-footer-body-txt">我要开店</div>
+            </a>
+            <a class="m-footer-body">
+                <div class="m-footer-body-icon icons icons-shouji"></div>
+                <div class="m-footer-body-txt">购物车</div>
+            </a>
+            <a class="m-footer-body">
+                <div class="m-footer-body-icon icons icons-cart"></div>
+                <div class="m-footer-body-txt">客服</div>
+            </a>
+            <a class="m-footer-body">
+                <div class="m-footer-body-icon icons icons-jifen"></div>
+                <div class="m-footer-body-txt">我的</div>
+            </a>
+        `;
+    }
+    return ``;    
+};
+
+SubType.prototype.moduleDomType2=function(){
+    if(this.opt.config.moduleDomType=='2'){
+        this.moduleDomClass=`m-footer m-footer-type2`;   
+        return `
+            <div class="m-footer-body">
+                待续...
+            </div>
+            <div class="m-footer-body">
+                待续...
+            </div>
+            <div class="m-footer-body">
+                待续...
             </div>
         `;
     }
