@@ -12,6 +12,7 @@
             -webkit-box-align: center;
             -webkit-box-pack: center;
             position: fixed;
+            z-index:2;
             width: px2rem($width);
             left:50%;
             margin-left:px2rem(- $width/2);
@@ -96,6 +97,7 @@
             -webkit-box-align: center;
             -webkit-box-pack: center;
             position: fixed;
+            z-index:2;
             width: px2rem($width);
             left:50%;
             margin-left:px2rem(- $width/2);
