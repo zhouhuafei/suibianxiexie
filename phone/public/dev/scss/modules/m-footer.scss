@@ -19,7 +19,7 @@
         border-top:1px solid #d5d5d5;
         background: #fafafa;
     }
-    &.m-footer-type1{
+    &.m-footer-type0{
         .m-footer-header{
             width: px2rem($height);
             display: -webkit-box;
@@ -89,7 +89,7 @@
             }
         }
     }
-    &.m-footer-type2{
+    &.m-footer-type1{
         .m-footer-body{
             -webkit-box-flex: 1;
             display: -webkit-box;
@@ -113,7 +113,7 @@
             }
         }
     }    
-    &.m-footer-type3{
+    &.m-footer-type2{
 
     }
 }
