@@ -47,8 +47,8 @@ SubType.prototype.moduleDomType0=function(){
                     <div class="m-footer-body-icon icons icons-jifen"></div>
                     <div class="m-footer-body-txt">全部商品</div>
                     <div class="m-footer-body-child">
-                        <div class="m-footer-body-child-item"><a href="">child-item</a></div>
-                        <div class="m-footer-body-child-item"><a href="">child-item</a></div>
+                        <div class="m-footer-body-child-item"><a href="">child</a></div>
+                        <div class="m-footer-body-child-item"><a href="">child</a></div>
                     </div>
                 </div>
                 <a class="m-footer-body" href="">
@@ -58,8 +58,8 @@ SubType.prototype.moduleDomType0=function(){
                     <div class="m-footer-body-icon icons icons-jifen"></div>
                     <div class="m-footer-body-txt">店铺活动</div>
                     <div class="m-footer-body-child">
-                        <div class="m-footer-body-child-item"><a href="">child-item</a></div>
-                        <div class="m-footer-body-child-item"><a href="">child-item</a></div>
+                        <div class="m-footer-body-child-item"><a href="">child</a></div>
+                        <div class="m-footer-body-child-item"><a href="">child</a></div>
                     </div>
                 </div>
             </div>
