@@ -82,7 +82,7 @@
                     }
                 }
             }
-            &.m-footer-body-active{
+            &.m-footer-body-active,&:hover{
                 .m-footer-body-child{
                     display: block;
                 }
