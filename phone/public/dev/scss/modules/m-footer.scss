@@ -1,26 +1,29 @@
 @import "../config/config.scss";
-
 .m-footer{
-    $width:320;
-    &.m-footer-type0{
-        $height:40;
-        height: px2rem($height);
-        margin-top: px2rem(20);
-        .m-footer-wrap{
-            height: inherit;
-            display: -webkit-box;
-            -webkit-box-align: center;
-            -webkit-box-pack: center;
-            position: fixed;
-            z-index:2;
-            width: px2rem($width);
-            left:50%;
-            margin-left:px2rem(- $width/2);
-            bottom: 0;
-            box-sizing: border-box;
-            border-top:1px solid #d5d5d5;
-            background: #fafafa;
-        }
+    a{
+        color: inherit;
+        outline: none;
+    }
+    $width:375;
+    $height:40;
+    height: px2rem($height);
+    margin-top: px2rem(20);
+    .m-footer-wrap{
+        height: inherit;
+        display: -webkit-box;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+        position: fixed;
+        z-index: 2;
+        width: px2rem($width);
+        left:50%;
+        margin-left:px2rem(- $width/2);
+        bottom: 0;
+        box-sizing: border-box;
+        border-top:1px solid #d5d5d5;
+        background: #fafafa;
+    }
+    &.m-footer-type1{
         .m-footer-header{
             width: px2rem($height);
             display: -webkit-box;
@@ -87,25 +90,7 @@
             }
         }
     }
-    &.m-footer-type1{
-        $height:40;
-        height: px2rem($height);
-        margin-top: px2rem(20);
-        .m-footer-wrap{
-            height: inherit;
-            display: -webkit-box;
-            -webkit-box-align: center;
-            -webkit-box-pack: center;
-            position: fixed;
-            z-index:2;
-            width: px2rem($width);
-            left:50%;
-            margin-left:px2rem(- $width/2);
-            bottom: 0;
-            box-sizing: border-box;
-            background: #fafafa;
-            border-top:1px solid #d5d5d5;
-        }
+    &.m-footer-type2{
         .m-footer-body{
             -webkit-box-flex: 1;
             display: -webkit-box;
@@ -128,8 +113,8 @@
                 }
             }
         }
-    }
-    &.m-footer-type2{
+    }    
+    &.m-footer-type3{
 
     }
 }
