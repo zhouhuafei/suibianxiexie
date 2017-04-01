@@ -74,6 +74,9 @@
                     height: px2rem($height);
                     line-height: px2rem($height);
                     border-bottom:1px solid #d5d5d5;
+                    a{
+                        display:block;
+                    }
                     &:last-of-type{
                         border-bottom: none;
                     }
