@@ -1,9 +1,5 @@
 @import "../config/config.scss";
 .m-footer{
-    a{
-        color: inherit;
-        outline: none;
-    }
     $width:375;
     $height:40;
     height: px2rem($height);
