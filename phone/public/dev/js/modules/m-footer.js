@@ -73,7 +73,7 @@ SubType.prototype.moduleDomType1=function(){
         this.moduleDomClass=`m-footer m-footer-type1`;        
         return `
             <div class="m-footer-wrap">
-                <a class="m-footer-body m-footer-body-active">
+                <a class="m-footer-body">
                     <div class="m-footer-body-icon icons icons-santiaogang"></div>
                     <div class="m-footer-body-txt">首页</div>
                 </a>
