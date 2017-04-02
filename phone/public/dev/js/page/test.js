@@ -11,11 +11,6 @@
         }
     });
 })();
-//底部
-(function(){
-    var Footer = require('../modules/m-footer.js');
-    new Footer();
-})();
 //遮罩
 (function () {
     var Mask = require('../modules/m-mask.js');
@@ -123,5 +118,5 @@
         }
     });
 })();
-//延迟加载
-require('../function/lazyload.js')();
+//每个页面都要用到的js
+require('../common/common.js');

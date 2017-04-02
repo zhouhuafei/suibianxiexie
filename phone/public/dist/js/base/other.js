@@ -13,6 +13,38 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
+        function dataSrcHandle(json) {
+            var returnObj = {};
+            if (!json.image) {
+                return returnObj;
+            }
+            var webp = '';
+            if (base.utils.isAndroid()) {
+                webp = "format/webp";
+            }
+            var replace = "?imageMogr2/thumbnail/" + json.image.offsetWidth + "x" + json.image.offsetHeight + "/strip/quality/80/" + webp;
+            var opt = $.extend(true, {
+                image: null, //默认的图片dom(默认无)
+                rule: /\?.*/g, //默认规则(?号以及？号之后的一切)
+                replace: replace, //默认替换为
+                isPinjie: true, //如果没有匹配到规则rule,图片data-src末尾是否拼接上replace(默认拼接)
+                domainRule: /\./g, //域名规则(默认没有规则)
+                isDomainRule: false //是否开启域名规则限制(默认不开启)
+            }, json);
+            var image = opt.image;
+            var rule = opt.rule;
+            replace = opt.replace;
+            var search = image.dataset.src.match(rule);
+            if (search) {
+                //image.dataset.src=image.dataset.src.replace(rule,replace);
+                returnObj.src = image.dataset.src.replace(rule, replace);
+            } else {
+                if (opt.isPinjie) {
+                    //image.dataset.src=image.dataset.src+replace;
+                    returnObj.src = image.dataset.src + replace;
+                }
+            }
+        }
 
         function uploadImg() {
             var oF = document.querySelector('#fileField');

@@ -1,6 +1,6 @@
 body {
   color: rgba(0, 0, 0, 0.8);
-  font-family: "Microsoft Yahei", "sans-serif";
+  font-family: "Microsoft Yahei", "Helvetica", "sans-serif";
   font-size: 0.5rem; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {

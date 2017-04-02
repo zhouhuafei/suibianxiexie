@@ -1,54 +1,8 @@
-//字体
-$g-color-font-default: rgba(0, 0, 0, 0.8); //颜色-默认
-$g-color-font-highlight: #0089ff; //颜色-高亮
-$g-color-font-dark: #bfbfbf; //颜色-黑暗
+//全局的配置变量
+@import "../var/var.scss";
 
-//背景
-$g-color-background-default: #f5f5f5; //颜色-默认
-$g-color-background-highlight: #0089ff; //颜色-高亮
-$g-color-background-dark: #bbbbbb; //颜色-黑暗
+//全局的配置函数
+@import "../function/function.scss";
 
-//边框
-$g-color-border-default: #e6e7ed; //颜色-默认
-$g-color-border-highlight: #0089ff; //颜色-高亮
-$g-color-border-dark: #e6e7ed; //颜色-黑暗
-
-//验证
-$g-color-validate-success: #1fce69; //颜色-成功
-$g-color-validate-fail: rgba(255, 0, 0, 0.6); //颜色-失败
-
-//单选框
-$g-size-radio-wh: 21; //尺寸-宽高
-$g-color-radio-highlight: #0089ff; //颜色-高亮
-
-//多选框
-$g-size-checkbox-wh: 21; //尺寸-宽高
-$g-color-checkbox-highlight: #0089ff; //颜色-高亮
-
-//输入框
-$g-size-input-width: 240; //尺寸-宽
-$g-size-input-height: 40; //尺寸-高
-
-//下拉选择框
-$g-size-select-width: 240; //尺寸-宽
-$g-size-select-height: 40; //尺寸-高
-
-//文本框
-$g-size-textarea-width: 240; //尺寸-宽
-$g-size-textarea-height: 140; //尺寸-高
-
-
-//菜单
-$g-size-menu-height: 40; //尺寸-高
-
-//表格的一行
-$g-table-row-height: 60; //尺寸-高
-
-
-//全局的方法
+//全局的配置mixin
 @import "../mixin/mixin.scss";
-
-//px转rem
-@function px2rem($px,$psd:320) {
-    @return $px / $psd * 10rem;
-}

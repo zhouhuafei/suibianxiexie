@@ -42,7 +42,18 @@
             extend: require('../function/extend.js')
         };
         module.exports = base;
-    }, { "../function/constructor-inherit.js": 3, "../function/cookie.js": 4, "../function/create-element.js": 5, "../function/extend.js": 6, "../function/fill-zero.js": 7, "../function/get-one-dom.js": 8, "../function/get-parent.js": 9, "../function/go-top.js": 10, "../function/html-to-dom.js": 11, "../function/is-pc.js": 12, "../function/json-to-array.js": 13, "../function/seconds-to-time.js": 15, "../function/str-limit.js": 16, "../function/time-count-down.js": 17, "../function/when-scroll-bottom.js": 19, "../function/whether-disable-scroll.js": 20 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit.js": 4, "../function/cookie.js": 5, "../function/create-element.js": 6, "../function/extend.js": 7, "../function/fill-zero.js": 8, "../function/get-one-dom.js": 9, "../function/get-parent.js": 10, "../function/go-top.js": 11, "../function/html-to-dom.js": 12, "../function/is-pc.js": 13, "../function/json-to-array.js": 14, "../function/seconds-to-time.js": 16, "../function/str-limit.js": 17, "../function/time-count-down.js": 18, "../function/when-scroll-bottom.js": 20, "../function/whether-disable-scroll.js": 21 }], 2: [function (require, module, exports) {
+        //底部导航
+        (function () {
+            var Footer = require('../modules/m-footer.js');
+            new Footer();
+        })();
+        //延迟加载
+        (function () {
+            var lazyload = require('../function/lazyload.js');
+            lazyload();
+        })();
+    }, { "../function/lazyload.js": 15, "../modules/m-footer.js": 22 }], 3: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/4.
          */
@@ -50,16 +61,11 @@
         (function () {
             var Test = require('../modules/m-super-type.js');
             var test = new Test({
-                parent: document.querySelector(".main-test"),
+                wrap: document.querySelector(".main-test"),
                 config: {
                     moduleDomIsClearTimer: true
                 }
             });
-        })();
-        //底部
-        (function () {
-            var Footer = require('../modules/m-footer.js');
-            new Footer();
         })();
         //遮罩
         (function () {
@@ -95,7 +101,7 @@
         (function () {
             var Table = require('../modules/m-table.js');
             var table = new Table({
-                parent: ".main-table",
+                wrap: ".main-table",
                 data: {
                     header: [{
                         html: "<div>header0</div>"
@@ -140,7 +146,7 @@
         (function () {
             var Star = require('../modules/m-star.js');
             var star = new Star({
-                parent: ".main-star",
+                wrap: ".main-star",
                 callback: {
                     moduleDomClick: function moduleDomClick(json) {
                         console.log(json);
@@ -148,9 +154,9 @@
                 }
             });
         })();
-        //延迟加载
-        require('../function/lazyload.js')();
-    }, { "../function/lazyload.js": 14, "../modules/m-footer.js": 21, "../modules/m-mask.js": 22, "../modules/m-radio-switch.js": 23, "../modules/m-star.js": 24, "../modules/m-super-type.js": 25, "../modules/m-table.js": 26, "../modules/m-validate-input.js": 27 }], 3: [function (require, module, exports) {
+        //每个页面都要用到的js
+        require('../common/common.js');
+    }, { "../common/common.js": 2, "../modules/m-mask.js": 23, "../modules/m-radio-switch.js": 24, "../modules/m-star.js": 25, "../modules/m-super-type.js": 26, "../modules/m-table.js": 27, "../modules/m-validate-input.js": 28 }], 4: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend.js');
 
@@ -190,7 +196,7 @@
             return SupType;
         }
         module.exports = constructorInherit;
-    }, { "../function/extend.js": 6 }], 4: [function (require, module, exports) {
+    }, { "../function/extend.js": 7 }], 5: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -233,7 +239,7 @@
             removeCookie: removeCookie
         };
         module.exports = obj;
-    }, {}], 5: [function (require, module, exports) {
+    }, {}], 6: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/3/19.
          */
@@ -260,7 +266,7 @@
             return elementNode;
         }
         module.exports = createElement;
-    }, {}], 6: [function (require, module, exports) {
+    }, {}], 7: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opt = json || {};
@@ -349,7 +355,7 @@
         console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
         */
         module.exports = extend;
-    }, {}], 7: [function (require, module, exports) {
+    }, {}], 8: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend.js');
 
@@ -369,7 +375,7 @@
             }
         }
         module.exports = fillZero;
-    }, { "../function/extend.js": 6 }], 8: [function (require, module, exports) {
+    }, { "../function/extend.js": 7 }], 9: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend.js');
 
@@ -395,7 +401,7 @@
             return resultDom;
         }
         module.exports = getOneDom;
-    }, { "../function/extend.js": 6 }], 9: [function (require, module, exports) {
+    }, { "../function/extend.js": 7 }], 10: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -463,7 +469,7 @@
             }
         }
         module.exports = getParent;
-    }, {}], 10: [function (require, module, exports) {
+    }, {}], 11: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -501,7 +507,7 @@
             });
         }
         module.exports = goTop;
-    }, {}], 11: [function (require, module, exports) {
+    }, {}], 12: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -514,7 +520,7 @@
             return div.children[0];
         }
         module.exports = htmlToDom;
-    }, {}], 12: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
         function isPc() {
             var userAgentInfo = navigator.userAgent;
             var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
@@ -528,7 +534,7 @@
             return flag;
         }
         module.exports = isPc;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -551,7 +557,7 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 14: [function (require, module, exports) {
+    }, {}], 15: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/17.
          */
@@ -577,39 +583,46 @@
                 };
                 var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
                 aImg.forEach(function (v) {
-                    if (v.getAttribute('src') != v.dataset.src && v.tagName.toLowerCase() == 'img') {
-                        v.src = src;
-                        v.setAttribute('height', '100%');
-                        v.setAttribute('width', '100%');
-                        v.style.opacity = '0';
-                        v.style.transition = 'opacity 0.4s';
+                    if (v.tagName.toLowerCase() == 'img') {
+                        if (!v.getAttribute('src')) {
+                            v.src = src;
+                            v.setAttribute('height', '100%');
+                            v.setAttribute('width', '100%');
+                        }
                     }
+                    v.style.opacity = '0';
+                    v.style.transition = 'opacity 0.4s';
                 });
                 var iClientH = doc.documentElement.clientHeight;
                 var iScrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
                 var iResultTop = iClientH + iScrollTop + height;
                 aImg.forEach(function (v) {
+                    if (!v.offsetWidth) {
+                        return false;
+                    }
                     var iObjTop = offsetTop(v) - height;
                     var iObjBottom = offsetTop(v) + v.offsetHeight;
                     //height
                     if (iResultTop >= iObjTop && iObjTop >= iScrollTop || iObjBottom > iScrollTop && iObjBottom < iResultTop) {
                         if (v.tagName.toLowerCase() == 'img') {
-                            if (v.getAttribute('src') != v.dataset.src) {
-                                v.src = v.dataset.src;
-                                v.removeAttribute('height');
-                                v.removeAttribute('width');
-                            }
+                            //if (v.getAttribute('src') != v.dataset.src) {
+                            v.src = v.dataset.src;
+                            v.removeAttribute('height');
+                            v.removeAttribute('width');
+                            //}
                         } else {
                             v.style.backgroundImage = 'url(' + v.dataset.src + ')';
                             v.style.backgroundPosition = 'center center';
                             v.style.backgroundRepeat = 'no-repeat';
                         }
                         v.style.opacity = '1';
-                        v.classList.add('m-lazy-load-show');
+                        //v.classList.add('m-lazy-load-show');
+                        v.classList.remove('m-lazy-load');
                     }
                 });
             };
             fn();
+            lazyload.fn = fn;
             var timer = null;
             var fnScroll = function fnScroll() {
                 clearTimeout(timer);
@@ -622,7 +635,7 @@
             });
         }
         module.exports = lazyload;
-    }, {}], 15: [function (require, module, exports) {
+    }, {}], 16: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -641,7 +654,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 16: [function (require, module, exports) {
+    }, {}], 17: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -660,7 +673,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 17: [function (require, module, exports) {
+    }, {}], 18: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -707,7 +720,7 @@
             }
         }
         module.exports = timeCountDown;
-    }, {}], 18: [function (require, module, exports) {
+    }, {}], 19: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/4.
          */
@@ -798,7 +811,7 @@
             }
         };
         module.exports = validate;
-    }, {}], 19: [function (require, module, exports) {
+    }, {}], 20: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -838,7 +851,7 @@
             });
         }
         module.exports = whenScrollBottom;
-    }, {}], 20: [function (require, module, exports) {
+    }, {}], 21: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -872,7 +885,7 @@
             };
         }
         module.exports = whetherDisableScroll;
-    }, {}], 21: [function (require, module, exports) {
+    }, {}], 22: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -889,7 +902,7 @@
                 },
                 //配置
                 config: {
-                    moduleDomType: 0 //三种类型 0,1,2
+                    moduleDomType: 0 //两种类型 0(微信),1(自定义)
                 }
             }
         });
@@ -906,32 +919,31 @@
         };
 
         SubType.prototype.moduleDomType0 = function () {
-            if (this.opt.config.moduleDomType == 0) {
+            if (this.opt.config.moduleDomType == '0') {
                 this.moduleDomClass = "m-footer m-footer-type0";
-                return "\n            <div class=\"m-footer-wrap\">\n                <div class=\"m-footer-header\">\n                    0\n                </div>\n                <div class=\"m-footer-body\">\n                    body\n                </div>\n                <div class=\"m-footer-body\">\n                    body\n                </div>\n            </div>\n        ";
-            } else {
-                return "";
+                return "\n            <div class=\"m-footer-wrap\">\n                <div class=\"m-footer-header\">\n                    <div class=\"m-footer-header-icon icons icons-store\"></div>\n                </div>\n                <div class=\"m-footer-body\">\n                    <div class=\"m-footer-body-icon icons icons-jifen\"></div>\n                    <div class=\"m-footer-body-txt\">\u5168\u90E8\u5546\u54C1</div>\n                    <div class=\"m-footer-body-child\">\n                        <div class=\"m-footer-body-child-item\"><a href=\"\">child</a></div>\n                        <div class=\"m-footer-body-child-item\"><a href=\"\">child</a></div>\n                    </div>\n                </div>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-txt\">\u4E0A\u65B0</div>      \n                </a>\n                <div class=\"m-footer-body\">\n                    <div class=\"m-footer-body-icon icons icons-jifen\"></div>\n                    <div class=\"m-footer-body-txt\">\u5E97\u94FA\u6D3B\u52A8</div>\n                    <div class=\"m-footer-body-child\">\n                        <div class=\"m-footer-body-child-item\"><a href=\"\">child</a></div>\n                        <div class=\"m-footer-body-child-item\"><a href=\"\">child</a></div>\n                    </div>\n                </div>\n            </div>\n        ";
             }
+            return "";
         };
 
         SubType.prototype.moduleDomType1 = function () {
-            if (this.opt.config.moduleDomType == 1) {
+            if (this.opt.config.moduleDomType == '1') {
                 this.moduleDomClass = "m-footer m-footer-type1";
-            } else {
-                return "";
+                return "\n            <div class=\"m-footer-wrap\">\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon icons icons-santiaogang\"></div>\n                    <div class=\"m-footer-body-txt\">\u9996\u9875</div>\n                </a>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon icons icons-shoucang\"></div>\n                    <div class=\"m-footer-body-txt\">\u6211\u8981\u5F00\u5E97</div>\n                </a>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon icons icons-shouji\"></div>\n                    <div class=\"m-footer-body-txt\">\u8D2D\u7269\u8F66</div>\n                </a>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon icons icons-cart\"></div>\n                    <div class=\"m-footer-body-txt\">\u5BA2\u670D</div>\n                </a>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon icons icons-jifen\"></div>\n                    <div class=\"m-footer-body-txt\">\u6211\u7684</div>\n                </a>\n            </div>\n        ";
             }
+            return "";
         };
 
         SubType.prototype.moduleDomType2 = function () {
-            if (this.opt.config.moduleDomType == 2) {
+            if (this.opt.config.moduleDomType == '2') {
                 this.moduleDomClass = "m-footer m-footer-type2";
-            } else {
-                return "";
+                return "\n            <div class=\"m-footer-body\">\n                \u5F85\u7EED...\n            </div>\n            <div class=\"m-footer-body\">\n                \u5F85\u7EED...\n            </div>\n            <div class=\"m-footer-body\">\n                \u5F85\u7EED...\n            </div>\n        ";
             }
+            return "";
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 25 }], 22: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 26 }], 23: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -946,8 +958,8 @@
                 callback: {
                     moduleDomClick: function moduleDomClick() {},
                     moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                        if (getComputedStyle(self.parentDom).position == 'static') {
-                            self.parentDom.style.position = 'relative';
+                        if (getComputedStyle(self.wrapDom).position == 'static') {
+                            self.wrapDom.style.position = 'relative';
                         }
                     }
                 },
@@ -984,7 +996,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 25 }], 23: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 26 }], 24: [function (require, module, exports) {
         function Fn(json) {
             this.opt = json || {};
             this.opt.checkTxt = this.opt.checkTxt || { on: '已开启', off: '已关闭' };
@@ -1052,7 +1064,7 @@
             this.parentDom.parentNode.removeChild(this.parentDom);
         };
         module.exports = Fn;
-    }, {}], 24: [function (require, module, exports) {
+    }, {}], 25: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1118,7 +1130,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 25 }], 25: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 26 }], 26: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1128,15 +1140,15 @@
             this.opt = base.extend({
                 default: {
                     //父级
-                    parent: ".g-page", //这个仅支持传入选择器和原生dom节点
+                    wrap: ".g-page", //这个仅支持传入选择器和原生dom节点
                     //回调
                     callback: {
                         moduleDomCreateBefore: function moduleDomCreateBefore() {},
                         moduleDomCreateAfter: function moduleDomCreateAfter() {},
                         moduleDomRenderBefore: function moduleDomRenderBefore() {},
                         moduleDomRenderAfter: function moduleDomRenderAfter() {},
-                        parentDomCreateBefore: function parentDomCreateBefore() {},
-                        parentDomCreateAfter: function parentDomCreateAfter() {}
+                        wrapDomCreateBefore: function wrapDomCreateBefore() {},
+                        wrapDomCreateAfter: function wrapDomCreateAfter() {}
                     },
                     //配置
                     config: {
@@ -1151,7 +1163,7 @@
             });
             //函数内部自带的属性
             this.moduleDom = null; //内部的模块
-            this.parentDom = null; //内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+            this.wrapDom = null; //内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
             this.moduleDomTimer = {}; //内部模块的定时器存储(假设内部模块有定时器)
             this.init(); //初始化
         }
@@ -1165,7 +1177,7 @@
         //渲染
         SuperType.prototype.render = function () {
             this.moduleDomRender();
-            this.parentDomRender();
+            this.wrapDomRender();
         };
 
         //功能(这个方法在其他模块的内部需要被重写)
@@ -1212,8 +1224,8 @@
 
         //内部模块的显示(显示隐藏和是否清除定时器无关)
         SuperType.prototype.moduleDomShow = function () {
-            if (this.parentDom) {
-                this.parentDom.appendChild(this.moduleDom);
+            if (this.wrapDom) {
+                this.wrapDom.appendChild(this.moduleDom);
             }
         };
 
@@ -1225,40 +1237,37 @@
         };
 
         //外部容器的创建
-        SuperType.prototype.parentDomCreate = function () {
-            this.parentDom = base.getOneDom({ dom: this.opt.parent });
+        SuperType.prototype.wrapDomCreate = function () {
+            this.wrapDom = base.getOneDom({ dom: this.opt.wrap });
         };
 
         //外部容器的渲染
-        SuperType.prototype.parentDomRender = function () {
+        SuperType.prototype.wrapDomRender = function () {
             var callback = this.opt.callback;
-            callback.parentDomCreateBefore(this);
-            this.parentDomCreate();
-            callback.parentDomCreateAfter(this);
-            if (!this.parentDom) {
-                return false;
-            }
-            if (this.parentDom) {
+            callback.wrapDomCreateBefore(this);
+            this.wrapDomCreate();
+            callback.wrapDomCreateAfter(this);
+            if (this.wrapDom) {
                 callback.moduleDomRenderBefore(this);
                 if (this.opt.config.moduleDomIsShow) {
-                    this.parentDom.appendChild(this.moduleDom);
+                    this.wrapDom.appendChild(this.moduleDom);
                 }
                 callback.moduleDomRenderAfter(this);
             }
         };
 
         //外部容器的移除
-        SuperType.prototype.parentDomRemove = function () {
+        SuperType.prototype.wrapDomRemove = function () {
             //先移除内部的模块
             this.moduleDomRemove();
             //再移除外部的容器
-            if (this.parentDom) {
-                this.parentDom.parentNode.removeChild(this.parentDom);
+            if (this.wrapDom) {
+                this.wrapDom.parentNode.removeChild(this.wrapDom);
             }
         };
 
         module.exports = SuperType;
-    }, { "../base/base.js": 1 }], 26: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 27: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1312,7 +1321,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 25 }], 27: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 26 }], 28: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/2.
          */
@@ -1427,4 +1436,4 @@
         };
 
         module.exports = ValidateInput;
-    }, { "../base/base.js": 1, "../function/validate": 18 }] }, {}, [2]);
+    }, { "../base/base.js": 1, "../function/validate": 19 }] }, {}, [3]);

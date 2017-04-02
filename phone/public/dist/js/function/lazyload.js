@@ -38,39 +38,46 @@
                 };
                 var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
                 aImg.forEach(function (v) {
-                    if (v.getAttribute('src') != v.dataset.src && v.tagName.toLowerCase() == 'img') {
-                        v.src = src;
-                        v.setAttribute('height', '100%');
-                        v.setAttribute('width', '100%');
-                        v.style.opacity = '0';
-                        v.style.transition = 'opacity 0.4s';
+                    if (v.tagName.toLowerCase() == 'img') {
+                        if (!v.getAttribute('src')) {
+                            v.src = src;
+                            v.setAttribute('height', '100%');
+                            v.setAttribute('width', '100%');
+                        }
                     }
+                    v.style.opacity = '0';
+                    v.style.transition = 'opacity 0.4s';
                 });
                 var iClientH = doc.documentElement.clientHeight;
                 var iScrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
                 var iResultTop = iClientH + iScrollTop + height;
                 aImg.forEach(function (v) {
+                    if (!v.offsetWidth) {
+                        return false;
+                    }
                     var iObjTop = offsetTop(v) - height;
                     var iObjBottom = offsetTop(v) + v.offsetHeight;
                     //height
                     if (iResultTop >= iObjTop && iObjTop >= iScrollTop || iObjBottom > iScrollTop && iObjBottom < iResultTop) {
                         if (v.tagName.toLowerCase() == 'img') {
-                            if (v.getAttribute('src') != v.dataset.src) {
-                                v.src = v.dataset.src;
-                                v.removeAttribute('height');
-                                v.removeAttribute('width');
-                            }
+                            //if (v.getAttribute('src') != v.dataset.src) {
+                            v.src = v.dataset.src;
+                            v.removeAttribute('height');
+                            v.removeAttribute('width');
+                            //}
                         } else {
                             v.style.backgroundImage = 'url(' + v.dataset.src + ')';
                             v.style.backgroundPosition = 'center center';
                             v.style.backgroundRepeat = 'no-repeat';
                         }
                         v.style.opacity = '1';
-                        v.classList.add('m-lazy-load-show');
+                        //v.classList.add('m-lazy-load-show');
+                        v.classList.remove('m-lazy-load');
                     }
                 });
             };
             fn();
+            lazyload.fn = fn;
             var timer = null;
             var fnScroll = function fnScroll() {
                 clearTimeout(timer);

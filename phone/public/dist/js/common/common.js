@@ -42,73 +42,18 @@
             extend: require('../function/extend.js')
         };
         module.exports = base;
-    }, { "../function/constructor-inherit.js": 3, "../function/cookie.js": 4, "../function/create-element.js": 5, "../function/extend.js": 6, "../function/fill-zero.js": 7, "../function/get-one-dom.js": 8, "../function/get-parent.js": 9, "../function/go-top.js": 10, "../function/html-to-dom.js": 11, "../function/is-pc.js": 12, "../function/json-to-array.js": 13, "../function/seconds-to-time.js": 14, "../function/str-limit.js": 15, "../function/time-count-down.js": 16, "../function/when-scroll-bottom.js": 17, "../function/whether-disable-scroll.js": 18 }], 2: [function (require, module, exports) {
-        //底层方法
-        var base = require('../base/base.js');
-
-        //超类型(子类型继承的对象)
-        var SuperType = require('../modules/m-super-type.js');
-
-        //子类型
-        var SubType = base.constructorInherit({
-            superType: SuperType,
-            parameter: {
-                //回调
-                callback: {
-                    moduleDomClick: function moduleDomClick() {}
-                },
-                //配置
-                config: {
-                    moduleDomIsHaveEvent: true //内部模块是否具备事件(默认具备)
-                },
-                //数据
-                data: {
-                    allStarNum: 5,
-                    nowStarNum: 4
-                }
-            }
-        });
-
-        SubType.prototype.moduleDomCreate = function () {
-            var html = "";
-            for (var i = 0; i < this.opt.data.allStarNum; i++) {
-                var className = '';
-                if (i < this.opt.data.nowStarNum) {
-                    className = 'm-star-item-active';
-                }
-                html += "<div data-index=\"" + i + "\" class=\"iconfont icon-xingping m-star-item " + className + "\"></div>";
-            }
-            this.moduleDom = base.createElement({
-                attribute: {
-                    className: "m-star",
-                    innerHTML: html
-                }
-            });
-            this.opt.star = this.moduleDom.children;
-        };
-
-        SubType.prototype.power = function () {
-            var self = this;
-            if (this.opt.config.moduleDomIsHaveEvent) {
-                this.moduleDom.addEventListener('click', function (ev) {
-                    var target = ev.target;
-                    if (target.classList.contains('m-star-item')) {
-                        var index = target.dataset.index;
-                        for (var j = 0; j < self.opt.data.allStarNum; j++) {
-                            if (j <= index) {
-                                self.opt.star[j].classList.add('m-star-item-active');
-                            } else {
-                                self.opt.star[j].classList.remove('m-star-item-active');
-                            }
-                        }
-                        self.opt.callback.moduleDomClick({ obj: this, index: index });
-                    }
-                });
-            }
-        };
-
-        module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 19 }], 3: [function (require, module, exports) {
+    }, { "../function/constructor-inherit.js": 3, "../function/cookie.js": 4, "../function/create-element.js": 5, "../function/extend.js": 6, "../function/fill-zero.js": 7, "../function/get-one-dom.js": 8, "../function/get-parent.js": 9, "../function/go-top.js": 10, "../function/html-to-dom.js": 11, "../function/is-pc.js": 12, "../function/json-to-array.js": 13, "../function/seconds-to-time.js": 15, "../function/str-limit.js": 16, "../function/time-count-down.js": 17, "../function/when-scroll-bottom.js": 18, "../function/whether-disable-scroll.js": 19 }], 2: [function (require, module, exports) {
+        //底部导航
+        (function () {
+            var Footer = require('../modules/m-footer.js');
+            new Footer();
+        })();
+        //延迟加载
+        (function () {
+            var lazyload = require('../function/lazyload.js');
+            lazyload();
+        })();
+    }, { "../function/lazyload.js": 14, "../modules/m-footer.js": 20 }], 3: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend.js');
 
@@ -511,6 +456,84 @@
         module.exports = jsonToArray;
     }, {}], 14: [function (require, module, exports) {
         /**
+         * Created by zhouhuafei on 16/12/17.
+         */
+        function lazyload(json) {
+            var opt = json || {};
+            var height = opt.height || 0; //多加载一部分高度的图片
+            var interval = opt.interval || 80; //延迟时间
+            var doc = document;
+            var fn = function fn() {
+                var aImg = [].slice.call(doc.getElementsByClassName('m-lazy-load')); //所有的img元素节点
+                var iLen = aImg.length;
+                if (!iLen) {
+                    return false;
+                }
+                //获取top
+                var offsetTop = function offsetTop(obj) {
+                    var top = 0;
+                    while (obj) {
+                        top += obj.offsetTop;
+                        obj = obj.offsetParent;
+                    }
+                    return top;
+                };
+                var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
+                aImg.forEach(function (v) {
+                    if (v.tagName.toLowerCase() == 'img') {
+                        if (!v.getAttribute('src')) {
+                            v.src = src;
+                            v.setAttribute('height', '100%');
+                            v.setAttribute('width', '100%');
+                        }
+                    }
+                    v.style.opacity = '0';
+                    v.style.transition = 'opacity 0.4s';
+                });
+                var iClientH = doc.documentElement.clientHeight;
+                var iScrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
+                var iResultTop = iClientH + iScrollTop + height;
+                aImg.forEach(function (v) {
+                    if (!v.offsetWidth) {
+                        return false;
+                    }
+                    var iObjTop = offsetTop(v) - height;
+                    var iObjBottom = offsetTop(v) + v.offsetHeight;
+                    //height
+                    if (iResultTop >= iObjTop && iObjTop >= iScrollTop || iObjBottom > iScrollTop && iObjBottom < iResultTop) {
+                        if (v.tagName.toLowerCase() == 'img') {
+                            //if (v.getAttribute('src') != v.dataset.src) {
+                            v.src = v.dataset.src;
+                            v.removeAttribute('height');
+                            v.removeAttribute('width');
+                            //}
+                        } else {
+                            v.style.backgroundImage = 'url(' + v.dataset.src + ')';
+                            v.style.backgroundPosition = 'center center';
+                            v.style.backgroundRepeat = 'no-repeat';
+                        }
+                        v.style.opacity = '1';
+                        //v.classList.add('m-lazy-load-show');
+                        v.classList.remove('m-lazy-load');
+                    }
+                });
+            };
+            fn();
+            lazyload.fn = fn;
+            var timer = null;
+            var fnScroll = function fnScroll() {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    fn();
+                }, interval);
+            };
+            window.addEventListener('scroll', function () {
+                fnScroll();
+            });
+        }
+        module.exports = lazyload;
+    }, {}], 15: [function (require, module, exports) {
+        /**
          * Created by zhouhuafei on 17/1/1.
          */
         //秒转时间
@@ -528,7 +551,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 15: [function (require, module, exports) {
+    }, {}], 16: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -547,7 +570,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 16: [function (require, module, exports) {
+    }, {}], 17: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -594,7 +617,7 @@
             }
         }
         module.exports = timeCountDown;
-    }, {}], 17: [function (require, module, exports) {
+    }, {}], 18: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -634,7 +657,7 @@
             });
         }
         module.exports = whenScrollBottom;
-    }, {}], 18: [function (require, module, exports) {
+    }, {}], 19: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -668,7 +691,65 @@
             };
         }
         module.exports = whetherDisableScroll;
-    }, {}], 19: [function (require, module, exports) {
+    }, {}], 20: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base.js');
+
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type.js');
+
+        //子类型
+        var SubType = base.constructorInherit({
+            superType: SuperType,
+            parameter: {
+                //回调
+                callback: {
+                    moduleDomClick: function moduleDomClick() {}
+                },
+                //配置
+                config: {
+                    moduleDomType: 0 //两种类型 0(微信),1(自定义)
+                }
+            }
+        });
+
+        SubType.prototype.moduleDomCreate = function () {
+            this.moduleDomClass = "m-footer";
+            var moduleDomHtml = "\n        " + this.moduleDomType0() + "\n        " + this.moduleDomType1() + "\n        " + this.moduleDomType2() + "\n    ";
+            this.moduleDom = base.createElement({
+                attribute: {
+                    className: this.moduleDomClass,
+                    innerHTML: moduleDomHtml
+                }
+            });
+        };
+
+        SubType.prototype.moduleDomType0 = function () {
+            if (this.opt.config.moduleDomType == '0') {
+                this.moduleDomClass = "m-footer m-footer-type0";
+                return "\n            <div class=\"m-footer-wrap\">\n                <div class=\"m-footer-header\">\n                    <div class=\"m-footer-header-icon icons icons-store\"></div>\n                </div>\n                <div class=\"m-footer-body\">\n                    <div class=\"m-footer-body-icon icons icons-jifen\"></div>\n                    <div class=\"m-footer-body-txt\">\u5168\u90E8\u5546\u54C1</div>\n                    <div class=\"m-footer-body-child\">\n                        <div class=\"m-footer-body-child-item\"><a href=\"\">child</a></div>\n                        <div class=\"m-footer-body-child-item\"><a href=\"\">child</a></div>\n                    </div>\n                </div>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-txt\">\u4E0A\u65B0</div>      \n                </a>\n                <div class=\"m-footer-body\">\n                    <div class=\"m-footer-body-icon icons icons-jifen\"></div>\n                    <div class=\"m-footer-body-txt\">\u5E97\u94FA\u6D3B\u52A8</div>\n                    <div class=\"m-footer-body-child\">\n                        <div class=\"m-footer-body-child-item\"><a href=\"\">child</a></div>\n                        <div class=\"m-footer-body-child-item\"><a href=\"\">child</a></div>\n                    </div>\n                </div>\n            </div>\n        ";
+            }
+            return "";
+        };
+
+        SubType.prototype.moduleDomType1 = function () {
+            if (this.opt.config.moduleDomType == '1') {
+                this.moduleDomClass = "m-footer m-footer-type1";
+                return "\n            <div class=\"m-footer-wrap\">\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon icons icons-santiaogang\"></div>\n                    <div class=\"m-footer-body-txt\">\u9996\u9875</div>\n                </a>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon icons icons-shoucang\"></div>\n                    <div class=\"m-footer-body-txt\">\u6211\u8981\u5F00\u5E97</div>\n                </a>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon icons icons-shouji\"></div>\n                    <div class=\"m-footer-body-txt\">\u8D2D\u7269\u8F66</div>\n                </a>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon icons icons-cart\"></div>\n                    <div class=\"m-footer-body-txt\">\u5BA2\u670D</div>\n                </a>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon icons icons-jifen\"></div>\n                    <div class=\"m-footer-body-txt\">\u6211\u7684</div>\n                </a>\n            </div>\n        ";
+            }
+            return "";
+        };
+
+        SubType.prototype.moduleDomType2 = function () {
+            if (this.opt.config.moduleDomType == '2') {
+                this.moduleDomClass = "m-footer m-footer-type2";
+                return "\n            <div class=\"m-footer-body\">\n                \u5F85\u7EED...\n            </div>\n            <div class=\"m-footer-body\">\n                \u5F85\u7EED...\n            </div>\n            <div class=\"m-footer-body\">\n                \u5F85\u7EED...\n            </div>\n        ";
+            }
+            return "";
+        };
+
+        module.exports = SubType;
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 21 }], 21: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
