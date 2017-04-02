@@ -15,7 +15,7 @@ var SubType = base.constructorInherit({
         },
         //配置
         config: {
-            moduleDomType: 0//两种类型 0(微信),1(自定义)
+            moduleDomType: 1//两种类型 0(微信),1(自定义)
         }
     }
 });
@@ -25,7 +25,6 @@ SubType.prototype.moduleDomCreate = function () {
     var moduleDomHtml=`
         ${this.moduleDomType0()}
         ${this.moduleDomType1()}
-        ${this.moduleDomType2()}
     `;
     this.moduleDom = base.createElement({
         attribute: {
@@ -41,10 +40,10 @@ SubType.prototype.moduleDomType0=function(){
         return `
             <div class="m-footer-wrap">
                 <div class="m-footer-header">
-                    <div class="m-footer-header-icon icons icons-store"></div>
+                    <div class="m-footer-header-icon iconfont icon-shouye"></div>
                 </div>
                 <div class="m-footer-body">
-                    <div class="m-footer-body-icon icons icons-jifen"></div>
+                    <div class="m-footer-body-icon iconfont icon-caidan"></div>
                     <div class="m-footer-body-txt">全部商品</div>
                     <div class="m-footer-body-child">
                         <div class="m-footer-body-child-item"><a href="">child</a></div>
@@ -55,7 +54,7 @@ SubType.prototype.moduleDomType0=function(){
                     <div class="m-footer-body-txt">上新</div>      
                 </a>
                 <div class="m-footer-body">
-                    <div class="m-footer-body-icon icons icons-jifen"></div>
+                    <div class="m-footer-body-icon iconfont icon-caidan"></div>
                     <div class="m-footer-body-txt">店铺活动</div>
                     <div class="m-footer-body-child">
                         <div class="m-footer-body-child-item"><a href="">child</a></div>
@@ -74,47 +73,29 @@ SubType.prototype.moduleDomType1=function(){
         return `
             <div class="m-footer-wrap">
                 <a class="m-footer-body" href="">
-                    <div class="m-footer-body-icon icons icons-santiaogang"></div>
+                    <div class="m-footer-body-icon iconfont icon-shouye"></div>
                     <div class="m-footer-body-txt">首页</div>
                 </a>
                 <a class="m-footer-body" href="">
-                    <div class="m-footer-body-icon icons icons-shoucang"></div>
+                    <div class="m-footer-body-icon iconfont icon-fenxiao"></div>
                     <div class="m-footer-body-txt">我要开店</div>
                 </a>
                 <a class="m-footer-body" href="">
-                    <div class="m-footer-body-icon icons icons-shouji"></div>
+                    <div class="m-footer-body-icon iconfont icon-gouwuche"></div>
                     <div class="m-footer-body-txt">购物车</div>
                 </a>
                 <a class="m-footer-body" href="">
-                    <div class="m-footer-body-icon icons icons-cart"></div>
+                    <div class="m-footer-body-icon iconfont icon-kefu"></div>
                     <div class="m-footer-body-txt">客服</div>
                 </a>
                 <a class="m-footer-body" href="">
-                    <div class="m-footer-body-icon icons icons-jifen"></div>
+                    <div class="m-footer-body-icon iconfont icon-wode"></div>
                     <div class="m-footer-body-txt">我的</div>
                 </a>
             </div>
         `;
     }
-    return ``;    
-};
-
-SubType.prototype.moduleDomType2=function(){
-    if(this.opt.config.moduleDomType=='2'){
-        this.moduleDomClass=`m-footer m-footer-type2`;   
-        return `
-            <div class="m-footer-body">
-                待续...
-            </div>
-            <div class="m-footer-body">
-                待续...
-            </div>
-            <div class="m-footer-body">
-                待续...
-            </div>
-        `;
-    }
-    return ``;    
+    return ``;
 };
 
 module.exports = SubType;
