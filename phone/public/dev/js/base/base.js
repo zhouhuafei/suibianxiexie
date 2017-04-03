@@ -3,6 +3,7 @@
  */
 //一些小方法
 var base = {
+    offset:require('../function/offset.js'),
     constructorInherit: require('../function/constructor-inherit.js'),
     isIPhone:function(){return window.navigator.appVersion.match(/iphone/gi);},
     isAndroid:function(){return window.navigator.appVersion.match(/android/gi);},

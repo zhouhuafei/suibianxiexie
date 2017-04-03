@@ -18,6 +18,7 @@
          */
         //一些小方法
         var base = {
+            offset: require('../function/offset.js'),
             constructorInherit: require('../function/constructor-inherit.js'),
             isIPhone: function isIPhone() {
                 return window.navigator.appVersion.match(/iphone/gi);
@@ -42,7 +43,7 @@
             extend: require('../function/extend.js')
         };
         module.exports = base;
-    }, { "../function/constructor-inherit.js": 3, "../function/cookie.js": 4, "../function/create-element.js": 5, "../function/extend.js": 6, "../function/fill-zero.js": 7, "../function/get-one-dom.js": 8, "../function/get-parent.js": 9, "../function/go-top.js": 10, "../function/html-to-dom.js": 11, "../function/is-pc.js": 12, "../function/json-to-array.js": 13, "../function/seconds-to-time.js": 15, "../function/str-limit.js": 16, "../function/time-count-down.js": 17, "../function/when-scroll-bottom.js": 18, "../function/whether-disable-scroll.js": 19 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit.js": 3, "../function/cookie.js": 4, "../function/create-element.js": 5, "../function/extend.js": 6, "../function/fill-zero.js": 7, "../function/get-one-dom.js": 8, "../function/get-parent.js": 9, "../function/go-top.js": 10, "../function/html-to-dom.js": 11, "../function/is-pc.js": 12, "../function/json-to-array.js": 13, "../function/offset.js": 14, "../function/seconds-to-time.js": 15, "../function/str-limit.js": 16, "../function/time-count-down.js": 17, "../function/when-scroll-bottom.js": 18, "../function/whether-disable-scroll.js": 19 }], 2: [function (require, module, exports) {
         //延迟加载
         (function () {
             var LazyLoad = require('../modules/m-lazy-load.js');
@@ -673,10 +674,12 @@
 
         module.exports = SubType;
     }, { "../base/base.js": 1, "../modules/m-super-type.js": 22 }], 21: [function (require, module, exports) {
-        var extend = require('../function/extend.js');
-        var offset = require('../function/offset.js');
+        //底层方法
+        var base = require('../base/base.js');
+
+        //延迟加载
         function LazyLoad(json) {
-            this.opt = extend({
+            this.opt = base.extend({
                 default: {
                     selector: '.m-lazy-load',
                     moreHeight: 0, //多加载一部分高度的图片
@@ -710,7 +713,7 @@
             aDom.forEach(function (v) {
                 //排除那些被none掉的元素
                 if (v.offsetWidth) {
-                    var elementTop = offset({ element: v }).top;
+                    var elementTop = base.offset({ element: v }).top;
                     var elementBottom = elementTop + v.offsetHeight;
                     //出现在可视区才进行处理
                     if (elementBottom >= minTop && elementTop <= maxTop) {
@@ -742,7 +745,7 @@
             });
         };
         module.exports = LazyLoad;
-    }, { "../function/extend.js": 6, "../function/offset.js": 14 }], 22: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 22: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 

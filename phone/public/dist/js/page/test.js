@@ -18,6 +18,7 @@
          */
         //一些小方法
         var base = {
+            offset: require('../function/offset.js'),
             constructorInherit: require('../function/constructor-inherit.js'),
             isIPhone: function isIPhone() {
                 return window.navigator.appVersion.match(/iphone/gi);
@@ -42,7 +43,7 @@
             extend: require('../function/extend.js')
         };
         module.exports = base;
-    }, { "../function/constructor-inherit.js": 4, "../function/cookie.js": 5, "../function/create-element.js": 6, "../function/extend.js": 7, "../function/fill-zero.js": 8, "../function/get-one-dom.js": 9, "../function/get-parent.js": 10, "../function/go-top.js": 11, "../function/html-to-dom.js": 12, "../function/is-pc.js": 13, "../function/json-to-array.js": 14, "../function/seconds-to-time.js": 16, "../function/str-limit.js": 17, "../function/time-count-down.js": 18, "../function/when-scroll-bottom.js": 20, "../function/whether-disable-scroll.js": 21 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit.js": 4, "../function/cookie.js": 5, "../function/create-element.js": 6, "../function/extend.js": 7, "../function/fill-zero.js": 8, "../function/get-one-dom.js": 9, "../function/get-parent.js": 10, "../function/go-top.js": 11, "../function/html-to-dom.js": 12, "../function/is-pc.js": 13, "../function/json-to-array.js": 14, "../function/offset.js": 15, "../function/seconds-to-time.js": 16, "../function/str-limit.js": 17, "../function/time-count-down.js": 18, "../function/when-scroll-bottom.js": 20, "../function/whether-disable-scroll.js": 21 }], 2: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 16/12/4.
          */
@@ -867,10 +868,12 @@
 
         module.exports = SubType;
     }, { "../base/base.js": 1, "../modules/m-super-type.js": 27 }], 23: [function (require, module, exports) {
-        var extend = require('../function/extend.js');
-        var offset = require('../function/offset.js');
+        //底层方法
+        var base = require('../base/base.js');
+
+        //延迟加载
         function LazyLoad(json) {
-            this.opt = extend({
+            this.opt = base.extend({
                 default: {
                     selector: '.m-lazy-load',
                     moreHeight: 0, //多加载一部分高度的图片
@@ -904,7 +907,7 @@
             aDom.forEach(function (v) {
                 //排除那些被none掉的元素
                 if (v.offsetWidth) {
-                    var elementTop = offset({ element: v }).top;
+                    var elementTop = base.offset({ element: v }).top;
                     var elementBottom = elementTop + v.offsetHeight;
                     //出现在可视区才进行处理
                     if (elementBottom >= minTop && elementTop <= maxTop) {
@@ -936,7 +939,7 @@
             });
         };
         module.exports = LazyLoad;
-    }, { "../function/extend.js": 7, "../function/offset.js": 15 }], 24: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 24: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 

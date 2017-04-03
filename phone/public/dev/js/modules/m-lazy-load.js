@@ -1,7 +1,9 @@
-var extend = require('../function/extend.js');
-var offset = require('../function/offset.js');
+//底层方法
+var base = require('../base/base.js');
+
+//延迟加载
 function LazyLoad(json) {
-    this.opt = extend({
+    this.opt = base.extend({
         default: {
             selector: '.m-lazy-load',
             moreHeight: 0,//多加载一部分高度的图片
@@ -35,7 +37,7 @@ LazyLoad.prototype.render = function () {
     aDom.forEach(function (v) {
         //排除那些被none掉的元素
         if (v.offsetWidth) {
-            var elementTop = offset({element: v}).top;
+            var elementTop = base.offset({element: v}).top;
             var elementBottom = elementTop + v.offsetHeight;
             //出现在可视区才进行处理
             if (elementBottom >= minTop && elementTop <= maxTop) {

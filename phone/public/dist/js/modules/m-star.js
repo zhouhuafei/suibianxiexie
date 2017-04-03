@@ -18,6 +18,7 @@
          */
         //一些小方法
         var base = {
+            offset: require('../function/offset.js'),
             constructorInherit: require('../function/constructor-inherit.js'),
             isIPhone: function isIPhone() {
                 return window.navigator.appVersion.match(/iphone/gi);
@@ -42,7 +43,7 @@
             extend: require('../function/extend.js')
         };
         module.exports = base;
-    }, { "../function/constructor-inherit.js": 3, "../function/cookie.js": 4, "../function/create-element.js": 5, "../function/extend.js": 6, "../function/fill-zero.js": 7, "../function/get-one-dom.js": 8, "../function/get-parent.js": 9, "../function/go-top.js": 10, "../function/html-to-dom.js": 11, "../function/is-pc.js": 12, "../function/json-to-array.js": 13, "../function/seconds-to-time.js": 14, "../function/str-limit.js": 15, "../function/time-count-down.js": 16, "../function/when-scroll-bottom.js": 17, "../function/whether-disable-scroll.js": 18 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit.js": 3, "../function/cookie.js": 4, "../function/create-element.js": 5, "../function/extend.js": 6, "../function/fill-zero.js": 7, "../function/get-one-dom.js": 8, "../function/get-parent.js": 9, "../function/go-top.js": 10, "../function/html-to-dom.js": 11, "../function/is-pc.js": 12, "../function/json-to-array.js": 13, "../function/offset.js": 14, "../function/seconds-to-time.js": 15, "../function/str-limit.js": 16, "../function/time-count-down.js": 17, "../function/when-scroll-bottom.js": 18, "../function/whether-disable-scroll.js": 19 }], 2: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -108,7 +109,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 19 }], 3: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 20 }], 3: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend.js');
 
@@ -510,6 +511,31 @@
         }
         module.exports = jsonToArray;
     }, {}], 14: [function (require, module, exports) {
+        var extend = require('../function/extend.js');
+        var getOneDom = require('../function/get-one-dom.js');
+
+        function offset(json) {
+            var opt = extend({
+                default: {
+                    element: null
+                },
+                inherit: json
+            });
+            var top = 0;
+            var left = 0;
+            var obj = getOneDom({ element: opt.element });
+            while (obj) {
+                top += obj.offsetTop;
+                left += obj.offsetLeft;
+                obj = obj.offsetParent;
+            }
+            return {
+                top: top,
+                left: left
+            };
+        }
+        module.exports = offset;
+    }, { "../function/extend.js": 6, "../function/get-one-dom.js": 8 }], 15: [function (require, module, exports) {
         //秒转时间
         function secondsToTime(json) {
             var opt = json || {};
@@ -525,7 +551,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 15: [function (require, module, exports) {
+    }, {}], 16: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -544,7 +570,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 16: [function (require, module, exports) {
+    }, {}], 17: [function (require, module, exports) {
         var secondsToTime = require('../function/seconds-to-time.js');
 
         //倒计时
@@ -578,7 +604,7 @@
             }
         }
         module.exports = timeCountDown;
-    }, { "../function/seconds-to-time.js": 14 }], 17: [function (require, module, exports) {
+    }, { "../function/seconds-to-time.js": 15 }], 18: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -618,7 +644,7 @@
             });
         }
         module.exports = whenScrollBottom;
-    }, {}], 18: [function (require, module, exports) {
+    }, {}], 19: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -652,7 +678,7 @@
             };
         }
         module.exports = whetherDisableScroll;
-    }, {}], 19: [function (require, module, exports) {
+    }, {}], 20: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 

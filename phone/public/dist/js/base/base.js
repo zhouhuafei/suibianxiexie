@@ -18,6 +18,7 @@
          */
         //一些小方法
         var base = {
+            offset: require('../function/offset.js'),
             constructorInherit: require('../function/constructor-inherit.js'),
             isIPhone: function isIPhone() {
                 return window.navigator.appVersion.match(/iphone/gi);
@@ -42,7 +43,7 @@
             extend: require('../function/extend.js')
         };
         module.exports = base;
-    }, { "../function/constructor-inherit.js": 2, "../function/cookie.js": 3, "../function/create-element.js": 4, "../function/extend.js": 5, "../function/fill-zero.js": 6, "../function/get-one-dom.js": 7, "../function/get-parent.js": 8, "../function/go-top.js": 9, "../function/html-to-dom.js": 10, "../function/is-pc.js": 11, "../function/json-to-array.js": 12, "../function/seconds-to-time.js": 13, "../function/str-limit.js": 14, "../function/time-count-down.js": 15, "../function/when-scroll-bottom.js": 16, "../function/whether-disable-scroll.js": 17 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit.js": 2, "../function/cookie.js": 3, "../function/create-element.js": 4, "../function/extend.js": 5, "../function/fill-zero.js": 6, "../function/get-one-dom.js": 7, "../function/get-parent.js": 8, "../function/go-top.js": 9, "../function/html-to-dom.js": 10, "../function/is-pc.js": 11, "../function/json-to-array.js": 12, "../function/offset.js": 13, "../function/seconds-to-time.js": 14, "../function/str-limit.js": 15, "../function/time-count-down.js": 16, "../function/when-scroll-bottom.js": 17, "../function/whether-disable-scroll.js": 18 }], 2: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend.js');
 
@@ -444,6 +445,31 @@
         }
         module.exports = jsonToArray;
     }, {}], 13: [function (require, module, exports) {
+        var extend = require('../function/extend.js');
+        var getOneDom = require('../function/get-one-dom.js');
+
+        function offset(json) {
+            var opt = extend({
+                default: {
+                    element: null
+                },
+                inherit: json
+            });
+            var top = 0;
+            var left = 0;
+            var obj = getOneDom({ element: opt.element });
+            while (obj) {
+                top += obj.offsetTop;
+                left += obj.offsetLeft;
+                obj = obj.offsetParent;
+            }
+            return {
+                top: top,
+                left: left
+            };
+        }
+        module.exports = offset;
+    }, { "../function/extend.js": 5, "../function/get-one-dom.js": 7 }], 14: [function (require, module, exports) {
         //秒转时间
         function secondsToTime(json) {
             var opt = json || {};
@@ -459,7 +485,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 14: [function (require, module, exports) {
+    }, {}], 15: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -478,7 +504,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 15: [function (require, module, exports) {
+    }, {}], 16: [function (require, module, exports) {
         var secondsToTime = require('../function/seconds-to-time.js');
 
         //倒计时
@@ -512,7 +538,7 @@
             }
         }
         module.exports = timeCountDown;
-    }, { "../function/seconds-to-time.js": 13 }], 16: [function (require, module, exports) {
+    }, { "../function/seconds-to-time.js": 14 }], 17: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -552,7 +578,7 @@
             });
         }
         module.exports = whenScrollBottom;
-    }, {}], 17: [function (require, module, exports) {
+    }, {}], 18: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
