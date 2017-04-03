@@ -28,7 +28,7 @@
   width: 7.5rem;
   height: 1.25rem;
   line-height: 1.25rem;
-  background: #fff; }
+  background: #ffffff; }
   .g-input .g-input-label {
     display: block;
     width: inherit;
@@ -41,6 +41,7 @@
     font-size: inherit;
     width: inherit;
     height: inherit;
+    background: inherit;
     line-height: inherit;
     box-sizing: border-box;
     padding: 0 0.3125rem;
@@ -50,7 +51,7 @@
   width: 7.5rem;
   height: 1.25rem;
   line-height: 1.25rem;
-  background: #fff; }
+  background: #ffffff; }
   .g-select .g-select-label {
     display: block;
     width: inherit;
@@ -90,7 +91,7 @@
   width: 7.5rem;
   height: 4.375rem;
   line-height: 0.625rem;
-  background: #fff; }
+  background: #ffffff; }
   .g-textarea .g-textarea-label {
     display: block;
     width: inherit;
@@ -104,6 +105,7 @@
     height: inherit;
     font-family: inherit;
     line-height: inherit;
+    background: inherit;
     box-sizing: border-box;
     text-align: justify;
     resize: none;
@@ -111,10 +113,11 @@
     border: 0.03125rem solid #e6e7ed; }
 
 .g-radio {
-  width: 0.65625rem;
+  width: 0.6375rem;
   text-align: center;
-  height: 0.65625rem;
-  line-height: 0.65625rem; }
+  height: 0.6375rem;
+  line-height: 0.6375rem;
+  background: #ffffff; }
   .g-radio .g-radio-label {
     display: block;
     width: inherit;
@@ -134,19 +137,26 @@
     outline: none;
     width: inherit;
     height: inherit;
+    background: inherit;
     -webkit-appearance: none;
     border: 0.03125rem solid #e6e7ed;
     border-radius: 50%; }
     .g-radio .g-radio-radio:checked {
       border-color: #0089ff; }
       .g-radio .g-radio-radio:checked + .g-radio-icon {
-        display: block; }
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+            align-items: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
 
 .g-checkbox {
   width: 0.65625rem;
   text-align: center;
   height: 0.65625rem;
-  line-height: 0.65625rem; }
+  line-height: 0.65625rem;
+  background: #ffffff; }
   .g-checkbox .g-checkbox-label {
     display: block;
     width: inherit;
@@ -166,10 +176,16 @@
     outline: none;
     width: inherit;
     height: inherit;
+    background: inherit;
     -webkit-appearance: none;
     border: 0.03125rem solid #e6e7ed;
     border-radius: 0.125rem; }
     .g-checkbox .g-checkbox-checkbox:checked {
       border-color: #0089ff; }
       .g-checkbox .g-checkbox-checkbox:checked + .g-checkbox-icon {
-        display: block; }
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+            align-items: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
