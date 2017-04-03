@@ -1,7 +1,8 @@
-//全局的配置清零
+//全局的清零配置
 @import "../zero/zero.scss";
 
-//全局的配置样式
+//全局的样式配置
 @import "../global/g-global.scss";
 
-//全局的配置模块
+//全局的公用配置
+@import "../common/common.scss";

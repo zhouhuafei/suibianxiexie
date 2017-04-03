@@ -5,21 +5,21 @@ var extend=require('../function/extend.js');
 function getOneDom(json) {
     var opt=extend({
         default:{
-            dom:null
+            element:null
         },
         inherit:json
     });
-    var resultDom = null;
-    if (opt.dom) {
+    var dom = null;
+    if (opt.element) {
         //如果是字符串
-        if (Object.prototype.toString.call(opt.dom).slice(8, -1).toLowerCase() == 'string') {
-            resultDom = document.querySelector(opt.dom);
+        if (Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'string') {
+            dom = document.querySelector(opt.element);
         }
-        //如果是dom节点
-        if (opt.dom.nodeType && opt.dom.nodeType == 1) {
-            resultDom = opt.dom;
+        //如果是dom(元素)节点
+        if (opt.element.nodeType && opt.element.nodeType == 1) {
+            dom = opt.element;
         }
     }
-    return resultDom;
+    return dom;
 }
 module.exports = getOneDom;

@@ -13,32 +13,31 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        //对象的扩展方法
         var extend = require('../function/extend.js');
+        var getOneDom = require('../function/get-one-dom.js');
 
-        //获取一个原生的dom节点,当传入的是dom,或者是选择器的时候
-        function getOneDom(json) {
+        function offset(json) {
             var opt = extend({
                 default: {
                     element: null
                 },
                 inherit: json
             });
-            var dom = null;
-            if (opt.element) {
-                //如果是字符串
-                if (Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'string') {
-                    dom = document.querySelector(opt.element);
-                }
-                //如果是dom(元素)节点
-                if (opt.element.nodeType && opt.element.nodeType == 1) {
-                    dom = opt.element;
-                }
+            var top = 0;
+            var left = 0;
+            var obj = getOneDom({ element: opt.element });
+            while (obj) {
+                top += obj.offsetTop;
+                left += obj.offsetLeft;
+                obj = obj.offsetParent;
             }
-            return dom;
+            return {
+                top: top,
+                left: left
+            };
         }
-        module.exports = getOneDom;
-    }, { "../function/extend.js": 2 }], 2: [function (require, module, exports) {
+        module.exports = offset;
+    }, { "../function/extend.js": 2, "../function/get-one-dom.js": 3 }], 2: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opt = json || {};
@@ -127,4 +126,30 @@
         console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
         */
         module.exports = extend;
-    }, {}] }, {}, [1]);
+    }, {}], 3: [function (require, module, exports) {
+        //对象的扩展方法
+        var extend = require('../function/extend.js');
+
+        //获取一个原生的dom节点,当传入的是dom,或者是选择器的时候
+        function getOneDom(json) {
+            var opt = extend({
+                default: {
+                    element: null
+                },
+                inherit: json
+            });
+            var dom = null;
+            if (opt.element) {
+                //如果是字符串
+                if (Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'string') {
+                    dom = document.querySelector(opt.element);
+                }
+                //如果是dom(元素)节点
+                if (opt.element.nodeType && opt.element.nodeType == 1) {
+                    dom = opt.element;
+                }
+            }
+            return dom;
+        }
+        module.exports = getOneDom;
+    }, { "../function/extend.js": 2 }] }, {}, [1]);

@@ -43,17 +43,17 @@
         };
         module.exports = base;
     }, { "../function/constructor-inherit.js": 3, "../function/cookie.js": 4, "../function/create-element.js": 5, "../function/extend.js": 6, "../function/fill-zero.js": 7, "../function/get-one-dom.js": 8, "../function/get-parent.js": 9, "../function/go-top.js": 10, "../function/html-to-dom.js": 11, "../function/is-pc.js": 12, "../function/json-to-array.js": 13, "../function/seconds-to-time.js": 15, "../function/str-limit.js": 16, "../function/time-count-down.js": 17, "../function/when-scroll-bottom.js": 18, "../function/whether-disable-scroll.js": 19 }], 2: [function (require, module, exports) {
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load.js');
+            new LazyLoad();
+        })();
         //底部导航
         (function () {
             var Footer = require('../modules/m-footer.js');
             new Footer();
         })();
-        //延迟加载
-        (function () {
-            var lazyload = require('../function/lazyload.js');
-            lazyload();
-        })();
-    }, { "../function/lazyload.js": 14, "../modules/m-footer.js": 20 }], 3: [function (require, module, exports) {
+    }, { "../modules/m-footer.js": 20, "../modules/m-lazy-load.js": 21 }], 3: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend.js');
 
@@ -280,22 +280,22 @@
         function getOneDom(json) {
             var opt = extend({
                 default: {
-                    dom: null
+                    element: null
                 },
                 inherit: json
             });
-            var resultDom = null;
-            if (opt.dom) {
+            var dom = null;
+            if (opt.element) {
                 //如果是字符串
-                if (Object.prototype.toString.call(opt.dom).slice(8, -1).toLowerCase() == 'string') {
-                    resultDom = document.querySelector(opt.dom);
+                if (Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'string') {
+                    dom = document.querySelector(opt.element);
                 }
-                //如果是dom节点
-                if (opt.dom.nodeType && opt.dom.nodeType == 1) {
-                    resultDom = opt.dom;
+                //如果是dom(元素)节点
+                if (opt.element.nodeType && opt.element.nodeType == 1) {
+                    dom = opt.element;
                 }
             }
-            return resultDom;
+            return dom;
         }
         module.exports = getOneDom;
     }, { "../function/extend.js": 6 }], 9: [function (require, module, exports) {
@@ -455,87 +455,31 @@
         }
         module.exports = jsonToArray;
     }, {}], 14: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 16/12/17.
-         */
-        function lazyload(json) {
-            var opt = json || {};
-            var height = opt.height || 0; //多加载一部分高度的图片
-            var interval = opt.interval || 80; //延迟时间
-            var doc = document;
-            var fn = function fn() {
-                var aImg = [].slice.call(doc.getElementsByClassName('m-lazy-load')); //所有的img元素节点
-                var iLen = aImg.length;
-                if (!iLen) {
-                    return false;
-                }
-                //获取top
-                var offsetTop = function offsetTop(obj) {
-                    var top = 0;
-                    while (obj) {
-                        top += obj.offsetTop;
-                        obj = obj.offsetParent;
-                    }
-                    return top;
-                };
-                var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
-                aImg.forEach(function (v) {
-                    if (v.tagName.toLowerCase() == 'img') {
-                        if (!v.getAttribute('src')) {
-                            v.src = src;
-                            v.setAttribute('height', '100%');
-                            v.setAttribute('width', '100%');
-                        }
-                    }
-                    v.style.opacity = '0';
-                    v.style.transition = 'opacity 0.4s';
-                });
-                var iClientH = doc.documentElement.clientHeight;
-                var iScrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
-                var iResultTop = iClientH + iScrollTop + height;
-                aImg.forEach(function (v) {
-                    if (!v.offsetWidth) {
-                        return false;
-                    }
-                    var iObjTop = offsetTop(v) - height;
-                    var iObjBottom = offsetTop(v) + v.offsetHeight;
-                    //height
-                    if (iResultTop >= iObjTop && iObjTop >= iScrollTop || iObjBottom > iScrollTop && iObjBottom < iResultTop) {
-                        if (v.tagName.toLowerCase() == 'img') {
-                            //if (v.getAttribute('src') != v.dataset.src) {
-                            v.src = v.dataset.src;
-                            v.removeAttribute('height');
-                            v.removeAttribute('width');
-                            //}
-                        } else {
-                            v.style.backgroundImage = 'url(' + v.dataset.src + ')';
-                            v.style.backgroundPosition = 'center center';
-                            v.style.backgroundRepeat = 'no-repeat';
-                        }
-                        v.style.opacity = '1';
-                        //v.classList.add('m-lazy-load-show');
-                        v.classList.remove('m-lazy-load');
-                    }
-                });
-            };
-            fn();
-            lazyload.fn = fn;
-            var timer = null;
-            var fnScroll = function fnScroll() {
-                clearTimeout(timer);
-                timer = setTimeout(function () {
-                    fn();
-                }, interval);
-            };
-            window.addEventListener('scroll', function () {
-                fnScroll();
+        var extend = require('../function/extend.js');
+        var getOneDom = require('../function/get-one-dom.js');
+
+        function offset(json) {
+            var opt = extend({
+                default: {
+                    element: null
+                },
+                inherit: json
             });
+            var top = 0;
+            var left = 0;
+            var obj = getOneDom({ element: opt.element });
+            while (obj) {
+                top += obj.offsetTop;
+                left += obj.offsetLeft;
+                obj = obj.offsetParent;
+            }
+            return {
+                top: top,
+                left: left
+            };
         }
-        module.exports = lazyload;
-    }, {}], 15: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
+        module.exports = offset;
+    }, { "../function/extend.js": 6, "../function/get-one-dom.js": 8 }], 15: [function (require, module, exports) {
         //秒转时间
         function secondsToTime(json) {
             var opt = json || {};
@@ -571,9 +515,8 @@
         }
         module.exports = strLimit;
     }, {}], 17: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
+        var secondsToTime = require('../function/seconds-to-time.js');
+
         //倒计时
         function timeCountDown(json) {
             var opt = json || {};
@@ -583,41 +526,29 @@
             //结束的回调
             var overCallback = opt.overCallback;
             //时间转换
-            var timeTransform = function timeTransform(opt) {
-                var seconds = opt.seconds;
-                //天
-                var d = Math.floor(seconds / 3600 / 24);
-                //时
-                var h = Math.floor(seconds / 3600 % 24);
-                //分
-                var m = Math.floor(seconds % 3600 / 60);
-                //秒
-                var s = Math.floor(seconds % 60);
-                return { d: d, h: h, m: m, s: s, a: seconds };
-            };
             if (seconds <= 0) {
                 //时间小于等于0秒
                 seconds = 0;
-                runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
+                runCallback && runCallback(secondsToTime({ seconds: seconds })); //运行时的回调
                 overCallback && overCallback(); //结束时的回调
             } else {
                 //时间大于0秒
-                runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
+                runCallback && runCallback(secondsToTime({ seconds: seconds })); //运行时的回调
                 //倒计时走你
                 var timer = setInterval(function () {
                     seconds--;
-                    runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
+                    runCallback && runCallback(secondsToTime({ seconds: seconds })); //运行时的回调
                     if (seconds < 0) {
                         seconds = 0;
                         clearInterval(timer);
-                        runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
+                        runCallback && runCallback(secondsToTime({ seconds: seconds })); //运行时的回调
                         overCallback && overCallback(); //结束时的回调
                     }
                 }, 1000);
             }
         }
         module.exports = timeCountDown;
-    }, {}], 18: [function (require, module, exports) {
+    }, { "../function/seconds-to-time.js": 15 }], 18: [function (require, module, exports) {
         /**
          * Created by zhouhuafei on 17/1/1.
          */
@@ -741,7 +672,77 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 21 }], 21: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 22 }], 21: [function (require, module, exports) {
+        var extend = require('../function/extend.js');
+        var offset = require('../function/offset.js');
+        function LazyLoad(json) {
+            this.opt = extend({
+                default: {
+                    selector: '.m-lazy-load',
+                    moreHeight: 0, //多加载一部分高度的图片
+                    interval: 80 //函数节流时间(延迟时间)
+                },
+                inherit: json
+            });
+            this.clientHeight = document.documentElement.clientHeight;
+            this.init();
+        }
+        LazyLoad.prototype.init = function () {
+            this.render();
+            this.power();
+        };
+        LazyLoad.prototype.render = function () {
+            var moreHeight = this.opt.moreHeight;
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var minTop = scrollTop - moreHeight;
+            var maxTop = this.clientHeight + minTop + moreHeight;
+            var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
+            var aDom = [].slice.call(document.querySelectorAll(this.opt.selector));
+            aDom.forEach(function (v) {
+                if (v.tagName.toLowerCase() == 'img') {
+                    if (!v.getAttribute('src')) {
+                        v.src = src;
+                    }
+                    v.setAttribute('height', '100%');
+                    v.setAttribute('width', '100%');
+                }
+            });
+            aDom.forEach(function (v) {
+                //排除那些被none掉的元素
+                if (v.offsetWidth) {
+                    var elementTop = offset({ element: v }).top;
+                    var elementBottom = elementTop + v.offsetHeight;
+                    //出现在可视区才进行处理
+                    if (elementBottom >= minTop && elementTop <= maxTop) {
+                        if (v.tagName.toLowerCase() == 'img') {
+                            if (v.dataset.src) {
+                                v.src = v.dataset.src;
+                            }
+                            v.removeAttribute('height');
+                            v.removeAttribute('width');
+                        } else {
+                            if (v.dataset.src) {
+                                v.style.backgroundImage = 'url(' + v.dataset.src + ')';
+                            }
+                        }
+                        v.classList.remove('m-lazy-load');
+                        v.classList.add('m-lazy-load-active');
+                    }
+                }
+            });
+        };
+        LazyLoad.prototype.power = function () {
+            var self = this;
+            var timer = null;
+            window.addEventListener('scroll', function () {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    self.render();
+                }, self.opt.interval);
+            });
+        };
+        module.exports = LazyLoad;
+    }, { "../function/extend.js": 6, "../function/offset.js": 14 }], 22: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -849,7 +850,7 @@
 
         //外部容器的创建
         SuperType.prototype.wrapDomCreate = function () {
-            this.wrapDom = base.getOneDom({ dom: this.opt.wrap });
+            this.wrapDom = base.getOneDom({ element: this.opt.wrap });
         };
 
         //外部容器的渲染

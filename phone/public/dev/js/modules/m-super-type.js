@@ -114,7 +114,7 @@ SuperType.prototype.moduleDomHide = function () {
 
 //外部容器的创建
 SuperType.prototype.wrapDomCreate=function(){
-    this.wrapDom = base.getOneDom({dom: this.opt.wrap});
+    this.wrapDom = base.getOneDom({element: this.opt.wrap});
 };
 
 //外部容器的渲染

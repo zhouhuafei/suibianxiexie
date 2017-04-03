@@ -1,0 +1,69 @@
+var extend = require('../function/extend.js');
+var offset = require('../function/offset.js');
+function LazyLoad(json) {
+    this.opt = extend({
+        default: {
+            selector: '.m-lazy-load',
+            moreHeight: 0,//多加载一部分高度的图片
+            interval: 80//函数节流时间(延迟时间)
+        },
+        inherit: json
+    });
+    this.clientHeight = document.documentElement.clientHeight;
+    this.init();
+}
+LazyLoad.prototype.init = function () {
+    this.render();
+    this.power();
+};
+LazyLoad.prototype.render = function () {
+    var moreHeight = this.opt.moreHeight;
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    var minTop = scrollTop - moreHeight;
+    var maxTop = this.clientHeight + minTop + moreHeight;
+    var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
+    var aDom = [].slice.call(document.querySelectorAll(this.opt.selector));
+    aDom.forEach(function (v) {
+        if (v.tagName.toLowerCase() == 'img') {
+            if (!v.getAttribute('src')) {
+                v.src = src;
+            }
+            v.setAttribute('height', '100%');
+            v.setAttribute('width', '100%');
+        }
+    });
+    aDom.forEach(function (v) {
+        //排除那些被none掉的元素
+        if (v.offsetWidth) {
+            var elementTop = offset({element: v}).top;
+            var elementBottom = elementTop + v.offsetHeight;
+            //出现在可视区才进行处理
+            if (elementBottom >= minTop && elementTop <= maxTop) {
+                if (v.tagName.toLowerCase() == 'img') {
+                    if (v.dataset.src) {
+                        v.src = v.dataset.src;
+                    }
+                    v.removeAttribute('height');
+                    v.removeAttribute('width');
+                } else {
+                    if (v.dataset.src) {
+                        v.style.backgroundImage = 'url(' + v.dataset.src + ')';
+                    }
+                }
+                v.classList.remove('m-lazy-load');
+                v.classList.add('m-lazy-load-active');
+            }
+        }
+    })
+};
+LazyLoad.prototype.power = function () {
+    var self = this;
+    var timer = null;
+    window.addEventListener('scroll', function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            self.render();
+        }, self.opt.interval);
+    })
+};
+module.exports = LazyLoad;
