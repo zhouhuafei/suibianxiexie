@@ -1,6 +1,3 @@
-/**
- * Created by zhouhuafei on 17/1/1.
- */
 //对象转数组
 function jsonToArray(json) {
     var opt = json || {};

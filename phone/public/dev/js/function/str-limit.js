@@ -1,6 +1,3 @@
-/**
- * Created by zhouhuafei on 17/1/1.
- */
 //字符数量限制
 function strLimit(json) {
     var opt = json || {};

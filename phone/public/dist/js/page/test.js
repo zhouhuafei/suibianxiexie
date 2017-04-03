@@ -13,9 +13,6 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 16/12/4.
-         */
         //一些小方法
         var base = {
             offset: require('../function/offset.js'),
@@ -30,10 +27,10 @@
             cookie: require('../function/cookie.js'),
             fillZero: require('../function/fill-zero.js'),
             getParent: require('../function/get-parent.js'),
-            goTop: require('../function/go-top.js'),
+            scrollTo: require('../function/scroll-to.js'),
             htmlToDom: require('../function/html-to-dom.js'),
             whetherDisableScroll: require('../function/whether-disable-scroll.js'),
-            whenScrollBottom: require('../function/when-scroll-bottom.js'),
+            WhenScrollBottom: require('../function/when-scroll-bottom.js'),
             jsonToArray: require('../function/json-to-array.js'),
             secondsToTime: require('../function/seconds-to-time.js'),
             timeCountDown: require('../function/time-count-down.js'),
@@ -43,10 +40,7 @@
             extend: require('../function/extend.js')
         };
         module.exports = base;
-    }, { "../function/constructor-inherit.js": 4, "../function/cookie.js": 5, "../function/create-element.js": 6, "../function/extend.js": 7, "../function/fill-zero.js": 8, "../function/get-one-dom.js": 9, "../function/get-parent.js": 10, "../function/go-top.js": 11, "../function/html-to-dom.js": 12, "../function/is-pc.js": 13, "../function/json-to-array.js": 14, "../function/offset.js": 15, "../function/seconds-to-time.js": 16, "../function/str-limit.js": 17, "../function/time-count-down.js": 18, "../function/when-scroll-bottom.js": 20, "../function/whether-disable-scroll.js": 21 }], 2: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 16/12/4.
-         */
+    }, { "../function/constructor-inherit.js": 4, "../function/cookie.js": 5, "../function/create-element.js": 6, "../function/extend.js": 7, "../function/fill-zero.js": 8, "../function/get-one-dom.js": 9, "../function/get-parent.js": 10, "../function/html-to-dom.js": 11, "../function/is-pc.js": 12, "../function/json-to-array.js": 13, "../function/offset.js": 14, "../function/scroll-to.js": 15, "../function/seconds-to-time.js": 16, "../function/str-limit.js": 17, "../function/time-count-down.js": 18, "../function/when-scroll-bottom.js": 20, "../function/whether-disable-scroll.js": 21 }], 2: [function (require, module, exports) {
         //测试
         (function () {
             var Test = require('../modules/m-super-type.js');
@@ -56,6 +50,26 @@
                     moduleDomIsClearTimer: true
                 }
             });
+        })();
+        //当滚动到了浏览器底部
+        (function () {
+            var base = require('../base/base.js');
+            var whenScrollBottom = new base.WhenScrollBottom({
+                callback: {
+                    success: function success(obj) {
+                        obj.isLoadOver = true;
+                        //console.log(obj,whenScrollBottom);
+                    },
+                    fail: function fail() {
+                        //console.log('fail');
+                    }
+                }
+            });
+        })();
+        //返回顶部
+        (function () {
+            var GoTop = require('../modules/m-go-top.js');
+            new GoTop();
         })();
         //遮罩
         (function () {
@@ -146,7 +160,7 @@
         })();
         //每个页面都要用到的js
         require('../common/common.js');
-    }, { "../common/common.js": 3, "../modules/m-mask.js": 24, "../modules/m-radio-switch.js": 25, "../modules/m-star.js": 26, "../modules/m-super-type.js": 27, "../modules/m-table.js": 28, "../modules/m-validate-input.js": 29 }], 3: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../common/common.js": 3, "../modules/m-go-top.js": 23, "../modules/m-mask.js": 25, "../modules/m-radio-switch.js": 26, "../modules/m-star.js": 27, "../modules/m-super-type.js": 28, "../modules/m-table.js": 29, "../modules/m-validate-input.js": 30 }], 3: [function (require, module, exports) {
         //延迟加载
         (function () {
             var LazyLoad = require('../modules/m-lazy-load.js');
@@ -157,7 +171,7 @@
             var Footer = require('../modules/m-footer.js');
             new Footer();
         })();
-    }, { "../modules/m-footer.js": 22, "../modules/m-lazy-load.js": 23 }], 4: [function (require, module, exports) {
+    }, { "../modules/m-footer.js": 22, "../modules/m-lazy-load.js": 24 }], 4: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend.js');
 
@@ -198,9 +212,6 @@
         }
         module.exports = constructorInherit;
     }, { "../function/extend.js": 7 }], 5: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
         //设置cookie
         function setCookie(json) {
             var opt = json || {};
@@ -241,9 +252,6 @@
         };
         module.exports = obj;
     }, {}], 6: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/3/19.
-         */
         function createElement(json) {
             var opt = json || {};
             opt.elementName = opt.elementName || 'div'; //标签名称
@@ -403,12 +411,7 @@
         }
         module.exports = getOneDom;
     }, { "../function/extend.js": 7 }], 10: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
-        "use strict";
         //获取指定父级
-
         function getParent(json) {
             var opt = json || {};
             var obj = opt.obj;
@@ -471,47 +474,6 @@
         }
         module.exports = getParent;
     }, {}], 11: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
-        //返回顶部
-        function goTop(json) {
-            var opt = json || {};
-            var obj = opt.obj;
-            var to = opt.to || '0';
-            if (!obj) {
-                console.log('parameter error');
-                return false;
-            }
-            var doc = document;
-            var scale = 6;
-            var scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
-            var speed = 0;
-            var timer = null;
-            var fn = function fn() {
-                speed = Math.ceil(scrollT - to / scale);
-                scrollT -= speed;
-                window.scrollTo(0, scrollT);
-                timer = requestAnimationFrame(fn);
-                if (scrollT <= to * 1) {
-                    cancelAnimationFrame(timer);
-                }
-            };
-            obj.addEventListener('click', function (ev) {
-                ev.stopPropagation();
-                ev.preventDefault();
-                scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
-                requestAnimationFrame(fn);
-            });
-            doc.addEventListener('touchstart', function () {
-                cancelAnimationFrame(timer);
-            });
-        }
-        module.exports = goTop;
-    }, {}], 12: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
         //html转成DOM节点
         function htmlToDom(json) {
             var opt = json || {};
@@ -521,7 +483,7 @@
             return div.children[0];
         }
         module.exports = htmlToDom;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 12: [function (require, module, exports) {
         function isPc() {
             var userAgentInfo = navigator.userAgent;
             var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
@@ -535,10 +497,7 @@
             return flag;
         }
         module.exports = isPc;
-    }, {}], 14: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
+    }, {}], 13: [function (require, module, exports) {
         //对象转数组
         function jsonToArray(json) {
             var opt = json || {};
@@ -558,7 +517,7 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 15: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         var extend = require('../function/extend.js');
         var getOneDom = require('../function/get-one-dom.js');
 
@@ -583,7 +542,28 @@
             };
         }
         module.exports = offset;
-    }, { "../function/extend.js": 7, "../function/get-one-dom.js": 9 }], 16: [function (require, module, exports) {
+    }, { "../function/extend.js": 7, "../function/get-one-dom.js": 9 }], 15: [function (require, module, exports) {
+        //滚动到指定位置
+        function scrollTo(json) {
+            var opt = json || {};
+            var to = opt.to || '0';
+            var scale = 6;
+            var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
+            var speed = 0;
+            var timer = null;
+            var fn = function fn() {
+                speed = Math.ceil((scrollT - to) / scale);
+                scrollT -= speed;
+                window.scrollTo(0, scrollT);
+                timer = requestAnimationFrame(fn);
+                if (scrollT <= to * 1) {
+                    cancelAnimationFrame(timer);
+                }
+            };
+            requestAnimationFrame(fn);
+        }
+        module.exports = scrollTo;
+    }, {}], 16: [function (require, module, exports) {
         //秒转时间
         function secondsToTime(json) {
             var opt = json || {};
@@ -600,9 +580,6 @@
         }
         module.exports = secondsToTime;
     }, {}], 17: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
         //字符数量限制
         function strLimit(json) {
             var opt = json || {};
@@ -653,9 +630,6 @@
         }
         module.exports = timeCountDown;
     }, { "../function/seconds-to-time.js": 16 }], 19: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 16/12/4.
-         */
         //验证
         var validate = {
             //是不是空
@@ -744,49 +718,60 @@
         };
         module.exports = validate;
     }, {}], 20: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
+        var extend = require('../function/extend.js');
+
         //当滚动到了浏览器的底部
-        function whenScrollBottom(json) {
-            var opt = json || {};
-            var success = opt.success || function () {};
-            var fail = opt.fail || function () {};
-            var doc = document;
-            var interval = opt.interval || 80; //延迟时间
-            var isBottom = true; //假设到达了底部
-            var fn = function fn() {
-                var allH = doc.body.offsetHeight;
-                var scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
-                var clientHeight = doc.documentElement.clientHeight;
-                if (scrollTop + clientHeight >= allH - 100 && isBottom) {
-                    isBottom = false;
-                    success();
-                    //假设1000毫秒之后数据加载完毕
-                    setTimeout(function () {
-                        isBottom = true;
-                    }, 1000);
-                } else {
-                    fail();
-                }
-            };
-            fn();
+        function WhenScrollBottom(json) {
+            this.opt = extend({
+                default: {
+                    callback: {
+                        success: function success() {},
+                        fail: function fail() {}
+                    },
+                    interval: 80, //函数节流时间(延迟时间)
+                    errorHeight: 100 //滚动到底部上面一定高度就算是滚动到底部了(误差高度)
+                },
+                inherit: json
+            });
+            this.isLoadOver = false; //数据是否加载完毕
+            this.init();
+        }
+
+        WhenScrollBottom.prototype.init = function () {
+            this.render();
+            this.power();
+        };
+
+        WhenScrollBottom.prototype.render = function () {
+            var callback = this.opt.callback;
+            var allH = document.body.scrollHeight;
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var clientHeight = document.documentElement.clientHeight;
+            if (scrollTop + clientHeight >= allH - this.opt.errorHeight && !this.isLoadOver) {
+                this.isLoadOver = true;
+                callback.success(this);
+                /*
+                条件:当你拿到请求的数据之后
+                可能性:1.如果你的数据加载完毕了,你需要手动把isLoadOver开关变成true
+                可能性:2.如果你的数据尚未加载完毕,你需要手动把isLoadOver开关变成false
+                */
+            } else {
+                callback.fail();
+            }
+        };
+
+        WhenScrollBottom.prototype.power = function () {
+            var self = this;
             var timer = null;
-            var fnScroll = function fnScroll() {
+            window.addEventListener('scroll', function () {
                 clearTimeout(timer);
                 timer = setTimeout(function () {
-                    fn();
-                }, interval);
-            };
-            window.addEventListener('scroll', function () {
-                fnScroll();
+                    self.render();
+                }, self.opt.interval);
             });
-        }
-        module.exports = whenScrollBottom;
-    }, {}], 21: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
+        };
+        module.exports = WhenScrollBottom;
+    }, { "../function/extend.js": 7 }], 21: [function (require, module, exports) {
         //是否禁止浏览器滚动
         function whetherDisableScroll() {
             var doc = document;
@@ -851,7 +836,7 @@
         };
 
         SubType.prototype.moduleDomType0 = function () {
-            if (this.opt.config.moduleDomType == '0') {
+            if (this.opt.config.moduleDomType == 0) {
                 this.moduleDomClass = "m-footer m-footer-type0";
                 return "\n            <div class=\"m-footer-wrap\">\n                <div class=\"m-footer-header\">\n                    <div class=\"m-footer-header-icon iconfont icon-shouye\"></div>\n                </div>\n                <div class=\"m-footer-body\">\n                    <div class=\"m-footer-body-icon iconfont icon-caidan\"></div>\n                    <div class=\"m-footer-body-txt\">\u5168\u90E8\u5546\u54C1</div>\n                    <div class=\"m-footer-body-child\">\n                        <div class=\"m-footer-body-child-item\"><a href=\"\">child</a></div>\n                        <div class=\"m-footer-body-child-item\"><a href=\"\">child</a></div>\n                    </div>\n                </div>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-txt\">\u4E0A\u65B0</div>      \n                </a>\n                <div class=\"m-footer-body\">\n                    <div class=\"m-footer-body-icon iconfont icon-caidan\"></div>\n                    <div class=\"m-footer-body-txt\">\u5E97\u94FA\u6D3B\u52A8</div>\n                    <div class=\"m-footer-body-child\">\n                        <div class=\"m-footer-body-child-item\"><a href=\"\">child</a></div>\n                        <div class=\"m-footer-body-child-item\"><a href=\"\">child</a></div>\n                    </div>\n                </div>\n            </div>\n        ";
             }
@@ -859,7 +844,7 @@
         };
 
         SubType.prototype.moduleDomType1 = function () {
-            if (this.opt.config.moduleDomType == '1') {
+            if (this.opt.config.moduleDomType == 1) {
                 this.moduleDomClass = "m-footer m-footer-type1";
                 return "\n            <div class=\"m-footer-wrap\">\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon iconfont icon-shouye\"></div>\n                    <div class=\"m-footer-body-txt\">\u9996\u9875</div>\n                </a>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon iconfont icon-fenxiao\"></div>\n                    <div class=\"m-footer-body-txt\">\u6211\u8981\u5F00\u5E97</div>\n                </a>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon iconfont icon-gouwuche\"></div>\n                    <div class=\"m-footer-body-txt\">\u8D2D\u7269\u8F66</div>\n                </a>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon iconfont icon-kefu\"></div>\n                    <div class=\"m-footer-body-txt\">\u5BA2\u670D</div>\n                </a>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon iconfont icon-wode\"></div>\n                    <div class=\"m-footer-body-txt\">\u6211\u7684</div>\n                </a>\n            </div>\n        ";
             }
@@ -867,7 +852,52 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 27 }], 23: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 28 }], 23: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base.js');
+
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type.js');
+
+        //子类型
+        var SubType = base.constructorInherit({
+            superType: SuperType,
+            parameter: {
+                //回调
+                callback: {
+                    moduleDomClick: function moduleDomClick() {}
+                },
+                config: {
+                    showHeight: 200
+                }
+            }
+        });
+
+        SubType.prototype.moduleDomCreate = function () {
+            this.moduleDom = base.createElement({
+                attribute: {
+                    className: "m-go-top",
+                    innerHTML: "<div class=\"m-go-top-icon iconfont icon-shangjiantou\"></div>"
+                }
+            });
+        };
+
+        SubType.prototype.power = function () {
+            var self = this;
+            this.moduleDom.addEventListener('click', function () {
+                base.scrollTo({ to: '0' });
+            });
+            window.addEventListener('scroll', function () {
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                if (scrollTop >= self.opt.config.showHeight) {
+                    self.moduleDom.classList.add('m-go-top-active');
+                } else {
+                    self.moduleDom.classList.remove('m-go-top-active');
+                }
+            });
+        };
+        module.exports = SubType;
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 28 }], 24: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -905,7 +935,7 @@
                 }
             });
             aDom.forEach(function (v) {
-                //排除那些被none掉的元素
+                //排除那些被none掉的元素(被none掉的元素,通过offsetWidth和offsetHeight获取到的值是0)
                 if (v.offsetWidth) {
                     var elementTop = base.offset({ element: v }).top;
                     var elementBottom = elementTop + v.offsetHeight;
@@ -939,7 +969,7 @@
             });
         };
         module.exports = LazyLoad;
-    }, { "../base/base.js": 1 }], 24: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 25: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -992,7 +1022,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 27 }], 25: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 28 }], 26: [function (require, module, exports) {
         function Fn(json) {
             this.opt = json || {};
             this.opt.checkTxt = this.opt.checkTxt || { on: '已开启', off: '已关闭' };
@@ -1060,7 +1090,7 @@
             this.parentDom.parentNode.removeChild(this.parentDom);
         };
         module.exports = Fn;
-    }, {}], 26: [function (require, module, exports) {
+    }, {}], 27: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1126,7 +1156,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 27 }], 27: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 28 }], 28: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1263,7 +1293,7 @@
         };
 
         module.exports = SuperType;
-    }, { "../base/base.js": 1 }], 28: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 29: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1317,10 +1347,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 27 }], 29: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/2.
-         */
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 28 }], 30: [function (require, module, exports) {
         var base = require('../base/base.js');
 
         function ValidateInput(json) {

@@ -13,9 +13,6 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 16/12/4.
-         */
         //一些小方法
         var base = {
             offset: require('../function/offset.js'),
@@ -30,10 +27,10 @@
             cookie: require('../function/cookie.js'),
             fillZero: require('../function/fill-zero.js'),
             getParent: require('../function/get-parent.js'),
-            goTop: require('../function/go-top.js'),
+            scrollTo: require('../function/scroll-to.js'),
             htmlToDom: require('../function/html-to-dom.js'),
             whetherDisableScroll: require('../function/whether-disable-scroll.js'),
-            whenScrollBottom: require('../function/when-scroll-bottom.js'),
+            WhenScrollBottom: require('../function/when-scroll-bottom.js'),
             jsonToArray: require('../function/json-to-array.js'),
             secondsToTime: require('../function/seconds-to-time.js'),
             timeCountDown: require('../function/time-count-down.js'),
@@ -43,10 +40,7 @@
             extend: require('../function/extend.js')
         };
         module.exports = base;
-    }, { "../function/constructor-inherit.js": 3, "../function/cookie.js": 4, "../function/create-element.js": 5, "../function/extend.js": 6, "../function/fill-zero.js": 7, "../function/get-one-dom.js": 8, "../function/get-parent.js": 9, "../function/go-top.js": 10, "../function/html-to-dom.js": 11, "../function/is-pc.js": 12, "../function/json-to-array.js": 13, "../function/offset.js": 14, "../function/seconds-to-time.js": 15, "../function/str-limit.js": 16, "../function/time-count-down.js": 17, "../function/when-scroll-bottom.js": 19, "../function/whether-disable-scroll.js": 20 }], 2: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/2.
-         */
+    }, { "../function/constructor-inherit.js": 3, "../function/cookie.js": 4, "../function/create-element.js": 5, "../function/extend.js": 6, "../function/fill-zero.js": 7, "../function/get-one-dom.js": 8, "../function/get-parent.js": 9, "../function/html-to-dom.js": 10, "../function/is-pc.js": 11, "../function/json-to-array.js": 12, "../function/offset.js": 13, "../function/scroll-to.js": 14, "../function/seconds-to-time.js": 15, "../function/str-limit.js": 16, "../function/time-count-down.js": 17, "../function/when-scroll-bottom.js": 19, "../function/whether-disable-scroll.js": 20 }], 2: [function (require, module, exports) {
         var base = require('../base/base.js');
 
         function ValidateInput(json) {
@@ -199,9 +193,6 @@
         }
         module.exports = constructorInherit;
     }, { "../function/extend.js": 6 }], 4: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
         //设置cookie
         function setCookie(json) {
             var opt = json || {};
@@ -242,9 +233,6 @@
         };
         module.exports = obj;
     }, {}], 5: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/3/19.
-         */
         function createElement(json) {
             var opt = json || {};
             opt.elementName = opt.elementName || 'div'; //标签名称
@@ -404,12 +392,7 @@
         }
         module.exports = getOneDom;
     }, { "../function/extend.js": 6 }], 9: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
-        "use strict";
         //获取指定父级
-
         function getParent(json) {
             var opt = json || {};
             var obj = opt.obj;
@@ -472,47 +455,6 @@
         }
         module.exports = getParent;
     }, {}], 10: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
-        //返回顶部
-        function goTop(json) {
-            var opt = json || {};
-            var obj = opt.obj;
-            var to = opt.to || '0';
-            if (!obj) {
-                console.log('parameter error');
-                return false;
-            }
-            var doc = document;
-            var scale = 6;
-            var scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
-            var speed = 0;
-            var timer = null;
-            var fn = function fn() {
-                speed = Math.ceil(scrollT - to / scale);
-                scrollT -= speed;
-                window.scrollTo(0, scrollT);
-                timer = requestAnimationFrame(fn);
-                if (scrollT <= to * 1) {
-                    cancelAnimationFrame(timer);
-                }
-            };
-            obj.addEventListener('click', function (ev) {
-                ev.stopPropagation();
-                ev.preventDefault();
-                scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
-                requestAnimationFrame(fn);
-            });
-            doc.addEventListener('touchstart', function () {
-                cancelAnimationFrame(timer);
-            });
-        }
-        module.exports = goTop;
-    }, {}], 11: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
         //html转成DOM节点
         function htmlToDom(json) {
             var opt = json || {};
@@ -522,7 +464,7 @@
             return div.children[0];
         }
         module.exports = htmlToDom;
-    }, {}], 12: [function (require, module, exports) {
+    }, {}], 11: [function (require, module, exports) {
         function isPc() {
             var userAgentInfo = navigator.userAgent;
             var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
@@ -536,10 +478,7 @@
             return flag;
         }
         module.exports = isPc;
-    }, {}], 13: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
+    }, {}], 12: [function (require, module, exports) {
         //对象转数组
         function jsonToArray(json) {
             var opt = json || {};
@@ -559,7 +498,7 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 14: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
         var extend = require('../function/extend.js');
         var getOneDom = require('../function/get-one-dom.js');
 
@@ -584,7 +523,28 @@
             };
         }
         module.exports = offset;
-    }, { "../function/extend.js": 6, "../function/get-one-dom.js": 8 }], 15: [function (require, module, exports) {
+    }, { "../function/extend.js": 6, "../function/get-one-dom.js": 8 }], 14: [function (require, module, exports) {
+        //滚动到指定位置
+        function scrollTo(json) {
+            var opt = json || {};
+            var to = opt.to || '0';
+            var scale = 6;
+            var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
+            var speed = 0;
+            var timer = null;
+            var fn = function fn() {
+                speed = Math.ceil((scrollT - to) / scale);
+                scrollT -= speed;
+                window.scrollTo(0, scrollT);
+                timer = requestAnimationFrame(fn);
+                if (scrollT <= to * 1) {
+                    cancelAnimationFrame(timer);
+                }
+            };
+            requestAnimationFrame(fn);
+        }
+        module.exports = scrollTo;
+    }, {}], 15: [function (require, module, exports) {
         //秒转时间
         function secondsToTime(json) {
             var opt = json || {};
@@ -601,9 +561,6 @@
         }
         module.exports = secondsToTime;
     }, {}], 16: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
         //字符数量限制
         function strLimit(json) {
             var opt = json || {};
@@ -654,9 +611,6 @@
         }
         module.exports = timeCountDown;
     }, { "../function/seconds-to-time.js": 15 }], 18: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 16/12/4.
-         */
         //验证
         var validate = {
             //是不是空
@@ -745,49 +699,60 @@
         };
         module.exports = validate;
     }, {}], 19: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
+        var extend = require('../function/extend.js');
+
         //当滚动到了浏览器的底部
-        function whenScrollBottom(json) {
-            var opt = json || {};
-            var success = opt.success || function () {};
-            var fail = opt.fail || function () {};
-            var doc = document;
-            var interval = opt.interval || 80; //延迟时间
-            var isBottom = true; //假设到达了底部
-            var fn = function fn() {
-                var allH = doc.body.offsetHeight;
-                var scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
-                var clientHeight = doc.documentElement.clientHeight;
-                if (scrollTop + clientHeight >= allH - 100 && isBottom) {
-                    isBottom = false;
-                    success();
-                    //假设1000毫秒之后数据加载完毕
-                    setTimeout(function () {
-                        isBottom = true;
-                    }, 1000);
-                } else {
-                    fail();
-                }
-            };
-            fn();
+        function WhenScrollBottom(json) {
+            this.opt = extend({
+                default: {
+                    callback: {
+                        success: function success() {},
+                        fail: function fail() {}
+                    },
+                    interval: 80, //函数节流时间(延迟时间)
+                    errorHeight: 100 //滚动到底部上面一定高度就算是滚动到底部了(误差高度)
+                },
+                inherit: json
+            });
+            this.isLoadOver = false; //数据是否加载完毕
+            this.init();
+        }
+
+        WhenScrollBottom.prototype.init = function () {
+            this.render();
+            this.power();
+        };
+
+        WhenScrollBottom.prototype.render = function () {
+            var callback = this.opt.callback;
+            var allH = document.body.scrollHeight;
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var clientHeight = document.documentElement.clientHeight;
+            if (scrollTop + clientHeight >= allH - this.opt.errorHeight && !this.isLoadOver) {
+                this.isLoadOver = true;
+                callback.success(this);
+                /*
+                条件:当你拿到请求的数据之后
+                可能性:1.如果你的数据加载完毕了,你需要手动把isLoadOver开关变成true
+                可能性:2.如果你的数据尚未加载完毕,你需要手动把isLoadOver开关变成false
+                */
+            } else {
+                callback.fail();
+            }
+        };
+
+        WhenScrollBottom.prototype.power = function () {
+            var self = this;
             var timer = null;
-            var fnScroll = function fnScroll() {
+            window.addEventListener('scroll', function () {
                 clearTimeout(timer);
                 timer = setTimeout(function () {
-                    fn();
-                }, interval);
-            };
-            window.addEventListener('scroll', function () {
-                fnScroll();
+                    self.render();
+                }, self.opt.interval);
             });
-        }
-        module.exports = whenScrollBottom;
-    }, {}], 20: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
+        };
+        module.exports = WhenScrollBottom;
+    }, { "../function/extend.js": 6 }], 20: [function (require, module, exports) {
         //是否禁止浏览器滚动
         function whetherDisableScroll() {
             var doc = document;

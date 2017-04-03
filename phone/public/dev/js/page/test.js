@@ -1,6 +1,3 @@
-/**
- * Created by zhouhuafei on 16/12/4.
- */
 //测试
 (function () {
     var Test = require('../modules/m-super-type.js');
@@ -11,12 +8,32 @@
         }
     });
 })();
+//当滚动到了浏览器底部
+(function () {
+    var base = require('../base/base.js');
+    var whenScrollBottom = new base.WhenScrollBottom({
+        callback: {
+            success: function (obj) {
+                obj.isLoadOver = true;
+                //console.log(obj,whenScrollBottom);
+            },
+            fail: function () {
+                //console.log('fail');
+            }
+        }
+    });
+})();
+//返回顶部
+(function () {
+    var GoTop = require('../modules/m-go-top.js');
+    new GoTop();
+})();
 //遮罩
 (function () {
     var Mask = require('../modules/m-mask.js');
     var mask = new Mask({
-        callback:{
-            moduleDomClick:function(){
+        callback: {
+            moduleDomClick: function () {
                 console.log('m-mask click callback');
                 mask.moduleDomHide();
             }
@@ -46,7 +63,7 @@
     const Table = require('../modules/m-table.js');
     const table = new Table({
         wrap: `.main-table`,
-        data:{
+        data: {
             header: [
                 {
                     html: `<div>header0</div>`
@@ -110,9 +127,9 @@
 (function () {
     const Star = require('../modules/m-star.js');
     const star = new Star({
-        wrap:`.main-star`,
-        callback:{
-            moduleDomClick:function (json) {
+        wrap: `.main-star`,
+        callback: {
+            moduleDomClick: function (json) {
                 console.log(json);
             }
         }

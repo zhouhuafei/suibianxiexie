@@ -53,45 +53,37 @@
             parameter: {
                 //回调
                 callback: {
-                    moduleDomClick: function moduleDomClick() {},
-                    moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                        if (getComputedStyle(self.wrapDom).position == 'static') {
-                            self.wrapDom.style.position = 'relative';
-                        }
-                    }
+                    moduleDomClick: function moduleDomClick() {}
                 },
-                //配置
                 config: {
-                    moduleDomIsTransparent: false, //内部模块是不是透明的(默认不透明)
-                    moduleDomIsShow: false //内部模块是否显示(默认不显示)
+                    showHeight: 200
                 }
             }
         });
 
-        //内部模块的创建
         SubType.prototype.moduleDomCreate = function () {
-            var isTransparent = '';
-            if (this.opt.config.isTransparent) {
-                isTransparent = 'm-mask-transparent';
-            }
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleStyle,
                 attribute: {
-                    className: "m-mask " + isTransparent,
-                    innerHTML: ""
+                    className: "m-go-top",
+                    innerHTML: "<div class=\"m-go-top-icon iconfont icon-shangjiantou\"></div>"
                 }
             });
         };
 
-        //功能
         SubType.prototype.power = function () {
             var self = this;
-            this.moduleDom.addEventListener('click', function (ev) {
-                self.opt.callback.moduleDomClick();
-                ev.stopPropagation();
+            this.moduleDom.addEventListener('click', function () {
+                base.scrollTo({ to: '0' });
+            });
+            window.addEventListener('scroll', function () {
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                if (scrollTop >= self.opt.config.showHeight) {
+                    self.moduleDom.classList.add('m-go-top-active');
+                } else {
+                    self.moduleDom.classList.remove('m-go-top-active');
+                }
             });
         };
-
         module.exports = SubType;
     }, { "../base/base.js": 1, "../modules/m-super-type.js": 20 }], 3: [function (require, module, exports) {
         //对象的扩展方法

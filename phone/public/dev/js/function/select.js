@@ -1,6 +1,9 @@
-/**
- * Created by zhouhuafei on 2017/1/6.
- */
+//全选和多选
+/*
+这个要重写一下以及重新命名,传参方式也要变一变
+element这个单词不错,让他支持dom的传入和选择器的传入
+可以和全选和多选的单词组合一下
+*/
 function Select(json) {
     this.opt = json || {};
     this.selectAllButton = this.opt.selectAllButton;

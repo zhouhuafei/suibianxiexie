@@ -1,10 +1,10 @@
 //延迟加载默认状态
 .m-lazy-load{
-    transition: 0.4s;
+    transition: opacity 0.4s;
     opacity: 0;
 }
 //延迟加载活跃状态
 .m-lazy-load-active{
-    transition: 0.4s;
+    transition: opacity 0.4s;
     opacity: 1;
 }

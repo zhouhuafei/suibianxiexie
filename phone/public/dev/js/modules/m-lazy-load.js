@@ -35,7 +35,7 @@ LazyLoad.prototype.render = function () {
         }
     });
     aDom.forEach(function (v) {
-        //排除那些被none掉的元素
+        //排除那些被none掉的元素(被none掉的元素,通过offsetWidth和offsetHeight获取到的值是0)
         if (v.offsetWidth) {
             var elementTop = base.offset({element: v}).top;
             var elementBottom = elementTop + v.offsetHeight;

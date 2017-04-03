@@ -1,6 +1,3 @@
-/**
- * Created by zhouhuafei on 16/12/4.
- */
 //一些小方法
 var base = {
     offset:require('../function/offset.js'),
@@ -11,10 +8,10 @@ var base = {
     cookie: require('../function/cookie.js'),
     fillZero: require('../function/fill-zero.js'),
     getParent: require('../function/get-parent.js'),
-    goTop: require('../function/go-top.js'),
+    scrollTo: require('../function/scroll-to.js'),
     htmlToDom: require('../function/html-to-dom.js'),
     whetherDisableScroll: require('../function/whether-disable-scroll.js'),
-    whenScrollBottom: require('../function/when-scroll-bottom.js'),
+    WhenScrollBottom: require('../function/when-scroll-bottom.js'),
     jsonToArray: require('../function/json-to-array.js'),
     secondsToTime: require('../function/seconds-to-time.js'),
     timeCountDown: require('../function/time-count-down.js'),

@@ -13,12 +13,7 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
-        "use strict";
         //获取指定父级
-
         function getParent(json) {
             var opt = json || {};
             var obj = opt.obj;

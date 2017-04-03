@@ -6,8 +6,8 @@ var SuperType = require('../modules/m-super-type.js');
 
 //子类型
 var SubType = base.constructorInherit({
-    superType:SuperType,
-    parameter:{
+    superType: SuperType,
+    parameter: {
         //回调
         callback: {
             moduleDomClick: function () {
@@ -21,8 +21,8 @@ var SubType = base.constructorInherit({
 });
 
 SubType.prototype.moduleDomCreate = function () {
-    this.moduleDomClass=`m-footer`;
-    var moduleDomHtml=`
+    this.moduleDomClass = `m-footer`;
+    var moduleDomHtml = `
         ${this.moduleDomType0()}
         ${this.moduleDomType1()}
     `;
@@ -34,9 +34,9 @@ SubType.prototype.moduleDomCreate = function () {
     });
 };
 
-SubType.prototype.moduleDomType0=function(){
-    if(this.opt.config.moduleDomType=='0'){
-        this.moduleDomClass=`m-footer m-footer-type0`;
+SubType.prototype.moduleDomType0 = function () {
+    if (this.opt.config.moduleDomType == 0) {
+        this.moduleDomClass = `m-footer m-footer-type0`;
         return `
             <div class="m-footer-wrap">
                 <div class="m-footer-header">
@@ -67,9 +67,9 @@ SubType.prototype.moduleDomType0=function(){
     return ``;
 };
 
-SubType.prototype.moduleDomType1=function(){
-    if(this.opt.config.moduleDomType=='1'){
-        this.moduleDomClass=`m-footer m-footer-type1`;        
+SubType.prototype.moduleDomType1 = function () {
+    if (this.opt.config.moduleDomType == 1) {
+        this.moduleDomClass = `m-footer m-footer-type1`;
         return `
             <div class="m-footer-wrap">
                 <a class="m-footer-body" href="">
