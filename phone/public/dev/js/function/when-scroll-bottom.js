@@ -33,10 +33,10 @@ WhenScrollBottom.prototype.render = function () {
         this.isLoadOver = true;
         callback.success(this);
         /*
-        条件:当你拿到请求的数据之后
-        可能性:1.如果你的数据加载完毕了,你需要手动把isLoadOver开关变成true
-        可能性:2.如果你的数据尚未加载完毕,你需要手动把isLoadOver开关变成false
-        */
+         * 条件:当你拿到请求的数据之后
+         * 可能性:1.如果你的数据加载完毕了,你需要手动把isLoadOver开关变成true
+         * 可能性:2.如果你的数据尚未加载完毕,你需要手动把isLoadOver开关变成false
+         * */
     } else {
         callback.fail();
     }

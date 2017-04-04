@@ -6,15 +6,15 @@ var SuperType = require('../modules/m-super-type.js');
 
 //子类型
 var SubType = base.constructorInherit({
-    superType:SuperType,
-    parameter:{
+    superType: SuperType,
+    parameter: {
         //回调
         callback: {
             moduleDomClick: function () {
             },
-            moduleDomRenderBefore:function(self){
-                if(getComputedStyle(self.wrapDom).position=='static'){
-                    self.wrapDom.style.position='relative';
+            moduleDomRenderBefore: function (self) {
+                if (getComputedStyle(self.wrapDom).position == 'static') {
+                    self.wrapDom.style.position = 'relative';
                 }
             }
         },
@@ -42,7 +42,7 @@ SubType.prototype.moduleDomCreate = function () {
 };
 
 //功能
-SubType.prototype.power=function(){
+SubType.prototype.power = function () {
     var self = this;
     this.moduleDom.addEventListener('click', function (ev) {
         self.opt.callback.moduleDomClick();

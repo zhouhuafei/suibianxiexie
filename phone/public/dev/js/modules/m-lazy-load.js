@@ -5,7 +5,7 @@ var base = require('../base/base.js');
 function LazyLoad(json) {
     this.opt = base.extend({
         default: {
-            selector: '.m-lazy-load',
+            element: '.m-lazy-load',
             moreHeight: 0,//多加载一部分高度的图片
             interval: 80//函数节流时间(延迟时间)
         },
@@ -24,7 +24,7 @@ LazyLoad.prototype.render = function () {
     var minTop = scrollTop - moreHeight;
     var maxTop = this.clientHeight + minTop + moreHeight;
     var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
-    var aDom = [].slice.call(document.querySelectorAll(this.opt.selector));
+    var aDom = base.getDomArray({element:this.opt.element});
     aDom.forEach(function (v) {
         if (v.tagName.toLowerCase() == 'img') {
             if (!v.getAttribute('src')) {

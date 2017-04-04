@@ -13,8 +13,8 @@ var SubType = base.constructorInherit({
             moduleDomClick: function () {
             }
         },
-        config:{
-            showHeight:200
+        config: {
+            showHeight: 200
         }
     }
 });
@@ -35,9 +35,9 @@ SubType.prototype.power = function () {
     });
     window.addEventListener('scroll', function () {
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        if (scrollTop>=self.opt.config.showHeight){
+        if (scrollTop >= self.opt.config.showHeight) {
             self.moduleDom.classList.add('m-go-top-active');
-        }else{
+        } else {
             self.moduleDom.classList.remove('m-go-top-active');
         }
     })

@@ -2,25 +2,7 @@
 (function () {
     var Test = require('../modules/m-super-type.js');
     var test = new Test({
-        wrap: document.querySelector(`.main-test`),
-        config: {
-            moduleDomIsClearTimer: true
-        }
-    });
-})();
-//当滚动到了浏览器底部
-(function () {
-    var base = require('../base/base.js');
-    var whenScrollBottom = new base.WhenScrollBottom({
-        callback: {
-            success: function (obj) {
-                obj.isLoadOver = true;
-                //console.log(obj,whenScrollBottom);
-            },
-            fail: function () {
-                //console.log('fail');
-            }
-        }
+        wrap: `.main-test`
     });
 })();
 //返回顶部

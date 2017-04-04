@@ -1,9 +1,10 @@
 //一些小方法
 var base = {
+    Select:require('../function/select.js'),
     offset:require('../function/offset.js'),
     constructorInherit: require('../function/constructor-inherit.js'),
-    isIPhone:function(){return window.navigator.appVersion.match(/iphone/gi);},
-    isAndroid:function(){return window.navigator.appVersion.match(/android/gi);},
+    isIPhone:require('../function/is-iphone.js'),
+    isAndroid:require('../function/is-android.js'),
     isPc: require('../function/is-pc.js'),
     cookie: require('../function/cookie.js'),
     fillZero: require('../function/fill-zero.js'),
@@ -16,7 +17,7 @@ var base = {
     secondsToTime: require('../function/seconds-to-time.js'),
     timeCountDown: require('../function/time-count-down.js'),
     strLimit: require('../function/str-limit.js'),
-    getOneDom: require('../function/get-one-dom.js'),
+    getDomArray: require('../function/get-dom-array.js'),
     createElement: require('../function/create-element.js'),
     extend: require('../function/extend.js')
 };
