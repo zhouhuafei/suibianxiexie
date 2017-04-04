@@ -1,4 +1,16 @@
-//测试
+//base函数测试
+(function () {
+    var base = require('../base/base');
+    new base.Select({
+        items: '.g-checkbox-checkbox',
+        callback: {
+            itemsClick: function (obj) {
+                console.log(obj);
+            }
+        }
+    });
+})();
+//超类模块测试
 (function () {
     var Test = require('../modules/m-super-type.js');
     var test = new Test({

@@ -1,1 +1,199 @@
-"use strict";!function e(t,n,i){function r(l,c){if(!n[l]){if(!t[l]){var s="function"==typeof require&&require;if(!c&&s)return s(l,!0);if(o)return o(l,!0);throw new Error("Cannot find module '"+l+"'")}var a=n[l]={exports:{}};t[l][0].call(a.exports,function(e){var n=t[l][1][e];return r(n?n:e)},a,a.exports,e,t,n,i)}return n[l].exports}for(var o="function"==typeof require&&require,l=0;l<i.length;l++)r(i[l]);return r}({1:[function(e,t,n){function i(e){this.opt=r({default:{element:{all:null,reverse:null,items:null},callback:{all:function(){},reverse:function(){},items:function(){}},config:{allIsReverse:!0}},inherit:e}),this.allDom=o({element:this.opt.element.all})[0],this.reverseDom=o({element:this.opt.element.reverse})[0],this.itemsDom=o({element:this.opt.element.items}),this.allDom&&this.init()}var r=e("../function/extend.js"),o=e("../function/get-dom-array.js");i.prototype.init=function(){this.events()},i.prototype.all=function(){},i.prototype.reverse=function(){},i.prototype.items=function(){},t.exports=i},{"../function/extend.js":2,"../function/get-dom-array.js":3}],2:[function(e,t,n){function i(e){var t=e||{};t.default=t.default||{},t.inherit=t.inherit||{},t.isDeep=0!=t.isDeep||t.isDeep;var n=Object.prototype.toString.call(t.default).slice(8,-1).toLowerCase(),r=Object.prototype.toString.call(t.inherit).slice(8,-1).toLowerCase();if(n==r&&t.isDeep){for(var o in t.inherit)if(t.inherit.hasOwnProperty(o)){var l=Object.prototype.toString.call(t.default[o]).slice(8,-1).toLowerCase(),c=Object.prototype.toString.call(t.inherit[o]).slice(8,-1).toLowerCase();l==c&&t.isDeep?"object"==l?i({default:t.default[o],inherit:t.inherit[o]}):"array"==l?t.inherit[o].forEach(function(e,n){var r=Object.prototype.toString.call(t.default[o][n]).slice(8,-1).toLowerCase(),l=Object.prototype.toString.call(t.inherit[o][n]).slice(8,-1).toLowerCase();l==r&&t.isDeep&&"object"==r?i({default:t.default[o][n],inherit:t.inherit[o][n]}):t.default[o][n]=t.inherit[o][n]}):t.default[o]=t.inherit[o]:t.default[o]=t.inherit[o]}}else t.default=t.inherit;return t.default}t.exports=i},{}],3:[function(e,t,n){function i(e){var t=r({default:{element:null},inherit:e}),n=null;return t.element&&("string"==Object.prototype.toString.call(t.element).slice(8,-1).toLowerCase()&&(n=[].slice.call(document.querySelectorAll(t.element))),1==t.element.nodeType&&(n=[t.element]),"htmlcollection"!=Object.prototype.toString.call(t.element).slice(8,-1).toLowerCase()&&"nodelist"!=Object.prototype.toString.call(t.element).slice(8,-1).toLowerCase()||(n=[].slice.call(t.element))),n}var r=e("../function/extend.js");t.exports=i},{"../function/extend.js":2}]},{},[1]);
+"use strict";
+
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);throw new Error("Cannot find module '" + o + "'");
+            }var f = n[o] = { exports: {} };t[o][0].call(f.exports, function (e) {
+                var n = t[o][1][e];return s(n ? n : e);
+            }, f, f.exports, e, t, n, r);
+        }return n[o].exports;
+    }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+        s(r[o]);
+    }return s;
+})({ 1: [function (require, module, exports) {
+        //全选,不选,反选
+        var extend = require('../function/extend.js');
+        var getDomArray = require('../function/get-dom-array.js');
+
+        function Select(json) {
+            this.opt = extend({
+                default: {
+                    items: null, //所有的被选项
+                    callback: {
+                        itemsClick: function itemsClick() {}
+                    }
+                },
+                inherit: json
+            });
+            this.itemsDom = getDomArray({ element: this.opt.items });
+            this.init();
+        }
+
+        //初始化
+        Select.prototype.init = function () {
+            this.power();
+        };
+
+        //不选
+        Select.prototype.selectNothing = function () {
+            this.itemsDom.forEach(function (v) {
+                v.checked = false;
+            });
+        };
+
+        //全选
+        Select.prototype.selectAll = function () {
+            this.itemsDom.forEach(function (v) {
+                v.checked = true;
+            });
+        };
+
+        //反选
+        Select.prototype.selectReverse = function () {
+            this.itemsDom.forEach(function (v) {
+                v.checked = !v.checked;
+            });
+        };
+
+        //当某一项被选中时,是否全部选项都被选中了
+        Select.prototype.power = function () {
+            var self = this;
+            this.itemsDom.forEach(function (v1) {
+                v1.addEventListener('click', function () {
+                    var isCheckedAll = true; //是否全部的选项都被选中了(假设全部选中)
+                    self.itemsDom.forEach(function (v2) {
+                        if (v2.checked == false) {
+                            isCheckedAll = false;
+                        }
+                    });
+                    self.opt.callback.itemsClick({ isCheckedAll: isCheckedAll });
+                });
+            });
+        };
+
+        module.exports = Select;
+    }, { "../function/extend.js": 2, "../function/get-dom-array.js": 3 }], 2: [function (require, module, exports) {
+        //对象的扩展方法
+        function extend(json) {
+            var opt = json || {};
+            opt.default = opt.default || {}; //默认对象
+            opt.inherit = opt.inherit || {}; //继承对像
+            opt.isDeep = opt.isDeep == false ? opt.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
+            var defaultType = Object.prototype.toString.call(opt.default).slice(8, -1).toLowerCase();
+            var inheritType = Object.prototype.toString.call(opt.inherit).slice(8, -1).toLowerCase();
+            if (defaultType == inheritType && opt.isDeep) {
+                for (var attr in opt.inherit) {
+                    if (opt.inherit.hasOwnProperty(attr)) {
+                        var attrDefaultType = Object.prototype.toString.call(opt.default[attr]).slice(8, -1).toLowerCase();
+                        var attrInheritType = Object.prototype.toString.call(opt.inherit[attr]).slice(8, -1).toLowerCase();
+                        if (attrDefaultType == attrInheritType && opt.isDeep) {
+                            //类型相同
+                            if (attrDefaultType == 'object') {
+                                //当为对象
+                                extend({ default: opt.default[attr], inherit: opt.inherit[attr] });
+                            } else if (attrDefaultType == 'array') {
+                                //当为数组时
+                                opt.inherit[attr].forEach(function (v, i) {
+                                    var vDefaultType = Object.prototype.toString.call(opt.default[attr][i]).slice(8, -1).toLowerCase();
+                                    var vInheritType = Object.prototype.toString.call(opt.inherit[attr][i]).slice(8, -1).toLowerCase();
+                                    if (vInheritType == vDefaultType && opt.isDeep) {
+                                        if (vDefaultType == 'object') {
+                                            extend({ default: opt.default[attr][i], inherit: opt.inherit[attr][i] });
+                                        } else {
+                                            opt.default[attr][i] = opt.inherit[attr][i];
+                                        }
+                                    } else {
+                                        opt.default[attr][i] = opt.inherit[attr][i];
+                                    }
+                                });
+                            } else {
+                                opt.default[attr] = opt.inherit[attr];
+                            }
+                        } else {
+                            //类型不同,直接后面的覆盖前面的
+                            opt.default[attr] = opt.inherit[attr];
+                        }
+                    }
+                }
+            } else {
+                opt.default = opt.inherit;
+            }
+            return opt.default;
+        }
+        /*
+            var obj1 = extend({
+                default: {
+                    a: 'a',
+                    b: {
+                        b1: 'b1',
+                        b2: 'b2',
+                        b3: {
+                            c1: 'c1'
+                        }
+                    }
+                },
+                inherit: {
+                    a: 0,
+                    b: {
+                        b2: 1,
+                        b3: {
+                            c2: 2
+                        }
+                    }
+                }
+            });
+            console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
+            var obj2 = extend({
+                default: {
+                    b: [
+                        {a1: 'a1'},
+                        {a2: 'a2'}
+                    ]
+                },
+                inherit: {
+                    b: [
+                        'what?',
+                        {b1: 'b1'},
+                        {b2: 'b2'}
+                    ]
+                }
+            });
+            console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
+        */
+        module.exports = extend;
+    }, {}], 3: [function (require, module, exports) {
+        //对象的扩展方法
+        var extend = require('../function/extend.js');
+
+        //获取原生的dom节点并转换成数组,传入的参数仅支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
+        function getDomArray(json) {
+            var opt = extend({
+                default: {
+                    element: null
+                },
+                inherit: json
+            });
+            var dom = null;
+            if (opt.element) {
+                //如果是字符串
+                if (Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'string') {
+                    dom = [].slice.call(document.querySelectorAll(opt.element));
+                }
+                //如果是dom节点(一个元素)    原生的
+                if (opt.element.nodeType == 1) {
+                    dom = [opt.element];
+                }
+                /*
+                 * 如果是dom集合(一组元素)    HtmlCollection(通过getElementsBy系列获取到的)
+                 * 如果是dom集合(一组元素)    NodeList(通过querySelectorAll获取到的)
+                 * */
+                if (Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'htmlcollection' || Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'nodelist') {
+                    dom = [].slice.call(opt.element);
+                }
+            }
+            return dom;
+        }
+        module.exports = getDomArray;
+    }, { "../function/extend.js": 2 }] }, {}, [1]);
