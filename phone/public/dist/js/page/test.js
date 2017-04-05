@@ -50,7 +50,7 @@
         (function () {
             var Test = require('../modules/m-super-type.js');
             var test = new Test({
-                parent: document.querySelector(".main-test"),
+                wrap: document.querySelector(".main-test"),
                 config: {
                     moduleDomIsClearTimer: true
                 }
@@ -95,7 +95,7 @@
         (function () {
             var Table = require('../modules/m-table.js');
             var table = new Table({
-                parent: ".main-table",
+                wrap: ".main-table",
                 data: {
                     header: [{
                         html: "<div>header0</div>"
@@ -140,7 +140,7 @@
         (function () {
             var Star = require('../modules/m-star.js');
             var star = new Star({
-                parent: ".main-star",
+                wrap: ".main-star",
                 callback: {
                     moduleDomClick: function moduleDomClick(json) {
                         console.log(json);
@@ -577,39 +577,46 @@
                 };
                 var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
                 aImg.forEach(function (v) {
-                    if (v.getAttribute('src') != v.dataset.src && v.tagName.toLowerCase() == 'img') {
-                        v.src = src;
-                        v.setAttribute('height', '100%');
-                        v.setAttribute('width', '100%');
-                        v.style.opacity = '0';
-                        v.style.transition = 'opacity 0.4s';
+                    if (v.tagName.toLowerCase() == 'img') {
+                        if (!v.getAttribute('src')) {
+                            v.src = src;
+                            v.setAttribute('height', '100%');
+                            v.setAttribute('width', '100%');
+                        }
                     }
+                    v.style.opacity = '0';
+                    v.style.transition = 'opacity 0.4s';
                 });
                 var iClientH = doc.documentElement.clientHeight;
                 var iScrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
                 var iResultTop = iClientH + iScrollTop + height;
                 aImg.forEach(function (v) {
+                    if (!v.offsetWidth) {
+                        return false;
+                    }
                     var iObjTop = offsetTop(v) - height;
                     var iObjBottom = offsetTop(v) + v.offsetHeight;
                     //height
                     if (iResultTop >= iObjTop && iObjTop >= iScrollTop || iObjBottom > iScrollTop && iObjBottom < iResultTop) {
                         if (v.tagName.toLowerCase() == 'img') {
-                            if (v.getAttribute('src') != v.dataset.src) {
-                                v.src = v.dataset.src;
-                                v.removeAttribute('height');
-                                v.removeAttribute('width');
-                            }
+                            //if (v.getAttribute('src') != v.dataset.src) {
+                            v.src = v.dataset.src;
+                            v.removeAttribute('height');
+                            v.removeAttribute('width');
+                            //}
                         } else {
                             v.style.backgroundImage = 'url(' + v.dataset.src + ')';
                             v.style.backgroundPosition = 'center center';
                             v.style.backgroundRepeat = 'no-repeat';
                         }
                         v.style.opacity = '1';
-                        v.classList.add('m-lazy-load-show');
+                        //v.classList.add('m-lazy-load-show');
+                        v.classList.remove('m-lazy-load');
                     }
                 });
             };
             fn();
+            lazyload.fn = fn;
             var timer = null;
             var fnScroll = function fnScroll() {
                 clearTimeout(timer);
@@ -889,7 +896,7 @@
                 },
                 //配置
                 config: {
-                    moduleDomType: 0 //三种类型 0,1,2
+                    moduleDomType: 0 //两种类型 0(微信),1(自定义)
                 }
             }
         });
@@ -906,28 +913,27 @@
         };
 
         SubType.prototype.moduleDomType0 = function () {
-            if (this.opt.config.moduleDomType == 0) {
+            if (this.opt.config.moduleDomType == '0') {
                 this.moduleDomClass = "m-footer m-footer-type0";
-                return "\n            <div class=\"m-footer-wrap\">\n                <div class=\"m-footer-header\">\n                    0\n                </div>\n                <div class=\"m-footer-body\">\n                    body\n                </div>\n                <div class=\"m-footer-body\">\n                    body\n                </div>\n            </div>\n        ";
-            } else {
-                return "";
+                return "\n            <div class=\"m-footer-wrap\">\n                <div class=\"m-footer-header\">\n                    <div class=\"m-footer-header-icon icons icons-store\"></div>\n                </div>\n                <div class=\"m-footer-body\">\n                    <div class=\"m-footer-body-icon icons icons-jifen\"></div>\n                    <div class=\"m-footer-body-txt\">\u5168\u90E8\u5546\u54C1</div>\n                    <div class=\"m-footer-body-child\">\n                        <div class=\"m-footer-body-child-item\"><a href=\"\">child</a></div>\n                        <div class=\"m-footer-body-child-item\"><a href=\"\">child</a></div>\n                    </div>\n                </div>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-txt\">\u4E0A\u65B0</div>      \n                </a>\n                <div class=\"m-footer-body\">\n                    <div class=\"m-footer-body-icon icons icons-jifen\"></div>\n                    <div class=\"m-footer-body-txt\">\u5E97\u94FA\u6D3B\u52A8</div>\n                    <div class=\"m-footer-body-child\">\n                        <div class=\"m-footer-body-child-item\"><a href=\"\">child</a></div>\n                        <div class=\"m-footer-body-child-item\"><a href=\"\">child</a></div>\n                    </div>\n                </div>\n            </div>\n        ";
             }
+            return "";
         };
 
         SubType.prototype.moduleDomType1 = function () {
-            if (this.opt.config.moduleDomType == 1) {
+            if (this.opt.config.moduleDomType == '1') {
                 this.moduleDomClass = "m-footer m-footer-type1";
-            } else {
-                return "";
+                return "\n            <div class=\"m-footer-wrap\">\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon icons icons-santiaogang\"></div>\n                    <div class=\"m-footer-body-txt\">\u9996\u9875</div>\n                </a>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon icons icons-shoucang\"></div>\n                    <div class=\"m-footer-body-txt\">\u6211\u8981\u5F00\u5E97</div>\n                </a>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon icons icons-shouji\"></div>\n                    <div class=\"m-footer-body-txt\">\u8D2D\u7269\u8F66</div>\n                </a>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon icons icons-cart\"></div>\n                    <div class=\"m-footer-body-txt\">\u5BA2\u670D</div>\n                </a>\n                <a class=\"m-footer-body\" href=\"\">\n                    <div class=\"m-footer-body-icon icons icons-jifen\"></div>\n                    <div class=\"m-footer-body-txt\">\u6211\u7684</div>\n                </a>\n            </div>\n        ";
             }
+            return "";
         };
 
         SubType.prototype.moduleDomType2 = function () {
-            if (this.opt.config.moduleDomType == 2) {
+            if (this.opt.config.moduleDomType == '2') {
                 this.moduleDomClass = "m-footer m-footer-type2";
-            } else {
-                return "";
+                return "\n            <div class=\"m-footer-body\">\n                \u5F85\u7EED...\n            </div>\n            <div class=\"m-footer-body\">\n                \u5F85\u7EED...\n            </div>\n            <div class=\"m-footer-body\">\n                \u5F85\u7EED...\n            </div>\n        ";
             }
+            return "";
         };
 
         module.exports = SubType;
@@ -946,8 +952,8 @@
                 callback: {
                     moduleDomClick: function moduleDomClick() {},
                     moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                        if (getComputedStyle(self.parentDom).position == 'static') {
-                            self.parentDom.style.position = 'relative';
+                        if (getComputedStyle(self.wrapDom).position == 'static') {
+                            self.wrapDom.style.position = 'relative';
                         }
                     }
                 },
@@ -1128,15 +1134,15 @@
             this.opt = base.extend({
                 default: {
                     //父级
-                    parent: ".g-page", //这个仅支持传入选择器和原生dom节点
+                    wrap: ".g-page", //这个仅支持传入选择器和原生dom节点
                     //回调
                     callback: {
                         moduleDomCreateBefore: function moduleDomCreateBefore() {},
                         moduleDomCreateAfter: function moduleDomCreateAfter() {},
                         moduleDomRenderBefore: function moduleDomRenderBefore() {},
                         moduleDomRenderAfter: function moduleDomRenderAfter() {},
-                        parentDomCreateBefore: function parentDomCreateBefore() {},
-                        parentDomCreateAfter: function parentDomCreateAfter() {}
+                        wrapDomCreateBefore: function wrapDomCreateBefore() {},
+                        wrapDomCreateAfter: function wrapDomCreateAfter() {}
                     },
                     //配置
                     config: {
@@ -1151,7 +1157,7 @@
             });
             //函数内部自带的属性
             this.moduleDom = null; //内部的模块
-            this.parentDom = null; //内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+            this.wrapDom = null; //内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
             this.moduleDomTimer = {}; //内部模块的定时器存储(假设内部模块有定时器)
             this.init(); //初始化
         }
@@ -1165,7 +1171,7 @@
         //渲染
         SuperType.prototype.render = function () {
             this.moduleDomRender();
-            this.parentDomRender();
+            this.wrapDomRender();
         };
 
         //功能(这个方法在其他模块的内部需要被重写)
@@ -1212,8 +1218,8 @@
 
         //内部模块的显示(显示隐藏和是否清除定时器无关)
         SuperType.prototype.moduleDomShow = function () {
-            if (this.parentDom) {
-                this.parentDom.appendChild(this.moduleDom);
+            if (this.wrapDom) {
+                this.wrapDom.appendChild(this.moduleDom);
             }
         };
 
@@ -1225,35 +1231,32 @@
         };
 
         //外部容器的创建
-        SuperType.prototype.parentDomCreate = function () {
-            this.parentDom = base.getOneDom({ dom: this.opt.parent });
+        SuperType.prototype.wrapDomCreate = function () {
+            this.wrapDom = base.getOneDom({ dom: this.opt.wrap });
         };
 
         //外部容器的渲染
-        SuperType.prototype.parentDomRender = function () {
+        SuperType.prototype.wrapDomRender = function () {
             var callback = this.opt.callback;
-            callback.parentDomCreateBefore(this);
-            this.parentDomCreate();
-            callback.parentDomCreateAfter(this);
-            if (!this.parentDom) {
-                return false;
-            }
-            if (this.parentDom) {
+            callback.wrapDomCreateBefore(this);
+            this.wrapDomCreate();
+            callback.wrapDomCreateAfter(this);
+            if (this.wrapDom) {
                 callback.moduleDomRenderBefore(this);
                 if (this.opt.config.moduleDomIsShow) {
-                    this.parentDom.appendChild(this.moduleDom);
+                    this.wrapDom.appendChild(this.moduleDom);
                 }
                 callback.moduleDomRenderAfter(this);
             }
         };
 
         //外部容器的移除
-        SuperType.prototype.parentDomRemove = function () {
+        SuperType.prototype.wrapDomRemove = function () {
             //先移除内部的模块
             this.moduleDomRemove();
             //再移除外部的容器
-            if (this.parentDom) {
-                this.parentDom.parentNode.removeChild(this.parentDom);
+            if (this.wrapDom) {
+                this.wrapDom.parentNode.removeChild(this.wrapDom);
             }
         };
 
