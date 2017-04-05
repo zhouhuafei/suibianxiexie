@@ -2,7 +2,7 @@
 
 .m-footer {
     $height: 40;
-    width: 100%;
+    width: px2rem(320);
     height: px2rem($height);
     margin-top: px2rem(20);
     .m-footer-wrap {
