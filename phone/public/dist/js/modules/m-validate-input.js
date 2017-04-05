@@ -13,39 +13,31 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 16/12/4.
-         */
         //一些小方法
         var base = {
+            Select: require('../function/select.js'),
+            offset: require('../function/offset.js'),
             constructorInherit: require('../function/constructor-inherit.js'),
-            isIPhone: function isIPhone() {
-                return window.navigator.appVersion.match(/iphone/gi);
-            },
-            isAndroid: function isAndroid() {
-                return window.navigator.appVersion.match(/android/gi);
-            },
+            isIPhone: require('../function/is-iphone.js'),
+            isAndroid: require('../function/is-android.js'),
             isPc: require('../function/is-pc.js'),
             cookie: require('../function/cookie.js'),
             fillZero: require('../function/fill-zero.js'),
             getParent: require('../function/get-parent.js'),
-            goTop: require('../function/go-top.js'),
+            scrollTo: require('../function/scroll-to.js'),
             htmlToDom: require('../function/html-to-dom.js'),
             whetherDisableScroll: require('../function/whether-disable-scroll.js'),
-            whenScrollBottom: require('../function/when-scroll-bottom.js'),
+            WhenScrollBottom: require('../function/when-scroll-bottom.js'),
             jsonToArray: require('../function/json-to-array.js'),
             secondsToTime: require('../function/seconds-to-time.js'),
             timeCountDown: require('../function/time-count-down.js'),
             strLimit: require('../function/str-limit.js'),
-            getOneDom: require('../function/get-one-dom.js'),
+            getDomArray: require('../function/get-dom-array.js'),
             createElement: require('../function/create-element.js'),
             extend: require('../function/extend.js')
         };
         module.exports = base;
-    }, { "../function/constructor-inherit.js": 3, "../function/cookie.js": 4, "../function/create-element.js": 5, "../function/extend.js": 6, "../function/fill-zero.js": 7, "../function/get-one-dom.js": 8, "../function/get-parent.js": 9, "../function/go-top.js": 10, "../function/html-to-dom.js": 11, "../function/is-pc.js": 12, "../function/json-to-array.js": 13, "../function/seconds-to-time.js": 14, "../function/str-limit.js": 15, "../function/time-count-down.js": 16, "../function/when-scroll-bottom.js": 18, "../function/whether-disable-scroll.js": 19 }], 2: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/2.
-         */
+    }, { "../function/constructor-inherit.js": 3, "../function/cookie.js": 4, "../function/create-element.js": 5, "../function/extend.js": 6, "../function/fill-zero.js": 7, "../function/get-dom-array.js": 8, "../function/get-parent.js": 9, "../function/html-to-dom.js": 10, "../function/is-android.js": 11, "../function/is-iphone.js": 12, "../function/is-pc.js": 13, "../function/json-to-array.js": 14, "../function/offset.js": 15, "../function/scroll-to.js": 16, "../function/seconds-to-time.js": 17, "../function/select.js": 18, "../function/str-limit.js": 19, "../function/time-count-down.js": 20, "../function/when-scroll-bottom.js": 22, "../function/whether-disable-scroll.js": 23 }], 2: [function (require, module, exports) {
         var base = require('../base/base.js');
 
         function ValidateInput(json) {
@@ -157,7 +149,7 @@
         };
 
         module.exports = ValidateInput;
-    }, { "../base/base.js": 1, "../function/validate": 17 }], 3: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../function/validate": 21 }], 3: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend.js');
 
@@ -198,9 +190,6 @@
         }
         module.exports = constructorInherit;
     }, { "../function/extend.js": 6 }], 4: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
         //设置cookie
         function setCookie(json) {
             var opt = json || {};
@@ -241,9 +230,6 @@
         };
         module.exports = obj;
     }, {}], 5: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/3/19.
-         */
         function createElement(json) {
             var opt = json || {};
             opt.elementName = opt.elementName || 'div'; //标签名称
@@ -316,44 +302,44 @@
             return opt.default;
         }
         /*
-        var obj1 = extend({
-            default: {
-                a: 'a',
-                b: {
-                    b1: 'b1',
-                    b2: 'b2',
-                    b3: {
-                        c1: 'c1'
+            var obj1 = extend({
+                default: {
+                    a: 'a',
+                    b: {
+                        b1: 'b1',
+                        b2: 'b2',
+                        b3: {
+                            c1: 'c1'
+                        }
+                    }
+                },
+                inherit: {
+                    a: 0,
+                    b: {
+                        b2: 1,
+                        b3: {
+                            c2: 2
+                        }
                     }
                 }
-            },
-            inherit: {
-                a: 0,
-                b: {
-                    b2: 1,
-                    b3: {
-                        c2: 2
-                    }
+            });
+            console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
+            var obj2 = extend({
+                default: {
+                    b: [
+                        {a1: 'a1'},
+                        {a2: 'a2'}
+                    ]
+                },
+                inherit: {
+                    b: [
+                        'what?',
+                        {b1: 'b1'},
+                        {b2: 'b2'}
+                    ]
                 }
-            }
-        });
-        console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
-        var obj2 = extend({
-            default: {
-                b: [
-                    {a1: 'a1'},
-                    {a2: 'a2'}
-                ]
-            },
-            inherit: {
-                b: [
-                    'what?',
-                    {b1: 'b1'},
-                    {b2: 'b2'}
-                ]
-            }
-        });
-        console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
+            });
+            console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
         */
         module.exports = extend;
     }, {}], 7: [function (require, module, exports) {
@@ -380,35 +366,37 @@
         //对象的扩展方法
         var extend = require('../function/extend.js');
 
-        //获取一个原生的dom节点,当传入的是dom,或者是选择器的时候
-        function getOneDom(json) {
+        //获取原生的dom节点并转换成数组,传入的参数仅支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
+        function getDomArray(json) {
             var opt = extend({
                 default: {
-                    dom: null
+                    element: null
                 },
                 inherit: json
             });
-            var resultDom = null;
-            if (opt.dom) {
+            var dom = null;
+            if (opt.element) {
                 //如果是字符串
-                if (Object.prototype.toString.call(opt.dom).slice(8, -1).toLowerCase() == 'string') {
-                    resultDom = document.querySelector(opt.dom);
+                if (Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'string') {
+                    dom = [].slice.call(document.querySelectorAll(opt.element));
                 }
-                //如果是dom节点
-                if (opt.dom.nodeType && opt.dom.nodeType == 1) {
-                    resultDom = opt.dom;
+                //如果是dom节点(一个元素)    原生的
+                if (opt.element.nodeType == 1) {
+                    dom = [opt.element];
+                }
+                /*
+                 * 如果是dom集合(一组元素)    HtmlCollection(通过getElementsBy系列获取到的)
+                 * 如果是dom集合(一组元素)    NodeList(通过querySelectorAll获取到的)
+                 * */
+                if (Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'htmlcollection' || Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'nodelist') {
+                    dom = [].slice.call(opt.element);
                 }
             }
-            return resultDom;
+            return dom;
         }
-        module.exports = getOneDom;
+        module.exports = getDomArray;
     }, { "../function/extend.js": 6 }], 9: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
-        "use strict";
         //获取指定父级
-
         function getParent(json) {
             var opt = json || {};
             var obj = opt.obj;
@@ -471,47 +459,6 @@
         }
         module.exports = getParent;
     }, {}], 10: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
-        //返回顶部
-        function goTop(json) {
-            var opt = json || {};
-            var obj = opt.obj;
-            var to = opt.to || '0';
-            if (!obj) {
-                console.log('parameter error');
-                return false;
-            }
-            var doc = document;
-            var scale = 6;
-            var scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
-            var speed = 0;
-            var timer = null;
-            var fn = function fn() {
-                speed = Math.ceil(scrollT - to / scale);
-                scrollT -= speed;
-                window.scrollTo(0, scrollT);
-                timer = requestAnimationFrame(fn);
-                if (scrollT <= to * 1) {
-                    cancelAnimationFrame(timer);
-                }
-            };
-            obj.addEventListener('click', function (ev) {
-                ev.stopPropagation();
-                ev.preventDefault();
-                scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
-                requestAnimationFrame(fn);
-            });
-            doc.addEventListener('touchstart', function () {
-                cancelAnimationFrame(timer);
-            });
-        }
-        module.exports = goTop;
-    }, {}], 11: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
         //html转成DOM节点
         function htmlToDom(json) {
             var opt = json || {};
@@ -521,7 +468,17 @@
             return div.children[0];
         }
         module.exports = htmlToDom;
+    }, {}], 11: [function (require, module, exports) {
+        function isAndroid() {
+            return window.navigator.appVersion.match(/android/gi);
+        }
+        module.exports = isAndroid;
     }, {}], 12: [function (require, module, exports) {
+        function isIphone() {
+            return window.navigator.appVersion.match(/iphone/gi);
+        }
+        module.exports = isIphone;
+    }, {}], 13: [function (require, module, exports) {
         function isPc() {
             var userAgentInfo = navigator.userAgent;
             var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
@@ -535,10 +492,7 @@
             return flag;
         }
         module.exports = isPc;
-    }, {}], 13: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
+    }, {}], 14: [function (require, module, exports) {
         //对象转数组
         function jsonToArray(json) {
             var opt = json || {};
@@ -558,10 +512,53 @@
             return arr;
         }
         module.exports = jsonToArray;
-    }, {}], 14: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
+    }, {}], 15: [function (require, module, exports) {
+        var extend = require('../function/extend.js');
+        var getDomArray = require('../function/get-dom-array.js');
+
+        function offset(json) {
+            var opt = extend({
+                default: {
+                    element: null
+                },
+                inherit: json
+            });
+            var top = 0;
+            var left = 0;
+            var obj = getDomArray({ element: opt.element })[0];
+            while (obj) {
+                top += obj.offsetTop;
+                left += obj.offsetLeft;
+                obj = obj.offsetParent;
+            }
+            return {
+                top: top,
+                left: left
+            };
+        }
+        module.exports = offset;
+    }, { "../function/extend.js": 6, "../function/get-dom-array.js": 8 }], 16: [function (require, module, exports) {
+        //滚动到指定位置
+        function scrollTo(json) {
+            var opt = json || {};
+            var to = opt.to || '0';
+            var scale = 6;
+            var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
+            var speed = 0;
+            var timer = null;
+            var fn = function fn() {
+                speed = Math.ceil((scrollT - to) / scale);
+                scrollT -= speed;
+                window.scrollTo(0, scrollT);
+                timer = requestAnimationFrame(fn);
+                if (scrollT <= to * 1) {
+                    cancelAnimationFrame(timer);
+                }
+            };
+            requestAnimationFrame(fn);
+        }
+        module.exports = scrollTo;
+    }, {}], 17: [function (require, module, exports) {
         //秒转时间
         function secondsToTime(json) {
             var opt = json || {};
@@ -577,10 +574,69 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 15: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
+    }, {}], 18: [function (require, module, exports) {
+        //全选,不选,反选
+        var extend = require('../function/extend.js');
+        var getDomArray = require('../function/get-dom-array.js');
+
+        function Select(json) {
+            this.opt = extend({
+                default: {
+                    items: null, //所有的被选项
+                    callback: {
+                        itemsClick: function itemsClick() {}
+                    }
+                },
+                inherit: json
+            });
+            this.itemsDom = getDomArray({ element: this.opt.items });
+            this.init();
+        }
+
+        //初始化
+        Select.prototype.init = function () {
+            this.power();
+        };
+
+        //不选
+        Select.prototype.selectNothing = function () {
+            this.itemsDom.forEach(function (v) {
+                v.checked = false;
+            });
+        };
+
+        //全选
+        Select.prototype.selectAll = function () {
+            this.itemsDom.forEach(function (v) {
+                v.checked = true;
+            });
+        };
+
+        //反选
+        Select.prototype.selectReverse = function () {
+            this.itemsDom.forEach(function (v) {
+                v.checked = !v.checked;
+            });
+        };
+
+        //当某一项被选中时,是否全部选项都被选中了
+        Select.prototype.power = function () {
+            var self = this;
+            this.itemsDom.forEach(function (v1) {
+                v1.addEventListener('click', function () {
+                    var isCheckedAll = true; //是否全部的选项都被选中了(假设全部选中)
+                    self.itemsDom.forEach(function (v2) {
+                        if (v2.checked == false) {
+                            isCheckedAll = false;
+                        }
+                    });
+                    self.opt.callback.itemsClick({ isCheckedAll: isCheckedAll });
+                });
+            });
+        };
+
+        module.exports = Select;
+    }, { "../function/extend.js": 6, "../function/get-dom-array.js": 8 }], 19: [function (require, module, exports) {
         //字符数量限制
         function strLimit(json) {
             var opt = json || {};
@@ -596,57 +652,46 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 16: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
+    }, {}], 20: [function (require, module, exports) {
+        var extend = require('../function/extend.js');
+        var secondsToTime = require('../function/seconds-to-time.js'); //时间转换
+
         //倒计时
         function timeCountDown(json) {
-            var opt = json || {};
-            var seconds = opt.seconds;
-            //运行的回调
-            var runCallback = opt.runCallback;
-            //结束的回调
-            var overCallback = opt.overCallback;
-            //时间转换
-            var timeTransform = function timeTransform(opt) {
-                var seconds = opt.seconds;
-                //天
-                var d = Math.floor(seconds / 3600 / 24);
-                //时
-                var h = Math.floor(seconds / 3600 % 24);
-                //分
-                var m = Math.floor(seconds % 3600 / 60);
-                //秒
-                var s = Math.floor(seconds % 60);
-                return { d: d, h: h, m: m, s: s, a: seconds };
-            };
-            if (seconds <= 0) {
-                //时间小于等于0秒
-                seconds = 0;
-                runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
-                overCallback && overCallback(); //结束时的回调
-            } else {
-                //时间大于0秒
-                runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
+            var opt = extend({
+                default: {
+                    seconds: 0,
+                    callback: {
+                        run: function run() {},
+                        over: function over() {}
+                    }
+                },
+                inherit: json
+            });
+            var seconds = opt.seconds; //秒数
+            var run = opt.callback.run; //运行的回调
+            var over = opt.callback.over; //结束的回调
+            //时间大于等于0秒
+            if (seconds >= 0) {
+                run(secondsToTime({ seconds: seconds })); //运行时的回调
                 //倒计时走你
                 var timer = setInterval(function () {
                     seconds--;
-                    runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
-                    if (seconds < 0) {
-                        seconds = 0;
+                    if (seconds >= 0) {
+                        run(secondsToTime({ seconds: seconds })); //运行时的回调
+                    } else {
+                        over(); //结束时的回调
                         clearInterval(timer);
-                        runCallback && runCallback(timeTransform({ seconds: seconds })); //运行时的回调
-                        overCallback && overCallback(); //结束时的回调
                     }
                 }, 1000);
             }
+            //时间小于0秒
+            if (seconds < 0) {
+                console.log('倒计时的秒数不能小于0');
+            }
         }
         module.exports = timeCountDown;
-    }, {}], 17: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 16/12/4.
-         */
+    }, { "../function/extend.js": 6, "../function/seconds-to-time.js": 17 }], 21: [function (require, module, exports) {
         //验证
         var validate = {
             //是不是空
@@ -734,50 +779,61 @@
             }
         };
         module.exports = validate;
-    }, {}], 18: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
+    }, {}], 22: [function (require, module, exports) {
+        var extend = require('../function/extend.js');
+
         //当滚动到了浏览器的底部
-        function whenScrollBottom(json) {
-            var opt = json || {};
-            var success = opt.success || function () {};
-            var fail = opt.fail || function () {};
-            var doc = document;
-            var interval = opt.interval || 80; //延迟时间
-            var isBottom = true; //假设到达了底部
-            var fn = function fn() {
-                var allH = doc.body.offsetHeight;
-                var scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop;
-                var clientHeight = doc.documentElement.clientHeight;
-                if (scrollTop + clientHeight >= allH - 100 && isBottom) {
-                    isBottom = false;
-                    success();
-                    //假设1000毫秒之后数据加载完毕
-                    setTimeout(function () {
-                        isBottom = true;
-                    }, 1000);
-                } else {
-                    fail();
-                }
-            };
-            fn();
+        function WhenScrollBottom(json) {
+            this.opt = extend({
+                default: {
+                    callback: {
+                        success: function success() {},
+                        fail: function fail() {}
+                    },
+                    interval: 80, //函数节流时间(延迟时间)
+                    errorHeight: 100 //滚动到底部上面一定高度就算是滚动到底部了(误差高度)
+                },
+                inherit: json
+            });
+            this.isLoadOver = false; //数据是否加载完毕
+            this.init();
+        }
+
+        WhenScrollBottom.prototype.init = function () {
+            this.render();
+            this.power();
+        };
+
+        WhenScrollBottom.prototype.render = function () {
+            var callback = this.opt.callback;
+            var allH = document.body.scrollHeight;
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var clientHeight = document.documentElement.clientHeight;
+            if (scrollTop + clientHeight >= allH - this.opt.errorHeight && !this.isLoadOver) {
+                this.isLoadOver = true;
+                callback.success(this);
+                /*
+                 * 条件:当你拿到请求的数据之后
+                 * 可能性:1.如果你的数据加载完毕了,你需要手动把isLoadOver开关变成true
+                 * 可能性:2.如果你的数据尚未加载完毕,你需要手动把isLoadOver开关变成false
+                 * */
+            } else {
+                callback.fail();
+            }
+        };
+
+        WhenScrollBottom.prototype.power = function () {
+            var self = this;
             var timer = null;
-            var fnScroll = function fnScroll() {
+            window.addEventListener('scroll', function () {
                 clearTimeout(timer);
                 timer = setTimeout(function () {
-                    fn();
-                }, interval);
-            };
-            window.addEventListener('scroll', function () {
-                fnScroll();
+                    self.render();
+                }, self.opt.interval);
             });
-        }
-        module.exports = whenScrollBottom;
-    }, {}], 19: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
+        };
+        module.exports = WhenScrollBottom;
+    }, { "../function/extend.js": 6 }], 23: [function (require, module, exports) {
         //是否禁止浏览器滚动
         function whetherDisableScroll() {
             var doc = document;

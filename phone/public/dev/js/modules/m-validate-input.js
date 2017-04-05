@@ -1,6 +1,3 @@
-/**
- * Created by zhouhuafei on 17/1/2.
- */
 var base = require('../base/base.js');
 
 function ValidateInput(json) {

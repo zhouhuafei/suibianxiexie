@@ -1,6 +1,3 @@
-/**
- * Created by zhouhuafei on 17/1/1.
- */
 //设置cookie
 function setCookie(json) {
     var opt = json || {};

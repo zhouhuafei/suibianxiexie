@@ -1,82 +1,62 @@
-/**
- * Created by zhouhuafei on 2017/1/6.
- */
+//全选,不选,反选
+var extend = require('../function/extend.js');
+var getDomArray = require('../function/get-dom-array.js');
+
 function Select(json) {
-    this.opt = json || {};
-    this.selectAllButton = this.opt.selectAllButton;
-    this.radioButton = this.opt.radioButton;
-    this.allSelectYesCallback = this.opt.allSelectYesCallback;//全选的回调
-    this.allSelectNoCallback = this.opt.allSelectNoCallback;//返选的回调
-    this.oneSelectCallback = this.opt.oneSelectCallback;//单选的回调
-    if (this.selectAllButton && this.radioButton) {
-        this.init();
-    } else {
-        console.log('did not find the correct parameters');
-    }
+    this.opt = extend({
+        default: {
+            items: null,//所有的被选项
+            callback: {
+                itemsClick: function () {
+                }
+            }
+        },
+        inherit: json
+    });
+    this.itemsDom = getDomArray({element: this.opt.items});
+    this.init();
 }
+
+//初始化
 Select.prototype.init = function () {
-    this.events();
+    this.power();
 };
-Select.prototype.events = function () {
-    this.selectAllClick();
-    this.selectOneToAll();
+
+//不选
+Select.prototype.selectNothing = function () {
+    this.itemsDom.forEach(function (v) {
+        v.checked = false;
+    });
 };
-Select.prototype.selectAllYes = function () {//全选
-    var dom1 = document.querySelector(this.selectAllButton);
-    var dom2 = [].slice.call(document.querySelectorAll(this.radioButton));
-    if (dom1 && dom2.length >= 1) {
-        dom1.checked = true;
-        dom2.forEach(function (v) {
-            v.checked = true;
-        })
-    }
-    this.allSelectYesCallback && this.allSelectYesCallback();
+
+//全选
+Select.prototype.selectAll = function () {
+    this.itemsDom.forEach(function (v) {
+        v.checked = true;
+    });
 };
-Select.prototype.selectAllNo = function () {//反选
-    var dom1 = document.querySelector(this.selectAllButton);
-    var dom2 = [].slice.call(document.querySelectorAll(this.radioButton));
-    if (dom1 && dom2.length >= 1) {
-        dom1.checked = false;
-        dom2.forEach(function (v) {
-            v.checked = false;
-        })
-    }
-    this.allSelectNoCallback && this.allSelectNoCallback();
+
+//反选
+Select.prototype.selectReverse = function () {
+    this.itemsDom.forEach(function (v) {
+        v.checked = !v.checked;
+    });
 };
-Select.prototype.selectAllClick = function () {//全选反选事件
-    var dom1 = document.querySelector(this.selectAllButton);
-    var dom2 = [].slice.call(document.querySelectorAll(this.radioButton));
+
+//当某一项被选中时,是否全部选项都被选中了
+Select.prototype.power = function () {
     var self = this;
-    if (dom1 && dom2.length >= 1) {
-        dom1.onclick = function () {
-            if (this.checked == true) {
-                self.selectAllYes();
-            } else {
-                self.selectAllNo();
-            }
-        }
-    }
+    this.itemsDom.forEach(function (v1) {
+        v1.addEventListener('click', function () {
+            var isCheckedAll = true;//是否全部的选项都被选中了(假设全部选中)
+            self.itemsDom.forEach(function (v2) {
+                if (v2.checked == false) {
+                    isCheckedAll = false;
+                }
+            });
+            self.opt.callback.itemsClick({isCheckedAll: isCheckedAll});
+        });
+    });
 };
-Select.prototype.selectOneToAll = function () {//单选导致全选
-    var dom1 = document.querySelector(this.selectAllButton);
-    var dom2 = [].slice.call(document.querySelectorAll(this.radioButton));
-    var self = this;
-    if (dom1 && dom2.length >= 1) {
-        dom2.forEach(function (v) {
-            v.onclick = function () {
-                var isAll = true;//假设全部都被选中了
-                var dom3 = [].slice.call(document.querySelectorAll(self.radioButton));
-                dom3.forEach(function (v2) {
-                    if (v2.checked != true) {
-                        isAll = false;
-                        return false;
-                    }
-                });
-                dom1.checked = false;
-                isAll && (dom1.checked = true);
-                self.oneSelectCallback && self.oneSelectCallback();
-            }
-        })
-    }
-};
+
 module.exports = Select;

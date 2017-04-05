@@ -13,9 +13,6 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
         //是否禁止浏览器滚动
         function whetherDisableScroll() {
             var doc = document;

@@ -13,9 +13,6 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 2017/1/9.
-         */
         module.exports = {
             //加入购物车的接口
             cartAdd: {

@@ -6,12 +6,12 @@ var SuperType = require('../modules/m-super-type.js');
 
 //子类型
 var SubType = base.constructorInherit({
-    superType:SuperType,
-    parameter:{
+    superType: SuperType,
+    parameter: {
         data: {
-            header: [{html:'undefined-header0'},{html:'undefined-header1'},{html:'undefined-header2'}],
-            body:[[{html:'undefined-body0-0'},{html:'undefined-body0-1'},{html:'undefined-body0-2'}],[{html:'undefined-body1-0'},{html:'undefined-body1-1'},{html:'undefined-body1-2'}]],
-            footer:''
+            header: [{html: 'undefined-header0'}, {html: 'undefined-header1'}, {html: 'undefined-header2'}],
+            body: [[{html: 'undefined-body0-0'}, {html: 'undefined-body0-1'}, {html: 'undefined-body0-2'}], [{html: 'undefined-body1-0'}, {html: 'undefined-body1-1'}, {html: 'undefined-body1-2'}]],
+            footer: ''
         }
     }
 });
@@ -38,10 +38,10 @@ SubType.prototype.moduleDomCreate = function () {
     });
 };
 
-SubType.prototype.moduleDomCreateHeader=function(){
-    var html=``;
-    this.opt.data.header.forEach(function(v){
-        html+=`
+SubType.prototype.moduleDomCreateHeader = function () {
+    var html = ``;
+    this.opt.data.header.forEach(function (v) {
+        html += `
             <div class="m-table-col">
                 <div class="m-table-col-wrap">
                     ${v.html}
@@ -52,12 +52,12 @@ SubType.prototype.moduleDomCreateHeader=function(){
     return html;
 };
 
-SubType.prototype.moduleDomCreateBody=function(){
-    var html=``;
-    this.opt.data.body.forEach(function(v0){
-        var row=``;
-        v0.forEach(function(v1){
-            row+=`
+SubType.prototype.moduleDomCreateBody = function () {
+    var html = ``;
+    this.opt.data.body.forEach(function (v0) {
+        var row = ``;
+        v0.forEach(function (v1) {
+            row += `
                 <div class="m-table-col">
                     <div class="m-table-col-wrap">
                         ${v1.html}
@@ -65,12 +65,12 @@ SubType.prototype.moduleDomCreateBody=function(){
                 </div>
             `;
         });
-        html+=`<div class="m-table-row">${row}</div>`;
+        html += `<div class="m-table-row">${row}</div>`;
     });
     return html;
 };
 
-SubType.prototype.moduleDomCreateFooter=function(){
+SubType.prototype.moduleDomCreateFooter = function () {
     return this.opt.data.footer;
 };
 

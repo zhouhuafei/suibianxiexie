@@ -2,10 +2,13 @@
 
 .m-star {
     font-size: 0;
+    height: px2rem(40);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     .m-star-item {
-        display: inline-block;
         color: $g-color-font-dark;
-        font-size: px2rem(40);
+        font-size: px2rem(36);
         &.m-star-item-active {
             color: $g-color-font-highlight;
         }

@@ -6,8 +6,8 @@ var SuperType = require('../modules/m-super-type.js');
 
 //子类型
 var SubType = base.constructorInherit({
-    superType:SuperType,
-    parameter:{
+    superType: SuperType,
+    parameter: {
         //回调
         callback: {
             moduleDomClick: function () {
@@ -19,8 +19,8 @@ var SubType = base.constructorInherit({
         },
         //数据
         data: {
-            allStarNum:5,
-            nowStarNum:4
+            allStarNum: 5,
+            nowStarNum: 4
         }
     }
 });
@@ -43,7 +43,7 @@ SubType.prototype.moduleDomCreate = function () {
     this.opt.star = this.moduleDom.children;
 };
 
-SubType.prototype.power=function(){
+SubType.prototype.power = function () {
     var self = this;
     if (this.opt.config.moduleDomIsHaveEvent) {
         this.moduleDom.addEventListener('click', function (ev) {
@@ -57,7 +57,7 @@ SubType.prototype.power=function(){
                         self.opt.star[j].classList.remove('m-star-item-active');
                     }
                 }
-                self.opt.callback.moduleDomClick({obj:this,index: index});
+                self.opt.callback.moduleDomClick({obj: this, index: index});
             }
         })
     }

@@ -1,27 +1,33 @@
-/**
- * Created by zhouhuafei on 16/12/4.
- */
-//测试
+//base函数测试
 (function () {
-    var Test = require('../modules/m-super-type.js');
-    var test = new Test({
-        wrap: document.querySelector(`.main-test`),
-        config: {
-            moduleDomIsClearTimer: true
+    var base = require('../base/base');
+    new base.Select({
+        items: '.g-checkbox-checkbox',
+        callback: {
+            itemsClick: function (obj) {
+                console.log(obj);
+            }
         }
     });
 })();
-//底部
-(function(){
-    var Footer = require('../modules/m-footer.js');
-    new Footer();
+//超类模块测试
+(function () {
+    var Test = require('../modules/m-super-type.js');
+    var test = new Test({
+        wrap: `.main-test`
+    });
+})();
+//返回顶部
+(function () {
+    var GoTop = require('../modules/m-go-top.js');
+    new GoTop();
 })();
 //遮罩
 (function () {
     var Mask = require('../modules/m-mask.js');
     var mask = new Mask({
-        callback:{
-            moduleDomClick:function(){
+        callback: {
+            moduleDomClick: function () {
                 console.log('m-mask click callback');
                 mask.moduleDomHide();
             }
@@ -51,7 +57,7 @@
     const Table = require('../modules/m-table.js');
     const table = new Table({
         wrap: `.main-table`,
-        data:{
+        data: {
             header: [
                 {
                     html: `<div>header0</div>`
@@ -115,13 +121,13 @@
 (function () {
     const Star = require('../modules/m-star.js');
     const star = new Star({
-        wrap:`.main-star`,
-        callback:{
-            moduleDomClick:function (json) {
+        wrap: `.main-star`,
+        callback: {
+            moduleDomClick: function (json) {
                 console.log(json);
             }
         }
     });
 })();
-//延迟加载
-require('../function/lazyload.js')();
+//每个页面都要用到的js
+require('../common/common.js');

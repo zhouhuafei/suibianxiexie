@@ -13,25 +13,16 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
-        //返回顶部
-        function goTop(json) {
+        //滚动到指定位置
+        function scrollTo(json) {
             var opt = json || {};
-            var obj = opt.obj;
             var to = opt.to || '0';
-            if (!obj) {
-                console.log('parameter error');
-                return false;
-            }
-            var doc = document;
             var scale = 6;
-            var scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
+            var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
             var speed = 0;
             var timer = null;
             var fn = function fn() {
-                speed = Math.ceil(scrollT - to / scale);
+                speed = Math.ceil((scrollT - to) / scale);
                 scrollT -= speed;
                 window.scrollTo(0, scrollT);
                 timer = requestAnimationFrame(fn);
@@ -39,15 +30,7 @@
                     cancelAnimationFrame(timer);
                 }
             };
-            obj.addEventListener('click', function (ev) {
-                ev.stopPropagation();
-                ev.preventDefault();
-                scrollT = doc.documentElement.scrollTop || doc.body.scrollTop;
-                requestAnimationFrame(fn);
-            });
-            doc.addEventListener('touchstart', function () {
-                cancelAnimationFrame(timer);
-            });
+            requestAnimationFrame(fn);
         }
-        module.exports = goTop;
+        module.exports = scrollTo;
     }, {}] }, {}, [1]);

@@ -5,21 +5,28 @@ var base = require('../base/base.js');
 function SuperType(json) {
     //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
     this.opt = base.extend({
+        //内部默认参数
         default: {
             //父级
             wrap: `.g-page`,//这个仅支持传入选择器和原生dom节点
             //回调
             callback: {
+                //内部模块创建之前
                 moduleDomCreateBefore: function () {
                 },
+                //内部模块创建之后
                 moduleDomCreateAfter: function () {
                 },
+                //内部模块渲染之前
                 moduleDomRenderBefore: function () {
                 },
+                //内部模块渲染之后
                 moduleDomRenderAfter: function () {
                 },
+                //外部容器渲染之前
                 wrapDomCreateBefore: function () {
                 },
+                //外部容器渲染之后
                 wrapDomCreateAfter: function () {
                 }
             },
@@ -32,6 +39,7 @@ function SuperType(json) {
             //数据
             data: {}
         },
+        //外部传入参数
         inherit: json
     });
     //函数内部自带的属性
@@ -114,7 +122,7 @@ SuperType.prototype.moduleDomHide = function () {
 
 //外部容器的创建
 SuperType.prototype.wrapDomCreate=function(){
-    this.wrapDom = base.getOneDom({dom: this.opt.wrap});
+    this.wrapDom = base.getDomArray({element: this.opt.wrap})[0];
 };
 
 //外部容器的渲染

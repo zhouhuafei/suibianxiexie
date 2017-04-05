@@ -13,9 +13,6 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        /**
-         * Created by zhouhuafei on 17/1/1.
-         */
         //字符数量限制
         function strLimit(json) {
             var opt = json || {};
