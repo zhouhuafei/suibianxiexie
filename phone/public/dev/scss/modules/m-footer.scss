@@ -1,20 +1,17 @@
 @import "../config/config.scss";
 
 .m-footer {
-    $width: 320;
     $height: 40;
     height: px2rem($height);
     margin-top: px2rem(20);
     .m-footer-wrap {
+        width: inherit;
         height: inherit;
         display: flex;
         align-items: center;
         justify-content: center;
         position: fixed;
         z-index: 2;
-        width: px2rem($width);
-        left: 50%;
-        margin-left: px2rem(- $width/2);
         bottom: 0;
         box-sizing: border-box;
         border-top: 1px solid $g-color-border-default;
