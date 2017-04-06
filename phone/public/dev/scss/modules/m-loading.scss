@@ -1,0 +1,32 @@
+@import "../config/config.scss";
+/*加载更多的底部加载中*/
+.m-loading {
+    @keyframes run {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    color: $g-color-font-highlight;
+    .m-loading-loading {
+        animation: run 1s linear infinite;
+    }
+    &.m-loading-center {
+        .m-loading-loading {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+        }
+    }
+    &.m-loading-bottom {
+        .m-loading-loading {
+
+        }
+    }
+
+    .m-loading-over {
+
+    }
+}
