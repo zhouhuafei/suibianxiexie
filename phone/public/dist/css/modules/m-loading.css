@@ -1,0 +1,1 @@
+@charset "UTF-8";.m-loading{color:#0089ff}@keyframes run{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}.m-loading .m-loading-loading{animation:run 1s linear infinite}.m-loading.m-loading-center .m-loading-loading{position:fixed;left:50%;top:50%}

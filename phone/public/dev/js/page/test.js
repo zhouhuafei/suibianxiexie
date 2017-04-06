@@ -10,6 +10,12 @@
         }
     });
 })();
+//加载中
+(function(){
+    var Loading=require('../modules/m-loading');
+    var loading=new Loading();
+    loading.moduleDomShow();
+})();
 //超类模块测试
 (function () {
     var Test = require('../modules/m-super-type.js');
