@@ -1,1 +1,39 @@
-"use strict";!function t(e,r,n){function u(i,a){if(!r[i]){if(!e[i]){var s="function"==typeof require&&require;if(!a&&s)return s(i,!0);if(o)return o(i,!0);throw new Error("Cannot find module '"+i+"'")}var f=r[i]={exports:{}};e[i][0].call(f.exports,function(t){var r=e[i][1][t];return u(r?r:t)},f,f.exports,t,e,r,n)}return r[i].exports}for(var o="function"==typeof require&&require,i=0;i<n.length;i++)u(n[i]);return u}({1:[function(t,e,r){function n(t){var e=t||{};e.elementName=e.elementName||"div",e.attribute=e.attribute||{},e.custom=e.custom||{},e.style=e.style||"";var r=document.createElement(""+e.elementName);for(var n in e.attribute)e.attribute.hasOwnProperty(n)&&(r[n]=e.attribute[n]);for(var u in e.custom)e.custom.hasOwnProperty(u)&&r.setAttribute("data-"+u,e.custom[u]);return e.style&&r.setAttribute("style",e.style),r}e.exports=n},{}]},{},[1]);
+"use strict";
+
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);throw new Error("Cannot find module '" + o + "'");
+            }var f = n[o] = { exports: {} };t[o][0].call(f.exports, function (e) {
+                var n = t[o][1][e];return s(n ? n : e);
+            }, f, f.exports, e, t, n, r);
+        }return n[o].exports;
+    }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+        s(r[o]);
+    }return s;
+})({ 1: [function (require, module, exports) {
+        function createElement(json) {
+            var opt = json || {};
+            opt.elementName = opt.elementName || 'div'; //标签名称
+            opt.attribute = opt.attribute || {}; //普通属性,checked,selected
+            opt.custom = opt.custom || {}; //自定义属性
+            opt.style = opt.style || ""; //style样式
+            var elementNode = document.createElement("" + opt.elementName); //元素节点
+            for (var attr0 in opt.attribute) {
+                if (opt.attribute.hasOwnProperty(attr0)) {
+                    elementNode[attr0] = opt.attribute[attr0];
+                }
+            }
+            for (var attr1 in opt.custom) {
+                if (opt.custom.hasOwnProperty(attr1)) {
+                    elementNode.setAttribute('data-' + attr1, opt.custom[attr1]);
+                }
+            }
+            if (opt.style) {
+                elementNode.setAttribute('style', opt.style);
+            }
+            return elementNode;
+        }
+        module.exports = createElement;
+    }, {}] }, {}, [1]);

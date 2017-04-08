@@ -9,25 +9,46 @@
             transform: rotate(360deg);
         }
     }
-    color: $g-color-font-highlight;
-    .m-loading-loading {
-        animation: run 1s linear infinite;
-    }
-    &.m-loading-center {
-        .m-loading-loading {
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            
+    //加载中
+    &.m-loading-loading {
+        color: $g-color-font-highlight;
+        .m-loading-loading-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: px2rem(30);
+        }
+        .m-loading-loading-icon{
+            animation: run 1s linear infinite;
+            position: relative;
+            z-index: 502;
+        }
+        &.m-loading-center {
+            .m-loading-loading-wrap {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 501;
+            }
+        }
+        &.m-loading-bottom {
+            .m-loading-loading-wrap {
+                padding: px2rem(10) 0;
+                position: relative;
+                z-index: 501;
+            }
         }
     }
-    &.m-loading-bottom {
-        .m-loading-loading {
 
+    //加载完毕
+    &.m-loading-over {
+        .m-loading-over-wrap{
+            padding: px2rem(10) 0;
+            .m-loading-over-txt{
+                text-align: center;
+            }
         }
-    }
-
-    .m-loading-over {
-
     }
 }

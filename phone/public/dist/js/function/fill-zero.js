@@ -1,1 +1,124 @@
-"use strict";!function e(t,r,i){function n(a,u){if(!r[a]){if(!t[a]){var l="function"==typeof require&&require;if(!u&&l)return l(a,!0);if(o)return o(a,!0);throw new Error("Cannot find module '"+a+"'")}var f=r[a]={exports:{}};t[a][0].call(f.exports,function(e){var r=t[a][1][e];return n(r?r:e)},f,f.exports,e,t,r,i)}return r[a].exports}for(var o="function"==typeof require&&require,a=0;a<i.length;a++)n(i[a]);return n}({1:[function(e,t,r){function i(e){var t=n({default:{num:null},inherit:e}),r=t.num;return r<10?"0"+r:""+r}var n=e("../function/extend.js");t.exports=i},{"../function/extend.js":2}],2:[function(e,t,r){function i(e){var t=e||{};t.default=t.default||{},t.inherit=t.inherit||{},t.isDeep=0!=t.isDeep||t.isDeep;var r=Object.prototype.toString.call(t.default).slice(8,-1).toLowerCase(),n=Object.prototype.toString.call(t.inherit).slice(8,-1).toLowerCase();if(r==n&&t.isDeep){for(var o in t.inherit)if(t.inherit.hasOwnProperty(o)){var a=Object.prototype.toString.call(t.default[o]).slice(8,-1).toLowerCase(),u=Object.prototype.toString.call(t.inherit[o]).slice(8,-1).toLowerCase();a==u&&t.isDeep?"object"==a?i({default:t.default[o],inherit:t.inherit[o]}):"array"==a?t.inherit[o].forEach(function(e,r){var n=Object.prototype.toString.call(t.default[o][r]).slice(8,-1).toLowerCase(),a=Object.prototype.toString.call(t.inherit[o][r]).slice(8,-1).toLowerCase();a==n&&t.isDeep&&"object"==n?i({default:t.default[o][r],inherit:t.inherit[o][r]}):t.default[o][r]=t.inherit[o][r]}):t.default[o]=t.inherit[o]:t.default[o]=t.inherit[o]}}else t.default=t.inherit;return t.default}t.exports=i},{}]},{},[1]);
+"use strict";
+
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);throw new Error("Cannot find module '" + o + "'");
+            }var f = n[o] = { exports: {} };t[o][0].call(f.exports, function (e) {
+                var n = t[o][1][e];return s(n ? n : e);
+            }, f, f.exports, e, t, n, r);
+        }return n[o].exports;
+    }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+        s(r[o]);
+    }return s;
+})({ 1: [function (require, module, exports) {
+        //对象的扩展方法
+        var extend = require('../function/extend.js');
+
+        //补零函数
+        function fillZero(json) {
+            var opt = extend({
+                default: {
+                    num: null
+                },
+                inherit: json
+            });
+            var num = opt.num;
+            if (num < 10) {
+                return '0' + num;
+            } else {
+                return '' + num;
+            }
+        }
+        module.exports = fillZero;
+    }, { "../function/extend.js": 2 }], 2: [function (require, module, exports) {
+        //对象的扩展方法
+        function extend(json) {
+            var opt = json || {};
+            opt.default = opt.default || {}; //默认对象
+            opt.inherit = opt.inherit || {}; //继承对像
+            opt.isDeep = opt.isDeep == false ? opt.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
+            var defaultType = Object.prototype.toString.call(opt.default).slice(8, -1).toLowerCase();
+            var inheritType = Object.prototype.toString.call(opt.inherit).slice(8, -1).toLowerCase();
+            if (defaultType == inheritType && opt.isDeep) {
+                for (var attr in opt.inherit) {
+                    if (opt.inherit.hasOwnProperty(attr)) {
+                        var attrDefaultType = Object.prototype.toString.call(opt.default[attr]).slice(8, -1).toLowerCase();
+                        var attrInheritType = Object.prototype.toString.call(opt.inherit[attr]).slice(8, -1).toLowerCase();
+                        if (attrDefaultType == attrInheritType && opt.isDeep) {
+                            //类型相同
+                            if (attrDefaultType == 'object') {
+                                //当为对象
+                                extend({ default: opt.default[attr], inherit: opt.inherit[attr] });
+                            } else if (attrDefaultType == 'array') {
+                                //当为数组时
+                                opt.inherit[attr].forEach(function (v, i) {
+                                    var vDefaultType = Object.prototype.toString.call(opt.default[attr][i]).slice(8, -1).toLowerCase();
+                                    var vInheritType = Object.prototype.toString.call(opt.inherit[attr][i]).slice(8, -1).toLowerCase();
+                                    if (vInheritType == vDefaultType && opt.isDeep) {
+                                        if (vDefaultType == 'object') {
+                                            extend({ default: opt.default[attr][i], inherit: opt.inherit[attr][i] });
+                                        } else {
+                                            opt.default[attr][i] = opt.inherit[attr][i];
+                                        }
+                                    } else {
+                                        opt.default[attr][i] = opt.inherit[attr][i];
+                                    }
+                                });
+                            } else {
+                                opt.default[attr] = opt.inherit[attr];
+                            }
+                        } else {
+                            //类型不同,直接后面的覆盖前面的
+                            opt.default[attr] = opt.inherit[attr];
+                        }
+                    }
+                }
+            } else {
+                opt.default = opt.inherit;
+            }
+            return opt.default;
+        }
+        /*
+            var obj1 = extend({
+                default: {
+                    a: 'a',
+                    b: {
+                        b1: 'b1',
+                        b2: 'b2',
+                        b3: {
+                            c1: 'c1'
+                        }
+                    }
+                },
+                inherit: {
+                    a: 0,
+                    b: {
+                        b2: 1,
+                        b3: {
+                            c2: 2
+                        }
+                    }
+                }
+            });
+            console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
+            var obj2 = extend({
+                default: {
+                    b: [
+                        {a1: 'a1'},
+                        {a2: 'a2'}
+                    ]
+                },
+                inherit: {
+                    b: [
+                        'what?',
+                        {b1: 'b1'},
+                        {b2: 'b2'}
+                    ]
+                }
+            });
+            console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
+        */
+        module.exports = extend;
+    }, {}] }, {}, [1]);

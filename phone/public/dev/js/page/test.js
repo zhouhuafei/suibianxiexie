@@ -13,7 +13,12 @@
 //加载中
 (function(){
     var Loading=require('../modules/m-loading');
-    var loading=new Loading();
+    var loading=new Loading({
+        config:{
+            moduleDomStatus:'loading',
+            moduleDomPosition:'bottom'
+        }
+    });
     loading.moduleDomShow();
 })();
 //超类模块测试

@@ -1,1 +1,31 @@
-"use strict";!function r(t,n,e){function u(o,f){if(!n[o]){if(!t[o]){var s="function"==typeof require&&require;if(!f&&s)return s(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var a=n[o]={exports:{}};t[o][0].call(a.exports,function(r){var n=t[o][1][r];return u(n?n:r)},a,a.exports,r,t,n,e)}return n[o].exports}for(var i="function"==typeof require&&require,o=0;o<e.length;o++)u(e[o]);return u}({1:[function(r,t,n){function e(r){var t=r||{},n=t.max,e=t.str;if(!e)return"";var u=e.length;return u>n&&(e=e.substring(0,n)),e}t.exports=e},{}]},{},[1]);
+"use strict";
+
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);throw new Error("Cannot find module '" + o + "'");
+            }var f = n[o] = { exports: {} };t[o][0].call(f.exports, function (e) {
+                var n = t[o][1][e];return s(n ? n : e);
+            }, f, f.exports, e, t, n, r);
+        }return n[o].exports;
+    }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+        s(r[o]);
+    }return s;
+})({ 1: [function (require, module, exports) {
+        //字符数量限制
+        function strLimit(json) {
+            var opt = json || {};
+            var max = opt.max;
+            var str = opt.str;
+            if (!str) {
+                return '';
+            }
+            var length = str.length;
+            if (length > max) {
+                str = str.substring(0, max);
+            }
+            return str;
+        }
+        module.exports = strLimit;
+    }, {}] }, {}, [1]);
