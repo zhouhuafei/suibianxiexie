@@ -50,43 +50,40 @@
             parameter: {
                 //回调
                 callback: {
-                    moduleDomClick: function moduleDomClick() {},
-                    moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                        if (getComputedStyle(self.wrapDom).position == 'static') {
-                            self.wrapDom.style.position = 'relative';
-                        }
-                    }
+                    moduleDomClick: function moduleDomClick() {}
                 },
                 //配置
                 config: {
-                    moduleDomIsTransparent: false, //内部模块是不是透明的(默认不透明)
-                    moduleDomIsShow: false //内部模块是否显示(默认不显示)
+                    moduleDomType: 1 //两种类型 0(微信),1(自定义)
                 }
             }
         });
 
-        //内部模块的创建
         SubType.prototype.moduleDomCreate = function () {
-            var isTransparent = '';
-            if (this.opt.config.isTransparent) {
-                isTransparent = 'm-mask-transparent';
-            }
+            this.moduleDomClass = "m-footer-nav";
+            var moduleDomHtml = "\n        " + this.moduleDomType0() + "\n        " + this.moduleDomType1() + "\n    ";
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleStyle,
                 attribute: {
-                    className: "m-mask " + isTransparent,
-                    innerHTML: ""
+                    className: this.moduleDomClass,
+                    innerHTML: moduleDomHtml
                 }
             });
         };
 
-        //功能
-        SubType.prototype.power = function () {
-            var self = this;
-            this.moduleDom.addEventListener('click', function (ev) {
-                self.opt.callback.moduleDomClick();
-                ev.stopPropagation();
-            });
+        SubType.prototype.moduleDomType0 = function () {
+            if (this.opt.config.moduleDomType == 0) {
+                this.moduleDomClass = "m-footer-nav m-footer-nav-type0";
+                return "\n            <div class=\"m-footer-nav-wrap\">\n                <div class=\"m-footer-nav-header\">\n                    <div class=\"m-footer-nav-header-icon iconfont icon-shouye\"></div>\n                </div>\n                <div class=\"m-footer-nav-body\">\n                    <div class=\"m-footer-nav-body-icon iconfont icon-caidan\"></div>\n                    <div class=\"m-footer-nav-body-txt\">\u5168\u90E8\u5546\u54C1</div>\n                    <div class=\"m-footer-nav-body-child\">\n                        <div class=\"m-footer-nav-body-child-item\"><a href=\"\">child</a></div>\n                        <div class=\"m-footer-nav-body-child-item\"><a href=\"\">child</a></div>\n                    </div>\n                </div>\n                <a class=\"m-footer-nav-body\" href=\"\">\n                    <div class=\"m-footer-nav-body-txt\">\u4E0A\u65B0</div>      \n                </a>\n                <div class=\"m-footer-nav-body\">\n                    <div class=\"m-footer-nav-body-icon iconfont icon-caidan\"></div>\n                    <div class=\"m-footer-nav-body-txt\">\u5E97\u94FA\u6D3B\u52A8</div>\n                    <div class=\"m-footer-nav-body-child\">\n                        <div class=\"m-footer-nav-body-child-item\"><a href=\"\">child</a></div>\n                        <div class=\"m-footer-nav-body-child-item\"><a href=\"\">child</a></div>\n                    </div>\n                </div>\n            </div>\n        ";
+            }
+            return "";
+        };
+
+        SubType.prototype.moduleDomType1 = function () {
+            if (this.opt.config.moduleDomType == 1) {
+                this.moduleDomClass = "m-footer-nav m-footer-nav-type1";
+                return "\n            <div class=\"m-footer-nav-wrap\">\n                <a class=\"m-footer-nav-body\" href=\"\">\n                    <div class=\"m-footer-nav-body-icon iconfont icon-shouye\"></div>\n                    <div class=\"m-footer-nav-body-txt\">\u9996\u9875</div>\n                </a>\n                <a class=\"m-footer-nav-body\" href=\"\">\n                    <div class=\"m-footer-nav-body-icon iconfont icon-fenxiao\"></div>\n                    <div class=\"m-footer-nav-body-txt\">\u6211\u8981\u5F00\u5E97</div>\n                </a>\n                <a class=\"m-footer-nav-body\" href=\"\">\n                    <div class=\"m-footer-nav-body-icon iconfont icon-gouwuche\"></div>\n                    <div class=\"m-footer-nav-body-txt\">\u8D2D\u7269\u8F66</div>\n                </a>\n                <a class=\"m-footer-nav-body\" href=\"\">\n                    <div class=\"m-footer-nav-body-icon iconfont icon-kefu\"></div>\n                    <div class=\"m-footer-nav-body-txt\">\u5BA2\u670D</div>\n                </a>\n                <a class=\"m-footer-nav-body\" href=\"\">\n                    <div class=\"m-footer-nav-body-icon iconfont icon-wode\"></div>\n                    <div class=\"m-footer-nav-body-txt\">\u6211\u7684</div>\n                </a>\n            </div>\n        ";
+            }
+            return "";
         };
 
         module.exports = SubType;

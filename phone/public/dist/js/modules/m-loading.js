@@ -40,7 +40,6 @@
     }, { "../function/constructor-inherit.js": 3, "../function/cookie.js": 4, "../function/create-element.js": 5, "../function/extend.js": 6, "../function/fill-zero.js": 7, "../function/get-dom-array.js": 8, "../function/get-parent.js": 9, "../function/html-to-dom.js": 10, "../function/is-android.js": 11, "../function/is-iphone.js": 12, "../function/is-pc.js": 13, "../function/json-to-array.js": 14, "../function/offset.js": 15, "../function/scroll-to.js": 16, "../function/seconds-to-time.js": 17, "../function/select.js": 18, "../function/str-limit.js": 19, "../function/time-count-down.js": 20, "../function/when-scroll-bottom.js": 21, "../function/whether-disable-scroll.js": 22 }], 2: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
-        var Mask = require('../modules/m-mask.js');
 
         //超类型(子类型继承的对象)
         var SuperType = require('../modules/m-super-type.js');
@@ -49,18 +48,10 @@
         var SubType = base.constructorInherit({
             superType: SuperType,
             parameter: {
-                //回调
-                callback: {
-                    moduleDomShowAfter: function moduleDomShowAfter(obj) {
-                        if (obj.opt.config.isShowMask) {
-                            new Mask({ wrap: '.m-loading-loading-wrap' }).moduleDomShow();
-                        }
-                    }
-                },
                 //配置
                 config: {
                     moduleDomIsShow: false, //内部模块是否显示(默认不显示)
-                    isShowMask: true, //是否显示遮罩
+                    isShowMask: false, //是否显示遮罩
                     moduleDomStatus: 'loading', //加载状态  loading(加载中)    over(加载完毕)
                     moduleDomPosition: 'center' //模块当位置  'center'(居中)    'bottom'(居底)
                 }
@@ -71,36 +62,43 @@
             var config = this.opt.config;
             var moduleDomHtml = "";
             var moduleDomClass = "";
+            var maskHtml = "";
+            var isShowMask = config.isShowMask;
+            var moduleDomStatus = config.moduleDomStatus;
+            var moduleDomPosition = config.moduleDomPosition;
+            if (isShowMask) {
+                maskHtml = "<div class=\"m-mask\"></div>";
+            }
             //加载中
-            if (config.moduleDomStatus == 'loading') {
+            if (moduleDomStatus == 'loading') {
                 //居中
-                if (config.moduleDomPosition == 'center') {
+                if (moduleDomPosition == 'center') {
                     moduleDomClass = "m-loading-loading m-loading-center";
                 }
                 //居底
-                if (config.moduleDomPosition == 'bottom') {
+                if (moduleDomPosition == 'bottom') {
                     moduleDomClass = "m-loading-loading m-loading-bottom";
                 }
             }
             //加载完毕
-            if (config.moduleDomStatus == 'over') {
+            if (moduleDomStatus == 'over') {
                 //居中
-                if (config.moduleDomPosition == 'center') {
+                if (moduleDomPosition == 'center') {
                     moduleDomClass = "m-loading-over m-loading-center";
                 }
                 //居底
-                if (config.moduleDomPosition == 'bottom') {
+                if (moduleDomPosition == 'bottom') {
                     moduleDomClass = "m-loading-over m-loading-bottom";
                 }
             }
 
             //加载中
-            if (config.moduleDomStatus == 'loading') {
-                moduleDomHtml = "\n            <div class=\"m-loading-loading-wrap\">\n                <div class=\"m-loading-loading-icon iconfont icon-jiazaizhong\"></div>\n            </div>\n        ";
+            if (moduleDomStatus == 'loading') {
+                moduleDomHtml = "\n            <div class=\"m-loading-loading-wrap\">\n                " + maskHtml + "\n                <div class=\"m-loading-loading-icon iconfont icon-jiazaizhong\"></div>\n            </div>\n        ";
             }
             //加载完毕
-            if (config.moduleDomStatus == 'over') {
-                moduleDomHtml = "\n            <div class=\"m-loading-over-wrap\">\n                <div class=\"m-loading-over-txt\">\u6CA1\u6709\u66F4\u591A\u6570\u636E</div>\n            </div>\n        ";
+            if (moduleDomStatus == 'over') {
+                moduleDomHtml = "\n            <div class=\"m-loading-over-wrap\">\n                <div class=\"m-loading-over-icon iconfont icon-meiyoushuju\"></div>\n                <div class=\"m-loading-over-txt\">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ";
             }
             //模块创建
             this.moduleDom = base.createElement({
@@ -111,10 +109,8 @@
             });
         };
 
-        SubType.prototype.power = function () {};
-
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-mask.js": 23, "../modules/m-super-type.js": 24 }], 3: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 23 }], 3: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend.js');
 
@@ -122,14 +118,14 @@
         function constructorInherit(json) {
             var opt = extend({
                 default: {
-                    superType: null, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
+                    superType: 123, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
                     parameter: {} //默认参数(这个必须传的是一个对象,或者不传值)
                 },
                 inherit: json
             });
             //超类型(需要是个构造函数)
             var SuperType = opt.superType;
-            //子类型的参数(需要是个对象)
+            //子类型的默认参数(需要是个对象)
             var parameter = opt.parameter;
             //如果超类型不存在
             if (Object.prototype.toString.call(SuperType).toLowerCase().slice(8, -1) != 'function') {
@@ -137,21 +133,40 @@
                 return false;
             }
             //子类型
-            function SupType(json) {
+            function SubType(json) {
+                //子类型自身的属性
+                /*
+                 * 注意:
+                 * default要防止对象的引用(如果不防止的话,会出现BUG)
+                 * 例如 wrap的默认值是'.g-page'
+                 * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
+                 * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-page'
+                 * 但是由于对象引用的原因,这里的值会变成'body'
+                 * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
+                 * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
+                 * 所有我只能通过循环遍历一个新的对象进行阻止了
+                 * */
+                var obj = {};
+                for (var attr in parameter) {
+                    if (parameter.hasOwnProperty(attr)) {
+                        obj[attr] = parameter[attr];
+                    }
+                }
                 this.opt = extend({
-                    default: parameter,
+                    default: obj,
                     inherit: json
                 });
                 //子类型继承超类型的属性
                 opt.superType.call(this, this.opt);
             }
+
             //子类型继承超类型的方法
             for (var attr in SuperType.prototype) {
                 if (SuperType.prototype.hasOwnProperty(attr)) {
-                    SupType.prototype[attr] = SuperType.prototype[attr];
+                    SubType.prototype[attr] = SuperType.prototype[attr];
                 }
             }
-            return SupType;
+            return SubType;
         }
         module.exports = constructorInherit;
     }, { "../function/extend.js": 6 }], 4: [function (require, module, exports) {
@@ -742,59 +757,6 @@
         }
         module.exports = whetherDisableScroll;
     }, {}], 23: [function (require, module, exports) {
-        //底层方法
-        var base = require('../base/base.js');
-
-        //超类型(子类型继承的对象)
-        var SuperType = require('../modules/m-super-type.js');
-
-        //子类型
-        var SubType = base.constructorInherit({
-            superType: SuperType,
-            parameter: {
-                //回调
-                callback: {
-                    moduleDomClick: function moduleDomClick() {},
-                    moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                        if (getComputedStyle(self.wrapDom).position == 'static') {
-                            self.wrapDom.style.position = 'relative';
-                        }
-                    }
-                },
-                //配置
-                config: {
-                    moduleDomIsTransparent: false, //内部模块是不是透明的(默认不透明)
-                    moduleDomIsShow: false //内部模块是否显示(默认不显示)
-                }
-            }
-        });
-
-        //内部模块的创建
-        SubType.prototype.moduleDomCreate = function () {
-            var isTransparent = '';
-            if (this.opt.config.isTransparent) {
-                isTransparent = 'm-mask-transparent';
-            }
-            this.moduleDom = base.createElement({
-                style: this.opt.config.moduleStyle,
-                attribute: {
-                    className: "m-mask " + isTransparent,
-                    innerHTML: ""
-                }
-            });
-        };
-
-        //功能
-        SubType.prototype.power = function () {
-            var self = this;
-            this.moduleDom.addEventListener('click', function (ev) {
-                self.opt.callback.moduleDomClick();
-                ev.stopPropagation();
-            });
-        };
-
-        module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 24 }], 24: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 

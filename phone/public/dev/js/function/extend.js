@@ -36,8 +36,8 @@ function extend(json) {
                 }
             }
         }
-    }else{
-        opt.default= opt.inherit;
+    } else {
+        opt.default = opt.inherit;
     }
     return opt.default;
 }
