@@ -12,11 +12,11 @@
 })();
 //es6
 (function(){
-    // var Super=require('../modules/m-super-es6');
-    // var oSuper=new Super({wrap:'.main-es6'});
-    // var Sub=require('../modules/m-sub-es6');
-    // var oSub=new Sub({wrap:'.main-es6'});
-    // console.log(oSuper,oSub);
+    var Super=require('../modules/m-super-es6');
+    var oSuper=new Super({wrap:'.main-es6'});
+    var Sub=require('../modules/m-sub-es6');
+    var oSub=new Sub({wrap:'.main-es6'});
+    console.log(oSuper,oSub);
 })();
 //加载中
 (function(){
