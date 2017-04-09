@@ -106,7 +106,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     }
                 }
             });
-            mask.moduleDomShow();
+            //mask.moduleDomShow();
         })();
         //单选开关
         (function () {
