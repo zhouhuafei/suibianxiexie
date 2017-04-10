@@ -48,44 +48,18 @@
         var SubType = base.constructorInherit({
             superType: SuperType,
             parameter: {
-                //回调
-                callback: {
-                    moduleDomClick: function moduleDomClick() {},
-                    moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                        if (getComputedStyle(self.wrapDom).position == 'static') {
-                            self.wrapDom.style.position = 'relative';
-                        }
-                    }
-                },
-                //配置
-                config: {
-                    moduleDomIsTransparent: false, //内部模块是不是透明的(默认不透明)
-                    moduleDomIsShow: false //内部模块是否显示(默认不显示)
-                }
+                //数据
+                data: {}
             }
         });
 
         //内部模块的创建
         SubType.prototype.moduleDomCreate = function () {
-            var isTransparent = '';
-            if (this.opt.config.isTransparent) {
-                isTransparent = 'm-mask-transparent';
-            }
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleStyle,
                 attribute: {
-                    className: "m-mask " + isTransparent,
-                    innerHTML: ""
+                    className: "m-copyright",
+                    innerHTML: "\n                <div class=\"m-copyright-icon iconfont icon-banquan\"></div>\n                <div class=\"m-copyright-txt\">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            "
                 }
-            });
-        };
-
-        //功能
-        SubType.prototype.power = function () {
-            var self = this;
-            this.moduleDom.addEventListener('click', function (ev) {
-                self.opt.callback.moduleDomClick();
-                ev.stopPropagation();
             });
         };
 

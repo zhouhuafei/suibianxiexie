@@ -1,11 +1,10 @@
 @import "../config/config.scss";
 
-.m-footer {
+.m-footer-nav {
     $height: 40;
     width: px2rem(320);
     height: px2rem($height);
-    margin-top: px2rem(20);
-    .m-footer-wrap {
+    .m-footer-nav-wrap {
         width: inherit;
         height: inherit;
         display: flex;
@@ -18,17 +17,17 @@
         border-top: 1px solid $g-color-border-default;
         background: $g-color-background-default;
     }
-    &.m-footer-type0 {
-        .m-footer-header {
+    &.m-footer-nav-type0 {
+        .m-footer-nav-header {
             width: px2rem($height);
             display: flex;
             align-items: center;
             justify-content: center;
-            .m-footer-header-icon {
+            .m-footer-nav-header-icon {
                 font-size: px2rem(20);
             }
         }
-        .m-footer-body {
+        .m-footer-nav-body {
             flex: 1;
             display: flex;
             align-items: center;
@@ -36,13 +35,13 @@
             position: relative;
             height: 100%;
             border-left: 1px solid $g-color-border-default;
-            .m-footer-body-icon {
+            .m-footer-nav-body-icon {
                 font-size: px2rem(14);
             }
-            .m-footer-body-txt {
+            .m-footer-nav-body-txt {
                 font-size: px2rem(14);
             }
-            .m-footer-body-child {
+            .m-footer-nav-body-child {
                 display: none;
                 position: absolute;
                 width: px2rem(78);
@@ -69,7 +68,7 @@
                     margin-left: px2rem(-5);
                     transform: rotate(225deg);
                 }
-                .m-footer-body-child-item {
+                .m-footer-nav-body-child-item {
                     font-size: px2rem(14);
                     height: px2rem($height);
                     line-height: px2rem($height);
@@ -82,15 +81,15 @@
                     }
                 }
             }
-            &.m-footer-body-active, &:hover {
-                .m-footer-body-child {
+            &.m-footer-nav-body-active, &:hover {
+                .m-footer-nav-body-child {
                     display: block;
                 }
             }
         }
     }
-    &.m-footer-type1 {
-        .m-footer-body {
+    &.m-footer-nav-type1 {
+        .m-footer-nav-body {
             flex: 1;
             display: flex;
             align-items: center;
@@ -99,15 +98,15 @@
             position: relative;
             height: 100%;
             color: $g-color-font-default;
-            .m-footer-body-icon {
+            .m-footer-nav-body-icon {
                 font-size: px2rem(20);
             }
-            .m-footer-body-txt {
+            .m-footer-nav-body-txt {
                 font-size: px2rem(12);
             }
-            &.m-footer-body-active {
+            &.m-footer-nav-body-active {
                 background: #fff;
-                .m-footer-body-icon, .m-footer-body-txt {
+                .m-footer-nav-body-icon, .m-footer-nav-body-txt {
                     color: $g-color-font-highlight;
                 }
             }

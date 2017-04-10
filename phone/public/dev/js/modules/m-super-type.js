@@ -23,11 +23,41 @@ function SuperType(json) {
                 //内部模块渲染之后
                 moduleDomRenderAfter: function () {
                 },
-                //外部容器渲染之前
+                //内部模块移除之前
+                moduleDomRemoveBefore: function () {
+                },
+                //内部模块移除之后
+                moduleDomRemoveAfter: function () {
+                },
+                //内部模块显示之前
+                moduleDomShowBefore: function () {
+                },
+                //内部模块显示之后
+                moduleDomShowAfter: function () {
+                },
+                //内部模块隐藏之前
+                moduleDomHideBefore: function () {
+                },
+                //内部模块隐藏之后
+                moduleDomHideAfter: function () {
+                },
+                //外部容器创建之前
                 wrapDomCreateBefore: function () {
                 },
-                //外部容器渲染之后
+                //外部容器创建之后
                 wrapDomCreateAfter: function () {
+                },
+                //外部容器渲染之前
+                wrapDomRenderBefore: function () {
+                },
+                //外部容器渲染之后
+                wrapDomRenderAfter: function () {
+                },
+                //外部容器移除之前
+                wrapDomRemoveBefore: function () {
+                },
+                //外部容器移除之后
+                wrapDomRemoveAfter: function () {
                 }
             },
             //配置
@@ -88,10 +118,13 @@ SuperType.prototype.moduleDomRender = function () {
 
 //内部模块的移除
 SuperType.prototype.moduleDomRemove = function () {
+    var callback = this.opt.callback;
+    callback.moduleDomRemoveBefore(this);
     if (this.moduleDom.parentNode) {
         this.moduleDom.parentNode.removeChild(this.moduleDom);
     }
     this.moduleDomClearTimer();
+    callback.moduleDomRemoveAfter(this);
 };
 
 //内部模块的定时器清除(假设内部模块有定时器)
@@ -108,20 +141,26 @@ SuperType.prototype.moduleDomClearTimer = function () {
 
 //内部模块的显示(显示隐藏和是否清除定时器无关)
 SuperType.prototype.moduleDomShow = function () {
+    var callback = this.opt.callback;
+    callback.moduleDomShowBefore(this);
     if (this.wrapDom) {
         this.wrapDom.appendChild(this.moduleDom);
     }
+    callback.moduleDomShowAfter(this);
 };
 
 //内部模块的隐藏(显示隐藏和是否清除定时器无关)
 SuperType.prototype.moduleDomHide = function () {
+    var callback = this.opt.callback;
+    callback.moduleDomHideBefore(this);
     if (this.moduleDom.parentNode) {
         this.moduleDom.parentNode.removeChild(this.moduleDom);
     }
+    callback.moduleDomHideAfter(this);
 };
 
 //外部容器的创建
-SuperType.prototype.wrapDomCreate=function(){
+SuperType.prototype.wrapDomCreate = function () {
     this.wrapDom = base.getDomArray({element: this.opt.wrap})[0];
 };
 
@@ -133,21 +172,26 @@ SuperType.prototype.wrapDomRender = function () {
     callback.wrapDomCreateAfter(this);
     if (this.wrapDom) {
         callback.moduleDomRenderBefore(this);
+        callback.wrapDomRenderBefore(this);
         if (this.opt.config.moduleDomIsShow) {
             this.wrapDom.appendChild(this.moduleDom);
         }
+        callback.wrapDomRenderAfter(this);
         callback.moduleDomRenderAfter(this);
     }
 };
 
 //外部容器的移除
 SuperType.prototype.wrapDomRemove = function () {
+    var callback = this.opt.callback;
+    callback.wrapDomRemoveBefore(this);
     //先移除内部的模块
     this.moduleDomRemove();
     //再移除外部的容器
     if (this.wrapDom) {
         this.wrapDom.parentNode.removeChild(this.wrapDom);
     }
+    callback.wrapDomRemoveAfter(this);
 };
 
 module.exports = SuperType;

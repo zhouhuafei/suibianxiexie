@@ -1,5 +1,11 @@
 "use strict";
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 (function e(t, n, r) {
     function s(o, u) {
         if (!n[o]) {
@@ -42,54 +48,36 @@
         var base = require('../base/base.js');
 
         //超类型(子类型继承的对象)
-        var SuperType = require('../modules/m-super-type.js');
+        var Super = require('../modules/m-super-type.js');
 
         //子类型
-        var SubType = base.constructorInherit({
-            superType: SuperType,
-            parameter: {
-                //回调
-                callback: {
-                    moduleDomClick: function moduleDomClick() {},
-                    moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                        if (getComputedStyle(self.wrapDom).position == 'static') {
-                            self.wrapDom.style.position = 'relative';
-                        }
-                    }
-                },
-                //配置
-                config: {
-                    moduleDomIsTransparent: false, //内部模块是不是透明的(默认不透明)
-                    moduleDomIsShow: false //内部模块是否显示(默认不显示)
-                }
+
+        var Sub = function (_Super) {
+            _inherits(Sub, _Super);
+
+            function Sub(json) {
+                _classCallCheck(this, Sub);
+
+                var _this = _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, json));
+
+                _this.opt = base.extend({
+                    default: _this.opt,
+                    inherit: json
+                });
+                _this.opt = base.extend({
+                    default: {
+                        data: '6789'
+                    },
+                    inherit: _this.opt
+                });
+                //console.log(this.opt, 888);
+                return _this;
             }
-        });
 
-        //内部模块的创建
-        SubType.prototype.moduleDomCreate = function () {
-            var isTransparent = '';
-            if (this.opt.config.isTransparent) {
-                isTransparent = 'm-mask-transparent';
-            }
-            this.moduleDom = base.createElement({
-                style: this.opt.config.moduleStyle,
-                attribute: {
-                    className: "m-mask " + isTransparent,
-                    innerHTML: ""
-                }
-            });
-        };
+            return Sub;
+        }(Super);
 
-        //功能
-        SubType.prototype.power = function () {
-            var self = this;
-            this.moduleDom.addEventListener('click', function (ev) {
-                self.opt.callback.moduleDomClick();
-                ev.stopPropagation();
-            });
-        };
-
-        module.exports = SubType;
+        module.exports = Sub;
     }, { "../base/base.js": 1, "../modules/m-super-type.js": 23 }], 3: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend.js');

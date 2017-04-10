@@ -1,8 +1,8 @@
-//延迟加载
-@import "../modules/m-lazy-load";
-
 //遮罩
-@import "../modules/m-mask";
-
-//底部
-@import "../modules/m-footer.scss";
+@import "../modules/m-mask.scss";
+//版权
+@import "../modules/m-copyright.scss";
+//底部导航
+@import "../modules/m-footer-nav.scss";
+//延迟加载
+@import "../modules/m-lazy-load.scss";
