@@ -175,7 +175,7 @@
                 },
                 inherit: json
             });
-            var dom = null;
+            var dom = [];
             if (opt.element) {
                 //如果是字符串
                 if (Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'string') {

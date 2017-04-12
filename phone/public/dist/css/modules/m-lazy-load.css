@@ -1,1 +1,7 @@
-.m-lazy-load{transition:opacity .4s;opacity:0}.m-lazy-load-active{transition:opacity .4s;opacity:1}
+.m-lazy-load {
+  transition: opacity 0.4s;
+  opacity: 0; }
+
+.m-lazy-load-active {
+  transition: opacity 0.4s;
+  opacity: 1; }

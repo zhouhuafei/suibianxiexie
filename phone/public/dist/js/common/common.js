@@ -299,7 +299,7 @@
                 },
                 inherit: json
             });
-            var dom = null;
+            var dom = [];
             if (opt.element) {
                 //如果是字符串
                 if (Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'string') {
@@ -742,39 +742,19 @@
                 //回调
                 callback: {
                     moduleDomClick: function moduleDomClick() {}
-                },
-                //配置
-                config: {
-                    moduleDomType: 1 //两种类型 0(微信),1(自定义)
                 }
             }
         });
 
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDomClass = "m-footer-nav";
-            var moduleDomHtml = "\n        " + this.moduleDomType0() + "\n        " + this.moduleDomType1() + "\n    ";
+            var moduleDomHtml = "\n        <div class=\"m-footer-nav-wrap\">\n            <a class=\"m-footer-nav-body\" href=\"\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-shouye\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u9996\u9875</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-fenxiao\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u6211\u8981\u5F00\u5E97</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-gouwuche\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u8D2D\u7269\u8F66</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kefu\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u5BA2\u670D</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-wode\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u6211\u7684</div>\n            </a>\n        </div>\n    ";
             this.moduleDom = base.createElement({
                 attribute: {
                     className: this.moduleDomClass,
                     innerHTML: moduleDomHtml
                 }
             });
-        };
-
-        SubType.prototype.moduleDomType0 = function () {
-            if (this.opt.config.moduleDomType == 0) {
-                this.moduleDomClass = "m-footer-nav m-footer-nav-type0";
-                return "\n            <div class=\"m-footer-nav-wrap\">\n                <div class=\"m-footer-nav-header\">\n                    <div class=\"m-footer-nav-header-icon iconfont icon-shouye\"></div>\n                </div>\n                <div class=\"m-footer-nav-body\">\n                    <div class=\"m-footer-nav-body-icon iconfont icon-caidan\"></div>\n                    <div class=\"m-footer-nav-body-txt\">\u5168\u90E8\u5546\u54C1</div>\n                    <div class=\"m-footer-nav-body-child\">\n                        <div class=\"m-footer-nav-body-child-item\"><a href=\"\">child</a></div>\n                        <div class=\"m-footer-nav-body-child-item\"><a href=\"\">child</a></div>\n                    </div>\n                </div>\n                <a class=\"m-footer-nav-body\" href=\"\">\n                    <div class=\"m-footer-nav-body-txt\">\u4E0A\u65B0</div>      \n                </a>\n                <div class=\"m-footer-nav-body\">\n                    <div class=\"m-footer-nav-body-icon iconfont icon-caidan\"></div>\n                    <div class=\"m-footer-nav-body-txt\">\u5E97\u94FA\u6D3B\u52A8</div>\n                    <div class=\"m-footer-nav-body-child\">\n                        <div class=\"m-footer-nav-body-child-item\"><a href=\"\">child</a></div>\n                        <div class=\"m-footer-nav-body-child-item\"><a href=\"\">child</a></div>\n                    </div>\n                </div>\n            </div>\n        ";
-            }
-            return "";
-        };
-
-        SubType.prototype.moduleDomType1 = function () {
-            if (this.opt.config.moduleDomType == 1) {
-                this.moduleDomClass = "m-footer-nav m-footer-nav-type1";
-                return "\n            <div class=\"m-footer-nav-wrap\">\n                <a class=\"m-footer-nav-body\" href=\"\">\n                    <div class=\"m-footer-nav-body-icon iconfont icon-shouye\"></div>\n                    <div class=\"m-footer-nav-body-txt\">\u9996\u9875</div>\n                </a>\n                <a class=\"m-footer-nav-body\" href=\"\">\n                    <div class=\"m-footer-nav-body-icon iconfont icon-fenxiao\"></div>\n                    <div class=\"m-footer-nav-body-txt\">\u6211\u8981\u5F00\u5E97</div>\n                </a>\n                <a class=\"m-footer-nav-body\" href=\"\">\n                    <div class=\"m-footer-nav-body-icon iconfont icon-gouwuche\"></div>\n                    <div class=\"m-footer-nav-body-txt\">\u8D2D\u7269\u8F66</div>\n                </a>\n                <a class=\"m-footer-nav-body\" href=\"\">\n                    <div class=\"m-footer-nav-body-icon iconfont icon-kefu\"></div>\n                    <div class=\"m-footer-nav-body-txt\">\u5BA2\u670D</div>\n                </a>\n                <a class=\"m-footer-nav-body\" href=\"\">\n                    <div class=\"m-footer-nav-body-icon iconfont icon-wode\"></div>\n                    <div class=\"m-footer-nav-body-txt\">\u6211\u7684</div>\n                </a>\n            </div>\n        ";
-            }
-            return "";
         };
 
         module.exports = SubType;
@@ -865,40 +845,45 @@
                     //回调
                     callback: {
                         //内部模块创建之前
-                        moduleDomCreateBefore: function moduleDomCreateBefore() {},
+                        moduleDomCreateBefore: function moduleDomCreateBefore(self) {},
                         //内部模块创建之后
-                        moduleDomCreateAfter: function moduleDomCreateAfter() {},
+                        moduleDomCreateAfter: function moduleDomCreateAfter(self) {},
                         //内部模块渲染之前
-                        moduleDomRenderBefore: function moduleDomRenderBefore() {},
+                        moduleDomRenderBefore: function moduleDomRenderBefore(self) {},
                         //内部模块渲染之后
-                        moduleDomRenderAfter: function moduleDomRenderAfter() {},
+                        moduleDomRenderAfter: function moduleDomRenderAfter(self) {},
                         //内部模块移除之前
-                        moduleDomRemoveBefore: function moduleDomRemoveBefore() {},
+                        moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {},
                         //内部模块移除之后
-                        moduleDomRemoveAfter: function moduleDomRemoveAfter() {},
+                        moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {},
                         //内部模块显示之前
-                        moduleDomShowBefore: function moduleDomShowBefore() {},
+                        moduleDomShowBefore: function moduleDomShowBefore(self) {},
                         //内部模块显示之后
-                        moduleDomShowAfter: function moduleDomShowAfter() {},
+                        moduleDomShowAfter: function moduleDomShowAfter(self) {},
                         //内部模块隐藏之前
-                        moduleDomHideBefore: function moduleDomHideBefore() {},
+                        moduleDomHideBefore: function moduleDomHideBefore(self) {},
                         //内部模块隐藏之后
-                        moduleDomHideAfter: function moduleDomHideAfter() {},
+                        moduleDomHideAfter: function moduleDomHideAfter(self) {},
                         //外部容器创建之前
-                        wrapDomCreateBefore: function wrapDomCreateBefore() {},
+                        wrapDomCreateBefore: function wrapDomCreateBefore(self) {},
                         //外部容器创建之后
-                        wrapDomCreateAfter: function wrapDomCreateAfter() {},
+                        wrapDomCreateAfter: function wrapDomCreateAfter(self) {},
                         //外部容器渲染之前
-                        wrapDomRenderBefore: function wrapDomRenderBefore() {},
+                        wrapDomRenderBefore: function wrapDomRenderBefore(self) {},
                         //外部容器渲染之后
-                        wrapDomRenderAfter: function wrapDomRenderAfter() {},
+                        wrapDomRenderAfter: function wrapDomRenderAfter(self) {},
                         //外部容器移除之前
-                        wrapDomRemoveBefore: function wrapDomRemoveBefore() {},
+                        wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {},
                         //外部容器移除之后
-                        wrapDomRemoveAfter: function wrapDomRemoveAfter() {}
+                        wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {}
                     },
                     //配置
                     config: {
+                        //内部模块插入到外部容器的方式
+                        moduleDomRenderMethod: {
+                            method: 'appendChild', //'appendChild','insertBefore'
+                            child: null
+                        },
                         moduleDomStyle: "", //内部模块的样式(写法和css相同)
                         moduleDomIsShow: true, //内部模块是否显示(默认显示)
                         moduleDomIsClearTimer: true //内部模块是否清除所有定时器(默认清除)
@@ -978,7 +963,8 @@
             var callback = this.opt.callback;
             callback.moduleDomShowBefore(this);
             if (this.wrapDom) {
-                this.wrapDom.appendChild(this.moduleDom);
+                this.opt.config.moduleDomIsShow = true;
+                this.wrapDomRenderMethod();
             }
             callback.moduleDomShowAfter(this);
         };
@@ -989,6 +975,7 @@
             callback.moduleDomHideBefore(this);
             if (this.moduleDom.parentNode) {
                 this.moduleDom.parentNode.removeChild(this.moduleDom);
+                this.opt.config.moduleDomIsShow = false;
             }
             callback.moduleDomHideAfter(this);
         };
@@ -1007,11 +994,28 @@
             if (this.wrapDom) {
                 callback.moduleDomRenderBefore(this);
                 callback.wrapDomRenderBefore(this);
-                if (this.opt.config.moduleDomIsShow) {
-                    this.wrapDom.appendChild(this.moduleDom);
-                }
+                this.wrapDomRenderMethod();
                 callback.wrapDomRenderAfter(this);
                 callback.moduleDomRenderAfter(this);
+            }
+        };
+
+        //外部容器的渲染方式
+        SuperType.prototype.wrapDomRenderMethod = function () {
+            var config = this.opt.config;
+            if (config.moduleDomIsShow) {
+                var renderMethod = config.moduleDomRenderMethod;
+                if (renderMethod.method == 'insertBefore') {
+                    var dom = base.getDomArray({ element: renderMethod.child })[0];
+                    if (dom) {
+                        this.wrapDom.insertBefore(this.moduleDom, dom);
+                    } else {
+                        this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
+                    }
+                }
+                if (renderMethod.method == 'appendChild') {
+                    this.wrapDom.appendChild(this.moduleDom);
+                }
             }
         };
 
@@ -1026,6 +1030,11 @@
                 this.wrapDom.parentNode.removeChild(this.wrapDom);
             }
             callback.wrapDomRemoveAfter(this);
+        };
+
+        //获取内部模块的整体html结构
+        SuperType.prototype.getModuleDomHtml = function () {
+            return this.moduleDom.outerHTML;
         };
 
         module.exports = SuperType;

@@ -10,7 +10,7 @@ var SubType = base.constructorInherit({
     parameter: {
         //回调
         callback: {
-            moduleDomClick: function () {
+            moduleDomClick: function (obj) {
             }
         },
         //配置

@@ -9,13 +9,16 @@
             transform: rotate(360deg);
         }
     }
+    .m-loading-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
     //加载中
     &.m-loading-loading {
-        color: $g-color-font-highlight;
-        .m-loading-loading-wrap {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        color: $g-color-font-default;
+        .m-loading-wrap {
             font-size: px2rem(30);
         }
         .m-loading-loading-icon{
@@ -27,7 +30,7 @@
             color: #ffffff;
         }
         &.m-loading-center {
-            .m-loading-loading-wrap {
+            .m-loading-wrap {
                 position: fixed;
                 left: 0;
                 top: 0;
@@ -37,7 +40,7 @@
             }
         }
         &.m-loading-bottom {
-            .m-loading-loading-wrap {
+            .m-loading-wrap {
                 padding: px2rem(20) 0;
                 position: relative;
                 z-index: 501;
@@ -47,11 +50,8 @@
 
     //加载完毕
     &.m-loading-over {
-        .m-loading-over-wrap{
+        .m-loading-wrap{
             padding: px2rem(20) 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             .m-loading-over-icon{
                 font-size: px2rem(24);
             }
