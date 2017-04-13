@@ -1,10 +1,11 @@
 //一些小方法
 var base = {
-    Select:require('../function/select.js'),
-    offset:require('../function/offset.js'),
+    objRemoveQuote: require('../function/obj-remove-quote.js'),
+    Select: require('../function/select.js'),
+    offset: require('../function/offset.js'),
     constructorInherit: require('../function/constructor-inherit.js'),
-    isIPhone:require('../function/is-iphone.js'),
-    isAndroid:require('../function/is-android.js'),
+    isIPhone: require('../function/is-iphone.js'),
+    isAndroid: require('../function/is-android.js'),
     isPc: require('../function/is-pc.js'),
     cookie: require('../function/cookie.js'),
     fillZero: require('../function/fill-zero.js'),

@@ -9,29 +9,34 @@
             }
         }
     });
+    var obj = {obj: {c1: 'c1', d: {d1: 'd1'}}, array: ['d1', ['c1', {a:1}]]};
+    var obj2 = base.objRemoveQuote(obj);
+    obj2.obj.d.d2 = 'zzz';
+    obj2.array[1][1].b=2;
+    console.log(obj, obj2, 55);
 })();
 //es6
-(function(){
-    var Super=require('../modules/m-super-es6');
-    var oSuper=new Super({wrap:'.main-es6'});
-    var Sub=require('../modules/m-sub-es6');
-    var oSub=new Sub({wrap:'.main-es6'});
-    console.log(oSuper,oSub);
+(function () {
+    var Super = require('../modules/m-super-es6');
+    var oSuper = new Super({wrap: '.main-es6'});
+    var Sub = require('../modules/m-sub-es6');
+    var oSub = new Sub({wrap: '.main-es6'});
+    console.log(oSuper, oSub);
 })();
 //加载中
-(function(){
-    var Loading=require('../modules/m-loading');
-    var loading=new Loading({
-        config:{
-            moduleDomStatus:'loading',
-            moduleDomPosition:'bottom'
+(function () {
+    var Loading = require('../modules/m-loading');
+    var loading = new Loading({
+        config: {
+            moduleDomStatus: 'loading',
+            moduleDomPosition: 'bottom'
         }
     });
     loading.moduleDomShow();
-    var over=new Loading({
-        config:{
-            moduleDomMaskIsShow:true,
-            moduleDomStatus:'over'
+    var over = new Loading({
+        config: {
+            moduleDomMaskIsShow: true,
+            moduleDomStatus: 'over'
         }
     });
     over.moduleDomShow();
@@ -51,25 +56,25 @@
 //遮罩
 (function () {
     var Mask1 = require('../modules/m-mask.js');
-    var mask1=new Mask1({
+    var mask1 = new Mask1({
         callback: {
             moduleDomClick: function () {
                 console.log('m-mask click callback');
                 mask1.moduleDomHide();
             }
         },
-        config:{
-            moduleDomIsClearTimer:1,
-            moduleDomIsShow:true
+        config: {
+            moduleDomIsClearTimer: 1,
+            moduleDomIsShow: true
         },
-        data:{
-            a:1
+        data: {
+            a: 1
         }
     });
     var Mask2 = require('../modules/m-mask.js');
     var mask2 = new Mask2();
-    console.log(mask1.opt.config,mask1.opt.data,111);
-    console.log(mask2.opt.config,mask2.opt.data,222);
+    console.log(mask1);
+    console.log(mask2);
 })();
 //单选开关
 (function () {

@@ -1,5 +1,7 @@
 "use strict";
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 (function e(t, n, r) {
     function s(o, u) {
         if (!n[o]) {
@@ -15,6 +17,7 @@
 })({ 1: [function (require, module, exports) {
         //一些小方法
         var base = {
+            objRemoveQuote: require('../function/obj-remove-quote.js'),
             Select: require('../function/select.js'),
             offset: require('../function/offset.js'),
             constructorInherit: require('../function/constructor-inherit.js'),
@@ -37,7 +40,7 @@
             extend: require('../function/extend.js')
         };
         module.exports = base;
-    }, { "../function/constructor-inherit.js": 2, "../function/cookie.js": 3, "../function/create-element.js": 4, "../function/extend.js": 5, "../function/fill-zero.js": 6, "../function/get-dom-array.js": 7, "../function/get-parent.js": 8, "../function/html-to-dom.js": 9, "../function/is-android.js": 10, "../function/is-iphone.js": 11, "../function/is-pc.js": 12, "../function/json-to-array.js": 13, "../function/offset.js": 14, "../function/scroll-to.js": 15, "../function/seconds-to-time.js": 16, "../function/select.js": 17, "../function/str-limit.js": 18, "../function/time-count-down.js": 19, "../function/when-scroll-bottom.js": 20, "../function/whether-disable-scroll.js": 21 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit.js": 2, "../function/cookie.js": 3, "../function/create-element.js": 4, "../function/extend.js": 5, "../function/fill-zero.js": 6, "../function/get-dom-array.js": 7, "../function/get-parent.js": 8, "../function/html-to-dom.js": 9, "../function/is-android.js": 10, "../function/is-iphone.js": 11, "../function/is-pc.js": 12, "../function/json-to-array.js": 13, "../function/obj-remove-quote.js": 14, "../function/offset.js": 15, "../function/scroll-to.js": 16, "../function/seconds-to-time.js": 17, "../function/select.js": 18, "../function/str-limit.js": 19, "../function/time-count-down.js": 20, "../function/when-scroll-bottom.js": 21, "../function/whether-disable-scroll.js": 22 }], 2: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend.js');
 
@@ -424,6 +427,25 @@
         }
         module.exports = jsonToArray;
     }, {}], 14: [function (require, module, exports) {
+        //对象移除引用
+        function objRemoveQuote(obj) {
+            if ((typeof obj === "undefined" ? "undefined" : _typeof(obj)) !== "object") {
+                return obj;
+            }
+            var objAttrType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+            var newObj = {};
+            if (objAttrType == 'array') {
+                newObj = [];
+            }
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) {
+                    newObj[attr] = objRemoveQuote(obj[attr]);
+                }
+            }
+            return newObj;
+        }
+        module.exports = objRemoveQuote;
+    }, {}], 15: [function (require, module, exports) {
         var extend = require('../function/extend.js');
         var getDomArray = require('../function/get-dom-array.js');
 
@@ -448,7 +470,7 @@
             };
         }
         module.exports = offset;
-    }, { "../function/extend.js": 5, "../function/get-dom-array.js": 7 }], 15: [function (require, module, exports) {
+    }, { "../function/extend.js": 5, "../function/get-dom-array.js": 7 }], 16: [function (require, module, exports) {
         //滚动到指定位置
         function scrollTo(json) {
             var opt = json || {};
@@ -469,7 +491,7 @@
             requestAnimationFrame(fn);
         }
         module.exports = scrollTo;
-    }, {}], 16: [function (require, module, exports) {
+    }, {}], 17: [function (require, module, exports) {
         //秒转时间
         function secondsToTime(json) {
             var opt = json || {};
@@ -485,7 +507,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 17: [function (require, module, exports) {
+    }, {}], 18: [function (require, module, exports) {
         //全选,不选,反选
         var extend = require('../function/extend.js');
         var getDomArray = require('../function/get-dom-array.js');
@@ -547,7 +569,7 @@
         };
 
         module.exports = Select;
-    }, { "../function/extend.js": 5, "../function/get-dom-array.js": 7 }], 18: [function (require, module, exports) {
+    }, { "../function/extend.js": 5, "../function/get-dom-array.js": 7 }], 19: [function (require, module, exports) {
         //字符数量限制
         function strLimit(json) {
             var opt = json || {};
@@ -563,7 +585,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 19: [function (require, module, exports) {
+    }, {}], 20: [function (require, module, exports) {
         var extend = require('../function/extend.js');
         var secondsToTime = require('../function/seconds-to-time.js'); //时间转换
 
@@ -602,7 +624,7 @@
             }
         }
         module.exports = timeCountDown;
-    }, { "../function/extend.js": 5, "../function/seconds-to-time.js": 16 }], 20: [function (require, module, exports) {
+    }, { "../function/extend.js": 5, "../function/seconds-to-time.js": 17 }], 21: [function (require, module, exports) {
         var extend = require('../function/extend.js');
 
         //当滚动到了浏览器的底部
@@ -656,7 +678,7 @@
             });
         };
         module.exports = WhenScrollBottom;
-    }, { "../function/extend.js": 5 }], 21: [function (require, module, exports) {
+    }, { "../function/extend.js": 5 }], 22: [function (require, module, exports) {
         //是否禁止浏览器滚动
         function whetherDisableScroll() {
             var doc = document;
