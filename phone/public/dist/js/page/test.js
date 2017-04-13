@@ -49,6 +49,24 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
         module.exports = base;
     }, { "../function/constructor-inherit.js": 4, "../function/cookie.js": 5, "../function/create-element.js": 6, "../function/extend.js": 7, "../function/fill-zero.js": 8, "../function/get-dom-array.js": 9, "../function/get-parent.js": 10, "../function/html-to-dom.js": 11, "../function/is-android.js": 12, "../function/is-iphone.js": 13, "../function/is-pc.js": 14, "../function/json-to-array.js": 15, "../function/obj-remove-quote.js": 16, "../function/offset.js": 17, "../function/scroll-to.js": 18, "../function/seconds-to-time.js": 19, "../function/select.js": 20, "../function/str-limit.js": 21, "../function/time-count-down.js": 22, "../function/when-scroll-bottom.js": 24, "../function/whether-disable-scroll.js": 25 }], 2: [function (require, module, exports) {
+        //版权
+        (function () {
+            var Copyright = require('../modules/m-copyright.js');
+            new Copyright();
+        })();
+
+        //底部导航
+        (function () {
+            var Footer = require('../modules/m-footer-nav.js');
+            new Footer();
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load.js');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright.js": 26, "../modules/m-footer-nav.js": 27, "../modules/m-lazy-load.js": 29 }], 3: [function (require, module, exports) {
         //base函数测试
         (function () {
             var base = require('../base/base');
@@ -203,25 +221,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         })();
         //每个页面都要用到的js
         require('../common/common.js');
-    }, { "../base/base": 1, "../common/common.js": 3, "../modules/m-go-top.js": 28, "../modules/m-loading": 30, "../modules/m-mask.js": 31, "../modules/m-radio-switch.js": 32, "../modules/m-star.js": 33, "../modules/m-sub-es6": 34, "../modules/m-super-es6": 35, "../modules/m-super-type.js": 36, "../modules/m-table.js": 37, "../modules/m-validate-input.js": 38 }], 3: [function (require, module, exports) {
-        //版权
-        (function () {
-            var Copyright = require('../modules/m-copyright.js');
-            new Copyright();
-        })();
-
-        //底部导航
-        (function () {
-            var Footer = require('../modules/m-footer-nav.js');
-            new Footer();
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load.js');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright.js": 26, "../modules/m-footer-nav.js": 27, "../modules/m-lazy-load.js": 29 }], 4: [function (require, module, exports) {
+    }, { "../base/base": 1, "../common/common.js": 2, "../modules/m-go-top.js": 28, "../modules/m-loading": 30, "../modules/m-mask.js": 31, "../modules/m-radio-switch.js": 32, "../modules/m-star.js": 33, "../modules/m-sub-es6": 34, "../modules/m-super-es6": 35, "../modules/m-super-type.js": 36, "../modules/m-table.js": 37, "../modules/m-validate-input.js": 38 }], 4: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend.js');
 
@@ -608,7 +608,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
         module.exports = jsonToArray;
     }, {}], 16: [function (require, module, exports) {
-        //对象移除引用
+        //移除对象引用
         function objRemoveQuote(obj) {
             if ((typeof obj === "undefined" ? "undefined" : _typeof(obj)) !== "object") {
                 return obj;
@@ -2040,4 +2040,4 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = ValidateInput;
-    }, { "../base/base.js": 1, "../function/validate": 23 }] }, {}, [2]);
+    }, { "../base/base.js": 1, "../function/validate": 23 }] }, {}, [3]);

@@ -655,7 +655,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
         module.exports = jsonToArray;
     }, {}], 15: [function (require, module, exports) {
-        //对象移除引用
+        //移除对象引用
         function objRemoveQuote(obj) {
             if ((typeof obj === "undefined" ? "undefined" : _typeof(obj)) !== "object") {
                 return obj;

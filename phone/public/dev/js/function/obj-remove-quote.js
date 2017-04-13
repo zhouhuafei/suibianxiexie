@@ -1,4 +1,4 @@
-//对象移除引用
+//移除对象引用
 function objRemoveQuote(obj) {
     if (typeof obj !== "object") {
         return obj;
