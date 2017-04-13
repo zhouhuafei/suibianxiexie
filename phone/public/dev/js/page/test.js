@@ -50,16 +50,26 @@
 })();
 //遮罩
 (function () {
-    var Mask = require('../modules/m-mask.js');
-    var mask = new Mask({
+    var Mask1 = require('../modules/m-mask.js');
+    var mask1=new Mask1({
         callback: {
             moduleDomClick: function () {
                 console.log('m-mask click callback');
-                mask.moduleDomHide();
+                mask1.moduleDomHide();
             }
+        },
+        config:{
+            moduleDomIsClearTimer:1,
+            moduleDomIsShow:true
+        },
+        data:{
+            a:1
         }
     });
-    //mask.moduleDomShow();
+    var Mask2 = require('../modules/m-mask.js');
+    var mask2 = new Mask2();
+    console.log(mask1.opt.config,mask1.opt.data,111);
+    console.log(mask2.opt.config,mask2.opt.data,222);
 })();
 //单选开关
 (function () {

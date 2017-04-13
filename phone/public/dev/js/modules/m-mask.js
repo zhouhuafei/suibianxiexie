@@ -18,6 +18,7 @@ var SubType = base.constructorInherit({
                 }
             }
         },
+        data:{a:999},
         //配置
         config: {
             moduleDomIsTransparent: false,//内部模块是不是透明的(默认不透明)
