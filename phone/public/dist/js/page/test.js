@@ -46,6 +46,24 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
         module.exports = base;
     }, { "../function/constructor-inherit.js": 4, "../function/cookie.js": 5, "../function/create-element.js": 6, "../function/extend.js": 7, "../function/fill-zero.js": 8, "../function/get-dom-array.js": 9, "../function/get-parent.js": 10, "../function/html-to-dom.js": 11, "../function/is-android.js": 12, "../function/is-iphone.js": 13, "../function/is-pc.js": 14, "../function/json-to-array.js": 15, "../function/offset.js": 16, "../function/scroll-to.js": 17, "../function/seconds-to-time.js": 18, "../function/select.js": 19, "../function/str-limit.js": 20, "../function/time-count-down.js": 21, "../function/when-scroll-bottom.js": 23, "../function/whether-disable-scroll.js": 24 }], 2: [function (require, module, exports) {
+        //版权
+        (function () {
+            var Copyright = require('../modules/m-copyright.js');
+            new Copyright();
+        })();
+
+        //底部导航
+        (function () {
+            var Footer = require('../modules/m-footer-nav.js');
+            new Footer();
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load.js');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright.js": 25, "../modules/m-footer-nav.js": 26, "../modules/m-lazy-load.js": 28 }], 3: [function (require, module, exports) {
         //base函数测试
         (function () {
             var base = require('../base/base');
@@ -195,25 +213,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         })();
         //每个页面都要用到的js
         require('../common/common.js');
-    }, { "../base/base": 1, "../common/common.js": 3, "../modules/m-go-top.js": 27, "../modules/m-loading": 29, "../modules/m-mask.js": 30, "../modules/m-radio-switch.js": 31, "../modules/m-star.js": 32, "../modules/m-sub-es6": 33, "../modules/m-super-es6": 34, "../modules/m-super-type.js": 35, "../modules/m-table.js": 36, "../modules/m-validate-input.js": 37 }], 3: [function (require, module, exports) {
-        //版权
-        (function () {
-            var Copyright = require('../modules/m-copyright.js');
-            new Copyright();
-        })();
-
-        //底部导航
-        (function () {
-            var Footer = require('../modules/m-footer-nav.js');
-            new Footer();
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load.js');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright.js": 25, "../modules/m-footer-nav.js": 26, "../modules/m-lazy-load.js": 28 }], 4: [function (require, module, exports) {
+    }, { "../base/base": 1, "../common/common.js": 2, "../modules/m-go-top.js": 27, "../modules/m-loading": 29, "../modules/m-mask.js": 30, "../modules/m-radio-switch.js": 31, "../modules/m-star.js": 32, "../modules/m-sub-es6": 33, "../modules/m-super-es6": 34, "../modules/m-super-type.js": 35, "../modules/m-table.js": 36, "../modules/m-validate-input.js": 37 }], 4: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend.js');
 
@@ -346,38 +346,42 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             var defaultType = Object.prototype.toString.call(opt.default).slice(8, -1).toLowerCase();
             var inheritType = Object.prototype.toString.call(opt.inherit).slice(8, -1).toLowerCase();
             if (defaultType == inheritType && opt.isDeep) {
-                for (var attr in opt.inherit) {
-                    if (opt.inherit.hasOwnProperty(attr)) {
-                        var attrDefaultType = Object.prototype.toString.call(opt.default[attr]).slice(8, -1).toLowerCase();
-                        var attrInheritType = Object.prototype.toString.call(opt.inherit[attr]).slice(8, -1).toLowerCase();
-                        if (attrDefaultType == attrInheritType && opt.isDeep) {
-                            //类型相同
-                            if (attrDefaultType == 'object') {
-                                //当为对象
-                                extend({ default: opt.default[attr], inherit: opt.inherit[attr] });
-                            } else if (attrDefaultType == 'array') {
-                                //当为数组时
-                                opt.inherit[attr].forEach(function (v, i) {
-                                    var vDefaultType = Object.prototype.toString.call(opt.default[attr][i]).slice(8, -1).toLowerCase();
-                                    var vInheritType = Object.prototype.toString.call(opt.inherit[attr][i]).slice(8, -1).toLowerCase();
-                                    if (vInheritType == vDefaultType && opt.isDeep) {
-                                        if (vDefaultType == 'object') {
-                                            extend({ default: opt.default[attr][i], inherit: opt.inherit[attr][i] });
+                if (defaultType == 'object' || defaultType == 'array') {
+                    for (var attr in opt.inherit) {
+                        if (opt.inherit.hasOwnProperty(attr)) {
+                            var attrDefaultType = Object.prototype.toString.call(opt.default[attr]).slice(8, -1).toLowerCase();
+                            var attrInheritType = Object.prototype.toString.call(opt.inherit[attr]).slice(8, -1).toLowerCase();
+                            if (attrDefaultType == attrInheritType && opt.isDeep) {
+                                //类型相同
+                                if (attrDefaultType == 'object') {
+                                    //当为对象
+                                    extend({ default: opt.default[attr], inherit: opt.inherit[attr] });
+                                } else if (attrDefaultType == 'array') {
+                                    //当为数组时
+                                    opt.inherit[attr].forEach(function (v, i) {
+                                        var vDefaultType = Object.prototype.toString.call(opt.default[attr][i]).slice(8, -1).toLowerCase();
+                                        var vInheritType = Object.prototype.toString.call(opt.inherit[attr][i]).slice(8, -1).toLowerCase();
+                                        if (vInheritType == vDefaultType && opt.isDeep) {
+                                            if (vDefaultType == 'object') {
+                                                extend({ default: opt.default[attr][i], inherit: opt.inherit[attr][i] });
+                                            } else {
+                                                opt.default[attr][i] = opt.inherit[attr][i];
+                                            }
                                         } else {
                                             opt.default[attr][i] = opt.inherit[attr][i];
                                         }
-                                    } else {
-                                        opt.default[attr][i] = opt.inherit[attr][i];
-                                    }
-                                });
+                                    });
+                                } else {
+                                    opt.default[attr] = opt.inherit[attr];
+                                }
                             } else {
+                                //类型不同,直接后面的覆盖前面的
                                 opt.default[attr] = opt.inherit[attr];
                             }
-                        } else {
-                            //类型不同,直接后面的覆盖前面的
-                            opt.default[attr] = opt.inherit[attr];
                         }
                     }
+                } else {
+                    opt.default = opt.inherit;
                 }
             } else {
                 opt.default = opt.inherit;
@@ -2009,4 +2013,4 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = ValidateInput;
-    }, { "../base/base.js": 1, "../function/validate": 22 }] }, {}, [2]);
+    }, { "../base/base.js": 1, "../function/validate": 22 }] }, {}, [3]);
