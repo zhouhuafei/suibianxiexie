@@ -3,9 +3,9 @@ function objRemoveQuote(obj) {
     if (typeof obj !== "object") {
         return obj;
     }
-    var objAttrType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+    var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
     var newObj = {};
-    if (objAttrType == 'array') {
+    if (objType == 'array') {
         newObj = [];
     }
     for (var attr in obj) {

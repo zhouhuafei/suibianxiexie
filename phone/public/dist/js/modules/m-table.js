@@ -486,9 +486,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             if ((typeof obj === "undefined" ? "undefined" : _typeof(obj)) !== "object") {
                 return obj;
             }
-            var objAttrType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+            var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
             var newObj = {};
-            if (objAttrType == 'array') {
+            if (objType == 'array') {
                 newObj = [];
             }
             for (var attr in obj) {

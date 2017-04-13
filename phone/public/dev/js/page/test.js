@@ -13,7 +13,7 @@
     var obj2 = base.objRemoveQuote(obj);
     obj2.obj.d.d2 = 'zzz';
     obj2.array[1][1].b=2;
-    console.log(obj, obj2, 55);
+    console.log(obj, obj2);
 })();
 //es6
 (function () {
