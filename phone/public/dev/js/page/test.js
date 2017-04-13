@@ -9,11 +9,11 @@
             }
         }
     });
-    var obj = {obj: {c1: 'c1', d: {d1: 'd1'}}, array: ['d1', ['c1', {a:1}]]};
+    var obj = {obj: {c1: 'c1', d: {d1: 'd1'},e:null}, array: ['d1', ['c1', {a:1}]]};
     var obj2 = base.objRemoveQuote(obj);
     obj2.obj.d.d2 = 'zzz';
     obj2.array[1][1].b=2;
-    console.log(obj, obj2);
+    console.log(obj, obj2,66);
 })();
 //es6
 (function () {

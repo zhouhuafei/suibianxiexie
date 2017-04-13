@@ -1,9 +1,9 @@
 //移除对象引用
 function objRemoveQuote(obj) {
-    if (typeof obj !== "object") {
+    var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+    if (objType != "object" || objType != "array") {
         return obj;
     }
-    var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
     var newObj = {};
     if (objType == 'array') {
         newObj = [];
