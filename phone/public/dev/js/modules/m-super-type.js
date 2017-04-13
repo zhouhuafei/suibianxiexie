@@ -12,56 +12,61 @@ function SuperType(json) {
             //回调
             callback: {
                 //内部模块创建之前
-                moduleDomCreateBefore: function () {
+                moduleDomCreateBefore: function (self) {
                 },
                 //内部模块创建之后
-                moduleDomCreateAfter: function () {
+                moduleDomCreateAfter: function (self) {
                 },
                 //内部模块渲染之前
-                moduleDomRenderBefore: function () {
+                moduleDomRenderBefore: function (self) {
                 },
                 //内部模块渲染之后
-                moduleDomRenderAfter: function () {
+                moduleDomRenderAfter: function (self) {
                 },
                 //内部模块移除之前
-                moduleDomRemoveBefore: function () {
+                moduleDomRemoveBefore: function (self) {
                 },
                 //内部模块移除之后
-                moduleDomRemoveAfter: function () {
+                moduleDomRemoveAfter: function (self) {
                 },
                 //内部模块显示之前
-                moduleDomShowBefore: function () {
+                moduleDomShowBefore: function (self) {
                 },
                 //内部模块显示之后
-                moduleDomShowAfter: function () {
+                moduleDomShowAfter: function (self) {
                 },
                 //内部模块隐藏之前
-                moduleDomHideBefore: function () {
+                moduleDomHideBefore: function (self) {
                 },
                 //内部模块隐藏之后
-                moduleDomHideAfter: function () {
+                moduleDomHideAfter: function (self) {
                 },
                 //外部容器创建之前
-                wrapDomCreateBefore: function () {
+                wrapDomCreateBefore: function (self) {
                 },
                 //外部容器创建之后
-                wrapDomCreateAfter: function () {
+                wrapDomCreateAfter: function (self) {
                 },
                 //外部容器渲染之前
-                wrapDomRenderBefore: function () {
+                wrapDomRenderBefore: function (self) {
                 },
                 //外部容器渲染之后
-                wrapDomRenderAfter: function () {
+                wrapDomRenderAfter: function (self) {
                 },
                 //外部容器移除之前
-                wrapDomRemoveBefore: function () {
+                wrapDomRemoveBefore: function (self) {
                 },
                 //外部容器移除之后
-                wrapDomRemoveAfter: function () {
+                wrapDomRemoveAfter: function (self) {
                 }
             },
             //配置
             config: {
+                //内部模块插入到外部容器的方式
+                moduleDomRenderMethod: {
+                    method: 'appendChild',//'appendChild','insertBefore'
+                    child: null
+                },
                 moduleDomStyle: ``,//内部模块的样式(写法和css相同)
                 moduleDomIsShow: true,//内部模块是否显示(默认显示)
                 moduleDomIsClearTimer: true//内部模块是否清除所有定时器(默认清除)
@@ -144,7 +149,8 @@ SuperType.prototype.moduleDomShow = function () {
     var callback = this.opt.callback;
     callback.moduleDomShowBefore(this);
     if (this.wrapDom) {
-        this.wrapDom.appendChild(this.moduleDom);
+        this.opt.config.moduleDomIsShow = true;
+        this.wrapDomRenderMethod();
     }
     callback.moduleDomShowAfter(this);
 };
@@ -155,6 +161,7 @@ SuperType.prototype.moduleDomHide = function () {
     callback.moduleDomHideBefore(this);
     if (this.moduleDom.parentNode) {
         this.moduleDom.parentNode.removeChild(this.moduleDom);
+        this.opt.config.moduleDomIsShow = false;
     }
     callback.moduleDomHideAfter(this);
 };
@@ -173,11 +180,28 @@ SuperType.prototype.wrapDomRender = function () {
     if (this.wrapDom) {
         callback.moduleDomRenderBefore(this);
         callback.wrapDomRenderBefore(this);
-        if (this.opt.config.moduleDomIsShow) {
-            this.wrapDom.appendChild(this.moduleDom);
-        }
+        this.wrapDomRenderMethod();
         callback.wrapDomRenderAfter(this);
         callback.moduleDomRenderAfter(this);
+    }
+};
+
+//外部容器的渲染方式
+SuperType.prototype.wrapDomRenderMethod = function () {
+    var config = this.opt.config;
+    if (config.moduleDomIsShow) {
+        var renderMethod = config.moduleDomRenderMethod;
+        if (renderMethod.method == 'insertBefore') {
+            var dom = base.getDomArray({element: renderMethod.child})[0];
+            if (dom) {
+                this.wrapDom.insertBefore(this.moduleDom, dom);
+            } else {
+                this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
+            }
+        }
+        if (renderMethod.method == 'appendChild') {
+            this.wrapDom.appendChild(this.moduleDom);
+        }
     }
 };
 
@@ -192,6 +216,11 @@ SuperType.prototype.wrapDomRemove = function () {
         this.wrapDom.parentNode.removeChild(this.wrapDom);
     }
     callback.wrapDomRemoveAfter(this);
+};
+
+//获取内部模块的整体html结构
+SuperType.prototype.getModuleDomHtml=function(){
+    return this.moduleDom.outerHTML;
 };
 
 module.exports = SuperType;

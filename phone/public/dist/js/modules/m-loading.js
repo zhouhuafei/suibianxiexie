@@ -51,7 +51,6 @@
                 //配置
                 config: {
                     moduleDomIsShow: false, //内部模块是否显示(默认不显示)
-                    isShowMask: false, //是否显示遮罩
                     moduleDomStatus: 'loading', //加载状态  loading(加载中)    over(加载完毕)
                     moduleDomPosition: 'center' //模块当位置  'center'(居中)    'bottom'(居底)
                 }
@@ -62,13 +61,8 @@
             var config = this.opt.config;
             var moduleDomHtml = "";
             var moduleDomClass = "";
-            var maskHtml = "";
-            var isShowMask = config.isShowMask;
             var moduleDomStatus = config.moduleDomStatus;
             var moduleDomPosition = config.moduleDomPosition;
-            if (isShowMask) {
-                maskHtml = "<div class=\"m-mask\"></div>";
-            }
             //加载中
             if (moduleDomStatus == 'loading') {
                 //居中
@@ -94,11 +88,11 @@
 
             //加载中
             if (moduleDomStatus == 'loading') {
-                moduleDomHtml = "\n            <div class=\"m-loading-loading-wrap\">\n                " + maskHtml + "\n                <div class=\"m-loading-loading-icon iconfont icon-jiazaizhong\"></div>\n            </div>\n        ";
+                moduleDomHtml = "\n            <div class=\"m-loading-wrap\">\n                <div class=\"m-loading-loading-icon iconfont icon-jiazaizhong\"></div>\n            </div>\n        ";
             }
             //加载完毕
             if (moduleDomStatus == 'over') {
-                moduleDomHtml = "\n            <div class=\"m-loading-over-wrap\">\n                <div class=\"m-loading-over-icon iconfont icon-meiyoushuju\"></div>\n                <div class=\"m-loading-over-txt\">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ";
+                moduleDomHtml = "\n            <div class=\"m-loading-wrap\">\n                <div class=\"m-loading-over-icon iconfont icon-meiyoushuju\"></div>\n                <div class=\"m-loading-over-txt\">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ";
             }
             //模块创建
             this.moduleDom = base.createElement({
@@ -354,7 +348,7 @@
                 },
                 inherit: json
             });
-            var dom = null;
+            var dom = [];
             if (opt.element) {
                 //如果是字符串
                 if (Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'string') {
@@ -771,40 +765,45 @@
                     //回调
                     callback: {
                         //内部模块创建之前
-                        moduleDomCreateBefore: function moduleDomCreateBefore() {},
+                        moduleDomCreateBefore: function moduleDomCreateBefore(self) {},
                         //内部模块创建之后
-                        moduleDomCreateAfter: function moduleDomCreateAfter() {},
+                        moduleDomCreateAfter: function moduleDomCreateAfter(self) {},
                         //内部模块渲染之前
-                        moduleDomRenderBefore: function moduleDomRenderBefore() {},
+                        moduleDomRenderBefore: function moduleDomRenderBefore(self) {},
                         //内部模块渲染之后
-                        moduleDomRenderAfter: function moduleDomRenderAfter() {},
+                        moduleDomRenderAfter: function moduleDomRenderAfter(self) {},
                         //内部模块移除之前
-                        moduleDomRemoveBefore: function moduleDomRemoveBefore() {},
+                        moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {},
                         //内部模块移除之后
-                        moduleDomRemoveAfter: function moduleDomRemoveAfter() {},
+                        moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {},
                         //内部模块显示之前
-                        moduleDomShowBefore: function moduleDomShowBefore() {},
+                        moduleDomShowBefore: function moduleDomShowBefore(self) {},
                         //内部模块显示之后
-                        moduleDomShowAfter: function moduleDomShowAfter() {},
+                        moduleDomShowAfter: function moduleDomShowAfter(self) {},
                         //内部模块隐藏之前
-                        moduleDomHideBefore: function moduleDomHideBefore() {},
+                        moduleDomHideBefore: function moduleDomHideBefore(self) {},
                         //内部模块隐藏之后
-                        moduleDomHideAfter: function moduleDomHideAfter() {},
+                        moduleDomHideAfter: function moduleDomHideAfter(self) {},
                         //外部容器创建之前
-                        wrapDomCreateBefore: function wrapDomCreateBefore() {},
+                        wrapDomCreateBefore: function wrapDomCreateBefore(self) {},
                         //外部容器创建之后
-                        wrapDomCreateAfter: function wrapDomCreateAfter() {},
+                        wrapDomCreateAfter: function wrapDomCreateAfter(self) {},
                         //外部容器渲染之前
-                        wrapDomRenderBefore: function wrapDomRenderBefore() {},
+                        wrapDomRenderBefore: function wrapDomRenderBefore(self) {},
                         //外部容器渲染之后
-                        wrapDomRenderAfter: function wrapDomRenderAfter() {},
+                        wrapDomRenderAfter: function wrapDomRenderAfter(self) {},
                         //外部容器移除之前
-                        wrapDomRemoveBefore: function wrapDomRemoveBefore() {},
+                        wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {},
                         //外部容器移除之后
-                        wrapDomRemoveAfter: function wrapDomRemoveAfter() {}
+                        wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {}
                     },
                     //配置
                     config: {
+                        //内部模块插入到外部容器的方式
+                        moduleDomRenderMethod: {
+                            method: 'appendChild', //'appendChild','insertBefore'
+                            child: null
+                        },
                         moduleDomStyle: "", //内部模块的样式(写法和css相同)
                         moduleDomIsShow: true, //内部模块是否显示(默认显示)
                         moduleDomIsClearTimer: true //内部模块是否清除所有定时器(默认清除)
@@ -884,7 +883,8 @@
             var callback = this.opt.callback;
             callback.moduleDomShowBefore(this);
             if (this.wrapDom) {
-                this.wrapDom.appendChild(this.moduleDom);
+                this.opt.config.moduleDomIsShow = true;
+                this.wrapDomRenderMethod();
             }
             callback.moduleDomShowAfter(this);
         };
@@ -895,6 +895,7 @@
             callback.moduleDomHideBefore(this);
             if (this.moduleDom.parentNode) {
                 this.moduleDom.parentNode.removeChild(this.moduleDom);
+                this.opt.config.moduleDomIsShow = false;
             }
             callback.moduleDomHideAfter(this);
         };
@@ -913,11 +914,28 @@
             if (this.wrapDom) {
                 callback.moduleDomRenderBefore(this);
                 callback.wrapDomRenderBefore(this);
-                if (this.opt.config.moduleDomIsShow) {
-                    this.wrapDom.appendChild(this.moduleDom);
-                }
+                this.wrapDomRenderMethod();
                 callback.wrapDomRenderAfter(this);
                 callback.moduleDomRenderAfter(this);
+            }
+        };
+
+        //外部容器的渲染方式
+        SuperType.prototype.wrapDomRenderMethod = function () {
+            var config = this.opt.config;
+            if (config.moduleDomIsShow) {
+                var renderMethod = config.moduleDomRenderMethod;
+                if (renderMethod.method == 'insertBefore') {
+                    var dom = base.getDomArray({ element: renderMethod.child })[0];
+                    if (dom) {
+                        this.wrapDom.insertBefore(this.moduleDom, dom);
+                    } else {
+                        this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
+                    }
+                }
+                if (renderMethod.method == 'appendChild') {
+                    this.wrapDom.appendChild(this.moduleDom);
+                }
             }
         };
 
@@ -932,6 +950,11 @@
                 this.wrapDom.parentNode.removeChild(this.wrapDom);
             }
             callback.wrapDomRemoveAfter(this);
+        };
+
+        //获取内部模块的整体html结构
+        SuperType.prototype.getModuleDomHtml = function () {
+            return this.moduleDom.outerHTML;
         };
 
         module.exports = SuperType;

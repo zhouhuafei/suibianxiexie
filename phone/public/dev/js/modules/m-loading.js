@@ -4,6 +4,8 @@ var base = require('../base/base.js');
 //超类型(子类型继承的对象)
 var SuperType = require('../modules/m-super-type.js');
 
+
+
 //子类型
 var SubType = base.constructorInherit({
     superType: SuperType,
@@ -11,7 +13,6 @@ var SubType = base.constructorInherit({
         //配置
         config: {
             moduleDomIsShow: false, //内部模块是否显示(默认不显示)
-            isShowMask: false,    //是否显示遮罩
             moduleDomStatus: 'loading', //加载状态  loading(加载中)    over(加载完毕)
             moduleDomPosition: 'center' //模块当位置  'center'(居中)    'bottom'(居底)
         }
@@ -22,13 +23,8 @@ SubType.prototype.moduleDomCreate = function () {
     var config = this.opt.config;
     var moduleDomHtml = ``;
     var moduleDomClass = ``;
-    var maskHtml=``;
-    var isShowMask=config.isShowMask;
     var moduleDomStatus=config.moduleDomStatus;
     var moduleDomPosition=config.moduleDomPosition;
-    if(isShowMask){
-        maskHtml=`<div class="m-mask"></div>`;
-    }
     //加载中
     if (moduleDomStatus == 'loading') {
         //居中
@@ -55,8 +51,7 @@ SubType.prototype.moduleDomCreate = function () {
     //加载中
     if (moduleDomStatus == 'loading') {
         moduleDomHtml = `
-            <div class="m-loading-loading-wrap">
-                ${maskHtml}
+            <div class="m-loading-wrap">
                 <div class="m-loading-loading-icon iconfont icon-jiazaizhong"></div>
             </div>
         `;
@@ -64,7 +59,7 @@ SubType.prototype.moduleDomCreate = function () {
     //加载完毕
     if (moduleDomStatus == 'over') {
         moduleDomHtml = `
-            <div class="m-loading-over-wrap">
+            <div class="m-loading-wrap">
                 <div class="m-loading-over-icon iconfont icon-meiyoushuju"></div>
                 <div class="m-loading-over-txt">没有数据了</div>
             </div>

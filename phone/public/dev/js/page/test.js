@@ -30,6 +30,7 @@
     loading.moduleDomShow();
     var over=new Loading({
         config:{
+            moduleDomMaskIsShow:true,
             moduleDomStatus:'over'
         }
     });
