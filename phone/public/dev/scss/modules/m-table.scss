@@ -5,7 +5,7 @@
     text-align:center;
     .m-table-row {
         display: flex;
-        min-height: px2rem($g-table-row-height);
+        min-height: px2rem(60);
         border-bottom: 1px solid $g-color-border-default;
         &:hover {
             background: $g-color-background-default;
