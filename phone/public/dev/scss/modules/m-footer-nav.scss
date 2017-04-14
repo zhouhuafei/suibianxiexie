@@ -30,9 +30,9 @@
             }
             .m-footer-nav-body-txt {
                 font-size: px2rem(12);
+                line-height: 1.2;
             }
             &.m-footer-nav-body-active {
-                background: #fff;
                 .m-footer-nav-body-icon, .m-footer-nav-body-txt {
                     color: $g-color-font-highlight;
                 }
