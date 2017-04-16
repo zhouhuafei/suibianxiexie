@@ -1,5 +1,6 @@
 //对象的扩展方法
 var extend = require('../function/extend.js');
+var objRemoveQuote = require('../function/obj-remove-quote.js');
 
 //构造函数的继承(拷贝继承)
 function constructorInherit(json) {
@@ -31,16 +32,10 @@ function constructorInherit(json) {
          * 但是由于对象引用的原因,这里的值会变成'body'
          * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
          * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
-         * 所有我只能通过循环遍历一个新的对象进行阻止了
+         * 所以我就封装了一个移除对象引用的函数
          * */
-        var obj={};
-        for(var attr in parameter){
-            if(parameter.hasOwnProperty(attr)){
-                obj[attr]=parameter[attr];
-            }
-        }
         this.opt = extend({
-            default: obj,
+            default: objRemoveQuote({obj:parameter}),
             inherit: json
         });
         //子类型继承超类型的属性

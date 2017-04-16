@@ -10,10 +10,10 @@
         }
     });
     var obj = {obj: {c1: 'c1', d: {d1: 'd1'},e:null}, array: ['d1', ['c1', {a:1}]]};
-    var obj2 = base.objRemoveQuote(obj);
+    var obj2 = base.objRemoveQuote({obj:obj});
     obj2.obj.d.d2 = 'zzz';
     obj2.array[1][1].b=2;
-    console.log(obj, obj2,66);
+    console.log(obj, obj2,99);
 })();
 //es6
 (function () {
@@ -55,26 +55,16 @@
 })();
 //遮罩
 (function () {
-    var Mask1 = require('../modules/m-mask.js');
-    var mask1 = new Mask1({
+    var Mask = require('../modules/m-mask.js');
+    var mask = new Mask({
         callback: {
             moduleDomClick: function () {
                 console.log('m-mask click callback');
-                mask1.moduleDomHide();
+                mask.moduleDomHide();
             }
-        },
-        config: {
-            moduleDomIsClearTimer: 1,
-            moduleDomIsShow: true
-        },
-        data: {
-            a: 1
         }
     });
-    var Mask2 = require('../modules/m-mask.js');
-    var mask2 = new Mask2();
-    console.log(mask1);
-    console.log(mask2);
+    mask.moduleDomShow();
 })();
 //单选开关
 (function () {
