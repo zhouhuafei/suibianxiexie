@@ -1,27 +1,55 @@
 //base函数测试
 (function () {
     var base = require('../base/base');
-    new base.Select({
-        items: '.g-checkbox-checkbox',
-        callback: {
-            itemsClick: function (obj) {
-                console.log(obj);
-            }
-        }
-    });
-    var obj = {obj: {c1: 'c1', d: {d1: 'd1'},e:null}, array: ['d1', ['c1', {a:1}]]};
-    var obj2 = base.objRemoveQuote({obj:obj});
-    obj2.obj.d.d2 = 'zzz';
-    obj2.array[1][1].b=2;
-    console.log(obj, obj2,99);
+    //测试待续...
+
+    //测试全选
+    // new base.Select({
+    //     items: '.g-checkbox-checkbox',
+    //     callback: {
+    //         itemsClick: function (obj) {
+    //             console.log(obj);
+    //         }
+    //     }
+    // });
+
+    //测试移除对象引用
+    // var obj = {obj: {c1: 'c1', d: {d1: 'd1'}, e: null}, array: ['d1', ['c1', {a: 1}]]};
+    // var obj2 = base.objRemoveQuote({obj: obj});
+    // obj2.obj.d.d2 = 'zzz';
+    // obj2.array[1][1].b = 2;
+    // console.log(obj, obj2, 99);
 })();
 //es6
 (function () {
-    var Super = require('../modules/m-super-es6');
-    var oSuper = new Super({wrap: '.main-es6'});
-    var Sub = require('../modules/m-sub-es6');
-    var oSub = new Sub({wrap: '.main-es6'});
-    console.log(oSuper, oSub);
+    var SubType = require('../modules/m-sub-es6');
+    var o1 = new SubType({
+        wrap: '.main-test-es6',
+        callback: {
+            moduleDomClick(self){
+                console.log(self);
+            }
+        },
+        config: {
+            // moduleDomStyle: 'color:#00f;'
+        },
+        data: {}
+    });
+    var o2 = new SubType({
+        wrap: '.main-test-es6',
+        callback: {
+            moduleDomClick(self){
+                console.log(self);
+            }
+        },
+        config: {
+            //moduleDomStyle: 'color:#0ff;'
+        },
+        data: {
+            default: 'default2'
+        }
+    });
+    //console.log(o1, o2);//测试对象有没有被引用,测试结果是:没被引用,没毛病
 })();
 //加载中
 (function () {
@@ -64,7 +92,7 @@
             }
         }
     });
-    mask.moduleDomShow();
+    //mask.moduleDomShow();
 })();
 //单选开关
 (function () {

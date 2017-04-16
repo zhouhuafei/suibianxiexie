@@ -11,6 +11,7 @@ var SubType = base.constructorInherit({
         //回调
         callback: {
             moduleDomClick: function () {
+                //内部模块的点击回调待续...
             }
         }
     }
@@ -43,6 +44,8 @@ SubType.prototype.moduleDomCreate = function () {
         </div>
     `;
     this.moduleDom = base.createElement({
+        style: this.opt.config.moduleDomStyle,
+        custom: this.opt.config.moduleDomCustomAttr,
         attribute: {
             className: this.moduleDomClass,
             innerHTML: moduleDomHtml

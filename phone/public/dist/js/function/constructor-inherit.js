@@ -21,7 +21,7 @@
         function constructorInherit(json) {
             var opt = extend({
                 default: {
-                    superType: 123, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
+                    superType: null, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
                     parameter: {} //默认参数(这个必须传的是一个对象,或者不传值)
                 },
                 inherit: json

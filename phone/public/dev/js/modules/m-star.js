@@ -35,6 +35,8 @@ SubType.prototype.moduleDomCreate = function () {
         html += `<div data-index="${i}" class="iconfont icon-xingping m-star-item ${className}"></div>`;
     }
     this.moduleDom = base.createElement({
+        style: this.opt.config.moduleDomStyle,
+        custom: this.opt.config.moduleDomCustomAttr,
         attribute: {
             className: `m-star`,
             innerHTML: html

@@ -5,7 +5,6 @@ var base = require('../base/base.js');
 var SuperType = require('../modules/m-super-type.js');
 
 
-
 //子类型
 var SubType = base.constructorInherit({
     superType: SuperType,
@@ -23,8 +22,8 @@ SubType.prototype.moduleDomCreate = function () {
     var config = this.opt.config;
     var moduleDomHtml = ``;
     var moduleDomClass = ``;
-    var moduleDomStatus=config.moduleDomStatus;
-    var moduleDomPosition=config.moduleDomPosition;
+    var moduleDomStatus = config.moduleDomStatus;
+    var moduleDomPosition = config.moduleDomPosition;
     //加载中
     if (moduleDomStatus == 'loading') {
         //居中
@@ -67,6 +66,8 @@ SubType.prototype.moduleDomCreate = function () {
     }
     //模块创建
     this.moduleDom = base.createElement({
+        style: this.opt.config.moduleDomStyle,
+        custom: this.opt.config.moduleDomCustomAttr,
         attribute: {
             className: `m-loading ${moduleDomClass}`,
             innerHTML: moduleDomHtml

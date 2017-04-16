@@ -48,9 +48,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         //底层构造函数
 
-        var Super = function () {
-            function Super(json) {
-                _classCallCheck(this, Super);
+        var SuperType = function () {
+            function SuperType(json) {
+                _classCallCheck(this, SuperType);
 
                 //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
                 this.opt = base.extend({
@@ -61,40 +61,94 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         //回调
                         callback: {
                             //内部模块创建之前
-                            moduleDomCreateBefore: function moduleDomCreateBefore() {},
+                            moduleDomCreateBefore: function moduleDomCreateBefore(self) {
+                                //内部模块创建之前的回调待续...
+                            },
+
                             //内部模块创建之后
-                            moduleDomCreateAfter: function moduleDomCreateAfter() {},
+                            moduleDomCreateAfter: function moduleDomCreateAfter(self) {
+                                //内部模块创建之后的回调待续...
+                            },
+
                             //内部模块渲染之前
-                            moduleDomRenderBefore: function moduleDomRenderBefore() {},
+                            moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                                //内部模块渲染之前的回调待续...
+                            },
+
                             //内部模块渲染之后
-                            moduleDomRenderAfter: function moduleDomRenderAfter() {},
+                            moduleDomRenderAfter: function moduleDomRenderAfter(self) {
+                                //内部模块渲染之后的回调待续...
+                            },
+
                             //内部模块移除之前
-                            moduleDomRemoveBefore: function moduleDomRemoveBefore() {},
+                            moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {
+                                //内部模块移除之前的回调待续...
+                            },
+
                             //内部模块移除之后
-                            moduleDomRemoveAfter: function moduleDomRemoveAfter() {},
+                            moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {
+                                //内部模块移除之后的回调待续...
+                            },
+
                             //内部模块显示之前
-                            moduleDomShowBefore: function moduleDomShowBefore() {},
+                            moduleDomShowBefore: function moduleDomShowBefore(self) {
+                                //内部模块显示之前的回调待续...
+                            },
+
                             //内部模块显示之后
-                            moduleDomShowAfter: function moduleDomShowAfter() {},
+                            moduleDomShowAfter: function moduleDomShowAfter(self) {
+                                //内部模块显示之后的回调待续...
+                            },
+
                             //内部模块隐藏之前
-                            moduleDomHideBefore: function moduleDomHideBefore() {},
+                            moduleDomHideBefore: function moduleDomHideBefore(self) {
+                                //内部模块隐藏之前的回调待续...
+                            },
+
                             //内部模块隐藏之后
-                            moduleDomHideAfter: function moduleDomHideAfter() {},
+                            moduleDomHideAfter: function moduleDomHideAfter(self) {
+                                //内部模块隐藏之后的回调待续...
+                            },
+
                             //外部容器创建之前
-                            wrapDomCreateBefore: function wrapDomCreateBefore() {},
+                            wrapDomCreateBefore: function wrapDomCreateBefore(self) {
+                                //外部容器创建之前的回调待续...
+                            },
+
                             //外部容器创建之后
-                            wrapDomCreateAfter: function wrapDomCreateAfter() {},
+                            wrapDomCreateAfter: function wrapDomCreateAfter(self) {
+                                //外部容器创建之后的回调待续...
+                            },
+
                             //外部容器渲染之前
-                            wrapDomRenderBefore: function wrapDomRenderBefore() {},
+                            wrapDomRenderBefore: function wrapDomRenderBefore(self) {
+                                //外部容器渲染之前的回调待续...
+                            },
+
                             //外部容器渲染之后
-                            wrapDomRenderAfter: function wrapDomRenderAfter() {},
+                            wrapDomRenderAfter: function wrapDomRenderAfter(self) {
+                                //外部容器渲染之后的回调待续...
+                            },
+
                             //外部容器移除之前
-                            wrapDomRemoveBefore: function wrapDomRemoveBefore() {},
+                            wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {
+                                //外部容器移除之前的回调待续...
+                            },
+
                             //外部容器移除之后
-                            wrapDomRemoveAfter: function wrapDomRemoveAfter() {}
+                            wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {
+                                //外部容器移除之后的回调待续...
+                            }
                         },
                         //配置
                         config: {
+                            //内部模块的自定义属性
+                            moduleDomCustomAttr: {},
+                            //内部模块插入到外部容器的方式
+                            moduleDomRenderMethod: {
+                                method: 'appendChild', //'appendChild','insertBefore'
+                                child: null
+                            },
                             moduleDomStyle: "", //内部模块的样式(写法和css相同)
                             moduleDomIsShow: true, //内部模块是否显示(默认显示)
                             moduleDomIsClearTimer: true //内部模块是否清除所有定时器(默认清除)
@@ -115,7 +169,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             //初始化
 
 
-            _createClass(Super, [{
+            _createClass(SuperType, [{
                 key: "init",
                 value: function init() {
                     this.render();
@@ -136,6 +190,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }, {
                 key: "power",
                 value: function power() {}
+                //功能待续...
+
 
                 //内部模块的创建(这个方法在其他模块的内部需要被重写)
 
@@ -144,9 +200,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 value: function moduleDomCreate() {
                     this.moduleDom = base.createElement({
                         style: this.opt.config.moduleDomStyle,
+                        custom: this.opt.config.moduleDomCustomAttr,
                         attribute: {
-                            className: "m-test",
-                            innerHTML: "\n                <div class=\"m-test-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                            className: "m-test-es6",
+                            innerHTML: "\n                    <div class=\"m-test-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
                         }
                     });
                 }
@@ -199,7 +256,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     var callback = this.opt.callback;
                     callback.moduleDomShowBefore(this);
                     if (this.wrapDom) {
-                        this.wrapDom.appendChild(this.moduleDom);
+                        this.opt.config.moduleDomIsShow = true;
+                        this.wrapDomRenderMethod();
                     }
                     callback.moduleDomShowAfter(this);
                 }
@@ -213,6 +271,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     callback.moduleDomHideBefore(this);
                     if (this.moduleDom.parentNode) {
                         this.moduleDom.parentNode.removeChild(this.moduleDom);
+                        this.opt.config.moduleDomIsShow = false;
                     }
                     callback.moduleDomHideAfter(this);
                 }
@@ -237,11 +296,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     if (this.wrapDom) {
                         callback.moduleDomRenderBefore(this);
                         callback.wrapDomRenderBefore(this);
-                        if (this.opt.config.moduleDomIsShow) {
-                            this.wrapDom.appendChild(this.moduleDom);
-                        }
+                        this.wrapDomRenderMethod();
                         callback.wrapDomRenderAfter(this);
                         callback.moduleDomRenderAfter(this);
+                    }
+                }
+
+                //外部容器的渲染方式
+
+            }, {
+                key: "wrapDomRenderMethod",
+                value: function wrapDomRenderMethod() {
+                    var config = this.opt.config;
+                    if (config.moduleDomIsShow) {
+                        var renderMethod = config.moduleDomRenderMethod;
+                        if (renderMethod.method == 'insertBefore') {
+                            var dom = base.getDomArray({ element: renderMethod.child })[0];
+                            if (dom) {
+                                this.wrapDom.insertBefore(this.moduleDom, dom);
+                            } else {
+                                this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
+                            }
+                        }
+                        if (renderMethod.method == 'appendChild') {
+                            this.wrapDom.appendChild(this.moduleDom);
+                        }
                     }
                 }
 
@@ -260,12 +339,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
                     callback.wrapDomRemoveAfter(this);
                 }
+
+                //获取内部模块的整体html结构
+
+            }, {
+                key: "getModuleDomHtml",
+                value: function getModuleDomHtml() {
+                    return this.moduleDom.outerHTML;
+                }
             }]);
 
-            return Super;
+            return SuperType;
         }();
 
-        module.exports = Super;
+        module.exports = SuperType;
     }, { "../base/base.js": 1 }], 3: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend.js');
@@ -275,7 +362,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         function constructorInherit(json) {
             var opt = extend({
                 default: {
-                    superType: 123, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
+                    superType: null, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
                     parameter: {} //默认参数(这个必须传的是一个对象,或者不传值)
                 },
                 inherit: json
@@ -364,22 +451,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         function createElement(json) {
             var opt = json || {};
             opt.elementName = opt.elementName || 'div'; //标签名称
-            opt.attribute = opt.attribute || {}; //普通属性,checked,selected
-            opt.custom = opt.custom || {}; //自定义属性
             opt.style = opt.style || ""; //style样式
-            var elementNode = document.createElement("" + opt.elementName); //元素节点
-            for (var attr0 in opt.attribute) {
-                if (opt.attribute.hasOwnProperty(attr0)) {
-                    elementNode[attr0] = opt.attribute[attr0];
-                }
+            opt.custom = opt.custom || {}; //自定义属性
+            opt.attribute = opt.attribute || {}; //普通属性,checked,selected
+            var elementNode = document.createElement(opt.elementName); //元素节点
+            if (opt.style) {
+                elementNode.setAttribute('style', opt.style);
             }
             for (var attr1 in opt.custom) {
                 if (opt.custom.hasOwnProperty(attr1)) {
                     elementNode.setAttribute('data-' + attr1, opt.custom[attr1]);
                 }
             }
-            if (opt.style) {
-                elementNode.setAttribute('style', opt.style);
+            for (var attr0 in opt.attribute) {
+                if (opt.attribute.hasOwnProperty(attr0)) {
+                    elementNode[attr0] = opt.attribute[attr0];
+                }
             }
             return elementNode;
         }

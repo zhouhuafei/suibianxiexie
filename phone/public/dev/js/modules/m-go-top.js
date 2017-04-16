@@ -21,6 +21,8 @@ var SubType = base.constructorInherit({
 
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDom = base.createElement({
+        style: this.opt.config.moduleDomStyle,
+        custom: this.opt.config.moduleDomCustomAttr,
         attribute: {
             className: `m-go-top`,
             innerHTML: `<div class="m-go-top-icon iconfont icon-shangjiantou"></div>`

@@ -10,7 +10,6 @@ var SubType = base.constructorInherit({
     parameter: {
         //数据
         data:{
-
         }
     }
 });
@@ -18,6 +17,8 @@ var SubType = base.constructorInherit({
 //内部模块的创建
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDom = base.createElement({
+        style: this.opt.config.moduleDomStyle,
+        custom: this.opt.config.moduleDomCustomAttr,
         attribute: {
             className: `m-copyright`,
             innerHTML: `

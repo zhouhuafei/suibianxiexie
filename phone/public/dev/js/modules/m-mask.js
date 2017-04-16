@@ -34,6 +34,7 @@ SubType.prototype.moduleDomCreate = function () {
     }
     this.moduleDom = base.createElement({
         style: this.opt.config.moduleStyle,
+        custom: this.opt.config.moduleDomCustomAttr,
         attribute: {
             className: `m-mask ${isTransparent}`,
             innerHTML: ``

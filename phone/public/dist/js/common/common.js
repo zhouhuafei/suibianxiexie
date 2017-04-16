@@ -65,7 +65,7 @@
         function constructorInherit(json) {
             var opt = extend({
                 default: {
-                    superType: 123, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
+                    superType: null, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
                     parameter: {} //默认参数(这个必须传的是一个对象,或者不传值)
                 },
                 inherit: json
@@ -154,22 +154,22 @@
         function createElement(json) {
             var opt = json || {};
             opt.elementName = opt.elementName || 'div'; //标签名称
-            opt.attribute = opt.attribute || {}; //普通属性,checked,selected
-            opt.custom = opt.custom || {}; //自定义属性
             opt.style = opt.style || ""; //style样式
-            var elementNode = document.createElement("" + opt.elementName); //元素节点
-            for (var attr0 in opt.attribute) {
-                if (opt.attribute.hasOwnProperty(attr0)) {
-                    elementNode[attr0] = opt.attribute[attr0];
-                }
+            opt.custom = opt.custom || {}; //自定义属性
+            opt.attribute = opt.attribute || {}; //普通属性,checked,selected
+            var elementNode = document.createElement(opt.elementName); //元素节点
+            if (opt.style) {
+                elementNode.setAttribute('style', opt.style);
             }
             for (var attr1 in opt.custom) {
                 if (opt.custom.hasOwnProperty(attr1)) {
                     elementNode.setAttribute('data-' + attr1, opt.custom[attr1]);
                 }
             }
-            if (opt.style) {
-                elementNode.setAttribute('style', opt.style);
+            for (var attr0 in opt.attribute) {
+                if (opt.attribute.hasOwnProperty(attr0)) {
+                    elementNode[attr0] = opt.attribute[attr0];
+                }
             }
             return elementNode;
         }
@@ -742,6 +742,8 @@
         //内部模块的创建
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDom = base.createElement({
+                style: this.opt.config.moduleDomStyle,
+                custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-copyright",
                     innerHTML: "\n                <div class=\"m-copyright-icon iconfont icon-banquan\"></div>\n                <div class=\"m-copyright-txt\">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            "
@@ -763,7 +765,9 @@
             parameter: {
                 //回调
                 callback: {
-                    moduleDomClick: function moduleDomClick() {}
+                    moduleDomClick: function moduleDomClick() {
+                        //内部模块的点击回调待续...
+                    }
                 }
             }
         });
@@ -772,6 +776,8 @@
             this.moduleDomClass = "m-footer-nav";
             var moduleDomHtml = "\n        <div class=\"m-footer-nav-wrap\">\n            <a class=\"m-footer-nav-body\" href=\"\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-shouye\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u9996\u9875</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-fenxiao\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u6211\u8981\u5F00\u5E97</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-gouwuche\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u8D2D\u7269\u8F66</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kefu\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u5BA2\u670D</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-wode\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u6211\u7684</div>\n            </a>\n        </div>\n    ";
             this.moduleDom = base.createElement({
+                style: this.opt.config.moduleDomStyle,
+                custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: this.moduleDomClass,
                     innerHTML: moduleDomHtml
@@ -867,40 +873,74 @@
                     //回调
                     callback: {
                         //内部模块创建之前
-                        moduleDomCreateBefore: function moduleDomCreateBefore(self) {},
+                        moduleDomCreateBefore: function moduleDomCreateBefore(self) {
+                            //内部模块创建之前的回调待续...
+                        },
                         //内部模块创建之后
-                        moduleDomCreateAfter: function moduleDomCreateAfter(self) {},
+                        moduleDomCreateAfter: function moduleDomCreateAfter(self) {
+                            //内部模块创建之后的回调待续...
+                        },
                         //内部模块渲染之前
-                        moduleDomRenderBefore: function moduleDomRenderBefore(self) {},
+                        moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                            //内部模块渲染之前的回调待续...
+                        },
                         //内部模块渲染之后
-                        moduleDomRenderAfter: function moduleDomRenderAfter(self) {},
+                        moduleDomRenderAfter: function moduleDomRenderAfter(self) {
+                            //内部模块渲染之后的回调待续...
+                        },
                         //内部模块移除之前
-                        moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {},
+                        moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {
+                            //内部模块移除之前的回调待续...
+                        },
                         //内部模块移除之后
-                        moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {},
+                        moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {
+                            //内部模块移除之后的回调待续...
+                        },
                         //内部模块显示之前
-                        moduleDomShowBefore: function moduleDomShowBefore(self) {},
+                        moduleDomShowBefore: function moduleDomShowBefore(self) {
+                            //内部模块显示之前的回调待续...
+                        },
                         //内部模块显示之后
-                        moduleDomShowAfter: function moduleDomShowAfter(self) {},
+                        moduleDomShowAfter: function moduleDomShowAfter(self) {
+                            //内部模块显示之后的回调待续...
+                        },
                         //内部模块隐藏之前
-                        moduleDomHideBefore: function moduleDomHideBefore(self) {},
+                        moduleDomHideBefore: function moduleDomHideBefore(self) {
+                            //内部模块隐藏之前的回调待续...
+                        },
                         //内部模块隐藏之后
-                        moduleDomHideAfter: function moduleDomHideAfter(self) {},
+                        moduleDomHideAfter: function moduleDomHideAfter(self) {
+                            //内部模块隐藏之后的回调待续...
+                        },
                         //外部容器创建之前
-                        wrapDomCreateBefore: function wrapDomCreateBefore(self) {},
+                        wrapDomCreateBefore: function wrapDomCreateBefore(self) {
+                            //外部容器创建之前的回调待续...
+                        },
                         //外部容器创建之后
-                        wrapDomCreateAfter: function wrapDomCreateAfter(self) {},
+                        wrapDomCreateAfter: function wrapDomCreateAfter(self) {
+                            //外部容器创建之后的回调待续...
+                        },
                         //外部容器渲染之前
-                        wrapDomRenderBefore: function wrapDomRenderBefore(self) {},
+                        wrapDomRenderBefore: function wrapDomRenderBefore(self) {
+                            //外部容器渲染之前的回调待续...
+                        },
                         //外部容器渲染之后
-                        wrapDomRenderAfter: function wrapDomRenderAfter(self) {},
+                        wrapDomRenderAfter: function wrapDomRenderAfter(self) {
+                            //外部容器渲染之后的回调待续...
+                        },
                         //外部容器移除之前
-                        wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {},
+                        wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {
+                            //外部容器移除之前的回调待续...
+                        },
                         //外部容器移除之后
-                        wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {}
+                        wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {
+                            //外部容器移除之后的回调待续...
+                        }
                     },
                     //配置
                     config: {
+                        //内部模块的自定义属性
+                        moduleDomCustomAttr: {},
                         //内部模块插入到外部容器的方式
                         moduleDomRenderMethod: {
                             method: 'appendChild', //'appendChild','insertBefore'
@@ -936,12 +976,15 @@
         };
 
         //功能(这个方法在其他模块的内部需要被重写)
-        SuperType.prototype.power = function () {};
+        SuperType.prototype.power = function () {
+            //功能待续...
+        };
 
         //内部模块的创建(这个方法在其他模块的内部需要被重写)
         SuperType.prototype.moduleDomCreate = function () {
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleDomStyle,
+                custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-test",
                     innerHTML: "\n                <div class=\"m-test-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "

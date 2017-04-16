@@ -13,55 +13,73 @@ function SuperType(json) {
             callback: {
                 //内部模块创建之前
                 moduleDomCreateBefore: function (self) {
+                    //内部模块创建之前的回调待续...
                 },
                 //内部模块创建之后
                 moduleDomCreateAfter: function (self) {
+                    //内部模块创建之后的回调待续...
                 },
                 //内部模块渲染之前
                 moduleDomRenderBefore: function (self) {
+                    //内部模块渲染之前的回调待续...
                 },
                 //内部模块渲染之后
                 moduleDomRenderAfter: function (self) {
+                    //内部模块渲染之后的回调待续...
                 },
                 //内部模块移除之前
                 moduleDomRemoveBefore: function (self) {
+                    //内部模块移除之前的回调待续...
                 },
                 //内部模块移除之后
                 moduleDomRemoveAfter: function (self) {
+                    //内部模块移除之后的回调待续...
                 },
                 //内部模块显示之前
                 moduleDomShowBefore: function (self) {
+                    //内部模块显示之前的回调待续...
                 },
                 //内部模块显示之后
                 moduleDomShowAfter: function (self) {
+                    //内部模块显示之后的回调待续...
                 },
                 //内部模块隐藏之前
                 moduleDomHideBefore: function (self) {
+                    //内部模块隐藏之前的回调待续...
                 },
                 //内部模块隐藏之后
                 moduleDomHideAfter: function (self) {
+                    //内部模块隐藏之后的回调待续...
                 },
                 //外部容器创建之前
                 wrapDomCreateBefore: function (self) {
+                    //外部容器创建之前的回调待续...
                 },
                 //外部容器创建之后
                 wrapDomCreateAfter: function (self) {
+                    //外部容器创建之后的回调待续...
                 },
                 //外部容器渲染之前
                 wrapDomRenderBefore: function (self) {
+                    //外部容器渲染之前的回调待续...
                 },
                 //外部容器渲染之后
                 wrapDomRenderAfter: function (self) {
+                    //外部容器渲染之后的回调待续...
                 },
                 //外部容器移除之前
                 wrapDomRemoveBefore: function (self) {
+                    //外部容器移除之前的回调待续...
                 },
                 //外部容器移除之后
                 wrapDomRemoveAfter: function (self) {
+                    //外部容器移除之后的回调待续...
                 }
             },
             //配置
             config: {
+                //内部模块的自定义属性
+                moduleDomCustomAttr: {},
                 //内部模块插入到外部容器的方式
                 moduleDomRenderMethod: {
                     method: 'appendChild',//'appendChild','insertBefore'
@@ -98,12 +116,14 @@ SuperType.prototype.render = function () {
 
 //功能(这个方法在其他模块的内部需要被重写)
 SuperType.prototype.power = function () {
+    //功能待续...
 };
 
 //内部模块的创建(这个方法在其他模块的内部需要被重写)
 SuperType.prototype.moduleDomCreate = function () {
     this.moduleDom = base.createElement({
         style: this.opt.config.moduleDomStyle,
+        custom: this.opt.config.moduleDomCustomAttr,
         attribute: {
             className: `m-test`,
             innerHTML: `
@@ -219,7 +239,7 @@ SuperType.prototype.wrapDomRemove = function () {
 };
 
 //获取内部模块的整体html结构
-SuperType.prototype.getModuleDomHtml=function(){
+SuperType.prototype.getModuleDomHtml = function () {
     return this.moduleDom.outerHTML;
 };
 
