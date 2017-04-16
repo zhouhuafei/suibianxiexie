@@ -22,34 +22,34 @@
 })();
 //es6
 (function () {
-    var SubType = require('../modules/m-sub-es6');
-    var o1 = new SubType({
-        wrap: '.main-test-es6',
-        callback: {
-            moduleDomClick(self){
-                console.log(self);
-            }
-        },
-        config: {
-            // moduleDomStyle: 'color:#00f;'
-        },
-        data: {}
-    });
-    var o2 = new SubType({
-        wrap: '.main-test-es6',
-        callback: {
-            moduleDomClick(self){
-                console.log(self);
-            }
-        },
-        config: {
-            //moduleDomStyle: 'color:#0ff;'
-        },
-        data: {
-            default: 'default2'
-        }
-    });
-    //console.log(o1, o2);//测试对象有没有被引用,测试结果是:没被引用,没毛病
+    // var SubType = require('../modules/m-sub-es6');
+    // var o1 = new SubType({
+    //     wrap: '.main-test-es6',
+    //     callback: {
+    //         moduleDomClick(self){
+    //             console.log(self);
+    //         }
+    //     },
+    //     config: {
+    //         moduleDomStyle: 'color:#00f;'
+    //     },
+    //     data: {}
+    // });
+    // var o2 = new SubType({
+    //     wrap: '.main-test-es6',
+    //     callback: {
+    //         moduleDomClick(self){
+    //             console.log(self);
+    //         }
+    //     },
+    //     config: {
+    //         moduleDomStyle: 'color:#0ff;'
+    //     },
+    //     data: {
+    //         default: 'default2'
+    //     }
+    // });
+    // console.log(o1, o2);//测试对象有没有被引用,测试结果是:没被引用,没毛病
 })();
 //加载中
 (function () {
@@ -83,16 +83,25 @@
 })();
 //遮罩
 (function () {
-    var Mask = require('../modules/m-mask.js');
-    var mask = new Mask({
-        callback: {
-            moduleDomClick: function () {
-                console.log('m-mask click callback');
-                mask.moduleDomHide();
-            }
-        }
-    });
-    //mask.moduleDomShow();
+    // var Mask1 = require('../modules/m-mask.js');
+    // var mask1=new Mask1({
+    //     callback: {
+    //         moduleDomClick: function () {
+    //             console.log('m-mask click callback');
+    //             mask1.moduleDomHide();
+    //         }
+    //     },
+    //     config:{
+    //         moduleDomIsClearTimer:1,
+    //         moduleDomIsShow:true
+    //     },
+    //     data:{
+    //         a:1
+    //     }
+    // });
+    // var Mask2 = require('../modules/m-mask.js');
+    // var mask2 = new Mask2();
+    // console.log(mask1,mask2);//测试对象有没有被引用,测试结果是:没被引用,没毛病
 })();
 //单选开关
 (function () {
