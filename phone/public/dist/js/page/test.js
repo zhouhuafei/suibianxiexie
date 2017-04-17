@@ -1329,18 +1329,26 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         var SubType = base.constructorInherit({
             superType: SuperType,
             parameter: {
-                data: {}
+                data: {
+                    icon: 'icon-meiyoushuju',
+                    txt: '没有数据',
+                    btn: {
+                        txt: '回首页',
+                        href: '/'
+                    }
+                }
             }
         });
 
         //内部模块的创建
         SubType.prototype.moduleDomCreate = function () {
+            var data = this.opt.data;
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleStyle,
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-no-data",
-                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont icon-meiyoushuju\"></div>\n                <div class=\"m-no-data-txt\">\u6CA1\u6709\u6570\u636E</div>\n                <a class=\"m-no-data-btn g-button g-button-highlight\" href=\"/\">\u56DE\u9996\u9875</a>\n            "
+                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-txt\">" + data.txt + "</div>\n                <a class=\"m-no-data-btn g-button g-button-highlight\" href=\"" + data.btn.href + "\">" + data.btn.txt + "</a>\n            "
                 }
             });
         };
