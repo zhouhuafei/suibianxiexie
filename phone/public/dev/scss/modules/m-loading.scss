@@ -22,11 +22,11 @@
         .m-loading-loading-icon {
             font-size: px2rem(30);
             animation: run 1s linear infinite;
-            position: relative;
-            z-index: 502;
         }
         .m-mask ~ .m-loading-loading-icon {
             color: #ffffff;
+            position: relative;
+            z-index: 502;
         }
         //相对于文档居中
         &.m-loading-fixed {
@@ -35,7 +35,7 @@
                 top: 0;
                 width: px2rem($width);
                 height: 100%;
-                z-index: 501;
+                z-index: 502;
             }
         }
         //相对于容器居中
@@ -53,18 +53,12 @@
         &.m-loading-relative {
             .m-loading-wrap {
                 padding: px2rem(20) 0;
-                position: relative;
-                z-index: 501;
             }
         }
     }
 
     //加载完毕
     &.m-loading-over {
-        .m-loading-over-icon, .m-loading-over-txt {
-            position: relative;
-            z-index: 502;
-        }
         .m-loading-over-icon {
             font-size: px2rem(24);
         }
@@ -73,6 +67,8 @@
         }
         .m-mask ~ .m-loading-over-icon, .m-mask ~ .m-loading-over-txt {
             color: #ffffff;
+            position: relative;
+            z-index: 502;
         }
         &.m-loading-fixed {
             .m-loading-wrap {

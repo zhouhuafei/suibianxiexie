@@ -1,7 +1,21 @@
 //base函数测试
 (function () {
-    var base = require('../base/base');
-
+    var base = require('../base/base.js');
+    //测试滚动到底部loading
+    new base.WhenScrollBottom({
+        callback: {
+            success: function () {
+                var Loading = require('../modules/m-loading.js');
+                var loading = new Loading({
+                    wrap: '.page-wrap',
+                    config: {
+                        moduleDomStatus: 'loading'
+                    }
+                });
+                loading.moduleDomShow();
+            }
+        }
+    });
     //测试全选
     new base.Select({
         items: '.g-checkbox-checkbox',
@@ -14,20 +28,28 @@
 })();
 //加载中
 (function () {
-    var Loading = require('../modules/m-loading');
-    var loading = new Loading({config: {moduleDomStatus: 'loading'}});
+    var Loading = require('../modules/m-loading.js');
+    var loading = new Loading({
+        config: {
+            moduleDomStatus: 'loading'
+        }
+    });
     loading.moduleDomShow();
-    var over = new Loading({config: {moduleDomStatus: 'over'}});
+    var over = new Loading({
+        config: {
+            moduleDomStatus: 'over'
+        }
+    });
     over.moduleDomShow();
 })();
 //超类型模块测试
 (function () {
     var SuperType = require('../modules/m-super-type.js');
-    new SuperType({wrap: `.main-super-type`});
+    new SuperType({wrap: `.page-super-type`});
     var SuperTypeEs6 = require('../modules/m-super-type-es6.js');
-    new SuperTypeEs6({wrap: `.main-super-type`});
+    new SuperTypeEs6({wrap: `.page-super-type`});
     var SubTypeEs6 = require('../modules/m-sub-type-es6.js');
-    new SubTypeEs6({wrap: `.main-super-type`});
+    new SubTypeEs6({wrap: `.page-super-type`});
 })();
 //返回顶部
 (function () {
@@ -49,7 +71,7 @@
 //单选开关
 (function () {
     const Radio = require('../modules/m-radio-switch.js');
-    const main = document.querySelector('.main-radio-switch');
+    const page = document.querySelector('.page-radio-switch');
     const radio = new Radio({
         checkTxt: {
             on: '开',
@@ -61,13 +83,13 @@
             console.log(result);
         }
     });
-    main.appendChild(radio.parentDom);
+    page.appendChild(radio.parentDom);
 })();
 //表格
 (function () {
     const Table = require('../modules/m-table.js');
     const table = new Table({
-        wrap: `.main-table`,
+        wrap: `.page-table`,
         data: {
             header: [
                 {
@@ -132,7 +154,7 @@
 (function () {
     const Star = require('../modules/m-star.js');
     const star = new Star({
-        wrap: `.main-star`,
+        wrap: `.page-star`,
         callback: {
             moduleDomClick: function (json) {
                 console.log(json);

@@ -11,7 +11,7 @@ function WhenScrollBottom(json) {
                 }
             },
             interval: 80,//函数节流时间(延迟时间)
-            errorHeight: 100//滚动到底部上面一定高度就算是滚动到底部了(误差高度)
+            errorHeight: 0//滚动到底部上面一定高度就算是滚动到底部了(误差高度)
         },
         inherit: json
     });

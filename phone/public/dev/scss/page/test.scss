@@ -8,7 +8,7 @@
 
 //单选开关
 @import "../modules/m-radio-switch.scss";
-.main-radio-switch {
+.page-radio-switch {
     display: flex;
     justify-content: center;
 }
@@ -18,7 +18,7 @@
 
 //input验证
 @import "../modules/m-validate-input.scss";
-.main-input {
+.page-input {
     display: flex;
     align-items: center;
     .input-txt {
@@ -29,7 +29,7 @@
 
 //星评
 @import "../modules/m-star.scss";
-.main-star{
+.page-star{
     display: flex;
     justify-content: center;
 }
