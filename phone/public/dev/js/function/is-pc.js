@@ -1,3 +1,4 @@
+//是不是PC
 function isPc() {
     var userAgentInfo = navigator.userAgent;
     var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];

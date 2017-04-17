@@ -1,3 +1,4 @@
+//创建元素节点
 function createElement(json) {
     var opt = json || {};
     opt.elementName = opt.elementName || 'div';//标签名称

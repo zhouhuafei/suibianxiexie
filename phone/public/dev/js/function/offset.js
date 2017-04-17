@@ -1,6 +1,7 @@
-var extend = require('../function/extend.js');
-var getDomArray = require('../function/get-dom-array.js');
+var extend = require('../function/extend.js');//对象的扩展
+var getDomArray = require('../function/get-dom-array.js');//获取一组dom节点
 
+//获取元素距离文档的left和top
 function offset(json) {
     var opt = extend({
         default: {

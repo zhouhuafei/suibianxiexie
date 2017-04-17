@@ -13,6 +13,7 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
+        //图片上传
         function Fn(json) {
             this.opt = json || {};
             //如果没有选择文件的input,则不继续往下执行

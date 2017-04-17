@@ -13,6 +13,7 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
+        //是不是android
         function isAndroid() {
             return window.navigator.appVersion.match(/android/gi);
         }

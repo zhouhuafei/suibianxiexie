@@ -13,6 +13,7 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
+        //加减操作
         function addSubtractInput(json) {
             //购物加减商品系列
             if (!json) {

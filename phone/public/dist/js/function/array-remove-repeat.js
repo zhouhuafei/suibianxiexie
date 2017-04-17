@@ -13,23 +13,20 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        //对象转数组
-        function jsonToArray(json) {
+        //数组去重
+        function arrayRemoveRepeat(json) {
             var opt = json || {};
-            var obj = opt.obj;
-            var arr = [];
-            if (obj instanceof Array) {
-                obj.forEach(function (v, i) {
-                    arr.push([i, v]);
-                });
-            } else {
-                for (var attr in obj) {
-                    if (obj.hasOwnProperty(attr)) {
-                        arr.push([attr, obj[attr]]);
-                    }
-                }
+            var array = opt.array || [];
+            if (Object.prototype.toString.call(array).slice(8, -1).toLowerCase() != 'array') {
+                return [];
             }
-            return arr;
+            var newArray = [];
+            array.forEach(function (v) {
+                if (newArray.indexOf(v) == -1) {
+                    newArray.push(v);
+                }
+            });
+            return newArray;
         }
-        module.exports = jsonToArray;
+        module.exports = arrayRemoveRepeat;
     }, {}] }, {}, [1]);

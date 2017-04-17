@@ -1,5 +1,5 @@
-//对象转数组
-function jsonToArray(json) {
+//把json格式的对象转成数组
+function objToArray(json) {
     var opt = json || {};
     var obj = opt.obj;
     var arr = [];
@@ -10,10 +10,10 @@ function jsonToArray(json) {
     } else {
         for (var attr in obj) {
             if (obj.hasOwnProperty(attr)) {
-                arr.push([attr, obj[attr]]);
+                arr.push({key:attr, value:obj[attr]});
             }
         }
     }
     return arr;
 }
-module.exports = jsonToArray;
+module.exports = objToArray;

@@ -13,8 +13,7 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        //对象的扩展方法
-        var extend = require('../function/extend.js');
+        var extend = require('../function/extend.js'); //对象的扩展方法
 
         //获取原生的dom节点并转换成数组,传入的参数仅支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
         function getDomArray(json) {

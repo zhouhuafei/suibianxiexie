@@ -1,6 +1,5 @@
-//对象的扩展方法
-var extend = require('../function/extend.js');
-var objRemoveQuote = require('../function/obj-remove-quote.js');
+var extend = require('../function/extend.js');//对象的扩展方法
+var objRemoveQuote = require('../function/obj-remove-quote.js');//对象移除引用
 
 //构造函数的继承(拷贝继承)
 function constructorInherit(json) {

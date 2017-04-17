@@ -13,9 +13,23 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        //是不是iphone
-        function isIphone() {
-            return window.navigator.appVersion.match(/iphone/gi);
+        //把json格式的对象转成数组
+        function objToArray(json) {
+            var opt = json || {};
+            var obj = opt.obj;
+            var arr = [];
+            if (obj instanceof Array) {
+                obj.forEach(function (v, i) {
+                    arr.push([i, v]);
+                });
+            } else {
+                for (var attr in obj) {
+                    if (obj.hasOwnProperty(attr)) {
+                        arr.push({ key: attr, value: obj[attr] });
+                    }
+                }
+            }
+            return arr;
         }
-        module.exports = isIphone;
+        module.exports = objToArray;
     }, {}] }, {}, [1]);

@@ -15,33 +15,50 @@
 })({ 1: [function (require, module, exports) {
         //一些小方法
         var base = {
-            objRemoveQuote: require('../function/obj-remove-quote.js'),
-            Select: require('../function/select.js'),
-            offset: require('../function/offset.js'),
-            constructorInherit: require('../function/constructor-inherit.js'),
-            isIPhone: require('../function/is-iphone.js'),
-            isAndroid: require('../function/is-android.js'),
-            isPc: require('../function/is-pc.js'),
-            cookie: require('../function/cookie.js'),
-            fillZero: require('../function/fill-zero.js'),
-            getParent: require('../function/get-parent.js'),
-            scrollTo: require('../function/scroll-to.js'),
-            htmlToDom: require('../function/html-to-dom.js'),
-            whetherDisableScroll: require('../function/whether-disable-scroll.js'),
-            WhenScrollBottom: require('../function/when-scroll-bottom.js'),
-            jsonToArray: require('../function/json-to-array.js'),
-            secondsToTime: require('../function/seconds-to-time.js'),
-            timeCountDown: require('../function/time-count-down.js'),
-            strLimit: require('../function/str-limit.js'),
-            getDomArray: require('../function/get-dom-array.js'),
-            createElement: require('../function/create-element.js'),
-            extend: require('../function/extend.js')
+            arrayRemoveRepeat: require('../function/array-remove-repeat.js'), //数组去重
+            objRemoveQuote: require('../function/obj-remove-quote.js'), //移除对象引用
+            Select: require('../function/select.js'), //全选,不选,反选
+            offset: require('../function/offset.js'), //获取元素距离文档的left和top
+            constructorInherit: require('../function/constructor-inherit.js'), //构造函数继承
+            isIPhone: require('../function/is-iphone.js'), //是否是iphone
+            isAndroid: require('../function/is-android.js'), //是否是android
+            isPc: require('../function/is-pc.js'), //是否是PC
+            cookie: require('../function/cookie.js'), //cookie操作
+            fillZero: require('../function/fill-zero.js'), //补零
+            getParent: require('../function/get-parent.js'), //获取父级
+            scrollTo: require('../function/scroll-to.js'), //滚动到
+            htmlToDom: require('../function/html-to-dom.js'), //html转成dom节点
+            whetherDisableScroll: require('../function/whether-disable-scroll.js'), //是否禁止浏览器滚动
+            WhenScrollBottom: require('../function/when-scroll-bottom.js'), //当滚动到底部
+            objToArray: require('../function/obj-to-array.js'), //把json格式的对象转成数组
+            secondsToTime: require('../function/seconds-to-time.js'), //秒转时间
+            timeCountDown: require('../function/time-count-down.js'), //倒计时
+            strLimit: require('../function/str-limit.js'), //字符串限制
+            getDomArray: require('../function/get-dom-array.js'), //获取一组dom节点
+            createElement: require('../function/create-element.js'), //创建元素节点
+            extend: require('../function/extend.js') //对象扩展
         };
         module.exports = base;
-    }, { "../function/constructor-inherit.js": 2, "../function/cookie.js": 3, "../function/create-element.js": 4, "../function/extend.js": 5, "../function/fill-zero.js": 6, "../function/get-dom-array.js": 7, "../function/get-parent.js": 8, "../function/html-to-dom.js": 9, "../function/is-android.js": 10, "../function/is-iphone.js": 11, "../function/is-pc.js": 12, "../function/json-to-array.js": 13, "../function/obj-remove-quote.js": 14, "../function/offset.js": 15, "../function/scroll-to.js": 16, "../function/seconds-to-time.js": 17, "../function/select.js": 18, "../function/str-limit.js": 19, "../function/time-count-down.js": 20, "../function/when-scroll-bottom.js": 21, "../function/whether-disable-scroll.js": 22 }], 2: [function (require, module, exports) {
-        //对象的扩展方法
-        var extend = require('../function/extend.js');
-        var objRemoveQuote = require('../function/obj-remove-quote.js');
+    }, { "../function/array-remove-repeat.js": 2, "../function/constructor-inherit.js": 3, "../function/cookie.js": 4, "../function/create-element.js": 5, "../function/extend.js": 6, "../function/fill-zero.js": 7, "../function/get-dom-array.js": 8, "../function/get-parent.js": 9, "../function/html-to-dom.js": 10, "../function/is-android.js": 11, "../function/is-iphone.js": 12, "../function/is-pc.js": 13, "../function/obj-remove-quote.js": 14, "../function/obj-to-array.js": 15, "../function/offset.js": 16, "../function/scroll-to.js": 17, "../function/seconds-to-time.js": 18, "../function/select.js": 19, "../function/str-limit.js": 20, "../function/time-count-down.js": 21, "../function/when-scroll-bottom.js": 22, "../function/whether-disable-scroll.js": 23 }], 2: [function (require, module, exports) {
+        //数组去重
+        function arrayRemoveRepeat(json) {
+            var opt = json || {};
+            var array = opt.array || [];
+            if (Object.prototype.toString.call(array).slice(8, -1).toLowerCase() != 'array') {
+                return [];
+            }
+            var newArray = [];
+            array.forEach(function (v) {
+                if (newArray.indexOf(v) == -1) {
+                    newArray.push(v);
+                }
+            });
+            return newArray;
+        }
+        module.exports = arrayRemoveRepeat;
+    }, {}], 3: [function (require, module, exports) {
+        var extend = require('../function/extend.js'); //对象的扩展方法
+        var objRemoveQuote = require('../function/obj-remove-quote.js'); //对象移除引用
 
         //构造函数的继承(拷贝继承)
         function constructorInherit(json) {
@@ -92,7 +109,7 @@
             return SubType;
         }
         module.exports = constructorInherit;
-    }, { "../function/extend.js": 5, "../function/obj-remove-quote.js": 14 }], 3: [function (require, module, exports) {
+    }, { "../function/extend.js": 6, "../function/obj-remove-quote.js": 14 }], 4: [function (require, module, exports) {
         //设置cookie
         function setCookie(json) {
             var opt = json || {};
@@ -132,7 +149,8 @@
             removeCookie: removeCookie
         };
         module.exports = obj;
-    }, {}], 4: [function (require, module, exports) {
+    }, {}], 5: [function (require, module, exports) {
+        //创建元素节点
         function createElement(json) {
             var opt = json || {};
             opt.elementName = opt.elementName || 'div'; //标签名称
@@ -156,7 +174,7 @@
             return elementNode;
         }
         module.exports = createElement;
-    }, {}], 5: [function (require, module, exports) {
+    }, {}], 6: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opt = json || {};
@@ -247,7 +265,7 @@
         // });
         // console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
         module.exports = extend;
-    }, {}], 6: [function (require, module, exports) {
+    }, {}], 7: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend.js');
 
@@ -267,9 +285,8 @@
             }
         }
         module.exports = fillZero;
-    }, { "../function/extend.js": 5 }], 7: [function (require, module, exports) {
-        //对象的扩展方法
-        var extend = require('../function/extend.js');
+    }, { "../function/extend.js": 6 }], 8: [function (require, module, exports) {
+        var extend = require('../function/extend.js'); //对象的扩展方法
 
         //获取原生的dom节点并转换成数组,传入的参数仅支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
         function getDomArray(json) {
@@ -300,7 +317,7 @@
             return dom;
         }
         module.exports = getDomArray;
-    }, { "../function/extend.js": 5 }], 8: [function (require, module, exports) {
+    }, { "../function/extend.js": 6 }], 9: [function (require, module, exports) {
         //获取指定父级
         function getParent(json) {
             var opt = json || {};
@@ -363,7 +380,7 @@
             }
         }
         module.exports = getParent;
-    }, {}], 9: [function (require, module, exports) {
+    }, {}], 10: [function (require, module, exports) {
         //html转成DOM节点
         function htmlToDom(json) {
             var opt = json || {};
@@ -373,17 +390,20 @@
             return div.children[0];
         }
         module.exports = htmlToDom;
-    }, {}], 10: [function (require, module, exports) {
+    }, {}], 11: [function (require, module, exports) {
+        //是不是android
         function isAndroid() {
             return window.navigator.appVersion.match(/android/gi);
         }
         module.exports = isAndroid;
-    }, {}], 11: [function (require, module, exports) {
+    }, {}], 12: [function (require, module, exports) {
+        //是不是iphone
         function isIphone() {
             return window.navigator.appVersion.match(/iphone/gi);
         }
         module.exports = isIphone;
-    }, {}], 12: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
+        //是不是PC
         function isPc() {
             var userAgentInfo = navigator.userAgent;
             var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
@@ -397,26 +417,6 @@
             return flag;
         }
         module.exports = isPc;
-    }, {}], 13: [function (require, module, exports) {
-        //对象转数组
-        function jsonToArray(json) {
-            var opt = json || {};
-            var obj = opt.obj;
-            var arr = [];
-            if (obj instanceof Array) {
-                obj.forEach(function (v, i) {
-                    arr.push([i, v]);
-                });
-            } else {
-                for (var attr in obj) {
-                    if (obj.hasOwnProperty(attr)) {
-                        arr.push([attr, obj[attr]]);
-                    }
-                }
-            }
-            return arr;
-        }
-        module.exports = jsonToArray;
     }, {}], 14: [function (require, module, exports) {
         //移除对象引用
         function objRemoveQuote(json) {
@@ -440,9 +440,30 @@
         }
         module.exports = objRemoveQuote;
     }, {}], 15: [function (require, module, exports) {
-        var extend = require('../function/extend.js');
-        var getDomArray = require('../function/get-dom-array.js');
+        //把json格式的对象转成数组
+        function objToArray(json) {
+            var opt = json || {};
+            var obj = opt.obj;
+            var arr = [];
+            if (obj instanceof Array) {
+                obj.forEach(function (v, i) {
+                    arr.push([i, v]);
+                });
+            } else {
+                for (var attr in obj) {
+                    if (obj.hasOwnProperty(attr)) {
+                        arr.push({ key: attr, value: obj[attr] });
+                    }
+                }
+            }
+            return arr;
+        }
+        module.exports = objToArray;
+    }, {}], 16: [function (require, module, exports) {
+        var extend = require('../function/extend.js'); //对象的扩展
+        var getDomArray = require('../function/get-dom-array.js'); //获取一组dom节点
 
+        //获取元素距离文档的left和top
         function offset(json) {
             var opt = extend({
                 default: {
@@ -464,7 +485,7 @@
             };
         }
         module.exports = offset;
-    }, { "../function/extend.js": 5, "../function/get-dom-array.js": 7 }], 16: [function (require, module, exports) {
+    }, { "../function/extend.js": 6, "../function/get-dom-array.js": 8 }], 17: [function (require, module, exports) {
         //滚动到指定位置
         function scrollTo(json) {
             var opt = json || {};
@@ -485,7 +506,7 @@
             requestAnimationFrame(fn);
         }
         module.exports = scrollTo;
-    }, {}], 17: [function (require, module, exports) {
+    }, {}], 18: [function (require, module, exports) {
         //秒转时间
         function secondsToTime(json) {
             var opt = json || {};
@@ -501,7 +522,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 18: [function (require, module, exports) {
+    }, {}], 19: [function (require, module, exports) {
         //全选,不选,反选
         var extend = require('../function/extend.js');
         var getDomArray = require('../function/get-dom-array.js');
@@ -563,7 +584,7 @@
         };
 
         module.exports = Select;
-    }, { "../function/extend.js": 5, "../function/get-dom-array.js": 7 }], 19: [function (require, module, exports) {
+    }, { "../function/extend.js": 6, "../function/get-dom-array.js": 8 }], 20: [function (require, module, exports) {
         //字符数量限制
         function strLimit(json) {
             var opt = json || {};
@@ -579,7 +600,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 20: [function (require, module, exports) {
+    }, {}], 21: [function (require, module, exports) {
         var extend = require('../function/extend.js');
         var secondsToTime = require('../function/seconds-to-time.js'); //时间转换
 
@@ -618,7 +639,7 @@
             }
         }
         module.exports = timeCountDown;
-    }, { "../function/extend.js": 5, "../function/seconds-to-time.js": 17 }], 21: [function (require, module, exports) {
+    }, { "../function/extend.js": 6, "../function/seconds-to-time.js": 18 }], 22: [function (require, module, exports) {
         var extend = require('../function/extend.js');
 
         //当滚动到了浏览器的底部
@@ -672,7 +693,7 @@
             });
         };
         module.exports = WhenScrollBottom;
-    }, { "../function/extend.js": 5 }], 22: [function (require, module, exports) {
+    }, { "../function/extend.js": 6 }], 23: [function (require, module, exports) {
         //是否禁止浏览器滚动
         function whetherDisableScroll() {
             var doc = document;
