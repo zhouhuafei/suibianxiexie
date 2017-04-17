@@ -26,6 +26,11 @@
         }
     });
 })();
+//没有数据
+(function(){
+    var NoData=require('../modules/m-no-data.js');
+    new NoData({wrap:'.page-no-data'});
+})();
 //加载中
 (function () {
     var Loading = require('../modules/m-loading.js');

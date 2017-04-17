@@ -1,7 +1,10 @@
 @import "../base/base.scss";
 
+//没有数据
+@import "../modules/m-no-data.scss";
+
 //加载中
-@import "../modules/m-loading";
+@import "../modules/m-loading.scss";
 
 //返回顶部
 @import "../modules/m-go-top.scss";
