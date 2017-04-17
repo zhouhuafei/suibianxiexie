@@ -26,7 +26,7 @@ var SubType = base.constructorInherit({
     }
 });
 
-//内部模块的创建
+//内部模块的创建(覆盖超类)
 SubType.prototype.moduleDomCreate = function () {
     var isTransparent = '';
     if (this.opt.config.isTransparent) {
@@ -42,7 +42,7 @@ SubType.prototype.moduleDomCreate = function () {
     });
 };
 
-//功能
+//功能(覆盖超类)
 SubType.prototype.power = function () {
     var self = this;
     this.moduleDom.addEventListener('click', function (ev) {

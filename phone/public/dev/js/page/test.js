@@ -143,11 +143,12 @@
 })();
 //验证
 (function () {
-    const ValidateInput = require('../modules/m-validate-input.js');
-    const aInput = [].slice.call(document.querySelectorAll('.m-validate-input'));
+    const ValidateInput = require('../modules/m-validate-form.js');
+    const aInput = [].slice.call(document.querySelectorAll('.m-validate-form'));
     aInput.forEach(function (v) {
-        var validate = new ValidateInput({input: v});
-        validate.validateEventBlur();
+        v.validate = new ValidateInput({form: v});
+        v.validate.validateEventBlur();
+        //v.validate.validateSave();
     });
 })();
 //星评

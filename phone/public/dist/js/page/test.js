@@ -171,11 +171,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         })();
         //验证
         (function () {
-            var ValidateInput = require('../modules/m-validate-input.js');
-            var aInput = [].slice.call(document.querySelectorAll('.m-validate-input'));
+            var ValidateInput = require('../modules/m-validate-form.js');
+            var aInput = [].slice.call(document.querySelectorAll('.m-validate-form'));
             aInput.forEach(function (v) {
-                var validate = new ValidateInput({ input: v });
-                validate.validateEventBlur();
+                v.validate = new ValidateInput({ form: v });
+                v.validate.validateEventBlur();
+                //v.validate.validateSave();
             });
         })();
         //星评
@@ -192,7 +193,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         })();
         //每个页面都要用到的js
         require('../common/common.js');
-    }, { "../base/base.js": 1, "../common/common.js": 3, "../modules/m-go-top.js": 27, "../modules/m-loading.js": 29, "../modules/m-mask.js": 30, "../modules/m-no-data.js": 31, "../modules/m-radio-switch.js": 32, "../modules/m-star.js": 33, "../modules/m-sub-type-es6.js": 34, "../modules/m-super-type-es6.js": 35, "../modules/m-super-type.js": 36, "../modules/m-table.js": 37, "../modules/m-validate-input.js": 38 }], 3: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../common/common.js": 3, "../modules/m-go-top.js": 27, "../modules/m-loading.js": 29, "../modules/m-mask.js": 30, "../modules/m-no-data.js": 31, "../modules/m-radio-switch.js": 32, "../modules/m-star.js": 33, "../modules/m-sub-type-es6.js": 34, "../modules/m-super-type-es6.js": 35, "../modules/m-super-type.js": 36, "../modules/m-table.js": 37, "../modules/m-validate-form.js": 38 }], 3: [function (require, module, exports) {
         //版权
         (function () {
             var Copyright = require('../modules/m-copyright.js');
@@ -1287,7 +1288,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }
         });
 
-        //内部模块的创建
+        //内部模块的创建(覆盖超类)
         SubType.prototype.moduleDomCreate = function () {
             var isTransparent = '';
             if (this.opt.config.isTransparent) {
@@ -1303,7 +1304,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
         };
 
-        //功能
+        //功能(覆盖超类)
         SubType.prototype.power = function () {
             var self = this;
             this.moduleDom.addEventListener('click', function (ev) {
@@ -2200,60 +2201,61 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         module.exports = SubType;
     }, { "../base/base.js": 1, "../modules/m-super-type.js": 36 }], 38: [function (require, module, exports) {
-        var base = require('../base/base.js');
+        var base = require('../base/base.js'); //底层方法
+        var validate = require('../function/validate'); //表单验证
 
         function ValidateInput(json) {
             this.opt = json || {};
-            this.input = this.opt.input;
-            this.parentClass = this.opt.parentClass || 'm-validate-input-parent';
-            this.hintClass = this.opt.hintClass || 'm-validate-input-hint';
-            this.errorClass = this.opt.errorClass || 'm-validate-input-error';
-            this.validateType = this.input.dataset.validate || [];
-            this.validateHintTxt = this.input.dataset.hint || [];
+            this.form = this.opt.form;
+            this.hintClass = this.opt.hintClass || 'm-validate-form-hint';
+            this.errorClass = this.opt.errorClass || 'm-validate-form-error';
+            this.validateType = this.form.dataset.validate || [];
+            this.validateHintTxt = this.form.dataset.hint || [];
             this.init();
         }
         ValidateInput.prototype.init = function () {
-            this.require();
             this.render();
         };
-        ValidateInput.prototype.require = function () {
-            this.validate = require('../function/validate');
-        };
         ValidateInput.prototype.render = function () {
-            this.renderParent();
+            this.renderWrap();
             this.renderHint();
         };
-        ValidateInput.prototype.renderParent = function () {
-            this.parentDom = this.input.parentNode;
-            this.parentDom.classList.add(this.parentClass);
+        ValidateInput.prototype.renderWrap = function () {
+            this.wrapDom = this.form.parentNode;
+            if (this.wrapDom && getComputedStyle(this.wrapDom).position == 'static') {
+                this.wrapDom.style.position = 'relative';
+            }
         };
         ValidateInput.prototype.renderHint = function () {
             this.hintDom = document.createElement('em');
             this.hintDom.classList.add(this.hintClass);
         };
         ValidateInput.prototype.renderHintAdd = function (json) {
-            var opt = json || {};
-            this.hintDom.innerHTML = opt.txt || '本项必填';
-            this.parentDom.appendChild(this.hintDom);
-            this.input.classList.add(this.errorClass);
+            //只有没被隐藏的才进行验证
+            if (this.form.offsetWidth) {
+                var opt = json || {};
+                this.hintDom.innerHTML = opt.txt || '本项必填';
+                this.wrapDom.appendChild(this.hintDom);
+                this.form.classList.add(this.errorClass);
+            }
         };
         ValidateInput.prototype.renderHintRemove = function () {
-            var isHaveHintDom = this.parentDom.querySelector("." + this.hintClass);
+            var isHaveHintDom = this.wrapDom.querySelector("." + this.hintClass);
             if (isHaveHintDom) {
-                this.parentDom.removeChild(this.hintDom);
+                this.wrapDom.removeChild(this.hintDom);
             }
-            this.input.classList.remove(this.errorClass);
+            this.form.classList.remove(this.errorClass);
         };
         ValidateInput.prototype.validateSave = function () {
             var self = this;
             var type = self.validateType.split(' ');
             var hintTxt = self.validateHintTxt.split(' ');
-            var value = this.input.value;
+            var value = this.form.value;
             var isTrue = true;
             type.forEach(function (v, i) {
                 if (v == 'no-space' && isTrue) {
                     //设置了非空验证
-                    self.validate.isSpace({
+                    validate.isSpace({
                         value: value,
                         success: function success() {
                             //空
@@ -2269,7 +2271,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 }
                 if (v == 'no-zero' && isTrue) {
                     //设置了非零验证
-                    self.validate.isZero({
+                    validate.isZero({
                         value: value,
                         success: function success() {
                             //零
@@ -2285,7 +2287,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 }
                 if (v == 'yes-integer' && isTrue) {
                     //设置了整数验证
-                    self.validate.isInteger({
+                    validate.isInteger({
                         value: value,
                         success: function success() {
                             //整数
@@ -2303,8 +2305,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
         ValidateInput.prototype.validateEventBlur = function () {
             var self = this;
-            if (self.input) {
-                self.input.addEventListener('blur', function () {
+            if (self.form) {
+                self.form.addEventListener('blur', function () {
                     self.validateSave();
                 });
             }
