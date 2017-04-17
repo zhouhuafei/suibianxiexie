@@ -262,46 +262,44 @@
             }
             return opt.default;
         }
-        /*
-            var obj1 = extend({
-                default: {
-                    a: 'a',
-                    b: {
-                        b1: 'b1',
-                        b2: 'b2',
-                        b3: {
-                            c1: 'c1'
-                        }
-                    }
-                },
-                inherit: {
-                    a: 0,
-                    b: {
-                        b2: 1,
-                        b3: {
-                            c2: 2
-                        }
-                    }
-                }
-            });
-            console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
-            var obj2 = extend({
-                default: {
-                    b: [
-                        {a1: 'a1'},
-                        {a2: 'a2'}
-                    ]
-                },
-                inherit: {
-                    b: [
-                        'what?',
-                        {b1: 'b1'},
-                        {b2: 'b2'}
-                    ]
-                }
-            });
-            console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
-        */
+        // var obj1 = extend({
+        //     default: {
+        //         a: 'a',
+        //         b: {
+        //             b1: 'b1',
+        //             b2: 'b2',
+        //             b3: {
+        //                 c1: 'c1'
+        //             }
+        //         }
+        //     },
+        //     inherit: {
+        //         a: 0,
+        //         b: {
+        //             b2: 1,
+        //             b3: {
+        //                 c2: 2
+        //             }
+        //         }
+        //     }
+        // });
+        // console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
+        // var obj2 = extend({
+        //     default: {
+        //         b: [
+        //             {a1: 'a1'},
+        //             {a2: 'a2'}
+        //         ]
+        //     },
+        //     inherit: {
+        //         b: [
+        //             'what?',
+        //             {b1: 'b1'},
+        //             {b2: 'b2'}
+        //         ]
+        //     }
+        // });
+        // console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
         module.exports = extend;
     }, {}], 7: [function (require, module, exports) {
         //对象的扩展方法
