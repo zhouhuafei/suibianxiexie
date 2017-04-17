@@ -1,80 +1,33 @@
 //base函数测试
 (function () {
     var base = require('../base/base');
-    //测试待续...
 
     //测试全选
-    // new base.Select({
-    //     items: '.g-checkbox-checkbox',
-    //     callback: {
-    //         itemsClick: function (obj) {
-    //             console.log(obj);
-    //         }
-    //     }
-    // });
-
-    //测试移除对象引用
-    // var obj = {obj: {c1: 'c1', d: {d1: 'd1'}, e: null}, array: ['d1', ['c1', {a: 1}]]};
-    // var obj2 = base.objRemoveQuote({obj: obj});
-    // obj2.obj.d.d2 = 'zzz';
-    // obj2.array[1][1].b = 2;
-    // console.log(obj, obj2, 99);
-})();
-//es6
-(function () {
-    // var SubType = require('../modules/m-sub-es6');
-    // var o1 = new SubType({
-    //     wrap: '.main-test-es6',
-    //     callback: {
-    //         moduleDomClick(self){
-    //             console.log(self);
-    //         }
-    //     },
-    //     config: {
-    //         moduleDomStyle: 'color:#00f;'
-    //     },
-    //     data: {}
-    // });
-    // var o2 = new SubType({
-    //     wrap: '.main-test-es6',
-    //     callback: {
-    //         moduleDomClick(self){
-    //             console.log(self);
-    //         }
-    //     },
-    //     config: {
-    //         moduleDomStyle: 'color:#0ff;'
-    //     },
-    //     data: {
-    //         default: 'default2'
-    //     }
-    // });
-    // console.log(o1, o2);//测试对象有没有被引用,测试结果是:没被引用,没毛病
+    new base.Select({
+        items: '.g-checkbox-checkbox',
+        callback: {
+            itemsClick: function (obj) {
+                console.log(obj);
+            }
+        }
+    });
 })();
 //加载中
 (function () {
     var Loading = require('../modules/m-loading');
-    var loading = new Loading({
-        config: {
-            moduleDomStatus: 'loading',
-            moduleDomPosition: 'bottom'
-        }
-    });
+    var loading = new Loading({config: {moduleDomStatus: 'loading'}});
     loading.moduleDomShow();
-    var over = new Loading({
-        config: {
-            moduleDomMaskIsShow: true,
-            moduleDomStatus: 'over'
-        }
-    });
+    var over = new Loading({config: {moduleDomStatus: 'over'}});
     over.moduleDomShow();
 })();
-//超类模块测试
+//超类型模块测试
 (function () {
-    var Test = require('../modules/m-super-type.js');
-    var test = new Test({
-        wrap: `.main-test`
-    });
+    var SuperType = require('../modules/m-super-type.js');
+    new SuperType({wrap: `.main-super-type`});
+    var SuperTypeEs6 = require('../modules/m-super-type-es6.js');
+    new SuperTypeEs6({wrap: `.main-super-type`});
+    var SubTypeEs6 = require('../modules/m-sub-type-es6.js');
+    new SubTypeEs6({wrap: `.main-super-type`});
 })();
 //返回顶部
 (function () {
@@ -83,25 +36,15 @@
 })();
 //遮罩
 (function () {
-    // var Mask1 = require('../modules/m-mask.js');
-    // var mask1=new Mask1({
-    //     callback: {
-    //         moduleDomClick: function () {
-    //             console.log('m-mask click callback');
-    //             mask1.moduleDomHide();
-    //         }
-    //     },
-    //     config:{
-    //         moduleDomIsClearTimer:1,
-    //         moduleDomIsShow:true
-    //     },
-    //     data:{
-    //         a:1
-    //     }
-    // });
-    // var Mask2 = require('../modules/m-mask.js');
-    // var mask2 = new Mask2();
-    // console.log(mask1,mask2);//测试对象有没有被引用,测试结果是:没被引用,没毛病
+    var Mask = require('../modules/m-mask.js');
+    var mask = new Mask({
+        callback: {
+            moduleDomClick: function () {
+                mask1.moduleDomHide();
+            }
+        }
+    });
+    //mask.moduleDomShow();
 })();
 //单选开关
 (function () {

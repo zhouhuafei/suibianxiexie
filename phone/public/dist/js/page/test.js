@@ -1,5 +1,13 @@
 "use strict";
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 (function e(t, n, r) {
     function s(o, u) {
         if (!n[o]) {
@@ -41,80 +49,33 @@
         //base函数测试
         (function () {
             var base = require('../base/base');
-            //测试待续...
 
             //测试全选
-            // new base.Select({
-            //     items: '.g-checkbox-checkbox',
-            //     callback: {
-            //         itemsClick: function (obj) {
-            //             console.log(obj);
-            //         }
-            //     }
-            // });
-
-            //测试移除对象引用
-            // var obj = {obj: {c1: 'c1', d: {d1: 'd1'}, e: null}, array: ['d1', ['c1', {a: 1}]]};
-            // var obj2 = base.objRemoveQuote({obj: obj});
-            // obj2.obj.d.d2 = 'zzz';
-            // obj2.array[1][1].b = 2;
-            // console.log(obj, obj2, 99);
-        })();
-        //es6
-        (function () {
-            // var SubType = require('../modules/m-sub-es6');
-            // var o1 = new SubType({
-            //     wrap: '.main-test-es6',
-            //     callback: {
-            //         moduleDomClick(self){
-            //             console.log(self);
-            //         }
-            //     },
-            //     config: {
-            //         moduleDomStyle: 'color:#00f;'
-            //     },
-            //     data: {}
-            // });
-            // var o2 = new SubType({
-            //     wrap: '.main-test-es6',
-            //     callback: {
-            //         moduleDomClick(self){
-            //             console.log(self);
-            //         }
-            //     },
-            //     config: {
-            //         moduleDomStyle: 'color:#0ff;'
-            //     },
-            //     data: {
-            //         default: 'default2'
-            //     }
-            // });
-            // console.log(o1, o2);//测试对象有没有被引用,测试结果是:没被引用,没毛病
+            new base.Select({
+                items: '.g-checkbox-checkbox',
+                callback: {
+                    itemsClick: function itemsClick(obj) {
+                        console.log(obj);
+                    }
+                }
+            });
         })();
         //加载中
         (function () {
             var Loading = require('../modules/m-loading');
-            var loading = new Loading({
-                config: {
-                    moduleDomStatus: 'loading',
-                    moduleDomPosition: 'bottom'
-                }
-            });
+            var loading = new Loading({ config: { moduleDomStatus: 'loading' } });
             loading.moduleDomShow();
-            var over = new Loading({
-                config: {
-                    moduleDomMaskIsShow: true,
-                    moduleDomStatus: 'over'
-                }
-            });
+            var over = new Loading({ config: { moduleDomStatus: 'over' } });
             over.moduleDomShow();
         })();
-        //超类模块测试
+        //超类型模块测试
         (function () {
-            var Test = require('../modules/m-super-type.js');
-            var test = new Test({
-                wrap: ".main-test"
-            });
+            var SuperType = require('../modules/m-super-type.js');
+            new SuperType({ wrap: ".main-super-type" });
+            var SuperTypeEs6 = require('../modules/m-super-type-es6.js');
+            new SuperTypeEs6({ wrap: ".main-super-type" });
+            var SubTypeEs6 = require('../modules/m-sub-type-es6.js');
+            new SubTypeEs6({ wrap: ".main-super-type" });
         })();
         //返回顶部
         (function () {
@@ -123,25 +84,15 @@
         })();
         //遮罩
         (function () {
-            // var Mask1 = require('../modules/m-mask.js');
-            // var mask1=new Mask1({
-            //     callback: {
-            //         moduleDomClick: function () {
-            //             console.log('m-mask click callback');
-            //             mask1.moduleDomHide();
-            //         }
-            //     },
-            //     config:{
-            //         moduleDomIsClearTimer:1,
-            //         moduleDomIsShow:true
-            //     },
-            //     data:{
-            //         a:1
-            //     }
-            // });
-            // var Mask2 = require('../modules/m-mask.js');
-            // var mask2 = new Mask2();
-            // console.log(mask1,mask2);//测试对象有没有被引用,测试结果是:没被引用,没毛病
+            var Mask = require('../modules/m-mask.js');
+            var mask = new Mask({
+                callback: {
+                    moduleDomClick: function moduleDomClick() {
+                        mask1.moduleDomHide();
+                    }
+                }
+            });
+            //mask.moduleDomShow();
         })();
         //单选开关
         (function () {
@@ -219,7 +170,7 @@
         })();
         //每个页面都要用到的js
         require('../common/common.js');
-    }, { "../base/base": 1, "../common/common.js": 3, "../modules/m-go-top.js": 27, "../modules/m-loading": 29, "../modules/m-radio-switch.js": 30, "../modules/m-star.js": 31, "../modules/m-super-type.js": 32, "../modules/m-table.js": 33, "../modules/m-validate-input.js": 34 }], 3: [function (require, module, exports) {
+    }, { "../base/base": 1, "../common/common.js": 3, "../modules/m-go-top.js": 27, "../modules/m-loading": 29, "../modules/m-mask.js": 30, "../modules/m-radio-switch.js": 31, "../modules/m-star.js": 32, "../modules/m-sub-type-es6.js": 33, "../modules/m-super-type-es6.js": 34, "../modules/m-super-type.js": 35, "../modules/m-table.js": 36, "../modules/m-validate-input.js": 37 }], 3: [function (require, module, exports) {
         //版权
         (function () {
             var Copyright = require('../modules/m-copyright.js');
@@ -1042,7 +993,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 32 }], 26: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 35 }], 26: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1076,7 +1027,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 32 }], 27: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 35 }], 27: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1123,7 +1074,7 @@
             });
         };
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 32 }], 28: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 35 }], 28: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1201,16 +1152,35 @@
 
         //超类型(子类型继承的对象)
         var SuperType = require('../modules/m-super-type.js');
+        var Mask = require('../modules/m-mask.js');
 
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
             parameter: {
+                //回调
+                callback: {
+                    moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                        if (self.opt.config.moduleDomMaskIsShow) {
+                            new Mask({
+                                wrap: self.moduleDom.querySelector('.m-loading-wrap'),
+                                config: {
+                                    moduleDomIsShow: true,
+                                    moduleDomRenderMethod: { method: 'insertBefore' }
+                                }
+                            });
+                        }
+                        if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
+                            self.wrapDom.style.position = 'relative';
+                        }
+                    }
+                },
                 //配置
                 config: {
+                    moduleDomMaskIsShow: false, //是否显示遮罩(默认不显示)
                     moduleDomIsShow: false, //内部模块是否显示(默认不显示)
-                    moduleDomStatus: 'loading', //加载状态  loading(加载中)    over(加载完毕)
-                    moduleDomPosition: 'center' //模块当位置  'center'(居中)    'bottom'(居底)
+                    moduleDomStatus: 'loading', //加载状态 loading(加载中) over(加载完毕)
+                    moduleDomPosition: 'relative' //模块的位置 'fixed'(相对文档居中) 'absolute'(相对容器居中) 'relative'(直接填入容器)
                 }
             }
         });
@@ -1223,33 +1193,36 @@
             var moduleDomPosition = config.moduleDomPosition;
             //加载中
             if (moduleDomStatus == 'loading') {
-                //居中
-                if (moduleDomPosition == 'center') {
-                    moduleDomClass = "m-loading-loading m-loading-center";
+                moduleDomClass = "m-loading-loading ";
+                //相对文档居中
+                if (moduleDomPosition == 'fixed') {
+                    moduleDomClass += "m-loading-fixed";
                 }
-                //居底
-                if (moduleDomPosition == 'bottom') {
-                    moduleDomClass = "m-loading-loading m-loading-bottom";
+                //相对容器居中
+                if (moduleDomPosition == 'absolute') {
+                    moduleDomClass += "m-loading-absolute";
                 }
-            }
-            //加载完毕
-            if (moduleDomStatus == 'over') {
-                //居中
-                if (moduleDomPosition == 'center') {
-                    moduleDomClass = "m-loading-over m-loading-center";
+                //直接填入容器(不进行居中处理)
+                if (moduleDomPosition == 'relative') {
+                    moduleDomClass += "m-loading-relative";
                 }
-                //居底
-                if (moduleDomPosition == 'bottom') {
-                    moduleDomClass = "m-loading-over m-loading-bottom";
-                }
-            }
-
-            //加载中
-            if (moduleDomStatus == 'loading') {
                 moduleDomHtml = "\n            <div class=\"m-loading-wrap\">\n                <div class=\"m-loading-loading-icon iconfont icon-jiazaizhong\"></div>\n            </div>\n        ";
             }
             //加载完毕
             if (moduleDomStatus == 'over') {
+                moduleDomClass = "m-loading-over ";
+                //相对文档居中
+                if (moduleDomPosition == 'fixed') {
+                    moduleDomClass += "m-loading-fixed";
+                }
+                //相对容器居中
+                if (moduleDomPosition == 'absolute') {
+                    moduleDomClass += "m-loading-absolute";
+                }
+                //直接填入容器(不进行居中处理)
+                if (moduleDomPosition == 'relative') {
+                    moduleDomClass += "m-loading-relative";
+                }
                 moduleDomHtml = "\n            <div class=\"m-loading-wrap\">\n                <div class=\"m-loading-over-icon iconfont icon-meiyoushuju\"></div>\n                <div class=\"m-loading-over-txt\">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ";
             }
             //模块创建
@@ -1264,7 +1237,61 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 32 }], 30: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-mask.js": 30, "../modules/m-super-type.js": 35 }], 30: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base.js');
+
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type.js');
+
+        //子类型
+        var SubType = base.constructorInherit({
+            superType: SuperType,
+            parameter: {
+                //回调
+                callback: {
+                    moduleDomClick: function moduleDomClick() {},
+                    moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                        if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
+                            self.wrapDom.style.position = 'relative';
+                        }
+                    }
+                },
+                //配置
+                config: {
+                    moduleDomIsTransparent: false, //内部模块是不是透明的(默认不透明)
+                    moduleDomIsShow: false //内部模块是否显示(默认不显示)
+                }
+            }
+        });
+
+        //内部模块的创建
+        SubType.prototype.moduleDomCreate = function () {
+            var isTransparent = '';
+            if (this.opt.config.isTransparent) {
+                isTransparent = 'm-mask-transparent';
+            }
+            this.moduleDom = base.createElement({
+                style: this.opt.config.moduleStyle,
+                custom: this.opt.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-mask " + isTransparent,
+                    innerHTML: ""
+                }
+            });
+        };
+
+        //功能
+        SubType.prototype.power = function () {
+            var self = this;
+            this.moduleDom.addEventListener('click', function (ev) {
+                self.opt.callback.moduleDomClick();
+                ev.stopPropagation();
+            });
+        };
+
+        module.exports = SubType;
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 35 }], 31: [function (require, module, exports) {
         function Fn(json) {
             this.opt = json || {};
             this.opt.checkTxt = this.opt.checkTxt || { on: '已开启', off: '已关闭' };
@@ -1332,7 +1359,7 @@
             this.parentDom.parentNode.removeChild(this.parentDom);
         };
         module.exports = Fn;
-    }, {}], 31: [function (require, module, exports) {
+    }, {}], 32: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1400,7 +1427,403 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 32 }], 32: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 35 }], 33: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base.js');
+
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type-es6.js');
+
+        //子类型
+
+        var SubType = function (_SuperType) {
+            _inherits(SubType, _SuperType);
+
+            function SubType(json) {
+                _classCallCheck(this, SubType);
+
+                //制定内部的默认值
+                var _this = _possibleConstructorReturn(this, (SubType.__proto__ || Object.getPrototypeOf(SubType)).call(this, json));
+                /*
+                 * 继承超类型的属性和方法
+                 * 就算使用Super.call继承属性,也会先执行内部的init函数,这个和es6的比较
+                 * 我封装的es5继承函数constructor-inherit是先处理的参数this.opt,再进行的继承
+                 * 这里的es6继承,是先进行的继承,再处理的参数,因为继承之前,子类无this属性
+                 * 不管是es5的继承,还是es6的继承,都会执行函数内部的一切,例如
+                 * 我封装的constructor-inherit继承属性时Super.call(this,this.opt),函数内部的init方法被执行了
+                 * 执行前我处理了参数this.opt,所有一切还算稳定,我喜欢这个写法
+                 * es6继承属性和方法用super(json),继承时函数内部的init方法也被执行了,执行后才处理的参数this.opt
+                 * 后处理参数的话,即使我更新了默认的参数配置,覆盖了超类的方法,也获取不到最新参数上的数据,导致默认参数无效
+                 * 因为函数执行super(json)的时候,init已经被调用了,数据是后更新的,所以不能获取到,因此
+                 * 我需要清除内部模块,并进行重新调用,这点我很不喜欢,所以我现在的场景还是更适合es5的面向对象
+                 * 注:init方法是我封装的超类型里的初始化方法,this.opt是超类型里的参数,参数我喜欢用对象的形式
+                 * */
+
+
+                _this.opt = base.extend({
+                    default: _this.opt,
+                    //inherit里放默认参数
+                    inherit: {
+                        callback: {},
+                        config: {},
+                        data: {}
+                    }
+                });
+                //接收外部的参数
+                _this.opt = base.extend({
+                    default: _this.opt,
+                    inherit: json
+                });
+                /*
+                 * 因为es6的继承是:子类型继承超类之后,才拥有this属性的原因,我要先移除一次,再重新生成
+                 * 否则的话,上面的默认值不会生效
+                 * */
+                _this.moduleDomRemove();
+                _this.init();
+                return _this;
+            }
+
+            //内部模块的创建(覆盖超类型)
+
+
+            _createClass(SubType, [{
+                key: "moduleDomCreate",
+                value: function moduleDomCreate() {
+                    this.moduleDom = base.createElement({
+                        style: this.opt.config.moduleDomStyle,
+                        custom: this.opt.config.moduleDomCustomAttr,
+                        attribute: {
+                            className: "m-sub-type-es6",
+                            innerHTML: "\n                    <div class=\"m-sub-type-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
+                        }
+                    });
+                }
+
+                //功能重写(覆盖超类型)
+
+            }, {
+                key: "power",
+                value: function power() {
+                    //功能重写待续...
+                }
+            }]);
+
+            return SubType;
+        }(SuperType);
+
+        module.exports = SubType;
+    }, { "../base/base.js": 1, "../modules/m-super-type-es6.js": 34 }], 34: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base.js');
+
+        //底层构造函数
+
+        var SuperType = function () {
+            function SuperType(json) {
+                _classCallCheck(this, SuperType);
+
+                //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
+                this.opt = base.extend({
+                    //内部默认参数
+                    default: {
+                        //父级
+                        wrap: ".g-page", //这个仅支持传入选择器和原生dom节点
+                        //回调
+                        callback: {
+                            //内部模块创建之前
+                            moduleDomCreateBefore: function moduleDomCreateBefore(self) {
+                                //内部模块创建之前的回调待续...
+                            },
+
+                            //内部模块创建之后
+                            moduleDomCreateAfter: function moduleDomCreateAfter(self) {
+                                //内部模块创建之后的回调待续...
+                            },
+
+                            //内部模块渲染之前
+                            moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                                //内部模块渲染之前的回调待续...
+                            },
+
+                            //内部模块渲染之后
+                            moduleDomRenderAfter: function moduleDomRenderAfter(self) {
+                                //内部模块渲染之后的回调待续...
+                            },
+
+                            //内部模块移除之前
+                            moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {
+                                //内部模块移除之前的回调待续...
+                            },
+
+                            //内部模块移除之后
+                            moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {
+                                //内部模块移除之后的回调待续...
+                            },
+
+                            //内部模块显示之前
+                            moduleDomShowBefore: function moduleDomShowBefore(self) {
+                                //内部模块显示之前的回调待续...
+                            },
+
+                            //内部模块显示之后
+                            moduleDomShowAfter: function moduleDomShowAfter(self) {
+                                //内部模块显示之后的回调待续...
+                            },
+
+                            //内部模块隐藏之前
+                            moduleDomHideBefore: function moduleDomHideBefore(self) {
+                                //内部模块隐藏之前的回调待续...
+                            },
+
+                            //内部模块隐藏之后
+                            moduleDomHideAfter: function moduleDomHideAfter(self) {
+                                //内部模块隐藏之后的回调待续...
+                            },
+
+                            //外部容器创建之前
+                            wrapDomCreateBefore: function wrapDomCreateBefore(self) {
+                                //外部容器创建之前的回调待续...
+                            },
+
+                            //外部容器创建之后
+                            wrapDomCreateAfter: function wrapDomCreateAfter(self) {
+                                //外部容器创建之后的回调待续...
+                            },
+
+                            //外部容器渲染之前
+                            wrapDomRenderBefore: function wrapDomRenderBefore(self) {
+                                //外部容器渲染之前的回调待续...
+                            },
+
+                            //外部容器渲染之后
+                            wrapDomRenderAfter: function wrapDomRenderAfter(self) {
+                                //外部容器渲染之后的回调待续...
+                            },
+
+                            //外部容器移除之前
+                            wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {
+                                //外部容器移除之前的回调待续...
+                            },
+
+                            //外部容器移除之后
+                            wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {
+                                //外部容器移除之后的回调待续...
+                            }
+                        },
+                        //配置
+                        config: {
+                            //内部模块的自定义属性
+                            moduleDomCustomAttr: {},
+                            //内部模块插入到外部容器的方式
+                            moduleDomRenderMethod: {
+                                method: 'appendChild', //'appendChild','insertBefore'
+                                child: null
+                            },
+                            moduleDomStyle: "", //内部模块的样式(写法和css相同)
+                            moduleDomIsShow: true, //内部模块是否显示(默认显示)
+                            moduleDomIsClearTimer: true //内部模块是否清除所有定时器(默认清除)
+                        },
+                        //数据
+                        data: {}
+                    },
+                    //外部传入参数
+                    inherit: json
+                });
+                //函数内部自带的属性
+                this.moduleDom = null; //内部的模块
+                this.wrapDom = null; //内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+                this.moduleDomTimer = {}; //内部模块的定时器存储(假设内部模块有定时器)
+                this.init(); //初始化
+            }
+
+            //初始化
+
+
+            _createClass(SuperType, [{
+                key: "init",
+                value: function init() {
+                    this.render();
+                    this.power();
+                }
+
+                //渲染
+
+            }, {
+                key: "render",
+                value: function render() {
+                    this.moduleDomRender();
+                    this.wrapDomRender();
+                }
+
+                //功能(这个方法在其他模块的内部需要被重写)
+
+            }, {
+                key: "power",
+                value: function power() {}
+                //功能待续...
+
+
+                //内部模块的创建(这个方法在其他模块的内部需要被重写)
+
+            }, {
+                key: "moduleDomCreate",
+                value: function moduleDomCreate() {
+                    this.moduleDom = base.createElement({
+                        style: this.opt.config.moduleDomStyle,
+                        custom: this.opt.config.moduleDomCustomAttr,
+                        attribute: {
+                            className: "m-super-type-es6",
+                            innerHTML: "\n                    <div class=\"m-super-type-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
+                        }
+                    });
+                }
+
+                //内部模块的渲染
+
+            }, {
+                key: "moduleDomRender",
+                value: function moduleDomRender() {
+                    var callback = this.opt.callback;
+                    callback.moduleDomCreateBefore(this);
+                    this.moduleDomCreate();
+                    callback.moduleDomCreateAfter(this);
+                }
+
+                //内部模块的移除
+
+            }, {
+                key: "moduleDomRemove",
+                value: function moduleDomRemove() {
+                    var callback = this.opt.callback;
+                    callback.moduleDomRemoveBefore(this);
+                    if (this.moduleDom.parentNode) {
+                        this.moduleDom.parentNode.removeChild(this.moduleDom);
+                    }
+                    this.moduleDomClearTimer();
+                    callback.moduleDomRemoveAfter(this);
+                }
+
+                //内部模块的定时器清除(假设内部模块有定时器)
+
+            }, {
+                key: "moduleDomClearTimer",
+                value: function moduleDomClearTimer() {
+                    if (this.opt.config.moduleDomIsClearTimer) {
+                        for (var attr in this.moduleDomTimer) {
+                            if (this.moduleDomTimer.hasOwnProperty(attr)) {
+                                clearInterval(this.moduleDomTimer[attr]);
+                                clearTimeout(this.moduleDomTimer[attr]);
+                            }
+                        }
+                    }
+                }
+
+                //内部模块的显示(显示隐藏和是否清除定时器无关)
+
+            }, {
+                key: "moduleDomShow",
+                value: function moduleDomShow() {
+                    var callback = this.opt.callback;
+                    callback.moduleDomShowBefore(this);
+                    if (this.wrapDom) {
+                        this.opt.config.moduleDomIsShow = true;
+                        this.wrapDomRenderMethod();
+                    }
+                    callback.moduleDomShowAfter(this);
+                }
+
+                //内部模块的隐藏(显示隐藏和是否清除定时器无关)
+
+            }, {
+                key: "moduleDomHide",
+                value: function moduleDomHide() {
+                    var callback = this.opt.callback;
+                    callback.moduleDomHideBefore(this);
+                    if (this.moduleDom.parentNode) {
+                        this.moduleDom.parentNode.removeChild(this.moduleDom);
+                        this.opt.config.moduleDomIsShow = false;
+                    }
+                    callback.moduleDomHideAfter(this);
+                }
+
+                //外部容器的创建
+
+            }, {
+                key: "wrapDomCreate",
+                value: function wrapDomCreate() {
+                    this.wrapDom = base.getDomArray({ element: this.opt.wrap })[0];
+                }
+
+                //外部容器的渲染
+
+            }, {
+                key: "wrapDomRender",
+                value: function wrapDomRender() {
+                    var callback = this.opt.callback;
+                    callback.wrapDomCreateBefore(this);
+                    this.wrapDomCreate();
+                    callback.wrapDomCreateAfter(this);
+                    if (this.wrapDom) {
+                        callback.moduleDomRenderBefore(this);
+                        callback.wrapDomRenderBefore(this);
+                        this.wrapDomRenderMethod();
+                        callback.wrapDomRenderAfter(this);
+                        callback.moduleDomRenderAfter(this);
+                    }
+                }
+
+                //外部容器的渲染方式
+
+            }, {
+                key: "wrapDomRenderMethod",
+                value: function wrapDomRenderMethod() {
+                    var config = this.opt.config;
+                    if (config.moduleDomIsShow) {
+                        var renderMethod = config.moduleDomRenderMethod;
+                        if (renderMethod.method == 'insertBefore') {
+                            var dom = base.getDomArray({ element: renderMethod.child })[0];
+                            if (dom) {
+                                this.wrapDom.insertBefore(this.moduleDom, dom);
+                            } else {
+                                this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
+                            }
+                        }
+                        if (renderMethod.method == 'appendChild') {
+                            this.wrapDom.appendChild(this.moduleDom);
+                        }
+                    }
+                }
+
+                //外部容器的移除
+
+            }, {
+                key: "wrapDomRemove",
+                value: function wrapDomRemove() {
+                    var callback = this.opt.callback;
+                    callback.wrapDomRemoveBefore(this);
+                    //先移除内部的模块
+                    this.moduleDomRemove();
+                    //再移除外部的容器
+                    if (this.wrapDom) {
+                        this.wrapDom.parentNode.removeChild(this.wrapDom);
+                    }
+                    callback.wrapDomRemoveAfter(this);
+                }
+
+                //获取内部模块的整体html结构
+
+            }, {
+                key: "getModuleDomHtml",
+                value: function getModuleDomHtml() {
+                    return this.moduleDom.outerHTML;
+                }
+            }]);
+
+            return SuperType;
+        }();
+
+        module.exports = SuperType;
+    }, { "../base/base.js": 1 }], 35: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1528,8 +1951,8 @@
                 style: this.opt.config.moduleDomStyle,
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
-                    className: "m-test",
-                    innerHTML: "\n                <div class=\"m-test-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                    className: "m-super-type",
+                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
             });
         };
@@ -1645,7 +2068,7 @@
         };
 
         module.exports = SuperType;
-    }, { "../base/base.js": 1 }], 33: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 36: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1701,7 +2124,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 32 }], 34: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 35 }], 37: [function (require, module, exports) {
         var base = require('../base/base.js');
 
         function ValidateInput(json) {

@@ -52,7 +52,7 @@
                 callback: {
                     moduleDomClick: function moduleDomClick() {},
                     moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                        if (getComputedStyle(self.wrapDom).position == 'static') {
+                        if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
                             self.wrapDom.style.position = 'relative';
                         }
                     }
@@ -907,8 +907,8 @@
                 style: this.opt.config.moduleDomStyle,
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
-                    className: "m-test",
-                    innerHTML: "\n                <div class=\"m-test-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                    className: "m-super-type",
+                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
             });
         };

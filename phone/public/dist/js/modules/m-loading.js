@@ -43,16 +43,35 @@
 
         //超类型(子类型继承的对象)
         var SuperType = require('../modules/m-super-type.js');
+        var Mask = require('../modules/m-mask.js');
 
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
             parameter: {
+                //回调
+                callback: {
+                    moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                        if (self.opt.config.moduleDomMaskIsShow) {
+                            new Mask({
+                                wrap: self.moduleDom.querySelector('.m-loading-wrap'),
+                                config: {
+                                    moduleDomIsShow: true,
+                                    moduleDomRenderMethod: { method: 'insertBefore' }
+                                }
+                            });
+                        }
+                        if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
+                            self.wrapDom.style.position = 'relative';
+                        }
+                    }
+                },
                 //配置
                 config: {
+                    moduleDomMaskIsShow: false, //是否显示遮罩(默认不显示)
                     moduleDomIsShow: false, //内部模块是否显示(默认不显示)
-                    moduleDomStatus: 'loading', //加载状态  loading(加载中)    over(加载完毕)
-                    moduleDomPosition: 'center' //模块当位置  'center'(居中)    'bottom'(居底)
+                    moduleDomStatus: 'loading', //加载状态 loading(加载中) over(加载完毕)
+                    moduleDomPosition: 'relative' //模块的位置 'fixed'(相对文档居中) 'absolute'(相对容器居中) 'relative'(直接填入容器)
                 }
             }
         });
@@ -65,33 +84,36 @@
             var moduleDomPosition = config.moduleDomPosition;
             //加载中
             if (moduleDomStatus == 'loading') {
-                //居中
-                if (moduleDomPosition == 'center') {
-                    moduleDomClass = "m-loading-loading m-loading-center";
+                moduleDomClass = "m-loading-loading ";
+                //相对文档居中
+                if (moduleDomPosition == 'fixed') {
+                    moduleDomClass += "m-loading-fixed";
                 }
-                //居底
-                if (moduleDomPosition == 'bottom') {
-                    moduleDomClass = "m-loading-loading m-loading-bottom";
+                //相对容器居中
+                if (moduleDomPosition == 'absolute') {
+                    moduleDomClass += "m-loading-absolute";
                 }
-            }
-            //加载完毕
-            if (moduleDomStatus == 'over') {
-                //居中
-                if (moduleDomPosition == 'center') {
-                    moduleDomClass = "m-loading-over m-loading-center";
+                //直接填入容器(不进行居中处理)
+                if (moduleDomPosition == 'relative') {
+                    moduleDomClass += "m-loading-relative";
                 }
-                //居底
-                if (moduleDomPosition == 'bottom') {
-                    moduleDomClass = "m-loading-over m-loading-bottom";
-                }
-            }
-
-            //加载中
-            if (moduleDomStatus == 'loading') {
                 moduleDomHtml = "\n            <div class=\"m-loading-wrap\">\n                <div class=\"m-loading-loading-icon iconfont icon-jiazaizhong\"></div>\n            </div>\n        ";
             }
             //加载完毕
             if (moduleDomStatus == 'over') {
+                moduleDomClass = "m-loading-over ";
+                //相对文档居中
+                if (moduleDomPosition == 'fixed') {
+                    moduleDomClass += "m-loading-fixed";
+                }
+                //相对容器居中
+                if (moduleDomPosition == 'absolute') {
+                    moduleDomClass += "m-loading-absolute";
+                }
+                //直接填入容器(不进行居中处理)
+                if (moduleDomPosition == 'relative') {
+                    moduleDomClass += "m-loading-relative";
+                }
                 moduleDomHtml = "\n            <div class=\"m-loading-wrap\">\n                <div class=\"m-loading-over-icon iconfont icon-meiyoushuju\"></div>\n                <div class=\"m-loading-over-txt\">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ";
             }
             //模块创建
@@ -106,7 +128,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 23 }], 3: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-mask.js": 23, "../modules/m-super-type.js": 24 }], 3: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -798,6 +820,60 @@
         //底层方法
         var base = require('../base/base.js');
 
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type.js');
+
+        //子类型
+        var SubType = base.constructorInherit({
+            superType: SuperType,
+            parameter: {
+                //回调
+                callback: {
+                    moduleDomClick: function moduleDomClick() {},
+                    moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                        if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
+                            self.wrapDom.style.position = 'relative';
+                        }
+                    }
+                },
+                //配置
+                config: {
+                    moduleDomIsTransparent: false, //内部模块是不是透明的(默认不透明)
+                    moduleDomIsShow: false //内部模块是否显示(默认不显示)
+                }
+            }
+        });
+
+        //内部模块的创建
+        SubType.prototype.moduleDomCreate = function () {
+            var isTransparent = '';
+            if (this.opt.config.isTransparent) {
+                isTransparent = 'm-mask-transparent';
+            }
+            this.moduleDom = base.createElement({
+                style: this.opt.config.moduleStyle,
+                custom: this.opt.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-mask " + isTransparent,
+                    innerHTML: ""
+                }
+            });
+        };
+
+        //功能
+        SubType.prototype.power = function () {
+            var self = this;
+            this.moduleDom.addEventListener('click', function (ev) {
+                self.opt.callback.moduleDomClick();
+                ev.stopPropagation();
+            });
+        };
+
+        module.exports = SubType;
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 24 }], 24: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base.js');
+
         //底层构造函数
         function SuperType(json) {
             //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
@@ -922,8 +998,8 @@
                 style: this.opt.config.moduleDomStyle,
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
-                    className: "m-test",
-                    innerHTML: "\n                <div class=\"m-test-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                    className: "m-super-type",
+                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
             });
         };

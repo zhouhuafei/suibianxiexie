@@ -3,17 +3,35 @@ var base = require('../base/base.js');
 
 //超类型(子类型继承的对象)
 var SuperType = require('../modules/m-super-type.js');
-
+var Mask = require('../modules/m-mask.js');
 
 //子类型
 var SubType = base.constructorInherit({
     superType: SuperType,
     parameter: {
+        //回调
+        callback: {
+            moduleDomRenderBefore: function (self) {
+                if (self.opt.config.moduleDomMaskIsShow) {
+                    new Mask({
+                        wrap: self.moduleDom.querySelector('.m-loading-wrap'),
+                        config: {
+                            moduleDomIsShow: true,
+                            moduleDomRenderMethod: {method: 'insertBefore'}
+                        }
+                    });
+                }
+                if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
+                    self.wrapDom.style.position = 'relative';
+                }
+            }
+        },
         //配置
         config: {
+            moduleDomMaskIsShow: false,   //是否显示遮罩(默认不显示)
             moduleDomIsShow: false, //内部模块是否显示(默认不显示)
-            moduleDomStatus: 'loading', //加载状态  loading(加载中)    over(加载完毕)
-            moduleDomPosition: 'center' //模块当位置  'center'(居中)    'bottom'(居底)
+            moduleDomStatus: 'loading', //加载状态 loading(加载中) over(加载完毕)
+            moduleDomPosition: 'relative' //模块的位置 'fixed'(相对文档居中) 'absolute'(相对容器居中) 'relative'(直接填入容器)
         }
     }
 });
@@ -26,29 +44,19 @@ SubType.prototype.moduleDomCreate = function () {
     var moduleDomPosition = config.moduleDomPosition;
     //加载中
     if (moduleDomStatus == 'loading') {
-        //居中
-        if (moduleDomPosition == 'center') {
-            moduleDomClass = `m-loading-loading m-loading-center`;
+        moduleDomClass = `m-loading-loading `;
+        //相对文档居中
+        if (moduleDomPosition == 'fixed') {
+            moduleDomClass += `m-loading-fixed`;
         }
-        //居底
-        if (moduleDomPosition == 'bottom') {
-            moduleDomClass = `m-loading-loading m-loading-bottom`;
+        //相对容器居中
+        if (moduleDomPosition == 'absolute') {
+            moduleDomClass += `m-loading-absolute`;
         }
-    }
-    //加载完毕
-    if (moduleDomStatus == 'over') {
-        //居中
-        if (moduleDomPosition == 'center') {
-            moduleDomClass = `m-loading-over m-loading-center`;
+        //直接填入容器(不进行居中处理)
+        if (moduleDomPosition == 'relative') {
+            moduleDomClass += `m-loading-relative`;
         }
-        //居底
-        if (moduleDomPosition == 'bottom') {
-            moduleDomClass = `m-loading-over m-loading-bottom`;
-        }
-    }
-
-    //加载中
-    if (moduleDomStatus == 'loading') {
         moduleDomHtml = `
             <div class="m-loading-wrap">
                 <div class="m-loading-loading-icon iconfont icon-jiazaizhong"></div>
@@ -57,6 +65,19 @@ SubType.prototype.moduleDomCreate = function () {
     }
     //加载完毕
     if (moduleDomStatus == 'over') {
+        moduleDomClass = `m-loading-over `;
+        //相对文档居中
+        if (moduleDomPosition == 'fixed') {
+            moduleDomClass += `m-loading-fixed`;
+        }
+        //相对容器居中
+        if (moduleDomPosition == 'absolute') {
+            moduleDomClass += `m-loading-absolute`;
+        }
+        //直接填入容器(不进行居中处理)
+        if (moduleDomPosition == 'relative') {
+            moduleDomClass += `m-loading-relative`;
+        }
         moduleDomHtml = `
             <div class="m-loading-wrap">
                 <div class="m-loading-over-icon iconfont icon-meiyoushuju"></div>

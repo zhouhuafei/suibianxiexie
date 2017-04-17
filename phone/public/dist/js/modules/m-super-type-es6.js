@@ -201,8 +201,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         style: this.opt.config.moduleDomStyle,
                         custom: this.opt.config.moduleDomCustomAttr,
                         attribute: {
-                            className: "m-test-es6",
-                            innerHTML: "\n                    <div class=\"m-test-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
+                            className: "m-super-type-es6",
+                            innerHTML: "\n                    <div class=\"m-super-type-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
                         }
                     });
                 }

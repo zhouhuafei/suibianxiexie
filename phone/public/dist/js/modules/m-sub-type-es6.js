@@ -50,7 +50,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         var base = require('../base/base.js');
 
         //超类型(子类型继承的对象)
-        var SuperType = require('../modules/m-super-es6.js');
+        var SuperType = require('../modules/m-super-type-es6.js');
 
         //子类型
 
@@ -60,7 +60,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             function SubType(json) {
                 _classCallCheck(this, SubType);
 
-                //console.log('我在代码里靠近上方', 1);//先打印下面的2
                 //制定内部的默认值
                 var _this = _possibleConstructorReturn(this, (SubType.__proto__ || Object.getPrototypeOf(SubType)).call(this, json));
                 /*
@@ -81,18 +80,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
                 _this.opt = base.extend({
                     default: _this.opt,
+                    //inherit里放默认参数
                     inherit: {
-                        callback: {
-                            moduleDomClick: function moduleDomClick() {
-                                //内部模块的点击回调待续...
-                            }
-                        },
-                        config: {
-                            moduleDomStyle: 'color:#f00;'
-                        },
-                        data: {
-                            default: 'default'
-                        }
+                        callback: {},
+                        config: {},
+                        data: {}
                     }
                 });
                 //接收外部的参数
@@ -115,13 +107,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             _createClass(SubType, [{
                 key: "moduleDomCreate",
                 value: function moduleDomCreate() {
-                    //console.log('我在代码里靠近下方', 2);//后打印上面的1
                     this.moduleDom = base.createElement({
                         style: this.opt.config.moduleDomStyle,
                         custom: this.opt.config.moduleDomCustomAttr,
                         attribute: {
-                            className: "m-test-es6",
-                            innerHTML: "\n                    <div class=\"m-test-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u67702,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE2</div>\n                "
+                            className: "m-sub-type-es6",
+                            innerHTML: "\n                    <div class=\"m-sub-type-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
                         }
                     });
                 }
@@ -131,10 +122,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }, {
                 key: "power",
                 value: function power() {
-                    var self = this;
-                    this.moduleDom.addEventListener('click', function () {
-                        self.opt.callback.moduleDomClick(this);
-                    });
+                    //功能重写待续...
                 }
             }]);
 
@@ -142,7 +130,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }(SuperType);
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-es6.js": 23 }], 3: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type-es6.js": 23 }], 3: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -990,8 +978,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         style: this.opt.config.moduleDomStyle,
                         custom: this.opt.config.moduleDomCustomAttr,
                         attribute: {
-                            className: "m-test-es6",
-                            innerHTML: "\n                    <div class=\"m-test-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
+                            className: "m-super-type-es6",
+                            innerHTML: "\n                    <div class=\"m-super-type-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
                         }
                     });
                 }

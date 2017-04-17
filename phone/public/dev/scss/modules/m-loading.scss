@@ -1,6 +1,7 @@
 @import "../config/config.scss";
 /*加载更多的底部加载中*/
 .m-loading {
+    $width: 320;
     @keyframes run {
         0% {
             transform: rotate(0deg);
@@ -14,24 +15,33 @@
         align-items: center;
         justify-content: center;
         position: relative;
+        color: $g-color-font-default;
     }
     //加载中
     &.m-loading-loading {
-        color: $g-color-font-default;
-        .m-loading-wrap {
+        .m-loading-loading-icon {
             font-size: px2rem(30);
-        }
-        .m-loading-loading-icon{
             animation: run 1s linear infinite;
             position: relative;
             z-index: 502;
         }
-        .m-mask ~ .m-loading-loading-icon{
+        .m-mask ~ .m-loading-loading-icon {
             color: #ffffff;
         }
-        &.m-loading-center {
+        //相对于文档居中
+        &.m-loading-fixed {
             .m-loading-wrap {
                 position: fixed;
+                top: 0;
+                width: px2rem($width);
+                height: 100%;
+                z-index: 501;
+            }
+        }
+        //相对于容器居中
+        &.m-loading-absolute {
+            .m-loading-wrap {
+                position: absolute;
                 left: 0;
                 top: 0;
                 width: 100%;
@@ -39,7 +49,8 @@
                 z-index: 501;
             }
         }
-        &.m-loading-bottom {
+        //直接填入容器(不进行居中处理)
+        &.m-loading-relative {
             .m-loading-wrap {
                 padding: px2rem(20) 0;
                 position: relative;
@@ -50,14 +61,41 @@
 
     //加载完毕
     &.m-loading-over {
-        .m-loading-wrap{
-            padding: px2rem(20) 0;
-            .m-loading-over-icon{
-                font-size: px2rem(24);
+        .m-loading-over-icon, .m-loading-over-txt {
+            position: relative;
+            z-index: 502;
+        }
+        .m-loading-over-icon {
+            font-size: px2rem(24);
+        }
+        .m-loading-over-txt {
+            font-size: px2rem(12);
+        }
+        .m-mask ~ .m-loading-over-icon, .m-mask ~ .m-loading-over-txt {
+            color: #ffffff;
+        }
+        &.m-loading-fixed {
+            .m-loading-wrap {
+                position: fixed;
+                top: 0;
+                width: px2rem($width);
+                height: 100%;
+                z-index: 501;
             }
-            .m-loading-over-txt{
-                font-size: px2rem(12);
-                text-align: center;
+        }
+        &.m-loading-absolute {
+            .m-loading-wrap {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 501;
+            }
+        }
+        &.m-loading-relative {
+            .m-loading-wrap {
+                padding: px2rem(20) 0;
             }
         }
     }
