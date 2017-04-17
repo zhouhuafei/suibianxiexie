@@ -27,9 +27,9 @@
     });
 })();
 //没有数据
-(function(){
-    var NoData=require('../modules/m-no-data.js');
-    new NoData({wrap:'.page-no-data'});
+(function () {
+    var NoData = require('../modules/m-no-data.js');
+    new NoData({wrap: '.page-no-data'});
 })();
 //加载中
 (function () {
@@ -67,7 +67,7 @@
     var mask = new Mask({
         callback: {
             moduleDomClick: function () {
-                mask1.moduleDomHide();
+                mask.moduleDomHide();
             }
         }
     });
@@ -76,19 +76,14 @@
 //单选开关
 (function () {
     const Radio = require('../modules/m-radio-switch.js');
-    const page = document.querySelector('.page-radio-switch');
-    const radio = new Radio({
-        checkTxt: {
-            on: '开',
-            off: '关'
-        },
-        status: 'off',
-        isHand: false,
-        clickCallback: function (result) {
-            console.log(result);
+    new Radio({
+        wrap: '.page-radio-switch',
+        callback: {
+            moduleDomClick: function (obj) {
+                console.log(obj);
+            }
         }
     });
-    page.appendChild(radio.parentDom);
 })();
 //表格
 (function () {

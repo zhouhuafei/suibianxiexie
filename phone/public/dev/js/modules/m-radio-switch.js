@@ -1,68 +1,90 @@
-function Fn(json) {
-    this.opt = json || {};
-    this.opt.checkTxt = this.opt.checkTxt || {on: '已开启', off: '已关闭'};
-    this.opt.status = this.opt.status || 'off';
-    this.opt.isHand = this.opt.isHand ? true : false;
-    this.opt.clickCallback = this.opt.clickCallback || function () {console.log('点击的回调');};
-    this.onClass = 'm-radio-switch-active';//打开时对应状态的class
-    this.init();
-}
-Fn.prototype.init = function () {
-    this.render();
-    this.events();
-};
-Fn.prototype.render = function () {
-    var className = ``;
-    var status = this.opt.status;
-    if (status == 'on') {
-        className = this.onClass;
-    }
-    this.parentDom = document.createElement('div');
-    this.parentDom.classList.add(`m-radio-switch`);
-    if(className){
-        this.parentDom.classList.add(className);
-    }
-    this.parentDom.innerHTML = `            
-        <div class="m-radio-switch-box">
-            <div class="m-radio-switch-run"></div>
-        </div>
-        <div class="m-radio-switch-txt">${this.opt.checkTxt[status]}</div>            
-    `;
-};
-Fn.prototype.on = function () {//开
-    this.parentDom.classList.add(this.onClass);
-    this.opt.status = 'on';
-    this.changeTxt();
-};
-Fn.prototype.off = function () {//关
-    this.parentDom.classList.remove(this.onClass);
-    this.opt.status = 'off';
-    this.changeTxt();
-};
-Fn.prototype.changeTxt = function () {
-    this.parentDom.querySelector('.m-radio-switch-txt').innerHTML = this.opt.checkTxt[this.opt.status];
-};
-Fn.prototype.clickFn = function () {
-    var self = this;
-    if (!self.opt.isHand) {
-        if (self.opt.status == 'off') {
-            self.on();
-        } else {
-            self.off();
+//底层方法
+var base = require('../base/base.js');
+
+//超类型(子类型继承的对象)
+var SuperType = require('../modules/m-super-type.js');
+
+//子类型
+var SubType = base.constructorInherit({
+    superType: SuperType,
+    parameter: {
+        callback: {
+            moduleDomClick: function () {
+            }
+        },
+        config: {
+            isHand: false,//是否手动控制
+            status: 'on',//状态
+            txt: {
+                on: '已开启',
+                off: '已关闭'
+            }
         }
     }
-    self.opt.clickCallback({
-        parentDom: this.parentDom,
-        status: self.opt.status
+});
+
+//内部模块的创建(覆盖超类)
+SubType.prototype.moduleDomCreate = function () {
+    var config = this.opt.config;
+    this.moduleDomActiveClass = `m-radio-switch-active`;
+    var isOn = ``;
+    if (config.status == 'on') {
+        isOn = this.moduleDomActiveClass;
+    }
+    this.moduleDom = base.createElement({
+        style: config.moduleStyle,
+        custom: config.moduleDomCustomAttr,
+        attribute: {
+            className: `m-radio-switch ${isOn}`,
+            innerHTML: `
+                <div class="m-radio-switch-wrap">
+                    <div class="m-radio-switch-run"></div>
+                </div>
+                <div class="m-radio-switch-txt">${config.txt[config.status]}</div>
+            `
+        }
     });
 };
-Fn.prototype.events = function () {
+
+//功能(覆盖超类)
+SubType.prototype.power = function () {
     var self = this;
-    this.parentDom.addEventListener('click', function () {
-        self.clickFn();
+    var config = this.opt.config;
+    this.moduleDom.addEventListener('click', function () {
+        if (!config.isHand) {
+            if (!self.isOn()) {
+                self.on();
+            } else {
+                self.off();
+            }
+        }
+        self.opt.callback.moduleDomClick({status: config.status});
     })
 };
-Fn.prototype.remove = function () {
-    this.parentDom.parentNode.removeChild(this.parentDom);
+
+//是否处于开启状态
+SubType.prototype.isOn = function () {
+    return this.moduleDom.classList.contains(this.moduleDomActiveClass);
 };
-module.exports = Fn;
+
+//开启
+SubType.prototype.on = function () {
+    var config = this.opt.config;
+    if (!this.isOn()) {
+        this.moduleDom.classList.add(this.moduleDomActiveClass);
+        config.status = 'on';
+        this.moduleDom.querySelector('.m-radio-switch-txt').innerHTML = `${config.txt[config.status]}`;
+    }
+};
+
+//关闭
+SubType.prototype.off = function () {
+    var config = this.opt.config;
+    if (this.isOn()) {
+        this.moduleDom.classList.remove(this.moduleDomActiveClass);
+        config.status = 'off';
+        this.moduleDom.querySelector('.m-radio-switch-txt').innerHTML = `${config.txt[config.status]}`;
+    }
+};
+
+module.exports = SubType;

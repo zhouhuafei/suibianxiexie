@@ -1,38 +1,45 @@
 @import "../config/config.scss";
 
 .m-radio-switch {
+    $width-wrap: 44;
+    $height-wrap: $width-wrap / 2;
+    $width-height-run: $height-wrap - 2;
+    $top-run: 1;
+    $left-run: 1;
+    $left-run-active: $width-wrap - $width-height-run - $left-run;
+    height: px2rem($height-wrap);
     cursor: pointer;
-    display: -webkit-box;
-    height: px2rem(20);
-    font-size: px2rem(16);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    .m-radio-switch-box {
+    .m-radio-switch-wrap {
+        width: px2rem($width-wrap);
+        height: inherit;
+        border-radius: px2rem($width-wrap);
         position: relative;
-        width: px2rem(40);
-        height: 100%;
-        text-align: center;
-        border-radius: px2rem(100);
         background: $g-color-background-dark;
     }
     .m-radio-switch-run {
-        width: px2rem(18);
-        height: px2rem(18);
-        background: #ffffff;
-        border-radius: px2rem(100);
-        position: absolute;
-        left: px2rem(1);
-        top: px2rem(1);
+        width: px2rem($width-height-run);
+        height: px2rem($width-height-run);
+        border-radius: 50%;
         transition: 0.4s;
+        background: #ffffff;
+        position: absolute;
+        left: px2rem($left-run);
+        top: px2rem($top-run);
     }
     .m-radio-switch-txt {
+        font-size: px2rem(16);
         margin-left: px2rem(4);
     }
     &.m-radio-switch-active {
-        .m-radio-switch-box {
+        .m-radio-switch-wrap {
             background: $g-color-background-highlight;
         }
         .m-radio-switch-run {
-            left: px2rem(21);
+            left: px2rem($left-run-active);
         }
         .m-radio-switch-txt {
             color: $g-color-font-highlight;
