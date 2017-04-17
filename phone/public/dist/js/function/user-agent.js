@@ -26,5 +26,20 @@
             }
             return flag;
         }
-        module.exports = isPc;
+        //是不是微信
+        function isWeiXin() {
+            return navigator.userAgent.toLowerCase().match(/MicroMessenger/ig);
+        }
+        //是不是iphone
+        function isIphone() {
+            return window.navigator.appVersion.match(/iphone/ig);
+        }
+        //是不是android
+        function isAndroid() {
+            return window.navigator.appVersion.match(/android/ig);
+        }
+        module.exports.isPc = isPc;
+        module.exports.isWeiXin = isWeiXin;
+        module.exports.isIphone = isIphone;
+        module.exports.isAndroid = isAndroid;
     }, {}] }, {}, [1]);

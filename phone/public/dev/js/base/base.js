@@ -1,13 +1,11 @@
 //一些小方法
 var base = {
+    userAgent: require('../function/user-agent'),//用户代理(判断是否是安卓,苹果,微信,电脑)
     arrayRemoveRepeat: require('../function/array-remove-repeat.js'),//数组去重
     objRemoveQuote: require('../function/obj-remove-quote.js'),//移除对象引用
     Select: require('../function/select.js'),//全选,不选,反选
     offset: require('../function/offset.js'),//获取元素距离文档的left和top
     constructorInherit: require('../function/constructor-inherit.js'),//构造函数继承
-    isIPhone: require('../function/is-iphone.js'),//是否是iphone
-    isAndroid: require('../function/is-android.js'),//是否是android
-    isPc: require('../function/is-pc.js'),//是否是PC
     cookie: require('../function/cookie.js'),//cookie操作
     fillZero: require('../function/fill-zero.js'),//补零
     getParent: require('../function/get-parent.js'),//获取父级

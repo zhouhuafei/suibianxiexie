@@ -15,14 +15,12 @@
 })({ 1: [function (require, module, exports) {
         //一些小方法
         var base = {
+            userAgent: require('../function/user-agent'), //用户代理(判断是否是安卓,苹果,微信,电脑)
             arrayRemoveRepeat: require('../function/array-remove-repeat.js'), //数组去重
             objRemoveQuote: require('../function/obj-remove-quote.js'), //移除对象引用
             Select: require('../function/select.js'), //全选,不选,反选
             offset: require('../function/offset.js'), //获取元素距离文档的left和top
             constructorInherit: require('../function/constructor-inherit.js'), //构造函数继承
-            isIPhone: require('../function/is-iphone.js'), //是否是iphone
-            isAndroid: require('../function/is-android.js'), //是否是android
-            isPc: require('../function/is-pc.js'), //是否是PC
             cookie: require('../function/cookie.js'), //cookie操作
             fillZero: require('../function/fill-zero.js'), //补零
             getParent: require('../function/get-parent.js'), //获取父级
@@ -39,7 +37,7 @@
             extend: require('../function/extend.js') //对象扩展
         };
         module.exports = base;
-    }, { "../function/array-remove-repeat.js": 4, "../function/constructor-inherit.js": 5, "../function/cookie.js": 6, "../function/create-element.js": 7, "../function/extend.js": 8, "../function/fill-zero.js": 9, "../function/get-dom-array.js": 10, "../function/get-parent.js": 11, "../function/html-to-dom.js": 12, "../function/is-android.js": 13, "../function/is-iphone.js": 14, "../function/is-pc.js": 15, "../function/obj-remove-quote.js": 16, "../function/obj-to-array.js": 17, "../function/offset.js": 18, "../function/scroll-to.js": 19, "../function/seconds-to-time.js": 20, "../function/select.js": 21, "../function/str-limit.js": 22, "../function/time-count-down.js": 23, "../function/when-scroll-bottom.js": 25, "../function/whether-disable-scroll.js": 26 }], 2: [function (require, module, exports) {
+    }, { "../function/array-remove-repeat.js": 4, "../function/constructor-inherit.js": 5, "../function/cookie.js": 6, "../function/create-element.js": 7, "../function/extend.js": 8, "../function/fill-zero.js": 9, "../function/get-dom-array.js": 10, "../function/get-parent.js": 11, "../function/html-to-dom.js": 12, "../function/obj-remove-quote.js": 13, "../function/obj-to-array.js": 14, "../function/offset.js": 15, "../function/scroll-to.js": 16, "../function/seconds-to-time.js": 17, "../function/select.js": 18, "../function/str-limit.js": 19, "../function/time-count-down.js": 20, "../function/user-agent": 21, "../function/when-scroll-bottom.js": 23, "../function/whether-disable-scroll.js": 24 }], 2: [function (require, module, exports) {
         //base函数测试
         (function () {
             var base = require('../base/base');
@@ -221,7 +219,7 @@
         })();
         //每个页面都要用到的js
         require('../common/common.js');
-    }, { "../base/base": 1, "../common/common.js": 3, "../modules/m-go-top.js": 29, "../modules/m-loading": 31, "../modules/m-radio-switch.js": 32, "../modules/m-star.js": 33, "../modules/m-super-type.js": 34, "../modules/m-table.js": 35, "../modules/m-validate-input.js": 36 }], 3: [function (require, module, exports) {
+    }, { "../base/base": 1, "../common/common.js": 3, "../modules/m-go-top.js": 27, "../modules/m-loading": 29, "../modules/m-radio-switch.js": 30, "../modules/m-star.js": 31, "../modules/m-super-type.js": 32, "../modules/m-table.js": 33, "../modules/m-validate-input.js": 34 }], 3: [function (require, module, exports) {
         //版权
         (function () {
             var Copyright = require('../modules/m-copyright.js');
@@ -239,7 +237,7 @@
             var LazyLoad = require('../modules/m-lazy-load.js');
             new LazyLoad();
         })();
-    }, { "../modules/m-copyright.js": 27, "../modules/m-footer-nav.js": 28, "../modules/m-lazy-load.js": 30 }], 4: [function (require, module, exports) {
+    }, { "../modules/m-copyright.js": 25, "../modules/m-footer-nav.js": 26, "../modules/m-lazy-load.js": 28 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -309,7 +307,7 @@
             return SubType;
         }
         module.exports = constructorInherit;
-    }, { "../function/extend.js": 8, "../function/obj-remove-quote.js": 16 }], 6: [function (require, module, exports) {
+    }, { "../function/extend.js": 8, "../function/obj-remove-quote.js": 13 }], 6: [function (require, module, exports) {
         //设置cookie
         function setCookie(json) {
             var opt = json || {};
@@ -591,33 +589,6 @@
         }
         module.exports = htmlToDom;
     }, {}], 13: [function (require, module, exports) {
-        //是不是android
-        function isAndroid() {
-            return window.navigator.appVersion.match(/android/gi);
-        }
-        module.exports = isAndroid;
-    }, {}], 14: [function (require, module, exports) {
-        //是不是iphone
-        function isIphone() {
-            return window.navigator.appVersion.match(/iphone/gi);
-        }
-        module.exports = isIphone;
-    }, {}], 15: [function (require, module, exports) {
-        //是不是PC
-        function isPc() {
-            var userAgentInfo = navigator.userAgent;
-            var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
-            var flag = true;
-            for (var v = 0; v < Agents.length; v++) {
-                if (userAgentInfo.indexOf(Agents[v]) > 0) {
-                    flag = false;
-                    break;
-                }
-            }
-            return flag;
-        }
-        module.exports = isPc;
-    }, {}], 16: [function (require, module, exports) {
         //移除对象引用
         function objRemoveQuote(json) {
             var opt = json || {};
@@ -639,7 +610,7 @@
             return newObj;
         }
         module.exports = objRemoveQuote;
-    }, {}], 17: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         //把json格式的对象转成数组
         function objToArray(json) {
             var opt = json || {};
@@ -659,7 +630,7 @@
             return arr;
         }
         module.exports = objToArray;
-    }, {}], 18: [function (require, module, exports) {
+    }, {}], 15: [function (require, module, exports) {
         var extend = require('../function/extend.js'); //对象的扩展
         var getDomArray = require('../function/get-dom-array.js'); //获取一组dom节点
 
@@ -685,7 +656,7 @@
             };
         }
         module.exports = offset;
-    }, { "../function/extend.js": 8, "../function/get-dom-array.js": 10 }], 19: [function (require, module, exports) {
+    }, { "../function/extend.js": 8, "../function/get-dom-array.js": 10 }], 16: [function (require, module, exports) {
         //滚动到指定位置
         function scrollTo(json) {
             var opt = json || {};
@@ -706,7 +677,7 @@
             requestAnimationFrame(fn);
         }
         module.exports = scrollTo;
-    }, {}], 20: [function (require, module, exports) {
+    }, {}], 17: [function (require, module, exports) {
         //秒转时间
         function secondsToTime(json) {
             var opt = json || {};
@@ -722,7 +693,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 21: [function (require, module, exports) {
+    }, {}], 18: [function (require, module, exports) {
         //全选,不选,反选
         var extend = require('../function/extend.js');
         var getDomArray = require('../function/get-dom-array.js');
@@ -784,7 +755,7 @@
         };
 
         module.exports = Select;
-    }, { "../function/extend.js": 8, "../function/get-dom-array.js": 10 }], 22: [function (require, module, exports) {
+    }, { "../function/extend.js": 8, "../function/get-dom-array.js": 10 }], 19: [function (require, module, exports) {
         //字符数量限制
         function strLimit(json) {
             var opt = json || {};
@@ -800,7 +771,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 23: [function (require, module, exports) {
+    }, {}], 20: [function (require, module, exports) {
         var extend = require('../function/extend.js');
         var secondsToTime = require('../function/seconds-to-time.js'); //时间转换
 
@@ -839,7 +810,37 @@
             }
         }
         module.exports = timeCountDown;
-    }, { "../function/extend.js": 8, "../function/seconds-to-time.js": 20 }], 24: [function (require, module, exports) {
+    }, { "../function/extend.js": 8, "../function/seconds-to-time.js": 17 }], 21: [function (require, module, exports) {
+        //是不是PC
+        function isPc() {
+            var userAgentInfo = navigator.userAgent;
+            var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+            var flag = true;
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+        //是不是微信
+        function isWeiXin() {
+            return navigator.userAgent.toLowerCase().match(/MicroMessenger/ig);
+        }
+        //是不是iphone
+        function isIphone() {
+            return window.navigator.appVersion.match(/iphone/ig);
+        }
+        //是不是android
+        function isAndroid() {
+            return window.navigator.appVersion.match(/android/ig);
+        }
+        module.exports.isPc = isPc;
+        module.exports.isWeiXin = isWeiXin;
+        module.exports.isIphone = isIphone;
+        module.exports.isAndroid = isAndroid;
+    }, {}], 22: [function (require, module, exports) {
         //验证
         var validate = {
             //是不是空
@@ -927,7 +928,7 @@
             }
         };
         module.exports = validate;
-    }, {}], 25: [function (require, module, exports) {
+    }, {}], 23: [function (require, module, exports) {
         var extend = require('../function/extend.js');
 
         //当滚动到了浏览器的底部
@@ -981,7 +982,7 @@
             });
         };
         module.exports = WhenScrollBottom;
-    }, { "../function/extend.js": 8 }], 26: [function (require, module, exports) {
+    }, { "../function/extend.js": 8 }], 24: [function (require, module, exports) {
         //是否禁止浏览器滚动
         function whetherDisableScroll() {
             var doc = document;
@@ -1012,7 +1013,7 @@
             };
         }
         module.exports = whetherDisableScroll;
-    }, {}], 27: [function (require, module, exports) {
+    }, {}], 25: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1041,7 +1042,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 34 }], 28: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 32 }], 26: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1075,7 +1076,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 34 }], 29: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 32 }], 27: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1122,7 +1123,7 @@
             });
         };
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 34 }], 30: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 32 }], 28: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1194,7 +1195,7 @@
             });
         };
         module.exports = LazyLoad;
-    }, { "../base/base.js": 1 }], 31: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 29: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1263,7 +1264,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 34 }], 32: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 32 }], 30: [function (require, module, exports) {
         function Fn(json) {
             this.opt = json || {};
             this.opt.checkTxt = this.opt.checkTxt || { on: '已开启', off: '已关闭' };
@@ -1331,7 +1332,7 @@
             this.parentDom.parentNode.removeChild(this.parentDom);
         };
         module.exports = Fn;
-    }, {}], 33: [function (require, module, exports) {
+    }, {}], 31: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1399,7 +1400,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 34 }], 34: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 32 }], 32: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1644,7 +1645,7 @@
         };
 
         module.exports = SuperType;
-    }, { "../base/base.js": 1 }], 35: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 33: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1700,7 +1701,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 34 }], 36: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 32 }], 34: [function (require, module, exports) {
         var base = require('../base/base.js');
 
         function ValidateInput(json) {
@@ -1812,4 +1813,4 @@
         };
 
         module.exports = ValidateInput;
-    }, { "../base/base.js": 1, "../function/validate": 24 }] }, {}, [2]);
+    }, { "../base/base.js": 1, "../function/validate": 22 }] }, {}, [2]);
