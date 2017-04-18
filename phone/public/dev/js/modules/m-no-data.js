@@ -7,21 +7,27 @@ var SuperType = require('../modules/m-super-type.js');
 //子类型
 var SubType = base.constructorInherit({
     superType: SuperType,
+    //默认参数(继承超类型)
     parameter: {
-        data:{
-            icon:'icon-meiyoushuju',
-            txt:'没有数据',
-            btn:{
-                txt:'回首页',
-                href:'/'
+        //回调
+        callback: {},
+        //配置
+        config: {},
+        //数据
+        data: {
+            icon: 'icon-meiyoushuju',
+            txt: '没有数据',
+            btn: {
+                txt: '回首页',
+                href: '/'
             }
         }
     }
 });
 
-//内部模块的创建
+//内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    var data=this.opt.data;
+    var data = this.opt.data;
     this.moduleDom = base.createElement({
         style: this.opt.config.moduleStyle,
         custom: this.opt.config.moduleDomCustomAttr,
@@ -34,6 +40,11 @@ SubType.prototype.moduleDomCreate = function () {
             `
         }
     });
+};
+
+//功能(覆盖超类型)
+SubType.prototype.power = function () {
+    //功能重写待续...
 };
 
 module.exports = SubType;

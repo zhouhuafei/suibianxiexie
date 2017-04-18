@@ -47,6 +47,7 @@
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
+            //默认参数(继承超类型)
             parameter: {
                 //回调
                 callback: {
@@ -61,11 +62,13 @@
                 config: {
                     moduleDomIsTransparent: false, //内部模块是不是透明的(默认不透明)
                     moduleDomIsShow: false //内部模块是否显示(默认不显示)
-                }
+                },
+                //数据
+                data: {}
             }
         });
 
-        //内部模块的创建(覆盖超类)
+        //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             var isTransparent = '';
             if (this.opt.config.isTransparent) {
@@ -81,7 +84,7 @@
             });
         };
 
-        //功能(覆盖超类)
+        //功能(覆盖超类型)
         SubType.prototype.power = function () {
             var self = this;
             this.moduleDom.addEventListener('click', function (ev) {

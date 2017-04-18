@@ -25,11 +25,14 @@ class SubType extends SuperType {
         //制定内部的默认值
         this.opt = base.extend({
             default: this.opt,
-            //inherit里放默认参数
+            //inherit里放默认参数(继承超类型)
             inherit: {
-                callback:{},
-                config:{},
-                data:{}
+                //回调
+                callback: {},
+                //配置
+                config: {},
+                //数据
+                data: {}
             }
         });
         //接收外部的参数

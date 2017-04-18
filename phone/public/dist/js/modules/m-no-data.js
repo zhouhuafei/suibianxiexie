@@ -47,7 +47,13 @@
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
+            //默认参数(继承超类型)
             parameter: {
+                //回调
+                callback: {},
+                //配置
+                config: {},
+                //数据
                 data: {
                     icon: 'icon-meiyoushuju',
                     txt: '没有数据',
@@ -59,7 +65,7 @@
             }
         });
 
-        //内部模块的创建
+        //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             var data = this.opt.data;
             this.moduleDom = base.createElement({
@@ -70,6 +76,11 @@
                     innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-txt\">" + data.txt + "</div>\n                <a class=\"m-no-data-btn g-button g-button-highlight\" href=\"" + data.btn.href + "\">" + data.btn.txt + "</a>\n            "
                 }
             });
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
         };
 
         module.exports = SubType;

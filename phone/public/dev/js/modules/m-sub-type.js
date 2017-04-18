@@ -24,10 +24,9 @@ SubType.prototype.moduleDomCreate = function () {
         style: this.opt.config.moduleDomStyle,
         custom: this.opt.config.moduleDomCustomAttr,
         attribute: {
-            className: `m-copyright`,
+            className: `m-sub-type`,
             innerHTML: `
-                <div class="m-copyright-icon iconfont icon-banquan"></div>
-                <div class="m-copyright-txt">版权信息哟</div>
+                    <div class="m-sub-type-txt">周华飞爱侯丽杰,侯丽杰爱周华飞</div>
             `
         }
     });

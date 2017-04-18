@@ -21,13 +21,14 @@ var SubType = base.constructorInherit({
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDom = base.createElement({
-        style: this.opt.config.moduleDomStyle,
+        style: this.opt.config.moduleStyle,
         custom: this.opt.config.moduleDomCustomAttr,
         attribute: {
-            className: `m-copyright`,
+            className: `m-dialog`,
             innerHTML: `
-                <div class="m-copyright-icon iconfont icon-banquan"></div>
-                <div class="m-copyright-txt">版权信息哟</div>
+                <div class="m-dialog-header"></div>
+                <div class="m-dialog-body"></div>
+                <div class="m-dialog-footer"></div>                
             `
         }
     });

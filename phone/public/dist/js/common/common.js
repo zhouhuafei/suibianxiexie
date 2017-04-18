@@ -753,13 +753,18 @@
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
+            //默认参数(继承超类型)
             parameter: {
+                //回调
+                callback: {},
+                //配置
+                config: {},
                 //数据
                 data: {}
             }
         });
 
-        //内部模块的创建
+        //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleDomStyle,
@@ -769,6 +774,11 @@
                     innerHTML: "\n                <div class=\"m-copyright-icon iconfont icon-banquan\"></div>\n                <div class=\"m-copyright-txt\">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            "
                 }
             });
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
         };
 
         module.exports = SubType;
@@ -782,13 +792,14 @@
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
+            //默认参数(继承超类型)
             parameter: {
                 //回调
-                callback: {
-                    moduleDomClick: function moduleDomClick() {
-                        //内部模块的点击回调待续...
-                    }
-                }
+                callback: {},
+                //配置
+                config: {},
+                //数据
+                data: {}
             }
         });
 
@@ -803,6 +814,11 @@
                     innerHTML: moduleDomHtml
                 }
             });
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
         };
 
         module.exports = SubType;

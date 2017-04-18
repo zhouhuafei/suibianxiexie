@@ -8,6 +8,7 @@ var Mask = require('../modules/m-mask.js');
 //子类型
 var SubType = base.constructorInherit({
     superType: SuperType,
+    //默认参数(继承超类型)
     parameter: {
         //回调
         callback: {
@@ -32,10 +33,13 @@ var SubType = base.constructorInherit({
             moduleDomIsShow: false, //内部模块是否显示(默认不显示)
             moduleDomStatus: 'loading', //加载状态 loading(加载中) over(加载完毕)
             moduleDomPosition: 'relative' //模块的位置 'fixed'(相对文档居中) 'absolute'(相对容器居中) 'relative'(直接填入容器)
-        }
+        },
+        //数据
+        data: {}
     }
 });
 
+//内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     var config = this.opt.config;
     var moduleDomHtml = ``;
@@ -94,6 +98,11 @@ SubType.prototype.moduleDomCreate = function () {
             innerHTML: moduleDomHtml
         }
     });
+};
+
+//功能(覆盖超类型)
+SubType.prototype.power = function () {
+    //功能重写待续...
 };
 
 module.exports = SubType;

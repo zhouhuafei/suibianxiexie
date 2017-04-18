@@ -51,6 +51,8 @@
 (function () {
     var SuperType = require('../modules/m-super-type.js');
     new SuperType({wrap: `.page-super-type`});
+    var SubType = require('../modules/m-sub-type.js');
+    new SubType({wrap: `.page-super-type`});
     var SuperTypeEs6 = require('../modules/m-super-type-es6.js');
     new SuperTypeEs6({wrap: `.page-super-type`});
     var SubTypeEs6 = require('../modules/m-sub-type-es6.js');

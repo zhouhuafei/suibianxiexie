@@ -7,6 +7,7 @@ var SuperType = require('../modules/m-super-type.js');
 //子类型
 var SubType = base.constructorInherit({
     superType: SuperType,
+    //默认参数(继承超类型)
     parameter: {
         //回调
         callback: {
@@ -25,6 +26,7 @@ var SubType = base.constructorInherit({
     }
 });
 
+//内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     var html = ``;
     for (var i = 0; i < this.opt.data.allStarNum; i++) {
@@ -45,6 +47,7 @@ SubType.prototype.moduleDomCreate = function () {
     this.opt.star = this.moduleDom.children;
 };
 
+//功能(覆盖超类型)
 SubType.prototype.power = function () {
     var self = this;
     if (this.opt.config.moduleDomIsHaveEvent) {

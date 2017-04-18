@@ -7,13 +7,14 @@ var SuperType = require('../modules/m-super-type.js');
 //子类型
 var SubType = base.constructorInherit({
     superType: SuperType,
+    //默认参数(继承超类型)
     parameter: {
         //回调
-        callback: {
-            moduleDomClick: function () {
-                //内部模块的点击回调待续...
-            }
-        }
+        callback: {},
+        //配置
+        config: {},
+        //数据
+        data: {}
     }
 });
 
@@ -51,6 +52,11 @@ SubType.prototype.moduleDomCreate = function () {
             innerHTML: moduleDomHtml
         }
     });
+};
+
+//功能(覆盖超类型)
+SubType.prototype.power = function () {
+    //功能重写待续...
 };
 
 module.exports = SubType;

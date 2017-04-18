@@ -47,10 +47,13 @@
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
+            //默认参数(继承超类型)
             parameter: {
+                //回调
                 callback: {
                     moduleDomClick: function moduleDomClick() {}
                 },
+                //配置
                 config: {
                     isHand: false, //是否手动控制
                     status: 'on', //状态
@@ -58,11 +61,13 @@
                         on: '已开启',
                         off: '已关闭'
                     }
-                }
+                },
+                //数据
+                data: {}
             }
         });
 
-        //内部模块的创建(覆盖超类)
+        //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             var config = this.opt.config;
             this.moduleDomActiveClass = "m-radio-switch-active";
@@ -80,7 +85,7 @@
             });
         };
 
-        //功能(覆盖超类)
+        //功能(覆盖超类型)
         SubType.prototype.power = function () {
             var self = this;
             var config = this.opt.config;

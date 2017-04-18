@@ -99,6 +99,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         (function () {
             var SuperType = require('../modules/m-super-type.js');
             new SuperType({ wrap: ".page-super-type" });
+            var SubType = require('../modules/m-sub-type.js');
+            new SubType({ wrap: ".page-super-type" });
             var SuperTypeEs6 = require('../modules/m-super-type-es6.js');
             new SuperTypeEs6({ wrap: ".page-super-type" });
             var SubTypeEs6 = require('../modules/m-sub-type-es6.js');
@@ -193,7 +195,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         })();
         //每个页面都要用到的js
         require('../common/common.js');
-    }, { "../base/base.js": 1, "../common/common.js": 3, "../modules/m-go-top.js": 27, "../modules/m-loading.js": 29, "../modules/m-mask.js": 30, "../modules/m-no-data.js": 31, "../modules/m-radio-switch.js": 32, "../modules/m-star.js": 33, "../modules/m-sub-type-es6.js": 34, "../modules/m-super-type-es6.js": 35, "../modules/m-super-type.js": 36, "../modules/m-table.js": 37, "../modules/m-validate-form.js": 38 }], 3: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../common/common.js": 3, "../modules/m-go-top.js": 27, "../modules/m-loading.js": 29, "../modules/m-mask.js": 30, "../modules/m-no-data.js": 31, "../modules/m-radio-switch.js": 32, "../modules/m-star.js": 33, "../modules/m-sub-type-es6.js": 34, "../modules/m-sub-type.js": 35, "../modules/m-super-type-es6.js": 36, "../modules/m-super-type.js": 37, "../modules/m-table.js": 38, "../modules/m-validate-form.js": 39 }], 3: [function (require, module, exports) {
         //版权
         (function () {
             var Copyright = require('../modules/m-copyright.js');
@@ -997,13 +999,18 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
+            //默认参数(继承超类型)
             parameter: {
+                //回调
+                callback: {},
+                //配置
+                config: {},
                 //数据
                 data: {}
             }
         });
 
-        //内部模块的创建
+        //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleDomStyle,
@@ -1015,8 +1022,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
         };
 
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
+
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 36 }], 26: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 26: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1026,13 +1038,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
+            //默认参数(继承超类型)
             parameter: {
                 //回调
-                callback: {
-                    moduleDomClick: function moduleDomClick() {
-                        //内部模块的点击回调待续...
-                    }
-                }
+                callback: {},
+                //配置
+                config: {},
+                //数据
+                data: {}
             }
         });
 
@@ -1049,8 +1062,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
         };
 
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
+
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 36 }], 27: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 27: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1060,17 +1078,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
+            //默认参数(继承超类型)
             parameter: {
                 //回调
-                callback: {
-                    moduleDomClick: function moduleDomClick() {}
-                },
+                callback: {},
+                //配置
                 config: {
                     showHeight: 200
-                }
+                },
+                //数据
+                data: {}
             }
         });
 
+        //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleDomStyle,
@@ -1082,6 +1103,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
         };
 
+        //功能(覆盖超类型)
         SubType.prototype.power = function () {
             var self = this;
             this.moduleDom.addEventListener('click', function () {
@@ -1096,8 +1118,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 }
             });
         };
+
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 36 }], 28: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 28: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1180,6 +1203,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
+            //默认参数(继承超类型)
             parameter: {
                 //回调
                 callback: {
@@ -1204,10 +1228,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     moduleDomIsShow: false, //内部模块是否显示(默认不显示)
                     moduleDomStatus: 'loading', //加载状态 loading(加载中) over(加载完毕)
                     moduleDomPosition: 'relative' //模块的位置 'fixed'(相对文档居中) 'absolute'(相对容器居中) 'relative'(直接填入容器)
-                }
+                },
+                //数据
+                data: {}
             }
         });
 
+        //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             var config = this.opt.config;
             var moduleDomHtml = "";
@@ -1259,8 +1286,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
         };
 
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
+
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-mask.js": 30, "../modules/m-super-type.js": 36 }], 30: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-mask.js": 30, "../modules/m-super-type.js": 37 }], 30: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1270,6 +1302,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
+            //默认参数(继承超类型)
             parameter: {
                 //回调
                 callback: {
@@ -1284,11 +1317,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 config: {
                     moduleDomIsTransparent: false, //内部模块是不是透明的(默认不透明)
                     moduleDomIsShow: false //内部模块是否显示(默认不显示)
-                }
+                },
+                //数据
+                data: {}
             }
         });
 
-        //内部模块的创建(覆盖超类)
+        //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             var isTransparent = '';
             if (this.opt.config.isTransparent) {
@@ -1304,7 +1339,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
         };
 
-        //功能(覆盖超类)
+        //功能(覆盖超类型)
         SubType.prototype.power = function () {
             var self = this;
             this.moduleDom.addEventListener('click', function (ev) {
@@ -1314,7 +1349,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 36 }], 31: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 31: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1324,7 +1359,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
+            //默认参数(继承超类型)
             parameter: {
+                //回调
+                callback: {},
+                //配置
+                config: {},
+                //数据
                 data: {
                     icon: 'icon-meiyoushuju',
                     txt: '没有数据',
@@ -1336,7 +1377,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }
         });
 
-        //内部模块的创建
+        //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             var data = this.opt.data;
             this.moduleDom = base.createElement({
@@ -1349,8 +1390,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
         };
 
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
+
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 36 }], 32: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 32: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1360,10 +1406,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
+            //默认参数(继承超类型)
             parameter: {
+                //回调
                 callback: {
                     moduleDomClick: function moduleDomClick() {}
                 },
+                //配置
                 config: {
                     isHand: false, //是否手动控制
                     status: 'on', //状态
@@ -1371,11 +1420,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         on: '已开启',
                         off: '已关闭'
                     }
-                }
+                },
+                //数据
+                data: {}
             }
         });
 
-        //内部模块的创建(覆盖超类)
+        //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             var config = this.opt.config;
             this.moduleDomActiveClass = "m-radio-switch-active";
@@ -1393,7 +1444,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
         };
 
-        //功能(覆盖超类)
+        //功能(覆盖超类型)
         SubType.prototype.power = function () {
             var self = this;
             var config = this.opt.config;
@@ -1435,7 +1486,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 36 }], 33: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 33: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1445,6 +1496,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
+            //默认参数(继承超类型)
             parameter: {
                 //回调
                 callback: {
@@ -1462,6 +1514,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }
         });
 
+        //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             var html = "";
             for (var i = 0; i < this.opt.data.allStarNum; i++) {
@@ -1482,6 +1535,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             this.opt.star = this.moduleDom.children;
         };
 
+        //功能(覆盖超类型)
         SubType.prototype.power = function () {
             var self = this;
             if (this.opt.config.moduleDomIsHaveEvent) {
@@ -1503,7 +1557,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 36 }], 34: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 34: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1538,10 +1592,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
                 _this.opt = base.extend({
                     default: _this.opt,
-                    //inherit里放默认参数
+                    //inherit里放默认参数(继承超类型)
                     inherit: {
+                        //回调
                         callback: {},
+                        //配置
                         config: {},
+                        //数据
                         data: {}
                     }
                 });
@@ -1588,7 +1645,46 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }(SuperType);
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type-es6.js": 35 }], 35: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type-es6.js": 36 }], 35: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base.js');
+
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type.js');
+
+        //子类型
+        var SubType = base.constructorInherit({
+            superType: SuperType,
+            //默认参数(继承超类型)
+            parameter: {
+                //回调
+                callback: {},
+                //配置
+                config: {},
+                //数据
+                data: {}
+            }
+        });
+
+        //内部模块的创建(覆盖超类型)
+        SubType.prototype.moduleDomCreate = function () {
+            this.moduleDom = base.createElement({
+                style: this.opt.config.moduleDomStyle,
+                custom: this.opt.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-sub-type",
+                    innerHTML: "\n                    <div class=\"m-sub-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                }
+            });
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
+
+        module.exports = SubType;
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 36: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1899,7 +1995,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }();
 
         module.exports = SuperType;
-    }, { "../base/base.js": 1 }], 36: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 37: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -2144,7 +2240,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SuperType;
-    }, { "../base/base.js": 1 }], 37: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 38: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -2154,7 +2250,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
+            //默认参数(继承超类型)
             parameter: {
+                //回调
+                callback: {},
+                //配置
+                config: {},
+                //数据
                 data: {
                     header: [{ html: 'undefined-header0' }, { html: 'undefined-header1' }, { html: 'undefined-header2' }],
                     body: [[{ html: 'undefined-body0-0' }, { html: 'undefined-body0-1' }, { html: 'undefined-body0-2' }], [{ html: 'undefined-body1-0' }, { html: 'undefined-body1-1' }, { html: 'undefined-body1-2' }]],
@@ -2163,7 +2265,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }
         });
 
-        //内部模块的创建
+        //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleDomStyle,
@@ -2199,8 +2301,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             return this.opt.data.footer;
         };
 
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
+
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 36 }], 38: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 39: [function (require, module, exports) {
         var base = require('../base/base.js'); //底层方法
         var validate = require('../function/validate'); //表单验证
 

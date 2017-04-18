@@ -1,13 +1,5 @@
 "use strict";
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 (function e(t, n, r) {
     function s(o, u) {
         if (!n[o]) {
@@ -46,94 +38,54 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
         module.exports = base;
     }, { "../function/array-remove-repeat.js": 3, "../function/constructor-inherit.js": 4, "../function/cookie.js": 5, "../function/create-element.js": 6, "../function/extend.js": 7, "../function/fill-zero.js": 8, "../function/get-dom-array.js": 9, "../function/get-parent.js": 10, "../function/html-to-dom.js": 11, "../function/obj-remove-quote.js": 12, "../function/obj-to-array.js": 13, "../function/offset.js": 14, "../function/scroll-to.js": 15, "../function/seconds-to-time.js": 16, "../function/select.js": 17, "../function/str-limit.js": 18, "../function/time-count-down.js": 19, "../function/user-agent": 20, "../function/when-scroll-bottom.js": 21, "../function/whether-disable-scroll.js": 22 }], 2: [function (require, module, exports) {
-        //底层方法
-        var base = require('../base/base.js');
+        var extend = require('../function/extend.js'); //对象的扩展
+        var Dialog = require('../modules/m-dialog.js'); //弹窗
+        var Loadind = require('../function/extend.js'); //加载中
 
-        //超类型(子类型继承的对象)
-        var SuperType = require('../modules/m-super-type-es6.js');
-
-        //子类型
-
-        var SubType = function (_SuperType) {
-            _inherits(SubType, _SuperType);
-
-            function SubType(json) {
-                _classCallCheck(this, SubType);
-
-                //制定内部的默认值
-                var _this = _possibleConstructorReturn(this, (SubType.__proto__ || Object.getPrototypeOf(SubType)).call(this, json));
-                /*
-                 * 继承超类型的属性和方法
-                 * 就算使用Super.call继承属性,也会先执行内部的init函数,这个和es6的比较
-                 * 我封装的es5继承函数constructor-inherit是先处理的参数this.opt,再进行的继承
-                 * 这里的es6继承,是先进行的继承,再处理的参数,因为继承之前,子类无this属性
-                 * 不管是es5的继承,还是es6的继承,都会执行函数内部的一切,例如
-                 * 我封装的constructor-inherit继承属性时Super.call(this,this.opt),函数内部的init方法被执行了
-                 * 执行前我处理了参数this.opt,所有一切还算稳定,我喜欢这个写法
-                 * es6继承属性和方法用super(json),继承时函数内部的init方法也被执行了,执行后才处理的参数this.opt
-                 * 后处理参数的话,即使我更新了默认的参数配置,覆盖了超类的方法,也获取不到最新参数上的数据,导致默认参数无效
-                 * 因为函数执行super(json)的时候,init已经被调用了,数据是后更新的,所以不能获取到,因此
-                 * 我需要清除内部模块,并进行重新调用,这点我很不喜欢,所以我现在的场景还是更适合es5的面向对象
-                 * 注:init方法是我封装的超类型里的初始化方法,this.opt是超类型里的参数,参数我喜欢用对象的形式
-                 * */
-
-
-                _this.opt = base.extend({
-                    default: _this.opt,
-                    //inherit里放默认参数(继承超类型)
-                    inherit: {
-                        //回调
-                        callback: {},
-                        //配置
-                        config: {},
-                        //数据
-                        data: {}
-                    }
-                });
-                //接收外部的参数
-                _this.opt = base.extend({
-                    default: _this.opt,
-                    inherit: json
-                });
-                /*
-                 * 因为es6的继承是:子类型继承超类之后,才拥有this属性的原因,我要先移除一次,再重新生成
-                 * 否则的话,上面的默认值不会生效
-                 * */
-                _this.moduleDomRemove();
-                _this.init();
-                return _this;
-            }
-
-            //内部模块的创建(覆盖超类型)
-
-
-            _createClass(SubType, [{
-                key: "moduleDomCreate",
-                value: function moduleDomCreate() {
-                    this.moduleDom = base.createElement({
-                        style: this.opt.config.moduleDomStyle,
-                        custom: this.opt.config.moduleDomCustomAttr,
-                        attribute: {
-                            className: "m-sub-type-es6",
-                            innerHTML: "\n                    <div class=\"m-sub-type-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
+        //ajax封装
+        function Ajax(json) {
+            this.opt = extend({
+                default: {
+                    type: 'post', //请求类型
+                    data: {}, //请求数据
+                    //回调
+                    callback: {
+                        //完成
+                        complete: function complete() {},
+                        //成功
+                        success: function success() {},
+                        //失败
+                        fail: function fail() {},
+                        //超时
+                        timeout: function timeout() {}
+                    },
+                    //配置
+                    config: {
+                        //ajax的配置
+                        ajax: {
+                            isShowLoading: true },
+                        //loading的配置
+                        loading: {
+                            config: {
+                                moduleDomStatus: 'loading',
+                                moduleDomPosition: 'fixed'
+                            }
                         }
-                    });
-                }
+                    }
+                },
+                inherit: json
+            });
+            this.loading = new Loadind(this.opt.config.loading);
+        }
+        Ajax.prototype.open = function () {};
+        Ajax.prototype.send = function () {};
+        Ajax.prototype.success = function () {};
+        Ajax.prototype.fail = function () {};
+        Ajax.prototype.timeout = function () {};
+        Ajax.prototype.fail = function () {};
 
-                //功能重写(覆盖超类型)
-
-            }, {
-                key: "power",
-                value: function power() {
-                    //功能重写待续...
-                }
-            }]);
-
-            return SubType;
-        }(SuperType);
-
-        module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type-es6.js": 23 }], 3: [function (require, module, exports) {
+        module.exports = Ajax;
+    }, { "../function/extend.js": 7, "../modules/m-dialog.js": 23 }], 3: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -825,311 +777,284 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //底层方法
         var base = require('../base/base.js');
 
-        //底层构造函数
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type.js');
 
-        var SuperType = function () {
-            function SuperType(json) {
-                _classCallCheck(this, SuperType);
-
-                //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
-                this.opt = base.extend({
-                    //内部默认参数
-                    default: {
-                        //父级
-                        wrap: ".g-page", //这个仅支持传入选择器和原生dom节点
-                        //回调
-                        callback: {
-                            //内部模块创建之前
-                            moduleDomCreateBefore: function moduleDomCreateBefore(self) {
-                                //内部模块创建之前的回调待续...
-                            },
-
-                            //内部模块创建之后
-                            moduleDomCreateAfter: function moduleDomCreateAfter(self) {
-                                //内部模块创建之后的回调待续...
-                            },
-
-                            //内部模块渲染之前
-                            moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                                //内部模块渲染之前的回调待续...
-                            },
-
-                            //内部模块渲染之后
-                            moduleDomRenderAfter: function moduleDomRenderAfter(self) {
-                                //内部模块渲染之后的回调待续...
-                            },
-
-                            //内部模块移除之前
-                            moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {
-                                //内部模块移除之前的回调待续...
-                            },
-
-                            //内部模块移除之后
-                            moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {
-                                //内部模块移除之后的回调待续...
-                            },
-
-                            //内部模块显示之前
-                            moduleDomShowBefore: function moduleDomShowBefore(self) {
-                                //内部模块显示之前的回调待续...
-                            },
-
-                            //内部模块显示之后
-                            moduleDomShowAfter: function moduleDomShowAfter(self) {
-                                //内部模块显示之后的回调待续...
-                            },
-
-                            //内部模块隐藏之前
-                            moduleDomHideBefore: function moduleDomHideBefore(self) {
-                                //内部模块隐藏之前的回调待续...
-                            },
-
-                            //内部模块隐藏之后
-                            moduleDomHideAfter: function moduleDomHideAfter(self) {
-                                //内部模块隐藏之后的回调待续...
-                            },
-
-                            //外部容器创建之前
-                            wrapDomCreateBefore: function wrapDomCreateBefore(self) {
-                                //外部容器创建之前的回调待续...
-                            },
-
-                            //外部容器创建之后
-                            wrapDomCreateAfter: function wrapDomCreateAfter(self) {
-                                //外部容器创建之后的回调待续...
-                            },
-
-                            //外部容器渲染之前
-                            wrapDomRenderBefore: function wrapDomRenderBefore(self) {
-                                //外部容器渲染之前的回调待续...
-                            },
-
-                            //外部容器渲染之后
-                            wrapDomRenderAfter: function wrapDomRenderAfter(self) {
-                                //外部容器渲染之后的回调待续...
-                            },
-
-                            //外部容器移除之前
-                            wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {
-                                //外部容器移除之前的回调待续...
-                            },
-
-                            //外部容器移除之后
-                            wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {
-                                //外部容器移除之后的回调待续...
-                            }
-                        },
-                        //配置
-                        config: {
-                            //内部模块的自定义属性
-                            moduleDomCustomAttr: {},
-                            //内部模块插入到外部容器的方式
-                            moduleDomRenderMethod: {
-                                method: 'appendChild', //'appendChild','insertBefore'
-                                child: null
-                            },
-                            moduleDomStyle: "", //内部模块的样式(写法和css相同)
-                            moduleDomIsShow: true, //内部模块是否显示(默认显示)
-                            moduleDomIsClearTimer: true //内部模块是否清除所有定时器(默认清除)
-                        },
-                        //数据
-                        data: {}
-                    },
-                    //外部传入参数
-                    inherit: json
-                });
-                //函数内部自带的属性
-                this.moduleDom = null; //内部的模块
-                this.wrapDom = null; //内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
-                this.moduleDomTimer = {}; //内部模块的定时器存储(假设内部模块有定时器)
-                this.init(); //初始化
+        //子类型
+        var SubType = base.constructorInherit({
+            superType: SuperType,
+            //默认参数(继承超类型)
+            parameter: {
+                //回调
+                callback: {},
+                //配置
+                config: {},
+                //数据
+                data: {}
             }
+        });
 
-            //初始化
-
-
-            _createClass(SuperType, [{
-                key: "init",
-                value: function init() {
-                    this.render();
-                    this.power();
+        //内部模块的创建(覆盖超类型)
+        SubType.prototype.moduleDomCreate = function () {
+            this.moduleDom = base.createElement({
+                style: this.opt.config.moduleStyle,
+                custom: this.opt.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-dialog",
+                    innerHTML: "\n                <div class=\"m-dialog-header\"></div>\n                <div class=\"m-dialog-body\"></div>\n                <div class=\"m-dialog-footer\"></div>                \n            "
                 }
+            });
+        };
 
-                //渲染
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
 
-            }, {
-                key: "render",
-                value: function render() {
-                    this.moduleDomRender();
-                    this.wrapDomRender();
-                }
+        module.exports = SubType;
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 24 }], 24: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base.js');
 
-                //功能(这个方法在其他模块的内部需要被重写)
-
-            }, {
-                key: "power",
-                value: function power() {}
-                //功能待续...
-
-
-                //内部模块的创建(这个方法在其他模块的内部需要被重写)
-
-            }, {
-                key: "moduleDomCreate",
-                value: function moduleDomCreate() {
-                    this.moduleDom = base.createElement({
-                        style: this.opt.config.moduleDomStyle,
-                        custom: this.opt.config.moduleDomCustomAttr,
-                        attribute: {
-                            className: "m-super-type-es6",
-                            innerHTML: "\n                    <div class=\"m-super-type-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
+        //底层构造函数
+        function SuperType(json) {
+            //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
+            this.opt = base.extend({
+                //内部默认参数
+                default: {
+                    //父级
+                    wrap: ".g-page", //这个仅支持传入选择器和原生dom节点
+                    //回调
+                    callback: {
+                        //内部模块创建之前
+                        moduleDomCreateBefore: function moduleDomCreateBefore(self) {
+                            //内部模块创建之前的回调待续...
+                        },
+                        //内部模块创建之后
+                        moduleDomCreateAfter: function moduleDomCreateAfter(self) {
+                            //内部模块创建之后的回调待续...
+                        },
+                        //内部模块渲染之前
+                        moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                            //内部模块渲染之前的回调待续...
+                        },
+                        //内部模块渲染之后
+                        moduleDomRenderAfter: function moduleDomRenderAfter(self) {
+                            //内部模块渲染之后的回调待续...
+                        },
+                        //内部模块移除之前
+                        moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {
+                            //内部模块移除之前的回调待续...
+                        },
+                        //内部模块移除之后
+                        moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {
+                            //内部模块移除之后的回调待续...
+                        },
+                        //内部模块显示之前
+                        moduleDomShowBefore: function moduleDomShowBefore(self) {
+                            //内部模块显示之前的回调待续...
+                        },
+                        //内部模块显示之后
+                        moduleDomShowAfter: function moduleDomShowAfter(self) {
+                            //内部模块显示之后的回调待续...
+                        },
+                        //内部模块隐藏之前
+                        moduleDomHideBefore: function moduleDomHideBefore(self) {
+                            //内部模块隐藏之前的回调待续...
+                        },
+                        //内部模块隐藏之后
+                        moduleDomHideAfter: function moduleDomHideAfter(self) {
+                            //内部模块隐藏之后的回调待续...
+                        },
+                        //外部容器创建之前
+                        wrapDomCreateBefore: function wrapDomCreateBefore(self) {
+                            //外部容器创建之前的回调待续...
+                        },
+                        //外部容器创建之后
+                        wrapDomCreateAfter: function wrapDomCreateAfter(self) {
+                            //外部容器创建之后的回调待续...
+                        },
+                        //外部容器渲染之前
+                        wrapDomRenderBefore: function wrapDomRenderBefore(self) {
+                            //外部容器渲染之前的回调待续...
+                        },
+                        //外部容器渲染之后
+                        wrapDomRenderAfter: function wrapDomRenderAfter(self) {
+                            //外部容器渲染之后的回调待续...
+                        },
+                        //外部容器移除之前
+                        wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {
+                            //外部容器移除之前的回调待续...
+                        },
+                        //外部容器移除之后
+                        wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {
+                            //外部容器移除之后的回调待续...
                         }
-                    });
+                    },
+                    //配置
+                    config: {
+                        //内部模块的自定义属性
+                        moduleDomCustomAttr: {},
+                        //内部模块插入到外部容器的方式
+                        moduleDomRenderMethod: {
+                            method: 'appendChild', //'appendChild','insertBefore'
+                            child: null
+                        },
+                        moduleDomStyle: "", //内部模块的样式(写法和css相同)
+                        moduleDomIsShow: true, //内部模块是否显示(默认显示)
+                        moduleDomIsClearTimer: true //内部模块是否清除所有定时器(默认清除)
+                    },
+                    //数据
+                    data: {}
+                },
+                //外部传入参数
+                inherit: json
+            });
+            //函数内部自带的属性
+            this.moduleDom = null; //内部的模块
+            this.wrapDom = null; //内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+            this.moduleDomTimer = {}; //内部模块的定时器存储(假设内部模块有定时器)
+            this.init(); //初始化
+        }
+
+        //初始化
+        SuperType.prototype.init = function () {
+            this.render();
+            this.power();
+        };
+
+        //渲染
+        SuperType.prototype.render = function () {
+            this.moduleDomRender();
+            this.wrapDomRender();
+        };
+
+        //功能(这个方法在其他模块的内部需要被重写)
+        SuperType.prototype.power = function () {
+            //功能待续...
+        };
+
+        //内部模块的创建(这个方法在其他模块的内部需要被重写)
+        SuperType.prototype.moduleDomCreate = function () {
+            this.moduleDom = base.createElement({
+                style: this.opt.config.moduleDomStyle,
+                custom: this.opt.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-super-type",
+                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
+            });
+        };
 
-                //内部模块的渲染
+        //内部模块的渲染
+        SuperType.prototype.moduleDomRender = function () {
+            var callback = this.opt.callback;
+            callback.moduleDomCreateBefore(this);
+            this.moduleDomCreate();
+            callback.moduleDomCreateAfter(this);
+        };
 
-            }, {
-                key: "moduleDomRender",
-                value: function moduleDomRender() {
-                    var callback = this.opt.callback;
-                    callback.moduleDomCreateBefore(this);
-                    this.moduleDomCreate();
-                    callback.moduleDomCreateAfter(this);
-                }
+        //内部模块的移除
+        SuperType.prototype.moduleDomRemove = function () {
+            var callback = this.opt.callback;
+            callback.moduleDomRemoveBefore(this);
+            if (this.moduleDom.parentNode) {
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+            }
+            this.moduleDomClearTimer();
+            callback.moduleDomRemoveAfter(this);
+        };
 
-                //内部模块的移除
-
-            }, {
-                key: "moduleDomRemove",
-                value: function moduleDomRemove() {
-                    var callback = this.opt.callback;
-                    callback.moduleDomRemoveBefore(this);
-                    if (this.moduleDom.parentNode) {
-                        this.moduleDom.parentNode.removeChild(this.moduleDom);
-                    }
-                    this.moduleDomClearTimer();
-                    callback.moduleDomRemoveAfter(this);
-                }
-
-                //内部模块的定时器清除(假设内部模块有定时器)
-
-            }, {
-                key: "moduleDomClearTimer",
-                value: function moduleDomClearTimer() {
-                    if (this.opt.config.moduleDomIsClearTimer) {
-                        for (var attr in this.moduleDomTimer) {
-                            if (this.moduleDomTimer.hasOwnProperty(attr)) {
-                                clearInterval(this.moduleDomTimer[attr]);
-                                clearTimeout(this.moduleDomTimer[attr]);
-                            }
-                        }
-                    }
-                }
-
-                //内部模块的显示(显示隐藏和是否清除定时器无关)
-
-            }, {
-                key: "moduleDomShow",
-                value: function moduleDomShow() {
-                    var callback = this.opt.callback;
-                    callback.moduleDomShowBefore(this);
-                    if (this.wrapDom) {
-                        this.opt.config.moduleDomIsShow = true;
-                        this.wrapDomRenderMethod();
-                    }
-                    callback.moduleDomShowAfter(this);
-                }
-
-                //内部模块的隐藏(显示隐藏和是否清除定时器无关)
-
-            }, {
-                key: "moduleDomHide",
-                value: function moduleDomHide() {
-                    var callback = this.opt.callback;
-                    callback.moduleDomHideBefore(this);
-                    if (this.moduleDom.parentNode) {
-                        this.moduleDom.parentNode.removeChild(this.moduleDom);
-                        this.opt.config.moduleDomIsShow = false;
-                    }
-                    callback.moduleDomHideAfter(this);
-                }
-
-                //外部容器的创建
-
-            }, {
-                key: "wrapDomCreate",
-                value: function wrapDomCreate() {
-                    this.wrapDom = base.getDomArray({ element: this.opt.wrap })[0];
-                }
-
-                //外部容器的渲染
-
-            }, {
-                key: "wrapDomRender",
-                value: function wrapDomRender() {
-                    var callback = this.opt.callback;
-                    callback.wrapDomCreateBefore(this);
-                    this.wrapDomCreate();
-                    callback.wrapDomCreateAfter(this);
-                    if (this.wrapDom) {
-                        callback.moduleDomRenderBefore(this);
-                        callback.wrapDomRenderBefore(this);
-                        this.wrapDomRenderMethod();
-                        callback.wrapDomRenderAfter(this);
-                        callback.moduleDomRenderAfter(this);
+        //内部模块的定时器清除(假设内部模块有定时器)
+        SuperType.prototype.moduleDomClearTimer = function () {
+            if (this.opt.config.moduleDomIsClearTimer) {
+                for (var attr in this.moduleDomTimer) {
+                    if (this.moduleDomTimer.hasOwnProperty(attr)) {
+                        clearInterval(this.moduleDomTimer[attr]);
+                        clearTimeout(this.moduleDomTimer[attr]);
                     }
                 }
+            }
+        };
 
-                //外部容器的渲染方式
+        //内部模块的显示(显示隐藏和是否清除定时器无关)
+        SuperType.prototype.moduleDomShow = function () {
+            var callback = this.opt.callback;
+            callback.moduleDomShowBefore(this);
+            if (this.wrapDom) {
+                this.opt.config.moduleDomIsShow = true;
+                this.wrapDomRenderMethod();
+            }
+            callback.moduleDomShowAfter(this);
+        };
 
-            }, {
-                key: "wrapDomRenderMethod",
-                value: function wrapDomRenderMethod() {
-                    var config = this.opt.config;
-                    if (config.moduleDomIsShow) {
-                        var renderMethod = config.moduleDomRenderMethod;
-                        if (renderMethod.method == 'insertBefore') {
-                            var dom = base.getDomArray({ element: renderMethod.child })[0];
-                            if (dom) {
-                                this.wrapDom.insertBefore(this.moduleDom, dom);
-                            } else {
-                                this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
-                            }
-                        }
-                        if (renderMethod.method == 'appendChild') {
-                            this.wrapDom.appendChild(this.moduleDom);
-                        }
+        //内部模块的隐藏(显示隐藏和是否清除定时器无关)
+        SuperType.prototype.moduleDomHide = function () {
+            var callback = this.opt.callback;
+            callback.moduleDomHideBefore(this);
+            if (this.moduleDom.parentNode) {
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+                this.opt.config.moduleDomIsShow = false;
+            }
+            callback.moduleDomHideAfter(this);
+        };
+
+        //外部容器的创建
+        SuperType.prototype.wrapDomCreate = function () {
+            this.wrapDom = base.getDomArray({ element: this.opt.wrap })[0];
+        };
+
+        //外部容器的渲染
+        SuperType.prototype.wrapDomRender = function () {
+            var callback = this.opt.callback;
+            callback.wrapDomCreateBefore(this);
+            this.wrapDomCreate();
+            callback.wrapDomCreateAfter(this);
+            if (this.wrapDom) {
+                callback.moduleDomRenderBefore(this);
+                callback.wrapDomRenderBefore(this);
+                this.wrapDomRenderMethod();
+                callback.wrapDomRenderAfter(this);
+                callback.moduleDomRenderAfter(this);
+            }
+        };
+
+        //外部容器的渲染方式
+        SuperType.prototype.wrapDomRenderMethod = function () {
+            var config = this.opt.config;
+            if (config.moduleDomIsShow) {
+                var renderMethod = config.moduleDomRenderMethod;
+                if (renderMethod.method == 'insertBefore') {
+                    var dom = base.getDomArray({ element: renderMethod.child })[0];
+                    if (dom) {
+                        this.wrapDom.insertBefore(this.moduleDom, dom);
+                    } else {
+                        this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
                     }
                 }
-
-                //外部容器的移除
-
-            }, {
-                key: "wrapDomRemove",
-                value: function wrapDomRemove() {
-                    var callback = this.opt.callback;
-                    callback.wrapDomRemoveBefore(this);
-                    //先移除内部的模块
-                    this.moduleDomRemove();
-                    //再移除外部的容器
-                    if (this.wrapDom) {
-                        this.wrapDom.parentNode.removeChild(this.wrapDom);
-                    }
-                    callback.wrapDomRemoveAfter(this);
+                if (renderMethod.method == 'appendChild') {
+                    this.wrapDom.appendChild(this.moduleDom);
                 }
+            }
+        };
 
-                //获取内部模块的整体html结构
+        //外部容器的移除
+        SuperType.prototype.wrapDomRemove = function () {
+            var callback = this.opt.callback;
+            callback.wrapDomRemoveBefore(this);
+            //先移除内部的模块
+            this.moduleDomRemove();
+            //再移除外部的容器
+            if (this.wrapDom) {
+                this.wrapDom.parentNode.removeChild(this.wrapDom);
+            }
+            callback.wrapDomRemoveAfter(this);
+        };
 
-            }, {
-                key: "getModuleDomHtml",
-                value: function getModuleDomHtml() {
-                    return this.moduleDom.outerHTML;
-                }
-            }]);
-
-            return SuperType;
-        }();
+        //获取内部模块的整体html结构
+        SuperType.prototype.getModuleDomHtml = function () {
+            return this.moduleDom.outerHTML;
+        };
 
         module.exports = SuperType;
     }, { "../base/base.js": 1 }] }, {}, [2]);

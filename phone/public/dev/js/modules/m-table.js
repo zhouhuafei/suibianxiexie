@@ -7,7 +7,13 @@ var SuperType = require('../modules/m-super-type.js');
 //子类型
 var SubType = base.constructorInherit({
     superType: SuperType,
+    //默认参数(继承超类型)
     parameter: {
+        //回调
+        callback: {},
+        //配置
+        config: {},
+        //数据
         data: {
             header: [{html: 'undefined-header0'}, {html: 'undefined-header1'}, {html: 'undefined-header2'}],
             body: [[{html: 'undefined-body0-0'}, {html: 'undefined-body0-1'}, {html: 'undefined-body0-2'}], [{html: 'undefined-body1-0'}, {html: 'undefined-body1-1'}, {html: 'undefined-body1-2'}]],
@@ -16,7 +22,7 @@ var SubType = base.constructorInherit({
     }
 });
 
-//内部模块的创建
+//内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDom = base.createElement({
         style: this.opt.config.moduleDomStyle,
@@ -74,6 +80,11 @@ SubType.prototype.moduleDomCreateBody = function () {
 
 SubType.prototype.moduleDomCreateFooter = function () {
     return this.opt.data.footer;
+};
+
+//功能(覆盖超类型)
+SubType.prototype.power = function () {
+    //功能重写待续...
 };
 
 module.exports = SubType;

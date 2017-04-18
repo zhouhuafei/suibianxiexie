@@ -47,17 +47,20 @@
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
+            //默认参数(继承超类型)
             parameter: {
                 //回调
-                callback: {
-                    moduleDomClick: function moduleDomClick() {}
-                },
+                callback: {},
+                //配置
                 config: {
                     showHeight: 200
-                }
+                },
+                //数据
+                data: {}
             }
         });
 
+        //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleDomStyle,
@@ -69,6 +72,7 @@
             });
         };
 
+        //功能(覆盖超类型)
         SubType.prototype.power = function () {
             var self = this;
             this.moduleDom.addEventListener('click', function () {
@@ -83,6 +87,7 @@
                 }
             });
         };
+
         module.exports = SubType;
     }, { "../base/base.js": 1, "../modules/m-super-type.js": 23 }], 3: [function (require, module, exports) {
         //数组去重
