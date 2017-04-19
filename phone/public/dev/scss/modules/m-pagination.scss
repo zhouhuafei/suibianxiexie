@@ -1,24 +1,33 @@
 @import "../config/config.scss";
 
 .m-pagination {
-    $height: 30;
+    $height: 24;
     font-size: px2rem(12);
     padding: px2rem(10) 0;
     height: px2rem($height);
     line-height: px2rem($height);
     display: flex;
     align-items: center;
+    justify-content: center;
     user-select: none;
-    .m-pagination-txt {
-        margin: 0 px2rem(10);
-    }
     .m-pagination-num {
+        margin: 0 px2rem(4);
         height: inherit;
-        .m-pagination-num-select {
+        .g-select {
             height: inherit;
             line-height: inherit;
             box-sizing: border-box;
-            width: px2rem($height * 3);
+            width: px2rem($height * 4);
+            .g-select-icon {
+                width: px2rem($height);
+            }
         }
+    }
+    .m-pagination-btn {
+        width: px2rem($height);
+        text-align: center;
+        margin-left: px2rem(10);
+        border: 1px solid $g-color-border-default;
+        border-radius: px2rem(4);
     }
 }

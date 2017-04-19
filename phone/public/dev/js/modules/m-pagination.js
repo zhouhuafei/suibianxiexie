@@ -37,7 +37,7 @@ SubType.prototype.moduleDomCreate = function () {
             innerHTML: `
                 <div class="m-pagination-txt">第</div>
                 <div class="m-pagination-num">
-                    <div class="g-select m-pagination-num-select">
+                    <div class="g-select">
                         <label class="g-select-label">
                             <select name="" class="g-select-select">
                                 ${this.renderOption()}
@@ -47,8 +47,8 @@ SubType.prototype.moduleDomCreate = function () {
                     </div>
                 </div>
                 <div class="m-pagination-txt">页</div>
-                <a href="javascript:;" class="m-pagination-txt">上一页</a>
-                <a href="javascript:;" class="m-pagination-txt">下一页</a>
+                <a href="javascript:;" class="m-pagination-btn iconfont icon-zuojiantou"></a>
+                <a href="javascript:;" class="m-pagination-btn iconfont icon-youjiantou"></a>
             `
         }
     });
