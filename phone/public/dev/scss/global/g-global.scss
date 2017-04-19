@@ -60,10 +60,17 @@
 .g-button {
     $height: 40;
     width: px2rem(200);
-    text-align: center;
     height: px2rem($height);
-    line-height: px2rem($height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: px2rem(4);
+    .g-button-icon {
+        margin: 0 px2rem(2);
+    }
+    .g-button-txt {
+        margin: 0 px2rem(2);
+    }
     //默认
     &.g-button-default {
         background: $g-color-background-dark;
@@ -81,13 +88,11 @@
     $height: 40;
     width: px2rem(240);
     height: px2rem($height);
-    line-height: px2rem($height);
     background: #ffffff;
     .g-input-label {
         display: block;
         width: inherit;
         height: inherit;
-        line-height: inherit;
         position: relative;
     }
     .g-input-input {
@@ -98,7 +103,6 @@
         width: inherit;
         height: inherit;
         background: inherit;
-        line-height: inherit;
         box-sizing: border-box;
         padding: 0 px2rem(10);
         border: px2rem(1) solid $g-color-border-default;
@@ -116,13 +120,11 @@
     $triangle-margin-top: - $triangle-width / 2;
     width: px2rem($width);
     height: px2rem($height);
-    line-height: px2rem($height);
     background: #ffffff;
     .g-select-label {
         display: block;
         width: inherit;
         height: inherit;
-        line-height: inherit;
         position: relative;
         .g-select-select {
             outline: none;
@@ -130,7 +132,6 @@
             font-size: inherit;
             width: inherit;
             height: inherit;
-            line-height: inherit;
             background: inherit;
             box-sizing: border-box;
             -webkit-appearance: none;
@@ -142,10 +143,12 @@
             border: px2rem(1) solid $g-color-border-default;
         }
         .g-select-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: inherit;
             color: $g-color-font-dark;
             width: px2rem($height);
-            text-align: center;
             height: inherit;
             background: $g-color-background-default;
             position: absolute;
@@ -188,17 +191,15 @@
 
 //单选框
 .g-radio {
-    $width-height:20.4;
+    $width-height: 20.4;
     width: px2rem($width-height);
     text-align: center;
     height: px2rem($width-height);
-    line-height: px2rem($width-height);
     background: #ffffff;
     .g-radio-label {
         display: block;
         width: inherit;
         height: inherit;
-        line-height: inherit;
         position: relative;
     }
     .g-radio-icon {
@@ -232,17 +233,15 @@
 
 //多选框
 .g-checkbox {
-    $width-height:20;
+    $width-height: 20;
     width: px2rem($width-height);
     text-align: center;
     height: px2rem($width-height);
-    line-height: px2rem($width-height);
     background: #ffffff;
     .g-checkbox-label {
         display: block;
         width: inherit;
         height: inherit;
-        line-height: inherit;
         position: relative;
     }
     .g-checkbox-icon {

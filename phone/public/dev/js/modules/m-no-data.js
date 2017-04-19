@@ -36,7 +36,10 @@ SubType.prototype.moduleDomCreate = function () {
             innerHTML: `
                 <div class="m-no-data-icon iconfont ${data.icon}"></div>
                 <div class="m-no-data-txt">${data.txt}</div>
-                <a class="m-no-data-btn g-button g-button-highlight" href="${data.btn.href}">${data.btn.txt}</a>
+                <a class="m-no-data-btn g-button g-button-highlight" href="${data.btn.href}">
+                    <div class="g-button-icon iconfont"></div>
+                    <div class="g-button-txt">${data.btn.txt}</div>
+                </a>
             `
         }
     });

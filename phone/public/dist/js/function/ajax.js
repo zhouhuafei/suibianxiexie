@@ -63,7 +63,8 @@
                     config: {
                         //ajax的配置
                         ajax: {
-                            isShowLoading: true },
+                            isShowLoading: true //是否显示loading
+                        },
                         //loading的配置
                         loading: {
                             config: {

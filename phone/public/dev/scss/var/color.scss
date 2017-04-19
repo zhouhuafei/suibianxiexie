@@ -2,16 +2,19 @@
 $g-color-font-default: rgba(0, 0, 0, 0.8); //颜色-默认
 $g-color-font-highlight: #0089ff; //颜色-高亮
 $g-color-font-dark: #bfbfbf; //颜色-黑暗
+$g-color-font-disable: #bfbfbf; //颜色-禁用
 
 //背景
 $g-color-background-default: #f5f5f5; //颜色-默认
 $g-color-background-highlight: #0089ff; //颜色-高亮
 $g-color-background-dark: #bbbbbb; //颜色-黑暗
+$g-color-font-disable: #bfbfbf; //颜色-禁用
 
 //边框
 $g-color-border-default: #e6e7ed; //颜色-默认
 $g-color-border-highlight: #0089ff; //颜色-高亮
 $g-color-border-dark: #e6e7ed; //颜色-黑暗
+$g-color-font-disable: #bfbfbf; //颜色-禁用
 
 //验证
 $g-color-validate-success: #1fce69; //颜色-成功

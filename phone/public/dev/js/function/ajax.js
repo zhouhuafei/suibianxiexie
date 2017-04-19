@@ -21,13 +21,13 @@ function Ajax(json) {
                 },
                 //超时
                 timeout: function () {
-                },
+                }
             },
             //配置
             config: {
                 //ajax的配置
                 ajax: {
-                    isShowLoading: true,//是否显示loading
+                    isShowLoading: true//是否显示loading
                 },
                 //loading的配置
                 loading: {
