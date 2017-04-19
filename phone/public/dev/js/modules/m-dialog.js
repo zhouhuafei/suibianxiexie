@@ -10,9 +10,26 @@ var SubType = base.constructorInherit({
     //默认参数(继承超类型)
     parameter: {
         //回调
-        callback: {},
+        callback: {
+            //确认
+            confirm:function(){},
+            //取消
+            cancel:function(){},
+            //关闭
+            close:function(){}
+        },
         //配置
-        config: {},
+        config: {
+            //提示框
+            alert:{
+
+            },
+            //确认框
+            confirm:{
+                //点击确认是否关闭
+                
+            }
+        },
         //数据
         data: {}
     }
@@ -24,11 +41,14 @@ SubType.prototype.moduleDomCreate = function () {
         style: this.opt.config.moduleStyle,
         custom: this.opt.config.moduleDomCustomAttr,
         attribute: {
-            className: `m-dialog`,
+            className: `m-dialog m-dialog-alert m-dialog-center`,
             innerHTML: `
-                <div class="m-dialog-header"></div>
-                <div class="m-dialog-body"></div>
-                <div class="m-dialog-footer"></div>                
+                <div class="m-dialog-wrap">
+                    <div class="m-dialog-header"></div>
+                    <div class="m-dialog-body"></div>
+                    <div class="m-dialog-footer"></div>   
+                    <div class="m-dialog-close"></div>     
+                </div>
             `
         }
     });

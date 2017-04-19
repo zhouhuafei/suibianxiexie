@@ -1,5 +1,41 @@
 @import "../config/config.scss";
 
 .m-dialog {
+    position: relative;
+    z-index: 505;
+    .m-dialog-wrap {
+        position: relative;
+        .m-dialog-header {
 
+        }
+        .m-dialog-body {
+
+        }
+        .m-dialog-footer {
+
+        }
+        .m-dialog-close {
+            position: absolute;
+        }
+    }
+    &.m-dialog-alert {
+
+    }
+    &.m-dialog-confirm {
+
+    }
+    &.m-dialog-center {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    &.m-dialog-bottom {
+        position: fixed;
+        bottom: 0;
+    }
+    &.m-dialog-top {
+        position: fixed;
+        top: 0;
+    }
 }

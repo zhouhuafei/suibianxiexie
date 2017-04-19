@@ -50,9 +50,24 @@
             //默认参数(继承超类型)
             parameter: {
                 //回调
-                callback: {},
+                callback: {
+                    //确认
+                    confirm: function confirm() {},
+                    //取消
+                    cancel: function cancel() {},
+                    //关闭
+                    close: function close() {}
+                },
                 //配置
-                config: {},
+                config: {
+                    //提示框
+                    alert: {},
+                    //确认框
+                    confirm: {
+                        //点击确认是否关闭
+                        //点击取消
+                    }
+                },
                 //数据
                 data: {}
             }
@@ -64,8 +79,8 @@
                 style: this.opt.config.moduleStyle,
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
-                    className: "m-dialog",
-                    innerHTML: "\n                <div class=\"m-dialog-header\"></div>\n                <div class=\"m-dialog-body\"></div>\n                <div class=\"m-dialog-footer\"></div>                \n            "
+                    className: "m-dialog m-dialog-alert m-dialog-center",
+                    innerHTML: "\n                <div class=\"m-dialog-wrap\">\n                    <div class=\"m-dialog-header\"></div>\n                    <div class=\"m-dialog-body\"></div>\n                    <div class=\"m-dialog-footer\"></div>   \n                    <div class=\"m-dialog-close\"></div>     \n                </div>\n            "
                 }
             });
         };
