@@ -44,45 +44,48 @@
         //超类型(子类型继承的对象)
         var SuperType = require('../modules/m-super-type.js');
 
+        //默认数据
+        var defaultData = {
+            dataNowNum: 10, //当前页的数据条数
+            dataAllNum: 100, //所有数据的总条数
+            pageNowNum: 1, //当前页码
+            pageAllNum: null //总页码
+        };
+        defaultData.pageAllNum = Math.ceil(defaultData.dataAllNum / defaultData.dataNowNum);
+
         //子类型
         var SubType = base.constructorInherit({
             superType: SuperType,
             //默认参数(继承超类型)
             parameter: {
                 //回调
-                callback: {
-                    //确认
-                    confirm: function confirm() {},
-                    //取消
-                    cancel: function cancel() {},
-                    //关闭
-                    close: function close() {}
-                },
+                callback: {},
                 //配置
-                config: {
-                    //提示框
-                    alert: {},
-                    //确认框
-                    confirm: {
-                        //点击确认是否关闭
-
-                    }
-                },
+                config: {},
                 //数据
-                data: {}
+                data: defaultData
             }
         });
 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleStyle,
+                style: this.opt.config.moduleDomStyle,
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
-                    className: "m-dialog m-dialog-alert m-dialog-center",
-                    innerHTML: "\n                <div class=\"m-dialog-wrap\">\n                    <div class=\"m-dialog-header\"></div>\n                    <div class=\"m-dialog-body\"></div>\n                    <div class=\"m-dialog-footer\"></div>   \n                    <div class=\"m-dialog-close\"></div>     \n                </div>\n            "
+                    className: "m-pagination",
+                    innerHTML: "\n                <div class=\"m-pagination-txt\">\u7B2C</div>\n                <div class=\"m-pagination-num\">\n                    <div class=\"g-select m-pagination-num-select\">\n                        <label class=\"g-select-label\">\n                            <select name=\"\" class=\"g-select-select\">\n                                " + this.renderOption() + "\n                            </select>\n                            <span class=\"g-select-icon iconfont icon-select\"></span>\n                        </label>\n                    </div>\n                </div>\n                <div class=\"m-pagination-txt\">\u9875</div>\n                <a href=\"javascript:;\" class=\"m-pagination-txt\">\u4E0A\u4E00\u9875</a>\n                <a href=\"javascript:;\" class=\"m-pagination-txt\">\u4E0B\u4E00\u9875</a>\n            "
                 }
             });
+        };
+
+        //渲染第几页里面的页码
+        SubType.prototype.renderOption = function () {
+            var html = "";
+            for (var i = 0; i < this.opt.data.pageAllNum; i++) {
+                html += "<option value=\"" + (i + 1) + "\">" + (i + 1) + "</option>";
+            }
+            return html;
         };
 
         //功能(覆盖超类型)

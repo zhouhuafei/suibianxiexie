@@ -74,6 +74,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 }
             });
         })();
+        //分页测试
+        (function () {
+            var Pagination = require('../modules/m-pagination.js');
+            new Pagination({ wrap: '.page-pagination' });
+        })();
         //没有数据
         (function () {
             var NoData = require('../modules/m-no-data.js');
@@ -195,7 +200,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         })();
         //每个页面都要用到的js
         require('../common/common.js');
-    }, { "../base/base.js": 1, "../common/common.js": 3, "../modules/m-go-top.js": 27, "../modules/m-loading.js": 29, "../modules/m-mask.js": 30, "../modules/m-no-data.js": 31, "../modules/m-radio-switch.js": 32, "../modules/m-star.js": 33, "../modules/m-sub-type-es6.js": 34, "../modules/m-sub-type.js": 35, "../modules/m-super-type-es6.js": 36, "../modules/m-super-type.js": 37, "../modules/m-table.js": 38, "../modules/m-validate-form.js": 39 }], 3: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../common/common.js": 3, "../modules/m-go-top.js": 27, "../modules/m-loading.js": 29, "../modules/m-mask.js": 30, "../modules/m-no-data.js": 31, "../modules/m-pagination.js": 32, "../modules/m-radio-switch.js": 33, "../modules/m-star.js": 34, "../modules/m-sub-type-es6.js": 35, "../modules/m-sub-type.js": 36, "../modules/m-super-type-es6.js": 37, "../modules/m-super-type.js": 38, "../modules/m-table.js": 39, "../modules/m-validate-form.js": 40 }], 3: [function (require, module, exports) {
         //版权
         (function () {
             var Copyright = require('../modules/m-copyright.js');
@@ -1028,7 +1033,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 26: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 26: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1068,7 +1073,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 27: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 27: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1120,7 +1125,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 28: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 28: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1292,7 +1297,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-mask.js": 30, "../modules/m-super-type.js": 37 }], 30: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-mask.js": 30, "../modules/m-super-type.js": 38 }], 30: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1349,7 +1354,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 31: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 31: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1396,7 +1401,64 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 32: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 32: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base.js');
+
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type.js');
+
+        //默认数据
+        var defaultData = {
+            dataNowNum: 10, //当前页的数据条数
+            dataAllNum: 100, //所有数据的总条数
+            pageNowNum: 1, //当前页码
+            pageAllNum: null //总页码
+        };
+        defaultData.pageAllNum = Math.ceil(defaultData.dataAllNum / defaultData.dataNowNum);
+
+        //子类型
+        var SubType = base.constructorInherit({
+            superType: SuperType,
+            //默认参数(继承超类型)
+            parameter: {
+                //回调
+                callback: {},
+                //配置
+                config: {},
+                //数据
+                data: defaultData
+            }
+        });
+
+        //内部模块的创建(覆盖超类型)
+        SubType.prototype.moduleDomCreate = function () {
+            this.moduleDom = base.createElement({
+                style: this.opt.config.moduleDomStyle,
+                custom: this.opt.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-pagination",
+                    innerHTML: "\n                <div class=\"m-pagination-txt\">\u7B2C</div>\n                <div class=\"m-pagination-num\">\n                    <div class=\"g-select m-pagination-num-select\">\n                        <label class=\"g-select-label\">\n                            <select name=\"\" class=\"g-select-select\">\n                                " + this.renderOption() + "\n                            </select>\n                            <span class=\"g-select-icon iconfont icon-select\"></span>\n                        </label>\n                    </div>\n                </div>\n                <div class=\"m-pagination-txt\">\u9875</div>\n                <a href=\"javascript:;\" class=\"m-pagination-txt\">\u4E0A\u4E00\u9875</a>\n                <a href=\"javascript:;\" class=\"m-pagination-txt\">\u4E0B\u4E00\u9875</a>\n            "
+                }
+            });
+        };
+
+        //渲染第几页里面的页码
+        SubType.prototype.renderOption = function () {
+            var html = "";
+            for (var i = 0; i < this.opt.data.pageAllNum; i++) {
+                html += "<option value=\"" + (i + 1) + "\">" + (i + 1) + "</option>";
+            }
+            return html;
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
+
+        module.exports = SubType;
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 33: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1486,7 +1548,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 33: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 34: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1557,7 +1619,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 34: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 35: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1645,7 +1707,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }(SuperType);
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type-es6.js": 36 }], 35: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type-es6.js": 37 }], 36: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1684,7 +1746,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 36: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 37: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1995,7 +2057,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }();
 
         module.exports = SuperType;
-    }, { "../base/base.js": 1 }], 37: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 38: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -2240,7 +2302,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SuperType;
-    }, { "../base/base.js": 1 }], 38: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 39: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -2307,7 +2369,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 37 }], 39: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 40: [function (require, module, exports) {
         var base = require('../base/base.js'); //底层方法
         var validate = require('../function/validate'); //表单验证
 

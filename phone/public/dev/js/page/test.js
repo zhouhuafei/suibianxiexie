@@ -26,6 +26,11 @@
         }
     });
 })();
+//分页测试
+(function () {
+    var Pagination = require('../modules/m-pagination.js');
+    new Pagination({wrap: '.page-pagination'});
+})();
 //没有数据
 (function () {
     var NoData = require('../modules/m-no-data.js');

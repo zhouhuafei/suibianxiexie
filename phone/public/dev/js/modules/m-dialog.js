@@ -27,7 +27,7 @@ var SubType = base.constructorInherit({
             //确认框
             confirm:{
                 //点击确认是否关闭
-                
+
             }
         },
         //数据

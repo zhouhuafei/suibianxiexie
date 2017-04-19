@@ -1,16 +1,15 @@
 @import "../base/base.scss";
-
+//分页测试
+@import "../modules/m-pagination";
 //没有数据
 @import "../modules/m-no-data.scss";
-
 //加载中
 @import "../modules/m-loading.scss";
-
 //返回顶部
 @import "../modules/m-go-top.scss";
-
 //单选开关
 @import "../modules/m-radio-switch.scss";
+
 .page-radio-switch {
     display: flex;
     justify-content: center;
@@ -32,7 +31,7 @@
 
 //星评
 @import "../modules/m-star.scss";
-.page-star{
+.page-star {
     display: flex;
     justify-content: center;
 }
