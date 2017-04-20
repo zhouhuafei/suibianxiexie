@@ -138,7 +138,7 @@
                     oldChecked.previousElementSibling.selected = true;
                 }
                 this.nextPageAble();
-                this.opt.callback.prevPage();
+                this.opt.callback.prevPage(this);
             }
             if (data.pageNowNum == 1) {
                 this.prevPageDisable();
@@ -157,7 +157,7 @@
                     oldChecked.nextElementSibling.selected = true;
                 }
                 this.prevPageAble();
-                this.opt.callback.nextPage();
+                this.opt.callback.nextPage(this);
             }
             if (data.pageNowNum == data.pageAllNum) {
                 this.nextPageDisable();
@@ -178,7 +178,7 @@
             if (data.pageNowNum == data.pageAllNum) {
                 this.nextPageDisable();
             }
-            this.opt.callback.selectPage();
+            this.opt.callback.selectPage(this);
             console.log(data);
         };
 
