@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     user-select: none;
-    .m-pagination-num {
+    .m-pagination-now-page {
         margin: 0 px2rem(4);
         height: inherit;
         .g-select {
@@ -29,7 +29,8 @@
         height: inherit;
         width: px2rem($height);
         margin-left: px2rem(10);
-        border: 1px solid $g-color-border-default;
-        border-radius: px2rem(4);
+        &.m-pagination-btn-inactive{
+            color: $g-color-font-disable;
+        }
     }
 }

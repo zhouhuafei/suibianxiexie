@@ -46,24 +46,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
         module.exports = base;
     }, { "../function/array-remove-repeat.js": 4, "../function/constructor-inherit.js": 5, "../function/cookie.js": 6, "../function/create-element.js": 7, "../function/extend.js": 8, "../function/fill-zero.js": 9, "../function/get-dom-array.js": 10, "../function/get-parent.js": 11, "../function/html-to-dom.js": 12, "../function/obj-remove-quote.js": 13, "../function/obj-to-array.js": 14, "../function/offset.js": 15, "../function/scroll-to.js": 16, "../function/seconds-to-time.js": 17, "../function/select.js": 18, "../function/str-limit.js": 19, "../function/time-count-down.js": 20, "../function/user-agent": 21, "../function/when-scroll-bottom.js": 23, "../function/whether-disable-scroll.js": 24 }], 2: [function (require, module, exports) {
-        //版权
-        (function () {
-            var Copyright = require('../modules/m-copyright.js');
-            new Copyright();
-        })();
-
-        //底部导航
-        (function () {
-            var Footer = require('../modules/m-footer-nav.js');
-            new Footer();
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load.js');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright.js": 25, "../modules/m-footer-nav.js": 26, "../modules/m-lazy-load.js": 28 }], 3: [function (require, module, exports) {
         //base函数测试
         (function () {
             var base = require('../base/base.js');
@@ -218,7 +200,25 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         })();
         //每个页面都要用到的js
         require('../common/common.js');
-    }, { "../base/base.js": 1, "../common/common.js": 2, "../modules/m-go-top.js": 27, "../modules/m-loading.js": 29, "../modules/m-mask.js": 30, "../modules/m-no-data.js": 31, "../modules/m-pagination.js": 32, "../modules/m-radio-switch.js": 33, "../modules/m-star.js": 34, "../modules/m-sub-type-es6.js": 35, "../modules/m-sub-type.js": 36, "../modules/m-super-type-es6.js": 37, "../modules/m-super-type.js": 38, "../modules/m-table.js": 39, "../modules/m-validate-form.js": 40 }], 4: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../common/common.js": 3, "../modules/m-go-top.js": 27, "../modules/m-loading.js": 29, "../modules/m-mask.js": 30, "../modules/m-no-data.js": 31, "../modules/m-pagination.js": 32, "../modules/m-radio-switch.js": 33, "../modules/m-star.js": 34, "../modules/m-sub-type-es6.js": 35, "../modules/m-sub-type.js": 36, "../modules/m-super-type-es6.js": 37, "../modules/m-super-type.js": 38, "../modules/m-table.js": 39, "../modules/m-validate-form.js": 40 }], 3: [function (require, module, exports) {
+        //版权
+        (function () {
+            var Copyright = require('../modules/m-copyright.js');
+            new Copyright();
+        })();
+
+        //底部导航
+        (function () {
+            var Footer = require('../modules/m-footer-nav.js');
+            new Footer();
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load.js');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright.js": 25, "../modules/m-footer-nav.js": 26, "../modules/m-lazy-load.js": 28 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -1423,7 +1423,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             //默认参数(继承超类型)
             parameter: {
                 //回调
-                callback: {},
+                callback: {
+                    //上一页的回调
+                    prevPage: function prevPage() {},
+                    //下一页的回调
+                    nextPage: function nextPage() {},
+                    //选择某一页的回调
+                    selectPage: function selectPage() {}
+                },
                 //配置
                 config: {},
                 //数据
@@ -1438,9 +1445,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-pagination",
-                    innerHTML: "\n                <div class=\"m-pagination-txt\">\u7B2C</div>\n                <div class=\"m-pagination-num\">\n                    <div class=\"g-select\">\n                        <label class=\"g-select-label\">\n                            <select name=\"\" class=\"g-select-select\">\n                                " + this.renderOption() + "\n                            </select>\n                            <span class=\"g-select-icon iconfont icon-select\"></span>\n                        </label>\n                    </div>\n                </div>\n                <div class=\"m-pagination-txt\">\u9875</div>\n                <a href=\"javascript:;\" class=\"m-pagination-btn iconfont icon-zuojiantou\"></a>\n                <a href=\"javascript:;\" class=\"m-pagination-btn iconfont icon-youjiantou\"></a>\n            "
+                    innerHTML: "\n                <div class=\"m-pagination-txt\">\u7B2C</div>\n                <div class=\"m-pagination-now-page\">\n                    <div class=\"g-select\">\n                        <label class=\"g-select-label\">\n                            <select name=\"\" class=\"g-select-select\">\n                                " + this.renderOption() + "\n                            </select>\n                            <span class=\"g-select-icon iconfont icon-select\"></span>\n                        </label>\n                    </div>\n                </div>\n                <div class=\"m-pagination-txt\">\u9875</div>\n                <a href=\"javascript:;\" class=\"m-pagination-btn m-pagination-btn-inactive iconfont icon-zuojiantou\"></a>\n                <a href=\"javascript:;\" class=\"m-pagination-btn iconfont icon-youjiantou\"></a>\n            "
                 }
             });
+            this.prevDom = this.moduleDom.querySelectorAll('.m-pagination-btn')[0]; //上一页的按钮
+            this.nextDom = this.moduleDom.querySelectorAll('.m-pagination-btn')[1]; //下一页的按钮
+            this.btnInactiveClass = 'm-pagination-btn-inactive'; //上一页和下一页的禁用状态
+            this.selectDom = this.moduleDom.querySelector('.m-pagination-now-page .g-select-select'); //选择某一页的按钮
         };
 
         //渲染第几页里面的页码
@@ -1454,7 +1465,105 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //功能(覆盖超类型)
         SubType.prototype.power = function () {
-            //功能重写待续...
+            var self = this;
+            var data = this.opt.data;
+            if (data.pageNowNum == 1) {
+                this.prevPageDisable();
+            }
+            if (data.pageNowNum == data.pageAllNum) {
+                this.nextPageDisable();
+            }
+
+            this.prevDom.addEventListener('click', function () {
+                if (!this.classList.contains(self.btnInactiveClass)) {
+                    self.prevPage();
+                }
+            });
+
+            this.nextDom.addEventListener('click', function () {
+                if (!this.classList.contains(self.btnInactiveClass)) {
+                    self.nextPage();
+                }
+            });
+
+            this.selectDom.addEventListener('change', function () {
+                self.selectPage();
+            });
+        };
+
+        //上一页
+        SubType.prototype.prevPage = function () {
+            var data = this.opt.data;
+            if (data.pageNowNum > 1) {
+                data.pageNowNum--;
+                var oldChecked = this.selectDom.querySelector('option:checked');
+                if (oldChecked.previousElementSibling) {
+                    oldChecked.selected = false;
+                    oldChecked.previousElementSibling.selected = true;
+                }
+                this.nextPageAble();
+                this.opt.callback.prevPage();
+            }
+            if (data.pageNowNum == 1) {
+                this.prevPageDisable();
+            }
+            console.log(data);
+        };
+
+        //下一页
+        SubType.prototype.nextPage = function () {
+            var data = this.opt.data;
+            if (data.pageNowNum < data.pageAllNum) {
+                data.pageNowNum++;
+                var oldChecked = this.selectDom.querySelector('option:checked');
+                if (oldChecked.nextElementSibling) {
+                    oldChecked.selected = false;
+                    oldChecked.nextElementSibling.selected = true;
+                }
+                this.prevPageAble();
+                this.opt.callback.nextPage();
+            }
+            if (data.pageNowNum == data.pageAllNum) {
+                this.nextPageDisable();
+            }
+            console.log(data);
+        };
+
+        //选择第几页
+        SubType.prototype.selectPage = function () {
+            var data = this.opt.data;
+            console.log(this.selectDom);
+            data.pageNowNum = this.selectDom.value;
+            this.nextPageAble();
+            this.prevPageAble();
+            if (data.pageNowNum == 1) {
+                this.prevPageDisable();
+            }
+            if (data.pageNowNum == data.pageAllNum) {
+                this.nextPageDisable();
+            }
+            this.opt.callback.selectPage();
+            console.log(data);
+        };
+
+        //上一页禁用
+        SubType.prototype.prevPageDisable = function () {
+            this.prevDom.classList.add(this.btnInactiveClass);
+        };
+
+        //上一页启用
+        SubType.prototype.prevPageAble = function () {
+            this.prevDom.classList.remove(this.btnInactiveClass);
+        };
+
+        //下一页禁用
+        SubType.prototype.nextPageDisable = function () {
+            this.nextDom.classList.add(this.btnInactiveClass);
+        };
+
+        //下一页启用
+        SubType.prototype.nextPageAble = function () {
+            this.nextDom.classList.remove(this.btnInactiveClass);
         };
 
         module.exports = SubType;
@@ -2484,4 +2593,4 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = ValidateInput;
-    }, { "../base/base.js": 1, "../function/validate": 22 }] }, {}, [3]);
+    }, { "../base/base.js": 1, "../function/validate": 22 }] }, {}, [2]);
