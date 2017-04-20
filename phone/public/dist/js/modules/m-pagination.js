@@ -137,7 +137,7 @@
                     oldChecked.selected = false;
                     oldChecked.previousElementSibling.selected = true;
                 }
-                this.nextPageAble();
+                this.nextPageEnable();
                 this.opt.callback.prevPage(this);
             }
             if (data.pageNowNum == 1) {
@@ -156,7 +156,7 @@
                     oldChecked.selected = false;
                     oldChecked.nextElementSibling.selected = true;
                 }
-                this.prevPageAble();
+                this.prevPageEnable();
                 this.opt.callback.nextPage(this);
             }
             if (data.pageNowNum == data.pageAllNum) {
@@ -168,10 +168,9 @@
         //选择第几页
         SubType.prototype.selectPage = function () {
             var data = this.opt.data;
-            console.log(this.selectDom);
             data.pageNowNum = this.selectDom.value;
-            this.nextPageAble();
-            this.prevPageAble();
+            this.nextPageEnable();
+            this.prevPageEnable();
             if (data.pageNowNum == 1) {
                 this.prevPageDisable();
             }
@@ -188,7 +187,7 @@
         };
 
         //上一页启用
-        SubType.prototype.prevPageAble = function () {
+        SubType.prototype.prevPageEnable = function () {
             this.prevDom.classList.remove(this.btnInactiveClass);
         };
 
@@ -198,7 +197,7 @@
         };
 
         //下一页启用
-        SubType.prototype.nextPageAble = function () {
+        SubType.prototype.nextPageEnable = function () {
             this.nextDom.classList.remove(this.btnInactiveClass);
         };
 
