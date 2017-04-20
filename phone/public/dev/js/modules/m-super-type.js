@@ -135,6 +135,7 @@ SuperType.prototype.moduleDomCreate = function () {
 
 //内部模块的渲染
 SuperType.prototype.moduleDomRender = function () {
+    this.moduleDomRemove();
     var callback = this.opt.callback;
     callback.moduleDomCreateBefore(this);
     this.moduleDomCreate();
@@ -145,7 +146,7 @@ SuperType.prototype.moduleDomRender = function () {
 SuperType.prototype.moduleDomRemove = function () {
     var callback = this.opt.callback;
     callback.moduleDomRemoveBefore(this);
-    if (this.moduleDom.parentNode) {
+    if (this.moduleDom&&this.moduleDom.parentNode) {
         this.moduleDom.parentNode.removeChild(this.moduleDom);
     }
     this.moduleDomClearTimer();

@@ -992,6 +992,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }, {
                 key: "moduleDomRender",
                 value: function moduleDomRender() {
+                    this.moduleDomRemove();
                     var callback = this.opt.callback;
                     callback.moduleDomCreateBefore(this);
                     this.moduleDomCreate();
@@ -1005,7 +1006,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 value: function moduleDomRemove() {
                     var callback = this.opt.callback;
                     callback.moduleDomRemoveBefore(this);
-                    if (this.moduleDom.parentNode) {
+                    if (this.moduleDom && this.moduleDom.parentNode) {
                         this.moduleDom.parentNode.removeChild(this.moduleDom);
                     }
                     this.moduleDomClearTimer();

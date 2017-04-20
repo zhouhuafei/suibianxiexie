@@ -212,6 +212,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }, {
                 key: "moduleDomRender",
                 value: function moduleDomRender() {
+                    this.moduleDomRemove();
                     var callback = this.opt.callback;
                     callback.moduleDomCreateBefore(this);
                     this.moduleDomCreate();
@@ -225,7 +226,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 value: function moduleDomRemove() {
                     var callback = this.opt.callback;
                     callback.moduleDomRemoveBefore(this);
-                    if (this.moduleDom.parentNode) {
+                    if (this.moduleDom && this.moduleDom.parentNode) {
                         this.moduleDom.parentNode.removeChild(this.moduleDom);
                     }
                     this.moduleDomClearTimer();

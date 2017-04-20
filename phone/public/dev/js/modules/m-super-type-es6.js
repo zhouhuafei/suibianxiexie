@@ -136,6 +136,7 @@ class SuperType {
 
     //内部模块的渲染
     moduleDomRender() {
+        this.moduleDomRemove();
         var callback = this.opt.callback;
         callback.moduleDomCreateBefore(this);
         this.moduleDomCreate();
@@ -146,7 +147,7 @@ class SuperType {
     moduleDomRemove() {
         var callback = this.opt.callback;
         callback.moduleDomRemoveBefore(this);
-        if (this.moduleDom.parentNode) {
+        if (this.moduleDom&&this.moduleDom.parentNode) {
             this.moduleDom.parentNode.removeChild(this.moduleDom);
         }
         this.moduleDomClearTimer();
