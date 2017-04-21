@@ -56,7 +56,7 @@
                 //数据
                 data: {
                     header: [{ html: 'undefined-header0' }, { html: 'undefined-header1' }, { html: 'undefined-header2' }],
-                    body: [[{ html: 'undefined-body0-0' }, { html: 'undefined-body0-1' }, { html: 'undefined-body0-2' }], [{ html: 'undefined-body1-0' }, { html: 'undefined-body1-1' }, { html: 'undefined-body1-2' }]],
+                    body: [[{ html: 'undefined-body0-0' }, { html: 'undefined-body0-1' }, { html: 'undefined-body0-2' }] /*, [{html: 'undefined-body1-0'}, {html: 'undefined-body1-1'}, {html: 'undefined-body1-2'}]*/],
                     footer: ''
                 }
             }
