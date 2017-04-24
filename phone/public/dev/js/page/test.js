@@ -26,6 +26,12 @@
         }
     });
 })();
+//弹窗测试
+(function(){
+    var Dialog = require('../modules/m-dialog.js');
+    var dialog=new Dialog();
+    dialog.moduleDomShow();
+})();
 //分页测试
 (function () {
     var Pagination = require('../modules/m-pagination.js');

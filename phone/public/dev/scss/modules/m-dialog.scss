@@ -3,39 +3,72 @@
 .m-dialog {
     position: relative;
     z-index: 505;
-    .m-dialog-wrap {
-        position: relative;
-        .m-dialog-header {
-
-        }
-        .m-dialog-body {
-
-        }
-        .m-dialog-footer {
-
-        }
-        .m-dialog-close {
-            position: absolute;
-        }
-    }
     &.m-dialog-alert {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: px2rem(240);
+        padding: px2rem(20);
+        border-radius: px2rem(4);
+        box-sizing: border-box;
+        background: rgba(0, 0, 0, 0.6);
+        .m-dialog-alert-icon {
+            $width-height: 34;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: px2rem($width-height);
+            height: px2rem($width-height);
+            font-size: px2rem($width-height);
+            margin-right: px2rem(10);
+            color: $g-color-validate-fail;
+            &.icon-chenggong {
+                color: $g-color-validate-success;
+            }
+        }
+        .m-dialog-alert-txt {
+            color: #fff;
+            line-height: 1.2;
+        }
 
     }
     &.m-dialog-confirm {
+        .m-dialog-wrap {
+            position: relative;
+            .m-dialog-header {
+                
+            }
+            .m-dialog-body {
 
+            }
+            .m-dialog-footer {
+
+            }
+            .m-dialog-close {
+                position: absolute;
+            }
+        }
     }
     &.m-dialog-center {
         position: fixed;
-        left: 50%;
         top: 50%;
+        left: 50%;
         transform: translate(-50%, -50%);
     }
     &.m-dialog-bottom {
+        width: 100%;
+        border-radius: 0;
         position: fixed;
         bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
     }
     &.m-dialog-top {
+        width: 100%;
+        border-radius: 0;
         position: fixed;
         top: 0;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }

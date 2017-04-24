@@ -60,12 +60,37 @@
                 },
                 //配置
                 config: {
+                    /*
+                     * 弹窗类型
+                     * `alert`  提示信息类型
+                     * `confirm`    确认框类型
+                     * */
+                    moduleDomType: "alert", //默认是提示框
+                    /*
+                     * 弹窗位置
+                     * `center` 居中
+                     * `bottom` 居下
+                     * `top` 居上
+                     * */
+                    moduleDomPosition: "center", //默认居中
+                    moduleDomIsShow: false, //默认不显示
                     //提示框
-                    alert: {},
+                    alert: {
+                        position: "",
+                        isShowIcon: true,
+                        iconClass: "icon-chenggong",
+                        content: "\u6210\u529F"
+                    },
                     //确认框
                     confirm: {
-                        //点击确认是否关闭
-
+                        //点击确认是否关闭弹窗
+                        isShowDialogHeader: true,
+                        isShowDialogFooter: true,
+                        isShowCloseBtn: true,
+                        isShowConfirmBtn: true,
+                        isShowCancelBtn: true,
+                        isCustom: false, //是否自定义
+                        isShowIcon: true
                     }
                 },
                 //数据
@@ -75,14 +100,41 @@
 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
+            var config = this.opt.config;
+            this.moduleDomType = "m-dialog-" + config.moduleDomType; //弹窗类型
+            this.moduleDomPosition = "m-dialog-" + config.moduleDomPosition; //弹窗位置
+            //弹窗结构
+            var html = "\n        " + this.renderAlert() + "\n        " + this.renderConfirm() + "\n    ";
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleStyle,
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
-                    className: "m-dialog m-dialog-alert m-dialog-center",
-                    innerHTML: "\n                <div class=\"m-dialog-wrap\">\n                    <div class=\"m-dialog-header\"></div>\n                    <div class=\"m-dialog-body\"></div>\n                    <div class=\"m-dialog-footer\"></div>   \n                    <div class=\"m-dialog-close\"></div>     \n                </div>\n            "
+                    className: "m-dialog " + this.moduleDomType + " " + this.moduleDomPosition,
+                    innerHTML: html
                 }
             });
+        };
+
+        SubType.prototype.renderAlert = function () {
+            var config = this.opt.config;
+            var htmlIcon = "";
+            if (config.alert.isShowIcon) {
+                htmlIcon = "<div class=\"m-dialog-alert-icon iconfont " + config.alert.iconClass + "\"></div>";
+            }
+            var htmlResult = "";
+            if (config.moduleDomType == "alert") {
+                htmlResult = "\n            " + htmlIcon + "\n            <div class=\"m-dialog-alert-txt\">" + config.alert.content + "</div>\n        ";
+            }
+            return htmlResult;
+        };
+
+        SubType.prototype.renderConfirm = function () {
+            var config = this.opt.config;
+            var htmlResult = "";
+            if (config.moduleDomType == "confirm") {
+                htmlResult = "\n            <div class=\"m-dialog-wrap\">\n                <div class=\"m-dialog-header\"></div>\n                <div class=\"m-dialog-body\"></div>\n                <div class=\"m-dialog-footer\"></div>   \n                <div class=\"m-dialog-close\"></div>     \n            </div>\n        ";
+            }
+            return htmlResult;
         };
 
         //功能(覆盖超类型)

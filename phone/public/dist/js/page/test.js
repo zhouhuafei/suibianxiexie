@@ -46,24 +46,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
         module.exports = base;
     }, { "../function/array-remove-repeat.js": 4, "../function/constructor-inherit.js": 5, "../function/cookie.js": 6, "../function/create-element.js": 7, "../function/extend.js": 8, "../function/fill-zero.js": 9, "../function/get-dom-array.js": 10, "../function/get-parent.js": 11, "../function/html-to-dom.js": 12, "../function/obj-remove-quote.js": 13, "../function/obj-to-array.js": 14, "../function/offset.js": 15, "../function/scroll-to.js": 16, "../function/seconds-to-time.js": 17, "../function/select.js": 18, "../function/str-limit.js": 19, "../function/time-count-down.js": 20, "../function/user-agent": 21, "../function/when-scroll-bottom.js": 23, "../function/whether-disable-scroll.js": 24 }], 2: [function (require, module, exports) {
-        //版权
-        (function () {
-            var Copyright = require('../modules/m-copyright.js');
-            new Copyright();
-        })();
-
-        //底部导航
-        (function () {
-            var Footer = require('../modules/m-footer-nav.js');
-            new Footer();
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load.js');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright.js": 25, "../modules/m-footer-nav.js": 26, "../modules/m-lazy-load.js": 28 }], 3: [function (require, module, exports) {
         //base函数测试
         (function () {
             var base = require('../base/base.js');
@@ -91,6 +73,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     }
                 }
             });
+        })();
+        //弹窗测试
+        (function () {
+            var Dialog = require('../modules/m-dialog.js');
+            var dialog = new Dialog();
+            dialog.moduleDomShow();
         })();
         //分页测试
         (function () {
@@ -218,7 +206,25 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         })();
         //每个页面都要用到的js
         require('../common/common.js');
-    }, { "../base/base.js": 1, "../common/common.js": 2, "../modules/m-go-top.js": 27, "../modules/m-loading.js": 29, "../modules/m-mask.js": 30, "../modules/m-no-data.js": 31, "../modules/m-pagination.js": 32, "../modules/m-radio-switch.js": 33, "../modules/m-star.js": 34, "../modules/m-sub-type-es6.js": 35, "../modules/m-sub-type.js": 36, "../modules/m-super-type-es6.js": 37, "../modules/m-super-type.js": 38, "../modules/m-table.js": 39, "../modules/m-validate-form.js": 40 }], 4: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../common/common.js": 3, "../modules/m-dialog.js": 26, "../modules/m-go-top.js": 28, "../modules/m-loading.js": 30, "../modules/m-mask.js": 31, "../modules/m-no-data.js": 32, "../modules/m-pagination.js": 33, "../modules/m-radio-switch.js": 34, "../modules/m-star.js": 35, "../modules/m-sub-type-es6.js": 36, "../modules/m-sub-type.js": 37, "../modules/m-super-type-es6.js": 38, "../modules/m-super-type.js": 39, "../modules/m-table.js": 40, "../modules/m-validate-form.js": 41 }], 3: [function (require, module, exports) {
+        //版权
+        (function () {
+            var Copyright = require('../modules/m-copyright.js');
+            new Copyright();
+        })();
+
+        //底部导航
+        (function () {
+            var Footer = require('../modules/m-footer-nav.js');
+            new Footer();
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load.js');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright.js": 25, "../modules/m-footer-nav.js": 27, "../modules/m-lazy-load.js": 29 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -1033,7 +1039,113 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 26: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 39 }], 26: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base.js');
+
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type.js');
+
+        //子类型
+        var SubType = base.constructorInherit({
+            superType: SuperType,
+            //默认参数(继承超类型)
+            parameter: {
+                //回调
+                callback: {
+                    //确认
+                    confirm: function confirm() {},
+                    //取消
+                    cancel: function cancel() {},
+                    //关闭
+                    close: function close() {}
+                },
+                //配置
+                config: {
+                    /*
+                     * 弹窗类型
+                     * `alert`  提示信息类型
+                     * `confirm`    确认框类型
+                     * */
+                    moduleDomType: "alert", //默认是提示框
+                    /*
+                     * 弹窗位置
+                     * `center` 居中
+                     * `bottom` 居下
+                     * `top` 居上
+                     * */
+                    moduleDomPosition: "center", //默认居中
+                    moduleDomIsShow: false, //默认不显示
+                    //提示框
+                    alert: {
+                        position: "",
+                        isShowIcon: true,
+                        iconClass: "icon-chenggong",
+                        content: "\u6210\u529F"
+                    },
+                    //确认框
+                    confirm: {
+                        //点击确认是否关闭弹窗
+                        isShowDialogHeader: true,
+                        isShowDialogFooter: true,
+                        isShowCloseBtn: true,
+                        isShowConfirmBtn: true,
+                        isShowCancelBtn: true,
+                        isCustom: false, //是否自定义
+                        isShowIcon: true
+                    }
+                },
+                //数据
+                data: {}
+            }
+        });
+
+        //内部模块的创建(覆盖超类型)
+        SubType.prototype.moduleDomCreate = function () {
+            var config = this.opt.config;
+            this.moduleDomType = "m-dialog-" + config.moduleDomType; //弹窗类型
+            this.moduleDomPosition = "m-dialog-" + config.moduleDomPosition; //弹窗位置
+            //弹窗结构
+            var html = "\n        " + this.renderAlert() + "\n        " + this.renderConfirm() + "\n    ";
+            this.moduleDom = base.createElement({
+                style: this.opt.config.moduleStyle,
+                custom: this.opt.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-dialog " + this.moduleDomType + " " + this.moduleDomPosition,
+                    innerHTML: html
+                }
+            });
+        };
+
+        SubType.prototype.renderAlert = function () {
+            var config = this.opt.config;
+            var htmlIcon = "";
+            if (config.alert.isShowIcon) {
+                htmlIcon = "<div class=\"m-dialog-alert-icon iconfont " + config.alert.iconClass + "\"></div>";
+            }
+            var htmlResult = "";
+            if (config.moduleDomType == "alert") {
+                htmlResult = "\n            " + htmlIcon + "\n            <div class=\"m-dialog-alert-txt\">" + config.alert.content + "</div>\n        ";
+            }
+            return htmlResult;
+        };
+
+        SubType.prototype.renderConfirm = function () {
+            var config = this.opt.config;
+            var htmlResult = "";
+            if (config.moduleDomType == "confirm") {
+                htmlResult = "\n            <div class=\"m-dialog-wrap\">\n                <div class=\"m-dialog-header\"></div>\n                <div class=\"m-dialog-body\"></div>\n                <div class=\"m-dialog-footer\"></div>   \n                <div class=\"m-dialog-close\"></div>     \n            </div>\n        ";
+            }
+            return htmlResult;
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
+
+        module.exports = SubType;
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 39 }], 27: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1073,7 +1185,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 27: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 39 }], 28: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1125,7 +1237,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 28: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 39 }], 29: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1197,7 +1309,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
         };
         module.exports = LazyLoad;
-    }, { "../base/base.js": 1 }], 29: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 30: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1297,7 +1409,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-mask.js": 30, "../modules/m-super-type.js": 38 }], 30: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-mask.js": 31, "../modules/m-super-type.js": 39 }], 31: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1354,7 +1466,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 31: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 39 }], 32: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1401,7 +1513,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 32: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 39 }], 33: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1566,7 +1678,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 33: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 39 }], 34: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1656,7 +1768,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 34: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 39 }], 35: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1727,7 +1839,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 35: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 39 }], 36: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1815,7 +1927,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }(SuperType);
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type-es6.js": 37 }], 36: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type-es6.js": 38 }], 37: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -1854,7 +1966,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 37: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 39 }], 38: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -2166,7 +2278,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }();
 
         module.exports = SuperType;
-    }, { "../base/base.js": 1 }], 38: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 39: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -2412,7 +2524,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SuperType;
-    }, { "../base/base.js": 1 }], 39: [function (require, module, exports) {
+    }, { "../base/base.js": 1 }], 40: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 
@@ -2479,7 +2591,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 38 }], 40: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 39 }], 41: [function (require, module, exports) {
         var base = require('../base/base.js'); //底层方法
         var validate = require('../function/validate'); //表单验证
 
@@ -2592,4 +2704,4 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = ValidateInput;
-    }, { "../base/base.js": 1, "../function/validate": 22 }] }, {}, [3]);
+    }, { "../base/base.js": 1, "../function/validate": 22 }] }, {}, [2]);
