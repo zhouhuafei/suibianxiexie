@@ -57,8 +57,8 @@ SubType.prototype.moduleDomCreate = function () {
                     </div>
                 </div>
                 <div class="m-pagination-txt">页</div>
-                <a href="javascript:;" class="m-pagination-btn m-pagination-btn-inactive iconfont icon-zuojiantou"></a>
-                <a href="javascript:;" class="m-pagination-btn iconfont icon-youjiantou"></a>
+                <a href="javascript:;" class="m-pagination-btn m-pagination-btn-inactive iconfont icon-shangyiye"></a>
+                <a href="javascript:;" class="m-pagination-btn iconfont icon-xiayiye"></a>
             `
         }
     });

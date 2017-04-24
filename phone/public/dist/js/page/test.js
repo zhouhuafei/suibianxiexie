@@ -46,6 +46,24 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
         module.exports = base;
     }, { "../function/array-remove-repeat.js": 4, "../function/constructor-inherit.js": 5, "../function/cookie.js": 6, "../function/create-element.js": 7, "../function/extend.js": 8, "../function/fill-zero.js": 9, "../function/get-dom-array.js": 10, "../function/get-parent.js": 11, "../function/html-to-dom.js": 12, "../function/obj-remove-quote.js": 13, "../function/obj-to-array.js": 14, "../function/offset.js": 15, "../function/scroll-to.js": 16, "../function/seconds-to-time.js": 17, "../function/select.js": 18, "../function/str-limit.js": 19, "../function/time-count-down.js": 20, "../function/user-agent": 21, "../function/when-scroll-bottom.js": 23, "../function/whether-disable-scroll.js": 24 }], 2: [function (require, module, exports) {
+        //版权
+        (function () {
+            var Copyright = require('../modules/m-copyright.js');
+            new Copyright();
+        })();
+
+        //底部导航
+        (function () {
+            var Footer = require('../modules/m-footer-nav.js');
+            new Footer();
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load.js');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright.js": 25, "../modules/m-footer-nav.js": 26, "../modules/m-lazy-load.js": 28 }], 3: [function (require, module, exports) {
         //base函数测试
         (function () {
             var base = require('../base/base.js');
@@ -200,25 +218,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         })();
         //每个页面都要用到的js
         require('../common/common.js');
-    }, { "../base/base.js": 1, "../common/common.js": 3, "../modules/m-go-top.js": 27, "../modules/m-loading.js": 29, "../modules/m-mask.js": 30, "../modules/m-no-data.js": 31, "../modules/m-pagination.js": 32, "../modules/m-radio-switch.js": 33, "../modules/m-star.js": 34, "../modules/m-sub-type-es6.js": 35, "../modules/m-sub-type.js": 36, "../modules/m-super-type-es6.js": 37, "../modules/m-super-type.js": 38, "../modules/m-table.js": 39, "../modules/m-validate-form.js": 40 }], 3: [function (require, module, exports) {
-        //版权
-        (function () {
-            var Copyright = require('../modules/m-copyright.js');
-            new Copyright();
-        })();
-
-        //底部导航
-        (function () {
-            var Footer = require('../modules/m-footer-nav.js');
-            new Footer();
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load.js');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright.js": 25, "../modules/m-footer-nav.js": 26, "../modules/m-lazy-load.js": 28 }], 4: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../common/common.js": 2, "../modules/m-go-top.js": 27, "../modules/m-loading.js": 29, "../modules/m-mask.js": 30, "../modules/m-no-data.js": 31, "../modules/m-pagination.js": 32, "../modules/m-radio-switch.js": 33, "../modules/m-star.js": 34, "../modules/m-sub-type-es6.js": 35, "../modules/m-sub-type.js": 36, "../modules/m-super-type-es6.js": 37, "../modules/m-super-type.js": 38, "../modules/m-table.js": 39, "../modules/m-validate-form.js": 40 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -1445,7 +1445,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-pagination",
-                    innerHTML: "\n                <div class=\"m-pagination-txt\">\u7B2C</div>\n                <div class=\"m-pagination-now-page\">\n                    <div class=\"g-select\">\n                        <label class=\"g-select-label\">\n                            <select name=\"\" class=\"g-select-select\">\n                                " + this.renderOption() + "\n                            </select>\n                            <span class=\"g-select-icon iconfont icon-select\"></span>\n                        </label>\n                    </div>\n                </div>\n                <div class=\"m-pagination-txt\">\u9875</div>\n                <a href=\"javascript:;\" class=\"m-pagination-btn m-pagination-btn-inactive iconfont icon-zuojiantou\"></a>\n                <a href=\"javascript:;\" class=\"m-pagination-btn iconfont icon-youjiantou\"></a>\n            "
+                    innerHTML: "\n                <div class=\"m-pagination-txt\">\u7B2C</div>\n                <div class=\"m-pagination-now-page\">\n                    <div class=\"g-select\">\n                        <label class=\"g-select-label\">\n                            <select name=\"\" class=\"g-select-select\">\n                                " + this.renderOption() + "\n                            </select>\n                            <span class=\"g-select-icon iconfont icon-select\"></span>\n                        </label>\n                    </div>\n                </div>\n                <div class=\"m-pagination-txt\">\u9875</div>\n                <a href=\"javascript:;\" class=\"m-pagination-btn m-pagination-btn-inactive iconfont icon-shangyiye\"></a>\n                <a href=\"javascript:;\" class=\"m-pagination-btn iconfont icon-xiayiye\"></a>\n            "
                 }
             });
             this.prevDom = this.moduleDom.querySelectorAll('.m-pagination-btn')[0]; //上一页的按钮
@@ -2592,4 +2592,4 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = ValidateInput;
-    }, { "../base/base.js": 1, "../function/validate": 22 }] }, {}, [2]);
+    }, { "../base/base.js": 1, "../function/validate": 22 }] }, {}, [3]);
