@@ -193,7 +193,7 @@ SubType.prototype.power = function () {
     }
     //确认框
     if (config.type == `confirm`) {
-        
+
     }
 };
 
