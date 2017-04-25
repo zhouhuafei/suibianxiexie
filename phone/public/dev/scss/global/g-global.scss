@@ -64,15 +64,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: px2rem(4);
-    & > .g-button-wrap {
-        height: inherit;
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0;
-    }
     .g-button-icon {
         margin: 0 px2rem(2);
     }
