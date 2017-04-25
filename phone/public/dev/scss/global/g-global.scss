@@ -65,6 +65,14 @@
     align-items: center;
     justify-content: center;
     border-radius: px2rem(4);
+    & > .g-button-wrap {
+        height: inherit;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0;
+    }
     .g-button-icon {
         margin: 0 px2rem(2);
     }
@@ -80,6 +88,11 @@
     &.g-button-highlight {
         background: $g-color-background-highlight;
         color: #fff;
+    }
+    //铺满
+    &.g-button-full {
+        width: 100%;
+        border-radius: 0;
     }
 }
 
