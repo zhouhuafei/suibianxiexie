@@ -46,11 +46,11 @@ var SubType = base.constructorInherit({
             //确认框
             confirm: {
                 //点击确认是否关闭弹窗
-                isShowDialogHeader: true,//是否显示头部
+                isShowHeader: true,//是否显示头部
                 headerContent: ``,//头部内容
-                isShowDialogBody: true,//是否显示主体
+                isShowBody: true,//是否显示主体
                 contendBody: `确定?`,//主体内容
-                isShowDialogFooter: true,//是否显示尾部
+                isShowFooter: true,//是否显示尾部
                 footerContent: ``,//尾部内容
                 isShowCloseBtn: true,//是否显示关闭按钮
                 closeContent: ``,//关闭按钮的内容
@@ -90,6 +90,7 @@ SubType.prototype.moduleDomCreate = function () {
     });
 };
 
+//提示框
 SubType.prototype.renderAlert = function () {
     var config = this.opt.config;
     var htmlIcon = ``;
@@ -106,9 +107,11 @@ SubType.prototype.renderAlert = function () {
     return htmlResult;
 };
 
+//确认框
 SubType.prototype.renderConfirm = function () {
     var config = this.opt.config;
     var htmlHeader = ``;
+
     var htmlBody = ``;
     var htmlFooter = ``;
     var htmlClose = ``;
@@ -130,13 +133,16 @@ SubType.prototype.renderConfirm = function () {
 SubType.prototype.power = function () {
     var self = this;
     var config = this.opt.config;
+    //提示框
     if (config.type == `alert`) {
         setTimeout(function () {
             self.moduleDomHide();
         }, 2000);
     }
+    //确认框
     if (config.type == `confirm`) {
 
     }
 };
+
 module.exports = SubType;
