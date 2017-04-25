@@ -16,7 +16,7 @@ var SubType = base.constructorInherit({
         },
         //配置
         config: {
-            moduleDomIsHaveEvent: true//内部模块是否具备事件(默认具备)
+            isHaveEvent: true//是否具备事件(默认具备)
         },
         //数据
         data: {
@@ -50,7 +50,7 @@ SubType.prototype.moduleDomCreate = function () {
 //功能(覆盖超类型)
 SubType.prototype.power = function () {
     var self = this;
-    if (this.opt.config.moduleDomIsHaveEvent) {
+    if (this.opt.config.isHaveEvent) {
         this.moduleDom.addEventListener('click', function (ev) {
             var target = ev.target;
             if (target.classList.contains('m-star-item')) {
