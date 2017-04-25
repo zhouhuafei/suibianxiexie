@@ -1049,6 +1049,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //超类型(子类型继承的对象)
         var SuperType = require('../modules/m-super-type.js');
+        var Mask = require('../modules/m-mask.js');
 
         //子类型
         var SubType = base.constructorInherit({
@@ -1057,6 +1058,22 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             parameter: {
                 //回调
                 callback: {
+                    moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                        if (self.opt.config.type == 'confirm') {
+                            if (self.opt.config.confirm.isShowMask) {
+                                new Mask({
+                                    wrap: self.opt.wrap,
+                                    config: {
+                                        moduleDomIsShow: true,
+                                        moduleDomRenderMethod: { method: 'insertBefore' }
+                                    }
+                                });
+                            }
+                            if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
+                                self.wrapDom.style.position = 'relative';
+                            }
+                        }
+                    },
                     //确认
                     confirm: function confirm() {},
                     //取消
@@ -1091,7 +1108,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         isShowHeader: true, //是否显示头部
                         headerContent: "\u63D0\u793A:", //头部内容
                         isShowBody: true, //是否显示主体
-                        bodyContent: "\u786E\u5B9A?", //主体内容
+                        bodyContent: "\u786E\u5B9A\u8981\u6267\u884C\u8FD9\u4E2A\u64CD\u4F5C?", //主体内容
                         isShowFooter: true, //是否显示尾部
                         footerContent: "", //尾部内容
                         isShowClose: true, //是否显示关闭按钮
@@ -1202,7 +1219,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 39 }], 27: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-mask.js": 31, "../modules/m-super-type.js": 39 }], 27: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 

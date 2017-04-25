@@ -43,6 +43,7 @@
 
         //超类型(子类型继承的对象)
         var SuperType = require('../modules/m-super-type.js');
+        var Mask = require('../modules/m-mask.js');
 
         //子类型
         var SubType = base.constructorInherit({
@@ -51,6 +52,22 @@
             parameter: {
                 //回调
                 callback: {
+                    moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                        if (self.opt.config.type == 'confirm') {
+                            if (self.opt.config.confirm.isShowMask) {
+                                new Mask({
+                                    wrap: self.opt.wrap,
+                                    config: {
+                                        moduleDomIsShow: true,
+                                        moduleDomRenderMethod: { method: 'insertBefore' }
+                                    }
+                                });
+                            }
+                            if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
+                                self.wrapDom.style.position = 'relative';
+                            }
+                        }
+                    },
                     //确认
                     confirm: function confirm() {},
                     //取消
@@ -85,7 +102,7 @@
                         isShowHeader: true, //是否显示头部
                         headerContent: "\u63D0\u793A:", //头部内容
                         isShowBody: true, //是否显示主体
-                        bodyContent: "\u786E\u5B9A?", //主体内容
+                        bodyContent: "\u786E\u5B9A\u8981\u6267\u884C\u8FD9\u4E2A\u64CD\u4F5C?", //主体内容
                         isShowFooter: true, //是否显示尾部
                         footerContent: "", //尾部内容
                         isShowClose: true, //是否显示关闭按钮
@@ -196,7 +213,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base.js": 1, "../modules/m-super-type.js": 23 }], 3: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../modules/m-mask.js": 23, "../modules/m-super-type.js": 24 }], 3: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -885,6 +902,63 @@
         }
         module.exports = whetherDisableScroll;
     }, {}], 23: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base.js');
+
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type.js');
+
+        //子类型
+        var SubType = base.constructorInherit({
+            superType: SuperType,
+            //默认参数(继承超类型)
+            parameter: {
+                //回调
+                callback: {
+                    click: function click() {},
+                    moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                        if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
+                            self.wrapDom.style.position = 'relative';
+                        }
+                    }
+                },
+                //配置
+                config: {
+                    isTransparent: false, //是不是透明的(默认不透明)
+                    moduleDomIsShow: false //内部模块是否显示(默认不显示)
+                },
+                //数据
+                data: {}
+            }
+        });
+
+        //内部模块的创建(覆盖超类型)
+        SubType.prototype.moduleDomCreate = function () {
+            var isTransparent = '';
+            if (this.opt.config.isTransparent) {
+                isTransparent = 'm-mask-transparent';
+            }
+            this.moduleDom = base.createElement({
+                style: this.opt.config.moduleStyle,
+                custom: this.opt.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-mask " + isTransparent,
+                    innerHTML: ""
+                }
+            });
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            var self = this;
+            this.moduleDom.addEventListener('click', function (ev) {
+                self.opt.callback.click();
+                ev.stopPropagation();
+            });
+        };
+
+        module.exports = SubType;
+    }, { "../base/base.js": 1, "../modules/m-super-type.js": 24 }], 24: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base.js');
 

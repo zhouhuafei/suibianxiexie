@@ -3,6 +3,7 @@ var base = require('../base/base.js');
 
 //超类型(子类型继承的对象)
 var SuperType = require('../modules/m-super-type.js');
+var Mask = require('../modules/m-mask.js');
 
 //子类型
 var SubType = base.constructorInherit({
@@ -11,6 +12,22 @@ var SubType = base.constructorInherit({
     parameter: {
         //回调
         callback: {
+            moduleDomRenderBefore: function (self) {
+                if (self.opt.config.type == 'confirm') {
+                    if (self.opt.config.confirm.isShowMask) {
+                        new Mask({
+                            wrap: self.opt.wrap,
+                            config: {
+                                moduleDomIsShow: true,
+                                moduleDomRenderMethod: {method: 'insertBefore'}
+                            }
+                        });
+                    }
+                    if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
+                        self.wrapDom.style.position = 'relative';
+                    }
+                }
+            },
             //确认
             confirm: function () {
             },
@@ -48,7 +65,7 @@ var SubType = base.constructorInherit({
                 isShowHeader: true,//是否显示头部
                 headerContent: `提示:`,//头部内容
                 isShowBody: true,//是否显示主体
-                bodyContent: `确定?`,//主体内容
+                bodyContent: `确定要执行这个操作?`,//主体内容
                 isShowFooter: true,//是否显示尾部
                 footerContent: ``,//尾部内容
                 isShowClose: true,//是否显示关闭按钮
