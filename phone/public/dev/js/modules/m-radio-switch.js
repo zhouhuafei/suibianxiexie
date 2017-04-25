@@ -11,7 +11,7 @@ var SubType = base.constructorInherit({
     parameter: {
         //回调
         callback: {
-            moduleDomClick: function () {
+            click: function () {
             }
         },
         //配置
@@ -63,7 +63,7 @@ SubType.prototype.power = function () {
                 self.off();
             }
         }
-        self.opt.callback.moduleDomClick({status: config.status});
+        self.opt.callback.click({status: config.status});
     })
 };
 

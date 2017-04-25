@@ -33,20 +33,56 @@
 
     }
     &.m-dialog-confirm {
-        .m-dialog-wrap {
-            position: relative;
-            .m-dialog-header {
-
+        $height: 40;
+        $width: 260;
+        width: px2rem($width);
+        background: $g-color-background-default;
+        .m-dialog-header {
+            height: px2rem($height);
+            box-sizing: border-box;
+            padding-left: px2rem(10);
+            padding-right: px2rem($height);
+            display: flex;
+            align-items: center;
+            text-align: justify;
+            overflow: hidden;
+        }
+        .m-dialog-body {
+            background: #fff;
+            .m-dialog-body-system {
+                min-height: px2rem($width / 3.2);
+                padding: px2rem(10);
+                @include center-xy-flex;
+                .m-dialog-icon {
+                    $width: 34;
+                    width: px2rem($width);
+                    font-size: px2rem($width);
+                    margin-right: px2rem(6);
+                    color: $g-color-validate-fail;
+                }
+                .m-dialog-txt {
+                    font-size: px2rem(16);
+                }
             }
-            .m-dialog-body {
-
+        }
+        .m-dialog-footer {
+            display: flex;
+            .m-dialog-cancel, .m-dialog-confirm {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: px2rem($height);
             }
-            .m-dialog-footer {
-
-            }
-            .m-dialog-close {
-                position: absolute;
-            }
+        }
+        .m-dialog-close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: px2rem($height);
+            height: px2rem($height);
+            font-size: px2rem(14);
+            @include center-xy-flex;
         }
     }
     &.m-dialog-center {

@@ -24,8 +24,8 @@
 //垂直水平居中(flex)
 @mixin center-xy-flex(){
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     word-break: break-all;
 }
 

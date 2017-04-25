@@ -7,7 +7,7 @@ function Select(json) {
         default: {
             items: null,//所有的被选项
             callback: {
-                itemsClick: function () {
+                click: function () {
                 }
             }
         },
@@ -54,7 +54,7 @@ Select.prototype.power = function () {
                     isCheckedAll = false;
                 }
             });
-            self.opt.callback.itemsClick({isCheckedAll: isCheckedAll});
+            self.opt.callback.click({isCheckedAll: isCheckedAll});
         });
     });
 };

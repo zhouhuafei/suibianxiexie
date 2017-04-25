@@ -11,7 +11,7 @@ var SubType = base.constructorInherit({
     parameter: {
         //回调
         callback: {
-            moduleDomClick: function () {
+            click: function () {
             },
             moduleDomRenderBefore: function (self) {
                 if (self.wrapDom&&getComputedStyle(self.wrapDom).position == 'static') {
@@ -49,7 +49,7 @@ SubType.prototype.moduleDomCreate = function () {
 SubType.prototype.power = function () {
     var self = this;
     this.moduleDom.addEventListener('click', function (ev) {
-        self.opt.callback.moduleDomClick();
+        self.opt.callback.click();
         ev.stopPropagation();
     })
 };

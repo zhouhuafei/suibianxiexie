@@ -9,7 +9,7 @@
                 var loading = new Loading({
                     wrap: '.page-wrap',
                     config: {
-                        moduleDomStatus: 'loading'
+                        status: 'loading'
                     }
                 });
                 loading.moduleDomShow();
@@ -20,17 +20,21 @@
     new base.Select({
         items: '.g-checkbox-checkbox',
         callback: {
-            itemsClick: function (obj) {
+            click: function (obj) {
                 console.log(obj);
             }
         }
     });
 })();
 //弹窗测试
-(function(){
+(function () {
     var Dialog = require('../modules/m-dialog.js');
-    var dialog=new Dialog();
-    dialog.moduleDomShow();
+    //new Dialog();
+    new Dialog({
+        config: {
+            type:'confirm'
+        }
+    });
 })();
 //分页测试
 (function () {
@@ -47,13 +51,13 @@
     var Loading = require('../modules/m-loading.js');
     var loading = new Loading({
         config: {
-            moduleDomStatus: 'loading'
+            status: 'loading'
         }
     });
     loading.moduleDomShow();
     var over = new Loading({
         config: {
-            moduleDomStatus: 'over'
+            status: 'over'
         }
     });
     over.moduleDomShow();
@@ -79,7 +83,7 @@
     var Mask = require('../modules/m-mask.js');
     var mask = new Mask({
         callback: {
-            moduleDomClick: function () {
+            click: function () {
                 mask.moduleDomHide();
             }
         }
@@ -92,7 +96,7 @@
     new Radio({
         wrap: '.page-radio-switch',
         callback: {
-            moduleDomClick: function (obj) {
+            click: function (obj) {
                 console.log(obj);
             }
         }
@@ -170,7 +174,7 @@
     const star = new Star({
         wrap: `.page-star`,
         callback: {
-            moduleDomClick: function (json) {
+            click: function (json) {
                 console.log(json);
             }
         }

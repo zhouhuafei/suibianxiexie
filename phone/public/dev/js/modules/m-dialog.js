@@ -36,7 +36,6 @@ var SubType = base.constructorInherit({
              * `top` 居上
              * */
             position: `center`,//默认居中
-            moduleDomIsShow: false,//默认不显示
             //提示框
             alert: {
                 isShowIcon: true,//是否显示icon
@@ -47,21 +46,21 @@ var SubType = base.constructorInherit({
             confirm: {
                 //点击确认是否关闭弹窗
                 isShowHeader: true,//是否显示头部
-                headerContent: ``,//头部内容
+                headerContent: `提示:`,//头部内容
                 isShowBody: true,//是否显示主体
-                contendBody: `确定?`,//主体内容
+                bodyContent: `确定?`,//主体内容
                 isShowFooter: true,//是否显示尾部
                 footerContent: ``,//尾部内容
-                isShowCloseBtn: true,//是否显示关闭按钮
-                closeContent: ``,//关闭按钮的内容
-                isShowConfirmBtn: true,//是否显示确认按钮
-                confirmBtnContent: ``,//确认按钮的内容
-                isShowCancelBtn: true,//是否显示取消按钮
-                cancelBtnContent: ``,//取消按钮的内容
+                isShowClose: true,//是否显示关闭按钮
+                closeContent: `<div class="iconfont icon-guanbi"></div>`,//关闭按钮的内容
+                isShowConfirm: true,//是否显示确认按钮
+                confirmContent: `确认`,//确认按钮的内容
+                isShowCancel: true,//是否显示取消按钮
+                cancelContent: `取消`,//取消按钮的内容
                 isCustom: false,//是否自定义
                 customContent: ``,//自定义的内容
                 isShowIcon: true,//是否显示icon
-                IconType: `icon-jinggao`,//icon的类型
+                iconType: `icon-jinggao`,//icon的类型
                 isShowMask: true//是否显示遮罩
             }
         },
@@ -93,15 +92,16 @@ SubType.prototype.moduleDomCreate = function () {
 //提示框
 SubType.prototype.renderAlert = function () {
     var config = this.opt.config;
+    var alert = config.alert;
     var htmlIcon = ``;
-    if (config.alert.isShowIcon) {
-        htmlIcon = `<div class="m-dialog-alert-icon iconfont ${config.alert.iconType}"></div>`;
+    if (alert.isShowIcon) {
+        htmlIcon = `<div class="m-dialog-alert-icon iconfont ${alert.iconType}"></div>`;
     }
     var htmlResult = ``;
     if (config.type == `alert`) {
         htmlResult = `
             ${htmlIcon}
-            <div class="m-dialog-alert-txt">${config.alert.content}</div>
+            <div class="m-dialog-alert-txt">${alert.content}</div>
         `;
     }
     return htmlResult;
@@ -110,19 +110,54 @@ SubType.prototype.renderAlert = function () {
 //确认框
 SubType.prototype.renderConfirm = function () {
     var config = this.opt.config;
+    var confirm = config.confirm;
     var htmlHeader = ``;
-
+    if (confirm.isShowHeader) {
+        htmlHeader = `<div class="m-dialog-header">${confirm.headerContent}</div>`;
+    }
     var htmlBody = ``;
+    if (confirm.isShowBody) {
+        var bodyClass = `m-dialog-body-system`;
+        if (config.isCustom) {
+            bodyClass = `m-dialog-body-custom`;
+        }
+        var htmlIcon = ``;
+        if (confirm.isShowIcon) {
+            htmlIcon = `<div class="m-dialog-icon iconfont ${confirm.iconType}"></div>`;
+        }
+        htmlBody = `
+            <div class="m-dialog-body">
+                <div class="${bodyClass}">
+                    ${htmlIcon}
+                    <div class="m-dialog-txt">${confirm.bodyContent}</div>
+                </div>
+            </div>
+        `;
+    }
     var htmlFooter = ``;
+    if (confirm.isShowFooter) {
+        var htmlCancel = ``;
+        if (confirm.isShowCancel) {
+            htmlCancel = `<div class="g-button g-button-default m-dialog-cancel">${confirm.cancelContent}</div>`;
+        }
+        var htmlConfirm = ``;
+        if (confirm.isShowConfirm) {
+            htmlConfirm = `<div class="g-button g-button-highlight m-dialog-confirm">${confirm.confirmContent}</div>`;
+        }
+        htmlFooter = `<div class="m-dialog-footer">${htmlCancel}${htmlConfirm}</div>`;
+    }
     var htmlClose = ``;
+    if (confirm.isShowClose) {
+        htmlClose = `<div class="m-dialog-close">${confirm.closeContent}</div>`;
+    }
     var htmlResult = ``;
     if (config.type == `confirm`) {
         htmlResult = `
             <div class="m-dialog-wrap">
-                <div class="m-dialog-header"></div>
-                <div class="m-dialog-body"></div>
-                <div class="m-dialog-footer"></div>   
-                <div class="m-dialog-close"></div>     
+                ${htmlHeader}
+                ${htmlBody}
+                ${htmlFooter}
+                ${htmlClose} 
             </div>
         `;
     }
