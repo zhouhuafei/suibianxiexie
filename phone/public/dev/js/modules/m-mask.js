@@ -21,7 +21,7 @@ var SubType = base.constructorInherit({
         },
         //配置
         config: {
-            moduleDomIsTransparent: false,//内部模块是不是透明的(默认不透明)
+            isTransparent: false,//是不是透明的(默认不透明)
             moduleDomIsShow: false//内部模块是否显示(默认不显示)
         },
         //数据

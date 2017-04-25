@@ -13,7 +13,7 @@ var SubType = base.constructorInherit({
         //回调
         callback: {
             moduleDomRenderBefore: function (self) {
-                if (self.opt.config.moduleDomMaskIsShow) {
+                if (self.opt.config.isShowMask) {
                     new Mask({
                         wrap: self.moduleDom.querySelector('.m-loading-wrap'),
                         config: {
@@ -29,10 +29,10 @@ var SubType = base.constructorInherit({
         },
         //配置
         config: {
-            moduleDomMaskIsShow: false,   //是否显示遮罩(默认不显示)
-            moduleDomIsShow: false, //内部模块是否显示(默认不显示)
-            moduleDomStatus: 'loading', //加载状态 loading(加载中) over(加载完毕)
-            moduleDomPosition: 'relative' //模块的位置 'fixed'(相对文档居中) 'absolute'(相对容器居中) 'relative'(直接填入容器)
+            isShowMask: false,  //是否显示遮罩(默认不显示)
+            status: 'loading',  //加载状态 loading(加载中) over(加载完毕)
+            position: 'relative',   //模块的位置 'fixed'(相对文档居中) 'absolute'(相对容器居中) 'relative'(直接填入容器)
+            moduleDomIsShow: false  //内部模块是否显示(默认不显示)
         },
         //数据
         data: {}
@@ -44,21 +44,21 @@ SubType.prototype.moduleDomCreate = function () {
     var config = this.opt.config;
     var moduleDomHtml = ``;
     var moduleDomClass = ``;
-    var moduleDomStatus = config.moduleDomStatus;
-    var moduleDomPosition = config.moduleDomPosition;
+    var status = config.status;
+    var position = config.position;
     //加载中
-    if (moduleDomStatus == 'loading') {
+    if (status == 'loading') {
         moduleDomClass = `m-loading-loading `;
         //相对文档居中
-        if (moduleDomPosition == 'fixed') {
+        if (position == 'fixed') {
             moduleDomClass += `m-loading-fixed`;
         }
         //相对容器居中
-        if (moduleDomPosition == 'absolute') {
+        if (position == 'absolute') {
             moduleDomClass += `m-loading-absolute`;
         }
         //直接填入容器(不进行居中处理)
-        if (moduleDomPosition == 'relative') {
+        if (position == 'relative') {
             moduleDomClass += `m-loading-relative`;
         }
         moduleDomHtml = `
@@ -68,18 +68,18 @@ SubType.prototype.moduleDomCreate = function () {
         `;
     }
     //加载完毕
-    if (moduleDomStatus == 'over') {
+    if (status == 'over') {
         moduleDomClass = `m-loading-over `;
         //相对文档居中
-        if (moduleDomPosition == 'fixed') {
+        if (position == 'fixed') {
             moduleDomClass += `m-loading-fixed`;
         }
         //相对容器居中
-        if (moduleDomPosition == 'absolute') {
+        if (position == 'absolute') {
             moduleDomClass += `m-loading-absolute`;
         }
         //直接填入容器(不进行居中处理)
-        if (moduleDomPosition == 'relative') {
+        if (position == 'relative') {
             moduleDomClass += `m-loading-relative`;
         }
         moduleDomHtml = `
