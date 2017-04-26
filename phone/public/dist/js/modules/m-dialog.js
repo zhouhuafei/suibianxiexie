@@ -102,7 +102,7 @@
                         isShowHeader: true, //是否显示头部
                         headerContent: "\u63D0\u793A:", //头部内容
                         isShowBody: true, //是否显示主体
-                        bodyContent: "\u786E\u5B9A\u8981\u6267\u884C\u8FD9\u4E2A\u64CD\u4F5C?", //主体内容
+                        bodyContent: "<div>\u786E\u5B9A\u8981\u6267\u884C\u8FD9\u4E2A\u64CD\u4F5C?</div>", //主体内容
                         isShowFooter: true, //是否显示尾部
                         footerContent: "", //尾部内容
                         isShowClose: true, //是否显示关闭按钮
@@ -165,15 +165,17 @@
             }
             var htmlBody = "";
             if (confirm.isShowBody) {
-                var bodyClass = "m-dialog-body-system";
-                if (config.isCustom) {
-                    bodyClass = "m-dialog-body-custom";
-                }
                 var htmlIcon = "";
                 if (confirm.isShowIcon) {
                     htmlIcon = "<div class=\"m-dialog-icon iconfont " + confirm.iconType + "\"></div>";
                 }
-                htmlBody = "\n            <div class=\"m-dialog-body\">\n                <div class=\"" + bodyClass + "\">\n                    " + htmlIcon + "\n                    <div class=\"m-dialog-txt\">" + confirm.bodyContent + "</div>\n                </div>\n            </div>\n        ";
+                var bodyClass = "m-dialog-body-system";
+                var bodyContent = "\n            " + htmlIcon + "\n            <div class=\"m-dialog-txt\">" + confirm.bodyContent + "</div>\n        ";
+                if (confirm.isCustom) {
+                    bodyClass = "m-dialog-body-custom";
+                    bodyContent = confirm.bodyContent;
+                }
+                htmlBody = "\n            <div class=\"m-dialog-body\">\n                <div class=\"" + bodyClass + "\">\n                    " + bodyContent + "\n                </div>\n            </div>\n        ";
             }
             var htmlFooter = "";
             if (confirm.isShowFooter) {
@@ -193,7 +195,7 @@
             }
             var htmlResult = "";
             if (config.type == "confirm") {
-                htmlResult = "\n            <div class=\"m-dialog-wrap\">\n                " + htmlHeader + "\n                " + htmlBody + "\n                " + htmlFooter + "\n                " + htmlClose + " \n            </div>\n        ";
+                htmlResult = "\n            " + htmlHeader + "\n            " + htmlBody + "\n            " + htmlFooter + "\n            " + htmlClose + " \n        ";
             }
             return htmlResult;
         };

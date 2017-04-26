@@ -1,7 +1,6 @@
 @import "../config/config.scss";
 
 .m-dialog {
-    position: relative;
     z-index: 505;
     &.m-dialog-alert {
         display: flex;
@@ -35,7 +34,6 @@
     &.m-dialog-confirm {
         $height: 40;
         $width: 260;
-        width: px2rem($width);
         background: #fff;
         .m-dialog-header {
             background: $g-color-background-default;
@@ -50,6 +48,7 @@
         }
         .m-dialog-body {
             .m-dialog-body-system {
+                width: px2rem($width);
                 min-height: px2rem($width / 3.2);
                 padding: px2rem(10);
                 @include center-xy-flex;
@@ -64,6 +63,9 @@
                     font-size: px2rem(16);
                 }
             }
+            .m-dialog-body-custom {
+                min-width: px2rem($width / 2);
+            }
         }
         .m-dialog-footer {
             display: flex;
@@ -73,6 +75,7 @@
                 align-items: center;
                 justify-content: center;
                 height: px2rem($height);
+                width: auto;
             }
         }
         .m-dialog-close {

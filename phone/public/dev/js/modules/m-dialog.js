@@ -65,7 +65,7 @@ var SubType = base.constructorInherit({
                 isShowHeader: true,//是否显示头部
                 headerContent: `提示:`,//头部内容
                 isShowBody: true,//是否显示主体
-                bodyContent: `确定要执行这个操作?`,//主体内容
+                bodyContent: `<div>确定要执行这个操作?</div>`,//主体内容
                 isShowFooter: true,//是否显示尾部
                 footerContent: ``,//尾部内容
                 isShowClose: true,//是否显示关闭按钮
@@ -134,19 +134,23 @@ SubType.prototype.renderConfirm = function () {
     }
     var htmlBody = ``;
     if (confirm.isShowBody) {
-        var bodyClass = `m-dialog-body-system`;
-        if (config.isCustom) {
-            bodyClass = `m-dialog-body-custom`;
-        }
         var htmlIcon = ``;
         if (confirm.isShowIcon) {
             htmlIcon = `<div class="m-dialog-icon iconfont ${confirm.iconType}"></div>`;
         }
+        var bodyClass = `m-dialog-body-system`;
+        var bodyContent = `
+            ${htmlIcon}
+            <div class="m-dialog-txt">${confirm.bodyContent}</div>
+        `;
+        if (confirm.isCustom) {
+            bodyClass = `m-dialog-body-custom`;
+            bodyContent = confirm.bodyContent;
+        }
         htmlBody = `
             <div class="m-dialog-body">
                 <div class="${bodyClass}">
-                    ${htmlIcon}
-                    <div class="m-dialog-txt">${confirm.bodyContent}</div>
+                    ${bodyContent}
                 </div>
             </div>
         `;
@@ -170,12 +174,10 @@ SubType.prototype.renderConfirm = function () {
     var htmlResult = ``;
     if (config.type == `confirm`) {
         htmlResult = `
-            <div class="m-dialog-wrap">
-                ${htmlHeader}
-                ${htmlBody}
-                ${htmlFooter}
-                ${htmlClose} 
-            </div>
+            ${htmlHeader}
+            ${htmlBody}
+            ${htmlFooter}
+            ${htmlClose} 
         `;
     }
     return htmlResult;
