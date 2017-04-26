@@ -24,7 +24,7 @@ ValidateInput.prototype.renderWrap = function () {
     }
 };
 ValidateInput.prototype.renderHint = function () {
-    this.hintDom = document.createElement('em');
+    this.hintDom = document.createElement('span');
     this.hintDom.classList.add(this.hintClass);
 };
 ValidateInput.prototype.renderHintAdd = function (json) {

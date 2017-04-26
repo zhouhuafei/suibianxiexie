@@ -30,11 +30,11 @@
 (function () {
     var Dialog = require('../modules/m-dialog.js');
     //new Dialog();
-    new Dialog({
-        config: {
-            type:'confirm'
-        }
-    });
+    // new Dialog({
+    //     config: {
+    //         type:'confirm'
+    //     }
+    // });
 })();
 //分页测试
 (function () {

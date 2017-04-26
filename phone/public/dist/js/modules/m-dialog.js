@@ -55,7 +55,7 @@
                     moduleDomRenderBefore: function moduleDomRenderBefore(self) {
                         if (self.opt.config.type == 'confirm') {
                             if (self.opt.config.confirm.isShowMask) {
-                                new Mask({
+                                self.mask = new Mask({
                                     wrap: self.opt.wrap,
                                     config: {
                                         moduleDomIsShow: true,
@@ -115,7 +115,8 @@
                         customContent: "", //自定义的内容
                         isShowIcon: true, //是否显示icon
                         iconType: "icon-jinggao", //icon的类型
-                        isShowMask: true //是否显示遮罩
+                        isShowMask: true, //是否显示遮罩
+                        isHandHide: false //是否手动隐藏(一般只用于点击确认时)
                     }
                 },
                 //数据
@@ -207,11 +208,31 @@
             //提示框
             if (config.type == "alert") {
                 setTimeout(function () {
-                    self.moduleDomHide();
+                    self.hide();
                 }, 2000);
             }
             //确认框
-            if (config.type == "confirm") {}
+            if (config.type == "confirm") {
+                this.moduleDom.querySelector('.m-dialog-close').addEventListener('click', function () {
+                    self.hide();
+                    self.opt.callback.close();
+                });
+                this.moduleDom.querySelector('.m-dialog-cancel').addEventListener('click', function () {
+                    self.hide();
+                    self.opt.callback.cancel();
+                });
+                this.moduleDom.querySelector('.m-dialog-confirm').addEventListener('click', function () {
+                    if (!self.opt.config.confirm.isHandHide) {
+                        self.hide();
+                    }
+                    self.opt.callback.confirm();
+                });
+            }
+        };
+
+        SubType.prototype.hide = function () {
+            this.moduleDomHide();
+            this.mask && this.mask.moduleDomHide();
         };
 
         module.exports = SubType;

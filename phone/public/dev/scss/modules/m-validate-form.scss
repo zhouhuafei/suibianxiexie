@@ -1,15 +1,15 @@
 @import "../config/config.scss";
 
 .m-validate-form-hint {
-    $height:30;
+    $height: 30;
     color: #ffffff;
     background: $g-color-validate-fail;
     height: px2rem($height);
-    line-height: px2rem($height);
-    font-size: px2rem(16);
+    @include center-xy-flex;
+    font-size: px2rem(14);
     padding: 0 px2rem(10);
     position: absolute;
-    left: 0;
+    right: 0;
     top: px2rem(-40);
     font-style: normal;
     font-weight: normal;
@@ -20,10 +20,11 @@
         height: 0;
         border: px2rem(8) solid transparent;
         border-top-color: $g-color-validate-fail;
-        left: px2rem(10);
+        right: px2rem(10);
         top: px2rem($height);
     }
 }
+
 .m-validate-form-error {
     border: px2rem(1) solid $g-color-validate-fail !important;
 }
