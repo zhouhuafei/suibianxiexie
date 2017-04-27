@@ -70,13 +70,13 @@
     .g-button-txt {
         margin: 0 px2rem(2);
     }
-    //默认
-    &.g-button-default {
+    //取消
+    &.g-button-cancel {
         background: $g-color-background-dark;
         color: #fff;
     }
-    //高亮
-    &.g-button-highlight {
+    //确认
+    &.g-button-confirm {
         background: $g-color-background-highlight;
         color: #fff;
     }
@@ -207,7 +207,7 @@
         position: relative;
     }
     .g-radio-icon {
-        color: $g-color-radio-highlight;
+        color: $g-color-font-highlight;
         font-size: px2rem(16);
         position: absolute;
         left: 0;
@@ -225,7 +225,7 @@
         border: px2rem(1) solid $g-color-border-default;
         border-radius: 50%;
         &:checked {
-            border-color: $g-color-radio-highlight;
+            border-color: $g-color-border-highlight;
             & + .g-radio-icon {
                 display: flex;
                 align-items: center;
@@ -249,7 +249,7 @@
         position: relative;
     }
     .g-checkbox-icon {
-        color: $g-color-checkbox-highlight;
+        color: $g-color-font-highlight;
         font-size: px2rem(16);
         position: absolute;
         left: 0;
@@ -267,7 +267,7 @@
         border: px2rem(1) solid $g-color-border-default;
         border-radius: px2rem(4);
         &:checked {
-            border-color: $g-color-checkbox-highlight;
+            border-color: $g-color-border-highlight;
             & + .g-checkbox-icon {
                 display: flex;
                 align-items: center;

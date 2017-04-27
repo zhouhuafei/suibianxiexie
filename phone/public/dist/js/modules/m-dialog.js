@@ -182,11 +182,11 @@
             if (confirm.isShowFooter) {
                 var htmlCancel = "";
                 if (confirm.isShowCancel) {
-                    htmlCancel = "<div class=\"g-button g-button-default m-dialog-cancel\">" + confirm.cancelContent + "</div>";
+                    htmlCancel = "<div class=\"g-button g-button-cancel m-dialog-cancel\">" + confirm.cancelContent + "</div>";
                 }
                 var htmlConfirm = "";
                 if (confirm.isShowConfirm) {
-                    htmlConfirm = "<div class=\"g-button g-button-highlight m-dialog-confirm\">" + confirm.confirmContent + "</div>";
+                    htmlConfirm = "<div class=\"g-button g-button-confirm m-dialog-confirm\">" + confirm.confirmContent + "</div>";
                 }
                 htmlFooter = "<div class=\"m-dialog-footer\">" + htmlCancel + htmlConfirm + "</div>";
             }

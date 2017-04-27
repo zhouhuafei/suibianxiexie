@@ -20,9 +20,9 @@
             height: px2rem($width-height);
             font-size: px2rem($width-height);
             margin-right: px2rem(10);
-            color: $g-color-validate-fail;
+            color: $g-color-fail;
             &.icon-chenggong {
-                color: $g-color-validate-success;
+                color: $g-color-success;
             }
         }
         .m-dialog-alert-txt {
@@ -57,7 +57,7 @@
                     width: px2rem($width);
                     font-size: px2rem($width);
                     margin-right: px2rem(6);
-                    color: $g-color-validate-fail;
+                    color: $g-color-fail;
                 }
                 .m-dialog-txt {
                     font-size: px2rem(16);

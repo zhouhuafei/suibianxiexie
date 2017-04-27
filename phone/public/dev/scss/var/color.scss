@@ -16,12 +16,8 @@ $g-color-border-highlight: #0089ff; //颜色-高亮
 $g-color-border-dark: #e6e7ed; //颜色-黑暗
 $g-color-border-disable: #ddd; //颜色-禁用
 
-//验证
-$g-color-validate-success: #1fce69; //颜色-成功
-$g-color-validate-fail: rgba(255, 0, 0, 0.8); //颜色-失败
-
-//单选框
-$g-color-radio-highlight: #0089ff; //颜色-高亮
-
-//多选框
-$g-color-checkbox-highlight: #0089ff; //颜色-高亮
+//语义
+$g-color-success: #1fce69; //颜色-成功
+$g-color-fail: rgba(255, 0, 0, 0.8); //颜色-失败
+$g-color-hint: rgba(255, 0, 0, 0.6); //颜色-提示
+$g-color-warn: rgba(255, 0, 0, 0.4); //颜色-警告

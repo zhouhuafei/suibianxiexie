@@ -73,7 +73,7 @@
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-no-data",
-                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-txt\">" + data.txt + "</div>\n                <a class=\"m-no-data-btn g-button g-button-highlight\" href=\"" + data.btn.href + "\">\n                    <div class=\"g-button-icon iconfont\"></div>\n                    <div class=\"g-button-txt\">" + data.btn.txt + "</div>\n                </a>\n            "
+                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-txt\">" + data.txt + "</div>\n                <a class=\"m-no-data-btn g-button g-button-confirm\" href=\"" + data.btn.href + "\">\n                    <div class=\"g-button-icon iconfont\"></div>\n                    <div class=\"g-button-txt\">" + data.btn.txt + "</div>\n                </a>\n            "
                 }
             });
         };

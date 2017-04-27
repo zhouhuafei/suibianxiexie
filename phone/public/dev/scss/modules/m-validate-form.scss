@@ -3,7 +3,7 @@
 .m-validate-form-hint {
     $height: 30;
     color: #ffffff;
-    background: $g-color-validate-fail;
+    background: $g-color-fail;
     height: px2rem($height);
     @include center-xy-flex;
     font-size: px2rem(14);
@@ -19,12 +19,12 @@
         width: 0;
         height: 0;
         border: px2rem(8) solid transparent;
-        border-top-color: $g-color-validate-fail;
+        border-top-color: $g-color-fail;
         right: px2rem(10);
         top: px2rem($height);
     }
 }
 
 .m-validate-form-error {
-    border: px2rem(1) solid $g-color-validate-fail !important;
+    border: px2rem(1) solid $g-color-fail !important;
 }
