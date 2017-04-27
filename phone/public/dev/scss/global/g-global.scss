@@ -287,6 +287,11 @@
         align-items: center;
         justify-content: space-between;
         border-bottom: px2rem(1) solid $g-color-border-default;
+        .g-list-txt {
+            &.g-list-txt-active{
+                color: $g-color-font-highlight;
+            }
+        }
         &:last-child {
             border-bottom: none;
         }
