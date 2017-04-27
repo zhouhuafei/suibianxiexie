@@ -280,19 +280,22 @@
 //列表
 .g-list {
     width: 100%;
-    .g-list-wrap {
-        height: px2rem(40);
-        padding: px2rem(0) px2rem(10);
+    .g-list-row {
+        border-bottom: px2rem(1) solid $g-color-border-default;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border-bottom: px2rem(1) solid $g-color-border-default;
+        font-size: px2rem(16);
+        padding: px2rem(10) px2rem(10);
         .g-list-txt {
-            &.g-list-txt-active{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &.g-list-txt-active {
                 color: $g-color-font-highlight;
             }
         }
-        &:last-child {
+        &:last-of-type {
             border-bottom: none;
         }
     }
