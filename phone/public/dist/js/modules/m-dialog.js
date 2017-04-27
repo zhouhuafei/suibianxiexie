@@ -213,15 +213,18 @@
             }
             //确认框
             if (config.type == "confirm") {
-                this.moduleDom.querySelector('.m-dialog-close').addEventListener('click', function () {
+                var close = this.moduleDom.querySelector('.m-dialog-close');
+                close && close.addEventListener('click', function () {
                     self.hide();
                     self.opt.callback.close();
                 });
-                this.moduleDom.querySelector('.m-dialog-cancel').addEventListener('click', function () {
+                var cancel = this.moduleDom.querySelector('.m-dialog-cancel');
+                cancel && cancel.addEventListener('click', function () {
                     self.hide();
                     self.opt.callback.cancel();
                 });
-                this.moduleDom.querySelector('.m-dialog-confirm').addEventListener('click', function () {
+                var confirm = this.moduleDom.querySelector('.m-dialog-confirm');
+                confirm && confirm.addEventListener('click', function () {
                     if (!self.opt.config.confirm.isHandHide) {
                         self.hide();
                     }
