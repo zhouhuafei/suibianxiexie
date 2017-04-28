@@ -46,24 +46,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
         module.exports = base;
     }, { "../function/array-remove-repeat.js": 4, "../function/constructor-inherit.js": 5, "../function/cookie.js": 6, "../function/create-element.js": 7, "../function/extend.js": 8, "../function/fill-zero.js": 9, "../function/get-dom-array.js": 10, "../function/get-parent.js": 11, "../function/html-to-dom.js": 12, "../function/obj-remove-quote.js": 13, "../function/obj-to-array.js": 14, "../function/offset.js": 15, "../function/scroll-to.js": 16, "../function/seconds-to-time.js": 17, "../function/select.js": 18, "../function/str-limit.js": 19, "../function/time-count-down.js": 20, "../function/user-agent": 21, "../function/when-scroll-bottom.js": 23, "../function/whether-disable-scroll.js": 24 }], 2: [function (require, module, exports) {
-        //版权
-        (function () {
-            var Copyright = require('../modules/m-copyright.js');
-            new Copyright();
-        })();
-
-        //底部导航
-        (function () {
-            var Footer = require('../modules/m-footer-nav.js');
-            new Footer();
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load.js');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright.js": 25, "../modules/m-footer-nav.js": 27, "../modules/m-lazy-load.js": 29 }], 3: [function (require, module, exports) {
         //base函数测试
         (function () {
             var base = require('../base/base.js');
@@ -228,7 +210,25 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         })();
         //每个页面都要用到的js
         require('../common/common.js');
-    }, { "../base/base.js": 1, "../common/common.js": 2, "../modules/m-dialog.js": 26, "../modules/m-go-top.js": 28, "../modules/m-loading.js": 30, "../modules/m-mask.js": 31, "../modules/m-no-data.js": 32, "../modules/m-pagination.js": 33, "../modules/m-radio-switch.js": 34, "../modules/m-star.js": 35, "../modules/m-sub-type-es6.js": 36, "../modules/m-sub-type.js": 37, "../modules/m-super-type-es6.js": 38, "../modules/m-super-type.js": 39, "../modules/m-table.js": 40, "../modules/m-validate-form.js": 41 }], 4: [function (require, module, exports) {
+    }, { "../base/base.js": 1, "../common/common.js": 3, "../modules/m-dialog.js": 26, "../modules/m-go-top.js": 28, "../modules/m-loading.js": 30, "../modules/m-mask.js": 31, "../modules/m-no-data.js": 32, "../modules/m-pagination.js": 33, "../modules/m-radio-switch.js": 34, "../modules/m-star.js": 35, "../modules/m-sub-type-es6.js": 36, "../modules/m-sub-type.js": 37, "../modules/m-super-type-es6.js": 38, "../modules/m-super-type.js": 39, "../modules/m-table.js": 40, "../modules/m-validate-form.js": 41 }], 3: [function (require, module, exports) {
+        //版权
+        (function () {
+            var Copyright = require('../modules/m-copyright.js');
+            new Copyright();
+        })();
+
+        //底部导航
+        (function () {
+            var Footer = require('../modules/m-footer-nav.js');
+            new Footer();
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load.js');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright.js": 25, "../modules/m-footer-nav.js": 27, "../modules/m-lazy-load.js": 29 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -2804,4 +2804,4 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = ValidateInput;
-    }, { "../base/base.js": 1, "../function/validate": 22 }] }, {}, [3]);
+    }, { "../base/base.js": 1, "../function/validate": 22 }] }, {}, [2]);

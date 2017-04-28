@@ -12,7 +12,7 @@ app.use(express.static(`public`));
 //模版引擎(handlebars)
 var handlebars = require(`express-handlebars`);
 app.engine(`html`, handlebars({
-    partialsDir: `${__dirname}/public/dist/html/common`,
+    partialsDir: `${__dirname}/public/dist/html/common`,//模块文件的路径{{>header_common}}
     extname: `.html`
 }));
 app.set(`view engine`, `html`);
