@@ -1,13 +1,17 @@
 //版权
 (function () {
-    var Copyright = require('../modules/m-copyright');
-    new Copyright();
+    if (pageConfig && pageConfig.isShowCopyright) {
+        var Copyright = require('../modules/m-copyright');
+        new Copyright();
+    }
 })();
 
 //底部导航
 (function () {
-    var Footer = require('../modules/m-footer-nav');
-    new Footer();
+    if (pageConfig && pageConfig.isShowFooterNav) {
+        var Footer = require('../modules/m-footer-nav');
+        new Footer();
+    }
 })();
 
 //延迟加载

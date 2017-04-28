@@ -10,7 +10,7 @@ app.use(express.static('public'));
 var handlebars = require('express-handlebars');
 app.engine('html', handlebars({
     partialsDir: `${__dirname}/public/dist/html/partials`,//模块文件的路径
-    layoutsDir: `${__dirname}/public/dist/html/views`,//设置布局模版文件的目录
+    layoutsDir: `${__dirname}/public/dist/html/layouts`,//设置布局模版文件的目录
     defaultLayout: 'layout',//设置默认的页面布局模版文件
     extname: '.html'
 }));

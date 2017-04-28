@@ -180,5 +180,4 @@
         }
     });
 })();
-//每个页面都要用到的js
-require('../common/common');
+require('../common/common');//每个页面都要用到的js(一定要放到最底部)

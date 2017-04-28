@@ -1,3 +1,4 @@
+//基础样式
 @import "../base/base";
 //弹窗测试
 @import "../modules/m-dialog";
@@ -11,51 +12,33 @@
 @import "../modules/m-go-top";
 //单选开关
 @import "../modules/m-radio-switch";
-
-.page-radio-switch {
-    display: flex;
-    justify-content: center;
-}
-
 //表格
 @import "../modules/m-table";
-
 //input验证
 @import "../modules/m-validate-form";
-.page-input {
-    display: flex;
-    align-items: center;
-    .page-input-txt {
-        text-align: right;
-        margin-right: px2rem(10);
-    }
-}
-
 //星评
 @import "../modules/m-star";
-.page-star {
-    display: flex;
-    justify-content: center;
-}
-
-//page
-.page-module-show {
-    & > div {
-        padding: 0 px2rem(10) px2rem(20);
+//页面样式
+.page-wrap {
+    .page-input {
+        @include center-xy-flex;
+        margin-top: px2rem(10);
     }
-}
-
-.page-des {
-    font-size: px2rem(30);
-    color: $g-color-font-highlight;
-    text-align: center;
-}
-
-.page-global-show {
-    & > div {
-        padding: px2rem(20) px2rem(20) 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .page-checkbox {
+        margin-top:px2rem(10);
+        @include center-xy-flex;
+    }
+    .page-radio {
+        margin-top:px2rem(10);
+        @include center-xy-flex;
+    }
+    .g-button{
+        margin-top:px2rem(10);
+    }
+    .g-select{
+        margin-top:px2rem(10);
+    }
+    .g-textarea{
+        margin-top:px2rem(10);
     }
 }

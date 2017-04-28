@@ -208,19 +208,22 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 }
             });
         })();
-        //每个页面都要用到的js
-        require('../common/common');
+        require('../common/common'); //每个页面都要用到的js(一定要放到最底部)
     }, { "../base/base": 1, "../common/common": 3, "../modules/m-dialog": 26, "../modules/m-go-top": 28, "../modules/m-loading": 30, "../modules/m-mask": 31, "../modules/m-no-data": 32, "../modules/m-pagination": 33, "../modules/m-radio-switch": 34, "../modules/m-star": 35, "../modules/m-sub-type": 37, "../modules/m-sub-type-es6": 36, "../modules/m-super-type": 39, "../modules/m-super-type-es6": 38, "../modules/m-table": 40, "../modules/m-validate-form": 41 }], 3: [function (require, module, exports) {
         //版权
         (function () {
-            var Copyright = require('../modules/m-copyright');
-            new Copyright();
+            if (pageConfig && pageConfig.isShowCopyright) {
+                var Copyright = require('../modules/m-copyright');
+                new Copyright();
+            }
         })();
 
         //底部导航
         (function () {
-            var Footer = require('../modules/m-footer-nav');
-            new Footer();
+            if (pageConfig && pageConfig.isShowFooterNav) {
+                var Footer = require('../modules/m-footer-nav');
+                new Footer();
+            }
         })();
 
         //延迟加载
