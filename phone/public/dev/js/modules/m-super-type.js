@@ -1,5 +1,5 @@
 //底层方法
-var base = require('../base/base.js');
+var base = require('../base/base');
 
 //底层构造函数
 function SuperType(json) {

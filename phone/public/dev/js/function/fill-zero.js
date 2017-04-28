@@ -1,5 +1,5 @@
 //对象的扩展方法
-var extend=require('../function/extend.js');
+var extend=require('../function/extend');
 
 //补零函数
 function fillZero(json) {

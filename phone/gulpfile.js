@@ -1,6 +1,3 @@
-/**
- * Created by zhouhuafei on 16/12/4.
- */
 const gulp = require('gulp');
 const scss = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');

@@ -13,8 +13,8 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        var extend = require('../function/extend.js');
-        var secondsToTime = require('../function/seconds-to-time.js'); //时间转换
+        var extend = require('../function/extend');
+        var secondsToTime = require('../function/seconds-to-time'); //时间转换
 
         //倒计时
         function timeCountDown(json) {
@@ -51,7 +51,7 @@
             }
         }
         module.exports = timeCountDown;
-    }, { "../function/extend.js": 2, "../function/seconds-to-time.js": 3 }], 2: [function (require, module, exports) {
+    }, { "../function/extend": 2, "../function/seconds-to-time": 3 }], 2: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opt = json || {};

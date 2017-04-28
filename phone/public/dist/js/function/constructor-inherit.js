@@ -13,8 +13,8 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        var extend = require('../function/extend.js'); //对象的扩展方法
-        var objRemoveQuote = require('../function/obj-remove-quote.js'); //对象移除引用
+        var extend = require('../function/extend'); //对象的扩展方法
+        var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 
         //构造函数的继承(拷贝继承)
         function constructorInherit(json) {
@@ -65,7 +65,7 @@
             return SubType;
         }
         module.exports = constructorInherit;
-    }, { "../function/extend.js": 2, "../function/obj-remove-quote.js": 3 }], 2: [function (require, module, exports) {
+    }, { "../function/extend": 2, "../function/obj-remove-quote": 3 }], 2: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opt = json || {};

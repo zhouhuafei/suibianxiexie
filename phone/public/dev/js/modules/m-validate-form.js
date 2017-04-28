@@ -1,4 +1,4 @@
-var base = require('../base/base.js');//底层方法
+var base = require('../base/base');//底层方法
 var validate = require('../function/validate');//表单验证
 
 function ValidateInput(json) {

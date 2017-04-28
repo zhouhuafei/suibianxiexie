@@ -1,9 +1,9 @@
 //底层方法
-var base = require('../base/base.js');
+var base = require('../base/base');
 
 //超类型(子类型继承的对象)
-var SuperType = require('../modules/m-super-type.js');
-var Mask = require('../modules/m-mask.js');
+var SuperType = require('../modules/m-super-type');
+var Mask = require('../modules/m-mask');
 
 //子类型
 var SubType = base.constructorInherit({

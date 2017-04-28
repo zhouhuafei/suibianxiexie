@@ -14,7 +14,7 @@
     }return s;
 })({ 1: [function (require, module, exports) {
         //对象的扩展方法
-        var extend = require('../function/extend.js');
+        var extend = require('../function/extend');
 
         //补零函数
         function fillZero(json) {
@@ -32,7 +32,7 @@
             }
         }
         module.exports = fillZero;
-    }, { "../function/extend.js": 2 }], 2: [function (require, module, exports) {
+    }, { "../function/extend": 2 }], 2: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opt = json || {};

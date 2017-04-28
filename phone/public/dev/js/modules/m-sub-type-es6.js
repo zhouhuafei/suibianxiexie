@@ -1,8 +1,8 @@
 //底层方法
-var base = require('../base/base.js');
+var base = require('../base/base');
 
 //超类型(子类型继承的对象)
-var SuperType = require('../modules/m-super-type-es6.js');
+var SuperType = require('../modules/m-super-type-es6');
 
 //子类型
 class SubType extends SuperType {

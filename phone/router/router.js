@@ -1,6 +1,3 @@
-/**
- * Created by zhouhuafei on 2016/11/22.
- */
 function Routes(opt) {
     if (!opt || !opt.app) {
         return;

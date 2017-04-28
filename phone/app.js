@@ -1,6 +1,3 @@
-/**
- * Created by zhouhuafei on 2016/11/22.
- */
 //配置
 var Config = require(`./config/port`);
 var config = new Config();
@@ -13,10 +10,12 @@ app.use(express.static(`public`));
 var handlebars = require(`express-handlebars`);
 app.engine(`html`, handlebars({
     partialsDir: `${__dirname}/public/dist/html/common`,//模块文件的路径{{>header_common}}
+    layoutsDir: `${__dirname}/public/dist/html/views`,//设置布局模版文件的目录
+    defaultLayout: `layout`,//设置默认的页面布局模版文件
     extname: `.html`
 }));
 app.set(`view engine`, `html`);
-app.set(`views`, __dirname + `/public/dist/html`);
+app.set(`views`, `${__dirname}/public/dist/html`);
 
 //路由
 var Routes = require(`./router/router`);

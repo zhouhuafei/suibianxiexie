@@ -1,5 +1,5 @@
 //底层方法
-var base = require('../base/base.js');
+var base = require('../base/base');
 
 //延迟加载
 function LazyLoad(json) {

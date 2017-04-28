@@ -1,11 +1,11 @@
 //base函数测试
 (function () {
-    var base = require('../base/base.js');
+    var base = require('../base/base');
     //测试滚动到底部loading
     new base.WhenScrollBottom({
         callback: {
             success: function () {
-                var Loading = require('../modules/m-loading.js');
+                var Loading = require('../modules/m-loading');
                 var loading = new Loading({
                     wrap: '.page-wrap',
                     config: {
@@ -28,7 +28,7 @@
 })();
 //弹窗测试
 (function () {
-    var Dialog = require('../modules/m-dialog.js');
+    var Dialog = require('../modules/m-dialog');
     //new Dialog();
     // new Dialog({
     //     config: {
@@ -38,17 +38,17 @@
 })();
 //分页测试
 (function () {
-    var Pagination = require('../modules/m-pagination.js');
+    var Pagination = require('../modules/m-pagination');
     new Pagination({wrap: '.page-pagination'});
 })();
 //没有数据
 (function () {
-    var NoData = require('../modules/m-no-data.js');
+    var NoData = require('../modules/m-no-data');
     new NoData({wrap: '.page-no-data'});
 })();
 //加载中
 (function () {
-    var Loading = require('../modules/m-loading.js');
+    var Loading = require('../modules/m-loading');
     var loading = new Loading({
         config: {
             status: 'loading'
@@ -64,23 +64,23 @@
 })();
 //超类型模块测试
 (function () {
-    var SuperType = require('../modules/m-super-type.js');
+    var SuperType = require('../modules/m-super-type');
     new SuperType({wrap: `.page-super-type`});
-    var SubType = require('../modules/m-sub-type.js');
+    var SubType = require('../modules/m-sub-type');
     new SubType({wrap: `.page-super-type`});
-    var SuperTypeEs6 = require('../modules/m-super-type-es6.js');
+    var SuperTypeEs6 = require('../modules/m-super-type-es6');
     new SuperTypeEs6({wrap: `.page-super-type`});
-    var SubTypeEs6 = require('../modules/m-sub-type-es6.js');
+    var SubTypeEs6 = require('../modules/m-sub-type-es6');
     new SubTypeEs6({wrap: `.page-super-type`});
 })();
 //返回顶部
 (function () {
-    var GoTop = require('../modules/m-go-top.js');
+    var GoTop = require('../modules/m-go-top');
     new GoTop();
 })();
 //遮罩
 (function () {
-    var Mask = require('../modules/m-mask.js');
+    var Mask = require('../modules/m-mask');
     var mask = new Mask({
         callback: {
             click: function () {
@@ -92,7 +92,7 @@
 })();
 //单选开关
 (function () {
-    const Radio = require('../modules/m-radio-switch.js');
+    const Radio = require('../modules/m-radio-switch');
     new Radio({
         wrap: '.page-radio-switch',
         callback: {
@@ -104,7 +104,7 @@
 })();
 //表格
 (function () {
-    const Table = require('../modules/m-table.js');
+    const Table = require('../modules/m-table');
     const table = new Table({
         wrap: `.page-table`,
         data: {
@@ -160,7 +160,7 @@
 })();
 //验证
 (function () {
-    const ValidateInput = require('../modules/m-validate-form.js');
+    const ValidateInput = require('../modules/m-validate-form');
     const aInput = [].slice.call(document.querySelectorAll('.m-validate-form'));
     aInput.forEach(function (v) {
         v.validate = new ValidateInput({form: v});
@@ -170,7 +170,7 @@
 })();
 //星评
 (function () {
-    const Star = require('../modules/m-star.js');
+    const Star = require('../modules/m-star');
     const star = new Star({
         wrap: `.page-star`,
         callback: {
@@ -181,4 +181,4 @@
     });
 })();
 //每个页面都要用到的js
-require('../common/common.js');
+require('../common/common');

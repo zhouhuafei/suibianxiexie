@@ -13,7 +13,7 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        var extend = require('../function/extend.js');
+        var extend = require('../function/extend');
 
         //当滚动到了浏览器的底部
         function WhenScrollBottom(json) {
@@ -66,7 +66,7 @@
             });
         };
         module.exports = WhenScrollBottom;
-    }, { "../function/extend.js": 2 }], 2: [function (require, module, exports) {
+    }, { "../function/extend": 2 }], 2: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opt = json || {};

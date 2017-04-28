@@ -13,8 +13,8 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        var extend = require('../function/extend.js'); //对象的扩展
-        var getDomArray = require('../function/get-dom-array.js'); //获取一组dom节点
+        var extend = require('../function/extend'); //对象的扩展
+        var getDomArray = require('../function/get-dom-array'); //获取一组dom节点
 
         //获取元素距离文档的left和top
         function offset(json) {
@@ -38,7 +38,7 @@
             };
         }
         module.exports = offset;
-    }, { "../function/extend.js": 2, "../function/get-dom-array.js": 3 }], 2: [function (require, module, exports) {
+    }, { "../function/extend": 2, "../function/get-dom-array": 3 }], 2: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opt = json || {};
@@ -130,7 +130,7 @@
         // console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
         module.exports = extend;
     }, {}], 3: [function (require, module, exports) {
-        var extend = require('../function/extend.js'); //对象的扩展方法
+        var extend = require('../function/extend'); //对象的扩展方法
 
         //获取原生的dom节点并转换成数组,传入的参数仅支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
         function getDomArray(json) {
@@ -161,4 +161,4 @@
             return dom;
         }
         module.exports = getDomArray;
-    }, { "../function/extend.js": 2 }] }, {}, [1]);
+    }, { "../function/extend": 2 }] }, {}, [1]);
