@@ -42,7 +42,7 @@ Routes.prototype.phoneUi = function () {
 };
 Routes.prototype.phoneHome = function () {
     this.app.get('/', function (req, res) {
-        res.render('page/index', {
+        res.render('page/home', {
             title: '首页'
         });
     })

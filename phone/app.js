@@ -27,8 +27,7 @@ app.use(function (req, res) {
     res.send('404 - Not Found');
 });
 //500
-app.use(function (err, req, res, next) {
-    console.log(err.stack);
+app.use(function (err, req, res) {
     res.type('text/plain');
     res.status('500');
     res.send('500 - Server Error');
@@ -55,5 +54,5 @@ app.use(function (err, req, res, next) {
 app.set('port', config.getPort());
 var server = app.listen(app.get('port'), function () {
     var port = server.address().port;
-    console.log(`>>>>>>>>>>>>>>>>>>>>访问地址:http://127.0.0.1:${port}<<<<<<<<<<<<<<<<<<<<`);
+    console.log(`访问地址:\nhttp://127.0.0.1:${port}`);
 });

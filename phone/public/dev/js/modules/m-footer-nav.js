@@ -22,7 +22,7 @@ SubType.prototype.moduleDomCreate = function () {
     this.moduleDomClass = `m-footer-nav`;
     var moduleDomHtml = `
         <div class="m-footer-nav-wrap">
-            <a class="m-footer-nav-body" href="">
+            <a class="m-footer-nav-body" href="/">
                 <div class="m-footer-nav-body-icon iconfont icon-shouye"></div>
                 <div class="m-footer-nav-body-txt">首页</div>
             </a>
@@ -30,7 +30,7 @@ SubType.prototype.moduleDomCreate = function () {
                 <div class="m-footer-nav-body-icon iconfont icon-fenxiao"></div>
                 <div class="m-footer-nav-body-txt">我要开店</div>
             </a>
-            <a class="m-footer-nav-body" href="">
+            <a class="m-footer-nav-body" href="/cart">
                 <div class="m-footer-nav-body-icon iconfont icon-gouwuche"></div>
                 <div class="m-footer-nav-body-txt">购物车</div>
             </a>
@@ -38,7 +38,7 @@ SubType.prototype.moduleDomCreate = function () {
                 <div class="m-footer-nav-body-icon iconfont icon-kefu"></div>
                 <div class="m-footer-nav-body-txt">客服</div>
             </a>
-            <a class="m-footer-nav-body" href="">
+            <a class="m-footer-nav-body" href="/mine">
                 <div class="m-footer-nav-body-icon iconfont icon-wode"></div>
                 <div class="m-footer-nav-body-txt">我的</div>
             </a>
