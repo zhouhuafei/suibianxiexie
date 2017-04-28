@@ -62,7 +62,7 @@ SubType.prototype.power = function () {
                         self.opt.star[j].classList.remove('m-star-item-active');
                     }
                 }
-                self.opt.callback.click({obj: this, index: index});
+                self.opt.callback.click({element: this, index: index});
             }
         })
     }

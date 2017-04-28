@@ -606,7 +606,7 @@
                             isCheckedAll = false;
                         }
                     });
-                    self.opt.callback.click({ isCheckedAll: isCheckedAll });
+                    self.opt.callback.click({ element: this, isCheckedAll: isCheckedAll });
                 });
             });
         };

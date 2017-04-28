@@ -865,7 +865,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                             isCheckedAll = false;
                         }
                     });
-                    self.opt.callback.click({ isCheckedAll: isCheckedAll });
+                    self.opt.callback.click({ element: this, isCheckedAll: isCheckedAll });
                 });
             });
         };

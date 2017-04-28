@@ -36,6 +36,7 @@
         justify-content: center;
     }
     .g-img-upload-label {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         .g-img-upload-input {
             display: none;
         }
@@ -100,6 +101,8 @@
         position: relative;
     }
     .g-input-input {
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         display: block;
         outline: none;
         color: inherit;
@@ -131,6 +134,8 @@
         height: inherit;
         position: relative;
         .g-select-select {
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             outline: none;
             color: inherit;
             font-size: inherit;
@@ -138,7 +143,6 @@
             height: inherit;
             background: inherit;
             box-sizing: border-box;
-            -webkit-appearance: none;
             position: relative;
             z-index: 2;
             border-radius: 0;
@@ -177,6 +181,8 @@
         line-height: inherit;
     }
     .g-textarea-textarea {
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         outline: none;
         color: inherit;
         font-size: inherit;
@@ -215,21 +221,28 @@
         width: inherit;
         height: inherit;
         display: none;
+        &:before{
+            width: inherit;
+            height: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height:1;
+        }
     }
     .g-radio-radio {
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         outline: none;
         width: inherit;
         height: inherit;
         background: inherit;
-        -webkit-appearance: none;
         border: px2rem(1) solid $g-color-border-default;
         border-radius: 50%;
         &:checked {
             border-color: $g-color-border-highlight;
             & + .g-radio-icon {
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                display: block;
             }
         }
     }
@@ -259,11 +272,12 @@
         display: none;
     }
     .g-checkbox-checkbox {
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         outline: none;
         width: inherit;
         height: inherit;
         background: inherit;
-        -webkit-appearance: none;
         border: px2rem(1) solid $g-color-border-default;
         border-radius: px2rem(4);
         &:checked {
