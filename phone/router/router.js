@@ -14,27 +14,37 @@ Routes.prototype.init = function () {
 };
 Routes.prototype.phoneRegister = function () {
     this.app.get('/register', function (req, res) {
-        res.render('page/register', {num: 2});
+        res.render('page/register', {
+            title: '注册'
+        });
     })
 };
 Routes.prototype.phoneLogin = function () {
     this.app.get('/login', function (req, res) {
-        res.render('page/login', {num: 2});
+        res.render('page/login', {
+            title: '登录'
+        });
     })
 };
 Routes.prototype.phoneMine = function () {
     this.app.get('/mine', function (req, res) {
-        res.render('page/mine', {num: 2});
+        res.render('page/mine', {
+            title: '我的'
+        });
     })
 };
 Routes.prototype.phoneUi = function () {
     this.app.get('/ui', function (req, res) {
-        res.render('page/ui', {num: 2});
+        res.render('page/ui', {
+            title: 'ui'
+        });
     })
 };
 Routes.prototype.phoneHome = function () {
     this.app.get('/', function (req, res) {
-        res.render('page/index', {num: 2});
+        res.render('page/index', {
+            title: '首页'
+        });
     })
 };
 module.exports = Routes;
