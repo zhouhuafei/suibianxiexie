@@ -35,8 +35,9 @@
     .g-button{
         margin-top:px2rem(10);
     }
-    .g-select{
+    .page-select{
         margin-top:px2rem(10);
+        @include center-xy-flex;
     }
     .g-textarea{
         margin-top:px2rem(10);
