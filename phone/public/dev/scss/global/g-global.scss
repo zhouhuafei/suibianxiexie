@@ -98,18 +98,19 @@
         display: block;
         width: inherit;
         height: inherit;
+        border-radius: inherit;
         position: relative;
     }
     .g-input-input {
         -webkit-appearance: none;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        display: block;
         outline: none;
         color: inherit;
         font-size: inherit;
         width: inherit;
         height: inherit;
         background: inherit;
+        border-radius: inherit;
         box-sizing: border-box;
         padding: 0 px2rem(10);
         border: px2rem(1) solid $g-color-border-default;
@@ -132,6 +133,7 @@
         display: block;
         width: inherit;
         height: inherit;
+        border-radius: inherit;
         position: relative;
         .g-select-select {
             -webkit-appearance: none;
@@ -142,10 +144,10 @@
             width: inherit;
             height: inherit;
             background: inherit;
+            border-radius: inherit;
             box-sizing: border-box;
             position: relative;
             z-index: 2;
-            border-radius: 0;
             padding-left: px2rem($padding-left);
             padding-right: px2rem($padding-right);
             border: px2rem(1) solid $g-color-border-default;
@@ -178,6 +180,7 @@
         display: block;
         width: inherit;
         height: inherit;
+        border-radius: inherit;
         line-height: inherit;
     }
     .g-textarea-textarea {
@@ -191,6 +194,7 @@
         font-family: inherit;
         line-height: inherit;
         background: inherit;
+        border-radius: inherit;
         box-sizing: border-box;
         text-align: justify;
         resize: none;
@@ -206,10 +210,12 @@
     text-align: center;
     height: px2rem($width-height);
     background: #ffffff;
+    border-radius: 50%;
     .g-radio-label {
         display: block;
         width: inherit;
         height: inherit;
+        border-radius: inherit;
         position: relative;
     }
     .g-radio-icon {
@@ -221,13 +227,13 @@
         width: inherit;
         height: inherit;
         display: none;
-        &:before{
+        &:before {
             width: inherit;
             height: inherit;
             display: flex;
             align-items: center;
             justify-content: center;
-            line-height:1;
+            line-height: 1;
         }
     }
     .g-radio-radio {
@@ -237,8 +243,8 @@
         width: inherit;
         height: inherit;
         background: inherit;
+        border-radius: inherit;
         border: px2rem(1) solid $g-color-border-default;
-        border-radius: 50%;
         &:checked {
             border-color: $g-color-border-highlight;
             & + .g-radio-icon {
@@ -255,10 +261,12 @@
     text-align: center;
     height: px2rem($width-height);
     background: #ffffff;
+    border-radius: px2rem(4);
     .g-checkbox-label {
         display: block;
         width: inherit;
         height: inherit;
+        border-radius: inherit;
         position: relative;
     }
     .g-checkbox-icon {
@@ -278,8 +286,8 @@
         width: inherit;
         height: inherit;
         background: inherit;
+        border-radius: inherit;
         border: px2rem(1) solid $g-color-border-default;
-        border-radius: px2rem(4);
         &:checked {
             border-color: $g-color-border-highlight;
             & + .g-checkbox-icon {
