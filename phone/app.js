@@ -35,23 +35,23 @@ app.use(function (err, req, res, next) {
     res.send(`500 - Server Error`);
 });
 //mysql
-var Mysql = require(`./config/mysql`);
-var oMysql = new Mysql({isLocal: true});
-oMysql.init();
-var mysql = oMysql.connection;
-var tableName = `user`;
-mysql.query(
-    `SELECT * FROM ` + tableName,
-    function selectCb(err, results, fields) {
-        if (err) {
-            throw err;
-        }
-        if (results) {
-            console.log(results);
-        }
-        mysql.end();
-    }
-);
+// var Mysql = require(`./config/mysql`);
+// var oMysql = new Mysql({isLocal: true});
+// oMysql.init();
+// var mysql = oMysql.connection;
+// var tableName = `user`;
+// mysql.query(
+//     `SELECT * FROM ` + tableName,
+//     function selectCb(err, results, fields) {
+//         if (err) {
+//             throw err;
+//         }
+//         if (results) {
+//             console.log(results);
+//         }
+//         mysql.end();
+//     }
+// );
 //端口
 app.set(`port`, config.getPort());
 var server = app.listen(app.get(`port`), function () {
