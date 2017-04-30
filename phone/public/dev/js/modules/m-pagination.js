@@ -47,14 +47,12 @@ SubType.prototype.moduleDomCreate = function () {
             innerHTML: `
                 <div class="m-pagination-txt">第</div>
                 <div class="m-pagination-now-page">
-                    <div class="g-select">
-                        <label class="g-select-label">
-                            <select name="" class="g-select-select">
-                                ${this.renderOption()}
-                            </select>
-                            <span class="g-select-icon iconfont icon-select"></span>
-                        </label>
-                    </div>
+                    <label class="g-select">
+                        <select class="g-select-select">
+                            ${this.renderOption()}
+                        </select>
+                        <span class="g-select-icon iconfont icon-select"></span>
+                    </label>
                 </div>
                 <div class="m-pagination-txt">页</div>
                 <a href="javascript:;" class="m-pagination-btn m-pagination-btn-inactive iconfont icon-shangyiye"></a>

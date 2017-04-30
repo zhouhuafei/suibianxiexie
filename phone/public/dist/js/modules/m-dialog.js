@@ -92,6 +92,7 @@
                     position: "center", //默认居中
                     //提示框
                     alert: {
+                        time: 2000, //展示的时间
                         isShowIcon: true, //是否显示icon
                         iconType: "icon-chenggong", //icon的class
                         content: "\u6210\u529F" //内容信息
@@ -209,7 +210,7 @@
             if (config.type == "alert") {
                 setTimeout(function () {
                     self.hide();
-                }, 2000);
+                }, config.alert.time);
             }
             //确认框
             if (config.type == "confirm") {

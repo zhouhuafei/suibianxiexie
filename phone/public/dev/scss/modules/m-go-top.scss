@@ -1,12 +1,13 @@
 @import "../config/config";
 
 .m-go-top {
+    $width-height: 40;
     position: fixed;
     left: 50%;
-    margin-left:px2rem((320/2)-40-10);
+    margin-left: 5rem -  px2rem($width-height + 10);
     bottom: px2rem(60);
-    width: px2rem(40);
-    height: px2rem(40);
+    width: px2rem($width-height);
+    height: px2rem($width-height);
     background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
@@ -17,7 +18,7 @@
     transition: opacity 0.4s;
     z-index: -2;
     opacity: 0;
-    &.m-go-top-active{
+    &.m-go-top-active {
         opacity: 1;
         z-index: 2;
     }

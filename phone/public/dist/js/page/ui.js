@@ -78,6 +78,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         (function () {
             var Dialog = require('../modules/m-dialog');
             //new Dialog();
+            //new Dialog({config: {alert: {iconType: 'icon-shibai',content:'失败'}}});
             // new Dialog({
             //     config: {
             //         type:'confirm'
@@ -1101,6 +1102,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     position: "center", //默认居中
                     //提示框
                     alert: {
+                        time: 2000, //展示的时间
                         isShowIcon: true, //是否显示icon
                         iconType: "icon-chenggong", //icon的class
                         content: "\u6210\u529F" //内容信息
@@ -1218,7 +1220,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             if (config.type == "alert") {
                 setTimeout(function () {
                     self.hide();
-                }, 2000);
+                }, config.alert.time);
             }
             //确认框
             if (config.type == "confirm") {
@@ -1660,7 +1662,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-pagination",
-                    innerHTML: "\n                <div class=\"m-pagination-txt\">\u7B2C</div>\n                <div class=\"m-pagination-now-page\">\n                    <div class=\"g-select\">\n                        <label class=\"g-select-label\">\n                            <select name=\"\" class=\"g-select-select\">\n                                " + this.renderOption() + "\n                            </select>\n                            <span class=\"g-select-icon iconfont icon-select\"></span>\n                        </label>\n                    </div>\n                </div>\n                <div class=\"m-pagination-txt\">\u9875</div>\n                <a href=\"javascript:;\" class=\"m-pagination-btn m-pagination-btn-inactive iconfont icon-shangyiye\"></a>\n                <a href=\"javascript:;\" class=\"m-pagination-btn iconfont icon-xiayiye\"></a>\n            "
+                    innerHTML: "\n                <div class=\"m-pagination-txt\">\u7B2C</div>\n                <div class=\"m-pagination-now-page\">\n                    <label class=\"g-select\">\n                        <select class=\"g-select-select\">\n                            " + this.renderOption() + "\n                        </select>\n                        <span class=\"g-select-icon iconfont icon-select\"></span>\n                    </label>\n                </div>\n                <div class=\"m-pagination-txt\">\u9875</div>\n                <a href=\"javascript:;\" class=\"m-pagination-btn m-pagination-btn-inactive iconfont icon-shangyiye\"></a>\n                <a href=\"javascript:;\" class=\"m-pagination-btn iconfont icon-xiayiye\"></a>\n            "
                 }
             });
             this.prevDom = this.moduleDom.querySelectorAll('.m-pagination-btn')[0]; //上一页的按钮

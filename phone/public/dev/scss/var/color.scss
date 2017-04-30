@@ -1,23 +1,20 @@
 //字体
-$g-color-font-default: rgba(0, 0, 0, 0.8); //颜色-默认
-$g-color-font-highlight: #0089ff; //颜色-高亮
-$g-color-font-dark: #bfbfbf; //颜色-黑暗
-$g-color-font-disable: #ddd; //颜色-禁用
+$g-color-font-default: #333333; //颜色-默认
+$g-color-font-dark: #bfbfbf; //颜色-灰暗
+$g-color-font-disable: #dddddd; //颜色-禁用
 
 //背景
-$g-color-background-default: #f5f5f5; //颜色-默认
-$g-color-background-highlight: #0089ff; //颜色-高亮
-$g-color-background-dark: #bbbbbb; //颜色-黑暗
-$g-color-background-disable: #ddd; //颜色-禁用
+$g-color-background-default: #f2f2f2; //颜色-默认
+$g-color-background-dark: #bbbbbb; //颜色-灰暗
+$g-color-background-disable: #f8f8f8; //颜色-禁用
 
 //边框
 $g-color-border-default: #e6e7ed; //颜色-默认
-$g-color-border-highlight: #0089ff; //颜色-高亮
-$g-color-border-dark: #e6e7ed; //颜色-黑暗
-$g-color-border-disable: #ddd; //颜色-禁用
+$g-color-border-dark: #e6e7ed; //颜色-灰暗
+$g-color-border-disable: #dddddd; //颜色-禁用
 
 //语义
+$g-color-highlight: #0089ff; //颜色-高亮
 $g-color-success: #1fce69; //颜色-成功
-$g-color-fail: rgba(255, 0, 0, 1); //颜色-失败
-$g-color-hint: rgba(255, 0, 0, 0.8); //颜色-提示
+$g-color-fail: #ff0000; //颜色-失败
 $g-color-warn: rgba(255, 0, 0, 0.6); //颜色-警告

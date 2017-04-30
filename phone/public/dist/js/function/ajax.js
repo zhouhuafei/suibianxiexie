@@ -40,14 +40,16 @@
     }, { "../function/array-remove-repeat": 3, "../function/constructor-inherit": 4, "../function/cookie": 5, "../function/create-element": 6, "../function/extend": 7, "../function/fill-zero": 8, "../function/get-dom-array": 9, "../function/get-parent": 10, "../function/html-to-dom": 11, "../function/obj-remove-quote": 12, "../function/obj-to-array": 13, "../function/offset": 14, "../function/scroll-to": 15, "../function/seconds-to-time": 16, "../function/select": 17, "../function/str-limit": 18, "../function/time-count-down": 19, "../function/user-agent": 20, "../function/when-scroll-bottom": 21, "../function/whether-disable-scroll": 22 }], 2: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展
         var Dialog = require('../modules/m-dialog'); //弹窗
-        var Loadind = require('../function/extend'); //加载中
+        var Loading = require('../function/extend'); //加载中
 
         //ajax封装
         function Ajax(json) {
             this.opt = extend({
                 default: {
+                    url: '', //url
                     type: 'post', //请求类型
                     data: {}, //请求数据
+                    dataType: 'json', //数据类型
                     //回调
                     callback: {
                         //完成
@@ -57,13 +59,16 @@
                         //失败
                         fail: function fail() {},
                         //超时
-                        timeout: function timeout() {}
+                        timeout: function timeout() {},
+                        //取消
+                        about: function about() {}
                     },
                     //配置
                     config: {
                         //ajax的配置
                         ajax: {
-                            isShowLoading: true //是否显示loading
+                            isShowLoading: true, //是否显示loading
+                            isShowDialog: true //是否显示弹窗
                         },
                         //loading的配置
                         loading: {
@@ -71,15 +76,49 @@
                                 moduleDomStatus: 'loading',
                                 moduleDomPosition: 'fixed'
                             }
+                        },
+                        //dialog的配置
+                        dialog: {
+                            config: {}
                         }
                     }
                 },
                 inherit: json
             });
-            this.loading = new Loadind(this.opt.config.loading);
+            this.loading = new Loading(this.opt.config.loading);
+            this.dialog = new Dialog(this.opt.config.dialog);
+            this.xhr = new XMLHttpRequest();
+            this.init();
         }
-        Ajax.prototype.open = function () {};
-        Ajax.prototype.send = function () {};
+        Ajax.prototype.init = function () {
+            this.open();
+            this.send();
+            this.events();
+        };
+        Ajax.prototype.open = function () {
+            var opt = this.opt;
+            this.xhr.open(opt.type, opt.url);
+        };
+        Ajax.prototype.send = function () {
+            var opt = this.opt;
+            var data = opt.data;
+            if (opt.type.toLowerCase() == 'get') {
+                //get
+                this.xhr.send(null);
+            } else {
+                //post
+                var formData = new FormData();
+                if (data) {
+                    for (var attr in data) {
+                        if (data.hasOwnProperty(attr)) {
+                            formData.append(attr, data[attr]);
+                        }
+                    }
+                }
+                this.xhr.send(formData);
+            }
+        };
+        Ajax.prototype.events = function () {};
         Ajax.prototype.success = function () {};
         Ajax.prototype.fail = function () {};
         Ajax.prototype.timeout = function () {};
@@ -829,6 +868,7 @@
                     position: "center", //默认居中
                     //提示框
                     alert: {
+                        time: 2000, //展示的时间
                         isShowIcon: true, //是否显示icon
                         iconType: "icon-chenggong", //icon的class
                         content: "\u6210\u529F" //内容信息
@@ -946,7 +986,7 @@
             if (config.type == "alert") {
                 setTimeout(function () {
                     self.hide();
-                }, 2000);
+                }, config.alert.time);
             }
             //确认框
             if (config.type == "confirm") {

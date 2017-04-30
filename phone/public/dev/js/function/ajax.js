@@ -1,13 +1,15 @@
 var extend = require('../function/extend');//对象的扩展
 var Dialog = require('../modules/m-dialog');//弹窗
-var Loadind = require('../function/extend');//加载中
+var Loading = require('../function/extend');//加载中
 
 //ajax封装
 function Ajax(json) {
     this.opt = extend({
         default: {
+            url: '',//url
             type: 'post',//请求类型
             data: {},//请求数据
+            dataType: 'json',//数据类型
             //回调
             callback: {
                 //完成
@@ -21,13 +23,17 @@ function Ajax(json) {
                 },
                 //超时
                 timeout: function () {
+                },
+                //取消
+                about: function () {
                 }
             },
             //配置
             config: {
                 //ajax的配置
                 ajax: {
-                    isShowLoading: true//是否显示loading
+                    isShowLoading: true,//是否显示loading
+                    isShowDialog: true//是否显示弹窗
                 },
                 //loading的配置
                 loading: {
@@ -35,17 +41,49 @@ function Ajax(json) {
                         moduleDomStatus: 'loading',
                         moduleDomPosition: 'fixed'
                     }
+                },
+                //dialog的配置
+                dialog: {
+                    config: {}
                 }
             }
         },
         inherit: json
     });
-    this.loading = new Loadind(this.opt.config.loading);
+    this.loading = new Loading(this.opt.config.loading);
+    this.dialog = new Dialog(this.opt.config.dialog);
+    this.xhr = new XMLHttpRequest();
+    this.init();
 }
+Ajax.prototype.init = function () {
+    this.open();
+    this.send();
+    this.events();
+};
 Ajax.prototype.open = function () {
-
+    var opt = this.opt;
+    this.xhr.open(opt.type, opt.url);
 };
 Ajax.prototype.send = function () {
+    var opt = this.opt;
+    var data = opt.data;
+    if (opt.type.toLowerCase() == 'get') {
+        //get
+        this.xhr.send(null);
+    } else {
+        //post
+        var formData = new FormData();
+        if (data) {
+            for (var attr in data) {
+                if (data.hasOwnProperty(attr)) {
+                    formData.append(attr, data[attr]);
+                }
+            }
+        }
+        this.xhr.send(formData);
+    }
+};
+Ajax.prototype.events = function () {
 
 };
 Ajax.prototype.success = function () {

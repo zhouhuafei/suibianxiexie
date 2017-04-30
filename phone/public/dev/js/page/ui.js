@@ -30,6 +30,7 @@
 (function () {
     var Dialog = require('../modules/m-dialog');
     //new Dialog();
+    //new Dialog({config: {alert: {iconType: 'icon-shibai',content:'失败'}}});
     // new Dialog({
     //     config: {
     //         type:'confirm'

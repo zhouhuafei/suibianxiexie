@@ -1,8 +1,8 @@
 @import "../config/config";
 
 .m-footer-nav {
-    $height: 40;
-    width: px2rem(320);
+    $height: 44;
+    width: inherit;
     height: px2rem($height);
     .m-footer-nav-wrap {
         width: inherit;
@@ -15,7 +15,7 @@
         bottom: 0;
         box-sizing: border-box;
         border-top: 1px solid $g-color-border-default;
-        background: $g-color-background-default;
+        background: #fff;
         .m-footer-nav-body {
             flex: 1;
             display: flex;
@@ -26,15 +26,19 @@
             height: 100%;
             color: $g-color-font-default;
             .m-footer-nav-body-icon {
-                font-size: px2rem(20);
+                $size: 20;
+                width: px2rem($size);
+                height: px2rem($size);
+                font-size: px2rem($size);
             }
             .m-footer-nav-body-txt {
-                font-size: px2rem(12);
-                line-height: 1.4;
+                line-height: 1;
+                font-size: px2rem(14);
+                margin-top: px2rem(4);
             }
             &.m-footer-nav-body-active {
                 .m-footer-nav-body-icon, .m-footer-nav-body-txt {
-                    color: $g-color-font-highlight;
+                    color: $g-color-highlight;
                 }
             }
         }

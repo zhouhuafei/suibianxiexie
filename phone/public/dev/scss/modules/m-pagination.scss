@@ -19,6 +19,7 @@
             }
             .g-select-icon {
                 width: px2rem($height);
+                font-size: px2rem(12);
             }
         }
     }
@@ -29,7 +30,7 @@
         height: inherit;
         width: px2rem($height);
         margin-left: px2rem(10);
-        &.m-pagination-btn-inactive{
+        &.m-pagination-btn-inactive {
             color: $g-color-font-disable;
         }
     }

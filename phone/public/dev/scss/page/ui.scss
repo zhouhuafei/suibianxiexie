@@ -22,24 +22,49 @@
 .page-wrap {
     .page-input {
         @include center-xy-flex;
-        margin-top: px2rem(10);
+        margin-top: px2rem(20);
     }
     .page-checkbox {
-        margin-top:px2rem(10);
+        margin-top: px2rem(10);
         @include center-xy-flex;
     }
     .page-radio {
-        margin-top:px2rem(10);
+        margin-top: px2rem(10);
         @include center-xy-flex;
     }
-    .g-button{
-        margin-top:px2rem(10);
+    .g-button {
+        margin: px2rem(10) auto 0;
     }
-    .page-select{
-        margin-top:px2rem(10);
+    .page-select {
+        margin-top: px2rem(10);
         @include center-xy-flex;
     }
-    .g-textarea{
-        margin-top:px2rem(10);
+    .page-star {
+        margin-top: px2rem(10);
+    }
+    .g-textarea {
+        margin: px2rem(10) auto 0;
+    }
+    .g-list {
+        margin-top: px2rem(10);
+    }
+    .page-radio-switch {
+        margin-top: px2rem(10);
+    }
+    .m-table {
+        margin-top: px2rem(10);
+    }
+    .g-img-upload {
+        margin: px2rem(10) auto 0;
+    }
+    .page-super-type {
+        text-align: center;
+    }
+    .page-button {
+        margin-top: px2rem(10);
+        .g-button {
+            margin-top: 0;
+        }
+        display: flex;
     }
 }

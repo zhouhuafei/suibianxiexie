@@ -1,7 +1,7 @@
 @import "../config/config";
 /*加载更多的底部加载中*/
 .m-loading {
-    $width: 320;
+    width: inherit;
     @keyframes run {
         0% {
             transform: rotate(0deg);
@@ -33,7 +33,7 @@
             .m-loading-wrap {
                 position: fixed;
                 top: 0;
-                width: px2rem($width);
+                width: inherit;
                 height: 100%;
                 z-index: 502;
             }
@@ -74,7 +74,7 @@
             .m-loading-wrap {
                 position: fixed;
                 top: 0;
-                width: px2rem($width);
+                width: inherit;
                 height: 100%;
                 z-index: 501;
             }

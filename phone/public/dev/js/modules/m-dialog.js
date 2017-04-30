@@ -55,6 +55,7 @@ var SubType = base.constructorInherit({
             position: `center`,//默认居中
             //提示框
             alert: {
+                time:2000,//展示的时间
                 isShowIcon: true,//是否显示icon
                 iconType: `icon-chenggong`,//icon的class
                 content: `成功`//内容信息
@@ -192,7 +193,7 @@ SubType.prototype.power = function () {
     if (config.type == `alert`) {
         setTimeout(function () {
             self.hide();
-        }, 2000);
+        }, config.alert.time);
     }
     //确认框
     if (config.type == `confirm`) {

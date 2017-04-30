@@ -31,18 +31,17 @@
         top: px2rem($top-run);
     }
     .m-radio-switch-txt {
-        font-size: px2rem(16);
         margin-left: px2rem(4);
     }
     &.m-radio-switch-active {
         .m-radio-switch-wrap {
-            background: $g-color-background-highlight;
+            background: $g-color-highlight;
         }
         .m-radio-switch-run {
             left: px2rem($left-run-active);
         }
         .m-radio-switch-txt {
-            color: $g-color-font-highlight;
+            color: $g-color-highlight;
         }
     }
 }

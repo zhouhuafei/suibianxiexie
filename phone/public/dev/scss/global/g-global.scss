@@ -1,10 +1,14 @@
 @import "../config/config";
 
+//全局的容器
+.g-page {
+    width: 100%;
+}
+
 //pc展示
 .g-pc {
     height: 100%;
     box-sizing: border-box;
-    background: #ccc;
     body {
         height: inherit;
         box-sizing: inherit;
@@ -13,7 +17,10 @@
         min-height: 100%;
         margin: 0 auto;
         width: 320px;
-        background: #fff;
+        box-sizing: border-box;
+        box-shadow: px2rem(1) 0 0 $g-color-border-default, px2rem(-1) 0 0 $g-color-border-default;
+        border-top: px2rem(1) solid $g-color-border-default;
+        border-bottom: px2rem(1) solid $g-color-border-default;
     }
 }
 
@@ -78,8 +85,14 @@
     }
     //确认
     &.g-button-confirm {
-        background: $g-color-background-highlight;
+        background: $g-color-highlight;
         color: #fff;
+    }
+    //禁用
+    &.g-button-disable {
+        background: $g-color-background-disable;
+        color: $g-color-font-disable;
+        cursor: not-allowed;
     }
     //铺满
     &.g-button-full {
@@ -94,13 +107,8 @@
     width: px2rem(240);
     height: px2rem($height);
     background: #ffffff;
-    .g-input-label {
-        display: block;
-        width: inherit;
-        height: inherit;
-        border-radius: inherit;
-        position: relative;
-    }
+    display: block;
+    position: relative;
     .g-input-input {
         -webkit-appearance: none;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -129,44 +137,39 @@
     width: px2rem($width);
     height: px2rem($height);
     background: #ffffff;
-    .g-select-label {
-        display: block;
+    display: block;
+    position: relative;
+    .g-select-select {
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        outline: none;
+        color: inherit;
+        font-size: inherit;
         width: inherit;
         height: inherit;
+        background: transparent;
         border-radius: inherit;
+        box-sizing: border-box;
         position: relative;
-        .g-select-select {
-            -webkit-appearance: none;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-            outline: none;
-            color: inherit;
-            font-size: inherit;
-            width: inherit;
-            height: inherit;
-            background: inherit;
-            border-radius: inherit;
-            box-sizing: border-box;
-            position: relative;
-            z-index: 2;
-            padding-left: px2rem($padding-left);
-            padding-right: px2rem($padding-right);
-            border: px2rem(1) solid $g-color-border-default;
-        }
-        .g-select-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: inherit;
-            color: $g-color-font-dark;
-            width: px2rem($height);
-            height: inherit;
-            background: $g-color-background-default;
-            position: absolute;
-            right: 0;
-            top: 0;
-            border-left: px2rem(1) solid $g-color-border-default;
-            box-sizing: border-box;
-        }
+        z-index: 1;
+        padding-left: px2rem($padding-left);
+        padding-right: px2rem($padding-right);
+        border: px2rem(1) solid $g-color-border-default;
+    }
+    .g-select-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: inherit;
+        color: $g-color-font-dark;
+        width: px2rem($height);
+        height: inherit;
+        background: $g-color-background-default;
+        position: absolute;
+        right: 0;
+        top: 0;
+        border-left: px2rem(1) solid $g-color-border-default;
+        box-sizing: border-box;
     }
 }
 
@@ -176,13 +179,7 @@
     height: px2rem(140);
     line-height: px2rem(20);
     background: #ffffff;
-    .g-textarea-label {
-        display: block;
-        width: inherit;
-        height: inherit;
-        border-radius: inherit;
-        line-height: inherit;
-    }
+    display: block;
     .g-textarea-textarea {
         -webkit-appearance: none;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -211,15 +208,10 @@
     height: px2rem($width-height);
     background: #ffffff;
     border-radius: 50%;
-    .g-radio-label {
-        display: block;
-        width: inherit;
-        height: inherit;
-        border-radius: inherit;
-        position: relative;
-    }
+    display: block;
+    position: relative;
     .g-radio-icon {
-        color: $g-color-font-highlight;
+        color: $g-color-highlight;
         font-size: px2rem(16);
         position: absolute;
         left: 0;
@@ -246,9 +238,11 @@
         border-radius: inherit;
         border: px2rem(1) solid $g-color-border-default;
         &:checked {
-            border-color: $g-color-border-highlight;
+            border-color: $g-color-highlight;
             & + .g-radio-icon {
-                display: block;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
     }
@@ -262,15 +256,10 @@
     height: px2rem($width-height);
     background: #ffffff;
     border-radius: px2rem(4);
-    .g-checkbox-label {
-        display: block;
-        width: inherit;
-        height: inherit;
-        border-radius: inherit;
-        position: relative;
-    }
+    display: block;
+    position: relative;
     .g-checkbox-icon {
-        color: $g-color-font-highlight;
+        color: $g-color-highlight;
         font-size: px2rem(16);
         position: absolute;
         left: 0;
@@ -289,7 +278,7 @@
         border-radius: inherit;
         border: px2rem(1) solid $g-color-border-default;
         &:checked {
-            border-color: $g-color-border-highlight;
+            border-color: $g-color-highlight;
             & + .g-checkbox-icon {
                 display: flex;
                 align-items: center;
@@ -302,22 +291,33 @@
 //列表
 .g-list {
     width: 100%;
+    background: #fff;
     .g-list-row {
-        border-bottom: px2rem(1) solid $g-color-border-default;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: px2rem(16);
+        display: block;
         padding: px2rem(10) px2rem(10);
+        border-bottom: px2rem(1) solid $g-color-border-default;
+        .g-list-icon {
+            $size: 24;
+            width: px2rem($size);
+            height: px2rem($size);
+            font-size: px2rem($size);
+            margin-right: px2rem(10);
+            color: $g-color-highlight;
+        }
         .g-list-txt {
+            font-size: px2rem(12);
+            color: $g-color-font-dark;
+        }
+        .g-list-wrap {
             display: flex;
             align-items: center;
-            justify-content: center;
-            &.g-list-txt-active {
-                color: $g-color-font-highlight;
-            }
+            justify-content: space-between;
         }
-        &:last-of-type {
+        .g-list-info {
+            color: $g-color-font-dark;
+            font-size: px2rem(12);
+        }
+        &:last-child {
             border-bottom: none;
         }
     }
