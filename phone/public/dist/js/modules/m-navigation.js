@@ -54,18 +54,66 @@
                 //配置
                 config: {},
                 //数据
-                data: {}
+                data: {
+                    items: [{
+                        href: '',
+                        icon: '',
+                        txt: ''
+                    }, {
+                        href: '',
+                        icon: '',
+                        txt: ''
+                    }, {
+                        href: '',
+                        icon: '',
+                        txt: ''
+                    }, {
+                        href: '',
+                        icon: '',
+                        txt: ''
+                    }, {
+                        href: '',
+                        icon: '',
+                        txt: ''
+                    }, {
+                        href: '',
+                        icon: '',
+                        txt: ''
+                    }, {
+                        href: '',
+                        icon: '',
+                        txt: ''
+                    }, {
+                        href: '',
+                        icon: '',
+                        txt: ''
+                    }, {
+                        href: '',
+                        icon: '',
+                        txt: ''
+                    }, {
+                        href: '',
+                        icon: '',
+                        txt: ''
+                    }]
+                }
             }
         });
 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
+            var data = this.opt.data;
+            var items = data.items;
+            var html = "";
+            items.forEach(function (v) {
+                html += "\n            <a class=\"m-navigation-wrap\">\n                <div class=\"m-navigation-icon\"></div>\n                <div class=\"m-navigation-txt\"></div>\n            </a>\n        ";
+            });
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleDomStyle,
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
-                    className: "m-sub-type",
-                    innerHTML: "\n                <div class=\"m-sub-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                    className: "m-navigation",
+                    innerHTML: html
                 }
             });
         };

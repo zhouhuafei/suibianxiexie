@@ -7,3 +7,4 @@
 <p>4-1.例如出现多个回调函数   callback.a,callback.b,callback.c</p>
 <p>4-2.例如出现多个选择元素   selector.a,selector.b,selector.c</p>
 <p>命名规范  m-开头的是模块 g-开头的是全局 c-开头的是组件  page-开头的是页面级别的</p>
+<p>轮播图比例  普通轮播图w:h==2:1  详情轮播图w:h==1:1</p>

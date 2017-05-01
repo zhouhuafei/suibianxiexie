@@ -1,0 +1,15 @@
+//基础样式
+@import "../base/base";
+//slide切换
+@import "../modules/m-slide";
+
+//页面样式
+.page-wrap {
+    #page-slide {
+        height: px2rem(160);
+        margin-bottom: px2rem(10);
+    }
+    .page-navigation {
+        //height: px2rem(128);
+    }
+}

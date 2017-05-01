@@ -1,0 +1,22 @@
+@import "../config/config";
+
+.m-navigation {
+    display: flex;
+    .m-navigation-wrap {
+        $width-height: 64;
+        width: px2rem($width-height);
+        height: px2rem($width-height);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        box-sizing: border-box;
+        .m-navigation-icon {
+            font-size: px2rem(24);
+            color: $g-color-highlight;
+        }
+        .m-navigation-txt {
+            font-size: px2rem(12);
+        }
+    }
+}
