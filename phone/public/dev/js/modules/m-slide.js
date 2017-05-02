@@ -27,7 +27,7 @@ var SubType = base.constructorInherit({
                 effect: "leftLoop",//效果
                 autoPlay: true,//自动播放
                 delayTime: 200,//切换一次的持续时间
-                interTime: 300000,//多久切换一次
+                interTime: 3000,//多久切换一次
                 startFun: function () {
                 },
                 endFun: function () {
