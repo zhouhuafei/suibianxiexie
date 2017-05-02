@@ -55,7 +55,7 @@ var SubType = base.constructorInherit({
             position: `center`,//默认居中
             //提示框
             alert: {
-                time:2000,//展示的时间
+                time: 2000,//展示的时间
                 isShowIcon: true,//是否显示icon
                 iconType: `icon-chenggong`,//icon的class
                 content: `成功`//内容信息
@@ -111,24 +111,26 @@ SubType.prototype.moduleDomCreate = function () {
 //提示框
 SubType.prototype.renderAlert = function () {
     var config = this.opt.config;
+    if (config.type != `alert`) {
+        return ``;
+    }
     var alert = config.alert;
     var htmlIcon = ``;
     if (alert.isShowIcon) {
         htmlIcon = `<div class="m-dialog-alert-icon iconfont ${alert.iconType}"></div>`;
     }
-    var htmlResult = ``;
-    if (config.type == `alert`) {
-        htmlResult = `
-            ${htmlIcon}
-            <div class="m-dialog-alert-txt">${alert.content}</div>
-        `;
-    }
-    return htmlResult;
+    return `
+        ${htmlIcon}
+        <div class="m-dialog-alert-txt">${alert.content}</div>
+    `;
 };
 
 //确认框
 SubType.prototype.renderConfirm = function () {
     var config = this.opt.config;
+    if (config.type != `confirm`) {
+        return ``;
+    }
     var confirm = config.confirm;
     var htmlHeader = ``;
     if (confirm.isShowHeader) {
@@ -173,16 +175,12 @@ SubType.prototype.renderConfirm = function () {
     if (confirm.isShowClose) {
         htmlClose = `<div class="m-dialog-close">${confirm.closeContent}</div>`;
     }
-    var htmlResult = ``;
-    if (config.type == `confirm`) {
-        htmlResult = `
-            ${htmlHeader}
-            ${htmlBody}
-            ${htmlFooter}
-            ${htmlClose} 
-        `;
-    }
-    return htmlResult;
+    return `
+        ${htmlHeader}
+        ${htmlBody}
+        ${htmlFooter}
+        ${htmlClose} 
+    `;
 };
 
 //功能(覆盖超类型)

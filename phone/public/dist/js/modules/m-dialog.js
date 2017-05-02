@@ -145,21 +145,23 @@
         //提示框
         SubType.prototype.renderAlert = function () {
             var config = this.opt.config;
+            if (config.type != "alert") {
+                return "";
+            }
             var alert = config.alert;
             var htmlIcon = "";
             if (alert.isShowIcon) {
                 htmlIcon = "<div class=\"m-dialog-alert-icon iconfont " + alert.iconType + "\"></div>";
             }
-            var htmlResult = "";
-            if (config.type == "alert") {
-                htmlResult = "\n            " + htmlIcon + "\n            <div class=\"m-dialog-alert-txt\">" + alert.content + "</div>\n        ";
-            }
-            return htmlResult;
+            return "\n        " + htmlIcon + "\n        <div class=\"m-dialog-alert-txt\">" + alert.content + "</div>\n    ";
         };
 
         //确认框
         SubType.prototype.renderConfirm = function () {
             var config = this.opt.config;
+            if (config.type != "confirm") {
+                return "";
+            }
             var confirm = config.confirm;
             var htmlHeader = "";
             if (confirm.isShowHeader) {
@@ -195,11 +197,7 @@
             if (confirm.isShowClose) {
                 htmlClose = "<div class=\"m-dialog-close\">" + confirm.closeContent + "</div>";
             }
-            var htmlResult = "";
-            if (config.type == "confirm") {
-                htmlResult = "\n            " + htmlHeader + "\n            " + htmlBody + "\n            " + htmlFooter + "\n            " + htmlClose + " \n        ";
-            }
-            return htmlResult;
+            return "\n        " + htmlHeader + "\n        " + htmlBody + "\n        " + htmlFooter + "\n        " + htmlClose + " \n    ";
         };
 
         //功能(覆盖超类型)
