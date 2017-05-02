@@ -32,7 +32,7 @@ window.addEventListener('load', function () {
         (function () {
             var Slide = require('../modules/m-slide');
             new Slide({
-                wrap: '#page-slide',
+                wrap: '.page-slide',
                 data: {
                     items: [
                         {

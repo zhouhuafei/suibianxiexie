@@ -21,7 +21,7 @@ var SubType = base.constructorInherit({
         config: {
             isShowHref: true,//是否有跳转
             touchSlide: {
-                slideCell: '',//外部容器,必须是id,这个值会在底部进行覆盖,因为在这里没办法获取this
+                slideCell: '',//外部容器,这个值会在底部进行覆盖,因为在这里没办法获取this
                 mainCell: '.m-slide-body',//切换元素的包裹层对象
                 titCell: '.m-slide-header .m-slide-item',//导航元素对象
                 effect: "leftLoop",//效果
