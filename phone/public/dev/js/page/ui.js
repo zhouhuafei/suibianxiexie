@@ -59,6 +59,11 @@ window.addEventListener('load', function () {
                 }
             });
         })();
+        //导航
+        (function () {
+            var Navigation = require('../modules/m-navigation');
+            new Navigation({wrap: '.page-navigation'});
+        })();
         //弹窗测试
         (function () {
             var Dialog = require('../modules/m-dialog');

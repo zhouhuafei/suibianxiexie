@@ -306,7 +306,13 @@
         }
         .g-list-txt {
             font-size: px2rem(12);
+        }
+        .g-list-mark {
+            font-size: px2rem(12);
             color: $g-color-font-dark;
+        }
+        .g-list-more {
+            font-size: px2rem(14);
         }
         .g-list-wrap {
             display: flex;

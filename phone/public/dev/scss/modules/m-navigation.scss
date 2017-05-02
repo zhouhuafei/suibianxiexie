@@ -2,6 +2,8 @@
 
 .m-navigation {
     display: flex;
+    flex-wrap: wrap;
+    background: #ffffff;
     .m-navigation-wrap {
         $width-height: 64;
         width: px2rem($width-height);
@@ -11,12 +13,23 @@
         justify-content: center;
         flex-direction: column;
         box-sizing: border-box;
+        position: relative;
         .m-navigation-icon {
             font-size: px2rem(24);
             color: $g-color-highlight;
         }
         .m-navigation-txt {
             font-size: px2rem(12);
+        }
+        .m-navigation-mark {
+            position: absolute;
+            right: px2rem(10);
+            top: px2rem(10);
+            width: px2rem(6);
+            height: px2rem(6);
+            border-radius: 50%;
+            background: $g-color-highlight;
+            color: #ffffff;
         }
     }
 }

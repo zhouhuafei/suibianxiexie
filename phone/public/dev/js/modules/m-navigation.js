@@ -17,54 +17,64 @@ var SubType = base.constructorInherit({
         data: {
             items: [
                 {
-                    href: '',
-                    icon: '',
-                    txt: ''
+                    href: '/',
+                    icon: 'icon-shouye',
+                    txt: '周',
+                    mark: ''
                 },
                 {
-                    href: '',
-                    icon: '',
-                    txt: ''
+                    href: '/mine',
+                    icon: 'icon-wode',
+                    txt: '华',
+                    mark: ''
                 },
                 {
-                    href: '',
-                    icon: '',
-                    txt: ''
+                    href: '/ui',
+                    icon: 'icon-guanzhu',
+                    txt: '飞',
+                    mark: ''
                 },
                 {
-                    href: '',
-                    icon: '',
-                    txt: ''
+                    href: '/set',
+                    icon: 'icon-shezhi',
+                    txt: '永',
+                    mark: ''
                 },
                 {
-                    href: '',
-                    icon: '',
-                    txt: ''
+                    href: '/cart',
+                    icon: 'icon-gouwuche',
+                    txt: '远',
+                    mark: ''
                 },
                 {
-                    href: '',
-                    icon: '',
-                    txt: ''
+                    href: '/',
+                    icon: 'icon-shoucang',
+                    txt: '爱',
+                    mark: ''
                 },
                 {
-                    href: '',
-                    icon: '',
-                    txt: ''
+                    href: '/mine',
+                    icon: 'icon-shoucang',
+                    txt: '侯',
+                    mark: ''
                 },
                 {
-                    href: '',
-                    icon: '',
-                    txt: ''
+                    href: '/ui',
+                    icon: 'icon-shoucang',
+                    txt: '丽',
+                    mark: ''
                 },
                 {
-                    href: '',
-                    icon: '',
-                    txt: ''
+                    href: '/set',
+                    icon: 'icon-shoucang',
+                    txt: '杰',
+                    mark: ''
                 },
                 {
-                    href: '',
-                    icon: '',
-                    txt: ''
+                    href: '/cart',
+                    icon: 'icon-shoucang',
+                    txt: '!',
+                    mark: ''
                 }
             ]
         }
@@ -77,10 +87,15 @@ SubType.prototype.moduleDomCreate = function () {
     var items = data.items;
     var html = ``;
     items.forEach(function (v) {
+        var markHtml = ``;
+        if (v.mark) {
+            markHtml = `<div class="m-navigation-mark">${v.mark}</div>`;
+        }
         html += `
-            <a class="m-navigation-wrap">
-                <div class="m-navigation-icon"></div>
-                <div class="m-navigation-txt"></div>
+            <a href="${v.href}" class="m-navigation-wrap">
+                <div class="m-navigation-icon iconfont ${v.icon}"></div>
+                <div class="m-navigation-txt">${v.txt}</div>
+                ${markHtml}
             </a>
         `;
     });

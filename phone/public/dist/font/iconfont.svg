@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20120731 at Sun Apr 30 20:35:14 2017
+Created by FontForge 20120731 at Tue May  2 09:38:15 2017
  By admin
 </metadata>
 <defs>
@@ -19,7 +19,7 @@ Created by FontForge 20120731 at Sun Apr 30 20:35:14 2017
     bbox="23 -92 1001 864"
     underline-thickness="0"
     underline-position="0"
-    unicode-range="U+0078-E678"
+    unicode-range="U+0078-E679"
   />
 <missing-glyph 
  />
@@ -337,5 +337,7 @@ q52 48 124 48q57 0 108 -30q87 -52 102 -144q13 -80 -36 -154zM366 638q-25 12 -53 1
     <glyph glyph-name="xingping" unicode="&#xe677;" 
 d="M240 -27q16 -11 37 -11q17 0 32 8l203 106l204 -106q15 -8 32 -8q20 0 37 11q33 23 27 60l-40 230l171 166q28 27 16 62q-7 17 -21.5 28.5t-32.5 13.5l-232 33l-102 205q-18 35 -58 35h-1q-19 0 -34.5 -9.5t-23.5 -25.5l-102 -205l-234 -34q-18 -2 -32 -13.5t-20 -28.5
 q-12 -34 15 -61l172 -166l-40 -230q-7 -38 27 -60v0zM118 472l274 39l120 242l121 -242l41 -6l233 -33l-198 -192l6 -39l40 -229l-243 126l-242 -127l39 230l7 39l-28 27l-170 165v0z" />
+    <glyph glyph-name="gengduo" unicode="&#xe679;" 
+d="M762 406l-432 436q-8 7 -18 7t-17.5 -7.5t-7.5 -17.5t7 -18l416 -416l-416 -425q-7 -7 -7 -17.5t7.5 -18t17.5 -7.5t18 8l432 441q7 7 7 17.5t-7 17.5z" />
   </font>
 </defs></svg>

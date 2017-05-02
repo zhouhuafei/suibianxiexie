@@ -486,6 +486,12 @@
     '' +
     '</symbol>' +
     '' +
+    '<symbol id="icon-gengduo" viewBox="0 0 1024 1024">' +
+    '' +
+    '<path d="M761.6 489.6l-432-435.2c-9.6-9.6-25.6-9.6-35.2 0-9.6 9.6-9.6 25.6 0 35.2l416 416-416 425.6c-9.6 9.6-9.6 25.6 0 35.2s25.6 9.6 35.2 0l432-441.6c9.6-9.6 9.6-25.6 0-35.2z"  ></path>' +
+    '' +
+    '</symbol>' +
+    '' +
     '</svg>'
   var script = function() {
     var scripts = document.getElementsByTagName('script')
