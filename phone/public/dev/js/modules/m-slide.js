@@ -31,7 +31,6 @@ var SubType = base.constructorInherit({
                 startFun: function () {
                 },
                 endFun: function () {
-
                 },
                 defaultIndex: 0//默认的当前位置索引
             }
