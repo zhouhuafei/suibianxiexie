@@ -64,7 +64,7 @@
                         titCell: '.m-slide-header .m-slide-item', //导航元素对象
                         effect: "leftLoop", //效果
                         autoPlay: true, //自动播放
-                        delayTime: 200, //切换一次的持续时间
+                        delayTime: 2000, //切换一次的持续时间
                         interTime: 3000, //多久切换一次
                         startFun: function startFun() {},
                         endFun: function endFun() {},
