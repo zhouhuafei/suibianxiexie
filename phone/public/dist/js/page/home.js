@@ -38,30 +38,9 @@
         };
         module.exports = base;
     }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/scroll-to": 16, "../function/seconds-to-time": 17, "../function/select": 18, "../function/str-limit": 19, "../function/time-count-down": 20, "../function/user-agent": 21, "../function/when-scroll-bottom": 22, "../function/whether-disable-scroll": 23 }], 2: [function (require, module, exports) {
-        //版权
-        (function () {
-            if (pageConfig && pageConfig.isShowCopyright) {
-                var Copyright = require('../modules/m-copyright');
-                new Copyright();
-            }
-        })();
-
-        //底部导航
-        (function () {
-            if (pageConfig && pageConfig.isShowFooterNav) {
-                var Footer = require('../modules/m-footer-nav');
-                new Footer();
-            }
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright": 24, "../modules/m-footer-nav": 25, "../modules/m-lazy-load": 26 }], 3: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
+
                 //slide切换
                 (function () {
                     var Slide = require('../modules/m-slide');
@@ -87,15 +66,39 @@
                         }
                     });
                 })();
+
                 //导航
                 (function () {
                     var Navigation = require('../modules/m-navigation');
                     new Navigation({ wrap: '.page-navigation' });
                 })();
+
                 require('../common/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../common/common": 2, "../modules/m-navigation": 27, "../modules/m-slide": 28 }], 4: [function (require, module, exports) {
+    }, { "../common/common": 3, "../modules/m-navigation": 27, "../modules/m-slide": 28 }], 3: [function (require, module, exports) {
+        //版权
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
+                var Copyright = require('../modules/m-copyright');
+                new Copyright();
+            }
+        })();
+
+        //底部导航
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
+                var Footer = require('../modules/m-footer-nav');
+                new Footer();
+            }
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright": 24, "../modules/m-footer-nav": 25, "../modules/m-lazy-load": 26 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -1832,4 +1835,4 @@
         };
 
         module.exports = TouchSlide;
-    }, {}] }, {}, [3]);
+    }, {}] }, {}, [2]);

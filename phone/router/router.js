@@ -4,55 +4,91 @@ function Routes(opt) {
     }
     this.app = opt.app;
     this.init();
+    this.error();
 }
 Routes.prototype.init = function () {
-    this.phoneHome();
-    this.phoneUi();
-    this.phoneMine();
-    this.phoneLogin();
-    this.phoneRegister();
-    this.phoneList();
+    this.home();
+    this.ui();
+    this.mine();
+    this.login();
+    this.register();
+    this.list();
 };
-Routes.prototype.phoneList = function () {
+Routes.prototype.list = function () {
     this.app.get('/list', function (req, res) {
         res.render('page/list', {
-            title: '列表页'
+            data: {
+                title: '列表'
+            },
+            config: {}
         });
     })
 };
-Routes.prototype.phoneRegister = function () {
+Routes.prototype.register = function () {
     this.app.get('/register', function (req, res) {
         res.render('page/register', {
-            title: '注册'
+            data: {
+                title: '注册'
+            },
+            config: {}
         });
     })
 };
-Routes.prototype.phoneLogin = function () {
+Routes.prototype.login = function () {
     this.app.get('/login', function (req, res) {
         res.render('page/login', {
-            title: '登录'
+            data: {
+                title: '登陆'
+            },
+            config: {}
         });
     })
 };
-Routes.prototype.phoneMine = function () {
+Routes.prototype.mine = function () {
     this.app.get('/mine', function (req, res) {
         res.render('page/mine', {
-            title: '我的'
+            data: {
+                title: '我的'
+            },
+            config: {}
         });
     })
 };
-Routes.prototype.phoneUi = function () {
+Routes.prototype.ui = function () {
     this.app.get('/ui', function (req, res) {
         res.render('page/ui', {
-            title: 'ui'
+            data: {
+                title: 'ui'
+            },
+            config: {}
         });
     })
 };
-Routes.prototype.phoneHome = function () {
+Routes.prototype.home = function () {
     this.app.get('/', function (req, res) {
         res.render('page/home', {
-            title: '首页'
+            data: {
+                title: '首页'
+            },
+            config: {}
         });
     })
+};
+Routes.prototype.error = function () {
+    //404
+    this.app.use(function (req, res) {
+        res.render('page/404', {
+            data: {
+                title: '404'
+            },
+            config: {}
+        });
+    });
+    //500
+    this.app.use(function (err, req, res) {
+        res.type('text/plain');
+        res.status('500');
+        res.send('500 - Server Error');
+    });
 };
 module.exports = Routes;

@@ -46,33 +46,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
         module.exports = base;
     }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/scroll-to": 16, "../function/seconds-to-time": 17, "../function/select": 18, "../function/str-limit": 19, "../function/time-count-down": 20, "../function/user-agent": 21, "../function/when-scroll-bottom": 23, "../function/whether-disable-scroll": 24 }], 2: [function (require, module, exports) {
-        //版权
-        (function () {
-            if (pageConfig && pageConfig.isShowCopyright) {
-                var Copyright = require('../modules/m-copyright');
-                new Copyright();
-            }
-        })();
-
-        //底部导航
-        (function () {
-            if (pageConfig && pageConfig.isShowFooterNav) {
-                var Footer = require('../modules/m-footer-nav');
-                new Footer();
-            }
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 27, "../modules/m-lazy-load": 29 }], 3: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
+
                 //base函数测试
                 (function () {
                     var base = require('../base/base');
+
                     //测试滚动到底部loading
                     new base.WhenScrollBottom({
                         callback: {
@@ -88,6 +68,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                             }
                         }
                     });
+
                     //测试全选
                     new base.Select({
                         items: '.g-checkbox-checkbox',
@@ -98,6 +79,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         }
                     });
                 })();
+
                 //slide切换
                 (function () {
                     var Slide = require('../modules/m-slide');
@@ -123,11 +105,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         }
                     });
                 })();
+
                 //导航
                 (function () {
                     var Navigation = require('../modules/m-navigation');
                     new Navigation({ wrap: '.page-navigation' });
                 })();
+
                 //弹窗测试
                 (function () {
                     var Dialog = require('../modules/m-dialog');
@@ -139,16 +123,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     //     }
                     // });
                 })();
+
                 //分页测试
                 (function () {
                     var Pagination = require('../modules/m-pagination');
                     new Pagination({ wrap: '.page-pagination' });
                 })();
+
                 //没有数据
                 (function () {
                     var NoData = require('../modules/m-no-data');
                     new NoData({ wrap: '.page-no-data' });
                 })();
+
                 //加载中
                 (function () {
                     var Loading = require('../modules/m-loading');
@@ -165,6 +152,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     });
                     over.moduleDomShow();
                 })();
+
                 //超类型模块测试
                 (function () {
                     var SuperType = require('../modules/m-super-type');
@@ -176,11 +164,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     var SubTypeEs6 = require('../modules/m-sub-type-es6');
                     new SubTypeEs6({ wrap: ".page-super-type" });
                 })();
+
                 //返回顶部
                 (function () {
                     var GoTop = require('../modules/m-go-top');
                     new GoTop();
                 })();
+
                 //遮罩
                 (function () {
                     var Mask = require('../modules/m-mask');
@@ -193,6 +183,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     });
                     //mask.moduleDomShow();
                 })();
+
                 //单选开关
                 (function () {
                     var Radio = require('../modules/m-radio-switch');
@@ -205,6 +196,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         }
                     });
                 })();
+
                 //表格
                 (function () {
                     var Table = require('../modules/m-table');
@@ -241,6 +233,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         }
                     });
                 })();
+
                 //验证
                 (function () {
                     var ValidateInput = require('../modules/m-validate-form');
@@ -251,6 +244,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         //v.validate.validateSave();
                     });
                 })();
+
                 //星评
                 (function () {
                     var Star = require('../modules/m-star');
@@ -263,10 +257,33 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         }
                     });
                 })();
+
                 require('../common/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../base/base": 1, "../common/common": 2, "../modules/m-dialog": 26, "../modules/m-go-top": 28, "../modules/m-loading": 30, "../modules/m-mask": 31, "../modules/m-navigation": 32, "../modules/m-no-data": 33, "../modules/m-pagination": 34, "../modules/m-radio-switch": 35, "../modules/m-slide": 36, "../modules/m-star": 37, "../modules/m-sub-type": 39, "../modules/m-sub-type-es6": 38, "../modules/m-super-type": 41, "../modules/m-super-type-es6": 40, "../modules/m-table": 42, "../modules/m-validate-form": 43 }], 4: [function (require, module, exports) {
+    }, { "../base/base": 1, "../common/common": 3, "../modules/m-dialog": 26, "../modules/m-go-top": 28, "../modules/m-loading": 30, "../modules/m-mask": 31, "../modules/m-navigation": 32, "../modules/m-no-data": 33, "../modules/m-pagination": 34, "../modules/m-radio-switch": 35, "../modules/m-slide": 36, "../modules/m-star": 37, "../modules/m-sub-type": 39, "../modules/m-sub-type-es6": 38, "../modules/m-super-type": 41, "../modules/m-super-type-es6": 40, "../modules/m-table": 42, "../modules/m-validate-form": 43 }], 3: [function (require, module, exports) {
+        //版权
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
+                var Copyright = require('../modules/m-copyright');
+                new Copyright();
+            }
+        })();
+
+        //底部导航
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
+                var Footer = require('../modules/m-footer-nav');
+                new Footer();
+            }
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 27, "../modules/m-lazy-load": 29 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -1719,12 +1736,17 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 //回调
                 callback: {},
                 //配置
-                config: {},
+                config: {
+                    btn: {
+                        isShowIcon: false
+                    }
+                },
                 //数据
                 data: {
                     icon: 'icon-meiyoushuju',
                     txt: '没有数据',
                     btn: {
+                        icon: 'icon-shouye',
                         txt: '回首页',
                         href: '/'
                     }
@@ -1735,12 +1757,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             var data = this.opt.data;
+            var btnIconHtml = "";
+            if (this.opt.config.btn.isShowIcon) {
+                btnIconHtml = "<div class=\"g-button-icon iconfont " + data.btn.icon + "\"></div>";
+            }
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleStyle,
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-no-data",
-                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-txt\">" + data.txt + "</div>\n                <a class=\"m-no-data-btn g-button g-button-confirm\" href=\"" + data.btn.href + "\">\n                    <div class=\"g-button-icon iconfont\"></div>\n                    <div class=\"g-button-txt\">" + data.btn.txt + "</div>\n                </a>\n            "
+                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-txt\">" + data.txt + "</div>\n                <a class=\"m-no-data-btn g-button g-button-confirm\" href=\"" + data.btn.href + "\">\n                    " + btnIconHtml + "\n                    <div class=\"g-button-txt\">" + data.btn.txt + "</div>\n                </a>\n            "
                 }
             });
         };
@@ -3493,4 +3519,4 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = TouchSlide;
-    }, {}] }, {}, [3]);
+    }, {}] }, {}, [2]);

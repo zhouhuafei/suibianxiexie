@@ -37,7 +37,24 @@
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/array-remove-repeat": 3, "../function/constructor-inherit": 4, "../function/cookie": 5, "../function/create-element": 6, "../function/extend": 7, "../function/fill-zero": 8, "../function/get-dom-array": 9, "../function/get-parent": 10, "../function/html-to-dom": 11, "../function/obj-remove-quote": 12, "../function/obj-to-array": 13, "../function/offset": 14, "../function/scroll-to": 15, "../function/seconds-to-time": 16, "../function/select": 17, "../function/str-limit": 18, "../function/time-count-down": 19, "../function/user-agent": 20, "../function/when-scroll-bottom": 21, "../function/whether-disable-scroll": 22 }], 2: [function (require, module, exports) {
+    }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/scroll-to": 16, "../function/seconds-to-time": 17, "../function/select": 18, "../function/str-limit": 19, "../function/time-count-down": 20, "../function/user-agent": 21, "../function/when-scroll-bottom": 22, "../function/whether-disable-scroll": 23 }], 2: [function (require, module, exports) {
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+
+                //没有数据
+                (function () {
+                    var NoData = require('../modules/m-no-data');
+                    new NoData({
+                        data: {
+                            txt: '404 - Not Find'
+                        }
+                    });
+                })();
+
+                require('../common/common'); //每个页面都要用到的js(一定要放到最底部)
+            }, 0);
+        });
+    }, { "../common/common": 3, "../modules/m-no-data": 27 }], 3: [function (require, module, exports) {
         //版权
         (function () {
             if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
@@ -59,7 +76,7 @@
             var LazyLoad = require('../modules/m-lazy-load');
             new LazyLoad();
         })();
-    }, { "../modules/m-copyright": 23, "../modules/m-footer-nav": 24, "../modules/m-lazy-load": 25 }], 3: [function (require, module, exports) {
+    }, { "../modules/m-copyright": 24, "../modules/m-footer-nav": 25, "../modules/m-lazy-load": 26 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -76,7 +93,7 @@
             return newArray;
         }
         module.exports = arrayRemoveRepeat;
-    }, {}], 4: [function (require, module, exports) {
+    }, {}], 5: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
         var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 
@@ -129,7 +146,7 @@
             return SubType;
         }
         module.exports = constructorInherit;
-    }, { "../function/extend": 7, "../function/obj-remove-quote": 12 }], 5: [function (require, module, exports) {
+    }, { "../function/extend": 8, "../function/obj-remove-quote": 13 }], 6: [function (require, module, exports) {
         //设置cookie
         function setCookie(json) {
             var opt = json || {};
@@ -169,7 +186,7 @@
             removeCookie: removeCookie
         };
         module.exports = obj;
-    }, {}], 6: [function (require, module, exports) {
+    }, {}], 7: [function (require, module, exports) {
         //创建元素节点
         function createElement(json) {
             var opt = json || {};
@@ -194,7 +211,7 @@
             return elementNode;
         }
         module.exports = createElement;
-    }, {}], 7: [function (require, module, exports) {
+    }, {}], 8: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opt = json || {};
@@ -285,7 +302,7 @@
         // });
         // console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
         module.exports = extend;
-    }, {}], 8: [function (require, module, exports) {
+    }, {}], 9: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend');
 
@@ -305,7 +322,7 @@
             }
         }
         module.exports = fillZero;
-    }, { "../function/extend": 7 }], 9: [function (require, module, exports) {
+    }, { "../function/extend": 8 }], 10: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
 
         //获取原生的dom节点并转换成数组,传入的参数仅支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
@@ -337,7 +354,7 @@
             return dom;
         }
         module.exports = getDomArray;
-    }, { "../function/extend": 7 }], 10: [function (require, module, exports) {
+    }, { "../function/extend": 8 }], 11: [function (require, module, exports) {
         //获取指定父级
         function getParent(json) {
             var opt = json || {};
@@ -400,7 +417,7 @@
             }
         }
         module.exports = getParent;
-    }, {}], 11: [function (require, module, exports) {
+    }, {}], 12: [function (require, module, exports) {
         //html转成DOM节点
         function htmlToDom(json) {
             var opt = json || {};
@@ -410,7 +427,7 @@
             return div.children[0];
         }
         module.exports = htmlToDom;
-    }, {}], 12: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
         //移除对象引用
         function objRemoveQuote(json) {
             var opt = json || {};
@@ -432,7 +449,7 @@
             return newObj;
         }
         module.exports = objRemoveQuote;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         //把json格式的对象转成数组
         function objToArray(json) {
             var opt = json || {};
@@ -452,7 +469,7 @@
             return arr;
         }
         module.exports = objToArray;
-    }, {}], 14: [function (require, module, exports) {
+    }, {}], 15: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展
         var getDomArray = require('../function/get-dom-array'); //获取一组dom节点
 
@@ -478,7 +495,7 @@
             };
         }
         module.exports = offset;
-    }, { "../function/extend": 7, "../function/get-dom-array": 9 }], 15: [function (require, module, exports) {
+    }, { "../function/extend": 8, "../function/get-dom-array": 10 }], 16: [function (require, module, exports) {
         //滚动到指定位置
         function scrollTo(json) {
             var opt = json || {};
@@ -499,7 +516,7 @@
             requestAnimationFrame(fn);
         }
         module.exports = scrollTo;
-    }, {}], 16: [function (require, module, exports) {
+    }, {}], 17: [function (require, module, exports) {
         //秒转时间
         function secondsToTime(json) {
             var opt = json || {};
@@ -515,7 +532,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 17: [function (require, module, exports) {
+    }, {}], 18: [function (require, module, exports) {
         //全选,不选,反选
         var extend = require('../function/extend');
         var getDomArray = require('../function/get-dom-array');
@@ -577,7 +594,7 @@
         };
 
         module.exports = Select;
-    }, { "../function/extend": 7, "../function/get-dom-array": 9 }], 18: [function (require, module, exports) {
+    }, { "../function/extend": 8, "../function/get-dom-array": 10 }], 19: [function (require, module, exports) {
         //字符数量限制
         function strLimit(json) {
             var opt = json || {};
@@ -593,7 +610,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 19: [function (require, module, exports) {
+    }, {}], 20: [function (require, module, exports) {
         var extend = require('../function/extend');
         var secondsToTime = require('../function/seconds-to-time'); //时间转换
 
@@ -632,7 +649,7 @@
             }
         }
         module.exports = timeCountDown;
-    }, { "../function/extend": 7, "../function/seconds-to-time": 16 }], 20: [function (require, module, exports) {
+    }, { "../function/extend": 8, "../function/seconds-to-time": 17 }], 21: [function (require, module, exports) {
         //是不是PC
         function isPc() {
             var userAgentInfo = navigator.userAgent;
@@ -662,7 +679,7 @@
         module.exports.isWeiXin = isWeiXin;
         module.exports.isIphone = isIphone;
         module.exports.isAndroid = isAndroid;
-    }, {}], 21: [function (require, module, exports) {
+    }, {}], 22: [function (require, module, exports) {
         var extend = require('../function/extend');
 
         //当滚动到了浏览器的底部
@@ -716,7 +733,7 @@
             });
         };
         module.exports = WhenScrollBottom;
-    }, { "../function/extend": 7 }], 22: [function (require, module, exports) {
+    }, { "../function/extend": 8 }], 23: [function (require, module, exports) {
         //是否禁止浏览器滚动
         function whetherDisableScroll() {
             var doc = document;
@@ -747,7 +764,7 @@
             };
         }
         module.exports = whetherDisableScroll;
-    }, {}], 23: [function (require, module, exports) {
+    }, {}], 24: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -786,7 +803,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 26 }], 24: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 28 }], 25: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -826,7 +843,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 26 }], 25: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 28 }], 26: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -898,7 +915,63 @@
             });
         };
         module.exports = LazyLoad;
-    }, { "../base/base": 1 }], 26: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 27: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base');
+
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type');
+
+        //子类型
+        var SubType = base.constructorInherit({
+            superType: SuperType,
+            //默认参数(继承超类型)
+            parameter: {
+                //回调
+                callback: {},
+                //配置
+                config: {
+                    btn: {
+                        isShowIcon: false
+                    }
+                },
+                //数据
+                data: {
+                    icon: 'icon-meiyoushuju',
+                    txt: '没有数据',
+                    btn: {
+                        icon: 'icon-shouye',
+                        txt: '回首页',
+                        href: '/'
+                    }
+                }
+            }
+        });
+
+        //内部模块的创建(覆盖超类型)
+        SubType.prototype.moduleDomCreate = function () {
+            var data = this.opt.data;
+            var btnIconHtml = "";
+            if (this.opt.config.btn.isShowIcon) {
+                btnIconHtml = "<div class=\"g-button-icon iconfont " + data.btn.icon + "\"></div>";
+            }
+            this.moduleDom = base.createElement({
+                style: this.opt.config.moduleStyle,
+                custom: this.opt.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-no-data",
+                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-txt\">" + data.txt + "</div>\n                <a class=\"m-no-data-btn g-button g-button-confirm\" href=\"" + data.btn.href + "\">\n                    " + btnIconHtml + "\n                    <div class=\"g-button-txt\">" + data.btn.txt + "</div>\n                </a>\n            "
+                }
+            });
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
+
+        module.exports = SubType;
+    }, { "../base/base": 1, "../modules/m-super-type": 28 }], 28: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 

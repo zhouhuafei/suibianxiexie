@@ -1,11 +1,14 @@
 //配置
-var Config = require('./config/port');
-var config = new Config();
+var Port = require('./config/port');
+var port = new Port();
+
 //express
 var express = require('express');
 var app = express();
+
 //托管静态文件
 app.use(express.static('public'));
+
 //模版引擎(handlebars)
 var handlebars = require('express-handlebars');
 app.engine('html', handlebars({
@@ -20,18 +23,7 @@ app.set('views', `${__dirname}/public/dist/html`);
 //路由
 var Routes = require('./router/router');
 new Routes({app: app});
-//404
-app.use(function (req, res) {
-    res.type('text/plain');
-    res.status('404');
-    res.send('404 - Not Found');
-});
-//500
-app.use(function (err, req, res) {
-    res.type('text/plain');
-    res.status('500');
-    res.send('500 - Server Error');
-});
+
 //mysql
 // var Mysql = require('./config/mysql');
 // var oMysql = new Mysql({isLocal: true});
@@ -50,8 +42,9 @@ app.use(function (err, req, res) {
 //         mysql.end();
 //     }
 // );
+
 //端口
-app.set('port', config.getPort());
+app.set('port', port.getPort());
 var server = app.listen(app.get('port'), function () {
     var port = server.address().port;
     console.log(`访问地址:\nhttp://127.0.0.1:${port}`);

@@ -1,6 +1,6 @@
 //版权
 (function () {
-    if (pageConfig && pageConfig.isShowCopyright) {
+    if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
         var Copyright = require('../modules/m-copyright');
         new Copyright();
     }
@@ -8,7 +8,7 @@
 
 //底部导航
 (function () {
-    if (pageConfig && pageConfig.isShowFooterNav) {
+    if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
         var Footer = require('../modules/m-footer-nav');
         new Footer();
     }
