@@ -46,6 +46,28 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
         module.exports = base;
     }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/scroll-to": 16, "../function/seconds-to-time": 17, "../function/select": 18, "../function/str-limit": 19, "../function/time-count-down": 20, "../function/user-agent": 21, "../function/when-scroll-bottom": 23, "../function/whether-disable-scroll": 24 }], 2: [function (require, module, exports) {
+        //版权
+        (function () {
+            if (pageConfig && pageConfig.isShowCopyright) {
+                var Copyright = require('../modules/m-copyright');
+                new Copyright();
+            }
+        })();
+
+        //底部导航
+        (function () {
+            if (pageConfig && pageConfig.isShowFooterNav) {
+                var Footer = require('../modules/m-footer-nav');
+                new Footer();
+            }
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 27, "../modules/m-lazy-load": 29 }], 3: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
                 //base函数测试
@@ -244,29 +266,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 require('../common/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../base/base": 1, "../common/common": 3, "../modules/m-dialog": 26, "../modules/m-go-top": 28, "../modules/m-loading": 30, "../modules/m-mask": 31, "../modules/m-navigation": 32, "../modules/m-no-data": 33, "../modules/m-pagination": 34, "../modules/m-radio-switch": 35, "../modules/m-slide": 36, "../modules/m-star": 37, "../modules/m-sub-type": 39, "../modules/m-sub-type-es6": 38, "../modules/m-super-type": 41, "../modules/m-super-type-es6": 40, "../modules/m-table": 42, "../modules/m-validate-form": 43 }], 3: [function (require, module, exports) {
-        //版权
-        (function () {
-            if (pageConfig && pageConfig.isShowCopyright) {
-                var Copyright = require('../modules/m-copyright');
-                new Copyright();
-            }
-        })();
-
-        //底部导航
-        (function () {
-            if (pageConfig && pageConfig.isShowFooterNav) {
-                var Footer = require('../modules/m-footer-nav');
-                new Footer();
-            }
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 27, "../modules/m-lazy-load": 29 }], 4: [function (require, module, exports) {
+    }, { "../base/base": 1, "../common/common": 2, "../modules/m-dialog": 26, "../modules/m-go-top": 28, "../modules/m-loading": 30, "../modules/m-mask": 31, "../modules/m-navigation": 32, "../modules/m-no-data": 33, "../modules/m-pagination": 34, "../modules/m-radio-switch": 35, "../modules/m-slide": 36, "../modules/m-star": 37, "../modules/m-sub-type": 39, "../modules/m-sub-type-es6": 38, "../modules/m-super-type": 41, "../modules/m-super-type-es6": 40, "../modules/m-table": 42, "../modules/m-validate-form": 43 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -3493,4 +3493,4 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = TouchSlide;
-    }, {}] }, {}, [2]);
+    }, {}] }, {}, [3]);

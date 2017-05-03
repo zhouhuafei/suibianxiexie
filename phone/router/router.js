@@ -11,6 +11,14 @@ Routes.prototype.init = function () {
     this.phoneMine();
     this.phoneLogin();
     this.phoneRegister();
+    this.phoneList();
+};
+Routes.prototype.phoneList = function () {
+    this.app.get('/list', function (req, res) {
+        res.render('page/list', {
+            title: '列表页'
+        });
+    })
 };
 Routes.prototype.phoneRegister = function () {
     this.app.get('/register', function (req, res) {
