@@ -98,6 +98,4 @@ Ajax.prototype.timeout = function () {
 Ajax.prototype.fail = function () {
 
 };
-
-
 module.exports = Ajax;

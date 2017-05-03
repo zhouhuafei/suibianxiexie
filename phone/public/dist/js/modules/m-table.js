@@ -15,6 +15,7 @@
 })({ 1: [function (require, module, exports) {
         //一些小方法
         var base = {
+            px2rem: require('../function/px2rem'), //px2rem
             userAgent: require('../function/user-agent'), //用户代理(判断是否是安卓,苹果,微信,电脑)
             arrayRemoveRepeat: require('../function/array-remove-repeat'), //数组去重
             objRemoveQuote: require('../function/obj-remove-quote'), //移除对象引用
@@ -37,7 +38,7 @@
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/array-remove-repeat": 3, "../function/constructor-inherit": 4, "../function/cookie": 5, "../function/create-element": 6, "../function/extend": 7, "../function/fill-zero": 8, "../function/get-dom-array": 9, "../function/get-parent": 10, "../function/html-to-dom": 11, "../function/obj-remove-quote": 12, "../function/obj-to-array": 13, "../function/offset": 14, "../function/scroll-to": 15, "../function/seconds-to-time": 16, "../function/select": 17, "../function/str-limit": 18, "../function/time-count-down": 19, "../function/user-agent": 20, "../function/when-scroll-bottom": 21, "../function/whether-disable-scroll": 22 }], 2: [function (require, module, exports) {
+    }, { "../function/array-remove-repeat": 3, "../function/constructor-inherit": 4, "../function/cookie": 5, "../function/create-element": 6, "../function/extend": 7, "../function/fill-zero": 8, "../function/get-dom-array": 9, "../function/get-parent": 10, "../function/html-to-dom": 11, "../function/obj-remove-quote": 12, "../function/obj-to-array": 13, "../function/offset": 14, "../function/px2rem": 15, "../function/scroll-to": 16, "../function/seconds-to-time": 17, "../function/select": 18, "../function/str-limit": 19, "../function/time-count-down": 20, "../function/user-agent": 21, "../function/when-scroll-bottom": 22, "../function/whether-disable-scroll": 23 }], 2: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -104,7 +105,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 23 }], 3: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 24 }], 3: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -524,6 +525,15 @@
         }
         module.exports = offset;
     }, { "../function/extend": 7, "../function/get-dom-array": 9 }], 15: [function (require, module, exports) {
+        //px2rem
+        function px2rem(json) {
+            var opt = json || opt;
+            var base = opt.base || '320';
+            var px = opt.px || '0';
+            return px / base * 10 + 'rem';
+        }
+        module.exports = px2rem;
+    }, {}], 16: [function (require, module, exports) {
         //滚动到指定位置
         function scrollTo(json) {
             var opt = json || {};
@@ -544,7 +554,7 @@
             requestAnimationFrame(fn);
         }
         module.exports = scrollTo;
-    }, {}], 16: [function (require, module, exports) {
+    }, {}], 17: [function (require, module, exports) {
         //秒转时间
         function secondsToTime(json) {
             var opt = json || {};
@@ -560,7 +570,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 17: [function (require, module, exports) {
+    }, {}], 18: [function (require, module, exports) {
         //全选,不选,反选
         var extend = require('../function/extend');
         var getDomArray = require('../function/get-dom-array');
@@ -622,7 +632,7 @@
         };
 
         module.exports = Select;
-    }, { "../function/extend": 7, "../function/get-dom-array": 9 }], 18: [function (require, module, exports) {
+    }, { "../function/extend": 7, "../function/get-dom-array": 9 }], 19: [function (require, module, exports) {
         //字符数量限制
         function strLimit(json) {
             var opt = json || {};
@@ -638,7 +648,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 19: [function (require, module, exports) {
+    }, {}], 20: [function (require, module, exports) {
         var extend = require('../function/extend');
         var secondsToTime = require('../function/seconds-to-time'); //时间转换
 
@@ -677,7 +687,7 @@
             }
         }
         module.exports = timeCountDown;
-    }, { "../function/extend": 7, "../function/seconds-to-time": 16 }], 20: [function (require, module, exports) {
+    }, { "../function/extend": 7, "../function/seconds-to-time": 17 }], 21: [function (require, module, exports) {
         //是不是PC
         function isPc() {
             var userAgentInfo = navigator.userAgent;
@@ -707,7 +717,7 @@
         module.exports.isWeiXin = isWeiXin;
         module.exports.isIphone = isIphone;
         module.exports.isAndroid = isAndroid;
-    }, {}], 21: [function (require, module, exports) {
+    }, {}], 22: [function (require, module, exports) {
         var extend = require('../function/extend');
 
         //当滚动到了浏览器的底部
@@ -761,7 +771,7 @@
             });
         };
         module.exports = WhenScrollBottom;
-    }, { "../function/extend": 7 }], 22: [function (require, module, exports) {
+    }, { "../function/extend": 7 }], 23: [function (require, module, exports) {
         //是否禁止浏览器滚动
         function whetherDisableScroll() {
             var doc = document;
@@ -792,7 +802,7 @@
             };
         }
         module.exports = whetherDisableScroll;
-    }, {}], 23: [function (require, module, exports) {
+    }, {}], 24: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 

@@ -107,8 +107,8 @@ SubType.prototype.power = function () {
         var prevImg = allImg[nowIndex - 1];
         var nextImg = allImg[nowIndex + 1];
         nowImg.src = nowImg.dataset.src;
-        prevImg.src = prevImg.dataset.src;
-        nextImg.src = nextImg.dataset.src;
+        prevImg && (prevImg.src = prevImg.dataset.src);
+        nextImg && (nextImg.src = nextImg.dataset.src);
         callback.startFun({self: self, index: i});
     };
     touchSlide.endFun = function (i) {
