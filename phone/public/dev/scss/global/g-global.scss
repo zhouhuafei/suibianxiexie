@@ -139,6 +139,10 @@
                 border-left-color: $g-color-border-default;
             }
         }
+        &.icon-bitian {
+            font-size: px2rem(12);
+            color: $g-color-fail;
+        }
     }
     .g-input-wrap {
         display: flex;
