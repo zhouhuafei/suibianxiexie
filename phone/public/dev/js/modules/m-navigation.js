@@ -35,7 +35,7 @@ var SubType = base.constructorInherit({
                     mark: ''
                 },
                 {
-                    href: '/set',
+                    href: '/setting',
                     icon: 'icon-shezhi',
                     txt: '永',
                     mark: ''
@@ -65,7 +65,7 @@ var SubType = base.constructorInherit({
                     mark: ''
                 },
                 {
-                    href: '/set',
+                    href: '/setting',
                     icon: 'icon-shoucang',
                     txt: '杰',
                     mark: ''

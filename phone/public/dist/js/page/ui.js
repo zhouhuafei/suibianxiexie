@@ -1656,7 +1656,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         txt: '飞',
                         mark: ''
                     }, {
-                        href: '/set',
+                        href: '/setting',
                         icon: 'icon-shezhi',
                         txt: '永',
                         mark: ''
@@ -1681,7 +1681,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         txt: '丽',
                         mark: ''
                     }, {
-                        href: '/set',
+                        href: '/setting',
                         icon: 'icon-shoucang',
                         txt: '杰',
                         mark: ''

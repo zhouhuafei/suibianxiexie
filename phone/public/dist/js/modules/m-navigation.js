@@ -72,7 +72,7 @@
                         txt: '飞',
                         mark: ''
                     }, {
-                        href: '/set',
+                        href: '/setting',
                         icon: 'icon-shezhi',
                         txt: '永',
                         mark: ''
@@ -97,7 +97,7 @@
                         txt: '丽',
                         mark: ''
                     }, {
-                        href: '/set',
+                        href: '/setting',
                         icon: 'icon-shoucang',
                         txt: '杰',
                         mark: ''
@@ -123,6 +123,11 @@
                 }
                 html += "\n            <a href=\"" + v.href + "\" class=\"m-navigation-wrap\">\n                <div class=\"m-navigation-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-navigation-txt\">" + v.txt + "</div>\n                " + markHtml + "\n            </a>\n        ";
             });
+            var obj = {
+                list: '',
+                default: '',
+                set: ''
+            };
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleDomStyle,
                 custom: this.opt.config.moduleDomCustomAttr,

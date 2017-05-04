@@ -981,7 +981,7 @@
                         txt: '飞',
                         mark: ''
                     }, {
-                        href: '/set',
+                        href: '/setting',
                         icon: 'icon-shezhi',
                         txt: '永',
                         mark: ''
@@ -1006,7 +1006,7 @@
                         txt: '丽',
                         mark: ''
                     }, {
-                        href: '/set',
+                        href: '/setting',
                         icon: 'icon-shoucang',
                         txt: '杰',
                         mark: ''
