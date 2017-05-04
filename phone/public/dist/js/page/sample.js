@@ -38,6 +38,16 @@
         };
         module.exports = base;
     }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/scroll-to": 16, "../function/seconds-to-time": 17, "../function/select": 18, "../function/str-limit": 19, "../function/time-count-down": 20, "../function/user-agent": 21, "../function/when-scroll-bottom": 22, "../function/whether-disable-scroll": 23 }], 2: [function (require, module, exports) {
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                //注释待续...
+                (function () {
+                    //功能待续...
+                })();
+                require('../common/common'); //每个页面都要用到的js(一定要放到最底部)
+            }, 0);
+        });
+    }, { "../common/common": 3 }], 3: [function (require, module, exports) {
         //版权
         (function () {
             if (pageConfig && pageConfig.isShowCopyright) {
@@ -59,17 +69,7 @@
             var LazyLoad = require('../modules/m-lazy-load');
             new LazyLoad();
         })();
-    }, { "../modules/m-copyright": 24, "../modules/m-footer-nav": 25, "../modules/m-lazy-load": 26 }], 3: [function (require, module, exports) {
-        window.addEventListener('load', function () {
-            setTimeout(function () {
-                //注释待续...
-                (function () {
-                    //功能待续...
-                })();
-                require('../common/common'); //每个页面都要用到的js(一定要放到最底部)
-            }, 0);
-        });
-    }, { "../common/common": 2 }], 4: [function (require, module, exports) {
+    }, { "../modules/m-copyright": 24, "../modules/m-footer-nav": 25, "../modules/m-lazy-load": 26 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -1154,4 +1154,4 @@
         };
 
         module.exports = SuperType;
-    }, { "../base/base": 1 }] }, {}, [3]);
+    }, { "../base/base": 1 }] }, {}, [2]);
