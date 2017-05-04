@@ -1,5 +1,6 @@
 window.addEventListener('load', function () {
     setTimeout(function () {
+
         //base函数测试
         (function () {
             var base = require('../base/base');
@@ -28,6 +29,7 @@ window.addEventListener('load', function () {
                 }
             });
         })();
+
         //slide切换
         (function () {
             var Slide = require('../modules/m-slide');
@@ -59,32 +61,37 @@ window.addEventListener('load', function () {
                 }
             });
         })();
+
         //导航
         (function () {
             var Navigation = require('../modules/m-navigation');
             new Navigation({wrap: '.page-navigation'});
         })();
+
         //弹窗测试
         (function () {
             var Dialog = require('../modules/m-dialog');
             //new Dialog();
-            //new Dialog({config: {alert: {iconType: 'icon-shibai',content:'失败'}}});
+            //new Dialog({config: {alert: {icon: 'icon-shibai',content:'失败'}}});
             // new Dialog({
             //     config: {
             //         type:'confirm'
             //     }
             // });
         })();
+
         //分页测试
         (function () {
             var Pagination = require('../modules/m-pagination');
             new Pagination({wrap: '.page-pagination'});
         })();
+
         //没有数据
         (function () {
             var NoData = require('../modules/m-no-data');
             new NoData({wrap: '.page-no-data'});
         })();
+
         //加载中
         (function () {
             var Loading = require('../modules/m-loading');
@@ -101,6 +108,7 @@ window.addEventListener('load', function () {
             });
             over.moduleDomShow();
         })();
+
         //超类型模块测试
         (function () {
             var SuperType = require('../modules/m-super-type');
@@ -112,11 +120,13 @@ window.addEventListener('load', function () {
             var SubTypeEs6 = require('../modules/m-sub-type-es6');
             new SubTypeEs6({wrap: `.page-super-type`});
         })();
+
         //返回顶部
         (function () {
             var GoTop = require('../modules/m-go-top');
             new GoTop();
         })();
+
         //遮罩
         (function () {
             var Mask = require('../modules/m-mask');
@@ -129,6 +139,7 @@ window.addEventListener('load', function () {
             });
             //mask.moduleDomShow();
         })();
+
         //单选开关
         (function () {
             const Radio = require('../modules/m-radio-switch');
@@ -141,6 +152,7 @@ window.addEventListener('load', function () {
                 }
             });
         })();
+
         //表格
         (function () {
             const Table = require('../modules/m-table');
@@ -197,6 +209,7 @@ window.addEventListener('load', function () {
                 }
             });
         })();
+
         //验证
         (function () {
             const ValidateInput = require('../modules/m-validate-form');
@@ -207,6 +220,7 @@ window.addEventListener('load', function () {
                 //v.validate.validateSave();
             });
         })();
+
         //星评
         (function () {
             const Star = require('../modules/m-star');
@@ -219,6 +233,7 @@ window.addEventListener('load', function () {
                 }
             });
         })();
+
         require('../common/common');//每个页面都要用到的js(一定要放到最底部)
     }, 0)
 });

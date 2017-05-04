@@ -57,7 +57,7 @@ var SubType = base.constructorInherit({
             alert: {
                 time: 2000,//展示的时间
                 isShowIcon: true,//是否显示icon
-                iconType: `icon-chenggong`,//icon的class
+                icon: `icon-chenggong`,//icon的class
                 content: `成功`//内容信息
             },
             //确认框
@@ -78,7 +78,7 @@ var SubType = base.constructorInherit({
                 isCustom: false,//是否自定义
                 customContent: ``,//自定义的内容
                 isShowIcon: true,//是否显示icon
-                iconType: `icon-jinggao`,//icon的类型
+                icon: `icon-jinggao`,//icon的类型
                 isShowMask: true,//是否显示遮罩
                 isHandHide: false//是否手动隐藏(一般只用于点击确认时)
             }
@@ -117,7 +117,7 @@ SubType.prototype.renderAlert = function () {
     var alert = config.alert;
     var htmlIcon = ``;
     if (alert.isShowIcon) {
-        htmlIcon = `<div class="m-dialog-alert-icon iconfont ${alert.iconType}"></div>`;
+        htmlIcon = `<div class="m-dialog-alert-icon iconfont ${alert.icon}"></div>`;
     }
     return `
         ${htmlIcon}
@@ -140,7 +140,7 @@ SubType.prototype.renderConfirm = function () {
     if (confirm.isShowBody) {
         var htmlIcon = ``;
         if (confirm.isShowIcon) {
-            htmlIcon = `<div class="m-dialog-icon iconfont ${confirm.iconType}"></div>`;
+            htmlIcon = `<div class="m-dialog-icon iconfont ${confirm.icon}"></div>`;
         }
         var bodyClass = `m-dialog-body-system`;
         var bodyContent = `

@@ -1,5 +1,6 @@
 //一些小方法
 var base = {
+    px2rem: require('../function/px2rem'),//px2rem
     userAgent: require('../function/user-agent'),//用户代理(判断是否是安卓,苹果,微信,电脑)
     arrayRemoveRepeat: require('../function/array-remove-repeat'),//数组去重
     objRemoveQuote: require('../function/obj-remove-quote'),//移除对象引用

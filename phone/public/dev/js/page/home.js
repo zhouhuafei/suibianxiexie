@@ -1,5 +1,6 @@
 window.addEventListener('load', function () {
     setTimeout(function () {
+
         //slide切换
         (function () {
             var Slide = require('../modules/m-slide');
@@ -31,11 +32,13 @@ window.addEventListener('load', function () {
                 }
             });
         })();
+
         //导航
         (function () {
             var Navigation = require('../modules/m-navigation');
             new Navigation({wrap: '.page-navigation'});
         })();
+        
         require('../common/common');//每个页面都要用到的js(一定要放到最底部)
     }, 0)
 });

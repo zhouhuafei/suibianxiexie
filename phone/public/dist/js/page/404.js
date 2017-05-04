@@ -38,46 +38,46 @@
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/array-remove-repeat": 3, "../function/constructor-inherit": 4, "../function/cookie": 5, "../function/create-element": 6, "../function/extend": 7, "../function/fill-zero": 8, "../function/get-dom-array": 9, "../function/get-parent": 10, "../function/html-to-dom": 11, "../function/obj-remove-quote": 12, "../function/obj-to-array": 13, "../function/offset": 14, "../function/px2rem": 15, "../function/scroll-to": 16, "../function/seconds-to-time": 17, "../function/select": 18, "../function/str-limit": 19, "../function/time-count-down": 20, "../function/user-agent": 21, "../function/when-scroll-bottom": 22, "../function/whether-disable-scroll": 23 }], 2: [function (require, module, exports) {
-        //底层方法
-        var base = require('../base/base');
+    }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/px2rem": 16, "../function/scroll-to": 17, "../function/seconds-to-time": 18, "../function/select": 19, "../function/str-limit": 20, "../function/time-count-down": 21, "../function/user-agent": 22, "../function/when-scroll-bottom": 23, "../function/whether-disable-scroll": 24 }], 2: [function (require, module, exports) {
+        window.addEventListener('load', function () {
+            setTimeout(function () {
 
-        //超类型(子类型继承的对象)
-        var SuperType = require('../modules/m-super-type');
+                //没有数据
+                (function () {
+                    var NoData = require('../modules/m-no-data');
+                    new NoData({
+                        data: {
+                            txt: '404 - Not Find'
+                        }
+                    });
+                })();
 
-        //子类型
-        var SubType = base.constructorInherit({
-            superType: SuperType,
-            //默认参数(继承超类型)
-            parameter: {
-                //回调
-                callback: {},
-                //配置
-                config: {},
-                //数据
-                data: {}
-            }
+                require('../common/common'); //每个页面都要用到的js(一定要放到最底部)
+            }, 0);
         });
+    }, { "../common/common": 3, "../modules/m-no-data": 28 }], 3: [function (require, module, exports) {
+        //版权
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
+                var Copyright = require('../modules/m-copyright');
+                new Copyright();
+            }
+        })();
 
-        //内部模块的创建(覆盖超类型)
-        SubType.prototype.moduleDomCreate = function () {
-            this.moduleDom = base.createElement({
-                style: this.opt.config.moduleDomStyle,
-                custom: this.opt.config.moduleDomCustomAttr,
-                attribute: {
-                    className: "m-copyright",
-                    innerHTML: "\n                <div class=\"m-copyright-icon iconfont icon-banquan\"></div>\n                <div class=\"m-copyright-txt\">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            "
-                }
-            });
-        };
+        //底部导航
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
+                var Footer = require('../modules/m-footer-nav');
+                new Footer();
+            }
+        })();
 
-        //功能(覆盖超类型)
-        SubType.prototype.power = function () {
-            //功能重写待续...
-        };
-
-        module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 24 }], 3: [function (require, module, exports) {
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 26, "../modules/m-lazy-load": 27 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -94,7 +94,7 @@
             return newArray;
         }
         module.exports = arrayRemoveRepeat;
-    }, {}], 4: [function (require, module, exports) {
+    }, {}], 5: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
         var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 
@@ -147,7 +147,7 @@
             return SubType;
         }
         module.exports = constructorInherit;
-    }, { "../function/extend": 7, "../function/obj-remove-quote": 12 }], 5: [function (require, module, exports) {
+    }, { "../function/extend": 8, "../function/obj-remove-quote": 13 }], 6: [function (require, module, exports) {
         //设置cookie
         function setCookie(json) {
             var opt = json || {};
@@ -187,7 +187,7 @@
             removeCookie: removeCookie
         };
         module.exports = obj;
-    }, {}], 6: [function (require, module, exports) {
+    }, {}], 7: [function (require, module, exports) {
         //创建元素节点
         function createElement(json) {
             var opt = json || {};
@@ -212,7 +212,7 @@
             return elementNode;
         }
         module.exports = createElement;
-    }, {}], 7: [function (require, module, exports) {
+    }, {}], 8: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opt = json || {};
@@ -303,7 +303,7 @@
         // });
         // console.log(obj2);//{ b: [ 'what?', { a2: 'a2', b1: 'b1' }, { b2: 'b2' } ] }
         module.exports = extend;
-    }, {}], 8: [function (require, module, exports) {
+    }, {}], 9: [function (require, module, exports) {
         //对象的扩展方法
         var extend = require('../function/extend');
 
@@ -323,7 +323,7 @@
             }
         }
         module.exports = fillZero;
-    }, { "../function/extend": 7 }], 9: [function (require, module, exports) {
+    }, { "../function/extend": 8 }], 10: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
 
         //获取原生的dom节点并转换成数组,传入的参数仅支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
@@ -355,7 +355,7 @@
             return dom;
         }
         module.exports = getDomArray;
-    }, { "../function/extend": 7 }], 10: [function (require, module, exports) {
+    }, { "../function/extend": 8 }], 11: [function (require, module, exports) {
         //获取指定父级
         function getParent(json) {
             var opt = json || {};
@@ -418,7 +418,7 @@
             }
         }
         module.exports = getParent;
-    }, {}], 11: [function (require, module, exports) {
+    }, {}], 12: [function (require, module, exports) {
         //html转成DOM节点
         function htmlToDom(json) {
             var opt = json || {};
@@ -428,7 +428,7 @@
             return div.children[0];
         }
         module.exports = htmlToDom;
-    }, {}], 12: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
         //移除对象引用
         function objRemoveQuote(json) {
             var opt = json || {};
@@ -450,7 +450,7 @@
             return newObj;
         }
         module.exports = objRemoveQuote;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         //把json格式的对象转成数组
         function objToArray(json) {
             var opt = json || {};
@@ -470,7 +470,7 @@
             return arr;
         }
         module.exports = objToArray;
-    }, {}], 14: [function (require, module, exports) {
+    }, {}], 15: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展
         var getDomArray = require('../function/get-dom-array'); //获取一组dom节点
 
@@ -496,7 +496,7 @@
             };
         }
         module.exports = offset;
-    }, { "../function/extend": 7, "../function/get-dom-array": 9 }], 15: [function (require, module, exports) {
+    }, { "../function/extend": 8, "../function/get-dom-array": 10 }], 16: [function (require, module, exports) {
         //px2rem
         function px2rem(json) {
             var opt = json || opt;
@@ -505,7 +505,7 @@
             return px / base * 10 + 'rem';
         }
         module.exports = px2rem;
-    }, {}], 16: [function (require, module, exports) {
+    }, {}], 17: [function (require, module, exports) {
         //滚动到指定位置
         function scrollTo(json) {
             var opt = json || {};
@@ -526,7 +526,7 @@
             requestAnimationFrame(fn);
         }
         module.exports = scrollTo;
-    }, {}], 17: [function (require, module, exports) {
+    }, {}], 18: [function (require, module, exports) {
         //秒转时间
         function secondsToTime(json) {
             var opt = json || {};
@@ -542,7 +542,7 @@
             return { d: d, h: h, m: m, s: s, a: seconds };
         }
         module.exports = secondsToTime;
-    }, {}], 18: [function (require, module, exports) {
+    }, {}], 19: [function (require, module, exports) {
         //全选,不选,反选
         var extend = require('../function/extend');
         var getDomArray = require('../function/get-dom-array');
@@ -604,7 +604,7 @@
         };
 
         module.exports = Select;
-    }, { "../function/extend": 7, "../function/get-dom-array": 9 }], 19: [function (require, module, exports) {
+    }, { "../function/extend": 8, "../function/get-dom-array": 10 }], 20: [function (require, module, exports) {
         //字符数量限制
         function strLimit(json) {
             var opt = json || {};
@@ -620,7 +620,7 @@
             return str;
         }
         module.exports = strLimit;
-    }, {}], 20: [function (require, module, exports) {
+    }, {}], 21: [function (require, module, exports) {
         var extend = require('../function/extend');
         var secondsToTime = require('../function/seconds-to-time'); //时间转换
 
@@ -659,7 +659,7 @@
             }
         }
         module.exports = timeCountDown;
-    }, { "../function/extend": 7, "../function/seconds-to-time": 17 }], 21: [function (require, module, exports) {
+    }, { "../function/extend": 8, "../function/seconds-to-time": 18 }], 22: [function (require, module, exports) {
         //是不是PC
         function isPc() {
             var userAgentInfo = navigator.userAgent;
@@ -689,7 +689,7 @@
         module.exports.isWeiXin = isWeiXin;
         module.exports.isIphone = isIphone;
         module.exports.isAndroid = isAndroid;
-    }, {}], 22: [function (require, module, exports) {
+    }, {}], 23: [function (require, module, exports) {
         var extend = require('../function/extend');
 
         //当滚动到了浏览器的底部
@@ -743,7 +743,7 @@
             });
         };
         module.exports = WhenScrollBottom;
-    }, { "../function/extend": 7 }], 23: [function (require, module, exports) {
+    }, { "../function/extend": 8 }], 24: [function (require, module, exports) {
         //是否禁止浏览器滚动
         function whetherDisableScroll() {
             var doc = document;
@@ -774,7 +774,214 @@
             };
         }
         module.exports = whetherDisableScroll;
-    }, {}], 24: [function (require, module, exports) {
+    }, {}], 25: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base');
+
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type');
+
+        //子类型
+        var SubType = base.constructorInherit({
+            superType: SuperType,
+            //默认参数(继承超类型)
+            parameter: {
+                //回调
+                callback: {},
+                //配置
+                config: {},
+                //数据
+                data: {}
+            }
+        });
+
+        //内部模块的创建(覆盖超类型)
+        SubType.prototype.moduleDomCreate = function () {
+            this.moduleDom = base.createElement({
+                style: this.opt.config.moduleDomStyle,
+                custom: this.opt.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-copyright",
+                    innerHTML: "\n                <div class=\"m-copyright-icon iconfont icon-banquan\"></div>\n                <div class=\"m-copyright-txt\">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            "
+                }
+            });
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
+
+        module.exports = SubType;
+    }, { "../base/base": 1, "../modules/m-super-type": 29 }], 26: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base');
+
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type');
+
+        //子类型
+        var SubType = base.constructorInherit({
+            superType: SuperType,
+            //默认参数(继承超类型)
+            parameter: {
+                //回调
+                callback: {},
+                //配置
+                config: {},
+                //数据
+                data: {}
+            }
+        });
+
+        SubType.prototype.moduleDomCreate = function () {
+            this.moduleDomClass = "m-footer-nav";
+            var moduleDomHtml = "\n        <div class=\"m-footer-nav-wrap\">\n            <a class=\"m-footer-nav-body\" href=\"/\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-shouye\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u9996\u9875</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-fenxiao\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u6211\u8981\u5F00\u5E97</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/cart\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-gouwuche\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u8D2D\u7269\u8F66</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kefu\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u5BA2\u670D</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/mine\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-wode\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u6211\u7684</div>\n            </a>\n        </div>\n    ";
+            this.moduleDom = base.createElement({
+                style: this.opt.config.moduleDomStyle,
+                custom: this.opt.config.moduleDomCustomAttr,
+                attribute: {
+                    className: this.moduleDomClass,
+                    innerHTML: moduleDomHtml
+                }
+            });
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
+
+        module.exports = SubType;
+    }, { "../base/base": 1, "../modules/m-super-type": 29 }], 27: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base');
+
+        //延迟加载
+        function LazyLoad(json) {
+            this.opt = base.extend({
+                default: {
+                    element: '.m-lazy-load',
+                    moreHeight: 0, //多加载一部分高度的图片
+                    interval: 80 //函数节流时间(延迟时间)
+                },
+                inherit: json
+            });
+            this.clientHeight = document.documentElement.clientHeight;
+            this.init();
+        }
+        LazyLoad.prototype.init = function () {
+            this.render();
+            this.power();
+        };
+        LazyLoad.prototype.render = function () {
+            var moreHeight = this.opt.moreHeight;
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var minTop = scrollTop - moreHeight;
+            var maxTop = this.clientHeight + minTop + moreHeight;
+            var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
+            var aDom = base.getDomArray({ element: this.opt.element });
+            aDom.forEach(function (v) {
+                if (v.tagName.toLowerCase() == 'img') {
+                    if (!v.getAttribute('src')) {
+                        v.src = src;
+                    }
+                    v.setAttribute('height', '100%');
+                    v.setAttribute('width', '100%');
+                }
+            });
+            aDom.forEach(function (v) {
+                //排除那些被none掉的元素(被none掉的元素,通过offsetWidth和offsetHeight获取到的值是0)
+                if (v.offsetWidth) {
+                    var elementTop = base.offset({ element: v }).top;
+                    var elementBottom = elementTop + v.offsetHeight;
+                    //出现在可视区才进行处理
+                    if (elementBottom >= minTop && elementTop <= maxTop) {
+                        if (v.tagName.toLowerCase() == 'img') {
+                            if (v.dataset.src) {
+                                v.src = v.dataset.src;
+                            }
+                            v.removeAttribute('height');
+                            v.removeAttribute('width');
+                        } else {
+                            if (v.dataset.src) {
+                                v.style.backgroundImage = 'url(' + v.dataset.src + ')';
+                            }
+                        }
+                        v.classList.remove('m-lazy-load');
+                        v.classList.add('m-lazy-load-active');
+                    }
+                }
+            });
+        };
+        LazyLoad.prototype.power = function () {
+            var self = this;
+            var timer = null;
+            window.addEventListener('scroll', function () {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    self.render();
+                }, self.opt.interval);
+            });
+        };
+        module.exports = LazyLoad;
+    }, { "../base/base": 1 }], 28: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base');
+
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type');
+
+        //子类型
+        var SubType = base.constructorInherit({
+            superType: SuperType,
+            //默认参数(继承超类型)
+            parameter: {
+                //回调
+                callback: {},
+                //配置
+                config: {
+                    btn: {
+                        isShowIcon: false
+                    }
+                },
+                //数据
+                data: {
+                    icon: 'icon-meiyoushuju',
+                    txt: '没有数据',
+                    btn: {
+                        icon: 'icon-shouye',
+                        txt: '回首页',
+                        href: '/'
+                    }
+                }
+            }
+        });
+
+        //内部模块的创建(覆盖超类型)
+        SubType.prototype.moduleDomCreate = function () {
+            var data = this.opt.data;
+            var btnIconHtml = "";
+            if (this.opt.config.btn.isShowIcon) {
+                btnIconHtml = "<div class=\"g-button-icon iconfont " + data.btn.icon + "\"></div>";
+            }
+            this.moduleDom = base.createElement({
+                style: this.opt.config.moduleStyle,
+                custom: this.opt.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-no-data",
+                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-txt\">" + data.txt + "</div>\n                <a class=\"m-no-data-btn g-button g-button-confirm\" href=\"" + data.btn.href + "\">\n                    " + btnIconHtml + "\n                    <div class=\"g-button-txt\">" + data.btn.txt + "</div>\n                </a>\n            "
+                }
+            });
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
+
+        module.exports = SubType;
+    }, { "../base/base": 1, "../modules/m-super-type": 29 }], 29: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
