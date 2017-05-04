@@ -4,14 +4,14 @@ var getDomArray = require('../function/get-dom-array');
 
 function Select(json) {
     this.opt = extend({
-        default: {
+        defaults: {
             items: null,//所有的被选项
             callback: {
                 click: function () {
                 }
             }
         },
-        inherit: json
+        inherits: json
     });
     this.itemsDom = getDomArray({element: this.opt.items});
     this.init();

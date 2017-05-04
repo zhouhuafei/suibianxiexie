@@ -4,12 +4,12 @@ var base = require('../base/base');
 //延迟加载
 function LazyLoad(json) {
     this.opt = base.extend({
-        default: {
+        defaults: {
             element: '.m-lazy-load',
             moreHeight: 0,//多加载一部分高度的图片
             interval: 80//函数节流时间(延迟时间)
         },
-        inherit: json
+        inherits: json
     });
     this.clientHeight = document.documentElement.clientHeight;
     this.init();

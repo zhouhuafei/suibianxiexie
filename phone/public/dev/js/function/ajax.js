@@ -5,7 +5,7 @@ var Loading = require('../function/extend');//加载中
 //ajax封装
 function Ajax(json) {
     this.opt = extend({
-        default: {
+        defaults: {
             url: '',//url
             type: 'post',//请求类型
             data: {},//请求数据
@@ -48,7 +48,7 @@ function Ajax(json) {
                 }
             }
         },
-        inherit: json
+        inherits: json
     });
     this.loading = new Loading(this.opt.config.loading);
     this.dialog = new Dialog(this.opt.config.dialog);

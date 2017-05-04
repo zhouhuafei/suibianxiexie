@@ -4,11 +4,11 @@ var objRemoveQuote = require('../function/obj-remove-quote');//对象移除引�
 //构造函数的继承(拷贝继承)
 function constructorInherit(json) {
     var opt = extend({
-        default: {
+        defaults: {
             superType: null,//继承哪个超类(这个必须传的是一个构造函数,或者不传值)
             parameter: {}//默认参数(这个必须传的是一个对象,或者不传值)
         },
-        inherit: json
+        inherits: json
     });
     //超类型(需要是个构造函数)
     var SuperType = opt.superType;
@@ -24,7 +24,7 @@ function constructorInherit(json) {
         //子类型自身的属性
         /*
          * 注意:
-         * default要防止对象的引用(如果不防止的话,会出现BUG)
+         * defaults要防止对象的引用(如果不防止的话,会出现BUG)
          * 例如 wrap的默认值是'.g-page'
          * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
          * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-page'
@@ -34,8 +34,8 @@ function constructorInherit(json) {
          * 所以我就封装了一个移除对象引用的函数
          * */
         this.opt = extend({
-            default: objRemoveQuote({obj:parameter}),
-            inherit: json
+            defaults: objRemoveQuote({obj:parameter}),
+            inherits: json
         });
         //子类型继承超类型的属性
         opt.superType.call(this, this.opt);

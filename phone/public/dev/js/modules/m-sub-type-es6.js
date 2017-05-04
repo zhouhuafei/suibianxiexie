@@ -24,9 +24,9 @@ class SubType extends SuperType {
         super(json);
         //制定内部的默认值
         this.opt = base.extend({
-            default: this.opt,
-            //inherit里放默认参数(继承超类型)
-            inherit: {
+            defaults: this.opt,
+            //inherits里放默认参数(继承超类型)
+            inherits: {
                 //回调
                 callback: {},
                 //配置
@@ -37,8 +37,8 @@ class SubType extends SuperType {
         });
         //接收外部的参数
         this.opt = base.extend({
-            default: this.opt,
-            inherit: json
+            defaults: this.opt,
+            inherits: json
         });
         /*
          * 因为es6的继承是:子类型继承超类之后,才拥有this属性的原因,我要先移除一次,再重新生成

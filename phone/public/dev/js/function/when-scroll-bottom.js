@@ -3,7 +3,7 @@ var extend = require('../function/extend');
 //当滚动到了浏览器的底部
 function WhenScrollBottom(json) {
     this.opt = extend({
-        default: {
+        defaults: {
             callback: {
                 success: function () {
                 },
@@ -13,7 +13,7 @@ function WhenScrollBottom(json) {
             interval: 80,//函数节流时间(延迟时间)
             errorHeight: 0//滚动到底部上面一定高度就算是滚动到底部了(误差高度)
         },
-        inherit: json
+        inherits: json
     });
     this.isLoadOver = false;//数据是否加载完毕
     this.init();

@@ -3,10 +3,10 @@ var extend = require('../function/extend');//对象的扩展方法
 //获取原生的dom节点并转换成数组,传入的参数仅支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
 function getDomArray(json) {
     var opt = extend({
-        default: {
+        defaults: {
             element: null
         },
-        inherit: json
+        inherits: json
     });
     var dom = [];
     if (opt.element) {

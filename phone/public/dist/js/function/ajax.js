@@ -46,7 +46,7 @@
         //ajax封装
         function Ajax(json) {
             this.opt = extend({
-                default: {
+                defaults: {
                     url: '', //url
                     type: 'post', //请求类型
                     data: {}, //请求数据
@@ -84,7 +84,7 @@
                         }
                     }
                 },
-                inherit: json
+                inherits: json
             });
             this.loading = new Loading(this.opt.config.loading);
             this.dialog = new Dialog(this.opt.config.dialog);
@@ -149,11 +149,11 @@
         //构造函数的继承(拷贝继承)
         function constructorInherit(json) {
             var opt = extend({
-                default: {
+                defaults: {
                     superType: null, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
                     parameter: {} //默认参数(这个必须传的是一个对象,或者不传值)
                 },
-                inherit: json
+                inherits: json
             });
             //超类型(需要是个构造函数)
             var SuperType = opt.superType;
@@ -169,7 +169,7 @@
                 //子类型自身的属性
                 /*
                  * 注意:
-                 * default要防止对象的引用(如果不防止的话,会出现BUG)
+                 * defaults要防止对象的引用(如果不防止的话,会出现BUG)
                  * 例如 wrap的默认值是'.g-page'
                  * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
                  * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-page'
@@ -179,8 +179,8 @@
                  * 所以我就封装了一个移除对象引用的函数
                  * */
                 this.opt = extend({
-                    default: objRemoveQuote({ obj: parameter }),
-                    inherit: json
+                    defaults: objRemoveQuote({ obj: parameter }),
+                    inherits: json
                 });
                 //子类型继承超类型的属性
                 opt.superType.call(this, this.opt);
@@ -264,56 +264,56 @@
         //对象的扩展方法
         function extend(json) {
             var opt = json || {};
-            opt.default = opt.default || {}; //默认对象
-            opt.inherit = opt.inherit || {}; //继承对像
+            opt.defaults = opt.defaults || {}; //默认对象
+            opt.inherits = opt.inherits || {}; //继承对像
             opt.isDeep = opt.isDeep == false ? opt.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
-            var defaultType = Object.prototype.toString.call(opt.default).slice(8, -1).toLowerCase();
-            var inheritType = Object.prototype.toString.call(opt.inherit).slice(8, -1).toLowerCase();
-            if (defaultType == inheritType && opt.isDeep) {
-                if (defaultType == 'object' || defaultType == 'array') {
-                    for (var attr in opt.inherit) {
-                        if (opt.inherit.hasOwnProperty(attr)) {
-                            var attrDefaultType = Object.prototype.toString.call(opt.default[attr]).slice(8, -1).toLowerCase();
-                            var attrInheritType = Object.prototype.toString.call(opt.inherit[attr]).slice(8, -1).toLowerCase();
-                            if (attrDefaultType == attrInheritType && opt.isDeep) {
+            var defaultsType = Object.prototype.toString.call(opt.defaults).slice(8, -1).toLowerCase();
+            var inheritsType = Object.prototype.toString.call(opt.inherits).slice(8, -1).toLowerCase();
+            if (defaultsType == inheritsType && opt.isDeep) {
+                if (defaultsType == 'object' || defaultsType == 'array') {
+                    for (var attr in opt.inherits) {
+                        if (opt.inherits.hasOwnProperty(attr)) {
+                            var attrDefaultsType = Object.prototype.toString.call(opt.defaults[attr]).slice(8, -1).toLowerCase();
+                            var attrInheritsType = Object.prototype.toString.call(opt.inherits[attr]).slice(8, -1).toLowerCase();
+                            if (attrDefaultsType == attrInheritsType && opt.isDeep) {
                                 //类型相同
-                                if (attrDefaultType == 'object') {
+                                if (attrDefaultsType == 'object') {
                                     //当为对象
-                                    extend({ default: opt.default[attr], inherit: opt.inherit[attr] });
-                                } else if (attrDefaultType == 'array') {
+                                    extend({ defaults: opt.defaults[attr], inherits: opt.inherits[attr] });
+                                } else if (attrDefaultsType == 'array') {
                                     //当为数组时
-                                    opt.inherit[attr].forEach(function (v, i) {
-                                        var vDefaultType = Object.prototype.toString.call(opt.default[attr][i]).slice(8, -1).toLowerCase();
-                                        var vInheritType = Object.prototype.toString.call(opt.inherit[attr][i]).slice(8, -1).toLowerCase();
-                                        if (vInheritType == vDefaultType && opt.isDeep) {
-                                            if (vDefaultType == 'object') {
-                                                extend({ default: opt.default[attr][i], inherit: opt.inherit[attr][i] });
+                                    opt.inherits[attr].forEach(function (v, i) {
+                                        var vDefaultsType = Object.prototype.toString.call(opt.defaults[attr][i]).slice(8, -1).toLowerCase();
+                                        var vInheritsType = Object.prototype.toString.call(opt.inherits[attr][i]).slice(8, -1).toLowerCase();
+                                        if (vInheritsType == vDefaultsType && opt.isDeep) {
+                                            if (vDefaultsType == 'object') {
+                                                extend({ defaults: opt.defaults[attr][i], inherits: opt.inherits[attr][i] });
                                             } else {
-                                                opt.default[attr][i] = opt.inherit[attr][i];
+                                                opt.defaults[attr][i] = opt.inherits[attr][i];
                                             }
                                         } else {
-                                            opt.default[attr][i] = opt.inherit[attr][i];
+                                            opt.defaults[attr][i] = opt.inherits[attr][i];
                                         }
                                     });
                                 } else {
-                                    opt.default[attr] = opt.inherit[attr];
+                                    opt.defaults[attr] = opt.inherits[attr];
                                 }
                             } else {
                                 //类型不同,直接后面的覆盖前面的
-                                opt.default[attr] = opt.inherit[attr];
+                                opt.defaults[attr] = opt.inherits[attr];
                             }
                         }
                     }
                 } else {
-                    opt.default = opt.inherit;
+                    opt.defaults = opt.inherits;
                 }
             } else {
-                opt.default = opt.inherit;
+                opt.defaults = opt.inherits;
             }
-            return opt.default;
+            return opt.defaults;
         }
         // var obj1 = extend({
-        //     default: {
+        //     defaults: {
         //         a: 'a',
         //         b: {
         //             b1: 'b1',
@@ -323,7 +323,7 @@
         //             }
         //         }
         //     },
-        //     inherit: {
+        //     inherits: {
         //         a: 0,
         //         b: {
         //             b2: 1,
@@ -335,13 +335,13 @@
         // });
         // console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
         // var obj2 = extend({
-        //     default: {
+        //     defaults: {
         //         b: [
         //             {a1: 'a1'},
         //             {a2: 'a2'}
         //         ]
         //     },
-        //     inherit: {
+        //     inherits: {
         //         b: [
         //             'what?',
         //             {b1: 'b1'},
@@ -358,10 +358,10 @@
         //补零函数
         function fillZero(json) {
             var opt = extend({
-                default: {
+                defaults: {
                     num: null
                 },
-                inherit: json
+                inherits: json
             });
             var num = opt.num;
             if (num < 10) {
@@ -377,10 +377,10 @@
         //获取原生的dom节点并转换成数组,传入的参数仅支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
         function getDomArray(json) {
             var opt = extend({
-                default: {
+                defaults: {
                     element: null
                 },
-                inherit: json
+                inherits: json
             });
             var dom = [];
             if (opt.element) {
@@ -525,10 +525,10 @@
         //获取元素距离文档的left和top
         function offset(json) {
             var opt = extend({
-                default: {
+                defaults: {
                     element: null
                 },
-                inherit: json
+                inherits: json
             });
             var top = 0;
             var left = 0;
@@ -597,13 +597,13 @@
 
         function Select(json) {
             this.opt = extend({
-                default: {
+                defaults: {
                     items: null, //所有的被选项
                     callback: {
                         click: function click() {}
                     }
                 },
-                inherit: json
+                inherits: json
             });
             this.itemsDom = getDomArray({ element: this.opt.items });
             this.init();
@@ -675,14 +675,14 @@
         //倒计时
         function timeCountDown(json) {
             var opt = extend({
-                default: {
+                defaults: {
                     seconds: 0,
                     callback: {
                         run: function run() {},
                         over: function over() {}
                     }
                 },
-                inherit: json
+                inherits: json
             });
             var seconds = opt.seconds; //秒数
             var run = opt.callback.run; //运行的回调
@@ -743,7 +743,7 @@
         //当滚动到了浏览器的底部
         function WhenScrollBottom(json) {
             this.opt = extend({
-                default: {
+                defaults: {
                     callback: {
                         success: function success() {},
                         fail: function fail() {}
@@ -751,7 +751,7 @@
                     interval: 80, //函数节流时间(延迟时间)
                     errorHeight: 0 //滚动到底部上面一定高度就算是滚动到底部了(误差高度)
                 },
-                inherit: json
+                inherits: json
             });
             this.isLoadOver = false; //数据是否加载完毕
             this.init();
@@ -1089,7 +1089,7 @@
             //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
             this.opt = base.extend({
                 //内部默认参数
-                default: {
+                defaults: {
                     //父级
                     wrap: ".g-page", //这个仅支持传入选择器和原生dom节点
                     //回调
@@ -1176,7 +1176,7 @@
                     data: {}
                 },
                 //外部传入参数
-                inherit: json
+                inherits: json
             });
             //函数内部自带的属性
             this.moduleDom = null; //内部的模块

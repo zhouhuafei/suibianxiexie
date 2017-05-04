@@ -4,10 +4,10 @@ var getDomArray = require('../function/get-dom-array');//获取一组dom节点
 //获取元素距离文档的left和top
 function offset(json) {
     var opt = extend({
-        default: {
+        defaults: {
             element: null
         },
-        inherit: json
+        inherits: json
     });
     var top = 0;
     var left = 0;

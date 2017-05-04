@@ -19,14 +19,14 @@
         //倒计时
         function timeCountDown(json) {
             var opt = extend({
-                default: {
+                defaults: {
                     seconds: 0,
                     callback: {
                         run: function run() {},
                         over: function over() {}
                     }
                 },
-                inherit: json
+                inherits: json
             });
             var seconds = opt.seconds; //秒数
             var run = opt.callback.run; //运行的回调
@@ -55,56 +55,56 @@
         //对象的扩展方法
         function extend(json) {
             var opt = json || {};
-            opt.default = opt.default || {}; //默认对象
-            opt.inherit = opt.inherit || {}; //继承对像
+            opt.defaults = opt.defaults || {}; //默认对象
+            opt.inherits = opt.inherits || {}; //继承对像
             opt.isDeep = opt.isDeep == false ? opt.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
-            var defaultType = Object.prototype.toString.call(opt.default).slice(8, -1).toLowerCase();
-            var inheritType = Object.prototype.toString.call(opt.inherit).slice(8, -1).toLowerCase();
-            if (defaultType == inheritType && opt.isDeep) {
-                if (defaultType == 'object' || defaultType == 'array') {
-                    for (var attr in opt.inherit) {
-                        if (opt.inherit.hasOwnProperty(attr)) {
-                            var attrDefaultType = Object.prototype.toString.call(opt.default[attr]).slice(8, -1).toLowerCase();
-                            var attrInheritType = Object.prototype.toString.call(opt.inherit[attr]).slice(8, -1).toLowerCase();
-                            if (attrDefaultType == attrInheritType && opt.isDeep) {
+            var defaultsType = Object.prototype.toString.call(opt.defaults).slice(8, -1).toLowerCase();
+            var inheritsType = Object.prototype.toString.call(opt.inherits).slice(8, -1).toLowerCase();
+            if (defaultsType == inheritsType && opt.isDeep) {
+                if (defaultsType == 'object' || defaultsType == 'array') {
+                    for (var attr in opt.inherits) {
+                        if (opt.inherits.hasOwnProperty(attr)) {
+                            var attrDefaultsType = Object.prototype.toString.call(opt.defaults[attr]).slice(8, -1).toLowerCase();
+                            var attrInheritsType = Object.prototype.toString.call(opt.inherits[attr]).slice(8, -1).toLowerCase();
+                            if (attrDefaultsType == attrInheritsType && opt.isDeep) {
                                 //类型相同
-                                if (attrDefaultType == 'object') {
+                                if (attrDefaultsType == 'object') {
                                     //当为对象
-                                    extend({ default: opt.default[attr], inherit: opt.inherit[attr] });
-                                } else if (attrDefaultType == 'array') {
+                                    extend({ defaults: opt.defaults[attr], inherits: opt.inherits[attr] });
+                                } else if (attrDefaultsType == 'array') {
                                     //当为数组时
-                                    opt.inherit[attr].forEach(function (v, i) {
-                                        var vDefaultType = Object.prototype.toString.call(opt.default[attr][i]).slice(8, -1).toLowerCase();
-                                        var vInheritType = Object.prototype.toString.call(opt.inherit[attr][i]).slice(8, -1).toLowerCase();
-                                        if (vInheritType == vDefaultType && opt.isDeep) {
-                                            if (vDefaultType == 'object') {
-                                                extend({ default: opt.default[attr][i], inherit: opt.inherit[attr][i] });
+                                    opt.inherits[attr].forEach(function (v, i) {
+                                        var vDefaultsType = Object.prototype.toString.call(opt.defaults[attr][i]).slice(8, -1).toLowerCase();
+                                        var vInheritsType = Object.prototype.toString.call(opt.inherits[attr][i]).slice(8, -1).toLowerCase();
+                                        if (vInheritsType == vDefaultsType && opt.isDeep) {
+                                            if (vDefaultsType == 'object') {
+                                                extend({ defaults: opt.defaults[attr][i], inherits: opt.inherits[attr][i] });
                                             } else {
-                                                opt.default[attr][i] = opt.inherit[attr][i];
+                                                opt.defaults[attr][i] = opt.inherits[attr][i];
                                             }
                                         } else {
-                                            opt.default[attr][i] = opt.inherit[attr][i];
+                                            opt.defaults[attr][i] = opt.inherits[attr][i];
                                         }
                                     });
                                 } else {
-                                    opt.default[attr] = opt.inherit[attr];
+                                    opt.defaults[attr] = opt.inherits[attr];
                                 }
                             } else {
                                 //类型不同,直接后面的覆盖前面的
-                                opt.default[attr] = opt.inherit[attr];
+                                opt.defaults[attr] = opt.inherits[attr];
                             }
                         }
                     }
                 } else {
-                    opt.default = opt.inherit;
+                    opt.defaults = opt.inherits;
                 }
             } else {
-                opt.default = opt.inherit;
+                opt.defaults = opt.inherits;
             }
-            return opt.default;
+            return opt.defaults;
         }
         // var obj1 = extend({
-        //     default: {
+        //     defaults: {
         //         a: 'a',
         //         b: {
         //             b1: 'b1',
@@ -114,7 +114,7 @@
         //             }
         //         }
         //     },
-        //     inherit: {
+        //     inherits: {
         //         a: 0,
         //         b: {
         //             b2: 1,
@@ -126,13 +126,13 @@
         // });
         // console.log(obj1);//{ a: 0, b: { b1: 'b1', b2: 1, b3: { c1: 'c1', c2: 2 } } }
         // var obj2 = extend({
-        //     default: {
+        //     defaults: {
         //         b: [
         //             {a1: 'a1'},
         //             {a2: 'a2'}
         //         ]
         //     },
-        //     inherit: {
+        //     inherits: {
         //         b: [
         //             'what?',
         //             {b1: 'b1'},

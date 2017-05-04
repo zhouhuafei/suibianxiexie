@@ -4,7 +4,7 @@ var secondsToTime = require('../function/seconds-to-time');//时间转换
 //倒计时
 function timeCountDown(json) {
     var opt = extend({
-        default: {
+        defaults: {
             seconds: 0,
             callback: {
                 run: function () {
@@ -13,7 +13,7 @@ function timeCountDown(json) {
                 }
             }
         },
-        inherit: json
+        inherits: json
     });
     var seconds = opt.seconds;//秒数
     var run = opt.callback.run;//运行的回调

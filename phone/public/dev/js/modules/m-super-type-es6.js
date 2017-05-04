@@ -7,7 +7,7 @@ class SuperType {
         //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
         this.opt = base.extend({
             //内部默认参数
-            default: {
+            defaults: {
                 //父级
                 wrap: `.g-page`,//这个仅支持传入选择器和原生dom节点
                 //回调
@@ -94,7 +94,7 @@ class SuperType {
                 data: {}
             },
             //外部传入参数
-            inherit: json
+            inherits: json
         });
         //函数内部自带的属性
         this.moduleDom = null;//内部的模块
