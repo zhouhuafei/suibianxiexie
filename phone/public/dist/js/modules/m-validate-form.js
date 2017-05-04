@@ -46,7 +46,7 @@
             this.opt = json || {};
             this.form = this.opt.form;
             this.hintClass = this.opt.hintClass || 'm-validate-form-hint';
-            this.errorClass = this.opt.errorClass || 'm-validate-form-error';
+            //this.errorClass = this.opt.errorClass || 'm-validate-form-error';
             this.validateType = this.form.dataset.validate || [];
             this.validateHintTxt = this.form.dataset.hint || [];
             this.init();
@@ -74,7 +74,7 @@
                 var opt = json || {};
                 this.hintDom.innerHTML = opt.txt || '本项必填';
                 this.wrapDom.appendChild(this.hintDom);
-                this.form.classList.add(this.errorClass);
+                //this.form.classList.add(this.errorClass);
             }
         };
         ValidateInput.prototype.renderHintRemove = function () {
@@ -82,7 +82,7 @@
             if (isHaveHintDom) {
                 this.wrapDom.removeChild(this.hintDom);
             }
-            this.form.classList.remove(this.errorClass);
+            //this.form.classList.remove(this.errorClass);
         };
         ValidateInput.prototype.validateSave = function () {
             var self = this;

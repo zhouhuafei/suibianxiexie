@@ -47,6 +47,28 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
         module.exports = base;
     }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/px2rem": 16, "../function/scroll-to": 17, "../function/seconds-to-time": 18, "../function/select": 19, "../function/str-limit": 20, "../function/time-count-down": 21, "../function/user-agent": 22, "../function/when-scroll-bottom": 24, "../function/whether-disable-scroll": 25 }], 2: [function (require, module, exports) {
+        //版权
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
+                var Copyright = require('../modules/m-copyright');
+                new Copyright();
+            }
+        })();
+
+        //底部导航
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
+                var Footer = require('../modules/m-footer-nav');
+                new Footer();
+            }
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright": 26, "../modules/m-footer-nav": 28, "../modules/m-lazy-load": 30 }], 3: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
 
@@ -260,29 +282,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 require('../common/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../base/base": 1, "../common/common": 3, "../modules/m-dialog": 27, "../modules/m-go-top": 29, "../modules/m-loading": 31, "../modules/m-mask": 32, "../modules/m-navigation": 33, "../modules/m-no-data": 34, "../modules/m-pagination": 35, "../modules/m-radio-switch": 36, "../modules/m-slide": 37, "../modules/m-star": 38, "../modules/m-sub-type": 40, "../modules/m-sub-type-es6": 39, "../modules/m-super-type": 42, "../modules/m-super-type-es6": 41, "../modules/m-table": 43, "../modules/m-validate-form": 44 }], 3: [function (require, module, exports) {
-        //版权
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
-                var Copyright = require('../modules/m-copyright');
-                new Copyright();
-            }
-        })();
-
-        //底部导航
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
-                var Footer = require('../modules/m-footer-nav');
-                new Footer();
-            }
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright": 26, "../modules/m-footer-nav": 28, "../modules/m-lazy-load": 30 }], 4: [function (require, module, exports) {
+    }, { "../base/base": 1, "../common/common": 2, "../modules/m-dialog": 27, "../modules/m-go-top": 29, "../modules/m-loading": 31, "../modules/m-mask": 32, "../modules/m-navigation": 33, "../modules/m-no-data": 34, "../modules/m-pagination": 35, "../modules/m-radio-switch": 36, "../modules/m-slide": 37, "../modules/m-star": 38, "../modules/m-sub-type": 40, "../modules/m-sub-type-es6": 39, "../modules/m-super-type": 42, "../modules/m-super-type-es6": 41, "../modules/m-table": 43, "../modules/m-validate-form": 44 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -2988,7 +2988,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             this.opt = json || {};
             this.form = this.opt.form;
             this.hintClass = this.opt.hintClass || 'm-validate-form-hint';
-            this.errorClass = this.opt.errorClass || 'm-validate-form-error';
+            //this.errorClass = this.opt.errorClass || 'm-validate-form-error';
             this.validateType = this.form.dataset.validate || [];
             this.validateHintTxt = this.form.dataset.hint || [];
             this.init();
@@ -3016,7 +3016,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 var opt = json || {};
                 this.hintDom.innerHTML = opt.txt || '本项必填';
                 this.wrapDom.appendChild(this.hintDom);
-                this.form.classList.add(this.errorClass);
+                //this.form.classList.add(this.errorClass);
             }
         };
         ValidateInput.prototype.renderHintRemove = function () {
@@ -3024,7 +3024,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             if (isHaveHintDom) {
                 this.wrapDom.removeChild(this.hintDom);
             }
-            this.form.classList.remove(this.errorClass);
+            //this.form.classList.remove(this.errorClass);
         };
         ValidateInput.prototype.validateSave = function () {
             var self = this;
@@ -3532,4 +3532,4 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = TouchSlide;
-    }, {}] }, {}, [2]);
+    }, {}] }, {}, [3]);

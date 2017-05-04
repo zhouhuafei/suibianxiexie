@@ -30,7 +30,16 @@
     }
     .page-input {
         @include center-xy-flex;
-        margin-top: px2rem(20);
+        margin-top: px2rem(10);
+        padding: px2rem(10);
+    }
+    .page-select {
+        @include center-xy-flex;
+        margin-top: px2rem(10);
+        padding: px2rem(10);
+    }
+    .g-textarea {
+        margin: px2rem(10) auto 0;
     }
     .page-checkbox {
         margin-top: px2rem(10);
@@ -43,15 +52,8 @@
     .g-button {
         margin: px2rem(10) auto 0;
     }
-    .page-select {
-        margin-top: px2rem(10);
-        @include center-xy-flex;
-    }
     .page-star {
         margin-top: px2rem(10);
-    }
-    .g-textarea {
-        margin: px2rem(10) auto 0;
     }
     .g-list {
         margin-top: px2rem(10);

@@ -1,16 +1,16 @@
 @import "../config/config";
 
 .m-validate-form-hint {
-    $height: 30;
+    $height: 20;
     color: #ffffff;
     background: $g-color-warn;
     height: px2rem($height);
     @include center-xy-flex;
-    font-size: px2rem(14);
+    font-size: px2rem(12);
     padding: 0 px2rem(10);
     position: absolute;
     right: px2rem(6);
-    top: px2rem(-40);
+    top: px2rem(- $height - 10);
     font-style: normal;
     font-weight: normal;
     &:after {
@@ -18,7 +18,7 @@
         position: absolute;
         width: 0;
         height: 0;
-        border: px2rem(8) solid transparent;
+        border: px2rem(6) solid transparent;
         border-top-color: $g-color-warn;
         right: px2rem(10);
         top: px2rem($height);
@@ -26,5 +26,5 @@
 }
 
 .m-validate-form-error {
-    border: px2rem(1) solid $g-color-warn !important;
+    //border: px2rem(1) solid $g-color-warn !important;
 }
