@@ -72,7 +72,8 @@
                 config: {
                     isShowMask: false, //是否显示遮罩(默认不显示)
                     status: 'loading', //加载状态 loading(加载中) over(加载完毕)
-                    position: 'relative', //模块的位置 'fixed'(相对文档居中) 'absolute'(相对容器居中) 'relative'(直接填入容器)
+                    positionMethod: '', //模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
+                    positionLocation: 'center', //模块的定位位置
                     moduleDomIsShow: false //内部模块是否显示(默认不显示)
                 },
                 //数据
@@ -86,21 +87,18 @@
             var moduleDomHtml = "";
             var moduleDomClass = "";
             var status = config.status;
-            var position = config.position;
+            var positionMethod = config.positionMethod;
+            var positionLocation = config.positionLocation;
             //加载中
             if (status == 'loading') {
                 moduleDomClass = "m-loading-loading ";
                 //相对文档居中
-                if (position == 'fixed') {
-                    moduleDomClass += "m-loading-fixed";
+                if (positionMethod == 'fixed') {
+                    moduleDomClass += "m-loading-fixed m-loading-" + positionLocation;
                 }
                 //相对容器居中
-                if (position == 'absolute') {
-                    moduleDomClass += "m-loading-absolute";
-                }
-                //直接填入容器(不进行居中处理)
-                if (position == 'relative') {
-                    moduleDomClass += "m-loading-relative";
+                if (positionMethod == 'absolute') {
+                    moduleDomClass += "m-loading-absolute m-loading-" + positionLocation;
                 }
                 moduleDomHtml = "\n            <div class=\"m-loading-wrap\">\n                <div class=\"m-loading-loading-icon iconfont icon-jiazaizhong\"></div>\n            </div>\n        ";
             }
@@ -108,16 +106,12 @@
             if (status == 'over') {
                 moduleDomClass = "m-loading-over ";
                 //相对文档居中
-                if (position == 'fixed') {
-                    moduleDomClass += "m-loading-fixed";
+                if (positionMethod == 'fixed') {
+                    moduleDomClass += "m-loading-fixed m-loading-" + positionLocation;
                 }
                 //相对容器居中
-                if (position == 'absolute') {
-                    moduleDomClass += "m-loading-absolute";
-                }
-                //直接填入容器(不进行居中处理)
-                if (position == 'relative') {
-                    moduleDomClass += "m-loading-relative";
+                if (positionMethod == 'absolute') {
+                    moduleDomClass += "m-loading-absolute m-loading-" + positionLocation;
                 }
                 moduleDomHtml = "\n            <div class=\"m-loading-wrap\">\n                <div class=\"m-loading-over-icon iconfont icon-meiyoushuju\"></div>\n                <div class=\"m-loading-over-txt\">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ";
             }

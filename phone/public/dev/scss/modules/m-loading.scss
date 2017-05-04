@@ -16,6 +16,8 @@
         justify-content: center;
         position: relative;
         color: $g-color-font-default;
+        padding: px2rem(20) 0;
+        box-sizing: border-box;
     }
     //加载中
     &.m-loading-loading {
@@ -32,10 +34,24 @@
         &.m-loading-fixed {
             .m-loading-wrap {
                 position: fixed;
-                top: 0;
                 width: inherit;
-                height: 100%;
-                z-index: 502;
+                z-index: 501;
+            }
+            &.m-loading-top {
+                .m-loading-wrap {
+                    top: 0;
+                }
+            }
+            &.m-loading-center {
+                .m-loading-wrap {
+                    top: 0;
+                    height: 100%;
+                }
+            }
+            &.m-loading-bottom {
+                .m-loading-wrap {
+                    bottom: 0;
+                }
             }
         }
         //相对于容器居中
@@ -43,16 +59,24 @@
             .m-loading-wrap {
                 position: absolute;
                 left: 0;
-                top: 0;
                 width: 100%;
-                height: 100%;
                 z-index: 501;
             }
-        }
-        //直接填入容器(不进行居中处理)
-        &.m-loading-relative {
-            .m-loading-wrap {
-                padding: px2rem(20) 0;
+            &.m-loading-top {
+                .m-loading-wrap {
+                    top: 0;
+                }
+            }
+            &.m-loading-center {
+                .m-loading-wrap {
+                    top: 0;
+                    height: 100%;
+                }
+            }
+            &.m-loading-bottom {
+                .m-loading-wrap {
+                    bottom: 0;
+                }
             }
         }
     }
@@ -87,11 +111,6 @@
                 width: 100%;
                 height: 100%;
                 z-index: 501;
-            }
-        }
-        &.m-loading-relative {
-            .m-loading-wrap {
-                padding: px2rem(20) 0;
             }
         }
     }

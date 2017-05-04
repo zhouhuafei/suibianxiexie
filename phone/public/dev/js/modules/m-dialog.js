@@ -52,7 +52,7 @@ var SubType = base.constructorInherit({
              * `bottom` 居下
              * `top` 居上
              * */
-            position: `center`,//默认居中
+            positionLocation: `center`,//弹窗的定位位置    positionMethod定位方式强制fixed
             //提示框
             alert: {
                 time: 2000,//展示的时间
@@ -91,8 +91,8 @@ var SubType = base.constructorInherit({
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     var config = this.opt.config;
-    this.type = `m-dialog-${config.type}`;//弹窗类型
-    this.position = `m-dialog-${config.position}`;//弹窗位置
+    var type = `m-dialog-${config.type}`;//弹窗类型
+    var positionLocation = `m-dialog-${config.positionLocation}`;//弹窗的定位位置
     //弹窗结构
     var html = `
         ${this.renderAlert()}
@@ -102,7 +102,7 @@ SubType.prototype.moduleDomCreate = function () {
         style: this.opt.config.moduleStyle,
         custom: this.opt.config.moduleDomCustomAttr,
         attribute: {
-            className: `m-dialog ${this.type} ${this.position}`,
+            className: `m-dialog ${type} ${positionLocation}`,
             innerHTML: html
         }
     });
