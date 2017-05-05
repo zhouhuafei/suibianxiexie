@@ -29,10 +29,13 @@
     $width-height: 60;
     width: px2rem($width-height);
     height: px2rem($width-height);
-    border: px2rem(1) dashed $g-color-border-default;
+    border: px2rem(1) dashed $g-color-highlight;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     position: relative;
-    overflow: hidden;
-    .g-img-upload-show, .g-img-upload-label, .g-img-upload-icon {
+    display: flex;
+    box-sizing: border-box;
+    color: $g-color-highlight;
+    .g-img-upload-show, .g-img-upload-icon {
         position: absolute;
         left: 0;
         top: 0;
@@ -42,19 +45,34 @@
         align-items: center;
         justify-content: center;
     }
-    .g-img-upload-label {
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        .g-img-upload-input {
-            display: none;
-        }
+    .g-img-upload-close {
+        $size: 12;
+        display: none;
+        font-size: px2rem($size);
+        position: absolute;
+        right: px2rem(- $size - 4);
+        top: 0;
+        align-items: center;
+        justify-content: center;
+        border-left: none;
     }
     .g-img-upload-show {
         display: none;
+        background: center center no-repeat;
+        background-size: 100% auto;
     }
     .g-img-upload-icon {
         font-size: px2rem($width-height*0.5);
     }
+    .g-img-upload-input {
+        display: none;
+    }
     &.g-img-upload-active {
+        border: none;
+        background: $g-color-background-dark;
+        .g-img-upload-close {
+            display: flex;
+        }
         .g-img-upload-icon {
             display: none;
         }

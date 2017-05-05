@@ -82,9 +82,9 @@ SubType.prototype.renderBody = function () {
     var data = self.opt.data;
     data.items.forEach(function (v) {
         if (self.opt.config.isShowHref) {
-            html += `<a href="${v.href || 'javascript:;'}" class="m-slide-item"><img data-src="${v.src}" src="" alt=""></a>`;
+            html += `<a href="${v.href || 'javascript:;'}" class="m-slide-item" data-src="${v.src}"></a>`;
         } else {
-            html += `<a class="m-slide-item"><img data-src="${v.src}" src="" alt=""></a>`;
+            html += `<a class="m-slide-item" data-src="${v.src}"></a>`;
         }
     });
     return `<div class="m-slide-body">${html}</div>`;
@@ -98,7 +98,7 @@ SubType.prototype.power = function () {
     var touchSlide = config.touchSlide;
     touchSlide.slideCell = self.opt.wrap;//外部容器,必须是id
     touchSlide.startFun = function (i) {
-        var allImg = self.moduleDom.querySelectorAll('.m-slide-body img');
+        var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-item');
         var nowIndex = ( i + 1);
         if (touchSlide.effect == 'left') {
             nowIndex = i;
@@ -106,9 +106,9 @@ SubType.prototype.power = function () {
         var nowImg = allImg[nowIndex];
         var prevImg = allImg[nowIndex - 1];
         var nextImg = allImg[nowIndex + 1];
-        nowImg.src = nowImg.dataset.src;
-        prevImg && (prevImg.src = prevImg.dataset.src);
-        nextImg && (nextImg.src = nextImg.dataset.src);
+        nowImg.style.backgroundImage = `url(${nowImg.dataset.src})`;
+        prevImg && (prevImg.style.backgroundImage = `url(${prevImg.dataset.src})`);
+        nextImg && (nextImg.style.backgroundImage = `url(${nextImg.dataset.src})`);
         callback.startFun({self: self, index: i});
     };
     touchSlide.endFun = function (i) {
