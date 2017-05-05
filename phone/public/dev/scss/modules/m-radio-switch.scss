@@ -19,16 +19,16 @@
         border-radius: px2rem($width-wrap);
         position: relative;
         background: $g-color-background-dark;
-    }
-    .m-radio-switch-run {
-        width: px2rem($width-height-run);
-        height: px2rem($width-height-run);
-        border-radius: 50%;
-        transition: 0.4s;
-        background: #ffffff;
-        position: absolute;
-        left: px2rem($left-run);
-        top: px2rem($top-run);
+        .m-radio-switch-run {
+            width: px2rem($width-height-run);
+            height: px2rem($width-height-run);
+            border-radius: 50%;
+            transition: 0.4s;
+            background: #ffffff;
+            position: absolute;
+            left: px2rem($left-run);
+            top: px2rem($top-run);
+        }
     }
     .m-radio-switch-txt {
         margin-left: px2rem(4);
@@ -36,9 +36,9 @@
     &.m-radio-switch-active {
         .m-radio-switch-wrap {
             background: $g-color-highlight;
-        }
-        .m-radio-switch-run {
-            left: px2rem($left-run-active);
+            .m-radio-switch-run {
+                left: px2rem($left-run-active);
+            }
         }
         .m-radio-switch-txt {
             color: $g-color-highlight;
