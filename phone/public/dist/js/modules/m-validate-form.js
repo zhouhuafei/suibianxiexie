@@ -42,52 +42,53 @@
         var base = require('../base/base'); //底层方法
         var validate = require('../function/validate'); //表单验证
 
-        function ValidateInput(json) {
+        function ValidateForm(json) {
             this.opt = json || {};
-            this.form = this.opt.form;
+            this.element = base.getDomArray({ element: this.opt.element })[0];
             this.hintClass = this.opt.hintClass || 'm-validate-form-hint';
-            this.validateType = this.form.dataset.validate || 'undefined';
-            this.validateHintTxt = this.form.dataset.hint || 'undefined';
+            this.eventsType = this.opt.eventsType || 'blur';
+            this.validateType = this.element.dataset.validate || 'undefined';
+            this.validateHintTxt = this.element.dataset.hint || 'undefined';
             this.isValidateSuccess = true; //是否验证成功了
             this.init();
-            this.validateEventBlur();
         }
-        ValidateInput.prototype.init = function () {
+        ValidateForm.prototype.init = function () {
             this.render();
+            this.validateEvents();
         };
-        ValidateInput.prototype.render = function () {
+        ValidateForm.prototype.render = function () {
             this.renderWrap();
             this.renderHint();
         };
-        ValidateInput.prototype.renderWrap = function () {
-            this.wrapDom = this.form.parentNode;
+        ValidateForm.prototype.renderWrap = function () {
+            this.wrapDom = this.element.parentNode;
             if (this.wrapDom && getComputedStyle(this.wrapDom).position == 'static') {
                 this.wrapDom.style.position = 'relative';
             }
         };
-        ValidateInput.prototype.renderHint = function () {
+        ValidateForm.prototype.renderHint = function () {
             this.hintDom = document.createElement('span');
             this.hintDom.classList.add(this.hintClass);
         };
-        ValidateInput.prototype.renderHintAdd = function (json) {
+        ValidateForm.prototype.renderHintAdd = function (json) {
             //只有没被隐藏的才进行验证
-            if (this.form.offsetWidth) {
+            if (this.element.offsetWidth) {
                 var opt = json || {};
                 this.hintDom.innerHTML = opt.txt || '本项必填';
                 this.wrapDom.appendChild(this.hintDom);
             }
         };
-        ValidateInput.prototype.renderHintRemove = function () {
+        ValidateForm.prototype.renderHintRemove = function () {
             var isHaveHintDom = this.wrapDom.querySelector("." + this.hintClass);
             if (isHaveHintDom) {
                 this.wrapDom.removeChild(this.hintDom);
             }
         };
-        ValidateInput.prototype.validateSave = function () {
+        ValidateForm.prototype.validateSave = function () {
             var self = this;
             var type = self.validateType.split(' ');
             var hintTxt = self.validateHintTxt.split(' ');
-            var value = this.form.value;
+            var value = this.element.value;
             type.forEach(function (v, i) {
                 if (v == 'no-space' && self.isValidateSuccess) {
                     //设置了非空验证
@@ -139,16 +140,16 @@
                 }
             });
         };
-        ValidateInput.prototype.validateEventBlur = function () {
+        ValidateForm.prototype.validateEvents = function () {
             var self = this;
-            if (self.form) {
-                self.form.addEventListener('blur', function () {
+            if (self.element) {
+                self.element.addEventListener(self.eventsType, function () {
                     self.validateSave();
                 });
             }
         };
 
-        module.exports = ValidateInput;
+        module.exports = ValidateForm;
     }, { "../base/base": 1, "../function/validate": 22 }], 3: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
