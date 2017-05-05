@@ -79,7 +79,7 @@ SubType.prototype.moduleDomCreate = function () {
         moduleDomHtml = `
             <div class="m-loading-wrap">
                 <div class="m-loading-over-icon iconfont icon-meiyoushuju"></div>
-                <div class="m-loading-over-txt">没有数据了</div>
+                <div class="m-loading-over-text">没有数据了</div>
             </div>
         `;
     }

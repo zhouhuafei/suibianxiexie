@@ -24,23 +24,23 @@ SubType.prototype.moduleDomCreate = function () {
         <div class="m-footer-nav-wrap">
             <a class="m-footer-nav-body" href="/">
                 <div class="m-footer-nav-body-icon iconfont icon-shouye"></div>
-                <div class="m-footer-nav-body-txt">首页</div>
+                <div class="m-footer-nav-body-text">首页</div>
             </a>
             <a class="m-footer-nav-body" href="/develop-global">
                 <div class="m-footer-nav-body-icon iconfont icon-kaifa"></div>
-                <div class="m-footer-nav-body-txt">g-global</div>
+                <div class="m-footer-nav-body-text">g-global</div>
             </a>
             <a class="m-footer-nav-body" href="/develop-module">
                 <div class="m-footer-nav-body-icon iconfont icon-kaifa"></div>
-                <div class="m-footer-nav-body-txt">m-module</div>
+                <div class="m-footer-nav-body-text">m-module</div>
             </a>
             <a class="m-footer-nav-body" href="/develop-word">
                 <div class="m-footer-nav-body-icon iconfont icon-kaifa"></div>
-                <div class="m-footer-nav-body-txt">标准词汇</div>
+                <div class="m-footer-nav-body-text">标准词汇</div>
             </a>
             <a class="m-footer-nav-body" href="/mine">
                 <div class="m-footer-nav-body-icon iconfont icon-wode"></div>
-                <div class="m-footer-nav-body-txt">我的</div>
+                <div class="m-footer-nav-body-text">我的</div>
             </a>
         </div>
     `;

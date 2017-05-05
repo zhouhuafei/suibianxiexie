@@ -56,7 +56,7 @@ class SubType extends SuperType {
             attribute: {
                 className: `m-sub-type-es6`,
                 innerHTML: `
-                    <div class="m-sub-type-es6-txt">周华飞爱侯丽杰,侯丽杰爱周华飞</div>
+                    <div class="m-sub-type-es6-text">周华飞爱侯丽杰,侯丽杰爱周华飞</div>
                 `
             }
         });

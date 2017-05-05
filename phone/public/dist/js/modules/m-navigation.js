@@ -59,27 +59,27 @@
                     items: [{
                         href: '/',
                         icon: 'icon-shouye',
-                        txt: '首页',
+                        text: '首页',
                         mark: ''
                     }, {
                         href: '/mine',
                         icon: 'icon-wode',
-                        txt: '我的',
+                        text: '我的',
                         mark: ''
                     }, {
                         href: '/develop-global',
                         icon: 'icon-kaifa',
-                        txt: 'g-global',
+                        text: 'g-global',
                         mark: ''
                     }, {
                         href: '/develop-module',
                         icon: 'icon-kaifa',
-                        txt: 'm-module',
+                        text: 'm-module',
                         mark: ''
                     }, {
                         href: '/develop-word',
                         icon: 'icon-kaifa',
-                        txt: '标准词汇',
+                        text: '标准词汇',
                         mark: ''
                     }]
                 }
@@ -96,7 +96,7 @@
                 if (v.mark) {
                     markHtml = "<div class=\"m-navigation-mark\">" + v.mark + "</div>";
                 }
-                html += "\n            <a href=\"" + v.href + "\" class=\"m-navigation-wrap\">\n                <div class=\"m-navigation-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-navigation-txt\">" + v.txt + "</div>\n                " + markHtml + "\n            </a>\n        ";
+                html += "\n            <a href=\"" + v.href + "\" class=\"m-navigation-wrap\">\n                <div class=\"m-navigation-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-navigation-text\">" + v.text + "</div>\n                " + markHtml + "\n            </a>\n        ";
             });
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleDomStyle,
@@ -951,7 +951,7 @@
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-super-type",
-                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                    innerHTML: "\n                <div class=\"m-super-type-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
             });
         };

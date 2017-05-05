@@ -154,7 +154,7 @@
             if (alert.isShowIcon) {
                 htmlIcon = "<div class=\"m-dialog-alert-icon iconfont " + alert.icon + "\"></div>";
             }
-            return "\n        " + htmlIcon + "\n        <div class=\"m-dialog-alert-txt\">" + alert.content + "</div>\n    ";
+            return "\n        " + htmlIcon + "\n        <div class=\"m-dialog-alert-text\">" + alert.content + "</div>\n    ";
         };
 
         //确认框
@@ -175,7 +175,7 @@
                     htmlIcon = "<div class=\"m-dialog-icon iconfont " + confirm.icon + "\"></div>";
                 }
                 var bodyClass = "m-dialog-body-system";
-                var bodyContent = "\n            " + htmlIcon + "\n            <div class=\"m-dialog-txt\">" + confirm.bodyContent + "</div>\n        ";
+                var bodyContent = "\n            " + htmlIcon + "\n            <div class=\"m-dialog-text\">" + confirm.bodyContent + "</div>\n        ";
                 if (confirm.isCustom) {
                     bodyClass = "m-dialog-body-custom";
                     bodyContent = confirm.bodyContent;
@@ -1133,7 +1133,7 @@
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-super-type",
-                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                    innerHTML: "\n                <div class=\"m-super-type-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
             });
         };

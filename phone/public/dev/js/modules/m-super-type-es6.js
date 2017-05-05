@@ -128,7 +128,7 @@ class SuperType {
             attribute: {
                 className: `m-super-type-es6`,
                 innerHTML: `
-                    <div class="m-super-type-es6-txt">周华飞爱侯丽杰,侯丽杰爱周华飞</div>
+                    <div class="m-super-type-es6-text">周华飞爱侯丽杰,侯丽杰爱周华飞</div>
                 `
             }
         });

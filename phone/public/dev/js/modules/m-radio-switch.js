@@ -18,7 +18,7 @@ var SubType = base.constructorInherit({
         config: {
             isHand: false,//是否手动控制
             status: 'on',//状态
-            txt: {
+            text: {
                 on: '已开启',
                 off: '已关闭'
             }
@@ -43,9 +43,9 @@ SubType.prototype.moduleDomCreate = function () {
             className: `m-radio-switch ${isOn}`,
             innerHTML: `
                 <div class="m-radio-switch-wrap">
-                    <div class="m-radio-switch-run"></div>
+                    <div class="m-radio-switch-round"></div>
                 </div>
-                <div class="m-radio-switch-txt">${config.txt[config.status]}</div>
+                <div class="m-radio-switch-text">${config.text[config.status]}</div>
             `
         }
     });
@@ -78,7 +78,7 @@ SubType.prototype.on = function () {
     if (!this.isOn()) {
         this.moduleDom.classList.add(this.moduleDomActiveClass);
         config.status = 'on';
-        this.moduleDom.querySelector('.m-radio-switch-txt').innerHTML = `${config.txt[config.status]}`;
+        this.moduleDom.querySelector('.m-radio-switch-text').innerHTML = `${config.text[config.status]}`;
     }
 };
 
@@ -88,7 +88,7 @@ SubType.prototype.off = function () {
     if (this.isOn()) {
         this.moduleDom.classList.remove(this.moduleDomActiveClass);
         config.status = 'off';
-        this.moduleDom.querySelector('.m-radio-switch-txt').innerHTML = `${config.txt[config.status]}`;
+        this.moduleDom.querySelector('.m-radio-switch-text').innerHTML = `${config.text[config.status]}`;
     }
 };
 

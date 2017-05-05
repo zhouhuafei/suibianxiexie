@@ -45,7 +45,7 @@ SubType.prototype.moduleDomCreate = function () {
         attribute: {
             className: `m-pagination`,
             innerHTML: `
-                <div class="m-pagination-txt">第</div>
+                <div class="m-pagination-text">第</div>
                 <div class="m-pagination-now-page">
                     <label class="g-select">
                         <select class="g-select-select">
@@ -54,15 +54,15 @@ SubType.prototype.moduleDomCreate = function () {
                         <span class="g-select-icon iconfont icon-select"></span>
                     </label>
                 </div>
-                <div class="m-pagination-txt">页</div>
-                <a href="javascript:;" class="m-pagination-btn m-pagination-btn-inactive iconfont icon-shangyiye"></a>
-                <a href="javascript:;" class="m-pagination-btn iconfont icon-xiayiye"></a>
+                <div class="m-pagination-text">页</div>
+                <a href="javascript:;" class="m-pagination-button m-pagination-button-inactive iconfont icon-shangyiye"></a>
+                <a href="javascript:;" class="m-pagination-button iconfont icon-xiayiye"></a>
             `
         }
     });
-    this.prevDom = this.moduleDom.querySelectorAll('.m-pagination-btn')[0];//上一页的按钮
-    this.nextDom = this.moduleDom.querySelectorAll('.m-pagination-btn')[1];//下一页的按钮
-    this.btnInactiveClass = 'm-pagination-btn-inactive';//上一页和下一页的禁用状态
+    this.prevDom = this.moduleDom.querySelectorAll('.m-pagination-button')[0];//上一页的按钮
+    this.nextDom = this.moduleDom.querySelectorAll('.m-pagination-button')[1];//下一页的按钮
+    this.buttonInactiveClass = 'm-pagination-button-inactive';//上一页和下一页的禁用状态
     this.selectDom = this.moduleDom.querySelector('.m-pagination-now-page .g-select-select');//选择某一页的按钮
 };
 
@@ -87,13 +87,13 @@ SubType.prototype.power = function () {
     }
 
     this.prevDom.addEventListener('click', function () {
-        if (!this.classList.contains(self.btnInactiveClass)) {
+        if (!this.classList.contains(self.buttonInactiveClass)) {
             self.prevPage();
         }
     });
 
     this.nextDom.addEventListener('click', function () {
-        if (!this.classList.contains(self.btnInactiveClass)) {
+        if (!this.classList.contains(self.buttonInactiveClass)) {
             self.nextPage();
         }
     });
@@ -159,22 +159,22 @@ SubType.prototype.selectPage = function () {
 
 //上一页禁用
 SubType.prototype.prevPageDisable = function () {
-    this.prevDom.classList.add(this.btnInactiveClass);
+    this.prevDom.classList.add(this.buttonInactiveClass);
 };
 
 //上一页启用
 SubType.prototype.prevPageEnable = function () {
-    this.prevDom.classList.remove(this.btnInactiveClass);
+    this.prevDom.classList.remove(this.buttonInactiveClass);
 };
 
 //下一页禁用
 SubType.prototype.nextPageDisable = function () {
-    this.nextDom.classList.add(this.btnInactiveClass);
+    this.nextDom.classList.add(this.buttonInactiveClass);
 };
 
 //下一页启用
 SubType.prototype.nextPageEnable = function () {
-    this.nextDom.classList.remove(this.btnInactiveClass);
+    this.nextDom.classList.remove(this.buttonInactiveClass);
 };
 
 module.exports = SubType;

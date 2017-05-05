@@ -7,7 +7,7 @@ function ValidateForm(json) {
     this.hintClass = this.opt.hintClass || 'm-validate-form-hint';
     this.eventsType = this.opt.eventsType || 'blur';
     this.validateType = this.element.dataset.validate || 'undefined';
-    this.validateHintTxt = this.element.dataset.hint || 'undefined';
+    this.validateHintText = this.element.dataset.hint || 'undefined';
     this.isValidateSuccess = true;//是否验证成功了
     this.init();
 }
@@ -33,7 +33,7 @@ ValidateForm.prototype.renderHintAdd = function (json) {
     //只有没被隐藏的才进行验证
     if (this.element.offsetWidth) {
         var opt = json || {};
-        this.hintDom.innerHTML = opt.txt || '本项必填';
+        this.hintDom.innerHTML = opt.text || '本项必填';
         this.wrapDom.appendChild(this.hintDom);
     }
 };
@@ -46,14 +46,14 @@ ValidateForm.prototype.renderHintRemove = function () {
 ValidateForm.prototype.validateSave = function () {
     var self = this;
     var type = self.validateType.split(' ');
-    var hintTxt = self.validateHintTxt.split(' ');
+    var hintText = self.validateHintText.split(' ');
     var value = this.element.value;
     type.forEach(function (v, i) {
         if (v == 'no-space' && self.isValidateSuccess) {//设置了非空验证
             validate.isSpace({
                 value: value,
                 success: function () {//空
-                    self.renderHintAdd({txt: hintTxt[i]});
+                    self.renderHintAdd({text: hintText[i]});
                     self.isValidateSuccess = false;
                 },
                 fail: function () {//非空
@@ -66,7 +66,7 @@ ValidateForm.prototype.validateSave = function () {
             validate.isZero({
                 value: value,
                 success: function () {//零
-                    self.renderHintAdd({txt: hintTxt[i]});
+                    self.renderHintAdd({text: hintText[i]});
                     self.isValidateSuccess = false;
                 },
                 fail: function () {//非零
@@ -83,7 +83,7 @@ ValidateForm.prototype.validateSave = function () {
                     self.isValidateSuccess = true;
                 },
                 fail: function () {//非整数
-                    self.renderHintAdd({txt: hintTxt[i]});
+                    self.renderHintAdd({text: hintText[i]});
                     self.isValidateSuccess = false;
                 }
             });

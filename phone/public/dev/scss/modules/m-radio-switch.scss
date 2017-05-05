@@ -3,10 +3,10 @@
 .m-radio-switch {
     $width-wrap: 44;
     $height-wrap: $width-wrap / 2;
-    $width-height-run: $height-wrap - 2;
-    $top-run: 1;
-    $left-run: 1;
-    $left-run-active: $width-wrap - $width-height-run - $left-run;
+    $width-height-round: $height-wrap - 2;
+    $top-round: 1;
+    $left-round: 1;
+    $left-round-active: $width-wrap - $width-height-round - $left-round;
     height: px2rem($height-wrap);
     cursor: pointer;
     display: flex;
@@ -19,28 +19,28 @@
         border-radius: px2rem($width-wrap);
         position: relative;
         background: $g-color-background-dark;
-        .m-radio-switch-run {
-            width: px2rem($width-height-run);
-            height: px2rem($width-height-run);
+        .m-radio-switch-round {
+            width: px2rem($width-height-round);
+            height: px2rem($width-height-round);
             border-radius: 50%;
             transition: 0.4s;
             background: #ffffff;
             position: absolute;
-            left: px2rem($left-run);
-            top: px2rem($top-run);
+            left: px2rem($left-round);
+            top: px2rem($top-round);
         }
     }
-    .m-radio-switch-txt {
+    .m-radio-switch-text {
         margin-left: px2rem(4);
     }
     &.m-radio-switch-active {
         .m-radio-switch-wrap {
             background: $g-color-highlight;
-            .m-radio-switch-run {
-                left: px2rem($left-run-active);
+            .m-radio-switch-round {
+                left: px2rem($left-round-active);
             }
         }
-        .m-radio-switch-txt {
+        .m-radio-switch-text {
             color: $g-color-highlight;
         }
     }

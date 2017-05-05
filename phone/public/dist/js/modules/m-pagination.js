@@ -82,12 +82,12 @@
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-pagination",
-                    innerHTML: "\n                <div class=\"m-pagination-txt\">\u7B2C</div>\n                <div class=\"m-pagination-now-page\">\n                    <label class=\"g-select\">\n                        <select class=\"g-select-select\">\n                            " + this.renderOption() + "\n                        </select>\n                        <span class=\"g-select-icon iconfont icon-select\"></span>\n                    </label>\n                </div>\n                <div class=\"m-pagination-txt\">\u9875</div>\n                <a href=\"javascript:;\" class=\"m-pagination-btn m-pagination-btn-inactive iconfont icon-shangyiye\"></a>\n                <a href=\"javascript:;\" class=\"m-pagination-btn iconfont icon-xiayiye\"></a>\n            "
+                    innerHTML: "\n                <div class=\"m-pagination-text\">\u7B2C</div>\n                <div class=\"m-pagination-now-page\">\n                    <label class=\"g-select\">\n                        <select class=\"g-select-select\">\n                            " + this.renderOption() + "\n                        </select>\n                        <span class=\"g-select-icon iconfont icon-select\"></span>\n                    </label>\n                </div>\n                <div class=\"m-pagination-text\">\u9875</div>\n                <a href=\"javascript:;\" class=\"m-pagination-button m-pagination-button-inactive iconfont icon-shangyiye\"></a>\n                <a href=\"javascript:;\" class=\"m-pagination-button iconfont icon-xiayiye\"></a>\n            "
                 }
             });
-            this.prevDom = this.moduleDom.querySelectorAll('.m-pagination-btn')[0]; //上一页的按钮
-            this.nextDom = this.moduleDom.querySelectorAll('.m-pagination-btn')[1]; //下一页的按钮
-            this.btnInactiveClass = 'm-pagination-btn-inactive'; //上一页和下一页的禁用状态
+            this.prevDom = this.moduleDom.querySelectorAll('.m-pagination-button')[0]; //上一页的按钮
+            this.nextDom = this.moduleDom.querySelectorAll('.m-pagination-button')[1]; //下一页的按钮
+            this.buttonInactiveClass = 'm-pagination-button-inactive'; //上一页和下一页的禁用状态
             this.selectDom = this.moduleDom.querySelector('.m-pagination-now-page .g-select-select'); //选择某一页的按钮
         };
 
@@ -112,13 +112,13 @@
             }
 
             this.prevDom.addEventListener('click', function () {
-                if (!this.classList.contains(self.btnInactiveClass)) {
+                if (!this.classList.contains(self.buttonInactiveClass)) {
                     self.prevPage();
                 }
             });
 
             this.nextDom.addEventListener('click', function () {
-                if (!this.classList.contains(self.btnInactiveClass)) {
+                if (!this.classList.contains(self.buttonInactiveClass)) {
                     self.nextPage();
                 }
             });
@@ -184,22 +184,22 @@
 
         //上一页禁用
         SubType.prototype.prevPageDisable = function () {
-            this.prevDom.classList.add(this.btnInactiveClass);
+            this.prevDom.classList.add(this.buttonInactiveClass);
         };
 
         //上一页启用
         SubType.prototype.prevPageEnable = function () {
-            this.prevDom.classList.remove(this.btnInactiveClass);
+            this.prevDom.classList.remove(this.buttonInactiveClass);
         };
 
         //下一页禁用
         SubType.prototype.nextPageDisable = function () {
-            this.nextDom.classList.add(this.btnInactiveClass);
+            this.nextDom.classList.add(this.buttonInactiveClass);
         };
 
         //下一页启用
         SubType.prototype.nextPageEnable = function () {
-            this.nextDom.classList.remove(this.btnInactiveClass);
+            this.nextDom.classList.remove(this.buttonInactiveClass);
         };
 
         module.exports = SubType;
@@ -1040,7 +1040,7 @@
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-super-type",
-                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                    innerHTML: "\n                <div class=\"m-super-type-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
             });
         };

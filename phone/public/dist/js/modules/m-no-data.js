@@ -54,17 +54,17 @@
                 callback: {},
                 //配置
                 config: {
-                    btn: {
+                    button: {
                         isShowIcon: false
                     }
                 },
                 //数据
                 data: {
                     icon: 'icon-meiyoushuju',
-                    txt: '没有数据',
-                    btn: {
+                    text: '没有数据',
+                    button: {
                         icon: 'icon-shouye',
-                        txt: '回首页',
+                        text: '回首页',
                         href: '/'
                     }
                 }
@@ -74,16 +74,16 @@
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             var data = this.opt.data;
-            var btnIconHtml = "";
-            if (this.opt.config.btn.isShowIcon) {
-                btnIconHtml = "<div class=\"g-button-icon iconfont " + data.btn.icon + "\"></div>";
+            var buttonIconHtml = "";
+            if (this.opt.config.button.isShowIcon) {
+                buttonIconHtml = "<div class=\"g-button-icon iconfont " + data.button.icon + "\"></div>";
             }
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleStyle,
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-no-data",
-                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-txt\">" + data.txt + "</div>\n                <a class=\"m-no-data-btn g-button g-button-confirm\" href=\"" + data.btn.href + "\">\n                    " + btnIconHtml + "\n                    <div class=\"g-button-txt\">" + data.btn.txt + "</div>\n                </a>\n            "
+                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-text\">" + data.text + "</div>\n                <a class=\"m-no-data-button g-button g-button-confirm\" href=\"" + data.button.href + "\">\n                    " + buttonIconHtml + "\n                    <div class=\"g-button-text\">" + data.button.text + "</div>\n                </a>\n            "
                 }
             });
         };
@@ -931,7 +931,7 @@
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-super-type",
-                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                    innerHTML: "\n                <div class=\"m-super-type-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
             });
         };

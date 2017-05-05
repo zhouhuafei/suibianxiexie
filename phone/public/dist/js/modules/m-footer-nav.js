@@ -61,7 +61,7 @@
 
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDomClass = "m-footer-nav";
-            var moduleDomHtml = "\n        <div class=\"m-footer-nav-wrap\">\n            <a class=\"m-footer-nav-body\" href=\"/\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-shouye\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u9996\u9875</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-global\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-txt\">g-global</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-module\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-txt\">m-module</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-word\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u6807\u51C6\u8BCD\u6C47</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/mine\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-wode\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u6211\u7684</div>\n            </a>\n        </div>\n    ";
+            var moduleDomHtml = "\n        <div class=\"m-footer-nav-wrap\">\n            <a class=\"m-footer-nav-body\" href=\"/\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-shouye\"></div>\n                <div class=\"m-footer-nav-body-text\">\u9996\u9875</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-global\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-text\">g-global</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-module\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-text\">m-module</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-word\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-text\">\u6807\u51C6\u8BCD\u6C47</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/mine\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-wode\"></div>\n                <div class=\"m-footer-nav-body-text\">\u6211\u7684</div>\n            </a>\n        </div>\n    ";
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleDomStyle,
                 custom: this.opt.config.moduleDomCustomAttr,
@@ -915,7 +915,7 @@
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-super-type",
-                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                    innerHTML: "\n                <div class=\"m-super-type-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
             });
         };

@@ -24,14 +24,14 @@
             }
         }
     }
-    .m-pagination-btn {
+    .m-pagination-button {
         display: flex;
         align-items: center;
         justify-content: center;
         height: inherit;
         width: px2rem($height);
         margin-left: px2rem(10);
-        &.m-pagination-btn-inactive {
+        &.m-pagination-button-inactive {
             color: $g-color-font-disable;
         }
     }
