@@ -272,7 +272,6 @@
     height: px2rem($height);
     display: flex;
     align-items: center;
-    justify-content: center;
     .g-radio-wrap {
         position: relative;
         width: px2rem($height);
@@ -321,6 +320,7 @@
     }
     .g-radio-txt {
         line-height: 1;
+        margin-left: px2rem(10);
     }
 }
 
@@ -330,7 +330,6 @@
     height: px2rem($height);
     display: flex;
     align-items: center;
-    justify-content: center;
     .g-checkbox-wrap {
         width: px2rem($height);
         height: 100%;
@@ -371,6 +370,7 @@
     }
     .g-checkbox-txt {
         line-height: 1;
+        margin-left: px2rem(10);
     }
 }
 

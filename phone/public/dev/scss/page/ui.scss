@@ -30,23 +30,31 @@
     }
     .page-input {
         margin-top: px2rem(10);
-        padding: px2rem(10);
+        padding: 0 px2rem(10);
     }
     .page-select {
         margin-top: px2rem(10);
-        padding: px2rem(10);
+        padding: 0 px2rem(10);
     }
-    .page-textarea{
+    .page-textarea {
         margin-top: px2rem(10);
-        padding: px2rem(10);
+        padding: 0 px2rem(10);
     }
     .page-checkbox {
         margin-top: px2rem(10);
-        @include center-xy-flex;
+        padding: 0 px2rem(10);
+        display: flex;
+        .g-checkbox {
+            flex: 1;
+        }
     }
     .page-radio {
         margin-top: px2rem(10);
-        @include center-xy-flex;
+        padding: 0 px2rem(10);
+        display: flex;
+        .g-radio {
+            flex: 1;
+        }
     }
     .g-button {
         margin: px2rem(10) auto 0;
