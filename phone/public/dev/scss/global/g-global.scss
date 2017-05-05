@@ -113,7 +113,7 @@
     border: px2rem(1) solid $g-color-border-default;
     box-sizing: border-box;
     position: relative;
-    border-radius: px2rem(4);
+    border-radius: px2rem(100);
     .g-input-txt {
         min-width: px2rem($height);
         padding: 0 px2rem(10);
@@ -174,7 +174,7 @@
     border: px2rem(1) solid $g-color-border-default;
     box-sizing: border-box;
     position: relative;
-    border-radius: px2rem(4);
+    border-radius: px2rem(100);
     .g-select-txt {
         min-width: px2rem($height);
         padding: 0 px2rem(10);
@@ -217,8 +217,8 @@
         border-left: px2rem(1) solid $g-color-border-default;
         box-sizing: border-box;
         border-radius: inherit;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
+        //border-top-left-radius: 0;
+        //border-bottom-left-radius: 0;
     }
 }
 
