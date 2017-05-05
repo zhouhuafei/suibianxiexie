@@ -1,0 +1,16 @@
+@import "../config/config";
+
+//标签
+.g-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: px2rem(12);
+    overflow: hidden;
+    padding: px2rem(10) 0;
+    .g-label-btn {
+        color: $g-color-font-dark;
+        padding: px2rem(6) px2rem(10);
+    }
+}

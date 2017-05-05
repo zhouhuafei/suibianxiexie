@@ -61,7 +61,7 @@
 
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDomClass = "m-footer-nav";
-            var moduleDomHtml = "\n        <div class=\"m-footer-nav-wrap\">\n            <a class=\"m-footer-nav-body\" href=\"/\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-shouye\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u9996\u9875</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-fenxiao\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u6211\u8981\u5F00\u5E97</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/cart\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-gouwuche\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u8D2D\u7269\u8F66</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kefu\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u5BA2\u670D</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/mine\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-wode\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u6211\u7684</div>\n            </a>\n        </div>\n    ";
+            var moduleDomHtml = "\n        <div class=\"m-footer-nav-wrap\">\n            <a class=\"m-footer-nav-body\" href=\"/\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-shouye\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u9996\u9875</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-global\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-txt\">g-global</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-module\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-txt\">m-module</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-word\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u6807\u51C6\u8BCD\u6C47</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/mine\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-wode\"></div>\n                <div class=\"m-footer-nav-body-txt\">\u6211\u7684</div>\n            </a>\n        </div>\n    ";
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleDomStyle,
                 custom: this.opt.config.moduleDomCustomAttr,
@@ -123,9 +123,9 @@
                 /*
                  * 注意:
                  * defaults要防止对象的引用(如果不防止的话,会出现BUG)
-                 * 例如 wrap的默认值是'.g-page'
+                 * 例如 wrap的默认值是'.g-wrap'
                  * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
-                 * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-page'
+                 * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
                  * 但是由于对象引用的原因,这里的值会变成'body'
                  * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
                  * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
@@ -797,7 +797,7 @@
                 //内部默认参数
                 defaults: {
                     //父级
-                    wrap: ".g-page", //这个仅支持传入选择器和原生dom节点
+                    wrap: ".g-wrap", //这个仅支持传入选择器和原生dom节点
                     //回调
                     callback: {
                         //内部模块创建之前

@@ -40,9 +40,9 @@
                 /*
                  * 注意:
                  * defaults要防止对象的引用(如果不防止的话,会出现BUG)
-                 * 例如 wrap的默认值是'.g-page'
+                 * 例如 wrap的默认值是'.g-wrap'
                  * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
-                 * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-page'
+                 * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
                  * 但是由于对象引用的原因,这里的值会变成'body'
                  * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
                  * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了

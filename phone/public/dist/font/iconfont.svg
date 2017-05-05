@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20120731 at Thu May  4 11:49:52 2017
+Created by FontForge 20120731 at Fri May  5 22:43:30 2017
  By admin
 </metadata>
 <defs>
@@ -19,7 +19,7 @@ Created by FontForge 20120731 at Thu May  4 11:49:52 2017
     bbox="23 -92 1001 864"
     underline-thickness="0"
     underline-position="0"
-    unicode-range="U+0078-E67E"
+    unicode-range="U+0078-E67F"
   />
 <missing-glyph 
  />
@@ -355,5 +355,9 @@ q42 0 71.5 -29.5t29.5 -71.5v-695q0 -41 -29.5 -70.5t-71.5 -29.5v0zM349 795q-26 0 
 t50 21h268q29 0 50 -21t21 -50v-512q0 -30 -21 -50.5t-50 -20.5zM378 745q-17 0 -29.5 -12.5t-12.5 -29.5v-512q0 -18 12.5 -30t29.5 -12h268q17 0 29.5 12t12.5 30v512q0 17 -12.5 29.5t-29.5 12.5h-268z" />
     <glyph glyph-name="bitian" unicode="&#xe67e;" 
 d="M460 708h104l-11 -288l264 100l33 -98l-273 -81l184 -217l-80 -64l-169 234l-169 -234l-80 64l184 217l-273 81l33 98l265 -100z" />
+    <glyph glyph-name="kaifa" unicode="&#xe67f;" 
+d="M897 769h-771q-29 0 -47 -21t-18 -56v-627q0 -28 18.5 -47t46.5 -19h771q28 0 46.5 19t18.5 47v627q-1 35 -18.5 56t-46.5 21zM126 728h771q11 0 19.5 -9.5t8.5 -23.5v-178h-827v178q0 14 8 23.5t20 9.5v0zM897 36h-771q-12 0 -20 9t-8 21v406h827v-406q0 -12 -8.5 -21
+t-19.5 -9v0zM202 624q0 -18 12.5 -30.5t30.5 -12.5t31 12.5t13 30.5v0q0 18 -13 30.5t-31 12.5t-30.5 -12.5t-12.5 -30.5v0zM319 624q0 -18 13 -30.5t31 -12.5t30.5 12.5t12.5 30.5v0q0 18 -12.5 30.5t-30.5 12.5t-31 -12.5t-13 -30.5v0zM437 624q0 18 12.5 30.5t30.5 12.5
+t30.5 -12.5t12.5 -30.5t-12.5 -30.5t-30.5 -12.5t-30.5 12.5t-12.5 30.5zM463 145h34l74 232l-33 -1zM202 252v-11v-12l150 -59v27l-96 43l97 38v29zM687 305v-29l97 -39l-96 -42v-28l150 59v12v12z" />
   </font>
 </defs></svg>

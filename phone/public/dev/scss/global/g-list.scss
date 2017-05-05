@@ -1,0 +1,42 @@
+@import "../config/config";
+
+//列表
+.g-list {
+    width: 100%;
+    background: #fff;
+    .g-list-row {
+        display: block;
+        padding: px2rem(10) px2rem(10);
+        border-bottom: px2rem(1) solid $g-color-border-default;
+        .g-list-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .g-list-icon {
+                $size: 24;
+                width: px2rem($size);
+                height: px2rem($size);
+                font-size: px2rem($size);
+                margin-right: px2rem(10);
+                color: $g-color-highlight;
+            }
+            .g-list-txt {
+                font-size: px2rem(12);
+            }
+            .g-list-mark {
+                font-size: px2rem(12);
+                color: $g-color-font-dark;
+            }
+            .g-list-more {
+                font-size: px2rem(14);
+            }
+        }
+        .g-list-info {
+            color: $g-color-font-dark;
+            font-size: px2rem(12);
+        }
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}

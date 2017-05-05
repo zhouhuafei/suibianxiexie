@@ -1,8 +1,6 @@
-//全局的清零配置
+//清零的样式配置
 @import "../zero/zero";
-
 //全局的样式配置
-@import "../global/g-global";
-
-//全局的公用配置
-@import "../common/common";
+@import "../common/global";
+//模块的样式配置
+@import "../common/module";

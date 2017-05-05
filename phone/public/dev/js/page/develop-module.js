@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
                     success: function () {
                         var Loading = require('../modules/m-loading');
                         var loading = new Loading({
-                            wrap: '.page-wrap',
+                            wrap: '.g-page',
                             config: {
                                 status: 'loading'
                             }
@@ -231,7 +231,7 @@ window.addEventListener('load', function () {
                 }
             });
         })();
-
+        
         require('../common/common');//每个页面都要用到的js(一定要放到最底部)
     }, 0)
 });

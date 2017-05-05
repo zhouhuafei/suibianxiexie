@@ -1,8 +1,10 @@
 //基础样式
 @import "../base/base";
+//列表
+@import "../global/g-list";
 
 //页面样式
-.page-wrap {
+.g-page {
     .page-header {
         background: #fff;
         margin-bottom: px2rem(10);

@@ -1,0 +1,43 @@
+//基础样式
+@import "../base/base";
+//弹窗测试
+@import "../modules/m-dialog";
+//分页测试
+@import "../modules/m-pagination";
+//没有数据
+@import "../modules/m-no-data";
+//加载中
+@import "../modules/m-loading";
+//返回顶部
+@import "../modules/m-go-top";
+//单选开关
+@import "../modules/m-radio-switch";
+//表格
+@import "../modules/m-table";
+//input验证
+@import "../modules/m-validate-form";
+//星评
+@import "../modules/m-star";
+//导航
+@import "../modules/m-navigation";
+//slide切换
+@import "../modules/m-slide";
+
+//页面样式
+.g-page {
+    .page-slide {
+        height: px2rem(160);
+    }
+    .page-star {
+        margin-top: px2rem(10);
+    }
+    .page-radio-switch {
+        margin-top: px2rem(10);
+    }
+    .page-table {
+        margin-top: px2rem(10);
+    }
+    .page-super-type {
+        text-align: center;
+    }
+}

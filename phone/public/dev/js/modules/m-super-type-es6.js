@@ -9,7 +9,7 @@ class SuperType {
             //内部默认参数
             defaults: {
                 //父级
-                wrap: `.g-page`,//这个仅支持传入选择器和原生dom节点
+                wrap: `.g-wrap`,//这个仅支持传入选择器和原生dom节点
                 //回调
                 callback: {
                     //内部模块创建之前

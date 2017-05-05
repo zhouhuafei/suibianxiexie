@@ -19,61 +19,31 @@ var SubType = base.constructorInherit({
                 {
                     href: '/',
                     icon: 'icon-shouye',
-                    txt: '周',
+                    txt: '首页',
                     mark: ''
                 },
                 {
                     href: '/mine',
                     icon: 'icon-wode',
-                    txt: '华',
+                    txt: '我的',
                     mark: ''
                 },
                 {
-                    href: '/ui',
-                    icon: 'icon-guanzhu',
-                    txt: '飞',
+                    href: '/develop-global',
+                    icon: 'icon-kaifa',
+                    txt: 'g-global',
                     mark: ''
                 },
                 {
-                    href: '/setting',
-                    icon: 'icon-shezhi',
-                    txt: '永',
+                    href: '/develop-module',
+                    icon: 'icon-kaifa',
+                    txt: 'm-module',
                     mark: ''
                 },
                 {
-                    href: '/cart',
-                    icon: 'icon-gouwuche',
-                    txt: '远',
-                    mark: ''
-                },
-                {
-                    href: '/',
-                    icon: 'icon-shoucang',
-                    txt: '爱',
-                    mark: ''
-                },
-                {
-                    href: '/mine',
-                    icon: 'icon-shoucang',
-                    txt: '侯',
-                    mark: ''
-                },
-                {
-                    href: '/ui',
-                    icon: 'icon-shoucang',
-                    txt: '丽',
-                    mark: ''
-                },
-                {
-                    href: '/setting',
-                    icon: 'icon-shoucang',
-                    txt: '杰',
-                    mark: ''
-                },
-                {
-                    href: '/cart',
-                    icon: 'icon-shoucang',
-                    txt: '!',
+                    href: '/develop-word',
+                    icon: 'icon-kaifa',
+                    txt: '标准词汇',
                     mark: ''
                 }
             ]

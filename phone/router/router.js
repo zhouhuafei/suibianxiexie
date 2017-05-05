@@ -13,6 +13,41 @@ Routes.prototype.init = function () {
     this.login();
     this.register();
     this.list();
+    this.develop();
+};
+Routes.prototype.develop = function () {
+    this.app.get('/develop-list', function (req, res) {
+        res.render('page/develop-list', {
+            data: {
+                title: '开发列表清单'
+            },
+            config: {}
+        });
+    });
+    this.app.get('/develop-global', function (req, res) {
+        res.render('page/develop-global', {
+            data: {
+                title: '开发全局样式'
+            },
+            config: {}
+        });
+    });
+    this.app.get('/develop-module', function (req, res) {
+        res.render('page/develop-module', {
+            data: {
+                title: '开发模块样式'
+            },
+            config: {}
+        });
+    });
+    this.app.get('/develop-word', function (req, res) {
+        res.render('page/develop-word', {
+            data: {
+                title: '开发标准词汇'
+            },
+            config: {}
+        });
+    })
 };
 Routes.prototype.list = function () {
     this.app.get('/list', function (req, res) {

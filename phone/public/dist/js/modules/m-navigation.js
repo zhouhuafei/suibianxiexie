@@ -59,52 +59,27 @@
                     items: [{
                         href: '/',
                         icon: 'icon-shouye',
-                        txt: '周',
+                        txt: '首页',
                         mark: ''
                     }, {
                         href: '/mine',
                         icon: 'icon-wode',
-                        txt: '华',
+                        txt: '我的',
                         mark: ''
                     }, {
-                        href: '/ui',
-                        icon: 'icon-guanzhu',
-                        txt: '飞',
+                        href: '/develop-global',
+                        icon: 'icon-kaifa',
+                        txt: 'g-global',
                         mark: ''
                     }, {
-                        href: '/setting',
-                        icon: 'icon-shezhi',
-                        txt: '永',
+                        href: '/develop-module',
+                        icon: 'icon-kaifa',
+                        txt: 'm-module',
                         mark: ''
                     }, {
-                        href: '/cart',
-                        icon: 'icon-gouwuche',
-                        txt: '远',
-                        mark: ''
-                    }, {
-                        href: '/',
-                        icon: 'icon-shoucang',
-                        txt: '爱',
-                        mark: ''
-                    }, {
-                        href: '/mine',
-                        icon: 'icon-shoucang',
-                        txt: '侯',
-                        mark: ''
-                    }, {
-                        href: '/ui',
-                        icon: 'icon-shoucang',
-                        txt: '丽',
-                        mark: ''
-                    }, {
-                        href: '/setting',
-                        icon: 'icon-shoucang',
-                        txt: '杰',
-                        mark: ''
-                    }, {
-                        href: '/cart',
-                        icon: 'icon-shoucang',
-                        txt: '!',
+                        href: '/develop-word',
+                        icon: 'icon-kaifa',
+                        txt: '标准词汇',
                         mark: ''
                     }]
                 }
@@ -184,9 +159,9 @@
                 /*
                  * 注意:
                  * defaults要防止对象的引用(如果不防止的话,会出现BUG)
-                 * 例如 wrap的默认值是'.g-page'
+                 * 例如 wrap的默认值是'.g-wrap'
                  * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
-                 * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-page'
+                 * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
                  * 但是由于对象引用的原因,这里的值会变成'body'
                  * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
                  * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
@@ -858,7 +833,7 @@
                 //内部默认参数
                 defaults: {
                     //父级
-                    wrap: ".g-page", //这个仅支持传入选择器和原生dom节点
+                    wrap: ".g-wrap", //这个仅支持传入选择器和原生dom节点
                     //回调
                     callback: {
                         //内部模块创建之前
