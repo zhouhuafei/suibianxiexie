@@ -13,9 +13,9 @@
         height: inherit;
         .g-select {
             height: inherit;
-            width: px2rem($height * 2.4);
+            min-width: px2rem($height * 2.4);
             .g-select-select {
-                padding: 0 px2rem($height + 4) 0 px2rem(4);
+                padding: 0 px2rem($height + 20) 0 px2rem(20);
             }
             .g-select-icon {
                 width: px2rem($height);

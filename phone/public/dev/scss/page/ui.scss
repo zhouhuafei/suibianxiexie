@@ -29,17 +29,16 @@
         height: px2rem(160);
     }
     .page-input {
-        @include center-xy-flex;
         margin-top: px2rem(10);
         padding: px2rem(10);
     }
     .page-select {
-        @include center-xy-flex;
         margin-top: px2rem(10);
         padding: px2rem(10);
     }
-    .g-textarea {
-        margin: px2rem(10) auto 0;
+    .page-textarea{
+        margin-top: px2rem(10);
+        padding: px2rem(10);
     }
     .page-checkbox {
         margin-top: px2rem(10);

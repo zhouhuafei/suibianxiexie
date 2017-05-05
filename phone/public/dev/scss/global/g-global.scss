@@ -117,7 +117,7 @@
     .g-input-txt {
         min-width: px2rem($height);
         padding: 0 px2rem(10);
-        height: inherit;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -178,7 +178,7 @@
     .g-select-txt {
         min-width: px2rem($height);
         padding: 0 px2rem(10);
-        height: inherit;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -224,19 +224,35 @@
 
 //文本框
 .g-textarea {
-    width: px2rem(240);
-    height: px2rem(140);
+    width: 100%;
+    height: px2rem(120);
     line-height: px2rem(20);
     background: #ffffff;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border: px2rem(1) solid $g-color-border-default;
+    border-radius: px2rem(10);
+    .g-textarea-txt {
+        min-width: px2rem(40);
+        padding: 0 px2rem(10);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & ~ .g-textarea-textarea {
+            border-left: px2rem(1) solid $g-color-border-default;
+        }
+    }
     .g-textarea-textarea {
         -webkit-appearance: none;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         outline: none;
         color: inherit;
         font-size: inherit;
-        width: inherit;
-        height: inherit;
+        flex: 1;
+        height: 100%;
         font-family: inherit;
         line-height: inherit;
         background: inherit;
@@ -245,95 +261,116 @@
         text-align: justify;
         resize: none;
         padding: px2rem(10);
-        border: px2rem(1) solid $g-color-border-default;
+        border: none;
     }
 }
 
 //单选框
 .g-radio {
-    $width-height: 20.4;
-    width: px2rem($width-height);
+    $height: 20.4;
     text-align: center;
-    height: px2rem($width-height);
-    background: #ffffff;
-    border-radius: 50%;
-    display: block;
-    position: relative;
-    .g-radio-icon {
-        color: $g-color-highlight;
-        font-size: px2rem(16);
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: inherit;
-        height: inherit;
-        display: none;
-        &:before {
+    height: px2rem($height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .g-radio-wrap {
+        position: relative;
+        width: px2rem($height);
+        height: 100%;
+        background: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .g-radio-radio {
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            outline: none;
             width: inherit;
             height: inherit;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
+            background: inherit;
+            border-radius: inherit;
+            border: px2rem(1) solid $g-color-border-default;
+            &:checked {
+                border-color: $g-color-highlight;
+                & + .g-radio-icon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
         }
-    }
-    .g-radio-radio {
-        -webkit-appearance: none;
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        outline: none;
-        width: inherit;
-        height: inherit;
-        background: inherit;
-        border-radius: inherit;
-        border: px2rem(1) solid $g-color-border-default;
-        &:checked {
-            border-color: $g-color-highlight;
-            & + .g-radio-icon {
+        .g-radio-icon {
+            color: $g-color-highlight;
+            font-size: px2rem(16);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: inherit;
+            height: inherit;
+            display: none;
+            &:before {
+                width: inherit;
+                height: inherit;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                line-height: 1;
             }
         }
+    }
+    .g-radio-txt {
+        line-height: 1;
     }
 }
 
 //多选框
 .g-checkbox {
-    $width-height: 20;
-    width: px2rem($width-height);
-    text-align: center;
-    height: px2rem($width-height);
-    background: #ffffff;
-    border-radius: px2rem(4);
-    display: block;
-    position: relative;
-    .g-checkbox-icon {
-        color: $g-color-highlight;
-        font-size: px2rem(16);
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: inherit;
-        height: inherit;
-        display: none;
-    }
-    .g-checkbox-checkbox {
-        -webkit-appearance: none;
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        outline: none;
-        width: inherit;
-        height: inherit;
-        background: inherit;
-        border-radius: inherit;
-        border: px2rem(1) solid $g-color-border-default;
-        &:checked {
-            border-color: $g-color-highlight;
-            & + .g-checkbox-icon {
-                display: flex;
-                align-items: center;
-                justify-content: center;
+    $height: 20;
+    height: px2rem($height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .g-checkbox-wrap {
+        width: px2rem($height);
+        height: 100%;
+        border-radius: px2rem(4);
+        background: #ffffff;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .g-checkbox-icon {
+            color: $g-color-highlight;
+            font-size: px2rem(16);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: inherit;
+            height: inherit;
+            display: none;
+        }
+        .g-checkbox-checkbox {
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            outline: none;
+            width: inherit;
+            height: inherit;
+            background: inherit;
+            border-radius: inherit;
+            border: px2rem(1) solid $g-color-border-default;
+            &:checked {
+                border-color: $g-color-highlight;
+                & + .g-checkbox-icon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
             }
         }
+    }
+    .g-checkbox-txt {
+        line-height: 1;
     }
 }
 
@@ -345,28 +382,28 @@
         display: block;
         padding: px2rem(10) px2rem(10);
         border-bottom: px2rem(1) solid $g-color-border-default;
-        .g-list-icon {
-            $size: 24;
-            width: px2rem($size);
-            height: px2rem($size);
-            font-size: px2rem($size);
-            margin-right: px2rem(10);
-            color: $g-color-highlight;
-        }
-        .g-list-txt {
-            font-size: px2rem(12);
-        }
-        .g-list-mark {
-            font-size: px2rem(12);
-            color: $g-color-font-dark;
-        }
-        .g-list-more {
-            font-size: px2rem(14);
-        }
         .g-list-wrap {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            .g-list-icon {
+                $size: 24;
+                width: px2rem($size);
+                height: px2rem($size);
+                font-size: px2rem($size);
+                margin-right: px2rem(10);
+                color: $g-color-highlight;
+            }
+            .g-list-txt {
+                font-size: px2rem(12);
+            }
+            .g-list-mark {
+                font-size: px2rem(12);
+                color: $g-color-font-dark;
+            }
+            .g-list-more {
+                font-size: px2rem(14);
+            }
         }
         .g-list-info {
             color: $g-color-font-dark;

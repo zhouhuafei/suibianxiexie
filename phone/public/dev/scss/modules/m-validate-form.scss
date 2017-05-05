@@ -13,6 +13,7 @@
     top: px2rem(- $height - 10);
     font-style: normal;
     font-weight: normal;
+    border-radius: px2rem(100);
     &:after {
         content: '';
         position: absolute;
