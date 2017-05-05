@@ -238,9 +238,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     var ValidateInput = require('../modules/m-validate-form');
                     var aInput = [].slice.call(document.querySelectorAll('.m-validate-form'));
                     aInput.forEach(function (v) {
-                        v.validate = new ValidateInput({ form: v });
-                        v.validate.validateEventBlur();
-                        //v.validate.validateSave();
+                        new ValidateInput({ form: v });
                     });
                 })();
 
@@ -2988,10 +2986,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             this.opt = json || {};
             this.form = this.opt.form;
             this.hintClass = this.opt.hintClass || 'm-validate-form-hint';
-            //this.errorClass = this.opt.errorClass || 'm-validate-form-error';
-            this.validateType = this.form.dataset.validate || [];
-            this.validateHintTxt = this.form.dataset.hint || [];
+            this.validateType = this.form.dataset.validate || 'undefined';
+            this.validateHintTxt = this.form.dataset.hint || 'undefined';
+            this.isValidateSuccess = true; //是否验证成功了
             this.init();
+            this.validateEventBlur();
         }
         ValidateInput.prototype.init = function () {
             this.render();
@@ -3016,7 +3015,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 var opt = json || {};
                 this.hintDom.innerHTML = opt.txt || '本项必填';
                 this.wrapDom.appendChild(this.hintDom);
-                //this.form.classList.add(this.errorClass);
             }
         };
         ValidateInput.prototype.renderHintRemove = function () {
@@ -3024,60 +3022,58 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             if (isHaveHintDom) {
                 this.wrapDom.removeChild(this.hintDom);
             }
-            //this.form.classList.remove(this.errorClass);
         };
         ValidateInput.prototype.validateSave = function () {
             var self = this;
             var type = self.validateType.split(' ');
             var hintTxt = self.validateHintTxt.split(' ');
             var value = this.form.value;
-            var isTrue = true;
             type.forEach(function (v, i) {
-                if (v == 'no-space' && isTrue) {
+                if (v == 'no-space' && self.isValidateSuccess) {
                     //设置了非空验证
                     validate.isSpace({
                         value: value,
                         success: function success() {
                             //空
                             self.renderHintAdd({ txt: hintTxt[i] });
-                            isTrue = false;
+                            self.isValidateSuccess = false;
                         },
                         fail: function fail() {
                             //非空
                             self.renderHintRemove();
-                            isTrue = true;
+                            self.isValidateSuccess = true;
                         }
                     });
                 }
-                if (v == 'no-zero' && isTrue) {
+                if (v == 'no-zero' && self.isValidateSuccess) {
                     //设置了非零验证
                     validate.isZero({
                         value: value,
                         success: function success() {
                             //零
                             self.renderHintAdd({ txt: hintTxt[i] });
-                            isTrue = false;
+                            self.isValidateSuccess = false;
                         },
                         fail: function fail() {
                             //非零
                             self.renderHintRemove();
-                            isTrue = true;
+                            self.isValidateSuccess = true;
                         }
                     });
                 }
-                if (v == 'yes-integer' && isTrue) {
+                if (v == 'yes-integer' && self.isValidateSuccess) {
                     //设置了整数验证
                     validate.isInteger({
                         value: value,
                         success: function success() {
                             //整数
                             self.renderHintRemove();
-                            isTrue = true;
+                            self.isValidateSuccess = true;
                         },
                         fail: function fail() {
                             //非整数
                             self.renderHintAdd({ txt: hintTxt[i] });
-                            isTrue = false;
+                            self.isValidateSuccess = false;
                         }
                     });
                 }

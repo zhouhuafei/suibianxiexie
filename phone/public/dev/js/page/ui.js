@@ -215,9 +215,7 @@ window.addEventListener('load', function () {
             const ValidateInput = require('../modules/m-validate-form');
             const aInput = [].slice.call(document.querySelectorAll('.m-validate-form'));
             aInput.forEach(function (v) {
-                v.validate = new ValidateInput({form: v});
-                v.validate.validateEventBlur();
-                //v.validate.validateSave();
+                new ValidateInput({form: v});
             });
         })();
 
