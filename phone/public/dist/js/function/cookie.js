@@ -46,10 +46,8 @@
             var name = opts.name;
             setCookie(name, '', -1);
         }
-        var object = {
-            setCookie: setCookie,
-            getCookie: getCookie,
-            removeCookie: removeCookie
-        };
-        module.exports = object;
+
+        module.exports.setCookie = setCookie;
+        module.exports.getCookie = getCookie;
+        module.exports.removeCookie = removeCookie;
     }, {}] }, {}, [1]);

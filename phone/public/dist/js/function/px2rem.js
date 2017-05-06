@@ -20,5 +20,6 @@
             var px = opts.px || '0';
             return px / base * 10 + 'rem';
         }
+
         module.exports = px2rem;
     }, {}] }, {}, [1]);

@@ -11,7 +11,7 @@ var SubType = base.constructorInherit({
     parameter: {
         //回调
         callback: {
-            click: function (object) {
+            click: function (obj) {
             }
         },
         //配置

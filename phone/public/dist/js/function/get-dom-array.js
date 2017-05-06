@@ -13,137 +13,30 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        var extend = require('../function/extend'); //对象的扩展方法
-
-        //获取原生的dom节点并转换成数组,传入的参数仅支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
+        //获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
         function getDomArray(json) {
-            var opts = extend({
-                defaults: {
-                    element: null
-                },
-                inherits: json
-            });
+            var opts = json || {};
             var dom = [];
-            if (opts.element) {
+            var element = opts.element ? opts.element : false;
+            if (element) {
                 //如果是字符串
-                if (Object.prototype.toString.call(opts.element).slice(8, -1).toLowerCase() == 'string') {
-                    dom = [].slice.call(document.querySelectorAll(opts.element));
+                if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'string') {
+                    dom = [].slice.call(document.querySelectorAll(element));
                 }
                 //如果是dom节点(一个元素)    原生的
-                if (opts.element.nodeType == 1) {
-                    dom = [opts.element];
+                if (element.nodeType == 1) {
+                    dom = [element];
                 }
                 /*
                  * 如果是dom集合(一组元素)    HtmlCollection(通过getElementsBy系列获取到的)
                  * 如果是dom集合(一组元素)    NodeList(通过querySelectorAll获取到的)
                  * */
-                if (Object.prototype.toString.call(opts.element).slice(8, -1).toLowerCase() == 'htmlcollection' || Object.prototype.toString.call(opts.element).slice(8, -1).toLowerCase() == 'nodelist') {
-                    dom = [].slice.call(opts.element);
+                if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'htmlcollection' || Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'nodelist') {
+                    dom = [].slice.call(element);
                 }
             }
             return dom;
         }
+
         module.exports = getDomArray;
-    }, { "../function/extend": 2 }], 2: [function (require, module, exports) {
-        //对象的扩展方法
-        function extend(json) {
-            var opts = json || {};
-            opts.defaults = opts.defaults || {}; //默认对象
-            opts.inherits = opts.inherits || {}; //继承对像
-            opts.isDeep = opts.isDeep == false ? opts.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
-            var defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
-            var inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
-            if (defaultsType == inheritsType && opts.isDeep) {
-                if (defaultsType == 'object' || defaultsType == 'array') {
-                    //当为对象或者为数组
-                    for (var attr in opts.inherits) {
-                        if (opts.inherits.hasOwnProperty(attr)) {
-                            var attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
-                            var attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
-                            if (attrDefaultsType == attrInheritsType && opts.isDeep) {
-                                //类型相同
-                                if (attrDefaultsType == 'object' || attrDefaultsType == 'array') {
-                                    //当为对象或者为数组
-                                    extend({ defaults: opts.defaults[attr], inherits: opts.inherits[attr] });
-                                } else {
-                                    opts.defaults[attr] = opts.inherits[attr];
-                                }
-                            } else {
-                                //类型不同,直接后面的覆盖前面的
-                                opts.defaults[attr] = opts.inherits[attr];
-                            }
-                        }
-                    }
-                } else {
-                    opts.defaults = opts.inherits;
-                }
-            } else {
-                opts.defaults = opts.inherits;
-            }
-            return opts.defaults;
-        }
-        // var object1 = extend({
-        //     defaults: {
-        //         a: 'a',
-        //         b: {
-        //             b1: 'b1',
-        //             b2: 'b2',
-        //             b3: {
-        //                 c1: 'c1'
-        //             }
-        //         }
-        //     },
-        //     inherits: {
-        //         a: 0,
-        //         b: {
-        //             b2: 1,
-        //             b3: {
-        //                 c2: 2
-        //             }
-        //         }
-        //     }
-        // });
-        // console.log(object1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
-        // var object2 = extend({
-        //     defaults: {
-        //         a: [
-        //             0,
-        //             [9, 8, 7],
-        //             {
-        //                 arr: [
-        //                     1,
-        //                     2,
-        //                     3,
-        //                     [7, 9, 10],
-        //                     {good: 'good'}
-        //                 ]
-        //             }
-        //         ],
-        //         b: [
-        //             {a1: 'a1'},
-        //             {a2: 'a2'}
-        //         ]
-        //     },
-        //     inherits: {
-        //         a: [
-        //             1,
-        //             [3, 1],
-        //             {
-        //                 arr: [
-        //                     8,
-        //                     8,
-        //                     8,
-        //                     [6, 8]
-        //                 ]
-        //             }
-        //         ],
-        //         b: [
-        //             'what?',
-        //             {b1: 'b1'},
-        //             {b2: 'b2'}
-        //         ]
-        //     }
-        // });
-        // console.log(object2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
-        module.exports = extend;
     }, {}] }, {}, [1]);

@@ -23,6 +23,7 @@ function isIphone() {
 function isAndroid() {
     return window.navigator.appVersion.match(/android/ig);
 }
+
 module.exports.isPc = isPc;
 module.exports.isWeiXin = isWeiXin;
 module.exports.isIphone = isIphone;

@@ -21,5 +21,6 @@
             div.innerHTML = html;
             return div.children[0];
         }
+
         module.exports = htmlToDom;
     }, {}] }, {}, [1]);

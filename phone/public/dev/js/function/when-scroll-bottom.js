@@ -52,4 +52,5 @@ WhenScrollBottom.prototype.power = function () {
         }, self.opts.interval);
     });
 };
+
 module.exports = WhenScrollBottom;

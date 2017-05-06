@@ -21,4 +21,5 @@ function createElement(json) {
     }
     return elementNode;
 }
+
 module.exports = createElement;

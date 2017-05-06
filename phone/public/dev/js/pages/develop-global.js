@@ -8,8 +8,8 @@ window.addEventListener('load', function () {
             new base.Select({
                 items: '.g-checkbox-checkbox',
                 callback: {
-                    click: function (object) {
-                        console.log(object);
+                    click: function (obj) {
+                        console.log(obj);
                     }
                 }
             });

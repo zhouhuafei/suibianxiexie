@@ -31,7 +31,7 @@ function extend(json) {
     }
     return opts.defaults;
 }
-// var object1 = extend({
+// var obj1 = extend({
 //     defaults: {
 //         a: 'a',
 //         b: {
@@ -52,8 +52,8 @@ function extend(json) {
 //         }
 //     }
 // });
-// console.log(object1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
-// var object2 = extend({
+// console.log(obj1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
+// var obj2 = extend({
 //     defaults: {
 //         a: [
 //             0,
@@ -93,5 +93,6 @@ function extend(json) {
 //         ]
 //     }
 // });
-// console.log(object2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
+// console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
+
 module.exports = extend;

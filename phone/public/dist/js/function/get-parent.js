@@ -16,63 +16,64 @@
         //获取指定父级
         function getParent(json) {
             var opts = json || {};
-            var object = opts.object;
-            var selector = opts.selector;
-            if (!object) {
+            var element = opts.element;
+            var wrap = opts.wrap;
+            if (!element) {
                 //第一参数不符合规范
                 console.log('参数错误,第一参数需要一个元素节点对象');
                 return null;
             }
-            if (!selector) {
+            if (!wrap) {
                 //没有第二参数默认选取直接父级
-                return object.parentNode;
-            } else if (typeof selector == 'string') {
-                object = object.parentNode;
-                switch (selector.charAt(0)) {
+                return element.parentNode;
+            } else if (typeof wrap == 'string') {
+                element = element.parentNode;
+                switch (wrap.charAt(0)) {
                     case '.':
                         //通过class获取父级
-                        while (object) {
-                            if (!object.classList) {
+                        while (element) {
+                            if (!element.classList) {
                                 console.log('no find class');
                                 return null;
                             }
-                            if (object.classList.contains(selector.substring(1))) {
-                                return object;
+                            if (element.classList.contains(wrap.substring(1))) {
+                                return element;
                             } else {
-                                object = object.parentNode;
+                                element = element.parentNode;
                             }
                         }
                         break;
                     case '#':
                         //通过id获取父级
-                        while (object) {
-                            if (object == document) {
+                        while (element) {
+                            if (element == document) {
                                 console.log('no find id');
                                 return null;
                             }
-                            if (object.id == selector.substring(1)) {
-                                return object;
+                            if (element.id == wrap.substring(1)) {
+                                return element;
                             } else {
-                                object = object.parentNode;
+                                element = element.parentNode;
                             }
                         }
                         break;
                     default:
                         //通过标签名获取父级
-                        while (object) {
-                            if (object == document) {
+                        while (element) {
+                            if (element == document) {
                                 console.log('no find tagName');
                                 return null;
                             }
-                            if (object.tagName.toLowerCase() == selector) {
-                                return object;
+                            if (element.tagName.toLowerCase() == wrap) {
+                                return element;
                             } else {
-                                object = object.parentNode;
+                                element = element.parentNode;
                             }
                         }
                         break;
                 }
             }
         }
+
         module.exports = getParent;
     }, {}] }, {}, [1]);

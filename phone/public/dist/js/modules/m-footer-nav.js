@@ -18,7 +18,7 @@
             px2rem: require('../function/px2rem'), //px2rem
             userAgent: require('../function/user-agent'), //用户代理(判断是否是安卓,苹果,微信,电脑)
             arrayRemoveRepeat: require('../function/array-remove-repeat'), //数组去重
-            objectRemoveQuote: require('../function/object-remove-quote'), //移除对象引用
+            objRemoveQuote: require('../function/obj-remove-quote'), //移除对象引用
             Select: require('../function/select'), //全选,不选,反选
             offset: require('../function/offset'), //获取元素距离文档的left和top
             constructorInherit: require('../function/constructor-inherit'), //构造函数继承
@@ -29,16 +29,16 @@
             htmlToDom: require('../function/html-to-dom'), //html转成dom节点
             whetherDisableScroll: require('../function/whether-disable-scroll'), //是否禁止浏览器滚动
             WhenScrollBottom: require('../function/when-scroll-bottom'), //当滚动到底部
-            objectToArray: require('../function/object-to-array'), //把json格式的对象转成数组
+            objToArray: require('../function/obj-to-array'), //把json格式的对象转成数组
             secondsToTime: require('../function/seconds-to-time'), //秒转时间
             timeCountDown: require('../function/time-count-down'), //倒计时
-            stringLimit: require('../function/string-limit'), //字符串限制
+            strLimit: require('../function/str-limit'), //字符串限制
             getDomArray: require('../function/get-dom-array'), //获取一组dom节点
             createElement: require('../function/create-element'), //创建元素节点
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/array-remove-repeat": 3, "../function/constructor-inherit": 4, "../function/cookie": 5, "../function/create-element": 6, "../function/extend": 7, "../function/fill-zero": 8, "../function/get-dom-array": 9, "../function/get-parent": 10, "../function/html-to-dom": 11, "../function/object-remove-quote": 12, "../function/object-to-array": 13, "../function/offset": 14, "../function/px2rem": 15, "../function/scroll-to": 16, "../function/seconds-to-time": 17, "../function/select": 18, "../function/string-limit": 19, "../function/time-count-down": 20, "../function/user-agent": 21, "../function/when-scroll-bottom": 22, "../function/whether-disable-scroll": 23 }], 2: [function (require, module, exports) {
+    }, { "../function/array-remove-repeat": 3, "../function/constructor-inherit": 4, "../function/cookie": 5, "../function/create-element": 6, "../function/extend": 7, "../function/fill-zero": 8, "../function/get-dom-array": 9, "../function/get-parent": 10, "../function/html-to-dom": 11, "../function/obj-remove-quote": 12, "../function/obj-to-array": 13, "../function/offset": 14, "../function/px2rem": 15, "../function/scroll-to": 16, "../function/seconds-to-time": 17, "../function/select": 18, "../function/str-limit": 19, "../function/time-count-down": 20, "../function/user-agent": 21, "../function/when-scroll-bottom": 22, "../function/whether-disable-scroll": 23 }], 2: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -94,10 +94,11 @@
             });
             return newArray;
         }
+
         module.exports = arrayRemoveRepeat;
     }, {}], 4: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
-        var objectRemoveQuote = require('../function/object-remove-quote'); //对象移除引用
+        var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 
         //构造函数的继承(拷贝继承)
         function constructorInherit(json) {
@@ -124,15 +125,15 @@
                  * 注意:
                  * defaults要防止对象的引用(如果不防止的话,会出现BUG)
                  * 例如 wrap的默认值是'.g-wrap'
-                 * 第一次   var object1=new Sub({wrap:'body'});   wrap的值是'body'
-                 * 第二次   var object2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
+                 * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
+                 * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
                  * 但是由于对象引用的原因,这里的值会变成'body'
                  * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
                  * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
                  * 所以我就封装了一个移除对象引用的函数
                  * */
                 this.opts = extend({
-                    defaults: objectRemoveQuote({ object: parameter }),
+                    defaults: objRemoveQuote({ obj: parameter }),
                     inherits: json
                 });
                 //子类型继承超类型的属性
@@ -147,8 +148,9 @@
             }
             return SubType;
         }
+
         module.exports = constructorInherit;
-    }, { "../function/extend": 7, "../function/object-remove-quote": 12 }], 5: [function (require, module, exports) {
+    }, { "../function/extend": 7, "../function/obj-remove-quote": 12 }], 5: [function (require, module, exports) {
         //设置cookie
         function setCookie(json) {
             var opts = json || {};
@@ -182,12 +184,10 @@
             var name = opts.name;
             setCookie(name, '', -1);
         }
-        var object = {
-            setCookie: setCookie,
-            getCookie: getCookie,
-            removeCookie: removeCookie
-        };
-        module.exports = object;
+
+        module.exports.setCookie = setCookie;
+        module.exports.getCookie = getCookie;
+        module.exports.removeCookie = removeCookie;
     }, {}], 6: [function (require, module, exports) {
         //创建元素节点
         function createElement(json) {
@@ -212,6 +212,7 @@
             }
             return elementNode;
         }
+
         module.exports = createElement;
     }, {}], 7: [function (require, module, exports) {
         //对象的扩展方法
@@ -251,7 +252,7 @@
             }
             return opts.defaults;
         }
-        // var object1 = extend({
+        // var obj1 = extend({
         //     defaults: {
         //         a: 'a',
         //         b: {
@@ -272,8 +273,8 @@
         //         }
         //     }
         // });
-        // console.log(object1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
-        // var object2 = extend({
+        // console.log(obj1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
+        // var obj2 = extend({
         //     defaults: {
         //         a: [
         //             0,
@@ -313,122 +314,112 @@
         //         ]
         //     }
         // });
-        // console.log(object2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
+        // console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
+
         module.exports = extend;
     }, {}], 8: [function (require, module, exports) {
-        //对象的扩展方法
-        var extend = require('../function/extend');
-
         //补零函数
         function fillZero(json) {
-            var opts = extend({
-                defaults: {
-                    num: 0
-                },
-                inherits: json
-            });
-            var num = opts.num;
+            var opts = json || {};
+            var num = opts.num || '0';
             if (num < 10) {
                 return '0' + num;
             } else {
                 return '' + num;
             }
         }
-        module.exports = fillZero;
-    }, { "../function/extend": 7 }], 9: [function (require, module, exports) {
-        var extend = require('../function/extend'); //对象的扩展方法
 
-        //获取原生的dom节点并转换成数组,传入的参数仅支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
+        module.exports = fillZero;
+    }, {}], 9: [function (require, module, exports) {
+        //获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
         function getDomArray(json) {
-            var opts = extend({
-                defaults: {
-                    element: null
-                },
-                inherits: json
-            });
+            var opts = json || {};
             var dom = [];
-            if (opts.element) {
+            var element = opts.element ? opts.element : false;
+            if (element) {
                 //如果是字符串
-                if (Object.prototype.toString.call(opts.element).slice(8, -1).toLowerCase() == 'string') {
-                    dom = [].slice.call(document.querySelectorAll(opts.element));
+                if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'string') {
+                    dom = [].slice.call(document.querySelectorAll(element));
                 }
                 //如果是dom节点(一个元素)    原生的
-                if (opts.element.nodeType == 1) {
-                    dom = [opts.element];
+                if (element.nodeType == 1) {
+                    dom = [element];
                 }
                 /*
                  * 如果是dom集合(一组元素)    HtmlCollection(通过getElementsBy系列获取到的)
                  * 如果是dom集合(一组元素)    NodeList(通过querySelectorAll获取到的)
                  * */
-                if (Object.prototype.toString.call(opts.element).slice(8, -1).toLowerCase() == 'htmlcollection' || Object.prototype.toString.call(opts.element).slice(8, -1).toLowerCase() == 'nodelist') {
-                    dom = [].slice.call(opts.element);
+                if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'htmlcollection' || Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'nodelist') {
+                    dom = [].slice.call(element);
                 }
             }
             return dom;
         }
+
         module.exports = getDomArray;
-    }, { "../function/extend": 7 }], 10: [function (require, module, exports) {
+    }, {}], 10: [function (require, module, exports) {
         //获取指定父级
         function getParent(json) {
             var opts = json || {};
-            var object = opts.object;
-            var selector = opts.selector;
-            if (!object) {
+            var element = opts.element;
+            var wrap = opts.wrap;
+            if (!element) {
                 //第一参数不符合规范
                 console.log('参数错误,第一参数需要一个元素节点对象');
                 return null;
             }
-            if (!selector) {
+            if (!wrap) {
                 //没有第二参数默认选取直接父级
-                return object.parentNode;
-            } else if (typeof selector == 'string') {
-                object = object.parentNode;
-                switch (selector.charAt(0)) {
+                return element.parentNode;
+            } else if (typeof wrap == 'string') {
+                element = element.parentNode;
+                switch (wrap.charAt(0)) {
                     case '.':
                         //通过class获取父级
-                        while (object) {
-                            if (!object.classList) {
+                        while (element) {
+                            if (!element.classList) {
                                 console.log('no find class');
                                 return null;
                             }
-                            if (object.classList.contains(selector.substring(1))) {
-                                return object;
+                            if (element.classList.contains(wrap.substring(1))) {
+                                return element;
                             } else {
-                                object = object.parentNode;
+                                element = element.parentNode;
                             }
                         }
                         break;
                     case '#':
                         //通过id获取父级
-                        while (object) {
-                            if (object == document) {
+                        while (element) {
+                            if (element == document) {
                                 console.log('no find id');
                                 return null;
                             }
-                            if (object.id == selector.substring(1)) {
-                                return object;
+                            if (element.id == wrap.substring(1)) {
+                                return element;
                             } else {
-                                object = object.parentNode;
+                                element = element.parentNode;
                             }
                         }
                         break;
                     default:
                         //通过标签名获取父级
-                        while (object) {
-                            if (object == document) {
+                        while (element) {
+                            if (element == document) {
                                 console.log('no find tagName');
                                 return null;
                             }
-                            if (object.tagName.toLowerCase() == selector) {
-                                return object;
+                            if (element.tagName.toLowerCase() == wrap) {
+                                return element;
                             } else {
-                                object = object.parentNode;
+                                element = element.parentNode;
                             }
                         }
                         break;
                 }
             }
         }
+
         module.exports = getParent;
     }, {}], 11: [function (require, module, exports) {
         //html转成DOM节点
@@ -439,49 +430,52 @@
             div.innerHTML = html;
             return div.children[0];
         }
+
         module.exports = htmlToDom;
     }, {}], 12: [function (require, module, exports) {
         //移除对象引用
-        function objectRemoveQuote(json) {
+        function objRemoveQuote(json) {
             var opts = json || {};
-            var object = opts.object;
-            var objectType = Object.prototype.toString.call(object).slice(8, -1).toLowerCase();
+            var obj = opts.obj;
+            var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
 
-            if (objectType != 'object' && objectType != 'array') {
-                return object;
+            if (objType != 'object' && objType != 'array') {
+                return obj;
             }
-            var newObject = {};
-            if (objectType == 'array') {
-                newObject = [];
+            var newObj = {};
+            if (objType == 'array') {
+                newObj = [];
             }
-            for (var attr in object) {
-                if (object.hasOwnProperty(attr)) {
-                    newObject[attr] = objectRemoveQuote({ object: object[attr] });
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) {
+                    newObj[attr] = objRemoveQuote({ obj: obj[attr] });
                 }
             }
-            return newObject;
+            return newObj;
         }
-        module.exports = objectRemoveQuote;
+
+        module.exports = objRemoveQuote;
     }, {}], 13: [function (require, module, exports) {
         //把json格式的对象转成数组
-        function objectToArray(json) {
+        function objToArray(json) {
             var opts = json || {};
-            var object = opts.object;
+            var obj = opts.obj;
             var arr = [];
-            if (object instanceof Array) {
-                object.forEach(function (v, i) {
+            if (obj instanceof Array) {
+                obj.forEach(function (v, i) {
                     arr.push([i, v]);
                 });
             } else {
-                for (var attr in object) {
-                    if (object.hasOwnProperty(attr)) {
-                        arr.push({ key: attr, value: object[attr] });
+                for (var attr in obj) {
+                    if (obj.hasOwnProperty(attr)) {
+                        arr.push({ key: attr, value: obj[attr] });
                     }
                 }
             }
             return arr;
         }
-        module.exports = objectToArray;
+
+        module.exports = objToArray;
     }, {}], 14: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展
         var getDomArray = require('../function/get-dom-array'); //获取一组dom节点
@@ -496,17 +490,18 @@
             });
             var top = 0;
             var left = 0;
-            var object = getDomArray({ element: opts.element })[0];
-            while (object) {
-                top += object.offsetTop;
-                left += object.offsetLeft;
-                object = object.offsetParent;
+            var element = getDomArray({ element: opts.element })[0];
+            while (element) {
+                top += element.offsetTop;
+                left += element.offsetLeft;
+                element = element.offsetParent;
             }
             return {
                 top: top,
                 left: left
             };
         }
+
         module.exports = offset;
     }, { "../function/extend": 7, "../function/get-dom-array": 9 }], 15: [function (require, module, exports) {
         //px2rem
@@ -516,6 +511,7 @@
             var px = opts.px || '0';
             return px / base * 10 + 'rem';
         }
+
         module.exports = px2rem;
     }, {}], 16: [function (require, module, exports) {
         //滚动到指定位置
@@ -537,6 +533,7 @@
             };
             requestAnimationFrame(fn);
         }
+
         module.exports = scrollTo;
     }, {}], 17: [function (require, module, exports) {
         //秒转时间
@@ -553,6 +550,7 @@
             var second = Math.floor(seconds % 60);
             return { day: day, hour: hour, minute: minute, second: second, seconds: seconds };
         }
+
         module.exports = secondsToTime;
     }, {}], 18: [function (require, module, exports) {
         //全选,不选,反选
@@ -618,20 +616,21 @@
         module.exports = Select;
     }, { "../function/extend": 7, "../function/get-dom-array": 9 }], 19: [function (require, module, exports) {
         //字符数量限制
-        function stringLimit(json) {
+        function strLimit(json) {
             var opts = json || {};
             var max = opts.max;
-            var string = opts.string;
-            if (!string) {
+            var str = opts.str;
+            if (!str) {
                 return '';
             }
-            var length = string.length;
+            var length = str.length;
             if (length > max) {
-                string = string.substring(0, max);
+                str = str.substring(0, max);
             }
-            return string;
+            return str;
         }
-        module.exports = stringLimit;
+
+        module.exports = strLimit;
     }, {}], 20: [function (require, module, exports) {
         var extend = require('../function/extend');
         var secondsToTime = require('../function/seconds-to-time'); //时间转换
@@ -670,6 +669,7 @@
                 console.log('倒计时的秒数不能小于0');
             }
         }
+
         module.exports = timeCountDown;
     }, { "../function/extend": 7, "../function/seconds-to-time": 17 }], 21: [function (require, module, exports) {
         //是不是PC
@@ -697,6 +697,7 @@
         function isAndroid() {
             return window.navigator.appVersion.match(/android/ig);
         }
+
         module.exports.isPc = isPc;
         module.exports.isWeiXin = isWeiXin;
         module.exports.isIphone = isIphone;
@@ -754,6 +755,7 @@
                 }, self.opts.interval);
             });
         };
+
         module.exports = WhenScrollBottom;
     }, { "../function/extend": 7 }], 23: [function (require, module, exports) {
         //是否禁止浏览器滚动

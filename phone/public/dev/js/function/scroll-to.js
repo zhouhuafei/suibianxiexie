@@ -17,4 +17,5 @@ function scrollTo(json) {
     };
     requestAnimationFrame(fn);
 }
+
 module.exports = scrollTo;

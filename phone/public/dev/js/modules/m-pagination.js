@@ -6,12 +6,12 @@ var SuperType = require('../modules/m-super-type');
 
 //默认数据
 var defaultData = {
-    dataNowNum: 10,//当前页的数据条数
-    dataAllNum: 100,//所有数据的总条数
-    pageNowNum: 1,//当前页码
-    pageAllNum: null//总页码
+    nowCount: 10,//当前页的数据条数
+    allCount: 100,//数据总条数
+    nowPage: 1,//当前页
+    allPage: null//总页数
 };
-defaultData.pageAllNum = Math.ceil(defaultData.dataAllNum / defaultData.dataNowNum);
+defaultData.allPage = Math.ceil(defaultData.allCount / defaultData.nowCount);
 
 //子类型
 var SubType = base.constructorInherit({
@@ -55,21 +55,21 @@ SubType.prototype.moduleDomCreate = function () {
                     </label>
                 </div>
                 <div class="m-pagination-text">页</div>
-                <a href="javascript:;" class="m-pagination-button m-pagination-button-inactive iconfont icon-shangyiye"></a>
-                <a href="javascript:;" class="m-pagination-button iconfont icon-xiayiye"></a>
+                <a href="javascript:;" class="m-pagination-btn m-pagination-btn-inactive iconfont icon-shangyiye"></a>
+                <a href="javascript:;" class="m-pagination-btn iconfont icon-xiayiye"></a>
             `
         }
     });
-    this.prevDom = this.moduleDom.querySelectorAll('.m-pagination-button')[0];//上一页的按钮
-    this.nextDom = this.moduleDom.querySelectorAll('.m-pagination-button')[1];//下一页的按钮
-    this.buttonInactiveClass = 'm-pagination-button-inactive';//上一页和下一页的禁用状态
+    this.prevDom = this.moduleDom.querySelectorAll('.m-pagination-btn')[0];//上一页的按钮
+    this.nextDom = this.moduleDom.querySelectorAll('.m-pagination-btn')[1];//下一页的按钮
+    this.btnInactiveClass = 'm-pagination-btn-inactive';//上一页和下一页的禁用状态
     this.selectDom = this.moduleDom.querySelector('.m-pagination-now-page .g-select-select');//选择某一页的按钮
 };
 
 //渲染第几页里面的页码
 SubType.prototype.renderOption = function () {
     var html = ``;
-    for (var i = 0; i < this.opts.data.pageAllNum; i++) {
+    for (var i = 0; i < this.opts.data.allPage; i++) {
         html += `<option value="${i + 1}">${i + 1}</option>`;
     }
     return html;
@@ -79,21 +79,21 @@ SubType.prototype.renderOption = function () {
 SubType.prototype.power = function () {
     var self = this;
     var data = this.opts.data;
-    if (data.pageNowNum == 1) {
+    if (data.nowPage == 1) {
         this.prevPageDisable();
     }
-    if (data.pageNowNum == data.pageAllNum) {
+    if (data.nowPage == data.allPage) {
         this.nextPageDisable();
     }
 
     this.prevDom.addEventListener('click', function () {
-        if (!this.classList.contains(self.buttonInactiveClass)) {
+        if (!this.classList.contains(self.btnInactiveClass)) {
             self.prevPage();
         }
     });
 
     this.nextDom.addEventListener('click', function () {
-        if (!this.classList.contains(self.buttonInactiveClass)) {
+        if (!this.classList.contains(self.btnInactiveClass)) {
             self.nextPage();
         }
     });
@@ -106,8 +106,8 @@ SubType.prototype.power = function () {
 //上一页
 SubType.prototype.prevPage = function () {
     var data = this.opts.data;
-    if (data.pageNowNum > 1) {
-        data.pageNowNum--;
+    if (data.nowPage > 1) {
+        data.nowPage--;
         var oldChecked = this.selectDom.querySelector('option:checked');
         if (oldChecked.previousElementSibling) {
             oldChecked.selected = false;
@@ -116,7 +116,7 @@ SubType.prototype.prevPage = function () {
         this.nextPageEnable();
         this.opts.callback.prevPage(this);
     }
-    if (data.pageNowNum == 1) {
+    if (data.nowPage == 1) {
         this.prevPageDisable();
     }
     console.log(data);
@@ -125,8 +125,8 @@ SubType.prototype.prevPage = function () {
 //下一页
 SubType.prototype.nextPage = function () {
     var data = this.opts.data;
-    if (data.pageNowNum < data.pageAllNum) {
-        data.pageNowNum++;
+    if (data.nowPage < data.allPage) {
+        data.nowPage++;
         var oldChecked = this.selectDom.querySelector('option:checked');
         if (oldChecked.nextElementSibling) {
             oldChecked.selected = false;
@@ -135,7 +135,7 @@ SubType.prototype.nextPage = function () {
         this.prevPageEnable();
         this.opts.callback.nextPage(this);
     }
-    if (data.pageNowNum == data.pageAllNum) {
+    if (data.nowPage == data.allPage) {
         this.nextPageDisable();
     }
     console.log(data);
@@ -144,13 +144,13 @@ SubType.prototype.nextPage = function () {
 //选择第几页
 SubType.prototype.selectPage = function () {
     var data = this.opts.data;
-    data.pageNowNum = this.selectDom.value;
+    data.nowPage = this.selectDom.value;
     this.nextPageEnable();
     this.prevPageEnable();
-    if (data.pageNowNum == 1) {
+    if (data.nowPage == 1) {
         this.prevPageDisable();
     }
-    if (data.pageNowNum == data.pageAllNum) {
+    if (data.nowPage == data.allPage) {
         this.nextPageDisable();
     }
     this.opts.callback.selectPage(this);
@@ -159,22 +159,22 @@ SubType.prototype.selectPage = function () {
 
 //上一页禁用
 SubType.prototype.prevPageDisable = function () {
-    this.prevDom.classList.add(this.buttonInactiveClass);
+    this.prevDom.classList.add(this.btnInactiveClass);
 };
 
 //上一页启用
 SubType.prototype.prevPageEnable = function () {
-    this.prevDom.classList.remove(this.buttonInactiveClass);
+    this.prevDom.classList.remove(this.btnInactiveClass);
 };
 
 //下一页禁用
 SubType.prototype.nextPageDisable = function () {
-    this.nextDom.classList.add(this.buttonInactiveClass);
+    this.nextDom.classList.add(this.btnInactiveClass);
 };
 
 //下一页启用
 SubType.prototype.nextPageEnable = function () {
-    this.nextDom.classList.remove(this.buttonInactiveClass);
+    this.nextDom.classList.remove(this.btnInactiveClass);
 };
 
 module.exports = SubType;

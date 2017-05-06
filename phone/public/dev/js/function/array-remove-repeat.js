@@ -13,4 +13,5 @@ function arrayRemoveRepeat(json) {
     });
     return newArray;
 }
+
 module.exports = arrayRemoveRepeat;

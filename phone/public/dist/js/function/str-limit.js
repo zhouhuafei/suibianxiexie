@@ -14,18 +14,19 @@
     }return s;
 })({ 1: [function (require, module, exports) {
         //字符数量限制
-        function stringLimit(json) {
+        function strLimit(json) {
             var opts = json || {};
             var max = opts.max;
-            var string = opts.string;
-            if (!string) {
+            var str = opts.str;
+            if (!str) {
                 return '';
             }
-            var length = string.length;
+            var length = str.length;
             if (length > max) {
-                string = string.substring(0, max);
+                str = str.substring(0, max);
             }
-            return string;
+            return str;
         }
-        module.exports = stringLimit;
+
+        module.exports = strLimit;
     }, {}] }, {}, [1]);

@@ -13,23 +13,26 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        //把json格式的对象转成数组
-        function objectToArray(json) {
+        //移除对象引用
+        function objRemoveQuote(json) {
             var opts = json || {};
-            var object = opts.object;
-            var arr = [];
-            if (object instanceof Array) {
-                object.forEach(function (v, i) {
-                    arr.push([i, v]);
-                });
-            } else {
-                for (var attr in object) {
-                    if (object.hasOwnProperty(attr)) {
-                        arr.push({ key: attr, value: object[attr] });
-                    }
+            var obj = opts.obj;
+            var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+
+            if (objType != 'object' && objType != 'array') {
+                return obj;
+            }
+            var newObj = {};
+            if (objType == 'array') {
+                newObj = [];
+            }
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) {
+                    newObj[attr] = objRemoveQuote({ obj: obj[attr] });
                 }
             }
-            return arr;
+            return newObj;
         }
-        module.exports = objectToArray;
+
+        module.exports = objRemoveQuote;
     }, {}] }, {}, [1]);

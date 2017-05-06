@@ -3,7 +3,7 @@
 //图片上传
 @import "../global/g-img-upload";
 //按钮
-@import "../global/g-button";
+@import "../global/g-btn";
 //输入框
 @import "../global/g-input";
 //下拉框
@@ -51,9 +51,9 @@
             flex: 1;
         }
     }
-    .page-button {
+    .page-btn {
         margin-top: px2rem(10);
-        .g-button {
+        .g-btn {
             margin-top: 0;
         }
         display: flex;

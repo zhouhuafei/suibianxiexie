@@ -11,15 +11,16 @@ function offset(json) {
     });
     var top = 0;
     var left = 0;
-    var object = getDomArray({element:opts.element})[0];
-    while (object) {
-        top += object.offsetTop;
-        left += object.offsetLeft;
-        object = object.offsetParent;
+    var element = getDomArray({element: opts.element})[0];
+    while (element) {
+        top += element.offsetTop;
+        left += element.offsetLeft;
+        element = element.offsetParent;
     }
     return {
         top: top,
         left: left
     };
 }
+
 module.exports = offset;

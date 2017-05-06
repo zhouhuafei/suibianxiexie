@@ -27,4 +27,5 @@ function whetherDisableScroll() {
         }
     }
 }
+
 module.exports = whetherDisableScroll;

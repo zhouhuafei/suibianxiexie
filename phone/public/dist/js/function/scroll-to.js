@@ -32,5 +32,6 @@
             };
             requestAnimationFrame(fn);
         }
+
         module.exports = scrollTo;
     }, {}] }, {}, [1]);

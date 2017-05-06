@@ -1,16 +1,15 @@
 var response = {
     status: '',//状态  'success'   'fail'
-    message: '',//信息     '参数错误'
+    msg: '',//信息     '参数错误'
     result: {
         data: [
             {
-
                 img: {
                     width: 0,
                     height: 0,
                     url: ''
                 },
-                text:'',
+                text: '',
                 link: ''
             }
         ],//数据集合

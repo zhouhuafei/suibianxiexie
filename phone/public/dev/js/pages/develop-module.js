@@ -7,7 +7,7 @@ window.addEventListener('load', function () {
             //测试滚动到底部loading
             new base.WhenScrollBottom({
                 callback: {
-                    success: function () {
+                    success: function (self) {
                         var Loading = require('../modules/m-loading');
                         var loading = new Loading({
                             wrap: '.g-page',
@@ -16,6 +16,7 @@ window.addEventListener('load', function () {
                             }
                         });
                         loading.moduleDomShow();
+                        //self.isLoadOver = false;
                     }
                 }
             });
@@ -23,8 +24,8 @@ window.addEventListener('load', function () {
             new base.Select({
                 items: '.g-checkbox-checkbox',
                 callback: {
-                    click: function (object) {
-                        console.log(object);
+                    click: function (obj) {
+                        console.log(obj);
                     }
                 }
             });

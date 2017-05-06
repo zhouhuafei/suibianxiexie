@@ -14,7 +14,7 @@
     }return s;
 })({ 1: [function (require, module, exports) {
         //加减操作
-        function addSubtractInput(json) {
+        function addMinusInput(json) {
             //购物加减商品系列
             if (!json) {
                 console.log('no find parameter');
@@ -24,8 +24,9 @@
             var minNum = json.minNum || 1; //最小数量
             var add = json.add; //加的按钮
             var addCallback = json.addCallback; //加的回调
-            var substract = json.substract; //减少的按钮
-            var substractCallback = json.substractCallback; //减少的回调
+            var minus = json.minus; //减少的按钮
+            var minusCallback = json.minusCallback; //减少的回调
+            var overMinCallback = json.overMinCallback || function () {}; //减少到最小值之后继续减少
             var input = json.input; //输入框的按钮
             var blurCallback = json.blurCallback; //失去焦点的回调
             var inventoryNum = parseInt(json.inventoryNum); //商品库存
@@ -48,21 +49,22 @@
                     }
                     add.classList.add(noActiveClass);
                 }
-                substract.classList.remove(noActiveClass);
+                minus.classList.remove(noActiveClass);
                 addCallback && addCallback();
             };
             //减少
-            substract.onclick = function () {
+            minus.onclick = function () {
                 space();
                 var num = parseInt(input.value);
                 num--;
                 input["value"] = num;
                 if (num <= minNum) {
                     input["value"] = minNum;
-                    substract.classList.add(noActiveClass);
+                    minus.classList.add(noActiveClass);
+                    overMinCallback();
                 }
                 add.classList.remove(noActiveClass);
-                substractCallback && substractCallback();
+                minusCallback && minusCallback();
             };
             //获取焦点
             input["onfocus"] = function () {
@@ -75,7 +77,7 @@
                 if (isNaN(num)) {
                     num = minNum;
                 }
-                substract.classList.remove(noActiveClass);
+                minus.classList.remove(noActiveClass);
                 add.classList.remove(noActiveClass);
                 if (num >= inventoryNum) {
                     input["value"] = inventoryNum;
@@ -83,11 +85,11 @@
                 }
                 if (num <= minNum) {
                     input["value"] = minNum;
-                    substract.classList.add(noActiveClass);
+                    minus.classList.add(noActiveClass);
                 }
                 blurCallback && blurCallback();
             };
         }
 
-        module.exports = addSubtractInput;
+        module.exports = addMinusInput;
     }, {}] }, {}, [1]);

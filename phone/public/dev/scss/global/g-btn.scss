@@ -1,37 +1,37 @@
 @import "../config/config";
 
 //按钮
-.g-button {
+.g-btn {
     $height: 40;
     width: px2rem(200);
     height: px2rem($height);
     display: flex;
     align-items: center;
     justify-content: center;
-    .g-button-icon {
+    .g-btn-icon {
         margin: 0 px2rem(2);
     }
-    .g-button-text {
+    .g-btn-text {
         margin: 0 px2rem(2);
     }
     //取消
-    &.g-button-cancel {
+    &.g-btn-cancel {
         background: $g-color-background-dark;
         color: #fff;
     }
     //确认
-    &.g-button-confirm {
+    &.g-btn-confirm {
         background: $g-color-highlight;
         color: #fff;
     }
     //禁用
-    &.g-button-disable {
+    &.g-btn-disable {
         background: $g-color-background-disable;
         color: $g-color-font-disable;
         cursor: not-allowed;
     }
     //铺满
-    &.g-button-full {
+    &.g-btn-full {
         width: 100%;
         border-radius: 0;
     }

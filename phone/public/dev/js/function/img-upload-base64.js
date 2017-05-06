@@ -76,3 +76,5 @@ Fn.prototype.fileReadAsDataURL = function () {
         });
     });
 };
+
+module.exports = Fn;

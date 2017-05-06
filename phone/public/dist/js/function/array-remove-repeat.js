@@ -28,5 +28,6 @@
             });
             return newArray;
         }
+
         module.exports = arrayRemoveRepeat;
     }, {}] }, {}, [1]);

@@ -84,4 +84,5 @@ var validate = {
         return b;
     }
 };
+
 module.exports = validate;

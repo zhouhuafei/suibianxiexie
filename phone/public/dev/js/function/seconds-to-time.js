@@ -12,4 +12,5 @@ function secondsToTime(json) {
     var second = Math.floor(seconds % 60);
     return {day: day, hour: hour, minute: minute, second: second, seconds: seconds};
 }
+
 module.exports = secondsToTime;

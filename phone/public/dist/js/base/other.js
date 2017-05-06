@@ -14,9 +14,9 @@
     }return s;
 })({ 1: [function (require, module, exports) {
         function dataSrcHandle(json) {
-            var returnObject = {};
+            var returnObj = {};
             if (!json.image) {
-                return returnObject;
+                return returnObj;
             }
             var webp = '';
             if (base.utils.isAndroid()) {
@@ -37,11 +37,11 @@
             var search = image.dataset.src.match(rule);
             if (search) {
                 //image.dataset.src=image.dataset.src.replace(rule,replace);
-                returnObject.src = image.dataset.src.replace(rule, replace);
+                returnObj.src = image.dataset.src.replace(rule, replace);
             } else {
                 if (opts.isPinjie) {
                     //image.dataset.src=image.dataset.src+replace;
-                    returnObject.src = image.dataset.src + replace;
+                    returnObj.src = image.dataset.src + replace;
                 }
             }
         }
@@ -103,22 +103,22 @@
             });
         }
 
-        function touchLeft(object, iWidth) {
-            if (!object) {
+        function touchLeft(obj, iWidth) {
+            if (!obj) {
                 return false;
             }
             var startPosition, endPosition, iTarget, iLeft;
 
-            object.on('touchstart', function (e) {
+            obj.on('touchstart', function (e) {
                 var touch = e.touches[0];
                 startPosition = {
                     x: touch.pageX,
                     y: touch.pageY
                 };
-                iLeft = object.position().left;
+                iLeft = obj.position().left;
             });
 
-            object.on('touchmove', function (e) {
+            obj.on('touchmove', function (e) {
                 var touch = e.touches[0];
                 endPosition = {
                     x: touch.pageX,
@@ -128,11 +128,11 @@
                     x: endPosition.x - startPosition.x + iLeft,
                     y: endPosition.y - startPosition.y
                 };
-                object.css({ 'left': iTarget.x > 0 ? 0 : iTarget.x });
+                obj.css({ 'left': iTarget.x > 0 ? 0 : iTarget.x });
             });
 
-            object.on('touchend', function () {
-                object.css({ 'left': Math.abs(object.position().left) > iWidth / 2 ? -iWidth : 0 });
+            obj.on('touchend', function () {
+                obj.css({ 'left': Math.abs(obj.position().left) > iWidth / 2 ? -iWidth : 0 });
             });
         }
     }, {}] }, {}, [1]);
