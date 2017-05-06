@@ -6,7 +6,7 @@ function dataSrcHandle(json){
     var webp='';
     if(base.utils.isAndroid()){webp=`format/webp`;}
     var replace=`?imageMogr2/thumbnail/${json.image.offsetWidth}x${json.image.offsetHeight}/strip/quality/80/`+webp;
-    var options=$.extend(true,{
+    var opts=$.extend(true,{
         image:null,//默认的图片dom(默认无)
         rule:/\?.*/g,//默认规则(?号以及？号之后的一切)
         replace:replace,//默认替换为
@@ -14,15 +14,15 @@ function dataSrcHandle(json){
         domainRule:/\./g,//域名规则(默认没有规则)
         isDomainRule:false//是否开启域名规则限制(默认不开启)
     },json);
-    var image=options.image;
-    var rule=options.rule;
-    replace=options.replace;
+    var image=opts.image;
+    var rule=opts.rule;
+    replace=opts.replace;
     var search=image.dataset.src.match(rule);
     if(search){
         //image.dataset.src=image.dataset.src.replace(rule,replace);
 returnObject.src=image.dataset.src.replace(rule,replace);
     }else{
-        if(options.isPinjie){
+        if(opts.isPinjie){
             //image.dataset.src=image.dataset.src+replace;
     returnObject.src=image.dataset.src+replace;
         }
@@ -32,7 +32,7 @@ returnObject.src=image.dataset.src.replace(rule,replace);
 
 function uploadImg() {
     var oF = document.querySelector('#fileField');
-    var number = 0;
+    var num = 0;
     var limit = 5;
     var box = $('.file-box');
     var input = box.find('.file-label.file-input');
@@ -40,19 +40,19 @@ function uploadImg() {
     //添加
     var fn = new Fn({
         input: oF,
-        limitNumber: 5,
-        base64Callback: function (options) {
-            //console.log(options);
-            //console.log(options.base64);
-            //console.log(options.index);
-            if (number < limit) {
-                var img = $('<div data-index="' + number + '" class="file-label file-img"><div class="label"><img src="' + options.base64 + '" alt=""></div></div>');
+        limitNum: 5,
+        base64Callback: function (opts) {
+            //console.log(opts);
+            //console.log(opts.base64);
+            //console.log(opts.index);
+            if (num < limit) {
+                var img = $('<div data-index="' + num + '" class="file-label file-img"><div class="label"><img src="' + opts.base64 + '" alt=""></div></div>');
                 img.insertBefore(input);
-                file.push(fn.imgData[options.index]);
-                number++;
+                file.push(fn.imgData[opts.index]);
+                num++;
                 //上传图片(这一部分可以再封装一次)
                 var oFormData = new FormData();
-                oFormData.append('files', fn.imgData[options.index]);
+                oFormData.append('files', fn.imgData[opts.index]);
                 var ajax = new XMLHttpRequest();
                 ajax.open('post', 'index.php?ctl=module&act=newPic', true);
                 ajax.send(oFormData);
@@ -65,7 +65,7 @@ function uploadImg() {
                     }
                 }
             }
-            if (number >= limit) {
+            if (num >= limit) {
                 input.addClass('file-input-hide');
             }
         }
@@ -79,7 +79,7 @@ function uploadImg() {
                 $this.remove();
                 input.removeClass('file-input-hide');
                 file.splice(index, 1);
-                number--;
+                num--;
                 //popup.alert({contentInfo:'删除成功'});
                 //console.log(file);
             }

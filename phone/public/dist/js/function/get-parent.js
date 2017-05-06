@@ -15,9 +15,9 @@
 })({ 1: [function (require, module, exports) {
         //获取指定父级
         function getParent(json) {
-            var options = json || {};
-            var object = options.object;
-            var selector = options.selector;
+            var opts = json || {};
+            var object = opts.object;
+            var selector = opts.selector;
             if (!object) {
                 //第一参数不符合规范
                 console.log('参数错误,第一参数需要一个元素节点对象');

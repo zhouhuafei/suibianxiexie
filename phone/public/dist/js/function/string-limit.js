@@ -15,9 +15,9 @@
 })({ 1: [function (require, module, exports) {
         //字符数量限制
         function stringLimit(json) {
-            var options = json || {};
-            var max = options.max;
-            var string = options.string;
+            var opts = json || {};
+            var max = opts.max;
+            var string = opts.string;
             if (!string) {
                 return '';
             }

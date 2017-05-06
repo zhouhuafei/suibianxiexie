@@ -20,8 +20,8 @@ var SubType = base.constructorInherit({
         },
         //数据
         data: {
-            allStarNumber: 5,
-            nowStarNumber: 4
+            allStarNum: 5,
+            nowStarNum: 4
         }
     }
 });
@@ -29,40 +29,40 @@ var SubType = base.constructorInherit({
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     var html = ``;
-    for (var i = 0; i < this.options.data.allStarNumber; i++) {
+    for (var i = 0; i < this.opts.data.allStarNum; i++) {
         var className = '';
-        if (i < this.options.data.nowStarNumber) {
+        if (i < this.opts.data.nowStarNum) {
             className = 'm-star-items-active';
         }
         html += `<div data-index="${i}" class="iconfont icon-xingping m-star-items ${className}"></div>`;
     }
     this.moduleDom = base.createElement({
-        style: this.options.config.moduleDomStyle,
-        custom: this.options.config.moduleDomCustomAttr,
+        style: this.opts.config.moduleDomStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
             className: `m-star`,
             innerHTML: html
         }
     });
-    this.options.star = this.moduleDom.children;
+    this.opts.star = this.moduleDom.children;
 };
 
 //功能(覆盖超类型)
 SubType.prototype.power = function () {
     var self = this;
-    if (this.options.config.isHaveEvent) {
+    if (this.opts.config.isHaveEvent) {
         this.moduleDom.addEventListener('click', function (ev) {
             var target = ev.target;
             if (target.classList.contains('m-star-items')) {
                 var index = target.dataset.index;
-                for (var j = 0; j < self.options.data.allStarNumber; j++) {
+                for (var j = 0; j < self.opts.data.allStarNum; j++) {
                     if (j <= index) {
-                        self.options.star[j].classList.add('m-star-items-active');
+                        self.opts.star[j].classList.add('m-star-items-active');
                     } else {
-                        self.options.star[j].classList.remove('m-star-items-active');
+                        self.opts.star[j].classList.remove('m-star-items-active');
                     }
                 }
-                self.options.callback.click({element: this, index: index});
+                self.opts.callback.click({element: this, index: index});
             }
         })
     }

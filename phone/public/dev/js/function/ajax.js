@@ -4,7 +4,7 @@ var Loading = require('../function/extend');//加载中
 
 //ajax封装
 function Ajax(json) {
-    this.options = extend({
+    this.opts = extend({
         defaults: {
             url: '',//url
             type: 'post',//请求类型
@@ -50,8 +50,8 @@ function Ajax(json) {
         },
         inherits: json
     });
-    this.loading = new Loading(this.options.config.loading);
-    this.dialog = new Dialog(this.options.config.dialog);
+    this.loading = new Loading(this.opts.config.loading);
+    this.dialog = new Dialog(this.opts.config.dialog);
     this.xhr = new XMLHttpRequest();
     this.init();
 }
@@ -61,13 +61,13 @@ Ajax.prototype.init = function () {
     this.events();
 };
 Ajax.prototype.open = function () {
-    var options = this.options;
-    this.xhr.open(options.type, options.url);
+    var opts = this.opts;
+    this.xhr.open(opts.type, opts.url);
 };
 Ajax.prototype.send = function () {
-    var options = this.options;
-    var data = options.data;
-    if (options.type.toLowerCase() == 'get') {
+    var opts = this.opts;
+    var data = opts.data;
+    if (opts.type.toLowerCase() == 'get') {
         //get
         this.xhr.send(null);
     } else {

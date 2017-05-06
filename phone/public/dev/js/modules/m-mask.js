@@ -32,12 +32,12 @@ var SubType = base.constructorInherit({
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     var isTransparent = '';
-    if (this.options.config.isTransparent) {
+    if (this.opts.config.isTransparent) {
         isTransparent = 'm-mask-transparent';
     }
     this.moduleDom = base.createElement({
-        style: this.options.config.moduleStyle,
-        custom: this.options.config.moduleDomCustomAttr,
+        style: this.opts.config.moduleStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
             className: `m-mask ${isTransparent}`,
             innerHTML: ``
@@ -49,7 +49,7 @@ SubType.prototype.moduleDomCreate = function () {
 SubType.prototype.power = function () {
     var self = this;
     this.moduleDom.addEventListener('click', function (ev) {
-        self.options.callback.click();
+        self.opts.callback.click();
         ev.stopPropagation();
     })
 };

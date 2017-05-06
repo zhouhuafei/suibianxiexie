@@ -17,14 +17,14 @@
         var validate = {
             //是不是空
             isSpace: function isSpace(json) {
-                var options = json || {};
-                var success = options.success || function () {
+                var opts = json || {};
+                var success = opts.success || function () {
                     console.log('no find success callback');
                 };
-                var fail = options.fail || function () {
+                var fail = opts.fail || function () {
                     console.log('no find fail callback');
                 };
-                var value = options.value || " ";
+                var value = opts.value || " ";
                 var valueTrim = value.trim();
                 var b = false;
                 if (valueTrim == '') {
@@ -37,14 +37,14 @@
             },
             //是不是0
             isZero: function isZero(json) {
-                var options = json || {};
-                var success = options.success || function () {
+                var opts = json || {};
+                var success = opts.success || function () {
                     console.log('no find success callback');
                 };
-                var fail = options.fail || function () {
+                var fail = opts.fail || function () {
                     console.log('no find fail callback');
                 };
-                var value = options.value || " ";
+                var value = opts.value || " ";
                 var valueTrim = value.trim();
                 var b = false;
                 if (valueTrim == 0) {
@@ -57,14 +57,14 @@
             },
             //是不是整数(包含0)
             isInteger: function isInteger(json) {
-                var options = json || {};
-                var success = options.success || function () {
+                var opts = json || {};
+                var success = opts.success || function () {
                     console.log('no find success callback');
                 };
-                var fail = options.fail || function () {
+                var fail = opts.fail || function () {
                     console.log('no find fail callback');
                 };
-                var value = options.value || " ";
+                var value = opts.value || " ";
                 var valueTrim = value.trim();
                 var reg = /^\d+$/;
                 var b = false;
@@ -76,19 +76,19 @@
                 }
                 return b;
             },
-            //是不是保留了number位小数点
+            //是不是保留了num位小数点
             isReservedDecimal: function isReservedDecimal(json) {
-                var options = json || {};
-                var success = options.success || function () {
+                var opts = json || {};
+                var success = opts.success || function () {
                     console.log('no find success callback');
                 };
-                var fail = options.fail || function () {
+                var fail = opts.fail || function () {
                     console.log('no find fail callback');
                 };
-                var number = options.number || 2;
-                var value = options.value || " ";
+                var num = opts.num || 2;
+                var value = opts.value || " ";
                 var valueTrim = value.trim();
-                var reg = new RegExp("^\\d+\\.\\d{" + number + "}$");
+                var reg = new RegExp("^\\d+\\.\\d{" + num + "}$");
                 var b = false;
                 if (reg.test(valueTrim)) {
                     b = true;

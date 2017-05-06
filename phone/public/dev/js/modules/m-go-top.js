@@ -23,8 +23,8 @@ var SubType = base.constructorInherit({
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDom = base.createElement({
-        style: this.options.config.moduleDomStyle,
-        custom: this.options.config.moduleDomCustomAttr,
+        style: this.opts.config.moduleDomStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
             className: `m-go-top`,
             innerHTML: `<div class="m-go-top-icon iconfont icon-shangjiantou"></div>`
@@ -40,7 +40,7 @@ SubType.prototype.power = function () {
     });
     window.addEventListener('scroll', function () {
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        if (scrollTop >= self.options.config.showHeight) {
+        if (scrollTop >= self.opts.config.showHeight) {
             self.moduleDom.classList.add('m-go-top-active');
         } else {
             self.moduleDom.classList.remove('m-go-top-active');

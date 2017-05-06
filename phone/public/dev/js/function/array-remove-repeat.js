@@ -1,7 +1,7 @@
 //数组去重
 function arrayRemoveRepeat(json) {
-    var options = json || {};
-    var array = options.array || [];
+    var opts = json || {};
+    var array = opts.array || [];
     if (Object.prototype.toString.call(array).slice(8, -1).toLowerCase() != 'array') {
         return [];
     }

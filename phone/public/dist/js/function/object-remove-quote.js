@@ -15,8 +15,8 @@
 })({ 1: [function (require, module, exports) {
         //移除对象引用
         function objectRemoveQuote(json) {
-            var options = json || {};
-            var object = options.object;
+            var opts = json || {};
+            var object = opts.object;
             var objectType = Object.prototype.toString.call(object).slice(8, -1).toLowerCase();
 
             if (objectType != 'object' && objectType != 'array') {

@@ -3,7 +3,7 @@ var base = require('../base/base');
 
 //延迟加载
 function LazyLoad(json) {
-    this.options = base.extend({
+    this.opts = base.extend({
         defaults: {
             element: '.m-lazy-load',
             moreHeight: 0,//多加载一部分高度的图片
@@ -19,12 +19,12 @@ LazyLoad.prototype.init = function () {
     this.power();
 };
 LazyLoad.prototype.render = function () {
-    var moreHeight = this.options.moreHeight;
+    var moreHeight = this.opts.moreHeight;
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     var minTop = scrollTop - moreHeight;
     var maxTop = this.clientHeight + minTop + moreHeight;
     var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
-    var aDom = base.getDomArray({element:this.options.element});
+    var aDom = base.getDomArray({element:this.opts.element});
     aDom.forEach(function (v) {
         if (v.tagName.toLowerCase() == 'img') {
             if (!v.getAttribute('src')) {
@@ -65,7 +65,7 @@ LazyLoad.prototype.power = function () {
         clearTimeout(timer);
         timer = setTimeout(function () {
             self.render();
-        }, self.options.interval);
+        }, self.opts.interval);
     })
 };
 module.exports = LazyLoad;

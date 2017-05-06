@@ -18,7 +18,7 @@
 
         //构造函数的继承(拷贝继承)
         function constructorInherit(json) {
-            var options = extend({
+            var opts = extend({
                 defaults: {
                     superType: null, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
                     parameter: {} //默认参数(这个必须传的是一个对象,或者不传值)
@@ -26,9 +26,9 @@
                 inherits: json
             });
             //超类型(需要是个构造函数)
-            var SuperType = options.superType;
+            var SuperType = opts.superType;
             //子类型的默认参数(需要是个对象)
-            var parameter = options.parameter;
+            var parameter = opts.parameter;
             //如果超类型不存在
             if (Object.prototype.toString.call(SuperType).toLowerCase().slice(8, -1) != 'function') {
                 console.log('no find SuperType or SuperType error');
@@ -48,12 +48,12 @@
                  * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
                  * 所以我就封装了一个移除对象引用的函数
                  * */
-                this.options = extend({
+                this.opts = extend({
                     defaults: objectRemoveQuote({ object: parameter }),
                     inherits: json
                 });
                 //子类型继承超类型的属性
-                options.superType.call(this, this.options);
+                opts.superType.call(this, this.opts);
             }
 
             //子类型继承超类型的方法
@@ -68,40 +68,40 @@
     }, { "../function/extend": 2, "../function/object-remove-quote": 3 }], 2: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
-            var options = json || {};
-            options.defaults = options.defaults || {}; //默认对象
-            options.inherits = options.inherits || {}; //继承对像
-            options.isDeep = options.isDeep == false ? options.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
-            var defaultsType = Object.prototype.toString.call(options.defaults).slice(8, -1).toLowerCase();
-            var inheritsType = Object.prototype.toString.call(options.inherits).slice(8, -1).toLowerCase();
-            if (defaultsType == inheritsType && options.isDeep) {
+            var opts = json || {};
+            opts.defaults = opts.defaults || {}; //默认对象
+            opts.inherits = opts.inherits || {}; //继承对像
+            opts.isDeep = opts.isDeep == false ? opts.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
+            var defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
+            var inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
+            if (defaultsType == inheritsType && opts.isDeep) {
                 if (defaultsType == 'object' || defaultsType == 'array') {
                     //当为对象或者为数组
-                    for (var attr in options.inherits) {
-                        if (options.inherits.hasOwnProperty(attr)) {
-                            var attrDefaultsType = Object.prototype.toString.call(options.defaults[attr]).slice(8, -1).toLowerCase();
-                            var attrInheritsType = Object.prototype.toString.call(options.inherits[attr]).slice(8, -1).toLowerCase();
-                            if (attrDefaultsType == attrInheritsType && options.isDeep) {
+                    for (var attr in opts.inherits) {
+                        if (opts.inherits.hasOwnProperty(attr)) {
+                            var attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
+                            var attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
+                            if (attrDefaultsType == attrInheritsType && opts.isDeep) {
                                 //类型相同
                                 if (attrDefaultsType == 'object' || attrDefaultsType == 'array') {
                                     //当为对象或者为数组
-                                    extend({ defaults: options.defaults[attr], inherits: options.inherits[attr] });
+                                    extend({ defaults: opts.defaults[attr], inherits: opts.inherits[attr] });
                                 } else {
-                                    options.defaults[attr] = options.inherits[attr];
+                                    opts.defaults[attr] = opts.inherits[attr];
                                 }
                             } else {
                                 //类型不同,直接后面的覆盖前面的
-                                options.defaults[attr] = options.inherits[attr];
+                                opts.defaults[attr] = opts.inherits[attr];
                             }
                         }
                     }
                 } else {
-                    options.defaults = options.inherits;
+                    opts.defaults = opts.inherits;
                 }
             } else {
-                options.defaults = options.inherits;
+                opts.defaults = opts.inherits;
             }
-            return options.defaults;
+            return opts.defaults;
         }
         // var object1 = extend({
         //     defaults: {
@@ -170,8 +170,8 @@
     }, {}], 3: [function (require, module, exports) {
         //移除对象引用
         function objectRemoveQuote(json) {
-            var options = json || {};
-            var object = options.object;
+            var opts = json || {};
+            var object = opts.object;
             var objectType = Object.prototype.toString.call(object).slice(8, -1).toLowerCase();
 
             if (objectType != 'object' && objectType != 'array') {

@@ -3,17 +3,17 @@ var extend=require('../function/extend');
 
 //补零函数
 function fillZero(json) {
-    var options=extend({
+    var opts=extend({
         defaults:{
-            number:0
+            num:0
         },
         inherits:json
     });
-    var number = options.number;
-    if (number < 10) {
-        return '0' + number;
+    var num = opts.num;
+    if (num < 10) {
+        return '0' + num;
     } else {
-        return '' + number;
+        return '' + num;
     }
 }
 module.exports = fillZero;

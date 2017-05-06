@@ -25,8 +25,8 @@ var SubType = base.constructorInherit({
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDom = base.createElement({
-        style: this.options.config.moduleDomStyle,
-        custom: this.options.config.moduleDomCustomAttr,
+        style: this.opts.config.moduleDomStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
             className: `m-table`,
             innerHTML: `
@@ -48,7 +48,7 @@ SubType.prototype.moduleDomCreate = function () {
 
 SubType.prototype.moduleDomCreateHeader = function () {
     var html = ``;
-    this.options.data.header.forEach(function (v) {
+    this.opts.data.header.forEach(function (v) {
         html += `
             <div class="m-table-col">
                 <div class="m-table-col-wrap">
@@ -62,7 +62,7 @@ SubType.prototype.moduleDomCreateHeader = function () {
 
 SubType.prototype.moduleDomCreateBody = function () {
     var html = ``;
-    this.options.data.body.forEach(function (v0) {
+    this.opts.data.body.forEach(function (v0) {
         var row = ``;
         v0.forEach(function (v1) {
             row += `
@@ -79,7 +79,7 @@ SubType.prototype.moduleDomCreateBody = function () {
 };
 
 SubType.prototype.moduleDomCreateFooter = function () {
-    return this.options.data.footer;
+    return this.opts.data.footer;
 };
 
 //功能(覆盖超类型)

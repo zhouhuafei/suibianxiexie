@@ -13,7 +13,7 @@ var SubType = base.constructorInherit({
         //回调
         callback: {
             moduleDomRenderBefore: function (self) {
-                if (self.options.config.isShowMask) {
+                if (self.opts.config.isShowMask) {
                     new Mask({
                         wrap: self.moduleDom.querySelector('.m-loading-wrap'),
                         config: {
@@ -42,7 +42,7 @@ var SubType = base.constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    var config = this.options.config;
+    var config = this.opts.config;
     var moduleDomHtml = ``;
     var moduleDomClass = ``;
     var status = config.status;
@@ -85,8 +85,8 @@ SubType.prototype.moduleDomCreate = function () {
     }
     //模块创建
     this.moduleDom = base.createElement({
-        style: this.options.config.moduleDomStyle,
-        custom: this.options.config.moduleDomCustomAttr,
+        style: this.opts.config.moduleDomStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
             className: `m-loading ${moduleDomClass}`,
             innerHTML: moduleDomHtml

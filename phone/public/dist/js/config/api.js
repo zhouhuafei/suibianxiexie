@@ -20,7 +20,7 @@
                 type: 'post',
                 data: {
                     name: 'product_id',
-                    number: 'number'
+                    num: 'num'
                 }
             }
         };

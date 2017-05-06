@@ -15,8 +15,8 @@
 })({ 1: [function (require, module, exports) {
         //秒转时间
         function secondsToTime(json) {
-            var options = json || {};
-            var seconds = options.seconds;
+            var opts = json || {};
+            var seconds = opts.seconds;
             //天
             var day = Math.floor(seconds / 3600 / 24);
             //时

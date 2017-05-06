@@ -53,7 +53,7 @@ var SubType = base.constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    var data = this.options.data;
+    var data = this.opts.data;
     var items = data.items;
     var html = ``;
     items.forEach(function (v) {
@@ -70,8 +70,8 @@ SubType.prototype.moduleDomCreate = function () {
         `;
     });
     this.moduleDom = base.createElement({
-        style: this.options.config.moduleDomStyle,
-        custom: this.options.config.moduleDomCustomAttr,
+        style: this.opts.config.moduleDomStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
             className: `m-navigation`,
             innerHTML: html

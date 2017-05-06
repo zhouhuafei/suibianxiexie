@@ -21,30 +21,30 @@
                 return false;
             }
             var noActiveClass = json.noActiveClass || 'on'; //不能点的时候的class
-            var minNumber = json.minNumber || 1; //最小数量
+            var minNum = json.minNum || 1; //最小数量
             var add = json.add; //加的按钮
             var addCallback = json.addCallback; //加的回调
             var substract = json.substract; //减少的按钮
             var substractCallback = json.substractCallback; //减少的回调
             var input = json.input; //输入框的按钮
             var blurCallback = json.blurCallback; //失去焦点的回调
-            var inventoryNumber = parseInt(json.inventoryNumber); //商品库存
+            var inventoryNum = parseInt(json.inventoryNum); //商品库存
             var space = function space() {
                 if (input["value"].trim() == '') {
-                    input["value"] = minNumber;
+                    input["value"] = minNum;
                 }
             };
             //增加
             add.onclick = function () {
                 space();
-                var number = parseInt(input.value);
-                number++;
-                input["value"] = number;
-                if (number >= inventoryNumber) {
-                    if (inventoryNumber == 0) {
-                        input["value"] = minNumber;
+                var num = parseInt(input.value);
+                num++;
+                input["value"] = num;
+                if (num >= inventoryNum) {
+                    if (inventoryNum == 0) {
+                        input["value"] = minNum;
                     } else {
-                        input["value"] = inventoryNumber;
+                        input["value"] = inventoryNum;
                     }
                     add.classList.add(noActiveClass);
                 }
@@ -54,11 +54,11 @@
             //减少
             substract.onclick = function () {
                 space();
-                var number = parseInt(input.value);
-                number--;
-                input["value"] = number;
-                if (number <= minNumber) {
-                    input["value"] = minNumber;
+                var num = parseInt(input.value);
+                num--;
+                input["value"] = num;
+                if (num <= minNum) {
+                    input["value"] = minNum;
                     substract.classList.add(noActiveClass);
                 }
                 add.classList.remove(noActiveClass);
@@ -71,18 +71,18 @@
             //失去焦点
             input["onblur"] = function () {
                 space();
-                var number = parseInt(input.value);
-                if (isNaN(number)) {
-                    number = minNumber;
+                var num = parseInt(input.value);
+                if (isNaN(num)) {
+                    num = minNum;
                 }
                 substract.classList.remove(noActiveClass);
                 add.classList.remove(noActiveClass);
-                if (number >= inventoryNumber) {
-                    input["value"] = inventoryNumber;
+                if (num >= inventoryNum) {
+                    input["value"] = inventoryNum;
                     add.classList.add(noActiveClass);
                 }
-                if (number <= minNumber) {
-                    input["value"] = minNumber;
+                if (num <= minNum) {
+                    input["value"] = minNum;
                     substract.classList.add(noActiveClass);
                 }
                 blurCallback && blurCallback();

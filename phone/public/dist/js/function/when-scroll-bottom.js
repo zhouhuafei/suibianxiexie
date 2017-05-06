@@ -17,7 +17,7 @@
 
         //当滚动到了浏览器的底部
         function WhenScrollBottom(json) {
-            this.options = extend({
+            this.opts = extend({
                 defaults: {
                     callback: {
                         success: function success() {},
@@ -38,11 +38,11 @@
         };
 
         WhenScrollBottom.prototype.render = function () {
-            var callback = this.options.callback;
+            var callback = this.opts.callback;
             var allH = document.body.scrollHeight;
             var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             var clientHeight = document.documentElement.clientHeight;
-            if (scrollTop + clientHeight >= allH - this.options.errorHeight && !this.isLoadOver) {
+            if (scrollTop + clientHeight >= allH - this.opts.errorHeight && !this.isLoadOver) {
                 this.isLoadOver = true;
                 callback.success(this);
                 /*
@@ -62,47 +62,47 @@
                 clearTimeout(timer);
                 timer = setTimeout(function () {
                     self.render();
-                }, self.options.interval);
+                }, self.opts.interval);
             });
         };
         module.exports = WhenScrollBottom;
     }, { "../function/extend": 2 }], 2: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
-            var options = json || {};
-            options.defaults = options.defaults || {}; //默认对象
-            options.inherits = options.inherits || {}; //继承对像
-            options.isDeep = options.isDeep == false ? options.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
-            var defaultsType = Object.prototype.toString.call(options.defaults).slice(8, -1).toLowerCase();
-            var inheritsType = Object.prototype.toString.call(options.inherits).slice(8, -1).toLowerCase();
-            if (defaultsType == inheritsType && options.isDeep) {
+            var opts = json || {};
+            opts.defaults = opts.defaults || {}; //默认对象
+            opts.inherits = opts.inherits || {}; //继承对像
+            opts.isDeep = opts.isDeep == false ? opts.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
+            var defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
+            var inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
+            if (defaultsType == inheritsType && opts.isDeep) {
                 if (defaultsType == 'object' || defaultsType == 'array') {
                     //当为对象或者为数组
-                    for (var attr in options.inherits) {
-                        if (options.inherits.hasOwnProperty(attr)) {
-                            var attrDefaultsType = Object.prototype.toString.call(options.defaults[attr]).slice(8, -1).toLowerCase();
-                            var attrInheritsType = Object.prototype.toString.call(options.inherits[attr]).slice(8, -1).toLowerCase();
-                            if (attrDefaultsType == attrInheritsType && options.isDeep) {
+                    for (var attr in opts.inherits) {
+                        if (opts.inherits.hasOwnProperty(attr)) {
+                            var attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
+                            var attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
+                            if (attrDefaultsType == attrInheritsType && opts.isDeep) {
                                 //类型相同
                                 if (attrDefaultsType == 'object' || attrDefaultsType == 'array') {
                                     //当为对象或者为数组
-                                    extend({ defaults: options.defaults[attr], inherits: options.inherits[attr] });
+                                    extend({ defaults: opts.defaults[attr], inherits: opts.inherits[attr] });
                                 } else {
-                                    options.defaults[attr] = options.inherits[attr];
+                                    opts.defaults[attr] = opts.inherits[attr];
                                 }
                             } else {
                                 //类型不同,直接后面的覆盖前面的
-                                options.defaults[attr] = options.inherits[attr];
+                                opts.defaults[attr] = opts.inherits[attr];
                             }
                         }
                     }
                 } else {
-                    options.defaults = options.inherits;
+                    opts.defaults = opts.inherits;
                 }
             } else {
-                options.defaults = options.inherits;
+                opts.defaults = opts.inherits;
             }
-            return options.defaults;
+            return opts.defaults;
         }
         // var object1 = extend({
         //     defaults: {

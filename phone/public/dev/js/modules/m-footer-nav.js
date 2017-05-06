@@ -45,8 +45,8 @@ SubType.prototype.moduleDomCreate = function () {
         </div>
     `;
     this.moduleDom = base.createElement({
-        style: this.options.config.moduleDomStyle,
-        custom: this.options.config.moduleDomCustomAttr,
+        style: this.opts.config.moduleDomStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
             className: this.moduleDomClass,
             innerHTML: moduleDomHtml

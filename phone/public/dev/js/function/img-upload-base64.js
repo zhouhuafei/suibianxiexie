@@ -1,19 +1,19 @@
 //图片上传
 function Fn(json) {
-    this.options = json || {};
+    this.opts = json || {};
     //如果没有选择文件的input,则不继续往下执行
-    if (!this.options.input) {
+    if (!this.opts.input) {
         console.log('no find input');
         return;
     }
     //一次上传限制几张图片
-    this.options.limitNumber = this.options.limitNumber || '5';
+    this.opts.limitNum = this.opts.limitNum || '5';
     //选择图片的回调
-    this.options.changeCallback = this.options.changeCallback || function () {
+    this.opts.changeCallback = this.opts.changeCallback || function () {
             console.log('no find changeCallback');
         };
     //把图片读取成base64编码的回调
-    this.options.base64Callback = this.options.base64Callback || function () {
+    this.opts.base64Callback = this.opts.base64Callback || function () {
             console.log('no find base64Callback');
         };
     //初始化
@@ -37,9 +37,9 @@ Fn.prototype.events = function () {
 };
 Fn.prototype.eventsInputChange = function () {
     var self = this;
-    var limitNumber = this.options.limitNumber;
-    this.options.input.addEventListener('change', function () {
-        var imagesNumber = 0;
+    var limitNum = this.opts.limitNum;
+    this.opts.input.addEventListener('change', function () {
+        var imagesNum = 0;
         //图片的相关信息
         self.imgData = [];
         var files = this.files;
@@ -53,15 +53,15 @@ Fn.prototype.eventsInputChange = function () {
             }
             //是图片
             if (isImages) {
-                if (imagesNumber < limitNumber) {//小于限制几张图片的数量
+                if (imagesNum < limitNum) {//小于限制几张图片的数量
                     self.imgData.push(f);
-                    imagesNumber++;
+                    imagesNum++;
                 } else {//大于限制几张图片的数量
 
                 }
             }
         }
-        self.options.changeCallback({imgData: self.imgData});
+        self.opts.changeCallback({imgData: self.imgData});
         //把图片读成base64编码
         self.fileReadAsDataURL();
     });
@@ -72,7 +72,7 @@ Fn.prototype.fileReadAsDataURL = function () {
         var fileRender = new FileReader();
         fileRender.readAsDataURL(v);
         fileRender.addEventListener('load', function () {
-            self.options.base64Callback({base64: this.result, index: i});
+            self.opts.base64Callback({base64: this.result, index: i});
         });
     });
 };

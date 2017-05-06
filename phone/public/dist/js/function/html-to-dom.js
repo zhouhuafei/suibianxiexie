@@ -15,8 +15,8 @@
 })({ 1: [function (require, module, exports) {
         //html转成DOM节点
         function htmlToDom(json) {
-            var options = json || {};
-            var html = options.html;
+            var opts = json || {};
+            var html = opts.html;
             var div = document.createElement('div');
             div.innerHTML = html;
             return div.children[0];
