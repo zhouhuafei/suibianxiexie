@@ -1,7 +1,7 @@
 //秒转时间
 function secondsToTime(json) {
-    var opt = json || {};
-    var seconds = opt.seconds;
+    var options = json || {};
+    var seconds = options.seconds;
     //天
     var d = Math.floor(seconds / 3600 / 24);
     //时

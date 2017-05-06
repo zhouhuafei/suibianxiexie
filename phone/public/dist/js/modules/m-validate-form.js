@@ -32,21 +32,21 @@
             objectToArray: require('../function/object-to-array'), //把json格式的对象转成数组
             secondsToTime: require('../function/seconds-to-time'), //秒转时间
             timeCountDown: require('../function/time-count-down'), //倒计时
-            strLimit: require('../function/str-limit'), //字符串限制
+            stringLimit: require('../function/string-limit'), //字符串限制
             getDomArray: require('../function/get-dom-array'), //获取一组dom节点
             createElement: require('../function/create-element'), //创建元素节点
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/array-remove-repeat": 3, "../function/constructor-inherit": 4, "../function/cookie": 5, "../function/create-element": 6, "../function/extend": 7, "../function/fill-zero": 8, "../function/get-dom-array": 9, "../function/get-parent": 10, "../function/html-to-dom": 11, "../function/object-remove-quote": 12, "../function/object-to-array": 13, "../function/offset": 14, "../function/px2rem": 15, "../function/scroll-to": 16, "../function/seconds-to-time": 17, "../function/select": 18, "../function/str-limit": 19, "../function/time-count-down": 20, "../function/user-agent": 21, "../function/when-scroll-bottom": 23, "../function/whether-disable-scroll": 24 }], 2: [function (require, module, exports) {
+    }, { "../function/array-remove-repeat": 3, "../function/constructor-inherit": 4, "../function/cookie": 5, "../function/create-element": 6, "../function/extend": 7, "../function/fill-zero": 8, "../function/get-dom-array": 9, "../function/get-parent": 10, "../function/html-to-dom": 11, "../function/object-remove-quote": 12, "../function/object-to-array": 13, "../function/offset": 14, "../function/px2rem": 15, "../function/scroll-to": 16, "../function/seconds-to-time": 17, "../function/select": 18, "../function/string-limit": 19, "../function/time-count-down": 20, "../function/user-agent": 21, "../function/when-scroll-bottom": 23, "../function/whether-disable-scroll": 24 }], 2: [function (require, module, exports) {
         var base = require('../base/base'); //底层方法
         var validate = require('../function/validate'); //表单验证
 
         function ValidateForm(json) {
-            this.opt = json || {};
-            this.element = base.getDomArray({ element: this.opt.element })[0];
-            this.hintClass = this.opt.hintClass || 'm-validate-form-hint';
-            this.eventsType = this.opt.eventsType || 'blur';
+            this.options = json || {};
+            this.element = base.getDomArray({ element: this.options.element })[0];
+            this.hintClass = this.options.hintClass || 'm-validate-form-hint';
+            this.eventsType = this.options.eventsType || 'blur';
             this.validateType = this.element.dataset.validate || 'undefined';
             this.validateHintText = this.element.dataset.hint || 'undefined';
             this.init();
@@ -72,8 +72,8 @@
         ValidateForm.prototype.renderHintAdd = function (json) {
             //只有没被隐藏的才进行验证
             if (this.element.offsetWidth) {
-                var opt = json || {};
-                this.hintDom.innerHTML = opt.text || '本项必填';
+                var options = json || {};
+                this.hintDom.innerHTML = options.text || '本项必填';
                 this.wrapDom.appendChild(this.hintDom);
             }
         };
@@ -153,8 +153,8 @@
     }, { "../base/base": 1, "../function/validate": 22 }], 3: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
-            var opt = json || {};
-            var array = opt.array || [];
+            var options = json || {};
+            var array = options.array || [];
             if (Object.prototype.toString.call(array).slice(8, -1).toLowerCase() != 'array') {
                 return [];
             }
@@ -173,7 +173,7 @@
 
         //构造函数的继承(拷贝继承)
         function constructorInherit(json) {
-            var opt = extend({
+            var options = extend({
                 defaults: {
                     superType: null, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
                     parameter: {} //默认参数(这个必须传的是一个对象,或者不传值)
@@ -181,9 +181,9 @@
                 inherits: json
             });
             //超类型(需要是个构造函数)
-            var SuperType = opt.superType;
+            var SuperType = options.superType;
             //子类型的默认参数(需要是个对象)
-            var parameter = opt.parameter;
+            var parameter = options.parameter;
             //如果超类型不存在
             if (Object.prototype.toString.call(SuperType).toLowerCase().slice(8, -1) != 'function') {
                 console.log('no find SuperType or SuperType error');
@@ -203,12 +203,12 @@
                  * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
                  * 所以我就封装了一个移除对象引用的函数
                  * */
-                this.opt = extend({
+                this.options = extend({
                     defaults: objectRemoveQuote({ object: parameter }),
                     inherits: json
                 });
                 //子类型继承超类型的属性
-                opt.superType.call(this, this.opt);
+                options.superType.call(this, this.options);
             }
 
             //子类型继承超类型的方法
@@ -223,10 +223,10 @@
     }, { "../function/extend": 7, "../function/object-remove-quote": 12 }], 5: [function (require, module, exports) {
         //设置cookie
         function setCookie(json) {
-            var opt = json || {};
-            var name = opt.name;
-            var value = opt.value;
-            var expires = opt.expires;
+            var options = json || {};
+            var name = options.name;
+            var value = options.value;
+            var expires = options.expires;
             var myDate = new Date();
             var myTime = myDate.getTime();
             myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000);
@@ -234,8 +234,8 @@
         }
         //获取cookie
         function getCookie(json) {
-            var opt = json || {};
-            var name = opt.name;
+            var options = json || {};
+            var name = options.name;
             var cookie = document.cookie;
             var arr = cookie.split('; ');
             var value = '';
@@ -250,8 +250,8 @@
         }
         //清除cookie
         function removeCookie(json) {
-            var opt = json || {};
-            var name = opt.name;
+            var options = json || {};
+            var name = options.name;
             setCookie(name, '', -1);
         }
         var object = {
@@ -263,23 +263,23 @@
     }, {}], 6: [function (require, module, exports) {
         //创建元素节点
         function createElement(json) {
-            var opt = json || {};
-            opt.elementName = opt.elementName || 'div'; //标签名称
-            opt.style = opt.style || ""; //style样式
-            opt.custom = opt.custom || {}; //自定义属性
-            opt.attribute = opt.attribute || {}; //普通属性,checked,selected
-            var elementNode = document.createElement(opt.elementName); //元素节点
-            if (opt.style) {
-                elementNode.setAttribute('style', opt.style);
+            var options = json || {};
+            options.elementName = options.elementName || 'div'; //标签名称
+            options.style = options.style || ""; //style样式
+            options.custom = options.custom || {}; //自定义属性
+            options.attribute = options.attribute || {}; //普通属性,checked,selected
+            var elementNode = document.createElement(options.elementName); //元素节点
+            if (options.style) {
+                elementNode.setAttribute('style', options.style);
             }
-            for (var attr1 in opt.custom) {
-                if (opt.custom.hasOwnProperty(attr1)) {
-                    elementNode.setAttribute('data-' + attr1, opt.custom[attr1]);
+            for (var attr1 in options.custom) {
+                if (options.custom.hasOwnProperty(attr1)) {
+                    elementNode.setAttribute('data-' + attr1, options.custom[attr1]);
                 }
             }
-            for (var attr0 in opt.attribute) {
-                if (opt.attribute.hasOwnProperty(attr0)) {
-                    elementNode[attr0] = opt.attribute[attr0];
+            for (var attr0 in options.attribute) {
+                if (options.attribute.hasOwnProperty(attr0)) {
+                    elementNode[attr0] = options.attribute[attr0];
                 }
             }
             return elementNode;
@@ -288,40 +288,40 @@
     }, {}], 7: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
-            var opt = json || {};
-            opt.defaults = opt.defaults || {}; //默认对象
-            opt.inherits = opt.inherits || {}; //继承对像
-            opt.isDeep = opt.isDeep == false ? opt.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
-            var defaultsType = Object.prototype.toString.call(opt.defaults).slice(8, -1).toLowerCase();
-            var inheritsType = Object.prototype.toString.call(opt.inherits).slice(8, -1).toLowerCase();
-            if (defaultsType == inheritsType && opt.isDeep) {
+            var options = json || {};
+            options.defaults = options.defaults || {}; //默认对象
+            options.inherits = options.inherits || {}; //继承对像
+            options.isDeep = options.isDeep == false ? options.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
+            var defaultsType = Object.prototype.toString.call(options.defaults).slice(8, -1).toLowerCase();
+            var inheritsType = Object.prototype.toString.call(options.inherits).slice(8, -1).toLowerCase();
+            if (defaultsType == inheritsType && options.isDeep) {
                 if (defaultsType == 'object' || defaultsType == 'array') {
                     //当为对象或者为数组
-                    for (var attr in opt.inherits) {
-                        if (opt.inherits.hasOwnProperty(attr)) {
-                            var attrDefaultsType = Object.prototype.toString.call(opt.defaults[attr]).slice(8, -1).toLowerCase();
-                            var attrInheritsType = Object.prototype.toString.call(opt.inherits[attr]).slice(8, -1).toLowerCase();
-                            if (attrDefaultsType == attrInheritsType && opt.isDeep) {
+                    for (var attr in options.inherits) {
+                        if (options.inherits.hasOwnProperty(attr)) {
+                            var attrDefaultsType = Object.prototype.toString.call(options.defaults[attr]).slice(8, -1).toLowerCase();
+                            var attrInheritsType = Object.prototype.toString.call(options.inherits[attr]).slice(8, -1).toLowerCase();
+                            if (attrDefaultsType == attrInheritsType && options.isDeep) {
                                 //类型相同
                                 if (attrDefaultsType == 'object' || attrDefaultsType == 'array') {
                                     //当为对象或者为数组
-                                    extend({ defaults: opt.defaults[attr], inherits: opt.inherits[attr] });
+                                    extend({ defaults: options.defaults[attr], inherits: options.inherits[attr] });
                                 } else {
-                                    opt.defaults[attr] = opt.inherits[attr];
+                                    options.defaults[attr] = options.inherits[attr];
                                 }
                             } else {
                                 //类型不同,直接后面的覆盖前面的
-                                opt.defaults[attr] = opt.inherits[attr];
+                                options.defaults[attr] = options.inherits[attr];
                             }
                         }
                     }
                 } else {
-                    opt.defaults = opt.inherits;
+                    options.defaults = options.inherits;
                 }
             } else {
-                opt.defaults = opt.inherits;
+                options.defaults = options.inherits;
             }
-            return opt.defaults;
+            return options.defaults;
         }
         // var object1 = extend({
         //     defaults: {
@@ -393,13 +393,13 @@
 
         //补零函数
         function fillZero(json) {
-            var opt = extend({
+            var options = extend({
                 defaults: {
                     number: 0
                 },
                 inherits: json
             });
-            var number = opt.number;
+            var number = options.number;
             if (number < 10) {
                 return '0' + number;
             } else {
@@ -412,28 +412,28 @@
 
         //获取原生的dom节点并转换成数组,传入的参数仅支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
         function getDomArray(json) {
-            var opt = extend({
+            var options = extend({
                 defaults: {
                     element: null
                 },
                 inherits: json
             });
             var dom = [];
-            if (opt.element) {
+            if (options.element) {
                 //如果是字符串
-                if (Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'string') {
-                    dom = [].slice.call(document.querySelectorAll(opt.element));
+                if (Object.prototype.toString.call(options.element).slice(8, -1).toLowerCase() == 'string') {
+                    dom = [].slice.call(document.querySelectorAll(options.element));
                 }
                 //如果是dom节点(一个元素)    原生的
-                if (opt.element.nodeType == 1) {
-                    dom = [opt.element];
+                if (options.element.nodeType == 1) {
+                    dom = [options.element];
                 }
                 /*
                  * 如果是dom集合(一组元素)    HtmlCollection(通过getElementsBy系列获取到的)
                  * 如果是dom集合(一组元素)    NodeList(通过querySelectorAll获取到的)
                  * */
-                if (Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'htmlcollection' || Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'nodelist') {
-                    dom = [].slice.call(opt.element);
+                if (Object.prototype.toString.call(options.element).slice(8, -1).toLowerCase() == 'htmlcollection' || Object.prototype.toString.call(options.element).slice(8, -1).toLowerCase() == 'nodelist') {
+                    dom = [].slice.call(options.element);
                 }
             }
             return dom;
@@ -442,9 +442,9 @@
     }, { "../function/extend": 7 }], 10: [function (require, module, exports) {
         //获取指定父级
         function getParent(json) {
-            var opt = json || {};
-            var object = opt.object;
-            var selector = opt.selector;
+            var options = json || {};
+            var object = options.object;
+            var selector = options.selector;
             if (!object) {
                 //第一参数不符合规范
                 console.log('参数错误,第一参数需要一个元素节点对象');
@@ -505,8 +505,8 @@
     }, {}], 11: [function (require, module, exports) {
         //html转成DOM节点
         function htmlToDom(json) {
-            var opt = json || {};
-            var html = opt.html;
+            var options = json || {};
+            var html = options.html;
             var div = document.createElement('div');
             div.innerHTML = html;
             return div.children[0];
@@ -515,8 +515,8 @@
     }, {}], 12: [function (require, module, exports) {
         //移除对象引用
         function objectRemoveQuote(json) {
-            var opt = json || {};
-            var object = opt.object;
+            var options = json || {};
+            var object = options.object;
             var objectType = Object.prototype.toString.call(object).slice(8, -1).toLowerCase();
 
             if (objectType != 'object' && objectType != 'array') {
@@ -537,8 +537,8 @@
     }, {}], 13: [function (require, module, exports) {
         //把json格式的对象转成数组
         function objectToArray(json) {
-            var opt = json || {};
-            var object = opt.object;
+            var options = json || {};
+            var object = options.object;
             var arr = [];
             if (object instanceof Array) {
                 object.forEach(function (v, i) {
@@ -560,7 +560,7 @@
 
         //获取元素距离文档的left和top
         function offset(json) {
-            var opt = extend({
+            var options = extend({
                 defaults: {
                     element: null
                 },
@@ -568,7 +568,7 @@
             });
             var top = 0;
             var left = 0;
-            var object = getDomArray({ element: opt.element })[0];
+            var object = getDomArray({ element: options.element })[0];
             while (object) {
                 top += object.offsetTop;
                 left += object.offsetLeft;
@@ -583,17 +583,17 @@
     }, { "../function/extend": 7, "../function/get-dom-array": 9 }], 15: [function (require, module, exports) {
         //px2rem
         function px2rem(json) {
-            var opt = json || opt;
-            var base = opt.base || '320';
-            var px = opt.px || '0';
+            var options = json || options;
+            var base = options.base || '320';
+            var px = options.px || '0';
             return px / base * 10 + 'rem';
         }
         module.exports = px2rem;
     }, {}], 16: [function (require, module, exports) {
         //滚动到指定位置
         function scrollTo(json) {
-            var opt = json || {};
-            var to = opt.to || '0';
+            var options = json || {};
+            var to = options.to || '0';
             var scale = 6;
             var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
             var speed = 0;
@@ -613,8 +613,8 @@
     }, {}], 17: [function (require, module, exports) {
         //秒转时间
         function secondsToTime(json) {
-            var opt = json || {};
-            var seconds = opt.seconds;
+            var options = json || {};
+            var seconds = options.seconds;
             //天
             var d = Math.floor(seconds / 3600 / 24);
             //时
@@ -632,7 +632,7 @@
         var getDomArray = require('../function/get-dom-array');
 
         function Select(json) {
-            this.opt = extend({
+            this.options = extend({
                 defaults: {
                     items: null, //所有的被选项
                     callback: {
@@ -641,7 +641,7 @@
                 },
                 inherits: json
             });
-            this.itemsDom = getDomArray({ element: this.opt.items });
+            this.itemsDom = getDomArray({ element: this.options.items });
             this.init();
         }
 
@@ -682,7 +682,7 @@
                             isCheckedAll = false;
                         }
                     });
-                    self.opt.callback.click({ element: this, isCheckedAll: isCheckedAll });
+                    self.options.callback.click({ element: this, isCheckedAll: isCheckedAll });
                 });
             });
         };
@@ -690,27 +690,27 @@
         module.exports = Select;
     }, { "../function/extend": 7, "../function/get-dom-array": 9 }], 19: [function (require, module, exports) {
         //字符数量限制
-        function strLimit(json) {
-            var opt = json || {};
-            var max = opt.max;
-            var str = opt.str;
-            if (!str) {
+        function stringLimit(json) {
+            var options = json || {};
+            var max = options.max;
+            var string = options.string;
+            if (!string) {
                 return '';
             }
-            var length = str.length;
+            var length = string.length;
             if (length > max) {
-                str = str.substring(0, max);
+                string = string.substring(0, max);
             }
-            return str;
+            return string;
         }
-        module.exports = strLimit;
+        module.exports = stringLimit;
     }, {}], 20: [function (require, module, exports) {
         var extend = require('../function/extend');
         var secondsToTime = require('../function/seconds-to-time'); //时间转换
 
         //倒计时
         function timeCountDown(json) {
-            var opt = extend({
+            var options = extend({
                 defaults: {
                     seconds: 0,
                     callback: {
@@ -720,9 +720,9 @@
                 },
                 inherits: json
             });
-            var seconds = opt.seconds; //秒数
-            var run = opt.callback.run; //运行的回调
-            var over = opt.callback.over; //结束的回调
+            var seconds = options.seconds; //秒数
+            var run = options.callback.run; //运行的回调
+            var over = options.callback.over; //结束的回调
             //时间大于等于0秒
             if (seconds >= 0) {
                 run(secondsToTime({ seconds: seconds })); //运行时的回调
@@ -778,14 +778,14 @@
         var validate = {
             //是不是空
             isSpace: function isSpace(json) {
-                var opt = json || {};
-                var success = opt.success || function () {
+                var options = json || {};
+                var success = options.success || function () {
                     console.log('no find success callback');
                 };
-                var fail = opt.fail || function () {
+                var fail = options.fail || function () {
                     console.log('no find fail callback');
                 };
-                var value = opt.value || " ";
+                var value = options.value || " ";
                 var valueTrim = value.trim();
                 var b = false;
                 if (valueTrim == '') {
@@ -798,14 +798,14 @@
             },
             //是不是0
             isZero: function isZero(json) {
-                var opt = json || {};
-                var success = opt.success || function () {
+                var options = json || {};
+                var success = options.success || function () {
                     console.log('no find success callback');
                 };
-                var fail = opt.fail || function () {
+                var fail = options.fail || function () {
                     console.log('no find fail callback');
                 };
-                var value = opt.value || " ";
+                var value = options.value || " ";
                 var valueTrim = value.trim();
                 var b = false;
                 if (valueTrim == 0) {
@@ -818,14 +818,14 @@
             },
             //是不是整数(包含0)
             isInteger: function isInteger(json) {
-                var opt = json || {};
-                var success = opt.success || function () {
+                var options = json || {};
+                var success = options.success || function () {
                     console.log('no find success callback');
                 };
-                var fail = opt.fail || function () {
+                var fail = options.fail || function () {
                     console.log('no find fail callback');
                 };
-                var value = opt.value || " ";
+                var value = options.value || " ";
                 var valueTrim = value.trim();
                 var reg = /^\d+$/;
                 var b = false;
@@ -839,15 +839,15 @@
             },
             //是不是保留了number位小数点
             isReservedDecimal: function isReservedDecimal(json) {
-                var opt = json || {};
-                var success = opt.success || function () {
+                var options = json || {};
+                var success = options.success || function () {
                     console.log('no find success callback');
                 };
-                var fail = opt.fail || function () {
+                var fail = options.fail || function () {
                     console.log('no find fail callback');
                 };
-                var number = opt.number || 2;
-                var value = opt.value || " ";
+                var number = options.number || 2;
+                var value = options.value || " ";
                 var valueTrim = value.trim();
                 var reg = new RegExp("^\\d+\\.\\d{" + number + "}$");
                 var b = false;
@@ -866,7 +866,7 @@
 
         //当滚动到了浏览器的底部
         function WhenScrollBottom(json) {
-            this.opt = extend({
+            this.options = extend({
                 defaults: {
                     callback: {
                         success: function success() {},
@@ -887,11 +887,11 @@
         };
 
         WhenScrollBottom.prototype.render = function () {
-            var callback = this.opt.callback;
+            var callback = this.options.callback;
             var allH = document.body.scrollHeight;
             var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             var clientHeight = document.documentElement.clientHeight;
-            if (scrollTop + clientHeight >= allH - this.opt.errorHeight && !this.isLoadOver) {
+            if (scrollTop + clientHeight >= allH - this.options.errorHeight && !this.isLoadOver) {
                 this.isLoadOver = true;
                 callback.success(this);
                 /*
@@ -911,7 +911,7 @@
                 clearTimeout(timer);
                 timer = setTimeout(function () {
                     self.render();
-                }, self.opt.interval);
+                }, self.options.interval);
             });
         };
         module.exports = WhenScrollBottom;

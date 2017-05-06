@@ -3,7 +3,7 @@ var objectRemoveQuote = require('../function/object-remove-quote');//对象移�
 
 //构造函数的继承(拷贝继承)
 function constructorInherit(json) {
-    var opt = extend({
+    var options = extend({
         defaults: {
             superType: null,//继承哪个超类(这个必须传的是一个构造函数,或者不传值)
             parameter: {}//默认参数(这个必须传的是一个对象,或者不传值)
@@ -11,9 +11,9 @@ function constructorInherit(json) {
         inherits: json
     });
     //超类型(需要是个构造函数)
-    var SuperType = opt.superType;
+    var SuperType = options.superType;
     //子类型的默认参数(需要是个对象)
-    var parameter = opt.parameter;
+    var parameter = options.parameter;
     //如果超类型不存在
     if (Object.prototype.toString.call(SuperType).toLowerCase().slice(8, -1) != 'function') {
         console.log('no find SuperType or SuperType error');
@@ -33,12 +33,12 @@ function constructorInherit(json) {
          * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
          * 所以我就封装了一个移除对象引用的函数
          * */
-        this.opt = extend({
+        this.options = extend({
             defaults: objectRemoveQuote({object:parameter}),
             inherits: json
         });
         //子类型继承超类型的属性
-        opt.superType.call(this, this.opt);
+        options.superType.call(this, this.options);
     }
 
     //子类型继承超类型的方法

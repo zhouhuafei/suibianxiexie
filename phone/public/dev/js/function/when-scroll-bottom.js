@@ -2,7 +2,7 @@ var extend = require('../function/extend');
 
 //当滚动到了浏览器的底部
 function WhenScrollBottom(json) {
-    this.opt = extend({
+    this.options = extend({
         defaults: {
             callback: {
                 success: function () {
@@ -25,11 +25,11 @@ WhenScrollBottom.prototype.init = function () {
 };
 
 WhenScrollBottom.prototype.render = function () {
-    var callback = this.opt.callback;
+    var callback = this.options.callback;
     var allH = document.body.scrollHeight;
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     var clientHeight = document.documentElement.clientHeight;
-    if (scrollTop + clientHeight >= allH - this.opt.errorHeight && !this.isLoadOver) {
+    if (scrollTop + clientHeight >= allH - this.options.errorHeight && !this.isLoadOver) {
         this.isLoadOver = true;
         callback.success(this);
         /*
@@ -49,7 +49,7 @@ WhenScrollBottom.prototype.power = function () {
         clearTimeout(timer);
         timer = setTimeout(function () {
             self.render();
-        }, self.opt.interval);
+        }, self.options.interval);
     });
 };
 module.exports = WhenScrollBottom;

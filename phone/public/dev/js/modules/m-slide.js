@@ -50,8 +50,8 @@ var SubType = base.constructorInherit({
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDom = base.createElement({
-        style: this.opt.config.moduleDomStyle,
-        custom: this.opt.config.moduleDomCustomAttr,
+        style: this.options.config.moduleDomStyle,
+        custom: this.options.config.moduleDomCustomAttr,
         attribute: {
             className: `m-slide`,
             innerHTML: `
@@ -65,10 +65,10 @@ SubType.prototype.moduleDomCreate = function () {
 SubType.prototype.renderHeader = function () {
     var self = this;
     var html = ``;
-    var data = self.opt.data;
+    var data = self.options.data;
     var className = ``;
     data.items.forEach(function (v, i) {
-        if (i == self.opt.config.touchSlide.defaultIndex) {
+        if (i == self.options.config.touchSlide.defaultIndex) {
             className = `on`;
         }
         html += `<div class="m-slide-items ${className}"></div>`;
@@ -79,9 +79,9 @@ SubType.prototype.renderHeader = function () {
 SubType.prototype.renderBody = function () {
     var self = this;
     var html = ``;
-    var data = self.opt.data;
+    var data = self.options.data;
     data.items.forEach(function (v) {
-        if (self.opt.config.isShowHref) {
+        if (self.options.config.isShowHref) {
             html += `<a href="${v.link || 'javascript:;'}" class="m-slide-items" data-src="${v.picture}"></a>`;
         } else {
             html += `<a class="m-slide-items" data-src="${v.picture}"></a>`;
@@ -93,10 +93,10 @@ SubType.prototype.renderBody = function () {
 //功能(覆盖超类型)
 SubType.prototype.power = function () {
     var self = this;
-    var callback = self.opt.callback;
-    var config = self.opt.config;
+    var callback = self.options.callback;
+    var config = self.options.config;
     var touchSlide = config.touchSlide;
-    touchSlide.slideCell = self.opt.wrap;//外部容器,必须是id
+    touchSlide.slideCell = self.options.wrap;//外部容器,必须是id
     touchSlide.startFun = function (i) {
         var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-items');
         var nowIndex = ( i + 1);
@@ -114,7 +114,7 @@ SubType.prototype.power = function () {
     touchSlide.endFun = function (i) {
         callback.endFun({self: self, index: i});
     };
-    TouchSlide(self.opt.config.touchSlide);
+    TouchSlide(self.options.config.touchSlide);
 };
 
 module.exports = SubType;

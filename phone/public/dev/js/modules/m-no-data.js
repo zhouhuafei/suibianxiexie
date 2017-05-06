@@ -32,14 +32,14 @@ var SubType = base.constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    var data = this.opt.data;
+    var data = this.options.data;
     var buttonIconHtml = ``;
-    if (this.opt.config.button.isShowIcon) {
+    if (this.options.config.button.isShowIcon) {
         buttonIconHtml = `<div class="g-button-icon iconfont ${data.button.icon}"></div>`;
     }
     this.moduleDom = base.createElement({
-        style: this.opt.config.moduleStyle,
-        custom: this.opt.config.moduleDomCustomAttr,
+        style: this.options.config.moduleStyle,
+        custom: this.options.config.moduleDomCustomAttr,
         attribute: {
             className: `m-no-data`,
             innerHTML: `

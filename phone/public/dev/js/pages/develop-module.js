@@ -146,8 +146,8 @@ window.addEventListener('load', function () {
             new Radio({
                 wrap: '.page-radio-switch',
                 callback: {
-                    click: function (object) {
-                        console.log(object);
+                    click: function (json) {
+                        console.log(json);
                     }
                 }
             });

@@ -40,8 +40,8 @@ var SubType = base.constructorInherit({
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDom = base.createElement({
-        style: this.opt.config.moduleDomStyle,
-        custom: this.opt.config.moduleDomCustomAttr,
+        style: this.options.config.moduleDomStyle,
+        custom: this.options.config.moduleDomCustomAttr,
         attribute: {
             className: `m-pagination`,
             innerHTML: `
@@ -69,7 +69,7 @@ SubType.prototype.moduleDomCreate = function () {
 //渲染第几页里面的页码
 SubType.prototype.renderOption = function () {
     var html = ``;
-    for (var i = 0; i < this.opt.data.pageAllNumber; i++) {
+    for (var i = 0; i < this.options.data.pageAllNumber; i++) {
         html += `<option value="${i + 1}">${i + 1}</option>`;
     }
     return html;
@@ -78,7 +78,7 @@ SubType.prototype.renderOption = function () {
 //功能(覆盖超类型)
 SubType.prototype.power = function () {
     var self = this;
-    var data = this.opt.data;
+    var data = this.options.data;
     if (data.pageNowNumber == 1) {
         this.prevPageDisable();
     }
@@ -105,7 +105,7 @@ SubType.prototype.power = function () {
 
 //上一页
 SubType.prototype.prevPage = function () {
-    var data = this.opt.data;
+    var data = this.options.data;
     if (data.pageNowNumber > 1) {
         data.pageNowNumber--;
         var oldChecked = this.selectDom.querySelector('option:checked');
@@ -114,7 +114,7 @@ SubType.prototype.prevPage = function () {
             oldChecked.previousElementSibling.selected = true;
         }
         this.nextPageEnable();
-        this.opt.callback.prevPage(this);
+        this.options.callback.prevPage(this);
     }
     if (data.pageNowNumber == 1) {
         this.prevPageDisable();
@@ -124,7 +124,7 @@ SubType.prototype.prevPage = function () {
 
 //下一页
 SubType.prototype.nextPage = function () {
-    var data = this.opt.data;
+    var data = this.options.data;
     if (data.pageNowNumber < data.pageAllNumber) {
         data.pageNowNumber++;
         var oldChecked = this.selectDom.querySelector('option:checked');
@@ -133,7 +133,7 @@ SubType.prototype.nextPage = function () {
             oldChecked.nextElementSibling.selected = true;
         }
         this.prevPageEnable();
-        this.opt.callback.nextPage(this);
+        this.options.callback.nextPage(this);
     }
     if (data.pageNowNumber == data.pageAllNumber) {
         this.nextPageDisable();
@@ -143,7 +143,7 @@ SubType.prototype.nextPage = function () {
 
 //选择第几页
 SubType.prototype.selectPage = function () {
-    var data = this.opt.data;
+    var data = this.options.data;
     data.pageNowNumber = this.selectDom.value;
     this.nextPageEnable();
     this.prevPageEnable();
@@ -153,7 +153,7 @@ SubType.prototype.selectPage = function () {
     if (data.pageNowNumber == data.pageAllNumber) {
         this.nextPageDisable();
     }
-    this.opt.callback.selectPage(this);
+    this.options.callback.selectPage(this);
     console.log(data);
 };
 

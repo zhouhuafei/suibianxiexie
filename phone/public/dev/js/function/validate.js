@@ -2,14 +2,14 @@
 var validate = {
     //是不是空
     isSpace: function (json) {
-        var opt = json || {};
-        var success = opt.success || function () {
+        var options = json || {};
+        var success = options.success || function () {
                 console.log('no find success callback');
             };
-        var fail = opt.fail || function () {
+        var fail = options.fail || function () {
                 console.log('no find fail callback');
             };
-        var value = opt.value || " ";
+        var value = options.value || " ";
         var valueTrim = value.trim();
         var b = false;
         if (valueTrim == '') {
@@ -22,14 +22,14 @@ var validate = {
     },
     //是不是0
     isZero: function (json) {
-        var opt = json || {};
-        var success = opt.success || function () {
+        var options = json || {};
+        var success = options.success || function () {
                 console.log('no find success callback');
             };
-        var fail = opt.fail || function () {
+        var fail = options.fail || function () {
                 console.log('no find fail callback');
             };
-        var value = opt.value || " ";
+        var value = options.value || " ";
         var valueTrim = value.trim();
         var b = false;
         if (valueTrim == 0) {
@@ -42,14 +42,14 @@ var validate = {
     },
     //是不是整数(包含0)
     isInteger: function (json) {
-        var opt = json || {};
-        var success = opt.success || function () {
+        var options = json || {};
+        var success = options.success || function () {
                 console.log('no find success callback');
             };
-        var fail = opt.fail || function () {
+        var fail = options.fail || function () {
                 console.log('no find fail callback');
             };
-        var value = opt.value || " ";
+        var value = options.value || " ";
         var valueTrim = value.trim();
         var reg = /^\d+$/;
         var b = false;
@@ -63,15 +63,15 @@ var validate = {
     },
     //是不是保留了number位小数点
     isReservedDecimal: function (json) {
-        var opt = json || {};
-        var success = opt.success || function () {
+        var options = json || {};
+        var success = options.success || function () {
                 console.log('no find success callback');
             };
-        var fail = opt.fail || function () {
+        var fail = options.fail || function () {
                 console.log('no find fail callback');
             };
-        var number = opt.number || 2;
-        var value = opt.value || " ";
+        var number = options.number || 2;
+        var value = options.value || " ";
         var valueTrim = value.trim();
         var reg = new RegExp("^\\d+\\.\\d{" + number + "}$");
         var b = false;

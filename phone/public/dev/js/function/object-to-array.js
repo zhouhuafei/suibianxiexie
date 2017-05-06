@@ -1,7 +1,7 @@
 //把json格式的对象转成数组
 function objectToArray(json) {
-    var opt = json || {};
-    var object = opt.object;
+    var options = json || {};
+    var object = options.object;
     var arr = [];
     if (object instanceof Array) {
         object.forEach(function (v, i) {

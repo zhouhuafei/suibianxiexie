@@ -1,35 +1,35 @@
 //对象的扩展方法
 function extend(json) {
-    var opt = json || {};
-    opt.defaults = opt.defaults || {};//默认对象
-    opt.inherits = opt.inherits || {};//继承对像
-    opt.isDeep = opt.isDeep == false ? opt.isDeep : true;//是否进行深拷贝(默认进行深拷贝)
-    var defaultsType = Object.prototype.toString.call(opt.defaults).slice(8, -1).toLowerCase();
-    var inheritsType = Object.prototype.toString.call(opt.inherits).slice(8, -1).toLowerCase();
-    if (defaultsType == inheritsType && opt.isDeep) {
+    var options = json || {};
+    options.defaults = options.defaults || {};//默认对象
+    options.inherits = options.inherits || {};//继承对像
+    options.isDeep = options.isDeep == false ? options.isDeep : true;//是否进行深拷贝(默认进行深拷贝)
+    var defaultsType = Object.prototype.toString.call(options.defaults).slice(8, -1).toLowerCase();
+    var inheritsType = Object.prototype.toString.call(options.inherits).slice(8, -1).toLowerCase();
+    if (defaultsType == inheritsType && options.isDeep) {
         if (defaultsType == 'object' || defaultsType == 'array') {//当为对象或者为数组
-            for (var attr in opt.inherits) {
-                if (opt.inherits.hasOwnProperty(attr)) {
-                    var attrDefaultsType = Object.prototype.toString.call(opt.defaults[attr]).slice(8, -1).toLowerCase();
-                    var attrInheritsType = Object.prototype.toString.call(opt.inherits[attr]).slice(8, -1).toLowerCase();
-                    if (attrDefaultsType == attrInheritsType && opt.isDeep) {//类型相同
+            for (var attr in options.inherits) {
+                if (options.inherits.hasOwnProperty(attr)) {
+                    var attrDefaultsType = Object.prototype.toString.call(options.defaults[attr]).slice(8, -1).toLowerCase();
+                    var attrInheritsType = Object.prototype.toString.call(options.inherits[attr]).slice(8, -1).toLowerCase();
+                    if (attrDefaultsType == attrInheritsType && options.isDeep) {//类型相同
                         if (attrDefaultsType == 'object' || attrDefaultsType == 'array') {//当为对象或者为数组
-                            extend({defaults: opt.defaults[attr], inherits: opt.inherits[attr]});
+                            extend({defaults: options.defaults[attr], inherits: options.inherits[attr]});
                         } else {
-                            opt.defaults[attr] = opt.inherits[attr];
+                            options.defaults[attr] = options.inherits[attr];
                         }
                     } else {//类型不同,直接后面的覆盖前面的
-                        opt.defaults[attr] = opt.inherits[attr];
+                        options.defaults[attr] = options.inherits[attr];
                     }
                 }
             }
         } else {
-            opt.defaults = opt.inherits;
+            options.defaults = options.inherits;
         }
     } else {
-        opt.defaults = opt.inherits;
+        options.defaults = options.inherits;
     }
-    return opt.defaults;
+    return options.defaults;
 }
 // var object1 = extend({
 //     defaults: {

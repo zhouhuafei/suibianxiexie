@@ -2,10 +2,10 @@ var base = require('../base/base');//底层方法
 var validate = require('../function/validate');//表单验证
 
 function ValidateForm(json) {
-    this.opt = json || {};
-    this.element = base.getDomArray({element: this.opt.element})[0];
-    this.hintClass = this.opt.hintClass || 'm-validate-form-hint';
-    this.eventsType = this.opt.eventsType || 'blur';
+    this.options = json || {};
+    this.element = base.getDomArray({element: this.options.element})[0];
+    this.hintClass = this.options.hintClass || 'm-validate-form-hint';
+    this.eventsType = this.options.eventsType || 'blur';
     this.validateType = this.element.dataset.validate || 'undefined';
     this.validateHintText = this.element.dataset.hint || 'undefined';
     this.init();
@@ -31,8 +31,8 @@ ValidateForm.prototype.renderHint = function () {
 ValidateForm.prototype.renderHintAdd = function (json) {
     //只有没被隐藏的才进行验证
     if (this.element.offsetWidth) {
-        var opt = json || {};
-        this.hintDom.innerHTML = opt.text || '本项必填';
+        var options = json || {};
+        this.hintDom.innerHTML = options.text || '本项必填';
         this.wrapDom.appendChild(this.hintDom);
     }
 };

@@ -40,13 +40,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             objectToArray: require('../function/object-to-array'), //把json格式的对象转成数组
             secondsToTime: require('../function/seconds-to-time'), //秒转时间
             timeCountDown: require('../function/time-count-down'), //倒计时
-            strLimit: require('../function/str-limit'), //字符串限制
+            stringLimit: require('../function/string-limit'), //字符串限制
             getDomArray: require('../function/get-dom-array'), //获取一组dom节点
             createElement: require('../function/create-element'), //创建元素节点
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/object-remove-quote": 13, "../function/object-to-array": 14, "../function/offset": 15, "../function/px2rem": 16, "../function/scroll-to": 17, "../function/seconds-to-time": 18, "../function/select": 19, "../function/str-limit": 20, "../function/time-count-down": 21, "../function/user-agent": 22, "../function/when-scroll-bottom": 23, "../function/whether-disable-scroll": 24 }], 2: [function (require, module, exports) {
+    }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/object-remove-quote": 13, "../function/object-to-array": 14, "../function/offset": 15, "../function/px2rem": 16, "../function/scroll-to": 17, "../function/seconds-to-time": 18, "../function/select": 19, "../function/string-limit": 20, "../function/time-count-down": 21, "../function/user-agent": 22, "../function/when-scroll-bottom": 23, "../function/whether-disable-scroll": 24 }], 2: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
 
@@ -189,8 +189,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     new Radio({
                         wrap: '.page-radio-switch',
                         callback: {
-                            click: function click(object) {
-                                console.log(object);
+                            click: function click(json) {
+                                console.log(json);
                             }
                         }
                     });
@@ -274,8 +274,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 27, "../modules/m-lazy-load": 29 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
-            var opt = json || {};
-            var array = opt.array || [];
+            var options = json || {};
+            var array = options.array || [];
             if (Object.prototype.toString.call(array).slice(8, -1).toLowerCase() != 'array') {
                 return [];
             }
@@ -294,7 +294,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //构造函数的继承(拷贝继承)
         function constructorInherit(json) {
-            var opt = extend({
+            var options = extend({
                 defaults: {
                     superType: null, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
                     parameter: {} //默认参数(这个必须传的是一个对象,或者不传值)
@@ -302,9 +302,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 inherits: json
             });
             //超类型(需要是个构造函数)
-            var SuperType = opt.superType;
+            var SuperType = options.superType;
             //子类型的默认参数(需要是个对象)
-            var parameter = opt.parameter;
+            var parameter = options.parameter;
             //如果超类型不存在
             if (Object.prototype.toString.call(SuperType).toLowerCase().slice(8, -1) != 'function') {
                 console.log('no find SuperType or SuperType error');
@@ -324,12 +324,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                  * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
                  * 所以我就封装了一个移除对象引用的函数
                  * */
-                this.opt = extend({
+                this.options = extend({
                     defaults: objectRemoveQuote({ object: parameter }),
                     inherits: json
                 });
                 //子类型继承超类型的属性
-                opt.superType.call(this, this.opt);
+                options.superType.call(this, this.options);
             }
 
             //子类型继承超类型的方法
@@ -344,10 +344,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, { "../function/extend": 8, "../function/object-remove-quote": 13 }], 6: [function (require, module, exports) {
         //设置cookie
         function setCookie(json) {
-            var opt = json || {};
-            var name = opt.name;
-            var value = opt.value;
-            var expires = opt.expires;
+            var options = json || {};
+            var name = options.name;
+            var value = options.value;
+            var expires = options.expires;
             var myDate = new Date();
             var myTime = myDate.getTime();
             myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000);
@@ -355,8 +355,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
         //获取cookie
         function getCookie(json) {
-            var opt = json || {};
-            var name = opt.name;
+            var options = json || {};
+            var name = options.name;
             var cookie = document.cookie;
             var arr = cookie.split('; ');
             var value = '';
@@ -371,8 +371,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
         //清除cookie
         function removeCookie(json) {
-            var opt = json || {};
-            var name = opt.name;
+            var options = json || {};
+            var name = options.name;
             setCookie(name, '', -1);
         }
         var object = {
@@ -384,23 +384,23 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, {}], 7: [function (require, module, exports) {
         //创建元素节点
         function createElement(json) {
-            var opt = json || {};
-            opt.elementName = opt.elementName || 'div'; //标签名称
-            opt.style = opt.style || ""; //style样式
-            opt.custom = opt.custom || {}; //自定义属性
-            opt.attribute = opt.attribute || {}; //普通属性,checked,selected
-            var elementNode = document.createElement(opt.elementName); //元素节点
-            if (opt.style) {
-                elementNode.setAttribute('style', opt.style);
+            var options = json || {};
+            options.elementName = options.elementName || 'div'; //标签名称
+            options.style = options.style || ""; //style样式
+            options.custom = options.custom || {}; //自定义属性
+            options.attribute = options.attribute || {}; //普通属性,checked,selected
+            var elementNode = document.createElement(options.elementName); //元素节点
+            if (options.style) {
+                elementNode.setAttribute('style', options.style);
             }
-            for (var attr1 in opt.custom) {
-                if (opt.custom.hasOwnProperty(attr1)) {
-                    elementNode.setAttribute('data-' + attr1, opt.custom[attr1]);
+            for (var attr1 in options.custom) {
+                if (options.custom.hasOwnProperty(attr1)) {
+                    elementNode.setAttribute('data-' + attr1, options.custom[attr1]);
                 }
             }
-            for (var attr0 in opt.attribute) {
-                if (opt.attribute.hasOwnProperty(attr0)) {
-                    elementNode[attr0] = opt.attribute[attr0];
+            for (var attr0 in options.attribute) {
+                if (options.attribute.hasOwnProperty(attr0)) {
+                    elementNode[attr0] = options.attribute[attr0];
                 }
             }
             return elementNode;
@@ -409,40 +409,40 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, {}], 8: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
-            var opt = json || {};
-            opt.defaults = opt.defaults || {}; //默认对象
-            opt.inherits = opt.inherits || {}; //继承对像
-            opt.isDeep = opt.isDeep == false ? opt.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
-            var defaultsType = Object.prototype.toString.call(opt.defaults).slice(8, -1).toLowerCase();
-            var inheritsType = Object.prototype.toString.call(opt.inherits).slice(8, -1).toLowerCase();
-            if (defaultsType == inheritsType && opt.isDeep) {
+            var options = json || {};
+            options.defaults = options.defaults || {}; //默认对象
+            options.inherits = options.inherits || {}; //继承对像
+            options.isDeep = options.isDeep == false ? options.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
+            var defaultsType = Object.prototype.toString.call(options.defaults).slice(8, -1).toLowerCase();
+            var inheritsType = Object.prototype.toString.call(options.inherits).slice(8, -1).toLowerCase();
+            if (defaultsType == inheritsType && options.isDeep) {
                 if (defaultsType == 'object' || defaultsType == 'array') {
                     //当为对象或者为数组
-                    for (var attr in opt.inherits) {
-                        if (opt.inherits.hasOwnProperty(attr)) {
-                            var attrDefaultsType = Object.prototype.toString.call(opt.defaults[attr]).slice(8, -1).toLowerCase();
-                            var attrInheritsType = Object.prototype.toString.call(opt.inherits[attr]).slice(8, -1).toLowerCase();
-                            if (attrDefaultsType == attrInheritsType && opt.isDeep) {
+                    for (var attr in options.inherits) {
+                        if (options.inherits.hasOwnProperty(attr)) {
+                            var attrDefaultsType = Object.prototype.toString.call(options.defaults[attr]).slice(8, -1).toLowerCase();
+                            var attrInheritsType = Object.prototype.toString.call(options.inherits[attr]).slice(8, -1).toLowerCase();
+                            if (attrDefaultsType == attrInheritsType && options.isDeep) {
                                 //类型相同
                                 if (attrDefaultsType == 'object' || attrDefaultsType == 'array') {
                                     //当为对象或者为数组
-                                    extend({ defaults: opt.defaults[attr], inherits: opt.inherits[attr] });
+                                    extend({ defaults: options.defaults[attr], inherits: options.inherits[attr] });
                                 } else {
-                                    opt.defaults[attr] = opt.inherits[attr];
+                                    options.defaults[attr] = options.inherits[attr];
                                 }
                             } else {
                                 //类型不同,直接后面的覆盖前面的
-                                opt.defaults[attr] = opt.inherits[attr];
+                                options.defaults[attr] = options.inherits[attr];
                             }
                         }
                     }
                 } else {
-                    opt.defaults = opt.inherits;
+                    options.defaults = options.inherits;
                 }
             } else {
-                opt.defaults = opt.inherits;
+                options.defaults = options.inherits;
             }
-            return opt.defaults;
+            return options.defaults;
         }
         // var object1 = extend({
         //     defaults: {
@@ -514,13 +514,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //补零函数
         function fillZero(json) {
-            var opt = extend({
+            var options = extend({
                 defaults: {
                     number: 0
                 },
                 inherits: json
             });
-            var number = opt.number;
+            var number = options.number;
             if (number < 10) {
                 return '0' + number;
             } else {
@@ -533,28 +533,28 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //获取原生的dom节点并转换成数组,传入的参数仅支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
         function getDomArray(json) {
-            var opt = extend({
+            var options = extend({
                 defaults: {
                     element: null
                 },
                 inherits: json
             });
             var dom = [];
-            if (opt.element) {
+            if (options.element) {
                 //如果是字符串
-                if (Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'string') {
-                    dom = [].slice.call(document.querySelectorAll(opt.element));
+                if (Object.prototype.toString.call(options.element).slice(8, -1).toLowerCase() == 'string') {
+                    dom = [].slice.call(document.querySelectorAll(options.element));
                 }
                 //如果是dom节点(一个元素)    原生的
-                if (opt.element.nodeType == 1) {
-                    dom = [opt.element];
+                if (options.element.nodeType == 1) {
+                    dom = [options.element];
                 }
                 /*
                  * 如果是dom集合(一组元素)    HtmlCollection(通过getElementsBy系列获取到的)
                  * 如果是dom集合(一组元素)    NodeList(通过querySelectorAll获取到的)
                  * */
-                if (Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'htmlcollection' || Object.prototype.toString.call(opt.element).slice(8, -1).toLowerCase() == 'nodelist') {
-                    dom = [].slice.call(opt.element);
+                if (Object.prototype.toString.call(options.element).slice(8, -1).toLowerCase() == 'htmlcollection' || Object.prototype.toString.call(options.element).slice(8, -1).toLowerCase() == 'nodelist') {
+                    dom = [].slice.call(options.element);
                 }
             }
             return dom;
@@ -563,9 +563,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, { "../function/extend": 8 }], 11: [function (require, module, exports) {
         //获取指定父级
         function getParent(json) {
-            var opt = json || {};
-            var object = opt.object;
-            var selector = opt.selector;
+            var options = json || {};
+            var object = options.object;
+            var selector = options.selector;
             if (!object) {
                 //第一参数不符合规范
                 console.log('参数错误,第一参数需要一个元素节点对象');
@@ -626,8 +626,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, {}], 12: [function (require, module, exports) {
         //html转成DOM节点
         function htmlToDom(json) {
-            var opt = json || {};
-            var html = opt.html;
+            var options = json || {};
+            var html = options.html;
             var div = document.createElement('div');
             div.innerHTML = html;
             return div.children[0];
@@ -636,8 +636,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, {}], 13: [function (require, module, exports) {
         //移除对象引用
         function objectRemoveQuote(json) {
-            var opt = json || {};
-            var object = opt.object;
+            var options = json || {};
+            var object = options.object;
             var objectType = Object.prototype.toString.call(object).slice(8, -1).toLowerCase();
 
             if (objectType != 'object' && objectType != 'array') {
@@ -658,8 +658,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, {}], 14: [function (require, module, exports) {
         //把json格式的对象转成数组
         function objectToArray(json) {
-            var opt = json || {};
-            var object = opt.object;
+            var options = json || {};
+            var object = options.object;
             var arr = [];
             if (object instanceof Array) {
                 object.forEach(function (v, i) {
@@ -681,7 +681,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //获取元素距离文档的left和top
         function offset(json) {
-            var opt = extend({
+            var options = extend({
                 defaults: {
                     element: null
                 },
@@ -689,7 +689,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
             var top = 0;
             var left = 0;
-            var object = getDomArray({ element: opt.element })[0];
+            var object = getDomArray({ element: options.element })[0];
             while (object) {
                 top += object.offsetTop;
                 left += object.offsetLeft;
@@ -704,17 +704,17 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, { "../function/extend": 8, "../function/get-dom-array": 10 }], 16: [function (require, module, exports) {
         //px2rem
         function px2rem(json) {
-            var opt = json || opt;
-            var base = opt.base || '320';
-            var px = opt.px || '0';
+            var options = json || options;
+            var base = options.base || '320';
+            var px = options.px || '0';
             return px / base * 10 + 'rem';
         }
         module.exports = px2rem;
     }, {}], 17: [function (require, module, exports) {
         //滚动到指定位置
         function scrollTo(json) {
-            var opt = json || {};
-            var to = opt.to || '0';
+            var options = json || {};
+            var to = options.to || '0';
             var scale = 6;
             var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
             var speed = 0;
@@ -734,8 +734,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, {}], 18: [function (require, module, exports) {
         //秒转时间
         function secondsToTime(json) {
-            var opt = json || {};
-            var seconds = opt.seconds;
+            var options = json || {};
+            var seconds = options.seconds;
             //天
             var d = Math.floor(seconds / 3600 / 24);
             //时
@@ -753,7 +753,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         var getDomArray = require('../function/get-dom-array');
 
         function Select(json) {
-            this.opt = extend({
+            this.options = extend({
                 defaults: {
                     items: null, //所有的被选项
                     callback: {
@@ -762,7 +762,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 },
                 inherits: json
             });
-            this.itemsDom = getDomArray({ element: this.opt.items });
+            this.itemsDom = getDomArray({ element: this.options.items });
             this.init();
         }
 
@@ -803,7 +803,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                             isCheckedAll = false;
                         }
                     });
-                    self.opt.callback.click({ element: this, isCheckedAll: isCheckedAll });
+                    self.options.callback.click({ element: this, isCheckedAll: isCheckedAll });
                 });
             });
         };
@@ -811,27 +811,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         module.exports = Select;
     }, { "../function/extend": 8, "../function/get-dom-array": 10 }], 20: [function (require, module, exports) {
         //字符数量限制
-        function strLimit(json) {
-            var opt = json || {};
-            var max = opt.max;
-            var str = opt.str;
-            if (!str) {
+        function stringLimit(json) {
+            var options = json || {};
+            var max = options.max;
+            var string = options.string;
+            if (!string) {
                 return '';
             }
-            var length = str.length;
+            var length = string.length;
             if (length > max) {
-                str = str.substring(0, max);
+                string = string.substring(0, max);
             }
-            return str;
+            return string;
         }
-        module.exports = strLimit;
+        module.exports = stringLimit;
     }, {}], 21: [function (require, module, exports) {
         var extend = require('../function/extend');
         var secondsToTime = require('../function/seconds-to-time'); //时间转换
 
         //倒计时
         function timeCountDown(json) {
-            var opt = extend({
+            var options = extend({
                 defaults: {
                     seconds: 0,
                     callback: {
@@ -841,9 +841,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 },
                 inherits: json
             });
-            var seconds = opt.seconds; //秒数
-            var run = opt.callback.run; //运行的回调
-            var over = opt.callback.over; //结束的回调
+            var seconds = options.seconds; //秒数
+            var run = options.callback.run; //运行的回调
+            var over = options.callback.over; //结束的回调
             //时间大于等于0秒
             if (seconds >= 0) {
                 run(secondsToTime({ seconds: seconds })); //运行时的回调
@@ -899,7 +899,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //当滚动到了浏览器的底部
         function WhenScrollBottom(json) {
-            this.opt = extend({
+            this.options = extend({
                 defaults: {
                     callback: {
                         success: function success() {},
@@ -920,11 +920,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         WhenScrollBottom.prototype.render = function () {
-            var callback = this.opt.callback;
+            var callback = this.options.callback;
             var allH = document.body.scrollHeight;
             var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             var clientHeight = document.documentElement.clientHeight;
-            if (scrollTop + clientHeight >= allH - this.opt.errorHeight && !this.isLoadOver) {
+            if (scrollTop + clientHeight >= allH - this.options.errorHeight && !this.isLoadOver) {
                 this.isLoadOver = true;
                 callback.success(this);
                 /*
@@ -944,7 +944,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 clearTimeout(timer);
                 timer = setTimeout(function () {
                     self.render();
-                }, self.opt.interval);
+                }, self.options.interval);
             });
         };
         module.exports = WhenScrollBottom;
@@ -1003,8 +1003,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleDomStyle,
-                custom: this.opt.config.moduleDomCustomAttr,
+                style: this.options.config.moduleDomStyle,
+                custom: this.options.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-copyright",
                     innerHTML: "\n                <div class=\"m-copyright-icon iconfont icon-banquan\"></div>\n                <div class=\"m-copyright-text\">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            "
@@ -1034,10 +1034,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 //回调
                 callback: {
                     moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                        if (self.opt.config.type == 'confirm') {
-                            if (self.opt.config.confirm.isShowMask) {
+                        if (self.options.config.type == 'confirm') {
+                            if (self.options.config.confirm.isShowMask) {
                                 self.mask = new Mask({
-                                    wrap: self.opt.wrap,
+                                    wrap: self.options.wrap,
                                     config: {
                                         moduleDomIsShow: true,
                                         moduleDomRenderMethod: { method: 'insertBefore' }
@@ -1108,14 +1108,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
-            var config = this.opt.config;
+            var config = this.options.config;
             var type = "m-dialog-" + config.type; //弹窗类型
             var positionLocation = "m-dialog-" + config.positionLocation; //弹窗的定位位置
             //弹窗结构
             var html = "\n        " + this.renderAlert() + "\n        " + this.renderConfirm() + "\n    ";
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleStyle,
-                custom: this.opt.config.moduleDomCustomAttr,
+                style: this.options.config.moduleStyle,
+                custom: this.options.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-dialog " + type + " " + positionLocation,
                     innerHTML: html
@@ -1125,7 +1125,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //提示框
         SubType.prototype.renderAlert = function () {
-            var config = this.opt.config;
+            var config = this.options.config;
             if (config.type != "alert") {
                 return "";
             }
@@ -1139,7 +1139,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //确认框
         SubType.prototype.renderConfirm = function () {
-            var config = this.opt.config;
+            var config = this.options.config;
             if (config.type != "confirm") {
                 return "";
             }
@@ -1184,7 +1184,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //功能(覆盖超类型)
         SubType.prototype.power = function () {
             var self = this;
-            var config = this.opt.config;
+            var config = this.options.config;
             //提示框
             if (config.type == "alert") {
                 setTimeout(function () {
@@ -1196,19 +1196,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 var close = this.moduleDom.querySelector('.m-dialog-close');
                 close && close.addEventListener('click', function () {
                     self.hide();
-                    self.opt.callback.close();
+                    self.options.callback.close();
                 });
                 var cancel = this.moduleDom.querySelector('.m-dialog-cancel');
                 cancel && cancel.addEventListener('click', function () {
                     self.hide();
-                    self.opt.callback.cancel();
+                    self.options.callback.cancel();
                 });
                 var confirm = this.moduleDom.querySelector('.m-dialog-confirm');
                 confirm && confirm.addEventListener('click', function () {
-                    if (!self.opt.config.confirm.isHandHide) {
+                    if (!self.options.config.confirm.isHandHide) {
                         self.hide();
                     }
-                    self.opt.callback.confirm();
+                    self.options.callback.confirm();
                 });
             }
         };
@@ -1244,8 +1244,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             this.moduleDomClass = "m-footer-nav";
             var moduleDomHtml = "\n        <div class=\"m-footer-nav-wrap\">\n            <a class=\"m-footer-nav-body\" href=\"/\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-shouye\"></div>\n                <div class=\"m-footer-nav-body-text\">\u9996\u9875</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-global\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-text\">g-global</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-module\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-text\">m-module</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-word\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-text\">\u6807\u51C6\u8BCD\u6C47</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/mine\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-wode\"></div>\n                <div class=\"m-footer-nav-body-text\">\u6211\u7684</div>\n            </a>\n        </div>\n    ";
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleDomStyle,
-                custom: this.opt.config.moduleDomCustomAttr,
+                style: this.options.config.moduleDomStyle,
+                custom: this.options.config.moduleDomCustomAttr,
                 attribute: {
                     className: this.moduleDomClass,
                     innerHTML: moduleDomHtml
@@ -1285,8 +1285,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleDomStyle,
-                custom: this.opt.config.moduleDomCustomAttr,
+                style: this.options.config.moduleDomStyle,
+                custom: this.options.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-go-top",
                     innerHTML: "<div class=\"m-go-top-icon iconfont icon-shangjiantou\"></div>"
@@ -1302,7 +1302,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
             window.addEventListener('scroll', function () {
                 var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-                if (scrollTop >= self.opt.config.showHeight) {
+                if (scrollTop >= self.options.config.showHeight) {
                     self.moduleDom.classList.add('m-go-top-active');
                 } else {
                     self.moduleDom.classList.remove('m-go-top-active');
@@ -1317,7 +1317,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //延迟加载
         function LazyLoad(json) {
-            this.opt = base.extend({
+            this.options = base.extend({
                 defaults: {
                     element: '.m-lazy-load',
                     moreHeight: 0, //多加载一部分高度的图片
@@ -1333,12 +1333,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             this.power();
         };
         LazyLoad.prototype.render = function () {
-            var moreHeight = this.opt.moreHeight;
+            var moreHeight = this.options.moreHeight;
             var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             var minTop = scrollTop - moreHeight;
             var maxTop = this.clientHeight + minTop + moreHeight;
             var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
-            var aDom = base.getDomArray({ element: this.opt.element });
+            var aDom = base.getDomArray({ element: this.options.element });
             aDom.forEach(function (v) {
                 if (v.tagName.toLowerCase() == 'img') {
                     if (!v.getAttribute('src')) {
@@ -1379,7 +1379,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 clearTimeout(timer);
                 timer = setTimeout(function () {
                     self.render();
-                }, self.opt.interval);
+                }, self.options.interval);
             });
         };
         module.exports = LazyLoad;
@@ -1399,7 +1399,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 //回调
                 callback: {
                     moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                        if (self.opt.config.isShowMask) {
+                        if (self.options.config.isShowMask) {
                             new Mask({
                                 wrap: self.moduleDom.querySelector('.m-loading-wrap'),
                                 config: {
@@ -1428,7 +1428,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
-            var config = this.opt.config;
+            var config = this.options.config;
             var moduleDomHtml = "";
             var moduleDomClass = "";
             var status = config.status;
@@ -1462,8 +1462,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }
             //模块创建
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleDomStyle,
-                custom: this.opt.config.moduleDomCustomAttr,
+                style: this.options.config.moduleDomStyle,
+                custom: this.options.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-loading " + moduleDomClass,
                     innerHTML: moduleDomHtml
@@ -1511,12 +1511,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             var isTransparent = '';
-            if (this.opt.config.isTransparent) {
+            if (this.options.config.isTransparent) {
                 isTransparent = 'm-mask-transparent';
             }
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleStyle,
-                custom: this.opt.config.moduleDomCustomAttr,
+                style: this.options.config.moduleStyle,
+                custom: this.options.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-mask " + isTransparent,
                     innerHTML: ""
@@ -1528,7 +1528,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         SubType.prototype.power = function () {
             var self = this;
             this.moduleDom.addEventListener('click', function (ev) {
-                self.opt.callback.click();
+                self.options.callback.click();
                 ev.stopPropagation();
             });
         };
@@ -1584,7 +1584,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
-            var data = this.opt.data;
+            var data = this.options.data;
             var items = data.items;
             var html = "";
             items.forEach(function (v) {
@@ -1595,8 +1595,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 html += "\n            <a href=\"" + v.link + "\" class=\"m-navigation-wrap\">\n                <div class=\"m-navigation-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-navigation-text\">" + v.text + "</div>\n                " + markHtml + "\n            </a>\n        ";
             });
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleDomStyle,
-                custom: this.opt.config.moduleDomCustomAttr,
+                style: this.options.config.moduleDomStyle,
+                custom: this.options.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-navigation",
                     innerHTML: html
@@ -1645,14 +1645,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
-            var data = this.opt.data;
+            var data = this.options.data;
             var buttonIconHtml = "";
-            if (this.opt.config.button.isShowIcon) {
+            if (this.options.config.button.isShowIcon) {
                 buttonIconHtml = "<div class=\"g-button-icon iconfont " + data.button.icon + "\"></div>";
             }
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleStyle,
-                custom: this.opt.config.moduleDomCustomAttr,
+                style: this.options.config.moduleStyle,
+                custom: this.options.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-no-data",
                     innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-text\">" + data.text + "</div>\n                <a class=\"m-no-data-button g-button g-button-confirm\" href=\"" + data.button.link + "\">\n                    " + buttonIconHtml + "\n                    <div class=\"g-button-text\">" + data.button.text + "</div>\n                </a>\n            "
@@ -1706,8 +1706,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleDomStyle,
-                custom: this.opt.config.moduleDomCustomAttr,
+                style: this.options.config.moduleDomStyle,
+                custom: this.options.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-pagination",
                     innerHTML: "\n                <div class=\"m-pagination-text\">\u7B2C</div>\n                <div class=\"m-pagination-now-page\">\n                    <label class=\"g-select\">\n                        <select class=\"g-select-select\">\n                            " + this.renderOption() + "\n                        </select>\n                        <span class=\"g-select-icon iconfont icon-select\"></span>\n                    </label>\n                </div>\n                <div class=\"m-pagination-text\">\u9875</div>\n                <a href=\"javascript:;\" class=\"m-pagination-button m-pagination-button-inactive iconfont icon-shangyiye\"></a>\n                <a href=\"javascript:;\" class=\"m-pagination-button iconfont icon-xiayiye\"></a>\n            "
@@ -1722,7 +1722,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //渲染第几页里面的页码
         SubType.prototype.renderOption = function () {
             var html = "";
-            for (var i = 0; i < this.opt.data.pageAllNumber; i++) {
+            for (var i = 0; i < this.options.data.pageAllNumber; i++) {
                 html += "<option value=\"" + (i + 1) + "\">" + (i + 1) + "</option>";
             }
             return html;
@@ -1731,7 +1731,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //功能(覆盖超类型)
         SubType.prototype.power = function () {
             var self = this;
-            var data = this.opt.data;
+            var data = this.options.data;
             if (data.pageNowNumber == 1) {
                 this.prevPageDisable();
             }
@@ -1758,7 +1758,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //上一页
         SubType.prototype.prevPage = function () {
-            var data = this.opt.data;
+            var data = this.options.data;
             if (data.pageNowNumber > 1) {
                 data.pageNowNumber--;
                 var oldChecked = this.selectDom.querySelector('option:checked');
@@ -1767,7 +1767,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     oldChecked.previousElementSibling.selected = true;
                 }
                 this.nextPageEnable();
-                this.opt.callback.prevPage(this);
+                this.options.callback.prevPage(this);
             }
             if (data.pageNowNumber == 1) {
                 this.prevPageDisable();
@@ -1777,7 +1777,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //下一页
         SubType.prototype.nextPage = function () {
-            var data = this.opt.data;
+            var data = this.options.data;
             if (data.pageNowNumber < data.pageAllNumber) {
                 data.pageNowNumber++;
                 var oldChecked = this.selectDom.querySelector('option:checked');
@@ -1786,7 +1786,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     oldChecked.nextElementSibling.selected = true;
                 }
                 this.prevPageEnable();
-                this.opt.callback.nextPage(this);
+                this.options.callback.nextPage(this);
             }
             if (data.pageNowNumber == data.pageAllNumber) {
                 this.nextPageDisable();
@@ -1796,7 +1796,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //选择第几页
         SubType.prototype.selectPage = function () {
-            var data = this.opt.data;
+            var data = this.options.data;
             data.pageNowNumber = this.selectDom.value;
             this.nextPageEnable();
             this.prevPageEnable();
@@ -1806,7 +1806,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             if (data.pageNowNumber == data.pageAllNumber) {
                 this.nextPageDisable();
             }
-            this.opt.callback.selectPage(this);
+            this.options.callback.selectPage(this);
             console.log(data);
         };
 
@@ -1863,7 +1863,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
-            var config = this.opt.config;
+            var config = this.options.config;
             this.moduleDomActiveClass = "m-radio-switch-active";
             var isOn = "";
             if (config.status == 'on') {
@@ -1882,7 +1882,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //功能(覆盖超类型)
         SubType.prototype.power = function () {
             var self = this;
-            var config = this.opt.config;
+            var config = this.options.config;
             this.moduleDom.addEventListener('click', function () {
                 if (!config.isHand) {
                     if (!self.isOn()) {
@@ -1891,7 +1891,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         self.off();
                     }
                 }
-                self.opt.callback.click({ status: config.status });
+                self.options.callback.click({ status: config.status });
             });
         };
 
@@ -1902,7 +1902,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //开启
         SubType.prototype.on = function () {
-            var config = this.opt.config;
+            var config = this.options.config;
             if (!this.isOn()) {
                 this.moduleDom.classList.add(this.moduleDomActiveClass);
                 config.status = 'on';
@@ -1912,7 +1912,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //关闭
         SubType.prototype.off = function () {
-            var config = this.opt.config;
+            var config = this.options.config;
             if (this.isOn()) {
                 this.moduleDom.classList.remove(this.moduleDomActiveClass);
                 config.status = 'off';
@@ -1968,8 +1968,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleDomStyle,
-                custom: this.opt.config.moduleDomCustomAttr,
+                style: this.options.config.moduleDomStyle,
+                custom: this.options.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-slide",
                     innerHTML: "\n                " + this.renderHeader() + "\n                " + this.renderBody() + "\n            "
@@ -1980,10 +1980,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         SubType.prototype.renderHeader = function () {
             var self = this;
             var html = "";
-            var data = self.opt.data;
+            var data = self.options.data;
             var className = "";
             data.items.forEach(function (v, i) {
-                if (i == self.opt.config.touchSlide.defaultIndex) {
+                if (i == self.options.config.touchSlide.defaultIndex) {
                     className = "on";
                 }
                 html += "<div class=\"m-slide-items " + className + "\"></div>";
@@ -1994,9 +1994,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         SubType.prototype.renderBody = function () {
             var self = this;
             var html = "";
-            var data = self.opt.data;
+            var data = self.options.data;
             data.items.forEach(function (v) {
-                if (self.opt.config.isShowHref) {
+                if (self.options.config.isShowHref) {
                     html += "<a href=\"" + (v.link || 'javascript:;') + "\" class=\"m-slide-items\" data-src=\"" + v.picture + "\"></a>";
                 } else {
                     html += "<a class=\"m-slide-items\" data-src=\"" + v.picture + "\"></a>";
@@ -2008,10 +2008,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //功能(覆盖超类型)
         SubType.prototype.power = function () {
             var self = this;
-            var callback = self.opt.callback;
-            var config = self.opt.config;
+            var callback = self.options.callback;
+            var config = self.options.config;
             var touchSlide = config.touchSlide;
-            touchSlide.slideCell = self.opt.wrap; //外部容器,必须是id
+            touchSlide.slideCell = self.options.wrap; //外部容器,必须是id
             touchSlide.startFun = function (i) {
                 var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-items');
                 var nowIndex = i + 1;
@@ -2029,7 +2029,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             touchSlide.endFun = function (i) {
                 callback.endFun({ self: self, index: i });
             };
-            TouchSlide(self.opt.config.touchSlide);
+            TouchSlide(self.options.config.touchSlide);
         };
 
         module.exports = SubType;
@@ -2064,40 +2064,40 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             var html = "";
-            for (var i = 0; i < this.opt.data.allStarNumber; i++) {
+            for (var i = 0; i < this.options.data.allStarNumber; i++) {
                 var className = '';
-                if (i < this.opt.data.nowStarNumber) {
+                if (i < this.options.data.nowStarNumber) {
                     className = 'm-star-items-active';
                 }
                 html += "<div data-index=\"" + i + "\" class=\"iconfont icon-xingping m-star-items " + className + "\"></div>";
             }
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleDomStyle,
-                custom: this.opt.config.moduleDomCustomAttr,
+                style: this.options.config.moduleDomStyle,
+                custom: this.options.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-star",
                     innerHTML: html
                 }
             });
-            this.opt.star = this.moduleDom.children;
+            this.options.star = this.moduleDom.children;
         };
 
         //功能(覆盖超类型)
         SubType.prototype.power = function () {
             var self = this;
-            if (this.opt.config.isHaveEvent) {
+            if (this.options.config.isHaveEvent) {
                 this.moduleDom.addEventListener('click', function (ev) {
                     var target = ev.target;
                     if (target.classList.contains('m-star-items')) {
                         var index = target.dataset.index;
-                        for (var j = 0; j < self.opt.data.allStarNumber; j++) {
+                        for (var j = 0; j < self.options.data.allStarNumber; j++) {
                             if (j <= index) {
-                                self.opt.star[j].classList.add('m-star-items-active');
+                                self.options.star[j].classList.add('m-star-items-active');
                             } else {
-                                self.opt.star[j].classList.remove('m-star-items-active');
+                                self.options.star[j].classList.remove('m-star-items-active');
                             }
                         }
-                        self.opt.callback.click({ element: this, index: index });
+                        self.options.callback.click({ element: this, index: index });
                     }
                 });
             }
@@ -2124,21 +2124,21 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 /*
                  * 继承超类型的属性和方法
                  * 就算使用Super.call继承属性,也会先执行内部的init函数,这个和es6的比较
-                 * 我封装的es5继承函数constructor-inherit是先处理的参数this.opt,再进行的继承
+                 * 我封装的es5继承函数constructor-inherit是先处理的参数this.options,再进行的继承
                  * 这里的es6继承,是先进行的继承,再处理的参数,因为继承之前,子类无this属性
                  * 不管是es5的继承,还是es6的继承,都会执行函数内部的一切,例如
-                 * 我封装的constructor-inherit继承属性时Super.call(this,this.opt),函数内部的init方法被执行了
-                 * 执行前我处理了参数this.opt,所有一切还算稳定,我喜欢这个写法
-                 * es6继承属性和方法用super(json),继承时函数内部的init方法也被执行了,执行后才处理的参数this.opt
+                 * 我封装的constructor-inherit继承属性时Super.call(this,this.options),函数内部的init方法被执行了
+                 * 执行前我处理了参数this.options,所有一切还算稳定,我喜欢这个写法
+                 * es6继承属性和方法用super(json),继承时函数内部的init方法也被执行了,执行后才处理的参数this.options
                  * 后处理参数的话,即使我更新了默认的参数配置,覆盖了超类的方法,也获取不到最新参数上的数据,导致默认参数无效
                  * 因为函数执行super(json)的时候,init已经被调用了,数据是后更新的,所以不能获取到,因此
                  * 我需要清除内部模块,并进行重新调用,这点我很不喜欢,所以我现在的场景还是更适合es5的面向对象
-                 * 注:init方法是我封装的超类型里的初始化方法,this.opt是超类型里的参数,参数我喜欢用对象的形式
+                 * 注:init方法是我封装的超类型里的初始化方法,this.options是超类型里的参数,参数我喜欢用对象的形式
                  * */
 
 
-                _this.opt = base.extend({
-                    defaults: _this.opt,
+                _this.options = base.extend({
+                    defaults: _this.options,
                     //inherits里放默认参数(继承超类型)
                     inherits: {
                         //回调
@@ -2150,8 +2150,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     }
                 });
                 //接收外部的参数
-                _this.opt = base.extend({
-                    defaults: _this.opt,
+                _this.options = base.extend({
+                    defaults: _this.options,
                     inherits: json
                 });
                 /*
@@ -2170,8 +2170,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 key: "moduleDomCreate",
                 value: function moduleDomCreate() {
                     this.moduleDom = base.createElement({
-                        style: this.opt.config.moduleDomStyle,
-                        custom: this.opt.config.moduleDomCustomAttr,
+                        style: this.options.config.moduleDomStyle,
+                        custom: this.options.config.moduleDomCustomAttr,
                         attribute: {
                             className: "m-sub-type-es6",
                             innerHTML: "\n                    <div class=\"m-sub-type-es6-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
@@ -2216,8 +2216,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleDomStyle,
-                custom: this.opt.config.moduleDomCustomAttr,
+                style: this.options.config.moduleDomStyle,
+                custom: this.options.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-sub-type",
                     innerHTML: "\n                <div class=\"m-sub-type-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
@@ -2242,7 +2242,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 _classCallCheck(this, SuperType);
 
                 //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
-                this.opt = base.extend({
+                this.options = base.extend({
                     //内部默认参数
                     defaults: {
                         //父级
@@ -2388,8 +2388,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 key: "moduleDomCreate",
                 value: function moduleDomCreate() {
                     this.moduleDom = base.createElement({
-                        style: this.opt.config.moduleDomStyle,
-                        custom: this.opt.config.moduleDomCustomAttr,
+                        style: this.options.config.moduleDomStyle,
+                        custom: this.options.config.moduleDomCustomAttr,
                         attribute: {
                             className: "m-super-type-es6",
                             innerHTML: "\n                    <div class=\"m-super-type-es6-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
@@ -2403,7 +2403,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 key: "moduleDomRender",
                 value: function moduleDomRender() {
                     this.moduleDomRemove();
-                    var callback = this.opt.callback;
+                    var callback = this.options.callback;
                     callback.moduleDomCreateBefore(this);
                     this.moduleDomCreate();
                     callback.moduleDomCreateAfter(this);
@@ -2414,7 +2414,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }, {
                 key: "moduleDomRemove",
                 value: function moduleDomRemove() {
-                    var callback = this.opt.callback;
+                    var callback = this.options.callback;
                     callback.moduleDomRemoveBefore(this);
                     if (this.moduleDom && this.moduleDom.parentNode) {
                         this.moduleDom.parentNode.removeChild(this.moduleDom);
@@ -2428,7 +2428,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }, {
                 key: "moduleDomClearTimer",
                 value: function moduleDomClearTimer() {
-                    if (this.opt.config.moduleDomIsClearTimer) {
+                    if (this.options.config.moduleDomIsClearTimer) {
                         for (var attr in this.moduleDomTimer) {
                             if (this.moduleDomTimer.hasOwnProperty(attr)) {
                                 clearInterval(this.moduleDomTimer[attr]);
@@ -2443,10 +2443,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }, {
                 key: "moduleDomShow",
                 value: function moduleDomShow() {
-                    var callback = this.opt.callback;
+                    var callback = this.options.callback;
                     callback.moduleDomShowBefore(this);
                     if (this.wrapDom) {
-                        this.opt.config.moduleDomIsShow = true;
+                        this.options.config.moduleDomIsShow = true;
                         this.wrapDomRenderMethod();
                     }
                     callback.moduleDomShowAfter(this);
@@ -2457,11 +2457,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }, {
                 key: "moduleDomHide",
                 value: function moduleDomHide() {
-                    var callback = this.opt.callback;
+                    var callback = this.options.callback;
                     callback.moduleDomHideBefore(this);
                     if (this.moduleDom.parentNode) {
                         this.moduleDom.parentNode.removeChild(this.moduleDom);
-                        this.opt.config.moduleDomIsShow = false;
+                        this.options.config.moduleDomIsShow = false;
                     }
                     callback.moduleDomHideAfter(this);
                 }
@@ -2471,7 +2471,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }, {
                 key: "wrapDomCreate",
                 value: function wrapDomCreate() {
-                    this.wrapDom = base.getDomArray({ element: this.opt.wrap })[0];
+                    this.wrapDom = base.getDomArray({ element: this.options.wrap })[0];
                 }
 
                 //外部容器的渲染
@@ -2479,7 +2479,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }, {
                 key: "wrapDomRender",
                 value: function wrapDomRender() {
-                    var callback = this.opt.callback;
+                    var callback = this.options.callback;
                     callback.wrapDomCreateBefore(this);
                     this.wrapDomCreate();
                     callback.wrapDomCreateAfter(this);
@@ -2497,7 +2497,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }, {
                 key: "wrapDomRenderMethod",
                 value: function wrapDomRenderMethod() {
-                    var config = this.opt.config;
+                    var config = this.options.config;
                     if (config.moduleDomIsShow) {
                         var renderMethod = config.moduleDomRenderMethod;
                         if (renderMethod.method == 'insertBefore') {
@@ -2519,7 +2519,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }, {
                 key: "wrapDomRemove",
                 value: function wrapDomRemove() {
-                    var callback = this.opt.callback;
+                    var callback = this.options.callback;
                     callback.wrapDomRemoveBefore(this);
                     //先移除内部的模块
                     this.moduleDomRemove();
@@ -2550,7 +2550,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //底层构造函数
         function SuperType(json) {
             //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
-            this.opt = base.extend({
+            this.options = base.extend({
                 //内部默认参数
                 defaults: {
                     //父级
@@ -2668,8 +2668,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //内部模块的创建(这个方法在其他模块的内部需要被重写)
         SuperType.prototype.moduleDomCreate = function () {
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleDomStyle,
-                custom: this.opt.config.moduleDomCustomAttr,
+                style: this.options.config.moduleDomStyle,
+                custom: this.options.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-super-type",
                     innerHTML: "\n                <div class=\"m-super-type-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
@@ -2680,7 +2680,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //内部模块的渲染
         SuperType.prototype.moduleDomRender = function () {
             this.moduleDomRemove();
-            var callback = this.opt.callback;
+            var callback = this.options.callback;
             callback.moduleDomCreateBefore(this);
             this.moduleDomCreate();
             callback.moduleDomCreateAfter(this);
@@ -2688,7 +2688,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //内部模块的移除
         SuperType.prototype.moduleDomRemove = function () {
-            var callback = this.opt.callback;
+            var callback = this.options.callback;
             callback.moduleDomRemoveBefore(this);
             if (this.moduleDom && this.moduleDom.parentNode) {
                 this.moduleDom.parentNode.removeChild(this.moduleDom);
@@ -2699,7 +2699,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //内部模块的定时器清除(假设内部模块有定时器)
         SuperType.prototype.moduleDomClearTimer = function () {
-            if (this.opt.config.moduleDomIsClearTimer) {
+            if (this.options.config.moduleDomIsClearTimer) {
                 for (var attr in this.moduleDomTimer) {
                     if (this.moduleDomTimer.hasOwnProperty(attr)) {
                         clearInterval(this.moduleDomTimer[attr]);
@@ -2711,10 +2711,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //内部模块的显示(显示隐藏和是否清除定时器无关)
         SuperType.prototype.moduleDomShow = function () {
-            var callback = this.opt.callback;
+            var callback = this.options.callback;
             callback.moduleDomShowBefore(this);
             if (this.wrapDom) {
-                this.opt.config.moduleDomIsShow = true;
+                this.options.config.moduleDomIsShow = true;
                 this.wrapDomRenderMethod();
             }
             callback.moduleDomShowAfter(this);
@@ -2722,23 +2722,23 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //内部模块的隐藏(显示隐藏和是否清除定时器无关)
         SuperType.prototype.moduleDomHide = function () {
-            var callback = this.opt.callback;
+            var callback = this.options.callback;
             callback.moduleDomHideBefore(this);
             if (this.moduleDom.parentNode) {
                 this.moduleDom.parentNode.removeChild(this.moduleDom);
-                this.opt.config.moduleDomIsShow = false;
+                this.options.config.moduleDomIsShow = false;
             }
             callback.moduleDomHideAfter(this);
         };
 
         //外部容器的创建
         SuperType.prototype.wrapDomCreate = function () {
-            this.wrapDom = base.getDomArray({ element: this.opt.wrap })[0];
+            this.wrapDom = base.getDomArray({ element: this.options.wrap })[0];
         };
 
         //外部容器的渲染
         SuperType.prototype.wrapDomRender = function () {
-            var callback = this.opt.callback;
+            var callback = this.options.callback;
             callback.wrapDomCreateBefore(this);
             this.wrapDomCreate();
             callback.wrapDomCreateAfter(this);
@@ -2753,7 +2753,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //外部容器的渲染方式
         SuperType.prototype.wrapDomRenderMethod = function () {
-            var config = this.opt.config;
+            var config = this.options.config;
             if (config.moduleDomIsShow) {
                 var renderMethod = config.moduleDomRenderMethod;
                 if (renderMethod.method == 'insertBefore') {
@@ -2772,7 +2772,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //外部容器的移除
         SuperType.prototype.wrapDomRemove = function () {
-            var callback = this.opt.callback;
+            var callback = this.options.callback;
             callback.wrapDomRemoveBefore(this);
             //先移除内部的模块
             this.moduleDomRemove();
@@ -2817,8 +2817,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDom = base.createElement({
-                style: this.opt.config.moduleDomStyle,
-                custom: this.opt.config.moduleDomCustomAttr,
+                style: this.options.config.moduleDomStyle,
+                custom: this.options.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-table",
                     innerHTML: "\n                <div class=\"m-table-header\">\n                    <div class=\"m-table-row\">\n                        " + this.moduleDomCreateHeader() + "\n                    </div>\n                </div>\n                <div class=\"m-table-body\">\n                    " + this.moduleDomCreateBody() + "\n                </div>\n                <div class=\"m-table-footer\">\n                    " + this.moduleDomCreateFooter() + "\n                </div>\n            "
@@ -2828,7 +2828,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         SubType.prototype.moduleDomCreateHeader = function () {
             var html = "";
-            this.opt.data.header.forEach(function (v) {
+            this.options.data.header.forEach(function (v) {
                 html += "\n            <div class=\"m-table-col\">\n                <div class=\"m-table-col-wrap\">\n                    " + v.content + "\n                </div>\n            </div>\n        ";
             });
             return html;
@@ -2836,7 +2836,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         SubType.prototype.moduleDomCreateBody = function () {
             var html = "";
-            this.opt.data.body.forEach(function (v0) {
+            this.options.data.body.forEach(function (v0) {
                 var row = "";
                 v0.forEach(function (v1) {
                     row += "\n                <div class=\"m-table-col\">\n                    <div class=\"m-table-col-wrap\">\n                        " + v1.content + "\n                    </div>\n                </div>\n            ";
@@ -2847,7 +2847,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         SubType.prototype.moduleDomCreateFooter = function () {
-            return this.opt.data.footer;
+            return this.options.data.footer;
         };
 
         //功能(覆盖超类型)

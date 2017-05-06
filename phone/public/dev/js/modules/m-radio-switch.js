@@ -30,7 +30,7 @@ var SubType = base.constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    var config = this.opt.config;
+    var config = this.options.config;
     this.moduleDomActiveClass = `m-radio-switch-active`;
     var isOn = ``;
     if (config.status == 'on') {
@@ -54,7 +54,7 @@ SubType.prototype.moduleDomCreate = function () {
 //功能(覆盖超类型)
 SubType.prototype.power = function () {
     var self = this;
-    var config = this.opt.config;
+    var config = this.options.config;
     this.moduleDom.addEventListener('click', function () {
         if (!config.isHand) {
             if (!self.isOn()) {
@@ -63,7 +63,7 @@ SubType.prototype.power = function () {
                 self.off();
             }
         }
-        self.opt.callback.click({status: config.status});
+        self.options.callback.click({status: config.status});
     })
 };
 
@@ -74,7 +74,7 @@ SubType.prototype.isOn = function () {
 
 //开启
 SubType.prototype.on = function () {
-    var config = this.opt.config;
+    var config = this.options.config;
     if (!this.isOn()) {
         this.moduleDom.classList.add(this.moduleDomActiveClass);
         config.status = 'on';
@@ -84,7 +84,7 @@ SubType.prototype.on = function () {
 
 //关闭
 SubType.prototype.off = function () {
-    var config = this.opt.config;
+    var config = this.options.config;
     if (this.isOn()) {
         this.moduleDom.classList.remove(this.moduleDomActiveClass);
         config.status = 'off';

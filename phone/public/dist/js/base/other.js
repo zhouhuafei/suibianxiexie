@@ -23,7 +23,7 @@
                 webp = "format/webp";
             }
             var replace = "?imageMogr2/thumbnail/" + json.image.offsetWidth + "x" + json.image.offsetHeight + "/strip/quality/80/" + webp;
-            var opt = $.extend(true, {
+            var options = $.extend(true, {
                 image: null, //默认的图片dom(默认无)
                 rule: /\?.*/g, //默认规则(?号以及？号之后的一切)
                 replace: replace, //默认替换为
@@ -31,15 +31,15 @@
                 domainRule: /\./g, //域名规则(默认没有规则)
                 isDomainRule: false //是否开启域名规则限制(默认不开启)
             }, json);
-            var image = opt.image;
-            var rule = opt.rule;
-            replace = opt.replace;
+            var image = options.image;
+            var rule = options.rule;
+            replace = options.replace;
             var search = image.dataset.src.match(rule);
             if (search) {
                 //image.dataset.src=image.dataset.src.replace(rule,replace);
                 returnObject.src = image.dataset.src.replace(rule, replace);
             } else {
-                if (opt.isPinjie) {
+                if (options.isPinjie) {
                     //image.dataset.src=image.dataset.src+replace;
                     returnObject.src = image.dataset.src + replace;
                 }
@@ -57,18 +57,18 @@
             var fn = new Fn({
                 input: oF,
                 limitNumber: 5,
-                base64Callback: function base64Callback(opt) {
-                    //console.log(opt);
-                    //console.log(opt.base64);
-                    //console.log(opt.index);
+                base64Callback: function base64Callback(options) {
+                    //console.log(options);
+                    //console.log(options.base64);
+                    //console.log(options.index);
                     if (number < limit) {
-                        var img = $('<div data-index="' + number + '" class="file-label file-img"><div class="label"><img src="' + opt.base64 + '" alt=""></div></div>');
+                        var img = $('<div data-index="' + number + '" class="file-label file-img"><div class="label"><img src="' + options.base64 + '" alt=""></div></div>');
                         img.insertBefore(input);
-                        file.push(fn.imgData[opt.index]);
+                        file.push(fn.imgData[options.index]);
                         number++;
                         //上传图片(这一部分可以再封装一次)
                         var oFormData = new FormData();
-                        oFormData.append('files', fn.imgData[opt.index]);
+                        oFormData.append('files', fn.imgData[options.index]);
                         var ajax = new XMLHttpRequest();
                         ajax.open('post', 'index.php?ctl=module&act=newPic', true);
                         ajax.send(oFormData);

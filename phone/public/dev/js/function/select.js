@@ -3,7 +3,7 @@ var extend = require('../function/extend');
 var getDomArray = require('../function/get-dom-array');
 
 function Select(json) {
-    this.opt = extend({
+    this.options = extend({
         defaults: {
             items: null,//所有的被选项
             callback: {
@@ -13,7 +13,7 @@ function Select(json) {
         },
         inherits: json
     });
-    this.itemsDom = getDomArray({element: this.opt.items});
+    this.itemsDom = getDomArray({element: this.options.items});
     this.init();
 }
 
@@ -54,7 +54,7 @@ Select.prototype.power = function () {
                     isCheckedAll = false;
                 }
             });
-            self.opt.callback.click({element: this, isCheckedAll: isCheckedAll});
+            self.options.callback.click({element: this, isCheckedAll: isCheckedAll});
         });
     });
 };

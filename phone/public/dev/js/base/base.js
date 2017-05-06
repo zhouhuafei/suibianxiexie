@@ -17,7 +17,7 @@ var base = {
     objectToArray: require('../function/object-to-array'),//把json格式的对象转成数组
     secondsToTime: require('../function/seconds-to-time'),//秒转时间
     timeCountDown: require('../function/time-count-down'),//倒计时
-    strLimit: require('../function/str-limit'),//字符串限制
+    stringLimit: require('../function/string-limit'),//字符串限制
     getDomArray: require('../function/get-dom-array'),//获取一组dom节点
     createElement: require('../function/create-element'),//创建元素节点
     extend: require('../function/extend')//对象扩展
