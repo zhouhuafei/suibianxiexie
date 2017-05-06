@@ -576,14 +576,14 @@
             var options = json || {};
             var seconds = options.seconds;
             //天
-            var d = Math.floor(seconds / 3600 / 24);
+            var day = Math.floor(seconds / 3600 / 24);
             //时
-            var h = Math.floor(seconds / 3600 % 24);
+            var hour = Math.floor(seconds / 3600 % 24);
             //分
-            var m = Math.floor(seconds % 3600 / 60);
+            var minute = Math.floor(seconds % 3600 / 60);
             //秒
-            var s = Math.floor(seconds % 60);
-            return { d: d, h: h, m: m, s: s, a: seconds };
+            var second = Math.floor(seconds % 60);
+            return { day: day, hour: hour, minute: minute, second: second, seconds: seconds };
         }
         module.exports = secondsToTime;
     }, {}], 18: [function (require, module, exports) {
