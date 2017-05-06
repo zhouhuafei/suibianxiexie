@@ -39,7 +39,11 @@ var SubType = base.constructorInherit({
         data: {
             items: [
                 {
-                    picture: '',
+                    img: {
+                        width: 0,
+                        height: 0,
+                        url: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg'
+                    },
                     link: ''
                 }
             ]
@@ -82,9 +86,9 @@ SubType.prototype.renderBody = function () {
     var data = self.options.data;
     data.items.forEach(function (v) {
         if (self.options.config.isShowHref) {
-            html += `<a href="${v.link || 'javascript:;'}" class="m-slide-items" data-src="${v.picture}"></a>`;
+            html += `<a href="${v.link || 'javascript:;'}" class="m-slide-items" data-src="${v.img.url}"></a>`;
         } else {
-            html += `<a class="m-slide-items" data-src="${v.picture}"></a>`;
+            html += `<a class="m-slide-items" data-src="${v.img.url}"></a>`;
         }
     });
     return `<div class="m-slide-body">${html}</div>`;

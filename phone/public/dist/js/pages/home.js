@@ -49,19 +49,39 @@
                         wrap: '.page-slide',
                         data: {
                             items: [{
-                                picture: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg',
+                                img: {
+                                    width: 0,
+                                    height: 0,
+                                    url: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg'
+                                },
                                 link: ''
                             }, {
-                                picture: 'http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg',
+                                img: {
+                                    width: 0,
+                                    height: 0,
+                                    url: 'http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg'
+                                },
                                 link: ''
                             }, {
-                                picture: 'http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg',
+                                img: {
+                                    width: 0,
+                                    height: 0,
+                                    url: 'http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg'
+                                },
                                 link: ''
                             }, {
-                                picture: 'http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg',
+                                img: {
+                                    width: 0,
+                                    height: 0,
+                                    url: 'http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg'
+                                },
                                 link: ''
                             }, {
-                                picture: 'http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg',
+                                img: {
+                                    width: 0,
+                                    height: 0,
+                                    url: 'http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg'
+                                },
                                 link: ''
                             }]
                         }
@@ -1071,7 +1091,11 @@
                 //数据
                 data: {
                     items: [{
-                        picture: '',
+                        img: {
+                            width: 0,
+                            height: 0,
+                            url: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg'
+                        },
                         link: ''
                     }]
                 }
@@ -1110,9 +1134,9 @@
             var data = self.options.data;
             data.items.forEach(function (v) {
                 if (self.options.config.isShowHref) {
-                    html += "<a href=\"" + (v.link || 'javascript:;') + "\" class=\"m-slide-items\" data-src=\"" + v.picture + "\"></a>";
+                    html += "<a href=\"" + (v.link || 'javascript:;') + "\" class=\"m-slide-items\" data-src=\"" + v.img.url + "\"></a>";
                 } else {
-                    html += "<a class=\"m-slide-items\" data-src=\"" + v.picture + "\"></a>";
+                    html += "<a class=\"m-slide-items\" data-src=\"" + v.img.url + "\"></a>";
                 }
             });
             return "<div class=\"m-slide-body\">" + html + "</div>";
