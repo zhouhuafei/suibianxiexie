@@ -14,24 +14,24 @@
     }return s;
 })({ 1: [function (require, module, exports) {
         //移除对象引用
-        function objRemoveQuote(json) {
+        function objectRemoveQuote(json) {
             var opt = json || {};
-            var obj = opt.obj;
-            var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+            var object = opt.object;
+            var objectType = Object.prototype.toString.call(object).slice(8, -1).toLowerCase();
 
-            if (objType != 'object' && objType != 'array') {
-                return obj;
+            if (objectType != 'object' && objectType != 'array') {
+                return object;
             }
-            var newObj = {};
-            if (objType == 'array') {
-                newObj = [];
+            var newObject = {};
+            if (objectType == 'array') {
+                newObject = [];
             }
-            for (var attr in obj) {
-                if (obj.hasOwnProperty(attr)) {
-                    newObj[attr] = objRemoveQuote({ obj: obj[attr] });
+            for (var attr in object) {
+                if (object.hasOwnProperty(attr)) {
+                    newObject[attr] = objectRemoveQuote({ object: object[attr] });
                 }
             }
-            return newObj;
+            return newObject;
         }
-        module.exports = objRemoveQuote;
+        module.exports = objectRemoveQuote;
     }, {}] }, {}, [1]);

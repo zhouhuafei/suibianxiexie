@@ -22,7 +22,7 @@
                 return;
             }
             //一次上传限制几张图片
-            this.opt.limitNum = this.opt.limitNum || '5';
+            this.opt.limitNumber = this.opt.limitNumber || '5';
             //选择图片的回调
             this.opt.changeCallback = this.opt.changeCallback || function () {
                 console.log('no find changeCallback');
@@ -50,9 +50,9 @@
         };
         Fn.prototype.eventsInputChange = function () {
             var self = this;
-            var limitNum = this.opt.limitNum;
+            var limitNumber = this.opt.limitNumber;
             this.opt.input.addEventListener('change', function () {
-                var imagesNum = 0;
+                var imagesNumber = 0;
                 //图片的相关信息
                 self.imgData = [];
                 var files = this.files;
@@ -66,10 +66,10 @@
                     }
                     //是图片
                     if (isImages) {
-                        if (imagesNum < limitNum) {
+                        if (imagesNumber < limitNumber) {
                             //小于限制几张图片的数量
                             self.imgData.push(f);
-                            imagesNum++;
+                            imagesNumber++;
                         } else {//大于限制几张图片的数量
 
                         }

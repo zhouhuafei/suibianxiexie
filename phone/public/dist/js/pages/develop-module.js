@@ -26,7 +26,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             px2rem: require('../function/px2rem'), //px2rem
             userAgent: require('../function/user-agent'), //用户代理(判断是否是安卓,苹果,微信,电脑)
             arrayRemoveRepeat: require('../function/array-remove-repeat'), //数组去重
-            objRemoveQuote: require('../function/obj-remove-quote'), //移除对象引用
+            objectRemoveQuote: require('../function/object-remove-quote'), //移除对象引用
             Select: require('../function/select'), //全选,不选,反选
             offset: require('../function/offset'), //获取元素距离文档的left和top
             constructorInherit: require('../function/constructor-inherit'), //构造函数继承
@@ -37,7 +37,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             htmlToDom: require('../function/html-to-dom'), //html转成dom节点
             whetherDisableScroll: require('../function/whether-disable-scroll'), //是否禁止浏览器滚动
             WhenScrollBottom: require('../function/when-scroll-bottom'), //当滚动到底部
-            objToArray: require('../function/obj-to-array'), //把json格式的对象转成数组
+            objectToArray: require('../function/object-to-array'), //把json格式的对象转成数组
             secondsToTime: require('../function/seconds-to-time'), //秒转时间
             timeCountDown: require('../function/time-count-down'), //倒计时
             strLimit: require('../function/str-limit'), //字符串限制
@@ -46,7 +46,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/px2rem": 16, "../function/scroll-to": 17, "../function/seconds-to-time": 18, "../function/select": 19, "../function/str-limit": 20, "../function/time-count-down": 21, "../function/user-agent": 22, "../function/when-scroll-bottom": 23, "../function/whether-disable-scroll": 24 }], 2: [function (require, module, exports) {
+    }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/object-remove-quote": 13, "../function/object-to-array": 14, "../function/offset": 15, "../function/px2rem": 16, "../function/scroll-to": 17, "../function/seconds-to-time": 18, "../function/select": 19, "../function/str-limit": 20, "../function/time-count-down": 21, "../function/user-agent": 22, "../function/when-scroll-bottom": 23, "../function/whether-disable-scroll": 24 }], 2: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
 
@@ -72,8 +72,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     new base.Select({
                         items: '.g-checkbox-checkbox',
                         callback: {
-                            click: function click(obj) {
-                                console.log(obj);
+                            click: function click(object) {
+                                console.log(object);
                             }
                         }
                     });
@@ -86,19 +86,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         wrap: '.page-slide',
                         data: {
                             items: [{
-                                pic: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg',
+                                picture: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg',
                                 link: ''
                             }, {
-                                pic: 'http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg',
+                                picture: 'http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg',
                                 link: ''
                             }, {
-                                pic: 'http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg',
+                                picture: 'http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg',
                                 link: ''
                             }, {
-                                pic: 'http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg',
+                                picture: 'http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg',
                                 link: ''
                             }, {
-                                pic: 'http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg',
+                                picture: 'http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg',
                                 link: ''
                             }]
                         }
@@ -189,8 +189,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     new Radio({
                         wrap: '.page-radio-switch',
                         callback: {
-                            click: function click(obj) {
-                                console.log(obj);
+                            click: function click(object) {
+                                console.log(object);
                             }
                         }
                     });
@@ -290,7 +290,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         module.exports = arrayRemoveRepeat;
     }, {}], 5: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
-        var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
+        var objectRemoveQuote = require('../function/object-remove-quote'); //对象移除引用
 
         //构造函数的继承(拷贝继承)
         function constructorInherit(json) {
@@ -317,15 +317,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                  * 注意:
                  * defaults要防止对象的引用(如果不防止的话,会出现BUG)
                  * 例如 wrap的默认值是'.g-wrap'
-                 * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
-                 * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
+                 * 第一次   var object1=new Sub({wrap:'body'});   wrap的值是'body'
+                 * 第二次   var object2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
                  * 但是由于对象引用的原因,这里的值会变成'body'
                  * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
                  * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
                  * 所以我就封装了一个移除对象引用的函数
                  * */
                 this.opt = extend({
-                    defaults: objRemoveQuote({ obj: parameter }),
+                    defaults: objectRemoveQuote({ object: parameter }),
                     inherits: json
                 });
                 //子类型继承超类型的属性
@@ -341,7 +341,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             return SubType;
         }
         module.exports = constructorInherit;
-    }, { "../function/extend": 8, "../function/obj-remove-quote": 13 }], 6: [function (require, module, exports) {
+    }, { "../function/extend": 8, "../function/object-remove-quote": 13 }], 6: [function (require, module, exports) {
         //设置cookie
         function setCookie(json) {
             var opt = json || {};
@@ -375,12 +375,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             var name = opt.name;
             setCookie(name, '', -1);
         }
-        var obj = {
+        var object = {
             setCookie: setCookie,
             getCookie: getCookie,
             removeCookie: removeCookie
         };
-        module.exports = obj;
+        module.exports = object;
     }, {}], 7: [function (require, module, exports) {
         //创建元素节点
         function createElement(json) {
@@ -444,7 +444,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }
             return opt.defaults;
         }
-        // var obj1 = extend({
+        // var object1 = extend({
         //     defaults: {
         //         a: 'a',
         //         b: {
@@ -465,8 +465,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //         }
         //     }
         // });
-        // console.log(obj1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
-        // var obj2 = extend({
+        // console.log(object1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
+        // var object2 = extend({
         //     defaults: {
         //         a: [
         //             0,
@@ -506,7 +506,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //         ]
         //     }
         // });
-        // console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
+        // console.log(object2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
         module.exports = extend;
     }, {}], 9: [function (require, module, exports) {
         //对象的扩展方法
@@ -516,15 +516,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         function fillZero(json) {
             var opt = extend({
                 defaults: {
-                    num: null
+                    number: 0
                 },
                 inherits: json
             });
-            var num = opt.num;
-            if (num < 10) {
-                return '0' + num;
+            var number = opt.number;
+            if (number < 10) {
+                return '0' + number;
             } else {
-                return '' + num;
+                return '' + number;
             }
         }
         module.exports = fillZero;
@@ -564,58 +564,58 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //获取指定父级
         function getParent(json) {
             var opt = json || {};
-            var obj = opt.obj;
+            var object = opt.object;
             var selector = opt.selector;
-            if (!obj) {
+            if (!object) {
                 //第一参数不符合规范
                 console.log('参数错误,第一参数需要一个元素节点对象');
                 return null;
             }
             if (!selector) {
                 //没有第二参数默认选取直接父级
-                return obj.parentNode;
+                return object.parentNode;
             } else if (typeof selector == 'string') {
-                obj = obj.parentNode;
+                object = object.parentNode;
                 switch (selector.charAt(0)) {
                     case '.':
                         //通过class获取父级
-                        while (obj) {
-                            if (!obj.classList) {
+                        while (object) {
+                            if (!object.classList) {
                                 console.log('no find class');
                                 return null;
                             }
-                            if (obj.classList.contains(selector.substring(1))) {
-                                return obj;
+                            if (object.classList.contains(selector.substring(1))) {
+                                return object;
                             } else {
-                                obj = obj.parentNode;
+                                object = object.parentNode;
                             }
                         }
                         break;
                     case '#':
                         //通过id获取父级
-                        while (obj) {
-                            if (obj == document) {
+                        while (object) {
+                            if (object == document) {
                                 console.log('no find id');
                                 return null;
                             }
-                            if (obj.id == selector.substring(1)) {
-                                return obj;
+                            if (object.id == selector.substring(1)) {
+                                return object;
                             } else {
-                                obj = obj.parentNode;
+                                object = object.parentNode;
                             }
                         }
                         break;
                     default:
                         //通过标签名获取父级
-                        while (obj) {
-                            if (obj == document) {
+                        while (object) {
+                            if (object == document) {
                                 console.log('no find tagName');
                                 return null;
                             }
-                            if (obj.tagName.toLowerCase() == selector) {
-                                return obj;
+                            if (object.tagName.toLowerCase() == selector) {
+                                return object;
                             } else {
-                                obj = obj.parentNode;
+                                object = object.parentNode;
                             }
                         }
                         break;
@@ -635,46 +635,46 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         module.exports = htmlToDom;
     }, {}], 13: [function (require, module, exports) {
         //移除对象引用
-        function objRemoveQuote(json) {
+        function objectRemoveQuote(json) {
             var opt = json || {};
-            var obj = opt.obj;
-            var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+            var object = opt.object;
+            var objectType = Object.prototype.toString.call(object).slice(8, -1).toLowerCase();
 
-            if (objType != 'object' && objType != 'array') {
-                return obj;
+            if (objectType != 'object' && objectType != 'array') {
+                return object;
             }
-            var newObj = {};
-            if (objType == 'array') {
-                newObj = [];
+            var newObject = {};
+            if (objectType == 'array') {
+                newObject = [];
             }
-            for (var attr in obj) {
-                if (obj.hasOwnProperty(attr)) {
-                    newObj[attr] = objRemoveQuote({ obj: obj[attr] });
+            for (var attr in object) {
+                if (object.hasOwnProperty(attr)) {
+                    newObject[attr] = objectRemoveQuote({ object: object[attr] });
                 }
             }
-            return newObj;
+            return newObject;
         }
-        module.exports = objRemoveQuote;
+        module.exports = objectRemoveQuote;
     }, {}], 14: [function (require, module, exports) {
         //把json格式的对象转成数组
-        function objToArray(json) {
+        function objectToArray(json) {
             var opt = json || {};
-            var obj = opt.obj;
+            var object = opt.object;
             var arr = [];
-            if (obj instanceof Array) {
-                obj.forEach(function (v, i) {
+            if (object instanceof Array) {
+                object.forEach(function (v, i) {
                     arr.push([i, v]);
                 });
             } else {
-                for (var attr in obj) {
-                    if (obj.hasOwnProperty(attr)) {
-                        arr.push({ key: attr, value: obj[attr] });
+                for (var attr in object) {
+                    if (object.hasOwnProperty(attr)) {
+                        arr.push({ key: attr, value: object[attr] });
                     }
                 }
             }
             return arr;
         }
-        module.exports = objToArray;
+        module.exports = objectToArray;
     }, {}], 15: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展
         var getDomArray = require('../function/get-dom-array'); //获取一组dom节点
@@ -689,11 +689,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
             var top = 0;
             var left = 0;
-            var obj = getDomArray({ element: opt.element })[0];
-            while (obj) {
-                top += obj.offsetTop;
-                left += obj.offsetLeft;
-                obj = obj.offsetParent;
+            var object = getDomArray({ element: opt.element })[0];
+            while (object) {
+                top += object.offsetTop;
+                left += object.offsetLeft;
+                object = object.offsetParent;
             }
             return {
                 top: top,
@@ -1675,12 +1675,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //默认数据
         var defaultData = {
-            dataNowNum: 10, //当前页的数据条数
-            dataAllNum: 100, //所有数据的总条数
-            pageNowNum: 1, //当前页码
-            pageAllNum: null //总页码
+            dataNowNumber: 10, //当前页的数据条数
+            dataAllNumber: 100, //所有数据的总条数
+            pageNowNumber: 1, //当前页码
+            pageAllNumber: null //总页码
         };
-        defaultData.pageAllNum = Math.ceil(defaultData.dataAllNum / defaultData.dataNowNum);
+        defaultData.pageAllNumber = Math.ceil(defaultData.dataAllNumber / defaultData.dataNowNumber);
 
         //子类型
         var SubType = base.constructorInherit({
@@ -1722,7 +1722,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //渲染第几页里面的页码
         SubType.prototype.renderOption = function () {
             var html = "";
-            for (var i = 0; i < this.opt.data.pageAllNum; i++) {
+            for (var i = 0; i < this.opt.data.pageAllNumber; i++) {
                 html += "<option value=\"" + (i + 1) + "\">" + (i + 1) + "</option>";
             }
             return html;
@@ -1732,10 +1732,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         SubType.prototype.power = function () {
             var self = this;
             var data = this.opt.data;
-            if (data.pageNowNum == 1) {
+            if (data.pageNowNumber == 1) {
                 this.prevPageDisable();
             }
-            if (data.pageNowNum == data.pageAllNum) {
+            if (data.pageNowNumber == data.pageAllNumber) {
                 this.nextPageDisable();
             }
 
@@ -1759,8 +1759,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //上一页
         SubType.prototype.prevPage = function () {
             var data = this.opt.data;
-            if (data.pageNowNum > 1) {
-                data.pageNowNum--;
+            if (data.pageNowNumber > 1) {
+                data.pageNowNumber--;
                 var oldChecked = this.selectDom.querySelector('option:checked');
                 if (oldChecked.previousElementSibling) {
                     oldChecked.selected = false;
@@ -1769,7 +1769,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 this.nextPageEnable();
                 this.opt.callback.prevPage(this);
             }
-            if (data.pageNowNum == 1) {
+            if (data.pageNowNumber == 1) {
                 this.prevPageDisable();
             }
             console.log(data);
@@ -1778,8 +1778,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //下一页
         SubType.prototype.nextPage = function () {
             var data = this.opt.data;
-            if (data.pageNowNum < data.pageAllNum) {
-                data.pageNowNum++;
+            if (data.pageNowNumber < data.pageAllNumber) {
+                data.pageNowNumber++;
                 var oldChecked = this.selectDom.querySelector('option:checked');
                 if (oldChecked.nextElementSibling) {
                     oldChecked.selected = false;
@@ -1788,7 +1788,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 this.prevPageEnable();
                 this.opt.callback.nextPage(this);
             }
-            if (data.pageNowNum == data.pageAllNum) {
+            if (data.pageNowNumber == data.pageAllNumber) {
                 this.nextPageDisable();
             }
             console.log(data);
@@ -1797,13 +1797,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //选择第几页
         SubType.prototype.selectPage = function () {
             var data = this.opt.data;
-            data.pageNowNum = this.selectDom.value;
+            data.pageNowNumber = this.selectDom.value;
             this.nextPageEnable();
             this.prevPageEnable();
-            if (data.pageNowNum == 1) {
+            if (data.pageNowNumber == 1) {
                 this.prevPageDisable();
             }
-            if (data.pageNowNum == data.pageAllNum) {
+            if (data.pageNowNumber == data.pageAllNumber) {
                 this.nextPageDisable();
             }
             this.opt.callback.selectPage(this);
@@ -1958,7 +1958,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 //数据
                 data: {
                     items: [{
-                        pic: '',
+                        picture: '',
                         link: ''
                     }]
                 }
@@ -1997,9 +1997,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             var data = self.opt.data;
             data.items.forEach(function (v) {
                 if (self.opt.config.isShowHref) {
-                    html += "<a href=\"" + (v.link || 'javascript:;') + "\" class=\"m-slide-items\" data-src=\"" + v.pic + "\"></a>";
+                    html += "<a href=\"" + (v.link || 'javascript:;') + "\" class=\"m-slide-items\" data-src=\"" + v.picture + "\"></a>";
                 } else {
-                    html += "<a class=\"m-slide-items\" data-src=\"" + v.pic + "\"></a>";
+                    html += "<a class=\"m-slide-items\" data-src=\"" + v.picture + "\"></a>";
                 }
             });
             return "<div class=\"m-slide-body\">" + html + "</div>";
@@ -2047,7 +2047,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             parameter: {
                 //回调
                 callback: {
-                    click: function click(obj) {}
+                    click: function click(object) {}
                 },
                 //配置
                 config: {
@@ -2055,8 +2055,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 },
                 //数据
                 data: {
-                    allStarNum: 5,
-                    nowStarNum: 4
+                    allStarNumber: 5,
+                    nowStarNumber: 4
                 }
             }
         });
@@ -2064,12 +2064,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             var html = "";
-            for (var i = 0; i < this.opt.data.allStarNum; i++) {
+            for (var i = 0; i < this.opt.data.allStarNumber; i++) {
                 var className = '';
-                if (i < this.opt.data.nowStarNum) {
-                    className = 'm-star-item-active';
+                if (i < this.opt.data.nowStarNumber) {
+                    className = 'm-star-items-active';
                 }
-                html += "<div data-index=\"" + i + "\" class=\"iconfont icon-xingping m-star-item " + className + "\"></div>";
+                html += "<div data-index=\"" + i + "\" class=\"iconfont icon-xingping m-star-items " + className + "\"></div>";
             }
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleDomStyle,
@@ -2088,13 +2088,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             if (this.opt.config.isHaveEvent) {
                 this.moduleDom.addEventListener('click', function (ev) {
                     var target = ev.target;
-                    if (target.classList.contains('m-star-item')) {
+                    if (target.classList.contains('m-star-items')) {
                         var index = target.dataset.index;
-                        for (var j = 0; j < self.opt.data.allStarNum; j++) {
+                        for (var j = 0; j < self.opt.data.allStarNumber; j++) {
                             if (j <= index) {
-                                self.opt.star[j].classList.add('m-star-item-active');
+                                self.opt.star[j].classList.add('m-star-items-active');
                             } else {
-                                self.opt.star[j].classList.remove('m-star-item-active');
+                                self.opt.star[j].classList.remove('m-star-items-active');
                             }
                         }
                         self.opt.callback.click({ element: this, index: index });

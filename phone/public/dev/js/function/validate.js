@@ -51,9 +51,9 @@ var validate = {
             };
         var value = opt.value || " ";
         var valueTrim = value.trim();
-        var re = /^\d+$/;
+        var reg = /^\d+$/;
         var b = false;
-        if (re.test(valueTrim)) {
+        if (reg.test(valueTrim)) {
             b = true;
             success();
         } else {
@@ -61,7 +61,7 @@ var validate = {
         }
         return b;
     },
-    //是不是保留了num位小数点
+    //是不是保留了number位小数点
     isReservedDecimal: function (json) {
         var opt = json || {};
         var success = opt.success || function () {
@@ -70,12 +70,12 @@ var validate = {
         var fail = opt.fail || function () {
                 console.log('no find fail callback');
             };
-        var num = opt.num || 2;
+        var number = opt.number || 2;
         var value = opt.value || " ";
         var valueTrim = value.trim();
-        var re = new RegExp("^\\d+\\.\\d{" + num + "}$");
+        var reg = new RegExp("^\\d+\\.\\d{" + number + "}$");
         var b = false;
-        if (re.test(valueTrim)) {
+        if (reg.test(valueTrim)) {
             b = true;
             success();
         } else {

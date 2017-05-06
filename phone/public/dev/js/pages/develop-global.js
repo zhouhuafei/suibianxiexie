@@ -1,6 +1,20 @@
 window.addEventListener('load', function () {
     setTimeout(function () {
 
+        //base函数测试
+        (function () {
+            var base = require('../base/base');
+            //测试全选
+            new base.Select({
+                items: '.g-checkbox-checkbox',
+                callback: {
+                    click: function (object) {
+                        console.log(object);
+                    }
+                }
+            });
+        })();
+
         //验证
         (function () {
             const ValidateInput = require('../modules/m-validate-form');

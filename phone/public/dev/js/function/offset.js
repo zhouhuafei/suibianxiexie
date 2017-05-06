@@ -11,11 +11,11 @@ function offset(json) {
     });
     var top = 0;
     var left = 0;
-    var obj = getDomArray({element:opt.element})[0];
-    while (obj) {
-        top += obj.offsetTop;
-        left += obj.offsetLeft;
-        obj = obj.offsetParent;
+    var object = getDomArray({element:opt.element})[0];
+    while (object) {
+        top += object.offsetTop;
+        left += object.offsetLeft;
+        object = object.offsetParent;
     }
     return {
         top: top,

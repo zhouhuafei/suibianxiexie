@@ -46,10 +46,10 @@
             var name = opt.name;
             setCookie(name, '', -1);
         }
-        var obj = {
+        var object = {
             setCookie: setCookie,
             getCookie: getCookie,
             removeCookie: removeCookie
         };
-        module.exports = obj;
+        module.exports = object;
     }, {}] }, {}, [1]);

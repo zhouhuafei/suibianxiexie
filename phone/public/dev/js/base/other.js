@@ -1,7 +1,7 @@
 function dataSrcHandle(json){
-    var returnObj={};
+    var returnObject={};
     if(!json.image){
-        return returnObj;
+        return returnObject;
     }
     var webp='';
     if(base.utils.isAndroid()){webp=`format/webp`;}
@@ -20,11 +20,11 @@ function dataSrcHandle(json){
     var search=image.dataset.src.match(rule);
     if(search){
         //image.dataset.src=image.dataset.src.replace(rule,replace);
-returnObj.src=image.dataset.src.replace(rule,replace);
+returnObject.src=image.dataset.src.replace(rule,replace);
     }else{
         if(opt.isPinjie){
             //image.dataset.src=image.dataset.src+replace;
-    returnObj.src=image.dataset.src+replace;
+    returnObject.src=image.dataset.src+replace;
         }
     }
 }
@@ -32,7 +32,7 @@ returnObj.src=image.dataset.src.replace(rule,replace);
 
 function uploadImg() {
     var oF = document.querySelector('#fileField');
-    var num = 0;
+    var number = 0;
     var limit = 5;
     var box = $('.file-box');
     var input = box.find('.file-label.file-input');
@@ -40,16 +40,16 @@ function uploadImg() {
     //添加
     var fn = new Fn({
         input: oF,
-        limitNum: 5,
+        limitNumber: 5,
         base64Callback: function (opt) {
             //console.log(opt);
             //console.log(opt.base64);
             //console.log(opt.index);
-            if (num < limit) {
-                var img = $('<div data-index="' + num + '" class="file-label file-img"><div class="label"><img src="' + opt.base64 + '" alt=""></div></div>');
+            if (number < limit) {
+                var img = $('<div data-index="' + number + '" class="file-label file-img"><div class="label"><img src="' + opt.base64 + '" alt=""></div></div>');
                 img.insertBefore(input);
                 file.push(fn.imgData[opt.index]);
-                num++;
+                number++;
                 //上传图片(这一部分可以再封装一次)
                 var oFormData = new FormData();
                 oFormData.append('files', fn.imgData[opt.index]);
@@ -65,7 +65,7 @@ function uploadImg() {
                     }
                 }
             }
-            if (num >= limit) {
+            if (number >= limit) {
                 input.addClass('file-input-hide');
             }
         }
@@ -79,7 +79,7 @@ function uploadImg() {
                 $this.remove();
                 input.removeClass('file-input-hide');
                 file.splice(index, 1);
-                num--;
+                number--;
                 //popup.alert({contentInfo:'删除成功'});
                 //console.log(file);
             }
@@ -87,22 +87,22 @@ function uploadImg() {
     });
 }
 
-function touchLeft(obj, iWidth) {
-    if (!obj) {
+function touchLeft(object, iWidth) {
+    if (!object) {
         return false;
     }
     var startPosition, endPosition, iTarget, iLeft;
 
-    obj.on('touchstart', function (e) {
+    object.on('touchstart', function (e) {
         var touch = e.touches[0];
         startPosition = {
             x: touch.pageX,
             y: touch.pageY
         };
-        iLeft = obj.position().left;
+        iLeft = object.position().left;
     });
 
-    obj.on('touchmove', function (e) {
+    object.on('touchmove', function (e) {
         var touch = e.touches[0];
         endPosition = {
             x: touch.pageX,
@@ -112,10 +112,10 @@ function touchLeft(obj, iWidth) {
             x: endPosition.x - startPosition.x + iLeft,
             y: endPosition.y - startPosition.y
         };
-        obj.css({'left': (iTarget.x > 0 ? 0 : iTarget.x)});
+        object.css({'left': (iTarget.x > 0 ? 0 : iTarget.x)});
     });
 
-    obj.on('touchend', function () {
-        obj.css({'left': (Math.abs(obj.position().left) > iWidth / 2 ? -iWidth : 0)});
+    object.on('touchend', function () {
+        object.css({'left': (Math.abs(object.position().left) > iWidth / 2 ? -iWidth : 0)});
     });
 }

@@ -14,7 +14,7 @@
     }return s;
 })({ 1: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
-        var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
+        var objectRemoveQuote = require('../function/object-remove-quote'); //对象移除引用
 
         //构造函数的继承(拷贝继承)
         function constructorInherit(json) {
@@ -41,15 +41,15 @@
                  * 注意:
                  * defaults要防止对象的引用(如果不防止的话,会出现BUG)
                  * 例如 wrap的默认值是'.g-wrap'
-                 * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
-                 * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
+                 * 第一次   var object1=new Sub({wrap:'body'});   wrap的值是'body'
+                 * 第二次   var object2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
                  * 但是由于对象引用的原因,这里的值会变成'body'
                  * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
                  * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
                  * 所以我就封装了一个移除对象引用的函数
                  * */
                 this.opt = extend({
-                    defaults: objRemoveQuote({ obj: parameter }),
+                    defaults: objectRemoveQuote({ object: parameter }),
                     inherits: json
                 });
                 //子类型继承超类型的属性
@@ -65,7 +65,7 @@
             return SubType;
         }
         module.exports = constructorInherit;
-    }, { "../function/extend": 2, "../function/obj-remove-quote": 3 }], 2: [function (require, module, exports) {
+    }, { "../function/extend": 2, "../function/object-remove-quote": 3 }], 2: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opt = json || {};
@@ -103,7 +103,7 @@
             }
             return opt.defaults;
         }
-        // var obj1 = extend({
+        // var object1 = extend({
         //     defaults: {
         //         a: 'a',
         //         b: {
@@ -124,8 +124,8 @@
         //         }
         //     }
         // });
-        // console.log(obj1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
-        // var obj2 = extend({
+        // console.log(object1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
+        // var object2 = extend({
         //     defaults: {
         //         a: [
         //             0,
@@ -165,28 +165,28 @@
         //         ]
         //     }
         // });
-        // console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
+        // console.log(object2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
         module.exports = extend;
     }, {}], 3: [function (require, module, exports) {
         //移除对象引用
-        function objRemoveQuote(json) {
+        function objectRemoveQuote(json) {
             var opt = json || {};
-            var obj = opt.obj;
-            var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+            var object = opt.object;
+            var objectType = Object.prototype.toString.call(object).slice(8, -1).toLowerCase();
 
-            if (objType != 'object' && objType != 'array') {
-                return obj;
+            if (objectType != 'object' && objectType != 'array') {
+                return object;
             }
-            var newObj = {};
-            if (objType == 'array') {
-                newObj = [];
+            var newObject = {};
+            if (objectType == 'array') {
+                newObject = [];
             }
-            for (var attr in obj) {
-                if (obj.hasOwnProperty(attr)) {
-                    newObj[attr] = objRemoveQuote({ obj: obj[attr] });
+            for (var attr in object) {
+                if (object.hasOwnProperty(attr)) {
+                    newObject[attr] = objectRemoveQuote({ object: object[attr] });
                 }
             }
-            return newObj;
+            return newObject;
         }
-        module.exports = objRemoveQuote;
+        module.exports = objectRemoveQuote;
     }, {}] }, {}, [1]);

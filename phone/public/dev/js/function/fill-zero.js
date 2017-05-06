@@ -5,15 +5,15 @@ var extend=require('../function/extend');
 function fillZero(json) {
     var opt=extend({
         defaults:{
-            num:null
+            number:0
         },
         inherits:json
     });
-    var num = opt.num;
-    if (num < 10) {
-        return '0' + num;
+    var number = opt.number;
+    if (number < 10) {
+        return '0' + number;
     } else {
-        return '' + num;
+        return '' + number;
     }
 }
 module.exports = fillZero;

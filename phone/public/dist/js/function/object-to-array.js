@@ -14,22 +14,22 @@
     }return s;
 })({ 1: [function (require, module, exports) {
         //把json格式的对象转成数组
-        function objToArray(json) {
+        function objectToArray(json) {
             var opt = json || {};
-            var obj = opt.obj;
+            var object = opt.object;
             var arr = [];
-            if (obj instanceof Array) {
-                obj.forEach(function (v, i) {
+            if (object instanceof Array) {
+                object.forEach(function (v, i) {
                     arr.push([i, v]);
                 });
             } else {
-                for (var attr in obj) {
-                    if (obj.hasOwnProperty(attr)) {
-                        arr.push({ key: attr, value: obj[attr] });
+                for (var attr in object) {
+                    if (object.hasOwnProperty(attr)) {
+                        arr.push({ key: attr, value: object[attr] });
                     }
                 }
             }
             return arr;
         }
-        module.exports = objToArray;
+        module.exports = objectToArray;
     }, {}] }, {}, [1]);

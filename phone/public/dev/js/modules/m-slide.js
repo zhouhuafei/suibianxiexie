@@ -39,7 +39,7 @@ var SubType = base.constructorInherit({
         data: {
             items: [
                 {
-                    pic: '',
+                    picture: '',
                     link: ''
                 }
             ]
@@ -82,9 +82,9 @@ SubType.prototype.renderBody = function () {
     var data = self.opt.data;
     data.items.forEach(function (v) {
         if (self.opt.config.isShowHref) {
-            html += `<a href="${v.link || 'javascript:;'}" class="m-slide-items" data-src="${v.pic}"></a>`;
+            html += `<a href="${v.link || 'javascript:;'}" class="m-slide-items" data-src="${v.picture}"></a>`;
         } else {
-            html += `<a class="m-slide-items" data-src="${v.pic}"></a>`;
+            html += `<a class="m-slide-items" data-src="${v.picture}"></a>`;
         }
     });
     return `<div class="m-slide-body">${html}</div>`;

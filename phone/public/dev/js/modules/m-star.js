@@ -11,7 +11,7 @@ var SubType = base.constructorInherit({
     parameter: {
         //回调
         callback: {
-            click: function (obj) {
+            click: function (object) {
             }
         },
         //配置
@@ -20,8 +20,8 @@ var SubType = base.constructorInherit({
         },
         //数据
         data: {
-            allStarNum: 5,
-            nowStarNum: 4
+            allStarNumber: 5,
+            nowStarNumber: 4
         }
     }
 });
@@ -29,12 +29,12 @@ var SubType = base.constructorInherit({
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     var html = ``;
-    for (var i = 0; i < this.opt.data.allStarNum; i++) {
+    for (var i = 0; i < this.opt.data.allStarNumber; i++) {
         var className = '';
-        if (i < this.opt.data.nowStarNum) {
-            className = 'm-star-item-active';
+        if (i < this.opt.data.nowStarNumber) {
+            className = 'm-star-items-active';
         }
-        html += `<div data-index="${i}" class="iconfont icon-xingping m-star-item ${className}"></div>`;
+        html += `<div data-index="${i}" class="iconfont icon-xingping m-star-items ${className}"></div>`;
     }
     this.moduleDom = base.createElement({
         style: this.opt.config.moduleDomStyle,
@@ -53,13 +53,13 @@ SubType.prototype.power = function () {
     if (this.opt.config.isHaveEvent) {
         this.moduleDom.addEventListener('click', function (ev) {
             var target = ev.target;
-            if (target.classList.contains('m-star-item')) {
+            if (target.classList.contains('m-star-items')) {
                 var index = target.dataset.index;
-                for (var j = 0; j < self.opt.data.allStarNum; j++) {
+                for (var j = 0; j < self.opt.data.allStarNumber; j++) {
                     if (j <= index) {
-                        self.opt.star[j].classList.add('m-star-item-active');
+                        self.opt.star[j].classList.add('m-star-items-active');
                     } else {
-                        self.opt.star[j].classList.remove('m-star-item-active');
+                        self.opt.star[j].classList.remove('m-star-items-active');
                     }
                 }
                 self.opt.callback.click({element: this, index: index});
