@@ -56,8 +56,8 @@
                 config: {},
                 //数据
                 data: {
-                    header: [{ html: 'undefined-header0' }, { html: 'undefined-header1' }, { html: 'undefined-header2' }],
-                    body: [[{ html: 'undefined-body0-0' }, { html: 'undefined-body0-1' }, { html: 'undefined-body0-2' }] /*, [{html: 'undefined-body1-0'}, {html: 'undefined-body1-1'}, {html: 'undefined-body1-2'}]*/],
+                    header: [{ content: 'undefined-header0' }, { content: 'undefined-header1' }, { content: 'undefined-header2' }],
+                    body: [[{ content: 'undefined-body0-0' }, { content: 'undefined-body0-1' }, { content: 'undefined-body0-2' }]],
                     footer: ''
                 }
             }
@@ -78,7 +78,7 @@
         SubType.prototype.moduleDomCreateHeader = function () {
             var html = "";
             this.opt.data.header.forEach(function (v) {
-                html += "\n            <div class=\"m-table-col\">\n                <div class=\"m-table-col-wrap\">\n                    " + v.html + "\n                </div>\n            </div>\n        ";
+                html += "\n            <div class=\"m-table-col\">\n                <div class=\"m-table-col-wrap\">\n                    " + v.content + "\n                </div>\n            </div>\n        ";
             });
             return html;
         };
@@ -88,7 +88,7 @@
             this.opt.data.body.forEach(function (v0) {
                 var row = "";
                 v0.forEach(function (v1) {
-                    row += "\n                <div class=\"m-table-col\">\n                    <div class=\"m-table-col-wrap\">\n                        " + v1.html + "\n                    </div>\n                </div>\n            ";
+                    row += "\n                <div class=\"m-table-col\">\n                    <div class=\"m-table-col-wrap\">\n                        " + v1.content + "\n                    </div>\n                </div>\n            ";
                 });
                 html += "<div class=\"m-table-row\">" + row + "</div>";
             });

@@ -24,7 +24,7 @@ var SubType = base.constructorInherit({
             button: {
                 icon: 'icon-shouye',
                 text: '回首页',
-                href: '/'
+                link: '/'
             }
         }
     }
@@ -45,7 +45,7 @@ SubType.prototype.moduleDomCreate = function () {
             innerHTML: `
                 <div class="m-no-data-icon iconfont ${data.icon}"></div>
                 <div class="m-no-data-text">${data.text}</div>
-                <a class="m-no-data-button g-button g-button-confirm" href="${data.button.href}">
+                <a class="m-no-data-button g-button g-button-confirm" href="${data.button.link}">
                     ${buttonIconHtml}
                     <div class="g-button-text">${data.button.text}</div>
                 </a>

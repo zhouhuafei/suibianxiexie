@@ -57,27 +57,27 @@
                 //数据
                 data: {
                     items: [{
-                        href: '/',
+                        link: '/',
                         icon: 'icon-shouye',
                         text: '首页',
                         mark: ''
                     }, {
-                        href: '/mine',
+                        link: '/mine',
                         icon: 'icon-wode',
                         text: '我的',
                         mark: ''
                     }, {
-                        href: '/develop-global',
+                        link: '/develop-global',
                         icon: 'icon-kaifa',
                         text: 'g-global',
                         mark: ''
                     }, {
-                        href: '/develop-module',
+                        link: '/develop-module',
                         icon: 'icon-kaifa',
                         text: 'm-module',
                         mark: ''
                     }, {
-                        href: '/develop-word',
+                        link: '/develop-word',
                         icon: 'icon-kaifa',
                         text: '标准词汇',
                         mark: ''
@@ -96,7 +96,7 @@
                 if (v.mark) {
                     markHtml = "<div class=\"m-navigation-mark\">" + v.mark + "</div>";
                 }
-                html += "\n            <a href=\"" + v.href + "\" class=\"m-navigation-wrap\">\n                <div class=\"m-navigation-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-navigation-text\">" + v.text + "</div>\n                " + markHtml + "\n            </a>\n        ";
+                html += "\n            <a href=\"" + v.link + "\" class=\"m-navigation-wrap\">\n                <div class=\"m-navigation-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-navigation-text\">" + v.text + "</div>\n                " + markHtml + "\n            </a>\n        ";
             });
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleDomStyle,

@@ -46,7 +46,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/px2rem": 16, "../function/scroll-to": 17, "../function/seconds-to-time": 18, "../function/select": 19, "../function/str-limit": 20, "../function/time-count-down": 21, "../function/user-agent": 22, "../function/when-scroll-bottom": 24, "../function/whether-disable-scroll": 25 }], 2: [function (require, module, exports) {
+    }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/px2rem": 16, "../function/scroll-to": 17, "../function/seconds-to-time": 18, "../function/select": 19, "../function/str-limit": 20, "../function/time-count-down": 21, "../function/user-agent": 22, "../function/when-scroll-bottom": 23, "../function/whether-disable-scroll": 24 }], 2: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
 
@@ -86,20 +86,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         wrap: '.page-slide',
                         data: {
                             items: [{
-                                src: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg',
-                                href: ''
+                                pic: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg',
+                                link: ''
                             }, {
-                                src: 'http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg',
-                                href: ''
+                                pic: 'http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg',
+                                link: ''
                             }, {
-                                src: 'http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg',
-                                href: ''
+                                pic: 'http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg',
+                                link: ''
                             }, {
-                                src: 'http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg',
-                                href: ''
+                                pic: 'http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg',
+                                link: ''
                             }, {
-                                src: 'http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg',
-                                href: ''
+                                pic: 'http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg',
+                                link: ''
                             }]
                         }
                     });
@@ -203,42 +203,33 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         wrap: ".page-table",
                         data: {
                             header: [{
-                                html: "<div>header0</div>"
+                                content: "<div>header0</div>"
                             }, {
-                                html: "<div>header1</div>"
+                                content: "<div>header1</div>"
                             }, {
-                                html: "<div>header2</div>"
+                                content: "<div>header2</div>"
                             }],
                             body: [[{
-                                html: "<div>body0-0</div>"
+                                content: "<div>body0-0</div>"
                             }, {
-                                html: "<div>body1-0</div>"
+                                content: "<div>body1-0</div>"
                             }, {
-                                html: "<div>body2-0</div>"
+                                content: "<div>body2-0</div>"
                             }], [{
-                                html: "<div>body0-1</div>"
+                                content: "<div>body0-1</div>"
                             }, {
-                                html: "<div>body1-1</div>"
+                                content: "<div>body1-1</div>"
                             }, {
-                                html: "<div>body2-1</div>"
+                                content: "<div>body2-1</div>"
                             }], [{
-                                html: "<div>body0-2</div>"
+                                content: "<div>body0-2</div>"
                             }, {
-                                html: "<div>body1-2</div>"
+                                content: "<div>body1-2</div>"
                             }, {
-                                html: "<div>body2-2</div>"
+                                content: "<div>body2-2</div>"
                             }]],
                             footer: ""
                         }
-                    });
-                })();
-
-                //验证
-                (function () {
-                    var ValidateInput = require('../modules/m-validate-form');
-                    var aInput = [].slice.call(document.querySelectorAll('.m-validate-form'));
-                    aInput.forEach(function (v) {
-                        new ValidateInput({ element: v });
                     });
                 })();
 
@@ -258,7 +249,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../base/base": 1, "../commons/common": 3, "../modules/m-dialog": 27, "../modules/m-go-top": 29, "../modules/m-loading": 31, "../modules/m-mask": 32, "../modules/m-navigation": 33, "../modules/m-no-data": 34, "../modules/m-pagination": 35, "../modules/m-radio-switch": 36, "../modules/m-slide": 37, "../modules/m-star": 38, "../modules/m-sub-type": 40, "../modules/m-sub-type-es6": 39, "../modules/m-super-type": 42, "../modules/m-super-type-es6": 41, "../modules/m-table": 43, "../modules/m-validate-form": 44 }], 3: [function (require, module, exports) {
+    }, { "../base/base": 1, "../commons/common": 3, "../modules/m-dialog": 26, "../modules/m-go-top": 28, "../modules/m-loading": 30, "../modules/m-mask": 31, "../modules/m-navigation": 32, "../modules/m-no-data": 33, "../modules/m-pagination": 34, "../modules/m-radio-switch": 35, "../modules/m-slide": 36, "../modules/m-star": 37, "../modules/m-sub-type": 39, "../modules/m-sub-type-es6": 38, "../modules/m-super-type": 41, "../modules/m-super-type-es6": 40, "../modules/m-table": 42 }], 3: [function (require, module, exports) {
         //版权
         (function () {
             if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
@@ -280,7 +271,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             var LazyLoad = require('../modules/m-lazy-load');
             new LazyLoad();
         })();
-    }, { "../modules/m-copyright": 26, "../modules/m-footer-nav": 28, "../modules/m-lazy-load": 30 }], 4: [function (require, module, exports) {
+    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 27, "../modules/m-lazy-load": 29 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -904,94 +895,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         module.exports.isIphone = isIphone;
         module.exports.isAndroid = isAndroid;
     }, {}], 23: [function (require, module, exports) {
-        //验证
-        var validate = {
-            //是不是空
-            isSpace: function isSpace(json) {
-                var opt = json || {};
-                var success = opt.success || function () {
-                    console.log('no find success callback');
-                };
-                var fail = opt.fail || function () {
-                    console.log('no find fail callback');
-                };
-                var value = opt.value || " ";
-                var valueTrim = value.trim();
-                var b = false;
-                if (valueTrim == '') {
-                    b = true;
-                    success();
-                } else {
-                    fail();
-                }
-                return b;
-            },
-            //是不是0
-            isZero: function isZero(json) {
-                var opt = json || {};
-                var success = opt.success || function () {
-                    console.log('no find success callback');
-                };
-                var fail = opt.fail || function () {
-                    console.log('no find fail callback');
-                };
-                var value = opt.value || " ";
-                var valueTrim = value.trim();
-                var b = false;
-                if (valueTrim == 0) {
-                    b = true;
-                    success();
-                } else {
-                    fail();
-                }
-                return b;
-            },
-            //是不是整数(包含0)
-            isInteger: function isInteger(json) {
-                var opt = json || {};
-                var success = opt.success || function () {
-                    console.log('no find success callback');
-                };
-                var fail = opt.fail || function () {
-                    console.log('no find fail callback');
-                };
-                var value = opt.value || " ";
-                var valueTrim = value.trim();
-                var re = /^\d+$/;
-                var b = false;
-                if (re.test(valueTrim)) {
-                    b = true;
-                    success();
-                } else {
-                    fail();
-                }
-                return b;
-            },
-            //是不是保留了num位小数点
-            isReservedDecimal: function isReservedDecimal(json) {
-                var opt = json || {};
-                var success = opt.success || function () {
-                    console.log('no find success callback');
-                };
-                var fail = opt.fail || function () {
-                    console.log('no find fail callback');
-                };
-                var num = opt.num || 2;
-                var value = opt.value || " ";
-                var valueTrim = value.trim();
-                var re = new RegExp("^\\d+\\.\\d{" + num + "}$");
-                var b = false;
-                if (re.test(valueTrim)) {
-                    b = true;
-                    success();
-                } else {
-                    fail();
-                }
-                return b;
-            }
-        };
-        module.exports = validate;
-    }, {}], 24: [function (require, module, exports) {
         var extend = require('../function/extend');
 
         //当滚动到了浏览器的底部
@@ -1045,7 +948,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
         };
         module.exports = WhenScrollBottom;
-    }, { "../function/extend": 8 }], 25: [function (require, module, exports) {
+    }, { "../function/extend": 8 }], 24: [function (require, module, exports) {
         //是否禁止浏览器滚动
         function whetherDisableScroll() {
             var doc = document;
@@ -1076,7 +979,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             };
         }
         module.exports = whetherDisableScroll;
-    }, {}], 26: [function (require, module, exports) {
+    }, {}], 25: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1115,7 +1018,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 42 }], 27: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 41 }], 26: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1316,7 +1219,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-mask": 32, "../modules/m-super-type": 42 }], 28: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-mask": 31, "../modules/m-super-type": 41 }], 27: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1356,7 +1259,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 42 }], 29: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 41 }], 28: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1408,7 +1311,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 42 }], 30: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 41 }], 29: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1480,7 +1383,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
         };
         module.exports = LazyLoad;
-    }, { "../base/base": 1 }], 31: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 30: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1574,7 +1477,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-mask": 32, "../modules/m-super-type": 42 }], 32: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-mask": 31, "../modules/m-super-type": 41 }], 31: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1631,7 +1534,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 42 }], 33: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 41 }], 32: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1650,27 +1553,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 //数据
                 data: {
                     items: [{
-                        href: '/',
+                        link: '/',
                         icon: 'icon-shouye',
                         text: '首页',
                         mark: ''
                     }, {
-                        href: '/mine',
+                        link: '/mine',
                         icon: 'icon-wode',
                         text: '我的',
                         mark: ''
                     }, {
-                        href: '/develop-global',
+                        link: '/develop-global',
                         icon: 'icon-kaifa',
                         text: 'g-global',
                         mark: ''
                     }, {
-                        href: '/develop-module',
+                        link: '/develop-module',
                         icon: 'icon-kaifa',
                         text: 'm-module',
                         mark: ''
                     }, {
-                        href: '/develop-word',
+                        link: '/develop-word',
                         icon: 'icon-kaifa',
                         text: '标准词汇',
                         mark: ''
@@ -1689,7 +1592,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 if (v.mark) {
                     markHtml = "<div class=\"m-navigation-mark\">" + v.mark + "</div>";
                 }
-                html += "\n            <a href=\"" + v.href + "\" class=\"m-navigation-wrap\">\n                <div class=\"m-navigation-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-navigation-text\">" + v.text + "</div>\n                " + markHtml + "\n            </a>\n        ";
+                html += "\n            <a href=\"" + v.link + "\" class=\"m-navigation-wrap\">\n                <div class=\"m-navigation-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-navigation-text\">" + v.text + "</div>\n                " + markHtml + "\n            </a>\n        ";
             });
             this.moduleDom = base.createElement({
                 style: this.opt.config.moduleDomStyle,
@@ -1707,7 +1610,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 42 }], 34: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 41 }], 33: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1734,7 +1637,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     button: {
                         icon: 'icon-shouye',
                         text: '回首页',
-                        href: '/'
+                        link: '/'
                     }
                 }
             }
@@ -1752,7 +1655,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-no-data",
-                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-text\">" + data.text + "</div>\n                <a class=\"m-no-data-button g-button g-button-confirm\" href=\"" + data.button.href + "\">\n                    " + buttonIconHtml + "\n                    <div class=\"g-button-text\">" + data.button.text + "</div>\n                </a>\n            "
+                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-text\">" + data.text + "</div>\n                <a class=\"m-no-data-button g-button g-button-confirm\" href=\"" + data.button.link + "\">\n                    " + buttonIconHtml + "\n                    <div class=\"g-button-text\">" + data.button.text + "</div>\n                </a>\n            "
                 }
             });
         };
@@ -1763,7 +1666,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 42 }], 35: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 41 }], 34: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1928,7 +1831,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 42 }], 36: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 41 }], 35: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -2018,7 +1921,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 42 }], 37: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 41 }], 36: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
         var TouchSlide = require('../plugs/touch-slide');
@@ -2042,7 +1945,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     touchSlide: {
                         slideCell: '', //外部容器,这个值会在底部进行覆盖,因为在这里没办法获取this
                         mainCell: '.m-slide-body', //切换元素的包裹层对象
-                        titCell: '.m-slide-header .m-slide-item', //导航元素对象
+                        titCell: '.m-slide-header .m-slide-items', //导航元素对象
                         effect: "leftLoop", //效果
                         autoPlay: true, //自动播放
                         delayTime: 200, //切换一次的持续时间
@@ -2055,8 +1958,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 //数据
                 data: {
                     items: [{
-                        src: '',
-                        href: ''
+                        pic: '',
+                        link: ''
                     }]
                 }
             }
@@ -2083,7 +1986,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 if (i == self.opt.config.touchSlide.defaultIndex) {
                     className = "on";
                 }
-                html += "<div class=\"m-slide-item " + className + "\"></div>";
+                html += "<div class=\"m-slide-items " + className + "\"></div>";
             });
             return "<div class=\"m-slide-header\">" + html + "</div>";
         };
@@ -2094,9 +1997,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             var data = self.opt.data;
             data.items.forEach(function (v) {
                 if (self.opt.config.isShowHref) {
-                    html += "<a href=\"" + (v.href || 'javascript:;') + "\" class=\"m-slide-item\" data-src=\"" + v.src + "\"></a>";
+                    html += "<a href=\"" + (v.link || 'javascript:;') + "\" class=\"m-slide-items\" data-src=\"" + v.pic + "\"></a>";
                 } else {
-                    html += "<a class=\"m-slide-item\" data-src=\"" + v.src + "\"></a>";
+                    html += "<a class=\"m-slide-items\" data-src=\"" + v.pic + "\"></a>";
                 }
             });
             return "<div class=\"m-slide-body\">" + html + "</div>";
@@ -2110,7 +2013,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             var touchSlide = config.touchSlide;
             touchSlide.slideCell = self.opt.wrap; //外部容器,必须是id
             touchSlide.startFun = function (i) {
-                var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-item');
+                var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-items');
                 var nowIndex = i + 1;
                 if (touchSlide.effect == 'left') {
                     nowIndex = i;
@@ -2130,7 +2033,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 42, "../plugs/touch-slide": 45 }], 38: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 41, "../plugs/touch-slide": 43 }], 37: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -2201,7 +2104,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 42 }], 39: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 41 }], 38: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -2289,7 +2192,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }(SuperType);
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type-es6": 41 }], 40: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type-es6": 40 }], 39: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -2328,7 +2231,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 42 }], 41: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 41 }], 40: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -2640,7 +2543,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }();
 
         module.exports = SuperType;
-    }, { "../base/base": 1 }], 42: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 41: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -2886,7 +2789,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SuperType;
-    }, { "../base/base": 1 }], 43: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 42: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -2904,8 +2807,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 config: {},
                 //数据
                 data: {
-                    header: [{ html: 'undefined-header0' }, { html: 'undefined-header1' }, { html: 'undefined-header2' }],
-                    body: [[{ html: 'undefined-body0-0' }, { html: 'undefined-body0-1' }, { html: 'undefined-body0-2' }] /*, [{html: 'undefined-body1-0'}, {html: 'undefined-body1-1'}, {html: 'undefined-body1-2'}]*/],
+                    header: [{ content: 'undefined-header0' }, { content: 'undefined-header1' }, { content: 'undefined-header2' }],
+                    body: [[{ content: 'undefined-body0-0' }, { content: 'undefined-body0-1' }, { content: 'undefined-body0-2' }]],
                     footer: ''
                 }
             }
@@ -2926,7 +2829,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         SubType.prototype.moduleDomCreateHeader = function () {
             var html = "";
             this.opt.data.header.forEach(function (v) {
-                html += "\n            <div class=\"m-table-col\">\n                <div class=\"m-table-col-wrap\">\n                    " + v.html + "\n                </div>\n            </div>\n        ";
+                html += "\n            <div class=\"m-table-col\">\n                <div class=\"m-table-col-wrap\">\n                    " + v.content + "\n                </div>\n            </div>\n        ";
             });
             return html;
         };
@@ -2936,7 +2839,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             this.opt.data.body.forEach(function (v0) {
                 var row = "";
                 v0.forEach(function (v1) {
-                    row += "\n                <div class=\"m-table-col\">\n                    <div class=\"m-table-col-wrap\">\n                        " + v1.html + "\n                    </div>\n                </div>\n            ";
+                    row += "\n                <div class=\"m-table-col\">\n                    <div class=\"m-table-col-wrap\">\n                        " + v1.content + "\n                    </div>\n                </div>\n            ";
                 });
                 html += "<div class=\"m-table-row\">" + row + "</div>";
             });
@@ -2953,119 +2856,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 42 }], 44: [function (require, module, exports) {
-        var base = require('../base/base'); //底层方法
-        var validate = require('../function/validate'); //表单验证
-
-        function ValidateForm(json) {
-            this.opt = json || {};
-            this.element = base.getDomArray({ element: this.opt.element })[0];
-            this.hintClass = this.opt.hintClass || 'm-validate-form-hint';
-            this.eventsType = this.opt.eventsType || 'blur';
-            this.validateType = this.element.dataset.validate || 'undefined';
-            this.validateHintText = this.element.dataset.hint || 'undefined';
-            this.isValidateSuccess = true; //是否验证成功了
-            this.init();
-        }
-        ValidateForm.prototype.init = function () {
-            this.render();
-            this.validateEvents();
-        };
-        ValidateForm.prototype.render = function () {
-            this.renderWrap();
-            this.renderHint();
-        };
-        ValidateForm.prototype.renderWrap = function () {
-            this.wrapDom = this.element.parentNode;
-            if (this.wrapDom && getComputedStyle(this.wrapDom).position == 'static') {
-                this.wrapDom.style.position = 'relative';
-            }
-        };
-        ValidateForm.prototype.renderHint = function () {
-            this.hintDom = document.createElement('span');
-            this.hintDom.classList.add(this.hintClass);
-        };
-        ValidateForm.prototype.renderHintAdd = function (json) {
-            //只有没被隐藏的才进行验证
-            if (this.element.offsetWidth) {
-                var opt = json || {};
-                this.hintDom.innerHTML = opt.text || '本项必填';
-                this.wrapDom.appendChild(this.hintDom);
-            }
-        };
-        ValidateForm.prototype.renderHintRemove = function () {
-            var isHaveHintDom = this.wrapDom.querySelector("." + this.hintClass);
-            if (isHaveHintDom) {
-                this.wrapDom.removeChild(this.hintDom);
-            }
-        };
-        ValidateForm.prototype.validateSave = function () {
-            var self = this;
-            var type = self.validateType.split(' ');
-            var hintText = self.validateHintText.split(' ');
-            var value = this.element.value;
-            type.forEach(function (v, i) {
-                if (v == 'no-space' && self.isValidateSuccess) {
-                    //设置了非空验证
-                    validate.isSpace({
-                        value: value,
-                        success: function success() {
-                            //空
-                            self.renderHintAdd({ text: hintText[i] });
-                            self.isValidateSuccess = false;
-                        },
-                        fail: function fail() {
-                            //非空
-                            self.renderHintRemove();
-                            self.isValidateSuccess = true;
-                        }
-                    });
-                }
-                if (v == 'no-zero' && self.isValidateSuccess) {
-                    //设置了非零验证
-                    validate.isZero({
-                        value: value,
-                        success: function success() {
-                            //零
-                            self.renderHintAdd({ text: hintText[i] });
-                            self.isValidateSuccess = false;
-                        },
-                        fail: function fail() {
-                            //非零
-                            self.renderHintRemove();
-                            self.isValidateSuccess = true;
-                        }
-                    });
-                }
-                if (v == 'yes-integer' && self.isValidateSuccess) {
-                    //设置了整数验证
-                    validate.isInteger({
-                        value: value,
-                        success: function success() {
-                            //整数
-                            self.renderHintRemove();
-                            self.isValidateSuccess = true;
-                        },
-                        fail: function fail() {
-                            //非整数
-                            self.renderHintAdd({ text: hintText[i] });
-                            self.isValidateSuccess = false;
-                        }
-                    });
-                }
-            });
-        };
-        ValidateForm.prototype.validateEvents = function () {
-            var self = this;
-            if (self.element) {
-                self.element.addEventListener(self.eventsType, function () {
-                    self.validateSave();
-                });
-            }
-        };
-
-        module.exports = ValidateForm;
-    }, { "../base/base": 1, "../function/validate": 23 }], 45: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 41 }], 43: [function (require, module, exports) {
         /*!
          * TouchSlide v1.1
          * javascript触屏滑动特效插件，移动端滑动特效，触屏焦点图，触屏Tab切换，触屏多图切换等

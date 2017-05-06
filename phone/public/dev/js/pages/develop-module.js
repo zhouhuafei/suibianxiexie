@@ -38,24 +38,24 @@ window.addEventListener('load', function () {
                 data: {
                     items: [
                         {
-                            src: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg',
-                            href: ''
+                            pic: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg',
+                            link: ''
                         },
                         {
-                            src: 'http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg',
-                            href: ''
+                            pic: 'http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg',
+                            link: ''
                         },
                         {
-                            src: 'http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg',
-                            href: ''
+                            pic: 'http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg',
+                            link: ''
                         },
                         {
-                            src: 'http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg',
-                            href: ''
+                            pic: 'http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg',
+                            link: ''
                         },
                         {
-                            src: 'http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg',
-                            href: ''
+                            pic: 'http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg',
+                            link: ''
                         }
                     ]
                 }
@@ -161,61 +161,52 @@ window.addEventListener('load', function () {
                 data: {
                     header: [
                         {
-                            html: `<div>header0</div>`
+                            content: `<div>header0</div>`
                         },
                         {
-                            html: `<div>header1</div>`
+                            content: `<div>header1</div>`
                         },
                         {
-                            html: `<div>header2</div>`
+                            content: `<div>header2</div>`
                         }
                     ],
                     body: [
                         [
                             {
-                                html: `<div>body0-0</div>`
+                                content: `<div>body0-0</div>`
                             },
                             {
-                                html: `<div>body1-0</div>`
+                                content: `<div>body1-0</div>`
                             },
                             {
-                                html: `<div>body2-0</div>`
+                                content: `<div>body2-0</div>`
                             }
                         ],
                         [
                             {
-                                html: `<div>body0-1</div>`
+                                content: `<div>body0-1</div>`
                             },
                             {
-                                html: `<div>body1-1</div>`
+                                content: `<div>body1-1</div>`
                             },
                             {
-                                html: `<div>body2-1</div>`
+                                content: `<div>body2-1</div>`
                             }
                         ],
                         [
                             {
-                                html: `<div>body0-2</div>`
+                                content: `<div>body0-2</div>`
                             },
                             {
-                                html: `<div>body1-2</div>`
+                                content: `<div>body1-2</div>`
                             },
                             {
-                                html: `<div>body2-2</div>`
+                                content: `<div>body2-2</div>`
                             }
                         ]
                     ],
                     footer: ``
                 }
-            });
-        })();
-
-        //验证
-        (function () {
-            const ValidateInput = require('../modules/m-validate-form');
-            const aInput = [].slice.call(document.querySelectorAll('.m-validate-form'));
-            aInput.forEach(function (v) {
-                new ValidateInput({element: v});
             });
         })();
 

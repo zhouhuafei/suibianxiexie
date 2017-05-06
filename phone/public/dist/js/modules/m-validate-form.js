@@ -49,7 +49,6 @@
             this.eventsType = this.opt.eventsType || 'blur';
             this.validateType = this.element.dataset.validate || 'undefined';
             this.validateHintText = this.element.dataset.hint || 'undefined';
-            this.isValidateSuccess = true; //是否验证成功了
             this.init();
         }
         ValidateForm.prototype.init = function () {
@@ -89,6 +88,7 @@
             var type = self.validateType.split(' ');
             var hintText = self.validateHintText.split(' ');
             var value = this.element.value;
+            this.isValidateSuccess = true; //是否验证成功了
             type.forEach(function (v, i) {
                 if (v == 'no-space' && self.isValidateSuccess) {
                     //设置了非空验证

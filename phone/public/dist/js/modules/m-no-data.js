@@ -65,7 +65,7 @@
                     button: {
                         icon: 'icon-shouye',
                         text: '回首页',
-                        href: '/'
+                        link: '/'
                     }
                 }
             }
@@ -83,7 +83,7 @@
                 custom: this.opt.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-no-data",
-                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-text\">" + data.text + "</div>\n                <a class=\"m-no-data-button g-button g-button-confirm\" href=\"" + data.button.href + "\">\n                    " + buttonIconHtml + "\n                    <div class=\"g-button-text\">" + data.button.text + "</div>\n                </a>\n            "
+                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-text\">" + data.text + "</div>\n                <a class=\"m-no-data-button g-button g-button-confirm\" href=\"" + data.button.link + "\">\n                    " + buttonIconHtml + "\n                    <div class=\"g-button-text\">" + data.button.text + "</div>\n                </a>\n            "
                 }
             });
         };

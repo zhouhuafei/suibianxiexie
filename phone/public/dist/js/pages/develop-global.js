@@ -38,19 +38,23 @@
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/px2rem": 16, "../function/scroll-to": 17, "../function/seconds-to-time": 18, "../function/select": 19, "../function/str-limit": 20, "../function/time-count-down": 21, "../function/user-agent": 22, "../function/when-scroll-bottom": 23, "../function/whether-disable-scroll": 24 }], 2: [function (require, module, exports) {
+    }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/px2rem": 16, "../function/scroll-to": 17, "../function/seconds-to-time": 18, "../function/select": 19, "../function/str-limit": 20, "../function/time-count-down": 21, "../function/user-agent": 22, "../function/when-scroll-bottom": 24, "../function/whether-disable-scroll": 25 }], 2: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
 
-                //注释待续...
+                //验证
                 (function () {
-                    //功能待续...
+                    var ValidateInput = require('../modules/m-validate-form');
+                    var aInput = [].slice.call(document.querySelectorAll('.m-validate-form'));
+                    aInput.forEach(function (v) {
+                        new ValidateInput({ element: v });
+                    });
                 })();
 
                 require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../commons/common": 3 }], 3: [function (require, module, exports) {
+    }, { "../commons/common": 3, "../modules/m-validate-form": 30 }], 3: [function (require, module, exports) {
         //版权
         (function () {
             if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
@@ -72,7 +76,7 @@
             var LazyLoad = require('../modules/m-lazy-load');
             new LazyLoad();
         })();
-    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 26, "../modules/m-lazy-load": 27 }], 4: [function (require, module, exports) {
+    }, { "../modules/m-copyright": 26, "../modules/m-footer-nav": 27, "../modules/m-lazy-load": 28 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opt = json || {};
@@ -696,6 +700,94 @@
         module.exports.isIphone = isIphone;
         module.exports.isAndroid = isAndroid;
     }, {}], 23: [function (require, module, exports) {
+        //验证
+        var validate = {
+            //是不是空
+            isSpace: function isSpace(json) {
+                var opt = json || {};
+                var success = opt.success || function () {
+                    console.log('no find success callback');
+                };
+                var fail = opt.fail || function () {
+                    console.log('no find fail callback');
+                };
+                var value = opt.value || " ";
+                var valueTrim = value.trim();
+                var b = false;
+                if (valueTrim == '') {
+                    b = true;
+                    success();
+                } else {
+                    fail();
+                }
+                return b;
+            },
+            //是不是0
+            isZero: function isZero(json) {
+                var opt = json || {};
+                var success = opt.success || function () {
+                    console.log('no find success callback');
+                };
+                var fail = opt.fail || function () {
+                    console.log('no find fail callback');
+                };
+                var value = opt.value || " ";
+                var valueTrim = value.trim();
+                var b = false;
+                if (valueTrim == 0) {
+                    b = true;
+                    success();
+                } else {
+                    fail();
+                }
+                return b;
+            },
+            //是不是整数(包含0)
+            isInteger: function isInteger(json) {
+                var opt = json || {};
+                var success = opt.success || function () {
+                    console.log('no find success callback');
+                };
+                var fail = opt.fail || function () {
+                    console.log('no find fail callback');
+                };
+                var value = opt.value || " ";
+                var valueTrim = value.trim();
+                var re = /^\d+$/;
+                var b = false;
+                if (re.test(valueTrim)) {
+                    b = true;
+                    success();
+                } else {
+                    fail();
+                }
+                return b;
+            },
+            //是不是保留了num位小数点
+            isReservedDecimal: function isReservedDecimal(json) {
+                var opt = json || {};
+                var success = opt.success || function () {
+                    console.log('no find success callback');
+                };
+                var fail = opt.fail || function () {
+                    console.log('no find fail callback');
+                };
+                var num = opt.num || 2;
+                var value = opt.value || " ";
+                var valueTrim = value.trim();
+                var re = new RegExp("^\\d+\\.\\d{" + num + "}$");
+                var b = false;
+                if (re.test(valueTrim)) {
+                    b = true;
+                    success();
+                } else {
+                    fail();
+                }
+                return b;
+            }
+        };
+        module.exports = validate;
+    }, {}], 24: [function (require, module, exports) {
         var extend = require('../function/extend');
 
         //当滚动到了浏览器的底部
@@ -749,7 +841,7 @@
             });
         };
         module.exports = WhenScrollBottom;
-    }, { "../function/extend": 8 }], 24: [function (require, module, exports) {
+    }, { "../function/extend": 8 }], 25: [function (require, module, exports) {
         //是否禁止浏览器滚动
         function whetherDisableScroll() {
             var doc = document;
@@ -780,7 +872,7 @@
             };
         }
         module.exports = whetherDisableScroll;
-    }, {}], 25: [function (require, module, exports) {
+    }, {}], 26: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -819,7 +911,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 28 }], 26: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 29 }], 27: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -859,7 +951,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 28 }], 27: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 29 }], 28: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -931,7 +1023,7 @@
             });
         };
         module.exports = LazyLoad;
-    }, { "../base/base": 1 }], 28: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 29: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1177,4 +1269,116 @@
         };
 
         module.exports = SuperType;
-    }, { "../base/base": 1 }] }, {}, [2]);
+    }, { "../base/base": 1 }], 30: [function (require, module, exports) {
+        var base = require('../base/base'); //底层方法
+        var validate = require('../function/validate'); //表单验证
+
+        function ValidateForm(json) {
+            this.opt = json || {};
+            this.element = base.getDomArray({ element: this.opt.element })[0];
+            this.hintClass = this.opt.hintClass || 'm-validate-form-hint';
+            this.eventsType = this.opt.eventsType || 'blur';
+            this.validateType = this.element.dataset.validate || 'undefined';
+            this.validateHintText = this.element.dataset.hint || 'undefined';
+            this.init();
+        }
+        ValidateForm.prototype.init = function () {
+            this.render();
+            this.validateEvents();
+        };
+        ValidateForm.prototype.render = function () {
+            this.renderWrap();
+            this.renderHint();
+        };
+        ValidateForm.prototype.renderWrap = function () {
+            this.wrapDom = this.element.parentNode;
+            if (this.wrapDom && getComputedStyle(this.wrapDom).position == 'static') {
+                this.wrapDom.style.position = 'relative';
+            }
+        };
+        ValidateForm.prototype.renderHint = function () {
+            this.hintDom = document.createElement('span');
+            this.hintDom.classList.add(this.hintClass);
+        };
+        ValidateForm.prototype.renderHintAdd = function (json) {
+            //只有没被隐藏的才进行验证
+            if (this.element.offsetWidth) {
+                var opt = json || {};
+                this.hintDom.innerHTML = opt.text || '本项必填';
+                this.wrapDom.appendChild(this.hintDom);
+            }
+        };
+        ValidateForm.prototype.renderHintRemove = function () {
+            var isHaveHintDom = this.wrapDom.querySelector("." + this.hintClass);
+            if (isHaveHintDom) {
+                this.wrapDom.removeChild(this.hintDom);
+            }
+        };
+        ValidateForm.prototype.validateSave = function () {
+            var self = this;
+            var type = self.validateType.split(' ');
+            var hintText = self.validateHintText.split(' ');
+            var value = this.element.value;
+            this.isValidateSuccess = true; //是否验证成功了
+            type.forEach(function (v, i) {
+                if (v == 'no-space' && self.isValidateSuccess) {
+                    //设置了非空验证
+                    validate.isSpace({
+                        value: value,
+                        success: function success() {
+                            //空
+                            self.renderHintAdd({ text: hintText[i] });
+                            self.isValidateSuccess = false;
+                        },
+                        fail: function fail() {
+                            //非空
+                            self.renderHintRemove();
+                            self.isValidateSuccess = true;
+                        }
+                    });
+                }
+                if (v == 'no-zero' && self.isValidateSuccess) {
+                    //设置了非零验证
+                    validate.isZero({
+                        value: value,
+                        success: function success() {
+                            //零
+                            self.renderHintAdd({ text: hintText[i] });
+                            self.isValidateSuccess = false;
+                        },
+                        fail: function fail() {
+                            //非零
+                            self.renderHintRemove();
+                            self.isValidateSuccess = true;
+                        }
+                    });
+                }
+                if (v == 'yes-integer' && self.isValidateSuccess) {
+                    //设置了整数验证
+                    validate.isInteger({
+                        value: value,
+                        success: function success() {
+                            //整数
+                            self.renderHintRemove();
+                            self.isValidateSuccess = true;
+                        },
+                        fail: function fail() {
+                            //非整数
+                            self.renderHintAdd({ text: hintText[i] });
+                            self.isValidateSuccess = false;
+                        }
+                    });
+                }
+            });
+        };
+        ValidateForm.prototype.validateEvents = function () {
+            var self = this;
+            if (self.element) {
+                self.element.addEventListener(self.eventsType, function () {
+                    self.validateSave();
+                });
+            }
+        };
+
+        module.exports = ValidateForm;
+    }, { "../base/base": 1, "../function/validate": 23 }] }, {}, [2]);

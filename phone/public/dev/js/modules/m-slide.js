@@ -23,7 +23,7 @@ var SubType = base.constructorInherit({
             touchSlide: {
                 slideCell: '',//外部容器,这个值会在底部进行覆盖,因为在这里没办法获取this
                 mainCell: '.m-slide-body',//切换元素的包裹层对象
-                titCell: '.m-slide-header .m-slide-item',//导航元素对象
+                titCell: '.m-slide-header .m-slide-items',//导航元素对象
                 effect: "leftLoop",//效果
                 autoPlay: true,//自动播放
                 delayTime: 200,//切换一次的持续时间
@@ -39,8 +39,8 @@ var SubType = base.constructorInherit({
         data: {
             items: [
                 {
-                    src: '',
-                    href: ''
+                    pic: '',
+                    link: ''
                 }
             ]
         }
@@ -71,7 +71,7 @@ SubType.prototype.renderHeader = function () {
         if (i == self.opt.config.touchSlide.defaultIndex) {
             className = `on`;
         }
-        html += `<div class="m-slide-item ${className}"></div>`;
+        html += `<div class="m-slide-items ${className}"></div>`;
     });
     return `<div class="m-slide-header">${html}</div>`;
 };
@@ -82,9 +82,9 @@ SubType.prototype.renderBody = function () {
     var data = self.opt.data;
     data.items.forEach(function (v) {
         if (self.opt.config.isShowHref) {
-            html += `<a href="${v.href || 'javascript:;'}" class="m-slide-item" data-src="${v.src}"></a>`;
+            html += `<a href="${v.link || 'javascript:;'}" class="m-slide-items" data-src="${v.pic}"></a>`;
         } else {
-            html += `<a class="m-slide-item" data-src="${v.src}"></a>`;
+            html += `<a class="m-slide-items" data-src="${v.pic}"></a>`;
         }
     });
     return `<div class="m-slide-body">${html}</div>`;
@@ -98,7 +98,7 @@ SubType.prototype.power = function () {
     var touchSlide = config.touchSlide;
     touchSlide.slideCell = self.opt.wrap;//外部容器,必须是id
     touchSlide.startFun = function (i) {
-        var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-item');
+        var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-items');
         var nowIndex = ( i + 1);
         if (touchSlide.effect == 'left') {
             nowIndex = i;
