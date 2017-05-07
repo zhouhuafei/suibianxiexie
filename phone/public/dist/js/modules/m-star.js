@@ -56,22 +56,21 @@
                 },
                 //配置
                 config: {
-                    isHaveEvent: true //是否具备事件(默认具备)
+                    isHaveEvent: true, //是否具备事件(默认具备)
+                    allStarNum: 5, //所有的星星数
+                    nowStarNum: 4 //当前被选择的星星数
                 },
                 //数据
-                data: {
-                    allStarNum: 5,
-                    nowStarNum: 4
-                }
+                data: {}
             }
         });
 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             var html = "";
-            for (var i = 0; i < this.opts.data.allStarNum; i++) {
+            for (var i = 0; i < this.opts.config.allStarNum; i++) {
                 var className = '';
-                if (i < this.opts.data.nowStarNum) {
+                if (i < this.opts.config.nowStarNum) {
                     className = 'm-star-items-active';
                 }
                 html += "<div data-index=\"" + i + "\" class=\"iconfont icon-xingping m-star-items " + className + "\"></div>";
@@ -95,7 +94,7 @@
                     var target = ev.target;
                     if (target.classList.contains('m-star-items')) {
                         var index = target.dataset.index;
-                        for (var j = 0; j < self.opts.data.allStarNum; j++) {
+                        for (var j = 0; j < self.opts.config.allStarNum; j++) {
                             if (j <= index) {
                                 self.opts.star[j].classList.add('m-star-items-active');
                             } else {
@@ -818,6 +817,7 @@
                 }
             };
         }
+
         module.exports = whetherDisableScroll;
     }, {}], 24: [function (require, module, exports) {
         //底层方法

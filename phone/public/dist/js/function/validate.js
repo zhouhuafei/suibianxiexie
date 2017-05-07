@@ -99,5 +99,6 @@
                 return b;
             }
         };
+
         module.exports = validate;
     }, {}] }, {}, [1]);

@@ -47,6 +47,28 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
         module.exports = base;
     }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/px2rem": 16, "../function/scroll-to": 17, "../function/seconds-to-time": 18, "../function/select": 19, "../function/str-limit": 20, "../function/time-count-down": 21, "../function/user-agent": 22, "../function/when-scroll-bottom": 23, "../function/whether-disable-scroll": 24 }], 2: [function (require, module, exports) {
+        //版权
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
+                var Copyright = require('../modules/m-copyright');
+                new Copyright();
+            }
+        })();
+
+        //底部导航
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
+                var Footer = require('../modules/m-footer-nav');
+                new Footer();
+            }
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 27, "../modules/m-lazy-load": 29 }], 3: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
 
@@ -270,29 +292,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../base/base": 1, "../commons/common": 3, "../modules/m-dialog": 26, "../modules/m-go-top": 28, "../modules/m-loading": 30, "../modules/m-mask": 31, "../modules/m-navigation": 32, "../modules/m-no-data": 33, "../modules/m-pagination": 34, "../modules/m-radio-switch": 35, "../modules/m-slide": 36, "../modules/m-star": 37, "../modules/m-sub-type": 39, "../modules/m-sub-type-es6": 38, "../modules/m-super-type": 41, "../modules/m-super-type-es6": 40, "../modules/m-table": 42 }], 3: [function (require, module, exports) {
-        //版权
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
-                var Copyright = require('../modules/m-copyright');
-                new Copyright();
-            }
-        })();
-
-        //底部导航
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
-                var Footer = require('../modules/m-footer-nav');
-                new Footer();
-            }
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 27, "../modules/m-lazy-load": 29 }], 4: [function (require, module, exports) {
+    }, { "../base/base": 1, "../commons/common": 2, "../modules/m-dialog": 26, "../modules/m-go-top": 28, "../modules/m-loading": 30, "../modules/m-mask": 31, "../modules/m-navigation": 32, "../modules/m-no-data": 33, "../modules/m-pagination": 34, "../modules/m-radio-switch": 35, "../modules/m-slide": 36, "../modules/m-star": 37, "../modules/m-sub-type": 39, "../modules/m-sub-type-es6": 38, "../modules/m-super-type": 41, "../modules/m-super-type-es6": 40, "../modules/m-table": 42 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opts = json || {};
@@ -1001,6 +1001,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 }
             };
         }
+
         module.exports = whetherDisableScroll;
     }, {}], 25: [function (require, module, exports) {
         //底层方法
@@ -1259,19 +1260,62 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 //配置
                 config: {},
                 //数据
-                data: {}
+                data: {
+                    items: [{
+                        link: '/',
+                        icon: 'icon-shouye',
+                        text: '首页',
+                        isHighlight: false,
+                        isShowMark: false
+                    }, {
+                        link: '/develop-global',
+                        icon: 'icon-kaifa',
+                        text: 'g-global',
+                        isHighlight: false,
+                        isShowMark: false
+                    }, {
+                        link: '/develop-module',
+                        icon: 'icon-kaifa',
+                        text: 'm-module',
+                        isHighlight: true,
+                        isShowMark: true
+                    }, {
+                        link: '/develop-word',
+                        icon: 'icon-kaifa',
+                        text: '标准词汇',
+                        isHighlight: false,
+                        isShowMark: false
+                    }, {
+                        link: '/mine',
+                        icon: 'icon-wode',
+                        text: '我的',
+                        isHighlight: false,
+                        isShowMark: false
+                    }]
+                }
             }
         });
 
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDomClass = "m-footer-nav";
-            var moduleDomHtml = "\n        <div class=\"m-footer-nav-wrap\">\n            <a class=\"m-footer-nav-body\" href=\"/\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-shouye\"></div>\n                <div class=\"m-footer-nav-body-text\">\u9996\u9875</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-global\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-text\">g-global</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-module\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-text\">m-module</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-word\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-text\">\u6807\u51C6\u8BCD\u6C47</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/mine\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-wode\"></div>\n                <div class=\"m-footer-nav-body-text\">\u6211\u7684</div>\n            </a>\n        </div>\n    ";
+            var moduleDomHtml = "";
+            this.opts.data.items.forEach(function (v) {
+                var highlightClass = "";
+                if (v.isHighlight) {
+                    highlightClass = "m-footer-nav-body-active";
+                }
+                var markHtml = "";
+                if (v.isShowMark) {
+                    markHtml = "<div class=\"m-footer-nav-body-mark\"></div>";
+                }
+                moduleDomHtml += "\n            <a class=\"m-footer-nav-body " + highlightClass + "\" href=\"" + v.link + "\">\n                <div class=\"m-footer-nav-body-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-footer-nav-body-text\">" + v.text + "</div>\n                " + markHtml + "\n            </a>\n        ";
+            });
             this.moduleDom = base.createElement({
                 style: this.opts.config.moduleDomStyle,
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: this.moduleDomClass,
-                    innerHTML: moduleDomHtml
+                    innerHTML: "<div class=\"m-footer-nav-wrap\">" + moduleDomHtml + "</div>"
                 }
             });
         };
@@ -1412,7 +1456,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //超类型(子类型继承的对象)
         var SuperType = require('../modules/m-super-type');
-        var Mask = require('../modules/m-mask');
+        //var Mask = require('../modules/m-mask');
 
         //子类型
         var SubType = base.constructorInherit({
@@ -1422,15 +1466,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 //回调
                 callback: {
                     moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                        if (self.opts.config.isShowMask) {
-                            new Mask({
-                                wrap: self.moduleDom.querySelector('.m-loading-wrap'),
-                                config: {
-                                    moduleDomIsShow: true,
-                                    moduleDomRenderMethod: { method: 'insertBefore' }
-                                }
-                            });
-                        }
+                        // if (self.opts.config.isShowMask) {
+                        //     new Mask({
+                        //         wrap: self.moduleDom.querySelector('.m-loading-wrap'),
+                        //         config: {
+                        //             moduleDomIsShow: true,
+                        //             moduleDomRenderMethod: {method: 'insertBefore'}
+                        //         }
+                        //     });
+                        // }
                         if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
                             self.wrapDom.style.position = 'relative';
                         }
@@ -1438,7 +1482,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 },
                 //配置
                 config: {
-                    isShowMask: false, //是否显示遮罩(默认不显示)
+                    //isShowMask: false,  //是否显示遮罩(默认不显示)
                     status: 'loading', //加载状态 loading(加载中) over(加载完毕)
                     positionMethod: '', //模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
                     positionLocation: 'center', //模块的定位位置
@@ -1500,7 +1544,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-mask": 31, "../modules/m-super-type": 41 }], 31: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 41 }], 31: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1579,27 +1623,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         link: '/',
                         icon: 'icon-shouye',
                         text: '首页',
-                        mark: ''
-                    }, {
-                        link: '/mine',
-                        icon: 'icon-wode',
-                        text: '我的',
-                        mark: ''
+                        isShowMark: false
                     }, {
                         link: '/develop-global',
                         icon: 'icon-kaifa',
                         text: 'g-global',
-                        mark: ''
+                        isShowMark: false
                     }, {
                         link: '/develop-module',
                         icon: 'icon-kaifa',
                         text: 'm-module',
-                        mark: ''
+                        isShowMark: true
                     }, {
                         link: '/develop-word',
                         icon: 'icon-kaifa',
                         text: '标准词汇',
-                        mark: ''
+                        isShowMark: false
+                    }, {
+                        link: '/mine',
+                        icon: 'icon-wode',
+                        text: '我的',
+                        isShowMark: false
                     }]
                 }
             }
@@ -1612,8 +1656,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             var html = "";
             items.forEach(function (v) {
                 var markHtml = "";
-                if (v.mark) {
-                    markHtml = "<div class=\"m-navigation-mark\">" + v.mark + "</div>";
+                if (v.isShowMark) {
+                    markHtml = "<div class=\"m-navigation-mark\"></div>";
                 }
                 html += "\n            <a href=\"" + v.link + "\" class=\"m-navigation-wrap\">\n                <div class=\"m-navigation-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-navigation-text\">" + v.text + "</div>\n                " + markHtml + "\n            </a>\n        ";
             });
@@ -1965,6 +2009,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 //配置
                 config: {
                     isShowHref: true, //是否有跳转
+                    //TouchSlide插件的配置
                     touchSlide: {
                         slideCell: '', //外部容器,这个值会在底部进行覆盖,因为在这里没办法获取this
                         mainCell: '.m-slide-body', //切换元素的包裹层对象
@@ -2078,22 +2123,21 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 },
                 //配置
                 config: {
-                    isHaveEvent: true //是否具备事件(默认具备)
+                    isHaveEvent: true, //是否具备事件(默认具备)
+                    allStarNum: 5, //所有的星星数
+                    nowStarNum: 4 //当前被选择的星星数
                 },
                 //数据
-                data: {
-                    allStarNum: 5,
-                    nowStarNum: 4
-                }
+                data: {}
             }
         });
 
         //内部模块的创建(覆盖超类型)
         SubType.prototype.moduleDomCreate = function () {
             var html = "";
-            for (var i = 0; i < this.opts.data.allStarNum; i++) {
+            for (var i = 0; i < this.opts.config.allStarNum; i++) {
                 var className = '';
-                if (i < this.opts.data.nowStarNum) {
+                if (i < this.opts.config.nowStarNum) {
                     className = 'm-star-items-active';
                 }
                 html += "<div data-index=\"" + i + "\" class=\"iconfont icon-xingping m-star-items " + className + "\"></div>";
@@ -2117,7 +2161,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     var target = ev.target;
                     if (target.classList.contains('m-star-items')) {
                         var index = target.dataset.index;
-                        for (var j = 0; j < self.opts.data.allStarNum; j++) {
+                        for (var j = 0; j < self.opts.config.allStarNum; j++) {
                             if (j <= index) {
                                 self.opts.star[j].classList.add('m-star-items-active');
                             } else {
@@ -3322,4 +3366,4 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = TouchSlide;
-    }, {}] }, {}, [2]);
+    }, {}] }, {}, [3]);

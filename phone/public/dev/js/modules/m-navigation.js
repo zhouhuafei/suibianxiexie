@@ -20,31 +20,31 @@ var SubType = base.constructorInherit({
                     link: '/',
                     icon: 'icon-shouye',
                     text: '首页',
-                    mark: ''
-                },
-                {
-                    link: '/mine',
-                    icon: 'icon-wode',
-                    text: '我的',
-                    mark: ''
+                    isShowMark: false
                 },
                 {
                     link: '/develop-global',
                     icon: 'icon-kaifa',
                     text: 'g-global',
-                    mark: ''
+                    isShowMark: false
                 },
                 {
                     link: '/develop-module',
                     icon: 'icon-kaifa',
                     text: 'm-module',
-                    mark: ''
+                    isShowMark: true
                 },
                 {
                     link: '/develop-word',
                     icon: 'icon-kaifa',
                     text: '标准词汇',
-                    mark: ''
+                    isShowMark: false
+                },
+                {
+                    link: '/mine',
+                    icon: 'icon-wode',
+                    text: '我的',
+                    isShowMark: false
                 }
             ]
         }
@@ -58,8 +58,8 @@ SubType.prototype.moduleDomCreate = function () {
     var html = ``;
     items.forEach(function (v) {
         var markHtml = ``;
-        if (v.mark) {
-            markHtml = `<div class="m-navigation-mark">${v.mark}</div>`;
+        if (v.isShowMark) {
+            markHtml = `<div class="m-navigation-mark"></div>`;
         }
         html += `
             <a href="${v.link}" class="m-navigation-wrap">

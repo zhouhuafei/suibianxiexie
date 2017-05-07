@@ -59,6 +59,7 @@
                 //配置
                 config: {
                     isShowHref: true, //是否有跳转
+                    //TouchSlide插件的配置
                     touchSlide: {
                         slideCell: '', //外部容器,这个值会在底部进行覆盖,因为在这里没办法获取this
                         mainCell: '.m-slide-body', //切换元素的包裹层对象
@@ -863,6 +864,7 @@
                 }
             };
         }
+
         module.exports = whetherDisableScroll;
     }, {}], 24: [function (require, module, exports) {
         //底层方法

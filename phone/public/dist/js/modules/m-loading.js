@@ -44,7 +44,7 @@
 
         //超类型(子类型继承的对象)
         var SuperType = require('../modules/m-super-type');
-        var Mask = require('../modules/m-mask');
+        //var Mask = require('../modules/m-mask');
 
         //子类型
         var SubType = base.constructorInherit({
@@ -54,15 +54,15 @@
                 //回调
                 callback: {
                     moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                        if (self.opts.config.isShowMask) {
-                            new Mask({
-                                wrap: self.moduleDom.querySelector('.m-loading-wrap'),
-                                config: {
-                                    moduleDomIsShow: true,
-                                    moduleDomRenderMethod: { method: 'insertBefore' }
-                                }
-                            });
-                        }
+                        // if (self.opts.config.isShowMask) {
+                        //     new Mask({
+                        //         wrap: self.moduleDom.querySelector('.m-loading-wrap'),
+                        //         config: {
+                        //             moduleDomIsShow: true,
+                        //             moduleDomRenderMethod: {method: 'insertBefore'}
+                        //         }
+                        //     });
+                        // }
                         if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
                             self.wrapDom.style.position = 'relative';
                         }
@@ -70,7 +70,7 @@
                 },
                 //配置
                 config: {
-                    isShowMask: false, //是否显示遮罩(默认不显示)
+                    //isShowMask: false,  //是否显示遮罩(默认不显示)
                     status: 'loading', //加载状态 loading(加载中) over(加载完毕)
                     positionMethod: '', //模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
                     positionLocation: 'center', //模块的定位位置
@@ -132,7 +132,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-mask": 24, "../modules/m-super-type": 25 }], 3: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 24 }], 3: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opts = json || {};
@@ -841,65 +841,9 @@
                 }
             };
         }
+
         module.exports = whetherDisableScroll;
     }, {}], 24: [function (require, module, exports) {
-        //底层方法
-        var base = require('../base/base');
-
-        //超类型(子类型继承的对象)
-        var SuperType = require('../modules/m-super-type');
-
-        //子类型
-        var SubType = base.constructorInherit({
-            superType: SuperType,
-            //默认参数(继承超类型)
-            parameter: {
-                //回调
-                callback: {
-                    click: function click() {},
-                    moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                        if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
-                            self.wrapDom.style.position = 'relative';
-                        }
-                    }
-                },
-                //配置
-                config: {
-                    isTransparent: false, //是不是透明的(默认不透明)
-                    moduleDomIsShow: false //内部模块是否显示(默认不显示)
-                },
-                //数据
-                data: {}
-            }
-        });
-
-        //内部模块的创建(覆盖超类型)
-        SubType.prototype.moduleDomCreate = function () {
-            var isTransparent = '';
-            if (this.opts.config.isTransparent) {
-                isTransparent = 'm-mask-transparent';
-            }
-            this.moduleDom = base.createElement({
-                style: this.opts.config.moduleStyle,
-                custom: this.opts.config.moduleDomCustomAttr,
-                attribute: {
-                    className: "m-mask " + isTransparent,
-                    innerHTML: ""
-                }
-            });
-        };
-
-        //功能(覆盖超类型)
-        SubType.prototype.power = function () {
-            var self = this;
-            this.moduleDom.addEventListener('click', function (ev) {
-                self.opts.callback.click();
-                ev.stopPropagation();
-            });
-        };
-
-        module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 25 }], 25: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 

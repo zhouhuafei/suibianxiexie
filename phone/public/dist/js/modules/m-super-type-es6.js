@@ -1063,5 +1063,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
             };
         }
+
         module.exports = whetherDisableScroll;
     }, {}] }, {}, [2]);

@@ -39,23 +39,6 @@
         };
         module.exports = base;
     }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/px2rem": 16, "../function/scroll-to": 17, "../function/seconds-to-time": 18, "../function/select": 19, "../function/str-limit": 20, "../function/time-count-down": 21, "../function/user-agent": 22, "../function/when-scroll-bottom": 23, "../function/whether-disable-scroll": 24 }], 2: [function (require, module, exports) {
-        window.addEventListener('load', function () {
-            setTimeout(function () {
-
-                //没有数据
-                (function () {
-                    var NoData = require('../modules/m-no-data');
-                    new NoData({
-                        data: {
-                            text: '404 - Not Find'
-                        }
-                    });
-                })();
-
-                require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
-            }, 0);
-        });
-    }, { "../commons/common": 3, "../modules/m-no-data": 28 }], 3: [function (require, module, exports) {
         //版权
         (function () {
             if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
@@ -77,7 +60,24 @@
             var LazyLoad = require('../modules/m-lazy-load');
             new LazyLoad();
         })();
-    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 26, "../modules/m-lazy-load": 27 }], 4: [function (require, module, exports) {
+    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 26, "../modules/m-lazy-load": 27 }], 3: [function (require, module, exports) {
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+
+                //没有数据
+                (function () {
+                    var NoData = require('../modules/m-no-data');
+                    new NoData({
+                        data: {
+                            text: '404 - Not Find'
+                        }
+                    });
+                })();
+
+                require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
+            }, 0);
+        });
+    }, { "../commons/common": 2, "../modules/m-no-data": 28 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opts = json || {};
@@ -786,6 +786,7 @@
                 }
             };
         }
+
         module.exports = whetherDisableScroll;
     }, {}], 25: [function (require, module, exports) {
         //底层方法
@@ -843,19 +844,62 @@
                 //配置
                 config: {},
                 //数据
-                data: {}
+                data: {
+                    items: [{
+                        link: '/',
+                        icon: 'icon-shouye',
+                        text: '首页',
+                        isHighlight: false,
+                        isShowMark: false
+                    }, {
+                        link: '/develop-global',
+                        icon: 'icon-kaifa',
+                        text: 'g-global',
+                        isHighlight: false,
+                        isShowMark: false
+                    }, {
+                        link: '/develop-module',
+                        icon: 'icon-kaifa',
+                        text: 'm-module',
+                        isHighlight: true,
+                        isShowMark: true
+                    }, {
+                        link: '/develop-word',
+                        icon: 'icon-kaifa',
+                        text: '标准词汇',
+                        isHighlight: false,
+                        isShowMark: false
+                    }, {
+                        link: '/mine',
+                        icon: 'icon-wode',
+                        text: '我的',
+                        isHighlight: false,
+                        isShowMark: false
+                    }]
+                }
             }
         });
 
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDomClass = "m-footer-nav";
-            var moduleDomHtml = "\n        <div class=\"m-footer-nav-wrap\">\n            <a class=\"m-footer-nav-body\" href=\"/\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-shouye\"></div>\n                <div class=\"m-footer-nav-body-text\">\u9996\u9875</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-global\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-text\">g-global</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-module\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-text\">m-module</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/develop-word\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-kaifa\"></div>\n                <div class=\"m-footer-nav-body-text\">\u6807\u51C6\u8BCD\u6C47</div>\n            </a>\n            <a class=\"m-footer-nav-body\" href=\"/mine\">\n                <div class=\"m-footer-nav-body-icon iconfont icon-wode\"></div>\n                <div class=\"m-footer-nav-body-text\">\u6211\u7684</div>\n            </a>\n        </div>\n    ";
+            var moduleDomHtml = "";
+            this.opts.data.items.forEach(function (v) {
+                var highlightClass = "";
+                if (v.isHighlight) {
+                    highlightClass = "m-footer-nav-body-active";
+                }
+                var markHtml = "";
+                if (v.isShowMark) {
+                    markHtml = "<div class=\"m-footer-nav-body-mark\"></div>";
+                }
+                moduleDomHtml += "\n            <a class=\"m-footer-nav-body " + highlightClass + "\" href=\"" + v.link + "\">\n                <div class=\"m-footer-nav-body-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-footer-nav-body-text\">" + v.text + "</div>\n                " + markHtml + "\n            </a>\n        ";
+            });
             this.moduleDom = base.createElement({
                 style: this.opts.config.moduleDomStyle,
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: this.moduleDomClass,
-                    innerHTML: moduleDomHtml
+                    innerHTML: "<div class=\"m-footer-nav-wrap\">" + moduleDomHtml + "</div>"
                 }
             });
         };
@@ -1240,4 +1284,4 @@
         };
 
         module.exports = SuperType;
-    }, { "../base/base": 1 }] }, {}, [2]);
+    }, { "../base/base": 1 }] }, {}, [3]);

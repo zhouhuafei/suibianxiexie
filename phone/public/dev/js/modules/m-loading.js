@@ -3,7 +3,7 @@ var base = require('../base/base');
 
 //超类型(子类型继承的对象)
 var SuperType = require('../modules/m-super-type');
-var Mask = require('../modules/m-mask');
+//var Mask = require('../modules/m-mask');
 
 //子类型
 var SubType = base.constructorInherit({
@@ -13,15 +13,15 @@ var SubType = base.constructorInherit({
         //回调
         callback: {
             moduleDomRenderBefore: function (self) {
-                if (self.opts.config.isShowMask) {
-                    new Mask({
-                        wrap: self.moduleDom.querySelector('.m-loading-wrap'),
-                        config: {
-                            moduleDomIsShow: true,
-                            moduleDomRenderMethod: {method: 'insertBefore'}
-                        }
-                    });
-                }
+                // if (self.opts.config.isShowMask) {
+                //     new Mask({
+                //         wrap: self.moduleDom.querySelector('.m-loading-wrap'),
+                //         config: {
+                //             moduleDomIsShow: true,
+                //             moduleDomRenderMethod: {method: 'insertBefore'}
+                //         }
+                //     });
+                // }
                 if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
                     self.wrapDom.style.position = 'relative';
                 }
@@ -29,7 +29,7 @@ var SubType = base.constructorInherit({
         },
         //配置
         config: {
-            isShowMask: false,  //是否显示遮罩(默认不显示)
+            //isShowMask: false,  //是否显示遮罩(默认不显示)
             status: 'loading',  //加载状态 loading(加载中) over(加载完毕)
             positionMethod: '',   //模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
             positionLocation: 'center',//模块的定位位置
