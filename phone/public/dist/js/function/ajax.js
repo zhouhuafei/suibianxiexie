@@ -49,16 +49,24 @@
                 defaults: {
                     //回调
                     callback: {
-                        //完成
-                        complete: function complete() {},
-                        //成功
-                        success: function success() {},
-                        //失败
-                        fail: function fail() {},
-                        //超时
-                        timeout: function timeout() {},
-                        //取消
-                        abort: function abort() {}
+                        //上传期间持续不断地触发
+                        uploadProgress: function uploadProgress() {},
+                        //上传完成时触发
+                        uploadLoad: function uploadLoad() {},
+                        //在接收到响应数据的第一个字节时触发
+                        loadStart: function loadStart() {},
+                        //在接收响应期间持续不断地触发
+                        progress: function progress() {},
+                        //在请求发生错误时触发
+                        error: function error() {},
+                        //在因为调用abort()方法而终止请求时触发
+                        abort: function abort() {},
+                        //在接收到完整的响应数据时触发
+                        load: function load() {},
+                        //在通信完成或者触发error、abort或load事件后触发
+                        loadEnd: function loadEnd() {},
+                        //请求超时
+                        timeout: function timeout() {}
                     },
                     //配置
                     config: {
@@ -68,6 +76,7 @@
                         dataType: 'json', //数据类型(默认json)
                         async: true, //默认异步
                         timeout: 5000, //超时时间(默认3秒)
+                        mark: '?', //当请求类型为get时,url后面的数据用什么符号开头url:'index.php',1.?ctl=seller&act=setting,2.#ctl=seller&act=setting
                         isShowLoading: true, //是否显示loading
                         isShowDialog: true, //是否显示弹窗
                         //loading的配置
@@ -85,17 +94,42 @@
             });
             this.loading = new Loading(this.opts.config.loading);
             this.dialog = new Dialog(this.opts.config.dialog);
-            this.xhr = new XMLHttpRequest();
+            this.xhr = new XMLHttpRequest(); //xhr
+            this.xhr.timeout = this.opts.config.timeout; //超时设置
             this.init();
         }
         Ajax.prototype.init = function () {
+            this.events();
             this.open();
             this.send();
-            this.events();
         };
         Ajax.prototype.open = function () {
             var opts = this.opts;
-            this.xhr.open(opts.config.type, opts.config.url);
+            if (opts.config.type.toLowerCase() == 'get') {
+                //get
+                var search = "";
+                var num = 0;
+                if (data) {
+                    for (var attr in data) {
+                        if (data.hasOwnProperty(attr)) {
+                            if (num == 0) {
+                                search += attr + "=" + data[attr];
+                            } else {
+                                search += "&" + attr + "=" + data[attr];
+                            }
+                            num++;
+                        }
+                    }
+                }
+                var url = opts.config.url + opts.config.mark + search;
+                this.xhr.open(opts.config.type, url);
+            } else if (opts.config.type.toLowerCase() == 'post') {
+                //post
+                this.xhr.open(opts.config.type, opts.config.url);
+            } else {
+                console.log('仅支持get和post请求');
+                return false;
+            }
         };
         Ajax.prototype.send = function () {
             var opts = this.opts;
@@ -119,20 +153,85 @@
                 return false;
             }
         };
-        Ajax.prototype.events = function () {};
-        Ajax.prototype.success = function () {
-            this.opts.callback.success();
+        Ajax.prototype.events = function () {
+            var self = this;
+            //上传期间持续不断地触发
+            this.xhr.upload.addEventListener('progress', function () {
+                self.uploadProgress();
+            });
+            //上传完成时触发
+            this.xhr.upload.addEventListener('load', function () {
+                self.uploadLoad();
+            });
+            //在接收到响应数据的第一个字节时触发
+            this.xhr.addEventListener('loadstart', function () {
+                self.loadStart();
+            });
+            //在接收响应期间持续不断地触发
+            this.xhr.addEventListener('progress', function () {
+                self.progress();
+            });
+            //在请求发生错误时触发
+            this.xhr.addEventListener('error', function () {
+                self.error();
+            });
+            //在因为调用abort()方法而终止请求时触发
+            this.xhr.addEventListener('abort', function () {
+                self.abort();
+            });
+            //在接收到完整的响应数据时触发
+            this.xhr.addEventListener('load', function () {
+                self.load();
+            });
+            //在通信完成或者触发error、abort或load事件后触发
+            this.xhr.addEventListener('loadend', function () {
+                self.loadEnd();
+            });
+            //请求超时
+            this.xhr.addEventListener('timeout', function () {
+                self.timeout();
+            });
         };
-        Ajax.prototype.fail = function () {
-            this.opts.callback.fail();
+        //上传期间持续不断地触发
+        Ajax.prototype.uploadProgress = function () {
+            this.opts.callback.uploadProgress();
         };
+        //上传完成时触发
+        Ajax.prototype.uploadLoad = function () {
+            this.opts.callback.uploadLoad();
+        };
+        //在接收到响应数据的第一个字节时触发
+        Ajax.prototype.loadStart = function () {
+            this.opts.callback.loadStart();
+        };
+        //在接收响应期间持续不断地触发
+        Ajax.prototype.progress = function () {
+            this.opts.callback.progress();
+        };
+        //在请求发生错误时触发
+        Ajax.prototype.error = function () {
+            this.opts.callback.error();
+        };
+        //在因为调用abort()方法而终止请求时触发
+        Ajax.prototype.abort = function () {
+            this.opts.callback.abort();
+        };
+        //在接收到完整的响应数据时触发
+        Ajax.prototype.load = function () {
+            this.opts.callback.load();
+        };
+        //在通信完成或者触发error、abort或load事件后触发
+        Ajax.prototype.loadEnd = function () {
+            this.opts.callback.loadEnd();
+        };
+        //请求超时
         Ajax.prototype.timeout = function () {
             this.opts.callback.timeout();
         };
-        Ajax.prototype.abort = function () {
+        //手动触发取消请求
+        Ajax.prototype.triggerAbort = function () {
             if (this.xhr.abort) {
                 this.xhr.abort();
-                this.opts.callback.abort();
             } else {
                 console.log('浏览器不支持xhr2的abort');
             }
@@ -497,7 +596,7 @@
         //移除对象引用
         function objRemoveQuote(json) {
             var opts = json || {};
-            var obj = opts.obj;
+            var obj = opts.obj; //这里一定不能给默认值
             var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
 
             if (objType != 'object' && objType != 'array') {
@@ -520,7 +619,7 @@
         //把json格式的对象转成数组
         function objToArray(json) {
             var opts = json || {};
-            var obj = opts.obj;
+            var obj = opts.obj || {};
             var arr = [];
             if (obj instanceof Array) {
                 obj.forEach(function (v, i) {
