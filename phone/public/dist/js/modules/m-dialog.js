@@ -94,7 +94,7 @@
                     //提示框
                     alert: {
                         time: 2000, //展示的时间
-                        isShowIcon: true, //是否显示icon
+                        isShowIcon: false, //是否显示icon
                         icon: "icon-chenggong", //icon的class
                         content: "\u6210\u529F" //内容信息
                     },
@@ -115,7 +115,7 @@
                         cancelContent: "\u53D6\u6D88", //取消按钮的内容
                         isCustom: false, //是否自定义
                         customContent: "", //自定义的内容
-                        isShowIcon: true, //是否显示icon
+                        isShowIcon: false, //是否显示icon
                         icon: "icon-jinggao", //icon的类型
                         isShowMask: true, //是否显示遮罩
                         isHandHide: false //是否手动隐藏(一般只用于点击确认时)
