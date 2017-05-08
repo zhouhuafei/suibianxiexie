@@ -15,8 +15,8 @@ var SubType = base.constructorInherit({
         config: {},
         //数据
         data: {
-            header: [{html: 'undefined-header0'}, {html: 'undefined-header1'}, {html: 'undefined-header2'}],
-            body: [[{html: 'undefined-body0-0'}, {html: 'undefined-body0-1'}, {html: 'undefined-body0-2'}]/*, [{html: 'undefined-body1-0'}, {html: 'undefined-body1-1'}, {html: 'undefined-body1-2'}]*/],
+            header: [{content: 'undefined-header0'}, {content: 'undefined-header1'}, {content: 'undefined-header2'}],
+            body: [[{content: 'undefined-body0-0'}, {content: 'undefined-body0-1'}, {content: 'undefined-body0-2'}]],
             footer: ''
         }
     }
@@ -25,8 +25,8 @@ var SubType = base.constructorInherit({
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDom = base.createElement({
-        style: this.opt.config.moduleDomStyle,
-        custom: this.opt.config.moduleDomCustomAttr,
+        style: this.opts.config.moduleDomStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
             className: `m-table`,
             innerHTML: `
@@ -48,11 +48,11 @@ SubType.prototype.moduleDomCreate = function () {
 
 SubType.prototype.moduleDomCreateHeader = function () {
     var html = ``;
-    this.opt.data.header.forEach(function (v) {
+    this.opts.data.header.forEach(function (v) {
         html += `
             <div class="m-table-col">
                 <div class="m-table-col-wrap">
-                    ${v.html}
+                    ${v.content}
                 </div>
             </div>
         `;
@@ -62,13 +62,13 @@ SubType.prototype.moduleDomCreateHeader = function () {
 
 SubType.prototype.moduleDomCreateBody = function () {
     var html = ``;
-    this.opt.data.body.forEach(function (v0) {
+    this.opts.data.body.forEach(function (v0) {
         var row = ``;
         v0.forEach(function (v1) {
             row += `
                 <div class="m-table-col">
                     <div class="m-table-col-wrap">
-                        ${v1.html}
+                        ${v1.content}
                     </div>
                 </div>
             `;
@@ -79,7 +79,7 @@ SubType.prototype.moduleDomCreateBody = function () {
 };
 
 SubType.prototype.moduleDomCreateFooter = function () {
-    return this.opt.data.footer;
+    return this.opts.data.footer;
 };
 
 //功能(覆盖超类型)

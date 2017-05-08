@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {{>head}}
+        <link rel="stylesheet" href="../../../dist/css/pages/develop-global.css">
+    </head>
+    <body>
+        <div class="g-wrap">
+            {{>header}}
+            <!--page start-->
+            <div class="g-page">
+                <div class="page-list">
+                    <div class="g-list">
+                        <a href="/develop-global" class="g-list-row">
+                            <div class="g-list-wrap">
+                                <div class="g-list-wrap">
+                                    <div class="g-list-icon iconfont icon-kaifa"></div>
+                                    <div class="g-list-text">g-global</div>
+                                </div>
+                                <div class="g-list-more iconfont icon-gengduo"></div>
+                            </div>
+                        </a>
+                        <a href="/develop-module" class="g-list-row">
+                            <div class="g-list-wrap">
+                                <div class="g-list-wrap">
+                                    <div class="g-list-icon iconfont icon-kaifa"></div>
+                                    <div class="g-list-text">m-module</div>
+                                </div>
+                                <div class="g-list-wrap">
+                                    <div class="g-list-mark">7,664,222</div>
+                                    <div class="g-list-more iconfont icon-gengduo"></div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/develop-word" class="g-list-row">
+                            <div class="g-list-wrap">
+                                <div class="g-list-wrap">
+                                    <div class="g-list-icon iconfont icon-kaifa"></div>
+                                    <div class="g-list-text">标准词汇</div>
+                                </div>
+                                <div class="g-list-wrap">
+                                    <div class="g-list-more iconfont icon-gengduo"></div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/develop-list" class="g-list-row">
+                            <div class="g-list-wrap">
+                                <div class="g-list-wrap">
+                                    <div class="g-list-icon iconfont icon-kaifa"></div>
+                                    <div class="g-list-text">开发</div>
+                                </div>
+                            </div>
+                            <div class="g-list-info">
+                                提示:网站的基础样式都在这里了,想要对应的样式可以点击这里来查找哟
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="page-img-upload">
+                    <label class="g-img-upload">
+                        <span class="g-img-upload-close"></span>
+                        <span class="g-img-upload-show"></span>
+                        <span class="g-img-upload-icon iconfont icon-shangchuantupian"></span>
+                        <input class="g-img-upload-input" type="file" accept="image/*">
+                    </label>
+                </div>
+                <div class="page-img-upload">
+                    <label class="g-img-upload g-img-upload-active">
+                        <span class="g-img-upload-close iconfont icon-shanchu"></span><!--点击删除去掉默认行为即可-->
+                        <span class="g-img-upload-show" style="background-image: url('http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg')"></span>
+                        <span class="g-img-upload-icon iconfont icon-shangchuantupian"></span>
+                        <input class="g-img-upload-input" type="file" accept="image/*">
+                    </label>
+                </div>
+                <div class="page-btn">
+                    <div class="g-btn g-btn-cancel">
+                        <div class="g-btn-wrap">
+                            <div class="g-btn-icon iconfont"></div>
+                            <div class="g-btn-text">取消按钮</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-btn">
+                    <div class="g-btn g-btn-confirm">
+                        <div class="g-btn-icon iconfont"></div>
+                        <div class="g-btn-text">确认按钮</div>
+                    </div>
+                </div>
+                <div class="page-btn">
+                    <div class="g-btn g-btn-cancel">
+                        <div class="g-btn-icon iconfont"></div>
+                        <div class="g-btn-text">取消按钮</div>
+                    </div>
+                    <div class="g-btn g-btn-disable">
+                        <div class="g-btn-icon iconfont"></div>
+                        <div class="g-btn-text">禁用按钮</div>
+                    </div>
+                    <div class="g-btn g-btn-confirm">
+                        <div class="g-btn-icon iconfont"></div>
+                        <div class="g-btn-text">确认按钮</div>
+                    </div>
+                </div>
+                <div class="page-btn">
+                    <div class="g-btn g-btn-full g-btn-confirm">
+                        <div class="g-btn-icon iconfont"></div>
+                        <div class="g-btn-text">确认按钮铺满</div>
+                    </div>
+                </div>
+                <div class="page-input">
+                    <label class="g-input">
+                        <span class="g-input-text">账号:</span>
+                        <input class="g-input-input m-validate-form" data-validate="no-space no-zero yes-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="text" name="username" id="username" value="" placeholder="请输入账号">
+                    </label>
+                </div>
+                <div class="page-input">
+                    <label class="g-input">
+                        <span class="g-input-text">密码:</span>
+                        <input class="g-input-input" type="password" name="password" id="password" value="" placeholder="请输入密码">
+                    </label>
+                </div>
+                <div class="page-input">
+                    <label class="g-input">
+                        <span class="g-input-text">手机号:</span>
+                        <input class="g-input-input m-validate-form" data-validate="no-space no-zero yes-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="text" name="phone" id="phone" value="" placeholder="请输入手机号">
+                        <span class="g-input-icon iconfont icon-bitian"></span>
+                    </label>
+                </div>
+                <div class="page-select">
+                    <label class="g-select">
+                        <div class="g-select-text">选择:</div>
+                        <select class="g-select-select" name="">
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                            <option value="">4</option>
+                        </select>
+                        <span class="g-select-icon iconfont icon-select"></span>
+                    </label>
+                </div>
+                <div class="page-textarea">
+                    <label class="g-textarea">
+                        <span class="g-textarea-text">备注:</span>
+                        <textarea name="" cols="" rows="" placeholder="请输入..." class="g-textarea-textarea"></textarea>
+                    </label>
+                </div>
+                <div class="page-radio m-lazy-load">
+                    <label class="g-radio">
+                        <span class="g-radio-wrap">
+                            <input class="g-radio-radio" checked type="radio" name="sex" id="sex-boy" value="">
+                            <span class="g-radio-icon iconfont icon-radio"></span>
+                        </span>
+                        <span class="g-radio-text">男</span>
+                    </label>
+                    <label class="g-radio">
+                        <span class="g-radio-wrap">
+                            <input class="g-radio-radio" type="radio" name="sex" id="sex-girl" value="">
+                            <span class="g-radio-icon iconfont icon-radio"></span>
+                        </span>
+                        <span class="g-radio-text">女</span>
+                    </label>
+                </div>
+                <div class="page-checkbox m-lazy-load">
+                    <label class="g-checkbox">
+                        <span class="g-checkbox-wrap">
+                            <input class="g-checkbox-checkbox" checked type="checkbox" name="pingpangqiu" id="pingpangqiu" value="pingpangqiu">
+                            <span class="g-checkbox-icon iconfont icon-checkbox"></span>
+                        </span>
+                        <span class="g-checkbox-text">乒乓球</span>
+                    </label>
+                    <label class="g-checkbox">
+                        <span class="g-checkbox-wrap">
+                            <input class="g-checkbox-checkbox" type="checkbox" name="zhuoqiu" id="zhuoqiu" value="zhuoqiu">
+                            <span class="g-checkbox-icon iconfont icon-checkbox"></span>
+                        </span>
+                        <span class="g-checkbox-text">桌球</span>
+                    </label>
+                </div>
+                <div class="page-label">
+                    <div class="g-label">
+                        <a href="" class="g-label-btn">忘记密码</a>
+                        <a href="" class="g-label-btn">切换账号</a>
+                        <a href="" class="g-label-btn">修改密码</a>
+                        <a href="" class="g-label-btn">注册</a>
+                        <a href="/mine" class="g-label-btn">首页</a>
+                        <a href="" class="g-label-btn">我的</a>
+                        <a href="/ui" class="g-label-btn">ui</a>
+                        <a href="" class="g-label-btn">设置</a>
+                    </div>
+                </div>
+            </div>
+            <!--page end-->
+            {{>footer}}
+            <script src="../../../dist/js/pages/develop-global.js"></script>
+        </div>
+    </body>
+</html>

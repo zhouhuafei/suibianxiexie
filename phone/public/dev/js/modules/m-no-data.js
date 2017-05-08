@@ -20,11 +20,11 @@ var SubType = base.constructorInherit({
         //数据
         data: {
             icon: 'icon-meiyoushuju',
-            txt: '没有数据',
+            text: '没有数据',
             btn: {
                 icon: 'icon-shouye',
-                txt: '回首页',
-                href: '/'
+                text: '回首页',
+                link: '/'
             }
         }
     }
@@ -32,22 +32,22 @@ var SubType = base.constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    var data = this.opt.data;
+    var data = this.opts.data;
     var btnIconHtml = ``;
-    if (this.opt.config.btn.isShowIcon) {
-        btnIconHtml = `<div class="g-button-icon iconfont ${data.btn.icon}"></div>`;
+    if (this.opts.config.btn.isShowIcon) {
+        btnIconHtml = `<div class="g-btn-icon iconfont ${data.btn.icon}"></div>`;
     }
     this.moduleDom = base.createElement({
-        style: this.opt.config.moduleStyle,
-        custom: this.opt.config.moduleDomCustomAttr,
+        style: this.opts.config.moduleStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
             className: `m-no-data`,
             innerHTML: `
                 <div class="m-no-data-icon iconfont ${data.icon}"></div>
-                <div class="m-no-data-txt">${data.txt}</div>
-                <a class="m-no-data-btn g-button g-button-confirm" href="${data.btn.href}">
+                <div class="m-no-data-text">${data.text}</div>
+                <a class="m-no-data-btn g-btn g-btn-confirm" href="${data.btn.link}">
                     ${btnIconHtml}
-                    <div class="g-button-txt">${data.btn.txt}</div>
+                    <div class="g-btn-text">${data.btn.text}</div>
                 </a>
             `
         }

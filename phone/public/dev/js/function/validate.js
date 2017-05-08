@@ -2,14 +2,14 @@
 var validate = {
     //是不是空
     isSpace: function (json) {
-        var opt = json || {};
-        var success = opt.success || function () {
+        var opts = json || {};
+        var success = opts.success || function () {
                 console.log('no find success callback');
             };
-        var fail = opt.fail || function () {
+        var fail = opts.fail || function () {
                 console.log('no find fail callback');
             };
-        var value = opt.value || " ";
+        var value = opts.value || " ";
         var valueTrim = value.trim();
         var b = false;
         if (valueTrim == '') {
@@ -22,14 +22,14 @@ var validate = {
     },
     //是不是0
     isZero: function (json) {
-        var opt = json || {};
-        var success = opt.success || function () {
+        var opts = json || {};
+        var success = opts.success || function () {
                 console.log('no find success callback');
             };
-        var fail = opt.fail || function () {
+        var fail = opts.fail || function () {
                 console.log('no find fail callback');
             };
-        var value = opt.value || " ";
+        var value = opts.value || " ";
         var valueTrim = value.trim();
         var b = false;
         if (valueTrim == 0) {
@@ -42,18 +42,18 @@ var validate = {
     },
     //是不是整数(包含0)
     isInteger: function (json) {
-        var opt = json || {};
-        var success = opt.success || function () {
+        var opts = json || {};
+        var success = opts.success || function () {
                 console.log('no find success callback');
             };
-        var fail = opt.fail || function () {
+        var fail = opts.fail || function () {
                 console.log('no find fail callback');
             };
-        var value = opt.value || " ";
+        var value = opts.value || " ";
         var valueTrim = value.trim();
-        var re = /^\d+$/;
+        var reg = /^\d+$/;
         var b = false;
-        if (re.test(valueTrim)) {
+        if (reg.test(valueTrim)) {
             b = true;
             success();
         } else {
@@ -63,19 +63,19 @@ var validate = {
     },
     //是不是保留了num位小数点
     isReservedDecimal: function (json) {
-        var opt = json || {};
-        var success = opt.success || function () {
+        var opts = json || {};
+        var success = opts.success || function () {
                 console.log('no find success callback');
             };
-        var fail = opt.fail || function () {
+        var fail = opts.fail || function () {
                 console.log('no find fail callback');
             };
-        var num = opt.num || 2;
-        var value = opt.value || " ";
+        var num = opts.num || 2;
+        var value = opts.value || " ";
         var valueTrim = value.trim();
-        var re = new RegExp("^\\d+\\.\\d{" + num + "}$");
+        var reg = new RegExp("^\\d+\\.\\d{" + num + "}$");
         var b = false;
-        if (re.test(valueTrim)) {
+        if (reg.test(valueTrim)) {
             b = true;
             success();
         } else {
@@ -84,4 +84,5 @@ var validate = {
         return b;
     }
 };
+
 module.exports = validate;

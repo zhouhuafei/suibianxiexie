@@ -1,7 +1,7 @@
 //滚动到指定位置
 function scrollTo(json) {
-    var opt = json || {};
-    var to = opt.to || '0';
+    var opts = json || {};
+    var to = opts.to || '0';
     var scale = 6;
     var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
     var speed = 0;
@@ -17,4 +17,5 @@ function scrollTo(json) {
     };
     requestAnimationFrame(fn);
 }
+
 module.exports = scrollTo;

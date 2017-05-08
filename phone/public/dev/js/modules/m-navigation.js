@@ -17,64 +17,34 @@ var SubType = base.constructorInherit({
         data: {
             items: [
                 {
-                    href: '/',
+                    link: '/',
                     icon: 'icon-shouye',
-                    txt: '周',
-                    mark: ''
+                    text: '首页',
+                    isShowMark: false
                 },
                 {
-                    href: '/mine',
+                    link: '/develop-global',
+                    icon: 'icon-kaifa',
+                    text: 'g-global',
+                    isShowMark: false
+                },
+                {
+                    link: '/develop-module',
+                    icon: 'icon-kaifa',
+                    text: 'm-module',
+                    isShowMark: true
+                },
+                {
+                    link: '/develop-word',
+                    icon: 'icon-kaifa',
+                    text: '标准词汇',
+                    isShowMark: false
+                },
+                {
+                    link: '/mine',
                     icon: 'icon-wode',
-                    txt: '华',
-                    mark: ''
-                },
-                {
-                    href: '/ui',
-                    icon: 'icon-guanzhu',
-                    txt: '飞',
-                    mark: ''
-                },
-                {
-                    href: '/setting',
-                    icon: 'icon-shezhi',
-                    txt: '永',
-                    mark: ''
-                },
-                {
-                    href: '/cart',
-                    icon: 'icon-gouwuche',
-                    txt: '远',
-                    mark: ''
-                },
-                {
-                    href: '/',
-                    icon: 'icon-shoucang',
-                    txt: '爱',
-                    mark: ''
-                },
-                {
-                    href: '/mine',
-                    icon: 'icon-shoucang',
-                    txt: '侯',
-                    mark: ''
-                },
-                {
-                    href: '/ui',
-                    icon: 'icon-shoucang',
-                    txt: '丽',
-                    mark: ''
-                },
-                {
-                    href: '/setting',
-                    icon: 'icon-shoucang',
-                    txt: '杰',
-                    mark: ''
-                },
-                {
-                    href: '/cart',
-                    icon: 'icon-shoucang',
-                    txt: '!',
-                    mark: ''
+                    text: '我的',
+                    isShowMark: false
                 }
             ]
         }
@@ -83,25 +53,25 @@ var SubType = base.constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    var data = this.opt.data;
+    var data = this.opts.data;
     var items = data.items;
     var html = ``;
     items.forEach(function (v) {
         var markHtml = ``;
-        if (v.mark) {
-            markHtml = `<div class="m-navigation-mark">${v.mark}</div>`;
+        if (v.isShowMark) {
+            markHtml = `<div class="m-navigation-mark"></div>`;
         }
         html += `
-            <a href="${v.href}" class="m-navigation-wrap">
+            <a href="${v.link}" class="m-navigation-wrap">
                 <div class="m-navigation-icon iconfont ${v.icon}"></div>
-                <div class="m-navigation-txt">${v.txt}</div>
+                <div class="m-navigation-text">${v.text}</div>
                 ${markHtml}
             </a>
         `;
     });
     this.moduleDom = base.createElement({
-        style: this.opt.config.moduleDomStyle,
-        custom: this.opt.config.moduleDomCustomAttr,
+        style: this.opts.config.moduleDomStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
             className: `m-navigation`,
             innerHTML: html

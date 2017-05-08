@@ -21,12 +21,12 @@ var SubType = base.constructorInherit({
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDom = base.createElement({
-        style: this.opt.config.moduleDomStyle,
-        custom: this.opt.config.moduleDomCustomAttr,
+        style: this.opts.config.moduleDomStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
             className: `m-sub-type`,
             innerHTML: `
-                <div class="m-sub-type-txt">周华飞爱侯丽杰,侯丽杰爱周华飞</div>
+                <div class="m-sub-type-text">周华飞爱侯丽杰,侯丽杰爱周华飞</div>
             `
         }
     });

@@ -3,7 +3,7 @@ var secondsToTime = require('../function/seconds-to-time');//时间转换
 
 //倒计时
 function timeCountDown(json) {
-    var opt = extend({
+    var opts = extend({
         defaults: {
             seconds: 0,
             callback: {
@@ -15,9 +15,9 @@ function timeCountDown(json) {
         },
         inherits: json
     });
-    var seconds = opt.seconds;//秒数
-    var run = opt.callback.run;//运行的回调
-    var over = opt.callback.over;//结束的回调
+    var seconds = opts.seconds;//秒数
+    var run = opts.callback.run;//运行的回调
+    var over = opts.callback.over;//结束的回调
     //时间大于等于0秒
     if (seconds >= 0) {
         run(secondsToTime({seconds: seconds}));//运行时的回调
@@ -37,4 +37,5 @@ function timeCountDown(json) {
         console.log('倒计时的秒数不能小于0');
     }
 }
+
 module.exports = timeCountDown;

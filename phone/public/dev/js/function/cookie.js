@@ -1,9 +1,9 @@
 //设置cookie
 function setCookie(json) {
-    var opt = json || {};
-    var name = opt.name;
-    var value = opt.value;
-    var expires = opt.expires;
+    var opts = json || {};
+    var name = opts.name;
+    var value = opts.value;
+    var expires = opts.expires;
     var myDate = new Date();
     var myTime = myDate.getTime();
     myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000);
@@ -11,8 +11,8 @@ function setCookie(json) {
 }
 //获取cookie
 function getCookie(json) {
-    var opt = json || {};
-    var name = opt.name;
+    var opts = json || {};
+    var name = opts.name;
     var cookie = document.cookie;
     var arr = cookie.split('; ');
     var value = '';
@@ -27,13 +27,11 @@ function getCookie(json) {
 }
 //清除cookie
 function removeCookie(json) {
-    var opt = json || {};
-    var name = opt.name;
+    var opts = json || {};
+    var name = opts.name;
     setCookie(name, '', -1);
 }
-var obj = {
-    setCookie: setCookie,
-    getCookie: getCookie,
-    removeCookie: removeCookie
-};
-module.exports = obj;
+
+module.exports.setCookie = setCookie;
+module.exports.getCookie = getCookie;
+module.exports.removeCookie = removeCookie;

@@ -14,42 +14,74 @@ var SubType = base.constructorInherit({
         //配置
         config: {},
         //数据
-        data: {}
+        data: {
+            items: [
+                {
+                    link: '/',
+                    icon: 'icon-shouye',
+                    text: '首页',
+                    isHighlight: false,
+                    isShowMark: false
+                },
+                {
+                    link: '/develop-global',
+                    icon: 'icon-kaifa',
+                    text: 'g-global',
+                    isHighlight: false,
+                    isShowMark: false
+                },
+                {
+                    link: '/develop-module',
+                    icon: 'icon-kaifa',
+                    text: 'm-module',
+                    isHighlight: true,
+                    isShowMark: true
+                },
+                {
+                    link: '/develop-word',
+                    icon: 'icon-kaifa',
+                    text: '标准词汇',
+                    isHighlight: false,
+                    isShowMark: false
+                },
+                {
+                    link: '/mine',
+                    icon: 'icon-wode',
+                    text: '我的',
+                    isHighlight: false,
+                    isShowMark: false
+                }
+            ]
+        }
     }
 });
 
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDomClass = `m-footer-nav`;
-    var moduleDomHtml = `
-        <div class="m-footer-nav-wrap">
-            <a class="m-footer-nav-body" href="/">
-                <div class="m-footer-nav-body-icon iconfont icon-shouye"></div>
-                <div class="m-footer-nav-body-txt">首页</div>
+    var moduleDomHtml = ``;
+    this.opts.data.items.forEach(function (v) {
+        var highlightClass = ``;
+        if (v.isHighlight) {
+            highlightClass = `m-footer-nav-body-active`;
+        }
+        var markHtml = ``;
+        if (v.isShowMark) {
+            markHtml = `<div class="m-footer-nav-body-mark"></div>`;
+        }
+        moduleDomHtml += `
+            <a class="m-footer-nav-body ${highlightClass}" href="${v.link}">
+                <div class="m-footer-nav-body-icon iconfont ${v.icon}"></div>
+                <div class="m-footer-nav-body-text">${v.text}</div>
+                ${markHtml}
             </a>
-            <a class="m-footer-nav-body" href="">
-                <div class="m-footer-nav-body-icon iconfont icon-fenxiao"></div>
-                <div class="m-footer-nav-body-txt">我要开店</div>
-            </a>
-            <a class="m-footer-nav-body" href="/cart">
-                <div class="m-footer-nav-body-icon iconfont icon-gouwuche"></div>
-                <div class="m-footer-nav-body-txt">购物车</div>
-            </a>
-            <a class="m-footer-nav-body" href="">
-                <div class="m-footer-nav-body-icon iconfont icon-kefu"></div>
-                <div class="m-footer-nav-body-txt">客服</div>
-            </a>
-            <a class="m-footer-nav-body" href="/mine">
-                <div class="m-footer-nav-body-icon iconfont icon-wode"></div>
-                <div class="m-footer-nav-body-txt">我的</div>
-            </a>
-        </div>
-    `;
+        `;
+    });
     this.moduleDom = base.createElement({
-        style: this.opt.config.moduleDomStyle,
-        custom: this.opt.config.moduleDomCustomAttr,
+        style: this.opts.config.moduleDomStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
             className: this.moduleDomClass,
-            innerHTML: moduleDomHtml
+            innerHTML: `<div class="m-footer-nav-wrap">${moduleDomHtml}</div>`
         }
     });
 };

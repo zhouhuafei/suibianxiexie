@@ -1,19 +1,19 @@
 //图片上传
 function Fn(json) {
-    this.opt = json || {};
+    this.opts = json || {};
     //如果没有选择文件的input,则不继续往下执行
-    if (!this.opt.input) {
+    if (!this.opts.input) {
         console.log('no find input');
         return;
     }
     //一次上传限制几张图片
-    this.opt.limitNum = this.opt.limitNum || '5';
+    this.opts.limitNum = this.opts.limitNum || '5';
     //选择图片的回调
-    this.opt.changeCallback = this.opt.changeCallback || function () {
+    this.opts.changeCallback = this.opts.changeCallback || function () {
             console.log('no find changeCallback');
         };
     //把图片读取成base64编码的回调
-    this.opt.base64Callback = this.opt.base64Callback || function () {
+    this.opts.base64Callback = this.opts.base64Callback || function () {
             console.log('no find base64Callback');
         };
     //初始化
@@ -37,8 +37,8 @@ Fn.prototype.events = function () {
 };
 Fn.prototype.eventsInputChange = function () {
     var self = this;
-    var limitNum = this.opt.limitNum;
-    this.opt.input.addEventListener('change', function () {
+    var limitNum = this.opts.limitNum;
+    this.opts.input.addEventListener('change', function () {
         var imagesNum = 0;
         //图片的相关信息
         self.imgData = [];
@@ -61,7 +61,7 @@ Fn.prototype.eventsInputChange = function () {
                 }
             }
         }
-        self.opt.changeCallback({imgData: self.imgData});
+        self.opts.changeCallback({imgData: self.imgData});
         //把图片读成base64编码
         self.fileReadAsDataURL();
     });
@@ -72,7 +72,9 @@ Fn.prototype.fileReadAsDataURL = function () {
         var fileRender = new FileReader();
         fileRender.readAsDataURL(v);
         fileRender.addEventListener('load', function () {
-            self.opt.base64Callback({base64: this.result, index: i});
+            self.opts.base64Callback({base64: this.result, index: i});
         });
     });
 };
+
+module.exports = Fn;

@@ -1,8 +1,8 @@
 //字符数量限制
 function strLimit(json) {
-    var opt = json || {};
-    var max = opt.max;
-    var str = opt.str;
+    var opts = json || {};
+    var max = opts.max;
+    var str = opts.str;
     if (!str) {
         return '';
     }
@@ -12,4 +12,5 @@ function strLimit(json) {
     }
     return str;
 }
+
 module.exports = strLimit;

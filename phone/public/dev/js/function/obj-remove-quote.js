@@ -1,7 +1,7 @@
 //移除对象引用
 function objRemoveQuote(json) {
-    var opt=json||{};
-    var obj=opt.obj;
+    var opts=json||{};
+    var obj=opts.obj;
     var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
 
     if (objType != 'object' && objType != 'array') {
@@ -18,4 +18,5 @@ function objRemoveQuote(json) {
     }
     return newObj;
 }
+
 module.exports = objRemoveQuote;

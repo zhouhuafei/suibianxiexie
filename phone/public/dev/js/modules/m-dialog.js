@@ -13,10 +13,10 @@ var SubType = base.constructorInherit({
         //回调
         callback: {
             moduleDomRenderBefore: function (self) {
-                if (self.opt.config.type == 'confirm') {
-                    if (self.opt.config.confirm.isShowMask) {
+                if (self.opts.config.type == 'confirm') {
+                    if (self.opts.config.confirm.isShowMask) {
                         self.mask = new Mask({
-                            wrap: self.opt.wrap,
+                            wrap: self.opts.wrap,
                             config: {
                                 moduleDomIsShow: true,
                                 moduleDomRenderMethod: {method: 'insertBefore'}
@@ -90,7 +90,7 @@ var SubType = base.constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    var config = this.opt.config;
+    var config = this.opts.config;
     var type = `m-dialog-${config.type}`;//弹窗类型
     var positionLocation = `m-dialog-${config.positionLocation}`;//弹窗的定位位置
     //弹窗结构
@@ -99,8 +99,8 @@ SubType.prototype.moduleDomCreate = function () {
         ${this.renderConfirm()}
     `;
     this.moduleDom = base.createElement({
-        style: this.opt.config.moduleStyle,
-        custom: this.opt.config.moduleDomCustomAttr,
+        style: this.opts.config.moduleStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
             className: `m-dialog ${type} ${positionLocation}`,
             innerHTML: html
@@ -110,7 +110,7 @@ SubType.prototype.moduleDomCreate = function () {
 
 //提示框
 SubType.prototype.renderAlert = function () {
-    var config = this.opt.config;
+    var config = this.opts.config;
     if (config.type != `alert`) {
         return ``;
     }
@@ -121,13 +121,13 @@ SubType.prototype.renderAlert = function () {
     }
     return `
         ${htmlIcon}
-        <div class="m-dialog-alert-txt">${alert.content}</div>
+        <div class="m-dialog-alert-text">${alert.content}</div>
     `;
 };
 
 //确认框
 SubType.prototype.renderConfirm = function () {
-    var config = this.opt.config;
+    var config = this.opts.config;
     if (config.type != `confirm`) {
         return ``;
     }
@@ -145,7 +145,7 @@ SubType.prototype.renderConfirm = function () {
         var bodyClass = `m-dialog-body-system`;
         var bodyContent = `
             ${htmlIcon}
-            <div class="m-dialog-txt">${confirm.bodyContent}</div>
+            <div class="m-dialog-text">${confirm.bodyContent}</div>
         `;
         if (confirm.isCustom) {
             bodyClass = `m-dialog-body-custom`;
@@ -163,11 +163,11 @@ SubType.prototype.renderConfirm = function () {
     if (confirm.isShowFooter) {
         var htmlCancel = ``;
         if (confirm.isShowCancel) {
-            htmlCancel = `<div class="g-button g-button-cancel m-dialog-cancel">${confirm.cancelContent}</div>`;
+            htmlCancel = `<div class="g-btn g-btn-cancel m-dialog-cancel">${confirm.cancelContent}</div>`;
         }
         var htmlConfirm = ``;
         if (confirm.isShowConfirm) {
-            htmlConfirm = `<div class="g-button g-button-confirm m-dialog-confirm">${confirm.confirmContent}</div>`;
+            htmlConfirm = `<div class="g-btn g-btn-confirm m-dialog-confirm">${confirm.confirmContent}</div>`;
         }
         htmlFooter = `<div class="m-dialog-footer">${htmlCancel}${htmlConfirm}</div>`;
     }
@@ -186,7 +186,7 @@ SubType.prototype.renderConfirm = function () {
 //功能(覆盖超类型)
 SubType.prototype.power = function () {
     var self = this;
-    var config = this.opt.config;
+    var config = this.opts.config;
     //提示框
     if (config.type == `alert`) {
         setTimeout(function () {
@@ -198,19 +198,19 @@ SubType.prototype.power = function () {
         var close = this.moduleDom.querySelector('.m-dialog-close');
         close && close.addEventListener('click', function () {
             self.hide();
-            self.opt.callback.close();
+            self.opts.callback.close();
         });
         var cancel = this.moduleDom.querySelector('.m-dialog-cancel');
         cancel && cancel.addEventListener('click', function () {
             self.hide();
-            self.opt.callback.cancel();
+            self.opts.callback.cancel();
         });
         var confirm = this.moduleDom.querySelector('.m-dialog-confirm');
         confirm && confirm.addEventListener('click', function () {
-            if (!self.opt.config.confirm.isHandHide) {
+            if (!self.opts.config.confirm.isHandHide) {
                 self.hide();
             }
-            self.opt.callback.confirm();
+            self.opts.callback.confirm();
         })
     }
 };

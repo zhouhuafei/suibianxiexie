@@ -3,7 +3,7 @@ var base = require('../base/base');
 
 //超类型(子类型继承的对象)
 var SuperType = require('../modules/m-super-type');
-var Mask = require('../modules/m-mask');
+//var Mask = require('../modules/m-mask');
 
 //子类型
 var SubType = base.constructorInherit({
@@ -13,15 +13,15 @@ var SubType = base.constructorInherit({
         //回调
         callback: {
             moduleDomRenderBefore: function (self) {
-                if (self.opt.config.isShowMask) {
-                    new Mask({
-                        wrap: self.moduleDom.querySelector('.m-loading-wrap'),
-                        config: {
-                            moduleDomIsShow: true,
-                            moduleDomRenderMethod: {method: 'insertBefore'}
-                        }
-                    });
-                }
+                // if (self.opts.config.isShowMask) {
+                //     new Mask({
+                //         wrap: self.moduleDom.querySelector('.m-loading-wrap'),
+                //         config: {
+                //             moduleDomIsShow: true,
+                //             moduleDomRenderMethod: {method: 'insertBefore'}
+                //         }
+                //     });
+                // }
                 if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
                     self.wrapDom.style.position = 'relative';
                 }
@@ -29,7 +29,7 @@ var SubType = base.constructorInherit({
         },
         //配置
         config: {
-            isShowMask: false,  //是否显示遮罩(默认不显示)
+            //isShowMask: false,  //是否显示遮罩(默认不显示)
             status: 'loading',  //加载状态 loading(加载中) over(加载完毕)
             positionMethod: '',   //模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
             positionLocation: 'center',//模块的定位位置
@@ -42,7 +42,7 @@ var SubType = base.constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    var config = this.opt.config;
+    var config = this.opts.config;
     var moduleDomHtml = ``;
     var moduleDomClass = ``;
     var status = config.status;
@@ -79,14 +79,14 @@ SubType.prototype.moduleDomCreate = function () {
         moduleDomHtml = `
             <div class="m-loading-wrap">
                 <div class="m-loading-over-icon iconfont icon-meiyoushuju"></div>
-                <div class="m-loading-over-txt">没有数据了</div>
+                <div class="m-loading-over-text">没有数据了</div>
             </div>
         `;
     }
     //模块创建
     this.moduleDom = base.createElement({
-        style: this.opt.config.moduleDomStyle,
-        custom: this.opt.config.moduleDomCustomAttr,
+        style: this.opts.config.moduleDomStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
             className: `m-loading ${moduleDomClass}`,
             innerHTML: moduleDomHtml

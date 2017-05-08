@@ -1,24 +1,25 @@
 //创建元素节点
 function createElement(json) {
-    var opt = json || {};
-    opt.elementName = opt.elementName || 'div';//标签名称
-    opt.style = opt.style || ``;//style样式
-    opt.custom = opt.custom || {};//自定义属性
-    opt.attribute = opt.attribute || {};//普通属性,checked,selected
-    var elementNode = document.createElement(opt.elementName);//元素节点
-    if(opt.style){
-        elementNode.setAttribute('style',opt.style);
+    var opts = json || {};
+    opts.elementName = opts.elementName || 'div';//标签名称
+    opts.style = opts.style || ``;//style样式
+    opts.custom = opts.custom || {};//自定义属性
+    opts.attribute = opts.attribute || {};//普通属性,checked,selected
+    var elementNode = document.createElement(opts.elementName);//元素节点
+    if(opts.style){
+        elementNode.setAttribute('style',opts.style);
     }
-    for (var attr1 in opt.custom) {
-        if (opt.custom.hasOwnProperty(attr1)) {
-            elementNode.setAttribute('data-'+attr1,opt.custom[attr1]);
+    for (var attr1 in opts.custom) {
+        if (opts.custom.hasOwnProperty(attr1)) {
+            elementNode.setAttribute('data-'+attr1,opts.custom[attr1]);
         }
     }
-    for (var attr0 in opt.attribute) {
-        if (opt.attribute.hasOwnProperty(attr0)) {
-            elementNode[attr0] = opt.attribute[attr0];
+    for (var attr0 in opts.attribute) {
+        if (opts.attribute.hasOwnProperty(attr0)) {
+            elementNode[attr0] = opts.attribute[attr0];
         }
     }
     return elementNode;
 }
+
 module.exports = createElement;
