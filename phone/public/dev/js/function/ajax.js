@@ -29,6 +29,12 @@ function Ajax(json) {
                 //在接收到完整的响应数据时触发
                 load: function () {
                 },
+                //接收到完整的响应且响应状态为200
+                success: function () {
+                },
+                //接收到完整的响应且响应状态不为200
+                fail: function () {
+                },
                 //在通信完成或者触发error、abort或load事件后触发
                 loadEnd: function () {
                 },
@@ -124,40 +130,48 @@ Ajax.prototype.send = function () {
 Ajax.prototype.events = function () {
     var self = this;
     //上传期间持续不断地触发
-    this.xhr.upload.addEventListener('progress', function () {
+    this.xhr.upload.addEventListener('progress', function (ProgressEvent) {
         self.uploadProgress();
+        console.log(ProgressEvent, 'uploadProgress');
     });
     //上传完成时触发
-    this.xhr.upload.addEventListener('load', function () {
+    this.xhr.upload.addEventListener('load', function (ProgressEvent) {
         self.uploadLoad();
+        console.log(ProgressEvent, 'uploadLoad');
     });
     //在接收到响应数据的第一个字节时触发
-    this.xhr.addEventListener('loadstart', function () {
+    this.xhr.addEventListener('loadstart', function (ProgressEvent) {
         self.loadStart();
+        console.log(ProgressEvent, 'loadStart');
     });
     //在接收响应期间持续不断地触发
-    this.xhr.addEventListener('progress', function () {
+    this.xhr.addEventListener('progress', function (ProgressEvent) {
         self.progress();
+        console.log(ProgressEvent, 'progress');
     });
     //在请求发生错误时触发
-    this.xhr.addEventListener('error', function () {
+    this.xhr.addEventListener('error', function (ProgressEvent) {
         self.error();
+        console.log(ProgressEvent, 'error');
     });
     //在因为调用abort()方法而终止请求时触发
-    this.xhr.addEventListener('abort', function () {
+    this.xhr.addEventListener('abort', function (ProgressEvent) {
         self.abort();
+        console.log(ProgressEvent, 'abort');
     });
     //在接收到完整的响应数据时触发
-    this.xhr.addEventListener('load', function () {
-        self.load();
+    this.xhr.addEventListener('load', function (ProgressEvent) {
+        self.load(ProgressEvent);
     });
     //在通信完成或者触发error、abort或load事件后触发
-    this.xhr.addEventListener('loadend', function () {
+    this.xhr.addEventListener('loadend', function (ProgressEvent) {
         self.loadEnd();
+        console.log(ProgressEvent, 'loadend');
     });
     //请求超时
-    this.xhr.addEventListener('timeout', function () {
+    this.xhr.addEventListener('timeout', function (ProgressEvent) {
         self.timeout();
+        console.log(ProgressEvent, 'timeout');
     });
 };
 //上传期间持续不断地触发
@@ -185,8 +199,17 @@ Ajax.prototype.abort = function () {
     this.opts.callback.abort();
 };
 //在接收到完整的响应数据时触发
-Ajax.prototype.load = function () {
+Ajax.prototype.load = function (ProgressEvent) {
     this.opts.callback.load();
+    console.log(ProgressEvent, 'load',999);
+};
+//接收到完整的响应且响应状态为200
+Ajax.prototype.success = function () {
+    this.opts.callback.success();
+};
+//接收到完整的响应且响应状态不为200
+Ajax.prototype.fail = function () {
+    this.opts.callback.fail();
 };
 //在通信完成或者触发error、abort或load事件后触发
 Ajax.prototype.loadEnd = function () {
