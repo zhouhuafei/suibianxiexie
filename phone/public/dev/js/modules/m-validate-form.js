@@ -7,7 +7,7 @@ function ValidateForm(json) {
     this.hintClass = this.opts.hintClass || 'm-validate-form-hint';
     this.eventsType = this.opts.eventsType || 'blur';
     this.validateType = this.element.dataset.validate || 'undefined';
-    this.validateHintText = this.element.dataset.hint || 'undefined';
+    this.validateHintTxt = this.element.dataset.hint || 'undefined';
     this.init();
 }
 ValidateForm.prototype.init = function () {
@@ -32,7 +32,7 @@ ValidateForm.prototype.renderHintAdd = function (json) {
     //只有没被隐藏的才进行验证
     if (this.element.offsetWidth) {
         var opts = json || {};
-        this.hintDom.innerHTML = opts.text || '本项必填';
+        this.hintDom.innerHTML = opts.txt || '本项必填';
         this.wrapDom.appendChild(this.hintDom);
     }
 };
@@ -45,7 +45,7 @@ ValidateForm.prototype.renderHintRemove = function () {
 ValidateForm.prototype.validateSave = function () {
     var self = this;
     var type = self.validateType.split(' ');
-    var hintText = self.validateHintText.split(' ');
+    var hintTxt = self.validateHintTxt.split(' ');
     var value = this.element.value;
     this.isValidateSuccess = true;//是否验证成功了
     type.forEach(function (v, i) {
@@ -53,7 +53,7 @@ ValidateForm.prototype.validateSave = function () {
             validate.isSpace({
                 value: value,
                 success: function () {//空
-                    self.renderHintAdd({text: hintText[i]});
+                    self.renderHintAdd({txt: hintTxt[i]});
                     self.isValidateSuccess = false;
                 },
                 fail: function () {//非空
@@ -66,7 +66,7 @@ ValidateForm.prototype.validateSave = function () {
             validate.isZero({
                 value: value,
                 success: function () {//零
-                    self.renderHintAdd({text: hintText[i]});
+                    self.renderHintAdd({txt: hintTxt[i]});
                     self.isValidateSuccess = false;
                 },
                 fail: function () {//非零
@@ -83,7 +83,7 @@ ValidateForm.prototype.validateSave = function () {
                     self.isValidateSuccess = true;
                 },
                 fail: function () {//非整数
-                    self.renderHintAdd({text: hintText[i]});
+                    self.renderHintAdd({txt: hintTxt[i]});
                     self.isValidateSuccess = false;
                 }
             });

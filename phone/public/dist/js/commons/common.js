@@ -799,7 +799,7 @@
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-copyright",
-                    innerHTML: "\n                <div class=\"m-copyright-icon iconfont icon-banquan\"></div>\n                <div class=\"m-copyright-text\">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            "
+                    innerHTML: "\n                <div class=\"m-copyright-icon iconfont icon-banquan\"></div>\n                <div class=\"m-copyright-txt\">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            "
                 }
             });
         };
@@ -831,31 +831,31 @@
                     items: [{
                         link: '/',
                         icon: 'icon-shouye',
-                        text: '首页',
+                        txt: '首页',
                         isHighlight: false,
                         isShowMark: false
                     }, {
                         link: '/develop-global',
                         icon: 'icon-kaifa',
-                        text: 'g-global',
+                        txt: 'g-global',
                         isHighlight: false,
                         isShowMark: false
                     }, {
                         link: '/develop-module',
                         icon: 'icon-kaifa',
-                        text: 'm-module',
+                        txt: 'm-module',
                         isHighlight: true,
                         isShowMark: true
                     }, {
                         link: '/develop-word',
                         icon: 'icon-kaifa',
-                        text: '标准词汇',
+                        txt: '标准词汇',
                         isHighlight: false,
                         isShowMark: false
                     }, {
                         link: '/mine',
                         icon: 'icon-wode',
-                        text: '我的',
+                        txt: '我的',
                         isHighlight: false,
                         isShowMark: false
                     }]
@@ -875,7 +875,7 @@
                 if (v.isShowMark) {
                     markHtml = "<div class=\"m-footer-nav-body-mark\"></div>";
                 }
-                moduleDomHtml += "\n            <a class=\"m-footer-nav-body " + highlightClass + "\" href=\"" + v.link + "\">\n                <div class=\"m-footer-nav-body-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-footer-nav-body-text\">" + v.text + "</div>\n                " + markHtml + "\n            </a>\n        ";
+                moduleDomHtml += "\n            <a class=\"m-footer-nav-body " + highlightClass + "\" href=\"" + v.link + "\">\n                <div class=\"m-footer-nav-body-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-footer-nav-body-txt\">" + v.txt + "</div>\n                " + markHtml + "\n            </a>\n        ";
             });
             this.moduleDom = base.createElement({
                 style: this.opts.config.moduleDomStyle,
@@ -1094,7 +1094,7 @@
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-super-type",
-                    innerHTML: "\n                <div class=\"m-super-type-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
             });
         };

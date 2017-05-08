@@ -27,7 +27,7 @@ SubType.prototype.moduleDomCreate = function () {
             className: `m-copyright`,
             innerHTML: `
                 <div class="m-copyright-icon iconfont icon-banquan"></div>
-                <div class="m-copyright-text">版权信息哟</div>
+                <div class="m-copyright-txt">版权信息哟</div>
             `
         }
     });

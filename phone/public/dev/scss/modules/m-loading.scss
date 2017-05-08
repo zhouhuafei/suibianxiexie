@@ -86,10 +86,10 @@
         .m-loading-over-icon {
             font-size: px2rem(24);
         }
-        .m-loading-over-text {
+        .m-loading-over-txt {
             font-size: px2rem(12);
         }
-        .m-mask ~ .m-loading-over-icon, .m-mask ~ .m-loading-over-text {
+        .m-mask ~ .m-loading-over-icon, .m-mask ~ .m-loading-over-txt {
             color: #ffffff;
             position: relative;
             z-index: 502;

@@ -82,7 +82,7 @@
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-pagination",
-                    innerHTML: "\n                <div class=\"m-pagination-text\">\u7B2C</div>\n                <div class=\"m-pagination-now-page\">\n                    <label class=\"g-select\">\n                        <select class=\"g-select-select\">\n                            " + this.renderOption() + "\n                        </select>\n                        <span class=\"g-select-icon iconfont icon-select\"></span>\n                    </label>\n                </div>\n                <div class=\"m-pagination-text\">\u9875</div>\n                <a href=\"javascript:;\" class=\"m-pagination-btn m-pagination-btn-inactive iconfont icon-shangyiye\"></a>\n                <a href=\"javascript:;\" class=\"m-pagination-btn iconfont icon-xiayiye\"></a>\n            "
+                    innerHTML: "\n                <div class=\"m-pagination-txt\">\u7B2C</div>\n                <div class=\"m-pagination-now-page\">\n                    <label class=\"g-select\">\n                        <select class=\"g-select-select\">\n                            " + this.renderOption() + "\n                        </select>\n                        <span class=\"g-select-icon iconfont icon-select\"></span>\n                    </label>\n                </div>\n                <div class=\"m-pagination-txt\">\u9875</div>\n                <a href=\"javascript:;\" class=\"m-pagination-btn m-pagination-btn-inactive iconfont icon-shangyiye\"></a>\n                <a href=\"javascript:;\" class=\"m-pagination-btn iconfont icon-xiayiye\"></a>\n            "
                 }
             });
             this.prevDom = this.moduleDom.querySelectorAll('.m-pagination-btn')[0]; //上一页的按钮
@@ -1043,7 +1043,7 @@
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-super-type",
-                    innerHTML: "\n                <div class=\"m-super-type-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
             });
         };

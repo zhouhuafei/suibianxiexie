@@ -6,7 +6,7 @@ window.addEventListener('load', function () {
             var NoData = require('../modules/m-no-data');
             new NoData({
                 data: {
-                    text: '404 - Not Find'
+                    txt: '404 - Not Find'
                 }
             })
         })();

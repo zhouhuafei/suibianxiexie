@@ -116,7 +116,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         custom: this.opts.config.moduleDomCustomAttr,
                         attribute: {
                             className: "m-sub-type-es6",
-                            innerHTML: "\n                    <div class=\"m-sub-type-es6-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
+                            innerHTML: "\n                    <div class=\"m-sub-type-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
                         }
                     });
                 }
@@ -1006,7 +1006,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         custom: this.opts.config.moduleDomCustomAttr,
                         attribute: {
                             className: "m-super-type-es6",
-                            innerHTML: "\n                    <div class=\"m-super-type-es6-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
+                            innerHTML: "\n                    <div class=\"m-super-type-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
                         }
                     });
                 }

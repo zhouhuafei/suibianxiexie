@@ -19,35 +19,35 @@ var SubType = base.constructorInherit({
                 {
                     link: '/',
                     icon: 'icon-shouye',
-                    text: '首页',
+                    txt: '首页',
                     isHighlight: false,
                     isShowMark: false
                 },
                 {
                     link: '/develop-global',
                     icon: 'icon-kaifa',
-                    text: 'g-global',
+                    txt: 'g-global',
                     isHighlight: false,
                     isShowMark: false
                 },
                 {
                     link: '/develop-module',
                     icon: 'icon-kaifa',
-                    text: 'm-module',
+                    txt: 'm-module',
                     isHighlight: true,
                     isShowMark: true
                 },
                 {
                     link: '/develop-word',
                     icon: 'icon-kaifa',
-                    text: '标准词汇',
+                    txt: '标准词汇',
                     isHighlight: false,
                     isShowMark: false
                 },
                 {
                     link: '/mine',
                     icon: 'icon-wode',
-                    text: '我的',
+                    txt: '我的',
                     isHighlight: false,
                     isShowMark: false
                 }
@@ -71,7 +71,7 @@ SubType.prototype.moduleDomCreate = function () {
         moduleDomHtml += `
             <a class="m-footer-nav-body ${highlightClass}" href="${v.link}">
                 <div class="m-footer-nav-body-icon iconfont ${v.icon}"></div>
-                <div class="m-footer-nav-body-text">${v.text}</div>
+                <div class="m-footer-nav-body-txt">${v.txt}</div>
                 ${markHtml}
             </a>
         `;

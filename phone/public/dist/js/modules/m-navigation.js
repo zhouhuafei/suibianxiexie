@@ -59,27 +59,27 @@
                     items: [{
                         link: '/',
                         icon: 'icon-shouye',
-                        text: '首页',
+                        txt: '首页',
                         isShowMark: false
                     }, {
                         link: '/develop-global',
                         icon: 'icon-kaifa',
-                        text: 'g-global',
+                        txt: 'g-global',
                         isShowMark: false
                     }, {
                         link: '/develop-module',
                         icon: 'icon-kaifa',
-                        text: 'm-module',
+                        txt: 'm-module',
                         isShowMark: true
                     }, {
                         link: '/develop-word',
                         icon: 'icon-kaifa',
-                        text: '标准词汇',
+                        txt: '标准词汇',
                         isShowMark: false
                     }, {
                         link: '/mine',
                         icon: 'icon-wode',
-                        text: '我的',
+                        txt: '我的',
                         isShowMark: false
                     }]
                 }
@@ -96,7 +96,7 @@
                 if (v.isShowMark) {
                     markHtml = "<div class=\"m-navigation-mark\"></div>";
                 }
-                html += "\n            <a href=\"" + v.link + "\" class=\"m-navigation-wrap\">\n                <div class=\"m-navigation-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-navigation-text\">" + v.text + "</div>\n                " + markHtml + "\n            </a>\n        ";
+                html += "\n            <a href=\"" + v.link + "\" class=\"m-navigation-wrap\">\n                <div class=\"m-navigation-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-navigation-txt\">" + v.txt + "</div>\n                " + markHtml + "\n            </a>\n        ";
             });
             this.moduleDom = base.createElement({
                 style: this.opts.config.moduleDomStyle,
@@ -954,7 +954,7 @@
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-super-type",
-                    innerHTML: "\n                <div class=\"m-super-type-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
             });
         };

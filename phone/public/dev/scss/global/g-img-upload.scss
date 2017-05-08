@@ -2,16 +2,19 @@
 
 //图片上传
 .g-img-upload {
-    $width-height: 60;
+    $width-height: 120;
     width: px2rem($width-height);
     height: px2rem($width-height);
     border: px2rem(1) dashed $g-color-highlight;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     position: relative;
     display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     box-sizing: border-box;
     color: $g-color-highlight;
-    .g-img-upload-show, .g-img-upload-icon {
+    .g-img-upload-show {
         position: absolute;
         left: 0;
         top: 0;
@@ -22,7 +25,7 @@
         justify-content: center;
     }
     .g-img-upload-close {
-        $size: 12;
+        $size: 16;
         display: none;
         font-size: px2rem($size);
         position: absolute;
@@ -38,7 +41,11 @@
         background-size: 100% auto;
     }
     .g-img-upload-icon {
-        font-size: px2rem($width-height*0.5);
+        font-size: px2rem($width-height*0.4);
+    }
+    .g-img-upload-txt {
+        margin-top: px2rem(10);
+        font-size: px2rem(12);
     }
     .g-img-upload-input {
         display: none;
@@ -49,11 +56,14 @@
         .g-img-upload-close {
             display: flex;
         }
+        .g-img-upload-show {
+            display: flex;
+        }
         .g-img-upload-icon {
             display: none;
         }
-        .g-img-upload-show {
-            display: flex;
+        .g-img-upload-txt {
+            display: none;
         }
     }
 }

@@ -45,7 +45,7 @@ SubType.prototype.moduleDomCreate = function () {
         attribute: {
             className: `m-pagination`,
             innerHTML: `
-                <div class="m-pagination-text">第</div>
+                <div class="m-pagination-txt">第</div>
                 <div class="m-pagination-now-page">
                     <label class="g-select">
                         <select class="g-select-select">
@@ -54,7 +54,7 @@ SubType.prototype.moduleDomCreate = function () {
                         <span class="g-select-icon iconfont icon-select"></span>
                     </label>
                 </div>
-                <div class="m-pagination-text">页</div>
+                <div class="m-pagination-txt">页</div>
                 <a href="javascript:;" class="m-pagination-btn m-pagination-btn-inactive iconfont icon-shangyiye"></a>
                 <a href="javascript:;" class="m-pagination-btn iconfont icon-xiayiye"></a>
             `

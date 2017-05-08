@@ -1282,7 +1282,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-copyright",
-                    innerHTML: "\n                <div class=\"m-copyright-icon iconfont icon-banquan\"></div>\n                <div class=\"m-copyright-text\">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            "
+                    innerHTML: "\n                <div class=\"m-copyright-icon iconfont icon-banquan\"></div>\n                <div class=\"m-copyright-txt\">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            "
                 }
             });
         };
@@ -1409,7 +1409,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             if (alert.isShowIcon) {
                 htmlIcon = "<div class=\"m-dialog-alert-icon iconfont " + alert.icon + "\"></div>";
             }
-            return "\n        " + htmlIcon + "\n        <div class=\"m-dialog-alert-text\">" + alert.content + "</div>\n    ";
+            return "\n        " + htmlIcon + "\n        <div class=\"m-dialog-alert-txt\">" + alert.content + "</div>\n    ";
         };
 
         //确认框
@@ -1430,7 +1430,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     htmlIcon = "<div class=\"m-dialog-icon iconfont " + confirm.icon + "\"></div>";
                 }
                 var bodyClass = "m-dialog-body-system";
-                var bodyContent = "\n            " + htmlIcon + "\n            <div class=\"m-dialog-text\">" + confirm.bodyContent + "</div>\n        ";
+                var bodyContent = "\n            " + htmlIcon + "\n            <div class=\"m-dialog-txt\">" + confirm.bodyContent + "</div>\n        ";
                 if (confirm.isCustom) {
                     bodyClass = "m-dialog-body-custom";
                     bodyContent = confirm.bodyContent;
@@ -1515,31 +1515,31 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     items: [{
                         link: '/',
                         icon: 'icon-shouye',
-                        text: '首页',
+                        txt: '首页',
                         isHighlight: false,
                         isShowMark: false
                     }, {
                         link: '/develop-global',
                         icon: 'icon-kaifa',
-                        text: 'g-global',
+                        txt: 'g-global',
                         isHighlight: false,
                         isShowMark: false
                     }, {
                         link: '/develop-module',
                         icon: 'icon-kaifa',
-                        text: 'm-module',
+                        txt: 'm-module',
                         isHighlight: true,
                         isShowMark: true
                     }, {
                         link: '/develop-word',
                         icon: 'icon-kaifa',
-                        text: '标准词汇',
+                        txt: '标准词汇',
                         isHighlight: false,
                         isShowMark: false
                     }, {
                         link: '/mine',
                         icon: 'icon-wode',
-                        text: '我的',
+                        txt: '我的',
                         isHighlight: false,
                         isShowMark: false
                     }]
@@ -1559,7 +1559,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 if (v.isShowMark) {
                     markHtml = "<div class=\"m-footer-nav-body-mark\"></div>";
                 }
-                moduleDomHtml += "\n            <a class=\"m-footer-nav-body " + highlightClass + "\" href=\"" + v.link + "\">\n                <div class=\"m-footer-nav-body-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-footer-nav-body-text\">" + v.text + "</div>\n                " + markHtml + "\n            </a>\n        ";
+                moduleDomHtml += "\n            <a class=\"m-footer-nav-body " + highlightClass + "\" href=\"" + v.link + "\">\n                <div class=\"m-footer-nav-body-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-footer-nav-body-txt\">" + v.txt + "</div>\n                " + markHtml + "\n            </a>\n        ";
             });
             this.moduleDom = base.createElement({
                 style: this.opts.config.moduleDomStyle,
@@ -1776,7 +1776,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 if (positionMethod == 'absolute') {
                     moduleDomClass += "m-loading-absolute m-loading-" + positionLocation;
                 }
-                moduleDomHtml = "\n            <div class=\"m-loading-wrap\">\n                <div class=\"m-loading-over-icon iconfont icon-meiyoushuju\"></div>\n                <div class=\"m-loading-over-text\">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ";
+                moduleDomHtml = "\n            <div class=\"m-loading-wrap\">\n                <div class=\"m-loading-over-icon iconfont icon-meiyoushuju\"></div>\n                <div class=\"m-loading-over-txt\">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ";
             }
             //模块创建
             this.moduleDom = base.createElement({
@@ -1873,27 +1873,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     items: [{
                         link: '/',
                         icon: 'icon-shouye',
-                        text: '首页',
+                        txt: '首页',
                         isShowMark: false
                     }, {
                         link: '/develop-global',
                         icon: 'icon-kaifa',
-                        text: 'g-global',
+                        txt: 'g-global',
                         isShowMark: false
                     }, {
                         link: '/develop-module',
                         icon: 'icon-kaifa',
-                        text: 'm-module',
+                        txt: 'm-module',
                         isShowMark: true
                     }, {
                         link: '/develop-word',
                         icon: 'icon-kaifa',
-                        text: '标准词汇',
+                        txt: '标准词汇',
                         isShowMark: false
                     }, {
                         link: '/mine',
                         icon: 'icon-wode',
-                        text: '我的',
+                        txt: '我的',
                         isShowMark: false
                     }]
                 }
@@ -1910,7 +1910,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 if (v.isShowMark) {
                     markHtml = "<div class=\"m-navigation-mark\"></div>";
                 }
-                html += "\n            <a href=\"" + v.link + "\" class=\"m-navigation-wrap\">\n                <div class=\"m-navigation-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-navigation-text\">" + v.text + "</div>\n                " + markHtml + "\n            </a>\n        ";
+                html += "\n            <a href=\"" + v.link + "\" class=\"m-navigation-wrap\">\n                <div class=\"m-navigation-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-navigation-txt\">" + v.txt + "</div>\n                " + markHtml + "\n            </a>\n        ";
             });
             this.moduleDom = base.createElement({
                 style: this.opts.config.moduleDomStyle,
@@ -1951,10 +1951,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 //数据
                 data: {
                     icon: 'icon-meiyoushuju',
-                    text: '没有数据',
+                    txt: '没有数据',
                     btn: {
                         icon: 'icon-shouye',
-                        text: '回首页',
+                        txt: '回首页',
                         link: '/'
                     }
                 }
@@ -1973,7 +1973,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-no-data",
-                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-text\">" + data.text + "</div>\n                <a class=\"m-no-data-btn g-btn g-btn-confirm\" href=\"" + data.btn.link + "\">\n                    " + btnIconHtml + "\n                    <div class=\"g-btn-text\">" + data.btn.text + "</div>\n                </a>\n            "
+                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-txt\">" + data.txt + "</div>\n                <a class=\"m-no-data-btn g-btn g-btn-confirm\" href=\"" + data.btn.link + "\">\n                    " + btnIconHtml + "\n                    <div class=\"g-btn-txt\">" + data.btn.txt + "</div>\n                </a>\n            "
                 }
             });
         };
@@ -2028,7 +2028,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-pagination",
-                    innerHTML: "\n                <div class=\"m-pagination-text\">\u7B2C</div>\n                <div class=\"m-pagination-now-page\">\n                    <label class=\"g-select\">\n                        <select class=\"g-select-select\">\n                            " + this.renderOption() + "\n                        </select>\n                        <span class=\"g-select-icon iconfont icon-select\"></span>\n                    </label>\n                </div>\n                <div class=\"m-pagination-text\">\u9875</div>\n                <a href=\"javascript:;\" class=\"m-pagination-btn m-pagination-btn-inactive iconfont icon-shangyiye\"></a>\n                <a href=\"javascript:;\" class=\"m-pagination-btn iconfont icon-xiayiye\"></a>\n            "
+                    innerHTML: "\n                <div class=\"m-pagination-txt\">\u7B2C</div>\n                <div class=\"m-pagination-now-page\">\n                    <label class=\"g-select\">\n                        <select class=\"g-select-select\">\n                            " + this.renderOption() + "\n                        </select>\n                        <span class=\"g-select-icon iconfont icon-select\"></span>\n                    </label>\n                </div>\n                <div class=\"m-pagination-txt\">\u9875</div>\n                <a href=\"javascript:;\" class=\"m-pagination-btn m-pagination-btn-inactive iconfont icon-shangyiye\"></a>\n                <a href=\"javascript:;\" class=\"m-pagination-btn iconfont icon-xiayiye\"></a>\n            "
                 }
             });
             this.prevDom = this.moduleDom.querySelectorAll('.m-pagination-btn')[0]; //上一页的按钮
@@ -2169,7 +2169,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 config: {
                     isHand: false, //是否手动控制
                     status: 'on', //状态
-                    text: {
+                    txt: {
                         on: '已开启',
                         off: '已关闭'
                     }
@@ -2192,7 +2192,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 custom: config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-radio-switch " + isOn,
-                    innerHTML: "\n                <div class=\"m-radio-switch-wrap\">\n                    <div class=\"m-radio-switch-round\"></div>\n                </div>\n                <div class=\"m-radio-switch-text\">" + config.text[config.status] + "</div>\n            "
+                    innerHTML: "\n                <div class=\"m-radio-switch-wrap\">\n                    <div class=\"m-radio-switch-round\"></div>\n                </div>\n                <div class=\"m-radio-switch-txt\">" + config.txt[config.status] + "</div>\n            "
                 }
             });
         };
@@ -2224,7 +2224,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             if (!this.isOn()) {
                 this.moduleDom.classList.add(this.moduleDomActiveClass);
                 config.status = 'on';
-                this.moduleDom.querySelector('.m-radio-switch-text').innerHTML = "" + config.text[config.status];
+                this.moduleDom.querySelector('.m-radio-switch-txt').innerHTML = "" + config.txt[config.status];
             }
         };
 
@@ -2234,7 +2234,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             if (this.isOn()) {
                 this.moduleDom.classList.remove(this.moduleDomActiveClass);
                 config.status = 'off';
-                this.moduleDom.querySelector('.m-radio-switch-text').innerHTML = "" + config.text[config.status];
+                this.moduleDom.querySelector('.m-radio-switch-txt').innerHTML = "" + config.txt[config.status];
             }
         };
 
@@ -2496,7 +2496,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         custom: this.opts.config.moduleDomCustomAttr,
                         attribute: {
                             className: "m-sub-type-es6",
-                            innerHTML: "\n                    <div class=\"m-sub-type-es6-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
+                            innerHTML: "\n                    <div class=\"m-sub-type-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
                         }
                     });
                 }
@@ -2542,7 +2542,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-sub-type",
-                    innerHTML: "\n                <div class=\"m-sub-type-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                    innerHTML: "\n                <div class=\"m-sub-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
             });
         };
@@ -2714,7 +2714,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         custom: this.opts.config.moduleDomCustomAttr,
                         attribute: {
                             className: "m-super-type-es6",
-                            innerHTML: "\n                    <div class=\"m-super-type-es6-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
+                            innerHTML: "\n                    <div class=\"m-super-type-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
                         }
                     });
                 }
@@ -2994,7 +2994,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-super-type",
-                    innerHTML: "\n                <div class=\"m-super-type-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
             });
         };

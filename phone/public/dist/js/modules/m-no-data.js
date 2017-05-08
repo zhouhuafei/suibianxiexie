@@ -61,10 +61,10 @@
                 //数据
                 data: {
                     icon: 'icon-meiyoushuju',
-                    text: '没有数据',
+                    txt: '没有数据',
                     btn: {
                         icon: 'icon-shouye',
-                        text: '回首页',
+                        txt: '回首页',
                         link: '/'
                     }
                 }
@@ -83,7 +83,7 @@
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-no-data",
-                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-text\">" + data.text + "</div>\n                <a class=\"m-no-data-btn g-btn g-btn-confirm\" href=\"" + data.btn.link + "\">\n                    " + btnIconHtml + "\n                    <div class=\"g-btn-text\">" + data.btn.text + "</div>\n                </a>\n            "
+                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-txt\">" + data.txt + "</div>\n                <a class=\"m-no-data-btn g-btn g-btn-confirm\" href=\"" + data.btn.link + "\">\n                    " + btnIconHtml + "\n                    <div class=\"g-btn-txt\">" + data.btn.txt + "</div>\n                </a>\n            "
                 }
             });
         };
@@ -934,7 +934,7 @@
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-super-type",
-                    innerHTML: "\n                <div class=\"m-super-type-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
             });
         };

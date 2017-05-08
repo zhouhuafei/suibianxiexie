@@ -20,10 +20,10 @@ var SubType = base.constructorInherit({
         //数据
         data: {
             icon: 'icon-meiyoushuju',
-            text: '没有数据',
+            txt: '没有数据',
             btn: {
                 icon: 'icon-shouye',
-                text: '回首页',
+                txt: '回首页',
                 link: '/'
             }
         }
@@ -44,10 +44,10 @@ SubType.prototype.moduleDomCreate = function () {
             className: `m-no-data`,
             innerHTML: `
                 <div class="m-no-data-icon iconfont ${data.icon}"></div>
-                <div class="m-no-data-text">${data.text}</div>
+                <div class="m-no-data-txt">${data.txt}</div>
                 <a class="m-no-data-btn g-btn g-btn-confirm" href="${data.btn.link}">
                     ${btnIconHtml}
-                    <div class="g-btn-text">${data.btn.text}</div>
+                    <div class="g-btn-txt">${data.btn.txt}</div>
                 </a>
             `
         }

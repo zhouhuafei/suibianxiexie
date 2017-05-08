@@ -69,7 +69,7 @@
                     var NoData = require('../modules/m-no-data');
                     new NoData({
                         data: {
-                            text: '404 - Not Find'
+                            txt: '404 - Not Find'
                         }
                     });
                 })();
@@ -816,7 +816,7 @@
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-copyright",
-                    innerHTML: "\n                <div class=\"m-copyright-icon iconfont icon-banquan\"></div>\n                <div class=\"m-copyright-text\">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            "
+                    innerHTML: "\n                <div class=\"m-copyright-icon iconfont icon-banquan\"></div>\n                <div class=\"m-copyright-txt\">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            "
                 }
             });
         };
@@ -848,31 +848,31 @@
                     items: [{
                         link: '/',
                         icon: 'icon-shouye',
-                        text: '首页',
+                        txt: '首页',
                         isHighlight: false,
                         isShowMark: false
                     }, {
                         link: '/develop-global',
                         icon: 'icon-kaifa',
-                        text: 'g-global',
+                        txt: 'g-global',
                         isHighlight: false,
                         isShowMark: false
                     }, {
                         link: '/develop-module',
                         icon: 'icon-kaifa',
-                        text: 'm-module',
+                        txt: 'm-module',
                         isHighlight: true,
                         isShowMark: true
                     }, {
                         link: '/develop-word',
                         icon: 'icon-kaifa',
-                        text: '标准词汇',
+                        txt: '标准词汇',
                         isHighlight: false,
                         isShowMark: false
                     }, {
                         link: '/mine',
                         icon: 'icon-wode',
-                        text: '我的',
+                        txt: '我的',
                         isHighlight: false,
                         isShowMark: false
                     }]
@@ -892,7 +892,7 @@
                 if (v.isShowMark) {
                     markHtml = "<div class=\"m-footer-nav-body-mark\"></div>";
                 }
-                moduleDomHtml += "\n            <a class=\"m-footer-nav-body " + highlightClass + "\" href=\"" + v.link + "\">\n                <div class=\"m-footer-nav-body-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-footer-nav-body-text\">" + v.text + "</div>\n                " + markHtml + "\n            </a>\n        ";
+                moduleDomHtml += "\n            <a class=\"m-footer-nav-body " + highlightClass + "\" href=\"" + v.link + "\">\n                <div class=\"m-footer-nav-body-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-footer-nav-body-txt\">" + v.txt + "</div>\n                " + markHtml + "\n            </a>\n        ";
             });
             this.moduleDom = base.createElement({
                 style: this.opts.config.moduleDomStyle,
@@ -1005,10 +1005,10 @@
                 //数据
                 data: {
                     icon: 'icon-meiyoushuju',
-                    text: '没有数据',
+                    txt: '没有数据',
                     btn: {
                         icon: 'icon-shouye',
-                        text: '回首页',
+                        txt: '回首页',
                         link: '/'
                     }
                 }
@@ -1027,7 +1027,7 @@
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-no-data",
-                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-text\">" + data.text + "</div>\n                <a class=\"m-no-data-btn g-btn g-btn-confirm\" href=\"" + data.btn.link + "\">\n                    " + btnIconHtml + "\n                    <div class=\"g-btn-text\">" + data.btn.text + "</div>\n                </a>\n            "
+                    innerHTML: "\n                <div class=\"m-no-data-icon iconfont " + data.icon + "\"></div>\n                <div class=\"m-no-data-txt\">" + data.txt + "</div>\n                <a class=\"m-no-data-btn g-btn g-btn-confirm\" href=\"" + data.btn.link + "\">\n                    " + btnIconHtml + "\n                    <div class=\"g-btn-txt\">" + data.btn.txt + "</div>\n                </a>\n            "
                 }
             });
         };
@@ -1167,7 +1167,7 @@
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
                     className: "m-super-type",
-                    innerHTML: "\n                <div class=\"m-super-type-text\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
             });
         };
