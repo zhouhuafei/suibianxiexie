@@ -58,7 +58,7 @@
                 var num = parseInt(input.value);
                 num--;
                 input["value"] = num;
-                if (num <= minNum) {
+                if (num < minNum) {
                     input["value"] = minNum;
                     minus.classList.add(noActiveClass);
                     overMinCallback();

@@ -38,6 +38,9 @@ function Ajax(json) {
                 //在通信完成或者触发error、abort或load事件后触发
                 loadEnd: function () {
                 },
+                //等同于loadEnd
+                complete: function () {
+                },
                 //请求超时
                 timeout: function () {
                 }
@@ -83,6 +86,7 @@ Ajax.prototype.open = function () {
         //get
         var search = ``;
         var num = 0;
+        var data = opts.data;
         if (data) {
             for (var attr in data) {
                 if (data.hasOwnProperty(attr)) {
@@ -162,6 +166,7 @@ Ajax.prototype.events = function () {
     //在接收到完整的响应数据时触发
     this.xhr.addEventListener('load', function (ProgressEvent) {
         self.load(ProgressEvent);
+        console.log(ProgressEvent, 'load', 999);
     });
     //在通信完成或者触发error、abort或load事件后触发
     this.xhr.addEventListener('loadend', function (ProgressEvent) {
@@ -199,9 +204,8 @@ Ajax.prototype.abort = function () {
     this.opts.callback.abort();
 };
 //在接收到完整的响应数据时触发
-Ajax.prototype.load = function (ProgressEvent) {
+Ajax.prototype.load = function () {
     this.opts.callback.load();
-    console.log(ProgressEvent, 'load',999);
 };
 //接收到完整的响应且响应状态为200
 Ajax.prototype.success = function () {
@@ -214,6 +218,11 @@ Ajax.prototype.fail = function () {
 //在通信完成或者触发error、abort或load事件后触发
 Ajax.prototype.loadEnd = function () {
     this.opts.callback.loadEnd();
+    this.complete();
+};
+//等同于loadEnd
+Ajax.prototype.complete = function () {
+    this.opts.callback.complete();
 };
 //请求超时
 Ajax.prototype.timeout = function () {

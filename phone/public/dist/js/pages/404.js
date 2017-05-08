@@ -39,23 +39,6 @@
         };
         module.exports = base;
     }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/px2rem": 16, "../function/scroll-to": 17, "../function/seconds-to-time": 18, "../function/select": 19, "../function/str-limit": 20, "../function/time-count-down": 21, "../function/user-agent": 22, "../function/when-scroll-bottom": 23, "../function/whether-disable-scroll": 24 }], 2: [function (require, module, exports) {
-        window.addEventListener('load', function () {
-            setTimeout(function () {
-
-                //没有数据
-                (function () {
-                    var NoData = require('../modules/m-no-data');
-                    new NoData({
-                        data: {
-                            text: '404 - Not Find'
-                        }
-                    });
-                })();
-
-                require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
-            }, 0);
-        });
-    }, { "../commons/common": 3, "../modules/m-no-data": 28 }], 3: [function (require, module, exports) {
         //版权
         (function () {
             if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
@@ -77,7 +60,24 @@
             var LazyLoad = require('../modules/m-lazy-load');
             new LazyLoad();
         })();
-    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 26, "../modules/m-lazy-load": 27 }], 4: [function (require, module, exports) {
+    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 26, "../modules/m-lazy-load": 27 }], 3: [function (require, module, exports) {
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+
+                //没有数据
+                (function () {
+                    var NoData = require('../modules/m-no-data');
+                    new NoData({
+                        data: {
+                            text: '404 - Not Find'
+                        }
+                    });
+                })();
+
+                require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
+            }, 0);
+        });
+    }, { "../commons/common": 2, "../modules/m-no-data": 28 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opts = json || {};
@@ -1284,4 +1284,4 @@
         };
 
         module.exports = SuperType;
-    }, { "../base/base": 1 }] }, {}, [2]);
+    }, { "../base/base": 1 }] }, {}, [3]);

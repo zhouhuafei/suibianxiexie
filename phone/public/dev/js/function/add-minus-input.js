@@ -43,7 +43,7 @@ function addMinusInput(json) {//购物加减商品系列
         var num = parseInt(input.value);
         num--;
         input["value"] = num;
-        if (num <= minNum) {
+        if (num < minNum) {
             input["value"] = minNum;
             minus.classList.add(noActiveClass);
             overMinCallback();

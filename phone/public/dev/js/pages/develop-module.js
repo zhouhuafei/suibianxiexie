@@ -1,5 +1,18 @@
 window.addEventListener('load', function () {
     setTimeout(function () {
+        //ajax测试
+        (function () {
+            var Ajax = require('../function/ajax');
+            new Ajax({
+                callback: {},
+                config: {
+                    url: '/api/getList'
+                },
+                data: {
+                    hellow: 'hellow'
+                }
+            })
+        })();
 
         //base函数测试
         (function () {
