@@ -21,7 +21,7 @@ function Ajax(json) {
                 timeout: function () {
                 },
                 //取消
-                about: function () {
+                abort: function () {
                 }
             },
             //配置
@@ -87,16 +87,22 @@ Ajax.prototype.events = function () {
 
 };
 Ajax.prototype.success = function () {
-
+    this.opts.callback.success();
 };
 Ajax.prototype.fail = function () {
-
+    this.opts.callback.fail();
 };
 Ajax.prototype.timeout = function () {
-
+    this.opts.callback.timeout();
 };
-Ajax.prototype.fail = function () {
-
+Ajax.prototype.abort = function () {
+    if(this.xhr.abort){
+        this.xhr.abort();
+        this.opts.callback.abort();
+    }else{
+        console.log('浏览器不支持xhr2的abort');
+    }
 };
+
 
 module.exports = Ajax;

@@ -12,7 +12,7 @@
     .m-slide-body {
         height: inherit;
         display: flex;
-        .m-slide-item {
+        .m-slide-items {
             height: inherit;
             flex: 1;
             display: flex !important;
@@ -33,7 +33,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        .m-slide-item {
+        .m-slide-items {
             margin: 0 px2rem(4);
             background-color: $g-color-background-default;
             width: px2rem($height / 2);

@@ -31,13 +31,23 @@
                 height: px2rem($size);
                 font-size: px2rem($size);
             }
-            .m-footer-nav-body-txt {
+            .m-footer-nav-body-text {
                 line-height: 1;
                 font-size: px2rem(12);
                 margin-top: px2rem(4);
             }
+            .m-footer-nav-body-mark {
+                $width-height: 6;
+                width: px2rem($width-height);
+                height: px2rem($width-height);
+                border-radius: 50%;
+                background: $g-color-highlight;
+                position: absolute;
+                right: px2rem(4);
+                top: px2rem(4);
+            }
             &.m-footer-nav-body-active {
-                .m-footer-nav-body-icon, .m-footer-nav-body-txt {
+                .m-footer-nav-body-icon, .m-footer-nav-body-text {
                     color: $g-color-highlight;
                 }
             }

@@ -13,10 +13,45 @@ Routes.prototype.init = function () {
     this.login();
     this.register();
     this.list();
+    this.develop();
+};
+Routes.prototype.develop = function () {
+    this.app.get('/develop-list', function (req, res) {
+        res.render('pages/develop-list', {
+            data: {
+                title: '开发列表清单'
+            },
+            config: {}
+        });
+    });
+    this.app.get('/develop-global', function (req, res) {
+        res.render('pages/develop-global', {
+            data: {
+                title: '开发全局样式'
+            },
+            config: {}
+        });
+    });
+    this.app.get('/develop-module', function (req, res) {
+        res.render('pages/develop-module', {
+            data: {
+                title: '开发模块样式'
+            },
+            config: {}
+        });
+    });
+    this.app.get('/develop-word', function (req, res) {
+        res.render('pages/develop-word', {
+            data: {
+                title: '开发标准词汇'
+            },
+            config: {}
+        });
+    })
 };
 Routes.prototype.list = function () {
     this.app.get('/list', function (req, res) {
-        res.render('page/list', {
+        res.render('pages/list', {
             data: {
                 title: '列表'
             },
@@ -26,7 +61,7 @@ Routes.prototype.list = function () {
 };
 Routes.prototype.register = function () {
     this.app.get('/register', function (req, res) {
-        res.render('page/register', {
+        res.render('pages/register', {
             data: {
                 title: '注册'
             },
@@ -36,7 +71,7 @@ Routes.prototype.register = function () {
 };
 Routes.prototype.login = function () {
     this.app.get('/login', function (req, res) {
-        res.render('page/login', {
+        res.render('pages/login', {
             data: {
                 title: '登陆'
             },
@@ -46,7 +81,7 @@ Routes.prototype.login = function () {
 };
 Routes.prototype.mine = function () {
     this.app.get('/mine', function (req, res) {
-        res.render('page/mine', {
+        res.render('pages/mine', {
             data: {
                 title: '我的'
             },
@@ -56,7 +91,7 @@ Routes.prototype.mine = function () {
 };
 Routes.prototype.ui = function () {
     this.app.get('/ui', function (req, res) {
-        res.render('page/ui', {
+        res.render('pages/ui', {
             data: {
                 title: 'ui'
             },
@@ -66,7 +101,7 @@ Routes.prototype.ui = function () {
 };
 Routes.prototype.home = function () {
     this.app.get('/', function (req, res) {
-        res.render('page/home', {
+        res.render('pages/home', {
             data: {
                 title: '首页'
             },
@@ -77,7 +112,7 @@ Routes.prototype.home = function () {
 Routes.prototype.error = function () {
     //404
     this.app.use(function (req, res) {
-        res.render('page/404', {
+        res.render('pages/404', {
             data: {
                 title: '404'
             },

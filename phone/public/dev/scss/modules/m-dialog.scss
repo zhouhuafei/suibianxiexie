@@ -21,11 +21,8 @@
             font-size: px2rem($width-height);
             margin-right: px2rem(10);
             color: $g-color-fail;
-            &.icon-chenggong {
-                color: $g-color-success;
-            }
         }
-        .m-dialog-alert-txt {
+        .m-dialog-alert-text {
             color: #fff;
             line-height: 1.2;
         }
@@ -59,7 +56,7 @@
                     margin-right: px2rem(6);
                     color: $g-color-fail;
                 }
-                .m-dialog-txt {
+                .m-dialog-text {
                     font-size: px2rem(16);
                 }
             }

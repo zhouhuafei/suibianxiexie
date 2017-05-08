@@ -1,0 +1,57 @@
+@import "../config/config";
+
+//输入框
+.g-input {
+    $height: 40;
+    width: 100%;
+    height: px2rem($height);
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: px2rem(1) solid $g-color-border-default;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: px2rem(100);
+    .g-input-text {
+        min-width: px2rem($height);
+        padding: 0 px2rem(10);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & ~ .g-input-input {
+            border-left: px2rem(1) solid $g-color-border-default;
+        }
+    }
+    .g-input-icon {
+        min-width: px2rem($height);
+        padding: 0 px2rem(10);
+        height: inherit;
+        font-size: px2rem(16);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & ~ .g-input-input {
+            border-left: px2rem(1) solid $g-color-border-default;
+        }
+        &.icon-bitian {
+            font-size: px2rem(12);
+            color: $g-color-fail;
+        }
+    }
+    .g-input-input {
+        border: none;
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        outline: none;
+        color: inherit;
+        font-size: inherit;
+        flex: 1;
+        height: 100%;
+        background: inherit;
+        border-radius: inherit;
+        box-sizing: border-box;
+        padding: 0 px2rem(10);
+    }
+}

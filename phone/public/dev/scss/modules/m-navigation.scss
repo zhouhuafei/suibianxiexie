@@ -18,18 +18,18 @@
             font-size: px2rem(24);
             color: $g-color-highlight;
         }
-        .m-navigation-txt {
+        .m-navigation-text {
             font-size: px2rem(12);
         }
         .m-navigation-mark {
-            position: absolute;
-            right: px2rem(10);
-            top: px2rem(10);
-            width: px2rem(6);
-            height: px2rem(6);
+            $width-height: 6;
+            width: px2rem($width-height);
+            height: px2rem($width-height);
             border-radius: 50%;
             background: $g-color-highlight;
-            color: #ffffff;
+            position: absolute;
+            right: px2rem(4);
+            top: px2rem(4);
         }
     }
 }

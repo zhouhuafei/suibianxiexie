@@ -92,13 +92,22 @@ window.addEventListener('load', function () {
         //弹窗测试
         (function () {
             var Dialog = require('../modules/m-dialog');
-            //new Dialog();
-            //new Dialog({config: {alert: {icon: 'icon-shibai',content:'失败'}}});
-            // new Dialog({
-            //     config: {
-            //         type:'confirm'
-            //     }
-            // });
+            new Dialog({
+                callback: {
+                    confirm: function () {
+                        new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已确认'}}});
+                    },
+                    cancel: function () {
+                        new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已取消'}}});
+                    },
+                    close: function () {
+                        new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已关闭'}}});
+                    }
+                },
+                config: {
+                    type: 'confirm'
+                }
+            });
         })();
 
         //分页测试

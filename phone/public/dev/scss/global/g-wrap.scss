@@ -1,0 +1,33 @@
+@import "../config/config";
+
+//全局的容器
+.g-wrap {
+    width: 100%;
+    .g-page {
+        &:before, &:after {
+            content: ' ';
+            display: block;
+            height: 0;
+            overflow: hidden;
+        }
+    }
+}
+
+//pc展示
+.g-pc {
+    height: 100%;
+    box-sizing: border-box;
+    body {
+        height: inherit;
+        box-sizing: inherit;
+    }
+    .g-wrap {
+        min-height: 100%;
+        margin: 0 auto;
+        width: 320px;
+        box-sizing: border-box;
+        box-shadow: px2rem(1) 0 0 $g-color-border-default, px2rem(-1) 0 0 $g-color-border-default;
+        border-top: px2rem(1) solid $g-color-border-default;
+        border-bottom: px2rem(1) solid $g-color-border-default;
+    }
+}

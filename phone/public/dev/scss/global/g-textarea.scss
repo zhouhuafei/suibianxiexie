@@ -1,0 +1,44 @@
+@import "../config/config";
+
+//文本框
+.g-textarea {
+    width: 100%;
+    height: px2rem(120);
+    line-height: px2rem(20);
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border: px2rem(1) solid $g-color-border-default;
+    border-radius: px2rem(10);
+    .g-textarea-text {
+        min-width: px2rem(40);
+        padding: 0 px2rem(10);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & ~ .g-textarea-textarea {
+            border-left: px2rem(1) solid $g-color-border-default;
+        }
+    }
+    .g-textarea-textarea {
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        outline: none;
+        color: inherit;
+        font-size: inherit;
+        flex: 1;
+        height: 100%;
+        font-family: inherit;
+        line-height: inherit;
+        background: inherit;
+        border-radius: inherit;
+        box-sizing: border-box;
+        text-align: justify;
+        resize: none;
+        padding: px2rem(10);
+        border: none;
+    }
+}
