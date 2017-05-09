@@ -37,8 +37,8 @@ var TouchSlide = function (a) {
         pnLoop: a.pnLoop == 'undefined ' ? true : a.pnLoop, // 前后按钮点击是否继续执行效果，当为最前/后页是会自动添加“prevStop”/“nextStop”控制样色
         startFun: a.startFun || null, // 每次切换效果开始时执行函数，用于处理特殊情况或创建更多效果。用法 satrtFun:function(i,c){ }； 其中i为当前分页，c为总页数
         endFun: a.endFun || null, // 每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
-        switchLoadClass: a.switchLoadClass || '.pre-load',
-        switchLoad: a.switchLoad || 'data-src' //每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
+        switchLoadClass: a.switchLoadClass || '.pre-load',//预加载的class
+        switchLoad: a.switchLoad || 'data-src' //预加载的属性
     };
     var slideCell = null;
     //如果是字符串

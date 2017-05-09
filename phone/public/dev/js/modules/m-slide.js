@@ -30,10 +30,14 @@ var SubType = base.constructorInherit({
                 delayTime: 200,//切换一次的持续时间
                 interTime: 3000,//多久切换一次
                 startFun: function () {
+                    console.log('此处的函数会被覆盖,请在callback里执行回调');
                 },
                 endFun: function () {
+                    console.log('此处的函数会被覆盖,请在callback里执行回调');
                 },
-                defaultIndex: 0//默认的当前位置索引
+                defaultIndex: 0,//默认的当前位置索引
+                switchLoadClass: '.pre-load',//预加载的class
+                switchLoad: 'data-src'//预加载的属性
             }
         },
         //数据
@@ -87,9 +91,9 @@ SubType.prototype.renderBody = function () {
     var data = self.opts.data;
     data.items.forEach(function (v) {
         if (self.opts.config.isShowHref) {
-            html += `<a href="${v.link || 'javascript:;'}" class="m-slide-items" data-src="${v.img.url}"></a>`;
+            html += `<a href="${v.link || 'javascript:;'}" class="m-slide-items pre-load" data-src="${v.img.url}"></a>`;
         } else {
-            html += `<a class="m-slide-items" data-src="${v.img.url}"></a>`;
+            html += `<a class="m-slide-items pre-load" data-src="${v.img.url}"></a>`;
         }
     });
     return `<div class="m-slide-body">${html}</div>`;
@@ -103,17 +107,17 @@ SubType.prototype.power = function () {
     var touchSlide = config.touchSlide;
     touchSlide.slideCell = self.opts.wrap;//外部容器,必须是id
     touchSlide.startFun = function (i) {
-        var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-items');
-        var nowIndex = ( i + 1);
-        if (touchSlide.effect == 'left') {
-            nowIndex = i;
-        }
-        var nowImg = allImg[nowIndex];
-        var prevImg = allImg[nowIndex - 1];
-        var nextImg = allImg[nowIndex + 1];
-        nowImg.style.backgroundImage = `url(${nowImg.dataset.src})`;
-        prevImg && (prevImg.style.backgroundImage = `url(${prevImg.dataset.src})`);
-        nextImg && (nextImg.style.backgroundImage = `url(${nextImg.dataset.src})`);
+        // var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-items');
+        // var nowIndex = ( i + 1);
+        // if (touchSlide.effect == 'left') {
+        //     nowIndex = i;
+        // }
+        // var nowImg = allImg[nowIndex];
+        // var prevImg = allImg[nowIndex - 1];
+        // var nextImg = allImg[nowIndex + 1];
+        // nowImg.style.backgroundImage = `url(${nowImg.dataset.src})`;
+        // prevImg && (prevImg.style.backgroundImage = `url(${prevImg.dataset.src})`);
+        // nextImg && (nextImg.style.backgroundImage = `url(${nextImg.dataset.src})`);
         callback.startFun({self: self, index: i});
     };
     touchSlide.endFun = function (i) {

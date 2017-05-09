@@ -68,9 +68,15 @@
                         autoPlay: true, //自动播放
                         delayTime: 200, //切换一次的持续时间
                         interTime: 3000, //多久切换一次
-                        startFun: function startFun() {},
-                        endFun: function endFun() {},
-                        defaultIndex: 0 //默认的当前位置索引
+                        startFun: function startFun() {
+                            console.log('此处的函数会被覆盖,请在callback里执行回调');
+                        },
+                        endFun: function endFun() {
+                            console.log('此处的函数会被覆盖,请在callback里执行回调');
+                        },
+                        defaultIndex: 0, //默认的当前位置索引
+                        switchLoadClass: '.pre-load', //预加载的class
+                        switchLoad: 'data-src' //预加载的属性
                     }
                 },
                 //数据
@@ -119,9 +125,9 @@
             var data = self.opts.data;
             data.items.forEach(function (v) {
                 if (self.opts.config.isShowHref) {
-                    html += "<a href=\"" + (v.link || 'javascript:;') + "\" class=\"m-slide-items\" data-src=\"" + v.img.url + "\"></a>";
+                    html += "<a href=\"" + (v.link || 'javascript:;') + "\" class=\"m-slide-items pre-load\" data-src=\"" + v.img.url + "\"></a>";
                 } else {
-                    html += "<a class=\"m-slide-items\" data-src=\"" + v.img.url + "\"></a>";
+                    html += "<a class=\"m-slide-items pre-load\" data-src=\"" + v.img.url + "\"></a>";
                 }
             });
             return "<div class=\"m-slide-body\">" + html + "</div>";
@@ -135,17 +141,17 @@
             var touchSlide = config.touchSlide;
             touchSlide.slideCell = self.opts.wrap; //外部容器,必须是id
             touchSlide.startFun = function (i) {
-                var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-items');
-                var nowIndex = i + 1;
-                if (touchSlide.effect == 'left') {
-                    nowIndex = i;
-                }
-                var nowImg = allImg[nowIndex];
-                var prevImg = allImg[nowIndex - 1];
-                var nextImg = allImg[nowIndex + 1];
-                nowImg.style.backgroundImage = "url(" + nowImg.dataset.src + ")";
-                prevImg && (prevImg.style.backgroundImage = "url(" + prevImg.dataset.src + ")");
-                nextImg && (nextImg.style.backgroundImage = "url(" + nextImg.dataset.src + ")");
+                // var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-items');
+                // var nowIndex = ( i + 1);
+                // if (touchSlide.effect == 'left') {
+                //     nowIndex = i;
+                // }
+                // var nowImg = allImg[nowIndex];
+                // var prevImg = allImg[nowIndex - 1];
+                // var nextImg = allImg[nowIndex + 1];
+                // nowImg.style.backgroundImage = `url(${nowImg.dataset.src})`;
+                // prevImg && (prevImg.style.backgroundImage = `url(${prevImg.dataset.src})`);
+                // nextImg && (nextImg.style.backgroundImage = `url(${nextImg.dataset.src})`);
                 callback.startFun({ self: self, index: i });
             };
             touchSlide.endFun = function (i) {
@@ -1152,8 +1158,8 @@
                 pnLoop: a.pnLoop == 'undefined ' ? true : a.pnLoop, // 前后按钮点击是否继续执行效果，当为最前/后页是会自动添加“prevStop”/“nextStop”控制样色
                 startFun: a.startFun || null, // 每次切换效果开始时执行函数，用于处理特殊情况或创建更多效果。用法 satrtFun:function(i,c){ }； 其中i为当前分页，c为总页数
                 endFun: a.endFun || null, // 每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
-                switchLoadClass: a.switchLoadClass || '.pre-load',
-                switchLoad: a.switchLoad || 'data-src' //每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
+                switchLoadClass: a.switchLoadClass || '.pre-load', //预加载的class
+                switchLoad: a.switchLoad || 'data-src' //预加载的属性
             };
             var slideCell = null;
             //如果是字符串

@@ -47,20 +47,42 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
         module.exports = base;
     }, { "../function/array-remove-repeat": 5, "../function/constructor-inherit": 6, "../function/cookie": 7, "../function/create-element": 8, "../function/extend": 9, "../function/fill-zero": 10, "../function/get-dom-array": 11, "../function/get-parent": 12, "../function/html-to-dom": 13, "../function/obj-remove-quote": 14, "../function/obj-to-array": 15, "../function/offset": 16, "../function/px2rem": 17, "../function/scroll-to": 18, "../function/seconds-to-time": 19, "../function/select": 20, "../function/str-limit": 21, "../function/time-count-down": 22, "../function/user-agent": 23, "../function/when-scroll-bottom": 24, "../function/whether-disable-scroll": 25 }], 2: [function (require, module, exports) {
+        //版权
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
+                var Copyright = require('../modules/m-copyright');
+                new Copyright();
+            }
+        })();
+
+        //底部导航
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
+                var Footer = require('../modules/m-footer-nav');
+                new Footer();
+            }
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright": 26, "../modules/m-footer-nav": 28, "../modules/m-lazy-load": 30 }], 3: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
                 //ajax测试
                 (function () {
                     var Ajax = require('../function/ajax');
-                    new Ajax({
-                        callback: {},
-                        config: {
-                            url: '/api/getList'
-                        },
-                        data: {
-                            hellow: 'hellow'
-                        }
-                    });
+                    // new Ajax({
+                    //     callback: {},
+                    //     config: {
+                    //         url: '/api/getList'
+                    //     },
+                    //     data: {
+                    //         hellow: 'hellow'
+                    //     }
+                    // })
                 })();
 
                 //base函数测试
@@ -292,29 +314,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../base/base": 1, "../commons/common": 3, "../function/ajax": 4, "../modules/m-dialog": 27, "../modules/m-go-top": 29, "../modules/m-loading": 31, "../modules/m-mask": 32, "../modules/m-navigation": 33, "../modules/m-no-data": 34, "../modules/m-pagination": 35, "../modules/m-radio-switch": 36, "../modules/m-slide": 37, "../modules/m-star": 38, "../modules/m-sub-type": 40, "../modules/m-sub-type-es6": 39, "../modules/m-super-type": 42, "../modules/m-super-type-es6": 41, "../modules/m-table": 43 }], 3: [function (require, module, exports) {
-        //版权
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
-                var Copyright = require('../modules/m-copyright');
-                new Copyright();
-            }
-        })();
-
-        //底部导航
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
-                var Footer = require('../modules/m-footer-nav');
-                new Footer();
-            }
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright": 26, "../modules/m-footer-nav": 28, "../modules/m-lazy-load": 30 }], 4: [function (require, module, exports) {
+    }, { "../base/base": 1, "../commons/common": 2, "../function/ajax": 4, "../modules/m-dialog": 27, "../modules/m-go-top": 29, "../modules/m-loading": 31, "../modules/m-mask": 32, "../modules/m-navigation": 33, "../modules/m-no-data": 34, "../modules/m-pagination": 35, "../modules/m-radio-switch": 36, "../modules/m-slide": 37, "../modules/m-star": 38, "../modules/m-sub-type": 40, "../modules/m-sub-type-es6": 39, "../modules/m-super-type": 42, "../modules/m-super-type-es6": 41, "../modules/m-table": 43 }], 4: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展
         var Dialog = require('../modules/m-dialog'); //弹窗
         var Loading = require('../function/extend'); //加载中
@@ -2269,9 +2269,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         autoPlay: true, //自动播放
                         delayTime: 200, //切换一次的持续时间
                         interTime: 3000, //多久切换一次
-                        startFun: function startFun() {},
-                        endFun: function endFun() {},
-                        defaultIndex: 0 //默认的当前位置索引
+                        startFun: function startFun() {
+                            console.log('此处的函数会被覆盖,请在callback里执行回调');
+                        },
+                        endFun: function endFun() {
+                            console.log('此处的函数会被覆盖,请在callback里执行回调');
+                        },
+                        defaultIndex: 0, //默认的当前位置索引
+                        switchLoadClass: '.pre-load', //预加载的class
+                        switchLoad: 'data-src' //预加载的属性
                     }
                 },
                 //数据
@@ -2320,9 +2326,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             var data = self.opts.data;
             data.items.forEach(function (v) {
                 if (self.opts.config.isShowHref) {
-                    html += "<a href=\"" + (v.link || 'javascript:;') + "\" class=\"m-slide-items\" data-src=\"" + v.img.url + "\"></a>";
+                    html += "<a href=\"" + (v.link || 'javascript:;') + "\" class=\"m-slide-items pre-load\" data-src=\"" + v.img.url + "\"></a>";
                 } else {
-                    html += "<a class=\"m-slide-items\" data-src=\"" + v.img.url + "\"></a>";
+                    html += "<a class=\"m-slide-items pre-load\" data-src=\"" + v.img.url + "\"></a>";
                 }
             });
             return "<div class=\"m-slide-body\">" + html + "</div>";
@@ -2336,17 +2342,17 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             var touchSlide = config.touchSlide;
             touchSlide.slideCell = self.opts.wrap; //外部容器,必须是id
             touchSlide.startFun = function (i) {
-                var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-items');
-                var nowIndex = i + 1;
-                if (touchSlide.effect == 'left') {
-                    nowIndex = i;
-                }
-                var nowImg = allImg[nowIndex];
-                var prevImg = allImg[nowIndex - 1];
-                var nextImg = allImg[nowIndex + 1];
-                nowImg.style.backgroundImage = "url(" + nowImg.dataset.src + ")";
-                prevImg && (prevImg.style.backgroundImage = "url(" + prevImg.dataset.src + ")");
-                nextImg && (nextImg.style.backgroundImage = "url(" + nextImg.dataset.src + ")");
+                // var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-items');
+                // var nowIndex = ( i + 1);
+                // if (touchSlide.effect == 'left') {
+                //     nowIndex = i;
+                // }
+                // var nowImg = allImg[nowIndex];
+                // var prevImg = allImg[nowIndex - 1];
+                // var nextImg = allImg[nowIndex + 1];
+                // nowImg.style.backgroundImage = `url(${nowImg.dataset.src})`;
+                // prevImg && (prevImg.style.backgroundImage = `url(${prevImg.dataset.src})`);
+                // nextImg && (nextImg.style.backgroundImage = `url(${nextImg.dataset.src})`);
                 callback.startFun({ self: self, index: i });
             };
             touchSlide.endFun = function (i) {
@@ -3218,8 +3224,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 pnLoop: a.pnLoop == 'undefined ' ? true : a.pnLoop, // 前后按钮点击是否继续执行效果，当为最前/后页是会自动添加“prevStop”/“nextStop”控制样色
                 startFun: a.startFun || null, // 每次切换效果开始时执行函数，用于处理特殊情况或创建更多效果。用法 satrtFun:function(i,c){ }； 其中i为当前分页，c为总页数
                 endFun: a.endFun || null, // 每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
-                switchLoadClass: a.switchLoadClass || '.pre-load',
-                switchLoad: a.switchLoad || 'data-src' //每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
+                switchLoadClass: a.switchLoadClass || '.pre-load', //预加载的class
+                switchLoad: a.switchLoad || 'data-src' //预加载的属性
             };
             var slideCell = null;
             //如果是字符串
@@ -3600,4 +3606,4 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = TouchSlide;
-    }, {}] }, {}, [2]);
+    }, {}] }, {}, [3]);

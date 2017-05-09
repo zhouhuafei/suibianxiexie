@@ -39,6 +39,28 @@
         };
         module.exports = base;
     }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/px2rem": 16, "../function/scroll-to": 17, "../function/seconds-to-time": 18, "../function/select": 19, "../function/str-limit": 20, "../function/time-count-down": 21, "../function/user-agent": 22, "../function/when-scroll-bottom": 23, "../function/whether-disable-scroll": 24 }], 2: [function (require, module, exports) {
+        //版权
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
+                var Copyright = require('../modules/m-copyright');
+                new Copyright();
+            }
+        })();
+
+        //底部导航
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
+                var Footer = require('../modules/m-footer-nav');
+                new Footer();
+            }
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 26, "../modules/m-lazy-load": 27 }], 3: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
 
@@ -97,29 +119,7 @@
                 require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../commons/common": 3, "../modules/m-navigation": 28, "../modules/m-slide": 29 }], 3: [function (require, module, exports) {
-        //版权
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
-                var Copyright = require('../modules/m-copyright');
-                new Copyright();
-            }
-        })();
-
-        //底部导航
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
-                var Footer = require('../modules/m-footer-nav');
-                new Footer();
-            }
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 26, "../modules/m-lazy-load": 27 }], 4: [function (require, module, exports) {
+    }, { "../commons/common": 2, "../modules/m-navigation": 28, "../modules/m-slide": 29 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opts = json || {};
@@ -1130,9 +1130,15 @@
                         autoPlay: true, //自动播放
                         delayTime: 200, //切换一次的持续时间
                         interTime: 3000, //多久切换一次
-                        startFun: function startFun() {},
-                        endFun: function endFun() {},
-                        defaultIndex: 0 //默认的当前位置索引
+                        startFun: function startFun() {
+                            console.log('此处的函数会被覆盖,请在callback里执行回调');
+                        },
+                        endFun: function endFun() {
+                            console.log('此处的函数会被覆盖,请在callback里执行回调');
+                        },
+                        defaultIndex: 0, //默认的当前位置索引
+                        switchLoadClass: '.pre-load', //预加载的class
+                        switchLoad: 'data-src' //预加载的属性
                     }
                 },
                 //数据
@@ -1181,9 +1187,9 @@
             var data = self.opts.data;
             data.items.forEach(function (v) {
                 if (self.opts.config.isShowHref) {
-                    html += "<a href=\"" + (v.link || 'javascript:;') + "\" class=\"m-slide-items\" data-src=\"" + v.img.url + "\"></a>";
+                    html += "<a href=\"" + (v.link || 'javascript:;') + "\" class=\"m-slide-items pre-load\" data-src=\"" + v.img.url + "\"></a>";
                 } else {
-                    html += "<a class=\"m-slide-items\" data-src=\"" + v.img.url + "\"></a>";
+                    html += "<a class=\"m-slide-items pre-load\" data-src=\"" + v.img.url + "\"></a>";
                 }
             });
             return "<div class=\"m-slide-body\">" + html + "</div>";
@@ -1197,17 +1203,17 @@
             var touchSlide = config.touchSlide;
             touchSlide.slideCell = self.opts.wrap; //外部容器,必须是id
             touchSlide.startFun = function (i) {
-                var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-items');
-                var nowIndex = i + 1;
-                if (touchSlide.effect == 'left') {
-                    nowIndex = i;
-                }
-                var nowImg = allImg[nowIndex];
-                var prevImg = allImg[nowIndex - 1];
-                var nextImg = allImg[nowIndex + 1];
-                nowImg.style.backgroundImage = "url(" + nowImg.dataset.src + ")";
-                prevImg && (prevImg.style.backgroundImage = "url(" + prevImg.dataset.src + ")");
-                nextImg && (nextImg.style.backgroundImage = "url(" + nextImg.dataset.src + ")");
+                // var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-items');
+                // var nowIndex = ( i + 1);
+                // if (touchSlide.effect == 'left') {
+                //     nowIndex = i;
+                // }
+                // var nowImg = allImg[nowIndex];
+                // var prevImg = allImg[nowIndex - 1];
+                // var nextImg = allImg[nowIndex + 1];
+                // nowImg.style.backgroundImage = `url(${nowImg.dataset.src})`;
+                // prevImg && (prevImg.style.backgroundImage = `url(${prevImg.dataset.src})`);
+                // nextImg && (nextImg.style.backgroundImage = `url(${nextImg.dataset.src})`);
                 callback.startFun({ self: self, index: i });
             };
             touchSlide.endFun = function (i) {
@@ -1503,8 +1509,8 @@
                 pnLoop: a.pnLoop == 'undefined ' ? true : a.pnLoop, // 前后按钮点击是否继续执行效果，当为最前/后页是会自动添加“prevStop”/“nextStop”控制样色
                 startFun: a.startFun || null, // 每次切换效果开始时执行函数，用于处理特殊情况或创建更多效果。用法 satrtFun:function(i,c){ }； 其中i为当前分页，c为总页数
                 endFun: a.endFun || null, // 每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
-                switchLoadClass: a.switchLoadClass || '.pre-load',
-                switchLoad: a.switchLoad || 'data-src' //每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
+                switchLoadClass: a.switchLoadClass || '.pre-load', //预加载的class
+                switchLoad: a.switchLoad || 'data-src' //预加载的属性
             };
             var slideCell = null;
             //如果是字符串
@@ -1885,4 +1891,4 @@
         };
 
         module.exports = TouchSlide;
-    }, {}] }, {}, [2]);
+    }, {}] }, {}, [3]);
