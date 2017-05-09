@@ -27,10 +27,14 @@
     .g-input-icon {
         font-size: px2rem(16);
         padding: 0 px2rem(4);
-        &.icon-bitian {
-            font-size: px2rem(12);
-            color: $g-color-fail;
+        & ~ .g-input-input {
+            border-left: px2rem(1) solid $g-color-border-default;
         }
+    }
+    .g-input-hint{
+        font-size: px2rem(12);
+        padding: 0 px2rem(4);
+        color: $g-color-hint;
         & ~ .g-input-input {
             border-left: px2rem(1) solid $g-color-border-default;
         }
