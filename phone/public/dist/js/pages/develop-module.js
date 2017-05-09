@@ -47,28 +47,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
         module.exports = base;
     }, { "../function/array-remove-repeat": 5, "../function/constructor-inherit": 6, "../function/cookie": 7, "../function/create-element": 8, "../function/extend": 9, "../function/fill-zero": 10, "../function/get-dom-array": 11, "../function/get-parent": 12, "../function/html-to-dom": 13, "../function/obj-remove-quote": 14, "../function/obj-to-array": 15, "../function/offset": 16, "../function/px2rem": 17, "../function/scroll-to": 18, "../function/seconds-to-time": 19, "../function/select": 20, "../function/str-limit": 21, "../function/time-count-down": 22, "../function/user-agent": 23, "../function/when-scroll-bottom": 24, "../function/whether-disable-scroll": 25 }], 2: [function (require, module, exports) {
-        //版权
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
-                var Copyright = require('../modules/m-copyright');
-                new Copyright();
-            }
-        })();
-
-        //底部导航
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
-                var Footer = require('../modules/m-footer-nav');
-                new Footer();
-            }
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright": 26, "../modules/m-footer-nav": 28, "../modules/m-lazy-load": 30 }], 3: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
                 //ajax测试
@@ -314,7 +292,29 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../base/base": 1, "../commons/common": 2, "../function/ajax": 4, "../modules/m-dialog": 27, "../modules/m-go-top": 29, "../modules/m-loading": 31, "../modules/m-mask": 32, "../modules/m-navigation": 33, "../modules/m-no-data": 34, "../modules/m-pagination": 35, "../modules/m-radio-switch": 36, "../modules/m-slide": 37, "../modules/m-star": 38, "../modules/m-sub-type": 40, "../modules/m-sub-type-es6": 39, "../modules/m-super-type": 42, "../modules/m-super-type-es6": 41, "../modules/m-table": 43 }], 4: [function (require, module, exports) {
+    }, { "../base/base": 1, "../commons/common": 3, "../function/ajax": 4, "../modules/m-dialog": 27, "../modules/m-go-top": 29, "../modules/m-loading": 31, "../modules/m-mask": 32, "../modules/m-navigation": 33, "../modules/m-no-data": 34, "../modules/m-pagination": 35, "../modules/m-radio-switch": 36, "../modules/m-slide": 37, "../modules/m-star": 38, "../modules/m-sub-type": 40, "../modules/m-sub-type-es6": 39, "../modules/m-super-type": 42, "../modules/m-super-type-es6": 41, "../modules/m-table": 43 }], 3: [function (require, module, exports) {
+        //版权
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
+                var Copyright = require('../modules/m-copyright');
+                new Copyright();
+            }
+        })();
+
+        //底部导航
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
+                var Footer = require('../modules/m-footer-nav');
+                new Footer();
+            }
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright": 26, "../modules/m-footer-nav": 28, "../modules/m-lazy-load": 30 }], 4: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展
         var Dialog = require('../modules/m-dialog'); //弹窗
         var Loading = require('../function/extend'); //加载中
@@ -3197,6 +3197,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
          * 1.支持传入class和dom节点
          * 2.样式修改成flex布局
          * 3.把一些不规范的语法警告提示修正
+         * 4.添加预加载功能pre-load,去掉插件自带的懒加载功能
          * */
         var TouchSlide = function TouchSlide(a) {
             a = a || {};
@@ -3217,7 +3218,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 pnLoop: a.pnLoop == 'undefined ' ? true : a.pnLoop, // 前后按钮点击是否继续执行效果，当为最前/后页是会自动添加“prevStop”/“nextStop”控制样色
                 startFun: a.startFun || null, // 每次切换效果开始时执行函数，用于处理特殊情况或创建更多效果。用法 satrtFun:function(i,c){ }； 其中i为当前分页，c为总页数
                 endFun: a.endFun || null, // 每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
-                switchLoad: a.switchLoad || null //每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
+                switchLoadClass: a.switchLoadClass || '.pre-load',
+                switchLoad: a.switchLoad || 'data-src' //每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
             };
             var slideCell = null;
             //如果是字符串
@@ -3319,7 +3321,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             var conBoxSize = conBox.children.length;
             var navObj = obj(opts.titCell, slideCell); //导航子元素结合
             var navObjSize = navObj ? navObj.length : conBoxSize;
-            var sLoad = opts.switchLoad;
             /*字符串转换*/
             var index = parseInt(opts.defaultIndex);
             var delayTime = parseInt(opts.delayTime);
@@ -3387,35 +3388,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     opts.endFun(index, navObjSize);
                 }
             };
-            var doSwitchLoad = function doSwitchLoad(moving) {
-                var curIndex = (effect == "leftLoop" ? index + 1 : index) + moving;
-                var changeImg = function changeImg(ind) {
-                    var img = conBox.children[ind].getElementsByTagName("img");
-                    for (var i = 0; i < img.length; i++) {
-                        if (img[i].getAttribute(sLoad)) {
-                            img[i].setAttribute("src", img[i].getAttribute(sLoad));
-                            img[i].removeAttribute(sLoad);
-                        }
-                    }
-                };
-                changeImg(curIndex);
-                if (effect == "leftLoop") {
-                    switch (curIndex) {
-                        case 0:
-                            changeImg(conBoxSize);
-                            break;
-                        case 1:
-                            changeImg(conBoxSize + 1);
-                            break;
-                        case conBoxSize:
-                            changeImg(0);
-                            break;
-                        case conBoxSize + 1:
-                            changeImg(1);
-                            break;
-                    }
-                }
-            };
             //动态设置滑动宽度
             var orientationChange = function orientationChange() {
                 slideW = twCell.clientWidth;
@@ -3447,16 +3419,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         } else if (index < 0) {
                             index = isTouch ? 0 : navObjSize - 1;
                         }
-                        if (sLoad != null) {
-                            doSwitchLoad(0);
-                        }
                         translate(-index * slideW, delayTime);
                         oldIndex = index;
                         break;
                     case "leftLoop":
-                        if (sLoad != null) {
-                            doSwitchLoad(0);
-                        }
                         translate(-(index + 1) * slideW, delayTime);
                         if (index == -1) {
                             timeout = setTimeout(function () {
@@ -3473,6 +3439,26 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         break;
 
                 }
+                //预加载
+                (function () {
+                    var nowIndex = effect == "leftLoop" ? index + 1 : index;
+                    var allImage = conBox.querySelectorAll(opts.switchLoadClass);
+                    var changeImagesSrc = function changeImagesSrc(img) {
+                        if (img) {
+                            var imgSwitchSrc = img.getAttribute(opts.switchLoad);
+                            if (img.tagName.toLowerCase() == 'img') {
+                                img.src = imgSwitchSrc;
+                            } else {
+                                img.style.backgroundImage = "url(" + imgSwitchSrc + ")";
+                            }
+                        }
+                    };
+                    if (allImage.length > 0) {
+                        changeImagesSrc(allImage[nowIndex]);
+                        changeImagesSrc(allImage[nowIndex - 1]);
+                        changeImagesSrc(allImage[nowIndex + 1]);
+                    }
+                })();
                 doStartFun();
                 endTimeout = setTimeout(function () {
                     doEndFun();
@@ -3585,9 +3571,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                             translate(-(index + 1) * slideW + distX, 0);
                             break;
                     }
-                    if (sLoad != null && Math.abs(distX) > slideW / 3) {
-                        doSwitchLoad(distX > -0 ? -1 : 1);
-                    }
                 }
             };
             //触摸结束函数
@@ -3617,4 +3600,4 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = TouchSlide;
-    }, {}] }, {}, [3]);
+    }, {}] }, {}, [2]);

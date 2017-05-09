@@ -39,28 +39,6 @@
         };
         module.exports = base;
     }, { "../function/array-remove-repeat": 4, "../function/constructor-inherit": 5, "../function/cookie": 6, "../function/create-element": 7, "../function/extend": 8, "../function/fill-zero": 9, "../function/get-dom-array": 10, "../function/get-parent": 11, "../function/html-to-dom": 12, "../function/obj-remove-quote": 13, "../function/obj-to-array": 14, "../function/offset": 15, "../function/px2rem": 16, "../function/scroll-to": 17, "../function/seconds-to-time": 18, "../function/select": 19, "../function/str-limit": 20, "../function/time-count-down": 21, "../function/user-agent": 22, "../function/when-scroll-bottom": 23, "../function/whether-disable-scroll": 24 }], 2: [function (require, module, exports) {
-        //版权
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
-                var Copyright = require('../modules/m-copyright');
-                new Copyright();
-            }
-        })();
-
-        //底部导航
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
-                var Footer = require('../modules/m-footer-nav');
-                new Footer();
-            }
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 26, "../modules/m-lazy-load": 27 }], 3: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
 
@@ -119,7 +97,29 @@
                 require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../commons/common": 2, "../modules/m-navigation": 28, "../modules/m-slide": 29 }], 4: [function (require, module, exports) {
+    }, { "../commons/common": 3, "../modules/m-navigation": 28, "../modules/m-slide": 29 }], 3: [function (require, module, exports) {
+        //版权
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
+                var Copyright = require('../modules/m-copyright');
+                new Copyright();
+            }
+        })();
+
+        //底部导航
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
+                var Footer = require('../modules/m-footer-nav');
+                new Footer();
+            }
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright": 25, "../modules/m-footer-nav": 26, "../modules/m-lazy-load": 27 }], 4: [function (require, module, exports) {
         //数组去重
         function arrayRemoveRepeat(json) {
             var opts = json || {};
@@ -1482,6 +1482,7 @@
          * 1.支持传入class和dom节点
          * 2.样式修改成flex布局
          * 3.把一些不规范的语法警告提示修正
+         * 4.添加预加载功能pre-load,去掉插件自带的懒加载功能
          * */
         var TouchSlide = function TouchSlide(a) {
             a = a || {};
@@ -1502,7 +1503,8 @@
                 pnLoop: a.pnLoop == 'undefined ' ? true : a.pnLoop, // 前后按钮点击是否继续执行效果，当为最前/后页是会自动添加“prevStop”/“nextStop”控制样色
                 startFun: a.startFun || null, // 每次切换效果开始时执行函数，用于处理特殊情况或创建更多效果。用法 satrtFun:function(i,c){ }； 其中i为当前分页，c为总页数
                 endFun: a.endFun || null, // 每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
-                switchLoad: a.switchLoad || null //每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
+                switchLoadClass: a.switchLoadClass || '.pre-load',
+                switchLoad: a.switchLoad || 'data-src' //每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
             };
             var slideCell = null;
             //如果是字符串
@@ -1604,7 +1606,6 @@
             var conBoxSize = conBox.children.length;
             var navObj = obj(opts.titCell, slideCell); //导航子元素结合
             var navObjSize = navObj ? navObj.length : conBoxSize;
-            var sLoad = opts.switchLoad;
             /*字符串转换*/
             var index = parseInt(opts.defaultIndex);
             var delayTime = parseInt(opts.delayTime);
@@ -1672,35 +1673,6 @@
                     opts.endFun(index, navObjSize);
                 }
             };
-            var doSwitchLoad = function doSwitchLoad(moving) {
-                var curIndex = (effect == "leftLoop" ? index + 1 : index) + moving;
-                var changeImg = function changeImg(ind) {
-                    var img = conBox.children[ind].getElementsByTagName("img");
-                    for (var i = 0; i < img.length; i++) {
-                        if (img[i].getAttribute(sLoad)) {
-                            img[i].setAttribute("src", img[i].getAttribute(sLoad));
-                            img[i].removeAttribute(sLoad);
-                        }
-                    }
-                };
-                changeImg(curIndex);
-                if (effect == "leftLoop") {
-                    switch (curIndex) {
-                        case 0:
-                            changeImg(conBoxSize);
-                            break;
-                        case 1:
-                            changeImg(conBoxSize + 1);
-                            break;
-                        case conBoxSize:
-                            changeImg(0);
-                            break;
-                        case conBoxSize + 1:
-                            changeImg(1);
-                            break;
-                    }
-                }
-            };
             //动态设置滑动宽度
             var orientationChange = function orientationChange() {
                 slideW = twCell.clientWidth;
@@ -1732,16 +1704,10 @@
                         } else if (index < 0) {
                             index = isTouch ? 0 : navObjSize - 1;
                         }
-                        if (sLoad != null) {
-                            doSwitchLoad(0);
-                        }
                         translate(-index * slideW, delayTime);
                         oldIndex = index;
                         break;
                     case "leftLoop":
-                        if (sLoad != null) {
-                            doSwitchLoad(0);
-                        }
                         translate(-(index + 1) * slideW, delayTime);
                         if (index == -1) {
                             timeout = setTimeout(function () {
@@ -1758,6 +1724,26 @@
                         break;
 
                 }
+                //预加载
+                (function () {
+                    var nowIndex = effect == "leftLoop" ? index + 1 : index;
+                    var allImage = conBox.querySelectorAll(opts.switchLoadClass);
+                    var changeImagesSrc = function changeImagesSrc(img) {
+                        if (img) {
+                            var imgSwitchSrc = img.getAttribute(opts.switchLoad);
+                            if (img.tagName.toLowerCase() == 'img') {
+                                img.src = imgSwitchSrc;
+                            } else {
+                                img.style.backgroundImage = "url(" + imgSwitchSrc + ")";
+                            }
+                        }
+                    };
+                    if (allImage.length > 0) {
+                        changeImagesSrc(allImage[nowIndex]);
+                        changeImagesSrc(allImage[nowIndex - 1]);
+                        changeImagesSrc(allImage[nowIndex + 1]);
+                    }
+                })();
                 doStartFun();
                 endTimeout = setTimeout(function () {
                     doEndFun();
@@ -1870,9 +1856,6 @@
                             translate(-(index + 1) * slideW + distX, 0);
                             break;
                     }
-                    if (sLoad != null && Math.abs(distX) > slideW / 3) {
-                        doSwitchLoad(distX > -0 ? -1 : 1);
-                    }
                 }
             };
             //触摸结束函数
@@ -1902,4 +1885,4 @@
         };
 
         module.exports = TouchSlide;
-    }, {}] }, {}, [3]);
+    }, {}] }, {}, [2]);

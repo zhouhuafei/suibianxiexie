@@ -16,6 +16,7 @@
  * 1.支持传入class和dom节点
  * 2.样式修改成flex布局
  * 3.把一些不规范的语法警告提示修正
+ * 4.添加预加载功能pre-load,去掉插件自带的懒加载功能
  * */
 var TouchSlide = function (a) {
     a = a || {};
@@ -36,7 +37,8 @@ var TouchSlide = function (a) {
         pnLoop: a.pnLoop == 'undefined ' ? true : a.pnLoop, // 前后按钮点击是否继续执行效果，当为最前/后页是会自动添加“prevStop”/“nextStop”控制样色
         startFun: a.startFun || null, // 每次切换效果开始时执行函数，用于处理特殊情况或创建更多效果。用法 satrtFun:function(i,c){ }； 其中i为当前分页，c为总页数
         endFun: a.endFun || null, // 每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
-        switchLoad: a.switchLoad || null //每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
+        switchLoadClass: a.switchLoadClass || '.pre-load',
+        switchLoad: a.switchLoad || 'data-src' //每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
     };
     var slideCell = null;
     //如果是字符串
@@ -138,7 +140,6 @@ var TouchSlide = function (a) {
     var conBoxSize = conBox.children.length;
     var navObj = obj(opts.titCell, slideCell);//导航子元素结合
     var navObjSize = navObj ? navObj.length : conBoxSize;
-    var sLoad = opts.switchLoad;
     /*字符串转换*/
     var index = parseInt(opts.defaultIndex);
     var delayTime = parseInt(opts.delayTime);
@@ -207,35 +208,6 @@ var TouchSlide = function (a) {
             opts.endFun(index, navObjSize)
         }
     };
-    var doSwitchLoad = function (moving) {
-        var curIndex = ( effect == "leftLoop" ? index + 1 : index ) + moving;
-        var changeImg = function (ind) {
-            var img = conBox.children[ind].getElementsByTagName("img");
-            for (var i = 0; i < img.length; i++) {
-                if (img[i].getAttribute(sLoad)) {
-                    img[i].setAttribute("src", img[i].getAttribute(sLoad));
-                    img[i].removeAttribute(sLoad);
-                }
-            }
-        };
-        changeImg(curIndex);
-        if (effect == "leftLoop") {
-            switch (curIndex) {
-                case 0:
-                    changeImg(conBoxSize);
-                    break;
-                case 1:
-                    changeImg(conBoxSize + 1);
-                    break;
-                case conBoxSize:
-                    changeImg(0);
-                    break;
-                case conBoxSize + 1:
-                    changeImg(1);
-                    break;
-            }
-        }
-    };
     //动态设置滑动宽度
     var orientationChange = function () {
         slideW = twCell.clientWidth;
@@ -267,16 +239,10 @@ var TouchSlide = function (a) {
                 } else if (index < 0) {
                     index = isTouch ? 0 : navObjSize - 1;
                 }
-                if (sLoad != null) {
-                    doSwitchLoad(0)
-                }
                 translate((-index * slideW), delayTime);
                 oldIndex = index;
                 break;
             case "leftLoop":
-                if (sLoad != null) {
-                    doSwitchLoad(0)
-                }
                 translate(-(index + 1) * slideW, delayTime);
                 if (index == -1) {
                     timeout = setTimeout(function () {
@@ -293,9 +259,29 @@ var TouchSlide = function (a) {
                 break;
 
         }
+        //预加载
+        (function () {
+            var nowIndex = effect == "leftLoop" ? index + 1 : index;
+            var allImage = conBox.querySelectorAll(opts.switchLoadClass);
+            var changeImagesSrc = function (img) {
+                if (img) {
+                    var imgSwitchSrc = img.getAttribute(opts.switchLoad);
+                    if (img.tagName.toLowerCase() == 'img') {
+                        img.src = imgSwitchSrc;
+                    } else {
+                        img.style.backgroundImage = `url(${imgSwitchSrc})`;
+                    }
+                }
+            };
+            if (allImage.length > 0) {
+                changeImagesSrc(allImage[nowIndex]);
+                changeImagesSrc(allImage[nowIndex - 1]);
+                changeImagesSrc(allImage[nowIndex + 1]);
+            }
+        })();
         doStartFun();
         endTimeout = setTimeout(function () {
-            doEndFun()
+            doEndFun();
         }, delayTime);
         //设置className
         for (var i = 0; i < navObjSize; i++) {
@@ -404,9 +390,6 @@ var TouchSlide = function (a) {
                 case "leftLoop":
                     translate(-(index + 1) * slideW + distX, 0);
                     break;
-            }
-            if (sLoad != null && Math.abs(distX) > slideW / 3) {
-                doSwitchLoad(distX > -0 ? -1 : 1)
             }
         }
     };
