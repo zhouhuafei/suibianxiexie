@@ -422,15 +422,22 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 this.xhr.send(null);
             } else if (opts.config.type.toLowerCase() == 'post') {
                 //post
-                var formData = new FormData();
                 if (data) {
-                    for (var attr in data) {
-                        if (data.hasOwnProperty(attr)) {
-                            formData.append(attr, data[attr]);
+                    if (Object.prototype.toString.call(data).slice(8, -1).toLocaleLowerCase() == 'formdata') {
+
+                        this.xhr.send(data);
+                    } else {
+                        var formData = new FormData();
+                        for (var attr in data) {
+                            if (data.hasOwnProperty(attr)) {
+                                formData.append(attr, data[attr]);
+                            }
                         }
+                        this.xhr.send(formData);
                     }
+                } else {
+                    this.xhr.send(null);
                 }
-                this.xhr.send(formData);
             } else {
                 console.log('仅支持get和post请求');
                 return false;
