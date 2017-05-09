@@ -20,6 +20,10 @@
             justify-content: center;
             background: center center no-repeat;
             background-size: 100% auto;
+            transition: 0.4s;
+            //&.on {
+            //    transform: rotate(-30deg);
+            //}
         }
     }
     .m-slide-header {

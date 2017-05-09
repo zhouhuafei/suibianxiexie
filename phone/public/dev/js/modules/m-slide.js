@@ -25,7 +25,7 @@ var SubType = base.constructorInherit({
                 slideCell: '',//外部容器,这个值会在底部进行覆盖,因为在这里没办法获取this
                 mainCell: '.m-slide-body',//切换元素的包裹层对象
                 titCell: '.m-slide-header .m-slide-items',//导航元素对象
-                effect: "leftLoop",//效果
+                effect: "leftLoop",//效果'left' 'leftLoop'
                 autoPlay: true,//自动播放
                 delayTime: 200,//切换一次的持续时间
                 interTime: 3000,//多久切换一次
@@ -107,6 +107,7 @@ SubType.prototype.power = function () {
     var touchSlide = config.touchSlide;
     touchSlide.slideCell = self.opts.wrap;//外部容器,必须是id
     touchSlide.startFun = function (i) {
+        // 因为以下功能在插件本身进行了实现(本人对touch-slide插件进行了小修改),所以这里就注释了
         // var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-items');
         // var nowIndex = ( i + 1);
         // if (touchSlide.effect == 'left') {

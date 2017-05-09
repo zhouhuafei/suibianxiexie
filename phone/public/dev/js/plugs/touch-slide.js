@@ -12,12 +12,14 @@
  */
 
 /*
- * 本项目的作者对此文件进行了稍微改动,还请见谅
+ * 本人对此文件进行了稍微改动,还请见谅
  * 1.支持传入class和dom节点
  * 2.样式修改成flex布局
  * 3.把一些不规范的语法警告提示修正
  * 4.添加预加载功能pre-load,去掉插件自带的懒加载功能
+ * 5.给主体区域的切换每一项加上className
  * */
+
 var TouchSlide = function (a) {
     a = a || {};
     var opts = {
@@ -283,13 +285,27 @@ var TouchSlide = function (a) {
         endTimeout = setTimeout(function () {
             doEndFun();
         }, delayTime);
-        //设置className
+        //给按钮区域的切换每一项加上className
         for (var i = 0; i < navObjSize; i++) {
             removeClass(navObj[i], opts.titOnClassName);
             if (i == index) {
-                addClass(navObj[i], opts.titOnClassName)
+                addClass(navObj[i], opts.titOnClassName);
             }
         }
+        /*
+         * 给主体区域的切换每一项加上className
+         * 注:如果想配合className写css3小效果,建议使用effect属性的left值
+         * 否则切换到尾帧和切换到首帧时,视觉上的体验不好
+         * */
+        // (function () {
+        //     var nowJ = effect == "leftLoop" ? index + 1 : index;
+        //     for (var j = 0; j < conBox.children.length; j++) {
+        //         removeClass(conBox.children[j], opts.titOnClassName);
+        //         if (j == nowJ) {
+        //             addClass(conBox.children[j], opts.titOnClassName);
+        //         }
+        //     }
+        // })();
         //loop控制是否继续循环
         if (loop == false) {
             removeClass(nextBtn, "nextStop");
