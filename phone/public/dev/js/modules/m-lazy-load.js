@@ -5,7 +5,8 @@ var base = require('../base/base');
 function LazyLoad(json) {
     this.opts = base.extend({
         defaults: {
-            element: '.m-lazy-load',
+            element: '.m-lazy-load',//哪些元素进行懒加载
+            srcAttr: 'data-src',//默认获取哪里的属性值当做src
             moreHeight: 0,//多加载一部分高度的图片
             interval: 80//函数节流时间(延迟时间)
         },
@@ -19,12 +20,13 @@ LazyLoad.prototype.init = function () {
     this.power();
 };
 LazyLoad.prototype.render = function () {
+    var self = this;
     var moreHeight = this.opts.moreHeight;
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     var minTop = scrollTop - moreHeight;
     var maxTop = this.clientHeight + minTop + moreHeight;
     var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
-    var aDom = base.getDomArray({element:this.opts.element});
+    var aDom = base.getDomArray({element: this.opts.element});
     aDom.forEach(function (v) {
         if (v.tagName.toLowerCase() == 'img') {
             if (!v.getAttribute('src')) {
@@ -42,14 +44,14 @@ LazyLoad.prototype.render = function () {
             //出现在可视区才进行处理
             if (elementBottom >= minTop && elementTop <= maxTop) {
                 if (v.tagName.toLowerCase() == 'img') {
-                    if (v.dataset.src) {
-                        v.src = v.dataset.src;
+                    if (v.getAttribute(self.opts.srcAttr)) {
+                        v.src = v.getAttribute(self.opts.srcAttr);
                     }
                     v.removeAttribute('height');
                     v.removeAttribute('width');
                 } else {
-                    if (v.dataset.src) {
-                        v.style.backgroundImage = 'url(' + v.dataset.src + ')';
+                    if (v.getAttribute(self.opts.srcAttr)) {
+                        v.style.backgroundImage = 'url(' + v.getAttribute(self.opts.srcAttr) + ')';
                     }
                 }
                 v.classList.remove('m-lazy-load');

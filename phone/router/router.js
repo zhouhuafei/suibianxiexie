@@ -13,35 +13,35 @@ Routes.prototype.init = function () {
     this.login();
     this.register();
     this.list();
-    this.develop();
+    this.dev();
 };
-Routes.prototype.develop = function () {
-    this.app.get('/develop-list', function (req, res) {
-        res.render('pages/develop-list', {
+Routes.prototype.dev = function () {
+    this.app.get('/dev-list', function (req, res) {
+        res.render('pages/dev-list', {
             data: {
                 title: '开发列表清单'
             },
             config: {}
         });
     });
-    this.app.get('/develop-global', function (req, res) {
-        res.render('pages/develop-global', {
+    this.app.get('/dev-global', function (req, res) {
+        res.render('pages/dev-global', {
             data: {
                 title: '开发全局样式'
             },
             config: {}
         });
     });
-    this.app.get('/develop-module', function (req, res) {
-        res.render('pages/develop-module', {
+    this.app.get('/dev-module', function (req, res) {
+        res.render('pages/dev-module', {
             data: {
                 title: '开发模块样式'
             },
             config: {}
         });
     });
-    this.app.get('/develop-word', function (req, res) {
-        res.render('pages/develop-word', {
+    this.app.get('/dev-word', function (req, res) {
+        res.render('pages/dev-word', {
             data: {
                 title: '开发标准词汇'
             },
