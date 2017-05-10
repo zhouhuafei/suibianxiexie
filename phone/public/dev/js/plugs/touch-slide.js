@@ -268,6 +268,9 @@ var TouchSlide = function (a) {
             var changeImagesSrc = function (img) {
                 if (img) {
                     var imgSwitchSrc = img.getAttribute(opts.switchLoad);
+                    if (!imgSwitchSrc) {
+                        return false;
+                    }
                     if (img.tagName.toLowerCase() == 'img') {
                         img.src = imgSwitchSrc;
                     } else {

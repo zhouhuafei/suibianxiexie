@@ -8,35 +8,37 @@ const imagemin = require('gulp-imagemin');
 const base64 = require('gulp-base64');
 const browserify = require('gulp-browserify');
 const htmlmin = require('gulp-htmlmin');
+const inlinesource = require('gulp-inline-source');
 const del = require('del');
 const fs = require('fs');
 class Path {
     constructor() {
         this.publicPath = `${__dirname}/public`;
         this.devPath = `${this.publicPath}/dev`;
-        this.distPath = `${this.publicPath}/dist`;
+        this.minPath = `${this.publicPath}/min`;
         this.scssEnterPath = `${this.devPath}/scss/**/*.scss`;
-        this.scssExitPath = `${this.distPath}/css/`;
+        this.scssExitPath = `${this.minPath}/css/`;
         this.jsEnterPath = `${this.devPath}/js/**/*.js`;
-        this.jsExitPath = `${this.distPath}/js/`;
+        this.jsExitPath = `${this.minPath}/js/`;
         this.imagesEnterPath = `${this.devPath}/images/**/*.*`;
-        this.imagesExitPath = `${this.distPath}/images/`;
+        this.imagesExitPath = `${this.minPath}/images/`;
         this.fontEnterPath = `${this.devPath}/font/**/*.*`;
-        this.fontExitPath = `${this.distPath}/font/`;
+        this.fontExitPath = `${this.minPath}/font/`;
         this.uiEnterPath = `${this.devPath}/ui/**/*.*`;
-        this.uiExitPath = `${this.distPath}/ui/`;
+        this.uiExitPath = `${this.minPath}/ui/`;
         this.htmlEnterPath = `${this.devPath}/html/**/*.html`;
-        this.htmlExitPath = `${this.distPath}/html/`;
+        this.htmlExitPath = `${this.minPath}/html/`;
     }
 }
 const path = new Path();
 //清空dist目录
 gulp.task(`del`, function () {
-    return del.sync([`${path.distPath}`]);
+    return del.sync([`${path.minPath}`]);
 });
 //html
 gulp.task(`html`, function () {//html转移并压缩
     return gulp.src(path.htmlEnterPath)
+        .pipe(inlinesource())
         .pipe(htmlmin({collapseWhitespace: true, removeComments: true}))
         .pipe(gulp.dest(path.htmlExitPath))
 });

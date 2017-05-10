@@ -24,21 +24,21 @@ var SubType = base.constructorInherit({
                     isShowMark: false
                 },
                 {
-                    link: '/develop-global',
+                    link: '/dev-global',
                     icon: 'icon-kaifa',
                     txt: 'g-global',
                     isHighlight: false,
                     isShowMark: false
                 },
                 {
-                    link: '/develop-module',
+                    link: '/dev-module',
                     icon: 'icon-kaifa',
                     txt: 'm-module',
                     isHighlight: true,
                     isShowMark: true
                 },
                 {
-                    link: '/develop-word',
+                    link: '/dev-word',
                     icon: 'icon-kaifa',
                     txt: '标准词汇',
                     isHighlight: false,
