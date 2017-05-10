@@ -48,10 +48,12 @@ SubType.prototype.moduleDomCreate = function () {
                 <div class="m-pagination-txt">第</div>
                 <div class="m-pagination-now-page">
                     <label class="g-select">
-                        <select class="g-select-select">
-                            ${this.renderOption()}
-                        </select>
-                        <span class="g-select-mark iconfont icon-select"></span>
+                        <span class="g-select-wrap">
+                            <select class="g-select-select">
+                                ${this.renderOption()}
+                            </select>
+                            <span class="g-select-mark iconfont icon-select"></span>
+                        </span>
                     </label>
                 </div>
                 <div class="m-pagination-txt">页</div>

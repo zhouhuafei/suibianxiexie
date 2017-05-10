@@ -27,7 +27,7 @@
             border: px2rem(1) solid $g-color-border-default;
             &:checked {
                 border-color: $g-color-highlight;
-                & + .g-radio-icon {
+                & + .g-radio-mark {
                     display: flex;
                     align-items: center;
                     justify-content: center;
