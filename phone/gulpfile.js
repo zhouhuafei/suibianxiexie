@@ -8,6 +8,7 @@ const imagemin = require('gulp-imagemin');
 const base64 = require('gulp-base64');
 const browserify = require('gulp-browserify');
 const htmlmin = require('gulp-htmlmin');
+const inlinesource = require('gulp-inline-source');
 const del = require('del');
 const fs = require('fs');
 class Path {
@@ -37,6 +38,7 @@ gulp.task(`del`, function () {
 //html
 gulp.task(`html`, function () {//html转移并压缩
     return gulp.src(path.htmlEnterPath)
+        .pipe(inlinesource())
         .pipe(htmlmin({collapseWhitespace: true, removeComments: true}))
         .pipe(gulp.dest(path.htmlExitPath))
 });
