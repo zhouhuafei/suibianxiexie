@@ -14,7 +14,7 @@ const CreateFile = require('./libs/function/create-file');
 new CreateFile({
     data: {
         path: `${__dirname}/`,
-        fileName: 'haha',
+        fileName: fileName,
         extendName: '.txt',
         content: '888'
     }
