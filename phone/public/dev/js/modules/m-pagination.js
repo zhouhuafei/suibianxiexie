@@ -51,7 +51,7 @@ SubType.prototype.moduleDomCreate = function () {
                         <select class="g-select-select">
                             ${this.renderOption()}
                         </select>
-                        <span class="g-select-icon iconfont icon-select"></span>
+                        <span class="g-select-mark iconfont icon-select"></span>
                     </label>
                 </div>
                 <div class="m-pagination-txt">页</div>

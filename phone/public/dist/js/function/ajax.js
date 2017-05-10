@@ -148,7 +148,6 @@
                 //post
                 if (data) {
                     if (Object.prototype.toString.call(data).slice(8, -1).toLocaleLowerCase() == 'formdata') {
-
                         this.xhr.send(data);
                     } else {
                         var formData = new FormData();
