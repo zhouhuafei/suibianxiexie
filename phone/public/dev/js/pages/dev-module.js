@@ -33,15 +33,6 @@ window.addEventListener('load', function () {
                     }
                 }
             });
-            //测试全选
-            new base.Select({
-                items: '.g-checkbox-checkbox',
-                callback: {
-                    click: function (obj) {
-                        console.log(obj);
-                    }
-                }
-            });
         })();
 
         //slide切换

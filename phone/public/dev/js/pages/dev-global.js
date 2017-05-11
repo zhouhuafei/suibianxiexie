@@ -3,9 +3,9 @@ window.addEventListener('load', function () {
 
         //base函数测试
         (function () {
-            var base = require('../base/base');
+            var Select = require('../function/select');
             //测试全选
-            new base.Select({
+            new Select({
                 items: '.g-checkbox-checkbox',
                 callback: {
                     click: function (obj) {

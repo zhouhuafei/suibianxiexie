@@ -13,39 +13,6 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        function dataSrcHandle(json) {
-            var returnObj = {};
-            if (!json.image) {
-                return returnObj;
-            }
-            var webp = '';
-            if (base.utils.isAndroid()) {
-                webp = "format/webp";
-            }
-            var replace = "?imageMogr2/thumbnail/" + json.image.offsetWidth + "x" + json.image.offsetHeight + "/strip/quality/80/" + webp;
-            var opts = $.extend(true, {
-                image: null, //默认的图片dom(默认无)
-                rule: /\?.*/g, //默认规则(?号以及？号之后的一切)
-                replace: replace, //默认替换为
-                isPinjie: true, //如果没有匹配到规则rule,图片data-src末尾是否拼接上replace(默认拼接)
-                domainRule: /\./g, //域名规则(默认没有规则)
-                isDomainRule: false //是否开启域名规则限制(默认不开启)
-            }, json);
-            var image = opts.image;
-            var rule = opts.rule;
-            replace = opts.replace;
-            var search = image.dataset.src.match(rule);
-            if (search) {
-                //image.dataset.src=image.dataset.src.replace(rule,replace);
-                returnObj.src = image.dataset.src.replace(rule, replace);
-            } else {
-                if (opts.isPinjie) {
-                    //image.dataset.src=image.dataset.src+replace;
-                    returnObj.src = image.dataset.src + replace;
-                }
-            }
-        }
-
         function uploadImg() {
             var oF = document.querySelector('#fileField');
             var num = 0;
@@ -100,39 +67,6 @@
                         //console.log(file);
                     }
                 });
-            });
-        }
-
-        function touchLeft(obj, iWidth) {
-            if (!obj) {
-                return false;
-            }
-            var startPosition, endPosition, iTarget, iLeft;
-
-            obj.on('touchstart', function (e) {
-                var touch = e.touches[0];
-                startPosition = {
-                    x: touch.pageX,
-                    y: touch.pageY
-                };
-                iLeft = obj.position().left;
-            });
-
-            obj.on('touchmove', function (e) {
-                var touch = e.touches[0];
-                endPosition = {
-                    x: touch.pageX,
-                    y: touch.pageY
-                };
-                iTarget = {
-                    x: endPosition.x - startPosition.x + iLeft,
-                    y: endPosition.y - startPosition.y
-                };
-                obj.css({ 'left': iTarget.x > 0 ? 0 : iTarget.x });
-            });
-
-            obj.on('touchend', function () {
-                obj.css({ 'left': Math.abs(obj.position().left) > iWidth / 2 ? -iWidth : 0 });
             });
         }
     }, {}] }, {}, [1]);
