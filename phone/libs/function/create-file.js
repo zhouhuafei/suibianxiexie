@@ -26,20 +26,23 @@ class CreateFile {
 
     init() {
         this.errorHandle();
-        this.power();
     }
 
     errorHandle() {
         var data = this.opts.data;
         if (!data.path) {
             console.log('路径不存在');
+            return false;
         }
         if (!data.fileName) {
             console.log('文件名不存在');
+            return false;
         }
         if (!data.extendName) {
             console.log('扩展名不存在');
+            return false;
         }
+        this.power();
     }
 
     writeFile() {
