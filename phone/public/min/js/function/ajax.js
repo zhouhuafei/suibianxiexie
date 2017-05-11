@@ -13,15 +13,7 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        //一些小方法
-        var base = {
-            constructorInherit: require('../function/constructor-inherit'), //构造函数继承
-            createElement: require('../function/create-element'), //创建元素节点
-            extend: require('../tools/extend') //对象扩展
-        };
-        module.exports = base;
-    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../tools/extend": 11 }], 2: [function (require, module, exports) {
-        var extend = require('../tools/extend'); //对象的扩展
+        var extend = require('../tools/extend'); //对象的扩展方法
         var Dialog = require('../modules/m-dialog'); //弹窗
         var Loading = require('../modules/m-loading'); //加载中
 
@@ -255,7 +247,7 @@
         };
 
         module.exports = Ajax;
-    }, { "../modules/m-dialog": 7, "../modules/m-loading": 8, "../tools/extend": 11 }], 3: [function (require, module, exports) {
+    }, { "../modules/m-dialog": 6, "../modules/m-loading": 7, "../tools/extend": 10 }], 2: [function (require, module, exports) {
         var extend = require('../tools/extend'); //对象的扩展方法
         var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 
@@ -309,7 +301,7 @@
         }
 
         module.exports = constructorInherit;
-    }, { "../function/obj-remove-quote": 6, "../tools/extend": 11 }], 4: [function (require, module, exports) {
+    }, { "../function/obj-remove-quote": 5, "../tools/extend": 10 }], 3: [function (require, module, exports) {
         //创建元素节点
         function createElement(json) {
             var opts = json || {};
@@ -335,7 +327,7 @@
         }
 
         module.exports = createElement;
-    }, {}], 5: [function (require, module, exports) {
+    }, {}], 4: [function (require, module, exports) {
         //获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
         function getDomArray(json) {
             var opts = json || {};
@@ -362,7 +354,7 @@
         }
 
         module.exports = getDomArray;
-    }, {}], 6: [function (require, module, exports) {
+    }, {}], 5: [function (require, module, exports) {
         //移除对象引用
         function objRemoveQuote(json) {
             var opts = json || {};
@@ -385,16 +377,14 @@
         }
 
         module.exports = objRemoveQuote;
-    }, {}], 7: [function (require, module, exports) {
-        //底层方法
-        var base = require('../base/base');
-
-        //超类型(子类型继承的对象)
-        var SuperType = require('../modules/m-super-type');
-        var Mask = require('../modules/m-mask');
+    }, {}], 6: [function (require, module, exports) {
+        var createElement = require('../function/create-element'); //创建元素节点
+        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
+        var Mask = require('../modules/m-mask'); //遮罩
 
         //子类型
-        var SubType = base.constructorInherit({
+        var SubType = constructorInherit({
             superType: SuperType,
             //默认参数(继承超类型)
             parameter: {
@@ -480,7 +470,7 @@
             var positionLocation = "m-dialog-" + config.positionLocation; //弹窗的定位位置
             //弹窗结构
             var html = "\n        " + this.renderAlert() + "\n        " + this.renderConfirm() + "\n    ";
-            this.moduleDom = base.createElement({
+            this.moduleDom = createElement({
                 style: this.opts.config.moduleStyle,
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
@@ -586,16 +576,14 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-mask": 9, "../modules/m-super-type": 10 }], 8: [function (require, module, exports) {
-        //底层方法
-        var base = require('../base/base');
-
-        //超类型(子类型继承的对象)
-        var SuperType = require('../modules/m-super-type');
-        //var Mask = require('../modules/m-mask');
+    }, { "../function/constructor-inherit": 2, "../function/create-element": 3, "../modules/m-mask": 8, "../modules/m-super-type": 9 }], 7: [function (require, module, exports) {
+        var createElement = require('../function/create-element'); //创建元素节点
+        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
+        //var Mask = require('../modules/m-mask');//遮罩
 
         //子类型
-        var SubType = base.constructorInherit({
+        var SubType = constructorInherit({
             superType: SuperType,
             //默认参数(继承超类型)
             parameter: {
@@ -664,7 +652,7 @@
                 moduleDomHtml = "\n            <div class=\"m-loading-wrap\">\n                <div class=\"m-loading-over-icon iconfont icon-meiyoushuju\"></div>\n                <div class=\"m-loading-over-txt\">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ";
             }
             //模块创建
-            this.moduleDom = base.createElement({
+            this.moduleDom = createElement({
                 style: this.opts.config.moduleDomStyle,
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
@@ -680,15 +668,13 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 10 }], 9: [function (require, module, exports) {
-        //底层方法
-        var base = require('../base/base');
-
-        //超类型(子类型继承的对象)
-        var SuperType = require('../modules/m-super-type');
+    }, { "../function/constructor-inherit": 2, "../function/create-element": 3, "../modules/m-super-type": 9 }], 8: [function (require, module, exports) {
+        var createElement = require('../function/create-element'); //创建元素节点
+        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
 
         //子类型
-        var SubType = base.constructorInherit({
+        var SubType = constructorInherit({
             superType: SuperType,
             //默认参数(继承超类型)
             parameter: {
@@ -717,7 +703,7 @@
             if (this.opts.config.isTransparent) {
                 isTransparent = 'm-mask-transparent';
             }
-            this.moduleDom = base.createElement({
+            this.moduleDom = createElement({
                 style: this.opts.config.moduleStyle,
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
@@ -737,15 +723,15 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 10 }], 10: [function (require, module, exports) {
-        //底层方法
-        var base = require('../base/base');
-        var getDomArray = require('../function/get-dom-array');
+    }, { "../function/constructor-inherit": 2, "../function/create-element": 3, "../modules/m-super-type": 9 }], 9: [function (require, module, exports) {
+        var extend = require('../tools/extend'); //对象的扩展方法
+        var createElement = require('../function/create-element'); //创建元素节点
+        var getDomArray = require('../function/get-dom-array'); //获取原生的dom节点并转换成数组
 
         //底层构造函数
         function SuperType(json) {
             //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
-            this.opts = base.extend({
+            this.opts = extend({
                 //内部默认参数
                 defaults: {
                     //父级
@@ -862,7 +848,7 @@
 
         //内部模块的创建(这个方法在其他模块的内部需要被重写)
         SuperType.prototype.moduleDomCreate = function () {
-            this.moduleDom = base.createElement({
+            this.moduleDom = createElement({
                 style: this.opts.config.moduleDomStyle,
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
@@ -984,7 +970,7 @@
         };
 
         module.exports = SuperType;
-    }, { "../base/base": 1, "../function/get-dom-array": 5 }], 11: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../function/get-dom-array": 4, "../tools/extend": 10 }], 10: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opts = json || {};
@@ -1087,4 +1073,4 @@
         // console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
 
         module.exports = extend;
-    }, {}] }, {}, [2]);
+    }, {}] }, {}, [1]);

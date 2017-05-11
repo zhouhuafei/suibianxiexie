@@ -13,22 +13,14 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        //一些小方法
-        var base = {
-            constructorInherit: require('../function/constructor-inherit'), //构造函数继承
-            createElement: require('../function/create-element'), //创建元素节点
-            extend: require('../tools/extend') //对象扩展
-        };
-        module.exports = base;
-    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../tools/extend": 7 }], 2: [function (require, module, exports) {
-        //底层方法
-        var base = require('../base/base');
-        var getDomArray = require('../function/get-dom-array');
+        var extend = require('../tools/extend'); //对象的扩展方法
+        var createElement = require('../function/create-element'); //创建元素节点
+        var getDomArray = require('../function/get-dom-array'); //获取原生的dom节点并转换成数组
 
         //底层构造函数
         function SuperType(json) {
             //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
-            this.opts = base.extend({
+            this.opts = extend({
                 //内部默认参数
                 defaults: {
                     //父级
@@ -145,7 +137,7 @@
 
         //内部模块的创建(这个方法在其他模块的内部需要被重写)
         SuperType.prototype.moduleDomCreate = function () {
-            this.moduleDom = base.createElement({
+            this.moduleDom = createElement({
                 style: this.opts.config.moduleDomStyle,
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
@@ -267,61 +259,7 @@
         };
 
         module.exports = SuperType;
-    }, { "../base/base": 1, "../function/get-dom-array": 5 }], 3: [function (require, module, exports) {
-        var extend = require('../tools/extend'); //对象的扩展方法
-        var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
-
-        //构造函数的继承(拷贝继承)
-        function constructorInherit(json) {
-            var opts = extend({
-                defaults: {
-                    superType: null, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
-                    parameter: {} //默认参数(这个必须传的是一个对象,或者不传值)
-                },
-                inherits: json
-            });
-            //超类型(需要是个构造函数)
-            var SuperType = opts.superType;
-            //子类型的默认参数(需要是个对象)
-            var parameter = opts.parameter;
-            //如果超类型不存在
-            if (Object.prototype.toString.call(SuperType).toLowerCase().slice(8, -1) != 'function') {
-                console.log('no find SuperType or SuperType error');
-                return false;
-            }
-            //子类型
-            function SubType(json) {
-                //子类型自身的属性
-                /*
-                 * 注意:
-                 * defaults要防止对象的引用(如果不防止的话,会出现BUG)
-                 * 例如 wrap的默认值是'.g-wrap'
-                 * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
-                 * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
-                 * 但是由于对象引用的原因,这里的值会变成'body'
-                 * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
-                 * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
-                 * 所以我就封装了一个移除对象引用的函数
-                 * */
-                this.opts = extend({
-                    defaults: objRemoveQuote({ obj: parameter }),
-                    inherits: json
-                });
-                //子类型继承超类型的属性
-                opts.superType.call(this, this.opts);
-            }
-
-            //子类型继承超类型的方法
-            for (var attr in SuperType.prototype) {
-                if (SuperType.prototype.hasOwnProperty(attr)) {
-                    SubType.prototype[attr] = SuperType.prototype[attr];
-                }
-            }
-            return SubType;
-        }
-
-        module.exports = constructorInherit;
-    }, { "../function/obj-remove-quote": 6, "../tools/extend": 7 }], 4: [function (require, module, exports) {
+    }, { "../function/create-element": 2, "../function/get-dom-array": 3, "../tools/extend": 4 }], 2: [function (require, module, exports) {
         //创建元素节点
         function createElement(json) {
             var opts = json || {};
@@ -347,7 +285,7 @@
         }
 
         module.exports = createElement;
-    }, {}], 5: [function (require, module, exports) {
+    }, {}], 3: [function (require, module, exports) {
         //获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
         function getDomArray(json) {
             var opts = json || {};
@@ -374,30 +312,7 @@
         }
 
         module.exports = getDomArray;
-    }, {}], 6: [function (require, module, exports) {
-        //移除对象引用
-        function objRemoveQuote(json) {
-            var opts = json || {};
-            var obj = opts.obj; //这里一定不能给默认值
-            var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
-
-            if (objType != 'object' && objType != 'array') {
-                return obj;
-            }
-            var newObj = {};
-            if (objType == 'array') {
-                newObj = [];
-            }
-            for (var attr in obj) {
-                if (obj.hasOwnProperty(attr)) {
-                    newObj[attr] = objRemoveQuote({ obj: obj[attr] });
-                }
-            }
-            return newObj;
-        }
-
-        module.exports = objRemoveQuote;
-    }, {}], 7: [function (require, module, exports) {
+    }, {}], 4: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opts = json || {};
@@ -500,4 +415,4 @@
         // console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
 
         module.exports = extend;
-    }, {}] }, {}, [2]);
+    }, {}] }, {}, [1]);

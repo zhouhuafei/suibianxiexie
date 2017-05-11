@@ -1,11 +1,10 @@
-//底层方法
-var base = require('../base/base');
-var offset = require('../function/offset');
-var getDomArray = require('../function/get-dom-array');
+var extend=require('../tools/extend');//对象的扩展方法
+var offset = require('../function/offset');//获取元素距离文档的left和top
+var getDomArray = require('../function/get-dom-array');//获取原生的dom节点并转换成数组
 
 //延迟加载
 function LazyLoad(json) {
-    this.opts = base.extend({
+    this.opts = extend({
         defaults: {
             element: '.m-lazy-load',//哪些元素进行懒加载
             srcAttr: 'data-src',//默认获取哪里的属性值当做src

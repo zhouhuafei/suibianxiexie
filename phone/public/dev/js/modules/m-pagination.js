@@ -1,8 +1,6 @@
-//底层方法
-var base = require('../base/base');
-
-//超类型(子类型继承的对象)
-var SuperType = require('../modules/m-super-type');
+var createElement = require('../function/create-element');//创建元素节点
+var constructorInherit = require('../function/constructor-inherit');//构造函数的继承(拷贝继承)
+var SuperType = require('../modules/m-super-type');//超类型(子类型继承的对象)
 
 //默认数据
 var defaultData = {
@@ -14,7 +12,7 @@ var defaultData = {
 defaultData.allPage = Math.ceil(defaultData.allCount / defaultData.nowCount);
 
 //子类型
-var SubType = base.constructorInherit({
+var SubType = constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -39,7 +37,7 @@ var SubType = base.constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    this.moduleDom = base.createElement({
+    this.moduleDom = createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {

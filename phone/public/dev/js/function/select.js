@@ -1,6 +1,6 @@
 //全选,不选,反选
-var extend = require('../tools/extend');
-var getDomArray = require('../function/get-dom-array');
+var extend = require('../tools/extend');//对象的扩展方法
+var getDomArray = require('../function/get-dom-array');//获取原生的dom节点并转换成数组
 
 function Select(json) {
     this.opts = extend({

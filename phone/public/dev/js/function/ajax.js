@@ -1,4 +1,4 @@
-var extend = require('../tools/extend');//对象的扩展
+var extend = require('../tools/extend');//对象的扩展方法
 var Dialog = require('../modules/m-dialog');//弹窗
 var Loading = require('../modules/m-loading');//加载中
 

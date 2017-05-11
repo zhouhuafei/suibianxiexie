@@ -1,6 +1,5 @@
-var base = require('../base/base');//底层方法
 var validate = require('../function/validate');//表单验证
-var getDomArray = require('../function/get-dom-array');
+var getDomArray = require('../function/get-dom-array');//获取原生的dom节点并转换成数组
 
 function ValidateForm(json) {
     this.opts = json || {};

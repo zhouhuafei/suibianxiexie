@@ -1,8 +1,6 @@
-//底层方法
-var base = require('../base/base');
-
-//超类型(子类型继承的对象)
-var SuperType = require('../modules/m-super-type-es6');
+var extend = require('../tools/extend');//对象的扩展方法
+var createElement = require('../function/create-element');//创建元素节点
+var SuperType = require('../modules/m-super-type-es6');//超类型(子类型继承的对象)
 
 //子类型
 class SubType extends SuperType {
@@ -23,7 +21,7 @@ class SubType extends SuperType {
          * */
         super(json);
         //制定内部的默认值
-        this.opts = base.extend({
+        this.opts = extend({
             defaults: this.opts,
             //inherits里放默认参数(继承超类型)
             inherits: {
@@ -36,7 +34,7 @@ class SubType extends SuperType {
             }
         });
         //接收外部的参数
-        this.opts = base.extend({
+        this.opts = extend({
             defaults: this.opts,
             inherits: json
         });
@@ -50,7 +48,7 @@ class SubType extends SuperType {
 
     //内部模块的创建(覆盖超类型)
     moduleDomCreate() {
-        this.moduleDom = base.createElement({
+        this.moduleDom = createElement({
             style: this.opts.config.moduleDomStyle,
             custom: this.opts.config.moduleDomCustomAttr,
             attribute: {

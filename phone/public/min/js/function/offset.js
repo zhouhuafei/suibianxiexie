@@ -13,8 +13,8 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        var extend = require('../tools/extend'); //对象的扩展
-        var getDomArray = require('../function/get-dom-array'); //获取一组dom节点
+        var extend = require('../tools/extend'); //对象的扩展方法
+        var getDomArray = require('../function/get-dom-array'); //获取原生的dom节点并转换成数组
 
         //获取元素距离文档的left和top
         function offset(json) {
