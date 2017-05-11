@@ -3,7 +3,6 @@ function objRemoveQuote(json) {
     var opts = json || {};
     var obj = opts.obj;//这里一定不能给默认值
     var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
-
     if (objType != 'object' && objType != 'array') {
         return obj;
     }
