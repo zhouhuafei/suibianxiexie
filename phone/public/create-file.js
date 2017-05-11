@@ -1,8 +1,9 @@
 const CreateFile = require('../libs/function/create-file');
 const fileName = process.argv[2];
+const publicPath = `${__dirname}/dev`;
 const file = {
     html: {
-        path: `${__dirname}/dev/html/pages/`,
+        path: `${publicPath}/html/pages/`,
         fileName: fileName,
         content: `<!DOCTYPE html>
 <html lang="en">
@@ -26,7 +27,7 @@ const file = {
         extendName: '.html'
     },
     scss: {
-        path: `${__dirname}/dev/scss/pages/`,
+        path: `${publicPath}/scss/pages/`,
         fileName: fileName,
         content: `//基础样式
 @import "../base/base";
@@ -38,7 +39,7 @@ const file = {
         extendName: '.scss'
     },
     js: {
-        path: `${__dirname}/dev/js/pages/`,
+        path: `${publicPath}/js/pages/`,
         fileName: fileName,
         content: `window.addEventListener('load', function () {
     setTimeout(function () {
