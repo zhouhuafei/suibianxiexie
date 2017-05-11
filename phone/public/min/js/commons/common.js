@@ -17,10 +17,10 @@
         var base = {
             constructorInherit: require('../function/constructor-inherit'), //构造函数继承
             createElement: require('../function/create-element'), //创建元素节点
-            extend: require('../function/extend') //对象扩展
+            extend: require('../tools/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../function/extend": 5 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../tools/extend": 12 }], 2: [function (require, module, exports) {
         //版权
         (function () {
             if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
@@ -42,8 +42,8 @@
             var LazyLoad = require('../modules/m-lazy-load');
             new LazyLoad();
         })();
-    }, { "../modules/m-copyright": 9, "../modules/m-footer-nav": 10, "../modules/m-lazy-load": 11 }], 3: [function (require, module, exports) {
-        var extend = require('../function/extend'); //对象的扩展方法
+    }, { "../modules/m-copyright": 8, "../modules/m-footer-nav": 9, "../modules/m-lazy-load": 10 }], 3: [function (require, module, exports) {
+        var extend = require('../tools/extend'); //对象的扩展方法
         var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 
         //构造函数的继承(拷贝继承)
@@ -96,7 +96,7 @@
         }
 
         module.exports = constructorInherit;
-    }, { "../function/extend": 5, "../function/obj-remove-quote": 7 }], 4: [function (require, module, exports) {
+    }, { "../function/obj-remove-quote": 6, "../tools/extend": 12 }], 4: [function (require, module, exports) {
         //创建元素节点
         function createElement(json) {
             var opts = json || {};
@@ -123,109 +123,6 @@
 
         module.exports = createElement;
     }, {}], 5: [function (require, module, exports) {
-        //对象的扩展方法
-        function extend(json) {
-            var opts = json || {};
-            opts.defaults = opts.defaults || {}; //默认对象
-            opts.inherits = opts.inherits || {}; //继承对像
-            opts.isDeep = opts.isDeep == false ? opts.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
-            var defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
-            var inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
-            if (defaultsType == inheritsType && opts.isDeep) {
-                if (defaultsType == 'object' || defaultsType == 'array') {
-                    //当为对象或者为数组
-                    for (var attr in opts.inherits) {
-                        if (opts.inherits.hasOwnProperty(attr)) {
-                            var attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
-                            var attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
-                            if (attrDefaultsType == attrInheritsType && opts.isDeep) {
-                                //类型相同
-                                if (attrDefaultsType == 'object' || attrDefaultsType == 'array') {
-                                    //当为对象或者为数组
-                                    extend({ defaults: opts.defaults[attr], inherits: opts.inherits[attr] });
-                                } else {
-                                    opts.defaults[attr] = opts.inherits[attr];
-                                }
-                            } else {
-                                //类型不同,直接后面的覆盖前面的
-                                opts.defaults[attr] = opts.inherits[attr];
-                            }
-                        }
-                    }
-                } else {
-                    opts.defaults = opts.inherits;
-                }
-            } else {
-                opts.defaults = opts.inherits;
-            }
-            return opts.defaults;
-        }
-        // var obj1 = extend({
-        //     defaults: {
-        //         a: 'a',
-        //         b: {
-        //             b1: 'b1',
-        //             b2: 'b2',
-        //             b3: {
-        //                 c1: 'c1'
-        //             }
-        //         }
-        //     },
-        //     inherits: {
-        //         a: 0,
-        //         b: {
-        //             b2: 1,
-        //             b3: {
-        //                 c2: 2
-        //             }
-        //         }
-        //     }
-        // });
-        // console.log(obj1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
-        // var obj2 = extend({
-        //     defaults: {
-        //         a: [
-        //             0,
-        //             [9, 8, 7],
-        //             {
-        //                 arr: [
-        //                     1,
-        //                     2,
-        //                     3,
-        //                     [7, 9, 10],
-        //                     {good: 'good'}
-        //                 ]
-        //             }
-        //         ],
-        //         b: [
-        //             {a1: 'a1'},
-        //             {a2: 'a2'}
-        //         ]
-        //     },
-        //     inherits: {
-        //         a: [
-        //             1,
-        //             [3, 1],
-        //             {
-        //                 arr: [
-        //                     8,
-        //                     8,
-        //                     8,
-        //                     [6, 8]
-        //                 ]
-        //             }
-        //         ],
-        //         b: [
-        //             'what?',
-        //             {b1: 'b1'},
-        //             {b2: 'b2'}
-        //         ]
-        //     }
-        // });
-        // console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
-
-        module.exports = extend;
-    }, {}], 6: [function (require, module, exports) {
         //获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
         function getDomArray(json) {
             var opts = json || {};
@@ -252,7 +149,7 @@
         }
 
         module.exports = getDomArray;
-    }, {}], 7: [function (require, module, exports) {
+    }, {}], 6: [function (require, module, exports) {
         //移除对象引用
         function objRemoveQuote(json) {
             var opts = json || {};
@@ -275,8 +172,8 @@
         }
 
         module.exports = objRemoveQuote;
-    }, {}], 8: [function (require, module, exports) {
-        var extend = require('../function/extend'); //对象的扩展
+    }, {}], 7: [function (require, module, exports) {
+        var extend = require('../tools/extend'); //对象的扩展
         var getDomArray = require('../function/get-dom-array'); //获取一组dom节点
 
         //获取元素距离文档的left和top
@@ -302,7 +199,7 @@
         }
 
         module.exports = offset;
-    }, { "../function/extend": 5, "../function/get-dom-array": 6 }], 9: [function (require, module, exports) {
+    }, { "../function/get-dom-array": 5, "../tools/extend": 12 }], 8: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -341,7 +238,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 12 }], 10: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 11 }], 9: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -424,7 +321,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 12 }], 11: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 11 }], 10: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
         var offset = require('../function/offset');
@@ -500,7 +397,7 @@
             });
         };
         module.exports = LazyLoad;
-    }, { "../base/base": 1, "../function/get-dom-array": 6, "../function/offset": 8 }], 12: [function (require, module, exports) {
+    }, { "../base/base": 1, "../function/get-dom-array": 5, "../function/offset": 7 }], 11: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
         var getDomArray = require('../function/get-dom-array');
@@ -747,4 +644,107 @@
         };
 
         module.exports = SuperType;
-    }, { "../base/base": 1, "../function/get-dom-array": 6 }] }, {}, [2]);
+    }, { "../base/base": 1, "../function/get-dom-array": 5 }], 12: [function (require, module, exports) {
+        //对象的扩展方法
+        function extend(json) {
+            var opts = json || {};
+            opts.defaults = opts.defaults || {}; //默认对象
+            opts.inherits = opts.inherits || {}; //继承对像
+            opts.isDeep = opts.isDeep == false ? opts.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
+            var defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
+            var inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
+            if (defaultsType == inheritsType && opts.isDeep) {
+                if (defaultsType == 'object' || defaultsType == 'array') {
+                    //当为对象或者为数组
+                    for (var attr in opts.inherits) {
+                        if (opts.inherits.hasOwnProperty(attr)) {
+                            var attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
+                            var attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
+                            if (attrDefaultsType == attrInheritsType && opts.isDeep) {
+                                //类型相同
+                                if (attrDefaultsType == 'object' || attrDefaultsType == 'array') {
+                                    //当为对象或者为数组
+                                    extend({ defaults: opts.defaults[attr], inherits: opts.inherits[attr] });
+                                } else {
+                                    opts.defaults[attr] = opts.inherits[attr];
+                                }
+                            } else {
+                                //类型不同,直接后面的覆盖前面的
+                                opts.defaults[attr] = opts.inherits[attr];
+                            }
+                        }
+                    }
+                } else {
+                    opts.defaults = opts.inherits;
+                }
+            } else {
+                opts.defaults = opts.inherits;
+            }
+            return opts.defaults;
+        }
+        // var obj1 = extend({
+        //     defaults: {
+        //         a: 'a',
+        //         b: {
+        //             b1: 'b1',
+        //             b2: 'b2',
+        //             b3: {
+        //                 c1: 'c1'
+        //             }
+        //         }
+        //     },
+        //     inherits: {
+        //         a: 0,
+        //         b: {
+        //             b2: 1,
+        //             b3: {
+        //                 c2: 2
+        //             }
+        //         }
+        //     }
+        // });
+        // console.log(obj1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
+        // var obj2 = extend({
+        //     defaults: {
+        //         a: [
+        //             0,
+        //             [9, 8, 7],
+        //             {
+        //                 arr: [
+        //                     1,
+        //                     2,
+        //                     3,
+        //                     [7, 9, 10],
+        //                     {good: 'good'}
+        //                 ]
+        //             }
+        //         ],
+        //         b: [
+        //             {a1: 'a1'},
+        //             {a2: 'a2'}
+        //         ]
+        //     },
+        //     inherits: {
+        //         a: [
+        //             1,
+        //             [3, 1],
+        //             {
+        //                 arr: [
+        //                     8,
+        //                     8,
+        //                     8,
+        //                     [6, 8]
+        //                 ]
+        //             }
+        //         ],
+        //         b: [
+        //             'what?',
+        //             {b1: 'b1'},
+        //             {b2: 'b2'}
+        //         ]
+        //     }
+        // });
+        // console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
+
+        module.exports = extend;
+    }, {}] }, {}, [2]);

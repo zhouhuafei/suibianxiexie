@@ -1,4 +1,4 @@
-var extend = require('../function/extend');
+var extend = require('../tools/extend');
 var secondsToTime = require('../function/seconds-to-time');//时间转换
 
 //倒计时

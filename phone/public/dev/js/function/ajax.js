@@ -1,6 +1,6 @@
-var extend = require('../function/extend');//对象的扩展
+var extend = require('../tools/extend');//对象的扩展
 var Dialog = require('../modules/m-dialog');//弹窗
-var Loading = require('../function/extend');//加载中
+var Loading = require('../modules/m-loading');//加载中
 
 //ajax封装
 function Ajax(json) {

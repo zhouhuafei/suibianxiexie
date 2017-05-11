@@ -1,4 +1,4 @@
-var extend = require('../function/extend');//对象的扩展
+var extend = require('../tools/extend');//对象的扩展
 var getDomArray = require('../function/get-dom-array');//获取一组dom节点
 
 //获取元素距离文档的left和top

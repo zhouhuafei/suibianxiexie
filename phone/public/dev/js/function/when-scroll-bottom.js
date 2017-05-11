@@ -1,4 +1,4 @@
-var extend = require('../function/extend');
+var extend = require('../tools/extend');
 
 //当滚动到了浏览器的底部
 function WhenScrollBottom(json) {

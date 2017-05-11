@@ -1,4 +1,4 @@
-const extend = require('../../public/dev/js/function/extend');
+const extend = require('../../public/dev/js/tools/extend');
 const fs = require('fs');
 
 class CreateFile {

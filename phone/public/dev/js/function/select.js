@@ -1,5 +1,5 @@
 //全选,不选,反选
-var extend = require('../function/extend');
+var extend = require('../tools/extend');
 var getDomArray = require('../function/get-dom-array');
 
 function Select(json) {

@@ -17,13 +17,13 @@
         var base = {
             constructorInherit: require('../function/constructor-inherit'), //构造函数继承
             createElement: require('../function/create-element'), //创建元素节点
-            extend: require('../function/extend') //对象扩展
+            extend: require('../tools/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../function/extend": 5 }], 2: [function (require, module, exports) {
-        var extend = require('../function/extend'); //对象的扩展
+    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../tools/extend": 11 }], 2: [function (require, module, exports) {
+        var extend = require('../tools/extend'); //对象的扩展
         var Dialog = require('../modules/m-dialog'); //弹窗
-        var Loading = require('../function/extend'); //加载中
+        var Loading = require('../modules/m-loading'); //加载中
 
         //ajax封装
         function Ajax(json) {
@@ -255,8 +255,8 @@
         };
 
         module.exports = Ajax;
-    }, { "../function/extend": 5, "../modules/m-dialog": 8 }], 3: [function (require, module, exports) {
-        var extend = require('../function/extend'); //对象的扩展方法
+    }, { "../modules/m-dialog": 7, "../modules/m-loading": 8, "../tools/extend": 11 }], 3: [function (require, module, exports) {
+        var extend = require('../tools/extend'); //对象的扩展方法
         var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 
         //构造函数的继承(拷贝继承)
@@ -309,7 +309,7 @@
         }
 
         module.exports = constructorInherit;
-    }, { "../function/extend": 5, "../function/obj-remove-quote": 7 }], 4: [function (require, module, exports) {
+    }, { "../function/obj-remove-quote": 6, "../tools/extend": 11 }], 4: [function (require, module, exports) {
         //创建元素节点
         function createElement(json) {
             var opts = json || {};
@@ -336,109 +336,6 @@
 
         module.exports = createElement;
     }, {}], 5: [function (require, module, exports) {
-        //对象的扩展方法
-        function extend(json) {
-            var opts = json || {};
-            opts.defaults = opts.defaults || {}; //默认对象
-            opts.inherits = opts.inherits || {}; //继承对像
-            opts.isDeep = opts.isDeep == false ? opts.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
-            var defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
-            var inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
-            if (defaultsType == inheritsType && opts.isDeep) {
-                if (defaultsType == 'object' || defaultsType == 'array') {
-                    //当为对象或者为数组
-                    for (var attr in opts.inherits) {
-                        if (opts.inherits.hasOwnProperty(attr)) {
-                            var attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
-                            var attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
-                            if (attrDefaultsType == attrInheritsType && opts.isDeep) {
-                                //类型相同
-                                if (attrDefaultsType == 'object' || attrDefaultsType == 'array') {
-                                    //当为对象或者为数组
-                                    extend({ defaults: opts.defaults[attr], inherits: opts.inherits[attr] });
-                                } else {
-                                    opts.defaults[attr] = opts.inherits[attr];
-                                }
-                            } else {
-                                //类型不同,直接后面的覆盖前面的
-                                opts.defaults[attr] = opts.inherits[attr];
-                            }
-                        }
-                    }
-                } else {
-                    opts.defaults = opts.inherits;
-                }
-            } else {
-                opts.defaults = opts.inherits;
-            }
-            return opts.defaults;
-        }
-        // var obj1 = extend({
-        //     defaults: {
-        //         a: 'a',
-        //         b: {
-        //             b1: 'b1',
-        //             b2: 'b2',
-        //             b3: {
-        //                 c1: 'c1'
-        //             }
-        //         }
-        //     },
-        //     inherits: {
-        //         a: 0,
-        //         b: {
-        //             b2: 1,
-        //             b3: {
-        //                 c2: 2
-        //             }
-        //         }
-        //     }
-        // });
-        // console.log(obj1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
-        // var obj2 = extend({
-        //     defaults: {
-        //         a: [
-        //             0,
-        //             [9, 8, 7],
-        //             {
-        //                 arr: [
-        //                     1,
-        //                     2,
-        //                     3,
-        //                     [7, 9, 10],
-        //                     {good: 'good'}
-        //                 ]
-        //             }
-        //         ],
-        //         b: [
-        //             {a1: 'a1'},
-        //             {a2: 'a2'}
-        //         ]
-        //     },
-        //     inherits: {
-        //         a: [
-        //             1,
-        //             [3, 1],
-        //             {
-        //                 arr: [
-        //                     8,
-        //                     8,
-        //                     8,
-        //                     [6, 8]
-        //                 ]
-        //             }
-        //         ],
-        //         b: [
-        //             'what?',
-        //             {b1: 'b1'},
-        //             {b2: 'b2'}
-        //         ]
-        //     }
-        // });
-        // console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
-
-        module.exports = extend;
-    }, {}], 6: [function (require, module, exports) {
         //获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
         function getDomArray(json) {
             var opts = json || {};
@@ -465,7 +362,7 @@
         }
 
         module.exports = getDomArray;
-    }, {}], 7: [function (require, module, exports) {
+    }, {}], 6: [function (require, module, exports) {
         //移除对象引用
         function objRemoveQuote(json) {
             var opts = json || {};
@@ -488,7 +385,7 @@
         }
 
         module.exports = objRemoveQuote;
-    }, {}], 8: [function (require, module, exports) {
+    }, {}], 7: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -689,7 +586,101 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-mask": 9, "../modules/m-super-type": 10 }], 9: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-mask": 9, "../modules/m-super-type": 10 }], 8: [function (require, module, exports) {
+        //底层方法
+        var base = require('../base/base');
+
+        //超类型(子类型继承的对象)
+        var SuperType = require('../modules/m-super-type');
+        //var Mask = require('../modules/m-mask');
+
+        //子类型
+        var SubType = base.constructorInherit({
+            superType: SuperType,
+            //默认参数(继承超类型)
+            parameter: {
+                //回调
+                callback: {
+                    moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                        // if (self.opts.config.isShowMask) {
+                        //     new Mask({
+                        //         wrap: self.moduleDom.querySelector('.m-loading-wrap'),
+                        //         config: {
+                        //             moduleDomIsShow: true,
+                        //             moduleDomRenderMethod: {method: 'insertBefore'}
+                        //         }
+                        //     });
+                        // }
+                        if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
+                            self.wrapDom.style.position = 'relative';
+                        }
+                    }
+                },
+                //配置
+                config: {
+                    //isShowMask: false,  //是否显示遮罩(默认不显示)
+                    status: 'loading', //加载状态 loading(加载中) over(加载完毕)
+                    positionMethod: '', //模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
+                    positionLocation: 'center', //模块的定位位置
+                    moduleDomIsShow: false //内部模块是否显示(默认不显示)
+                },
+                //数据
+                data: {}
+            }
+        });
+
+        //内部模块的创建(覆盖超类型)
+        SubType.prototype.moduleDomCreate = function () {
+            var config = this.opts.config;
+            var moduleDomHtml = "";
+            var moduleDomClass = "";
+            var status = config.status;
+            var positionMethod = config.positionMethod;
+            var positionLocation = config.positionLocation;
+            //加载中
+            if (status == 'loading') {
+                moduleDomClass = "m-loading-loading ";
+                //相对文档居中
+                if (positionMethod == 'fixed') {
+                    moduleDomClass += "m-loading-fixed m-loading-" + positionLocation;
+                }
+                //相对容器居中
+                if (positionMethod == 'absolute') {
+                    moduleDomClass += "m-loading-absolute m-loading-" + positionLocation;
+                }
+                moduleDomHtml = "\n            <div class=\"m-loading-wrap\">\n                <div class=\"m-loading-loading-icon iconfont icon-jiazaizhong\"></div>\n            </div>\n        ";
+            }
+            //加载完毕
+            if (status == 'over') {
+                moduleDomClass = "m-loading-over ";
+                //相对文档居中
+                if (positionMethod == 'fixed') {
+                    moduleDomClass += "m-loading-fixed m-loading-" + positionLocation;
+                }
+                //相对容器居中
+                if (positionMethod == 'absolute') {
+                    moduleDomClass += "m-loading-absolute m-loading-" + positionLocation;
+                }
+                moduleDomHtml = "\n            <div class=\"m-loading-wrap\">\n                <div class=\"m-loading-over-icon iconfont icon-meiyoushuju\"></div>\n                <div class=\"m-loading-over-txt\">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ";
+            }
+            //模块创建
+            this.moduleDom = base.createElement({
+                style: this.opts.config.moduleDomStyle,
+                custom: this.opts.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-loading " + moduleDomClass,
+                    innerHTML: moduleDomHtml
+                }
+            });
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
+
+        module.exports = SubType;
+    }, { "../base/base": 1, "../modules/m-super-type": 10 }], 9: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -993,4 +984,107 @@
         };
 
         module.exports = SuperType;
-    }, { "../base/base": 1, "../function/get-dom-array": 6 }] }, {}, [2]);
+    }, { "../base/base": 1, "../function/get-dom-array": 5 }], 11: [function (require, module, exports) {
+        //对象的扩展方法
+        function extend(json) {
+            var opts = json || {};
+            opts.defaults = opts.defaults || {}; //默认对象
+            opts.inherits = opts.inherits || {}; //继承对像
+            opts.isDeep = opts.isDeep == false ? opts.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
+            var defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
+            var inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
+            if (defaultsType == inheritsType && opts.isDeep) {
+                if (defaultsType == 'object' || defaultsType == 'array') {
+                    //当为对象或者为数组
+                    for (var attr in opts.inherits) {
+                        if (opts.inherits.hasOwnProperty(attr)) {
+                            var attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
+                            var attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
+                            if (attrDefaultsType == attrInheritsType && opts.isDeep) {
+                                //类型相同
+                                if (attrDefaultsType == 'object' || attrDefaultsType == 'array') {
+                                    //当为对象或者为数组
+                                    extend({ defaults: opts.defaults[attr], inherits: opts.inherits[attr] });
+                                } else {
+                                    opts.defaults[attr] = opts.inherits[attr];
+                                }
+                            } else {
+                                //类型不同,直接后面的覆盖前面的
+                                opts.defaults[attr] = opts.inherits[attr];
+                            }
+                        }
+                    }
+                } else {
+                    opts.defaults = opts.inherits;
+                }
+            } else {
+                opts.defaults = opts.inherits;
+            }
+            return opts.defaults;
+        }
+        // var obj1 = extend({
+        //     defaults: {
+        //         a: 'a',
+        //         b: {
+        //             b1: 'b1',
+        //             b2: 'b2',
+        //             b3: {
+        //                 c1: 'c1'
+        //             }
+        //         }
+        //     },
+        //     inherits: {
+        //         a: 0,
+        //         b: {
+        //             b2: 1,
+        //             b3: {
+        //                 c2: 2
+        //             }
+        //         }
+        //     }
+        // });
+        // console.log(obj1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
+        // var obj2 = extend({
+        //     defaults: {
+        //         a: [
+        //             0,
+        //             [9, 8, 7],
+        //             {
+        //                 arr: [
+        //                     1,
+        //                     2,
+        //                     3,
+        //                     [7, 9, 10],
+        //                     {good: 'good'}
+        //                 ]
+        //             }
+        //         ],
+        //         b: [
+        //             {a1: 'a1'},
+        //             {a2: 'a2'}
+        //         ]
+        //     },
+        //     inherits: {
+        //         a: [
+        //             1,
+        //             [3, 1],
+        //             {
+        //                 arr: [
+        //                     8,
+        //                     8,
+        //                     8,
+        //                     [6, 8]
+        //                 ]
+        //             }
+        //         ],
+        //         b: [
+        //             'what?',
+        //             {b1: 'b1'},
+        //             {b2: 'b2'}
+        //         ]
+        //     }
+        // });
+        // console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
+
+        module.exports = extend;
+    }, {}] }, {}, [2]);
