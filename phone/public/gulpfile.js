@@ -13,7 +13,7 @@ const del = require('del');
 const fs = require('fs');
 class Path {
     constructor() {
-        this.publicPath = `${__dirname}/public`;
+        this.publicPath = `${__dirname}`;
         this.devPath = `${this.publicPath}/dev`;
         this.minPath = `${this.publicPath}/min`;
         this.scssEnterPath = `${this.devPath}/scss/**/*.scss`;
