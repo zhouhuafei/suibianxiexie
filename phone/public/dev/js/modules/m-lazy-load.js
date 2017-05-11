@@ -1,5 +1,6 @@
 //底层方法
 var base = require('../base/base');
+var offset = require('../function/offset');
 
 //延迟加载
 function LazyLoad(json) {
@@ -39,7 +40,7 @@ LazyLoad.prototype.render = function () {
     aDom.forEach(function (v) {
         //排除那些被none掉的元素(被none掉的元素,通过offsetWidth和offsetHeight获取到的值是0)
         if (v.offsetWidth) {
-            var elementTop = base.offset({element: v}).top;
+            var elementTop = offset({element: v}).top;
             var elementBottom = elementTop + v.offsetHeight;
             //出现在可视区才进行处理
             if (elementBottom >= minTop && elementTop <= maxTop) {

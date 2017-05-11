@@ -15,18 +15,13 @@
 })({ 1: [function (require, module, exports) {
         //一些小方法
         var base = {
-            offset: require('../function/offset'), //获取元素距离文档的left和top
             constructorInherit: require('../function/constructor-inherit'), //构造函数继承
-            scrollTo: require('../function/scroll-to'), //滚动到
-            whetherDisableScroll: require('../function/whether-disable-scroll'), //是否禁止浏览器滚动
-            WhenScrollBottom: require('../function/when-scroll-bottom'), //当滚动到底部
-            objToArray: require('../function/obj-to-array'), //把json格式的对象转成数组
             getDomArray: require('../function/get-dom-array'), //获取一组dom节点
             createElement: require('../function/create-element'), //创建元素节点
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../function/extend": 5, "../function/get-dom-array": 6, "../function/obj-to-array": 8, "../function/offset": 9, "../function/scroll-to": 10, "../function/when-scroll-bottom": 11, "../function/whether-disable-scroll": 12 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../function/extend": 5, "../function/get-dom-array": 6 }], 2: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -65,7 +60,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 13 }], 3: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 8 }], 3: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
         var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 
@@ -299,163 +294,6 @@
 
         module.exports = objRemoveQuote;
     }, {}], 8: [function (require, module, exports) {
-        //把json格式的对象转成数组
-        function objToArray(json) {
-            var opts = json || {};
-            var obj = opts.obj || {};
-            var arr = [];
-            if (obj instanceof Array) {
-                obj.forEach(function (v, i) {
-                    arr.push([i, v]);
-                });
-            } else {
-                for (var attr in obj) {
-                    if (obj.hasOwnProperty(attr)) {
-                        arr.push({ key: attr, value: obj[attr] });
-                    }
-                }
-            }
-            return arr;
-        }
-
-        module.exports = objToArray;
-    }, {}], 9: [function (require, module, exports) {
-        var extend = require('../function/extend'); //对象的扩展
-        var getDomArray = require('../function/get-dom-array'); //获取一组dom节点
-
-        //获取元素距离文档的left和top
-        function offset(json) {
-            var opts = extend({
-                defaults: {
-                    element: null
-                },
-                inherits: json
-            });
-            var top = 0;
-            var left = 0;
-            var element = getDomArray({ element: opts.element })[0];
-            while (element) {
-                top += element.offsetTop;
-                left += element.offsetLeft;
-                element = element.offsetParent;
-            }
-            return {
-                top: top,
-                left: left
-            };
-        }
-
-        module.exports = offset;
-    }, { "../function/extend": 5, "../function/get-dom-array": 6 }], 10: [function (require, module, exports) {
-        //滚动到指定位置
-        function scrollTo(json) {
-            var opts = json || {};
-            var to = opts.to || '0';
-            var scale = 6;
-            var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
-            var speed = 0;
-            var timer = null;
-            var fn = function fn() {
-                speed = Math.ceil((scrollT - to) / scale);
-                scrollT -= speed;
-                window.scrollTo(0, scrollT);
-                timer = requestAnimationFrame(fn);
-                if (scrollT <= to * 1) {
-                    cancelAnimationFrame(timer);
-                }
-            };
-            requestAnimationFrame(fn);
-        }
-
-        module.exports = scrollTo;
-    }, {}], 11: [function (require, module, exports) {
-        var extend = require('../function/extend');
-
-        //当滚动到了浏览器的底部
-        function WhenScrollBottom(json) {
-            this.opts = extend({
-                defaults: {
-                    callback: {
-                        success: function success() {},
-                        fail: function fail() {}
-                    },
-                    interval: 80, //函数节流时间(延迟时间)
-                    errorHeight: 0 //滚动到底部上面一定高度就算是滚动到底部了(误差高度)
-                },
-                inherits: json
-            });
-            this.isLoadOver = false; //数据是否加载完毕
-            this.init();
-        }
-
-        WhenScrollBottom.prototype.init = function () {
-            this.render();
-            this.power();
-        };
-
-        WhenScrollBottom.prototype.render = function () {
-            var callback = this.opts.callback;
-            var allH = document.body.scrollHeight;
-            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            var clientHeight = document.documentElement.clientHeight;
-            if (scrollTop + clientHeight >= allH - this.opts.errorHeight && !this.isLoadOver) {
-                this.isLoadOver = true;
-                callback.success(this);
-                /*
-                 * 条件:当你拿到请求的数据之后
-                 * 可能性:1.如果你的数据加载完毕了,你需要手动把isLoadOver开关变成true
-                 * 可能性:2.如果你的数据尚未加载完毕,你需要手动把isLoadOver开关变成false
-                 * */
-            } else {
-                callback.fail();
-            }
-        };
-
-        WhenScrollBottom.prototype.power = function () {
-            var self = this;
-            var timer = null;
-            window.addEventListener('scroll', function () {
-                clearTimeout(timer);
-                timer = setTimeout(function () {
-                    self.render();
-                }, self.opts.interval);
-            });
-        };
-
-        module.exports = WhenScrollBottom;
-    }, { "../function/extend": 5 }], 12: [function (require, module, exports) {
-        //是否禁止浏览器滚动
-        function whetherDisableScroll() {
-            var doc = document;
-            return {
-                //阻止冒泡
-                stopPropagation: function stopPropagation(ev) {
-                    ev.stopPropagation();
-                },
-                //阻止默认事件
-                preventDefault: function preventDefault(ev) {
-                    ev.preventDefault();
-                },
-                //阻止冒泡,阻止默认事件
-                returnFalse: function returnFalse(ev) {
-                    ev.preventDefault();
-                    ev.stopPropagation();
-                },
-                //禁止滚动
-                noScroll: function noScroll() {
-                    doc.addEventListener('touchmove', this.preventDefault, false);
-                    doc.documentElement.style.overflow = 'hidden';
-                },
-                //解除禁止浏览器滚动
-                yesScroll: function yesScroll() {
-                    doc.removeEventListener('touchmove', this.preventDefault, false);
-                    doc.documentElement.style.overflow = 'auto';
-                }
-            };
-        }
-
-        module.exports = whetherDisableScroll;
-    }, {}], 13: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 

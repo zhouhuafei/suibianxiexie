@@ -1,5 +1,6 @@
 //底层方法
 var base = require('../base/base');
+var scrollTo=require('../function/scroll-to');
 
 //超类型(子类型继承的对象)
 var SuperType = require('../modules/m-super-type');
@@ -36,7 +37,7 @@ SubType.prototype.moduleDomCreate = function () {
 SubType.prototype.power = function () {
     var self = this;
     this.moduleDom.addEventListener('click', function () {
-        base.scrollTo({to: '0'});
+        scrollTo({to: '0'});
     });
     window.addEventListener('scroll', function () {
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;

@@ -23,18 +23,35 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 })({ 1: [function (require, module, exports) {
         //一些小方法
         var base = {
-            offset: require('../function/offset'), //获取元素距离文档的left和top
             constructorInherit: require('../function/constructor-inherit'), //构造函数继承
-            scrollTo: require('../function/scroll-to'), //滚动到
-            whetherDisableScroll: require('../function/whether-disable-scroll'), //是否禁止浏览器滚动
-            WhenScrollBottom: require('../function/when-scroll-bottom'), //当滚动到底部
-            objToArray: require('../function/obj-to-array'), //把json格式的对象转成数组
             getDomArray: require('../function/get-dom-array'), //获取一组dom节点
             createElement: require('../function/create-element'), //创建元素节点
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/constructor-inherit": 5, "../function/create-element": 6, "../function/extend": 7, "../function/get-dom-array": 8, "../function/obj-to-array": 10, "../function/offset": 11, "../function/scroll-to": 12, "../function/when-scroll-bottom": 13, "../function/whether-disable-scroll": 14 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit": 5, "../function/create-element": 6, "../function/extend": 7, "../function/get-dom-array": 8 }], 2: [function (require, module, exports) {
+        //版权
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
+                var Copyright = require('../modules/m-copyright');
+                new Copyright();
+            }
+        })();
+
+        //底部导航
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
+                var Footer = require('../modules/m-footer-nav');
+                new Footer();
+            }
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright": 13, "../modules/m-footer-nav": 15, "../modules/m-lazy-load": 17 }], 3: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
                 //ajax测试
@@ -53,9 +70,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
                 //base函数测试
                 (function () {
-                    var base = require('../base/base');
+                    var WhenScrollBottom = require('../function/when-scroll-bottom');
                     //测试滚动到底部loading
-                    new base.WhenScrollBottom({
+                    new WhenScrollBottom({
                         callback: {
                             success: function success(self) {
                                 var Loading = require('../modules/m-loading');
@@ -271,29 +288,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../base/base": 1, "../commons/common": 3, "../function/ajax": 4, "../modules/m-dialog": 16, "../modules/m-go-top": 18, "../modules/m-loading": 20, "../modules/m-mask": 21, "../modules/m-navigation": 22, "../modules/m-no-data": 23, "../modules/m-pagination": 24, "../modules/m-radio-switch": 25, "../modules/m-slide": 26, "../modules/m-star": 27, "../modules/m-sub-type": 29, "../modules/m-sub-type-es6": 28, "../modules/m-super-type": 31, "../modules/m-super-type-es6": 30, "../modules/m-table": 32 }], 3: [function (require, module, exports) {
-        //版权
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
-                var Copyright = require('../modules/m-copyright');
-                new Copyright();
-            }
-        })();
-
-        //底部导航
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
-                var Footer = require('../modules/m-footer-nav');
-                new Footer();
-            }
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright": 15, "../modules/m-footer-nav": 17, "../modules/m-lazy-load": 19 }], 4: [function (require, module, exports) {
+    }, { "../commons/common": 2, "../function/ajax": 4, "../function/when-scroll-bottom": 12, "../modules/m-dialog": 14, "../modules/m-go-top": 16, "../modules/m-loading": 18, "../modules/m-mask": 19, "../modules/m-navigation": 20, "../modules/m-no-data": 21, "../modules/m-pagination": 22, "../modules/m-radio-switch": 23, "../modules/m-slide": 24, "../modules/m-star": 25, "../modules/m-sub-type": 27, "../modules/m-sub-type-es6": 26, "../modules/m-super-type": 29, "../modules/m-super-type-es6": 28, "../modules/m-table": 30 }], 4: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展
         var Dialog = require('../modules/m-dialog'); //弹窗
         var Loading = require('../function/extend'); //加载中
@@ -528,7 +523,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = Ajax;
-    }, { "../function/extend": 7, "../modules/m-dialog": 16 }], 5: [function (require, module, exports) {
+    }, { "../function/extend": 7, "../modules/m-dialog": 14 }], 5: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
         var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 
@@ -762,27 +757,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         module.exports = objRemoveQuote;
     }, {}], 10: [function (require, module, exports) {
-        //把json格式的对象转成数组
-        function objToArray(json) {
-            var opts = json || {};
-            var obj = opts.obj || {};
-            var arr = [];
-            if (obj instanceof Array) {
-                obj.forEach(function (v, i) {
-                    arr.push([i, v]);
-                });
-            } else {
-                for (var attr in obj) {
-                    if (obj.hasOwnProperty(attr)) {
-                        arr.push({ key: attr, value: obj[attr] });
-                    }
-                }
-            }
-            return arr;
-        }
-
-        module.exports = objToArray;
-    }, {}], 11: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展
         var getDomArray = require('../function/get-dom-array'); //获取一组dom节点
 
@@ -809,7 +783,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
 
         module.exports = offset;
-    }, { "../function/extend": 7, "../function/get-dom-array": 8 }], 12: [function (require, module, exports) {
+    }, { "../function/extend": 7, "../function/get-dom-array": 8 }], 11: [function (require, module, exports) {
         //滚动到指定位置
         function scrollTo(json) {
             var opts = json || {};
@@ -831,7 +805,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
 
         module.exports = scrollTo;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 12: [function (require, module, exports) {
         var extend = require('../function/extend');
 
         //当滚动到了浏览器的底部
@@ -886,39 +860,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = WhenScrollBottom;
-    }, { "../function/extend": 7 }], 14: [function (require, module, exports) {
-        //是否禁止浏览器滚动
-        function whetherDisableScroll() {
-            var doc = document;
-            return {
-                //阻止冒泡
-                stopPropagation: function stopPropagation(ev) {
-                    ev.stopPropagation();
-                },
-                //阻止默认事件
-                preventDefault: function preventDefault(ev) {
-                    ev.preventDefault();
-                },
-                //阻止冒泡,阻止默认事件
-                returnFalse: function returnFalse(ev) {
-                    ev.preventDefault();
-                    ev.stopPropagation();
-                },
-                //禁止滚动
-                noScroll: function noScroll() {
-                    doc.addEventListener('touchmove', this.preventDefault, false);
-                    doc.documentElement.style.overflow = 'hidden';
-                },
-                //解除禁止浏览器滚动
-                yesScroll: function yesScroll() {
-                    doc.removeEventListener('touchmove', this.preventDefault, false);
-                    doc.documentElement.style.overflow = 'auto';
-                }
-            };
-        }
-
-        module.exports = whetherDisableScroll;
-    }, {}], 15: [function (require, module, exports) {
+    }, { "../function/extend": 7 }], 13: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -957,7 +899,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 31 }], 16: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 29 }], 14: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1158,7 +1100,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-mask": 21, "../modules/m-super-type": 31 }], 17: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-mask": 19, "../modules/m-super-type": 29 }], 15: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1241,9 +1183,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 31 }], 18: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 29 }], 16: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
+        var scrollTo = require('../function/scroll-to');
 
         //超类型(子类型继承的对象)
         var SuperType = require('../modules/m-super-type');
@@ -1280,7 +1223,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         SubType.prototype.power = function () {
             var self = this;
             this.moduleDom.addEventListener('click', function () {
-                base.scrollTo({ to: '0' });
+                scrollTo({ to: '0' });
             });
             window.addEventListener('scroll', function () {
                 var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -1293,9 +1236,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 31 }], 19: [function (require, module, exports) {
+    }, { "../base/base": 1, "../function/scroll-to": 11, "../modules/m-super-type": 29 }], 17: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
+        var offset = require('../function/offset');
 
         //延迟加载
         function LazyLoad(json) {
@@ -1335,7 +1279,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             aDom.forEach(function (v) {
                 //排除那些被none掉的元素(被none掉的元素,通过offsetWidth和offsetHeight获取到的值是0)
                 if (v.offsetWidth) {
-                    var elementTop = base.offset({ element: v }).top;
+                    var elementTop = offset({ element: v }).top;
                     var elementBottom = elementTop + v.offsetHeight;
                     //出现在可视区才进行处理
                     if (elementBottom >= minTop && elementTop <= maxTop) {
@@ -1367,7 +1311,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
         };
         module.exports = LazyLoad;
-    }, { "../base/base": 1 }], 20: [function (require, module, exports) {
+    }, { "../base/base": 1, "../function/offset": 10 }], 18: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1461,7 +1405,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 31 }], 21: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 29 }], 19: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1518,7 +1462,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 31 }], 22: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 29 }], 20: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1594,7 +1538,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 31 }], 23: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 29 }], 21: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1650,7 +1594,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 31 }], 24: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 29 }], 22: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1815,7 +1759,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 31 }], 25: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 29 }], 23: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1905,7 +1849,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 31 }], 26: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 29 }], 24: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
         var TouchSlide = require('../plugs/touch-slide');
@@ -2029,7 +1973,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 31, "../plugs/touch-slide": 33 }], 27: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 29, "../plugs/touch-slide": 31 }], 25: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -2099,7 +2043,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 31 }], 28: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 29 }], 26: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -2187,7 +2131,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }(SuperType);
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type-es6": 30 }], 29: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type-es6": 28 }], 27: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -2226,7 +2170,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 31 }], 30: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 29 }], 28: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -2538,7 +2482,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }();
 
         module.exports = SuperType;
-    }, { "../base/base": 1 }], 31: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 29: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -2784,7 +2728,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SuperType;
-    }, { "../base/base": 1 }], 32: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 30: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -2851,7 +2795,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 31 }], 33: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 29 }], 31: [function (require, module, exports) {
         /*!
          * TouchSlide v1.1
          * javascript触屏滑动特效插件，移动端滑动特效，触屏焦点图，触屏Tab切换，触屏多图切换等
@@ -3292,4 +3236,4 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = TouchSlide;
-    }, {}] }, {}, [2]);
+    }, {}] }, {}, [3]);

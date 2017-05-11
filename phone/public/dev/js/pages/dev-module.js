@@ -16,9 +16,9 @@ window.addEventListener('load', function () {
 
         //base函数测试
         (function () {
-            var base = require('../base/base');
+            var WhenScrollBottom = require('../function/when-scroll-bottom');
             //测试滚动到底部loading
-            new base.WhenScrollBottom({
+            new WhenScrollBottom({
                 callback: {
                     success: function (self) {
                         var Loading = require('../modules/m-loading');
