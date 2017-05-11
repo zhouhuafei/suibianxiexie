@@ -47,6 +47,28 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
         module.exports = base;
     }, { "../function/array-remove-repeat": 5, "../function/constructor-inherit": 6, "../function/cookie": 7, "../function/create-element": 8, "../function/extend": 9, "../function/fill-zero": 10, "../function/get-dom-array": 11, "../function/get-parent": 12, "../function/html-to-dom": 13, "../function/obj-remove-quote": 14, "../function/obj-to-array": 15, "../function/offset": 16, "../function/px2rem": 17, "../function/scroll-to": 18, "../function/seconds-to-time": 19, "../function/select": 20, "../function/str-limit": 21, "../function/time-count-down": 22, "../function/user-agent": 23, "../function/when-scroll-bottom": 24, "../function/whether-disable-scroll": 25 }], 2: [function (require, module, exports) {
+        //版权
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
+                var Copyright = require('../modules/m-copyright');
+                new Copyright();
+            }
+        })();
+
+        //底部导航
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
+                var Footer = require('../modules/m-footer-nav');
+                new Footer();
+            }
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright": 26, "../modules/m-footer-nav": 28, "../modules/m-lazy-load": 30 }], 3: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
                 //ajax测试
@@ -292,29 +314,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../base/base": 1, "../commons/common": 3, "../function/ajax": 4, "../modules/m-dialog": 27, "../modules/m-go-top": 29, "../modules/m-loading": 31, "../modules/m-mask": 32, "../modules/m-navigation": 33, "../modules/m-no-data": 34, "../modules/m-pagination": 35, "../modules/m-radio-switch": 36, "../modules/m-slide": 37, "../modules/m-star": 38, "../modules/m-sub-type": 40, "../modules/m-sub-type-es6": 39, "../modules/m-super-type": 42, "../modules/m-super-type-es6": 41, "../modules/m-table": 43 }], 3: [function (require, module, exports) {
-        //版权
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
-                var Copyright = require('../modules/m-copyright');
-                new Copyright();
-            }
-        })();
-
-        //底部导航
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
-                var Footer = require('../modules/m-footer-nav');
-                new Footer();
-            }
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright": 26, "../modules/m-footer-nav": 28, "../modules/m-lazy-load": 30 }], 4: [function (require, module, exports) {
+    }, { "../base/base": 1, "../commons/common": 2, "../function/ajax": 4, "../modules/m-dialog": 27, "../modules/m-go-top": 29, "../modules/m-loading": 31, "../modules/m-mask": 32, "../modules/m-navigation": 33, "../modules/m-no-data": 34, "../modules/m-pagination": 35, "../modules/m-radio-switch": 36, "../modules/m-slide": 37, "../modules/m-star": 38, "../modules/m-sub-type": 40, "../modules/m-sub-type-es6": 39, "../modules/m-super-type": 42, "../modules/m-super-type-es6": 41, "../modules/m-table": 43 }], 4: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展
         var Dialog = require('../modules/m-dialog'); //弹窗
         var Loading = require('../function/extend'); //加载中
@@ -3634,4 +3634,4 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = TouchSlide;
-    }, {}] }, {}, [2]);
+    }, {}] }, {}, [3]);
