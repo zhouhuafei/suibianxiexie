@@ -1,23 +1,67 @@
+const CreateFile = require('./libs/function/create-file');
 const fileName = process.argv[2];
-const fs = require('fs');
-class Path {
-    constructor() {
-        this.nowPath = __dirname;//当前路径
-        this.htmlPath = `${__dirname}/public/dev/html/pages/`;//html的路径
-        this.scssPath = `${__dirname}/public/dev/scss/pages/`;//scss的路径
-        this.jsPath = `${__dirname}/public/dev/js/pages/`;//js的路径
+const file = {
+    html: {
+        path: `${__dirname}/public/dev/html/pages/`,
+        fileName: fileName,
+        content: `
+            <!DOCTYPE html>
+            <html lang="en">
+                <head>
+                    {{>head}}
+                    <link rel="stylesheet" href="../../../min/css/pages/sample.css">
+                </head>
+                <body>
+                    <div class="g-wrap">
+                        {{>header}}
+                        <!--page start-->
+                        <div class="g-page">
+                            <!--结构待续...-->
+                        </div>
+                        <!--page end-->
+                        {{>footer}}
+                        <script src="../../../min/js/pages/sample.js"></script>
+                    </div>
+                </body>
+            </html>
+        `,
+        extendName: '.html'
+    },
+    scss: {
+        path: `${__dirname}/public/dev/scss/pages/`,
+        fileName: fileName,
+        content: `
+            //基础样式
+            @import "../base/base";
+            
+            //页面样式
+            .g-page {
+                //样式待续...
+            }
+        `,
+        extendName: '.scss'
+    },
+    js: {
+        path: `${__dirname}/public/dev/js/pages/`,
+        fileName: fileName,
+        content: `
+            window.addEventListener('load', function () {
+                setTimeout(function () {
+            
+                    //注释待续...
+                    (function () {
+                        //功能待续...
+                    })();
+                    
+                    require('../commons/common');//每个页面都要用到的js(一定要放到最底部)
+                }, 0)
+            });
+        `,
+        extendName: '.js'
+    }
+};
+for (var attr in file) {
+    if (file.hasOwnProperty(attr)) {
+        new CreateFile({data: file[attr]});
     }
 }
-const path = new Path();//路径
-
-const CreateFile = require('./libs/function/create-file');
-new CreateFile({
-    data: {
-        path: `${__dirname}/`,
-        fileName: fileName,
-        extendName: '.txt',
-        content: '888'
-    }
-});
-
-//创建html scss js文件待续...
