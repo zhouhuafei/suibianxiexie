@@ -21,13 +21,12 @@
             whetherDisableScroll: require('../function/whether-disable-scroll'), //是否禁止浏览器滚动
             WhenScrollBottom: require('../function/when-scroll-bottom'), //当滚动到底部
             objToArray: require('../function/obj-to-array'), //把json格式的对象转成数组
-            strLimit: require('../function/str-limit'), //字符串限制
             getDomArray: require('../function/get-dom-array'), //获取一组dom节点
             createElement: require('../function/create-element'), //创建元素节点
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/constructor-inherit": 2, "../function/create-element": 3, "../function/extend": 4, "../function/get-dom-array": 5, "../function/obj-to-array": 7, "../function/offset": 8, "../function/scroll-to": 9, "../function/str-limit": 10, "../function/when-scroll-bottom": 11, "../function/whether-disable-scroll": 12 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit": 2, "../function/create-element": 3, "../function/extend": 4, "../function/get-dom-array": 5, "../function/obj-to-array": 7, "../function/offset": 8, "../function/scroll-to": 9, "../function/when-scroll-bottom": 10, "../function/whether-disable-scroll": 11 }], 2: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
         var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 
@@ -331,23 +330,6 @@
 
         module.exports = scrollTo;
     }, {}], 10: [function (require, module, exports) {
-        //字符数量限制
-        function strLimit(json) {
-            var opts = json || {};
-            var max = opts.max;
-            var str = opts.str;
-            if (!str) {
-                return '';
-            }
-            var length = str.length;
-            if (length > max) {
-                str = str.substring(0, max);
-            }
-            return str;
-        }
-
-        module.exports = strLimit;
-    }, {}], 11: [function (require, module, exports) {
         var extend = require('../function/extend');
 
         //当滚动到了浏览器的底部
@@ -402,7 +384,7 @@
         };
 
         module.exports = WhenScrollBottom;
-    }, { "../function/extend": 4 }], 12: [function (require, module, exports) {
+    }, { "../function/extend": 4 }], 11: [function (require, module, exports) {
         //是否禁止浏览器滚动
         function whetherDisableScroll() {
             var doc = document;

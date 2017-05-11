@@ -21,13 +21,12 @@
             whetherDisableScroll: require('../function/whether-disable-scroll'), //是否禁止浏览器滚动
             WhenScrollBottom: require('../function/when-scroll-bottom'), //当滚动到底部
             objToArray: require('../function/obj-to-array'), //把json格式的对象转成数组
-            strLimit: require('../function/str-limit'), //字符串限制
             getDomArray: require('../function/get-dom-array'), //获取一组dom节点
             createElement: require('../function/create-element'), //创建元素节点
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../function/extend": 5, "../function/get-dom-array": 6, "../function/obj-to-array": 8, "../function/offset": 9, "../function/scroll-to": 10, "../function/str-limit": 11, "../function/when-scroll-bottom": 12, "../function/whether-disable-scroll": 13 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../function/extend": 5, "../function/get-dom-array": 6, "../function/obj-to-array": 8, "../function/offset": 9, "../function/scroll-to": 10, "../function/when-scroll-bottom": 11, "../function/whether-disable-scroll": 12 }], 2: [function (require, module, exports) {
         //版权
         (function () {
             if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
@@ -49,7 +48,7 @@
             var LazyLoad = require('../modules/m-lazy-load');
             new LazyLoad();
         })();
-    }, { "../modules/m-copyright": 14, "../modules/m-footer-nav": 15, "../modules/m-lazy-load": 16 }], 3: [function (require, module, exports) {
+    }, { "../modules/m-copyright": 13, "../modules/m-footer-nav": 14, "../modules/m-lazy-load": 15 }], 3: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
         var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 
@@ -353,23 +352,6 @@
 
         module.exports = scrollTo;
     }, {}], 11: [function (require, module, exports) {
-        //字符数量限制
-        function strLimit(json) {
-            var opts = json || {};
-            var max = opts.max;
-            var str = opts.str;
-            if (!str) {
-                return '';
-            }
-            var length = str.length;
-            if (length > max) {
-                str = str.substring(0, max);
-            }
-            return str;
-        }
-
-        module.exports = strLimit;
-    }, {}], 12: [function (require, module, exports) {
         var extend = require('../function/extend');
 
         //当滚动到了浏览器的底部
@@ -424,7 +406,7 @@
         };
 
         module.exports = WhenScrollBottom;
-    }, { "../function/extend": 5 }], 13: [function (require, module, exports) {
+    }, { "../function/extend": 5 }], 12: [function (require, module, exports) {
         //是否禁止浏览器滚动
         function whetherDisableScroll() {
             var doc = document;
@@ -456,7 +438,7 @@
         }
 
         module.exports = whetherDisableScroll;
-    }, {}], 14: [function (require, module, exports) {
+    }, {}], 13: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -495,7 +477,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 17 }], 15: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 16 }], 14: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -578,7 +560,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 17 }], 16: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 16 }], 15: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -652,7 +634,7 @@
             });
         };
         module.exports = LazyLoad;
-    }, { "../base/base": 1 }], 17: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 16: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 

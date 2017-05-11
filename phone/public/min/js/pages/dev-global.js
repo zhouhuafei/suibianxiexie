@@ -21,13 +21,12 @@
             whetherDisableScroll: require('../function/whether-disable-scroll'), //是否禁止浏览器滚动
             WhenScrollBottom: require('../function/when-scroll-bottom'), //当滚动到底部
             objToArray: require('../function/obj-to-array'), //把json格式的对象转成数组
-            strLimit: require('../function/str-limit'), //字符串限制
             getDomArray: require('../function/get-dom-array'), //获取一组dom节点
             createElement: require('../function/create-element'), //创建元素节点
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../function/extend": 6, "../function/get-dom-array": 7, "../function/obj-to-array": 9, "../function/offset": 10, "../function/scroll-to": 11, "../function/str-limit": 13, "../function/when-scroll-bottom": 15, "../function/whether-disable-scroll": 16 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../function/extend": 6, "../function/get-dom-array": 7, "../function/obj-to-array": 9, "../function/offset": 10, "../function/scroll-to": 11, "../function/when-scroll-bottom": 14, "../function/whether-disable-scroll": 15 }], 2: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
 
@@ -57,7 +56,7 @@
                 require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../commons/common": 3, "../function/select": 12, "../modules/m-validate-form": 21 }], 3: [function (require, module, exports) {
+    }, { "../commons/common": 3, "../function/select": 12, "../modules/m-validate-form": 20 }], 3: [function (require, module, exports) {
         //版权
         (function () {
             if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
@@ -79,7 +78,7 @@
             var LazyLoad = require('../modules/m-lazy-load');
             new LazyLoad();
         })();
-    }, { "../modules/m-copyright": 17, "../modules/m-footer-nav": 18, "../modules/m-lazy-load": 19 }], 4: [function (require, module, exports) {
+    }, { "../modules/m-copyright": 16, "../modules/m-footer-nav": 17, "../modules/m-lazy-load": 18 }], 4: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
         var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 
@@ -445,23 +444,6 @@
 
         module.exports = Select;
     }, { "../function/extend": 6, "../function/get-dom-array": 7 }], 13: [function (require, module, exports) {
-        //字符数量限制
-        function strLimit(json) {
-            var opts = json || {};
-            var max = opts.max;
-            var str = opts.str;
-            if (!str) {
-                return '';
-            }
-            var length = str.length;
-            if (length > max) {
-                str = str.substring(0, max);
-            }
-            return str;
-        }
-
-        module.exports = strLimit;
-    }, {}], 14: [function (require, module, exports) {
         //验证
         var validate = {
             //是不是空
@@ -550,7 +532,7 @@
         };
 
         module.exports = validate;
-    }, {}], 15: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         var extend = require('../function/extend');
 
         //当滚动到了浏览器的底部
@@ -605,7 +587,7 @@
         };
 
         module.exports = WhenScrollBottom;
-    }, { "../function/extend": 6 }], 16: [function (require, module, exports) {
+    }, { "../function/extend": 6 }], 15: [function (require, module, exports) {
         //是否禁止浏览器滚动
         function whetherDisableScroll() {
             var doc = document;
@@ -637,7 +619,7 @@
         }
 
         module.exports = whetherDisableScroll;
-    }, {}], 17: [function (require, module, exports) {
+    }, {}], 16: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -676,7 +658,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 20 }], 18: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 19 }], 17: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -759,7 +741,7 @@
         };
 
         module.exports = SubType;
-    }, { "../base/base": 1, "../modules/m-super-type": 20 }], 19: [function (require, module, exports) {
+    }, { "../base/base": 1, "../modules/m-super-type": 19 }], 18: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -833,7 +815,7 @@
             });
         };
         module.exports = LazyLoad;
-    }, { "../base/base": 1 }], 20: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 19: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -1079,7 +1061,7 @@
         };
 
         module.exports = SuperType;
-    }, { "../base/base": 1 }], 21: [function (require, module, exports) {
+    }, { "../base/base": 1 }], 20: [function (require, module, exports) {
         var base = require('../base/base'); //底层方法
         var validate = require('../function/validate'); //表单验证
 
@@ -1191,4 +1173,4 @@
         };
 
         module.exports = ValidateForm;
-    }, { "../base/base": 1, "../function/validate": 14 }] }, {}, [2]);
+    }, { "../base/base": 1, "../function/validate": 13 }] }, {}, [2]);

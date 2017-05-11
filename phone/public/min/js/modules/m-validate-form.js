@@ -21,13 +21,12 @@
             whetherDisableScroll: require('../function/whether-disable-scroll'), //是否禁止浏览器滚动
             WhenScrollBottom: require('../function/when-scroll-bottom'), //当滚动到底部
             objToArray: require('../function/obj-to-array'), //把json格式的对象转成数组
-            strLimit: require('../function/str-limit'), //字符串限制
             getDomArray: require('../function/get-dom-array'), //获取一组dom节点
             createElement: require('../function/create-element'), //创建元素节点
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../function/extend": 5, "../function/get-dom-array": 6, "../function/obj-to-array": 8, "../function/offset": 9, "../function/scroll-to": 10, "../function/str-limit": 11, "../function/when-scroll-bottom": 13, "../function/whether-disable-scroll": 14 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../function/extend": 5, "../function/get-dom-array": 6, "../function/obj-to-array": 8, "../function/offset": 9, "../function/scroll-to": 10, "../function/when-scroll-bottom": 12, "../function/whether-disable-scroll": 13 }], 2: [function (require, module, exports) {
         var base = require('../base/base'); //底层方法
         var validate = require('../function/validate'); //表单验证
 
@@ -139,7 +138,7 @@
         };
 
         module.exports = ValidateForm;
-    }, { "../base/base": 1, "../function/validate": 12 }], 3: [function (require, module, exports) {
+    }, { "../base/base": 1, "../function/validate": 11 }], 3: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
         var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 
@@ -443,23 +442,6 @@
 
         module.exports = scrollTo;
     }, {}], 11: [function (require, module, exports) {
-        //字符数量限制
-        function strLimit(json) {
-            var opts = json || {};
-            var max = opts.max;
-            var str = opts.str;
-            if (!str) {
-                return '';
-            }
-            var length = str.length;
-            if (length > max) {
-                str = str.substring(0, max);
-            }
-            return str;
-        }
-
-        module.exports = strLimit;
-    }, {}], 12: [function (require, module, exports) {
         //验证
         var validate = {
             //是不是空
@@ -548,7 +530,7 @@
         };
 
         module.exports = validate;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 12: [function (require, module, exports) {
         var extend = require('../function/extend');
 
         //当滚动到了浏览器的底部
@@ -603,7 +585,7 @@
         };
 
         module.exports = WhenScrollBottom;
-    }, { "../function/extend": 5 }], 14: [function (require, module, exports) {
+    }, { "../function/extend": 5 }], 13: [function (require, module, exports) {
         //是否禁止浏览器滚动
         function whetherDisableScroll() {
             var doc = document;
