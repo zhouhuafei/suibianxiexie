@@ -9,7 +9,7 @@ var response = {
                     height: 0,
                     url: ''
                 },
-                text: '',
+                txt: '',
                 link: ''
             }
         ],//数据集合
