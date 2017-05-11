@@ -1,5 +1,5 @@
 //配置
-var Port = require('./config/port');
+var Port = require('./port');
 var port = new Port();
 
 //express
@@ -7,22 +7,23 @@ var express = require('express');
 var app = express();
 
 //托管静态文件
-app.use(express.static('public'));
+app.use(express.static('phone/public'));
+app.use(express.static('pc/public'));
 
 //模版引擎(handlebars)
 var handlebars = require('express-handlebars');
 app.engine('html', handlebars({
-    partialsDir: `${__dirname}/public/min/html/partials`,//设置页面布局模块文件的路径
-    layoutsDir: `${__dirname}/public/min/html/layouts`,//设置页面布局模版文件的路径(本项目没有使用到页面布局模板文件)
+    partialsDir: `${__dirname}/phone/public/min/html/partials`,//设置页面布局模块文件的路径
+    layoutsDir: `${__dirname}/phone/public/min/html/layouts`,//设置页面布局模版文件的路径(本项目没有使用到页面布局模板文件)
     defaultLayout: '',//设置页面的布局模版文件(本项目没有使用到页面布局模板文件)
     extname: '.html'
 }));
 app.set('view engine', 'html');
-app.set('views', `${__dirname}/public/min/html`);
+app.set('views', `${__dirname}/phone/public/min/html`);
 
 //路由
-var Routes = require('./router/router');
-new Routes({app: app});
+var Router = require('./router');
+new Router({app: app});
 
 //mysql
 // var Mysql = require('./config/mysql');

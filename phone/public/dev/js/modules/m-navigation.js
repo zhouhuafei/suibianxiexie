@@ -15,31 +15,31 @@ var SubType = constructorInherit({
         data: {
             items: [
                 {
-                    link: '/',
+                    link: '/phone/',
                     icon: 'icon-shouye',
                     txt: '首页',
                     isShowMark: false
                 },
                 {
-                    link: '/dev-global',
+                    link: '/phone/dev-global',
                     icon: 'icon-kaifa',
                     txt: 'g-global',
                     isShowMark: false
                 },
                 {
-                    link: '/dev-module',
+                    link: '/phone/dev-module',
                     icon: 'icon-kaifa',
                     txt: 'm-module',
                     isShowMark: true
                 },
                 {
-                    link: '/dev-word',
+                    link: '/phone/dev-word',
                     icon: 'icon-kaifa',
                     txt: '标准词汇',
                     isShowMark: false
                 },
                 {
-                    link: '/mine',
+                    link: '/phone/mine',
                     icon: 'icon-wode',
                     txt: '我的',
                     isShowMark: false

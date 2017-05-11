@@ -689,31 +689,31 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 //数据
                 data: {
                     items: [{
-                        link: '/',
+                        link: '/phone/',
                         icon: 'icon-shouye',
                         txt: '首页',
                         isHighlight: false,
                         isShowMark: false
                     }, {
-                        link: '/dev-global',
+                        link: '/phone/dev-global',
                         icon: 'icon-kaifa',
                         txt: 'g-global',
                         isHighlight: false,
                         isShowMark: false
                     }, {
-                        link: '/dev-module',
+                        link: '/phone/dev-module',
                         icon: 'icon-kaifa',
                         txt: 'm-module',
                         isHighlight: true,
                         isShowMark: true
                     }, {
-                        link: '/dev-word',
+                        link: '/phone/dev-word',
                         icon: 'icon-kaifa',
                         txt: '标准词汇',
                         isHighlight: false,
                         isShowMark: false
                     }, {
-                        link: '/mine',
+                        link: '/phone/mine',
                         icon: 'icon-wode',
                         txt: '我的',
                         isHighlight: false,
@@ -1043,27 +1043,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 //数据
                 data: {
                     items: [{
-                        link: '/',
+                        link: '/phone/',
                         icon: 'icon-shouye',
                         txt: '首页',
                         isShowMark: false
                     }, {
-                        link: '/dev-global',
+                        link: '/phone/dev-global',
                         icon: 'icon-kaifa',
                         txt: 'g-global',
                         isShowMark: false
                     }, {
-                        link: '/dev-module',
+                        link: '/phone/dev-module',
                         icon: 'icon-kaifa',
                         txt: 'm-module',
                         isShowMark: true
                     }, {
-                        link: '/dev-word',
+                        link: '/phone/dev-word',
                         icon: 'icon-kaifa',
                         txt: '标准词汇',
                         isShowMark: false
                     }, {
-                        link: '/mine',
+                        link: '/phone/mine',
                         icon: 'icon-wode',
                         txt: '我的',
                         isShowMark: false

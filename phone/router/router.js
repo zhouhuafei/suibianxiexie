@@ -3,6 +3,7 @@ function Routes(opt) {
         return;
     }
     this.app = opt.app;
+    this.path = `/phone`;
     this.init();
     this.error();
 }
@@ -16,32 +17,33 @@ Routes.prototype.init = function () {
     this.dev();
 };
 Routes.prototype.dev = function () {
-    this.app.get('/dev-list', function (req, res) {
-        res.render('pages/dev-list', {
+    var self = this;
+    this.app.get(`${self.path}/dev-list`, function (req, res) {
+        res.render(`pages/dev-list`, {
             data: {
                 title: '开发列表清单'
             },
             config: {}
         });
     });
-    this.app.get('/dev-global', function (req, res) {
-        res.render('pages/dev-global', {
+    this.app.get(`${self.path}/dev-global`, function (req, res) {
+        res.render(`pages/dev-global`, {
             data: {
                 title: '开发全局样式'
             },
             config: {}
         });
     });
-    this.app.get('/dev-module', function (req, res) {
-        res.render('pages/dev-module', {
+    this.app.get(`${self.path}/dev-module`, function (req, res) {
+        res.render(`pages/dev-module`, {
             data: {
                 title: '开发模块样式'
             },
             config: {}
         });
     });
-    this.app.get('/dev-word', function (req, res) {
-        res.render('pages/dev-word', {
+    this.app.get(`${self.path}/dev-word`, function (req, res) {
+        res.render(`pages/dev-word`, {
             data: {
                 title: '开发标准词汇'
             },
@@ -50,8 +52,9 @@ Routes.prototype.dev = function () {
     })
 };
 Routes.prototype.list = function () {
-    this.app.get('/list', function (req, res) {
-        res.render('pages/list', {
+    var self = this;
+    this.app.get(`${self.path}/list`, function (req, res) {
+        res.render(`pages/list`, {
             data: {
                 title: '列表'
             },
@@ -60,8 +63,9 @@ Routes.prototype.list = function () {
     })
 };
 Routes.prototype.register = function () {
-    this.app.get('/register', function (req, res) {
-        res.render('pages/register', {
+    var self = this;
+    this.app.get(`${self.path}/register`, function (req, res) {
+        res.render(`pages/register`, {
             data: {
                 title: '注册'
             },
@@ -70,8 +74,9 @@ Routes.prototype.register = function () {
     })
 };
 Routes.prototype.login = function () {
-    this.app.get('/login', function (req, res) {
-        res.render('pages/login', {
+    var self = this;
+    this.app.get(`${self.path}/login`, function (req, res) {
+        res.render(`pages/login`, {
             data: {
                 title: '登陆'
             },
@@ -80,8 +85,9 @@ Routes.prototype.login = function () {
     })
 };
 Routes.prototype.mine = function () {
-    this.app.get('/mine', function (req, res) {
-        res.render('pages/mine', {
+    var self = this;
+    this.app.get(`${self.path}/mine`, function (req, res) {
+        res.render(`pages/mine`, {
             data: {
                 title: '我的'
             },
@@ -90,8 +96,9 @@ Routes.prototype.mine = function () {
     })
 };
 Routes.prototype.ui = function () {
-    this.app.get('/ui', function (req, res) {
-        res.render('pages/ui', {
+    var self = this;
+    this.app.get(`${self.path}/ui`, function (req, res) {
+        res.render(`pages/ui`, {
             data: {
                 title: 'ui'
             },
@@ -100,8 +107,9 @@ Routes.prototype.ui = function () {
     })
 };
 Routes.prototype.home = function () {
-    this.app.get('/', function (req, res) {
-        res.render('pages/home', {
+    var self = this;
+    this.app.get(`${self.path}/`, function (req, res) {
+        res.render(`pages/home`, {
             data: {
                 title: '首页'
             },
@@ -110,9 +118,10 @@ Routes.prototype.home = function () {
     })
 };
 Routes.prototype.error = function () {
+    var self = this;
     //404
     this.app.use(function (req, res) {
-        res.render('pages/404', {
+        res.render(`pages/404`, {
             data: {
                 title: '404'
             },
