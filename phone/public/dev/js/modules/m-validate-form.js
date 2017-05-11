@@ -1,4 +1,4 @@
-var validate = require('../function/validate');//表单验证
+var validate = require('../tools/validate');//表单验证
 var getDomArray = require('../function/get-dom-array');//获取原生的dom节点并转换成数组
 
 function ValidateForm(json) {

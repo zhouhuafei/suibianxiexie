@@ -14,7 +14,7 @@
     }return s;
 })({ 1: [function (require, module, exports) {
         var extend = require('../tools/extend'); //对象的扩展方法
-        var secondsToTime = require('../function/seconds-to-time'); //时间转换
+        var secondsToTime = require('../tools/seconds-to-time'); //时间转换
 
         //倒计时
         function timeCountDown(json) {
@@ -52,24 +52,7 @@
         }
 
         module.exports = timeCountDown;
-    }, { "../function/seconds-to-time": 2, "../tools/extend": 3 }], 2: [function (require, module, exports) {
-        //秒转时间
-        function secondsToTime(json) {
-            var opts = json || {};
-            var seconds = opts.seconds;
-            //天
-            var day = Math.floor(seconds / 3600 / 24);
-            //时
-            var hour = Math.floor(seconds / 3600 % 24);
-            //分
-            var minute = Math.floor(seconds % 3600 / 60);
-            //秒
-            var second = Math.floor(seconds % 60);
-            return { day: day, hour: hour, minute: minute, second: second, seconds: seconds };
-        }
-
-        module.exports = secondsToTime;
-    }, {}], 3: [function (require, module, exports) {
+    }, { "../tools/extend": 2, "../tools/seconds-to-time": 3 }], 2: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opts = json || {};
@@ -172,4 +155,21 @@
         // console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
 
         module.exports = extend;
+    }, {}], 3: [function (require, module, exports) {
+        //秒转时间
+        function secondsToTime(json) {
+            var opts = json || {};
+            var seconds = opts.seconds;
+            //天
+            var day = Math.floor(seconds / 3600 / 24);
+            //时
+            var hour = Math.floor(seconds / 3600 % 24);
+            //分
+            var minute = Math.floor(seconds % 3600 / 60);
+            //秒
+            var second = Math.floor(seconds % 60);
+            return { day: day, hour: hour, minute: minute, second: second, seconds: seconds };
+        }
+
+        module.exports = secondsToTime;
     }, {}] }, {}, [1]);

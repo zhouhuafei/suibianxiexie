@@ -20,7 +20,7 @@
 <p>commons:         存放页面公用的js</p>
 <p>components:      存放组件</p>
 <p>config:          存放配置文件</p>
-<p>function:        存放和Dom以及Bom有关的方法</p>
+<p>function:        存放和DOM以及BOM有关的方法</p>
 <p>libs:            存放底层库</p>
 <p>modules:         存放模块对应的js</p>
 <p>pages:           存放页面对应的js</p>

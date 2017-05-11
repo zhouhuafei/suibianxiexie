@@ -1,5 +1,5 @@
 var extend = require('../tools/extend');//对象的扩展方法
-var secondsToTime = require('../function/seconds-to-time');//时间转换
+var secondsToTime = require('../tools/seconds-to-time');//时间转换
 
 //倒计时
 function timeCountDown(json) {

@@ -2,7 +2,7 @@ window.addEventListener('load', function () {
     setTimeout(function () {
         //ajax测试
         (function () {
-            var Ajax = require('../function/ajax');
+            var Ajax = require('../tools/ajax');
             // new Ajax({
             //     callback: {},
             //     config: {

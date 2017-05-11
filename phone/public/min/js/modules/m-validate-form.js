@@ -13,7 +13,7 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        var validate = require('../function/validate'); //表单验证
+        var validate = require('../tools/validate'); //表单验证
         var getDomArray = require('../function/get-dom-array'); //获取原生的dom节点并转换成数组
 
         function ValidateForm(json) {
@@ -124,7 +124,7 @@
         };
 
         module.exports = ValidateForm;
-    }, { "../function/get-dom-array": 2, "../function/validate": 3 }], 2: [function (require, module, exports) {
+    }, { "../function/get-dom-array": 2, "../tools/validate": 3 }], 2: [function (require, module, exports) {
         //获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
         function getDomArray(json) {
             var opts = json || {};

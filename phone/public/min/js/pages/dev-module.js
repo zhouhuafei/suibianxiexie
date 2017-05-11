@@ -25,7 +25,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             setTimeout(function () {
                 //ajax测试
                 (function () {
-                    var Ajax = require('../function/ajax');
+                    var Ajax = require('../tools/ajax');
                     // new Ajax({
                     //     callback: {},
                     //     config: {
@@ -257,7 +257,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../commons/common": 2, "../function/ajax": 3, "../function/when-scroll-bottom": 10, "../modules/m-dialog": 12, "../modules/m-go-top": 14, "../modules/m-loading": 16, "../modules/m-mask": 17, "../modules/m-navigation": 18, "../modules/m-no-data": 19, "../modules/m-pagination": 20, "../modules/m-radio-switch": 21, "../modules/m-slide": 22, "../modules/m-star": 23, "../modules/m-sub-type": 25, "../modules/m-sub-type-es6": 24, "../modules/m-super-type": 27, "../modules/m-super-type-es6": 26, "../modules/m-table": 28 }], 2: [function (require, module, exports) {
+    }, { "../commons/common": 2, "../function/when-scroll-bottom": 7, "../modules/m-dialog": 9, "../modules/m-go-top": 11, "../modules/m-loading": 13, "../modules/m-mask": 14, "../modules/m-navigation": 15, "../modules/m-no-data": 16, "../modules/m-pagination": 17, "../modules/m-radio-switch": 18, "../modules/m-slide": 19, "../modules/m-star": 20, "../modules/m-sub-type": 22, "../modules/m-sub-type-es6": 21, "../modules/m-super-type": 24, "../modules/m-super-type-es6": 23, "../modules/m-table": 25, "../tools/ajax": 27 }], 2: [function (require, module, exports) {
         //版权
         (function () {
             if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
@@ -279,296 +279,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             var LazyLoad = require('../modules/m-lazy-load');
             new LazyLoad();
         })();
-    }, { "../modules/m-copyright": 11, "../modules/m-footer-nav": 13, "../modules/m-lazy-load": 15 }], 3: [function (require, module, exports) {
-        var extend = require('../tools/extend'); //对象的扩展方法
-        var Dialog = require('../modules/m-dialog'); //弹窗
-        var Loading = require('../modules/m-loading'); //加载中
-
-        //ajax封装
-        function Ajax(json) {
-            this.opts = extend({
-                defaults: {
-                    //回调
-                    callback: {
-                        //上传期间持续不断地触发
-                        uploadProgress: function uploadProgress() {},
-                        //上传完成时触发
-                        uploadLoad: function uploadLoad() {},
-                        //在接收到响应数据的第一个字节时触发
-                        loadStart: function loadStart() {},
-                        //在接收响应期间持续不断地触发
-                        progress: function progress() {},
-                        //在请求发生错误时触发
-                        error: function error() {},
-                        //在因为调用abort()方法而终止请求时触发
-                        abort: function abort() {},
-                        //在接收到完整的响应数据时触发
-                        load: function load() {},
-                        //接收到完整的响应且响应状态为200
-                        success: function success() {},
-                        //接收到完整的响应且响应状态不为200
-                        fail: function fail() {},
-                        //在通信完成或者触发error、abort或load事件后触发
-                        loadEnd: function loadEnd() {},
-                        //等同于loadEnd
-                        complete: function complete() {},
-                        //请求超时
-                        timeout: function timeout() {}
-                    },
-                    //配置
-                    config: {
-                        //ajax的配置
-                        type: 'post', //请求类型(默认post)
-                        url: '', //url
-                        dataType: 'json', //数据类型(默认json)
-                        async: true, //默认异步
-                        timeout: 5000, //超时时间(默认3秒)
-                        mark: '?', //当请求类型为get时,url后面的数据用什么符号开头url:'index.php',1.?ctl=seller&act=setting,2.#ctl=seller&act=setting
-                        isShowLoading: true, //是否显示loading
-                        isShowDialog: true, //是否显示弹窗
-                        //loading的配置
-                        loading: {
-                            moduleDomStatus: 'loading',
-                            moduleDomPosition: 'fixed'
-                        },
-                        //dialog的配置
-                        dialog: {}
-                    },
-                    //数据
-                    data: {}
-                },
-                inherits: json
-            });
-            this.loading = new Loading(this.opts.config.loading);
-            this.dialog = new Dialog(this.opts.config.dialog);
-            this.xhr = new XMLHttpRequest(); //xhr
-            this.xhr.timeout = this.opts.config.timeout; //超时设置
-            this.init();
-        }
-        Ajax.prototype.init = function () {
-            this.events();
-            this.open();
-            this.send();
-        };
-        Ajax.prototype.open = function () {
-            var opts = this.opts;
-            if (opts.config.type.toLowerCase() == 'get') {
-                //get
-                var search = "";
-                var num = 0;
-                var data = opts.data;
-                if (data) {
-                    for (var attr in data) {
-                        if (data.hasOwnProperty(attr)) {
-                            if (num == 0) {
-                                search += attr + "=" + data[attr];
-                            } else {
-                                search += "&" + attr + "=" + data[attr];
-                            }
-                            num++;
-                        }
-                    }
-                }
-                var url = opts.config.url + opts.config.mark + search;
-                this.xhr.open(opts.config.type, url);
-            } else if (opts.config.type.toLowerCase() == 'post') {
-                //post
-                this.xhr.open(opts.config.type, opts.config.url);
-            } else {
-                console.log('仅支持get和post请求');
-                return false;
-            }
-        };
-        Ajax.prototype.send = function () {
-            var opts = this.opts;
-            var data = opts.data;
-            if (opts.config.type.toLowerCase() == 'get') {
-                //get
-                this.xhr.send(null);
-            } else if (opts.config.type.toLowerCase() == 'post') {
-                //post
-                if (data) {
-                    if (Object.prototype.toString.call(data).slice(8, -1).toLocaleLowerCase() == 'formdata') {
-                        this.xhr.send(data);
-                    } else {
-                        var formData = new FormData();
-                        for (var attr in data) {
-                            if (data.hasOwnProperty(attr)) {
-                                formData.append(attr, data[attr]);
-                            }
-                        }
-                        this.xhr.send(formData);
-                    }
-                } else {
-                    this.xhr.send(null);
-                }
-            } else {
-                console.log('仅支持get和post请求');
-                return false;
-            }
-        };
-        Ajax.prototype.events = function () {
-            var self = this;
-            //上传期间持续不断地触发
-            this.xhr.upload.addEventListener('progress', function (ProgressEvent) {
-                self.uploadProgress();
-                console.log(ProgressEvent, 'uploadProgress');
-            });
-            //上传完成时触发
-            this.xhr.upload.addEventListener('load', function (ProgressEvent) {
-                self.uploadLoad();
-                console.log(ProgressEvent, 'uploadLoad');
-            });
-            //在接收到响应数据的第一个字节时触发
-            this.xhr.addEventListener('loadstart', function (ProgressEvent) {
-                self.loadStart();
-                console.log(ProgressEvent, 'loadStart');
-            });
-            //在接收响应期间持续不断地触发
-            this.xhr.addEventListener('progress', function (ProgressEvent) {
-                self.progress();
-                console.log(ProgressEvent, 'progress');
-            });
-            //在请求发生错误时触发
-            this.xhr.addEventListener('error', function (ProgressEvent) {
-                self.error();
-                console.log(ProgressEvent, 'error');
-            });
-            //在因为调用abort()方法而终止请求时触发
-            this.xhr.addEventListener('abort', function (ProgressEvent) {
-                self.abort();
-                console.log(ProgressEvent, 'abort');
-            });
-            //在接收到完整的响应数据时触发
-            this.xhr.addEventListener('load', function (ProgressEvent) {
-                self.load(ProgressEvent);
-                console.log(ProgressEvent, 'load', 999);
-            });
-            //在通信完成或者触发error、abort或load事件后触发
-            this.xhr.addEventListener('loadend', function (ProgressEvent) {
-                self.loadEnd();
-                console.log(ProgressEvent, 'loadend');
-            });
-            //请求超时
-            this.xhr.addEventListener('timeout', function (ProgressEvent) {
-                self.timeout();
-                console.log(ProgressEvent, 'timeout');
-            });
-        };
-        //上传期间持续不断地触发
-        Ajax.prototype.uploadProgress = function () {
-            this.opts.callback.uploadProgress();
-        };
-        //上传完成时触发
-        Ajax.prototype.uploadLoad = function () {
-            this.opts.callback.uploadLoad();
-        };
-        //在接收到响应数据的第一个字节时触发
-        Ajax.prototype.loadStart = function () {
-            this.opts.callback.loadStart();
-        };
-        //在接收响应期间持续不断地触发
-        Ajax.prototype.progress = function () {
-            this.opts.callback.progress();
-        };
-        //在请求发生错误时触发
-        Ajax.prototype.error = function () {
-            this.opts.callback.error();
-        };
-        //在因为调用abort()方法而终止请求时触发
-        Ajax.prototype.abort = function () {
-            this.opts.callback.abort();
-        };
-        //在接收到完整的响应数据时触发
-        Ajax.prototype.load = function () {
-            this.opts.callback.load();
-        };
-        //接收到完整的响应且响应状态为200
-        Ajax.prototype.success = function () {
-            this.opts.callback.success();
-        };
-        //接收到完整的响应且响应状态不为200
-        Ajax.prototype.fail = function () {
-            this.opts.callback.fail();
-        };
-        //在通信完成或者触发error、abort或load事件后触发
-        Ajax.prototype.loadEnd = function () {
-            this.opts.callback.loadEnd();
-            this.complete();
-        };
-        //等同于loadEnd
-        Ajax.prototype.complete = function () {
-            this.opts.callback.complete();
-        };
-        //请求超时
-        Ajax.prototype.timeout = function () {
-            this.opts.callback.timeout();
-        };
-        //手动触发取消请求
-        Ajax.prototype.triggerAbort = function () {
-            if (this.xhr.abort) {
-                this.xhr.abort();
-            } else {
-                console.log('浏览器不支持xhr2的abort');
-            }
-        };
-
-        module.exports = Ajax;
-    }, { "../modules/m-dialog": 12, "../modules/m-loading": 16, "../tools/extend": 30 }], 4: [function (require, module, exports) {
-        var extend = require('../tools/extend'); //对象的扩展方法
-        var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
-
-        //构造函数的继承(拷贝继承)
-        function constructorInherit(json) {
-            var opts = extend({
-                defaults: {
-                    superType: null, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
-                    parameter: {} //默认参数(这个必须传的是一个对象,或者不传值)
-                },
-                inherits: json
-            });
-            //超类型(需要是个构造函数)
-            var SuperType = opts.superType;
-            //子类型的默认参数(需要是个对象)
-            var parameter = opts.parameter;
-            //如果超类型不存在
-            if (Object.prototype.toString.call(SuperType).toLowerCase().slice(8, -1) != 'function') {
-                console.log('no find SuperType or SuperType error');
-                return false;
-            }
-            //子类型
-            function SubType(json) {
-                //子类型自身的属性
-                /*
-                 * 注意:
-                 * defaults要防止对象的引用(如果不防止的话,会出现BUG)
-                 * 例如 wrap的默认值是'.g-wrap'
-                 * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
-                 * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
-                 * 但是由于对象引用的原因,这里的值会变成'body'
-                 * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
-                 * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
-                 * 所以我就封装了一个移除对象引用的函数
-                 * */
-                this.opts = extend({
-                    defaults: objRemoveQuote({ obj: parameter }),
-                    inherits: json
-                });
-                //子类型继承超类型的属性
-                opts.superType.call(this, this.opts);
-            }
-
-            //子类型继承超类型的方法
-            for (var attr in SuperType.prototype) {
-                if (SuperType.prototype.hasOwnProperty(attr)) {
-                    SubType.prototype[attr] = SuperType.prototype[attr];
-                }
-            }
-            return SubType;
-        }
-
-        module.exports = constructorInherit;
-    }, { "../function/obj-remove-quote": 7, "../tools/extend": 30 }], 5: [function (require, module, exports) {
+    }, { "../modules/m-copyright": 8, "../modules/m-footer-nav": 10, "../modules/m-lazy-load": 12 }], 3: [function (require, module, exports) {
         //创建元素节点
         function createElement(json) {
             var opts = json || {};
@@ -594,7 +305,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
 
         module.exports = createElement;
-    }, {}], 6: [function (require, module, exports) {
+    }, {}], 4: [function (require, module, exports) {
         //获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
         function getDomArray(json) {
             var opts = json || {};
@@ -621,30 +332,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
 
         module.exports = getDomArray;
-    }, {}], 7: [function (require, module, exports) {
-        //移除对象引用
-        function objRemoveQuote(json) {
-            var opts = json || {};
-            var obj = opts.obj; //这里一定不能给默认值
-            var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
-
-            if (objType != 'object' && objType != 'array') {
-                return obj;
-            }
-            var newObj = {};
-            if (objType == 'array') {
-                newObj = [];
-            }
-            for (var attr in obj) {
-                if (obj.hasOwnProperty(attr)) {
-                    newObj[attr] = objRemoveQuote({ obj: obj[attr] });
-                }
-            }
-            return newObj;
-        }
-
-        module.exports = objRemoveQuote;
-    }, {}], 8: [function (require, module, exports) {
+    }, {}], 5: [function (require, module, exports) {
         var extend = require('../tools/extend'); //对象的扩展方法
         var getDomArray = require('../function/get-dom-array'); //获取原生的dom节点并转换成数组
 
@@ -671,7 +359,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
 
         module.exports = offset;
-    }, { "../function/get-dom-array": 6, "../tools/extend": 30 }], 9: [function (require, module, exports) {
+    }, { "../function/get-dom-array": 4, "../tools/extend": 29 }], 6: [function (require, module, exports) {
         //滚动到指定位置
         function scrollTo(json) {
             var opts = json || {};
@@ -693,7 +381,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
 
         module.exports = scrollTo;
-    }, {}], 10: [function (require, module, exports) {
+    }, {}], 7: [function (require, module, exports) {
         var extend = require('../tools/extend'); //对象的扩展方法
 
         //当滚动到了浏览器的底部
@@ -748,9 +436,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = WhenScrollBottom;
-    }, { "../tools/extend": 30 }], 11: [function (require, module, exports) {
+    }, { "../tools/extend": 29 }], 8: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
-        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
 
         //子类型
@@ -785,9 +473,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../modules/m-super-type": 27 }], 12: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../modules/m-super-type": 24, "../tools/constructor-inherit": 28 }], 9: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
-        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
         var Mask = require('../modules/m-mask'); //遮罩
 
@@ -984,9 +672,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../modules/m-mask": 17, "../modules/m-super-type": 27 }], 13: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../modules/m-mask": 14, "../modules/m-super-type": 24, "../tools/constructor-inherit": 28 }], 10: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
-        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
 
         //子类型
@@ -1065,9 +753,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../modules/m-super-type": 27 }], 14: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../modules/m-super-type": 24, "../tools/constructor-inherit": 28 }], 11: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
-        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var scrollTo = require('../function/scroll-to'); //滚动到指定位置
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
 
@@ -1116,7 +804,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../function/scroll-to": 9, "../modules/m-super-type": 27 }], 15: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../function/scroll-to": 6, "../modules/m-super-type": 24, "../tools/constructor-inherit": 28 }], 12: [function (require, module, exports) {
         var extend = require('../tools/extend'); //对象的扩展方法
         var offset = require('../function/offset'); //获取元素距离文档的left和top
         var getDomArray = require('../function/get-dom-array'); //获取原生的dom节点并转换成数组
@@ -1191,9 +879,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
         };
         module.exports = LazyLoad;
-    }, { "../function/get-dom-array": 6, "../function/offset": 8, "../tools/extend": 30 }], 16: [function (require, module, exports) {
+    }, { "../function/get-dom-array": 4, "../function/offset": 5, "../tools/extend": 29 }], 13: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
-        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
         //var Mask = require('../modules/m-mask');//遮罩
 
@@ -1283,9 +971,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../modules/m-super-type": 27 }], 17: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../modules/m-super-type": 24, "../tools/constructor-inherit": 28 }], 14: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
-        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
 
         //子类型
@@ -1338,9 +1026,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../modules/m-super-type": 27 }], 18: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../modules/m-super-type": 24, "../tools/constructor-inherit": 28 }], 15: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
-        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
 
         //子类型
@@ -1412,9 +1100,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../modules/m-super-type": 27 }], 19: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../modules/m-super-type": 24, "../tools/constructor-inherit": 28 }], 16: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
-        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
 
         //子类型
@@ -1466,9 +1154,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../modules/m-super-type": 27 }], 20: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../modules/m-super-type": 24, "../tools/constructor-inherit": 28 }], 17: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
-        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
 
         //默认数据
@@ -1629,9 +1317,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../modules/m-super-type": 27 }], 21: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../modules/m-super-type": 24, "../tools/constructor-inherit": 28 }], 18: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
-        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
 
         //子类型
@@ -1717,9 +1405,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../modules/m-super-type": 27 }], 22: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../modules/m-super-type": 24, "../tools/constructor-inherit": 28 }], 19: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
-        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var TouchSlide = require('../plugs/touch-slide'); //轮播图插件
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
 
@@ -1839,9 +1527,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../modules/m-super-type": 27, "../plugs/touch-slide": 29 }], 23: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../modules/m-super-type": 24, "../plugs/touch-slide": 26, "../tools/constructor-inherit": 28 }], 20: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
-        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
 
         //子类型
@@ -1907,7 +1595,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../modules/m-super-type": 27 }], 24: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../modules/m-super-type": 24, "../tools/constructor-inherit": 28 }], 21: [function (require, module, exports) {
         var extend = require('../tools/extend'); //对象的扩展方法
         var createElement = require('../function/create-element'); //创建元素节点
         var SuperType = require('../modules/m-super-type-es6'); //超类型(子类型继承的对象)
@@ -1993,9 +1681,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }(SuperType);
 
         module.exports = SubType;
-    }, { "../function/create-element": 5, "../modules/m-super-type-es6": 26, "../tools/extend": 30 }], 25: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../modules/m-super-type-es6": 23, "../tools/extend": 29 }], 22: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
-        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
 
         //子类型
@@ -2030,7 +1718,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../modules/m-super-type": 27 }], 26: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../modules/m-super-type": 24, "../tools/constructor-inherit": 28 }], 23: [function (require, module, exports) {
         var extend = require('../tools/extend'); //对象的扩展方法
         var createElement = require('../function/create-element'); //创建元素节点
         var getDomArray = require('../function/get-dom-array'); //获取原生的dom节点并转换成数组
@@ -2343,7 +2031,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }();
 
         module.exports = SuperType;
-    }, { "../function/create-element": 5, "../function/get-dom-array": 6, "../tools/extend": 30 }], 27: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../function/get-dom-array": 4, "../tools/extend": 29 }], 24: [function (require, module, exports) {
         var extend = require('../tools/extend'); //对象的扩展方法
         var createElement = require('../function/create-element'); //创建元素节点
         var getDomArray = require('../function/get-dom-array'); //获取原生的dom节点并转换成数组
@@ -2590,9 +2278,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SuperType;
-    }, { "../function/create-element": 5, "../function/get-dom-array": 6, "../tools/extend": 30 }], 28: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../function/get-dom-array": 4, "../tools/extend": 29 }], 25: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
-        var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
 
         //子类型
@@ -2655,7 +2343,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SubType;
-    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../modules/m-super-type": 27 }], 29: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../modules/m-super-type": 24, "../tools/constructor-inherit": 28 }], 26: [function (require, module, exports) {
         /*!
          * TouchSlide v1.1
          * javascript触屏滑动特效插件，移动端滑动特效，触屏焦点图，触屏Tab切换，触屏多图切换等
@@ -3096,7 +2784,282 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = TouchSlide;
-    }, {}], 30: [function (require, module, exports) {
+    }, {}], 27: [function (require, module, exports) {
+        var extend = require('../tools/extend'); //对象的扩展方法
+
+        //ajax封装
+        function Ajax(json) {
+            this.opts = extend({
+                defaults: {
+                    //回调
+                    callback: {
+                        //上传期间持续不断地触发
+                        uploadProgress: function uploadProgress() {},
+                        //上传完成时触发
+                        uploadLoad: function uploadLoad() {},
+                        //在接收到响应数据的第一个字节时触发
+                        loadStart: function loadStart() {},
+                        //在接收响应期间持续不断地触发
+                        progress: function progress() {},
+                        //在请求发生错误时触发
+                        error: function error() {},
+                        //在因为调用abort()方法而终止请求时触发
+                        abort: function abort() {},
+                        //在接收到完整的响应数据时触发
+                        load: function load() {},
+                        //接收到完整的响应且响应状态为200
+                        success: function success() {},
+                        //接收到完整的响应且响应状态不为200
+                        fail: function fail() {},
+                        //在通信完成或者触发error、abort或load事件后触发
+                        loadEnd: function loadEnd() {},
+                        //等同于loadEnd
+                        complete: function complete() {},
+                        //请求超时
+                        timeout: function timeout() {}
+                    },
+                    //配置
+                    config: {
+                        //ajax的配置
+                        type: 'post', //请求类型(默认post)
+                        url: '', //url
+                        dataType: 'json', //数据类型(默认json)
+                        async: true, //默认异步
+                        timeout: 5000, //超时时间(默认3秒)
+                        mark: '#' },
+                    //数据
+                    data: {}
+                },
+                inherits: json
+            });
+            this.xhr = new XMLHttpRequest(); //xhr
+            this.xhr.timeout = this.opts.config.timeout; //超时设置
+            this.init();
+        }
+        Ajax.prototype.init = function () {
+            this.events();
+            this.open();
+            this.send();
+        };
+        Ajax.prototype.open = function () {
+            var opts = this.opts;
+            if (opts.config.type.toLowerCase() == 'get') {
+                //get
+                var search = "";
+                var num = 0;
+                var data = opts.data;
+                if (data) {
+                    for (var attr in data) {
+                        if (data.hasOwnProperty(attr)) {
+                            if (num == 0) {
+                                search += attr + "=" + data[attr];
+                            } else {
+                                search += "&" + attr + "=" + data[attr];
+                            }
+                            num++;
+                        }
+                    }
+                }
+                var url = opts.config.url + opts.config.mark + search;
+                this.xhr.open(opts.config.type, url);
+            } else if (opts.config.type.toLowerCase() == 'post') {
+                //post
+                this.xhr.open(opts.config.type, opts.config.url);
+            } else {
+                console.log('仅支持get和post请求');
+                return false;
+            }
+        };
+        Ajax.prototype.send = function () {
+            var opts = this.opts;
+            var data = opts.data;
+            if (opts.config.type.toLowerCase() == 'get') {
+                //get
+                this.xhr.send(null);
+            } else if (opts.config.type.toLowerCase() == 'post') {
+                //post
+                if (data) {
+                    if (Object.prototype.toString.call(data).slice(8, -1).toLocaleLowerCase() == 'formdata') {
+                        this.xhr.send(data);
+                    } else {
+                        var formData = new FormData();
+                        for (var attr in data) {
+                            if (data.hasOwnProperty(attr)) {
+                                formData.append(attr, data[attr]);
+                            }
+                        }
+                        this.xhr.send(formData);
+                    }
+                } else {
+                    this.xhr.send(null);
+                }
+            } else {
+                console.log('仅支持get和post请求');
+                return false;
+            }
+        };
+        Ajax.prototype.events = function () {
+            var self = this;
+            //上传期间持续不断地触发
+            this.xhr.upload.addEventListener('progress', function (ProgressEvent) {
+                self.uploadProgress();
+                console.log(ProgressEvent, 'uploadProgress');
+            });
+            //上传完成时触发
+            this.xhr.upload.addEventListener('load', function (ProgressEvent) {
+                self.uploadLoad();
+                console.log(ProgressEvent, 'uploadLoad');
+            });
+            //在接收到响应数据的第一个字节时触发
+            this.xhr.addEventListener('loadstart', function (ProgressEvent) {
+                self.loadStart();
+                console.log(ProgressEvent, 'loadStart');
+            });
+            //在接收响应期间持续不断地触发
+            this.xhr.addEventListener('progress', function (ProgressEvent) {
+                self.progress();
+                console.log(ProgressEvent, 'progress');
+            });
+            //在请求发生错误时触发
+            this.xhr.addEventListener('error', function (ProgressEvent) {
+                self.error();
+                console.log(ProgressEvent, 'error');
+            });
+            //在因为调用abort()方法而终止请求时触发
+            this.xhr.addEventListener('abort', function (ProgressEvent) {
+                self.abort();
+                console.log(ProgressEvent, 'abort');
+            });
+            //在接收到完整的响应数据时触发
+            this.xhr.addEventListener('load', function (ProgressEvent) {
+                self.load(ProgressEvent);
+                console.log(ProgressEvent, 'load', 999);
+            });
+            //在通信完成或者触发error、abort或load事件后触发
+            this.xhr.addEventListener('loadend', function (ProgressEvent) {
+                self.loadEnd();
+                console.log(ProgressEvent, 'loadend');
+            });
+            //请求超时
+            this.xhr.addEventListener('timeout', function (ProgressEvent) {
+                self.timeout();
+                console.log(ProgressEvent, 'timeout');
+            });
+        };
+        //上传期间持续不断地触发
+        Ajax.prototype.uploadProgress = function () {
+            this.opts.callback.uploadProgress();
+        };
+        //上传完成时触发
+        Ajax.prototype.uploadLoad = function () {
+            this.opts.callback.uploadLoad();
+        };
+        //在接收到响应数据的第一个字节时触发
+        Ajax.prototype.loadStart = function () {
+            this.opts.callback.loadStart();
+        };
+        //在接收响应期间持续不断地触发
+        Ajax.prototype.progress = function () {
+            this.opts.callback.progress();
+        };
+        //在请求发生错误时触发
+        Ajax.prototype.error = function () {
+            this.opts.callback.error();
+        };
+        //在因为调用abort()方法而终止请求时触发
+        Ajax.prototype.abort = function () {
+            this.opts.callback.abort();
+        };
+        //在接收到完整的响应数据时触发
+        Ajax.prototype.load = function () {
+            this.opts.callback.load();
+        };
+        //接收到完整的响应且响应状态为200
+        Ajax.prototype.success = function () {
+            this.opts.callback.success();
+        };
+        //接收到完整的响应且响应状态不为200
+        Ajax.prototype.fail = function () {
+            this.opts.callback.fail();
+        };
+        //在通信完成或者触发error、abort或load事件后触发
+        Ajax.prototype.loadEnd = function () {
+            this.opts.callback.loadEnd();
+            this.complete();
+        };
+        //等同于loadEnd
+        Ajax.prototype.complete = function () {
+            this.opts.callback.complete();
+        };
+        //请求超时
+        Ajax.prototype.timeout = function () {
+            this.opts.callback.timeout();
+        };
+        //手动触发取消请求
+        Ajax.prototype.triggerAbort = function () {
+            if (this.xhr.abort) {
+                this.xhr.abort();
+            } else {
+                console.log('浏览器不支持xhr2的abort');
+            }
+        };
+
+        module.exports = Ajax;
+    }, { "../tools/extend": 29 }], 28: [function (require, module, exports) {
+        var extend = require('../tools/extend'); //对象的扩展方法
+        var objRemoveQuote = require('../tools/obj-remove-quote'); //对象移除引用
+
+        //构造函数的继承(拷贝继承)
+        function constructorInherit(json) {
+            var opts = extend({
+                defaults: {
+                    superType: null, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
+                    parameter: {} //默认参数(这个必须传的是一个对象,或者不传值)
+                },
+                inherits: json
+            });
+            //超类型(需要是个构造函数)
+            var SuperType = opts.superType;
+            //子类型的默认参数(需要是个对象)
+            var parameter = opts.parameter;
+            //如果超类型不存在
+            if (Object.prototype.toString.call(SuperType).toLowerCase().slice(8, -1) != 'function') {
+                console.log('no find SuperType or SuperType error');
+                return false;
+            }
+            //子类型
+            function SubType(json) {
+                //子类型自身的属性
+                /*
+                 * 注意:
+                 * defaults要防止对象的引用(如果不防止的话,会出现BUG)
+                 * 例如 wrap的默认值是'.g-wrap'
+                 * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
+                 * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
+                 * 但是由于对象引用的原因,这里的值会变成'body'
+                 * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
+                 * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
+                 * 所以我就封装了一个移除对象引用的函数
+                 * */
+                this.opts = extend({
+                    defaults: objRemoveQuote({ obj: parameter }),
+                    inherits: json
+                });
+                //子类型继承超类型的属性
+                opts.superType.call(this, this.opts);
+            }
+
+            //子类型继承超类型的方法
+            for (var attr in SuperType.prototype) {
+                if (SuperType.prototype.hasOwnProperty(attr)) {
+                    SubType.prototype[attr] = SuperType.prototype[attr];
+                }
+            }
+            return SubType;
+        }
+
+        module.exports = constructorInherit;
+    }, { "../tools/extend": 29, "../tools/obj-remove-quote": 30 }], 29: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opts = json || {};
@@ -3199,4 +3162,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         // console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
 
         module.exports = extend;
+    }, {}], 30: [function (require, module, exports) {
+        //移除对象引用
+        function objRemoveQuote(json) {
+            var opts = json || {};
+            var obj = opts.obj; //这里一定不能给默认值
+            var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+
+            if (objType != 'object' && objType != 'array') {
+                return obj;
+            }
+            var newObj = {};
+            if (objType == 'array') {
+                newObj = [];
+            }
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) {
+                    newObj[attr] = objRemoveQuote({ obj: obj[attr] });
+                }
+            }
+            return newObj;
+        }
+
+        module.exports = objRemoveQuote;
     }, {}] }, {}, [1]);

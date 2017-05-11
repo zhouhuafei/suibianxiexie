@@ -1,5 +1,5 @@
 var createElement = require('../function/create-element');//创建元素节点
-var constructorInherit = require('../function/constructor-inherit');//构造函数的继承(拷贝继承)
+var constructorInherit = require('../tools/constructor-inherit');//构造函数的继承(拷贝继承)
 var TouchSlide = require('../plugs/touch-slide');//轮播图插件
 var SuperType = require('../modules/m-super-type');//超类型(子类型继承的对象)
 
