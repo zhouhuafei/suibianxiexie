@@ -16,18 +16,18 @@
         //一些小方法
         var base = {
             constructorInherit: require('../function/constructor-inherit'), //构造函数继承
-            getDomArray: require('../function/get-dom-array'), //获取一组dom节点
             createElement: require('../function/create-element'), //创建元素节点
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../function/extend": 5, "../function/get-dom-array": 6 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../function/extend": 5 }], 2: [function (require, module, exports) {
         var base = require('../base/base'); //底层方法
         var validate = require('../function/validate'); //表单验证
+        var getDomArray = require('../function/get-dom-array');
 
         function ValidateForm(json) {
             this.opts = json || {};
-            this.element = base.getDomArray({ element: this.opts.element })[0];
+            this.element = getDomArray({ element: this.opts.element })[0];
             this.hintClass = this.opts.hintClass || 'm-validate-form-hint';
             this.eventsType = this.opts.eventsType || 'blur';
             this.validateType = this.element.dataset.validate || 'undefined';
@@ -133,7 +133,7 @@
         };
 
         module.exports = ValidateForm;
-    }, { "../base/base": 1, "../function/validate": 8 }], 3: [function (require, module, exports) {
+    }, { "../base/base": 1, "../function/get-dom-array": 6, "../function/validate": 8 }], 3: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
         var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 

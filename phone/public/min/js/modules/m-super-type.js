@@ -16,14 +16,14 @@
         //一些小方法
         var base = {
             constructorInherit: require('../function/constructor-inherit'), //构造函数继承
-            getDomArray: require('../function/get-dom-array'), //获取一组dom节点
             createElement: require('../function/create-element'), //创建元素节点
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../function/extend": 5, "../function/get-dom-array": 6 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../function/extend": 5 }], 2: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
+        var getDomArray = require('../function/get-dom-array');
 
         //底层构造函数
         function SuperType(json) {
@@ -211,7 +211,7 @@
 
         //外部容器的创建
         SuperType.prototype.wrapDomCreate = function () {
-            this.wrapDom = base.getDomArray({ element: this.opts.wrap })[0];
+            this.wrapDom = getDomArray({ element: this.opts.wrap })[0];
         };
 
         //外部容器的渲染
@@ -235,7 +235,7 @@
             if (config.moduleDomIsShow) {
                 var renderMethod = config.moduleDomRenderMethod;
                 if (renderMethod.method == 'insertBefore') {
-                    var dom = base.getDomArray({ element: renderMethod.child })[0];
+                    var dom = getDomArray({ element: renderMethod.child })[0];
                     if (dom) {
                         this.wrapDom.insertBefore(this.moduleDom, dom);
                     } else {
@@ -267,7 +267,7 @@
         };
 
         module.exports = SuperType;
-    }, { "../base/base": 1 }], 3: [function (require, module, exports) {
+    }, { "../base/base": 1, "../function/get-dom-array": 6 }], 3: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
         var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 

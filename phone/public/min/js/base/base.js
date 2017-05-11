@@ -16,12 +16,11 @@
         //一些小方法
         var base = {
             constructorInherit: require('../function/constructor-inherit'), //构造函数继承
-            getDomArray: require('../function/get-dom-array'), //获取一组dom节点
             createElement: require('../function/create-element'), //创建元素节点
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/constructor-inherit": 2, "../function/create-element": 3, "../function/extend": 4, "../function/get-dom-array": 5 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit": 2, "../function/create-element": 3, "../function/extend": 4 }], 2: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
         var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 
@@ -75,7 +74,7 @@
         }
 
         module.exports = constructorInherit;
-    }, { "../function/extend": 4, "../function/obj-remove-quote": 6 }], 3: [function (require, module, exports) {
+    }, { "../function/extend": 4, "../function/obj-remove-quote": 5 }], 3: [function (require, module, exports) {
         //创建元素节点
         function createElement(json) {
             var opts = json || {};
@@ -205,33 +204,6 @@
 
         module.exports = extend;
     }, {}], 5: [function (require, module, exports) {
-        //获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
-        function getDomArray(json) {
-            var opts = json || {};
-            var dom = [];
-            var element = opts.element ? opts.element : false;
-            if (element) {
-                //如果是字符串
-                if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'string') {
-                    dom = [].slice.call(document.querySelectorAll(element));
-                }
-                //如果是dom节点(一个元素)    原生的
-                if (element.nodeType == 1) {
-                    dom = [element];
-                }
-                /*
-                 * 如果是dom集合(一组元素)    HtmlCollection(通过getElementsBy系列获取到的)
-                 * 如果是dom集合(一组元素)    NodeList(通过querySelectorAll获取到的)
-                 * */
-                if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'htmlcollection' || Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'nodelist') {
-                    dom = [].slice.call(element);
-                }
-            }
-            return dom;
-        }
-
-        module.exports = getDomArray;
-    }, {}], 6: [function (require, module, exports) {
         //移除对象引用
         function objRemoveQuote(json) {
             var opts = json || {};

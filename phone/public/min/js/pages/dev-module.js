@@ -24,34 +24,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //一些小方法
         var base = {
             constructorInherit: require('../function/constructor-inherit'), //构造函数继承
-            getDomArray: require('../function/get-dom-array'), //获取一组dom节点
             createElement: require('../function/create-element'), //创建元素节点
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/constructor-inherit": 5, "../function/create-element": 6, "../function/extend": 7, "../function/get-dom-array": 8 }], 2: [function (require, module, exports) {
-        //版权
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
-                var Copyright = require('../modules/m-copyright');
-                new Copyright();
-            }
-        })();
-
-        //底部导航
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
-                var Footer = require('../modules/m-footer-nav');
-                new Footer();
-            }
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright": 13, "../modules/m-footer-nav": 15, "../modules/m-lazy-load": 17 }], 3: [function (require, module, exports) {
+    }, { "../function/constructor-inherit": 5, "../function/create-element": 6, "../function/extend": 7 }], 2: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
                 //ajax测试
@@ -288,7 +265,29 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../commons/common": 2, "../function/ajax": 4, "../function/when-scroll-bottom": 12, "../modules/m-dialog": 14, "../modules/m-go-top": 16, "../modules/m-loading": 18, "../modules/m-mask": 19, "../modules/m-navigation": 20, "../modules/m-no-data": 21, "../modules/m-pagination": 22, "../modules/m-radio-switch": 23, "../modules/m-slide": 24, "../modules/m-star": 25, "../modules/m-sub-type": 27, "../modules/m-sub-type-es6": 26, "../modules/m-super-type": 29, "../modules/m-super-type-es6": 28, "../modules/m-table": 30 }], 4: [function (require, module, exports) {
+    }, { "../commons/common": 3, "../function/ajax": 4, "../function/when-scroll-bottom": 12, "../modules/m-dialog": 14, "../modules/m-go-top": 16, "../modules/m-loading": 18, "../modules/m-mask": 19, "../modules/m-navigation": 20, "../modules/m-no-data": 21, "../modules/m-pagination": 22, "../modules/m-radio-switch": 23, "../modules/m-slide": 24, "../modules/m-star": 25, "../modules/m-sub-type": 27, "../modules/m-sub-type-es6": 26, "../modules/m-super-type": 29, "../modules/m-super-type-es6": 28, "../modules/m-table": 30 }], 3: [function (require, module, exports) {
+        //版权
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
+                var Copyright = require('../modules/m-copyright');
+                new Copyright();
+            }
+        })();
+
+        //底部导航
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
+                var Footer = require('../modules/m-footer-nav');
+                new Footer();
+            }
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright": 13, "../modules/m-footer-nav": 15, "../modules/m-lazy-load": 17 }], 4: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展
         var Dialog = require('../modules/m-dialog'); //弹窗
         var Loading = require('../function/extend'); //加载中
@@ -1240,6 +1239,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //底层方法
         var base = require('../base/base');
         var offset = require('../function/offset');
+        var getDomArray = require('../function/get-dom-array');
 
         //延迟加载
         function LazyLoad(json) {
@@ -1266,7 +1266,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             var minTop = scrollTop - moreHeight;
             var maxTop = this.clientHeight + minTop + moreHeight;
             var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
-            var aDom = base.getDomArray({ element: this.opts.element });
+            var aDom = getDomArray({ element: this.opts.element });
             aDom.forEach(function (v) {
                 if (v.tagName.toLowerCase() == 'img') {
                     if (!v.getAttribute('src')) {
@@ -1311,7 +1311,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             });
         };
         module.exports = LazyLoad;
-    }, { "../base/base": 1, "../function/offset": 10 }], 18: [function (require, module, exports) {
+    }, { "../base/base": 1, "../function/get-dom-array": 8, "../function/offset": 10 }], 18: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -2173,6 +2173,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, { "../base/base": 1, "../modules/m-super-type": 29 }], 28: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
+        var getDomArray = require('../function/get-dom-array');
 
         //底层构造函数
 
@@ -2410,7 +2411,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }, {
                 key: "wrapDomCreate",
                 value: function wrapDomCreate() {
-                    this.wrapDom = base.getDomArray({ element: this.opts.wrap })[0];
+                    this.wrapDom = getDomArray({ element: this.opts.wrap })[0];
                 }
 
                 //外部容器的渲染
@@ -2440,7 +2441,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     if (config.moduleDomIsShow) {
                         var renderMethod = config.moduleDomRenderMethod;
                         if (renderMethod.method == 'insertBefore') {
-                            var dom = base.getDomArray({ element: renderMethod.child })[0];
+                            var dom = getDomArray({ element: renderMethod.child })[0];
                             if (dom) {
                                 this.wrapDom.insertBefore(this.moduleDom, dom);
                             } else {
@@ -2482,9 +2483,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }();
 
         module.exports = SuperType;
-    }, { "../base/base": 1 }], 29: [function (require, module, exports) {
+    }, { "../base/base": 1, "../function/get-dom-array": 8 }], 29: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
+        var getDomArray = require('../function/get-dom-array');
 
         //底层构造函数
         function SuperType(json) {
@@ -2672,7 +2674,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //外部容器的创建
         SuperType.prototype.wrapDomCreate = function () {
-            this.wrapDom = base.getDomArray({ element: this.opts.wrap })[0];
+            this.wrapDom = getDomArray({ element: this.opts.wrap })[0];
         };
 
         //外部容器的渲染
@@ -2696,7 +2698,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             if (config.moduleDomIsShow) {
                 var renderMethod = config.moduleDomRenderMethod;
                 if (renderMethod.method == 'insertBefore') {
-                    var dom = base.getDomArray({ element: renderMethod.child })[0];
+                    var dom = getDomArray({ element: renderMethod.child })[0];
                     if (dom) {
                         this.wrapDom.insertBefore(this.moduleDom, dom);
                     } else {
@@ -2728,7 +2730,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = SuperType;
-    }, { "../base/base": 1 }], 30: [function (require, module, exports) {
+    }, { "../base/base": 1, "../function/get-dom-array": 8 }], 30: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -3236,4 +3238,4 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         };
 
         module.exports = TouchSlide;
-    }, {}] }, {}, [3]);
+    }, {}] }, {}, [2]);

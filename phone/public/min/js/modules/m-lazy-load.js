@@ -16,15 +16,15 @@
         //一些小方法
         var base = {
             constructorInherit: require('../function/constructor-inherit'), //构造函数继承
-            getDomArray: require('../function/get-dom-array'), //获取一组dom节点
             createElement: require('../function/create-element'), //创建元素节点
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../function/extend": 5, "../function/get-dom-array": 6 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../function/extend": 5 }], 2: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
         var offset = require('../function/offset');
+        var getDomArray = require('../function/get-dom-array');
 
         //延迟加载
         function LazyLoad(json) {
@@ -51,7 +51,7 @@
             var minTop = scrollTop - moreHeight;
             var maxTop = this.clientHeight + minTop + moreHeight;
             var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
-            var aDom = base.getDomArray({ element: this.opts.element });
+            var aDom = getDomArray({ element: this.opts.element });
             aDom.forEach(function (v) {
                 if (v.tagName.toLowerCase() == 'img') {
                     if (!v.getAttribute('src')) {
@@ -96,7 +96,7 @@
             });
         };
         module.exports = LazyLoad;
-    }, { "../base/base": 1, "../function/offset": 8 }], 3: [function (require, module, exports) {
+    }, { "../base/base": 1, "../function/get-dom-array": 6, "../function/offset": 8 }], 3: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
         var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 

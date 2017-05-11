@@ -1,5 +1,6 @@
 //底层方法
 var base = require('../base/base');
+var getDomArray = require('../function/get-dom-array');
 
 //底层构造函数
 class SuperType {
@@ -190,7 +191,7 @@ class SuperType {
 
     //外部容器的创建
     wrapDomCreate() {
-        this.wrapDom = base.getDomArray({element: this.opts.wrap})[0];
+        this.wrapDom = getDomArray({element: this.opts.wrap})[0];
     }
 
     //外部容器的渲染
@@ -214,7 +215,7 @@ class SuperType {
         if (config.moduleDomIsShow) {
             var renderMethod = config.moduleDomRenderMethod;
             if (renderMethod.method == 'insertBefore') {
-                var dom = base.getDomArray({element: renderMethod.child})[0];
+                var dom = getDomArray({element: renderMethod.child})[0];
                 if (dom) {
                     this.wrapDom.insertBefore(this.moduleDom, dom);
                 } else {

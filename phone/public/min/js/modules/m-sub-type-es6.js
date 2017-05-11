@@ -24,12 +24,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         //一些小方法
         var base = {
             constructorInherit: require('../function/constructor-inherit'), //构造函数继承
-            getDomArray: require('../function/get-dom-array'), //获取一组dom节点
             createElement: require('../function/create-element'), //创建元素节点
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../function/extend": 5, "../function/get-dom-array": 6 }], 2: [function (require, module, exports) {
+    }, { "../function/constructor-inherit": 3, "../function/create-element": 4, "../function/extend": 5 }], 2: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -353,6 +352,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, {}], 8: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
+        var getDomArray = require('../function/get-dom-array');
 
         //底层构造函数
 
@@ -590,7 +590,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }, {
                 key: "wrapDomCreate",
                 value: function wrapDomCreate() {
-                    this.wrapDom = base.getDomArray({ element: this.opts.wrap })[0];
+                    this.wrapDom = getDomArray({ element: this.opts.wrap })[0];
                 }
 
                 //外部容器的渲染
@@ -620,7 +620,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     if (config.moduleDomIsShow) {
                         var renderMethod = config.moduleDomRenderMethod;
                         if (renderMethod.method == 'insertBefore') {
-                            var dom = base.getDomArray({ element: renderMethod.child })[0];
+                            var dom = getDomArray({ element: renderMethod.child })[0];
                             if (dom) {
                                 this.wrapDom.insertBefore(this.moduleDom, dom);
                             } else {
@@ -662,4 +662,4 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }();
 
         module.exports = SuperType;
-    }, { "../base/base": 1 }] }, {}, [2]);
+    }, { "../base/base": 1, "../function/get-dom-array": 6 }] }, {}, [2]);

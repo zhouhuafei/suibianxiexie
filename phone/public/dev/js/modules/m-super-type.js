@@ -1,5 +1,6 @@
 //底层方法
 var base = require('../base/base');
+var getDomArray = require('../function/get-dom-array');
 
 //底层构造函数
 function SuperType(json) {
@@ -189,7 +190,7 @@ SuperType.prototype.moduleDomHide = function () {
 
 //外部容器的创建
 SuperType.prototype.wrapDomCreate = function () {
-    this.wrapDom = base.getDomArray({element: this.opts.wrap})[0];
+    this.wrapDom = getDomArray({element: this.opts.wrap})[0];
 };
 
 //外部容器的渲染
@@ -213,7 +214,7 @@ SuperType.prototype.wrapDomRenderMethod = function () {
     if (config.moduleDomIsShow) {
         var renderMethod = config.moduleDomRenderMethod;
         if (renderMethod.method == 'insertBefore') {
-            var dom = base.getDomArray({element: renderMethod.child})[0];
+            var dom = getDomArray({element: renderMethod.child})[0];
             if (dom) {
                 this.wrapDom.insertBefore(this.moduleDom, dom);
             } else {

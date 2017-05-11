@@ -16,34 +16,11 @@
         //一些小方法
         var base = {
             constructorInherit: require('../function/constructor-inherit'), //构造函数继承
-            getDomArray: require('../function/get-dom-array'), //获取一组dom节点
             createElement: require('../function/create-element'), //创建元素节点
             extend: require('../function/extend') //对象扩展
         };
         module.exports = base;
-    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../function/extend": 6, "../function/get-dom-array": 7 }], 2: [function (require, module, exports) {
-        //版权
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
-                var Copyright = require('../modules/m-copyright');
-                new Copyright();
-            }
-        })();
-
-        //底部导航
-        (function () {
-            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
-                var Footer = require('../modules/m-footer-nav');
-                new Footer();
-            }
-        })();
-
-        //延迟加载
-        (function () {
-            var LazyLoad = require('../modules/m-lazy-load');
-            new LazyLoad();
-        })();
-    }, { "../modules/m-copyright": 10, "../modules/m-footer-nav": 11, "../modules/m-lazy-load": 12 }], 3: [function (require, module, exports) {
+    }, { "../function/constructor-inherit": 4, "../function/create-element": 5, "../function/extend": 6 }], 2: [function (require, module, exports) {
         window.addEventListener('load', function () {
             setTimeout(function () {
 
@@ -102,7 +79,29 @@
                 require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../commons/common": 2, "../modules/m-navigation": 13, "../modules/m-slide": 14 }], 4: [function (require, module, exports) {
+    }, { "../commons/common": 3, "../modules/m-navigation": 13, "../modules/m-slide": 14 }], 3: [function (require, module, exports) {
+        //版权
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
+                var Copyright = require('../modules/m-copyright');
+                new Copyright();
+            }
+        })();
+
+        //底部导航
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
+                var Footer = require('../modules/m-footer-nav');
+                new Footer();
+            }
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright": 10, "../modules/m-footer-nav": 11, "../modules/m-lazy-load": 12 }], 4: [function (require, module, exports) {
         var extend = require('../function/extend'); //对象的扩展方法
         var objRemoveQuote = require('../function/obj-remove-quote'); //对象移除引用
 
@@ -488,6 +487,7 @@
         //底层方法
         var base = require('../base/base');
         var offset = require('../function/offset');
+        var getDomArray = require('../function/get-dom-array');
 
         //延迟加载
         function LazyLoad(json) {
@@ -514,7 +514,7 @@
             var minTop = scrollTop - moreHeight;
             var maxTop = this.clientHeight + minTop + moreHeight;
             var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
-            var aDom = base.getDomArray({ element: this.opts.element });
+            var aDom = getDomArray({ element: this.opts.element });
             aDom.forEach(function (v) {
                 if (v.tagName.toLowerCase() == 'img') {
                     if (!v.getAttribute('src')) {
@@ -559,7 +559,7 @@
             });
         };
         module.exports = LazyLoad;
-    }, { "../base/base": 1, "../function/offset": 9 }], 13: [function (require, module, exports) {
+    }, { "../base/base": 1, "../function/get-dom-array": 7, "../function/offset": 9 }], 13: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
 
@@ -762,6 +762,7 @@
     }, { "../base/base": 1, "../modules/m-super-type": 15, "../plugs/touch-slide": 16 }], 15: [function (require, module, exports) {
         //底层方法
         var base = require('../base/base');
+        var getDomArray = require('../function/get-dom-array');
 
         //底层构造函数
         function SuperType(json) {
@@ -949,7 +950,7 @@
 
         //外部容器的创建
         SuperType.prototype.wrapDomCreate = function () {
-            this.wrapDom = base.getDomArray({ element: this.opts.wrap })[0];
+            this.wrapDom = getDomArray({ element: this.opts.wrap })[0];
         };
 
         //外部容器的渲染
@@ -973,7 +974,7 @@
             if (config.moduleDomIsShow) {
                 var renderMethod = config.moduleDomRenderMethod;
                 if (renderMethod.method == 'insertBefore') {
-                    var dom = base.getDomArray({ element: renderMethod.child })[0];
+                    var dom = getDomArray({ element: renderMethod.child })[0];
                     if (dom) {
                         this.wrapDom.insertBefore(this.moduleDom, dom);
                     } else {
@@ -1005,7 +1006,7 @@
         };
 
         module.exports = SuperType;
-    }, { "../base/base": 1 }], 16: [function (require, module, exports) {
+    }, { "../base/base": 1, "../function/get-dom-array": 7 }], 16: [function (require, module, exports) {
         /*!
          * TouchSlide v1.1
          * javascript触屏滑动特效插件，移动端滑动特效，触屏焦点图，触屏Tab切换，触屏多图切换等
@@ -1446,4 +1447,4 @@
         };
 
         module.exports = TouchSlide;
-    }, {}] }, {}, [3]);
+    }, {}] }, {}, [2]);

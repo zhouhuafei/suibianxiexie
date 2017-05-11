@@ -1,9 +1,10 @@
 var base = require('../base/base');//底层方法
 var validate = require('../function/validate');//表单验证
+var getDomArray = require('../function/get-dom-array');
 
 function ValidateForm(json) {
     this.opts = json || {};
-    this.element = base.getDomArray({element: this.opts.element})[0];
+    this.element = getDomArray({element: this.opts.element})[0];
     this.hintClass = this.opts.hintClass || 'm-validate-form-hint';
     this.eventsType = this.opts.eventsType || 'blur';
     this.validateType = this.element.dataset.validate || 'undefined';

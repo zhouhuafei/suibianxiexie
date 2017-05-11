@@ -1,6 +1,7 @@
 //底层方法
 var base = require('../base/base');
 var offset = require('../function/offset');
+var getDomArray = require('../function/get-dom-array');
 
 //延迟加载
 function LazyLoad(json) {
@@ -27,7 +28,7 @@ LazyLoad.prototype.render = function () {
     var minTop = scrollTop - moreHeight;
     var maxTop = this.clientHeight + minTop + moreHeight;
     var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
-    var aDom = base.getDomArray({element: this.opts.element});
+    var aDom = getDomArray({element: this.opts.element});
     aDom.forEach(function (v) {
         if (v.tagName.toLowerCase() == 'img') {
             if (!v.getAttribute('src')) {
