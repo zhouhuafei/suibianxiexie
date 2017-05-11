@@ -13,20 +13,19 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        //字符数量限制
-        function strLimit(json) {
+        //字符串限制长度
+        function strLimitLength(json) {
             var opts = json || {};
-            var max = opts.max;
+            var maxLength = opts.maxLength;
             var str = opts.str;
             if (!str) {
                 return '';
             }
-            var length = str.length;
-            if (length > max) {
-                str = str.substring(0, max);
+            if (str.length * 1 > maxLength) {
+                str = str.substring(0, maxLength);
             }
             return str;
         }
 
-        module.exports = strLimit;
+        module.exports = strLimitLength;
     }, {}] }, {}, [1]);
