@@ -253,9 +253,7 @@
     }, { "../function/get-dom-array": 5, "../tools/extend": 15 }], 8: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
         var constructorInherit = require('../function/constructor-inherit'); //构造函数的继承(拷贝继承)
-
-        //超类型(子类型继承的对象)
-        var SuperType = require('../modules/m-super-type');
+        var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
 
         //子类型
         var SubType = constructorInherit({
