@@ -1,1 +1,1432 @@
-"use strict";!function e(t,o,i){function n(a,s){if(!o[a]){if(!t[a]){var l="function"==typeof require&&require;if(!s&&l)return l(a,!0);if(r)return r(a,!0);throw new Error("Cannot find module '"+a+"'")}var m=o[a]={exports:{}};t[a][0].call(m.exports,function(e){var o=t[a][1][e];return n(o?o:e)},m,m.exports,e,t,o,i)}return o[a].exports}for(var r="function"==typeof require&&require,a=0;a<i.length;a++)n(i[a]);return n}({1:[function(e,t,o){window.addEventListener("load",function(){setTimeout(function(){!function(){var t=e("../modules/m-slide");new t({wrap:".page-slide",data:{items:[{img:{width:0,height:0,url:"http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg"},link:""},{img:{width:0,height:0,url:"http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg"},link:""},{img:{width:0,height:0,url:"http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg"},link:""},{img:{width:0,height:0,url:"http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg"},link:""},{img:{width:0,height:0,url:"http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg"},link:""}]}})}(),function(){var t=e("../modules/m-navigation");new t({wrap:".page-navigation"})}(),e("../commons/common")},0)})},{"../commons/common":2,"../modules/m-navigation":9,"../modules/m-slide":10}],2:[function(e,t,o){!function(){if(pageInfo&&pageInfo.config&&pageInfo.config.isShowCopyright){var t=e("../modules/m-copyright");new t}}(),function(){if(pageInfo&&pageInfo.config&&pageInfo.config.isShowFooterNav){var t=e("../modules/m-footer-nav");new t}}(),function(){var t=e("../modules/m-lazy-load");new t}()},{"../modules/m-copyright":6,"../modules/m-footer-nav":7,"../modules/m-lazy-load":8}],3:[function(e,t,o){function i(e){var t=e||{};t.elementName=t.elementName||"div",t.style=t.style||"",t.custom=t.custom||{},t.attribute=t.attribute||{};var o=document.createElement(t.elementName);t.style&&o.setAttribute("style",t.style);for(var i in t.custom)t.custom.hasOwnProperty(i)&&o.setAttribute("data-"+i,t.custom[i]);for(var n in t.attribute)t.attribute.hasOwnProperty(n)&&(o[n]=t.attribute[n]);return o}t.exports=i},{}],4:[function(e,t,o){function i(e){var t=e||{},o=[],i=!!t.element&&t.element;return i&&("string"==Object.prototype.toString.call(i).slice(8,-1).toLowerCase()&&(o=[].slice.call(document.querySelectorAll(i))),1==i.nodeType&&(o=[i]),"htmlcollection"!=Object.prototype.toString.call(i).slice(8,-1).toLowerCase()&&"nodelist"!=Object.prototype.toString.call(i).slice(8,-1).toLowerCase()||(o=[].slice.call(i))),o}t.exports=i},{}],5:[function(e,t,o){function i(e){for(var t=n({defaults:{element:null},inherits:e}),o=0,i=0,a=r({element:t.element})[0];a;)o+=a.offsetTop,i+=a.offsetLeft,a=a.offsetParent;return{top:o,left:i}}var n=e("../tools/extend"),r=e("../function/get-dom-array");t.exports=i},{"../function/get-dom-array":4,"../tools/extend":14}],6:[function(e,t,o){var i=e("../function/create-element"),n=e("../tools/constructor-inherit"),r=e("../modules/m-super-type"),a=n({superType:r,parameter:{callback:{},config:{},data:{}}});a.prototype.moduleDomCreate=function(){this.moduleDom=i({style:this.opts.config.moduleDomStyle,custom:this.opts.config.moduleDomCustomAttr,attribute:{className:"m-copyright",innerHTML:'\n                <div class="m-copyright-icon iconfont icon-banquan"></div>\n                <div class="m-copyright-txt">版权信息哟</div>\n            '}})},a.prototype.power=function(){},t.exports=a},{"../function/create-element":3,"../modules/m-super-type":11,"../tools/constructor-inherit":13}],7:[function(e,t,o){var i=e("../function/create-element"),n=e("../tools/constructor-inherit"),r=e("../modules/m-super-type"),a=n({superType:r,parameter:{callback:{},config:{},data:{items:[{link:"/",icon:"icon-shouye",txt:"首页",isHighlight:!1,isShowMark:!1},{link:"/dev-global",icon:"icon-kaifa",txt:"g-global",isHighlight:!1,isShowMark:!1},{link:"/dev-module",icon:"icon-kaifa",txt:"m-module",isHighlight:!0,isShowMark:!0},{link:"/dev-word",icon:"icon-kaifa",txt:"标准词汇",isHighlight:!1,isShowMark:!1},{link:"/mine",icon:"icon-wode",txt:"我的",isHighlight:!1,isShowMark:!1}]}}});a.prototype.moduleDomCreate=function(){this.moduleDomClass="m-footer-nav";var e="";this.opts.data.items.forEach(function(t){var o="";t.isHighlight&&(o="m-footer-nav-body-active");var i="";t.isShowMark&&(i='<div class="m-footer-nav-body-mark"></div>'),e+='\n            <a class="m-footer-nav-body '+o+'" href="'+t.link+'">\n                <div class="m-footer-nav-body-icon iconfont '+t.icon+'"></div>\n                <div class="m-footer-nav-body-txt">'+t.txt+"</div>\n                "+i+"\n            </a>\n        "}),this.moduleDom=i({style:this.opts.config.moduleDomStyle,custom:this.opts.config.moduleDomCustomAttr,attribute:{className:this.moduleDomClass,innerHTML:'<div class="m-footer-nav-wrap">'+e+"</div>"}})},a.prototype.power=function(){},t.exports=a},{"../function/create-element":3,"../modules/m-super-type":11,"../tools/constructor-inherit":13}],8:[function(e,t,o){function i(e){this.opts=n({defaults:{element:".m-lazy-load",srcAttr:"data-src",moreHeight:0,interval:80},inherits:e}),this.clientHeight=document.documentElement.clientHeight,this.init()}var n=e("../tools/extend"),r=e("../function/offset"),a=e("../function/get-dom-array");i.prototype.init=function(){this.render(),this.power()},i.prototype.render=function(){var e=this,t=this.opts.moreHeight,o=document.documentElement.scrollTop||document.body.scrollTop,i=o-t,n=this.clientHeight+i+t,s="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC",l=a({element:this.opts.element});l.forEach(function(e){"img"==e.tagName.toLowerCase()&&(e.getAttribute("src")||(e.src=s),e.setAttribute("height","100%"),e.setAttribute("width","100%"))}),l.forEach(function(t){if(t.offsetWidth){var o=r({element:t}).top,a=o+t.offsetHeight;a>=i&&o<=n&&("img"==t.tagName.toLowerCase()?(t.getAttribute(e.opts.srcAttr)&&(t.src=t.getAttribute(e.opts.srcAttr)),t.removeAttribute("height"),t.removeAttribute("width")):t.getAttribute(e.opts.srcAttr)&&(t.style.backgroundImage="url("+t.getAttribute(e.opts.srcAttr)+")"),t.classList.remove("m-lazy-load"),t.classList.add("m-lazy-load-active"))}})},i.prototype.power=function(){var e=this,t=null;window.addEventListener("scroll",function(){clearTimeout(t),t=setTimeout(function(){e.render()},e.opts.interval)})},t.exports=i},{"../function/get-dom-array":4,"../function/offset":5,"../tools/extend":14}],9:[function(e,t,o){var i=e("../function/create-element"),n=e("../tools/constructor-inherit"),r=e("../modules/m-super-type"),a=n({superType:r,parameter:{callback:{},config:{},data:{items:[{link:"/",icon:"icon-shouye",txt:"首页",isShowMark:!1},{link:"/dev-global",icon:"icon-kaifa",txt:"g-global",isShowMark:!1},{link:"/dev-module",icon:"icon-kaifa",txt:"m-module",isShowMark:!0},{link:"/dev-word",icon:"icon-kaifa",txt:"标准词汇",isShowMark:!1},{link:"/mine",icon:"icon-wode",txt:"我的",isShowMark:!1}]}}});a.prototype.moduleDomCreate=function(){var e=this.opts.data,t=e.items,o="";t.forEach(function(e){var t="";e.isShowMark&&(t='<div class="m-navigation-mark"></div>'),o+='\n            <a href="'+e.link+'" class="m-navigation-wrap">\n                <div class="m-navigation-icon iconfont '+e.icon+'"></div>\n                <div class="m-navigation-txt">'+e.txt+"</div>\n                "+t+"\n            </a>\n        "}),this.moduleDom=i({style:this.opts.config.moduleDomStyle,custom:this.opts.config.moduleDomCustomAttr,attribute:{className:"m-navigation",innerHTML:o}})},a.prototype.power=function(){},t.exports=a},{"../function/create-element":3,"../modules/m-super-type":11,"../tools/constructor-inherit":13}],10:[function(e,t,o){var i=e("../function/create-element"),n=e("../tools/constructor-inherit"),r=e("../plugs/touch-slide"),a=e("../modules/m-super-type"),s=n({superType:a,parameter:{callback:{startFun:function(){},endFun:function(){}},config:{isShowHref:!0,touchSlide:{slideCell:"",mainCell:".m-slide-body",titCell:".m-slide-header .m-slide-items",effect:"leftLoop",autoPlay:!0,delayTime:200,interTime:3e3,startFun:function(){console.log("此处的函数会被覆盖,请在callback里执行回调")},endFun:function(){console.log("此处的函数会被覆盖,请在callback里执行回调")},defaultIndex:0,switchLoadClass:".pre-load",switchLoad:"data-src"}},data:{items:[{img:{width:0,height:0,url:"http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg"},link:""}]}}});s.prototype.moduleDomCreate=function(){this.moduleDom=i({style:this.opts.config.moduleDomStyle,custom:this.opts.config.moduleDomCustomAttr,attribute:{className:"m-slide",innerHTML:"\n                "+this.renderHeader()+"\n                "+this.renderBody()+"\n            "}})},s.prototype.renderHeader=function(){var e=this,t="",o=e.opts.data,i="";return o.items.forEach(function(o,n){n==e.opts.config.touchSlide.defaultIndex&&(i="on"),t+='<div class="m-slide-items '+i+'"></div>'}),'<div class="m-slide-header">'+t+"</div>"},s.prototype.renderBody=function(){var e=this,t="",o=e.opts.data;return o.items.forEach(function(o){t+=e.opts.config.isShowHref?'<a href="'+(o.link||"javascript:;")+'" class="m-slide-items pre-load" data-src="'+o.img.url+'"></a>':'<a class="m-slide-items pre-load" data-src="'+o.img.url+'"></a>'}),'<div class="m-slide-body">'+t+"</div>"},s.prototype.power=function(){var e=this,t=e.opts.callback,o=e.opts.config,i=o.touchSlide;i.slideCell=e.opts.wrap,i.startFun=function(o){t.startFun({self:e,index:o})},i.endFun=function(o){t.endFun({self:e,index:o})},r(e.opts.config.touchSlide)},t.exports=s},{"../function/create-element":3,"../modules/m-super-type":11,"../plugs/touch-slide":12,"../tools/constructor-inherit":13}],11:[function(e,t,o){function i(e){this.opts=n({defaults:{wrap:".g-wrap",callback:{moduleDomCreateBefore:function(e){},moduleDomCreateAfter:function(e){},moduleDomRenderBefore:function(e){},moduleDomRenderAfter:function(e){},moduleDomRemoveBefore:function(e){},moduleDomRemoveAfter:function(e){},moduleDomShowBefore:function(e){},moduleDomShowAfter:function(e){},moduleDomHideBefore:function(e){},moduleDomHideAfter:function(e){},wrapDomCreateBefore:function(e){},wrapDomCreateAfter:function(e){},wrapDomRenderBefore:function(e){},wrapDomRenderAfter:function(e){},wrapDomRemoveBefore:function(e){},wrapDomRemoveAfter:function(e){}},config:{moduleDomCustomAttr:{},moduleDomRenderMethod:{method:"appendChild",child:null},moduleDomStyle:"",moduleDomIsShow:!0,moduleDomIsClearTimer:!0},data:{}},inherits:e}),this.moduleDom=null,this.wrapDom=null,this.moduleDomTimer={},this.init()}var n=e("../tools/extend"),r=e("../function/create-element"),a=e("../function/get-dom-array");i.prototype.init=function(){this.render(),this.power()},i.prototype.render=function(){this.moduleDomRender(),this.wrapDomRender()},i.prototype.power=function(){},i.prototype.moduleDomCreate=function(){this.moduleDom=r({style:this.opts.config.moduleDomStyle,custom:this.opts.config.moduleDomCustomAttr,attribute:{className:"m-super-type",innerHTML:'\n                <div class="m-super-type-txt">周华飞爱侯丽杰,侯丽杰爱周华飞</div>\n            '}})},i.prototype.moduleDomRender=function(){this.moduleDomRemove();var e=this.opts.callback;e.moduleDomCreateBefore(this),this.moduleDomCreate(),e.moduleDomCreateAfter(this)},i.prototype.moduleDomRemove=function(){var e=this.opts.callback;e.moduleDomRemoveBefore(this),this.moduleDom&&this.moduleDom.parentNode&&this.moduleDom.parentNode.removeChild(this.moduleDom),this.moduleDomClearTimer(),e.moduleDomRemoveAfter(this)},i.prototype.moduleDomClearTimer=function(){if(this.opts.config.moduleDomIsClearTimer)for(var e in this.moduleDomTimer)this.moduleDomTimer.hasOwnProperty(e)&&(clearInterval(this.moduleDomTimer[e]),clearTimeout(this.moduleDomTimer[e]))},i.prototype.moduleDomShow=function(){var e=this.opts.callback;e.moduleDomShowBefore(this),this.wrapDom&&(this.opts.config.moduleDomIsShow=!0,this.wrapDomRenderMethod()),e.moduleDomShowAfter(this)},i.prototype.moduleDomHide=function(){var e=this.opts.callback;e.moduleDomHideBefore(this),this.moduleDom.parentNode&&(this.moduleDom.parentNode.removeChild(this.moduleDom),this.opts.config.moduleDomIsShow=!1),e.moduleDomHideAfter(this)},i.prototype.wrapDomCreate=function(){this.wrapDom=a({element:this.opts.wrap})[0]},i.prototype.wrapDomRender=function(){var e=this.opts.callback;e.wrapDomCreateBefore(this),this.wrapDomCreate(),e.wrapDomCreateAfter(this),this.wrapDom&&(e.moduleDomRenderBefore(this),e.wrapDomRenderBefore(this),this.wrapDomRenderMethod(),e.wrapDomRenderAfter(this),e.moduleDomRenderAfter(this))},i.prototype.wrapDomRenderMethod=function(){var e=this.opts.config;if(e.moduleDomIsShow){var t=e.moduleDomRenderMethod;if("insertBefore"==t.method){var o=a({element:t.child})[0];o?this.wrapDom.insertBefore(this.moduleDom,o):this.wrapDom.insertBefore(this.moduleDom,this.wrapDom.children[0])}"appendChild"==t.method&&this.wrapDom.appendChild(this.moduleDom)}},i.prototype.wrapDomRemove=function(){var e=this.opts.callback;e.wrapDomRemoveBefore(this),this.moduleDomRemove(),this.wrapDom&&this.wrapDom.parentNode.removeChild(this.wrapDom),e.wrapDomRemoveAfter(this)},i.prototype.getModuleDomHtml=function(){return this.moduleDom.outerHTML},t.exports=i},{"../function/create-element":3,"../function/get-dom-array":4,"../tools/extend":14}],12:[function(e,t,o){var i=function(e){e=e||{};var t={slideCell:e.slideCell||"#touchSlide",titCell:e.titCell||".hd li",mainCell:e.mainCell||".bd",effect:e.effect||"left",autoPlay:e.autoPlay||!1,delayTime:e.delayTime||200,interTime:e.interTime||2500,defaultIndex:e.defaultIndex||0,titOnClassName:e.titOnClassName||"on",autoPage:e.autoPage||!1,prevCell:e.prevCell||".prev",nextCell:e.nextCell||".next",pageStateCell:e.pageStateCell||".pageState",pnLoop:"undefined "==e.pnLoop||e.pnLoop,startFun:e.startFun||null,endFun:e.endFun||null,switchLoadClass:e.switchLoadClass||".pre-load",switchLoad:e.switchLoad||"data-src"},o=null;if("string"==Object.prototype.toString.call(t.slideCell).slice(8,-1).toLowerCase()&&(o=document.querySelector(t.slideCell)),1==t.slideCell.nodeType&&(o=t.slideCell),"htmlcollection"!=Object.prototype.toString.call(t.slideCell).slice(8,-1).toLowerCase()&&"nodelist"!=Object.prototype.toString.call(t.slideCell).slice(8,-1).toLowerCase()||(o=t.slideCell[0]),o){var i=function(e,t){e=e.split(" ");var o=[];t=t||document;var i=[t];for(var n in e)e.hasOwnProperty(n)&&0!=e[n].length&&o.push(e[n]);for(var r in o)if(o.hasOwnProperty(r)){if(0==i.length)return!1;var a=[];for(var s in i)if(i.hasOwnProperty(s))if("#"==o[r][0])a.push(document.getElementById(o[r].replace("#","")));else if("."==o[r][0])for(var l=i[s].getElementsByTagName("*"),m=0;m<l.length;m++){var c=l[m].className;c&&c.search(new RegExp("\\b"+o[r].replace(".","")+"\\b"))!=-1&&a.push(l[m])}else for(var u=i[s].getElementsByTagName(o[r]),d=0;d<u.length;d++)a.push(u[d]);i=a}return 0!=i.length&&i[0]!=t&&i},n=function(e,t){var o=document.createElement("div");o.innerHTML=t,o=o.children[0];var i=e.cloneNode(!0);return o.appendChild(i),e.parentNode.replaceChild(o,e),u=i,o},r=function(e,t){!e||!t||e.className&&e.className.search(new RegExp("\\b"+t+"\\b"))!=-1||(e.className+=(e.className?" ":"")+t)},a=function(e,t){!e||!t||e.className&&e.className.search(new RegExp("\\b"+t+"\\b"))==-1||(e.className=e.className.replace(new RegExp("\\s*\\b"+t+"\\b","g"),""))},s=t.effect,l=i(t.prevCell,o)[0],m=i(t.nextCell,o)[0],c=i(t.pageStateCell)[0],u=i(t.mainCell,o)[0];if(u){var d,p,f=u.children.length,h=i(t.titCell,o),g=h?h.length:f,v=parseInt(t.defaultIndex),y=parseInt(t.delayTime),w=parseInt(t.interTime),D=!("false"==t.autoPlay||0==t.autoPlay),b=!("false"==t.autoPage||0==t.autoPage),C=!("false"==t.pnLoop||0==t.pnLoop),A=v,T=null,x=null,S=null,k=0,L=0,N=0,R=0,E=/hp-tablet/gi.test(navigator.appVersion),M="ontouchstart"in window&&!E,H=M?"touchstart":"mousedown",j=M?"touchmove":"",B=M?"touchend":"mouseup",I=u.parentNode.clientWidth,O=f;if(0==g&&(g=f),b){g=f,h=h[0],h.innerHTML="";var P="";if(1==t.autoPage||"true"==t.autoPage)for(var F=0;F<g;F++)P+="<li>"+(F+1)+"</li>";else for(var q=0;q<g;q++)P+=t.autoPage.replace("$",q+1);h.innerHTML=P,h=h.children}"leftLoop"==s&&(O+=2,u.appendChild(u.children[0].cloneNode(!0)),u.insertBefore(u.children[f-1].cloneNode(!0),u.children[0])),d=n(u,'<div class="tempWrap" style="height:inherit;overflow:hidden; position:relative;"></div>'),u.style.cssText="display:flex;width:"+O*I+"px;position:relative;overflow:hidden;padding:0;margin:0;";for(var z=0;z<O;z++)u.children[z].style.cssText="height:inherit;display:flex;align-items: center;justify-content: center;width:"+I+"px";var W=function(){"function"==typeof t.startFun&&t.startFun(v,g)},X=function(){"function"==typeof t.endFun&&t.endFun(v,g)},Y=function(){I=d.clientWidth,u.style.width=O*I+"px";for(var e=0;e<O;e++)u.children[e].style.width=I+"px";var t="leftLoop"==s?v+1:v;U(-t*I,0)};window.addEventListener("resize",Y,!1);var U=function(e,t,o){o=o?o.style:u.style,o.webkitTransitionDuration=o.MozTransitionDuration=o.msTransitionDuration=o.OTransitionDuration=o.transitionDuration=t+"ms",o.webkitTransform="translate("+e+"px,0)translateZ(0)",o.msTransform=o.MozTransform=o.OTransform="translateX("+e+"px)"},G=function(e){switch(s){case"left":v>=g?v=e?v-1:0:v<0&&(v=e?0:g-1),U(-v*I,y),A=v;break;case"leftLoop":U(-(v+1)*I,y),v==-1?(x=setTimeout(function(){U(-g*I,0)},y),v=g-1):v==g&&(x=setTimeout(function(){U(-I,0)},y),v=0),A=v}!function(){var e="leftLoop"==s?v+1:v,o=u.querySelectorAll(t.switchLoadClass),i=function(e){if(e){var o=e.getAttribute(t.switchLoad);if(!o)return!1;"img"==e.tagName.toLowerCase()?e.src=o:e.style.backgroundImage="url("+o+")"}};o.length>0&&(i(o[e]),i(o[e-1]),i(o[e+1]))}(),W(),S=setTimeout(function(){X()},y);for(var o=0;o<g;o++)a(h[o],t.titOnClassName),o==v&&r(h[o],t.titOnClassName);0==C&&(a(m,"nextStop"),a(l,"prevStop"),0==v?r(l,"prevStop"):v==g-1&&r(m,"nextStop")),c&&(c.innerHTML="<span>"+(v+1)+"</span>/"+g)};if(G(),D&&(T=setInterval(function(){v++,G()},w)),h)for(var J=0;J<g;J++)!function(){var e=J;h[e].addEventListener("click",function(){clearTimeout(x),clearTimeout(S),v=e,G()})}();m&&m.addEventListener("click",function(){1!=C&&v==g-1||(clearTimeout(x),clearTimeout(S),v++,G())}),l&&l.addEventListener("click",function(){1!=C&&0==v||(clearTimeout(x),clearTimeout(S),v--,G())});var Q=function(e){clearTimeout(x),clearTimeout(S),p=void 0,N=0;var t=M?e.touches[0]:e;k=t.pageX,L=t.pageY,u.addEventListener(j,V,!1),u.addEventListener(B,K,!1)},V=function(e){if(!M||!(e.touches.length>1||e.scale&&1!==e.scale)){var t=M?e.touches[0]:e;if(N=t.pageX-k,R=t.pageY-L,"undefined"==typeof p&&(p=!!(p||Math.abs(N)<Math.abs(R))),!p)switch(e.preventDefault(),D&&clearInterval(T),s){case"left":(0==v&&N>0||v>=g-1&&N<0)&&(N*=.4),U(-v*I+N,0);break;case"leftLoop":U(-(v+1)*I+N,0)}}},K=function e(t){0!=N&&(t.preventDefault(),p||(Math.abs(N)>I/10&&(N>0?v--:v++),G(!0),D&&(T=setInterval(function(){v++,G()},w))),u.removeEventListener(j,V,!1),u.removeEventListener(B,e,!1))};u.addEventListener(H,Q,!1)}}};t.exports=i},{}],13:[function(e,t,o){function i(e){function t(e){this.opts=n({defaults:r({obj:a}),inherits:e}),o.superType.call(this,this.opts)}var o=n({defaults:{superType:null,parameter:{}},inherits:e}),i=o.superType,a=o.parameter;if("function"!=Object.prototype.toString.call(i).toLowerCase().slice(8,-1))return console.log("no find SuperType or SuperType error"),!1;for(var s in i.prototype)i.prototype.hasOwnProperty(s)&&(t.prototype[s]=i.prototype[s]);return t}var n=e("../tools/extend"),r=e("../tools/obj-remove-quote");t.exports=i},{"../tools/extend":14,"../tools/obj-remove-quote":15}],14:[function(e,t,o){function i(e){var t=e||{};t.defaults=t.defaults||{},t.inherits=t.inherits||{},t.isDeep=0!=t.isDeep||t.isDeep;var o=Object.prototype.toString.call(t.defaults).slice(8,-1).toLowerCase(),n=Object.prototype.toString.call(t.inherits).slice(8,-1).toLowerCase();if(o==n&&t.isDeep)if("object"==o||"array"==o){for(var r in t.inherits)if(t.inherits.hasOwnProperty(r)){var a=Object.prototype.toString.call(t.defaults[r]).slice(8,-1).toLowerCase(),s=Object.prototype.toString.call(t.inherits[r]).slice(8,-1).toLowerCase();a==s&&t.isDeep&&("object"==a||"array"==a)?i({defaults:t.defaults[r],inherits:t.inherits[r]}):t.defaults[r]=t.inherits[r]}}else t.defaults=t.inherits;else t.defaults=t.inherits;return t.defaults}t.exports=i},{}],15:[function(e,t,o){function i(e){var t=e||{},o=t.obj,n=Object.prototype.toString.call(o).slice(8,-1).toLowerCase();if("object"!=n&&"array"!=n)return o;var r={};"array"==n&&(r=[]);for(var a in o)o.hasOwnProperty(a)&&(r[a]=i({obj:o[a]}));return r}t.exports=i},{}]},{},[1]);
+"use strict";
+
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);throw new Error("Cannot find module '" + o + "'");
+            }var f = n[o] = { exports: {} };t[o][0].call(f.exports, function (e) {
+                var n = t[o][1][e];return s(n ? n : e);
+            }, f, f.exports, e, t, n, r);
+        }return n[o].exports;
+    }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+        s(r[o]);
+    }return s;
+})({ 1: [function (require, module, exports) {
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+
+                //slide切换
+                (function () {
+                    var Slide = require('../modules/m-slide');
+                    new Slide({
+                        wrap: '.page-slide',
+                        data: {
+                            items: [{
+                                img: {
+                                    width: 0,
+                                    height: 0,
+                                    url: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg'
+                                },
+                                link: ''
+                            }, {
+                                img: {
+                                    width: 0,
+                                    height: 0,
+                                    url: 'http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg'
+                                },
+                                link: ''
+                            }, {
+                                img: {
+                                    width: 0,
+                                    height: 0,
+                                    url: 'http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg'
+                                },
+                                link: ''
+                            }, {
+                                img: {
+                                    width: 0,
+                                    height: 0,
+                                    url: 'http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg'
+                                },
+                                link: ''
+                            }, {
+                                img: {
+                                    width: 0,
+                                    height: 0,
+                                    url: 'http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg'
+                                },
+                                link: ''
+                            }]
+                        }
+                    });
+                })();
+
+                //导航
+                (function () {
+                    var Navigation = require('../modules/m-navigation');
+                    new Navigation({ wrap: '.page-navigation' });
+                })();
+
+                require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
+            }, 0);
+        });
+    }, { "../commons/common": 2, "../modules/m-navigation": 9, "../modules/m-slide": 10 }], 2: [function (require, module, exports) {
+        //版权
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
+                var Copyright = require('../modules/m-copyright');
+                new Copyright();
+            }
+        })();
+
+        //底部导航
+        (function () {
+            if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
+                var Footer = require('../modules/m-footer-nav');
+                new Footer();
+            }
+        })();
+
+        //延迟加载
+        (function () {
+            var LazyLoad = require('../modules/m-lazy-load');
+            new LazyLoad();
+        })();
+    }, { "../modules/m-copyright": 6, "../modules/m-footer-nav": 7, "../modules/m-lazy-load": 8 }], 3: [function (require, module, exports) {
+        //创建元素节点
+        function createElement(json) {
+            var opts = json || {};
+            opts.elementName = opts.elementName || 'div'; //标签名称
+            opts.style = opts.style || ""; //style样式
+            opts.custom = opts.custom || {}; //自定义属性
+            opts.attribute = opts.attribute || {}; //普通属性,checked,selected
+            var elementNode = document.createElement(opts.elementName); //元素节点
+            if (opts.style) {
+                elementNode.setAttribute('style', opts.style);
+            }
+            for (var attr1 in opts.custom) {
+                if (opts.custom.hasOwnProperty(attr1)) {
+                    elementNode.setAttribute('data-' + attr1, opts.custom[attr1]);
+                }
+            }
+            for (var attr0 in opts.attribute) {
+                if (opts.attribute.hasOwnProperty(attr0)) {
+                    elementNode[attr0] = opts.attribute[attr0];
+                }
+            }
+            return elementNode;
+        }
+
+        module.exports = createElement;
+    }, {}], 4: [function (require, module, exports) {
+        //获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
+        function getDomArray(json) {
+            var opts = json || {};
+            var dom = [];
+            var element = opts.element ? opts.element : false;
+            if (element) {
+                //如果是字符串
+                if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'string') {
+                    dom = [].slice.call(document.querySelectorAll(element));
+                }
+                //如果是dom节点(一个元素)    原生的
+                if (element.nodeType == 1) {
+                    dom = [element];
+                }
+                /*
+                 * 如果是dom集合(一组元素)    HtmlCollection(通过getElementsBy系列获取到的)
+                 * 如果是dom集合(一组元素)    NodeList(通过querySelectorAll获取到的)
+                 * */
+                if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'htmlcollection' || Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'nodelist') {
+                    dom = [].slice.call(element);
+                }
+            }
+            return dom;
+        }
+
+        module.exports = getDomArray;
+    }, {}], 5: [function (require, module, exports) {
+        var extend = require('../tools/extend'); //对象的扩展方法
+        var getDomArray = require('../function/get-dom-array'); //获取原生的dom节点并转换成数组
+
+        //获取元素距离文档的left和top
+        function offset(json) {
+            var opts = extend({
+                defaults: {
+                    element: null
+                },
+                inherits: json
+            });
+            var top = 0;
+            var left = 0;
+            var element = getDomArray({ element: opts.element })[0];
+            while (element) {
+                top += element.offsetTop;
+                left += element.offsetLeft;
+                element = element.offsetParent;
+            }
+            return {
+                top: top,
+                left: left
+            };
+        }
+
+        module.exports = offset;
+    }, { "../function/get-dom-array": 4, "../tools/extend": 14 }], 6: [function (require, module, exports) {
+        var createElement = require('../function/create-element'); //创建元素节点
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
+
+        //子类型
+        var SubType = constructorInherit({
+            superType: SuperType,
+            //默认参数(继承超类型)
+            parameter: {
+                //回调
+                callback: {},
+                //配置
+                config: {},
+                //数据
+                data: {}
+            }
+        });
+
+        //内部模块的创建(覆盖超类型)
+        SubType.prototype.moduleDomCreate = function () {
+            this.moduleDom = createElement({
+                style: this.opts.config.moduleDomStyle,
+                custom: this.opts.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-copyright",
+                    innerHTML: "\n                <div class=\"m-copyright-icon iconfont icon-banquan\"></div>\n                <div class=\"m-copyright-txt\">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            "
+                }
+            });
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
+
+        module.exports = SubType;
+    }, { "../function/create-element": 3, "../modules/m-super-type": 11, "../tools/constructor-inherit": 13 }], 7: [function (require, module, exports) {
+        var createElement = require('../function/create-element'); //创建元素节点
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
+
+        //子类型
+        var SubType = constructorInherit({
+            superType: SuperType,
+            //默认参数(继承超类型)
+            parameter: {
+                //回调
+                callback: {},
+                //配置
+                config: {},
+                //数据
+                data: {
+                    items: [{
+                        link: '/',
+                        icon: 'icon-shouye',
+                        txt: '首页',
+                        isHighlight: false,
+                        isShowMark: false
+                    }, {
+                        link: '/dev-global',
+                        icon: 'icon-kaifa',
+                        txt: 'g-global',
+                        isHighlight: false,
+                        isShowMark: false
+                    }, {
+                        link: '/dev-module',
+                        icon: 'icon-kaifa',
+                        txt: 'm-module',
+                        isHighlight: true,
+                        isShowMark: true
+                    }, {
+                        link: '/dev-word',
+                        icon: 'icon-kaifa',
+                        txt: '标准词汇',
+                        isHighlight: false,
+                        isShowMark: false
+                    }, {
+                        link: '/mine',
+                        icon: 'icon-wode',
+                        txt: '我的',
+                        isHighlight: false,
+                        isShowMark: false
+                    }]
+                }
+            }
+        });
+
+        SubType.prototype.moduleDomCreate = function () {
+            this.moduleDomClass = "m-footer-nav";
+            var moduleDomHtml = "";
+            this.opts.data.items.forEach(function (v) {
+                var highlightClass = "";
+                if (v.isHighlight) {
+                    highlightClass = "m-footer-nav-body-active";
+                }
+                var markHtml = "";
+                if (v.isShowMark) {
+                    markHtml = "<div class=\"m-footer-nav-body-mark\"></div>";
+                }
+                moduleDomHtml += "\n            <a class=\"m-footer-nav-body " + highlightClass + "\" href=\"" + v.link + "\">\n                <div class=\"m-footer-nav-body-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-footer-nav-body-txt\">" + v.txt + "</div>\n                " + markHtml + "\n            </a>\n        ";
+            });
+            this.moduleDom = createElement({
+                style: this.opts.config.moduleDomStyle,
+                custom: this.opts.config.moduleDomCustomAttr,
+                attribute: {
+                    className: this.moduleDomClass,
+                    innerHTML: "<div class=\"m-footer-nav-wrap\">" + moduleDomHtml + "</div>"
+                }
+            });
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
+
+        module.exports = SubType;
+    }, { "../function/create-element": 3, "../modules/m-super-type": 11, "../tools/constructor-inherit": 13 }], 8: [function (require, module, exports) {
+        var extend = require('../tools/extend'); //对象的扩展方法
+        var offset = require('../function/offset'); //获取元素距离文档的left和top
+        var getDomArray = require('../function/get-dom-array'); //获取原生的dom节点并转换成数组
+
+        //延迟加载
+        function LazyLoad(json) {
+            this.opts = extend({
+                defaults: {
+                    element: '.m-lazy-load', //哪些元素进行懒加载
+                    srcAttr: 'data-src', //默认获取哪里的属性值当做src
+                    moreHeight: 0, //多加载一部分高度的图片
+                    interval: 80 //函数节流时间(延迟时间)
+                },
+                inherits: json
+            });
+            this.clientHeight = document.documentElement.clientHeight;
+            this.init();
+        }
+        LazyLoad.prototype.init = function () {
+            this.render();
+            this.power();
+        };
+        LazyLoad.prototype.render = function () {
+            var self = this;
+            var moreHeight = this.opts.moreHeight;
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var minTop = scrollTop - moreHeight;
+            var maxTop = this.clientHeight + minTop + moreHeight;
+            var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
+            var aDom = getDomArray({ element: this.opts.element });
+            aDom.forEach(function (v) {
+                if (v.tagName.toLowerCase() == 'img') {
+                    if (!v.getAttribute('src')) {
+                        v.src = src;
+                    }
+                    v.setAttribute('height', '100%');
+                    v.setAttribute('width', '100%');
+                }
+            });
+            aDom.forEach(function (v) {
+                //排除那些被none掉的元素(被none掉的元素,通过offsetWidth和offsetHeight获取到的值是0)
+                if (v.offsetWidth) {
+                    var elementTop = offset({ element: v }).top;
+                    var elementBottom = elementTop + v.offsetHeight;
+                    //出现在可视区才进行处理
+                    if (elementBottom >= minTop && elementTop <= maxTop) {
+                        if (v.tagName.toLowerCase() == 'img') {
+                            if (v.getAttribute(self.opts.srcAttr)) {
+                                v.src = v.getAttribute(self.opts.srcAttr);
+                            }
+                            v.removeAttribute('height');
+                            v.removeAttribute('width');
+                        } else {
+                            if (v.getAttribute(self.opts.srcAttr)) {
+                                v.style.backgroundImage = 'url(' + v.getAttribute(self.opts.srcAttr) + ')';
+                            }
+                        }
+                        v.classList.remove('m-lazy-load');
+                        v.classList.add('m-lazy-load-active');
+                    }
+                }
+            });
+        };
+        LazyLoad.prototype.power = function () {
+            var self = this;
+            var timer = null;
+            window.addEventListener('scroll', function () {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    self.render();
+                }, self.opts.interval);
+            });
+        };
+        module.exports = LazyLoad;
+    }, { "../function/get-dom-array": 4, "../function/offset": 5, "../tools/extend": 14 }], 9: [function (require, module, exports) {
+        var createElement = require('../function/create-element'); //创建元素节点
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
+
+        //子类型
+        var SubType = constructorInherit({
+            superType: SuperType,
+            //默认参数(继承超类型)
+            parameter: {
+                //回调
+                callback: {},
+                //配置
+                config: {},
+                //数据
+                data: {
+                    items: [{
+                        link: '/',
+                        icon: 'icon-shouye',
+                        txt: '首页',
+                        isShowMark: false
+                    }, {
+                        link: '/dev-global',
+                        icon: 'icon-kaifa',
+                        txt: 'g-global',
+                        isShowMark: false
+                    }, {
+                        link: '/dev-module',
+                        icon: 'icon-kaifa',
+                        txt: 'm-module',
+                        isShowMark: true
+                    }, {
+                        link: '/dev-word',
+                        icon: 'icon-kaifa',
+                        txt: '标准词汇',
+                        isShowMark: false
+                    }, {
+                        link: '/mine',
+                        icon: 'icon-wode',
+                        txt: '我的',
+                        isShowMark: false
+                    }]
+                }
+            }
+        });
+
+        //内部模块的创建(覆盖超类型)
+        SubType.prototype.moduleDomCreate = function () {
+            var data = this.opts.data;
+            var items = data.items;
+            var html = "";
+            items.forEach(function (v) {
+                var markHtml = "";
+                if (v.isShowMark) {
+                    markHtml = "<div class=\"m-navigation-mark\"></div>";
+                }
+                html += "\n            <a href=\"" + v.link + "\" class=\"m-navigation-wrap\">\n                <div class=\"m-navigation-icon iconfont " + v.icon + "\"></div>\n                <div class=\"m-navigation-txt\">" + v.txt + "</div>\n                " + markHtml + "\n            </a>\n        ";
+            });
+            this.moduleDom = createElement({
+                style: this.opts.config.moduleDomStyle,
+                custom: this.opts.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-navigation",
+                    innerHTML: html
+                }
+            });
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            //功能重写待续...
+        };
+
+        module.exports = SubType;
+    }, { "../function/create-element": 3, "../modules/m-super-type": 11, "../tools/constructor-inherit": 13 }], 10: [function (require, module, exports) {
+        var createElement = require('../function/create-element'); //创建元素节点
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var TouchSlide = require('../plugs/touch-slide'); //轮播图插件
+        var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
+
+        //子类型
+        var SubType = constructorInherit({
+            superType: SuperType,
+            //默认参数(继承超类型)
+            parameter: {
+                //回调
+                callback: {
+                    startFun: function startFun() {},
+                    endFun: function endFun() {}
+                },
+                //配置
+                config: {
+                    isShowHref: true, //是否有跳转
+                    //TouchSlide插件的配置
+                    touchSlide: {
+                        slideCell: '', //外部容器,这个值会在底部进行覆盖,因为在这里没办法获取this
+                        mainCell: '.m-slide-body', //切换元素的包裹层对象
+                        titCell: '.m-slide-header .m-slide-items', //导航元素对象
+                        effect: "leftLoop", //效果'left' 'leftLoop'
+                        autoPlay: true, //自动播放
+                        delayTime: 200, //切换一次的持续时间
+                        interTime: 3000, //多久切换一次
+                        startFun: function startFun() {
+                            console.log('此处的函数会被覆盖,请在callback里执行回调');
+                        },
+                        endFun: function endFun() {
+                            console.log('此处的函数会被覆盖,请在callback里执行回调');
+                        },
+                        defaultIndex: 0, //默认的当前位置索引
+                        switchLoadClass: '.pre-load', //预加载的class
+                        switchLoad: 'data-src' //预加载的属性
+                    }
+                },
+                //数据
+                data: {
+                    items: [{
+                        img: {
+                            width: 0,
+                            height: 0,
+                            url: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg'
+                        },
+                        link: ''
+                    }]
+                }
+            }
+        });
+
+        //内部模块的创建(覆盖超类型)
+        SubType.prototype.moduleDomCreate = function () {
+            this.moduleDom = createElement({
+                style: this.opts.config.moduleDomStyle,
+                custom: this.opts.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-slide",
+                    innerHTML: "\n                " + this.renderHeader() + "\n                " + this.renderBody() + "\n            "
+                }
+            });
+        };
+
+        SubType.prototype.renderHeader = function () {
+            var self = this;
+            var html = "";
+            var data = self.opts.data;
+            var className = "";
+            data.items.forEach(function (v, i) {
+                if (i == self.opts.config.touchSlide.defaultIndex) {
+                    className = "on";
+                }
+                html += "<div class=\"m-slide-items " + className + "\"></div>";
+            });
+            return "<div class=\"m-slide-header\">" + html + "</div>";
+        };
+
+        SubType.prototype.renderBody = function () {
+            var self = this;
+            var html = "";
+            var data = self.opts.data;
+            data.items.forEach(function (v) {
+                if (self.opts.config.isShowHref) {
+                    html += "<a href=\"" + (v.link || 'javascript:;') + "\" class=\"m-slide-items pre-load\" data-src=\"" + v.img.url + "\"></a>";
+                } else {
+                    html += "<a class=\"m-slide-items pre-load\" data-src=\"" + v.img.url + "\"></a>";
+                }
+            });
+            return "<div class=\"m-slide-body\">" + html + "</div>";
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            var self = this;
+            var callback = self.opts.callback;
+            var config = self.opts.config;
+            var touchSlide = config.touchSlide;
+            touchSlide.slideCell = self.opts.wrap; //外部容器,必须是id
+            touchSlide.startFun = function (i) {
+                // 因为以下功能在插件本身进行了实现(本人对touch-slide插件进行了小修改),所以这里就注释了
+                // var allImg = self.moduleDom.querySelectorAll('.m-slide-body .m-slide-items');
+                // var nowIndex = ( i + 1);
+                // if (touchSlide.effect == 'left') {
+                //     nowIndex = i;
+                // }
+                // var nowImg = allImg[nowIndex];
+                // var prevImg = allImg[nowIndex - 1];
+                // var nextImg = allImg[nowIndex + 1];
+                // nowImg.style.backgroundImage = `url(${nowImg.dataset.src})`;
+                // prevImg && (prevImg.style.backgroundImage = `url(${prevImg.dataset.src})`);
+                // nextImg && (nextImg.style.backgroundImage = `url(${nextImg.dataset.src})`);
+                callback.startFun({ self: self, index: i });
+            };
+            touchSlide.endFun = function (i) {
+                callback.endFun({ self: self, index: i });
+            };
+            TouchSlide(self.opts.config.touchSlide);
+        };
+
+        module.exports = SubType;
+    }, { "../function/create-element": 3, "../modules/m-super-type": 11, "../plugs/touch-slide": 12, "../tools/constructor-inherit": 13 }], 11: [function (require, module, exports) {
+        var extend = require('../tools/extend'); //对象的扩展方法
+        var createElement = require('../function/create-element'); //创建元素节点
+        var getDomArray = require('../function/get-dom-array'); //获取原生的dom节点并转换成数组
+
+        //底层构造函数
+        function SuperType(json) {
+            //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
+            this.opts = extend({
+                //内部默认参数
+                defaults: {
+                    //父级
+                    wrap: ".g-wrap", //这个仅支持传入选择器和原生dom节点
+                    //回调
+                    callback: {
+                        //内部模块创建之前
+                        moduleDomCreateBefore: function moduleDomCreateBefore(self) {
+                            //内部模块创建之前的回调待续...
+                        },
+                        //内部模块创建之后
+                        moduleDomCreateAfter: function moduleDomCreateAfter(self) {
+                            //内部模块创建之后的回调待续...
+                        },
+                        //内部模块渲染之前
+                        moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                            //内部模块渲染之前的回调待续...
+                        },
+                        //内部模块渲染之后
+                        moduleDomRenderAfter: function moduleDomRenderAfter(self) {
+                            //内部模块渲染之后的回调待续...
+                        },
+                        //内部模块移除之前
+                        moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {
+                            //内部模块移除之前的回调待续...
+                        },
+                        //内部模块移除之后
+                        moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {
+                            //内部模块移除之后的回调待续...
+                        },
+                        //内部模块显示之前
+                        moduleDomShowBefore: function moduleDomShowBefore(self) {
+                            //内部模块显示之前的回调待续...
+                        },
+                        //内部模块显示之后
+                        moduleDomShowAfter: function moduleDomShowAfter(self) {
+                            //内部模块显示之后的回调待续...
+                        },
+                        //内部模块隐藏之前
+                        moduleDomHideBefore: function moduleDomHideBefore(self) {
+                            //内部模块隐藏之前的回调待续...
+                        },
+                        //内部模块隐藏之后
+                        moduleDomHideAfter: function moduleDomHideAfter(self) {
+                            //内部模块隐藏之后的回调待续...
+                        },
+                        //外部容器创建之前
+                        wrapDomCreateBefore: function wrapDomCreateBefore(self) {
+                            //外部容器创建之前的回调待续...
+                        },
+                        //外部容器创建之后
+                        wrapDomCreateAfter: function wrapDomCreateAfter(self) {
+                            //外部容器创建之后的回调待续...
+                        },
+                        //外部容器渲染之前
+                        wrapDomRenderBefore: function wrapDomRenderBefore(self) {
+                            //外部容器渲染之前的回调待续...
+                        },
+                        //外部容器渲染之后
+                        wrapDomRenderAfter: function wrapDomRenderAfter(self) {
+                            //外部容器渲染之后的回调待续...
+                        },
+                        //外部容器移除之前
+                        wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {
+                            //外部容器移除之前的回调待续...
+                        },
+                        //外部容器移除之后
+                        wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {
+                            //外部容器移除之后的回调待续...
+                        }
+                    },
+                    //配置
+                    config: {
+                        //内部模块的自定义属性
+                        moduleDomCustomAttr: {},
+                        //内部模块插入到外部容器的方式
+                        moduleDomRenderMethod: {
+                            method: 'appendChild', //'appendChild','insertBefore'
+                            child: null
+                        },
+                        moduleDomStyle: "", //内部模块的样式(写法和css相同)
+                        moduleDomIsShow: true, //内部模块是否显示(默认显示)
+                        moduleDomIsClearTimer: true //内部模块是否清除所有定时器(默认清除)
+                    },
+                    //数据
+                    data: {}
+                },
+                //外部传入参数
+                inherits: json
+            });
+            //函数内部自带的属性
+            this.moduleDom = null; //内部的模块
+            this.wrapDom = null; //内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+            this.moduleDomTimer = {}; //内部模块的定时器存储(假设内部模块有定时器)
+            this.init(); //初始化
+        }
+
+        //初始化
+        SuperType.prototype.init = function () {
+            this.render();
+            this.power();
+        };
+
+        //渲染
+        SuperType.prototype.render = function () {
+            this.moduleDomRender();
+            this.wrapDomRender();
+        };
+
+        //功能(这个方法在其他模块的内部需要被重写)
+        SuperType.prototype.power = function () {
+            //功能待续...
+        };
+
+        //内部模块的创建(这个方法在其他模块的内部需要被重写)
+        SuperType.prototype.moduleDomCreate = function () {
+            this.moduleDom = createElement({
+                style: this.opts.config.moduleDomStyle,
+                custom: this.opts.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-super-type",
+                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                }
+            });
+        };
+
+        //内部模块的渲染
+        SuperType.prototype.moduleDomRender = function () {
+            this.moduleDomRemove();
+            var callback = this.opts.callback;
+            callback.moduleDomCreateBefore(this);
+            this.moduleDomCreate();
+            callback.moduleDomCreateAfter(this);
+        };
+
+        //内部模块的移除
+        SuperType.prototype.moduleDomRemove = function () {
+            var callback = this.opts.callback;
+            callback.moduleDomRemoveBefore(this);
+            if (this.moduleDom && this.moduleDom.parentNode) {
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+            }
+            this.moduleDomClearTimer();
+            callback.moduleDomRemoveAfter(this);
+        };
+
+        //内部模块的定时器清除(假设内部模块有定时器)
+        SuperType.prototype.moduleDomClearTimer = function () {
+            if (this.opts.config.moduleDomIsClearTimer) {
+                for (var attr in this.moduleDomTimer) {
+                    if (this.moduleDomTimer.hasOwnProperty(attr)) {
+                        clearInterval(this.moduleDomTimer[attr]);
+                        clearTimeout(this.moduleDomTimer[attr]);
+                    }
+                }
+            }
+        };
+
+        //内部模块的显示(显示隐藏和是否清除定时器无关)
+        SuperType.prototype.moduleDomShow = function () {
+            var callback = this.opts.callback;
+            callback.moduleDomShowBefore(this);
+            if (this.wrapDom) {
+                this.opts.config.moduleDomIsShow = true;
+                this.wrapDomRenderMethod();
+            }
+            callback.moduleDomShowAfter(this);
+        };
+
+        //内部模块的隐藏(显示隐藏和是否清除定时器无关)
+        SuperType.prototype.moduleDomHide = function () {
+            var callback = this.opts.callback;
+            callback.moduleDomHideBefore(this);
+            if (this.moduleDom.parentNode) {
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+                this.opts.config.moduleDomIsShow = false;
+            }
+            callback.moduleDomHideAfter(this);
+        };
+
+        //外部容器的创建
+        SuperType.prototype.wrapDomCreate = function () {
+            this.wrapDom = getDomArray({ element: this.opts.wrap })[0];
+        };
+
+        //外部容器的渲染
+        SuperType.prototype.wrapDomRender = function () {
+            var callback = this.opts.callback;
+            callback.wrapDomCreateBefore(this);
+            this.wrapDomCreate();
+            callback.wrapDomCreateAfter(this);
+            if (this.wrapDom) {
+                callback.moduleDomRenderBefore(this);
+                callback.wrapDomRenderBefore(this);
+                this.wrapDomRenderMethod();
+                callback.wrapDomRenderAfter(this);
+                callback.moduleDomRenderAfter(this);
+            }
+        };
+
+        //外部容器的渲染方式
+        SuperType.prototype.wrapDomRenderMethod = function () {
+            var config = this.opts.config;
+            if (config.moduleDomIsShow) {
+                var renderMethod = config.moduleDomRenderMethod;
+                if (renderMethod.method == 'insertBefore') {
+                    var dom = getDomArray({ element: renderMethod.child })[0];
+                    if (dom) {
+                        this.wrapDom.insertBefore(this.moduleDom, dom);
+                    } else {
+                        this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
+                    }
+                }
+                if (renderMethod.method == 'appendChild') {
+                    this.wrapDom.appendChild(this.moduleDom);
+                }
+            }
+        };
+
+        //外部容器的移除
+        SuperType.prototype.wrapDomRemove = function () {
+            var callback = this.opts.callback;
+            callback.wrapDomRemoveBefore(this);
+            //先移除内部的模块
+            this.moduleDomRemove();
+            //再移除外部的容器
+            if (this.wrapDom) {
+                this.wrapDom.parentNode.removeChild(this.wrapDom);
+            }
+            callback.wrapDomRemoveAfter(this);
+        };
+
+        //获取内部模块的整体html结构
+        SuperType.prototype.getModuleDomHtml = function () {
+            return this.moduleDom.outerHTML;
+        };
+
+        module.exports = SuperType;
+    }, { "../function/create-element": 3, "../function/get-dom-array": 4, "../tools/extend": 14 }], 12: [function (require, module, exports) {
+        /*!
+         * TouchSlide v1.1
+         * javascript触屏滑动特效插件，移动端滑动特效，触屏焦点图，触屏Tab切换，触屏多图切换等
+         * 详尽信息请看官网：http://www.SuperSlide2.com/TouchSlide/
+         *
+         * Copyright 2013 大话主席
+         *
+         * 请尊重原创，保留头部版权
+         * 在保留版权的前提下可应用于个人或商业用途
+        
+         * 1.1 宽度自适应（修复安卓横屏时滑动范围不变的bug）
+         */
+
+        /*
+         * 本人对此文件进行了稍微改动,还请见谅
+         * 1.支持传入class和dom节点
+         * 2.样式修改成flex布局
+         * 3.把一些不规范的语法警告提示修正
+         * 4.添加预加载功能pre-load,去掉插件自带的懒加载功能
+         * 5.给主体区域的切换每一项加上className
+         * */
+
+        var TouchSlide = function TouchSlide(a) {
+            a = a || {};
+            var opts = {
+                slideCell: a.slideCell || "#touchSlide", //运行效果主对象，必须用id！，例如 slideCell:"#touchSlide"
+                titCell: a.titCell || ".hd li", // 导航对象，当自动分页设为true时为“导航对象包裹层”
+                mainCell: a.mainCell || ".bd", // 切换对象包裹层
+                effect: a.effect || "left", // 效果，支持 left、leftLoop
+                autoPlay: a.autoPlay || false, // 自动播放
+                delayTime: a.delayTime || 200, // 效果持续时间
+                interTime: a.interTime || 2500, // 自动运行间隔
+                defaultIndex: a.defaultIndex || 0, // 默认的当前位置索引。0是第一个； defaultIndex:1 时，相当于从第2个开始执行
+                titOnClassName: a.titOnClassName || "on", // 当前导航对象添加的className
+                autoPage: a.autoPage || false, // 自动分页，当为true时titCell为“导航对象包裹层”
+                prevCell: a.prevCell || ".prev", // 前一页按钮
+                nextCell: a.nextCell || ".next", // 后一页按钮
+                pageStateCell: a.pageStateCell || ".pageState", // 分页状态对象，用于显示分页状态，例如：2/3
+                pnLoop: a.pnLoop == 'undefined ' ? true : a.pnLoop, // 前后按钮点击是否继续执行效果，当为最前/后页是会自动添加“prevStop”/“nextStop”控制样色
+                startFun: a.startFun || null, // 每次切换效果开始时执行函数，用于处理特殊情况或创建更多效果。用法 satrtFun:function(i,c){ }； 其中i为当前分页，c为总页数
+                endFun: a.endFun || null, // 每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
+                switchLoadClass: a.switchLoadClass || '.pre-load', //预加载的class
+                switchLoad: a.switchLoad || 'data-src' //预加载的属性
+            };
+            var slideCell = null;
+            //如果是字符串
+            if (Object.prototype.toString.call(opts.slideCell).slice(8, -1).toLowerCase() == 'string') {
+                slideCell = document.querySelector(opts.slideCell);
+            }
+            //如果是dom节点(一个元素)    原生的
+            if (opts.slideCell.nodeType == 1) {
+                slideCell = opts.slideCell;
+            }
+            /*
+             * 如果是dom集合(一组元素)    HtmlCollection(通过getElementsBy系列获取到的)
+             * 如果是dom集合(一组元素)    NodeList(通过querySelectorAll获取到的)
+             * */
+            if (Object.prototype.toString.call(opts.slideCell).slice(8, -1).toLowerCase() == 'htmlcollection' || Object.prototype.toString.call(opts.slideCell).slice(8, -1).toLowerCase() == 'nodelist') {
+                slideCell = opts.slideCell[0];
+            }
+            if (!slideCell) {
+                return;
+            }
+            //简单模拟jquery选择器
+            var obj = function obj(str, parEle) {
+                str = str.split(" ");
+                var par = [];
+                parEle = parEle || document;
+                var retn = [parEle];
+                for (var attr in str) {
+                    if (str.hasOwnProperty(attr)) {
+                        if (str[attr].length != 0) {
+                            par.push(str[attr]);
+                        }
+                    }
+                }
+                //去掉重复空格
+                for (var i in par) {
+                    if (par.hasOwnProperty(i)) {
+                        if (retn.length == 0) {
+                            return false;
+                        }
+                        var _retn = [];
+                        for (var r in retn) {
+                            if (retn.hasOwnProperty(r)) {
+                                if (par[i][0] == "#") {
+                                    _retn.push(document.getElementById(par[i].replace("#", "")));
+                                } else if (par[i][0] == ".") {
+                                    var tag = retn[r].getElementsByTagName('*');
+                                    for (var j = 0; j < tag.length; j++) {
+                                        var cln = tag[j].className;
+                                        if (cln && cln.search(new RegExp("\\b" + par[i].replace(".", "") + "\\b")) != -1) {
+                                            _retn.push(tag[j]);
+                                        }
+                                    }
+                                } else {
+                                    var tag2 = retn[r].getElementsByTagName(par[i]);
+                                    for (var k = 0; k < tag2.length; k++) {
+                                        _retn.push(tag2[k]);
+                                    }
+                                }
+                            }
+                        }
+                        retn = _retn;
+                    }
+                }
+                return retn.length == 0 || retn[0] == parEle ? false : retn;
+            };
+            // 创建包裹层
+            var wrap = function wrap(el, v) {
+                var tmp = document.createElement('div');
+                tmp.innerHTML = v;
+                tmp = tmp.children[0];
+                var _el = el.cloneNode(true);
+                tmp.appendChild(_el);
+                el.parentNode.replaceChild(tmp, el);
+                conBox = _el; // 重置conBox
+                return tmp;
+            };
+            // class处理
+            var addClass = function addClass(ele, className) {
+                if (!ele || !className || ele.className && ele.className.search(new RegExp("\\b" + className + "\\b")) != -1) {
+                    return;
+                }
+                ele.className += (ele.className ? " " : "") + className;
+            };
+            var removeClass = function removeClass(ele, className) {
+                if (!ele || !className || ele.className && ele.className.search(new RegExp("\\b" + className + "\\b")) == -1) {
+                    return;
+                }
+                ele.className = ele.className.replace(new RegExp("\\s*\\b" + className + "\\b", "g"), "");
+            };
+            //全局对象
+            var effect = opts.effect;
+            var prevBtn = obj(opts.prevCell, slideCell)[0];
+            var nextBtn = obj(opts.nextCell, slideCell)[0];
+            var pageState = obj(opts.pageStateCell)[0];
+            var conBox = obj(opts.mainCell, slideCell)[0]; //内容元素父层对象
+            if (!conBox) {
+                return;
+            }
+            var conBoxSize = conBox.children.length;
+            var navObj = obj(opts.titCell, slideCell); //导航子元素结合
+            var navObjSize = navObj ? navObj.length : conBoxSize;
+            /*字符串转换*/
+            var index = parseInt(opts.defaultIndex);
+            var delayTime = parseInt(opts.delayTime);
+            var interTime = parseInt(opts.interTime);
+            var autoPlay = !(opts.autoPlay == "false" || opts.autoPlay == false);
+            var autoPage = !(opts.autoPage == "false" || opts.autoPage == false);
+            var loop = !(opts.pnLoop == "false" || opts.pnLoop == false);
+            var oldIndex = index;
+            var inter = null; // autoPlay的setInterval
+            var timeout = null; // leftLoop的setTimeout
+            var endTimeout = null; //translate的setTimeout
+            var startX = 0;
+            var startY = 0;
+            var distX = 0;
+            var distY = 0;
+            //var dist = 0; //手指滑动距离
+            var isTouchPad = /hp-tablet/gi.test(navigator.appVersion);
+            var hasTouch = 'ontouchstart' in window && !isTouchPad;
+            var touchStart = hasTouch ? 'touchstart' : 'mousedown';
+            var touchMove = hasTouch ? 'touchmove' : '';
+            var touchEnd = hasTouch ? 'touchend' : 'mouseup';
+            var slideW = conBox.parentNode.clientWidth; // mainCell滑动距离
+            var twCell;
+            var scrollY;
+            var tempSize = conBoxSize;
+            //处理分页
+            if (navObjSize == 0) {
+                navObjSize = conBoxSize;
+            }
+            if (autoPage) {
+                navObjSize = conBoxSize;
+                navObj = navObj[0];
+                navObj.innerHTML = "";
+                var str = "";
+
+                if (opts.autoPage == true || opts.autoPage == "true") {
+                    for (var i = 0; i < navObjSize; i++) {
+                        str += "<li>" + (i + 1) + "</li>";
+                    }
+                } else {
+                    for (var x = 0; x < navObjSize; x++) {
+                        str += opts.autoPage.replace("$", x + 1);
+                    }
+                }
+                navObj.innerHTML = str;
+                navObj = navObj.children; //重置navObj
+            }
+            if (effect == "leftLoop") {
+                tempSize += 2;
+                conBox.appendChild(conBox.children[0].cloneNode(true));
+                conBox.insertBefore(conBox.children[conBoxSize - 1].cloneNode(true), conBox.children[0]);
+            }
+            twCell = wrap(conBox, '<div class="tempWrap" style="height:inherit;overflow:hidden; position:relative;"></div>');
+            conBox.style.cssText = "display:flex;width:" + tempSize * slideW + "px;" + "position:relative;overflow:hidden;padding:0;margin:0;";
+            for (var y = 0; y < tempSize; y++) {
+                conBox.children[y].style.cssText = "height:inherit;display:flex;align-items: center;justify-content: center;width:" + slideW + "px";
+            }
+            var doStartFun = function doStartFun() {
+                if (typeof opts.startFun == 'function') {
+                    opts.startFun(index, navObjSize);
+                }
+            };
+            var doEndFun = function doEndFun() {
+                if (typeof opts.endFun == 'function') {
+                    opts.endFun(index, navObjSize);
+                }
+            };
+            //动态设置滑动宽度
+            var orientationChange = function orientationChange() {
+                slideW = twCell.clientWidth;
+                conBox.style.width = tempSize * slideW + "px";
+                for (var i = 0; i < tempSize; i++) {
+                    conBox.children[i].style.width = slideW + "px";
+                }
+                var ind = effect == "leftLoop" ? index + 1 : index;
+                translate(-ind * slideW, 0);
+            };
+            window.addEventListener("resize", orientationChange, false);
+            //滑动效果
+            var translate = function translate(dist, speed, ele) {
+                if (!!ele) {
+                    ele = ele.style;
+                } else {
+                    ele = conBox.style;
+                }
+                ele.webkitTransitionDuration = ele.MozTransitionDuration = ele.msTransitionDuration = ele.OTransitionDuration = ele.transitionDuration = speed + 'ms';
+                ele.webkitTransform = 'translate(' + dist + 'px,0)' + 'translateZ(0)';
+                ele.msTransform = ele.MozTransform = ele.OTransform = 'translateX(' + dist + 'px)';
+            };
+            //效果函数
+            var doPlay = function doPlay(isTouch) {
+                switch (effect) {
+                    case "left":
+                        if (index >= navObjSize) {
+                            index = isTouch ? index - 1 : 0;
+                        } else if (index < 0) {
+                            index = isTouch ? 0 : navObjSize - 1;
+                        }
+                        translate(-index * slideW, delayTime);
+                        oldIndex = index;
+                        break;
+                    case "leftLoop":
+                        translate(-(index + 1) * slideW, delayTime);
+                        if (index == -1) {
+                            timeout = setTimeout(function () {
+                                translate(-navObjSize * slideW, 0);
+                            }, delayTime);
+                            index = navObjSize - 1;
+                        } else if (index == navObjSize) {
+                            timeout = setTimeout(function () {
+                                translate(-slideW, 0);
+                            }, delayTime);
+                            index = 0;
+                        }
+                        oldIndex = index;
+                        break;
+
+                }
+                //预加载
+                (function () {
+                    var nowIndex = effect == "leftLoop" ? index + 1 : index;
+                    var allImage = conBox.querySelectorAll(opts.switchLoadClass);
+                    var changeImagesSrc = function changeImagesSrc(img) {
+                        if (img) {
+                            var imgSwitchSrc = img.getAttribute(opts.switchLoad);
+                            if (!imgSwitchSrc) {
+                                return false;
+                            }
+                            if (img.tagName.toLowerCase() == 'img') {
+                                img.src = imgSwitchSrc;
+                            } else {
+                                img.style.backgroundImage = "url(" + imgSwitchSrc + ")";
+                            }
+                        }
+                    };
+                    if (allImage.length > 0) {
+                        changeImagesSrc(allImage[nowIndex]);
+                        changeImagesSrc(allImage[nowIndex - 1]);
+                        changeImagesSrc(allImage[nowIndex + 1]);
+                    }
+                })();
+                doStartFun();
+                endTimeout = setTimeout(function () {
+                    doEndFun();
+                }, delayTime);
+                //给按钮区域的切换每一项加上className
+                for (var i = 0; i < navObjSize; i++) {
+                    removeClass(navObj[i], opts.titOnClassName);
+                    if (i == index) {
+                        addClass(navObj[i], opts.titOnClassName);
+                    }
+                }
+                /*
+                 * 给主体区域的切换每一项加上className
+                 * 注:如果想配合className写css3小效果,建议使用effect属性的left值
+                 * 否则切换到尾帧和切换到首帧时,视觉上的体验不好
+                 * */
+                // (function () {
+                //     var nowJ = effect == "leftLoop" ? index + 1 : index;
+                //     for (var j = 0; j < conBox.children.length; j++) {
+                //         removeClass(conBox.children[j], opts.titOnClassName);
+                //         if (j == nowJ) {
+                //             addClass(conBox.children[j], opts.titOnClassName);
+                //         }
+                //     }
+                // })();
+                //loop控制是否继续循环
+                if (loop == false) {
+                    removeClass(nextBtn, "nextStop");
+                    removeClass(prevBtn, "prevStop");
+                    if (index == 0) {
+                        addClass(prevBtn, "prevStop");
+                    } else if (index == navObjSize - 1) {
+                        addClass(nextBtn, "nextStop");
+                    }
+                }
+                if (pageState) {
+                    pageState.innerHTML = "<span>" + (index + 1) + "</span>/" + navObjSize;
+                }
+            };
+            //初始化执行
+            doPlay();
+            //自动播放
+            if (autoPlay) {
+                inter = setInterval(function () {
+                    index++;
+                    doPlay();
+                }, interTime);
+            }
+            //点击事件
+            if (navObj) {
+                for (var z = 0; z < navObjSize; z++) {
+                    (function () {
+                        var j = z;
+                        navObj[j].addEventListener('click', function () {
+                            clearTimeout(timeout);
+                            clearTimeout(endTimeout);
+                            index = j;
+                            doPlay();
+                        });
+                    })();
+                }
+            }
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function () {
+                    if (loop == true || index != navObjSize - 1) {
+                        clearTimeout(timeout);
+                        clearTimeout(endTimeout);
+                        index++;
+                        doPlay();
+                    }
+                });
+            }
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function () {
+                    if (loop == true || index != 0) {
+                        clearTimeout(timeout);
+                        clearTimeout(endTimeout);
+                        index--;
+                        doPlay();
+                    }
+                });
+            }
+            //触摸开始函数
+            var tStart = function tStart(e) {
+                clearTimeout(timeout);
+                clearTimeout(endTimeout);
+                scrollY = undefined;
+                distX = 0;
+                var point = hasTouch ? e.touches[0] : e;
+                startX = point.pageX;
+                startY = point.pageY;
+                //添加“触摸移动”事件监听
+                conBox.addEventListener(touchMove, tMove, false);
+                //添加“触摸结束”事件监听
+                conBox.addEventListener(touchEnd, tEnd, false);
+            };
+            //触摸移动函数
+            var tMove = function tMove(e) {
+                if (hasTouch) {
+                    if (e.touches.length > 1 || e.scale && e.scale !== 1) {
+                        return;
+                    }
+                }
+                //多点或缩放
+                var point = hasTouch ? e.touches[0] : e;
+                distX = point.pageX - startX;
+                distY = point.pageY - startY;
+                if (typeof scrollY == 'undefined') {
+                    scrollY = !!(scrollY || Math.abs(distX) < Math.abs(distY));
+                }
+                if (!scrollY) {
+                    e.preventDefault();
+                    if (autoPlay) {
+                        clearInterval(inter);
+                    }
+                    switch (effect) {
+                        case "left":
+                            if (index == 0 && distX > 0 || index >= navObjSize - 1 && distX < 0) {
+                                distX = distX * 0.4;
+                            }
+                            translate(-index * slideW + distX, 0);
+                            break;
+                        case "leftLoop":
+                            translate(-(index + 1) * slideW + distX, 0);
+                            break;
+                    }
+                }
+            };
+            //触摸结束函数
+            var tEnd = function tEnd(e) {
+                if (distX == 0) {
+                    return;
+                }
+                e.preventDefault();
+                if (!scrollY) {
+                    if (Math.abs(distX) > slideW / 10) {
+                        distX > 0 ? index-- : index++;
+                    }
+                    doPlay(true);
+                    if (autoPlay) {
+                        inter = setInterval(function () {
+                            index++;
+                            doPlay();
+                        }, interTime);
+                    }
+                }
+
+                conBox.removeEventListener(touchMove, tMove, false);
+                conBox.removeEventListener(touchEnd, tEnd, false);
+            };
+            //添加“触摸开始”事件监听
+            conBox.addEventListener(touchStart, tStart, false);
+        };
+
+        module.exports = TouchSlide;
+    }, {}], 13: [function (require, module, exports) {
+        var extend = require('../tools/extend'); //对象的扩展方法
+        var objRemoveQuote = require('../tools/obj-remove-quote'); //对象移除引用
+
+        //构造函数的继承(拷贝继承)
+        function constructorInherit(json) {
+            var opts = extend({
+                defaults: {
+                    superType: null, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
+                    parameter: {} //默认参数(这个必须传的是一个对象,或者不传值)
+                },
+                inherits: json
+            });
+            //超类型(需要是个构造函数)
+            var SuperType = opts.superType;
+            //子类型的默认参数(需要是个对象)
+            var parameter = opts.parameter;
+            //如果超类型不存在
+            if (Object.prototype.toString.call(SuperType).toLowerCase().slice(8, -1) != 'function') {
+                console.log('no find SuperType or SuperType error');
+                return false;
+            }
+            //子类型
+            function SubType(json) {
+                //子类型自身的属性
+                /*
+                 * 注意:
+                 * defaults要防止对象的引用(如果不防止的话,会出现BUG)
+                 * 例如 wrap的默认值是'.g-wrap'
+                 * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
+                 * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
+                 * 但是由于对象引用的原因,这里的值会变成'body'
+                 * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
+                 * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
+                 * 所以我就封装了一个移除对象引用的函数
+                 * */
+                this.opts = extend({
+                    defaults: objRemoveQuote({ obj: parameter }),
+                    inherits: json
+                });
+                //子类型继承超类型的属性
+                opts.superType.call(this, this.opts);
+            }
+
+            //子类型继承超类型的方法
+            for (var attr in SuperType.prototype) {
+                if (SuperType.prototype.hasOwnProperty(attr)) {
+                    SubType.prototype[attr] = SuperType.prototype[attr];
+                }
+            }
+            return SubType;
+        }
+
+        module.exports = constructorInherit;
+    }, { "../tools/extend": 14, "../tools/obj-remove-quote": 15 }], 14: [function (require, module, exports) {
+        //对象的扩展方法
+        function extend(json) {
+            var opts = json || {};
+            opts.defaults = opts.defaults || {}; //默认对象
+            opts.inherits = opts.inherits || {}; //继承对像
+            opts.isDeep = opts.isDeep == false ? opts.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
+            var defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
+            var inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
+            if (defaultsType == inheritsType && opts.isDeep) {
+                if (defaultsType == 'object' || defaultsType == 'array') {
+                    //当为对象或者为数组
+                    for (var attr in opts.inherits) {
+                        if (opts.inherits.hasOwnProperty(attr)) {
+                            var attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
+                            var attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
+                            if (attrDefaultsType == attrInheritsType && opts.isDeep) {
+                                //类型相同
+                                if (attrDefaultsType == 'object' || attrDefaultsType == 'array') {
+                                    //当为对象或者为数组
+                                    extend({ defaults: opts.defaults[attr], inherits: opts.inherits[attr] });
+                                } else {
+                                    opts.defaults[attr] = opts.inherits[attr];
+                                }
+                            } else {
+                                //类型不同,直接后面的覆盖前面的
+                                opts.defaults[attr] = opts.inherits[attr];
+                            }
+                        }
+                    }
+                } else {
+                    opts.defaults = opts.inherits;
+                }
+            } else {
+                opts.defaults = opts.inherits;
+            }
+            return opts.defaults;
+        }
+        // var obj1 = extend({
+        //     defaults: {
+        //         a: 'a',
+        //         b: {
+        //             b1: 'b1',
+        //             b2: 'b2',
+        //             b3: {
+        //                 c1: 'c1'
+        //             }
+        //         }
+        //     },
+        //     inherits: {
+        //         a: 0,
+        //         b: {
+        //             b2: 1,
+        //             b3: {
+        //                 c2: 2
+        //             }
+        //         }
+        //     }
+        // });
+        // console.log(obj1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
+        // var obj2 = extend({
+        //     defaults: {
+        //         a: [
+        //             0,
+        //             [9, 8, 7],
+        //             {
+        //                 arr: [
+        //                     1,
+        //                     2,
+        //                     3,
+        //                     [7, 9, 10],
+        //                     {good: 'good'}
+        //                 ]
+        //             }
+        //         ],
+        //         b: [
+        //             {a1: 'a1'},
+        //             {a2: 'a2'}
+        //         ]
+        //     },
+        //     inherits: {
+        //         a: [
+        //             1,
+        //             [3, 1],
+        //             {
+        //                 arr: [
+        //                     8,
+        //                     8,
+        //                     8,
+        //                     [6, 8]
+        //                 ]
+        //             }
+        //         ],
+        //         b: [
+        //             'what?',
+        //             {b1: 'b1'},
+        //             {b2: 'b2'}
+        //         ]
+        //     }
+        // });
+        // console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
+
+        module.exports = extend;
+    }, {}], 15: [function (require, module, exports) {
+        //移除对象引用
+        function objRemoveQuote(json) {
+            var opts = json || {};
+            var obj = opts.obj; //这里一定不能给默认值
+            var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+            if (objType != 'object' && objType != 'array') {
+                return obj;
+            }
+            var newObj = {};
+            if (objType == 'array') {
+                newObj = [];
+            }
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) {
+                    newObj[attr] = objRemoveQuote({ obj: obj[attr] });
+                }
+            }
+            return newObj;
+        }
+
+        module.exports = objRemoveQuote;
+    }, {}] }, {}, [1]);

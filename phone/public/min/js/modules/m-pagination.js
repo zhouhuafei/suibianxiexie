@@ -1,1 +1,657 @@
-"use strict";!function e(t,o,n){function i(s,a){if(!o[s]){if(!t[s]){var l="function"==typeof require&&require;if(!a&&l)return l(s,!0);if(r)return r(s,!0);throw new Error("Cannot find module '"+s+"'")}var m=o[s]={exports:{}};t[s][0].call(m.exports,function(e){var o=t[s][1][e];return i(o?o:e)},m,m.exports,e,t,o,n)}return o[s].exports}for(var r="function"==typeof require&&require,s=0;s<n.length;s++)i(n[s]);return i}({1:[function(e,t,o){var n=e("../function/create-element"),i=e("../tools/constructor-inherit"),r=e("../modules/m-super-type"),s={nowCount:10,allCount:100,nowPage:1,allPage:null};s.allPage=Math.ceil(s.allCount/s.nowCount);var a=i({superType:r,parameter:{callback:{prevPage:function(){},nextPage:function(){},selectPage:function(){}},config:{},data:s}});a.prototype.moduleDomCreate=function(){this.moduleDom=n({style:this.opts.config.moduleDomStyle,custom:this.opts.config.moduleDomCustomAttr,attribute:{className:"m-pagination",innerHTML:'\n                <div class="m-pagination-txt">第</div>\n                <div class="m-pagination-now-page">\n                    <label class="g-select">\n                        <span class="g-select-wrap">\n                            <select class="g-select-select">\n                                '+this.renderOption()+'\n                            </select>\n                            <span class="g-select-mark iconfont icon-select"></span>\n                        </span>\n                    </label>\n                </div>\n                <div class="m-pagination-txt">页</div>\n                <a href="javascript:;" class="m-pagination-btn m-pagination-btn-inactive iconfont icon-shangyiye"></a>\n                <a href="javascript:;" class="m-pagination-btn iconfont icon-xiayiye"></a>\n            '}}),this.prevDom=this.moduleDom.querySelectorAll(".m-pagination-btn")[0],this.nextDom=this.moduleDom.querySelectorAll(".m-pagination-btn")[1],this.btnInactiveClass="m-pagination-btn-inactive",this.selectDom=this.moduleDom.querySelector(".m-pagination-now-page .g-select-select")},a.prototype.renderOption=function(){for(var e="",t=0;t<this.opts.data.allPage;t++)e+='<option value="'+(t+1)+'">'+(t+1)+"</option>";return e},a.prototype.power=function(){var e=this,t=this.opts.data;1==t.nowPage&&this.prevPageDisable(),t.nowPage==t.allPage&&this.nextPageDisable(),this.prevDom.addEventListener("click",function(){this.classList.contains(e.btnInactiveClass)||e.prevPage()}),this.nextDom.addEventListener("click",function(){this.classList.contains(e.btnInactiveClass)||e.nextPage()}),this.selectDom.addEventListener("change",function(){e.selectPage()})},a.prototype.prevPage=function(){var e=this.opts.data;if(e.nowPage>1){e.nowPage--;var t=this.selectDom.querySelector("option:checked");t.previousElementSibling&&(t.selected=!1,t.previousElementSibling.selected=!0),this.nextPageEnable(),this.opts.callback.prevPage(this)}1==e.nowPage&&this.prevPageDisable(),console.log(e)},a.prototype.nextPage=function(){var e=this.opts.data;if(e.nowPage<e.allPage){e.nowPage++;var t=this.selectDom.querySelector("option:checked");t.nextElementSibling&&(t.selected=!1,t.nextElementSibling.selected=!0),this.prevPageEnable(),this.opts.callback.nextPage(this)}e.nowPage==e.allPage&&this.nextPageDisable(),console.log(e)},a.prototype.selectPage=function(){var e=this.opts.data;e.nowPage=this.selectDom.value,this.nextPageEnable(),this.prevPageEnable(),1==e.nowPage&&this.prevPageDisable(),e.nowPage==e.allPage&&this.nextPageDisable(),this.opts.callback.selectPage(this),console.log(e)},a.prototype.prevPageDisable=function(){this.prevDom.classList.add(this.btnInactiveClass)},a.prototype.prevPageEnable=function(){this.prevDom.classList.remove(this.btnInactiveClass)},a.prototype.nextPageDisable=function(){this.nextDom.classList.add(this.btnInactiveClass)},a.prototype.nextPageEnable=function(){this.nextDom.classList.remove(this.btnInactiveClass)},t.exports=a},{"../function/create-element":2,"../modules/m-super-type":4,"../tools/constructor-inherit":5}],2:[function(e,t,o){function n(e){var t=e||{};t.elementName=t.elementName||"div",t.style=t.style||"",t.custom=t.custom||{},t.attribute=t.attribute||{};var o=document.createElement(t.elementName);t.style&&o.setAttribute("style",t.style);for(var n in t.custom)t.custom.hasOwnProperty(n)&&o.setAttribute("data-"+n,t.custom[n]);for(var i in t.attribute)t.attribute.hasOwnProperty(i)&&(o[i]=t.attribute[i]);return o}t.exports=n},{}],3:[function(e,t,o){function n(e){var t=e||{},o=[],n=!!t.element&&t.element;return n&&("string"==Object.prototype.toString.call(n).slice(8,-1).toLowerCase()&&(o=[].slice.call(document.querySelectorAll(n))),1==n.nodeType&&(o=[n]),"htmlcollection"!=Object.prototype.toString.call(n).slice(8,-1).toLowerCase()&&"nodelist"!=Object.prototype.toString.call(n).slice(8,-1).toLowerCase()||(o=[].slice.call(n))),o}t.exports=n},{}],4:[function(e,t,o){function n(e){this.opts=i({defaults:{wrap:".g-wrap",callback:{moduleDomCreateBefore:function(e){},moduleDomCreateAfter:function(e){},moduleDomRenderBefore:function(e){},moduleDomRenderAfter:function(e){},moduleDomRemoveBefore:function(e){},moduleDomRemoveAfter:function(e){},moduleDomShowBefore:function(e){},moduleDomShowAfter:function(e){},moduleDomHideBefore:function(e){},moduleDomHideAfter:function(e){},wrapDomCreateBefore:function(e){},wrapDomCreateAfter:function(e){},wrapDomRenderBefore:function(e){},wrapDomRenderAfter:function(e){},wrapDomRemoveBefore:function(e){},wrapDomRemoveAfter:function(e){}},config:{moduleDomCustomAttr:{},moduleDomRenderMethod:{method:"appendChild",child:null},moduleDomStyle:"",moduleDomIsShow:!0,moduleDomIsClearTimer:!0},data:{}},inherits:e}),this.moduleDom=null,this.wrapDom=null,this.moduleDomTimer={},this.init()}var i=e("../tools/extend"),r=e("../function/create-element"),s=e("../function/get-dom-array");n.prototype.init=function(){this.render(),this.power()},n.prototype.render=function(){this.moduleDomRender(),this.wrapDomRender()},n.prototype.power=function(){},n.prototype.moduleDomCreate=function(){this.moduleDom=r({style:this.opts.config.moduleDomStyle,custom:this.opts.config.moduleDomCustomAttr,attribute:{className:"m-super-type",innerHTML:'\n                <div class="m-super-type-txt">周华飞爱侯丽杰,侯丽杰爱周华飞</div>\n            '}})},n.prototype.moduleDomRender=function(){this.moduleDomRemove();var e=this.opts.callback;e.moduleDomCreateBefore(this),this.moduleDomCreate(),e.moduleDomCreateAfter(this)},n.prototype.moduleDomRemove=function(){var e=this.opts.callback;e.moduleDomRemoveBefore(this),this.moduleDom&&this.moduleDom.parentNode&&this.moduleDom.parentNode.removeChild(this.moduleDom),this.moduleDomClearTimer(),e.moduleDomRemoveAfter(this)},n.prototype.moduleDomClearTimer=function(){if(this.opts.config.moduleDomIsClearTimer)for(var e in this.moduleDomTimer)this.moduleDomTimer.hasOwnProperty(e)&&(clearInterval(this.moduleDomTimer[e]),clearTimeout(this.moduleDomTimer[e]))},n.prototype.moduleDomShow=function(){var e=this.opts.callback;e.moduleDomShowBefore(this),this.wrapDom&&(this.opts.config.moduleDomIsShow=!0,this.wrapDomRenderMethod()),e.moduleDomShowAfter(this)},n.prototype.moduleDomHide=function(){var e=this.opts.callback;e.moduleDomHideBefore(this),this.moduleDom.parentNode&&(this.moduleDom.parentNode.removeChild(this.moduleDom),this.opts.config.moduleDomIsShow=!1),e.moduleDomHideAfter(this)},n.prototype.wrapDomCreate=function(){this.wrapDom=s({element:this.opts.wrap})[0]},n.prototype.wrapDomRender=function(){var e=this.opts.callback;e.wrapDomCreateBefore(this),this.wrapDomCreate(),e.wrapDomCreateAfter(this),this.wrapDom&&(e.moduleDomRenderBefore(this),e.wrapDomRenderBefore(this),this.wrapDomRenderMethod(),e.wrapDomRenderAfter(this),e.moduleDomRenderAfter(this))},n.prototype.wrapDomRenderMethod=function(){var e=this.opts.config;if(e.moduleDomIsShow){var t=e.moduleDomRenderMethod;if("insertBefore"==t.method){var o=s({element:t.child})[0];o?this.wrapDom.insertBefore(this.moduleDom,o):this.wrapDom.insertBefore(this.moduleDom,this.wrapDom.children[0])}"appendChild"==t.method&&this.wrapDom.appendChild(this.moduleDom)}},n.prototype.wrapDomRemove=function(){var e=this.opts.callback;e.wrapDomRemoveBefore(this),this.moduleDomRemove(),this.wrapDom&&this.wrapDom.parentNode.removeChild(this.wrapDom),e.wrapDomRemoveAfter(this)},n.prototype.getModuleDomHtml=function(){return this.moduleDom.outerHTML},t.exports=n},{"../function/create-element":2,"../function/get-dom-array":3,"../tools/extend":6}],5:[function(e,t,o){function n(e){function t(e){this.opts=i({defaults:r({obj:s}),inherits:e}),o.superType.call(this,this.opts)}var o=i({defaults:{superType:null,parameter:{}},inherits:e}),n=o.superType,s=o.parameter;if("function"!=Object.prototype.toString.call(n).toLowerCase().slice(8,-1))return console.log("no find SuperType or SuperType error"),!1;for(var a in n.prototype)n.prototype.hasOwnProperty(a)&&(t.prototype[a]=n.prototype[a]);return t}var i=e("../tools/extend"),r=e("../tools/obj-remove-quote");t.exports=n},{"../tools/extend":6,"../tools/obj-remove-quote":7}],6:[function(e,t,o){function n(e){var t=e||{};t.defaults=t.defaults||{},t.inherits=t.inherits||{},t.isDeep=0!=t.isDeep||t.isDeep;var o=Object.prototype.toString.call(t.defaults).slice(8,-1).toLowerCase(),i=Object.prototype.toString.call(t.inherits).slice(8,-1).toLowerCase();if(o==i&&t.isDeep)if("object"==o||"array"==o){for(var r in t.inherits)if(t.inherits.hasOwnProperty(r)){var s=Object.prototype.toString.call(t.defaults[r]).slice(8,-1).toLowerCase(),a=Object.prototype.toString.call(t.inherits[r]).slice(8,-1).toLowerCase();s==a&&t.isDeep&&("object"==s||"array"==s)?n({defaults:t.defaults[r],inherits:t.inherits[r]}):t.defaults[r]=t.inherits[r]}}else t.defaults=t.inherits;else t.defaults=t.inherits;return t.defaults}t.exports=n},{}],7:[function(e,t,o){function n(e){var t=e||{},o=t.obj,i=Object.prototype.toString.call(o).slice(8,-1).toLowerCase();if("object"!=i&&"array"!=i)return o;var r={};"array"==i&&(r=[]);for(var s in o)o.hasOwnProperty(s)&&(r[s]=n({obj:o[s]}));return r}t.exports=n},{}]},{},[1]);
+"use strict";
+
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);throw new Error("Cannot find module '" + o + "'");
+            }var f = n[o] = { exports: {} };t[o][0].call(f.exports, function (e) {
+                var n = t[o][1][e];return s(n ? n : e);
+            }, f, f.exports, e, t, n, r);
+        }return n[o].exports;
+    }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+        s(r[o]);
+    }return s;
+})({ 1: [function (require, module, exports) {
+        var createElement = require('../function/create-element'); //创建元素节点
+        var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
+        var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
+
+        //默认数据
+        var defaultData = {
+            nowCount: 10, //当前页的数据条数
+            allCount: 100, //数据总条数
+            nowPage: 1, //当前页
+            allPage: null //总页数
+        };
+        defaultData.allPage = Math.ceil(defaultData.allCount / defaultData.nowCount);
+
+        //子类型
+        var SubType = constructorInherit({
+            superType: SuperType,
+            //默认参数(继承超类型)
+            parameter: {
+                //回调
+                callback: {
+                    //上一页的回调
+                    prevPage: function prevPage() {},
+                    //下一页的回调
+                    nextPage: function nextPage() {},
+                    //选择某一页的回调
+                    selectPage: function selectPage() {}
+                },
+                //配置
+                config: {},
+                //数据
+                data: defaultData
+            }
+        });
+
+        //内部模块的创建(覆盖超类型)
+        SubType.prototype.moduleDomCreate = function () {
+            this.moduleDom = createElement({
+                style: this.opts.config.moduleDomStyle,
+                custom: this.opts.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-pagination",
+                    innerHTML: "\n                <div class=\"m-pagination-txt\">\u7B2C</div>\n                <div class=\"m-pagination-now-page\">\n                    <label class=\"g-select\">\n                        <span class=\"g-select-wrap\">\n                            <select class=\"g-select-select\">\n                                " + this.renderOption() + "\n                            </select>\n                            <span class=\"g-select-mark iconfont icon-select\"></span>\n                        </span>\n                    </label>\n                </div>\n                <div class=\"m-pagination-txt\">\u9875</div>\n                <a href=\"javascript:;\" class=\"m-pagination-btn m-pagination-btn-inactive iconfont icon-shangyiye\"></a>\n                <a href=\"javascript:;\" class=\"m-pagination-btn iconfont icon-xiayiye\"></a>\n            "
+                }
+            });
+            this.prevDom = this.moduleDom.querySelectorAll('.m-pagination-btn')[0]; //上一页的按钮
+            this.nextDom = this.moduleDom.querySelectorAll('.m-pagination-btn')[1]; //下一页的按钮
+            this.btnInactiveClass = 'm-pagination-btn-inactive'; //上一页和下一页的禁用状态
+            this.selectDom = this.moduleDom.querySelector('.m-pagination-now-page .g-select-select'); //选择某一页的按钮
+        };
+
+        //渲染第几页里面的页码
+        SubType.prototype.renderOption = function () {
+            var html = "";
+            for (var i = 0; i < this.opts.data.allPage; i++) {
+                html += "<option value=\"" + (i + 1) + "\">" + (i + 1) + "</option>";
+            }
+            return html;
+        };
+
+        //功能(覆盖超类型)
+        SubType.prototype.power = function () {
+            var self = this;
+            var data = this.opts.data;
+            if (data.nowPage == 1) {
+                this.prevPageDisable();
+            }
+            if (data.nowPage == data.allPage) {
+                this.nextPageDisable();
+            }
+
+            this.prevDom.addEventListener('click', function () {
+                if (!this.classList.contains(self.btnInactiveClass)) {
+                    self.prevPage();
+                }
+            });
+
+            this.nextDom.addEventListener('click', function () {
+                if (!this.classList.contains(self.btnInactiveClass)) {
+                    self.nextPage();
+                }
+            });
+
+            this.selectDom.addEventListener('change', function () {
+                self.selectPage();
+            });
+        };
+
+        //上一页
+        SubType.prototype.prevPage = function () {
+            var data = this.opts.data;
+            if (data.nowPage > 1) {
+                data.nowPage--;
+                var oldChecked = this.selectDom.querySelector('option:checked');
+                if (oldChecked.previousElementSibling) {
+                    oldChecked.selected = false;
+                    oldChecked.previousElementSibling.selected = true;
+                }
+                this.nextPageEnable();
+                this.opts.callback.prevPage(this);
+            }
+            if (data.nowPage == 1) {
+                this.prevPageDisable();
+            }
+            console.log(data);
+        };
+
+        //下一页
+        SubType.prototype.nextPage = function () {
+            var data = this.opts.data;
+            if (data.nowPage < data.allPage) {
+                data.nowPage++;
+                var oldChecked = this.selectDom.querySelector('option:checked');
+                if (oldChecked.nextElementSibling) {
+                    oldChecked.selected = false;
+                    oldChecked.nextElementSibling.selected = true;
+                }
+                this.prevPageEnable();
+                this.opts.callback.nextPage(this);
+            }
+            if (data.nowPage == data.allPage) {
+                this.nextPageDisable();
+            }
+            console.log(data);
+        };
+
+        //选择第几页
+        SubType.prototype.selectPage = function () {
+            var data = this.opts.data;
+            data.nowPage = this.selectDom.value;
+            this.nextPageEnable();
+            this.prevPageEnable();
+            if (data.nowPage == 1) {
+                this.prevPageDisable();
+            }
+            if (data.nowPage == data.allPage) {
+                this.nextPageDisable();
+            }
+            this.opts.callback.selectPage(this);
+            console.log(data);
+        };
+
+        //上一页禁用
+        SubType.prototype.prevPageDisable = function () {
+            this.prevDom.classList.add(this.btnInactiveClass);
+        };
+
+        //上一页启用
+        SubType.prototype.prevPageEnable = function () {
+            this.prevDom.classList.remove(this.btnInactiveClass);
+        };
+
+        //下一页禁用
+        SubType.prototype.nextPageDisable = function () {
+            this.nextDom.classList.add(this.btnInactiveClass);
+        };
+
+        //下一页启用
+        SubType.prototype.nextPageEnable = function () {
+            this.nextDom.classList.remove(this.btnInactiveClass);
+        };
+
+        module.exports = SubType;
+    }, { "../function/create-element": 2, "../modules/m-super-type": 4, "../tools/constructor-inherit": 5 }], 2: [function (require, module, exports) {
+        //创建元素节点
+        function createElement(json) {
+            var opts = json || {};
+            opts.elementName = opts.elementName || 'div'; //标签名称
+            opts.style = opts.style || ""; //style样式
+            opts.custom = opts.custom || {}; //自定义属性
+            opts.attribute = opts.attribute || {}; //普通属性,checked,selected
+            var elementNode = document.createElement(opts.elementName); //元素节点
+            if (opts.style) {
+                elementNode.setAttribute('style', opts.style);
+            }
+            for (var attr1 in opts.custom) {
+                if (opts.custom.hasOwnProperty(attr1)) {
+                    elementNode.setAttribute('data-' + attr1, opts.custom[attr1]);
+                }
+            }
+            for (var attr0 in opts.attribute) {
+                if (opts.attribute.hasOwnProperty(attr0)) {
+                    elementNode[attr0] = opts.attribute[attr0];
+                }
+            }
+            return elementNode;
+        }
+
+        module.exports = createElement;
+    }, {}], 3: [function (require, module, exports) {
+        //获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
+        function getDomArray(json) {
+            var opts = json || {};
+            var dom = [];
+            var element = opts.element ? opts.element : false;
+            if (element) {
+                //如果是字符串
+                if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'string') {
+                    dom = [].slice.call(document.querySelectorAll(element));
+                }
+                //如果是dom节点(一个元素)    原生的
+                if (element.nodeType == 1) {
+                    dom = [element];
+                }
+                /*
+                 * 如果是dom集合(一组元素)    HtmlCollection(通过getElementsBy系列获取到的)
+                 * 如果是dom集合(一组元素)    NodeList(通过querySelectorAll获取到的)
+                 * */
+                if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'htmlcollection' || Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'nodelist') {
+                    dom = [].slice.call(element);
+                }
+            }
+            return dom;
+        }
+
+        module.exports = getDomArray;
+    }, {}], 4: [function (require, module, exports) {
+        var extend = require('../tools/extend'); //对象的扩展方法
+        var createElement = require('../function/create-element'); //创建元素节点
+        var getDomArray = require('../function/get-dom-array'); //获取原生的dom节点并转换成数组
+
+        //底层构造函数
+        function SuperType(json) {
+            //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
+            this.opts = extend({
+                //内部默认参数
+                defaults: {
+                    //父级
+                    wrap: ".g-wrap", //这个仅支持传入选择器和原生dom节点
+                    //回调
+                    callback: {
+                        //内部模块创建之前
+                        moduleDomCreateBefore: function moduleDomCreateBefore(self) {
+                            //内部模块创建之前的回调待续...
+                        },
+                        //内部模块创建之后
+                        moduleDomCreateAfter: function moduleDomCreateAfter(self) {
+                            //内部模块创建之后的回调待续...
+                        },
+                        //内部模块渲染之前
+                        moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                            //内部模块渲染之前的回调待续...
+                        },
+                        //内部模块渲染之后
+                        moduleDomRenderAfter: function moduleDomRenderAfter(self) {
+                            //内部模块渲染之后的回调待续...
+                        },
+                        //内部模块移除之前
+                        moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {
+                            //内部模块移除之前的回调待续...
+                        },
+                        //内部模块移除之后
+                        moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {
+                            //内部模块移除之后的回调待续...
+                        },
+                        //内部模块显示之前
+                        moduleDomShowBefore: function moduleDomShowBefore(self) {
+                            //内部模块显示之前的回调待续...
+                        },
+                        //内部模块显示之后
+                        moduleDomShowAfter: function moduleDomShowAfter(self) {
+                            //内部模块显示之后的回调待续...
+                        },
+                        //内部模块隐藏之前
+                        moduleDomHideBefore: function moduleDomHideBefore(self) {
+                            //内部模块隐藏之前的回调待续...
+                        },
+                        //内部模块隐藏之后
+                        moduleDomHideAfter: function moduleDomHideAfter(self) {
+                            //内部模块隐藏之后的回调待续...
+                        },
+                        //外部容器创建之前
+                        wrapDomCreateBefore: function wrapDomCreateBefore(self) {
+                            //外部容器创建之前的回调待续...
+                        },
+                        //外部容器创建之后
+                        wrapDomCreateAfter: function wrapDomCreateAfter(self) {
+                            //外部容器创建之后的回调待续...
+                        },
+                        //外部容器渲染之前
+                        wrapDomRenderBefore: function wrapDomRenderBefore(self) {
+                            //外部容器渲染之前的回调待续...
+                        },
+                        //外部容器渲染之后
+                        wrapDomRenderAfter: function wrapDomRenderAfter(self) {
+                            //外部容器渲染之后的回调待续...
+                        },
+                        //外部容器移除之前
+                        wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {
+                            //外部容器移除之前的回调待续...
+                        },
+                        //外部容器移除之后
+                        wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {
+                            //外部容器移除之后的回调待续...
+                        }
+                    },
+                    //配置
+                    config: {
+                        //内部模块的自定义属性
+                        moduleDomCustomAttr: {},
+                        //内部模块插入到外部容器的方式
+                        moduleDomRenderMethod: {
+                            method: 'appendChild', //'appendChild','insertBefore'
+                            child: null
+                        },
+                        moduleDomStyle: "", //内部模块的样式(写法和css相同)
+                        moduleDomIsShow: true, //内部模块是否显示(默认显示)
+                        moduleDomIsClearTimer: true //内部模块是否清除所有定时器(默认清除)
+                    },
+                    //数据
+                    data: {}
+                },
+                //外部传入参数
+                inherits: json
+            });
+            //函数内部自带的属性
+            this.moduleDom = null; //内部的模块
+            this.wrapDom = null; //内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+            this.moduleDomTimer = {}; //内部模块的定时器存储(假设内部模块有定时器)
+            this.init(); //初始化
+        }
+
+        //初始化
+        SuperType.prototype.init = function () {
+            this.render();
+            this.power();
+        };
+
+        //渲染
+        SuperType.prototype.render = function () {
+            this.moduleDomRender();
+            this.wrapDomRender();
+        };
+
+        //功能(这个方法在其他模块的内部需要被重写)
+        SuperType.prototype.power = function () {
+            //功能待续...
+        };
+
+        //内部模块的创建(这个方法在其他模块的内部需要被重写)
+        SuperType.prototype.moduleDomCreate = function () {
+            this.moduleDom = createElement({
+                style: this.opts.config.moduleDomStyle,
+                custom: this.opts.config.moduleDomCustomAttr,
+                attribute: {
+                    className: "m-super-type",
+                    innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
+                }
+            });
+        };
+
+        //内部模块的渲染
+        SuperType.prototype.moduleDomRender = function () {
+            this.moduleDomRemove();
+            var callback = this.opts.callback;
+            callback.moduleDomCreateBefore(this);
+            this.moduleDomCreate();
+            callback.moduleDomCreateAfter(this);
+        };
+
+        //内部模块的移除
+        SuperType.prototype.moduleDomRemove = function () {
+            var callback = this.opts.callback;
+            callback.moduleDomRemoveBefore(this);
+            if (this.moduleDom && this.moduleDom.parentNode) {
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+            }
+            this.moduleDomClearTimer();
+            callback.moduleDomRemoveAfter(this);
+        };
+
+        //内部模块的定时器清除(假设内部模块有定时器)
+        SuperType.prototype.moduleDomClearTimer = function () {
+            if (this.opts.config.moduleDomIsClearTimer) {
+                for (var attr in this.moduleDomTimer) {
+                    if (this.moduleDomTimer.hasOwnProperty(attr)) {
+                        clearInterval(this.moduleDomTimer[attr]);
+                        clearTimeout(this.moduleDomTimer[attr]);
+                    }
+                }
+            }
+        };
+
+        //内部模块的显示(显示隐藏和是否清除定时器无关)
+        SuperType.prototype.moduleDomShow = function () {
+            var callback = this.opts.callback;
+            callback.moduleDomShowBefore(this);
+            if (this.wrapDom) {
+                this.opts.config.moduleDomIsShow = true;
+                this.wrapDomRenderMethod();
+            }
+            callback.moduleDomShowAfter(this);
+        };
+
+        //内部模块的隐藏(显示隐藏和是否清除定时器无关)
+        SuperType.prototype.moduleDomHide = function () {
+            var callback = this.opts.callback;
+            callback.moduleDomHideBefore(this);
+            if (this.moduleDom.parentNode) {
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+                this.opts.config.moduleDomIsShow = false;
+            }
+            callback.moduleDomHideAfter(this);
+        };
+
+        //外部容器的创建
+        SuperType.prototype.wrapDomCreate = function () {
+            this.wrapDom = getDomArray({ element: this.opts.wrap })[0];
+        };
+
+        //外部容器的渲染
+        SuperType.prototype.wrapDomRender = function () {
+            var callback = this.opts.callback;
+            callback.wrapDomCreateBefore(this);
+            this.wrapDomCreate();
+            callback.wrapDomCreateAfter(this);
+            if (this.wrapDom) {
+                callback.moduleDomRenderBefore(this);
+                callback.wrapDomRenderBefore(this);
+                this.wrapDomRenderMethod();
+                callback.wrapDomRenderAfter(this);
+                callback.moduleDomRenderAfter(this);
+            }
+        };
+
+        //外部容器的渲染方式
+        SuperType.prototype.wrapDomRenderMethod = function () {
+            var config = this.opts.config;
+            if (config.moduleDomIsShow) {
+                var renderMethod = config.moduleDomRenderMethod;
+                if (renderMethod.method == 'insertBefore') {
+                    var dom = getDomArray({ element: renderMethod.child })[0];
+                    if (dom) {
+                        this.wrapDom.insertBefore(this.moduleDom, dom);
+                    } else {
+                        this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
+                    }
+                }
+                if (renderMethod.method == 'appendChild') {
+                    this.wrapDom.appendChild(this.moduleDom);
+                }
+            }
+        };
+
+        //外部容器的移除
+        SuperType.prototype.wrapDomRemove = function () {
+            var callback = this.opts.callback;
+            callback.wrapDomRemoveBefore(this);
+            //先移除内部的模块
+            this.moduleDomRemove();
+            //再移除外部的容器
+            if (this.wrapDom) {
+                this.wrapDom.parentNode.removeChild(this.wrapDom);
+            }
+            callback.wrapDomRemoveAfter(this);
+        };
+
+        //获取内部模块的整体html结构
+        SuperType.prototype.getModuleDomHtml = function () {
+            return this.moduleDom.outerHTML;
+        };
+
+        module.exports = SuperType;
+    }, { "../function/create-element": 2, "../function/get-dom-array": 3, "../tools/extend": 6 }], 5: [function (require, module, exports) {
+        var extend = require('../tools/extend'); //对象的扩展方法
+        var objRemoveQuote = require('../tools/obj-remove-quote'); //对象移除引用
+
+        //构造函数的继承(拷贝继承)
+        function constructorInherit(json) {
+            var opts = extend({
+                defaults: {
+                    superType: null, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
+                    parameter: {} //默认参数(这个必须传的是一个对象,或者不传值)
+                },
+                inherits: json
+            });
+            //超类型(需要是个构造函数)
+            var SuperType = opts.superType;
+            //子类型的默认参数(需要是个对象)
+            var parameter = opts.parameter;
+            //如果超类型不存在
+            if (Object.prototype.toString.call(SuperType).toLowerCase().slice(8, -1) != 'function') {
+                console.log('no find SuperType or SuperType error');
+                return false;
+            }
+            //子类型
+            function SubType(json) {
+                //子类型自身的属性
+                /*
+                 * 注意:
+                 * defaults要防止对象的引用(如果不防止的话,会出现BUG)
+                 * 例如 wrap的默认值是'.g-wrap'
+                 * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
+                 * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
+                 * 但是由于对象引用的原因,这里的值会变成'body'
+                 * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
+                 * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
+                 * 所以我就封装了一个移除对象引用的函数
+                 * */
+                this.opts = extend({
+                    defaults: objRemoveQuote({ obj: parameter }),
+                    inherits: json
+                });
+                //子类型继承超类型的属性
+                opts.superType.call(this, this.opts);
+            }
+
+            //子类型继承超类型的方法
+            for (var attr in SuperType.prototype) {
+                if (SuperType.prototype.hasOwnProperty(attr)) {
+                    SubType.prototype[attr] = SuperType.prototype[attr];
+                }
+            }
+            return SubType;
+        }
+
+        module.exports = constructorInherit;
+    }, { "../tools/extend": 6, "../tools/obj-remove-quote": 7 }], 6: [function (require, module, exports) {
+        //对象的扩展方法
+        function extend(json) {
+            var opts = json || {};
+            opts.defaults = opts.defaults || {}; //默认对象
+            opts.inherits = opts.inherits || {}; //继承对像
+            opts.isDeep = opts.isDeep == false ? opts.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
+            var defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
+            var inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
+            if (defaultsType == inheritsType && opts.isDeep) {
+                if (defaultsType == 'object' || defaultsType == 'array') {
+                    //当为对象或者为数组
+                    for (var attr in opts.inherits) {
+                        if (opts.inherits.hasOwnProperty(attr)) {
+                            var attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
+                            var attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
+                            if (attrDefaultsType == attrInheritsType && opts.isDeep) {
+                                //类型相同
+                                if (attrDefaultsType == 'object' || attrDefaultsType == 'array') {
+                                    //当为对象或者为数组
+                                    extend({ defaults: opts.defaults[attr], inherits: opts.inherits[attr] });
+                                } else {
+                                    opts.defaults[attr] = opts.inherits[attr];
+                                }
+                            } else {
+                                //类型不同,直接后面的覆盖前面的
+                                opts.defaults[attr] = opts.inherits[attr];
+                            }
+                        }
+                    }
+                } else {
+                    opts.defaults = opts.inherits;
+                }
+            } else {
+                opts.defaults = opts.inherits;
+            }
+            return opts.defaults;
+        }
+        // var obj1 = extend({
+        //     defaults: {
+        //         a: 'a',
+        //         b: {
+        //             b1: 'b1',
+        //             b2: 'b2',
+        //             b3: {
+        //                 c1: 'c1'
+        //             }
+        //         }
+        //     },
+        //     inherits: {
+        //         a: 0,
+        //         b: {
+        //             b2: 1,
+        //             b3: {
+        //                 c2: 2
+        //             }
+        //         }
+        //     }
+        // });
+        // console.log(obj1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
+        // var obj2 = extend({
+        //     defaults: {
+        //         a: [
+        //             0,
+        //             [9, 8, 7],
+        //             {
+        //                 arr: [
+        //                     1,
+        //                     2,
+        //                     3,
+        //                     [7, 9, 10],
+        //                     {good: 'good'}
+        //                 ]
+        //             }
+        //         ],
+        //         b: [
+        //             {a1: 'a1'},
+        //             {a2: 'a2'}
+        //         ]
+        //     },
+        //     inherits: {
+        //         a: [
+        //             1,
+        //             [3, 1],
+        //             {
+        //                 arr: [
+        //                     8,
+        //                     8,
+        //                     8,
+        //                     [6, 8]
+        //                 ]
+        //             }
+        //         ],
+        //         b: [
+        //             'what?',
+        //             {b1: 'b1'},
+        //             {b2: 'b2'}
+        //         ]
+        //     }
+        // });
+        // console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
+
+        module.exports = extend;
+    }, {}], 7: [function (require, module, exports) {
+        //移除对象引用
+        function objRemoveQuote(json) {
+            var opts = json || {};
+            var obj = opts.obj; //这里一定不能给默认值
+            var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+            if (objType != 'object' && objType != 'array') {
+                return obj;
+            }
+            var newObj = {};
+            if (objType == 'array') {
+                newObj = [];
+            }
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) {
+                    newObj[attr] = objRemoveQuote({ obj: obj[attr] });
+                }
+            }
+            return newObj;
+        }
+
+        module.exports = objRemoveQuote;
+    }, {}] }, {}, [1]);

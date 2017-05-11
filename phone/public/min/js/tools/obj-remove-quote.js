@@ -1,1 +1,37 @@
-"use strict";!function r(t,e,n){function o(u,f){if(!e[u]){if(!t[u]){var a="function"==typeof require&&require;if(!f&&a)return a(u,!0);if(i)return i(u,!0);throw new Error("Cannot find module '"+u+"'")}var c=e[u]={exports:{}};t[u][0].call(c.exports,function(r){var e=t[u][1][r];return o(e?e:r)},c,c.exports,r,t,e,n)}return e[u].exports}for(var i="function"==typeof require&&require,u=0;u<n.length;u++)o(n[u]);return o}({1:[function(r,t,e){function n(r){var t=r||{},e=t.obj,o=Object.prototype.toString.call(e).slice(8,-1).toLowerCase();if("object"!=o&&"array"!=o)return e;var i={};"array"==o&&(i=[]);for(var u in e)e.hasOwnProperty(u)&&(i[u]=n({obj:e[u]}));return i}t.exports=n},{}]},{},[1]);
+"use strict";
+
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);throw new Error("Cannot find module '" + o + "'");
+            }var f = n[o] = { exports: {} };t[o][0].call(f.exports, function (e) {
+                var n = t[o][1][e];return s(n ? n : e);
+            }, f, f.exports, e, t, n, r);
+        }return n[o].exports;
+    }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+        s(r[o]);
+    }return s;
+})({ 1: [function (require, module, exports) {
+        //移除对象引用
+        function objRemoveQuote(json) {
+            var opts = json || {};
+            var obj = opts.obj; //这里一定不能给默认值
+            var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+            if (objType != 'object' && objType != 'array') {
+                return obj;
+            }
+            var newObj = {};
+            if (objType == 'array') {
+                newObj = [];
+            }
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) {
+                    newObj[attr] = objRemoveQuote({ obj: obj[attr] });
+                }
+            }
+            return newObj;
+        }
+
+        module.exports = objRemoveQuote;
+    }, {}] }, {}, [1]);
