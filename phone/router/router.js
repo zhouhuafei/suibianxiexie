@@ -8,121 +8,531 @@ function Routes(opt) {
 }
 Routes.prototype.init = function () {
     this.home();
-    this.ui();
     this.mine();
     this.login();
     this.register();
-    this.list();
     this.dev();
 };
 Routes.prototype.dev = function () {
     this.app.get('/dev-list', function (req, res) {
-        res.render('pages/dev-list', {
+        var pageInfo = {
             data: {
-                title: '开发列表清单'
+                title: '开发列表清单',
+                footerNav: {
+                    data: {
+                        items: [
+                            {
+                                link: '/',
+                                icon: 'icon-shouye',
+                                txt: '首页',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-global',
+                                icon: 'icon-kaifa',
+                                txt: 'g-global',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-module',
+                                icon: 'icon-kaifa',
+                                txt: 'm-module',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-word',
+                                icon: 'icon-kaifa',
+                                txt: '标准词汇',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/mine',
+                                icon: 'icon-wode',
+                                txt: '我的',
+                                isHighlight: false,
+                                isShowMark: false
+                            }
+                        ]
+                    }
+                }
             },
-            config: {}
+            config: {
+                isShowFooterNav: true,
+                isShowCopyright: true
+            }
+        };
+        res.render('dev-list',{
+            pageInfo: pageInfo,
+            pageInfoStr: JSON.stringify(pageInfo)
         });
     });
     this.app.get('/dev-global', function (req, res) {
-        res.render('pages/dev-global', {
+        var pageInfo = {
             data: {
-                title: '开发全局样式'
+                title: '全局样式',
+                footerNav: {
+                    data: {
+                        items: [
+                            {
+                                link: '/',
+                                icon: 'icon-shouye',
+                                txt: '首页',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-global',
+                                icon: 'icon-kaifa',
+                                txt: 'g-global',
+                                isHighlight: true,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-module',
+                                icon: 'icon-kaifa',
+                                txt: 'm-module',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-word',
+                                icon: 'icon-kaifa',
+                                txt: '标准词汇',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/mine',
+                                icon: 'icon-wode',
+                                txt: '我的',
+                                isHighlight: false,
+                                isShowMark: false
+                            }
+                        ]
+                    }
+                }
             },
-            config: {}
+            config: {
+                isShowFooterNav: true,
+                isShowCopyright: true
+            }
+        };
+        res.render('dev-global', {
+            pageInfo: pageInfo,
+            pageInfoStr: JSON.stringify(pageInfo)
         });
     });
     this.app.get('/dev-module', function (req, res) {
-        res.render('pages/dev-module', {
+        var pageInfo = {
             data: {
-                title: '开发模块样式'
+                title: '模块样式',
+                footerNav: {
+                    data: {
+                        items: [
+                            {
+                                link: '/',
+                                icon: 'icon-shouye',
+                                txt: '首页',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-global',
+                                icon: 'icon-kaifa',
+                                txt: 'g-global',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-module',
+                                icon: 'icon-kaifa',
+                                txt: 'm-module',
+                                isHighlight: true,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-word',
+                                icon: 'icon-kaifa',
+                                txt: '标准词汇',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/mine',
+                                icon: 'icon-wode',
+                                txt: '我的',
+                                isHighlight: false,
+                                isShowMark: false
+                            }
+                        ]
+                    }
+                }
             },
-            config: {}
+            config: {
+                isShowFooterNav: true,
+                isShowCopyright: true
+            }
+        };
+        res.render('dev-module', {
+            pageInfo: pageInfo,
+            pageInfoStr: JSON.stringify(pageInfo)
         });
     });
     this.app.get('/dev-word', function (req, res) {
-        res.render('pages/dev-word', {
+        var pageInfo = {
             data: {
-                title: '开发标准词汇'
+                title: '开发标准词汇',
+                footerNav: {
+                    data: {
+                        items: [
+                            {
+                                link: '/',
+                                icon: 'icon-shouye',
+                                txt: '首页',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-global',
+                                icon: 'icon-kaifa',
+                                txt: 'g-global',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-module',
+                                icon: 'icon-kaifa',
+                                txt: 'm-module',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-word',
+                                icon: 'icon-kaifa',
+                                txt: '标准词汇',
+                                isHighlight: true,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/mine',
+                                icon: 'icon-wode',
+                                txt: '我的',
+                                isHighlight: false,
+                                isShowMark: false
+                            }
+                        ]
+                    }
+                }
             },
-            config: {}
-        });
-    })
-};
-Routes.prototype.list = function () {
-    this.app.get('/list', function (req, res) {
-        res.render('pages/list', {
-            data: {
-                title: '列表'
-            },
-            config: {}
+            config: {
+                isShowFooterNav: true,
+                isShowCopyright: true
+            }
+        };
+        res.render('dev-word', {
+            pageInfo: pageInfo,
+            pageInfoStr: JSON.stringify(pageInfo)
         });
     })
 };
 Routes.prototype.register = function () {
     this.app.get('/register', function (req, res) {
-        res.render('pages/register', {
+        var pageInfo = {
             data: {
-                title: '注册'
+                title: '注册',
+                footerNav: {
+                    data: {
+                        items: [
+                            {
+                                link: '/',
+                                icon: 'icon-shouye',
+                                txt: '首页',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-global',
+                                icon: 'icon-kaifa',
+                                txt: 'g-global',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-module',
+                                icon: 'icon-kaifa',
+                                txt: 'm-module',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-word',
+                                icon: 'icon-kaifa',
+                                txt: '标准词汇',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/mine',
+                                icon: 'icon-wode',
+                                txt: '我的',
+                                isHighlight: false,
+                                isShowMark: false
+                            }
+                        ]
+                    }
+                }
             },
-            config: {}
+            config: {
+                isShowFooterNav: true,
+                isShowCopyright: true
+            }
+        };
+        res.render('register', {
+            pageInfo: pageInfo,
+            pageInfoStr: JSON.stringify(pageInfo)
         });
     })
 };
 Routes.prototype.login = function () {
     this.app.get('/login', function (req, res) {
-        res.render('pages/login', {
+        var pageInfo = {
             data: {
-                title: '登陆'
+                title: '登陆',
+                footerNav: {
+                    data: {
+                        items: [
+                            {
+                                link: '/',
+                                icon: 'icon-shouye',
+                                txt: '首页',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-global',
+                                icon: 'icon-kaifa',
+                                txt: 'g-global',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-module',
+                                icon: 'icon-kaifa',
+                                txt: 'm-module',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-word',
+                                icon: 'icon-kaifa',
+                                txt: '标准词汇',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/mine',
+                                icon: 'icon-wode',
+                                txt: '我的',
+                                isHighlight: false,
+                                isShowMark: false
+                            }
+                        ]
+                    }
+                }
             },
-            config: {}
+            config: {
+                isShowFooterNav: true,
+                isShowCopyright: true
+            }
+        };
+        res.render('login', {
+            pageInfo: pageInfo,
+            pageInfoStr: JSON.stringify(pageInfo)
         });
     })
 };
 Routes.prototype.mine = function () {
     this.app.get('/mine', function (req, res) {
-        res.render('pages/mine', {
+        var pageInfo = {
             data: {
-                title: '我的'
+                title: '我的',
+                footerNav: {
+                    data: {
+                        items: [
+                            {
+                                link: '/',
+                                icon: 'icon-shouye',
+                                txt: '首页',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-global',
+                                icon: 'icon-kaifa',
+                                txt: 'g-global',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-module',
+                                icon: 'icon-kaifa',
+                                txt: 'm-module',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-word',
+                                icon: 'icon-kaifa',
+                                txt: '标准词汇',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/mine',
+                                icon: 'icon-wode',
+                                txt: '我的',
+                                isHighlight: true,
+                                isShowMark: false
+                            }
+                        ]
+                    }
+                }
             },
-            config: {}
-        });
-    })
-};
-Routes.prototype.ui = function () {
-    this.app.get('/ui', function (req, res) {
-        res.render('pages/ui', {
-            data: {
-                title: 'ui'
-            },
-            config: {}
+            config: {
+                isShowFooterNav: true,
+                isShowCopyright: true
+            }
+        };
+        res.render('mine',  {
+            pageInfo: pageInfo,
+            pageInfoStr: JSON.stringify(pageInfo)
         });
     })
 };
 Routes.prototype.home = function () {
     this.app.get('/', function (req, res) {
-        res.render('pages/home', {
+        var pageInfo = {
             data: {
-                title: '首页'
+                title: '首页',
+                footerNav: {
+                    data: {
+                        items: [
+                            {
+                                link: '/',
+                                icon: 'icon-shouye',
+                                txt: '首页',
+                                isHighlight: true,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-global',
+                                icon: 'icon-kaifa',
+                                txt: 'g-global',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-module',
+                                icon: 'icon-kaifa',
+                                txt: 'm-module',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-word',
+                                icon: 'icon-kaifa',
+                                txt: '标准词汇',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/mine',
+                                icon: 'icon-wode',
+                                txt: '我的',
+                                isHighlight: false,
+                                isShowMark: false
+                            }
+                        ]
+                    }
+                }
             },
-            config: {}
+            config: {
+                isShowFooterNav: true,
+                isShowCopyright: true
+            }
+        };
+        res.render('home', {
+            pageInfo: pageInfo,
+            pageInfoStr: JSON.stringify(pageInfo)
         });
     })
 };
 Routes.prototype.error = function () {
     //404
     this.app.use(function (req, res) {
-        res.render('pages/404', {
+        var pageInfo = {
             data: {
-                title: '404'
+                title: '404',
+                footerNav: {
+                    data: {
+                        items: [
+                            {
+                                link: '/',
+                                icon: 'icon-shouye',
+                                txt: '首页',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-global',
+                                icon: 'icon-kaifa',
+                                txt: 'g-global',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-module',
+                                icon: 'icon-kaifa',
+                                txt: 'm-module',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/dev-word',
+                                icon: 'icon-kaifa',
+                                txt: '标准词汇',
+                                isHighlight: false,
+                                isShowMark: false
+                            },
+                            {
+                                link: '/mine',
+                                icon: 'icon-wode',
+                                txt: '我的',
+                                isHighlight: false,
+                                isShowMark: false
+                            }
+                        ]
+                    }
+                }
             },
-            config: {}
+            config: {
+                isShowFooterNav: true,
+                isShowCopyright: true
+            }
+        };
+        res.render('404', {
+            pageInfo: pageInfo,
+            pageInfoStr: JSON.stringify(pageInfo)
         });
     });
     //500
     this.app.use(function (err, req, res) {
         res.type('text/plain');
-        res.status('500');
+        res.status(500);
         res.send('500 - Server Error');
     });
 };

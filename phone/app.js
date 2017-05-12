@@ -18,7 +18,7 @@ app.engine('html', handlebars({
     extname: '.html'
 }));
 app.set('view engine', 'html');
-app.set('views', `${__dirname}/public/min/html`);
+app.set('views', `${__dirname}/public/min/html/pages/`);
 
 //路由
 var Routes = require('./router/router');

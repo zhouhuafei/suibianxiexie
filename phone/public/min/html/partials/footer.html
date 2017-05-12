@@ -1,7 +1,1 @@
-<script>var pageInfo = {
-        data: {},
-        config: {
-            isShowCopyright: true,//是否显示版权
-            isShowFooterNav: true//是否显示底部导航
-        }
-    }</script>
+<input type="hidden" id="page-footer-nav" value="{{pageInfoStr}}"><script>var pageInfo = JSON.parse(document.querySelector('#page-footer-nav').value);</script>

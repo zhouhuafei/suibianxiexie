@@ -13,7 +13,7 @@ var SubType = constructorInherit({
         config: {},
         //数据
         data: {
-            items: [
+            /*items: [
                 {
                     link: '/',
                     icon: 'icon-shouye',
@@ -49,7 +49,7 @@ var SubType = constructorInherit({
                     isHighlight: false,
                     isShowMark: false
                 }
-            ]
+            ]*/
         }
     }
 });

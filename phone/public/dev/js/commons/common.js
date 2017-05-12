@@ -10,7 +10,7 @@
 (function () {
     if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
         var Footer = require('../modules/m-footer-nav');
-        new Footer();
+        new Footer(pageInfo.data.footerNav);
     }
 })();
 

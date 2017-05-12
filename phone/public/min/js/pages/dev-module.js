@@ -270,7 +270,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         (function () {
             if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
                 var Footer = require('../modules/m-footer-nav');
-                new Footer();
+                new Footer(pageInfo.data.footerNav);
             }
         })();
 
@@ -688,37 +688,43 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 config: {},
                 //数据
                 data: {
-                    items: [{
-                        link: '/',
-                        icon: 'icon-shouye',
-                        txt: '首页',
-                        isHighlight: false,
-                        isShowMark: false
-                    }, {
-                        link: '/dev-global',
-                        icon: 'icon-kaifa',
-                        txt: 'g-global',
-                        isHighlight: false,
-                        isShowMark: false
-                    }, {
-                        link: '/dev-module',
-                        icon: 'icon-kaifa',
-                        txt: 'm-module',
-                        isHighlight: true,
-                        isShowMark: true
-                    }, {
-                        link: '/dev-word',
-                        icon: 'icon-kaifa',
-                        txt: '标准词汇',
-                        isHighlight: false,
-                        isShowMark: false
-                    }, {
-                        link: '/mine',
-                        icon: 'icon-wode',
-                        txt: '我的',
-                        isHighlight: false,
-                        isShowMark: false
-                    }]
+                    /*items: [
+                        {
+                            link: '/',
+                            icon: 'icon-shouye',
+                            txt: '首页',
+                            isHighlight: false,
+                            isShowMark: false
+                        },
+                        {
+                            link: '/dev-global',
+                            icon: 'icon-kaifa',
+                            txt: 'g-global',
+                            isHighlight: false,
+                            isShowMark: false
+                        },
+                        {
+                            link: '/dev-module',
+                            icon: 'icon-kaifa',
+                            txt: 'm-module',
+                            isHighlight: true,
+                            isShowMark: true
+                        },
+                        {
+                            link: '/dev-word',
+                            icon: 'icon-kaifa',
+                            txt: '标准词汇',
+                            isHighlight: false,
+                            isShowMark: false
+                        },
+                        {
+                            link: '/mine',
+                            icon: 'icon-wode',
+                            txt: '我的',
+                            isHighlight: false,
+                            isShowMark: false
+                        }
+                    ]*/
                 }
             }
         });
