@@ -65,7 +65,7 @@ Routes.prototype.dev = function () {
                 isShowCopyright: true
             }
         };
-        res.render('dev-list',{
+        res.render('dev-list', {
             pageInfo: pageInfo,
             pageInfoStr: JSON.stringify(pageInfo)
         });
@@ -407,7 +407,7 @@ Routes.prototype.mine = function () {
                 isShowCopyright: true
             }
         };
-        res.render('mine',  {
+        res.render('mine', {
             pageInfo: pageInfo,
             pageInfoStr: JSON.stringify(pageInfo)
         });
