@@ -30,7 +30,7 @@ var SubType = constructorInherit({
                     link: '/dev-module',
                     icon: 'icon-kaifa',
                     txt: 'm-module',
-                    isShowMark: true
+                    isShowMark: false
                 },
                 {
                     link: '/dev-word',
