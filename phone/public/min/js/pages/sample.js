@@ -167,6 +167,7 @@
         var createElement = require('../function/create-element'); //创建元素节点
         var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
+        var jsonToArray = require('../tools/json-to-array');
 
         //子类型
         var SubType = constructorInherit({
@@ -179,43 +180,43 @@
                 config: {},
                 //数据
                 data: {
-                    /*items: [
-                        {
-                            link: '/',
-                            icon: 'icon-shouye',
-                            txt: '首页',
-                            isHighlight: false,
-                            isShowMark: false
-                        },
-                        {
-                            link: '/dev-global',
-                            icon: 'icon-kaifa',
-                            txt: 'g-global',
-                            isHighlight: false,
-                            isShowMark: false
-                        },
-                        {
-                            link: '/dev-module',
-                            icon: 'icon-kaifa',
-                            txt: 'm-module',
-                            isHighlight: true,
-                            isShowMark: true
-                        },
-                        {
-                            link: '/dev-word',
-                            icon: 'icon-kaifa',
-                            txt: '标准词汇',
-                            isHighlight: false,
-                            isShowMark: false
-                        },
-                        {
-                            link: '/mine',
-                            icon: 'icon-wode',
-                            txt: '我的',
-                            isHighlight: false,
-                            isShowMark: false
-                        }
-                    ]*/
+                    /*
+                     home: {
+                     link: '/',
+                     icon: 'icon-shouye',
+                     txt: '首页',
+                     isHighlight: false,
+                     isShowMark: false
+                     },
+                     devGlobal: {
+                     link: '/dev-global',
+                     icon: 'icon-kaifa',
+                     txt: 'g-global',
+                     isHighlight: false,
+                     isShowMark: false
+                     },
+                     devModule: {
+                     link: '/dev-module',
+                     icon: 'icon-kaifa',
+                     txt: 'm-module',
+                     isHighlight: false,
+                     isShowMark: false
+                     },
+                     devWord: {
+                     link: '/dev-word',
+                     icon: 'icon-kaifa',
+                     txt: '标准词汇',
+                     isHighlight: false,
+                     isShowMark: false
+                     },
+                     mine: {
+                     link: '/mine',
+                     icon: 'icon-wode',
+                     txt: '我的',
+                     isHighlight: false,
+                     isShowMark: false
+                     }
+                     */
                 }
             }
         });
@@ -223,7 +224,9 @@
         SubType.prototype.moduleDomCreate = function () {
             this.moduleDomClass = "m-footer-nav";
             var moduleDomHtml = "";
-            this.opts.data.items.forEach(function (v) {
+            var data = jsonToArray({ json: this.opts.data });
+            data.forEach(function (value) {
+                var v = value.value;
                 var highlightClass = "";
                 if (v.isHighlight) {
                     highlightClass = "m-footer-nav-body-active";
@@ -250,7 +253,7 @@
         };
 
         module.exports = SubType;
-    }, { "../function/create-element": 3, "../modules/m-super-type": 9, "../tools/constructor-inherit": 10 }], 8: [function (require, module, exports) {
+    }, { "../function/create-element": 3, "../modules/m-super-type": 9, "../tools/constructor-inherit": 10, "../tools/json-to-array": 12 }], 8: [function (require, module, exports) {
         var extend = require('../tools/extend'); //对象的扩展方法
         var offset = require('../function/offset'); //获取元素距离文档的left和top
         var getDomArray = require('../function/get-dom-array'); //获取原生的dom节点并转换成数组
@@ -626,7 +629,7 @@
         }
 
         module.exports = constructorInherit;
-    }, { "../tools/extend": 11, "../tools/obj-remove-quote": 12 }], 11: [function (require, module, exports) {
+    }, { "../tools/extend": 11, "../tools/obj-remove-quote": 13 }], 11: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opts = json || {};
@@ -730,6 +733,27 @@
 
         module.exports = extend;
     }, {}], 12: [function (require, module, exports) {
+        //把json格式的对象转成数组
+        function jsonToArray(json) {
+            var opts = json || {};
+            var obj = opts.json || {};
+            var arr = [];
+            if (obj instanceof Array) {
+                obj.forEach(function (v, i) {
+                    arr.push([i, v]);
+                });
+            } else {
+                for (var attr in obj) {
+                    if (obj.hasOwnProperty(attr)) {
+                        arr.push({ key: attr, value: obj[attr] });
+                    }
+                }
+            }
+            return arr;
+        }
+
+        module.exports = jsonToArray;
+    }, {}], 13: [function (require, module, exports) {
         //移除对象引用
         function objRemoveQuote(json) {
             var opts = json || {};

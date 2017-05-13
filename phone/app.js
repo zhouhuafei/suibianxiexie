@@ -21,8 +21,8 @@ app.set('view engine', 'html');
 app.set('views', `${__dirname}/public/min/html/pages/`);
 
 //路由
-var Routes = require('./router/router');
-new Routes({app: app});
+var Route = require('./route/route');
+new Route({app: app});
 
 //mysql
 // var Mysql = require('./config/mysql');
