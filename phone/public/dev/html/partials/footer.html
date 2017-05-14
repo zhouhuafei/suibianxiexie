@@ -1,4 +1,9 @@
 <input type="hidden" id="page-footer-nav" value="{{pageInfoStr}}">
 <script>
-    var pageInfo = JSON.parse(document.querySelector('#page-footer-nav').value);
+    var pageInfo = (function () {
+        var input = document.querySelector('#page-footer-nav');
+        var value = input.value;
+        input.parentNode.removeChild(input);
+        return JSON.parse(value);
+    })();
 </script>

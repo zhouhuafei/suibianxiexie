@@ -1,5 +1,5 @@
 //处理底部导航的数据
-const route = require('../config/route');
+const page = require('../../config/page');
 
 class FooterNav {
     constructor(json) {
@@ -8,54 +8,43 @@ class FooterNav {
             config: {},
             data: {
                 home: {
-                    link: '/',
                     icon: 'icon-shouye',
-                    txt: '首页',
+                    txt: page['home'].title,
+                    link: page['home'].route,
                     isHighlight: false,
                     isShowMark: false
                 },
                 devGlobal: {
-                    link: '/dev-global',
                     icon: 'icon-kaifa',
-                    txt: 'g-global',
+                    txt: page['dev-global'].title,
+                    link: page['dev-global'].route,
                     isHighlight: false,
                     isShowMark: false
                 },
                 devModule: {
-                    link: '/dev-module',
                     icon: 'icon-kaifa',
-                    txt: 'm-module',
+                    txt: page['dev-module'].title,
+                    link: page['dev-module'].route,
                     isHighlight: false,
                     isShowMark: false
                 },
                 devWord: {
-                    link: '/dev-word',
                     icon: 'icon-kaifa',
-                    txt: '标准词汇',
+                    txt: page['dev-word'].title,
+                    link: page['dev-word'].route,
                     isHighlight: false,
                     isShowMark: false
                 },
                 mine: {
-                    link: '/mine',
                     icon: 'icon-wode',
-                    txt: '我的',
+                    txt: page['mine'].title,
+                    link: page['mine'].route,
                     isHighlight: false,
                     isShowMark: false
                 }
 
             }
         };
-        this.init();
-    }
-
-    init() {
-        this.home();
-    }
-
-    home() {
-        if (this.opts.req.route.path == route.home) {
-            this.result.data.home.isHighlight = true;
-        }
     }
 }
 
