@@ -1,6 +1,6 @@
 //首页模版渲染
-const extend = require('../../libs/tools/extend');//对象的扩展方法
 const pageCommon = require('../../model/base/common');//每个页面都要用到的数据
+const extend = require('../../libs/tools/extend');//对象的扩展方法
 const page = require('../../config/page');
 const path = require('path');
 const fileName = path.basename(__filename, '.js');
