@@ -25,9 +25,7 @@ class Home {
                 footerNav: pageCommon.footerNav(this.opts)
             }
         };
-        //数据二次处理
-        var data = pageInfo.data;
-        data.footerNav.data.mine.isHighlight = true;
+
         this.opts.res.render(page[fileName].view, {
             pageInfo: pageInfo,
             pageInfoStr: JSON.stringify(pageInfo)

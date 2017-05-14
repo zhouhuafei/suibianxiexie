@@ -9,12 +9,15 @@ class pageTitle {
     }
 
     init() {
-        var path = this.opts.req.url.pathname;
-        for (var attr in page) {
-            if (page.hasOwnProperty(attr)) {
-                if (page[attr].route == path) {
-                    if (page[attr].title) {
-                        this.result = page[attr].title;
+        var route = this.opts.req.route;
+        if (route) {
+            var path = route.path;
+            for (var attr in page) {
+                if (page.hasOwnProperty(attr)) {
+                    if (page[attr].route == path) {
+                        if (page[attr].title) {
+                            this.result = page[attr].title;
+                        }
                     }
                 }
             }

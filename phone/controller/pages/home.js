@@ -2,6 +2,8 @@
 const extend = require('../../libs/tools/extend');//对象的扩展方法
 const pageCommon = require('../../model/base/common');//每个页面都要用到的数据
 const page = require('../../config/page');
+const path = require('path');
+const fileName = path.basename(__filename, '.js');
 
 class Home {
     constructor(json) {
@@ -25,8 +27,10 @@ class Home {
         };
         //数据二次处理
         var data = pageInfo.data;
-        data.footerNav.data.home.isHighlight = true;
-        this.opts.res.render(page.home.view, {
+        if (data.footerNav && data.footerNav.data && data.footerNav.data.home) {
+            data.footerNav.data.home.isHighlight = true;
+        }
+        this.opts.res.render(page[fileName].view, {
             pageInfo: pageInfo,
             pageInfoStr: JSON.stringify(pageInfo)
         });
