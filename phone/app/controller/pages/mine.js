@@ -29,7 +29,7 @@ class Home {
         data.footerNav.data.mine.isHighlight = true;
     }
 
-    init() {
+    render() {
         this.opts.res.render(page[fileName].view, {
             pageInfo: this.pageInfo,
             pageInfoStr: JSON.stringify(this.pageInfo)

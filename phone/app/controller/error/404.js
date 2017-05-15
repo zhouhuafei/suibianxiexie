@@ -27,7 +27,7 @@ class Home {
         };
     }
 
-    init() {
+    render() {
         this.pageInfo.data.title = page[fileName].title;
         this.opts.res.render(page[fileName].view, {
             pageInfo: this.pageInfo,

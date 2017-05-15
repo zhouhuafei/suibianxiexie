@@ -31,7 +31,7 @@ class Home {
         }
     }
 
-    init() {
+    render() {
         this.opts.res.render(page[fileName].view, {
             pageInfo: this.pageInfo,
             pageInfoStr: JSON.stringify(this.pageInfo)
