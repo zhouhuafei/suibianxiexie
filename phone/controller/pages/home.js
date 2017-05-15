@@ -14,25 +14,25 @@ class Home {
             },
             inherits: json
         });
-        this.init();
-    }
-
-    init() {
-        var pageInfo = {
+        this.pageInfo = {
             config: pageCommon.pageConfig(this.opts),
             data: {
                 title: pageCommon.pageTitle(this.opts),
                 footerNav: pageCommon.footerNav(this.opts)
             }
         };
+        this.init();
+    }
+
+    init() {
         //数据二次处理
-        var data = pageInfo.data;
+        var data = this.pageInfo.data;
         if (data.footerNav && data.footerNav.data && data.footerNav.data.home) {
             data.footerNav.data.home.isHighlight = true;
         }
         this.opts.res.render(page[fileName].view, {
-            pageInfo: pageInfo,
-            pageInfoStr: JSON.stringify(pageInfo)
+            pageInfo: this.pageInfo,
+            pageInfoStr: JSON.stringify(this.pageInfo)
         });
     }
 }
