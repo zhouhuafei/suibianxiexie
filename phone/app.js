@@ -1,5 +1,5 @@
 //配置
-var Port = require('./config/port');
+var Port = require('./app/config/port');
 var port = new Port();
 
 //express
@@ -21,7 +21,7 @@ app.set('view engine', 'html');
 app.set('views', `${__dirname}/public/min/html/pages/`);
 
 //路由
-var Route = require('./route/route');
+var Route = require('./app/route/route');
 new Route({app: app});
 
 //mysql

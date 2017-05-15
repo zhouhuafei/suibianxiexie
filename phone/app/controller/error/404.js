@@ -14,6 +14,10 @@ class Home {
             },
             inherits: json
         });
+        this.handleData();
+    }
+
+    handleData() {
         this.pageInfo = {
             config: pageCommon.pageConfig(this.opts),
             data: {
@@ -21,19 +25,19 @@ class Home {
                 footerNav: pageCommon.footerNav(this.opts)
             }
         };
-        this.init();
     }
 
     init() {
-        //数据二次处理
-        var data = this.pageInfo.data;
-        if (data.footerNav && data.footerNav.data && data.footerNav.data.home) {
-            data.footerNav.data.home.isHighlight = true;
-        }
+        this.pageInfo.data.title = page[fileName].title;
         this.opts.res.render(page[fileName].view, {
             pageInfo: this.pageInfo,
             pageInfoStr: JSON.stringify(this.pageInfo)
         });
+    }
+
+    getPageInfo() {
+        this.opts.res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'});
+        this.opts.res.end(JSON.stringify(this.pageInfo));
     }
 }
 

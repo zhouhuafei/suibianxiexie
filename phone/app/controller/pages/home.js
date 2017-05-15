@@ -14,24 +14,33 @@ class Home {
             },
             inherits: json
         });
-        this.init();
+        this.handleData();
     }
 
-    init() {
-        var pageInfo = {
+    handleData() {
+        this.pageInfo = {
             config: pageCommon.pageConfig(this.opts),
             data: {
                 title: pageCommon.pageTitle(this.opts),
                 footerNav: pageCommon.footerNav(this.opts)
             }
         };
-        //数据二次处理
-        var data = pageInfo.data;
-        data.footerNav.data.mine.isHighlight = true;
+        var data = this.pageInfo.data;
+        if (data.footerNav && data.footerNav.data && data.footerNav.data.home) {
+            data.footerNav.data.home.isHighlight = true;
+        }
+    }
+
+    init() {
         this.opts.res.render(page[fileName].view, {
-            pageInfo: pageInfo,
-            pageInfoStr: JSON.stringify(pageInfo)
+            pageInfo: this.pageInfo,
+            pageInfoStr: JSON.stringify(this.pageInfo)
         });
+    }
+
+    getPageInfo() {
+        this.opts.res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'});
+        this.opts.res.end(JSON.stringify(this.pageInfo));
     }
 }
 
