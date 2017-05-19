@@ -20,6 +20,7 @@ class Route {
 
     init() {
         this.pages();
+        this.api();
         this.error();
     }
 
@@ -29,7 +30,19 @@ class Route {
         files.forEach(function (v) {
             var fileName = path.basename(v, '.js');
             var Controller = require(`../controller/pages/${fileName}`);//引入文件,路径是相对于这个文件本身
-            self.opts.app.get(page[fileName].route, function (req, res) {
+            self.opts.app.get(page.pages[fileName].route, function (req, res) {
+                new Controller({req: req, res: res}).render();
+            })
+        });
+    }
+
+    api(){
+        var self = this;
+        var files = fs.readdirSync(`./app/controller/api/`);//读取文件夹/文件,路径是相对于在哪里调用
+        files.forEach(function (v) {
+            var fileName = path.basename(v, '.js');
+            var Controller = require(`../controller/api/${fileName}`);//引入文件,路径是相对于这个文件本身
+            self.opts.app.get(page.api[fileName].route, function (req, res) {
                 new Controller({req: req, res: res}).render();
             })
         });

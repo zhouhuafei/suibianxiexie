@@ -1,5 +1,6 @@
 //处理底部导航的数据
 const page = require('../../config/page');
+const pages = page.pages;
 
 class FooterNav {
     constructor(json) {
@@ -9,42 +10,54 @@ class FooterNav {
             data: {
                 home: {
                     icon: 'icon-shouye',
-                    txt: page['home'].title,
-                    link: page['home'].route,
+                    txt: pages['home'].title,
+                    link: pages['home'].route,
                     isHighlight: false,
                     isShowMark: false
                 },
                 devGlobal: {
                     icon: 'icon-kaifa',
-                    txt: page['dev-global'].title,
-                    link: page['dev-global'].route,
+                    txt: pages['dev-global'].title,
+                    link: pages['dev-global'].route,
                     isHighlight: false,
                     isShowMark: false
                 },
                 devModule: {
                     icon: 'icon-kaifa',
-                    txt: page['dev-module'].title,
-                    link: page['dev-module'].route,
+                    txt: pages['dev-module'].title,
+                    link: pages['dev-module'].route,
                     isHighlight: false,
                     isShowMark: false
                 },
                 devWord: {
                     icon: 'icon-kaifa',
-                    txt: page['dev-word'].title,
-                    link: page['dev-word'].route,
+                    txt: pages['dev-word'].title,
+                    link: pages['dev-word'].route,
                     isHighlight: false,
                     isShowMark: false
                 },
                 mine: {
                     icon: 'icon-wode',
-                    txt: page['mine'].title,
-                    link: page['mine'].route,
+                    txt: pages['mine'].title,
+                    link: pages['mine'].route,
                     isHighlight: false,
                     isShowMark: false
                 }
 
             }
         };
+    }
+    insert(){
+
+    }
+    del(){
+
+    }
+    update(){
+
+    }
+    select(){
+
     }
 }
 

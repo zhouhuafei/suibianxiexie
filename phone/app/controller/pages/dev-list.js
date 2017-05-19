@@ -28,7 +28,7 @@ class Home {
     }
 
     render() {
-        this.opts.res.render(page[fileName].view, {
+        this.opts.res.render(page.pages[fileName].view, {
             pageInfo: this.pageInfo,
             pageInfoStr: JSON.stringify(this.pageInfo)
         });

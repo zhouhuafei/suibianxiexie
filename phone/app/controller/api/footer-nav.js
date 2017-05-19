@@ -1,11 +1,8 @@
 //首页模版渲染
 const pageCommon = require('../../model/base/common');//每个页面都要用到的数据
 const extend = require('../../libs/tools/extend');//对象的扩展方法
-const page = require('../../config/page');
-const path = require('path');
-const fileName = path.basename(__filename, '.js');
 
-class Home {
+class FooterNav {
     constructor(json) {
         this.opts = extend({
             defaults: {
@@ -25,20 +22,16 @@ class Home {
                 footerNav: pageCommon.footerNav(this.opts)
             }
         };
+        var data = this.pageInfo.data;
+        if (data.footerNav && data.footerNav.data && data.footerNav.data.home) {
+            data.footerNav.data.home.isHighlight = true;
+        }
     }
 
     render() {
-        this.pageInfo.data.title = page.error[fileName].title;
-        this.opts.res.render(page.error[fileName].view, {
-            pageInfo: this.pageInfo,
-            pageInfoStr: JSON.stringify(this.pageInfo)
-        });
-    }
-
-    getPageInfo() {
         this.opts.res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'});
         this.opts.res.end(JSON.stringify(this.pageInfo));
     }
 }
 
-module.exports = Home;
+module.exports = FooterNav;
