@@ -8,35 +8,35 @@ class FooterNav {
         this.result = {
             config: {},
             data: {
-                home: {
+                'home': {
                     icon: 'icon-shouye',
                     txt: pages['home'].title,
                     link: pages['home'].route,
                     isHighlight: false,
                     isShowMark: false
                 },
-                devGlobal: {
+                'dev-global': {
                     icon: 'icon-kaifa',
                     txt: pages['dev-global'].title,
                     link: pages['dev-global'].route,
                     isHighlight: false,
                     isShowMark: false
                 },
-                devModule: {
+                'dev-module': {
                     icon: 'icon-kaifa',
                     txt: pages['dev-module'].title,
                     link: pages['dev-module'].route,
                     isHighlight: false,
                     isShowMark: false
                 },
-                devWord: {
+                'dev-word': {
                     icon: 'icon-kaifa',
                     txt: pages['dev-word'].title,
                     link: pages['dev-word'].route,
                     isHighlight: false,
                     isShowMark: false
                 },
-                mine: {
+                'mine': {
                     icon: 'icon-wode',
                     txt: pages['mine'].title,
                     link: pages['mine'].route,
@@ -47,16 +47,20 @@ class FooterNav {
             }
         };
     }
-    insert(){
+
+    insert() {
 
     }
-    del(){
+
+    del() {
+        
+    }
+
+    update() {
 
     }
-    update(){
 
-    }
-    select(){
+    select() {
 
     }
 }

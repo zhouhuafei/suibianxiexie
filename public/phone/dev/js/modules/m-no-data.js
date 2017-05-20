@@ -22,7 +22,7 @@ var SubType = constructorInherit({
             btn: {
                 icon: 'icon-shouye',
                 txt: '回首页',
-                link: '/'
+                link: '/phone/'
             }
         }
     }

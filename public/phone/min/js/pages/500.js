@@ -21,7 +21,7 @@
                     var NoData = require('../modules/m-no-data');
                     new NoData({
                         data: {
-                            txt: '404 - Not Find'
+                            txt: '500 - Server Error'
                         }
                     });
                 })();

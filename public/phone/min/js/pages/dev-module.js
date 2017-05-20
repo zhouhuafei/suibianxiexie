@@ -1134,7 +1134,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     btn: {
                         icon: 'icon-shouye',
                         txt: '回首页',
-                        link: '/'
+                        link: '/phone/'
                     }
                 }
             }

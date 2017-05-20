@@ -36,11 +36,6 @@ class Home {
             pageInfoStr: JSON.stringify(this.pageInfo)
         });
     }
-
-    getPageInfo() {
-        this.opts.res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'});
-        this.opts.res.end(JSON.stringify(this.pageInfo));
-    }
 }
 
 module.exports = Home;

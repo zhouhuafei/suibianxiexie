@@ -24,12 +24,12 @@ class Home {
             config: new PageConfig(this.opts).result,
             data: {
                 title: new PageTitle(this.opts).result,
-                footerNav: new PageFooterNav(this.opts).result,
+                footerNav: new PageFooterNav(this.opts).result
             }
         };
         var data = this.pageInfo.data;
-        if (data.footerNav && data.footerNav.data && data.footerNav.data.home) {
-            data.footerNav.data.home.isHighlight = true;
+        if (data.footerNav && data.footerNav.data && data.footerNav.data[fileName]) {
+            data.footerNav.data[fileName].isHighlight = true;
         }
     }
 
