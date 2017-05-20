@@ -2,4 +2,5 @@
 .svn
 .idea
 .DS_Store
+.git-credentials
 node_modules
