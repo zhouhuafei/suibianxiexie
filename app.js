@@ -20,9 +20,14 @@ app.engine('html', handlebars({
 app.set('view engine', 'html');
 app.set('views', `${__dirname}/public/`);
 
-//路由
+
+//pc的路由待续...
+//phone的路由
 var RoutePhone = require('./route/phone/route');
 new RoutePhone({app: app});
+//error的路由
+var RouteError = require('./route/error/route');
+new RouteError({app: app});
 
 //mysql
 // var Mysql = require('./config/mysql');

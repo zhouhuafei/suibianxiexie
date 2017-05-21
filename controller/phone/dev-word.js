@@ -1,9 +1,9 @@
 //首页模版渲染
-const PageFooterNav = require('../../../model/phone/page-footer-nav');
-const PageConfig = require('../../../model/phone/page-config');
-const PageTitle = require('../../../model/phone/page-title');
-const extend = require('../../../libs/tools/extend');//对象的扩展方法
-const page = require('../../../route/phone/config');
+const PageFooterNav = require('../../model/phone/page-footer-nav');
+const PageConfig = require('../../model/phone/page-config');
+const PageTitle = require('../../model/phone/page-title');
+const extend = require('../../libs/tools/extend');//对象的扩展方法
+const page = require('../../route/phone/config');
 const path = require('path');
 const fileName = path.basename(__filename, '.js');
 
@@ -34,7 +34,7 @@ class Home {
     }
 
     render() {
-        this.opts.res.render(page.pages[fileName].view, {
+        this.opts.res.render(page[fileName].view, {
             pageInfo: this.pageInfo,
             pageInfoStr: JSON.stringify(this.pageInfo)
         });
