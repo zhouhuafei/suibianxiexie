@@ -1,9 +1,9 @@
 //首页模版渲染
-const PageFooterNav = require('../../../model/phone/page-footer-nav');
-const PageConfig = require('../../../model/phone/page-config');
-const PageTitle = require('../../../model/phone/page-title');
-const extend = require('../../../libs/tools/extend');//对象的扩展方法
-const page = require('../../../route/phone/config');
+const PageFooterNav = require('../../model/phone/page-footer-nav');
+const PageConfig = require('../../model/phone/page-config');
+const PageTitle = require('../../model/phone/page-title');
+const extend = require('../../libs/tools/extend');//对象的扩展方法
+const page = require('../../route/phone/config');
 const path = require('path');
 const fileName = path.basename(__filename, '.js');
 
@@ -27,19 +27,17 @@ class Home {
                 footerNav: new PageFooterNav(this.opts).result
             }
         };
+        var data = this.pageInfo.data;
+        if (data.footerNav && data.footerNav.data && data.footerNav.data[fileName]) {
+            data.footerNav.data[fileName].isHighlight = true;
+        }
     }
 
     render() {
-        this.pageInfo.data.title = page.error[fileName].title;
-        this.opts.res.render(page.error[fileName].view, {
+        this.opts.res.render(page[fileName].view, {
             pageInfo: this.pageInfo,
             pageInfoStr: JSON.stringify(this.pageInfo)
         });
-    }
-
-    getPageInfo() {
-        this.opts.res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'});
-        this.opts.res.end(JSON.stringify(this.pageInfo));
     }
 }
 
