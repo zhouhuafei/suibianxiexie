@@ -53,7 +53,7 @@ class FooterNav {
     }
 
     del() {
-        
+
     }
 
     update() {
