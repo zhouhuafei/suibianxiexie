@@ -1,7 +1,5 @@
 //页面路由
 const extend = require('../../libs/tools/extend');
-const fs = require('fs');
-const path = require('path');
 
 class Route {
     constructor(json) {
@@ -18,15 +16,22 @@ class Route {
     }
 
     init() {
+        this.error404();
+        this.error500();
+    }
+    error404(){
         var self = this;
-        var files = fs.readdirSync(`./controller/error/`);
-        files.forEach(function (v) {
-            var fileName = path.basename(v, '.js');
-            var Controller = require(`../../controller/error/${fileName}`);
-            self.opts.app.use(function (req, res) {
-                new Controller({req: req, res: res}).render();
-            });
-        })
+        var Controller = require(`../../controller/error/404`);
+        self.opts.app.use(function (req, res, next) {
+            new Controller({req: req, res: res}).render();
+        });
+    }
+    error500(){
+        var self = this;
+        var Controller = require(`../../controller/error/500`);
+        self.opts.app.use(function (err, req, res, next) {
+            new Controller({req: req, res: res}).render();
+        });
     }
 }
 

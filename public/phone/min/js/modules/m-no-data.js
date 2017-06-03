@@ -37,7 +37,7 @@
                     btn: {
                         icon: 'icon-shouye',
                         txt: '回首页',
-                        link: '/phone'
+                        link: '/phone/'
                     }
                 }
             }

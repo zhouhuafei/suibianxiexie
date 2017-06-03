@@ -28,7 +28,6 @@ new RoutePhone({app: app});
 //error的路由
 var RouteError = require('./route/error/route');
 new RouteError({app: app});
-
 //mysql
 // var Mysql = require('./config/mysql');
 // var oMysql = new Mysql({isLocal: true});
