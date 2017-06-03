@@ -14,13 +14,13 @@
         };
         var resize = function () {
             var html = doc.querySelector('html');
-            var body = doc.querySelector('.g-wrap');
+            var wrap = doc.querySelector('.g-wrap');
             if (isPc()) {
                 html.classList.add('g-pc');
             } else {
                 html.classList.remove('g-pc');
             }
-            html.style.fontSize = body.offsetWidth / 10 + 'px';
+            html.style.fontSize = wrap.offsetWidth / 10 + 'px';
         };
         resize();
         win.addEventListener('resize', resize);
