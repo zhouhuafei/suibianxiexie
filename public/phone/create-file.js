@@ -9,7 +9,7 @@ const file = {
 <html lang="en">
     <head>
         {{>phone/min/html/partials/head}}
-        <link rel="stylesheet" href="../../../../phone/min/css/pages/${fileName}.css">
+        <link rel="stylesheet" href="/phone/min/css/pages/${fileName}.css">
     </head>
     <body>
         <div class="g-wrap">
@@ -20,7 +20,7 @@ const file = {
             </div>
             <!--page end-->
             {{>phone/min/html/partials/footer}}
-            <script src="../../../../phone/min/js/pages/${fileName}.js"></script>
+            <script src="/phone/min/js/pages/${fileName}.js"></script>
         </div>
     </body>
 </html>`,
