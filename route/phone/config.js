@@ -1,5 +1,5 @@
 var path = {
-    route: '/phone/',
+    route: '/',
     view: 'phone/min/html/pages/'
 };
 
