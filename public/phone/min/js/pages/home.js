@@ -79,6 +79,13 @@
                     });
                 })();
 
+                //模块引入测试
+                (function () {
+                    //var _ = require('../base/lodash');
+                    //var $ = require('../base/zepto');
+                    //console.log(_, $, 999);
+                })();
+
                 require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
