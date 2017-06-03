@@ -13,11 +13,11 @@ class Fn404 {
     }
 
     render() {
-        var errorType = this.opts.req.url.split('/')[1];
-        if (errorType == 'phone') {
-            this.renderPhone();
-        } else {
+        var errorType = this.opts.req.url.split('/')[2];
+        if (errorType == 'min') {
             this.renderOther();
+        } else {
+            this.renderPhone();
         }
     }
 
