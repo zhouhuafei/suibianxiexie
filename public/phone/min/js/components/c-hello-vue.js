@@ -13,15 +13,8 @@
         s(r[o]);
     }return s;
 })({ 1: [function (require, module, exports) {
-        Vue.component('my-component', {
-            props: {
-                opts: {
-                    type: 'Object',
-                    default: {}
-                }
-            },
-            data: function data() {
-                return {};
-            }
+        Vue.component('c-hello-vue', {
+            props: ['message'],
+            template: '<div>{{message}}</div>'
         });
     }, {}] }, {}, [1]);

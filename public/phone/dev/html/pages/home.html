@@ -11,9 +11,15 @@
             <div class="g-page">
                 <div class="page-slide"></div>
                 <div class="page-navigation"></div>
+                <div class="g-vue">
+                    <c-hello-vue v-bind:message="message"></c-hello-vue>
+                </div>
             </div>
             <!--page end-->
             {{>phone/min/html/partials/footer}}
+            <script src="/phone/dev/js/base/vue.min.js"></script>
+            <script src="/phone/dev/js/base/lodash.min.js"></script>
+            <script src="/phone/dev/js/base/zepto.min.js"></script>
             <script src="/phone/min/js/pages/home.js"></script>
         </div>
     </body>

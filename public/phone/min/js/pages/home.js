@@ -68,10 +68,21 @@
                     new Navigation({ wrap: '.page-navigation' });
                 })();
 
+                //vue
+                (function () {
+                    require('../components/c-hello-vue');
+                    new Vue({
+                        el: '.g-vue',
+                        data: {
+                            message: 'Hello Vue2!'
+                        }
+                    });
+                })();
+
                 require('../commons/common'); //每个页面都要用到的js(一定要放到最底部)
             }, 0);
         });
-    }, { "../commons/common": 2, "../modules/m-navigation": 9, "../modules/m-slide": 10 }], 2: [function (require, module, exports) {
+    }, { "../commons/common": 2, "../components/c-hello-vue": 3, "../modules/m-navigation": 10, "../modules/m-slide": 11 }], 2: [function (require, module, exports) {
         //版权
         (function () {
             if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
@@ -93,7 +104,12 @@
             var LazyLoad = require('../modules/m-lazy-load');
             new LazyLoad();
         })();
-    }, { "../modules/m-copyright": 6, "../modules/m-footer-nav": 7, "../modules/m-lazy-load": 8 }], 3: [function (require, module, exports) {
+    }, { "../modules/m-copyright": 7, "../modules/m-footer-nav": 8, "../modules/m-lazy-load": 9 }], 3: [function (require, module, exports) {
+        Vue.component('c-hello-vue', {
+            props: ['message'],
+            template: '<div>{{message}}</div>'
+        });
+    }, {}], 4: [function (require, module, exports) {
         //创建元素节点
         function createElement(json) {
             var opts = json || {};
@@ -119,7 +135,7 @@
         }
 
         module.exports = createElement;
-    }, {}], 4: [function (require, module, exports) {
+    }, {}], 5: [function (require, module, exports) {
         //获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
         function getDomArray(json) {
             var opts = json || {};
@@ -146,7 +162,7 @@
         }
 
         module.exports = getDomArray;
-    }, {}], 5: [function (require, module, exports) {
+    }, {}], 6: [function (require, module, exports) {
         var extend = require('../tools/extend'); //对象的扩展方法
         var getDomArray = require('../function/get-dom-array'); //获取原生的dom节点并转换成数组
 
@@ -173,7 +189,7 @@
         }
 
         module.exports = offset;
-    }, { "../function/get-dom-array": 4, "../tools/extend": 14 }], 6: [function (require, module, exports) {
+    }, { "../function/get-dom-array": 5, "../tools/extend": 15 }], 7: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
         var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
@@ -210,7 +226,7 @@
         };
 
         module.exports = SubType;
-    }, { "../function/create-element": 3, "../modules/m-super-type": 11, "../tools/constructor-inherit": 13 }], 7: [function (require, module, exports) {
+    }, { "../function/create-element": 4, "../modules/m-super-type": 12, "../tools/constructor-inherit": 14 }], 8: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
         var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
@@ -300,7 +316,7 @@
         };
 
         module.exports = SubType;
-    }, { "../function/create-element": 3, "../modules/m-super-type": 11, "../tools/constructor-inherit": 13, "../tools/json-to-array": 15 }], 8: [function (require, module, exports) {
+    }, { "../function/create-element": 4, "../modules/m-super-type": 12, "../tools/constructor-inherit": 14, "../tools/json-to-array": 16 }], 9: [function (require, module, exports) {
         var extend = require('../tools/extend'); //对象的扩展方法
         var offset = require('../function/offset'); //获取元素距离文档的left和top
         var getDomArray = require('../function/get-dom-array'); //获取原生的dom节点并转换成数组
@@ -375,7 +391,7 @@
             });
         };
         module.exports = LazyLoad;
-    }, { "../function/get-dom-array": 4, "../function/offset": 5, "../tools/extend": 14 }], 9: [function (require, module, exports) {
+    }, { "../function/get-dom-array": 5, "../function/offset": 6, "../tools/extend": 15 }], 10: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
         var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var SuperType = require('../modules/m-super-type'); //超类型(子类型继承的对象)
@@ -449,7 +465,7 @@
         };
 
         module.exports = SubType;
-    }, { "../function/create-element": 3, "../modules/m-super-type": 11, "../tools/constructor-inherit": 13 }], 10: [function (require, module, exports) {
+    }, { "../function/create-element": 4, "../modules/m-super-type": 12, "../tools/constructor-inherit": 14 }], 11: [function (require, module, exports) {
         var createElement = require('../function/create-element'); //创建元素节点
         var constructorInherit = require('../tools/constructor-inherit'); //构造函数的继承(拷贝继承)
         var TouchSlide = require('../plugs/touch-slide'); //轮播图插件
@@ -571,7 +587,7 @@
         };
 
         module.exports = SubType;
-    }, { "../function/create-element": 3, "../modules/m-super-type": 11, "../plugs/touch-slide": 12, "../tools/constructor-inherit": 13 }], 11: [function (require, module, exports) {
+    }, { "../function/create-element": 4, "../modules/m-super-type": 12, "../plugs/touch-slide": 13, "../tools/constructor-inherit": 14 }], 12: [function (require, module, exports) {
         var extend = require('../tools/extend'); //对象的扩展方法
         var createElement = require('../function/create-element'); //创建元素节点
         var getDomArray = require('../function/get-dom-array'); //获取原生的dom节点并转换成数组
@@ -818,7 +834,7 @@
         };
 
         module.exports = SuperType;
-    }, { "../function/create-element": 3, "../function/get-dom-array": 4, "../tools/extend": 14 }], 12: [function (require, module, exports) {
+    }, { "../function/create-element": 4, "../function/get-dom-array": 5, "../tools/extend": 15 }], 13: [function (require, module, exports) {
         /*!
          * TouchSlide v1.1
          * javascript触屏滑动特效插件，移动端滑动特效，触屏焦点图，触屏Tab切换，触屏多图切换等
@@ -1259,7 +1275,7 @@
         };
 
         module.exports = TouchSlide;
-    }, {}], 13: [function (require, module, exports) {
+    }, {}], 14: [function (require, module, exports) {
         var extend = require('../tools/extend'); //对象的扩展方法
         var objRemoveQuote = require('../tools/obj-remove-quote'); //对象移除引用
 
@@ -1313,7 +1329,7 @@
         }
 
         module.exports = constructorInherit;
-    }, { "../tools/extend": 14, "../tools/obj-remove-quote": 16 }], 14: [function (require, module, exports) {
+    }, { "../tools/extend": 15, "../tools/obj-remove-quote": 17 }], 15: [function (require, module, exports) {
         //对象的扩展方法
         function extend(json) {
             var opts = json || {};
@@ -1416,7 +1432,7 @@
         // console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
 
         module.exports = extend;
-    }, {}], 15: [function (require, module, exports) {
+    }, {}], 16: [function (require, module, exports) {
         //把json格式的对象转成数组
         function jsonToArray(json) {
             var opts = json || {};
@@ -1437,7 +1453,7 @@
         }
 
         module.exports = jsonToArray;
-    }, {}], 16: [function (require, module, exports) {
+    }, {}], 17: [function (require, module, exports) {
         //移除对象引用
         function objRemoveQuote(json) {
             var opts = json || {};

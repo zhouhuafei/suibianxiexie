@@ -59,6 +59,17 @@ window.addEventListener('load', function () {
             new Navigation({wrap: '.page-navigation'});
         })();
 
+        //vue
+        (function(){
+            require('../components/c-hello-vue');
+            new Vue({
+                el:'.g-vue',
+                data:{
+                    message:'Hello Vue2!'
+                }
+            })
+        })();
+
         require('../commons/common');//每个页面都要用到的js(一定要放到最底部)
     }, 0)
 });
