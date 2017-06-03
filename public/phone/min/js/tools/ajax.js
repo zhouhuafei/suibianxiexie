@@ -54,7 +54,8 @@
                         dataType: 'json', //数据类型(默认json)
                         async: true, //默认异步
                         timeout: 5000, //超时时间(默认3秒)
-                        mark: '#' },
+                        mark: '#' //当请求类型为get时,url后面的数据用什么符号开头url:'index.php',1.?ctl=seller&act=setting,2.#ctl=seller&act=setting
+                    },
                     //数据
                     data: {}
                 },
