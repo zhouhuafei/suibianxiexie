@@ -17,8 +17,8 @@ function fn(type) {
         constructor() {
             this.dirname = __dirname;
             this.publicPath = `${this.dirname}/public/${mark}/`;
-            this.devPath = `${this.publicPath}dev/`;
-            this.minPath = `${this.publicPath}min/`;
+            this.devPath = `${this.publicPath}src/`;
+            this.minPath = `${this.publicPath}dist/`;
             this.scssEnterPath = `${this.devPath}scss/**/*.scss`;
             this.scssExitPath = `${this.minPath}css/`;
             this.jsEnterPath = `${this.devPath}js/**/*.js`;
