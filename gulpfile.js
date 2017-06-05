@@ -107,7 +107,8 @@ function fn(type) {
     });
     //执行任务
     gulp.task(`${mark}Dev`, [`${mark}Del`, `${mark}Html`, `${mark}ScssMin`, `${mark}Js`, `${mark}Images`, `${mark}Font`, `${mark}Ui`, `${mark}Dev:watch`]);//开发
-    gulp.task(`${mark}Min`, [`${mark}Del`, `${mark}Html`, `${mark}ScssMin`, `${mark}JsMin`, `${mark}ImagesMin`, `${mark}Font`, `${mark}Ui`, `${mark}Min:watch`]);//上线
+    gulp.task(`${mark}Min`, [`${mark}Del`, `${mark}Html`, `${mark}ScssMin`, `${mark}JsMin`, `${mark}ImagesMin`, `${mark}Font`, `${mark}Ui`, `${mark}Min:watch`]);//压缩
+    gulp.task(`${mark}Build`, [`${mark}Del`, `${mark}Html`, `${mark}ScssMin`, `${mark}JsMin`, `${mark}ImagesMin`, `${mark}Font`, `${mark}Ui`]);//上线
 }
 fn('phone');
 fn('pc');
