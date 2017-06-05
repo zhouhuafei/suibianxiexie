@@ -14,7 +14,7 @@ class Fn404 {
 
     render() {
         var errorType = this.opts.req.url.split('/')[2];
-        if (errorType == 'min') {
+        if (errorType == 'min'||'dev') {
             this.renderOther();
         } else {
             this.renderPhone();
