@@ -1,6 +1,6 @@
 var path = {
     route: '/',
-    view: 'phone/dist/html/pages/'
+    view: 'phone/min/html/pages/'
 };
 
 module.exports = {

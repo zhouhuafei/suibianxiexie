@@ -1,6 +1,6 @@
 const CreateFile = require('../../libs/function/create-file');
 const fileName = process.argv[2];
-const publicPath = `${__dirname}/src`;
+const publicPath = `${__dirname}/dev`;
 const file = {
     html: {
         path: `${publicPath}/html/pages/`,
