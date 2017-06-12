@@ -1,1 +1,53 @@
-"use strict";!function e(r,t,n){function o(u,f){if(!t[u]){if(!r[u]){var c="function"==typeof require&&require;if(!f&&c)return c(u,!0);if(i)return i(u,!0);throw new Error("Cannot find module '"+u+"'")}var a=t[u]={exports:{}};r[u][0].call(a.exports,function(e){var t=r[u][1][e];return o(t||e)},a,a.exports,e,r,t,n)}return t[u].exports}for(var i="function"==typeof require&&require,u=0;u<n.length;u++)o(n[u]);return o}({1:[function(e,r,t){function n(e){var r=e||{},t=r.name,n=r.value,o=r.expires,i=new Date,u=i.getTime();i.setTime(u+24*o*60*60*1e3),document.cookie=t+"="+n+"; expires="+i}function o(e){var r=e||{},t=r.name,n=document.cookie,o=n.split("; "),i="";return o.forEach(function(e){var r=e.split("=");if(r[0]==t)return i=r[1],!1}),i}function i(e){n((e||{}).name,"",-1)}r.exports.setCookie=n,r.exports.getCookie=o,r.exports.removeCookie=i},{}]},{},[1]);
+"use strict";
+
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);throw new Error("Cannot find module '" + o + "'");
+            }var f = n[o] = { exports: {} };t[o][0].call(f.exports, function (e) {
+                var n = t[o][1][e];return s(n ? n : e);
+            }, f, f.exports, e, t, n, r);
+        }return n[o].exports;
+    }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+        s(r[o]);
+    }return s;
+})({ 1: [function (require, module, exports) {
+        //设置cookie
+        function setCookie(json) {
+            var opts = json || {};
+            var name = opts.name;
+            var value = opts.value;
+            var expires = opts.expires;
+            var myDate = new Date();
+            var myTime = myDate.getTime();
+            myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000);
+            document.cookie = name + '=' + value + '; expires=' + myDate;
+        }
+        //获取cookie
+        function getCookie(json) {
+            var opts = json || {};
+            var name = opts.name;
+            var cookie = document.cookie;
+            var arr = cookie.split('; ');
+            var value = '';
+            arr.forEach(function (v) {
+                var arr2 = v.split('=');
+                if (arr2[0] == name) {
+                    value = arr2[1];
+                    return false;
+                }
+            });
+            return value;
+        }
+        //清除cookie
+        function removeCookie(json) {
+            var opts = json || {};
+            var name = opts.name;
+            setCookie(name, '', -1);
+        }
+
+        module.exports.setCookie = setCookie;
+        module.exports.getCookie = getCookie;
+        module.exports.removeCookie = removeCookie;
+    }, {}] }, {}, [1]);

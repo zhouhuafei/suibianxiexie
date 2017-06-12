@@ -1,1 +1,173 @@
-"use strict";!function e(t,r,i){function o(s,l){if(!r[s]){if(!t[s]){var c="function"==typeof require&&require;if(!l&&c)return c(s,!0);if(n)return n(s,!0);throw new Error("Cannot find module '"+s+"'")}var a=r[s]={exports:{}};t[s][0].call(a.exports,function(e){var r=t[s][1][e];return o(r||e)},a,a.exports,e,t,r,i)}return r[s].exports}for(var n="function"==typeof require&&require,s=0;s<i.length;s++)o(i[s]);return o}({1:[function(e,t,r){function i(e){this.opts=o({defaults:{callback:{success:function(){},fail:function(){}},interval:80,errorHeight:0},inherits:e}),this.isLoadOver=!1,this.init()}var o=e("../tools/extend");i.prototype.init=function(){this.render(),this.power()},i.prototype.render=function(){var e=this.opts.callback,t=document.body.scrollHeight;(document.documentElement.scrollTop||document.body.scrollTop)+document.documentElement.clientHeight>=t-this.opts.errorHeight&&!this.isLoadOver?(this.isLoadOver=!0,e.success(this)):e.fail()},i.prototype.power=function(){var e=this,t=null;window.addEventListener("scroll",function(){clearTimeout(t),t=setTimeout(function(){e.render()},e.opts.interval)})},t.exports=i},{"../tools/extend":2}],2:[function(e,t,r){function i(e){var t=e||{};t.defaults=t.defaults||{},t.inherits=t.inherits||{},t.isDeep=0!=t.isDeep||t.isDeep;var r=Object.prototype.toString.call(t.defaults).slice(8,-1).toLowerCase();if(r==Object.prototype.toString.call(t.inherits).slice(8,-1).toLowerCase()&&t.isDeep)if("object"==r||"array"==r){for(var o in t.inherits)if(t.inherits.hasOwnProperty(o)){var n=Object.prototype.toString.call(t.defaults[o]).slice(8,-1).toLowerCase(),s=Object.prototype.toString.call(t.inherits[o]).slice(8,-1).toLowerCase();n!=s||!t.isDeep||"object"!=n&&"array"!=n?t.defaults[o]=t.inherits[o]:i({defaults:t.defaults[o],inherits:t.inherits[o]})}}else t.defaults=t.inherits;else t.defaults=t.inherits;return t.defaults}t.exports=i},{}]},{},[1]);
+"use strict";
+
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);throw new Error("Cannot find module '" + o + "'");
+            }var f = n[o] = { exports: {} };t[o][0].call(f.exports, function (e) {
+                var n = t[o][1][e];return s(n ? n : e);
+            }, f, f.exports, e, t, n, r);
+        }return n[o].exports;
+    }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+        s(r[o]);
+    }return s;
+})({ 1: [function (require, module, exports) {
+        var extend = require('../tools/extend'); //对象的扩展方法
+
+        //当滚动到了浏览器的底部
+        function WhenScrollBottom(json) {
+            this.opts = extend({
+                defaults: {
+                    callback: {
+                        success: function success() {},
+                        fail: function fail() {}
+                    },
+                    interval: 80, //函数节流时间(延迟时间)
+                    errorHeight: 0 //滚动到底部上面一定高度就算是滚动到底部了(误差高度)
+                },
+                inherits: json
+            });
+            this.isLoadOver = false; //数据是否加载完毕
+            this.init();
+        }
+
+        WhenScrollBottom.prototype.init = function () {
+            this.render();
+            this.power();
+        };
+
+        WhenScrollBottom.prototype.render = function () {
+            var callback = this.opts.callback;
+            var allH = document.body.scrollHeight;
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var clientHeight = document.documentElement.clientHeight;
+            if (scrollTop + clientHeight >= allH - this.opts.errorHeight && !this.isLoadOver) {
+                this.isLoadOver = true;
+                callback.success(this);
+                /*
+                 * 条件:当你拿到请求的数据之后
+                 * 可能性:1.如果你的数据加载完毕了,你需要手动把isLoadOver开关变成true
+                 * 可能性:2.如果你的数据尚未加载完毕,你需要手动把isLoadOver开关变成false
+                 * */
+            } else {
+                callback.fail();
+            }
+        };
+
+        WhenScrollBottom.prototype.power = function () {
+            var self = this;
+            var timer = null;
+            window.addEventListener('scroll', function () {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    self.render();
+                }, self.opts.interval);
+            });
+        };
+
+        module.exports = WhenScrollBottom;
+    }, { "../tools/extend": 2 }], 2: [function (require, module, exports) {
+        //对象的扩展方法
+        function extend(json) {
+            var opts = json || {};
+            opts.defaults = opts.defaults || {}; //默认对象
+            opts.inherits = opts.inherits || {}; //继承对像
+            opts.isDeep = opts.isDeep == false ? opts.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
+            var defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
+            var inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
+            if (defaultsType == inheritsType && opts.isDeep) {
+                if (defaultsType == 'object' || defaultsType == 'array') {
+                    //当为对象或者为数组
+                    for (var attr in opts.inherits) {
+                        if (opts.inherits.hasOwnProperty(attr)) {
+                            var attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
+                            var attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
+                            if (attrDefaultsType == attrInheritsType && opts.isDeep) {
+                                //类型相同
+                                if (attrDefaultsType == 'object' || attrDefaultsType == 'array') {
+                                    //当为对象或者为数组
+                                    extend({ defaults: opts.defaults[attr], inherits: opts.inherits[attr] });
+                                } else {
+                                    opts.defaults[attr] = opts.inherits[attr];
+                                }
+                            } else {
+                                //类型不同,直接后面的覆盖前面的
+                                opts.defaults[attr] = opts.inherits[attr];
+                            }
+                        }
+                    }
+                } else {
+                    opts.defaults = opts.inherits;
+                }
+            } else {
+                opts.defaults = opts.inherits;
+            }
+            return opts.defaults;
+        }
+        // var obj1 = extend({
+        //     defaults: {
+        //         a: 'a',
+        //         b: {
+        //             b1: 'b1',
+        //             b2: 'b2',
+        //             b3: {
+        //                 c1: 'c1'
+        //             }
+        //         }
+        //     },
+        //     inherits: {
+        //         a: 0,
+        //         b: {
+        //             b2: 1,
+        //             b3: {
+        //                 c2: 2
+        //             }
+        //         }
+        //     }
+        // });
+        // console.log(obj1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
+        // var obj2 = extend({
+        //     defaults: {
+        //         a: [
+        //             0,
+        //             [9, 8, 7],
+        //             {
+        //                 arr: [
+        //                     1,
+        //                     2,
+        //                     3,
+        //                     [7, 9, 10],
+        //                     {good: 'good'}
+        //                 ]
+        //             }
+        //         ],
+        //         b: [
+        //             {a1: 'a1'},
+        //             {a2: 'a2'}
+        //         ]
+        //     },
+        //     inherits: {
+        //         a: [
+        //             1,
+        //             [3, 1],
+        //             {
+        //                 arr: [
+        //                     8,
+        //                     8,
+        //                     8,
+        //                     [6, 8]
+        //                 ]
+        //             }
+        //         ],
+        //         b: [
+        //             'what?',
+        //             {b1: 'b1'},
+        //             {b2: 'b2'}
+        //         ]
+        //     }
+        // });
+        // console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
+
+        module.exports = extend;
+    }, {}] }, {}, [1]);

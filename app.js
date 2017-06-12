@@ -1,7 +1,3 @@
-//配置
-var Port = require('./config/port');
-var port = new Port();
-
 //express
 var express = require('express');
 var app = express();
@@ -48,8 +44,6 @@ new RouteError({app: app});
 // );
 
 //端口
-app.set('port', port.getPort());
-var server = app.listen(app.get('port'), function () {
-    var port = server.address().port;
-    console.log(`访问地址:\nhttp://127.0.0.1:${port}`);
+var server = app.listen('5555', function () {
+    console.log(`访问地址:\nhttp://127.0.0.1:${server.address().port}`);
 });

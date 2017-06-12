@@ -1,1 +1,194 @@
-"use strict";!function e(t,r,o){function i(s,a){if(!r[s]){if(!t[s]){var p="function"==typeof require&&require;if(!a&&p)return p(s,!0);if(n)return n(s,!0);throw new Error("Cannot find module '"+s+"'")}var u=r[s]={exports:{}};t[s][0].call(u.exports,function(e){var r=t[s][1][e];return i(r||e)},u,u.exports,e,t,r,o)}return r[s].exports}for(var n="function"==typeof require&&require,s=0;s<o.length;s++)i(o[s]);return i}({1:[function(e,t,r){function o(e){function t(e){this.opts=i({defaults:n({obj:s}),inherits:e}),r.superType.call(this,this.opts)}var r=i({defaults:{superType:null,parameter:{}},inherits:e}),o=r.superType,s=r.parameter;if("function"!=Object.prototype.toString.call(o).toLowerCase().slice(8,-1))return console.log("no find SuperType or SuperType error"),!1;for(var a in o.prototype)o.prototype.hasOwnProperty(a)&&(t.prototype[a]=o.prototype[a]);return t}var i=e("../tools/extend"),n=e("../tools/obj-remove-quote");t.exports=o},{"../tools/extend":2,"../tools/obj-remove-quote":3}],2:[function(e,t,r){function o(e){var t=e||{};t.defaults=t.defaults||{},t.inherits=t.inherits||{},t.isDeep=0!=t.isDeep||t.isDeep;var r=Object.prototype.toString.call(t.defaults).slice(8,-1).toLowerCase();if(r==Object.prototype.toString.call(t.inherits).slice(8,-1).toLowerCase()&&t.isDeep)if("object"==r||"array"==r){for(var i in t.inherits)if(t.inherits.hasOwnProperty(i)){var n=Object.prototype.toString.call(t.defaults[i]).slice(8,-1).toLowerCase(),s=Object.prototype.toString.call(t.inherits[i]).slice(8,-1).toLowerCase();n!=s||!t.isDeep||"object"!=n&&"array"!=n?t.defaults[i]=t.inherits[i]:o({defaults:t.defaults[i],inherits:t.inherits[i]})}}else t.defaults=t.inherits;else t.defaults=t.inherits;return t.defaults}t.exports=o},{}],3:[function(e,t,r){function o(e){var t=e||{},r=t.obj,i=Object.prototype.toString.call(r).slice(8,-1).toLowerCase();if("object"!=i&&"array"!=i)return r;var n={};"array"==i&&(n=[]);for(var s in r)r.hasOwnProperty(s)&&(n[s]=o({obj:r[s]}));return n}t.exports=o},{}]},{},[1]);
+"use strict";
+
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);throw new Error("Cannot find module '" + o + "'");
+            }var f = n[o] = { exports: {} };t[o][0].call(f.exports, function (e) {
+                var n = t[o][1][e];return s(n ? n : e);
+            }, f, f.exports, e, t, n, r);
+        }return n[o].exports;
+    }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+        s(r[o]);
+    }return s;
+})({ 1: [function (require, module, exports) {
+        var extend = require('../tools/extend'); //对象的扩展方法
+        var objRemoveQuote = require('../tools/obj-remove-quote'); //对象移除引用
+
+        //构造函数的继承(拷贝继承)
+        function constructorInherit(json) {
+            var opts = extend({
+                defaults: {
+                    superType: null, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
+                    parameter: {} //默认参数(这个必须传的是一个对象,或者不传值)
+                },
+                inherits: json
+            });
+            //超类型(需要是个构造函数)
+            var SuperType = opts.superType;
+            //子类型的默认参数(需要是个对象)
+            var parameter = opts.parameter;
+            //如果超类型不存在
+            if (Object.prototype.toString.call(SuperType).toLowerCase().slice(8, -1) != 'function') {
+                console.log('no find SuperType or SuperType error');
+                return false;
+            }
+            //子类型
+            function SubType(json) {
+                //子类型自身的属性
+                /*
+                 * 注意:
+                 * defaults要防止对象的引用(如果不防止的话,会出现BUG)
+                 * 例如 wrap的默认值是'.g-wrap'
+                 * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
+                 * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
+                 * 但是由于对象引用的原因,这里的值会变成'body'
+                 * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
+                 * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
+                 * 所以我就封装了一个移除对象引用的函数
+                 * */
+                this.opts = extend({
+                    defaults: objRemoveQuote({ obj: parameter }),
+                    inherits: json
+                });
+                //子类型继承超类型的属性
+                opts.superType.call(this, this.opts);
+            }
+
+            //子类型继承超类型的方法
+            for (var attr in SuperType.prototype) {
+                if (SuperType.prototype.hasOwnProperty(attr)) {
+                    SubType.prototype[attr] = SuperType.prototype[attr];
+                }
+            }
+            return SubType;
+        }
+
+        module.exports = constructorInherit;
+    }, { "../tools/extend": 2, "../tools/obj-remove-quote": 3 }], 2: [function (require, module, exports) {
+        //对象的扩展方法
+        function extend(json) {
+            var opts = json || {};
+            opts.defaults = opts.defaults || {}; //默认对象
+            opts.inherits = opts.inherits || {}; //继承对像
+            opts.isDeep = opts.isDeep == false ? opts.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
+            var defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
+            var inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
+            if (defaultsType == inheritsType && opts.isDeep) {
+                if (defaultsType == 'object' || defaultsType == 'array') {
+                    //当为对象或者为数组
+                    for (var attr in opts.inherits) {
+                        if (opts.inherits.hasOwnProperty(attr)) {
+                            var attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
+                            var attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
+                            if (attrDefaultsType == attrInheritsType && opts.isDeep) {
+                                //类型相同
+                                if (attrDefaultsType == 'object' || attrDefaultsType == 'array') {
+                                    //当为对象或者为数组
+                                    extend({ defaults: opts.defaults[attr], inherits: opts.inherits[attr] });
+                                } else {
+                                    opts.defaults[attr] = opts.inherits[attr];
+                                }
+                            } else {
+                                //类型不同,直接后面的覆盖前面的
+                                opts.defaults[attr] = opts.inherits[attr];
+                            }
+                        }
+                    }
+                } else {
+                    opts.defaults = opts.inherits;
+                }
+            } else {
+                opts.defaults = opts.inherits;
+            }
+            return opts.defaults;
+        }
+        // var obj1 = extend({
+        //     defaults: {
+        //         a: 'a',
+        //         b: {
+        //             b1: 'b1',
+        //             b2: 'b2',
+        //             b3: {
+        //                 c1: 'c1'
+        //             }
+        //         }
+        //     },
+        //     inherits: {
+        //         a: 0,
+        //         b: {
+        //             b2: 1,
+        //             b3: {
+        //                 c2: 2
+        //             }
+        //         }
+        //     }
+        // });
+        // console.log(obj1);//{a: 0, b: {b1: 'b1', b2: 1, b3: {c1: 'c1', c2: 2}}}
+        // var obj2 = extend({
+        //     defaults: {
+        //         a: [
+        //             0,
+        //             [9, 8, 7],
+        //             {
+        //                 arr: [
+        //                     1,
+        //                     2,
+        //                     3,
+        //                     [7, 9, 10],
+        //                     {good: 'good'}
+        //                 ]
+        //             }
+        //         ],
+        //         b: [
+        //             {a1: 'a1'},
+        //             {a2: 'a2'}
+        //         ]
+        //     },
+        //     inherits: {
+        //         a: [
+        //             1,
+        //             [3, 1],
+        //             {
+        //                 arr: [
+        //                     8,
+        //                     8,
+        //                     8,
+        //                     [6, 8]
+        //                 ]
+        //             }
+        //         ],
+        //         b: [
+        //             'what?',
+        //             {b1: 'b1'},
+        //             {b2: 'b2'}
+        //         ]
+        //     }
+        // });
+        // console.log(obj2);//{a: [1, [3, 1, 7],{arr: [8, 8, 8, [6, 8, 10], {good: 'good'}]}], b: ['what?', {a2: 'a2', b1: 'b1'}, {b2: 'b2'}]}
+
+        module.exports = extend;
+    }, {}], 3: [function (require, module, exports) {
+        //移除对象引用
+        function objRemoveQuote(json) {
+            var opts = json || {};
+            var obj = opts.obj; //这里一定不能给默认值
+            var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+            if (objType != 'object' && objType != 'array') {
+                return obj;
+            }
+            var newObj = {};
+            if (objType == 'array') {
+                newObj = [];
+            }
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) {
+                    newObj[attr] = objRemoveQuote({ obj: obj[attr] });
+                }
+            }
+            return newObj;
+        }
+
+        module.exports = objRemoveQuote;
+    }, {}] }, {}, [1]);

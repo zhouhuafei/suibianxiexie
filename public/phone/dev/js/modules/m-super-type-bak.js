@@ -52,13 +52,21 @@ function SuperType(json) {
                 moduleDomHideAfter: function (self) {
                     //内部模块隐藏之后的回调待续...
                 },
-                //外部容器获取之前
-                wrapDomGetBefore: function (self) {
-                    //外部容器获取之前的回调待续...
+                //外部容器创建之前
+                wrapDomCreateBefore: function (self) {
+                    //外部容器创建之前的回调待续...
                 },
-                //外部容器获取之后
-                wrapDomGetAfter: function (self) {
-                    //外部容器获取之后的回调待续...
+                //外部容器创建之后
+                wrapDomCreateAfter: function (self) {
+                    //外部容器创建之后的回调待续...
+                },
+                //外部容器渲染之前
+                wrapDomRenderBefore: function (self) {
+                    //外部容器渲染之前的回调待续...
+                },
+                //外部容器渲染之后
+                wrapDomRenderAfter: function (self) {
+                    //外部容器渲染之后的回调待续...
                 },
                 //外部容器移除之前
                 wrapDomRemoveBefore: function (self) {
@@ -103,8 +111,8 @@ SuperType.prototype.init = function () {
 
 //渲染
 SuperType.prototype.render = function () {
-    this.moduleDomCreate();
-    this.wrapDomGet();
+    this.moduleDomRender();
+    this.wrapDomRender();
 };
 
 //功能(这个方法在其他模块的内部需要被重写)
@@ -114,9 +122,6 @@ SuperType.prototype.power = function () {
 
 //内部模块的创建(这个方法在其他模块的内部需要被重写)
 SuperType.prototype.moduleDomCreate = function () {
-    var callback = this.opts.callback;
-    this.moduleDomRemove();
-    callback.moduleDomCreateBefore(this);
     this.moduleDom = createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
@@ -127,40 +132,26 @@ SuperType.prototype.moduleDomCreate = function () {
             `
         }
     });
-    callback.moduleDomCreateAfter(this);
 };
 
 //内部模块的渲染
 SuperType.prototype.moduleDomRender = function () {
+    this.moduleDomRemove();
     var callback = this.opts.callback;
-    var config = this.opts.config;
-    if (config.moduleDomIsShow && this.wrapDom) {
-        callback.moduleDomRenderBefore(this);
-        var renderMethod = config.moduleDomRenderMethod;
-        if (renderMethod.method == 'insertBefore') {
-            var dom = getDomArray({element: renderMethod.child})[0];
-            if (dom) {
-                this.wrapDom.insertBefore(this.moduleDom, dom);
-            } else {
-                this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
-            }
-        }
-        if (renderMethod.method == 'appendChild') {
-            this.wrapDom.appendChild(this.moduleDom);
-        }
-        callback.moduleDomRenderAfter(this);
-    }
+    callback.moduleDomCreateBefore(this);
+    this.moduleDomCreate();
+    callback.moduleDomCreateAfter(this);
 };
 
 //内部模块的移除
 SuperType.prototype.moduleDomRemove = function () {
     var callback = this.opts.callback;
+    callback.moduleDomRemoveBefore(this);
     if (this.moduleDom && this.moduleDom.parentNode) {
-        callback.moduleDomRemoveBefore(this);
         this.moduleDom.parentNode.removeChild(this.moduleDom);
-        callback.moduleDomRemoveAfter(this);
     }
     this.moduleDomClearTimer();
+    callback.moduleDomRemoveAfter(this);
 };
 
 //内部模块的定时器清除(假设内部模块有定时器)
@@ -181,7 +172,7 @@ SuperType.prototype.moduleDomShow = function () {
     callback.moduleDomShowBefore(this);
     if (this.wrapDom) {
         this.opts.config.moduleDomIsShow = true;
-        this.moduleDomRender();
+        this.wrapDomRenderMethod();
     }
     callback.moduleDomShowAfter(this);
 };
@@ -189,36 +180,64 @@ SuperType.prototype.moduleDomShow = function () {
 //内部模块的隐藏(显示隐藏和是否清除定时器无关)
 SuperType.prototype.moduleDomHide = function () {
     var callback = this.opts.callback;
+    callback.moduleDomHideBefore(this);
     if (this.moduleDom.parentNode) {
-        this.opts.config.moduleDomIsShow = false;
-        callback.moduleDomHideBefore(this);
         this.moduleDom.parentNode.removeChild(this.moduleDom);
-        callback.moduleDomHideAfter(this);
+        this.opts.config.moduleDomIsShow = false;
+    }
+    callback.moduleDomHideAfter(this);
+};
+
+//外部容器的创建
+SuperType.prototype.wrapDomCreate = function () {
+    this.wrapDom = getDomArray({element: this.opts.wrap})[0];
+};
+
+//外部容器的渲染
+SuperType.prototype.wrapDomRender = function () {
+    var callback = this.opts.callback;
+    callback.wrapDomCreateBefore(this);
+    this.wrapDomCreate();
+    callback.wrapDomCreateAfter(this);
+    if (this.wrapDom) {
+        callback.moduleDomRenderBefore(this);
+        callback.wrapDomRenderBefore(this);
+        this.wrapDomRenderMethod();
+        callback.wrapDomRenderAfter(this);
+        callback.moduleDomRenderAfter(this);
     }
 };
 
-//外部容器的获取
-SuperType.prototype.wrapDomGet = function () {
-    var callback = this.opts.callback;
-    callback.wrapDomGetBefore(this);
-    this.wrapDom = getDomArray({element: this.opts.wrap})[0];
-    callback.wrapDomGetAfter(this);
-    if (this.wrapDom) {
-        this.moduleDomRender();
+//外部容器的渲染方式
+SuperType.prototype.wrapDomRenderMethod = function () {
+    var config = this.opts.config;
+    if (config.moduleDomIsShow) {
+        var renderMethod = config.moduleDomRenderMethod;
+        if (renderMethod.method == 'insertBefore') {
+            var dom = getDomArray({element: renderMethod.child})[0];
+            if (dom) {
+                this.wrapDom.insertBefore(this.moduleDom, dom);
+            } else {
+                this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
+            }
+        }
+        if (renderMethod.method == 'appendChild') {
+            this.wrapDom.appendChild(this.moduleDom);
+        }
     }
 };
 
 //外部容器的移除
 SuperType.prototype.wrapDomRemove = function () {
     var callback = this.opts.callback;
+    callback.wrapDomRemoveBefore(this);
     //先移除内部的模块
     this.moduleDomRemove();
     //再移除外部的容器
     if (this.wrapDom) {
-        callback.wrapDomRemoveBefore(this);
         this.wrapDom.parentNode.removeChild(this.wrapDom);
-        callback.wrapDomRemoveAfter(this);
     }
+    callback.wrapDomRemoveAfter(this);
 };
 
 //获取内部模块的整体html结构
