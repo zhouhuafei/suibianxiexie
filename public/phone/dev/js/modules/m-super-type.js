@@ -122,13 +122,9 @@ SuperType.prototype.power = function () {
 
 //内部模块的创建(这个方法在其他模块的内部需要被重写)
 SuperType.prototype.moduleDomCreate = function () {
-    var opts = this.opts;
-    var callback = opts.callback;
-    var config = opts.config;
-    callback.moduleDomCreateBefore(this);
     this.moduleDom = createElement({
-        style: config.moduleDomStyle,
-        custom: config.moduleDomCustomAttr,
+        style: this.opts.config.moduleDomStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
             className: `m-super-type`,
             innerHTML: `
@@ -136,27 +132,26 @@ SuperType.prototype.moduleDomCreate = function () {
             `
         }
     });
-    callback.moduleDomCreateAfter(this);
 };
 
 //内部模块的渲染
 SuperType.prototype.moduleDomRender = function () {
-    var callback = this.opts.callback;
-    callback.moduleDomRenderBefore(this);
     this.moduleDomRemove();
+    var callback = this.opts.callback;
+    callback.moduleDomCreateBefore(this);
     this.moduleDomCreate();
-    callback.moduleDomRenderAfter(this);
+    callback.moduleDomCreateAfter(this);
 };
 
 //内部模块的移除
 SuperType.prototype.moduleDomRemove = function () {
     var callback = this.opts.callback;
+    callback.moduleDomRemoveBefore(this);
     if (this.moduleDom && this.moduleDom.parentNode) {
-        callback.moduleDomRemoveBefore(this);
         this.moduleDom.parentNode.removeChild(this.moduleDom);
-        callback.moduleDomRemoveAfter(this);
     }
     this.moduleDomClearTimer();
+    callback.moduleDomRemoveAfter(this);
 };
 
 //内部模块的定时器清除(假设内部模块有定时器)
@@ -174,47 +169,49 @@ SuperType.prototype.moduleDomClearTimer = function () {
 //内部模块的显示(显示隐藏和是否清除定时器无关)
 SuperType.prototype.moduleDomShow = function () {
     var callback = this.opts.callback;
+    callback.moduleDomShowBefore(this);
     if (this.wrapDom) {
         this.opts.config.moduleDomIsShow = true;
-        callback.moduleDomShowBefore(this);
         this.wrapDomRenderMethod();
-        callback.moduleDomShowAfter(this);
     }
+    callback.moduleDomShowAfter(this);
 };
 
 //内部模块的隐藏(显示隐藏和是否清除定时器无关)
 SuperType.prototype.moduleDomHide = function () {
     var callback = this.opts.callback;
+    callback.moduleDomHideBefore(this);
     if (this.moduleDom.parentNode) {
-        this.opts.config.moduleDomIsShow = false;
-        callback.moduleDomHideBefore(this);
         this.moduleDom.parentNode.removeChild(this.moduleDom);
-        callback.moduleDomHideAfter(this);
+        this.opts.config.moduleDomIsShow = false;
     }
+    callback.moduleDomHideAfter(this);
 };
 
 //外部容器的创建
 SuperType.prototype.wrapDomCreate = function () {
-    var callback = this.opts.callback;
-    callback.wrapDomCreateBefore(this);
     this.wrapDom = getDomArray({element: this.opts.wrap})[0];
-    callback.wrapDomCreateAfter(this);
 };
 
 //外部容器的渲染
 SuperType.prototype.wrapDomRender = function () {
+    var callback = this.opts.callback;
+    callback.wrapDomCreateBefore(this);
     this.wrapDomCreate();
+    callback.wrapDomCreateAfter(this);
     if (this.wrapDom) {
+        callback.moduleDomRenderBefore(this);
+        callback.wrapDomRenderBefore(this);
         this.wrapDomRenderMethod();
+        callback.wrapDomRenderAfter(this);
+        callback.moduleDomRenderAfter(this);
     }
 };
 
 //外部容器的渲染方式
 SuperType.prototype.wrapDomRenderMethod = function () {
-    var callback = this.opts.callback;
     var config = this.opts.config;
     if (config.moduleDomIsShow) {
-        callback.wrapDomRenderBefore(this);
         var renderMethod = config.moduleDomRenderMethod;
         if (renderMethod.method == 'insertBefore') {
             var dom = getDomArray({element: renderMethod.child})[0];
@@ -227,21 +224,20 @@ SuperType.prototype.wrapDomRenderMethod = function () {
         if (renderMethod.method == 'appendChild') {
             this.wrapDom.appendChild(this.moduleDom);
         }
-        callback.wrapDomRenderAfter(this);
     }
 };
 
 //外部容器的移除
 SuperType.prototype.wrapDomRemove = function () {
     var callback = this.opts.callback;
+    callback.wrapDomRemoveBefore(this);
     //先移除内部的模块
     this.moduleDomRemove();
     //再移除外部的容器
     if (this.wrapDom) {
-        callback.wrapDomRemoveBefore(this);
         this.wrapDom.parentNode.removeChild(this.wrapDom);
-        callback.wrapDomRemoveAfter(this);
     }
+    callback.wrapDomRemoveAfter(this);
 };
 
 //获取内部模块的整体html结构
