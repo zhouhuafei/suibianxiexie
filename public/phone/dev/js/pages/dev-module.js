@@ -90,10 +90,7 @@ window.addEventListener('load', function () {
         //导航
         (function () {
             var Navigation = require('../modules/m-navigation');
-            var d=new Navigation({wrap: '.page-navigation'});
-            window.d=d;
-            console.log(d);
-            d.init();
+            new Navigation({wrap: '.page-navigation'});
         })();
 
         //弹窗测试
