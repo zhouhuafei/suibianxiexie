@@ -5,7 +5,7 @@ function addMinusInput(json) {//购物加减商品系列
         return false;
     }
     var noActiveClass = json.noActiveClass || 'on';//不能点的时候的class
-    var minNum = json.minNum || 1;//最小数量
+    var minNum = json.minNum==undefined ? 1 : json.minNum;//最小数量
     var add = json.add;//加的按钮
     var addCallback = json.addCallback;//加的回调
     var minus = json.minus;//减少的按钮
