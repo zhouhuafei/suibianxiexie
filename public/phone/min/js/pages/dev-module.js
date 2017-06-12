@@ -107,28 +107,31 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 //导航
                 (function () {
                     var Navigation = require('../modules/m-navigation');
-                    new Navigation({ wrap: '.page-navigation' });
+                    var d = new Navigation({ wrap: '.page-navigation' });
+                    window.d = d;
+                    console.log(d);
+                    d.init();
                 })();
 
                 //弹窗测试
                 (function () {
                     var Dialog = require('../modules/m-dialog');
-                    new Dialog({
-                        callback: {
-                            confirm: function confirm() {
-                                new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已确认' } } });
-                            },
-                            cancel: function cancel() {
-                                new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已取消' } } });
-                            },
-                            close: function close() {
-                                new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已关闭' } } });
-                            }
-                        },
-                        config: {
-                            type: 'confirm'
-                        }
-                    });
+                    // new Dialog({
+                    //     callback: {
+                    //         confirm: function () {
+                    //             new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已确认'}}});
+                    //         },
+                    //         cancel: function () {
+                    //             new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已取消'}}});
+                    //         },
+                    //         close: function () {
+                    //             new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已关闭'}}});
+                    //         }
+                    //     },
+                    //     config: {
+                    //         type: 'confirm'
+                    //     }
+                    // });
                 })();
 
                 //分页测试
@@ -2146,8 +2149,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //渲染
         SuperType.prototype.render = function () {
-            this.moduleDomCreate();
-            this.wrapDomGet();
+            this.moduleDomRemove(); //内部模块的移除(重新初始化的时候要移除掉以前有的内部模块)
+            var callback = this.opts.callback;
+            callback.moduleDomCreateBefore(this);
+            this.moduleDomCreate(); //内部模块的创建
+            callback.moduleDomCreateAfter(this);
+            this.wrapDomGet(); //外部容器的获取
+            this.moduleDomRender(); //内部模块的渲染(如果外部容器存在,就把内部模块填充到外部容器里)
         };
 
         //功能(这个方法在其他模块的内部需要被重写)
@@ -2157,9 +2165,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         //内部模块的创建(这个方法在其他模块的内部需要被重写)
         SuperType.prototype.moduleDomCreate = function () {
-            var callback = this.opts.callback;
-            this.moduleDomRemove();
-            callback.moduleDomCreateBefore(this);
             this.moduleDom = createElement({
                 style: this.opts.config.moduleDomStyle,
                 custom: this.opts.config.moduleDomCustomAttr,
@@ -2168,7 +2173,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     innerHTML: "\n                <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            "
                 }
             });
-            callback.moduleDomCreateAfter(this);
         };
 
         //内部模块的渲染
@@ -2244,9 +2248,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             callback.wrapDomGetBefore(this);
             this.wrapDom = getDomArray({ element: this.opts.wrap })[0];
             callback.wrapDomGetAfter(this);
-            if (this.wrapDom) {
-                this.moduleDomRender();
-            }
         };
 
         //外部容器的移除
