@@ -1,5 +1,5 @@
 {
-  "name": "mysql",
+  "name": "my-shop",
   "version": "1.0.0",
   "description": "waiting",
   "main": "app.js",
@@ -32,12 +32,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhouhuafei/mysql.git"
+    "url": "https://github.com/zhouhuafei/my-shop.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zhouhuafei/mysql/issues"
+    "url": "https://github.com/zhouhuafei/my-shop/issues"
   },
-  "homepage": "https://github.com/zhouhuafei/mysql#readme"
+  "homepage": "https://github.com/zhouhuafei/my-shop#readme"
 }
