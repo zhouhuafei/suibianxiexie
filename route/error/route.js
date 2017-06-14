@@ -17,20 +17,22 @@ class Route {
 
     init() {
         this.error404();
-        this.error500();
+        //this.error500();
     }
     error404(){
         var self = this;
-        var Controller = require(`../../controller/error/404`);
         self.opts.app.use(function (req, res, next) {
-            new Controller({req: req, res: res}).render();
+            res.status(404).send('Sorry cant find that!');
+            //var Controller = require(`../../controller/error/404`);
+            //new Controller({req: req, res: res}).render();
         });
     }
     error500(){
         var self = this;
-        var Controller = require(`../../controller/error/500`);
-        self.opts.app.use(function (err, req, res, next) {
-            new Controller({req: req, res: res}).render();
+        self.opts.app.use(function(err, req, res, next) {
+            res.status(500).send('Something broke!');
+            //var Controller = require(`../../controller/error/500`);
+            // new Controller({req: req, res: res}).render();
         });
     }
 }

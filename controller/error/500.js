@@ -38,7 +38,7 @@ class Fn500 {
     }
 
     renderOther() {
-        this.opts.res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'});
+        this.opts.res.writeHead(500, {'Content-Type': 'text/plain;charset=utf-8'});
         this.opts.res.end(JSON.stringify({code: 500}));
     }
 }
