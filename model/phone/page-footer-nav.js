@@ -9,40 +9,39 @@ class FooterNav {
             data: {
                 'home': {
                     icon: 'icon-shouye',
-                    txt: phoneConfig['home'].title,
-                    link: phoneConfig['home'].route,
+                    txt: phoneConfig.home.title,
+                    link: phoneConfig.home.route,
                     isHighlight: false,
                     isShowMark: false
                 },
                 'dev-global': {
                     icon: 'icon-kaifa',
-                    txt: phoneConfig['dev-global'].title,
-                    link: phoneConfig['dev-global'].route,
+                    txt: phoneConfig.dev.global.title,
+                    link: phoneConfig.dev.global.route,
                     isHighlight: false,
                     isShowMark: false
                 },
                 'dev-module': {
                     icon: 'icon-kaifa',
-                    txt: phoneConfig['dev-module'].title,
-                    link: phoneConfig['dev-module'].route,
+                    txt: phoneConfig.dev.module.title,
+                    link: phoneConfig.dev.module.route,
                     isHighlight: false,
                     isShowMark: false
                 },
                 'dev-word': {
                     icon: 'icon-kaifa',
-                    txt: phoneConfig['dev-word'].title,
-                    link: phoneConfig['dev-word'].route,
+                    txt: phoneConfig.dev.word.title,
+                    link: phoneConfig.dev.word.route,
                     isHighlight: false,
                     isShowMark: false
                 },
                 'mine': {
                     icon: 'icon-wode',
-                    txt: phoneConfig['mine'].title,
-                    link: phoneConfig['mine'].route,
+                    txt: phoneConfig.mine.title,
+                    link: phoneConfig.mine.route,
                     isHighlight: false,
                     isShowMark: false
                 }
-
             }
         };
     }

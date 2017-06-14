@@ -1,6 +1,6 @@
 //页面路由
 const extend = require('../../libs/tools/extend');
-const page = require('./config');
+const config = require('./config');
 const fs = require('fs');
 const path = require('path');
 
@@ -20,13 +20,13 @@ class Route {
 
     init() {
         var self = this;
-        var files = fs.readdirSync(`./controller/phone/`);//读取文件夹/文件,路径是相对于在哪里调用
-        files.forEach(function (v) {
-            var fileName = path.basename(v, '.js');
-            var Controller = require(`../../controller/phone/${fileName}`);//引入文件,路径是相对于这个文件本身
-            self.opts.app.get(page[fileName].route, function (req, res) {
-                new Controller({req: req, res: res}).render();
-            })
+        var opts = self.opts;
+        var app = opts.app;
+        var controllerPath = `../../controller/phone/`;
+        //首页
+        app.get(config.home.route, function (req, res) {
+            var Controller = require(`../../controller/phone/home`);//引入文件,路径是相对于这个文件本身
+            new Controller({req: req, res: res}).render();
         });
     }
 }
