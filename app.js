@@ -3,18 +3,18 @@ var express = require('express');
 var app = express();
 
 //托管静态文件
-app.use(express.static('public'));
+app.use(express.static('static'));
 
 //模版引擎(handlebars)
 var handlebars = require('express-handlebars');
 app.engine('html', handlebars({
-    partialsDir: `${__dirname}/public/`,//设置页面布局模块文件的路径
-    layoutsDir: `${__dirname}/public/`,//设置页面布局模版文件的路径(本项目没有使用到页面布局模板文件)
+    partialsDir: `${__dirname}/static/`,//设置页面布局模块文件的路径
+    layoutsDir: `${__dirname}/static/`,//设置页面布局模版文件的路径(本项目没有使用到页面布局模板文件)
     defaultLayout: '',//设置页面的布局模版文件(本项目没有使用到页面布局模板文件)
     extname: '.html'
 }));
 app.set('view engine', 'html');
-app.set('views', `${__dirname}/public/`);
+app.set('views', `${__dirname}/static/`);
 
 //pc的路由待续...
 //phone的路由
