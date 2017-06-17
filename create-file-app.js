@@ -11,8 +11,6 @@ if (!fileName) {
 }
 const staticPath = `${__dirname}/static/${pathName}/dev`;//前端的静态文件所处的位置
 const controllerPath = `controller/${pathName}/`;//控制器文件的位置
-//检测是否存在这个文件夹待续...
-
 
 //创建静态文件
 const file = {
