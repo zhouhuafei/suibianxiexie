@@ -77,14 +77,8 @@ for (var attr in file) {
 
 //创建控制器文件
 {
-    let humpFileName = ``;
-    let arr = fileName.split('-');
-    arr.forEach(function (v,i) {
-        if(i!=0){
-            arr[i]=arr[i][0].toUpperCase()+arr[i][0].substring(1);
-        }
-    });
-    humpFileName=arr.join('');
+    var strToHump = require('./libs/tools/str-to-hump');
+    let humpFileName = strToHump({str: fileName});
     new CreateFile({
         data: {
             path: `${staticPath}/js/pages/`,
@@ -130,6 +124,7 @@ for (var attr in file) {
 
 module.exports = ${humpFileName};
 `
-        }
+        },
+        extendName: '.js'
     });
 }
