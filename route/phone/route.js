@@ -1,8 +1,6 @@
 //页面路由
 const extend = require('../../libs/tools/extend');
-const page = require('./config');
-const fs = require('fs');
-const path = require('path');
+const config = require('./config');
 
 class Route {
     constructor(json) {
@@ -20,14 +18,21 @@ class Route {
 
     init() {
         var self = this;
-        var files = fs.readdirSync(`./controller/phone/`);//读取文件夹/文件,路径是相对于在哪里调用
-        files.forEach(function (v) {
-            var fileName = path.basename(v, '.js');
-            var Controller = require(`../../controller/phone/${fileName}`);//引入文件,路径是相对于这个文件本身
-            self.opts.app.get(page[fileName].route, function (req, res) {
-                new Controller({req: req, res: res}).render();
-            })
-        });
+        var app = self.opts.app;
+        for (var attr in config) {
+            if (config.hasOwnProperty(attr)) {
+                try {
+                    var Controller = require(`../../controller/phone/${attr}`);
+                    (function (Controller) {
+                        app.get(config[attr].route, function (req, res) {
+                            new Controller({req: req, res: res}).render();
+                        })
+                    })(Controller);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+        }
     }
 }
 
