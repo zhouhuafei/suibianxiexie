@@ -1,7 +1,8 @@
-<input type="hidden" id="page-footer-nav" value="{{pageInfoStr}}">
+<div class="g-footer"></div>
+<input type="hidden" id="page-info-str" value="{{pageInfoStr}}">
 <script>
     var pageInfo = (function () {
-        var input = document.querySelector('#page-footer-nav');
+        var input = document.querySelector('#page-info-str');
         var value = input.value;
         input.parentNode.removeChild(input);
         return JSON.parse(value);

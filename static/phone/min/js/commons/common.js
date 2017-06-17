@@ -124,6 +124,8 @@
             superType: SuperType,
             //默认参数(继承超类型)
             parameter: {
+                //容器
+                wrap: '.g-footer',
                 //回调
                 callback: {},
                 //配置
@@ -162,6 +164,8 @@
             superType: SuperType,
             //默认参数(继承超类型)
             parameter: {
+                //容器
+                wrap: '.g-footer',
                 //回调
                 callback: {},
                 //配置

@@ -46,7 +46,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                             success: function success(self) {
                                 var Loading = require('../modules/m-loading');
                                 var loading = new Loading({
-                                    wrap: '.g-page',
+                                    wrap: '.g-body',
                                     config: {
                                         status: 'loading'
                                     }
@@ -446,6 +446,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             superType: SuperType,
             //默认参数(继承超类型)
             parameter: {
+                //容器
+                wrap: '.g-footer',
                 //回调
                 callback: {},
                 //配置
@@ -683,6 +685,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             superType: SuperType,
             //默认参数(继承超类型)
             parameter: {
+                //容器
+                wrap: '.g-footer',
                 //回调
                 callback: {},
                 //配置

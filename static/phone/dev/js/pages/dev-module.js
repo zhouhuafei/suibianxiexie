@@ -23,7 +23,7 @@ window.addEventListener('load', function () {
                     success: function (self) {
                         var Loading = require('../modules/m-loading');
                         var loading = new Loading({
-                            wrap: '.g-page',
+                            wrap: '.g-body',
                             config: {
                                 status: 'loading'
                             }

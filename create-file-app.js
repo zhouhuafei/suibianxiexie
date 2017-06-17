@@ -27,7 +27,7 @@ const file = {
         <div class="g-wrap">
             {{>phone/min/html/partials/header}}
             <!--page start-->
-            <div class="g-page">
+            <div class="g-body">
                 <!--结构待续...-->
             </div>
             <!--page end-->
@@ -45,7 +45,7 @@ const file = {
 @import "../base/base";
 
 //页面样式
-.g-page {
+.g-body {
     //样式待续...
 }`,
         extendName: '.scss'

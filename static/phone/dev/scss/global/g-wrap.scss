@@ -3,7 +3,7 @@
 //全局的容器
 .g-wrap {
     width: 100%;
-    .g-page {
+    .g-body {
         &:before, &:after {
             content: ' ';
             display: block;
@@ -11,10 +11,13 @@
             overflow: hidden;
         }
     }
+    .g-footer {
+        width: inherit;
+    }
 }
 
 //pc展示
-.g-pc {
+html.g-pc {
     height: 100%;
     box-sizing: border-box;
     body {
