@@ -81,7 +81,7 @@ for (var attr in file) {
     let humpFileName = strToHump({str: fileName});
     new CreateFile({
         data: {
-            path: `${staticPath}/js/pages/`,
+            path: controllerPath,
             fileName: fileName,
             content: `class ${humpFileName} {
     constructor(json) {
@@ -122,8 +122,7 @@ for (var attr in file) {
     }
 }
 
-module.exports = ${humpFileName};
-`,
+module.exports = ${humpFileName};`,
             extendName: '.js'
         }
     });
