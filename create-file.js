@@ -17,7 +17,7 @@ const controllerPath = `controller/${pathName}/`;//控制器文件的位置
 //创建静态文件
 const file = {
     html: {
-        path: controllerPath,
+        path: `${staticPath}/html/pages/`,
         fileName: fileName,
         content: `<!DOCTYPE html>
 <html lang="en">
@@ -123,8 +123,8 @@ for (var attr in file) {
 }
 
 module.exports = ${humpFileName};
-`
-        },
-        extendName: '.js'
+`,
+            extendName: '.js'
+        }
     });
 }
