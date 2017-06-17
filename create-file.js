@@ -14,10 +14,10 @@ const controllerPath = `controller/${pathName}/`;//控制器文件的位置
 //检测是否存在这个文件夹待续...
 
 
-//创建
+//创建静态文件
 const file = {
     html: {
-        path: `${staticPath}/html/pages/`,
+        path: controllerPath,
         fileName: fileName,
         content: `<!DOCTYPE html>
 <html lang="en">
@@ -73,4 +73,63 @@ for (var attr in file) {
     if (file.hasOwnProperty(attr)) {
         new CreateFile({data: file[attr]});
     }
+}
+
+//创建控制器文件
+{
+    let humpFileName = ``;
+    let arr = fileName.split('-');
+    arr.forEach(function (v,i) {
+        if(i!=0){
+            arr[i]=arr[i][0].toUpperCase()+arr[i][0].substring(1);
+        }
+    });
+    humpFileName=arr.join('');
+    new CreateFile({
+        data: {
+            path: `${staticPath}/js/pages/`,
+            fileName: fileName,
+            content: `class ${humpFileName} {
+    constructor(json) {
+        this.opts = extend({
+            defaults: {
+                res: null,
+                req: null
+            },
+            inherits: json
+        });
+        this.handleData();
+    }
+
+    handleData() {
+        this.pageInfo = {
+            config: new PageConfig(this.opts).result,
+            data: {
+                title: new PageTitle(this.opts).result,
+                footerNav: new PageFooterNav(this.opts).result
+            }
+        };
+        var data = this.pageInfo.data;
+        if (data.footerNav && data.footerNav.data && data.footerNav.data[fileName]) {
+            data.footerNav.data[fileName].isHighlight = true;
+        }
+    }
+
+    render() {
+        this.opts.res.render(page[fileName].view, {
+            pageInfo: this.pageInfo,
+            pageInfoStr: JSON.stringify(this.pageInfo)
+        });
+    }
+
+    getPageInfo() {
+        this.opts.res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'});
+        this.opts.res.end(JSON.stringify(this.pageInfo));
+    }
+}
+
+module.exports = ${humpFileName};
+`
+        }
+    });
 }
