@@ -1,11 +1,11 @@
-//首页模版渲染
-const PageFooterNav = require('../../model/phone/page-footer-nav');
-const PageConfig = require('../../model/phone/page-config');
-const PageTitle = require('../../model/phone/page-title');
-const extend = require('../../libs/tools/extend');//对象的扩展方法
-const page = require('../../route/phone/config');
+//模版渲染
+const PageTitle = require('../../model/phone/page-title');//页面标题
+const PageConfig = require('../../model/phone/page-config');//页面配置
+const PageFooterNav = require('../../model/phone/page-footer-nav');//页面底部导航
+const routeConfig = require('../../route/phone/config');//路由配置
 const path = require('path');
 const fileName = path.basename(__filename, '.js');
+const extend = require('../../libs/tools/extend');//对象的扩展方法
 
 class Home {
     constructor(json) {
@@ -34,7 +34,7 @@ class Home {
     }
 
     render() {
-        this.opts.res.render(page[fileName].view, {
+        this.opts.res.render(routeConfig[fileName].view, {
             pageInfo: this.pageInfo,
             pageInfoStr: JSON.stringify(this.pageInfo)
         });

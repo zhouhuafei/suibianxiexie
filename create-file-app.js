@@ -21,7 +21,7 @@ const file = {
 <html lang="en">
     <head>
         {{>phone/min/html/partials/head}}
-        <link rel="stylesheet" href="/phone/dist/css/pages/${fileName}.css">
+        <link rel="stylesheet" href="/phone/min/css/pages/${fileName}.css">
     </head>
     <body>
         <div class="g-wrap">
@@ -32,7 +32,7 @@ const file = {
             </div>
             <!--page end-->
             {{>phone/min/html/partials/footer}}
-            <script src="/phone/dist/js/pages/${fileName}.js"></script>
+            <script src="/phone/min/js/pages/${fileName}.js"></script>
         </div>
     </body>
 </html>`,
@@ -81,7 +81,15 @@ for (var attr in file) {
         data: {
             path: controllerPath,
             fileName: fileName,
-            content: `class ${humpFileName} {
+            content: `//模版渲染
+    const PageTitle = require('../../model/phone/page-title');//页面标题
+    const PageConfig = require('../../model/phone/page-config');//页面配置
+    const PageFooterNav = require('../../model/phone/page-footer-nav');//页面底部导航
+    const routeConfig = require('../../route/phone/config');//路由配置
+    const path = require('path');
+    const fileName = path.basename(__filename, '.js');
+    const extend = require('../../libs/tools/extend');//对象的扩展方法
+    class ${humpFileName} {
     constructor(json) {
         this.opts = extend({
             defaults: {
@@ -108,7 +116,7 @@ for (var attr in file) {
     }
 
     render() {
-        this.opts.res.render(page[fileName].view, {
+        this.opts.res.render(routeConfig[fileName].view, {
             pageInfo: this.pageInfo,
             pageInfoStr: JSON.stringify(this.pageInfo)
         });

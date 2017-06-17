@@ -7,7 +7,7 @@ const path = require('path');
 const fileName = path.basename(__filename, '.js');
 const extend = require('../../libs/tools/extend');//对象的扩展方法
 
-class Home {
+class login {
     constructor(json) {
         this.opts = extend({
             defaults: {
@@ -39,6 +39,11 @@ class Home {
             pageInfoStr: JSON.stringify(this.pageInfo)
         });
     }
+
+    getPageInfo() {
+        this.opts.res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'});
+        this.opts.res.end(JSON.stringify(this.pageInfo));
+    }
 }
 
-module.exports = Home;
+module.exports = login;
