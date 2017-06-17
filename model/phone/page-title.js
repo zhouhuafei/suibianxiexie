@@ -1,5 +1,5 @@
-//对页面的标题进行处理
-const phoneConfig = require('../../route/phone/config');
+//标题的数据
+const routeConfig = require('../../route/phone/config');
 
 class pageTitle {
     constructor(json) {
@@ -13,11 +13,11 @@ class pageTitle {
         if (route) {
             var path = route.path;
             //页面标题
-            for (var attr1 in phoneConfig) {
-                if (phoneConfig.hasOwnProperty(attr1)) {
-                    if (phoneConfig[attr1].route == path) {
-                        if (phoneConfig[attr1].title) {
-                            this.result = phoneConfig[attr1].title;
+            for (var attr in routeConfig) {
+                if (routeConfig.hasOwnProperty(attr)) {
+                    if (routeConfig[attr].route == path) {
+                        if (routeConfig[attr].title) {
+                            this.result = routeConfig[attr].title;
                         }
                     }
                 }

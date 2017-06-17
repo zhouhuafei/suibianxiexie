@@ -2,5 +2,10 @@
         var input = document.querySelector('#page-info-str');
         var value = input.value;
         input.parentNode.removeChild(input);
-        return JSON.parse(value);
+        try {
+            return JSON.parse(value);
+        } catch (err) {
+            console.log(err);
+            return value;
+        }
     })();</script>

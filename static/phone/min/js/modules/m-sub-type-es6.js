@@ -175,84 +175,61 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     //内部默认参数
                     defaults: {
                         //父级
-                        wrap: ".g-wrap", //这个仅支持传入选择器和原生dom节点
+                        wrap: ".g-body", //这个仅支持传入选择器和原生dom节点
                         //回调
                         callback: {
                             //内部模块创建之前
                             moduleDomCreateBefore: function moduleDomCreateBefore(self) {
                                 //内部模块创建之前的回调待续...
                             },
-
                             //内部模块创建之后
                             moduleDomCreateAfter: function moduleDomCreateAfter(self) {
                                 //内部模块创建之后的回调待续...
                             },
-
                             //内部模块渲染之前
                             moduleDomRenderBefore: function moduleDomRenderBefore(self) {
                                 //内部模块渲染之前的回调待续...
                             },
-
                             //内部模块渲染之后
                             moduleDomRenderAfter: function moduleDomRenderAfter(self) {
                                 //内部模块渲染之后的回调待续...
                             },
-
                             //内部模块移除之前
                             moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {
                                 //内部模块移除之前的回调待续...
                             },
-
                             //内部模块移除之后
                             moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {
                                 //内部模块移除之后的回调待续...
                             },
-
                             //内部模块显示之前
                             moduleDomShowBefore: function moduleDomShowBefore(self) {
                                 //内部模块显示之前的回调待续...
                             },
-
                             //内部模块显示之后
                             moduleDomShowAfter: function moduleDomShowAfter(self) {
                                 //内部模块显示之后的回调待续...
                             },
-
                             //内部模块隐藏之前
                             moduleDomHideBefore: function moduleDomHideBefore(self) {
                                 //内部模块隐藏之前的回调待续...
                             },
-
                             //内部模块隐藏之后
                             moduleDomHideAfter: function moduleDomHideAfter(self) {
                                 //内部模块隐藏之后的回调待续...
                             },
-
-                            //外部容器创建之前
-                            wrapDomCreateBefore: function wrapDomCreateBefore(self) {
-                                //外部容器创建之前的回调待续...
+                            //外部容器获取之前
+                            wrapDomGetBefore: function wrapDomGetBefore(self) {
+                                //外部容器获取之前的回调待续...
                             },
-
-                            //外部容器创建之后
-                            wrapDomCreateAfter: function wrapDomCreateAfter(self) {
-                                //外部容器创建之后的回调待续...
+                            //外部容器获取之后
+                            wrapDomGetAfter: function wrapDomGetAfter(self) {
+                                //外部容器获取之后的回调待续...
                             },
-
-                            //外部容器渲染之前
-                            wrapDomRenderBefore: function wrapDomRenderBefore(self) {
-                                //外部容器渲染之前的回调待续...
-                            },
-
-                            //外部容器渲染之后
-                            wrapDomRenderAfter: function wrapDomRenderAfter(self) {
-                                //外部容器渲染之后的回调待续...
-                            },
-
                             //外部容器移除之前
                             wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {
                                 //外部容器移除之前的回调待续...
                             },
-
                             //外部容器移除之后
                             wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {
                                 //外部容器移除之后的回调待续...
@@ -299,8 +276,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }, {
                 key: "render",
                 value: function render() {
-                    this.moduleDomRender();
-                    this.wrapDomRender();
+                    this.moduleDomRemove(); //内部模块的移除(重新初始化的时候要移除掉以前有的内部模块)
+
+                    var callback = this.opts.callback;
+                    callback.moduleDomCreateBefore(this);
+                    this.moduleDomCreate(); //内部模块的创建
+                    callback.moduleDomCreateAfter(this);
+
+                    this.wrapDomGet(); //外部容器的获取
+                    this.moduleDomRender(); //内部模块的渲染(如果外部容器存在,就把内部模块填充到外部容器里)
                 }
 
                 //功能(这个方法在其他模块的内部需要被重写)
@@ -320,8 +304,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         style: this.opts.config.moduleDomStyle,
                         custom: this.opts.config.moduleDomCustomAttr,
                         attribute: {
-                            className: "m-super-type-es6",
-                            innerHTML: "\n                    <div class=\"m-super-type-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
+                            className: "m-super-type",
+                            innerHTML: "\n                    <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
                         }
                     });
                 }
@@ -331,11 +315,24 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }, {
                 key: "moduleDomRender",
                 value: function moduleDomRender() {
-                    this.moduleDomRemove();
                     var callback = this.opts.callback;
-                    callback.moduleDomCreateBefore(this);
-                    this.moduleDomCreate();
-                    callback.moduleDomCreateAfter(this);
+                    var config = this.opts.config;
+                    if (config.moduleDomIsShow && this.wrapDom) {
+                        callback.moduleDomRenderBefore(this);
+                        var renderMethod = config.moduleDomRenderMethod;
+                        if (renderMethod.method == 'insertBefore') {
+                            var dom = getDomArray({ element: renderMethod.child })[0];
+                            if (dom) {
+                                this.wrapDom.insertBefore(this.moduleDom, dom);
+                            } else {
+                                this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
+                            }
+                        }
+                        if (renderMethod.method == 'appendChild') {
+                            this.wrapDom.appendChild(this.moduleDom);
+                        }
+                        callback.moduleDomRenderAfter(this);
+                    }
                 }
 
                 //内部模块的移除
@@ -344,12 +341,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 key: "moduleDomRemove",
                 value: function moduleDomRemove() {
                     var callback = this.opts.callback;
-                    callback.moduleDomRemoveBefore(this);
                     if (this.moduleDom && this.moduleDom.parentNode) {
+                        callback.moduleDomRemoveBefore(this);
                         this.moduleDom.parentNode.removeChild(this.moduleDom);
+                        callback.moduleDomRemoveAfter(this);
                     }
                     this.moduleDomClearTimer();
-                    callback.moduleDomRemoveAfter(this);
                 }
 
                 //内部模块的定时器清除(假设内部模块有定时器)
@@ -376,7 +373,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     callback.moduleDomShowBefore(this);
                     if (this.wrapDom) {
                         this.opts.config.moduleDomIsShow = true;
-                        this.wrapDomRenderMethod();
+                        this.moduleDomRender();
                     }
                     callback.moduleDomShowAfter(this);
                 }
@@ -387,60 +384,23 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 key: "moduleDomHide",
                 value: function moduleDomHide() {
                     var callback = this.opts.callback;
-                    callback.moduleDomHideBefore(this);
                     if (this.moduleDom.parentNode) {
-                        this.moduleDom.parentNode.removeChild(this.moduleDom);
                         this.opts.config.moduleDomIsShow = false;
+                        callback.moduleDomHideBefore(this);
+                        this.moduleDom.parentNode.removeChild(this.moduleDom);
+                        callback.moduleDomHideAfter(this);
                     }
-                    callback.moduleDomHideAfter(this);
                 }
 
-                //外部容器的创建
+                //外部容器的获取
 
             }, {
-                key: "wrapDomCreate",
-                value: function wrapDomCreate() {
-                    this.wrapDom = getDomArray({ element: this.opts.wrap })[0];
-                }
-
-                //外部容器的渲染
-
-            }, {
-                key: "wrapDomRender",
-                value: function wrapDomRender() {
+                key: "wrapDomGet",
+                value: function wrapDomGet() {
                     var callback = this.opts.callback;
-                    callback.wrapDomCreateBefore(this);
-                    this.wrapDomCreate();
-                    callback.wrapDomCreateAfter(this);
-                    if (this.wrapDom) {
-                        callback.moduleDomRenderBefore(this);
-                        callback.wrapDomRenderBefore(this);
-                        this.wrapDomRenderMethod();
-                        callback.wrapDomRenderAfter(this);
-                        callback.moduleDomRenderAfter(this);
-                    }
-                }
-
-                //外部容器的渲染方式
-
-            }, {
-                key: "wrapDomRenderMethod",
-                value: function wrapDomRenderMethod() {
-                    var config = this.opts.config;
-                    if (config.moduleDomIsShow) {
-                        var renderMethod = config.moduleDomRenderMethod;
-                        if (renderMethod.method == 'insertBefore') {
-                            var dom = getDomArray({ element: renderMethod.child })[0];
-                            if (dom) {
-                                this.wrapDom.insertBefore(this.moduleDom, dom);
-                            } else {
-                                this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
-                            }
-                        }
-                        if (renderMethod.method == 'appendChild') {
-                            this.wrapDom.appendChild(this.moduleDom);
-                        }
-                    }
+                    callback.wrapDomGetBefore(this);
+                    this.wrapDom = getDomArray({ element: this.opts.wrap })[0];
+                    callback.wrapDomGetAfter(this);
                 }
 
                 //外部容器的移除
@@ -449,14 +409,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 key: "wrapDomRemove",
                 value: function wrapDomRemove() {
                     var callback = this.opts.callback;
-                    callback.wrapDomRemoveBefore(this);
                     //先移除内部的模块
                     this.moduleDomRemove();
                     //再移除外部的容器
                     if (this.wrapDom) {
+                        callback.wrapDomRemoveBefore(this);
                         this.wrapDom.parentNode.removeChild(this.wrapDom);
+                        callback.wrapDomRemoveAfter(this);
                     }
-                    callback.wrapDomRemoveAfter(this);
                 }
 
                 //获取内部模块的整体html结构

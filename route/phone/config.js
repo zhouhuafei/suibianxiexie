@@ -23,7 +23,8 @@ var routeName = [
     },
     {
         name: 'mine',//我的页面
-        title: '个人中心'
+        title: '我的',
+        isValidateLogin: true//是否验证登陆
     },
     {
         name: 'register',//注册页
@@ -48,7 +49,9 @@ routeName.forEach(function (v) {
     routeConfig[v.name] = {
         route: route,//路由
         view: `${path.view}${v.name}`,//视图
-        title: v.title//标题
+        title: v.title,//标题
+        isValidateLogin: v.isValidateLogin == true,//是否验证登陆(默认不验证)
+        isShowFooterNav: v.isShowFooterNav == undefined//是否显示底部导航(默认显示)
     }
 });
 module.exports = routeConfig;

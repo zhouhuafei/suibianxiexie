@@ -16,7 +16,9 @@ function strToHump(json) {
         let arr = str.split(rule);
         arr.forEach(function (v, i) {
             if (i != 0) {
-                arr[i] = arr[i][0].toUpperCase() + arr[i].substring(1);
+                if(arr[i][0]){
+                    arr[i] = arr[i][0].toUpperCase() + arr[i].substring(1);
+                }
             }
         });
         str = arr.join('');

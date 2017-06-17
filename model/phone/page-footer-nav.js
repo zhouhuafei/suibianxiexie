@@ -1,4 +1,4 @@
-//处理底部导航的数据
+//底部导航的数据
 const phoneConfig = require('../../route/phone/config');
 
 class FooterNav {
