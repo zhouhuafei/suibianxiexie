@@ -14,54 +14,67 @@
     justify-content: center;
     box-sizing: border-box;
     color: $g-color-highlight;
-    .g-img-upload-show {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .g-img-upload-close {
-        $size: 16;
-        font-size: px2rem($size);
-        width: px2rem($size*1.2);
-        height: px2rem($size*1.2);
+    .g-img-upload-input {
         display: none;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-    .g-img-upload-show {
-        display: none;
-        background: center center no-repeat;
-        background-size: 100% auto;
     }
     .g-img-upload-icon {
         font-size: px2rem($width-height*0.4);
     }
-    .g-img-upload-txt {
-        margin-top: px2rem(10);
-        font-size: px2rem(12);
-    }
-    .g-img-upload-input {
+    .g-img-upload-show {
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        background: center center no-repeat;
+        background-size: 100% auto;
         display: none;
+    }
+    .g-img-upload-txt {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: px2rem(12);
+        margin-top: px2rem(4);
+    }
+    .g-img-upload-opts {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        color: #ffffff;
+        padding: px2rem(4) 0;
+        .g-img-upload-opts-item {
+            margin: 0 px2rem(4);
+            &.g-img-upload-opts-close {
+                font-size: px2rem(16);
+            }
+        }
     }
     &.g-img-upload-active {
         border: none;
         background: $g-color-background-dark;
-        .g-img-upload-close {
-            display: flex;
+        .g-img-upload-icon {
+            display: none;
         }
         .g-img-upload-show {
             display: flex;
         }
-        .g-img-upload-icon {
-            display: none;
-        }
         .g-img-upload-txt {
-            display: none;
+            margin-top: 0;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            color: #ffffff;
+            padding: px2rem(4) 0;
+        }
+        .g-img-upload-opts {
+            display: flex;
         }
     }
 }
