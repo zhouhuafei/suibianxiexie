@@ -19,7 +19,7 @@ class SubType extends SuperType {
          * 我需要清除内部模块,并进行重新调用,这点我很不喜欢,所以我现在的场景还是更适合es5的面向对象
          * 注:init方法是我封装的超类型里的初始化方法,this.opts是超类型里的参数,参数我喜欢用对象的形式
          * */
-        super(json);
+        super(json);//这里会执行一次超类里的init
         //制定内部的默认值
         this.opts = extend({
             defaults: this.opts,
@@ -38,12 +38,7 @@ class SubType extends SuperType {
             defaults: this.opts,
             inherits: json
         });
-        /*
-         * 因为es6的继承是:子类型继承超类之后,才拥有this属性的原因,我要先移除一次,再重新生成
-         * 否则的话,上面的默认值不会生效
-         * */
-        this.moduleDomRemove();
-        this.init();
+        this.init();//用es6继承的话,在子类里调初始化才有意义,因为子类的参数已经被赋予新值,建议不要在超类里初始化,在子类里初始化
     }
 
     //内部模块的创建(覆盖超类型)

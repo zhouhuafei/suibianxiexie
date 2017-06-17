@@ -150,7 +150,7 @@ window.addEventListener('load', function () {
             var SubType = require('../modules/m-sub-type');
             new SubType({wrap: `.page-super-type`});
             var SuperTypeEs6 = require('../modules/m-super-type-es6');
-            new SuperTypeEs6({wrap: `.page-super-type`});
+            new SuperTypeEs6({wrap: `.page-super-type`}).init();//es6继承,不建立在超类型内部直接调init方法
             var SubTypeEs6 = require('../modules/m-sub-type-es6');
             new SubTypeEs6({wrap: `.page-super-type`});
         })();

@@ -167,7 +167,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     var SubType = require('../modules/m-sub-type');
                     new SubType({ wrap: ".page-super-type" });
                     var SuperTypeEs6 = require('../modules/m-super-type-es6');
-                    new SuperTypeEs6({ wrap: ".page-super-type" });
+                    new SuperTypeEs6({ wrap: ".page-super-type" }).init(); //es6继承,不建立在超类型内部直接调init方法
                     var SubTypeEs6 = require('../modules/m-sub-type-es6');
                     new SubTypeEs6({ wrap: ".page-super-type" });
                 })();
@@ -1621,6 +1621,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             function SubType(json) {
                 _classCallCheck(this, SubType);
 
+                //这里会执行一次超类里的init
                 //制定内部的默认值
                 var _this = _possibleConstructorReturn(this, (SubType.__proto__ || Object.getPrototypeOf(SubType)).call(this, json));
                 /*
@@ -1656,12 +1657,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     defaults: _this.opts,
                     inherits: json
                 });
-                /*
-                 * 因为es6的继承是:子类型继承超类之后,才拥有this属性的原因,我要先移除一次,再重新生成
-                 * 否则的话,上面的默认值不会生效
-                 * */
-                _this.moduleDomRemove();
-                _this.init();
+                _this.init(); //用es6继承的话,在子类里调初始化才有意义,因为子类的参数已经被赋予新值,建议不要在超类里初始化,在子类里初始化
                 return _this;
             }
 
@@ -1830,7 +1826,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 this.moduleDom = null; //内部的模块
                 this.wrapDom = null; //内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
                 this.moduleDomTimer = {}; //内部模块的定时器存储(假设内部模块有定时器)
-                this.init(); //初始化
+                //this.init();//初始化(用es6继承的话,在超类里调初始化没有意义,因为子类的参数还没有被赋予新值,建议不要在超类里初始化,在子类里初始化)
             }
 
             //初始化
@@ -1876,8 +1872,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                         style: this.opts.config.moduleDomStyle,
                         custom: this.opts.config.moduleDomCustomAttr,
                         attribute: {
-                            className: "m-super-type",
-                            innerHTML: "\n                    <div class=\"m-super-type-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
+                            className: "m-super-type-es6",
+                            innerHTML: "\n                    <div class=\"m-super-type-es6-txt\">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                "
                         }
                     });
                 }
