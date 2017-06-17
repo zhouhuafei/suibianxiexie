@@ -31,6 +31,7 @@ class Home {
         if (data.footerNav && data.footerNav.data && data.footerNav.data[fileName]) {
             data.footerNav.data[fileName].isHighlight = true;
         }
+        this.render();
     }
 
     render() {
@@ -38,6 +39,11 @@ class Home {
             pageInfo: this.pageInfo,
             pageInfoStr: JSON.stringify(this.pageInfo)
         });
+    }
+
+    getPageInfo() {
+        this.opts.res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'});
+        this.opts.res.end(JSON.stringify(this.pageInfo));
     }
 }
 

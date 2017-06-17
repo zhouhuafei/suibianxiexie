@@ -31,6 +31,7 @@ class login {
         if (data.footerNav && data.footerNav.data && data.footerNav.data[fileName]) {
             data.footerNav.data[fileName].isHighlight = true;
         }
+        this.render();
     }
 
     render() {

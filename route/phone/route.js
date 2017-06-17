@@ -1,6 +1,7 @@
 //页面路由
 const extend = require('../../libs/tools/extend');
 const config = require('./config');
+const controllerPath = `../../controller/phone/`;//控制器的路径
 
 class Route {
     constructor(json) {
@@ -22,10 +23,10 @@ class Route {
         for (var attr in config) {
             if (config.hasOwnProperty(attr)) {
                 try {
-                    var Controller = require(`../../controller/phone/${attr}`);
+                    var Controller = require(`${controllerPath}${attr}`);
                     (function (Controller) {
                         app.get(config[attr].route, function (req, res) {
-                            new Controller({req: req, res: res}).render();
+                            new Controller({req: req, res: res});
                         })
                     })(Controller);
                 } catch (err) {
