@@ -1,5 +1,5 @@
 {
-  "name": "my-shop",
+  "name": "suibianxiexie",
   "version": "1.0.0",
   "description": "waiting",
   "main": "app.js",
@@ -32,12 +32,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zhouhuafei/my-shop.git"
+    "url": "https://github.com/zhouhuafei/suibianxiexie.git"
   },
   "author": "zhouhuafei <1123486116@qq.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zhouhuafei/my-shop/issues"
+    "url": "https://github.com/zhouhuafei/suibianxiexie/issues"
   },
-  "homepage": "https://github.com/zhouhuafei/my-shop#readme"
+  "homepage": "https://github.com/zhouhuafei/suibianxiexie#readme"
 }
