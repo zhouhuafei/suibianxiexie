@@ -18,7 +18,7 @@
             var opts = json || {};
             var name = opts.name;
             var value = opts.value;
-            var expires = opts.expires;
+            var expires = opts.expires || '0';
             var myDate = new Date();
             var myTime = myDate.getTime();
             myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000);
