@@ -4,7 +4,7 @@ var getDomArray = require('../function/get-dom-array');//获取原生的dom节�
 function ValidateForm(json) {
     this.opts = json || {};
     this.element = getDomArray({element: this.opts.element})[0];
-    this.hintClass = this.opts.hintClass || 'm-validate-form-hint';
+    this.hintClass = this.opts.hintClass || 'm-validate-form-fail';
     this.eventsType = this.opts.eventsType || 'blur';
     this.validateType = this.element.dataset.validate || 'undefined';
     this.validateHintTxt = this.element.dataset.hint || 'undefined';
