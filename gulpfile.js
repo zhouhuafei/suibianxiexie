@@ -27,8 +27,8 @@ function fn(type) {
             this.imagesExitPath = `${this.minPath}images/`;
             this.fontEnterPath = `${this.devPath}font/**/*.*`;
             this.fontExitPath = `${this.minPath}font/`;
-            this.uiEnterPath = `${this.devPath}ui/**/*.*`;
-            this.uiExitPath = `${this.minPath}ui/`;
+            this.libsEnterPath = `${this.devPath}libs/**/*.*`;
+            this.libsExitPath = `${this.minPath}libs/`;
             this.htmlEnterPath = `${this.devPath}html/**/*.html`;
             this.htmlExitPath = `${this.minPath}html/`;
         }
@@ -83,10 +83,10 @@ function fn(type) {
         return gulp.src(path.fontEnterPath)
             .pipe(gulp.dest(path.fontExitPath))
     });
-    //ui
-    gulp.task(`${mark}Ui`, function () {//ui转移
-        return gulp.src(path.uiEnterPath)
-            .pipe(gulp.dest(path.uiExitPath))
+    //libs
+    gulp.task(`${mark}Ui`, function () {//libs转移
+        return gulp.src(path.libsEnterPath)
+            .pipe(gulp.dest(path.libsExitPath))
     });
     //监听
     gulp.task(`${mark}Dev:watch`, function () {//开发
@@ -95,7 +95,7 @@ function fn(type) {
         gulp.watch(path.jsEnterPath, [`${mark}Js`]);//js监听
         gulp.watch(path.imagesEnterPath, [`${mark}Images`]);//images监听
         gulp.watch(path.fontEnterPath, [`${mark}Font`]);//font监听
-        gulp.watch(path.uiEnterPath, [`${mark}Ui`]);//ui监听
+        gulp.watch(path.libsEnterPath, [`${mark}Ui`]);//libs监听
     });
     gulp.task(`${mark}Min:watch`, function () {//压缩
         gulp.watch(path.htmlEnterPath, [`${mark}Html`]);//html监听
@@ -103,7 +103,7 @@ function fn(type) {
         gulp.watch(path.jsEnterPath, [`${mark}JsMin`]);//js监听
         gulp.watch(path.imagesEnterPath, [`${mark}ImagesMin`]);//images监听
         gulp.watch(path.fontEnterPath, [`${mark}Font`]);//font监听
-        gulp.watch(path.uiEnterPath, [`${mark}Ui`]);//ui监听
+        gulp.watch(path.libsEnterPath, [`${mark}Ui`]);//libs监听
     });
     //执行任务
     gulp.task(`${mark}Dev`, [`${mark}Del`, `${mark}Html`, `${mark}ScssMin`, `${mark}Js`, `${mark}Images`, `${mark}Font`, `${mark}Ui`, `${mark}Dev:watch`]);//开发
