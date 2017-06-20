@@ -1,16 +1,19 @@
 @import "../config/config";
 
 //标签
-.g-label {
+.g-quick-enter {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     font-size: px2rem(12);
     overflow: hidden;
-    padding: px2rem(10) 0;
-    .g-label-btn {
+    .g-quick-enter-btn {
         color: $g-color-font-dark;
-        padding: px2rem(6) px2rem(10);
+        padding: px2rem(4) px2rem(6);
+        border: px2rem(1) solid $g-color-border-default;
+        margin: px2rem(2);
+        background: #ffffff;
+        border-radius: px2rem(2000);
     }
 }
