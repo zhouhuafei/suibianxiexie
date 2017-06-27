@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 const scss = require('gulp-sass');
-const autoprefixer = require('gulp-autoprefixer');
+//const autoprefixer = require('gulp-autoprefixer');
 const minifycss = require('gulp-minify-css');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
@@ -11,8 +11,13 @@ const htmlmin = require('gulp-htmlmin');
 const inlinesource = require('gulp-inline-source');
 const del = require('del');
 const fs = require('fs');
+//webpack开始
+const webpack = require('webpack');//调用插件需要这个
+const autoprefixer = require('autoprefixer');//css3加前缀
+const ExtractTextPlugin = require("extract-text-webpack-plugin");//scss文件转css文件需要这个
+//webpack结束
 function fn(type) {
-    var mark = type;
+    let mark = type;
     class Path {
         constructor() {
             this.dirname = __dirname;
@@ -33,7 +38,7 @@ function fn(type) {
             this.htmlExitPath = `${this.minPath}html/`;
         }
     }
-    var path = new Path();
+    let path = new Path();
     //清空dist目录
     gulp.task(`${mark}Del`, function () {
         return del.sync([`${path.minPath}`]);
@@ -45,70 +50,123 @@ function fn(type) {
             .pipe(htmlmin({collapseWhitespace: true, removeComments: true}))
             .pipe(gulp.dest(path.htmlExitPath))
     });
-    //css
-    gulp.task(`${mark}ScssMin`, function () {//scss压缩
-        return gulp.src(path.scssEnterPath)
-            .pipe(scss())
-            .pipe(base64())
-            .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-            .pipe(minifycss())
-            .pipe(gulp.dest(path.scssExitPath))
+    //webpack处理css,js,图片开始
+    gulp.task("webpack", function (callback) {
+        let entry = {};
+        fs.readdirSync(path.devPath);
+        webpack({
+            entry: entry,
+            //出口文件
+            output: {
+                path: `${path.jsExitPath}`,
+                //publicPath: '',
+                filename: `[name].js`
+            },
+            //模块
+            module: {
+                //loaders加载器
+                rules: [
+                    //处理sass
+                    {
+                        test: /\.(css|scss)$/,
+                        exclude: /(node_modules|bower_components)/,
+                        use: ExtractTextPlugin.extract({
+                            fallback: 'style-loader',
+                            use: ['css-loader', 'postcss-loader', 'sass-loader']
+                        })
+                    },
+                    //es6转成es5
+                    {
+                        test: /\.js$/,
+                        exclude: /(node_modules|bower_components)/,
+                        use: ['babel-loader']
+                    },
+                    //处理图片
+                    {
+                        test: /\.(png|jp(e)?g|gif|svg|ico)(\?.*)?$/,
+                        exclude: /(node_modules|bower_components)/,
+                        use: [
+                            {
+                                loader: 'url-loader',
+                                options: {
+                                    limit: 8192
+                                }
+                            }
+                        ]
+                    },
+                    //处理字体
+                    {
+                        test: /\.(woff|eot|ttf)(\?.*)?$/,
+                        exclude: /(node_modules|bower_components)/,
+                        use: [
+                            {
+                                loader: 'url-loader',
+                                options: {
+                                    limit: 8192
+                                }
+                            }
+                        ]
+                    },
+                    //处理.vue文件
+                    {
+                        test: /\.vue$/,
+                        exclude: /(node_modules|bower_components)/,
+                        use: ['vue-loader']
+                    },
+                    //处理html里的src
+                    {
+                        test: /\.html$/,
+                        exclude: /(node_modules|bower_components)/,
+                        use: ['html-loader']
+                    }
+                ]
+            },
+            //插件
+            plugins: [
+                //提取css样式到文件
+                new ExtractTextPlugin(`[name]${isProduction ? '.[hash:7]' : ''}.css`),
+                //处理html
+                new HtmlWebpackPlugin({
+                    template: `${configPath.entry}app.html`,
+                    filename: 'app.html'
+                })
+            ]
+        }, function (err, stats) {
+            console.log('err', err);
+            console.log('stats', stats);
+        });
     });
-    //js
-    gulp.task(`${mark}Js`, function () {//js编译
-        return gulp.src(path.jsEnterPath)
-            .pipe(browserify())
-            .pipe(babel({presets: ['es2015']}))
-            .pipe(gulp.dest(path.jsExitPath))
-    });
-    gulp.task(`${mark}JsMin`, function () {//js压缩
-        return gulp.src(path.jsEnterPath)
-            .pipe(browserify())
-            .pipe(babel({presets: ['es2015']}))
-            .pipe(uglify())
-            .pipe(gulp.dest(path.jsExitPath))
-    });
-    //images
-    gulp.task(`${mark}Images`, function () {//images转移
-        return gulp.src(path.imagesEnterPath)
-            .pipe(gulp.dest(path.imagesExitPath))
-    });
-    gulp.task(`${mark}ImagesMin`, function () {//images压缩
-        return gulp.src(path.imagesEnterPath)
-            .pipe(imagemin())
-            .pipe(gulp.dest(path.imagesExitPath))
-    });
-    //font
-    gulp.task(`${mark}Font`, function () {//font转移
-        return gulp.src(path.fontEnterPath)
-            .pipe(gulp.dest(path.fontExitPath))
-    });
-    //ui
-    gulp.task(`${mark}Ui`, function () {//ui转移
-        return gulp.src(path.uiEnterPath)
-            .pipe(gulp.dest(path.uiExitPath))
-    });
+    //webpack处理css,js,图片结束
+
+
+    //webpack热更新开始
+    // gulp.task("webpack-dev-server", function (callback) {
+    //     // Start a webpack-dev-server
+    //     var compiler = webpack({
+    //         // configuration
+    //     });
+    //
+    //     new WebpackDevServer(compiler, {
+    //         // server and middleware options
+    //     }).listen(8080, "localhost", function (err) {
+    //         if (err) throw new gutil.PluginError("webpack-dev-server", err);
+    //         // Server listening
+    //         gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
+    //
+    //         // keep the server alive or continue?
+    //         // callback();
+    //     });
+    // });
+    //webpack热更新结束
+
     //监听
     gulp.task(`${mark}Dev:watch`, function () {//开发
         gulp.watch(path.htmlEnterPath, [`${mark}Html`]);//html监听
-        gulp.watch(path.scssEnterPath, [`${mark}ScssMin`]);//scss监听
-        gulp.watch(path.jsEnterPath, [`${mark}Js`]);//js监听
-        gulp.watch(path.imagesEnterPath, [`${mark}Images`]);//images监听
-        gulp.watch(path.fontEnterPath, [`${mark}Font`]);//font监听
-        gulp.watch(path.uiEnterPath, [`${mark}Ui`]);//ui监听
-    });
-    gulp.task(`${mark}Min:watch`, function () {//压缩
-        gulp.watch(path.htmlEnterPath, [`${mark}Html`]);//html监听
-        gulp.watch(path.scssEnterPath, [`${mark}ScssMin`]);//scss监听
-        gulp.watch(path.jsEnterPath, [`${mark}JsMin`]);//js监听
-        gulp.watch(path.imagesEnterPath, [`${mark}ImagesMin`]);//images监听
         gulp.watch(path.fontEnterPath, [`${mark}Font`]);//font监听
         gulp.watch(path.uiEnterPath, [`${mark}Ui`]);//ui监听
     });
     //执行任务
-    gulp.task(`${mark}Dev`, [`${mark}Del`, `${mark}Html`, `${mark}ScssMin`, `${mark}Js`, `${mark}Images`, `${mark}Font`, `${mark}Ui`, `${mark}Dev:watch`]);//开发
-    gulp.task(`${mark}Min`, [`${mark}Del`, `${mark}Html`, `${mark}ScssMin`, `${mark}JsMin`, `${mark}ImagesMin`, `${mark}Font`, `${mark}Ui`, `${mark}Min:watch`]);//压缩
-    gulp.task(`${mark}Build`, [`${mark}Del`, `${mark}Html`, `${mark}ScssMin`, `${mark}JsMin`, `${mark}ImagesMin`, `${mark}Font`, `${mark}Ui`]);//上线
+    gulp.task(`${mark}Dev`, [`${mark}Del`, `${mark}Html`, `${mark}Webpack`, `${mark}Dev:watch`]);//开发
 }
 fn('phone');
 fn('pc');
