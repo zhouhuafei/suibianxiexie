@@ -62,7 +62,7 @@ function fn(type) {
         //提取css样式到文件
         new ExtractTextPlugin(`[name].css`)
     ];
-    //插件----处理html
+    //插件----处理模板文件
     let allHTML = fs.readdirSync(`${configPath.devPath}html/pages/`);
     allHTML.forEach(function (v) {
         let fileName = path.basename(v, '.html');
@@ -134,7 +134,7 @@ function fn(type) {
                 {
                     test: /\.html$/,
                     exclude: /(node_modules|bower_components)/,
-                    use: ['html-loader','handlebars-loader']
+                    use: ['html-loader']
                 }
             ]
         },

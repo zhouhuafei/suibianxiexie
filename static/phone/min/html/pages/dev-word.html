@@ -1,97 +1,196 @@
-<head><link rel="shortcut icon" href="/phone/min/favicon.ico"><link href="/phone/min/dev-word.css" rel="stylesheet"></head>Html Webpack Plugin:
-<pre>
-  Error: Child compilation failed:
-  Module build failed: Error: Partial './phone/min/html/partials/head' not found  
-  - index.js:256 tryExtension
-    [suibianxiexie]/[_handlebars-loader@1.5.0@handlebars-loader]/index.js:256:27  
-  - index.js:264 
-    [suibianxiexie]/[_handlebars-loader@1.5.0@handlebars-loader]/index.js:264:11  
-  - index.js:211 next
-    [suibianxiexie]/[_handlebars-loader@1.5.0@handlebars-loader]/index.js:211:20  
-  - index.js:227 
-    [suibianxiexie]/[_handlebars-loader@1.5.0@handlebars-loader]/index.js:227:20  
-  - Resolver.js:70 onResolved
-    [suibianxiexie]/[_enhanced-resolve@3.1.0@enhanced-resolve]/lib/Resolver.js:7    0:11
-  
-  - createInnerCallback.js:31 loggingCallbackWrapper
-    [suibianxiexie]/[_enhanced-resolve@3.1.0@enhanced-resolve]/lib/createInnerCa    llback.js:31:19
-  
-  - Resolver.js:138 afterInnerCallback
-    [suibianxiexie]/[_enhanced-resolve@3.1.0@enhanced-resolve]/lib/Resolver.js:1    38:10
-  
-  - createInnerCallback.js:31 loggingCallbackWrapper
-    [suibianxiexie]/[_enhanced-resolve@3.1.0@enhanced-resolve]/lib/createInnerCa    llback.js:31:19
-  
-  - Tapable.js:181 Resolver.applyPluginsAsyncSeriesBailResult1
-    [suibianxiexie]/[_tapable@0.2.6@tapable]/lib/Tapable.js:181:46
-  
-  - Resolver.js:125 innerCallback
-    [suibianxiexie]/[_enhanced-resolve@3.1.0@enhanced-resolve]/lib/Resolver.js:1    25:19
-  
-  - createInnerCallback.js:31 loggingCallbackWrapper
-    [suibianxiexie]/[_enhanced-resolve@3.1.0@enhanced-resolve]/lib/createInnerCa    llback.js:31:19
-  
-  - Tapable.js:283 
-    [suibianxiexie]/[_tapable@0.2.6@tapable]/lib/Tapable.js:283:15
-  
-  - UnsafeCachePlugin.js:38 
-    [suibianxiexie]/[_enhanced-resolve@3.1.0@enhanced-resolve]/lib/UnsafeCachePl    ugin.js:38:4
-  
-  - createInnerCallback.js:31 loggingCallbackWrapper
-    [suibianxiexie]/[_enhanced-resolve@3.1.0@enhanced-resolve]/lib/createInnerCa    llback.js:31:19
-  
-  - Resolver.js:138 afterInnerCallback
-    [suibianxiexie]/[_enhanced-resolve@3.1.0@enhanced-resolve]/lib/Resolver.js:1    38:10
-  
-  
-  - Error: Partial './phone/min/html/partials/head' not found
-  
-  - compiler.js:76 
-    [suibianxiexie]/[_html-webpack-plugin@2.29.0@html-webpack-plugin]/lib/compil    er.js:76:16
-  
-  - Compiler.js:298 Compiler.<anonymous>
-    [suibianxiexie]/[_webpack@3.0.0@webpack]/lib/Compiler.js:298:10
-  
-  - Compiler.js:516 
-    [suibianxiexie]/[_webpack@3.0.0@webpack]/lib/Compiler.js:516:13
-  
-  - Tapable.js:138 next
-    [suibianxiexie]/[_tapable@0.2.6@tapable]/lib/Tapable.js:138:11
-  
-  - CachePlugin.js:62 Compiler.<anonymous>
-    [suibianxiexie]/[_webpack@3.0.0@webpack]/lib/CachePlugin.js:62:5
-  
-  - Tapable.js:142 Compiler.applyPluginsAsyncSeries
-    [suibianxiexie]/[_tapable@0.2.6@tapable]/lib/Tapable.js:142:13
-  
-  - Compiler.js:513 
-    [suibianxiexie]/[_webpack@3.0.0@webpack]/lib/Compiler.js:513:10
-  
-  - Tapable.js:131 Compilation.applyPluginsAsyncSeries
-    [suibianxiexie]/[_tapable@0.2.6@tapable]/lib/Tapable.js:131:46
-  
-  - Compilation.js:655 self.applyPluginsAsync.err
-    [suibianxiexie]/[_webpack@3.0.0@webpack]/lib/Compilation.js:655:19
-  
-  - Tapable.js:131 Compilation.applyPluginsAsyncSeries
-    [suibianxiexie]/[_tapable@0.2.6@tapable]/lib/Tapable.js:131:46
-  
-  - Compilation.js:646 self.applyPluginsAsync.err
-    [suibianxiexie]/[_webpack@3.0.0@webpack]/lib/Compilation.js:646:11
-  
-  - Tapable.js:131 Compilation.applyPluginsAsyncSeries
-    [suibianxiexie]/[_tapable@0.2.6@tapable]/lib/Tapable.js:131:46
-  
-  - Compilation.js:641 self.applyPluginsAsync.err
-    [suibianxiexie]/[_webpack@3.0.0@webpack]/lib/Compilation.js:641:10
-  
-  - Tapable.js:131 Compilation.applyPluginsAsyncSeries
-    [suibianxiexie]/[_tapable@0.2.6@tapable]/lib/Tapable.js:131:46
-  
-  - Compilation.js:637 sealPart2
-    [suibianxiexie]/[_webpack@3.0.0@webpack]/lib/Compilation.js:637:9
-  
-  - Tapable.js:131 Compilation.applyPluginsAsyncSeries
-    [suibianxiexie]/[_tapable@0.2.6@tapable]/lib/Tapable.js:131:46
-  
-</pre><script type="text/javascript" src="/phone/min/dev-word.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {{>phone/min/html/partials/head}}
+    <link rel="shortcut icon" href="/phone/min/favicon.ico"><link href="/phone/min/dev-word.css" rel="stylesheet"></head>
+    <body>
+        <div class="g-wrap">
+            {{>phone/min/html/partials/header}}
+            <!--page start-->
+            <div class="g-body">
+                <div class="g-list">
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">valid 有效</div>
+                            <div class="g-list-txt">invalid 无效</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">enable 可用</div>
+                            <div class="g-list-txt">disable 不可用</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">dev 开发</div>
+                            <div class="g-list-txt">min 压缩</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">add 添加</div>
+                            <div class="g-list-txt">remove 移除</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">run 运行</div>
+                            <div class="g-list-txt">over 结束</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">min 最小</div>
+                            <div class="g-list-txt">max 最大</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">cancel 取消</div>
+                            <div class="g-list-txt">confirm 确认</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">active 活跃</div>
+                            <div class="g-list-txt">inactive 懒惰</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">on 开</div>
+                            <div class="g-list-txt">off 关</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">show 显示</div>
+                            <div class="g-list-txt">hide 隐藏</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">success 成功</div>
+                            <div class="g-list-txt">fail 失败</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">open 打开</div>
+                            <div class="g-list-txt">close 关闭</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">global 全局g-</div>
+                            <div class="g-list-txt">module 模块m-</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">img 图片</div>
+                            <div class="g-list-txt">url 路径</div>
+                            <div class="g-list-txt">link 链接</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">msg 信息</div>
+                            <div class="g-list-txt">status 状态</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">txt 文本</div>
+                            <div class="g-list-txt">btn 按钮</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">wrap 容器</div>
+                            <div class="g-list-txt">content 内容</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">num 数量</div>
+                            <div class="g-list-txt">type 类型</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">all 所有的</div>
+                            <div class="g-list-txt">now 当前的</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">obj 对象</div>
+                            <div class="g-list-txt">str 字符串</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">json 行参格式</div>
+                            <div class="g-list-txt">opts 行参接收</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">callback 回调</div>
+                            <div class="g-list-txt">config 配置</div>
+                            <div class="g-list-txt">data 数据</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">element 元素节点 dom节点 选择器 的参数字段</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">day 天</div>
+                            <div class="g-list-txt">hour 时</div>
+                            <div class="g-list-txt">minute 分</div>
+                            <div class="g-list-txt">second 秒</div>
+                            <div class="g-list-txt">seconds 总秒</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">positionMethod</div>
+                            <div class="g-list-txt">定位方式,例:'fixed'</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">positionLocation</div>
+                            <div class="g-list-txt">定位位置,例:'bottom'</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">render 渲染</div>
+                            <div class="g-list-txt">result 结果</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">error 错误</div>
+                            <div class="g-list-txt">extend 扩展</div>
+                        </div>
+                    </div>
+                    <div class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-txt">libs 类库</div>
+                            <div class="g-list-txt">tools 工具</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--page end-->
+            {{>phone/min/html/partials/footer}}
+        </div>
+    <script type="text/javascript" src="/phone/min/dev-word.js"></script></body>
+</html>
