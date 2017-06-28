@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {{>phone/dist/views/partials/head}}
+    </head>
+    <body>
+        <div class="g-wrap">
+            {{>phone/dist/views/partials/header}}
+            <!--page start-->
+            <div class="g-body">
+                <div class="page-slide"></div>
+                <div class="page-navigation"></div>
+                <img src="../../images/page/index/p-waiting.png" alt="">
+            </div>
+            <div class="g-vue">
+                <div v-text="message"></div>
+                <my-component parent-message="5+5"></my-component>
+                <my-component v-bind:parent-message="5+5"></my-component>
+            </div>
+            <!--page end-->
+            {{>phone/dist/views/partials/footer}}
+        </div>
+    </body>
+</html>

@@ -28,8 +28,8 @@ function fn(type) {
             this.scssExitPath = `${this.minPath}css/`;
             this.jsEnterPath = `${this.devPath}js/`;
             this.jsExitPath = `${this.minPath}js/`;
-            this.viewEnterPath = `${this.devPath}view/`;
-            this.viewExitPath = `${this.minPath}view/`;
+            this.viewEnterPath = `${this.devPath}views/`;
+            this.viewExitPath = `${this.minPath}views/`;
         }
     }
     let configPath = new ConfigPath();
@@ -54,25 +54,28 @@ function fn(type) {
         let fileName = path.basename(v, '.js');
         entry[fileName] = `${configPath.devPath}js/pages/${v}`;
     });
+    entry['global'] = `${configPath.devPath}js/base/global.js`;//公用的js和css
+
     //出口
     let output = {
         path: `${configPath.minPath}`,
         publicPath: `/${mark}/min/`,
-        filename: `[name].js`
+        filename: `js/[name].js`,
+        chunkFilename: "[id].chunk.js"
     };
     //插件
     let plugins = [
         //提取css样式到文件
-        new ExtractTextPlugin(`[name].css`)
+        new ExtractTextPlugin(`css/[name].css`)
     ];
     //插件----处理视图模板文件
-    let allHTML = fs.readdirSync(`${configPath.devPath}view/pages/`);
+    let allHTML = fs.readdirSync(`${configPath.devPath}views/pages/`);
     allHTML.forEach(function (v) {
         let fileName = path.basename(v, '.hbs');
         plugins.push(
             new HtmlWebpackPlugin({
-                template: `${configPath.devPath}view/pages/${v}`,//模板
-                filename: `${configPath.minPath}view/pages/${v}`,//文件名
+                template: `${configPath.devPath}views/pages/${v}`,//模板
+                filename: `${configPath.minPath}views/pages/${v}`,//文件名
                 favicon: `${configPath.devPath}images/partials/favicon.ico`,//网站的icon图标
                 chunks: ['global', fileName],//需要引入的chunk，不配置就会引入所有页面的资源
             })
@@ -109,7 +112,8 @@ function fn(type) {
                         {
                             loader: 'url-loader',
                             options: {
-                                limit: 8192
+                                limit: 8192,
+                                name: 'images/[name].[hash:8].[ext]'
                             }
                         }
                     ]
@@ -122,7 +126,8 @@ function fn(type) {
                         {
                             loader: 'url-loader',
                             options: {
-                                limit: 8192
+                                limit: 8192,
+                                name: 'fonts/[name].[hash:8].[ext]'
                             }
                         }
                     ]
@@ -133,7 +138,7 @@ function fn(type) {
                     exclude: /(node_modules|bower_components)/,
                     use: ['vue-loader']
                 },
-                //处理hbs模板文件里的src
+                //处理hbs试图模板文件里的src
                 {
                     test: /\.hbs/,
                     exclude: /(node_modules|bower_components)/,
@@ -147,7 +152,7 @@ function fn(type) {
     gulp.task(`${mark}Webpack`, function (callback) {
         webpack(webpackConfig, function (err, stats) {
             if (err) {
-                throw new gutil.PluginError("webpack", err)
+                throw new gutil.PluginError("webpack", err);
             }
             gutil.log("[webpack]", stats.toString({
                 // output options
