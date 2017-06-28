@@ -2,6 +2,7 @@ const del = require('del');
 const fs = require('fs');
 const path = require('path');
 const gulp = require('gulp');
+const gutil = require('gulp-util');
 const scss = require('gulp-sass');
 const minifycss = require('gulp-minify-css');
 const babel = require('gulp-babel');
@@ -63,7 +64,7 @@ function fn(type) {
         entry: entry,
         //出口文件
         output: {
-            path: `${configPath.jsExitPath}`,
+            path: `${configPath.minPath}`,
             publicPath: '/',
             filename: `[name].js`
         },
@@ -137,10 +138,13 @@ function fn(type) {
             // })
         ]
     };
-    gulp.task(`${mark}Webpack`, function () {
+    gulp.task(`${mark}Webpack`, function (callback) {
         webpack(webpackConfig, function (err, stats) {
-            console.log('err', err);
-            console.log('stats', stats);
+            if(err) throw new gutil.PluginError("webpack", err);
+            gutil.log("[webpack]", stats.toString({
+                // output options
+            }));
+            callback();
         });
     });
 

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 54);
+/******/ 	return __webpack_require__(__webpack_require__.s = 48);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -642,6 +642,31 @@ module.exports = getDomArray;
 
 /***/ }),
 
+/***/ 48:
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(49);
+window.addEventListener('load', function () {
+    setTimeout(function () {
+
+        //注释待续...
+        (function () {
+            //功能待续...
+        })();
+
+        __webpack_require__(6); //每个页面都要用到的js(一定要放到最底部)
+    }, 0);
+});
+
+/***/ }),
+
+/***/ 49:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 5:
 /***/ (function(module, exports) {
 
@@ -666,31 +691,6 @@ function objRemoveQuote(json) {
 }
 
 module.exports = objRemoveQuote;
-
-/***/ }),
-
-/***/ 54:
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(55);
-window.addEventListener('load', function () {
-    setTimeout(function () {
-
-        //注释待续...
-        (function () {
-            //功能待续...
-        })();
-
-        __webpack_require__(6); //每个页面都要用到的js(一定要放到最底部)
-    }, 0);
-});
-
-/***/ }),
-
-/***/ 55:
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: No PostCSS Config found in: E:\\www\\suibianxiexie\\static\\phone\\dev\\scss\\pages\n    at Error (native)\n    at E:\\www\\suibianxiexie\\node_modules\\_postcss-load-config@1.2.0@postcss-load-config\\index.js:51:26\n    at runLoaders (E:\\www\\suibianxiexie\\node_modules\\_webpack@3.0.0@webpack\\lib\\NormalModule.js:193:19)\n    at E:\\www\\suibianxiexie\\node_modules\\_loader-runner@2.3.0@loader-runner\\lib\\LoaderRunner.js:364:11\n    at E:\\www\\suibianxiexie\\node_modules\\_loader-runner@2.3.0@loader-runner\\lib\\LoaderRunner.js:230:18\n    at context.callback (E:\\www\\suibianxiexie\\node_modules\\_loader-runner@2.3.0@loader-runner\\lib\\LoaderRunner.js:111:13)\n    at Promise.resolve.then.then.catch (E:\\www\\suibianxiexie\\node_modules\\_postcss-loader@2.0.6@postcss-loader\\lib\\index.js:176:71)");
 
 /***/ }),
 

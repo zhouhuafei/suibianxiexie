@@ -908,7 +908,7 @@ window.addEventListener('load', function () {
 /* 24 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: \r\n@import \"../global/g-img-upload\";\r\n^\r\n      File to import not found or unreadable: ../global/g-img-upload\nParent style sheet: stdin\r\n      in E:\\www\\suibianxiexie\\static\\phone\\dev\\scss\\pages\\dev-global.scss (line 4, column 1)\n    at runLoaders (E:\\www\\suibianxiexie\\node_modules\\_webpack@3.0.0@webpack\\lib\\NormalModule.js:193:19)\n    at E:\\www\\suibianxiexie\\node_modules\\_loader-runner@2.3.0@loader-runner\\lib\\LoaderRunner.js:364:11\n    at E:\\www\\suibianxiexie\\node_modules\\_loader-runner@2.3.0@loader-runner\\lib\\LoaderRunner.js:230:18\n    at context.callback (E:\\www\\suibianxiexie\\node_modules\\_loader-runner@2.3.0@loader-runner\\lib\\LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (E:\\www\\suibianxiexie\\node_modules\\_sass-loader@6.0.6@sass-loader\\lib\\loader.js:55:13)\n    at Object.<anonymous> (E:\\www\\suibianxiexie\\node_modules\\_async@2.5.0@async\\dist\\async.js:2244:31)\n    at Object.callback (E:\\www\\suibianxiexie\\node_modules\\_async@2.5.0@async\\dist\\async.js:906:16)\n    at options.error (E:\\www\\suibianxiexie\\node_modules\\_node-sass@3.13.1@node-sass\\lib\\index.js:289:32)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 25 */

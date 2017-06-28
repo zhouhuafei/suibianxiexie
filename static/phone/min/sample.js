@@ -60,11 +60,12 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ 	return __webpack_require__(__webpack_require__.s = 54);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ (function(module, exports) {
 
 //创建元素节点
@@ -94,7 +95,8 @@ function createElement(json) {
 module.exports = createElement;
 
 /***/ }),
-/* 1 */
+
+/***/ 1:
 /***/ (function(module, exports) {
 
 //对象的扩展方法
@@ -201,7 +203,120 @@ function extend(json) {
 module.exports = extend;
 
 /***/ }),
-/* 2 */
+
+/***/ 10:
+/***/ (function(module, exports, __webpack_require__) {
+
+var extend = __webpack_require__(1); //对象的扩展方法
+var offset = __webpack_require__(11); //获取元素距离文档的left和top
+var getDomArray = __webpack_require__(4); //获取原生的dom节点并转换成数组
+
+//延迟加载
+function LazyLoad(json) {
+    this.opts = extend({
+        defaults: {
+            element: '.m-lazy-load', //哪些元素进行懒加载
+            srcAttr: 'data-src', //默认获取哪里的属性值当做src
+            moreHeight: 0, //多加载一部分高度的图片
+            interval: 80 //函数节流时间(延迟时间)
+        },
+        inherits: json
+    });
+    this.clientHeight = document.documentElement.clientHeight;
+    this.init();
+}
+LazyLoad.prototype.init = function () {
+    this.render();
+    this.power();
+};
+LazyLoad.prototype.render = function () {
+    var self = this;
+    var moreHeight = this.opts.moreHeight;
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    var minTop = scrollTop - moreHeight;
+    var maxTop = this.clientHeight + minTop + moreHeight;
+    var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
+    var aDom = getDomArray({ element: this.opts.element });
+    aDom.forEach(function (v) {
+        if (v.tagName.toLowerCase() == 'img') {
+            if (!v.getAttribute('src')) {
+                v.src = src;
+            }
+            v.setAttribute('height', '100%');
+            v.setAttribute('width', '100%');
+        }
+    });
+    aDom.forEach(function (v) {
+        //排除那些被none掉的元素(被none掉的元素,通过offsetWidth和offsetHeight获取到的值是0)
+        if (v.offsetWidth) {
+            var elementTop = offset({ element: v }).top;
+            var elementBottom = elementTop + v.offsetHeight;
+            //出现在可视区才进行处理
+            if (elementBottom >= minTop && elementTop <= maxTop) {
+                if (v.tagName.toLowerCase() == 'img') {
+                    if (v.getAttribute(self.opts.srcAttr)) {
+                        v.src = v.getAttribute(self.opts.srcAttr);
+                    }
+                    v.removeAttribute('height');
+                    v.removeAttribute('width');
+                } else {
+                    if (v.getAttribute(self.opts.srcAttr)) {
+                        v.style.backgroundImage = 'url(' + v.getAttribute(self.opts.srcAttr) + ')';
+                    }
+                }
+                v.classList.remove('m-lazy-load');
+                v.classList.add('m-lazy-load-active');
+            }
+        }
+    });
+};
+LazyLoad.prototype.power = function () {
+    var self = this;
+    var timer = null;
+    window.addEventListener('scroll', function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            self.render();
+        }, self.opts.interval);
+    });
+};
+module.exports = LazyLoad;
+
+/***/ }),
+
+/***/ 11:
+/***/ (function(module, exports, __webpack_require__) {
+
+var extend = __webpack_require__(1); //对象的扩展方法
+var getDomArray = __webpack_require__(4); //获取原生的dom节点并转换成数组
+
+//获取元素距离文档的left和top
+function offset(json) {
+    var opts = extend({
+        defaults: {
+            element: null
+        },
+        inherits: json
+    });
+    var top = 0;
+    var left = 0;
+    var element = getDomArray({ element: opts.element })[0];
+    while (element) {
+        top += element.offsetTop;
+        left += element.offsetLeft;
+        element = element.offsetParent;
+    }
+    return {
+        top: top,
+        left: left
+    };
+}
+
+module.exports = offset;
+
+/***/ }),
+
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 var extend = __webpack_require__(1); //对象的扩展方法
@@ -435,7 +550,8 @@ SuperType.prototype.getModuleDomHtml = function () {
 module.exports = SuperType;
 
 /***/ }),
-/* 3 */
+
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 var extend = __webpack_require__(1); //对象的扩展方法
@@ -493,7 +609,8 @@ function constructorInherit(json) {
 module.exports = constructorInherit;
 
 /***/ }),
-/* 4 */
+
+/***/ 4:
 /***/ (function(module, exports) {
 
 //获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
@@ -524,7 +641,8 @@ function getDomArray(json) {
 module.exports = getDomArray;
 
 /***/ }),
-/* 5 */
+
+/***/ 5:
 /***/ (function(module, exports) {
 
 //移除对象引用
@@ -550,7 +668,33 @@ function objRemoveQuote(json) {
 module.exports = objRemoveQuote;
 
 /***/ }),
-/* 6 */
+
+/***/ 54:
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(55);
+window.addEventListener('load', function () {
+    setTimeout(function () {
+
+        //注释待续...
+        (function () {
+            //功能待续...
+        })();
+
+        __webpack_require__(6); //每个页面都要用到的js(一定要放到最底部)
+    }, 0);
+});
+
+/***/ }),
+
+/***/ 55:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
 //版权
@@ -576,7 +720,8 @@ module.exports = objRemoveQuote;
 })();
 
 /***/ }),
-/* 7 */
+
+/***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
 var createElement = __webpack_require__(0); //创建元素节点
@@ -622,7 +767,8 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 8 */
+
+/***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
 var createElement = __webpack_require__(0); //创建元素节点
@@ -724,7 +870,8 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 9 */
+
+/***/ 9:
 /***/ (function(module, exports) {
 
 //把json格式的对象转成数组
@@ -748,214 +895,6 @@ function jsonToArray(json) {
 
 module.exports = jsonToArray;
 
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var extend = __webpack_require__(1); //对象的扩展方法
-var offset = __webpack_require__(11); //获取元素距离文档的left和top
-var getDomArray = __webpack_require__(4); //获取原生的dom节点并转换成数组
-
-//延迟加载
-function LazyLoad(json) {
-    this.opts = extend({
-        defaults: {
-            element: '.m-lazy-load', //哪些元素进行懒加载
-            srcAttr: 'data-src', //默认获取哪里的属性值当做src
-            moreHeight: 0, //多加载一部分高度的图片
-            interval: 80 //函数节流时间(延迟时间)
-        },
-        inherits: json
-    });
-    this.clientHeight = document.documentElement.clientHeight;
-    this.init();
-}
-LazyLoad.prototype.init = function () {
-    this.render();
-    this.power();
-};
-LazyLoad.prototype.render = function () {
-    var self = this;
-    var moreHeight = this.opts.moreHeight;
-    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    var minTop = scrollTop - moreHeight;
-    var maxTop = this.clientHeight + minTop + moreHeight;
-    var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
-    var aDom = getDomArray({ element: this.opts.element });
-    aDom.forEach(function (v) {
-        if (v.tagName.toLowerCase() == 'img') {
-            if (!v.getAttribute('src')) {
-                v.src = src;
-            }
-            v.setAttribute('height', '100%');
-            v.setAttribute('width', '100%');
-        }
-    });
-    aDom.forEach(function (v) {
-        //排除那些被none掉的元素(被none掉的元素,通过offsetWidth和offsetHeight获取到的值是0)
-        if (v.offsetWidth) {
-            var elementTop = offset({ element: v }).top;
-            var elementBottom = elementTop + v.offsetHeight;
-            //出现在可视区才进行处理
-            if (elementBottom >= minTop && elementTop <= maxTop) {
-                if (v.tagName.toLowerCase() == 'img') {
-                    if (v.getAttribute(self.opts.srcAttr)) {
-                        v.src = v.getAttribute(self.opts.srcAttr);
-                    }
-                    v.removeAttribute('height');
-                    v.removeAttribute('width');
-                } else {
-                    if (v.getAttribute(self.opts.srcAttr)) {
-                        v.style.backgroundImage = 'url(' + v.getAttribute(self.opts.srcAttr) + ')';
-                    }
-                }
-                v.classList.remove('m-lazy-load');
-                v.classList.add('m-lazy-load-active');
-            }
-        }
-    });
-};
-LazyLoad.prototype.power = function () {
-    var self = this;
-    var timer = null;
-    window.addEventListener('scroll', function () {
-        clearTimeout(timer);
-        timer = setTimeout(function () {
-            self.render();
-        }, self.opts.interval);
-    });
-};
-module.exports = LazyLoad;
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var extend = __webpack_require__(1); //对象的扩展方法
-var getDomArray = __webpack_require__(4); //获取原生的dom节点并转换成数组
-
-//获取元素距离文档的left和top
-function offset(json) {
-    var opts = extend({
-        defaults: {
-            element: null
-        },
-        inherits: json
-    });
-    var top = 0;
-    var left = 0;
-    var element = getDomArray({ element: opts.element })[0];
-    while (element) {
-        top += element.offsetTop;
-        left += element.offsetLeft;
-        element = element.offsetParent;
-    }
-    return {
-        top: top,
-        left: left
-    };
-}
-
-module.exports = offset;
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(3); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
-
-//子类型
-var SubType = constructorInherit({
-    superType: SuperType,
-    //默认参数(继承超类型)
-    parameter: {
-        //回调
-        callback: {},
-        //配置
-        config: {
-            btn: {
-                isShowIcon: false
-            }
-        },
-        //数据
-        data: {
-            icon: 'icon-meiyoushuju',
-            txt: '没有数据',
-            btn: {
-                icon: 'icon-shouye',
-                txt: '回首页',
-                link: '/phone/'
-            }
-        }
-    }
-});
-
-//内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
-    var data = this.opts.data;
-    var btnIconHtml = ``;
-    if (this.opts.config.btn.isShowIcon) {
-        btnIconHtml = `<div class="g-btn-icon iconfont ${data.btn.icon}"></div>`;
-    }
-    this.moduleDom = createElement({
-        style: this.opts.config.moduleStyle,
-        custom: this.opts.config.moduleDomCustomAttr,
-        attribute: {
-            className: `m-no-data`,
-            innerHTML: `
-                <div class="m-no-data-icon iconfont ${data.icon}"></div>
-                <div class="m-no-data-txt">${data.txt}</div>
-                <a class="m-no-data-btn g-btn g-btn-confirm" href="${data.btn.link}">
-                    ${btnIconHtml}
-                    <div class="g-btn-txt">${data.btn.txt}</div>
-                </a>
-            `
-        }
-    });
-};
-
-//功能(覆盖超类型)
-SubType.prototype.power = function () {
-    //功能重写待续...
-};
-
-module.exports = SubType;
-
-/***/ }),
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(20);
-window.addEventListener('load', function () {
-    setTimeout(function () {
-
-        //没有数据
-        (function () {
-            var NoData = __webpack_require__(12);
-            new NoData({
-                data: {
-                    txt: '404 - Not Find'
-                }
-            });
-        })();
-
-        __webpack_require__(6); //每个页面都要用到的js(一定要放到最底部)
-    }, 0);
-});
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: ModuleBuildError: Module build failed: \r\n@import \"../config/config\";\r\n^\r\n      File to import not found or unreadable: ../config/config\nParent style sheet: E:/www/suibianxiexie/static/phone/dev/scss/modules/m-no-data.scss\r\n      in E:\\www\\suibianxiexie\\static\\phone\\dev\\scss\\modules\\m-no-data.scss (line 1, column 1)\n    at runLoaders (E:\\www\\suibianxiexie\\node_modules\\_webpack@3.0.0@webpack\\lib\\NormalModule.js:193:19)\n    at E:\\www\\suibianxiexie\\node_modules\\_loader-runner@2.3.0@loader-runner\\lib\\LoaderRunner.js:364:11\n    at E:\\www\\suibianxiexie\\node_modules\\_loader-runner@2.3.0@loader-runner\\lib\\LoaderRunner.js:230:18\n    at context.callback (E:\\www\\suibianxiexie\\node_modules\\_loader-runner@2.3.0@loader-runner\\lib\\LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (E:\\www\\suibianxiexie\\node_modules\\_sass-loader@6.0.6@sass-loader\\lib\\loader.js:55:13)\n    at Object.<anonymous> (E:\\www\\suibianxiexie\\node_modules\\_async@2.5.0@async\\dist\\async.js:2244:31)\n    at Object.callback (E:\\www\\suibianxiexie\\node_modules\\_async@2.5.0@async\\dist\\async.js:906:16)\n    at options.error (E:\\www\\suibianxiexie\\node_modules\\_node-sass@3.13.1@node-sass\\lib\\index.js:289:32)");
-
 /***/ })
-/******/ ]);
+
+/******/ });

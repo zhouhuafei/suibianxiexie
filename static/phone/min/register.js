@@ -690,7 +690,7 @@ window.addEventListener('load', function () {
 /***/ 53:
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: No PostCSS Config found in: E:\\www\\suibianxiexie\\static\\phone\\dev\\scss\\pages\n    at Error (native)\n    at E:\\www\\suibianxiexie\\node_modules\\_postcss-load-config@1.2.0@postcss-load-config\\index.js:51:26\n    at runLoaders (E:\\www\\suibianxiexie\\node_modules\\_webpack@3.0.0@webpack\\lib\\NormalModule.js:193:19)\n    at E:\\www\\suibianxiexie\\node_modules\\_loader-runner@2.3.0@loader-runner\\lib\\LoaderRunner.js:364:11\n    at E:\\www\\suibianxiexie\\node_modules\\_loader-runner@2.3.0@loader-runner\\lib\\LoaderRunner.js:230:18\n    at context.callback (E:\\www\\suibianxiexie\\node_modules\\_loader-runner@2.3.0@loader-runner\\lib\\LoaderRunner.js:111:13)\n    at Promise.resolve.then.then.catch (E:\\www\\suibianxiexie\\node_modules\\_postcss-loader@2.0.6@postcss-loader\\lib\\index.js:176:71)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
