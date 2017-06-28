@@ -1,17 +1,18 @@
-const del = require('del');
+const isDev = process.env.NODE_ENV;//是否是开发模式
+console.log('isDev', isDev);
+return false;
 const fs = require('fs');
 const path = require('path');
-const gulp = require('gulp');
 const webpack = require('webpack');//调用插件需要这个
 const autoprefixer = require('autoprefixer');//css3加前缀
 const ExtractTextPlugin = require("extract-text-webpack-plugin");//scss文件转css文件需要这个
 const HtmlWebpackPlugin = require('html-webpack-plugin');//html生成的插件
 class ConfigPath {
     constructor() {
-        this.projectDir = 'phone';//项目目录名称
-        this.publicPath = `${__dirname}/static/${this.projectDir}/`;//项目的路径
-        this.devPath = `${this.publicPath}src/`;//开发的目录
-        this.buildPath = `${this.publicPath}dist/`;//生产的目录
+        this.projectDir = 'phone';//项目目录
+        this.projectPath = `${__dirname}/static/${this.projectDir}/`;//项目的路径
+        this.devPath = `${this.projectPath}src/`;//开发的目录
+        this.buildPath = `${this.projectPath}dist/`;//生产的目录
         this.imagesEntryPath = `${this.devPath}images/`;//images的开发目录
         this.jsEntryPath = `${this.devPath}js/`;//js的开发目录
         this.viewEntryPath = `${this.devPath}views/`;//视图的开发目录
