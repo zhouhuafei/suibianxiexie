@@ -15,7 +15,7 @@ const inlinesource = require('gulp-inline-source');
 const webpack = require('webpack');//调用插件需要这个
 const autoprefixer = require('autoprefixer');//css3加前缀
 const ExtractTextPlugin = require("extract-text-webpack-plugin");//scss文件转css文件需要这个
-//const HtmlWebpackPlugin = require('html-webpack-plugin');//html生成的插件
+const HtmlWebpackPlugin = require('html-webpack-plugin');//html生成的插件
 function fn(type) {
     let mark = type;
     class ConfigPath {
@@ -43,31 +43,42 @@ function fn(type) {
     gulp.task(`${mark}Del`, function () {
         return del.sync([`${configPath.minPath}`]);
     });
-    //html
-    gulp.task(`${mark}Html`, function () {//html转移并压缩
-        return gulp.src(configPath.htmlEnterPath)
-            .pipe(inlinesource())
-            .pipe(htmlmin({collapseWhitespace: true, removeComments: true}))
-            .pipe(gulp.dest(configPath.htmlExitPath))
-    });
     //webpack处理css,js,图片开始
-
-
+    //入口
     let entry = {};
     let allJs = fs.readdirSync(`${configPath.devPath}js/pages/`);
     allJs.forEach(function (v) {
         let fileName = path.basename(v, '.js');
         entry[fileName] = `${configPath.devPath}js/pages/${v}`;
     });
-
+    //出口
+    let output = {
+        path: `${configPath.minPath}`,
+        publicPath: `/${mark}/min/`,
+        filename: `[name].js`
+    };
+    //插件
+    let plugins = [
+        //提取css样式到文件
+        new ExtractTextPlugin(`[name].css`)
+    ];
+    //插件----处理html
+    let allHTML = fs.readdirSync(`${configPath.devPath}html/pages/`);
+    allHTML.forEach(function (v) {
+        let fileName = path.basename(v, '.html');
+        plugins.push(
+            new HtmlWebpackPlugin({
+                template: `${configPath.devPath}html/pages/${v}`,//模板
+                filename: `${configPath.minPath}html/pages/${v}`,//文件名
+                favicon: `${configPath.devPath}images/partials/favicon.ico`,//网站的icon图标
+                chunks: ['global', fileName],//需要引入的chunk，不配置就会引入所有页面的资源
+            })
+        );
+    });
     let webpackConfig = {
         entry: entry,
         //出口文件
-        output: {
-            path: `${configPath.minPath}`,
-            publicPath: '/',
-            filename: `[name].js`
-        },
+        output: output,
         //模块
         module: {
             //loaders加载器
@@ -123,32 +134,24 @@ function fn(type) {
                 {
                     test: /\.html$/,
                     exclude: /(node_modules|bower_components)/,
-                    use: ['html-loader']
+                    use: ['html-loader','handlebars-loader']
                 }
             ]
         },
         //插件
-        plugins: [
-            //提取css样式到文件
-            new ExtractTextPlugin(`[name].css`),
-            //处理html
-            // new HtmlWebpackPlugin({
-            //     template: `${configPath.entry}app.html`,
-            //     filename: 'app.html'
-            // })
-        ]
+        plugins: plugins
     };
     gulp.task(`${mark}Webpack`, function (callback) {
         webpack(webpackConfig, function (err, stats) {
-            if(err) throw new gutil.PluginError("webpack", err);
+            if (err) {
+                throw new gutil.PluginError("webpack", err)
+            }
             gutil.log("[webpack]", stats.toString({
                 // output options
             }));
             callback();
         });
     });
-
-
     //webpack处理css,js,图片结束
 
 
