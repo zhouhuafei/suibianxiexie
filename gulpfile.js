@@ -24,18 +24,12 @@ function fn(type) {
             this.publicPath = `${this.dirname}/static/${mark}/`;
             this.devPath = `${this.publicPath}dev/`;
             this.minPath = `${this.publicPath}min/`;
-            this.scssEnterPath = `${this.devPath}scss/**/*.scss`;
+            this.scssEnterPath = `${this.devPath}scss/`;
             this.scssExitPath = `${this.minPath}css/`;
-            this.jsEnterPath = `${this.devPath}js/**/*.js`;
+            this.jsEnterPath = `${this.devPath}js/`;
             this.jsExitPath = `${this.minPath}js/`;
-            this.imagesEnterPath = `${this.devPath}images/**/*.*`;
-            this.imagesExitPath = `${this.minPath}images/`;
-            this.fontEnterPath = `${this.devPath}font/**/*.*`;
-            this.fontExitPath = `${this.minPath}font/`;
-            this.uiEnterPath = `${this.devPath}ui/**/*.*`;
-            this.uiExitPath = `${this.minPath}ui/`;
-            this.htmlEnterPath = `${this.devPath}html/**/*.html`;
-            this.htmlExitPath = `${this.minPath}html/`;
+            this.viewEnterPath = `${this.devPath}view/`;
+            this.viewExitPath = `${this.minPath}view/`;
         }
     }
     let configPath = new ConfigPath();
@@ -43,7 +37,16 @@ function fn(type) {
     gulp.task(`${mark}Del`, function () {
         return del.sync([`${configPath.minPath}`]);
     });
-    //webpack处理css,js,图片开始
+    //视图模板转移并压缩
+    gulp.task(`${mark}Html`, function () {
+        return gulp.src(`${configPath.viewEnterPath}partials/*.*`)
+            .pipe(inlinesource())
+            //.pipe(htmlmin({collapseWhitespace: true, removeComments: true}))
+            .pipe(gulp.dest(`${configPath.viewExitPath}partials/`))
+    });
+
+
+    //处理  css  js  视图文件
     //入口
     let entry = {};
     let allJs = fs.readdirSync(`${configPath.devPath}js/pages/`);
@@ -62,14 +65,14 @@ function fn(type) {
         //提取css样式到文件
         new ExtractTextPlugin(`[name].css`)
     ];
-    //插件----处理模板文件
-    let allHTML = fs.readdirSync(`${configPath.devPath}html/pages/`);
+    //插件----处理视图模板文件
+    let allHTML = fs.readdirSync(`${configPath.devPath}view/pages/`);
     allHTML.forEach(function (v) {
-        let fileName = path.basename(v, '.html');
+        let fileName = path.basename(v, '.hbs');
         plugins.push(
             new HtmlWebpackPlugin({
-                template: `${configPath.devPath}html/pages/${v}`,//模板
-                filename: `${configPath.minPath}html/pages/${v}`,//文件名
+                template: `${configPath.devPath}view/pages/${v}`,//模板
+                filename: `${configPath.minPath}view/pages/${v}`,//文件名
                 favicon: `${configPath.devPath}images/partials/favicon.ico`,//网站的icon图标
                 chunks: ['global', fileName],//需要引入的chunk，不配置就会引入所有页面的资源
             })
@@ -130,9 +133,9 @@ function fn(type) {
                     exclude: /(node_modules|bower_components)/,
                     use: ['vue-loader']
                 },
-                //处理html里的src
+                //处理hbs模板文件里的src
                 {
-                    test: /\.html$/,
+                    test: /\.hbs/,
                     exclude: /(node_modules|bower_components)/,
                     use: ['html-loader']
                 }
@@ -152,7 +155,6 @@ function fn(type) {
             callback();
         });
     });
-    //webpack处理css,js,图片结束
 
 
     //webpack热更新开始
@@ -176,7 +178,7 @@ function fn(type) {
     //webpack热更新结束
 
     //执行任务
-    gulp.task(`${mark}Dev`, [`${mark}Del`, `${mark}Webpack`]);//开发
+    gulp.task(`${mark}Dev`, [`${mark}Del`, `${mark}Html`, `${mark}Webpack`]);//开发
 }
 fn('phone');
 //fn('pc');

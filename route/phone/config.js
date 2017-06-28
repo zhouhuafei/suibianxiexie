@@ -1,7 +1,7 @@
 //路径
 var path = {
     route: '/',
-    view: 'phone/min/html/pages/'
+    view: 'phone/min/view/pages/'
 };
 //路由的名字
 var routeName = [
