@@ -1,3 +1,4 @@
+require('../../scss/pages/home.scss');
 window.addEventListener('load', function () {
     setTimeout(function () {
 

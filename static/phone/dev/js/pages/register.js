@@ -1,3 +1,4 @@
+require('../../scss/pages/register.scss');
 window.addEventListener('load', function () {
     setTimeout(function () {
 

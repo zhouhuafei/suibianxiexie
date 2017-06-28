@@ -1,3 +1,4 @@
+require('../../scss/pages/dev-word.scss');
 window.addEventListener('load', function () {
     setTimeout(function () {
 

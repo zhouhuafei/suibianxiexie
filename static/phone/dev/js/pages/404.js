@@ -1,3 +1,4 @@
+require('../../scss/pages/404.scss');
 window.addEventListener('load', function () {
     setTimeout(function () {
 

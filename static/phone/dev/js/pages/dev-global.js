@@ -1,3 +1,4 @@
+require('../../scss/pages/dev-global.scss');
 window.addEventListener('load', function () {
     setTimeout(function () {
 

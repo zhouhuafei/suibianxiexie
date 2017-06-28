@@ -1,3 +1,4 @@
+require('../../scss/pages/login.scss');
 window.addEventListener('load', function () {
     setTimeout(function () {
 

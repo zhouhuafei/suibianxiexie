@@ -1,3 +1,4 @@
+require('../../scss/pages/dev-module.scss');
 window.addEventListener('load', function () {
     setTimeout(function () {
         //ajax测试

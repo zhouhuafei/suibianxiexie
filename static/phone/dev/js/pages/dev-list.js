@@ -1,3 +1,4 @@
+require('../../scss/pages/dev-list.scss');
 window.addEventListener('load', function () {
     setTimeout(function () {
 
