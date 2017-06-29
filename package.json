@@ -6,12 +6,12 @@
     "scripts": {
         "test": "",
         "start": "",
-        "phoneDev": "gulp phoneDev && NODE_ENV=production webpack",
-        "phoneBuild": "gulp phoneBuild && webpack",
-        "pcDev": "gulp pcDev && webpack",
-        "pcBuild": "gulp pcBuild && webpack",
-        "adminDev": "gulp adminDev && webpack",
-        "adminBuild": "gulp adminBuild && webpack"
+        "phoneDev": "gulp phoneDev && NODE_ENV=production webpack --colors",
+        "phoneBuild": "gulp phoneBuild && webpack --colors --profile --display-modules",
+        "pcDev": "gulp pcDev && webpack --colors",
+        "pcBuild": "gulp pcBuild && webpack --colors",
+        "adminDev": "gulp adminDev && webpack --colors",
+        "adminBuild": "gulp adminBuild && webpack --colors"
     },
     "repository": {
         "type": "git",
