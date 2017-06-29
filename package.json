@@ -6,15 +6,12 @@
     "scripts": {
         "test": "",
         "start": "",
-        "phoneClear": "gulp phoneClear",
-        "phoneDev": "npm run phoneClear && NODE_ENV=production webpack",
-        "phoneBuild": "npm run phoneClear && webpack",
-        "pcClear": "",
-        "pcDev": "",
-        "pcBuild": "",
-        "adminClear": "",
-        "adminDev": "",
-        "adminBuild": ""
+        "phoneDev": "gulp phoneDev && NODE_ENV=production webpack",
+        "phoneBuild": "gulp phoneBuild && webpack",
+        "pcDev": "gulp pcDev && webpack",
+        "pcBuild": "gulp pcBuild && webpack",
+        "adminDev": "gulp adminDev && webpack",
+        "adminBuild": "gulp adminBuild && webpack"
     },
     "repository": {
         "type": "git",
