@@ -1,8 +1,31 @@
 {
     "name": "suibianxiexie",
     "version": "1.0.0",
-    "description": "waiting",
+    "description": "suibianxiexie",
     "main": "app.js",
+    "scripts": {
+        "test": "",
+        "start": "",
+        "phoneClear": "gulp phoneClear",
+        "phoneDev": "npm run phoneClear && NODE_ENV=production webpack",
+        "phoneBuild": "npm run phoneClear && webpack",
+        "pcClear": "",
+        "pcDev": "",
+        "pcBuild": "",
+        "adminClear": "",
+        "adminDev": "",
+        "adminBuild": ""
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/zhouhuafei/suibianxiexie.git"
+    },
+    "author": "zhouhuafei <1123486116@qq.com>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/zhouhuafei/suibianxiexie/issues"
+    },
+    "homepage": "https://github.com/zhouhuafei/suibianxiexie#readme",
     "dependencies": {
         "express": "^4.14.0",
         "express-handlebars": "^3.0.0",
@@ -37,33 +60,5 @@
         "vue-template-compiler": "^2.3.4",
         "webpack": "^3.0.0",
         "webpack-dev-server": "^2.5.0"
-    },
-    "scripts": {
-        "test": "",
-        "start": "",
-        "phoneClear": "gulp phoneClear",
-        "phoneDev": "npm run phoneClear && NODE_ENV=production webpack",
-        "phoneBuild": "npm run phoneClear && webpack",
-        "pcClear": "",
-        "pcDev": "",
-        "pcBuild": "",
-        "adminClear": "",
-        "adminDev": "",
-        "adminBuild": ""
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/zhouhuafei/suibianxiexie.git"
-    },
-    "author": "zhouhuafei <1123486116@qq.com>",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/zhouhuafei/suibianxiexie/issues"
-    },
-    "homepage": "https://github.com/zhouhuafei/suibianxiexie#readme",
-    "private": true,
-    "engines": {
-        "node": ">= 6.10.2",
-        "npm": ">= 5.0.3"
     }
 }
