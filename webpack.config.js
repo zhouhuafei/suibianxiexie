@@ -1,6 +1,5 @@
-const isDev = process.env.NODE_ENV;//是否是开发模式
-console.log('isDev', isDev);
-return false;
+const isProduction = process.env.NODE_ENV === 'production';//是否是生产环境
+console.log('isProduction', isProduction);
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');//调用插件需要这个
