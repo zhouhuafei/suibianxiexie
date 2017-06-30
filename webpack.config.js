@@ -1,5 +1,9 @@
-const isProduction = process.env.NODE_ENV === 'production';//是否是生产环境
-console.log('isProduction', isProduction);
+const myConfig = process.env.myConfig.split('-');
+myConfig.forEach(function (v, i, a) {
+    a[i] = v.trim();
+});
+const projectDir = myConfig[0];//项目目录
+const isProduction = myConfig[1] === 'production';//是否是生产环境
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');//调用插件需要这个
@@ -8,7 +12,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");//scss文件转
 const HtmlWebpackPlugin = require('html-webpack-plugin');//html生成的插件
 class ConfigPath {
     constructor() {
-        this.projectDir = 'phone';//项目目录
+        this.projectDir = projectDir;//项目目录
         this.projectPath = `${__dirname}/static/${this.projectDir}/`;//项目的路径
         this.devPath = `${this.projectPath}src/`;//开发的目录
         this.buildPath = `${this.projectPath}dist/`;//生产的目录
@@ -42,6 +46,14 @@ let output = {
 };
 //插件
 let plugins = [
+    //此插件将允许您通过process.env引用环境变量
+
+    //自动加载的模块？？？？？？？？
+    new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        "window.jQuery": "jquery"
+    }),
     //提取css样式到文件
     new ExtractTextPlugin(`css/[name].css`),
     //把每个入口都有用到的js和css分别提取为this-is-global-file.js和this-is-global-file.css
