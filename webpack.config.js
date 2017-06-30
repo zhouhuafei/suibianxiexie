@@ -22,43 +22,41 @@ class ConfigPath {
         this.viewOutputPath = `${this.buildPath}views/`;//视图的生产目录
     }
 }
-let configPath = new ConfigPath();
-//resolve
-let resolve = {
-    alias: {
-        vue: `${__dirname}/node_modules/vue/dist/vue.js`
-    }
+const configPath = new ConfigPath();//配置路径
+let hashRule = ``;//hash规则,只在生产环境添加
+let isWatch = true;//是否监听
+let isMin = ``;//引入开发版本的文件,还是生产版本的文件
+let plugins = [];//插件的集合
+//环境----如果是生产环境(默认走开发环境)
+if (isProduction) {
+    isWatch = false;
+    hashRule = `[hash:8].`;
+    isMin = `min.`;
+}
+//别名----引入开发版本还是生产版本
+let alias = {
+    vue: `${__dirname}/node_modules/vue/dist/vue.${isMin}js`
 };
-//入口
+//入口----配置
 let entry = {};
 let allJs = fs.readdirSync(`${configPath.jsEntryPath}pages/`);
 allJs.forEach(function (v) {
     let fileName = path.basename(v, '.js');
     entry[fileName] = `${configPath.devPath}js/pages/${v}`;
 });
-
-//出口
+//出口----配置
 let output = {
     path: `${configPath.buildPath}`,
     publicPath: `/${configPath.projectDir}/dist/`,
-    filename: `js/[name].js`,
+    filename: `js/[name].${hashRule}js`,
     chunkFilename: "[id].chunk.js"
 };
-//插件
-let plugins = [
-    //此插件将允许您通过process.env引用环境变量
-
-    //自动加载的模块？？？？？？？？
-    new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery",
-        "window.jQuery": "jquery"
-    }),
-    //提取css样式到文件
-    new ExtractTextPlugin(`css/[name].css`),
-    //把每个入口都有用到的js和css分别提取为this-is-global-file.js和this-is-global-file.css
-    new webpack.optimize.CommonsChunkPlugin({name: 'this-is-global-file'})
-];
+//插件----自动加载的模
+plugins.push(new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", "window.jQuery": "jquery"}));
+//插件----提取css样式到文件
+plugins.push(new ExtractTextPlugin(`css/[name].${hashRule}css`));
+//插件----把每个入口都有用到的js和css分别提取为this-is-global-file.js和this-is-global-file.css
+plugins.push(new webpack.optimize.CommonsChunkPlugin({name: 'this-is-global-file'}));
 //插件----处理视图模板页面文件
 let allPageHtml = fs.readdirSync(`${configPath.viewEntryPath}pages/`);
 allPageHtml.forEach(function (v) {
@@ -83,75 +81,74 @@ allPartialsHtml.forEach(function (v) {
         })
     );
 });
-let webpackConfig = {
-    resolve: resolve,
-    entry: entry,
-    //出口文件
-    output: output,
-    //模块
-    module: {
-        //loaders加载器
-        rules: [
-            //处理sass
+//加载----loader加载器的规则集合
+let rules = [
+    //处理sass
+    {
+        test: /\.(css|scss)$/,
+        exclude: /(node_modules|bower_components)/,
+        use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: ['css-loader', 'postcss-loader', 'sass-loader']
+        })
+    },
+    //es6转成es5
+    {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: ['babel-loader']
+    },
+    //处理图片
+    {
+        test: /\.(png|jp(e)?g|gif|svg|ico)(\?.*)?$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
             {
-                test: /\.(css|scss)$/,
-                exclude: /(node_modules|bower_components)/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'postcss-loader', 'sass-loader']
-                })
-            },
-            //es6转成es5
-            {
-                test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: ['babel-loader']
-            },
-            //处理图片
-            {
-                test: /\.(png|jp(e)?g|gif|svg|ico)(\?.*)?$/,
-                exclude: /(node_modules|bower_components)/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            limit: 8192,
-                            name: 'images/[name].[hash:8].[ext]'
-                        }
-                    }
-                ]
-            },
-            //处理字体
-            {
-                test: /\.(woff|eot|ttf)(\?.*)?$/,
-                exclude: /(node_modules|bower_components)/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            limit: 8192,
-                            name: 'fonts/[name].[hash:8].[ext]'
-                        }
-                    }
-                ]
-            },
-            //处理.vue文件
-            {
-                test: /\.vue$/,
-                exclude: /(node_modules|bower_components)/,
-                use: ['vue-loader']
-            },
-            //处理hbs试图模板文件里的src
-            {
-                test: /\.hbs/,
-                exclude: /(node_modules|bower_components)/,
-                use: ['html-loader']
+                loader: 'url-loader',
+                options: {
+                    limit: 8192,
+                    name: 'images/[name].[hash:8].[ext]'
+                }
             }
         ]
     },
-    //插件
-    plugins: plugins,
-    watch: true
+    //处理字体
+    {
+        test: /\.(woff|eot|ttf)(\?.*)?$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+            {
+                loader: 'url-loader',
+                options: {
+                    limit: 8192,
+                    name: 'fonts/[name].[hash:8].[ext]'
+                }
+            }
+        ]
+    },
+    //处理.vue文件
+    {
+        test: /\.vue$/,
+        exclude: /(node_modules|bower_components)/,
+        use: ['vue-loader']
+    },
+    //处理hbs试图模板文件里的src
+    {
+        test: /\.hbs/,
+        exclude: /(node_modules|bower_components)/,
+        use: ['html-loader']
+    }
+];
+let webpackConfig = {
+    resolve: {//resolve配置用来影响webpack模块解析规则
+        alias: alias//别名
+    },
+    entry: entry,//入口
+    output: output,//出口
+    module: {//模块的加载相关
+        rules: rules//loader加载器的规则
+    },
+    plugins: plugins,//插件
+    watch: isWatch//监听
 };
-
 module.exports = webpackConfig;
