@@ -2,8 +2,8 @@ const myConfig = process.env.myConfig.split('-');
 myConfig.forEach(function (v, i, a) {
     a[i] = v.trim();
 });
-const projectDir = myConfig[0];//项目目录
-const isProduction = myConfig[1] === 'production';//是否是生产环境
+const isProduction = myConfig[0] === 'production';//是否是生产环境
+const projectDir = myConfig[1];//项目目录
 const del = require('del');
 const gulp = require('gulp');
 class ConfigPath {
