@@ -29,8 +29,8 @@ let isMin = ``;//引入开发版本的文件,还是生产版本的文件
 let plugins = [];//插件的集合
 //环境----如果是生产环境(默认走开发环境)
 if (isProduction) {
-    isWatch = false;
-    hashRule = `[hash:8].`;
+    isWatch = true;
+    hashRule = `[chunkhash].`;
     isMin = `min.`;
 }
 //别名----引入开发版本还是生产版本
