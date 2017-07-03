@@ -118,6 +118,11 @@ let webpackConfig = {
     plugins: plugins,
     //监听----配置
     watch: productionConfig.isWatch,
+    //热更新----配置
+    devServer: {
+        historyApiFallback: true,
+        inline: true
+    },
     //模块----模块加载相关的配置
     module: {
         //rules----loader加载器的规则集合
