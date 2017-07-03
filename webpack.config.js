@@ -23,19 +23,9 @@ class ConfigPath {
     }
 }
 const configPath = new ConfigPath();//配置路径
-let hashRule = ``;//hash规则,只在生产环境添加
-let isWatch = true;//是否监听
-let isMin = ``;//引入开发版本的文件,还是生产版本的文件
-let plugins = [];//插件的集合
-//环境----如果是生产环境(默认走开发环境)
-if (isProduction) {
-    isWatch = true;
-    hashRule = `[chunkhash].`;
-    isMin = `min.`;
-}
 //别名----引入开发版本还是生产版本
 let alias = {
-    vue: `${__dirname}/node_modules/vue/dist/vue.${isMin}js`
+    vue: `${__dirname}/node_modules/vue/dist/vue.${isProduction ? 'min.' : ''}js`
 };
 //入口----配置
 let entry = {};
@@ -48,15 +38,18 @@ allJs.forEach(function (v) {
 let output = {
     path: `${configPath.buildPath}`,
     publicPath: `/${configPath.projectDir}/dist/`,
-    filename: `js/[name].${hashRule}js`,
+    filename: `js/[name].${isProduction ? '[chunkhash].' : ''}js`,
     chunkFilename: "[id].chunk.js"
 };
-//插件----自动加载的模
-plugins.push(new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", "window.jQuery": "jquery"}));
-//插件----提取css样式到文件
-plugins.push(new ExtractTextPlugin(`css/[name].${hashRule}css`));
-//插件----把每个入口都有用到的js和css分别提取为this-is-global-file.js和this-is-global-file.css
-plugins.push(new webpack.optimize.CommonsChunkPlugin({name: 'this-is-global-file'}));
+//插件的集合
+let plugins = [
+    //插件----自动加载模块
+    new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", "window.jQuery": "jquery"}),
+    //插件----提取css样式到文件
+    new ExtractTextPlugin(`css/[name].${isProduction ? '[contenthash].' : ''}css`),
+    //插件----把每个入口都有用到的js和css分别提取为this-is-global-file.js和this-is-global-file.css
+    new webpack.optimize.CommonsChunkPlugin({name: 'this-is-global-file'})
+];
 //插件----处理视图模板页面文件
 let allPageHtml = fs.readdirSync(`${configPath.viewEntryPath}pages/`);
 allPageHtml.forEach(function (v) {
@@ -149,6 +142,6 @@ let webpackConfig = {
         rules: rules//loader加载器的规则
     },
     plugins: plugins,//插件
-    watch: isWatch//监听
+    watch: !isProduction//监听
 };
 module.exports = webpackConfig;

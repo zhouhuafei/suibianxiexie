@@ -2,6 +2,7 @@ require('../../scss/base/global.scss');
 require('../../scss/pages/home.scss');
 window.addEventListener('load', function () {
     setTimeout(function () {
+
         //slide切换
         (function () {
             let Slide = require('../modules/m-slide');
