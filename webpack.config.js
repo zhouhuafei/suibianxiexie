@@ -24,25 +24,30 @@ class ConfigPath {
 }
 const configPath = new ConfigPath();//配置路径
 //环境----是否是生产环境(默认是开发环境)
-let productionConfig = {};
+let productionConfig = {
+    hash: '',
+    chunkhash: '',
+    contenthash: '',
+    min: '',
+    watch: true,
+};
 if (isProduction) {
-    
+    productionConfig = {
+        hash: '[hash:8].',
+        chunkhash: '[chunkhash].',
+        contenthash: '[contenthash].',
+        min: 'min.',
+        watch: true,
+    };
 }
-//入口----配置
-let entry = {};
-let allJs = fs.readdirSync(`${configPath.jsEntryPath}pages/`);
-allJs.forEach(function (v) {
-    let fileName = path.basename(v, '.js');
-    entry[fileName] = `${configPath.devPath}js/pages/${v}`;
-});
 //插件----集合
 let plugins = [
     //插件----自动加载模块
     new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", "window.jQuery": "jquery"}),
     //插件----提取css样式到文件
-    new ExtractTextPlugin(`css/[name].${isProduction ? '[contenthash].' : ''}css`),
+    new ExtractTextPlugin(`css/pages/[name].${productionConfig.contenthash}css`),
     //插件----把每个入口都有用到的js和css分别提取为this-is-global-file.js和this-is-global-file.css
-    new webpack.optimize.CommonsChunkPlugin({name: 'this-is-global-file'})
+    new webpack.optimize.CommonsChunkPlugin({name: '../this-is-global-file/this-is-global-file'})
 ];
 //插件----处理视图模板页面文件
 let allPageHtml = fs.readdirSync(`${configPath.viewEntryPath}pages/`);
@@ -68,12 +73,19 @@ allPartialsHtml.forEach(function (v) {
         })
     );
 });
+//入口----配置
+let entry = {};
+let allJs = fs.readdirSync(`${configPath.jsEntryPath}pages/`);
+allJs.forEach(function (v) {
+    let fileName = path.basename(v, '.js');
+    entry[fileName] = `${configPath.devPath}js/pages/${v}`;
+});
 let webpackConfig = {
     //resolve----配置用来影响webpack模块解析规则
     resolve: {
         //别名----引入开发版本还是生产版本
         alias: {
-            vue: `${__dirname}/node_modules/vue/dist/vue.${isProduction ? 'min.' : ''}js`
+            vue: `${__dirname}/node_modules/vue/dist/vue.${productionConfig.min}js`
         }
     },
     //入口----配置
@@ -82,14 +94,13 @@ let webpackConfig = {
     output: {
         path: `${configPath.buildPath}`,
         publicPath: `/${configPath.projectDir}/dist/`,
-        filename: `js/[name].${isProduction ? '[chunkhash].' : ''}js`,
-        chunkFilename: `js/[id].chunk.${isProduction ? '[chunkhash].' : ''}js`
+        filename: `js/pages/[name].${productionConfig.chunkhash}js`,
+        chunkFilename: `js/chunk/[id].chunk.${productionConfig.chunkhash}js`
     },
     //插件----配置
     plugins: plugins,
     //监听----配置
-    //watch: !isProduction
-    watch: true,
+    watch: productionConfig.watch,
     //模块----模块加载相关的配置
     module: {
         //rules----loader加载器的规则集合
@@ -118,7 +129,7 @@ let webpackConfig = {
                         loader: 'url-loader',
                         options: {
                             limit: 8192,
-                            name: 'images/[name].[hash:8].[ext]'
+                            name: `images/[name].${productionConfig.hash}[ext]`
                         }
                     }
                 ]
@@ -132,7 +143,7 @@ let webpackConfig = {
                         loader: 'url-loader',
                         options: {
                             limit: 8192,
-                            name: 'fonts/[name].[hash:8].[ext]'
+                            name: `fonts/[name].${productionConfig.hash}[ext]`
                         }
                     }
                 ]
