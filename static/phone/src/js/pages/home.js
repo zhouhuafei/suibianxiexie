@@ -5,7 +5,7 @@ window.addEventListener('load', function () {
 
         require.ensure('../modules/m-dialog.js', function () {
             console.log('output chunkFilename');
-        });
+        }, 'm-dialog');
 
         //slide切换
         (function () {
