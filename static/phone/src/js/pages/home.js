@@ -3,8 +3,8 @@ require('../../scss/pages/home.scss');
 window.addEventListener('load', function () {
     setTimeout(function () {
 
-        require.ensure('../modules/m-dialog.js', function () {
-            console.log('output chunkFilename');
+        require.ensure('../modules/m-dialog.js', function (mDialog) {
+            //console.log(mDialog);
         }, 'm-dialog');
 
         //slide切换

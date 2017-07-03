@@ -43,7 +43,7 @@ if (isProduction) {
         isWatch: true,//是否监听
         minView: {
             removeComments: true, //移除HTML中的注释
-            collapseWhitespace: false //删除空白符与换行符
+            collapseWhitespace: true //删除空白符与换行符
         }
     };
 }
@@ -140,7 +140,12 @@ let webpackConfig = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
-                use: ['babel-loader']
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['es2015']
+                    }
+                }
             },
             //loader----处理图片
             {
