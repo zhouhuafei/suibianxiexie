@@ -23,10 +23,11 @@ class ConfigPath {
     }
 }
 const configPath = new ConfigPath();//配置路径
-//别名----引入开发版本还是生产版本
-let alias = {
-    vue: `${__dirname}/node_modules/vue/dist/vue.${isProduction ? 'min.' : ''}js`
-};
+//环境----是否是生产环境(默认是开发环境)
+let productionConfig = {};
+if (isProduction) {
+    
+}
 //入口----配置
 let entry = {};
 let allJs = fs.readdirSync(`${configPath.jsEntryPath}pages/`);
@@ -34,14 +35,7 @@ allJs.forEach(function (v) {
     let fileName = path.basename(v, '.js');
     entry[fileName] = `${configPath.devPath}js/pages/${v}`;
 });
-//出口----配置
-let output = {
-    path: `${configPath.buildPath}`,
-    publicPath: `/${configPath.projectDir}/dist/`,
-    filename: `js/[name].${isProduction ? '[chunkhash].' : ''}js`,
-    chunkFilename: `js/[id].chunk.${isProduction ? '[chunkhash].' : ''}js`
-};
-//插件的集合
+//插件----集合
 let plugins = [
     //插件----自动加载模块
     new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", "window.jQuery": "jquery"}),
@@ -74,75 +68,88 @@ allPartialsHtml.forEach(function (v) {
         })
     );
 });
-//加载----loader加载器的规则集合
-let rules = [
-    //处理sass
-    {
-        test: /\.(css|scss)$/,
-        exclude: /(node_modules|bower_components)/,
-        use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: ['css-loader', 'postcss-loader', 'sass-loader']
-        })
-    },
-    //es6转成es5
-    {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: ['babel-loader']
-    },
-    //处理图片
-    {
-        test: /\.(png|jp(e)?g|gif|svg|ico)(\?.*)?$/,
-        exclude: /(node_modules|bower_components)/,
-        use: [
-            {
-                loader: 'url-loader',
-                options: {
-                    limit: 8192,
-                    name: 'images/[name].[hash:8].[ext]'
-                }
-            }
-        ]
-    },
-    //处理字体
-    {
-        test: /\.(woff|eot|ttf)(\?.*)?$/,
-        exclude: /(node_modules|bower_components)/,
-        use: [
-            {
-                loader: 'url-loader',
-                options: {
-                    limit: 8192,
-                    name: 'fonts/[name].[hash:8].[ext]'
-                }
-            }
-        ]
-    },
-    //处理.vue文件
-    {
-        test: /\.vue$/,
-        exclude: /(node_modules|bower_components)/,
-        use: ['vue-loader']
-    },
-    //处理hbs试图模板文件里的src
-    {
-        test: /\.hbs/,
-        exclude: /(node_modules|bower_components)/,
-        use: ['html-loader']
-    }
-];
 let webpackConfig = {
-    resolve: {//resolve配置用来影响webpack模块解析规则
-        alias: alias//别名
+    //resolve----配置用来影响webpack模块解析规则
+    resolve: {
+        //别名----引入开发版本还是生产版本
+        alias: {
+            vue: `${__dirname}/node_modules/vue/dist/vue.${isProduction ? 'min.' : ''}js`
+        }
     },
-    entry: entry,//入口
-    output: output,//出口
-    module: {//模块的加载相关
-        rules: rules//loader加载器的规则
+    //入口----配置
+    entry: entry,
+    //出口----配置
+    output: {
+        path: `${configPath.buildPath}`,
+        publicPath: `/${configPath.projectDir}/dist/`,
+        filename: `js/[name].${isProduction ? '[chunkhash].' : ''}js`,
+        chunkFilename: `js/[id].chunk.${isProduction ? '[chunkhash].' : ''}js`
     },
-    plugins: plugins,//插件
-    //watch: !isProduction//监听
-    watch: true//监听
+    //插件----配置
+    plugins: plugins,
+    //监听----配置
+    //watch: !isProduction
+    watch: true,
+    //模块----模块加载相关的配置
+    module: {
+        //rules----loader加载器的规则集合
+        rules: [
+            //loader----处理sass
+            {
+                test: /\.(css|scss)$/,
+                exclude: /(node_modules|bower_components)/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'postcss-loader', 'sass-loader']
+                })
+            },
+            //loader----es6转成es5
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: ['babel-loader']
+            },
+            //loader----处理图片
+            {
+                test: /\.(png|jp(e)?g|gif|svg|ico)(\?.*)?$/,
+                exclude: /(node_modules|bower_components)/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8192,
+                            name: 'images/[name].[hash:8].[ext]'
+                        }
+                    }
+                ]
+            },
+            //loader----处理字体
+            {
+                test: /\.(woff|eot|ttf)(\?.*)?$/,
+                exclude: /(node_modules|bower_components)/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8192,
+                            name: 'fonts/[name].[hash:8].[ext]'
+                        }
+                    }
+                ]
+            },
+            //loader----处理vue单文件
+            {
+                test: /\.vue$/,
+                exclude: /(node_modules|bower_components)/,
+                use: ['vue-loader']
+            },
+            //loader----处理hbs视图模板文件里的src
+            {
+                test: /\.hbs/,
+                exclude: /(node_modules|bower_components)/,
+                use: ['html-loader']
+            }
+        ]
+    }
 };
 module.exports = webpackConfig;
