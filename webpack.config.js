@@ -39,7 +39,7 @@ let output = {
     path: `${configPath.buildPath}`,
     publicPath: `/${configPath.projectDir}/dist/`,
     filename: `js/[name].${isProduction ? '[chunkhash].' : ''}js`,
-    chunkFilename: "[id].chunk.js"
+    chunkFilename: `js/[id].chunk.${isProduction ? '[chunkhash].' : ''}js`
 };
 //插件的集合
 let plugins = [
@@ -142,6 +142,7 @@ let webpackConfig = {
         rules: rules//loader加载器的规则
     },
     plugins: plugins,//插件
-    watch: !isProduction//监听
+    //watch: !isProduction//监听
+    watch: true//监听
 };
 module.exports = webpackConfig;
