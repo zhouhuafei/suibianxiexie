@@ -202,6 +202,37 @@ div, input, button, textarea, select, label {
 .iconfont {
   font-size: inherit; }
 
+.g-wrap {
+  width: 100%; }
+  .g-wrap .g-body:before, .g-wrap .g-body:after {
+    content: ' ';
+    display: block;
+    height: 0;
+    overflow: hidden; }
+  .g-wrap .g-footer {
+    width: inherit; }
+
+html.g-pc {
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+  html.g-pc body {
+    height: inherit;
+    -webkit-box-sizing: inherit;
+            box-sizing: inherit;
+    background: #fafafa; }
+  html.g-pc .g-wrap {
+    min-height: 100%;
+    margin: 0 auto;
+    width: 500px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    -webkit-box-shadow: 1px 0 0 #e6e7ed, -1px 0 0 #e6e7ed;
+            box-shadow: 1px 0 0 #e6e7ed, -1px 0 0 #e6e7ed;
+    border-top: 1px solid #e6e7ed;
+    border-bottom: 1px solid #e6e7ed;
+    background: #f2f2f2; }
+
 .g-btn {
   width: 6.25rem;
   height: 1.25rem;
@@ -712,35 +743,6 @@ div, input, button, textarea, select, label {
     resize: none;
     padding: 0.3125rem;
     border: none; }
-
-.g-wrap {
-  width: 100%; }
-  .g-wrap .g-body:before, .g-wrap .g-body:after {
-    content: ' ';
-    display: block;
-    height: 0;
-    overflow: hidden; }
-  .g-wrap .g-footer {
-    width: inherit; }
-
-html.g-pc {
-  height: 100%;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; }
-  html.g-pc body {
-    height: inherit;
-    -webkit-box-sizing: inherit;
-            box-sizing: inherit; }
-  html.g-pc .g-wrap {
-    min-height: 100%;
-    margin: 0 auto;
-    width: 500px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    -webkit-box-shadow: 0.03125rem 0 0 #e6e7ed, -0.03125rem 0 0 #e6e7ed;
-            box-shadow: 0.03125rem 0 0 #e6e7ed, -0.03125rem 0 0 #e6e7ed;
-    border-top: 0.03125rem solid #e6e7ed;
-    border-bottom: 0.03125rem solid #e6e7ed; }
 
 .g-display-none {
   display: none; }

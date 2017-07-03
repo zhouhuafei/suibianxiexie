@@ -37,6 +37,44 @@ div, input, button, textarea, select, label {
 //==================================================================清零样式的结束>
 
 //==================================================================全局样式的开始>
+
+//全局的容器
+.g-wrap {
+    width: 100%;
+    .g-body {
+        &:before, &:after {
+            content: ' ';
+            display: block;
+            height: 0;
+            overflow: hidden;
+        }
+    }
+    .g-footer {
+        width: inherit;
+    }
+}
+
+//pc展示
+html.g-pc {
+    height: 100%;
+    box-sizing: border-box;
+    body {
+        height: inherit;
+        box-sizing: inherit;
+        background: #fafafa;
+    }
+    .g-wrap {
+        min-height: 100%;
+        margin: 0 auto;
+        width: 500px;
+        box-sizing: border-box;
+        box-shadow: 1px 0 0 $g-color-border-default, -1px 0 0 $g-color-border-default;
+        border-top: 1px solid $g-color-border-default;
+        border-bottom: 1px solid $g-color-border-default;
+        background: $g-color-background-floor;
+    }
+}
+
 //按钮
 .g-btn {
     $height: 40;
@@ -491,41 +529,6 @@ div, input, button, textarea, select, label {
         resize: none;
         padding: px2rem(10);
         border: none;
-    }
-}
-
-//全局的容器
-.g-wrap {
-    width: 100%;
-    .g-body {
-        &:before, &:after {
-            content: ' ';
-            display: block;
-            height: 0;
-            overflow: hidden;
-        }
-    }
-    .g-footer {
-        width: inherit;
-    }
-}
-
-//pc展示
-html.g-pc {
-    height: 100%;
-    box-sizing: border-box;
-    body {
-        height: inherit;
-        box-sizing: inherit;
-    }
-    .g-wrap {
-        min-height: 100%;
-        margin: 0 auto;
-        width: 500px;
-        box-sizing: border-box;
-        box-shadow: px2rem(1) 0 0 $g-color-border-default, px2rem(-1) 0 0 $g-color-border-default;
-        border-top: px2rem(1) solid $g-color-border-default;
-        border-bottom: px2rem(1) solid $g-color-border-default;
     }
 }
 
