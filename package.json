@@ -10,7 +10,7 @@
         "win": "set",
         "gulp": "gulp",
         "webpack": "webpack --colors --profile --progress --display-modules",
-        "phoneServer": "set myConfig=development-phone && npm run gulp && webpack-dev-server --inline",
+        "phoneServer": "set myConfig=development-phone && webpack-dev-server --inline",
         "phoneDev": "set myConfig=development-phone && npm run gulp && npm run webpack",
         "phoneBuild": "set myConfig=production-phone && npm run gulp && npm run webpack",
         "pcDev": "set myConfig=development-pc && npm run gulp && npm run webpack",

@@ -121,7 +121,8 @@ let webpackConfig = {
     //热更新----配置
     devServer: {
         historyApiFallback: true,
-        inline: true
+        inline: true,
+        port:2333
     },
     //模块----模块加载相关的配置
     module: {
