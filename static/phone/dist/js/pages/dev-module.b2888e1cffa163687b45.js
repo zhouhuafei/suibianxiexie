@@ -1,4 +1,4 @@
-webpackJsonp([0],[
+webpackJsonp([1,0],[
 /* 0 */,
 /* 1 */,
 /* 2 */,
@@ -735,6 +735,288 @@ module.exports = SubType;
 var createElement = __webpack_require__(0); //创建元素节点
 var constructorInherit = __webpack_require__(2); //构造函数的继承(拷贝继承)
 var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+
+//子类型
+var SubType = constructorInherit({
+    superType: SuperType,
+    //默认参数(继承超类型)
+    parameter: {
+        //回调
+        callback: {
+            click: function () {},
+            moduleDomRenderBefore: function (self) {
+                if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
+                    self.wrapDom.style.position = 'relative';
+                }
+            }
+        },
+        //配置
+        config: {
+            isTransparent: false, //是不是透明的(默认不透明)
+            moduleDomIsShow: false //内部模块是否显示(默认不显示)
+        },
+        //数据
+        data: {}
+    }
+});
+
+//内部模块的创建(覆盖超类型)
+SubType.prototype.moduleDomCreate = function () {
+    var isTransparent = '';
+    if (this.opts.config.isTransparent) {
+        isTransparent = 'm-mask-transparent';
+    }
+    this.moduleDom = createElement({
+        style: this.opts.config.moduleStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
+        attribute: {
+            className: `m-mask ${isTransparent}`,
+            innerHTML: ``
+        }
+    });
+};
+
+//功能(覆盖超类型)
+SubType.prototype.power = function () {
+    var self = this;
+    this.moduleDom.addEventListener('click', function (ev) {
+        self.opts.callback.click();
+        ev.stopPropagation();
+    });
+};
+
+module.exports = SubType;
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var createElement = __webpack_require__(0); //创建元素节点
+var constructorInherit = __webpack_require__(2); //构造函数的继承(拷贝继承)
+var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+var Mask = __webpack_require__(11); //遮罩
+
+//子类型
+var SubType = constructorInherit({
+    superType: SuperType,
+    //默认参数(继承超类型)
+    parameter: {
+        //回调
+        callback: {
+            moduleDomRenderBefore: function (self) {
+                if (self.opts.config.type == 'confirm') {
+                    if (self.opts.config.confirm.isShowMask) {
+                        self.mask = new Mask({
+                            wrap: self.opts.wrap,
+                            config: {
+                                moduleDomIsShow: true,
+                                moduleDomRenderMethod: { method: 'insertBefore' }
+                            }
+                        });
+                    }
+                    if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
+                        self.wrapDom.style.position = 'relative';
+                    }
+                }
+            },
+            //确认
+            confirm: function () {},
+            //取消
+            cancel: function () {},
+            //关闭
+            close: function () {}
+        },
+        //配置
+        config: {
+            /*
+             * 弹窗类型
+             * `alert`  提示信息类型
+             * `confirm`    确认框类型
+             * */
+            type: `alert`, //默认是提示框
+            /*
+             * 弹窗位置
+             * `center` 居中
+             * `bottom` 居下
+             * `top` 居上
+             * */
+            positionLocation: `center`, //弹窗的定位位置    positionMethod定位方式强制fixed
+            //提示框
+            alert: {
+                time: 2000, //展示的时间
+                isShowIcon: true, //是否显示icon
+                icon: `icon-chenggong`, //icon的class
+                content: `成功` //内容信息
+            },
+            //确认框
+            confirm: {
+                //点击确认是否关闭弹窗
+                isShowHeader: true, //是否显示头部
+                headerContent: `提示:`, //头部内容
+                isShowBody: true, //是否显示主体
+                bodyContent: `<div>确定要执行这个操作?</div>`, //主体内容
+                isShowFooter: true, //是否显示尾部
+                footerContent: ``, //尾部内容
+                isShowClose: true, //是否显示关闭按钮
+                closeContent: `<div class="iconfont icon-guanbi"></div>`, //关闭按钮的内容
+                isShowConfirm: true, //是否显示确认按钮
+                confirmContent: `确认`, //确认按钮的内容
+                isShowCancel: true, //是否显示取消按钮
+                cancelContent: `取消`, //取消按钮的内容
+                isCustom: false, //是否自定义
+                customContent: ``, //自定义的内容
+                isShowIcon: true, //是否显示icon
+                icon: `icon-jinggao`, //icon的类型
+                isShowMask: true, //是否显示遮罩
+                isHandHide: false //是否手动隐藏(一般只用于点击确认时)
+            }
+        },
+        //数据
+        data: {}
+    }
+});
+
+//内部模块的创建(覆盖超类型)
+SubType.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var type = `m-dialog-${config.type}`; //弹窗类型
+    var positionLocation = `m-dialog-${config.positionLocation}`; //弹窗的定位位置
+    //弹窗结构
+    var html = `
+        ${this.renderAlert()}
+        ${this.renderConfirm()}
+    `;
+    this.moduleDom = createElement({
+        style: this.opts.config.moduleStyle,
+        custom: this.opts.config.moduleDomCustomAttr,
+        attribute: {
+            className: `m-dialog ${type} ${positionLocation}`,
+            innerHTML: html
+        }
+    });
+};
+
+//提示框
+SubType.prototype.renderAlert = function () {
+    var config = this.opts.config;
+    if (config.type != `alert`) {
+        return ``;
+    }
+    var alert = config.alert;
+    var htmlIcon = ``;
+    if (alert.isShowIcon) {
+        htmlIcon = `<div class="m-dialog-alert-icon iconfont ${alert.icon}"></div>`;
+    }
+    return `
+        ${htmlIcon}
+        <div class="m-dialog-alert-txt">${alert.content}</div>
+    `;
+};
+
+//确认框
+SubType.prototype.renderConfirm = function () {
+    var config = this.opts.config;
+    if (config.type != `confirm`) {
+        return ``;
+    }
+    var confirm = config.confirm;
+    var htmlHeader = ``;
+    if (confirm.isShowHeader) {
+        htmlHeader = `<div class="m-dialog-header">${confirm.headerContent}</div>`;
+    }
+    var htmlBody = ``;
+    if (confirm.isShowBody) {
+        var htmlIcon = ``;
+        if (confirm.isShowIcon) {
+            htmlIcon = `<div class="m-dialog-icon iconfont ${confirm.icon}"></div>`;
+        }
+        var bodyClass = `m-dialog-body-system`;
+        var bodyContent = `
+            ${htmlIcon}
+            <div class="m-dialog-txt">${confirm.bodyContent}</div>
+        `;
+        if (confirm.isCustom) {
+            bodyClass = `m-dialog-body-custom`;
+            bodyContent = confirm.bodyContent;
+        }
+        htmlBody = `
+            <div class="m-dialog-body">
+                <div class="${bodyClass}">
+                    ${bodyContent}
+                </div>
+            </div>
+        `;
+    }
+    var htmlFooter = ``;
+    if (confirm.isShowFooter) {
+        var htmlCancel = ``;
+        if (confirm.isShowCancel) {
+            htmlCancel = `<div class="g-btn g-btn-cancel m-dialog-cancel">${confirm.cancelContent}</div>`;
+        }
+        var htmlConfirm = ``;
+        if (confirm.isShowConfirm) {
+            htmlConfirm = `<div class="g-btn g-btn-confirm m-dialog-confirm">${confirm.confirmContent}</div>`;
+        }
+        htmlFooter = `<div class="m-dialog-footer">${htmlCancel}${htmlConfirm}</div>`;
+    }
+    var htmlClose = ``;
+    if (confirm.isShowClose) {
+        htmlClose = `<div class="m-dialog-close">${confirm.closeContent}</div>`;
+    }
+    return `
+        ${htmlHeader}
+        ${htmlBody}
+        ${htmlFooter}
+        ${htmlClose} 
+    `;
+};
+
+//功能(覆盖超类型)
+SubType.prototype.power = function () {
+    var self = this;
+    var config = this.opts.config;
+    //提示框
+    if (config.type == `alert`) {
+        setTimeout(function () {
+            self.hide();
+        }, config.alert.time);
+    }
+    //确认框
+    if (config.type == `confirm`) {
+        var close = this.moduleDom.querySelector('.m-dialog-close');
+        close && close.addEventListener('click', function () {
+            self.hide();
+            self.opts.callback.close();
+        });
+        var cancel = this.moduleDom.querySelector('.m-dialog-cancel');
+        cancel && cancel.addEventListener('click', function () {
+            self.hide();
+            self.opts.callback.cancel();
+        });
+        var confirm = this.moduleDom.querySelector('.m-dialog-confirm');
+        confirm && confirm.addEventListener('click', function () {
+            if (!self.opts.config.confirm.isHandHide) {
+                self.hide();
+            }
+            self.opts.callback.confirm();
+        });
+    }
+};
+
+SubType.prototype.hide = function () {
+    this.moduleDomHide();
+    this.mask && this.mask.moduleDomHide();
+};
+
+module.exports = SubType;
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var createElement = __webpack_require__(0); //创建元素节点
+var constructorInherit = __webpack_require__(2); //构造函数的继承(拷贝继承)
+var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
 //var Mask = require('../modules/m-mask');//遮罩
 
 //子类型
@@ -834,66 +1116,7 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(2); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
-
-//子类型
-var SubType = constructorInherit({
-    superType: SuperType,
-    //默认参数(继承超类型)
-    parameter: {
-        //回调
-        callback: {
-            click: function () {},
-            moduleDomRenderBefore: function (self) {
-                if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
-                    self.wrapDom.style.position = 'relative';
-                }
-            }
-        },
-        //配置
-        config: {
-            isTransparent: false, //是不是透明的(默认不透明)
-            moduleDomIsShow: false //内部模块是否显示(默认不显示)
-        },
-        //数据
-        data: {}
-    }
-});
-
-//内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
-    var isTransparent = '';
-    if (this.opts.config.isTransparent) {
-        isTransparent = 'm-mask-transparent';
-    }
-    this.moduleDom = createElement({
-        style: this.opts.config.moduleStyle,
-        custom: this.opts.config.moduleDomCustomAttr,
-        attribute: {
-            className: `m-mask ${isTransparent}`,
-            innerHTML: ``
-        }
-    });
-};
-
-//功能(覆盖超类型)
-SubType.prototype.power = function () {
-    var self = this;
-    this.moduleDom.addEventListener('click', function (ev) {
-        self.opts.callback.click();
-        ev.stopPropagation();
-    });
-};
-
-module.exports = SubType;
-
-/***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var extend = __webpack_require__(5); //对象的扩展方法
@@ -1129,7 +1352,6 @@ class SuperType {
 module.exports = SuperType;
 
 /***/ }),
-/* 14 */,
 /* 15 */,
 /* 16 */,
 /* 17 */,
@@ -1146,16 +1368,17 @@ module.exports = SuperType;
 /* 28 */,
 /* 29 */,
 /* 30 */,
-/* 31 */
+/* 31 */,
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);
-__webpack_require__(32);
+__webpack_require__(33);
 window.addEventListener('load', function () {
     setTimeout(function () {
         //ajax测试
         (function () {
-            var Ajax = __webpack_require__(33);
+            var Ajax = __webpack_require__(34);
             // new Ajax({
             //     callback: {},
             //     config: {
@@ -1169,12 +1392,12 @@ window.addEventListener('load', function () {
 
         //base函数测试
         (function () {
-            var WhenScrollBottom = __webpack_require__(34);
+            var WhenScrollBottom = __webpack_require__(35);
             //测试滚动到底部loading
             new WhenScrollBottom({
                 callback: {
                     success: function (self) {
-                        var Loading = __webpack_require__(11);
+                        var Loading = __webpack_require__(13);
                         var loading = new Loading({
                             wrap: '.g-body',
                             config: {
@@ -1242,7 +1465,7 @@ window.addEventListener('load', function () {
 
         //弹窗测试
         (function () {
-            var Dialog = __webpack_require__(35);
+            var Dialog = __webpack_require__(12);
             // new Dialog({
             //     callback: {
             //         confirm: function () {
@@ -1275,7 +1498,7 @@ window.addEventListener('load', function () {
 
         //加载中
         (function () {
-            var Loading = __webpack_require__(11);
+            var Loading = __webpack_require__(13);
             var loading = new Loading({
                 config: {
                     status: 'loading'
@@ -1296,7 +1519,7 @@ window.addEventListener('load', function () {
             new SuperType({ wrap: `.page-super-type` });
             var SubType = __webpack_require__(37);
             new SubType({ wrap: `.page-super-type` });
-            var SuperTypeEs6 = __webpack_require__(13);
+            var SuperTypeEs6 = __webpack_require__(14);
             new SuperTypeEs6({ wrap: `.page-super-type` }).init(); //es6继承,不建立在超类型内部直接调init方法
             var SubTypeEs6 = __webpack_require__(38);
             new SubTypeEs6({ wrap: `.page-super-type` });
@@ -1310,7 +1533,7 @@ window.addEventListener('load', function () {
 
         //遮罩
         (function () {
-            var Mask = __webpack_require__(12);
+            var Mask = __webpack_require__(11);
             var mask = new Mask({
                 callback: {
                     click: function () {
@@ -1389,13 +1612,13 @@ window.addEventListener('load', function () {
 });
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var extend = __webpack_require__(5); //对象的扩展方法
@@ -1621,7 +1844,7 @@ Ajax.prototype.triggerAbort = function () {
 module.exports = Ajax;
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var extend = __webpack_require__(5); //对象的扩展方法
@@ -1678,229 +1901,6 @@ WhenScrollBottom.prototype.power = function () {
 };
 
 module.exports = WhenScrollBottom;
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(2); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
-var Mask = __webpack_require__(12); //遮罩
-
-//子类型
-var SubType = constructorInherit({
-    superType: SuperType,
-    //默认参数(继承超类型)
-    parameter: {
-        //回调
-        callback: {
-            moduleDomRenderBefore: function (self) {
-                if (self.opts.config.type == 'confirm') {
-                    if (self.opts.config.confirm.isShowMask) {
-                        self.mask = new Mask({
-                            wrap: self.opts.wrap,
-                            config: {
-                                moduleDomIsShow: true,
-                                moduleDomRenderMethod: { method: 'insertBefore' }
-                            }
-                        });
-                    }
-                    if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
-                        self.wrapDom.style.position = 'relative';
-                    }
-                }
-            },
-            //确认
-            confirm: function () {},
-            //取消
-            cancel: function () {},
-            //关闭
-            close: function () {}
-        },
-        //配置
-        config: {
-            /*
-             * 弹窗类型
-             * `alert`  提示信息类型
-             * `confirm`    确认框类型
-             * */
-            type: `alert`, //默认是提示框
-            /*
-             * 弹窗位置
-             * `center` 居中
-             * `bottom` 居下
-             * `top` 居上
-             * */
-            positionLocation: `center`, //弹窗的定位位置    positionMethod定位方式强制fixed
-            //提示框
-            alert: {
-                time: 2000, //展示的时间
-                isShowIcon: true, //是否显示icon
-                icon: `icon-chenggong`, //icon的class
-                content: `成功` //内容信息
-            },
-            //确认框
-            confirm: {
-                //点击确认是否关闭弹窗
-                isShowHeader: true, //是否显示头部
-                headerContent: `提示:`, //头部内容
-                isShowBody: true, //是否显示主体
-                bodyContent: `<div>确定要执行这个操作?</div>`, //主体内容
-                isShowFooter: true, //是否显示尾部
-                footerContent: ``, //尾部内容
-                isShowClose: true, //是否显示关闭按钮
-                closeContent: `<div class="iconfont icon-guanbi"></div>`, //关闭按钮的内容
-                isShowConfirm: true, //是否显示确认按钮
-                confirmContent: `确认`, //确认按钮的内容
-                isShowCancel: true, //是否显示取消按钮
-                cancelContent: `取消`, //取消按钮的内容
-                isCustom: false, //是否自定义
-                customContent: ``, //自定义的内容
-                isShowIcon: true, //是否显示icon
-                icon: `icon-jinggao`, //icon的类型
-                isShowMask: true, //是否显示遮罩
-                isHandHide: false //是否手动隐藏(一般只用于点击确认时)
-            }
-        },
-        //数据
-        data: {}
-    }
-});
-
-//内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
-    var config = this.opts.config;
-    var type = `m-dialog-${config.type}`; //弹窗类型
-    var positionLocation = `m-dialog-${config.positionLocation}`; //弹窗的定位位置
-    //弹窗结构
-    var html = `
-        ${this.renderAlert()}
-        ${this.renderConfirm()}
-    `;
-    this.moduleDom = createElement({
-        style: this.opts.config.moduleStyle,
-        custom: this.opts.config.moduleDomCustomAttr,
-        attribute: {
-            className: `m-dialog ${type} ${positionLocation}`,
-            innerHTML: html
-        }
-    });
-};
-
-//提示框
-SubType.prototype.renderAlert = function () {
-    var config = this.opts.config;
-    if (config.type != `alert`) {
-        return ``;
-    }
-    var alert = config.alert;
-    var htmlIcon = ``;
-    if (alert.isShowIcon) {
-        htmlIcon = `<div class="m-dialog-alert-icon iconfont ${alert.icon}"></div>`;
-    }
-    return `
-        ${htmlIcon}
-        <div class="m-dialog-alert-txt">${alert.content}</div>
-    `;
-};
-
-//确认框
-SubType.prototype.renderConfirm = function () {
-    var config = this.opts.config;
-    if (config.type != `confirm`) {
-        return ``;
-    }
-    var confirm = config.confirm;
-    var htmlHeader = ``;
-    if (confirm.isShowHeader) {
-        htmlHeader = `<div class="m-dialog-header">${confirm.headerContent}</div>`;
-    }
-    var htmlBody = ``;
-    if (confirm.isShowBody) {
-        var htmlIcon = ``;
-        if (confirm.isShowIcon) {
-            htmlIcon = `<div class="m-dialog-icon iconfont ${confirm.icon}"></div>`;
-        }
-        var bodyClass = `m-dialog-body-system`;
-        var bodyContent = `
-            ${htmlIcon}
-            <div class="m-dialog-txt">${confirm.bodyContent}</div>
-        `;
-        if (confirm.isCustom) {
-            bodyClass = `m-dialog-body-custom`;
-            bodyContent = confirm.bodyContent;
-        }
-        htmlBody = `
-            <div class="m-dialog-body">
-                <div class="${bodyClass}">
-                    ${bodyContent}
-                </div>
-            </div>
-        `;
-    }
-    var htmlFooter = ``;
-    if (confirm.isShowFooter) {
-        var htmlCancel = ``;
-        if (confirm.isShowCancel) {
-            htmlCancel = `<div class="g-btn g-btn-cancel m-dialog-cancel">${confirm.cancelContent}</div>`;
-        }
-        var htmlConfirm = ``;
-        if (confirm.isShowConfirm) {
-            htmlConfirm = `<div class="g-btn g-btn-confirm m-dialog-confirm">${confirm.confirmContent}</div>`;
-        }
-        htmlFooter = `<div class="m-dialog-footer">${htmlCancel}${htmlConfirm}</div>`;
-    }
-    var htmlClose = ``;
-    if (confirm.isShowClose) {
-        htmlClose = `<div class="m-dialog-close">${confirm.closeContent}</div>`;
-    }
-    return `
-        ${htmlHeader}
-        ${htmlBody}
-        ${htmlFooter}
-        ${htmlClose} 
-    `;
-};
-
-//功能(覆盖超类型)
-SubType.prototype.power = function () {
-    var self = this;
-    var config = this.opts.config;
-    //提示框
-    if (config.type == `alert`) {
-        setTimeout(function () {
-            self.hide();
-        }, config.alert.time);
-    }
-    //确认框
-    if (config.type == `confirm`) {
-        var close = this.moduleDom.querySelector('.m-dialog-close');
-        close && close.addEventListener('click', function () {
-            self.hide();
-            self.opts.callback.close();
-        });
-        var cancel = this.moduleDom.querySelector('.m-dialog-cancel');
-        cancel && cancel.addEventListener('click', function () {
-            self.hide();
-            self.opts.callback.cancel();
-        });
-        var confirm = this.moduleDom.querySelector('.m-dialog-confirm');
-        confirm && confirm.addEventListener('click', function () {
-            if (!self.opts.config.confirm.isHandHide) {
-                self.hide();
-            }
-            self.opts.callback.confirm();
-        });
-    }
-};
-
-SubType.prototype.hide = function () {
-    this.moduleDomHide();
-    this.mask && this.mask.moduleDomHide();
-};
-
-module.exports = SubType;
 
 /***/ }),
 /* 36 */
@@ -2133,7 +2133,7 @@ module.exports = SubType;
 
 var extend = __webpack_require__(5); //对象的扩展方法
 var createElement = __webpack_require__(0); //创建元素节点
-var SuperType = __webpack_require__(13); //超类型(子类型继承的对象)
+var SuperType = __webpack_require__(14); //超类型(子类型继承的对象)
 
 //子类型
 class SubType extends SuperType {
@@ -2540,4 +2540,4 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ })
-],[31]);
+],[32]);

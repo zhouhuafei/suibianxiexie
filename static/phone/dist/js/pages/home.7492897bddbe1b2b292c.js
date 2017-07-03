@@ -1,4 +1,4 @@
-webpackJsonp([1],{
+webpackJsonp([2],{
 
 /***/ 10:
 /***/ (function(module, exports, __webpack_require__) {
@@ -92,6 +92,10 @@ __webpack_require__(3);
 __webpack_require__(47);
 window.addEventListener('load', function () {
     setTimeout(function () {
+
+        __webpack_require__.e/* require.ensure */(0).then((function () {
+            console.log('output chunkFilename');
+        }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 
         //slide切换
         (function () {

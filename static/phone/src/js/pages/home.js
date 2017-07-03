@@ -3,6 +3,10 @@ require('../../scss/pages/home.scss');
 window.addEventListener('load', function () {
     setTimeout(function () {
 
+        require.ensure('../modules/m-dialog.js', function () {
+            console.log('output chunkFilename');
+        });
+
         //slide切换
         (function () {
             let Slide = require('../modules/m-slide');

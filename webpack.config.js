@@ -47,7 +47,7 @@ let plugins = [
     //插件----提取css样式到文件
     new ExtractTextPlugin(`css/pages/[name].${productionConfig.contenthash}css`),
     //插件----把每个入口都有用到的js和css分别提取为this-is-global-file.js和this-is-global-file.css
-    new webpack.optimize.CommonsChunkPlugin({name: '../this-is-global-file/this-is-global-file'})
+    new webpack.optimize.CommonsChunkPlugin({name: 'this-is-global-file'})
 ];
 //插件----处理视图模板页面文件
 let allPageHtml = fs.readdirSync(`${configPath.viewEntryPath}pages/`);
@@ -73,6 +73,10 @@ allPartialsHtml.forEach(function (v) {
         })
     );
 });
+//别名----配置
+let alias = {
+    vue: `${__dirname}/node_modules/vue/dist/vue.${productionConfig.min}js`
+};
 //入口----配置
 let entry = {};
 let allJs = fs.readdirSync(`${configPath.jsEntryPath}pages/`);
@@ -80,23 +84,23 @@ allJs.forEach(function (v) {
     let fileName = path.basename(v, '.js');
     entry[fileName] = `${configPath.devPath}js/pages/${v}`;
 });
+//出口----配置
+let output = {
+    path: `${configPath.buildPath}`,
+    publicPath: `/${configPath.projectDir}/dist/`,
+    filename: `js/pages/[name].${productionConfig.chunkhash}js`,
+    chunkFilename: `js/chunk/[id].[name].chunk.${productionConfig.chunkhash}js`
+};
 let webpackConfig = {
     //resolve----配置用来影响webpack模块解析规则
     resolve: {
         //别名----引入开发版本还是生产版本
-        alias: {
-            vue: `${__dirname}/node_modules/vue/dist/vue.${productionConfig.min}js`
-        }
+        alias: alias
     },
     //入口----配置
     entry: entry,
     //出口----配置
-    output: {
-        path: `${configPath.buildPath}`,
-        publicPath: `/${configPath.projectDir}/dist/`,
-        filename: `js/pages/[name].${productionConfig.chunkhash}js`,
-        chunkFilename: `js/chunk/[id].chunk.${productionConfig.chunkhash}js`
-    },
+    output: output,
     //插件----配置
     plugins: plugins,
     //监听----配置
@@ -154,7 +158,7 @@ let webpackConfig = {
                 exclude: /(node_modules|bower_components)/,
                 use: ['vue-loader']
             },
-            //loader----处理hbs视图模板文件里的src
+            //loader----处理视图模板文件里的src
             {
                 test: /\.hbs/,
                 exclude: /(node_modules|bower_components)/,

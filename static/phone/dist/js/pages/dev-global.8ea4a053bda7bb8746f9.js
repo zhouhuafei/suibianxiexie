@@ -1,16 +1,16 @@
-webpackJsonp([2],{
+webpackJsonp([3],{
 
-/***/ 24:
+/***/ 25:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);
-__webpack_require__(25);
+__webpack_require__(26);
 window.addEventListener('load', function () {
     setTimeout(function () {
 
         //base函数测试
         (function () {
-            var Select = __webpack_require__(26);
+            var Select = __webpack_require__(27);
             //测试全选
             new Select({
                 items: '.g-checkbox-checkbox',
@@ -24,7 +24,7 @@ window.addEventListener('load', function () {
 
         //验证
         (function () {
-            const ValidateInput = __webpack_require__(27);
+            const ValidateInput = __webpack_require__(28);
             const aInput = [].slice.call(document.querySelectorAll('.m-validate-form'));
             aInput.forEach(function (v) {
                 new ValidateInput({ element: v });
@@ -37,14 +37,14 @@ window.addEventListener('load', function () {
 
 /***/ }),
 
-/***/ 25:
+/***/ 26:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 26:
+/***/ 27:
 /***/ (function(module, exports, __webpack_require__) {
 
 //全选,不选,反选
@@ -111,10 +111,10 @@ module.exports = Select;
 
 /***/ }),
 
-/***/ 27:
+/***/ 28:
 /***/ (function(module, exports, __webpack_require__) {
 
-var validate = __webpack_require__(28); //表单验证
+var validate = __webpack_require__(29); //表单验证
 var getDomArray = __webpack_require__(6); //获取原生的dom节点并转换成数组
 
 function ValidateForm(json) {
@@ -228,7 +228,7 @@ module.exports = ValidateForm;
 
 /***/ }),
 
-/***/ 28:
+/***/ 29:
 /***/ (function(module, exports) {
 
 //验证
@@ -322,4 +322,4 @@ module.exports = validate;
 
 /***/ })
 
-},[24]);
+},[25]);

@@ -1,10 +1,10 @@
-webpackJsonp([3],{
+webpackJsonp([4],{
 
-/***/ 22:
+/***/ 23:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);
-__webpack_require__(23);
+__webpack_require__(24);
 window.addEventListener('load', function () {
     setTimeout(function () {
 
@@ -24,7 +24,7 @@ window.addEventListener('load', function () {
 
 /***/ }),
 
-/***/ 23:
+/***/ 24:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -97,4 +97,4 @@ module.exports = SubType;
 
 /***/ })
 
-},[22]);
+},[23]);

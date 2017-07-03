@@ -34,7 +34,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		11: 0
+/******/ 		12: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -91,7 +91,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "js/chunk/" + chunkId + ".chunk." + {"0":"c890006da16067cd8624","1":"71289ad734725bfbaa0c","2":"9814482e3d8c07ed9263","3":"21c3168064bfd2cdac5a","4":"295a85b2f4a72ed5fe8e","5":"42c6b29844edec8bb57e","6":"b3172b5cb78deb834008","7":"912faf05d09778feef89","8":"e89c656f18f561d41e49","9":"1230b929b6ab493092d1","10":"6d76d14ddb776cb74895"}[chunkId] + ".js";
+/******/ 		script.src = __webpack_require__.p + "js/chunk/" + chunkId + "." + ({"1":"dev-module","2":"home","3":"dev-global","4":"500","5":"404","6":"sample","7":"register","8":"mine","9":"login","10":"dev-word","11":"dev-list"}[chunkId]||chunkId) + ".chunk." + {"0":"d9c49cce02c75964a36d","1":"b2888e1cffa163687b45","2":"7492897bddbe1b2b292c","3":"8ea4a053bda7bb8746f9","4":"67b11b8589f8fa5f2223","5":"979d057dbe43fb2294de","6":"4be621d18079c6a4a678","7":"30f8fad3da4ea4b68f66","8":"96218ffb6d6d2e1d89e4","9":"995ef4501f63719c9904","10":"978a4e307a1c83960305","11":"1ccdb0a6cebcb8d67d8c"}[chunkId] + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -416,7 +416,7 @@ module.exports = SuperType;
 /***/ (function(module, exports, __webpack_require__) {
 
 var extend = __webpack_require__(5); //对象的扩展方法
-var objRemoveQuote = __webpack_require__(16); //对象移除引用
+var objRemoveQuote = __webpack_require__(17); //对象移除引用
 
 //构造函数的继承(拷贝继承)
 function constructorInherit(json) {
@@ -482,7 +482,7 @@ module.exports = constructorInherit;
 //版权
 (function () {
     if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
-        var Copyright = __webpack_require__(17);
+        var Copyright = __webpack_require__(18);
         new Copyright();
     }
 })();
@@ -490,14 +490,14 @@ module.exports = constructorInherit;
 //底部导航
 (function () {
     if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
-        var Footer = __webpack_require__(18);
+        var Footer = __webpack_require__(19);
         new Footer(pageInfo.data.footerNav);
     }
 })();
 
 //延迟加载
 (function () {
-    var LazyLoad = __webpack_require__(20);
+    var LazyLoad = __webpack_require__(21);
     new LazyLoad();
 })();
 
@@ -649,7 +649,8 @@ module.exports = getDomArray;
 /* 13 */,
 /* 14 */,
 /* 15 */,
-/* 16 */
+/* 16 */,
+/* 17 */
 /***/ (function(module, exports) {
 
 //移除对象引用
@@ -675,7 +676,7 @@ function objRemoveQuote(json) {
 module.exports = objRemoveQuote;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var createElement = __webpack_require__(0); //创建元素节点
@@ -721,13 +722,13 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var createElement = __webpack_require__(0); //创建元素节点
 var constructorInherit = __webpack_require__(2); //构造函数的继承(拷贝继承)
 var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
-var jsonToArray = __webpack_require__(19);
+var jsonToArray = __webpack_require__(20);
 
 //子类型
 var SubType = constructorInherit({
@@ -823,7 +824,7 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 //把json格式的对象转成数组
@@ -848,11 +849,11 @@ function jsonToArray(json) {
 module.exports = jsonToArray;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var extend = __webpack_require__(5); //对象的扩展方法
-var offset = __webpack_require__(21); //获取元素距离文档的left和top
+var offset = __webpack_require__(22); //获取元素距离文档的left和top
 var getDomArray = __webpack_require__(6); //获取原生的dom节点并转换成数组
 
 //延迟加载
@@ -927,7 +928,7 @@ LazyLoad.prototype.power = function () {
 module.exports = LazyLoad;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var extend = __webpack_require__(5); //对象的扩展方法
