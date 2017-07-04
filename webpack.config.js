@@ -88,7 +88,8 @@ allPartialsHtml.forEach(function (v) {
 });
 //别名----配置
 let alias = {
-    vue: `${__dirname}/node_modules/vue/dist/vue.${productionConfig.min}js`
+    vue: `${__dirname}/node_modules/vue/dist/vue.${productionConfig.min}js`,
+    axios: `${__dirname}/node_modules/axios/dist/axios.min.js`
 };
 //入口----配置
 let entry = {};
