@@ -1,50 +1,48 @@
 const CreateFile = require('./libs/function/create-file');//创建文件函数
-const pathName = process.argv[2];
+const pathName = process.argv[2];//目录名字
 if (!pathName) {
     console.log('pathName no find');
     return;
 }
-const fileName = process.argv[3];
+const fileName = process.argv[3];//文件名字
 if (!fileName) {
     console.log('fileName no find');
     return;
 }
 const routeConfig = require(`./route/${pathName}/config`);//路由的配置
 const pageTitle = routeConfig[fileName].title;//页面的标题
-const staticPath = `${__dirname}/static/${pathName}/dev`;//前端静态文件所处的位置
+const staticPath = `${__dirname}/static/${pathName}/src`;//前端静态文件所处的位置
 const controllerPath = `controller/${pathName}/pages/`;//后台控制器文件所处的位置
 
 //创建静态文件
 const file = {
-    html: {
-        path: `${staticPath}/html/pages/`,
+    view: {
+        path: `${staticPath}/view/pages/`,
         fileName: fileName,
         content: `<!DOCTYPE html>
 <html lang="en">
     <head>
-        {{>phone/min/html/partials/head}}
-        <link rel="stylesheet" href="/phone/min/css/pages/${fileName}.css">
+        {{>phone/dist/views/partials/head}}
     </head>
     <body>
         <div class="g-wrap">
-            {{>phone/min/html/partials/header}}
+            {{>phone/dist/views/partials/header}}
             <!--page start-->
             <div class="g-body">
                 <!--结构待续...-->
             </div>
             <!--page end-->
-            {{>phone/min/html/partials/footer}}
-            <script src="/phone/min/js/pages/${fileName}.js"></script>
+            {{>phone/dist/views/partials/footer}}
         </div>
     </body>
 </html>`,
-        extendName: '.html'
+        extendName: '.hbs'
     },
     scss: {
         path: `${staticPath}/scss/pages/`,
         fileName: fileName,
         content: `//基础样式
-@import "../base/base";
+@import "../base/config";
 
 //页面样式
 .g-body {
@@ -57,19 +55,21 @@ const file = {
         fileName: fileName,
         content: `window.addEventListener('load', function () {
     setTimeout(function () {
+        require('../../scss/pages/${fileName}.scss');
+        let header = require('../commons/header');//每个页面都要用到的js(一定要放到最顶部)
 
         //注释待续...
         (function () {
             //功能待续...
         })();
-        
-        require('../commons/common');//每个页面都要用到的js(一定要放到最底部)
+
+        let footer = require('../commons/footer');//每个页面都要用到的js(一定要放到最底部)
     }, 0)
 });`,
         extendName: '.js'
     }
 };
-for (var attr in file) {
+for (let attr in file) {
     if (file.hasOwnProperty(attr)) {
         new CreateFile({data: file[attr]});
     }
@@ -77,7 +77,7 @@ for (var attr in file) {
 
 //创建控制器文件
 {
-    var strToHump = require('./libs/tools/str-to-hump');
+    let strToHump = require('./libs/tools/str-to-hump');
     let humpFileName = strToHump({str: `-${fileName}`});
     new CreateFile({
         data: {
