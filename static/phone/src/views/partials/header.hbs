@@ -1,6 +1,6 @@
 <script>
     (function (win, doc) {
-        var isPc = function () {
+        function isPc() {
             var userAgentInfo = navigator.userAgent;
             var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
             var flag = true;
@@ -11,8 +11,9 @@
                 }
             }
             return flag;
-        };
-        var resize = function () {
+        }
+
+        function resize() {
             var html = doc.querySelector('html');
             var wrap = doc.querySelector('.g-wrap');
             if (isPc()) {
@@ -21,7 +22,8 @@
                 html.classList.remove('g-pc');
             }
             html.style.fontSize = wrap.offsetWidth / 10 + 'px';
-        };
+        }
+
         resize();
         win.addEventListener('resize', resize);
     })(window, document);
