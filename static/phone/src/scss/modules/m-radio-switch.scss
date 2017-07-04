@@ -35,13 +35,13 @@
     }
     &.m-radio-switch-active {
         .m-radio-switch-wrap {
-            background: $g-color-highlight;
+            background: $g-color-light;
             .m-radio-switch-round {
                 left: px2rem($left-round-active);
             }
         }
         .m-radio-switch-txt {
-            color: $g-color-highlight;
+            color: $g-color-light;
         }
     }
 }

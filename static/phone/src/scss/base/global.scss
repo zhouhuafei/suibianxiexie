@@ -96,7 +96,7 @@ html.g-pc {
     }
     //确认
     &.g-btn-confirm {
-        background: $g-color-highlight;
+        background: $g-color-light;
         color: #fff;
     }
     //禁用
@@ -137,7 +137,7 @@ html.g-pc {
             border-radius: inherit;
             border: px2rem(1) solid $g-color-border-default;
             &:checked {
-                border-color: $g-color-highlight;
+                border-color: $g-color-light;
                 & + .g-checkbox-mark {
                     display: flex;
                     align-items: center;
@@ -146,7 +146,7 @@ html.g-pc {
             }
         }
         .g-checkbox-mark {
-            color: $g-color-highlight;
+            color: $g-color-light;
             font-size: px2rem(16);
             position: absolute;
             left: 0;
@@ -167,7 +167,7 @@ html.g-pc {
     $width-height: 80;
     width: px2rem($width-height);
     height: px2rem($width-height);
-    border: px2rem(1) dashed $g-color-highlight;
+    border: px2rem(1) dashed $g-color-light;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     position: relative;
     display: flex;
@@ -175,7 +175,7 @@ html.g-pc {
     flex-direction: column;
     justify-content: center;
     box-sizing: border-box;
-    color: $g-color-highlight;
+    color: $g-color-light;
     .g-img-upload-input {
         display: none;
     }
@@ -318,7 +318,7 @@ html.g-pc {
                 height: px2rem($size);
                 font-size: px2rem($size);
                 margin-right: px2rem(10);
-                color: $g-color-highlight;
+                color: $g-color-light;
             }
             .g-list-txt {
                 font-size: px2rem(12);
@@ -385,7 +385,7 @@ html.g-pc {
             border-radius: inherit;
             border: px2rem(1) solid $g-color-border-default;
             &:checked {
-                border-color: $g-color-highlight;
+                border-color: $g-color-light;
                 & + .g-radio-mark {
                     display: flex;
                     align-items: center;
@@ -394,7 +394,7 @@ html.g-pc {
             }
         }
         .g-radio-mark {
-            color: $g-color-highlight;
+            color: $g-color-light;
             font-size: px2rem(16);
             position: absolute;
             left: 0;

@@ -41,14 +41,14 @@
                 width: px2rem($width-height);
                 height: px2rem($width-height);
                 border-radius: 50%;
-                background: $g-color-highlight;
+                background: $g-color-light;
                 position: absolute;
                 right: px2rem(4);
                 top: px2rem(4);
             }
             &.m-footer-nav-body-active {
                 .m-footer-nav-body-icon, .m-footer-nav-body-txt {
-                    color: $g-color-highlight;
+                    color: $g-color-light;
                 }
             }
         }
