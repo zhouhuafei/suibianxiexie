@@ -1,7 +1,7 @@
-require('../../scss/base/global.scss');
-require('../../scss/pages/dev-global.scss');
 window.addEventListener('load', function () {
     setTimeout(function () {
+        require('../../scss/pages/dev-global.scss');
+        let header = require('../commons/header');//每个页面都要用到的js(一定要放到最顶部)
 
         //base函数测试
         (function () {
@@ -26,6 +26,6 @@ window.addEventListener('load', function () {
             });
         })();
 
-        require('../commons/common');//每个页面都要用到的js(一定要放到最底部)
+        let footer = require('../commons/footer');//每个页面都要用到的js(一定要放到最底部)
     }, 0)
 });

@@ -1,7 +1,7 @@
-require('../../scss/base/global.scss');
-require('../../scss/pages/500.scss');
 window.addEventListener('load', function () {
     setTimeout(function () {
+        require('../../scss/pages/500.scss');
+        let header = require('../commons/header');//每个页面都要用到的js(一定要放到最顶部)
 
         //没有数据
         (function () {
@@ -12,7 +12,7 @@ window.addEventListener('load', function () {
                 }
             })
         })();
-        
-        require('../commons/common');//每个页面都要用到的js(一定要放到最底部)
+
+        let footer = require('../commons/footer');//每个页面都要用到的js(一定要放到最底部)
     }, 0)
 });

@@ -1,7 +1,8 @@
-require('../../scss/base/global.scss');
-require('../../scss/pages/home.scss');
 window.addEventListener('load', function () {
     setTimeout(function () {
+        require('../../scss/pages/home.scss');
+        let header = require('../commons/header');//每个页面都要用到的js(一定要放到最顶部)
+        let Vue = header.Vue;
 
         require.ensure('../modules/m-dialog.js', function (mDialog) {
             //console.log(mDialog);
@@ -67,7 +68,6 @@ window.addEventListener('load', function () {
 
         //vue
         (function () {
-            let Vue = require('vue');
             require('../modules-vue/my-component')(Vue);
             new Vue({
                 el: '.g-vue',
@@ -78,6 +78,6 @@ window.addEventListener('load', function () {
             //参数传输不进去
         })();
 
-        require('../commons/common');//每个页面都要用到的js(一定要放到最底部)
+        let footer = require('../commons/footer');//每个页面都要用到的js(一定要放到最底部)
     }, 0)
 });
