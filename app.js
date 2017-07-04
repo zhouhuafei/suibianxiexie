@@ -3,7 +3,7 @@ let express = require('express');
 let app = express();
 
 //托管静态文件
-app.use(express.static('static'));
+app.use(express.static('static'),{maxAge:1000*60*60});
 
 //模版引擎(handlebars)
 let handlebars = require('express-handlebars');
