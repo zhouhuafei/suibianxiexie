@@ -25,7 +25,7 @@ class ConfigPath {
 const configPath = new ConfigPath();//配置路径
 //环境----是否是生产环境(默认是开发环境)
 let productionConfig = {
-    hash: '',//图片和字体用到了这个hash
+    hash: '[hash:8].',//图片和字体用到了这个hash
     chunkhash: '',//js用到了这个chunkhash
     contenthash: '',//css用到了这个contenthash
     min: '',//第三方库是否引用压缩版(生产环境引用压缩版)

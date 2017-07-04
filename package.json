@@ -33,6 +33,7 @@
         "express-handlebars": "^3.0.0",
         "jquery": "^3.2.1",
         "lodash": "^4.17.4",
+        "ms": "^2.0.0",
         "mysql2": "^1.1.2",
         "vue": "^2.3.4",
         "vue-router": "^2.6.0",
