@@ -1,7 +1,11 @@
 //express
 const ms = require('ms');//转成毫秒数
+const compression = require('compression');//gzip压缩
 const express = require('express');
 const app = express();
+
+//gzip压缩
+app.use(compression());
 
 //托管静态文件
 app.use(express.static('static', {maxAge: ms('1y')}));//一年缓存
