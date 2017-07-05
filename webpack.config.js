@@ -23,7 +23,7 @@ class ConfigPath {
     }
 }
 const configPath = new ConfigPath();//配置路径
-//环境----是否是生产环境(默认是开发环境)
+//环境----开发环境
 let productionConfig = {
     hash: '[hash:8].',//图片和字体用到了这个hash
     chunkhash: '',//js用到了这个chunkhash
@@ -33,6 +33,7 @@ let productionConfig = {
     isWatch: true,//是否监听
     minView: {},//压缩视图模板文件
 };
+//环境----生产环境
 if (isProduction) {
     productionConfig = {
         hash: '[hash:8].',//图片和字体用到了这个hash

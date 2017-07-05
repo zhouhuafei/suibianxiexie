@@ -23,5 +23,5 @@ gulp.task(`del`, function () {
 if (isProduction) {
     gulp.task(`default`, [`del`]);
 } else {
-    gulp.task(`default`, [`del`]);
+    gulp.task(`default`, []);
 }
