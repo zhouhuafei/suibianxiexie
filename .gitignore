@@ -1,6 +1,10 @@
-*.log
+node_modules
 .svn
 .idea
 .DS_Store
 .git-credentials
-node_modules
+*.log
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
