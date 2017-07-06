@@ -52,7 +52,7 @@ if (isProduction) {
 //插件----集合
 let plugins = [
     //插件----清空dist目录
-    //new CleanWebpackPlugin(['dist'], {root: configPath.projectPath, verbose: true, dry: false}),
+    new CleanWebpackPlugin(['dist'], {root: configPath.projectPath, verbose: true, dry: false}),
     //插件----自动加载模块
     new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", "window.jQuery": "jquery"}),
     //插件----提取css样式到文件
