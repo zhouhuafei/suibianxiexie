@@ -1,6 +1,7 @@
 node_modules
 .svn
 .idea
+.sass-cache
 .DS_Store
 .git-credentials
 *.suo
