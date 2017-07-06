@@ -1,4 +1,4 @@
-const myConfig = process.env.myConfig.split('-');
+const myConfig = process.env.NODE_ENV.split('-');
 myConfig.forEach(function (v, i, a) {
     a[i] = v.trim();
 });
@@ -10,6 +10,7 @@ const webpack = require('webpack');//调用插件需要这个
 const autoprefixer = require('autoprefixer');//css3加前缀
 const ExtractTextPlugin = require("extract-text-webpack-plugin");//scss文件转css文件需要这个
 const HtmlWebpackPlugin = require('html-webpack-plugin');//html生成的插件
+const CleanWebpackPlugin = require('clean-webpack-plugin');//清空目录
 class ConfigPath {
     constructor() {
         this.projectDir = projectDir;//项目目录
@@ -41,7 +42,7 @@ if (isProduction) {
         contenthash: '[contenthash].',//css用到了这个contenthash
         min: 'min.',//第三方库是否引用压缩版(生产环境引用压缩版)
         isMinCss: true,//是否压缩css
-        isWatch: true,//是否监听
+        isWatch: false,//是否监听
         minView: {
             removeComments: true, //移除HTML中的注释
             collapseWhitespace: true //删除空白符与换行符
@@ -50,6 +51,8 @@ if (isProduction) {
 }
 //插件----集合
 let plugins = [
+    //插件----清空dist目录
+    //new CleanWebpackPlugin(['dist'], {root: configPath.projectPath, verbose: true, dry: false}),
     //插件----自动加载模块
     new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", "window.jQuery": "jquery"}),
     //插件----提取css样式到文件
