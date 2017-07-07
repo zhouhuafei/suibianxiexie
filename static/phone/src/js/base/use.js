@@ -294,8 +294,31 @@ Use.prototype.imgUploadBase64 = function () {
     };
     return Fn;
 }();
-Use.prototype.fn = function () {
+//是不是PC
+Use.prototype.isPc = function () {
+    var userAgentInfo = navigator.userAgent;
+    var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+    var flag = true;
+    for (var v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+            flag = false;
+            break;
+        }
+    }
+    return flag;
+};
+//是不是微信
+Use.prototype.isWeiXin = function () {
+    return navigator.userAgent.toLowerCase().match(/MicroMessenger/ig);
+};
+//是不是android
+Use.prototype.isAndroid = function () {
+    return window.navigator.appVersion.match(/android/ig);
+};
 
+//是不是iphone
+Use.prototype.isIphone = function () {
+    return window.navigator.appVersion.match(/iphone/ig);
 };
 Use.prototype.fn = function () {
 
@@ -311,5 +334,33 @@ Use.prototype.fn = function () {
 };
 Use.prototype.fn = function () {
 
+};
+//是否禁止浏览器滚动
+Use.prototype.whetherDisableScroll = function () {
+    return {
+        //阻止冒泡
+        stopPropagation: function (ev) {
+            ev.stopPropagation();
+        },
+        //阻止默认事件
+        preventDefault: function (ev) {
+            ev.preventDefault();
+        },
+        //阻止冒泡,阻止默认事件
+        returnFalse: function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+        },
+        //禁止滚动
+        noScroll: function () {
+            document.addEventListener('touchmove', this.preventDefault, false);
+            document.documentElement.style.overflow = 'hidden';
+        },
+        //解除禁止浏览器滚动
+        yesScroll: function () {
+            document.removeEventListener('touchmove', this.preventDefault, false);
+            document.documentElement.style.overflow = 'auto';
+        }
+    }
 };
 module.exports = new Use();
