@@ -161,11 +161,11 @@ SubType.prototype.renderConfirm = function () {
     if (confirm.isShowFooter) {
         var htmlCancel = ``;
         if (confirm.isShowCancel) {
-            htmlCancel = `<div class="g-btn g-btn-cancel m-dialog-cancel">${confirm.cancelContent}</div>`;
+            htmlCancel = `<div class="g-button g-button-cancel m-dialog-cancel">${confirm.cancelContent}</div>`;
         }
         var htmlConfirm = ``;
         if (confirm.isShowConfirm) {
-            htmlConfirm = `<div class="g-btn g-btn-confirm m-dialog-confirm">${confirm.confirmContent}</div>`;
+            htmlConfirm = `<div class="g-button g-button-confirm m-dialog-confirm">${confirm.confirmContent}</div>`;
         }
         htmlFooter = `<div class="m-dialog-footer">${htmlCancel}${htmlConfirm}</div>`;
     }

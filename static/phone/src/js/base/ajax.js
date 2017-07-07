@@ -1,4 +1,35 @@
-var extend = require('../tools/extend');//对象的扩展方法
+function extend(json) {
+    let opts = json || {};
+    opts.defaults = opts.defaults || {};//默认对象
+    opts.inherits = opts.inherits || {};//继承对像
+    opts.isDeep = opts.isDeep === false ? opts.isDeep : true;//是否进行深拷贝(默认进行深拷贝)
+    let defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
+    let inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
+    if (defaultsType === inheritsType && opts.isDeep) {
+        if (defaultsType === 'object' || defaultsType === 'array') {//当为对象或者为数组
+            for (let attr in opts.inherits) {
+                if (opts.inherits.hasOwnProperty(attr)) {
+                    let attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
+                    let attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
+                    if (attrDefaultsType === attrInheritsType && opts.isDeep) {//类型相同
+                        if (attrDefaultsType === 'object' || attrDefaultsType === 'array') {//当为对象或者为数组
+                            this.extend({defaults: opts.defaults[attr], inherits: opts.inherits[attr]});
+                        } else {
+                            opts.defaults[attr] = opts.inherits[attr];
+                        }
+                    } else {//类型不同,直接后面的覆盖前面的
+                        opts.defaults[attr] = opts.inherits[attr];
+                    }
+                }
+            }
+        } else {
+            opts.defaults = opts.inherits;
+        }
+    } else {
+        opts.defaults = opts.inherits;
+    }
+    return opts.defaults;
+}
 
 //ajax封装
 function Ajax(json) {
@@ -31,7 +62,7 @@ function Ajax(json) {
                 success: function () {
                 },
                 //接收到完整的响应且响应状态不为200
-                fail: function () {
+                failure: function () {
                 },
                 //在通信完成或者触发error、abort或load事件后触发
                 loadEnd: function () {
@@ -205,8 +236,8 @@ Ajax.prototype.success = function () {
     this.opts.callback.success();
 };
 //接收到完整的响应且响应状态不为200
-Ajax.prototype.fail = function () {
-    this.opts.callback.fail();
+Ajax.prototype.failure = function () {
+    this.opts.callback.failure();
 };
 //在通信完成或者触发error、abort或load事件后触发
 Ajax.prototype.loadEnd = function () {

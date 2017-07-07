@@ -7,7 +7,7 @@ function WhenScrollBottom(json) {
             callback: {
                 success: function () {
                 },
-                fail: function () {
+                failure: function () {
                 }
             },
             interval: 80,//函数节流时间(延迟时间)
@@ -38,7 +38,7 @@ WhenScrollBottom.prototype.render = function () {
          * 可能性:2.如果你的数据尚未加载完毕,你需要手动把isLoadOver开关变成false
          * */
     } else {
-        callback.fail();
+        callback.failure();
     }
 };
 

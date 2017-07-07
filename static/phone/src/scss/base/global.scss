@@ -76,37 +76,37 @@ html.g-pc {
 }
 
 //按钮
-.g-btn {
+.g-button {
     $height: 40;
     width: px2rem(200);
     height: px2rem($height);
     display: flex;
     align-items: center;
     justify-content: center;
-    .g-btn-icon {
+    .g-button-icon {
         margin: 0 px2rem(2);
     }
-    .g-btn-txt {
+    .g-button-txt {
         margin: 0 px2rem(2);
     }
     //取消
-    &.g-btn-cancel {
+    &.g-button-cancel {
         background: $g-color-background-dark;
         color: #fff;
     }
     //确认
-    &.g-btn-confirm {
+    &.g-button-confirm {
         background: $g-color-light;
         color: #fff;
     }
     //禁用
-    &.g-btn-disable {
+    &.g-button-disable {
         background: $g-color-background-disable;
         color: $g-color-font-disable;
         cursor: not-allowed;
     }
     //铺满
-    &.g-btn-full {
+    &.g-button-full {
         width: 100%;
         border-radius: 0;
     }
@@ -320,7 +320,7 @@ html.g-pc {
                 margin-right: px2rem(10);
                 color: $g-color-light;
             }
-            .g-list-txt {
+            .g-list-text {
                 font-size: px2rem(12);
             }
             .g-list-mark {

@@ -122,14 +122,14 @@ Tools.prototype.secondsToTime = function (json) {
     let opts = json || {};
     let seconds = opts.seconds;
     //天
-    let day = Math.floor(seconds / 3600 / 24);
+    let nowDay = Math.floor(seconds / 3600 / 24);
     //时
-    let hour = Math.floor(seconds / 3600 % 24);
+    let nowHours = Math.floor(seconds / 3600 % 24);
     //分
-    let minute = Math.floor(seconds % 3600 / 60);
+    let nowMinutes = Math.floor(seconds % 3600 / 60);
     //秒
-    let second = Math.floor(seconds % 60);
-    return {day: day, hour: hour, minute: minute, second: second, seconds: seconds};
+    let nowSeconds = Math.floor(seconds % 60);
+    return {day: nowDay, hours: nowHours, minutes: nowMinutes, seconds: nowSeconds};
 };
 //倒计时
 Tools.prototype.timeCountDown = function (json) {
@@ -250,8 +250,6 @@ Tools.prototype.getRandom = function (min, max) {
     let max = self.typeOf(max) === 'number' ? max : 1;
     return Math.round(Math.random() * (max - min) + min);
 };
-
-
 
 
 //是不是空字符串

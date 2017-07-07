@@ -33,7 +33,7 @@ SubType.prototype.moduleDomCreate = function () {
     var data = this.opts.data;
     var btnIconHtml = ``;
     if (this.opts.config.btn.isShowIcon) {
-        btnIconHtml = `<div class="g-btn-icon iconfont ${data.btn.icon}"></div>`;
+        btnIconHtml = `<div class="g-button-icon iconfont ${data.btn.icon}"></div>`;
     }
     this.moduleDom = createElement({
         style: this.opts.config.moduleStyle,
@@ -43,9 +43,9 @@ SubType.prototype.moduleDomCreate = function () {
             innerHTML: `
                 <div class="m-no-data-icon iconfont ${data.icon}"></div>
                 <div class="m-no-data-txt">${data.txt}</div>
-                <a class="m-no-data-btn g-btn g-btn-confirm" href="${data.btn.link}">
+                <a class="m-no-data-btn g-button g-button-confirm" href="${data.btn.link}">
                     ${btnIconHtml}
-                    <div class="g-btn-txt">${data.btn.txt}</div>
+                    <div class="g-button-txt">${data.btn.txt}</div>
                 </a>
             `
         }

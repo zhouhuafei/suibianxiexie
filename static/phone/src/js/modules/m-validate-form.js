@@ -56,7 +56,7 @@ ValidateForm.prototype.validateSave = function () {
                     self.renderHintAdd({txt: hintTxt[i]});
                     self.isValidateSuccess = false;
                 },
-                fail: function () {//非空
+                failure: function () {//非空
                     self.renderHintRemove();
                     self.isValidateSuccess = true;
                 }
@@ -69,7 +69,7 @@ ValidateForm.prototype.validateSave = function () {
                     self.renderHintAdd({txt: hintTxt[i]});
                     self.isValidateSuccess = false;
                 },
-                fail: function () {//非零
+                failure: function () {//非零
                     self.renderHintRemove();
                     self.isValidateSuccess = true;
                 }
@@ -82,7 +82,7 @@ ValidateForm.prototype.validateSave = function () {
                     self.renderHintRemove();
                     self.isValidateSuccess = true;
                 },
-                fail: function () {//非整数
+                failure: function () {//非整数
                     self.renderHintAdd({txt: hintTxt[i]});
                     self.isValidateSuccess = false;
                 }

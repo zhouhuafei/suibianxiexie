@@ -13,7 +13,7 @@
         background: rgba(0, 0, 0, 0.8);
         .m-dialog-alert-icon {
             margin-right: px2rem(10);
-            color: $g-color-fail;
+            color: $g-color-failure;
             font-size: px2rem(24);
         }
         .m-dialog-alert-txt {
@@ -46,7 +46,7 @@
                 @include center-xy-flex;
                 .m-dialog-icon {
                     margin-right: px2rem(6);
-                    color: $g-color-fail;
+                    color: $g-color-failure;
                     font-size: px2rem(24);
                 }
                 .m-dialog-txt {
