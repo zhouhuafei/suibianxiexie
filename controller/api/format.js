@@ -1,6 +1,6 @@
 var response = {
-    status: '',//状态  'success'   'fail'
-    msg: '',//信息     '参数错误'
+    status: '',//状态  'success'   'failure'
+    message: '',//信息     '参数错误'
     result: {
         data: [
             {

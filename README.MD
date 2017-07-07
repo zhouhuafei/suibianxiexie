@@ -26,7 +26,7 @@
 
 
 
-<p>public/dev/js/   目录下的</p>
+<p>static/src/js/   目录下的</p>
 <p>base:            放点什么好呢</p>
 <p>business:        存放和业务逻辑有关的js</p>
 <p>commons:         存放页面公用的js</p>
