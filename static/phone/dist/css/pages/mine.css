@@ -1,0 +1,45 @@
+.g-body .page-header {
+  background: #fff;
+  margin-bottom: 0.3125rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.3125rem; }
+  .g-body .page-header .page-header-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
+    .g-body .page-header .page-header-wrap .page-header-photo {
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 0.03125rem solid #e6e7ed;
+      border-radius: 50%;
+      margin-right: 0.3125rem;
+      overflow: hidden;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      word-break: break-all; }
+      .g-body .page-header .page-header-wrap .page-header-photo img {
+        max-width: 100%;
+        max-height: 100%; }
+
+.g-body .g-list {
+  margin-bottom: 0.3125rem; }
+  .g-body .g-list:last-child {
+    margin-bottom: 0; }

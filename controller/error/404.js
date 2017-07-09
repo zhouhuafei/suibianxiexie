@@ -14,7 +14,7 @@ class Fn404 {
 
     render() {
         let errorType = this.opts.req.url.split('/')[2];
-        if (errorType === 'min'||'dev') {
+        if (errorType === 'min' || 'dev') {
             this.renderOther();
         } else {
             this.renderPhone();
@@ -23,9 +23,8 @@ class Fn404 {
 
     renderPhone() {
         let PageFooterNav = require('../../model/phone/page-footer-nav');
-        let PageConfig = require('../../route/phone/config');
         this.pageInfo = {
-            config: new PageConfig(this.opts).result,
+            config: {},
             data: {
                 title: `页面没有找到`,
                 footerNav: new PageFooterNav(this.opts).result

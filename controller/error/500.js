@@ -23,9 +23,8 @@ class Fn500 {
 
     renderPhone() {
         let PageFooterNav = require('../../model/phone/page-footer-nav');
-        let PageConfig = require('../../route/phone/config');
         this.pageInfo = {
-            config: new PageConfig(this.opts).result,
+            config: {},
             data: {
                 title: `服务器报错`,
                 footerNav: new PageFooterNav(this.opts).result
