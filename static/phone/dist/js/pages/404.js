@@ -9,7 +9,7 @@ webpackJsonp([5],{
 window.addEventListener('load', function () {
     setTimeout(function () {
         __webpack_require__(14);
-        var header = __webpack_require__(2); //每个页面都要用到的js(一定要放到最顶部)
+        var header = __webpack_require__(3); //每个页面都要用到的js(一定要放到最顶部)
 
         //没有数据
         (function () {
@@ -21,7 +21,7 @@ window.addEventListener('load', function () {
             });
         })();
 
-        var footer = __webpack_require__(3); //每个页面都要用到的js(一定要放到最底部)
+        var footer = __webpack_require__(4); //每个页面都要用到的js(一定要放到最底部)
     }, 0);
 });
 
@@ -40,12 +40,12 @@ window.addEventListener('load', function () {
 "use strict";
 
 
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -64,7 +64,7 @@ var SubType = constructorInherit({
             btn: {
                 icon: 'icon-shouye',
                 txt: '回首页',
-                link: '/phone/'
+                link: '/'
             }
         }
     }
@@ -77,7 +77,7 @@ SubType.prototype.moduleDomCreate = function () {
     if (this.opts.config.btn.isShowIcon) {
         btnIconHtml = '<div class="g-button-icon iconfont ' + data.btn.icon + '"></div>';
     }
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {

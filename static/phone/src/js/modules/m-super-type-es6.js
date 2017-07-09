@@ -1,12 +1,12 @@
-var extend = require('../tools/extend');//对象的扩展方法
-var createElement = require('../function/create-element');//创建元素节点
-var getDomArray = require('../function/get-dom-array');//获取原生的dom节点并转换成数组
+let tools = require('../base/tools');//工具方法集合
+let applications = require('../base/applications');//应用方法集合
 
 //底层构造函数
 class SuperType {
     constructor(json) {
-        //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
-        this.opts = extend({
+        //函数外部传来的参数
+        // (这个属性在其他模块的内部需要被重写)
+        this.opts = tools.extend({
             //内部默认参数
             defaults: {
                 //父级
@@ -122,7 +122,7 @@ class SuperType {
 
     //内部模块的创建(这个方法在其他模块的内部需要被重写)
     moduleDomCreate() {
-        this.moduleDom = createElement({
+        this.moduleDom = applications.createElement({
             style: this.opts.config.moduleDomStyle,
             custom: this.opts.config.moduleDomCustomAttr,
             attribute: {
@@ -142,7 +142,7 @@ class SuperType {
             callback.moduleDomRenderBefore(this);
             var renderMethod = config.moduleDomRenderMethod;
             if (renderMethod.method == 'insertBefore') {
-                var dom = getDomArray({element: renderMethod.child})[0];
+                var dom = applications.getDomArray({element: renderMethod.child})[0];
                 if (dom) {
                     this.wrapDom.insertBefore(this.moduleDom, dom);
                 } else {
@@ -205,7 +205,7 @@ class SuperType {
     wrapDomGet() {
         var callback = this.opts.callback;
         callback.wrapDomGetBefore(this);
-        this.wrapDom = getDomArray({element: this.opts.wrap})[0];
+        this.wrapDom = applications.getDomArray({element: this.opts.wrap})[0];
         callback.wrapDomGetAfter(this);
     }
 

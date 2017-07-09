@@ -1,10 +1,9 @@
-var createElement = require('../function/create-element');//创建元素节点
-var constructorInherit = require('../tools/constructor-inherit');//构造函数的继承(拷贝继承)
-var scrollTo=require('../function/scroll-to');//滚动到指定位置
-var SuperType = require('../modules/m-super-type');//超类型(子类型继承的对象)
+let tools = require('../base/tools');//工具方法集合
+let applications = require('../base/applications');//应用方法集合
+let SuperType = require('../modules/m-super-type');//超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -21,7 +20,7 @@ var SubType = constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -35,7 +34,7 @@ SubType.prototype.moduleDomCreate = function () {
 SubType.prototype.power = function () {
     var self = this;
     this.moduleDom.addEventListener('click', function () {
-        scrollTo({to: '0'});
+        applications.scrollTo({to: '0'});
     });
     window.addEventListener('scroll', function () {
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;

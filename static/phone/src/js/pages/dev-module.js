@@ -2,10 +2,11 @@ window.addEventListener('load', function () {
     setTimeout(function () {
         require('../../scss/pages/dev-module.scss');
         let header = require('../commons/header');//每个页面都要用到的js(一定要放到最顶部)
+        let applications = header.applications;
 
         //ajax测试
         (function () {
-            var Ajax = require('../tools/ajax');
+            //var Ajax = require('../tools/ajax');
             // new Ajax({
             //     callback: {},
             //     config: {
@@ -19,7 +20,7 @@ window.addEventListener('load', function () {
 
         //base函数测试
         (function () {
-            var WhenScrollBottom = require('../function/when-scroll-bottom');
+            var WhenScrollBottom = applications.whenScrollBottom();
             //测试滚动到底部loading
             new WhenScrollBottom({
                 callback: {

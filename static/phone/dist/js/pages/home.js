@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 45:
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8,8 +8,8 @@ webpackJsonp([2],{
 
 window.addEventListener('load', function () {
     setTimeout(function () {
-        __webpack_require__(46);
-        var header = __webpack_require__(2); //每个页面都要用到的js(一定要放到最顶部)
+        __webpack_require__(42);
+        var header = __webpack_require__(3); //每个页面都要用到的js(一定要放到最顶部)
         var Vue = header.Vue;
 
         __webpack_require__.e/* require.ensure */(0).then((function (mDialog) {
@@ -65,12 +65,12 @@ window.addEventListener('load', function () {
         //导航
         (function () {
             var Navigation = __webpack_require__(8);
-            new Navigation({ wrap: '.page-navigation' });
+            //new Navigation({wrap: '.page-navigation'});
         })();
 
         //vue
         (function () {
-            __webpack_require__(47)(Vue);
+            __webpack_require__(43)(Vue);
             new Vue({
                 el: '.g-vue',
                 data: {
@@ -80,20 +80,20 @@ window.addEventListener('load', function () {
             //参数传输不进去
         })();
 
-        var footer = __webpack_require__(3); //每个页面都要用到的js(一定要放到最底部)
+        var footer = __webpack_require__(4); //每个页面都要用到的js(一定要放到最底部)
     }, 0);
 });
 
 /***/ }),
 
-/***/ 46:
+/***/ 42:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 47:
+/***/ 43:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -122,13 +122,13 @@ module.exports = function (Vue) {
 "use strict";
 
 
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 var TouchSlide = __webpack_require__(7); //轮播图插件
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -176,7 +176,7 @@ var SubType = constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -701,12 +701,12 @@ module.exports = TouchSlide;
 "use strict";
 
 
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -758,7 +758,7 @@ SubType.prototype.moduleDomCreate = function () {
         }
         html += '\n            <a href="' + v.link + '" class="m-navigation-wrap">\n                <div class="m-navigation-icon iconfont ' + v.icon + '"></div>\n                <div class="m-navigation-txt">' + v.txt + '</div>\n                ' + markHtml + '\n            </a>\n        ';
     });
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -777,4 +777,4 @@ module.exports = SubType;
 
 /***/ })
 
-},[45]);
+},[41]);

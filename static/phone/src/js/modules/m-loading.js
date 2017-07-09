@@ -1,30 +1,14 @@
-var createElement = require('../function/create-element');//创建元素节点
-var constructorInherit = require('../tools/constructor-inherit');//构造函数的继承(拷贝继承)
-var SuperType = require('../modules/m-super-type');//超类型(子类型继承的对象)
-//var Mask = require('../modules/m-mask');//遮罩
+let tools = require('../base/tools');//工具方法集合
+let applications = require('../base/applications');//应用方法集合
+let SuperType = require('../modules/m-super-type');//超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
         //回调
-        callback: {
-            moduleDomRenderBefore: function (self) {
-                // if (self.opts.config.isShowMask) {
-                //     new Mask({
-                //         wrap: self.moduleDom.querySelector('.m-loading-wrap'),
-                //         config: {
-                //             moduleDomIsShow: true,
-                //             moduleDomRenderMethod: {method: 'insertBefore'}
-                //         }
-                //     });
-                // }
-                if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
-                    self.wrapDom.style.position = 'relative';
-                }
-            }
-        },
+        callback: {},
         //配置
         config: {
             //isShowMask: false,  //是否显示遮罩(默认不显示)
@@ -82,7 +66,7 @@ SubType.prototype.moduleDomCreate = function () {
         `;
     }
     //模块创建
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {

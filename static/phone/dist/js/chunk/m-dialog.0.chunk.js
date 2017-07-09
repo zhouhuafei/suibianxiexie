@@ -6,13 +6,13 @@ webpackJsonp([0],{
 "use strict";
 
 
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 var Mask = __webpack_require__(9); //遮罩
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -98,7 +98,7 @@ SubType.prototype.moduleDomCreate = function () {
     var positionLocation = 'm-dialog-' + config.positionLocation; //弹窗的定位位置
     //弹窗结构
     var html = '\n        ' + this.renderAlert() + '\n        ' + this.renderConfirm() + '\n    ';
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -213,12 +213,12 @@ module.exports = SubType;
 "use strict";
 
 
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -247,7 +247,7 @@ SubType.prototype.moduleDomCreate = function () {
     if (this.opts.config.isTransparent) {
         isTransparent = 'm-mask-transparent';
     }
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {

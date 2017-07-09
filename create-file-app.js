@@ -1,4 +1,6 @@
-const CreateFile = require('./libs/function/create-file');//创建文件函数
+const tools = require('./base/tools');//工具方法集合
+const applications = require('./base/applications');//应用方法集合
+const CreateFile = applications.createFile();//创建文件函数
 const pathName = process.argv[2];//目录名字
 if (!pathName) {
     console.log('pathName no find');
@@ -77,8 +79,7 @@ for (let attr in file) {
 
 //创建控制器文件
 {
-    let strToHump = require('./libs/tools/str-to-hump');
-    let humpFileName = strToHump({str: `-${fileName}`});
+    let humpFileName = tools.strToHump({str: `-${fileName}`});
     new CreateFile({
         data: {
             path: controllerPath,

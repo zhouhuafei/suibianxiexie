@@ -1,15 +1,14 @@
-var createElement = require('../function/create-element');//创建元素节点
-var constructorInherit = require('../tools/constructor-inherit');//构造函数的继承(拷贝继承)
-var SuperType = require('../modules/m-super-type');//超类型(子类型继承的对象)
-var jsonToArray = require('../tools/json-to-array');
+let tools = require('../base/tools');//工具方法集合
+let applications = require('../base/applications');//应用方法集合
+let SuperType = require('../modules/m-super-type');//超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+let SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
         //容器
-        wrap:'.g-footer',
+        wrap: '.g-footer',
         //回调
         callback: {},
         //配置
@@ -59,15 +58,15 @@ var SubType = constructorInherit({
 
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDomClass = `m-footer-nav`;
-    var moduleDomHtml = ``;
-    var data = jsonToArray({json: this.opts.data});
+    let moduleDomHtml = ``;
+    let data = tools.jsonToArray({json: this.opts.data});
     data.forEach(function (value) {
-        var v = value.value;
-        var highlightClass = ``;
+        let v = value.value;
+        let highlightClass = ``;
         if (v.isHighlight) {
             highlightClass = `m-footer-nav-body-active`;
         }
-        var markHtml = ``;
+        let markHtml = ``;
         if (v.isShowMark) {
             markHtml = `<div class="m-footer-nav-body-mark"></div>`;
         }
@@ -79,7 +78,7 @@ SubType.prototype.moduleDomCreate = function () {
             </a>
         `;
     });
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {

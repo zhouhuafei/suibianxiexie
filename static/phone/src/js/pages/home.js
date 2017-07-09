@@ -63,7 +63,7 @@ window.addEventListener('load', function () {
         //导航
         (function () {
             let Navigation = require('../modules/m-navigation');
-            new Navigation({wrap: '.page-navigation'});
+            //new Navigation({wrap: '.page-navigation'});
         })();
 
         //vue

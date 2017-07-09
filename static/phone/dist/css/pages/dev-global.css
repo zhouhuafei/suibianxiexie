@@ -30,6 +30,16 @@
     right: 0.3125rem;
     top: 0.625rem; }
 
+.m-lazy-load {
+  -webkit-transition: opacity 0.4s;
+  transition: opacity 0.4s;
+  opacity: 0; }
+
+.m-lazy-load-active {
+  -webkit-transition: opacity 0.4s;
+  transition: opacity 0.4s;
+  opacity: 1; }
+
 .g-body .page-input {
   margin-top: 0.3125rem;
   padding: 0 0.3125rem; }

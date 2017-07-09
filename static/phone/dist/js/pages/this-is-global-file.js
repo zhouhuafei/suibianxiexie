@@ -147,16 +147,345 @@
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
+//工具方法集合
+function Tools() {}
+//判断类型
+Tools.prototype.typeOf = function (obj) {
+    return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+};
+//对象扩展
+Tools.prototype.extend = function (json) {
+    var opts = json || {};
+    opts.defaults = opts.defaults || {}; //默认对象
+    opts.inherits = opts.inherits || {}; //继承对像
+    opts.isDeep = opts.isDeep === false ? opts.isDeep : true; //是否进行深拷贝(默认进行深拷贝)
+    var defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
+    var inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
+    if (defaultsType === inheritsType && opts.isDeep) {
+        if (defaultsType === 'object' || defaultsType === 'array') {
+            //当为对象或者为数组
+            for (var attr in opts.inherits) {
+                if (opts.inherits.hasOwnProperty(attr)) {
+                    var attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
+                    var attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
+                    if (attrDefaultsType === attrInheritsType && opts.isDeep) {
+                        //类型相同
+                        if (attrDefaultsType === 'object' || attrDefaultsType === 'array') {
+                            //当为对象或者为数组
+                            this.extend({ defaults: opts.defaults[attr], inherits: opts.inherits[attr] });
+                        } else {
+                            opts.defaults[attr] = opts.inherits[attr];
+                        }
+                    } else {
+                        //类型不同,直接后面的覆盖前面的
+                        opts.defaults[attr] = opts.inherits[attr];
+                    }
+                }
+            }
+        } else {
+            opts.defaults = opts.inherits;
+        }
+    } else {
+        opts.defaults = opts.inherits;
+    }
+    return opts.defaults;
+};
+//对象移除引用
+Tools.prototype.objRemoveQuote = function (json) {
+    var opts = json || {};
+    var obj = opts.obj; //这里一定不能给默认值
+    var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+    if (objType !== 'object' && objType !== 'array') {
+        return obj;
+    }
+    var newObj = {};
+    if (objType === 'array') {
+        newObj = [];
+    }
+    for (var attr in obj) {
+        if (obj.hasOwnProperty(attr)) {
+            newObj[attr] = this.objRemoveQuote({ obj: obj[attr] });
+        }
+    }
+    return newObj;
+};
+//面向对象继承
+Tools.prototype.constructorInherit = function (json) {
+    var self = this;
+    var opts = self.extend({
+        defaults: {
+            superType: null, //继承哪个超类(这个必须传的是一个构造函数,或者不传值)
+            parameter: {} //默认参数(这个必须传的是一个对象,或者不传值)
+        },
+        inherits: json
+    });
+    //超类型(需要是个构造函数)
+    var SuperType = opts.superType;
+    //子类型的默认参数(需要是个对象)
+    var parameter = opts.parameter;
+    //如果超类型不存在
+    if (Object.prototype.toString.call(SuperType).toLowerCase().slice(8, -1) !== 'function') {
+        console.log('no find SuperType or SuperType error');
+        return false;
+    }
+    //子类型
+    function SubType(json) {
+        //子类型自身的属性
+        /*
+         * 注意:
+         * defaults要防止对象的引用(如果不防止的话,会出现BUG)
+         * 例如 wrap的默认值是'.g-wrap'
+         * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
+         * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
+         * 但是由于对象引用的原因,这里的值会变成'body'
+         * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
+         * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
+         * 所以我就封装了一个移除对象引用的函数
+         * */
+        this.opts = self.extend({
+            defaults: self.objRemoveQuote({ obj: parameter }),
+            inherits: json
+        });
+        //子类型继承超类型的属性
+        opts.superType.call(this, this.opts);
+    }
+
+    //子类型继承超类型的方法
+    for (var attr in SuperType.prototype) {
+        if (SuperType.prototype.hasOwnProperty(attr)) {
+            SubType.prototype[attr] = SuperType.prototype[attr];
+        }
+    }
+    return SubType;
+};
+//数组去重
+Tools.prototype.arrayRemoveRepeat = function (array) {
+    var self = this;
+    array = self.typeOf(array) === 'array' ? array : [];
+    var newArray = [];
+    array.forEach(function (v) {
+        if (newArray.indexOf(v) === -1) {
+            newArray.push(v);
+        }
+    });
+    return newArray;
+};
+//秒转时间
+Tools.prototype.secondsToTime = function (json) {
+    var opts = json || {};
+    var seconds = opts.seconds;
+    //天
+    var nowDay = Math.floor(seconds / 3600 / 24);
+    //时
+    var nowHours = Math.floor(seconds / 3600 % 24);
+    //分
+    var nowMinutes = Math.floor(seconds % 3600 / 60);
+    //秒
+    var nowSeconds = Math.floor(seconds % 60);
+    return { day: nowDay, hours: nowHours, minutes: nowMinutes, seconds: nowSeconds };
+};
+//倒计时
+Tools.prototype.timeCountDown = function (json) {
+    var self = this;
+    var opts = self.extend({
+        defaults: {
+            seconds: 0,
+            callback: {
+                run: function run() {},
+                over: function over() {}
+            }
+        },
+        inherits: json
+    });
+    var seconds = opts.seconds; //秒数
+    var run = opts.callback.run; //运行的回调
+    var over = opts.callback.over; //结束的回调
+    //时间大于等于0秒
+    if (seconds >= 0) {
+        run(self.secondsToTime({ seconds: seconds })); //运行时的回调
+        //倒计时走你
+        var timer = setInterval(function () {
+            seconds--;
+            if (seconds >= 0) {
+                run(self.secondsToTime({ seconds: seconds })); //运行时的回调
+            } else {
+                over(); //结束时的回调
+                clearInterval(timer);
+            }
+        }, 1000);
+    }
+    //时间小于0秒
+    if (seconds < 0) {
+        console.log('倒计时的秒数不能小于0');
+    }
+};
+//字符串限制长度
+Tools.prototype.strLimitLength = function (json) {
+    var opts = json || {};
+    var maxLength = opts.maxLength;
+    var str = opts.str;
+    if (!str) {
+        return '';
+    }
+    if (Number(str.length) > maxLength) {
+        str = str.substring(0, maxLength);
+    }
+    return str;
+};
+//json转数组
+Tools.prototype.jsonToArray = function (json) {
+    var opts = json || {};
+    var obj = opts.json || {};
+    var arr = [];
+    if (obj instanceof Array) {
+        obj.forEach(function (v, i) {
+            arr.push([i, v]);
+        });
+    } else {
+        for (var attr in obj) {
+            if (obj.hasOwnProperty(attr)) {
+                arr.push({ key: attr, value: obj[attr] });
+            }
+        }
+    }
+    return arr;
+};
+//补零函数
+Tools.prototype.fillZero = function (json) {
+    var opts = json || {};
+    var num = opts.num || '0';
+    if (num < 10) {
+        return '0' + num;
+    } else {
+        return '' + num;
+    }
+};
+//px转rem
+Tools.prototype.px2rem = function (json) {
+    var opts = json || {};
+    var base = opts.base || '320';
+    var px = opts.px || '0';
+    return px / base * 10 + 'rem';
+};
+//字符串转驼峰
+Tools.prototype.strToHump = function (json) {
+    var opts = this.extend({
+        defaults: {
+            str: '',
+            rule: '-'
+        },
+        inherits: json
+    });
+    var str = opts.str;
+    var rule = opts.rule;
+    var type = this.typeOf(str);
+    if (type === 'string') {
+        var arr = str.split(rule);
+        arr.forEach(function (v, i) {
+            if (i !== 0) {
+                if (arr[i][0]) {
+                    arr[i] = arr[i][0].toUpperCase() + arr[i].substring(1);
+                }
+            }
+        });
+        str = arr.join('');
+    } else {
+        console.log('参数错误,请输入字符串');
+    }
+    return str;
+};
+//获取随机数
+Tools.prototype.getRandom = function (min, max) {
+    var self = this;
+    min = self.typeOf(min) === 'number' ? min : 0;
+    max = self.typeOf(max) === 'number' ? max : 1;
+    return Math.round(Math.random() * (max - min) + min);
+};
+
+//是不是空字符串
+Tools.prototype.isSpace = function (value) {
+    return value.toString().trim() === '';
+};
+//是不是数字0
+Tools.prototype.isZero = function (value) {
+    return Number(value) === 0;
+};
+//是不是整数(包含0)
+Tools.prototype.isInteger = function (value) {
+    var reg = /^\d+$/;
+    return reg.test(value);
+};
+//是不是保留了num位小数点
+Tools.prototype.isReservedDecimal = function (value, num) {
+    var reg = new RegExp("^\\d+\\.\\d{" + num + "}$");
+    return reg.test(value);
+};
+//是不是手机号
+Tools.prototype.isPhoneNum = function (value) {
+    var reg = /^1[3|4|5|8][0-9]\d{4,8}$/;
+    return reg.test(value);
+};
+//是不是邮箱
+Tools.prototype.isEmail = function (value) {
+    var reg = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
+    return reg.test(value);
+};
+
+module.exports = new Tools();
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0);
+
+//应用方法集合
+function Applications() {}
+//设置cookie
+Applications.prototype.setCookie = function (json) {
+    var opts = json || {};
+    var name = opts.name;
+    var value = opts.value;
+    var expires = opts.expires || '0';
+    var myDate = new Date();
+    var myTime = myDate.getTime();
+    myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000);
+    document.cookie = name + '=' + value + '; expires=' + myDate;
+};
+//获取cookie
+Applications.prototype.getCookie = function (json) {
+    var opts = json || {};
+    var name = opts.name;
+    var cookie = document.cookie;
+    var arr = cookie.split('; ');
+    var value = '';
+    arr.forEach(function (v) {
+        var arr2 = v.split('=');
+        if (arr2[0] === name) {
+            value = arr2[1];
+            return false;
+        }
+    });
+    return value;
+};
+//清除cookie
+Applications.prototype.removeCookie = function (json) {
+    var opts = json || {};
+    var name = opts.name;
+    this.setCookie(name, '', -1);
+};
 //创建元素节点
-function createElement(json) {
+Applications.prototype.createElement = function (json) {
     var opts = json || {};
     opts.elementName = opts.elementName || 'div'; //标签名称
     opts.style = opts.style || ''; //style样式
@@ -177,26 +506,484 @@ function createElement(json) {
         }
     }
     return elementNode;
-}
+};
+//加减操作
+Applications.prototype.addMinusInput = function (json) {
+    //购物加减商品系列
+    if (!json) {
+        console.log('no find parameter');
+        return false;
+    }
+    var noActiveClass = json.noActiveClass || 'on'; //不能点的时候的class
+    var minNum = json.minNum === undefined ? 1 : json.minNum; //最小数量
+    var add = json.add; //加的按钮
+    var addCallback = json.addCallback; //加的回调
+    var minus = json.minus; //减少的按钮
+    var minusCallback = json.minusCallback; //减少的回调
+    var overMinCallback = json.overMinCallback || function () {}; //减少到最小值之后继续减少
+    var input = json.input; //输入框的按钮
+    var blurCallback = json.blurCallback; //失去焦点的回调
+    var inventoryNum = parseInt(json.inventoryNum); //商品库存
+    var space = function space() {
+        if (input["value"].trim() === '') {
+            input["value"] = minNum;
+        }
+    };
+    //增加
+    add.onclick = function () {
+        space();
+        var num = parseInt(input.value);
+        num++;
+        input["value"] = num;
+        if (num >= inventoryNum) {
+            if (inventoryNum == 0) {
+                input["value"] = minNum;
+            } else {
+                input["value"] = inventoryNum;
+            }
+            add.classList.add(noActiveClass);
+        }
+        minus.classList.remove(noActiveClass);
+        addCallback && addCallback();
+    };
+    //减少
+    minus.onclick = function () {
+        space();
+        var num = parseInt(input.value);
+        num--;
+        input["value"] = num;
+        if (num < minNum) {
+            input["value"] = minNum;
+            minus.classList.add(noActiveClass);
+            overMinCallback();
+        }
+        add.classList.remove(noActiveClass);
+        minusCallback && minusCallback();
+    };
+    //获取焦点
+    input["onfocus"] = function () {
+        input.select();
+    };
+    //失去焦点
+    input["onblur"] = function () {
+        space();
+        var num = parseInt(input.value);
+        if (isNaN(num)) {
+            num = minNum;
+        }
+        minus.classList.remove(noActiveClass);
+        add.classList.remove(noActiveClass);
+        if (num >= inventoryNum) {
+            input["value"] = inventoryNum;
+            add.classList.add(noActiveClass);
+        }
+        if (num <= minNum) {
+            input["value"] = minNum;
+            minus.classList.add(noActiveClass);
+        }
+        blurCallback && blurCallback();
+    };
+};
+//获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
+Applications.prototype.getDomArray = function (json) {
+    var opts = json || {};
+    var dom = [];
+    var element = opts.element ? opts.element : false;
+    if (element) {
+        //如果是字符串
+        if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'string') {
+            dom = [].slice.call(document.querySelectorAll(element));
+        }
+        //如果是dom节点(一个元素)    原生的
+        if (element.nodeType == 1) {
+            dom = [element];
+        }
+        /*
+         * 如果是dom集合(一组元素)    HtmlCollection(通过getElementsBy系列获取到的)
+         * 如果是dom集合(一组元素)    NodeList(通过querySelectorAll获取到的)
+         * */
+        if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'htmlcollection' || Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'nodelist') {
+            dom = [].slice.call(element);
+        }
+    }
+    return dom;
+};
+//获取指定父级
+Applications.prototype.getParent = function (json) {
+    var opts = json || {};
+    var element = opts.element;
+    var wrap = opts.wrap;
+    if (!element) {
+        //第一参数不符合规范
+        console.log('参数错误,第一参数需要一个元素节点对象');
+        return null;
+    }
+    if (!wrap) {
+        //没有第二参数默认选取直接父级
+        return element.parentNode;
+    } else if (typeof wrap === 'string') {
+        element = element.parentNode;
+        switch (wrap.charAt(0)) {
+            case '.':
+                //通过class获取父级
+                while (element) {
+                    if (!element.classList) {
+                        console.log('no find class');
+                        return null;
+                    }
+                    if (element.classList.contains(wrap.substring(1))) {
+                        return element;
+                    } else {
+                        element = element.parentNode;
+                    }
+                }
+                break;
+            case '#':
+                //通过id获取父级
+                while (element) {
+                    if (element === document) {
+                        console.log('no find id');
+                        return null;
+                    }
+                    if (element.id === wrap.substring(1)) {
+                        return element;
+                    } else {
+                        element = element.parentNode;
+                    }
+                }
+                break;
+            default:
+                //通过标签名获取父级
+                while (element) {
+                    if (element === document) {
+                        console.log('no find tagName');
+                        return null;
+                    }
+                    if (element.tagName.toLowerCase() === wrap) {
+                        return element;
+                    } else {
+                        element = element.parentNode;
+                    }
+                }
+                break;
+        }
+    }
+};
+//html转成DOM节点
+Applications.prototype.htmlToDom = function htmlToDom(json) {
+    var opts = json || {};
+    var html = opts.html;
+    var div = document.createElement('div');
+    div.innerHTML = html;
+    return div.children[0];
+};
+//图片上传
+Applications.prototype.imgUploadBase64 = function () {
+    function Fn(json) {
+        this.opts = json || {};
+        //如果没有选择文件的input,则不继续往下执行
+        if (!this.opts.input) {
+            console.log('no find input');
+            return;
+        }
+        //一次上传限制几张图片
+        this.opts.limitNum = this.opts.limitNum || '5';
+        //选择图片的回调
+        this.opts.changeCallback = this.opts.changeCallback || function () {
+            console.log('no find changeCallback');
+        };
+        //把图片读取成base64编码的回调
+        this.opts.base64Callback = this.opts.base64Callback || function () {
+            console.log('no find base64Callback');
+        };
+        //初始化
+        this.init();
+    }
 
-module.exports = createElement;
+    Fn.prototype.init = function () {
+        //渲染结构
+        this.render();
+        //渲染功能
+        this.power();
+    };
+    Fn.prototype.render = function () {};
+    Fn.prototype.power = function () {
+        //事件相关
+        this.events();
+    };
+    Fn.prototype.events = function () {
+        this.eventsInputChange();
+    };
+    Fn.prototype.eventsInputChange = function () {
+        var self = this;
+        var limitNum = this.opts.limitNum;
+        this.opts.input.addEventListener('change', function () {
+            var imagesNum = 0;
+            //图片的相关信息
+            self.imgData = [];
+            var files = this.files;
+            var len = files.length;
+            for (var i = 0; i < len; i++) {
+                var f = files[i];
+                var isImages = /image/ig.test(f.type);
+                //不是图片
+                if (!isImages) {
+                    continue;
+                }
+                //是图片
+                if (isImages) {
+                    if (imagesNum < limitNum) {
+                        //小于限制几张图片的数量
+                        self.imgData.push(f);
+                        imagesNum++;
+                    } else {//大于限制几张图片的数量
+
+                    }
+                }
+            }
+            self.opts.changeCallback({ imgData: self.imgData });
+            //把图片读成base64编码
+            self.fileReadAsDataURL();
+        });
+    };
+    Fn.prototype.fileReadAsDataURL = function () {
+        var self = this;
+        this.imgData.forEach(function (v, i) {
+            var fileRender = new FileReader();
+            fileRender.readAsDataURL(v);
+            fileRender.addEventListener('load', function () {
+                self.opts.base64Callback({ base64: this.result, index: i });
+            });
+        });
+    };
+    return Fn;
+};
+//是不是PC
+Applications.prototype.isPc = function () {
+    var userAgentInfo = navigator.userAgent;
+    var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+    var flag = true;
+    for (var v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+            flag = false;
+            break;
+        }
+    }
+    return flag;
+};
+//是不是微信
+Applications.prototype.isWeiXin = function () {
+    return navigator.userAgent.toLowerCase().match(/MicroMessenger/ig);
+};
+//是不是android
+Applications.prototype.isAndroid = function () {
+    return window.navigator.appVersion.match(/android/ig);
+};
+//是不是iphone
+Applications.prototype.isIphone = function () {
+    return window.navigator.appVersion.match(/iphone/ig);
+};
+//获取元素距离文档的left和top
+Applications.prototype.offset = function (json) {
+    var getDomArray = this.getDomArray;
+    var opts = tools.extend({
+        defaults: {
+            element: null
+        },
+        inherits: json
+    });
+    var top = 0;
+    var left = 0;
+    var element = getDomArray({ element: opts.element })[0];
+    while (element) {
+        top += element.offsetTop;
+        left += element.offsetLeft;
+        element = element.offsetParent;
+    }
+    return {
+        top: top,
+        left: left
+    };
+};
+//滚动到指定位置
+Applications.prototype.scrollTo = function (json) {
+    var opts = json || {};
+    var to = opts.to || '0';
+    var scale = 6;
+    var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
+    var speed = 0;
+    var timer = null;
+    var fn = function fn() {
+        speed = Math.ceil((scrollT - to) / scale);
+        scrollT -= speed;
+        window.scrollTo(0, scrollT);
+        timer = requestAnimationFrame(fn);
+        if (scrollT <= to * 1) {
+            cancelAnimationFrame(timer);
+        }
+    };
+    requestAnimationFrame(fn);
+};
+//全选,不选,反选
+Applications.prototype.select = function () {
+    var getDomArray = this.getDomArray; //获取原生的dom节点并转换成数组
+
+    function Select(json) {
+        this.opts = tools.extend({
+            defaults: {
+                items: null, //所有的被选项
+                callback: {
+                    click: function click() {}
+                }
+            },
+            inherits: json
+        });
+        this.itemsDom = getDomArray({ element: this.opts.items });
+        this.init();
+    }
+
+    //初始化
+    Select.prototype.init = function () {
+        this.power();
+    };
+
+    //不选
+    Select.prototype.selectNothing = function () {
+        this.itemsDom.forEach(function (v) {
+            v.checked = false;
+        });
+    };
+
+    //全选
+    Select.prototype.selectAll = function () {
+        this.itemsDom.forEach(function (v) {
+            v.checked = true;
+        });
+    };
+
+    //反选
+    Select.prototype.selectReverse = function () {
+        this.itemsDom.forEach(function (v) {
+            v.checked = !v.checked;
+        });
+    };
+
+    //当某一项被选中时,是否全部选项都被选中了
+    Select.prototype.power = function () {
+        var self = this;
+        this.itemsDom.forEach(function (v1) {
+            v1.addEventListener('click', function () {
+                var isCheckedAll = true; //是否全部的选项都被选中了(假设全部选中)
+                self.itemsDom.forEach(function (v2) {
+                    if (v2.checked === false) {
+                        isCheckedAll = false;
+                    }
+                });
+                self.opts.callback.click({ element: this, isCheckedAll: isCheckedAll });
+            });
+        });
+    };
+
+    return Select;
+};
+//当滚动到了浏览器的底部
+Applications.prototype.whenScrollBottom = function () {
+    function WhenScrollBottom(json) {
+        this.opts = tools.extend({
+            defaults: {
+                callback: {
+                    success: function success() {},
+                    failure: function failure() {}
+                },
+                interval: 80, //函数节流时间(延迟时间)
+                errorHeight: 0 //滚动到底部上面一定高度就算是滚动到底部了(误差高度)
+            },
+            inherits: json
+        });
+        this.isLoadOver = false; //数据是否加载完毕
+        this.init();
+    }
+
+    WhenScrollBottom.prototype.init = function () {
+        this.render();
+        this.power();
+    };
+
+    WhenScrollBottom.prototype.render = function () {
+        var callback = this.opts.callback;
+        var allH = document.body.scrollHeight;
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var clientHeight = document.documentElement.clientHeight;
+        if (scrollTop + clientHeight >= allH - this.opts.errorHeight && !this.isLoadOver) {
+            this.isLoadOver = true;
+            callback.success(this);
+            /*
+             * 条件:当你拿到请求的数据之后
+             * 可能性:1.如果你的数据加载完毕了,你需要手动把isLoadOver开关变成true
+             * 可能性:2.如果你的数据尚未加载完毕,你需要手动把isLoadOver开关变成false
+             * */
+        } else {
+            callback.failure();
+        }
+    };
+
+    WhenScrollBottom.prototype.power = function () {
+        var self = this;
+        var timer = null;
+        window.addEventListener('scroll', function () {
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                self.render();
+            }, self.opts.interval);
+        });
+    };
+    return WhenScrollBottom;
+};
+//是否禁止浏览器滚动
+Applications.prototype.whetherDisableScroll = function () {
+    return {
+        //阻止冒泡
+        stopPropagation: function stopPropagation(ev) {
+            ev.stopPropagation();
+        },
+        //阻止默认事件
+        preventDefault: function preventDefault(ev) {
+            ev.preventDefault();
+        },
+        //阻止冒泡,阻止默认事件
+        returnFalse: function returnFalse(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+        },
+        //禁止滚动
+        noScroll: function noScroll() {
+            document.addEventListener('touchmove', this.preventDefault, false);
+            document.documentElement.style.overflow = 'hidden';
+        },
+        //解除禁止浏览器滚动
+        yesScroll: function yesScroll() {
+            document.removeEventListener('touchmove', this.preventDefault, false);
+            document.documentElement.style.overflow = 'auto';
+        }
+    };
+};
+
+module.exports = new Applications();
 
 /***/ }),
-
-/***/ 1:
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var extend = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/extend\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //对象的扩展方法
-var createElement = __webpack_require__(0); //创建元素节点
-var getDomArray = __webpack_require__(4); //获取原生的dom节点并转换成数组
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
 
 //底层构造函数
 function SuperType(json) {
     //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
-    this.opts = extend({
+    this.opts = tools.extend({
         //内部默认参数
         defaults: {
             //父级
@@ -312,7 +1099,7 @@ SuperType.prototype.power = function () {
 
 //内部模块的创建(这个方法在其他模块的内部需要被重写)
 SuperType.prototype.moduleDomCreate = function () {
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -329,15 +1116,15 @@ SuperType.prototype.moduleDomRender = function () {
     if (config.moduleDomIsShow && this.wrapDom) {
         callback.moduleDomRenderBefore(this);
         var renderMethod = config.moduleDomRenderMethod;
-        if (renderMethod.method == 'insertBefore') {
-            var dom = getDomArray({ element: renderMethod.child })[0];
+        if (renderMethod.method === 'insertBefore') {
+            var dom = applications.getDomArray({ element: renderMethod.child })[0];
             if (dom) {
                 this.wrapDom.insertBefore(this.moduleDom, dom);
             } else {
                 this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
             }
         }
-        if (renderMethod.method == 'appendChild') {
+        if (renderMethod.method === 'appendChild') {
             this.wrapDom.appendChild(this.moduleDom);
         }
         callback.moduleDomRenderAfter(this);
@@ -393,7 +1180,7 @@ SuperType.prototype.moduleDomHide = function () {
 SuperType.prototype.wrapDomGet = function () {
     var callback = this.opts.callback;
     callback.wrapDomGetBefore(this);
-    this.wrapDom = getDomArray({ element: this.opts.wrap })[0];
+    this.wrapDom = applications.getDomArray({ element: this.opts.wrap })[0];
     callback.wrapDomGetAfter(this);
 };
 
@@ -418,15 +1205,84 @@ SuperType.prototype.getModuleDomHtml = function () {
 module.exports = SuperType;
 
 /***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/***/ 15:
+"use strict";
+
+
+__webpack_require__(15);
+
+var _vue = __webpack_require__(16);
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _axios = __webpack_require__(18);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//axios(数据请求)
+//全局的样式
+var tools = __webpack_require__(0); //工具方法
+//vue框架
+var applications = __webpack_require__(1); //应用方法
+
+module.exports.Vue = _vue2.default;
+module.exports.axios = function (opts) {
+    return (0, _axios2.default)(opts);
+};
+module.exports.tools = tools;
+module.exports.applications = applications;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+//版权
+(function () {
+    if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
+        var Copyright = __webpack_require__(20);
+        new Copyright();
+    }
+})();
+
+//底部导航
+(function () {
+    if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
+        var Footer = __webpack_require__(21);
+        new Footer(pageInfo.data.footerNav);
+    }
+})();
+
+//延迟加载
+(function () {
+    var LazyLoad = __webpack_require__(22);
+    new LazyLoad();
+})();
+
+/***/ }),
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-
-/***/ 16:
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -10118,8 +10974,7 @@ return Vue$3;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(17)))
 
 /***/ }),
-
-/***/ 17:
+/* 17 */
 /***/ (function(module, exports) {
 
 var g;
@@ -10146,8 +11001,7 @@ module.exports = g;
 
 
 /***/ }),
-
-/***/ 18:
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/* axios v0.16.2 | (c) 2017 by Matt Zabriskie */
@@ -10162,8 +11016,7 @@ e.exports=function(e){return null!=e&&(n(e)||r(e)||!!e._isBuffer)}},function(e,t
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
 
 /***/ }),
-
-/***/ 19:
+/* 19 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -10353,53 +11206,18 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-
-/***/ 2:
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(15);
-
-var _vue = __webpack_require__(16);
-
-var _vue2 = _interopRequireDefault(_vue);
-
-var _axios = __webpack_require__(18);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//axios(数据请求)
-//全局的样式
-var tools = __webpack_require__(76); //vue框架
-
-
-module.exports.Vue = _vue2.default;
-module.exports.tools = tools;
-module.exports.axios = function () {
-    return function (opts) {
-        return (0, _axios2.default)(opts);
-    };
-}();
-
-/***/ }),
-
-/***/ 20:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(76);
-var constructorInherit = tools.constructorInherit; //构造函数的继承(拷贝继承)
-var createElement = __webpack_require__(0); //创建元素节点
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -10416,7 +11234,7 @@ var SubType = constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -10434,20 +11252,18 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-
-/***/ 21:
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
-var jsonToArray = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/json-to-array\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -10503,7 +11319,7 @@ var SubType = constructorInherit({
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDomClass = 'm-footer-nav';
     var moduleDomHtml = '';
-    var data = jsonToArray({ json: this.opts.data });
+    var data = tools.jsonToArray({ json: this.opts.data });
     data.forEach(function (value) {
         var v = value.value;
         var highlightClass = '';
@@ -10516,7 +11332,7 @@ SubType.prototype.moduleDomCreate = function () {
         }
         moduleDomHtml += '\n            <a class="m-footer-nav-body ' + highlightClass + '" href="' + v.link + '">\n                <div class="m-footer-nav-body-icon iconfont ' + v.icon + '"></div>\n                <div class="m-footer-nav-body-txt">' + v.txt + '</div>\n                ' + markHtml + '\n            </a>\n        ';
     });
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -10534,20 +11350,18 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-
-/***/ 22:
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var extend = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/extend\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //对象的扩展方法
-var offset = __webpack_require__(23); //获取元素距离文档的left和top
-var getDomArray = __webpack_require__(4); //获取原生的dom节点并转换成数组
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
 
 //延迟加载
 function LazyLoad(json) {
-    this.opts = extend({
+    this.opts = tools.extend({
         defaults: {
             element: '.m-lazy-load', //哪些元素进行懒加载
             srcAttr: 'data-src', //默认获取哪里的属性值当做src
@@ -10570,7 +11384,7 @@ LazyLoad.prototype.render = function () {
     var minTop = scrollTop - moreHeight;
     var maxTop = this.clientHeight + minTop + moreHeight;
     var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
-    var aDom = getDomArray({ element: this.opts.element });
+    var aDom = applications.getDomArray({ element: this.opts.element });
     aDom.forEach(function (v) {
         if (v.tagName.toLowerCase() == 'img') {
             if (!v.getAttribute('src')) {
@@ -10583,7 +11397,7 @@ LazyLoad.prototype.render = function () {
     aDom.forEach(function (v) {
         //排除那些被none掉的元素(被none掉的元素,通过offsetWidth和offsetHeight获取到的值是0)
         if (v.offsetWidth) {
-            var elementTop = offset({ element: v }).top;
+            var elementTop = applications.offset({ element: v }).top;
             var elementBottom = elementTop + v.offsetHeight;
             //出现在可视区才进行处理
             if (elementBottom >= minTop && elementTop <= maxTop) {
@@ -10616,113 +11430,5 @@ LazyLoad.prototype.power = function () {
 };
 module.exports = LazyLoad;
 
-/***/ }),
-
-/***/ 23:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var extend = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/extend\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //对象的扩展方法
-var getDomArray = __webpack_require__(4); //获取原生的dom节点并转换成数组
-
-//获取元素距离文档的left和top
-function offset(json) {
-    var opts = extend({
-        defaults: {
-            element: null
-        },
-        inherits: json
-    });
-    var top = 0;
-    var left = 0;
-    var element = getDomArray({ element: opts.element })[0];
-    while (element) {
-        top += element.offsetTop;
-        left += element.offsetLeft;
-        element = element.offsetParent;
-    }
-    return {
-        top: top,
-        left: left
-    };
-}
-
-module.exports = offset;
-
-/***/ }),
-
-/***/ 3:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-//版权
-(function () {
-    if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
-        var Copyright = __webpack_require__(20);
-        new Copyright();
-    }
-})();
-
-//底部导航
-(function () {
-    if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
-        var Footer = __webpack_require__(21);
-        new Footer(pageInfo.data.footerNav);
-    }
-})();
-
-//延迟加载
-(function () {
-    var LazyLoad = __webpack_require__(22);
-    new LazyLoad();
-})();
-
-/***/ }),
-
-/***/ 4:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-//获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
-function getDomArray(json) {
-    var opts = json || {};
-    var dom = [];
-    var element = opts.element ? opts.element : false;
-    if (element) {
-        //如果是字符串
-        if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'string') {
-            dom = [].slice.call(document.querySelectorAll(element));
-        }
-        //如果是dom节点(一个元素)    原生的
-        if (element.nodeType == 1) {
-            dom = [element];
-        }
-        /*
-         * 如果是dom集合(一组元素)    HtmlCollection(通过getElementsBy系列获取到的)
-         * 如果是dom集合(一组元素)    NodeList(通过querySelectorAll获取到的)
-         * */
-        if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'htmlcollection' || Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'nodelist') {
-            dom = [].slice.call(element);
-        }
-    }
-    return dom;
-}
-
-module.exports = getDomArray;
-
-/***/ }),
-
-/***/ 76:
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: E:/www/suibianxiexie/static/phone/src/js/base/tools.js: Duplicate declaration \"array\"\n\n\u001b[0m \u001b[90m 109 | \u001b[39m\u001b[33mTools\u001b[39m\u001b[33m.\u001b[39mprototype\u001b[33m.\u001b[39marrayRemoveRepeat \u001b[33m=\u001b[39m \u001b[36mfunction\u001b[39m (array) {\n \u001b[90m 110 | \u001b[39m    let self \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 111 | \u001b[39m    let array \u001b[33m=\u001b[39m self\u001b[33m.\u001b[39mtypeOf(array) \u001b[33m===\u001b[39m \u001b[32m'array'\u001b[39m \u001b[33m?\u001b[39m array \u001b[33m:\u001b[39m []\u001b[33m;\u001b[39m\n \u001b[90m     | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 112 | \u001b[39m    let newArray \u001b[33m=\u001b[39m []\u001b[33m;\u001b[39m\n \u001b[90m 113 | \u001b[39m    array\u001b[33m.\u001b[39mforEach(\u001b[36mfunction\u001b[39m (v) {\n \u001b[90m 114 | \u001b[39m        \u001b[36mif\u001b[39m (newArray\u001b[33m.\u001b[39mindexOf(v) \u001b[33m===\u001b[39m \u001b[33m-\u001b[39m\u001b[35m1\u001b[39m) {\u001b[0m\n");
-
 /***/ })
-
-/******/ });
+/******/ ]);

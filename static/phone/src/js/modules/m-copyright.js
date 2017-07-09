@@ -1,10 +1,9 @@
-let tools = require('../base/tools');
-let constructorInherit = tools.constructorInherit;//构造函数的继承(拷贝继承)
-let createElement = require('../function/create-element');//创建元素节点
+let tools = require('../base/tools');//工具方法集合
+let applications = require('../base/applications');//应用方法集合
 let SuperType = require('../modules/m-super-type');//超类型(子类型继承的对象)
 
 //子类型
-let SubType = constructorInherit({
+let SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -21,7 +20,7 @@ let SubType = constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {

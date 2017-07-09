@@ -1,23 +1,29 @@
-function Use() {
+let tools = require('./tools');
+
+
+//应用方法集合
+function Applications() {
 }
-Use.prototype.setCookie = function (json) {
-    var opts = json || {};
-    var name = opts.name;
-    var value = opts.value;
-    var expires = opts.expires || '0';
-    var myDate = new Date();
-    var myTime = myDate.getTime();
+//设置cookie
+Applications.prototype.setCookie = function (json) {
+    let opts = json || {};
+    let name = opts.name;
+    let value = opts.value;
+    let expires = opts.expires || '0';
+    let myDate = new Date();
+    let myTime = myDate.getTime();
     myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000);
     document.cookie = name + '=' + value + '; expires=' + myDate;
 };
-Use.prototype.getCookie = function (json) {
-    var opts = json || {};
-    var name = opts.name;
-    var cookie = document.cookie;
-    var arr = cookie.split('; ');
-    var value = '';
+//获取cookie
+Applications.prototype.getCookie = function (json) {
+    let opts = json || {};
+    let name = opts.name;
+    let cookie = document.cookie;
+    let arr = cookie.split('; ');
+    let value = '';
     arr.forEach(function (v) {
-        var arr2 = v.split('=');
+        let arr2 = v.split('=');
         if (arr2[0] === name) {
             value = arr2[1];
             return false;
@@ -25,58 +31,61 @@ Use.prototype.getCookie = function (json) {
     });
     return value;
 };
-Use.prototype.removeCookie = function (json) {
-    var opts = json || {};
-    var name = opts.name;
+//清除cookie
+Applications.prototype.removeCookie = function (json) {
+    let opts = json || {};
+    let name = opts.name;
     this.setCookie(name, '', -1);
 };
-Use.prototype.createElement = function (json) {
-    var opts = json || {};
+//创建元素节点
+Applications.prototype.createElement = function (json) {
+    let opts = json || {};
     opts.elementName = opts.elementName || 'div';//标签名称
     opts.style = opts.style || ``;//style样式
     opts.custom = opts.custom || {};//自定义属性
     opts.attribute = opts.attribute || {};//普通属性,checked,selected
-    var elementNode = document.createElement(opts.elementName);//元素节点
+    let elementNode = document.createElement(opts.elementName);//元素节点
     if (opts.style) {
         elementNode.setAttribute('style', opts.style);
     }
-    for (var attr1 in opts.custom) {
+    for (let attr1 in opts.custom) {
         if (opts.custom.hasOwnProperty(attr1)) {
             elementNode.setAttribute('data-' + attr1, opts.custom[attr1]);
         }
     }
-    for (var attr0 in opts.attribute) {
+    for (let attr0 in opts.attribute) {
         if (opts.attribute.hasOwnProperty(attr0)) {
             elementNode[attr0] = opts.attribute[attr0];
         }
     }
     return elementNode;
 };
-Use.prototype.addMinusInput = function (json) {//购物加减商品系列
+//加减操作
+Applications.prototype.addMinusInput = function (json) {//购物加减商品系列
     if (!json) {
         console.log('no find parameter');
         return false;
     }
-    var noActiveClass = json.noActiveClass || 'on';//不能点的时候的class
-    var minNum = json.minNum == undefined ? 1 : json.minNum;//最小数量
-    var add = json.add;//加的按钮
-    var addCallback = json.addCallback;//加的回调
-    var minus = json.minus;//减少的按钮
-    var minusCallback = json.minusCallback;//减少的回调
-    var overMinCallback = json.overMinCallback || function () {
+    let noActiveClass = json.noActiveClass || 'on';//不能点的时候的class
+    let minNum = json.minNum === undefined ? 1 : json.minNum;//最小数量
+    let add = json.add;//加的按钮
+    let addCallback = json.addCallback;//加的回调
+    let minus = json.minus;//减少的按钮
+    let minusCallback = json.minusCallback;//减少的回调
+    let overMinCallback = json.overMinCallback || function () {
         };//减少到最小值之后继续减少
-    var input = json.input;//输入框的按钮
-    var blurCallback = json.blurCallback;//失去焦点的回调
-    var inventoryNum = parseInt(json.inventoryNum);//商品库存
-    var space = function () {
-        if (input["value"].trim() == '') {
+    let input = json.input;//输入框的按钮
+    let blurCallback = json.blurCallback;//失去焦点的回调
+    let inventoryNum = parseInt(json.inventoryNum);//商品库存
+    let space = function () {
+        if (input["value"].trim() === '') {
             input["value"] = minNum;
         }
     };
     //增加
     add.onclick = function () {
         space();
-        var num = parseInt(input.value);
+        let num = parseInt(input.value);
         num++;
         input["value"] = num;
         if (num >= inventoryNum) {
@@ -93,7 +102,7 @@ Use.prototype.addMinusInput = function (json) {//购物加减商品系列
     //减少
     minus.onclick = function () {
         space();
-        var num = parseInt(input.value);
+        let num = parseInt(input.value);
         num--;
         input["value"] = num;
         if (num < minNum) {
@@ -111,7 +120,7 @@ Use.prototype.addMinusInput = function (json) {//购物加减商品系列
     //失去焦点
     input["onblur"] = function () {
         space();
-        var num = parseInt(input.value);
+        let num = parseInt(input.value);
         if (isNaN(num)) {
             num = minNum;
         }
@@ -128,10 +137,11 @@ Use.prototype.addMinusInput = function (json) {//购物加减商品系列
         blurCallback && blurCallback();
     };
 };
-Use.prototype.getDomArray = function (json) {
-    var opts = json || {};
-    var dom = [];
-    var element = opts.element ? opts.element : false;
+//获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
+Applications.prototype.getDomArray = function (json) {
+    let opts = json || {};
+    let dom = [];
+    let element = opts.element ? opts.element : false;
     if (element) {
         //如果是字符串
         if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() == 'string') {
@@ -151,17 +161,18 @@ Use.prototype.getDomArray = function (json) {
     }
     return dom;
 };
-Use.prototype.getParent = function (json) {
-    var opts = json || {};
-    var element = opts.element;
-    var wrap = opts.wrap;
+//获取指定父级
+Applications.prototype.getParent = function (json) {
+    let opts = json || {};
+    let element = opts.element;
+    let wrap = opts.wrap;
     if (!element) {//第一参数不符合规范
         console.log('参数错误,第一参数需要一个元素节点对象');
         return null;
     }
     if (!wrap) {//没有第二参数默认选取直接父级
         return element.parentNode;
-    } else if (typeof wrap == 'string') {
+    } else if (typeof wrap === 'string') {
         element = element.parentNode;
         switch (wrap.charAt(0)) {
             case '.'://通过class获取父级
@@ -179,11 +190,11 @@ Use.prototype.getParent = function (json) {
                 break;
             case '#'://通过id获取父级
                 while (element) {
-                    if (element == document) {
+                    if (element === document) {
                         console.log('no find id');
                         return null;
                     }
-                    if (element.id == wrap.substring(1)) {
+                    if (element.id === wrap.substring(1)) {
                         return element;
                     } else {
                         element = element.parentNode;
@@ -192,11 +203,11 @@ Use.prototype.getParent = function (json) {
                 break;
             default://通过标签名获取父级
                 while (element) {
-                    if (element == document) {
+                    if (element === document) {
                         console.log('no find tagName');
                         return null;
                     }
-                    if (element.tagName.toLowerCase() == wrap) {
+                    if (element.tagName.toLowerCase() === wrap) {
                         return element;
                     } else {
                         element = element.parentNode;
@@ -206,14 +217,16 @@ Use.prototype.getParent = function (json) {
         }
     }
 };
-Use.prototype.htmlToDom = function htmlToDom(json) {
-    var opts = json || {};
-    var html = opts.html;
-    var div = document.createElement('div');
+//html转成DOM节点
+Applications.prototype.htmlToDom = function htmlToDom(json) {
+    let opts = json || {};
+    let html = opts.html;
+    let div = document.createElement('div');
     div.innerHTML = html;
     return div.children[0];
 };
-Use.prototype.imgUploadBase64 = function () {
+//图片上传
+Applications.prototype.imgUploadBase64 = function () {
     function Fn(json) {
         this.opts = json || {};
         //如果没有选择文件的input,则不继续往下执行
@@ -252,17 +265,17 @@ Use.prototype.imgUploadBase64 = function () {
         this.eventsInputChange();
     };
     Fn.prototype.eventsInputChange = function () {
-        var self = this;
-        var limitNum = this.opts.limitNum;
+        let self = this;
+        let limitNum = this.opts.limitNum;
         this.opts.input.addEventListener('change', function () {
-            var imagesNum = 0;
+            let imagesNum = 0;
             //图片的相关信息
             self.imgData = [];
-            var files = this.files;
-            var len = files.length;
-            for (var i = 0; i < len; i++) {
-                var f = files[i];
-                var isImages = /image/ig.test(f.type);
+            let files = this.files;
+            let len = files.length;
+            for (let i = 0; i < len; i++) {
+                let f = files[i];
+                let isImages = /image/ig.test(f.type);
                 //不是图片
                 if (!isImages) {
                     continue;
@@ -283,9 +296,9 @@ Use.prototype.imgUploadBase64 = function () {
         });
     };
     Fn.prototype.fileReadAsDataURL = function () {
-        var self = this;
+        let self = this;
         this.imgData.forEach(function (v, i) {
-            var fileRender = new FileReader();
+            let fileRender = new FileReader();
             fileRender.readAsDataURL(v);
             fileRender.addEventListener('load', function () {
                 self.opts.base64Callback({base64: this.result, index: i});
@@ -293,13 +306,13 @@ Use.prototype.imgUploadBase64 = function () {
         });
     };
     return Fn;
-}();
+};
 //是不是PC
-Use.prototype.isPc = function () {
-    var userAgentInfo = navigator.userAgent;
-    var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
-    var flag = true;
-    for (var v = 0; v < Agents.length; v++) {
+Applications.prototype.isPc = function () {
+    let userAgentInfo = navigator.userAgent;
+    let Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+    let flag = true;
+    for (let v = 0; v < Agents.length; v++) {
         if (userAgentInfo.indexOf(Agents[v]) > 0) {
             flag = false;
             break;
@@ -308,35 +321,179 @@ Use.prototype.isPc = function () {
     return flag;
 };
 //是不是微信
-Use.prototype.isWeiXin = function () {
+Applications.prototype.isWeiXin = function () {
     return navigator.userAgent.toLowerCase().match(/MicroMessenger/ig);
 };
 //是不是android
-Use.prototype.isAndroid = function () {
+Applications.prototype.isAndroid = function () {
     return window.navigator.appVersion.match(/android/ig);
 };
-
 //是不是iphone
-Use.prototype.isIphone = function () {
+Applications.prototype.isIphone = function () {
     return window.navigator.appVersion.match(/iphone/ig);
 };
-Use.prototype.fn = function () {
+//获取元素距离文档的left和top
+Applications.prototype.offset = function (json) {
+    let getDomArray = this.getDomArray;
+    let opts = tools.extend({
+        defaults: {
+            element: null
+        },
+        inherits: json
+    });
+    let top = 0;
+    let left = 0;
+    let element = getDomArray({element: opts.element})[0];
+    while (element) {
+        top += element.offsetTop;
+        left += element.offsetLeft;
+        element = element.offsetParent;
+    }
+    return {
+        top: top,
+        left: left
+    };
+};
+//滚动到指定位置
+Applications.prototype.scrollTo = function (json) {
+    let opts = json || {};
+    let to = opts.to || '0';
+    let scale = 6;
+    let scrollT = document.documentElement.scrollTop || document.body.scrollTop;
+    let speed = 0;
+    let timer = null;
+    let fn = function () {
+        speed = Math.ceil((scrollT - to) / scale);
+        scrollT -= speed;
+        window.scrollTo(0, scrollT);
+        timer = requestAnimationFrame(fn);
+        if (scrollT <= to * 1) {
+            cancelAnimationFrame(timer);
+        }
+    };
+    requestAnimationFrame(fn);
+};
+//全选,不选,反选
+Applications.prototype.select = function () {
+    let getDomArray = this.getDomArray;//获取原生的dom节点并转换成数组
+
+    function Select(json) {
+        this.opts = tools.extend({
+            defaults: {
+                items: null,//所有的被选项
+                callback: {
+                    click: function () {
+                    }
+                }
+            },
+            inherits: json
+        });
+        this.itemsDom = getDomArray({element: this.opts.items});
+        this.init();
+    }
+
+    //初始化
+    Select.prototype.init = function () {
+        this.power();
+    };
+
+    //不选
+    Select.prototype.selectNothing = function () {
+        this.itemsDom.forEach(function (v) {
+            v.checked = false;
+        });
+    };
+
+    //全选
+    Select.prototype.selectAll = function () {
+        this.itemsDom.forEach(function (v) {
+            v.checked = true;
+        });
+    };
+
+    //反选
+    Select.prototype.selectReverse = function () {
+        this.itemsDom.forEach(function (v) {
+            v.checked = !v.checked;
+        });
+    };
+
+    //当某一项被选中时,是否全部选项都被选中了
+    Select.prototype.power = function () {
+        let self = this;
+        this.itemsDom.forEach(function (v1) {
+            v1.addEventListener('click', function () {
+                let isCheckedAll = true;//是否全部的选项都被选中了(假设全部选中)
+                self.itemsDom.forEach(function (v2) {
+                    if (v2.checked === false) {
+                        isCheckedAll = false;
+                    }
+                });
+                self.opts.callback.click({element: this, isCheckedAll: isCheckedAll});
+            });
+        });
+    };
+
+    return Select
 
 };
-Use.prototype.fn = function () {
+//当滚动到了浏览器的底部
+Applications.prototype.whenScrollBottom = function () {
+    function WhenScrollBottom(json) {
+        this.opts = tools.extend({
+            defaults: {
+                callback: {
+                    success: function () {
+                    },
+                    failure: function () {
+                    }
+                },
+                interval: 80,//函数节流时间(延迟时间)
+                errorHeight: 0//滚动到底部上面一定高度就算是滚动到底部了(误差高度)
+            },
+            inherits: json
+        });
+        this.isLoadOver = false;//数据是否加载完毕
+        this.init();
+    }
 
-};
-Use.prototype.fn = function () {
+    WhenScrollBottom.prototype.init = function () {
+        this.render();
+        this.power();
+    };
 
-};
-Use.prototype.fn = function () {
+    WhenScrollBottom.prototype.render = function () {
+        let callback = this.opts.callback;
+        let allH = document.body.scrollHeight;
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        let clientHeight = document.documentElement.clientHeight;
+        if (scrollTop + clientHeight >= allH - this.opts.errorHeight && !this.isLoadOver) {
+            this.isLoadOver = true;
+            callback.success(this);
+            /*
+             * 条件:当你拿到请求的数据之后
+             * 可能性:1.如果你的数据加载完毕了,你需要手动把isLoadOver开关变成true
+             * 可能性:2.如果你的数据尚未加载完毕,你需要手动把isLoadOver开关变成false
+             * */
+        } else {
+            callback.failure();
+        }
+    };
 
-};
-Use.prototype.fn = function () {
-
+    WhenScrollBottom.prototype.power = function () {
+        let self = this;
+        let timer = null;
+        window.addEventListener('scroll', function () {
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                self.render();
+            }, self.opts.interval);
+        });
+    };
+    return WhenScrollBottom;
 };
 //是否禁止浏览器滚动
-Use.prototype.whetherDisableScroll = function () {
+Applications.prototype.whetherDisableScroll = function () {
     return {
         //阻止冒泡
         stopPropagation: function (ev) {
@@ -363,4 +520,5 @@ Use.prototype.whetherDisableScroll = function () {
         }
     }
 };
-module.exports = new Use();
+
+module.exports = new Applications();

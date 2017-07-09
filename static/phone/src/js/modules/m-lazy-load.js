@@ -1,10 +1,9 @@
-var extend=require('../tools/extend');//对象的扩展方法
-var offset = require('../function/offset');//获取元素距离文档的left和top
-var getDomArray = require('../function/get-dom-array');//获取原生的dom节点并转换成数组
+let tools = require('../base/tools');//工具方法集合
+let applications = require('../base/applications');//应用方法集合
 
 //延迟加载
 function LazyLoad(json) {
-    this.opts = extend({
+    this.opts = tools.extend({
         defaults: {
             element: '.m-lazy-load',//哪些元素进行懒加载
             srcAttr: 'data-src',//默认获取哪里的属性值当做src
@@ -27,7 +26,7 @@ LazyLoad.prototype.render = function () {
     var minTop = scrollTop - moreHeight;
     var maxTop = this.clientHeight + minTop + moreHeight;
     var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
-    var aDom = getDomArray({element: this.opts.element});
+    var aDom = applications.getDomArray({element: this.opts.element});
     aDom.forEach(function (v) {
         if (v.tagName.toLowerCase() == 'img') {
             if (!v.getAttribute('src')) {
@@ -40,7 +39,7 @@ LazyLoad.prototype.render = function () {
     aDom.forEach(function (v) {
         //排除那些被none掉的元素(被none掉的元素,通过offsetWidth和offsetHeight获取到的值是0)
         if (v.offsetWidth) {
-            var elementTop = offset({element: v}).top;
+            var elementTop = applications.offset({element: v}).top;
             var elementBottom = elementTop + v.offsetHeight;
             //出现在可视区才进行处理
             if (elementBottom >= minTop && elementTop <= maxTop) {

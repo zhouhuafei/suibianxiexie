@@ -1,6 +1,6 @@
 webpackJsonp([9],{
 
-/***/ 48:
+/***/ 44:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8,25 +8,25 @@ webpackJsonp([9],{
 
 window.addEventListener('load', function () {
     setTimeout(function () {
-        __webpack_require__(49);
-        var header = __webpack_require__(2); //每个页面都要用到的js(一定要放到最顶部)
+        __webpack_require__(45);
+        var header = __webpack_require__(3); //每个页面都要用到的js(一定要放到最顶部)
 
         //注释待续...
         (function () {
             //功能待续...
         })();
 
-        var footer = __webpack_require__(3); //每个页面都要用到的js(一定要放到最底部)
+        var footer = __webpack_require__(4); //每个页面都要用到的js(一定要放到最底部)
     }, 0);
 });
 
 /***/ }),
 
-/***/ 49:
+/***/ 45:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
 
-},[48]);
+},[44]);

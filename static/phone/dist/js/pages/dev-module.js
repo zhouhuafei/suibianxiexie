@@ -10,12 +10,12 @@ webpackJsonp([1,0],[
 "use strict";
 
 
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -34,7 +34,7 @@ var SubType = constructorInherit({
             btn: {
                 icon: 'icon-shouye',
                 txt: '回首页',
-                link: '/phone/'
+                link: '/'
             }
         }
     }
@@ -47,7 +47,7 @@ SubType.prototype.moduleDomCreate = function () {
     if (this.opts.config.btn.isShowIcon) {
         btnIconHtml = '<div class="g-button-icon iconfont ' + data.btn.icon + '"></div>';
     }
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -71,13 +71,13 @@ module.exports = SubType;
 "use strict";
 
 
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 var TouchSlide = __webpack_require__(7); //轮播图插件
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -125,7 +125,7 @@ var SubType = constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -648,12 +648,12 @@ module.exports = TouchSlide;
 "use strict";
 
 
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -705,7 +705,7 @@ SubType.prototype.moduleDomCreate = function () {
         }
         html += '\n            <a href="' + v.link + '" class="m-navigation-wrap">\n                <div class="m-navigation-icon iconfont ' + v.icon + '"></div>\n                <div class="m-navigation-txt">' + v.txt + '</div>\n                ' + markHtml + '\n            </a>\n        ';
     });
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -729,12 +729,12 @@ module.exports = SubType;
 "use strict";
 
 
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -763,7 +763,7 @@ SubType.prototype.moduleDomCreate = function () {
     if (this.opts.config.isTransparent) {
         isTransparent = 'm-mask-transparent';
     }
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -791,13 +791,13 @@ module.exports = SubType;
 "use strict";
 
 
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 var Mask = __webpack_require__(9); //遮罩
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -883,7 +883,7 @@ SubType.prototype.moduleDomCreate = function () {
     var positionLocation = 'm-dialog-' + config.positionLocation; //弹窗的定位位置
     //弹窗结构
     var html = '\n        ' + this.renderAlert() + '\n        ' + this.renderConfirm() + '\n    ';
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -997,33 +997,17 @@ module.exports = SubType;
 "use strict";
 
 
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
-//var Mask = require('../modules/m-mask');//遮罩
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
         //回调
-        callback: {
-            moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                // if (self.opts.config.isShowMask) {
-                //     new Mask({
-                //         wrap: self.moduleDom.querySelector('.m-loading-wrap'),
-                //         config: {
-                //             moduleDomIsShow: true,
-                //             moduleDomRenderMethod: {method: 'insertBefore'}
-                //         }
-                //     });
-                // }
-                if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
-                    self.wrapDom.style.position = 'relative';
-                }
-            }
-        },
+        callback: {},
         //配置
         config: {
             //isShowMask: false,  //是否显示遮罩(默认不显示)
@@ -1072,7 +1056,7 @@ SubType.prototype.moduleDomCreate = function () {
         moduleDomHtml = '\n            <div class="m-loading-wrap">\n                <div class="m-loading-over-icon iconfont icon-meiyoushuju"></div>\n                <div class="m-loading-over-txt">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ';
     }
     //模块创建
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -1100,9 +1084,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var extend = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/extend\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //对象的扩展方法
-var createElement = __webpack_require__(0); //创建元素节点
-var getDomArray = __webpack_require__(4); //获取原生的dom节点并转换成数组
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
 
 //底层构造函数
 
@@ -1110,8 +1093,9 @@ var SuperType = function () {
     function SuperType(json) {
         _classCallCheck(this, SuperType);
 
-        //函数外部传来的参数(这个属性在其他模块的内部需要被重写)
-        this.opts = extend({
+        //函数外部传来的参数
+        // (这个属性在其他模块的内部需要被重写)
+        this.opts = tools.extend({
             //内部默认参数
             defaults: {
                 //父级
@@ -1240,7 +1224,7 @@ var SuperType = function () {
     }, {
         key: 'moduleDomCreate',
         value: function moduleDomCreate() {
-            this.moduleDom = createElement({
+            this.moduleDom = applications.createElement({
                 style: this.opts.config.moduleDomStyle,
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
@@ -1261,7 +1245,7 @@ var SuperType = function () {
                 callback.moduleDomRenderBefore(this);
                 var renderMethod = config.moduleDomRenderMethod;
                 if (renderMethod.method == 'insertBefore') {
-                    var dom = getDomArray({ element: renderMethod.child })[0];
+                    var dom = applications.getDomArray({ element: renderMethod.child })[0];
                     if (dom) {
                         this.wrapDom.insertBefore(this.moduleDom, dom);
                     } else {
@@ -1339,7 +1323,7 @@ var SuperType = function () {
         value: function wrapDomGet() {
             var callback = this.opts.callback;
             callback.wrapDomGetBefore(this);
-            this.wrapDom = getDomArray({ element: this.opts.wrap })[0];
+            this.wrapDom = applications.getDomArray({ element: this.opts.wrap })[0];
             callback.wrapDomGetAfter(this);
         }
 
@@ -1391,9 +1375,7 @@ module.exports = SuperType;
 /* 27 */,
 /* 28 */,
 /* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1401,12 +1383,13 @@ module.exports = SuperType;
 
 window.addEventListener('load', function () {
     setTimeout(function () {
-        __webpack_require__(33);
-        var header = __webpack_require__(2); //每个页面都要用到的js(一定要放到最顶部)
+        __webpack_require__(31);
+        var header = __webpack_require__(3); //每个页面都要用到的js(一定要放到最顶部)
+        var applications = header.applications;
 
         //ajax测试
         (function () {
-            var Ajax = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/ajax\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+            //var Ajax = require('../tools/ajax');
             // new Ajax({
             //     callback: {},
             //     config: {
@@ -1420,7 +1403,7 @@ window.addEventListener('load', function () {
 
         //base函数测试
         (function () {
-            var WhenScrollBottom = __webpack_require__(34);
+            var WhenScrollBottom = applications.whenScrollBottom();
             //测试滚动到底部loading
             new WhenScrollBottom({
                 callback: {
@@ -1514,7 +1497,7 @@ window.addEventListener('load', function () {
 
         //分页测试
         (function () {
-            var Pagination = __webpack_require__(35);
+            var Pagination = __webpack_require__(32);
             new Pagination({ wrap: '.page-pagination' });
         })();
 
@@ -1543,19 +1526,19 @@ window.addEventListener('load', function () {
 
         //超类型模块测试
         (function () {
-            var SuperType = __webpack_require__(1);
+            var SuperType = __webpack_require__(2);
             new SuperType({ wrap: '.page-super-type' });
-            var SubType = __webpack_require__(36);
+            var SubType = __webpack_require__(33);
             new SubType({ wrap: '.page-super-type' });
             var SuperTypeEs6 = __webpack_require__(12);
             new SuperTypeEs6({ wrap: '.page-super-type' }).init(); //es6继承,不建立在超类型内部直接调init方法
-            var SubTypeEs6 = __webpack_require__(37);
+            var SubTypeEs6 = __webpack_require__(34);
             new SubTypeEs6({ wrap: '.page-super-type' });
         })();
 
         //返回顶部
         (function () {
-            var GoTop = __webpack_require__(38);
+            var GoTop = __webpack_require__(35);
             new GoTop();
         })();
 
@@ -1574,7 +1557,7 @@ window.addEventListener('load', function () {
 
         //单选开关
         (function () {
-            var Radio = __webpack_require__(40);
+            var Radio = __webpack_require__(36);
             new Radio({
                 wrap: '.page-radio-switch',
                 callback: {
@@ -1587,7 +1570,7 @@ window.addEventListener('load', function () {
 
         //表格
         (function () {
-            var Table = __webpack_require__(41);
+            var Table = __webpack_require__(37);
             var table = new Table({
                 wrap: '.page-table',
                 data: {
@@ -1624,7 +1607,7 @@ window.addEventListener('load', function () {
 
         //星评
         (function () {
-            var Star = __webpack_require__(42);
+            var Star = __webpack_require__(38);
             var star = new Star({
                 wrap: '.page-star',
                 callback: {
@@ -1635,88 +1618,26 @@ window.addEventListener('load', function () {
             });
         })();
 
-        var footer = __webpack_require__(3); //每个页面都要用到的js(一定要放到最底部)
+        var footer = __webpack_require__(4); //每个页面都要用到的js(一定要放到最底部)
     }, 0);
 });
 
 /***/ }),
-/* 33 */
+/* 31 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 34 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var extend = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/extend\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //对象的扩展方法
-
-//当滚动到了浏览器的底部
-function WhenScrollBottom(json) {
-    this.opts = extend({
-        defaults: {
-            callback: {
-                success: function success() {},
-                failure: function failure() {}
-            },
-            interval: 80, //函数节流时间(延迟时间)
-            errorHeight: 0 //滚动到底部上面一定高度就算是滚动到底部了(误差高度)
-        },
-        inherits: json
-    });
-    this.isLoadOver = false; //数据是否加载完毕
-    this.init();
-}
-
-WhenScrollBottom.prototype.init = function () {
-    this.render();
-    this.power();
-};
-
-WhenScrollBottom.prototype.render = function () {
-    var callback = this.opts.callback;
-    var allH = document.body.scrollHeight;
-    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    var clientHeight = document.documentElement.clientHeight;
-    if (scrollTop + clientHeight >= allH - this.opts.errorHeight && !this.isLoadOver) {
-        this.isLoadOver = true;
-        callback.success(this);
-        /*
-         * 条件:当你拿到请求的数据之后
-         * 可能性:1.如果你的数据加载完毕了,你需要手动把isLoadOver开关变成true
-         * 可能性:2.如果你的数据尚未加载完毕,你需要手动把isLoadOver开关变成false
-         * */
-    } else {
-        callback.failure();
-    }
-};
-
-WhenScrollBottom.prototype.power = function () {
-    var self = this;
-    var timer = null;
-    window.addEventListener('scroll', function () {
-        clearTimeout(timer);
-        timer = setTimeout(function () {
-            self.render();
-        }, self.opts.interval);
-    });
-};
-
-module.exports = WhenScrollBottom;
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 
 //默认数据
 var defaultData = {
@@ -1728,7 +1649,7 @@ var defaultData = {
 defaultData.allPage = Math.ceil(defaultData.allCount / defaultData.nowCount);
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -1750,7 +1671,7 @@ var SubType = constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -1878,18 +1799,18 @@ SubType.prototype.nextPageEnable = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 36 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -1904,7 +1825,7 @@ var SubType = constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -1922,7 +1843,7 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 37 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1936,8 +1857,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var extend = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/extend\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //对象的扩展方法
-var createElement = __webpack_require__(0); //创建元素节点
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
 var SuperType = __webpack_require__(12); //超类型(子类型继承的对象)
 
 //子类型
@@ -1967,7 +1888,7 @@ var SubType = function (_SuperType) {
          * */
 
 
-        _this.opts = extend({
+        _this.opts = tools.extend({
             defaults: _this.opts,
             //inherits里放默认参数(继承超类型)
             inherits: {
@@ -1980,7 +1901,7 @@ var SubType = function (_SuperType) {
             }
         });
         //接收外部的参数
-        _this.opts = extend({
+        _this.opts = tools.extend({
             defaults: _this.opts,
             inherits: json
         });
@@ -1994,7 +1915,7 @@ var SubType = function (_SuperType) {
     _createClass(SubType, [{
         key: 'moduleDomCreate',
         value: function moduleDomCreate() {
-            this.moduleDom = createElement({
+            this.moduleDom = applications.createElement({
                 style: this.opts.config.moduleDomStyle,
                 custom: this.opts.config.moduleDomCustomAttr,
                 attribute: {
@@ -2019,19 +1940,18 @@ var SubType = function (_SuperType) {
 module.exports = SubType;
 
 /***/ }),
-/* 38 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
-var scrollTo = __webpack_require__(39); //滚动到指定位置
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -2048,7 +1968,7 @@ var SubType = constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -2062,7 +1982,7 @@ SubType.prototype.moduleDomCreate = function () {
 SubType.prototype.power = function () {
     var self = this;
     this.moduleDom.addEventListener('click', function () {
-        scrollTo({ to: '0' });
+        applications.scrollTo({ to: '0' });
     });
     window.addEventListener('scroll', function () {
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -2077,47 +1997,18 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 39 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-//滚动到指定位置
-function scrollTo(json) {
-    var opts = json || {};
-    var to = opts.to || '0';
-    var scale = 6;
-    var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
-    var speed = 0;
-    var timer = null;
-    var fn = function fn() {
-        speed = Math.ceil((scrollT - to) / scale);
-        scrollT -= speed;
-        window.scrollTo(0, scrollT);
-        timer = requestAnimationFrame(fn);
-        if (scrollT <= to * 1) {
-            cancelAnimationFrame(timer);
-        }
-    };
-    requestAnimationFrame(fn);
-}
-
-module.exports = scrollTo;
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -2147,7 +2038,7 @@ SubType.prototype.moduleDomCreate = function () {
     if (config.status == 'on') {
         isOn = this.moduleDomActiveClass;
     }
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: config.moduleStyle,
         custom: config.moduleDomCustomAttr,
         attribute: {
@@ -2201,18 +2092,18 @@ SubType.prototype.off = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 41 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -2231,7 +2122,7 @@ var SubType = constructorInherit({
 
 //内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -2273,18 +2164,18 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 42 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createElement = __webpack_require__(0); //创建元素节点
-var constructorInherit = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../tools/constructor-inherit\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //构造函数的继承(拷贝继承)
-var SuperType = __webpack_require__(1); //超类型(子类型继承的对象)
+var tools = __webpack_require__(0); //工具方法集合
+var applications = __webpack_require__(1); //应用方法集合
+var SuperType = __webpack_require__(2); //超类型(子类型继承的对象)
 
 //子类型
-var SubType = constructorInherit({
+var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
@@ -2313,7 +2204,7 @@ SubType.prototype.moduleDomCreate = function () {
         }
         html += '<div data-index="' + i + '" class="iconfont icon-xingping m-star-items ' + className + '"></div>';
     }
-    this.moduleDom = createElement({
+    this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         custom: this.opts.config.moduleDomCustomAttr,
         attribute: {
@@ -2348,4 +2239,4 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ })
-],[32]);
+],[30]);
