@@ -13,13 +13,13 @@ app.use(express.static('static', {maxAge: ms('1y')}));//一年缓存
 //模版引擎(handlebars)
 const handlebars = require('express-handlebars');
 app.engine('hbs', handlebars({
-    partialsDir: `${__dirname}/static/`,//设置页面布局模块文件的路径
-    layoutsDir: `${__dirname}/static/`,//设置页面布局模版文件的路径(本项目没有使用到页面布局模板文件)
+    partialsDir: `${__dirname}/views/`,//设置页面布局模块文件的路径
+    layoutsDir: `${__dirname}/views/`,//设置页面布局模版文件的路径(本项目没有使用到页面布局模板文件)
     defaultLayout: '',//设置页面的布局模版文件(本项目没有使用到页面布局模板文件)
     extname: '.hbs'
 }));
 app.set('view engine', 'hbs');
-app.set('views', `${__dirname}/static/`);
+app.set('views', `${__dirname}/views/`);
 
 //pc的路由待续...
 //phone的路由

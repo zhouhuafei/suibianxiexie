@@ -20,7 +20,7 @@ class ConfigPath {
         this.imagesEntryPath = `${this.devPath}images/`;//images的开发目录
         this.jsEntryPath = `${this.devPath}js/`;//js的开发目录
         this.viewEntryPath = `${this.devPath}views/`;//视图的开发目录
-        this.viewOutputPath = `${this.buildPath}views/`;//视图的生产目录
+        this.viewOutputPath = `${__dirname}/views/${this.projectDir}/`;//视图的生产目录
     }
 }
 const configPath = new ConfigPath();//配置路径
