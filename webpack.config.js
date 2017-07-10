@@ -111,7 +111,7 @@ allJs.forEach(function (v) {
 //出口----配置
 let output = {
     path: `${configPath.buildPath}`,
-    publicPath: `/${configPath.projectDir}/dist/`,
+    publicPath: `/dist/${configPath.projectDir}/`,
     filename: `js/pages/[name].${productionConfig.chunkhash}js`,
     chunkFilename: `js/chunk/[name].[id].chunk.${productionConfig.chunkhash}js`
 };
