@@ -1,0 +1,11 @@
+//基础样式
+@import "../base/config";
+//没有数据
+@import "../modules/m-no-data";
+
+//页面样式
+.g-body {
+    .page-404 {
+        padding-top: px2rem(80);
+    }
+}

@@ -1,0 +1,35 @@
+@import "../base/config";
+
+.m-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    background: #ffffff;
+    .m-navigation-wrap {
+        $width-height: 64;
+        width: px2rem($width-height);
+        height: px2rem($width-height);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        box-sizing: border-box;
+        position: relative;
+        .m-navigation-icon {
+            font-size: px2rem(24);
+            color: $g-color-light;
+        }
+        .m-navigation-txt {
+            font-size: px2rem(12);
+        }
+        .m-navigation-mark {
+            $width-height: 6;
+            width: px2rem($width-height);
+            height: px2rem($width-height);
+            border-radius: 50%;
+            background: $g-color-light;
+            position: absolute;
+            right: px2rem(4);
+            top: px2rem(4);
+        }
+    }
+}

@@ -1,0 +1,84 @@
+//==================================================================变量的配置开始>
+//字体
+$g-color-font-default: #333333; //颜色-默认
+$g-color-font-dark: #bfbfbf; //颜色-灰暗
+$g-color-font-disable: #dddddd; //颜色-禁用
+
+//背景
+$g-color-background-floor: #f2f2f2; //底色
+$g-color-background-default: #f2f2f2; //颜色-默认
+$g-color-background-dark: #bbbbbb; //颜色-灰暗
+$g-color-background-disable: #f8f8f8; //颜色-禁用
+
+//边框
+$g-color-border-default: #e6e7ed; //颜色-默认
+$g-color-border-dark: #e6e7ed; //颜色-灰暗
+$g-color-border-disable: #dddddd; //颜色-禁用
+
+//语义
+$g-color-light: #0089ff; //颜色-明亮
+$g-color-success: #78c430; //颜色-成功
+$g-color-failure: #ff0000; //颜色-失败
+$g-color-warn: #ff5500; //颜色-警告
+$g-color-hint: #f14344; //颜色-提示
+
+//仿饿了么
+$g-bg-info: #20a0ff; //背景-消息
+$g-bg-success: #13ce66; //背景-成功
+$g-bg-warning: #f7ba2a; //背景-警告
+$g-bg-danger: #ff4949; //背景-危险
+//==================================================================变量的配置结束>
+
+//px转rem
+@function px2rem($px,$psd:320) {
+    @return $px / $psd * 10rem;
+}
+
+//px转px
+@function px2px($px) {
+    @return $px * 1px;
+}
+
+//清除浮动
+@mixin clear-fix() {
+    &:after {
+        content: '';
+        clear: both;
+        display: block;
+        height: 0;
+        overflow: hidden;
+    }
+}
+
+//垂直水平居中(伪类)
+@mixin center-xy-sham() {
+    font-size: 0;
+    text-align: center;
+    &:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+}
+
+//垂直水平居中(flex)
+@mixin center-xy-flex() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-break: break-all;
+}
+
+//省略号
+@mixin ellipsis($lineClamp:1, $lineHeight:px2rem(18)) {
+    display: block;
+    line-height: $lineHeight;
+    height: $lineHeight * $lineClamp;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $lineClamp;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal;
+}

@@ -13,10 +13,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');//html生成的插件
 const CleanWebpackPlugin = require('clean-webpack-plugin');//清空目录
 class ConfigPath {
     constructor() {
-        this.projectDir = projectDir;//项目目录
-        this.projectPath = `${__dirname}/static/${this.projectDir}/`;//项目的路径
-        this.devPath = `${this.projectPath}src/`;//开发的目录
-        this.buildPath = `${this.projectPath}dist/`;//生产的目录
+        this.projectDir = projectDir;//项目名称
+        this.staticPath = `${__dirname}/static/`;//静态文件的目录
+        this.devPath = `${this.staticPath}src/${this.projectDir}/`;//开发的目录
+        this.buildPath = `${this.staticPath}dist/${this.projectDir}/`;//生产的目录
         this.imagesEntryPath = `${this.devPath}images/`;//images的开发目录
         this.jsEntryPath = `${this.devPath}js/`;//js的开发目录
         this.viewEntryPath = `${this.devPath}views/`;//视图的开发目录
@@ -51,9 +51,13 @@ if (isProduction) {
 }
 //插件----集合
 let plugins = [
-    //插件----清空dist目录下对应的项目目录文件
-    new CleanWebpackPlugin(['dist'], {root: configPath.projectPath, verbose: true, dry: false}),
-    //插件----清空views目录下对应的项目目录文件
+    //插件----清空dist目录下对应的项目文件
+    new CleanWebpackPlugin([configPath.projectDir], {
+        root: `${configPath.staticPath}/dist/`,
+        verbose: true,
+        dry: false
+    }),
+    //插件----清空views目录下对应的项目文件
     new CleanWebpackPlugin([configPath.projectDir], {root: `${__dirname}/views/`, verbose: true, dry: false}),
     //插件----自动加载模块
     new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", "window.jQuery": "jquery"}),
