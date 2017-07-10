@@ -4,8 +4,8 @@
     "description": "suibianxiexie",
     "main": "app.js",
     "scripts": {
-        "test": "nodemon app.js --ignore static",
-        "start": "pm2 start app.js --watch --ignore-watch static",
+        "test": "nodemon app.js --ignore static views",
+        "start": "pm2 start app.js --watch --ignore-watch static views",
         "stop": "pm2 stop all",
         "webpack": "webpack --colors --profile --progress --display-modules",
         "phoneDev": "cross-env NODE_ENV=development-phone npm run webpack",
