@@ -1,7 +1,7 @@
 //路径
 let path = {
     route: '/',
-    view: 'phone/dist/views/pages/'
+    view: 'phone/pages/'
 };
 //路由的名字
 let routeName = [

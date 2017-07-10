@@ -24,17 +24,17 @@ const file = {
         content: `<!DOCTYPE html>
 <html lang="en">
     <head>
-        {{>phone/dist/views/partials/head}}
+        {{>${fileName}/partials/head}}
     </head>
     <body>
         <div class="g-wrap">
-            {{>phone/dist/views/partials/header}}
+            {{>${fileName}/partials/header}}
             <!--page start-->
             <div class="g-body">
                 <!--结构待续...-->
             </div>
             <!--page end-->
-            {{>phone/dist/views/partials/footer}}
+            {{>${fileName}/partials/footer}}
         </div>
     </body>
 </html>`,

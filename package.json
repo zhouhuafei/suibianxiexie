@@ -4,8 +4,8 @@
     "description": "suibianxiexie",
     "main": "app.js",
     "scripts": {
-        "test": "nodemon app.js --ignore static",
-        "start": "pm2 start app.js --watch --ignore-watch static",
+        "test": "nodemon app.js --ignore static views",
+        "start": "pm2 start app.js --watch --ignore-watch static views",
         "stop": "pm2 stop all",
         "webpack": "webpack --colors --profile --progress --display-modules",
         "phoneDev": "cross-env NODE_ENV=development-phone npm run webpack",
@@ -54,15 +54,11 @@
         "file-loader": "^0.11.2",
         "html-loader": "^0.4.5",
         "html-webpack-plugin": "^2.29.0",
-        "json-loader": "^0.5.4",
         "node-sass": "^3.13.1",
         "postcss-loader": "^2.0.6",
-        "raw-loader": "^0.5.1",
         "sass-loader": "^6.0.6",
         "style-loader": "^0.18.2",
         "url-loader": "^0.5.9",
-        "vue-loader": "^12.2.1",
-        "vue-template-compiler": "^2.3.4",
         "webpack": "^3.0.0"
     }
 }
