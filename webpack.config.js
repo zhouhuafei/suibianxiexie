@@ -153,12 +153,7 @@ let webpackConfig = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['es2015']
-                    }
-                }
+                use: ['babel-loader']
             },
             //loader----处理图片
             {
