@@ -1,10 +1,9 @@
 @import "../base/config";
 
-.m-validate-form-fail {
-    $g-color-fail:rgba(255,0,0,0.8);
+.m-validate-form-hint {
     $height: 20;
     color: #ffffff;
-    background: $g-color-fail;
+    background: $g-color-warn;
     height: px2rem($height);
     @include center-xy-flex;
     font-size: px2rem(12);
@@ -21,7 +20,7 @@
         width: 0;
         height: 0;
         border: px2rem(6) solid transparent;
-        border-top-color: $g-color-fail;
+        border-top-color: $g-color-warn;
         right: px2rem(10);
         top: px2rem($height);
     }

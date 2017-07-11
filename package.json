@@ -1,35 +1,6 @@
 {
     "name": "suibianxiexie",
     "version": "1.0.0",
-<<<<<<< HEAD
-    "description": "waiting",
-    "main": "app.js",
-    "dependencies": {
-        "express": "^4.14.0",
-        "express-handlebars": "^3.0.0",
-        "lodash": "^4.17.4",
-        "mysql2": "^1.1.2"
-    },
-    "devDependencies": {
-        "babel-preset-es2015": "^6.18.0",
-        "del": "^2.2.2",
-        "gulp": "^3.9.1",
-        "gulp-autoprefixer": "^3.1.1",
-        "gulp-babel": "^6.1.2",
-        "gulp-base64": "^0.1.3",
-        "gulp-browserify": "^0.5.1",
-        "gulp-htmlmin": "^3.0.0",
-        "gulp-imagemin": "^3.1.1",
-        "gulp-inline-source": "^3.1.0",
-        "gulp-minify-css": "^1.2.4",
-        "gulp-sass": "^2.3.2",
-        "gulp-uglify": "^2.0.0",
-        "node-sass": "^3.13.1"
-    },
-    "scripts": {
-        "test": "",
-        "start": ""
-=======
     "description": "suibianxiexie",
     "main": "app.js",
     "scripts": {
@@ -44,7 +15,6 @@
         "adminDev": "set myConfig=development-admin && gulp && npm run webpack",
         "adminBuild": "set myConfig=production-admin && gulp && npm run webpack",
         "server": "browser-sync start --proxy localhost:5555 --files static/**/*.*"
->>>>>>> dev
     },
     "repository": {
         "type": "git",
@@ -55,10 +25,6 @@
     "bugs": {
         "url": "https://github.com/zhouhuafei/suibianxiexie/issues"
     },
-<<<<<<< HEAD
-    "homepage": "https://github.com/zhouhuafei/suibianxiexie#readme"
-}
-=======
     "homepage": "https://github.com/zhouhuafei/suibianxiexie#readme",
     "dependencies": {
         "axios": "^0.16.2",
@@ -96,4 +62,3 @@
         "webpack": "^3.0.0"
     }
 }
->>>>>>> dev
