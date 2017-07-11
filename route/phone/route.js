@@ -1,11 +1,11 @@
 //页面路由
-const extend = require('../../libs/tools/extend');
+const tools = require('../../base/tools');
 const config = require('./config');
 const controllerPath = `../../controller/phone/pages/`;//控制器的路径
 
 class Route {
     constructor(json) {
-        this.opts = extend({
+        this.opts = tools.extend({
             defaults: {
                 app: null
             },

@@ -1,9 +1,9 @@
 //页面路由
-const extend = require('../../libs/tools/extend');
+const tools = require('../../base/tools');
 
 class Route {
     constructor(json) {
-        this.opts = extend({
+        this.opts = tools.extend({
             defaults: {
                 app: null
             },
@@ -21,7 +21,7 @@ class Route {
     }
 
     error404() {
-        var self = this;
+        let self = this;
         self.opts.app.use(function (req, res, next) {
             res.status(404).send('404 - not found');
             //var Controller = require(`../../controller/error/404`);
@@ -30,7 +30,7 @@ class Route {
     }
 
     error500() {
-        var self = this;
+        let self = this;
         self.opts.app.use(function (err, req, res, next) {
             res.status(500).send('500 - server error');
             //var Controller = require(`../../controller/error/500`);

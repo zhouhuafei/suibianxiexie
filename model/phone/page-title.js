@@ -9,13 +9,13 @@ class pageTitle {
     }
 
     init() {
-        var route = this.opts.req.route;
+        let route = this.opts.req.route;
         if (route) {
-            var path = route.path;
+            let path = route.path;
             //页面标题
-            for (var attr in routeConfig) {
+            for (let attr in routeConfig) {
                 if (routeConfig.hasOwnProperty(attr)) {
-                    if (routeConfig[attr].route == path) {
+                    if (routeConfig[attr].route === path) {
                         if (routeConfig[attr].title) {
                             this.result = routeConfig[attr].title;
                         }

@@ -1,27 +1,32 @@
 //express
-var express = require('express');
-var app = express();
+const ms = require('ms');//转成毫秒数
+const compression = require('compression');//gzip压缩
+const express = require('express');
+const app = express();
+
+//gzip压缩
+app.use(compression());
 
 //托管静态文件
-app.use(express.static('static'));
+app.use(express.static('static', {maxAge: ms('1y')}));//一年缓存
 
 //模版引擎(handlebars)
-var handlebars = require('express-handlebars');
-app.engine('html', handlebars({
-    partialsDir: `${__dirname}/static/`,//设置页面布局模块文件的路径
-    layoutsDir: `${__dirname}/static/`,//设置页面布局模版文件的路径(本项目没有使用到页面布局模板文件)
+const handlebars = require('express-handlebars');
+app.engine('hbs', handlebars({
+    partialsDir: `${__dirname}/views/`,//设置页面布局模块文件的路径
+    layoutsDir: `${__dirname}/views/`,//设置页面布局模版文件的路径(本项目没有使用到页面布局模板文件)
     defaultLayout: '',//设置页面的布局模版文件(本项目没有使用到页面布局模板文件)
-    extname: '.html'
+    extname: '.hbs'
 }));
-app.set('view engine', 'html');
-app.set('views', `${__dirname}/static/`);
+app.set('view engine', 'hbs');
+app.set('views', `${__dirname}/views/`);
 
 //pc的路由待续...
 //phone的路由
-var RoutePhone = require('./route/phone/route');
+const RoutePhone = require('./route/phone/route');
 new RoutePhone({app: app});
 //error的路由
-var RouteError = require('./route/error/route');
+const RouteError = require('./route/error/route');
 new RouteError({app: app});
 
 //mysql
@@ -44,6 +49,6 @@ new RouteError({app: app});
 // );
 
 //端口
-var server = app.listen('5555', function () {
+const server = app.listen('5555', function () {
     console.log(`访问地址:\nhttp://127.0.0.1:${server.address().port}`);
 });

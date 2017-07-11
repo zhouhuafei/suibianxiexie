@@ -1,10 +1,10 @@
 //路径
-var path = {
+let path = {
     route: '/',
-    view: 'phone/min/html/pages/'
+    view: 'phone/pages/'
 };
 //路由的名字
-var routeName = [
+let routeName = [
     {
         name: 'dev-list',//开发-列表页
         title: '开发列表'
@@ -40,18 +40,18 @@ var routeName = [
     }
 ];
 //路由的配置
-var routeConfig = {};
+let routeConfig = {};
 routeName.forEach(function (v) {
-    var route = `${path.route}${v.name}/`;
-    if (v.name == 'home') {
+    let route = `${path.route}${v.name}/`;
+    if (v.name === 'home') {
         route = `${path.route}`;
     }
     routeConfig[v.name] = {
         route: route,//路由
         view: `${path.view}${v.name}`,//视图
         title: v.title,//标题
-        isValidateLogin: v.isValidateLogin == true,//是否验证登陆(默认不验证)
-        isShowFooterNav: v.isShowFooterNav == undefined//是否显示底部导航(默认显示)
+        isValidateLogin: v.isValidateLogin === true,//是否验证登陆(默认不验证)
+        isShowFooterNav: v.isShowFooterNav === undefined//是否显示底部导航(默认显示)
     }
 });
 module.exports = routeConfig;

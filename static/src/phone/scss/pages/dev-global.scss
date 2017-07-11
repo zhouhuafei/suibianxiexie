@@ -1,0 +1,77 @@
+//基础样式
+<<<<<<< HEAD:static/phone/dev/scss/pages/dev-global.scss
+@import "../base/base";
+//图片上传
+@import "../global/g-img-upload";
+//按钮
+@import "../global/g-btn";
+//输入框
+@import "../global/g-input";
+//下拉框
+@import "../global/g-select";
+//文本框
+@import "../global/g-textarea";
+//单选框
+@import "../global/g-radio";
+//多选框
+@import "../global/g-checkbox";
+//列表
+@import "../global/g-list";
+//标签
+@import "../global/g-quick-enter";
+=======
+@import "../base/config";
+>>>>>>> dev:static/src/phone/scss/pages/dev-global.scss
+//form验证
+@import "../modules/m-validate-form";
+@import "../modules/m-lazy-load";
+
+//页面样式
+.g-body {
+    .page-input {
+        margin-top: px2rem(10);
+        padding: 0 px2rem(10);
+    }
+    .page-select {
+        margin-top: px2rem(10);
+        padding: 0 px2rem(10);
+    }
+    .page-textarea {
+        margin-top: px2rem(10);
+        padding: 0 px2rem(10);
+    }
+    .page-checkbox {
+        margin-top: px2rem(10);
+        padding: 0 px2rem(10);
+        display: flex;
+        .g-checkbox {
+            flex: 1;
+        }
+    }
+    .page-radio {
+        margin-top: px2rem(10);
+        padding: 0 px2rem(10);
+        display: flex;
+        .g-radio {
+            flex: 1;
+        }
+    }
+    .page-btn {
+        margin-top: px2rem(10);
+        .g-button {
+            margin-top: 0;
+        }
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .page-list {
+        margin-top: px2rem(10);
+    }
+    .page-img-upload {
+        margin-top: px2rem(10);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

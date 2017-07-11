@@ -1,0 +1,14 @@
+@import "../base/config";
+
+.m-copyright {
+    padding: px2rem(20) 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .m-copyright-icon{
+        font-size: px2rem(24);
+    }
+    .m-copyright-txt{
+        font-size: px2rem(12);
+    }
+}

@@ -1,9 +1,9 @@
 //首页模版渲染
-const extend = require('../../libs/tools/extend');//对象的扩展方法
+const tools = require('../../base/tools');//对象的扩展方法
 
 class Fn404 {
     constructor(json) {
-        this.opts = extend({
+        this.opts = tools.extend({
             defaults: {
                 res: null,
                 req: null
@@ -13,8 +13,8 @@ class Fn404 {
     }
 
     render() {
-        var errorType = this.opts.req.url.split('/')[2];
-        if (errorType == 'min'||'dev') {
+        let errorType = this.opts.req.url.split('/')[2];
+        if (errorType === 'min' || 'dev') {
             this.renderOther();
         } else {
             this.renderPhone();
@@ -22,10 +22,9 @@ class Fn404 {
     }
 
     renderPhone() {
-        var PageFooterNav = require('../../model/phone/page-footer-nav');
-        var PageConfig = require('../../model/phone/page-config');
+        let PageFooterNav = require('../../model/phone/page-footer-nav');
         this.pageInfo = {
-            config: new PageConfig(this.opts).result,
+            config: {},
             data: {
                 title: `页面没有找到`,
                 footerNav: new PageFooterNav(this.opts).result

@@ -1,5 +1,5 @@
 //首页模版渲染
-const extend = require('../../libs/tools/extend');//对象的扩展方法
+const tools = require('../../base/tools');//对象的扩展方法
 
 class Fn500 {
     constructor(json) {
@@ -13,8 +13,8 @@ class Fn500 {
     }
 
     render() {
-        var errorType = this.opts.req.url.split('/')[1];
-        if (errorType == 'phone') {
+        let errorType = this.opts.req.url.split('/')[1];
+        if (errorType === 'phone') {
             this.renderPhone();
         } else {
             this.renderOther();
@@ -22,10 +22,9 @@ class Fn500 {
     }
 
     renderPhone() {
-        var PageFooterNav = require('../../model/phone/page-footer-nav');
-        var PageConfig = require('../../model/phone/page-config');
+        let PageFooterNav = require('../../model/phone/page-footer-nav');
         this.pageInfo = {
-            config: new PageConfig(this.opts).result,
+            config: {},
             data: {
                 title: `服务器报错`,
                 footerNav: new PageFooterNav(this.opts).result

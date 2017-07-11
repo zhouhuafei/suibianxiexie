@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {{>phone/partials/head}}
+    </head>
+    <body>
+        <div class="g-wrap">
+            {{>phone/partials/header}}
+            <!--page start-->
+            <div class="g-body">
+                <div class="page-slide"></div>
+                <div class="page-navigation"></div>
+                <img src="../../images/pages/index/p-waiting.png" alt="">
+                <img src="../../images/pages/p-waiting.png" alt="">
+                <img src="../../images/pages/other/p-waiting.png" alt="">
+            </div>
+            <div class="g-vue">
+                <div v-text="message"></div>
+                <m-component parent-message="5+5"></m-component>
+                <m-component v-bind:parent-message="5+5"></m-component>
+            </div>
+            <!--page end-->
+            {{>phone/partials/footer}}
+        </div>
+    </body>
+</html>

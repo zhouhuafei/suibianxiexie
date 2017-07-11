@@ -1,0 +1,17 @@
+@import "../base/config";
+
+.m-star {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-size: 0;
+    height: px2rem(40);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .m-star-items {
+        color: $g-color-font-dark;
+        font-size: px2rem(36);
+        &.m-star-items-active {
+            color: $g-color-light;
+        }
+    }
+}

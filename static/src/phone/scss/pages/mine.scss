@@ -1,0 +1,38 @@
+//基础样式
+@import "../base/config";
+
+//页面样式
+.g-body {
+    .page-header {
+        background: #fff;
+        margin-bottom: px2rem(10);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: px2rem(10);
+        .page-header-wrap {
+            display: flex;
+            align-items: center;
+            .page-header-photo {
+                $width-height: 80;
+                width: px2rem($width-height);
+                height: px2rem($width-height);
+                border: px2rem(1) solid $g-color-border-default;
+                border-radius: 50%;
+                margin-right: px2rem(10);
+                overflow: hidden;
+                @include center-xy-flex;
+                img {
+                    max-width: 100%;
+                    max-height: 100%;
+                }
+            }
+        }
+    }
+    .g-list {
+        margin-bottom: px2rem(10);
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
