@@ -1,2 +1,14 @@
 {
+    "apps": [
+        {
+            "name": "suibianxiexie",
+            "script": "app.js",
+            "exec_mode": "fork",
+            "ignore_watch": [
+                "static",
+                "views"
+            ],
+            "watch": true
+        }
+    ]
 }
