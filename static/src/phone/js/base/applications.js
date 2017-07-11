@@ -448,6 +448,7 @@ Applications.prototype.whenScrollBottom = function () {
                     failure: function () {
                     }
                 },
+                isInitRender:true,//是否初始化的时候就进行渲染
                 interval: 80,//函数节流时间(延迟时间)
                 errorHeight: 0//滚动到底部上面一定高度就算是滚动到底部了(误差高度)
             },
@@ -458,7 +459,9 @@ Applications.prototype.whenScrollBottom = function () {
     }
 
     WhenScrollBottom.prototype.init = function () {
-        this.render();
+        if(this.opts.isInitRender){
+            this.render();
+        }
         this.power();
     };
 
