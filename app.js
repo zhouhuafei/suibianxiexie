@@ -23,10 +23,10 @@ app.set('views', `${__dirname}/views/`);
 
 //pc的路由待续...
 //phone的路由
-const RoutePhone = require('./route/phone/route');
+const RoutePhone = require('./routes/phone/route');
 new RoutePhone({app: app});
 //error的路由
-const RouteError = require('./route/error/route');
+const RouteError = require('./routes/error/route');
 new RouteError({app: app});
 
 //mysql

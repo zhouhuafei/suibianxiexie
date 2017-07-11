@@ -1,5 +1,5 @@
 //底部导航的数据
-const phoneConfig = require('../../route/phone/config');
+const phoneConfig = require('../../routes/phone/config');
 
 class FooterNav {
     constructor(json) {

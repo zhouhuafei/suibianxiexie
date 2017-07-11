@@ -1,8 +1,8 @@
 //模版渲染
-const PageTitle = require('../../model/phone/page-title');//页面标题
-const PageCopyright = require('../../model/phone/page-copyright');//页面配置
-const PageFooterNav = require('../../model/phone/page-footer-nav');//页面底部导航
-const routeConfig = require('../../route/phone/config');//路由配置
+const PageTitle = require('../../models/phone/page-title');//页面标题
+const PageCopyright = require('../../models/phone/page-copyright');//页面配置
+const PageFooterNav = require('../../models/phone/page-footer-nav');//页面底部导航
+const routeConfig = require('../../routes/phone/config');//路由配置
 const tools = require('../../base/tools');//对象的扩展方法
 
 class Super {

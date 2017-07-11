@@ -11,10 +11,10 @@ if (!fileName) {
     console.log('fileName no find');
     return;
 }
-const routeConfig = require(`./route/${pathName}/config`);//路由的配置
+const routeConfig = require(`./routes/${pathName}/config`);//路由的配置
 const pageTitle = routeConfig[fileName].title;//页面的标题
 const staticPath = `${__dirname}/static/${pathName}/src`;//前端静态文件所处的位置
-const controllerPath = `controller/${pathName}/pages/`;//后台控制器文件所处的位置
+const controllerPath = `controllers/${pathName}/pages/`;//后台控制器文件所处的位置
 
 //创建静态文件
 const file = {

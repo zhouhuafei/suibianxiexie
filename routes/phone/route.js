@@ -1,7 +1,7 @@
 //页面路由
 const tools = require('../../base/tools');
 const config = require('./config');
-const controllerPath = `../../controller/phone/pages/`;//控制器的路径
+const controllerPath = `../../controllers/phone/pages/`;//控制器的路径
 
 class Route {
     constructor(json) {

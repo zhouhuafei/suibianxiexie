@@ -22,7 +22,7 @@ class Fn404 {
     }
 
     renderPhone() {
-        let PageFooterNav = require('../../model/phone/page-footer-nav');
+        let PageFooterNav = require('../../models/phone/page-footer-nav');
         this.pageInfo = {
             config: {},
             data: {
