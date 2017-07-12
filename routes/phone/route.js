@@ -2,6 +2,8 @@
 const tools = require('../../base/tools');
 const config = require('./config');
 const controllerPath = `../../controllers/phone/pages/`;//控制器的路径
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 class Route {
     constructor(json) {
@@ -20,6 +22,14 @@ class Route {
     init() {
         let self = this;
         let app = self.opts.app;
+        //---->session使用开始
+        app.use(cookieParser());
+        app.use(session({
+            resave: true, // don't save session if unmodified
+            saveUninitialized: false, // don't create session until something stored
+            secret: 'love'//这里是我的一个疑问
+        }));
+        //<----session使用结束
         for (let attr in config) {
             if (config.hasOwnProperty(attr)) {
                 try {
@@ -28,8 +38,9 @@ class Route {
                         app.get(config[attr].route, function (req, res) {
                             //验证是否登陆
                             if (config[attr].isValidateLogin) {
-                                let isLogin = true;//假设登陆了
-                                //如果没登录,去登陆待续...
+                                req.session.user = {username: '1123486116@qq.com'};//设置session
+                                console.log(req.session.user, 9999999);
+                                let isLogin = req.session.user !== undefined;
                                 if (!isLogin) {
                                     res.redirect(config.login.route);//重定向路由
                                     return false;
@@ -37,7 +48,7 @@ class Route {
                             }
                             //渲染视图(渲染数据)
                             let controller = new Controller({req: req, res: res});
-                            if (req.query.isDev == 'true') {
+                            if (req.query.isDev === 'true') {
                                 controller.renderData();
                             } else {
                                 controller.renderView();
