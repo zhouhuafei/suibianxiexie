@@ -23,13 +23,13 @@ var SubType = tools.constructorInherit({
                 {
                     link: '/dev-global',
                     icon: 'icon-kaifa',
-                    txt: 'g-global',
+                    txt: '开发全局',
                     isShowMark: false
                 },
                 {
                     link: '/dev-components',
                     icon: 'icon-kaifa',
-                    txt: 'm-module',
+                    txt: '开发组件',
                     isShowMark: false
                 },
                 {

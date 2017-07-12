@@ -14,7 +14,7 @@
         "pcBuild": "set myConfig=production-pc && gulp && npm run webpack",
         "adminDev": "set myConfig=development-admin && gulp && npm run webpack",
         "adminBuild": "set myConfig=production-admin && gulp && npm run webpack",
-        "server": "browser-sync start --proxy localhost:5555 --files static/**/*.*"
+        "server": "browser-sync start --proxy 127.0.0.1:5555 --files static/**/*.*"
     },
     "repository": {
         "type": "git",

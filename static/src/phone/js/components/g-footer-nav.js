@@ -32,7 +32,7 @@ let SubType = tools.constructorInherit({
             // devModule: {
             //     link: '/dev-components',
             //     icon: 'icon-kaifa',
-            //     txt: 'm-module',
+            //     txt: 'g-components',
             //     isHighlight: false,
             //     isShowMark: false
             // },
