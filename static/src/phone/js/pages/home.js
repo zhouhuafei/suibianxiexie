@@ -4,13 +4,13 @@ window.addEventListener('load', function () {
         let header = require('../pages-commons/header');//每个页面都要用到的js(一定要放到最顶部)
         let Vue = header.Vue;
 
-        require.ensure('../modules/m-dialog.js', function (mDialog) {
+        require.ensure('../components/g-dialog.js', function (mDialog) {
             //console.log(mDialog);
-        }, 'm-dialog');
+        }, 'g-dialog');
 
         //slide切换
         (function () {
-            let Slide = require('../modules/m-slide');
+            let Slide = require('../components/g-slide');
             new Slide({
                 wrap: '.page-slide',
                 data: {
@@ -62,13 +62,13 @@ window.addEventListener('load', function () {
 
         //导航
         (function () {
-            let Navigation = require('../modules/m-navigation');
-            //new Navigation({wrap: '.page-navigation'});
+            let Navigation = require('../components/g-navigation');
+            new Navigation({wrap: '.page-navigation'});
         })();
 
         //vue
         (function () {
-            require('../modules-vue/m-component')(Vue);
+            require('../components-vue/g-test')(Vue);
             new Vue({
                 el: '.g-vue',
                 data: {

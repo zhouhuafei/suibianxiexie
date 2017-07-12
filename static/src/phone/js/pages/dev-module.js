@@ -25,7 +25,7 @@ window.addEventListener('load', function () {
             new WhenScrollBottom({
                 callback: {
                     success: function (self) {
-                        var Loading = require('../modules/m-loading');
+                        var Loading = require('../components/g-loading');
                         var loading = new Loading({
                             wrap: '.g-body',
                             config: {
@@ -41,7 +41,7 @@ window.addEventListener('load', function () {
 
         //slide切换
         (function () {
-            var Slide = require('../modules/m-slide');
+            var Slide = require('../components/g-slide');
             new Slide({
                 wrap: '.page-slide',
                 data: {
@@ -93,13 +93,13 @@ window.addEventListener('load', function () {
 
         //导航
         (function () {
-            var Navigation = require('../modules/m-navigation');
+            var Navigation = require('../components/g-navigation');
             new Navigation({wrap: '.page-navigation'});
         })();
 
         //弹窗测试
         (function () {
-            var Dialog = require('../modules/m-dialog');
+            var Dialog = require('../components/g-dialog');
             // new Dialog({
             //     callback: {
             //         confirm: function () {
@@ -120,19 +120,19 @@ window.addEventListener('load', function () {
 
         //分页测试
         (function () {
-            var Pagination = require('../modules/m-pagination');
+            var Pagination = require('../components/g-pagination');
             new Pagination({wrap: '.page-pagination'});
         })();
 
         //没有数据
         (function () {
-            var NoData = require('../modules/m-no-data');
+            var NoData = require('../components/g-no-data');
             new NoData({wrap: '.page-no-data'});
         })();
 
         //加载中
         (function () {
-            var Loading = require('../modules/m-loading');
+            var Loading = require('../components/g-loading');
             var loading = new Loading({
                 config: {
                     status: 'loading'
@@ -149,25 +149,25 @@ window.addEventListener('load', function () {
 
         //超类型模块测试
         (function () {
-            var SuperType = require('../modules/m-super-type');
+            var SuperType = require('../components/g-super-type');
             new SuperType({wrap: `.page-super-type`});
-            var SubType = require('../modules/m-sub-type');
+            var SubType = require('../components/g-sub-type');
             new SubType({wrap: `.page-super-type`});
-            var SuperTypeEs6 = require('../modules/m-super-type-es6');
+            var SuperTypeEs6 = require('../components/g-super-type-es6');
             new SuperTypeEs6({wrap: `.page-super-type`}).init();//es6继承,不建立在超类型内部直接调init方法
-            var SubTypeEs6 = require('../modules/m-sub-type-es6');
+            var SubTypeEs6 = require('../components/g-sub-type-es6');
             new SubTypeEs6({wrap: `.page-super-type`});
         })();
 
         //返回顶部
         (function () {
-            var GoTop = require('../modules/m-go-top');
+            var GoTop = require('../components/g-go-top');
             new GoTop();
         })();
 
         //遮罩
         (function () {
-            var Mask = require('../modules/m-mask');
+            var Mask = require('../components/g-mask');
             var mask = new Mask({
                 callback: {
                     click: function () {
@@ -180,7 +180,7 @@ window.addEventListener('load', function () {
 
         //单选开关
         (function () {
-            const Radio = require('../modules/m-radio-switch');
+            const Radio = require('../components/g-radio-switch');
             new Radio({
                 wrap: '.page-radio-switch',
                 callback: {
@@ -193,7 +193,7 @@ window.addEventListener('load', function () {
 
         //表格
         (function () {
-            const Table = require('../modules/m-table');
+            const Table = require('../components/g-table');
             const table = new Table({
                 wrap: `.page-table`,
                 data: {
@@ -250,7 +250,7 @@ window.addEventListener('load', function () {
 
         //星评
         (function () {
-            const Star = require('../modules/m-star');
+            const Star = require('../components/g-star');
             const star = new Star({
                 wrap: `.page-star`,
                 callback: {

@@ -1,8 +1,8 @@
 //基础样式
 @import "../base/config";
 //form验证
-@import "../modules/m-validate-form";
-@import "../modules/m-lazy-load";
+@import "../components/g-validate-form";
+@import "../components/g-lazy-load";
 
 //页面样式
 .g-body {

@@ -1,25 +1,25 @@
 //基础样式
 @import "../base/config";
 //弹窗测试
-@import "../modules/m-dialog";
+@import "../components/g-dialog";
 //分页测试
-@import "../modules/m-pagination";
+@import "../components/g-pagination";
 //没有数据
-@import "../modules/m-no-data";
+@import "../components/g-no-data";
 //加载中
-@import "../modules/m-loading";
+@import "../components/g-loading";
 //返回顶部
-@import "../modules/m-go-top";
+@import "../components/g-go-top";
 //单选开关
-@import "../modules/m-radio-switch";
+@import "../components/g-radio-switch";
 //表格
-@import "../modules/m-table";
+@import "../components/g-table";
 //星评
-@import "../modules/m-star";
+@import "../components/g-star";
 //导航
-@import "../modules/m-navigation";
+@import "../components/g-navigation";
 //slide切换
-@import "../modules/m-slide";
+@import "../components/g-slide";
 
 //页面样式
 .g-body {

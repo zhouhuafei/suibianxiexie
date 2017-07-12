@@ -1,0 +1,14 @@
+@import "../base/config";
+
+.g-copyright {
+    padding: px2rem(20) 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .g-copyright-icon{
+        font-size: px2rem(24);
+    }
+    .g-copyright-txt{
+        font-size: px2rem(12);
+    }
+}

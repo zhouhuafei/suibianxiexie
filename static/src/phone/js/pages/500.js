@@ -5,7 +5,7 @@ window.addEventListener('load', function () {
 
         //没有数据
         (function () {
-            var NoData = require('../modules/m-no-data');
+            var NoData = require('../components/g-no-data');
             new NoData({
                 data: {
                     txt: '500 - Server Error'

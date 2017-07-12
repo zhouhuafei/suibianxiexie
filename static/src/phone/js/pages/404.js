@@ -5,7 +5,7 @@ window.addEventListener('load', function () {
 
         //没有数据
         (function () {
-            let NoData = require('../modules/m-no-data');
+            let NoData = require('../components/g-no-data');
             new NoData({
                 data: {
                     txt: '404 - Not Find'
