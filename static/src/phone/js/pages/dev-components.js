@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
     setTimeout(function () {
-        require('../../scss/pages/dev-module.scss');
+        require('../../scss/pages/dev-components.scss');
         let header = require('../pages-commons/header');//每个页面都要用到的js(一定要放到最顶部)
         let applications = header.applications;
 

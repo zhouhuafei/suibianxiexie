@@ -21,17 +21,17 @@ class FooterNav {
                     isHighlight: false,
                     isShowMark: false
                 },
-                'dev-module': {
+                'dev-components': {
                     icon: 'icon-kaifa',
-                    txt: phoneConfig['dev-module'].title,
-                    link: phoneConfig['dev-module'].route,
+                    txt: phoneConfig['dev-components'].title,
+                    link: phoneConfig['dev-components'].route,
                     isHighlight: false,
                     isShowMark: false
                 },
-                'dev-word': {
+                'dev-words': {
                     icon: 'icon-kaifa',
-                    txt: phoneConfig['dev-word'].title,
-                    link: phoneConfig['dev-word'].route,
+                    txt: phoneConfig['dev-words'].title,
+                    link: phoneConfig['dev-words'].route,
                     isHighlight: false,
                     isShowMark: false
                 },

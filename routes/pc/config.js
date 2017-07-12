@@ -19,16 +19,16 @@ module.exports = {
             title: 'g-global'//标题
         },
         //开发-模块页
-        'dev-module': {
-            route: `${path.route}dev-module/`,//路由
-            view: `${path.view}dev-module`,//视图
+        'dev-components': {
+            route: `${path.route}dev-components/`,//路由
+            view: `${path.view}dev-components`,//视图
             title: 'm-module'//标题
         },
         //开发-标准词汇页
-        'dev-word': {
-            route: `${path.route}dev-word/`,//路由
-            view: `${path.view}dev-word`,//视图
-            title: 'dev-word'//标题
+        'dev-words': {
+            route: `${path.route}dev-words/`,//路由
+            view: `${path.view}dev-words`,//视图
+            title: 'dev-words'//标题
         },
         //我的页面
         'mine': {

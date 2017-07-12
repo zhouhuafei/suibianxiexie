@@ -27,13 +27,13 @@ var SubType = tools.constructorInherit({
                     isShowMark: false
                 },
                 {
-                    link: '/dev-module',
+                    link: '/dev-components',
                     icon: 'icon-kaifa',
                     txt: 'm-module',
                     isShowMark: false
                 },
                 {
-                    link: '/dev-word',
+                    link: '/dev-words',
                     icon: 'icon-kaifa',
                     txt: '标准词汇',
                     isShowMark: false

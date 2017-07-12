@@ -14,11 +14,11 @@ let routeName = [
         title: '开发全局'
     },
     {
-        name: 'dev-module',//开发-模块页
+        name: 'dev-components',//开发-模块页
         title: '开发模块'
     },
     {
-        name: 'dev-word',//开发-标准词汇页
+        name: 'dev-words',//开发-标准词汇页
         title: '开发词汇'
     },
     {

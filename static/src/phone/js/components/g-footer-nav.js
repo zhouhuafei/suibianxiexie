@@ -15,43 +15,41 @@ let SubType = tools.constructorInherit({
         config: {},
         //数据
         data: {
-            /*
-             home: {
-             link: '/',
-             icon: 'icon-shouye',
-             txt: '首页',
-             isHighlight: false,
-             isShowMark: false
-             },
-             devGlobal: {
-             link: '/dev-global',
-             icon: 'icon-kaifa',
-             txt: 'g-global',
-             isHighlight: false,
-             isShowMark: false
-             },
-             devModule: {
-             link: '/dev-module',
-             icon: 'icon-kaifa',
-             txt: 'm-module',
-             isHighlight: false,
-             isShowMark: false
-             },
-             devWord: {
-             link: '/dev-word',
-             icon: 'icon-kaifa',
-             txt: '标准词汇',
-             isHighlight: false,
-             isShowMark: false
-             },
-             mine: {
-             link: '/mine',
-             icon: 'icon-wode',
-             txt: '我的',
-             isHighlight: false,
-             isShowMark: false
-             }
-             */
+            // home: {
+            //     link: '/',
+            //     icon: 'icon-shouye',
+            //     txt: '首页',
+            //     isHighlight: false,
+            //     isShowMark: false
+            // },
+            // devGlobal: {
+            //     link: '/dev-global',
+            //     icon: 'icon-kaifa',
+            //     txt: 'g-global',
+            //     isHighlight: false,
+            //     isShowMark: false
+            // },
+            // devModule: {
+            //     link: '/dev-components',
+            //     icon: 'icon-kaifa',
+            //     txt: 'm-module',
+            //     isHighlight: false,
+            //     isShowMark: false
+            // },
+            // devWord: {
+            //     link: '/dev-words',
+            //     icon: 'icon-kaifa',
+            //     txt: '标准词汇',
+            //     isHighlight: false,
+            //     isShowMark: false
+            // },
+            // mine: {
+            //     link: '/mine',
+            //     icon: 'icon-wode',
+            //     txt: '我的',
+            //     isHighlight: false,
+            //     isShowMark: false
+            // }
         }
     }
 });
