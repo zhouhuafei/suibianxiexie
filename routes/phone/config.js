@@ -15,7 +15,7 @@ let routeName = [
     },
     {
         name: 'dev-components',//开发-模块页
-        title: '开发模块'
+        title: '开发组件'
     },
     {
         name: 'dev-words',//开发-标准词汇页
