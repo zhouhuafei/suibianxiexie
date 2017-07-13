@@ -3,9 +3,8 @@ const PageTitle = require('../../models/phone/page-title');//页面标题
 const PageCopyright = require('../../models/phone/page-copyright');//页面配置
 const PageFooterNav = require('../../models/phone/page-footer-nav');//页面底部导航
 const routeConfig = require('../../routes/phone/config');//路由配置
-const tools = require('../../base/tools');//对象的扩展方法
-const qr = require('qr-image');//生成二维码
-
+const tools = require('../../base/tools');//工具方法集合
+const applications = require('../../base/applications');//应用方法集合
 
 class Super {
     constructor(json) {
@@ -22,12 +21,14 @@ class Super {
 
     //初始化数据(这个方法需要在子类型里被调用)
     initData() {
+        let req = this.opts.req;
         this.pageInfo = {
             config: {
                 isShowCopyright: new PageCopyright(this.opts).isShowCopyright,//是否显示版权(需要从数据库里读取)
                 isShowFooterNav: routeConfig[this.fileName].isShowFooterNav//是否显示底部导航(需要从配置里读取)
             },
             data: {
+                qr: applications.qrCode(`${req.headers.host}${req.url}`),//二维码数据
                 title: new PageTitle(this.opts).result,//标题(需要从配置里读取)
                 footerNav: new PageFooterNav(this.opts).result//底部导航的数据(需要从配置里读取)
             }
@@ -41,15 +42,6 @@ class Super {
     //渲染视图
     renderView() {
         let res = this.opts.res;
-        let req = this.opts.req;
-
-        let qrSvg = qr.image('I love QR!', { type: 'svg' });
-        qrSvg.pipe(require('fs').createWriteStream('i_love_qr.svg'));
-        let svg_string = qr.imageSync('I love QR!', { type: 'svg' });
-        //res.type('png');
-        //temp_qrcode.pipe(res);
-        console.log(req.url,999999,'========================>',svg_string);
-
         res.render(routeConfig[this.fileName].view, {
             pageInfo: this.pageInfo,
             pageInfoStr: JSON.stringify(this.pageInfo)

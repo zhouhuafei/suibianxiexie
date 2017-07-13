@@ -1,9 +1,14 @@
-let fs = require('fs');
-let tools = require('./tools');
+const tools = require('./tools');
+const fs = require('fs');
+const qr = require('qr-image');
 
 //应用方法集合
 function Applications() {
 }
+//生成二维码
+Applications.prototype.qrCode = function (text) {
+    return qr.imageSync(text, {type: 'svg'});
+};
 //创建文件
 Applications.prototype.createFile = function () {
     class CreateFile {
