@@ -28,7 +28,7 @@ class Super {
                 isShowFooterNav: routeConfig[this.fileName].isShowFooterNav//是否显示底部导航(需要从配置里读取)
             },
             data: {
-                qr: applications.qrCode(`${req.headers.host}${req.url}`),//二维码数据
+                qrCode: applications.qrCode(`http://${req.headers.host}${req.url}`),//二维码数据
                 title: new PageTitle(this.opts).result,//标题(需要从配置里读取)
                 footerNav: new PageFooterNav(this.opts).result//底部导航的数据(需要从配置里读取)
             }

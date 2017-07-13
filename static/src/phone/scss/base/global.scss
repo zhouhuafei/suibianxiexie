@@ -41,6 +41,7 @@ div, input, button, textarea, select, label {
 //全局的容器
 .g-wrap {
     width: 100%;
+    position: relative;
     .g-body {
         &:before, &:after {
             content: ' ';
@@ -66,7 +67,7 @@ html.g-pc {
     .g-wrap {
         min-height: 100%;
         margin: 0 auto;
-        width: 414px;
+        width: 320px;
         box-sizing: border-box;
         box-shadow: 1px 0 0 $g-color-border-default, -1px 0 0 $g-color-border-default;
         border-top: 1px solid $g-color-border-default;
@@ -341,7 +342,7 @@ html.g-pc {
     }
 }
 
-//标签
+//快捷入口
 .g-quick-enter {
     display: flex;
     align-items: center;
@@ -576,3 +577,18 @@ html.g-pc {
 //公用的模块
 @import "../components/g-footer-nav";
 @import "../components/g-copyright";
+
+.g-qr-code {
+    $width-height: 100;
+    width: px2px($width-height);
+    position: absolute;
+    top: px2px(20);
+    left: px2px(-20-$width-height);
+    .g-qr-code-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .g-qr-code-svg {
+    }
+}

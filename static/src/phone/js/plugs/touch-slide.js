@@ -89,7 +89,7 @@ var TouchSlide = function (a) {
                             var tag = retn[r].getElementsByTagName('*');
                             for (var j = 0; j < tag.length; j++) {
                                 var cln = tag[j].className;
-                                if (cln && cln.search(new RegExp("\\b" + par[i].replace(".", "") + "\\b")) != -1) {
+                                if (cln && cln.search && cln.search(new RegExp("\\b" + par[i].replace(".", "") + "\\b")) != -1) {
                                     _retn.push(tag[j]);
                                 }
                             }
