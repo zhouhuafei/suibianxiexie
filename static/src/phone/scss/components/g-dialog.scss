@@ -28,7 +28,8 @@
         $width: 260;
         background: #fff;
         .g-dialog-header {
-            background: $g-color-background-default;
+            background: $g-color-light;
+            color: #ffffff;
             height: px2rem($height);
             box-sizing: border-box;
             padding-left: px2rem(10);
@@ -76,6 +77,7 @@
             width: px2rem($height);
             height: px2rem($height);
             font-size: px2rem(14);
+            color: #ffffff;
             @include center-xy-flex;
         }
     }
