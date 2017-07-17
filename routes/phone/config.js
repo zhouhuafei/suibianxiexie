@@ -1,5 +1,7 @@
 //路径
-let path = {
+let path =require('path');
+console.log(path.basename(__dirname),11111);
+let pathConfig = {
     route: '/',
     view: 'phone/pages/'
 };
@@ -42,13 +44,13 @@ let routeName = [
 //路由的配置
 let routeConfig = {};
 routeName.forEach(function (v) {
-    let route = `${path.route}${v.name}/`;
+    let route = `${pathConfig.route}${v.name}/`;
     if (v.name === 'home') {
-        route = `${path.route}`;
+        route = `${pathConfig.route}`;
     }
     routeConfig[v.name] = {
         route: route,//路由
-        view: `${path.view}${v.name}`,//视图
+        view: `${pathConfig.view}${v.name}`,//视图
         title: v.title,//标题
         isValidateLogin: v.isValidateLogin === true,//是否验证登陆(默认不验证)
         isShowFooterNav: v.isShowFooterNav === undefined//是否显示底部导航(默认显示)
