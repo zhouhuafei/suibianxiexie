@@ -279,7 +279,7 @@ html.g-pc {
     .g-input-hint {
         font-size: px2rem(12);
         padding: 0 px2rem(2);
-        color: $g-warning-color;
+        color: $g-hint-color;
         & ~ .g-input-input {
             border-left: px2rem(1) solid $g-border-color-default;
         }
