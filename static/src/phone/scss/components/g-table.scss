@@ -1,15 +1,15 @@
 @import "../base/config";
 
 .g-table {
-    color: $g-color-font-default;
+    color: $g-font-color-default;
     text-align: center;
     background: #fff;
     .g-table-row {
         display: flex;
         min-height: px2rem(44);
-        border-bottom: 1px solid $g-color-border-default;
+        border-bottom: 1px solid $g-border-color-default;
         &:hover {
-            background: $g-color-background-disable;
+            background: $g-background-color-disabled;
         }
         .g-table-col {
             position: relative;
@@ -27,7 +27,7 @@
         }
     }
     .g-table-header {
-        background: $g-color-background-disable;
-        border-top: 1px solid $g-color-border-default;
+        background: $g-background-color-disabled;
+        border-top: 1px solid $g-border-color-default;
     }
 }

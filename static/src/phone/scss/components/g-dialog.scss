@@ -13,7 +13,7 @@
         background: rgba(0, 0, 0, 0.8);
         .g-dialog-alert-icon {
             margin-right: px2rem(10);
-            color: $g-color-failure;
+            color: $g-failure-color;
             font-size: px2rem(24);
         }
         .g-dialog-alert-txt {
@@ -28,7 +28,7 @@
         $width: 260;
         background: #fff;
         .g-dialog-header {
-            background: $g-color-light;
+            background: $g-highlight-color;
             color: #ffffff;
             height: px2rem($height);
             box-sizing: border-box;
@@ -47,7 +47,7 @@
                 @include center-xy-flex;
                 .g-dialog-icon {
                     margin-right: px2rem(6);
-                    color: $g-color-failure;
+                    color: $g-failure-color;
                     font-size: px2rem(24);
                 }
                 .g-dialog-txt {

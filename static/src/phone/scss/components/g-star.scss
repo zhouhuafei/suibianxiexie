@@ -8,10 +8,10 @@
     align-items: center;
     justify-content: center;
     .g-star-items {
-        color: $g-color-font-dark;
+        color: $g-font-color-dark;
         font-size: px2rem(36);
         &.g-star-items-active {
-            color: $g-color-light;
+            color: $g-highlight-color;
         }
     }
 }

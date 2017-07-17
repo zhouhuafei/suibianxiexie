@@ -4,10 +4,10 @@
 @import "../fonts/iconfont.css";
 //==================================================================清零样式的开始>
 body {
-    color: $g-color-font-default;
+    color: $g-font-color-default;
     font-family: "Microsoft Yahei", "Helvetica", "sans-serif";
     font-size: px2rem(12);
-    background: $g-color-background-floor;
+    background: $g-background-color-floor;
 }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
@@ -69,10 +69,10 @@ html.g-pc {
         margin: 0 auto;
         width: 320px;
         box-sizing: border-box;
-        box-shadow: 1px 0 0 $g-color-border-default, -1px 0 0 $g-color-border-default;
-        border-top: 1px solid $g-color-border-default;
-        border-bottom: 1px solid $g-color-border-default;
-        background: $g-color-background-floor;
+        box-shadow: 1px 0 0 $g-border-color-default, -1px 0 0 $g-border-color-default;
+        border-top: 1px solid $g-border-color-default;
+        border-bottom: 1px solid $g-border-color-default;
+        background: $g-background-color-floor;
     }
 }
 
@@ -92,18 +92,18 @@ html.g-pc {
     }
     //取消
     &.g-button-cancel {
-        background: $g-color-background-dark;
+        background: $g-background-color-dark;
         color: #fff;
     }
     //确认
     &.g-button-confirm {
-        background: $g-color-light;
+        background: $g-highlight-color;
         color: #fff;
     }
     //禁用
     &.g-button-disable {
-        background: $g-color-background-disable;
-        color: $g-color-font-disable;
+        background: $g-background-color-disabled;
+        color: $g-font-color-disabled;
         cursor: not-allowed;
     }
     //铺满
@@ -136,9 +136,9 @@ html.g-pc {
             height: inherit;
             background: inherit;
             border-radius: inherit;
-            border: px2rem(1) solid $g-color-border-default;
+            border: px2rem(1) solid $g-border-color-default;
             &:checked {
-                border-color: $g-color-light;
+                border-color: $g-highlight-color;
                 & + .g-checkbox-mark {
                     display: flex;
                     align-items: center;
@@ -147,7 +147,7 @@ html.g-pc {
             }
         }
         .g-checkbox-mark {
-            color: $g-color-light;
+            color: $g-highlight-color;
             font-size: px2rem(16);
             position: absolute;
             left: 0;
@@ -168,7 +168,7 @@ html.g-pc {
     $width-height: 80;
     width: px2rem($width-height);
     height: px2rem($width-height);
-    border: px2rem(1) dashed $g-color-light;
+    border: px2rem(1) dashed $g-highlight-color;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     position: relative;
     display: flex;
@@ -176,7 +176,7 @@ html.g-pc {
     flex-direction: column;
     justify-content: center;
     box-sizing: border-box;
-    color: $g-color-light;
+    color: $g-highlight-color;
     .g-img-upload-input {
         display: none;
     }
@@ -219,7 +219,7 @@ html.g-pc {
     }
     &.g-img-upload-active {
         border: none;
-        background: $g-color-background-dark;
+        background: $g-background-color-dark;
         .g-img-upload-icon {
             display: none;
         }
@@ -251,7 +251,7 @@ html.g-pc {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: px2rem(1) solid $g-color-border-default;
+    border: px2rem(1) solid $g-border-color-default;
     box-sizing: border-box;
     position: relative;
     border-radius: px2rem(0);
@@ -263,7 +263,7 @@ html.g-pc {
         align-items: center;
         justify-content: center;
         & ~ .g-input-input {
-            border-left: px2rem(1) solid $g-color-border-default;
+            border-left: px2rem(1) solid $g-border-color-default;
         }
         .g-input-icon {
             font-size: inherit;
@@ -273,15 +273,15 @@ html.g-pc {
         font-size: px2rem(12);
         padding: 0 px2rem(2);
         & ~ .g-input-input {
-            border-left: px2rem(1) solid $g-color-border-default;
+            border-left: px2rem(1) solid $g-border-color-default;
         }
     }
     .g-input-hint {
         font-size: px2rem(12);
         padding: 0 px2rem(2);
-        color: $g-color-hint;
+        color: $g-warning-color;
         & ~ .g-input-input {
-            border-left: px2rem(1) solid $g-color-border-default;
+            border-left: px2rem(1) solid $g-border-color-default;
         }
     }
     .g-input-input {
@@ -308,7 +308,7 @@ html.g-pc {
     .g-list-row {
         display: block;
         padding: px2rem(10) px2rem(10);
-        border-bottom: px2rem(1) solid $g-color-border-default;
+        border-bottom: px2rem(1) solid $g-border-color-default;
         .g-list-wrap {
             display: flex;
             align-items: center;
@@ -319,21 +319,21 @@ html.g-pc {
                 height: px2rem($size);
                 font-size: px2rem($size);
                 margin-right: px2rem(10);
-                color: $g-color-light;
+                color: $g-highlight-color;
             }
             .g-list-text {
                 font-size: px2rem(12);
             }
             .g-list-mark {
                 font-size: px2rem(12);
-                color: $g-color-font-dark;
+                color: $g-font-color-dark;
             }
             .g-list-more {
                 font-size: px2rem(14);
             }
         }
         .g-list-info {
-            color: $g-color-font-dark;
+            color: $g-font-color-dark;
             font-size: px2rem(12);
         }
         &:last-child {
@@ -351,9 +351,9 @@ html.g-pc {
     font-size: px2rem(12);
     overflow: hidden;
     .g-quick-enter-btn {
-        color: $g-color-font-dark;
+        color: $g-font-color-dark;
         padding: px2rem(4) px2rem(6);
-        border: px2rem(1) solid $g-color-border-default;
+        border: px2rem(1) solid $g-border-color-default;
         margin: px2rem(2);
         background: #ffffff;
         border-radius: px2rem(2000);
@@ -384,9 +384,9 @@ html.g-pc {
             height: inherit;
             background: inherit;
             border-radius: inherit;
-            border: px2rem(1) solid $g-color-border-default;
+            border: px2rem(1) solid $g-border-color-default;
             &:checked {
-                border-color: $g-color-light;
+                border-color: $g-highlight-color;
                 & + .g-radio-mark {
                     display: flex;
                     align-items: center;
@@ -395,7 +395,7 @@ html.g-pc {
             }
         }
         .g-radio-mark {
-            color: $g-color-light;
+            color: $g-highlight-color;
             font-size: px2rem(16);
             position: absolute;
             left: 0;
@@ -433,7 +433,7 @@ html.g-pc {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: px2rem(1) solid $g-color-border-default;
+    border: px2rem(1) solid $g-border-color-default;
     box-sizing: border-box;
     position: relative;
     border-radius: px2rem(0);
@@ -445,7 +445,7 @@ html.g-pc {
         align-items: center;
         justify-content: center;
         & ~ .g-select-wrap {
-            border-left: px2rem(1) solid $g-color-border-default;
+            border-left: px2rem(1) solid $g-border-color-default;
         }
     }
     .g-select-wrap {
@@ -475,13 +475,13 @@ html.g-pc {
             align-items: center;
             justify-content: center;
             font-size: inherit;
-            color: $g-color-font-dark;
+            color: $g-font-color-dark;
             width: px2rem($height);
             height: 100%;
             position: absolute;
             right: 0;
             top: 0;
-            border-left: px2rem(1) solid $g-color-border-default;
+            border-left: px2rem(1) solid $g-border-color-default;
             box-sizing: border-box;
             border-radius: inherit;
             //border-top-left-radius: 0;
@@ -500,7 +500,7 @@ html.g-pc {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    border: px2rem(1) solid $g-color-border-default;
+    border: px2rem(1) solid $g-border-color-default;
     border-radius: px2rem(0);
     .g-textarea-txt {
         min-width: px2rem(40);
@@ -510,7 +510,7 @@ html.g-pc {
         align-items: center;
         justify-content: center;
         & ~ .g-textarea-textarea {
-            border-left: px2rem(1) solid $g-color-border-default;
+            border-left: px2rem(1) solid $g-border-color-default;
         }
     }
     .g-textarea-textarea {

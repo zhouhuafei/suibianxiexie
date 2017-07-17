@@ -14,7 +14,7 @@
         z-index: 3;
         bottom: 0;
         box-sizing: border-box;
-        border-top: 1px solid $g-color-border-default;
+        border-top: 1px solid $g-border-color-default;
         background: #fff;
         .g-footer-nav-body {
             flex: 1;
@@ -24,7 +24,7 @@
             flex-direction: column;
             position: relative;
             height: 100%;
-            color: $g-color-font-default;
+            color: $g-font-color-default;
             .g-footer-nav-body-icon {
                 $size: 20;
                 width: px2rem($size);
@@ -41,14 +41,14 @@
                 width: px2rem($width-height);
                 height: px2rem($width-height);
                 border-radius: 50%;
-                background: $g-color-light;
+                background: $g-highlight-color;
                 position: absolute;
                 right: px2rem(4);
                 top: px2rem(4);
             }
             &.g-footer-nav-body-active {
                 .g-footer-nav-body-icon, .g-footer-nav-body-txt {
-                    color: $g-color-light;
+                    color: $g-highlight-color;
                 }
             }
         }

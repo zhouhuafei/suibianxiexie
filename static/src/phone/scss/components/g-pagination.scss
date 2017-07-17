@@ -31,7 +31,7 @@
         width: px2rem($height);
         margin-left: px2rem(10);
         &.g-pagination-btn-inactive {
-            color: $g-color-font-disable;
+            color: $g-font-color-disabled;
         }
     }
 }
