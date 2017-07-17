@@ -3,7 +3,7 @@
 .g-validate-form-hint {
     $height: 20;
     color: #ffffff;
-    background: $g-warning-color;
+    background: $g-hint-color;
     height: px2rem($height);
     @include center-xy-flex;
     font-size: px2rem(12);
@@ -20,7 +20,7 @@
         width: 0;
         height: 0;
         border: px2rem(6) solid transparent;
-        border-top-color: $g-warning-color;
+        border-top-color: $g-hint-color;
         right: px2rem(10);
         top: px2rem($height);
     }
