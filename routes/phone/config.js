@@ -2,7 +2,7 @@
 let path =require('path');
 console.log(path.basename(__dirname),11111);
 let pathConfig = {
-    route: '/',
+    route: '/phone/',
     view: 'phone/pages/'
 };
 //路由的名字
