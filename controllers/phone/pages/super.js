@@ -1,10 +1,10 @@
 //模版渲染
-const PageTitle = require('../../models/phone/page-title');//页面标题
-const PageCopyright = require('../../models/phone/page-copyright');//页面配置
-const PageFooterNav = require('../../models/phone/page-footer-nav');//页面底部导航
-const routeConfig = require('../../routes/phone/pages/config');//路由配置
-const tools = require('../../base/tools');//工具方法集合
-const applications = require('../../base/applications');//应用方法集合
+const PageTitle = require('../../../models/phone/page-title');//页面标题
+const PageCopyright = require('../../../models/phone/page-copyright');//页面配置
+const PageFooterNav = require('../../../models/phone/page-footer-nav');//页面底部导航
+const routeConfig = require('../../../routes/phone/pages/config');//路由配置
+const tools = require('../../../base/tools');//工具方法集合
+const applications = require('../../../base/applications');//应用方法集合
 
 class Super {
     constructor(json) {

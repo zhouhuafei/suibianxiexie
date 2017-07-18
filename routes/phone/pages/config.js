@@ -1,9 +1,7 @@
 //路径
-let path =require('path');
-console.log(path.basename(__dirname),11111);
 let pathConfig = {
-    route: '/phone/',
-    view: 'phone/pages/'
+    route: `/phone/`,
+    view: `phone/pages/`
 };
 //路由的名字
 let routeName = [

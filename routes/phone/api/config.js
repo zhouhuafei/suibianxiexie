@@ -1,14 +1,20 @@
-var path = {
-    route: '/api/'
+//路径
+let pathConfig = {
+    route: `/phone/api/`
 };
-
-module.exports = {
-    //api
-    api: {
-        //底部导航的数据
-        'footer-nav': {
-            route: `${path.route}api/footer-nav/`,//路由
-            title: '底部导航的数据'//标题
-        }
+//路由的名字
+let routeName = [
+    {
+        name: 'list'//列表
     }
-};
+];
+//路由的配置
+let routeConfig = {};
+routeName.forEach(function (v) {
+    let route = `${pathConfig.route}${v.name}/`;
+    routeConfig[v.name] = {
+        route: route//路由
+    }
+});
+
+module.exports = routeConfig;

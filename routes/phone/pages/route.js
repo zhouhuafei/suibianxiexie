@@ -1,6 +1,4 @@
 //页面路由
-let path =require('path');
-console.log(path.basename(__dirname),22222);
 const tools = require('../../../base/tools');
 const config = require('./config');
 const controllerPath = `../../../controllers/phone/pages/`;//控制器的路径

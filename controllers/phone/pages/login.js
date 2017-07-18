@@ -1,5 +1,5 @@
 //登陆,页面路由的控制器
-var Super = require('../super');//超类型
+var Super = require('./super');//超类型
 
 class Login extends Super {
     constructor(json) {
