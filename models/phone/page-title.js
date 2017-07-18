@@ -1,5 +1,5 @@
 //标题的数据
-const routeConfig = require('../../routes/phone/config');
+const routeConfig = require('../../routes/phone/pages/config');
 
 class pageTitle {
     constructor(json) {
