@@ -24,7 +24,7 @@ let routeName = [
     {
         name: 'mine',//我的页面
         title: '我的',
-        isValidateLogin: true//是否验证登陆
+        isValidateLogin: false//是否验证登陆
     },
     {
         name: 'register',//注册页

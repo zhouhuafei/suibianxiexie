@@ -1,7 +1,8 @@
 //页面路由
 const tools = require('../../../base/tools');
-const config = require('./config');
-const controllerPath = `../../../controllers/phone/pages/`;//控制器的路径
+const apiConfig = require('./config');
+const pagesConfig = require('../pages/config');
+const controllerPath = `../../../controllers/phone/api/`;//控制器的路径
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
@@ -30,29 +31,25 @@ class Route {
             secret: 'love'//这里是我的一个疑问
         }));
         //<----session使用结束
-        for (let attr in config) {
-            if (config.hasOwnProperty(attr)) {
+        for (let attr in apiConfig) {
+            if (apiConfig.hasOwnProperty(attr)) {
                 try {
                     let Controller = require(`${controllerPath}${attr}`);
                     (function (Controller, attr) {
-                        app.get(config[attr].route, function (req, res) {
+                        app.all(apiConfig[attr].route, function (req, res) {
                             //验证是否登陆
-                            if (config[attr].isValidateLogin) {
+                            if (apiConfig[attr].isValidateLogin) {
                                 req.session.user = {username: '1123486116@qq.com'};//设置session
                                 console.log(req.session.user, 9999999);
                                 let isLogin = req.session.user === undefined;
                                 if (!isLogin) {
-                                    res.redirect(config.login.route);//重定向路由
+                                    res.redirect(pagesConfig.login.route);//重定向路由
                                     return false;
                                 }
                             }
-                            //渲染视图(渲染数据)
+                            //渲染数据
                             let controller = new Controller({req: req, res: res});
-                            if (req.query.isDev === 'true') {
-                                controller.renderData();
-                            } else {
-                                controller.renderView();
-                            }
+                            controller.renderData();
                         })
                     })(Controller, attr);
                 } catch (err) {
