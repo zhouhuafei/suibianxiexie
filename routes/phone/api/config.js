@@ -3,10 +3,18 @@ let pathConfig = {
     route: `/phone/api/`
 };
 //路由的名字
-let routeName = [
+let routeName = [,
     {
         name: 'list',//列表
-        isValidateLogin: false//是否验证登陆
+    },
+    {
+        name: 'modification-password',//修改密码
+    },
+    {
+        name: 'login',//登录
+    },
+    {
+        name: 'register',//注册
     }
 ];
 //路由的配置
