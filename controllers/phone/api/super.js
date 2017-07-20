@@ -37,6 +37,9 @@ class Super {
     initData() {
         let req = this.opts.req;
         let method = req.method.toLowerCase(); //请求方式
+        //当请求方式是get时 用req.query接收数据
+        //当请求方式是post delete put时 用req.body接收数据(第三方模块body-parser)
+
         //获取数据(增)
         if (method === 'post') {
             this.postData();
