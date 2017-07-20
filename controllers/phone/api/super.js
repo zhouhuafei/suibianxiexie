@@ -10,11 +10,7 @@ class Super {
             },
             inherits: json
         });
-    }
-
-    //初始化数据(这个方法需要在子类型里被调用)
-    initData() {
-        this.pageInfo = {
+        this.apiInfo = {
             status: 'success',//状态  'success'   'failure'
             message: '接口数据的基本格式',//信息     '参数错误'
             result: {
@@ -37,11 +33,52 @@ class Super {
         };
     }
 
+    //初始化数据(这个方法需要在子类型里被调用)
+    initData() {
+        let req = this.opts.req;
+        let method = req.method.toLowerCase(); //请求方式
+        //获取数据(增)
+        if (method === 'post') {
+            this.postData();
+        }
+
+        //删除数据(删)
+        if (method === 'delete') {
+            this.deleteData();
+        }
+
+        //修改数据(改)
+        if (method === 'put') {
+            this.putData();
+        }
+
+        //查找数据(查)
+        if (method === 'get') {
+            this.getData();
+        }
+    }
+
+    //获取数据(增)(这个需要在子类型里被覆盖掉)
+    postData() {
+    }
+
+    //删除数据(删)(这个需要在子类型里被覆盖掉)
+    deleteData() {
+    }
+
+    //修改数据(改)(这个需要在子类型里被覆盖掉)
+    putData() {
+    }
+
+    //查找数据(查)(这个需要在子类型里被覆盖掉)
+    getData() {
+    }
+
     //获取数据
     renderData() {
         let res = this.opts.res;
         res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'});
-        res.end(JSON.stringify(this.pageInfo));
+        res.end(JSON.stringify(this.apiInfo));
     }
 }
 
