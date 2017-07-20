@@ -14,7 +14,7 @@ class Super {
             status: 'success',//状态  'success'   'failure'
             message: '接口数据的基本格式',//信息     '参数错误'
             result: {
-                data: [
+                items: [
                     {
                         picture: {
                             width: 0,
