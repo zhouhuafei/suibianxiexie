@@ -26,7 +26,7 @@ class Super {
                     }
                 ],//数据集合
                 allPage: 10,//总页数
-                nowPage: 0,//当前页
+                nowPage: 1,//当前页
                 allCount: 200,//数据总条数
                 nowCount: 20//当前页的数据条数
             }
