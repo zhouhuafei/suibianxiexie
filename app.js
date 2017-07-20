@@ -2,13 +2,12 @@
 const ms = require('ms');//转成毫秒数
 const compression = require('compression');//gzip压缩
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
-
-//gzip压缩
-app.use(compression());
-
-//托管静态文件
-app.use(express.static('static', {maxAge: ms('1y')}));//一年缓存
+app.use(compression());//gzip压缩
+app.use(express.static('static', {maxAge: ms('1y')}));//托管静态文件(一年缓存)
+app.use(bodyParser.urlencoded({extended: false}));// parse application/x-www-form-urlencoded
+app.use(bodyParser.json());// parse application/json
 
 //模版引擎(handlebars)
 const handlebars = require('express-handlebars');

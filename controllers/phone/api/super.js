@@ -11,7 +11,7 @@ class Super {
             inherits: json
         });
         this.apiInfo = {
-            status: 'success',//状态  'success'   'failure'
+            status: 'failure',//状态  'success'   'failure'
             message: '接口数据的基本格式',//信息     '参数错误'
             result: {
                 items: [
@@ -21,7 +21,7 @@ class Super {
                             height: 0,
                             url: ''
                         },
-                        text: '',
+                        text: '请求失败了哟',
                         link: ''
                     }
                 ],//数据集合

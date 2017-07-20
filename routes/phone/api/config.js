@@ -5,16 +5,19 @@ let pathConfig = {
 //路由的名字
 let routeName = [,
     {
-        name: 'list',//列表
+        name: 'list'//列表
     },
     {
-        name: 'modification-password',//修改密码
+        name: 'verification-code'//验证码
     },
     {
-        name: 'login',//登录
+        name: 'modification-password'//修改密码
     },
     {
-        name: 'register',//注册
+        name: 'login'//登录
+    },
+    {
+        name: 'register'//注册
     }
 ];
 //路由的配置
