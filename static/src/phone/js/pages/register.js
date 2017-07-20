@@ -7,6 +7,13 @@ window.addEventListener('load', function () {
         //注释待续...
         (function () {
             //功能待续...
+            axios({
+                url: '/phone/api/register/',
+                method: 'get',
+                data: {
+                    test: 1
+                }
+            })
         })();
 
         let footer = require('../pages-commons/footer');//每个页面都要用到的js(一定要放到最底部)
