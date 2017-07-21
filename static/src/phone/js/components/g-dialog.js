@@ -11,17 +11,16 @@ var SubType = tools.constructorInherit({
         //回调
         callback: {
             moduleDomRenderBefore: function (self) {
-                if (self.opts.config.type == 'confirm') {
+                if (self.opts.config.type === 'confirm') {
                     if (self.opts.config.confirm.isShowMask) {
                         self.mask = new Mask({
-                            wrap: self.opts.wrap,
                             config: {
                                 moduleDomIsShow: true,
                                 moduleDomRenderMethod: {method: 'insertBefore'}
                             }
                         });
                     }
-                    if (self.wrapDom && getComputedStyle(self.wrapDom).position == 'static') {
+                    if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
                         self.wrapDom.style.position = 'relative';
                     }
                 }
@@ -109,7 +108,7 @@ SubType.prototype.moduleDomCreate = function () {
 //提示框
 SubType.prototype.renderAlert = function () {
     var config = this.opts.config;
-    if (config.type != `alert`) {
+    if (config.type !== `alert`) {
         return ``;
     }
     var alert = config.alert;
@@ -126,7 +125,7 @@ SubType.prototype.renderAlert = function () {
 //确认框
 SubType.prototype.renderConfirm = function () {
     var config = this.opts.config;
-    if (config.type != `confirm`) {
+    if (config.type !== `confirm`) {
         return ``;
     }
     var confirm = config.confirm;
@@ -186,13 +185,13 @@ SubType.prototype.power = function () {
     var self = this;
     var config = this.opts.config;
     //提示框
-    if (config.type == `alert`) {
+    if (config.type === `alert`) {
         setTimeout(function () {
             self.hide();
         }, config.alert.time);
     }
     //确认框
-    if (config.type == `confirm`) {
+    if (config.type === `confirm`) {
         var close = this.moduleDom.querySelector('.g-dialog-close');
         close && close.addEventListener('click', function () {
             self.hide();

@@ -33,7 +33,6 @@ window.addEventListener('load', function () {
                             }
                         });
                         loading.moduleDomShow();
-                        //self.isLoadOver = false;
                     }
                 }
             });

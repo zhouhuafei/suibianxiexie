@@ -14,43 +14,16 @@ let SubType = tools.constructorInherit({
         //配置
         config: {},
         //数据
-        data: {
-            // home: {
+        data: [
+            // {
+            //     routeName: 'home',
             //     link: '/',
+            //     text: '首页',
             //     icon: 'icon-shouye',
-            //     txt: '首页',
-            //     isHighlight: false,
-            //     isShowMark: false
-            // },
-            // devGlobal: {
-            //     link: '/dev-global',
-            //     icon: 'icon-kaifa',
-            //     txt: 'g-global',
-            //     isHighlight: false,
-            //     isShowMark: false
-            // },
-            // devModule: {
-            //     link: '/dev-components',
-            //     icon: 'icon-kaifa',
-            //     txt: 'g-components',
-            //     isHighlight: false,
-            //     isShowMark: false
-            // },
-            // devWord: {
-            //     link: '/dev-words',
-            //     icon: 'icon-kaifa',
-            //     txt: '标准词汇',
-            //     isHighlight: false,
-            //     isShowMark: false
-            // },
-            // mine: {
-            //     link: '/mine',
-            //     icon: 'icon-wode',
-            //     txt: '我的',
             //     isHighlight: false,
             //     isShowMark: false
             // }
-        }
+        ]
     }
 });
 
@@ -71,7 +44,7 @@ SubType.prototype.moduleDomCreate = function () {
         moduleDomHtml += `
             <a class="g-footer-nav-body ${highlightClass}" href="${v.link}">
                 <div class="g-footer-nav-body-icon iconfont ${v.icon}"></div>
-                <div class="g-footer-nav-body-txt">${v.txt}</div>
+                <div class="g-footer-nav-body-text">${v.text}</div>
                 ${markHtml}
             </a>
         `;

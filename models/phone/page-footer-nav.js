@@ -6,44 +6,49 @@ class FooterNav {
         this.opts = json || {};
         this.result = {
             config: {},
-            data: {
-                'home': {
-                    icon: 'icon-shouye',
-                    txt: routeConfig['home'].title,
+            data: [
+                {
+                    routeName: 'home',
                     link: routeConfig['home'].route,
+                    text: routeConfig['home'].title,
+                    icon: 'icon-shouye',
                     isHighlight: false,
                     isShowMark: false
                 },
-                'dev-global': {
-                    icon: 'icon-kaifa',
-                    txt: routeConfig['dev-global'].title,
+                {
+                    routeName: 'dev-global',
                     link: routeConfig['dev-global'].route,
+                    text: routeConfig['dev-global'].title,
+                    icon: 'icon-kaifa',
                     isHighlight: false,
                     isShowMark: false
                 },
-                'dev-components': {
-                    icon: 'icon-kaifa',
-                    txt: routeConfig['dev-components'].title,
+                {
+                    routeName: 'dev-components',
                     link: routeConfig['dev-components'].route,
-                    isHighlight: false,
-                    isShowMark: false
-                },
-                'dev-words': {
+                    text: routeConfig['dev-components'].title,
                     icon: 'icon-kaifa',
-                    txt: routeConfig['dev-words'].title,
-                    link: routeConfig['dev-words'].route,
                     isHighlight: false,
                     isShowMark: false
                 },
-                'mine': {
-                    icon: 'icon-wode',
-                    txt: routeConfig['mine'].title,
+                {
+                    routeName: 'dev-words',
+                    link: routeConfig['dev-words'].route,
+                    text: routeConfig['dev-words'].title,
+                    icon: 'icon-kaifa',
+                    isHighlight: false,
+                    isShowMark: false
+                },
+                {
+                    routeName: 'mine',
                     link: routeConfig['mine'].route,
+                    text: routeConfig['mine'].title,
+                    icon: 'icon-wode',
                     isHighlight: false,
                     isShowMark: false
                 }
 
-            }
+            ]
         };
     }
 

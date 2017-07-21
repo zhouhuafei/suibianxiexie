@@ -448,7 +448,7 @@ Applications.prototype.whenScrollBottom = function () {
                     failure: function () {
                     }
                 },
-                isInitRender:true,//是否初始化的时候就进行渲染
+                isInitRender: true,//是否初始化的时候就进行渲染
                 interval: 80,//函数节流时间(延迟时间)
                 errorHeight: 0//滚动到底部上面一定高度就算是滚动到底部了(误差高度)
             },
@@ -459,7 +459,7 @@ Applications.prototype.whenScrollBottom = function () {
     }
 
     WhenScrollBottom.prototype.init = function () {
-        if(this.opts.isInitRender){
+        if (this.opts.isInitRender) {
             this.render();
         }
         this.power();
@@ -471,16 +471,16 @@ Applications.prototype.whenScrollBottom = function () {
         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         let clientHeight = document.documentElement.clientHeight;
         if (scrollTop + clientHeight >= allH - this.opts.errorHeight && !this.isLoadOver) {
-            this.isLoadOver = true;
             callback.success(this);
-            /*
-             * 条件:当你拿到请求的数据之后
-             * 可能性:1.如果你的数据加载完毕了,你需要手动把isLoadOver开关变成true
-             * 可能性:2.如果你的数据尚未加载完毕,你需要手动把isLoadOver开关变成false
-             * */
         } else {
             callback.failure();
         }
+    };
+
+    //数据加载完毕
+    WhenScrollBottom.prototype.dataLoadOver = function () {
+        this.isLoadOver = true;
+        //数据加载完毕,手动调用这个方法,或者手动把isLoadOver属性变成true,建议掉方法
     };
 
     WhenScrollBottom.prototype.power = function () {

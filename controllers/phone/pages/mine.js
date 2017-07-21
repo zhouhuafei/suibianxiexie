@@ -12,8 +12,9 @@ class Mine extends Super {
     handleData() {
         var req = this.opts.req;
         var query = req.query;
-
         //pageInfo数据处理待续...
+        var footerNavData = this.pageInfo.data.footerNav.data;
+        footerNavData.unshift(footerNavData.pop(footerNavData.length - 1));
     }
 }
 

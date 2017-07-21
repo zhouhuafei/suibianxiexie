@@ -7,12 +7,13 @@ var SubType = tools.constructorInherit({
     superType: SuperType,
     //默认参数(继承超类型)
     parameter: {
+        wrap:'.g-wrap',
         //回调
         callback: {
             click: function () {
             },
             moduleDomRenderBefore: function (self) {
-                if (self.wrapDom&&getComputedStyle(self.wrapDom).position == 'static') {
+                if (self.wrapDom&&getComputedStyle(self.wrapDom).position === 'static') {
                     self.wrapDom.style.position = 'relative';
                 }
             }

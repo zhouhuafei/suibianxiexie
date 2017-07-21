@@ -34,8 +34,12 @@ class Super {
             }
         };
         let data = this.pageInfo.data;
-        if (data.footerNav && data.footerNav.data && data.footerNav.data[this.fileName]) {
-            data.footerNav.data[this.fileName].isHighlight = true;
+        if (data.footerNav && data.footerNav.data && data.footerNav.data.length) {
+            data.footerNav.data.forEach((v) => {
+                if (v.routeName === this.fileName) {
+                    v.isHighlight = true;
+                }
+            })
         }
     }
 

@@ -189,7 +189,7 @@ Tools.prototype.jsonToArray = function (json) {
     let arr = [];
     if (obj instanceof Array) {
         obj.forEach(function (v, i) {
-            arr.push([i, v]);
+            arr.push({key: i, value: v});
         })
     } else {
         for (let attr in obj) {
