@@ -17,7 +17,10 @@ let routeName = [,
         name: 'password-reset'//修改密码,去重置
     },
     {
-        name: 'login'//登录
+        name: 'logout'//退出
+    },
+    {
+        name: 'login'//登陆
     },
     {
         name: 'register'//没有账号,去注册
