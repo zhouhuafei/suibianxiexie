@@ -8,16 +8,19 @@ let routeName = [,
         name: 'list'//列表
     },
     {
-        name: 'verification-code'//验证码
+        name: 'verify-code'//验证码
     },
     {
-        name: 'modification-password'//修改密码
+        name: 'password-find'//忘记密码,去找回
+    },
+    {
+        name: 'password-reset'//修改密码,去重置
     },
     {
         name: 'login'//登录
     },
     {
-        name: 'register'//注册
+        name: 'register'//没有账号,去注册
     }
 ];
 //路由的配置
