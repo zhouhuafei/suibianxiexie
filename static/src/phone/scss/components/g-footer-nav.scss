@@ -12,7 +12,7 @@
         justify-content: center;
         position: fixed;
         z-index: 3;
-        bottom: 0;
+        bottom: -1px;
         box-sizing: border-box;
         border-top: 1px solid $g-border-color-default;
         background: #fff;

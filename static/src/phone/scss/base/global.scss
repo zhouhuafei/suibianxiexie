@@ -113,62 +113,12 @@ html.g-pc {
     }
 }
 
-//多选框
-.g-checkbox {
-    $height: 20;
-    height: px2rem($height);
-    display: flex;
-    align-items: center;
-    .g-checkbox-wrap {
-        width: px2rem($height);
-        height: 100%;
-        border-radius: px2rem(4);
-        background: #ffffff;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .g-checkbox-checkbox {
-            -webkit-appearance: none;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-            outline: none;
-            width: inherit;
-            height: inherit;
-            background: inherit;
-            border-radius: inherit;
-            border: px2rem(1) solid $g-border-color-default;
-            &:checked {
-                border-color: $g-highlight-color;
-                & + .g-checkbox-mark {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-            }
-        }
-        .g-checkbox-mark {
-            color: $g-highlight-color;
-            font-size: px2rem(16);
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: inherit;
-            height: inherit;
-            display: none;
-        }
-    }
-    .g-checkbox-txt {
-        line-height: 1;
-        margin-left: px2rem(10);
-    }
-}
-
 //图片上传
 .g-img-upload {
     $width-height: 80;
     width: px2rem($width-height);
     height: px2rem($width-height);
-    border: px2rem(1) dashed $g-highlight-color;
+    border: 1px dashed $g-highlight-color;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     position: relative;
     display: flex;
@@ -242,65 +192,6 @@ html.g-pc {
     }
 }
 
-//输入框
-.g-input {
-    $height: 40;
-    width: 100%;
-    height: px2rem($height);
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: px2rem(1) solid $g-border-color-default;
-    box-sizing: border-box;
-    position: relative;
-    border-radius: px2rem(0);
-    .g-input-txt {
-        min-width: px2rem($height);
-        padding: 0 px2rem(10);
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        & ~ .g-input-input {
-            border-left: px2rem(1) solid $g-border-color-default;
-        }
-        .g-input-icon {
-            font-size: inherit;
-        }
-    }
-    .g-input-icon {
-        font-size: px2rem(12);
-        padding: 0 px2rem(2);
-        & ~ .g-input-input {
-            border-left: px2rem(1) solid $g-border-color-default;
-        }
-    }
-    .g-input-hint {
-        font-size: px2rem(12);
-        padding: 0 px2rem(2);
-        color: $g-hint-color;
-        & ~ .g-input-input {
-            border-left: px2rem(1) solid $g-border-color-default;
-        }
-    }
-    .g-input-input {
-        min-width: px2rem(50);
-        border: none;
-        -webkit-appearance: none;
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        outline: none;
-        color: inherit;
-        font-size: inherit;
-        flex: 1;
-        height: 100%;
-        background: inherit;
-        border-radius: inherit;
-        box-sizing: border-box;
-        padding: 0 px2rem(10);
-    }
-}
-
 //列表
 .g-list {
     width: 100%;
@@ -308,7 +199,7 @@ html.g-pc {
     .g-list-row {
         display: block;
         padding: px2rem(10) px2rem(10);
-        border-bottom: px2rem(1) solid $g-border-color-default;
+        border-bottom: 1px solid $g-border-color-default;
         .g-list-wrap {
             display: flex;
             align-items: center;
@@ -353,69 +244,116 @@ html.g-pc {
     .g-quick-enter-btn {
         color: $g-font-color-dark;
         padding: px2rem(4) px2rem(6);
-        border: px2rem(1) solid $g-border-color-default;
+        border: 1px solid $g-border-color-default;
         margin: px2rem(2);
         background: #ffffff;
         border-radius: px2rem(2000);
     }
 }
 
-//单选框
-.g-radio {
-    $height: 20.4;
-    text-align: center;
+//输入框
+.g-input {
+    $height: 40;
+    width: 100%;
     height: px2rem($height);
+    background: #ffffff;
     display: flex;
     align-items: center;
-    .g-radio-wrap {
-        position: relative;
-        width: px2rem($height);
+    justify-content: center;
+    border: 1px solid $g-border-color-default;
+    border-left:none;
+    border-right:none;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: px2rem(0);
+    .g-input-txt {
+        min-width: px2rem($height);
+        padding: 0 px2rem(10);
         height: 100%;
-        background: #ffffff;
-        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        .g-radio-radio {
-            -webkit-appearance: none;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-            outline: none;
-            width: inherit;
-            height: inherit;
-            background: inherit;
-            border-radius: inherit;
-            border: px2rem(1) solid $g-border-color-default;
-            &:checked {
-                border-color: $g-highlight-color;
-                & + .g-radio-mark {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-            }
+        & ~ .g-input-input {
+            border-left: 1px solid $g-border-color-default;
         }
-        .g-radio-mark {
-            color: $g-highlight-color;
-            font-size: px2rem(16);
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: inherit;
-            height: inherit;
-            display: none;
-            &:before {
-                width: inherit;
-                height: inherit;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                line-height: 1;
-            }
+        .g-input-icon {
+            font-size: inherit;
         }
     }
-    .g-radio-txt {
-        line-height: 1;
-        margin-left: px2rem(10);
+    .g-input-icon {
+        font-size: px2rem(12);
+        padding: 0 px2rem(2);
+        & ~ .g-input-input {
+            border-left: 1px solid $g-border-color-default;
+        }
+    }
+    .g-input-hint {
+        font-size: px2rem(12);
+        padding: 0 px2rem(2);
+        color: $g-hint-color;
+        & ~ .g-input-input {
+            border-left: 1px solid $g-border-color-default;
+        }
+    }
+    .g-input-input {
+        min-width: px2rem(50);
+        border: none;
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        outline: none;
+        color: inherit;
+        font-size: inherit;
+        flex: 1;
+        height: 100%;
+        background: inherit;
+        border-radius: inherit;
+        box-sizing: border-box;
+        padding: 0 px2rem(10);
+    }
+}
+
+//文本框
+.g-textarea {
+    width: 100%;
+    height: px2rem(120);
+    line-height: px2rem(20);
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 1px solid $g-border-color-default;
+    border-left:none;
+    border-right:none;
+    border-radius: px2rem(0);
+    .g-textarea-txt {
+        min-width: px2rem(40);
+        padding: 0 px2rem(10);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & ~ .g-textarea-textarea {
+            border-left: 1px solid $g-border-color-default;
+        }
+    }
+    .g-textarea-textarea {
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        outline: none;
+        color: inherit;
+        font-size: inherit;
+        flex: 1;
+        height: 100%;
+        font-family: inherit;
+        line-height: inherit;
+        background: inherit;
+        border-radius: inherit;
+        box-sizing: border-box;
+        text-align: justify;
+        resize: none;
+        padding: px2rem(10);
+        border: none;
     }
 }
 
@@ -433,7 +371,9 @@ html.g-pc {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: px2rem(1) solid $g-border-color-default;
+    border: 1px solid $g-border-color-default;
+    border-left:none;
+    border-right:none;
     box-sizing: border-box;
     position: relative;
     border-radius: px2rem(0);
@@ -445,7 +385,7 @@ html.g-pc {
         align-items: center;
         justify-content: center;
         & ~ .g-select-wrap {
-            border-left: px2rem(1) solid $g-border-color-default;
+            border-left: 1px solid $g-border-color-default;
         }
     }
     .g-select-wrap {
@@ -481,7 +421,7 @@ html.g-pc {
             position: absolute;
             right: 0;
             top: 0;
-            border-left: px2rem(1) solid $g-border-color-default;
+            border-left: 1px solid $g-border-color-default;
             box-sizing: border-box;
             border-radius: inherit;
             //border-top-left-radius: 0;
@@ -490,46 +430,112 @@ html.g-pc {
     }
 }
 
-//文本框
-.g-textarea {
-    width: 100%;
-    height: px2rem(120);
-    line-height: px2rem(20);
-    background: #ffffff;
+//单选框
+.g-radio {
+    $height: 20.4;
+    text-align: center;
+    height: px2rem($height);
     display: flex;
     align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    border: px2rem(1) solid $g-border-color-default;
-    border-radius: px2rem(0);
-    .g-textarea-txt {
-        min-width: px2rem(40);
-        padding: 0 px2rem(10);
+    .g-radio-wrap {
+        position: relative;
+        width: px2rem($height);
         height: 100%;
+        background: #ffffff;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        & ~ .g-textarea-textarea {
-            border-left: px2rem(1) solid $g-border-color-default;
+        .g-radio-radio {
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            outline: none;
+            width: inherit;
+            height: inherit;
+            background: inherit;
+            border-radius: inherit;
+            border: 1px solid $g-border-color-default;
+            &:checked {
+                border-color: $g-highlight-color;
+                & + .g-radio-mark {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+        .g-radio-mark {
+            color: $g-highlight-color;
+            font-size: px2rem(16);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: inherit;
+            height: inherit;
+            display: none;
+            &:before {
+                width: inherit;
+                height: inherit;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                line-height: 1;
+            }
         }
     }
-    .g-textarea-textarea {
-        -webkit-appearance: none;
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        outline: none;
-        color: inherit;
-        font-size: inherit;
-        flex: 1;
+    .g-radio-txt {
+        line-height: 1;
+        margin-left: px2rem(10);
+    }
+}
+
+//多选框
+.g-checkbox {
+    $height: 20;
+    height: px2rem($height);
+    display: flex;
+    align-items: center;
+    .g-checkbox-wrap {
+        width: px2rem($height);
         height: 100%;
-        font-family: inherit;
-        line-height: inherit;
-        background: inherit;
-        border-radius: inherit;
-        box-sizing: border-box;
-        text-align: justify;
-        resize: none;
-        padding: px2rem(10);
-        border: none;
+        border-radius: px2rem(4);
+        background: #ffffff;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .g-checkbox-checkbox {
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            outline: none;
+            width: inherit;
+            height: inherit;
+            background: inherit;
+            border-radius: inherit;
+            border: 1px solid $g-border-color-default;
+            &:checked {
+                border-color: $g-highlight-color;
+                & + .g-checkbox-mark {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+        .g-checkbox-mark {
+            color: $g-highlight-color;
+            font-size: px2rem(16);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: inherit;
+            height: inherit;
+            display: none;
+        }
+    }
+    .g-checkbox-txt {
+        line-height: 1;
+        margin-left: px2rem(10);
     }
 }
 

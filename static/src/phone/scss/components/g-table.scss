@@ -9,7 +9,8 @@
         min-height: px2rem(44);
         border-bottom: 1px solid $g-border-color-default;
         &:hover {
-            background: $g-background-color-disabled;
+            background: $g-highlight-color;
+            color: #ffffff;
         }
         .g-table-col {
             position: relative;
@@ -27,7 +28,8 @@
         }
     }
     .g-table-header {
-        background: $g-background-color-disabled;
+        background: $g-highlight-color;
+        color: #ffffff;
         border-top: 1px solid $g-border-color-default;
     }
 }
