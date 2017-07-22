@@ -34,7 +34,7 @@ class DevList extends Super {
             return Math.round(Math.random() * (max - min) + min);
         }
 
-        let verifyCode = getVerifyCode(999999, 100000);
+        let verifyCode = getVerifyCode(999999, 100000);//随即验证码
 
         let transporter = nodemailer.createTransport({
             service: 'qq',
@@ -51,6 +51,7 @@ class DevList extends Super {
             text: verifyCode, // 文本
             html: ``//html
         };
+        //这里异步了怎么解决
         transporter.sendMail(mailOptions, function (err, info) {
             if (err) {
                 console.log(err);

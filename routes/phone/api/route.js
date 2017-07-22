@@ -50,6 +50,7 @@ class Route {
                             //渲染数据
                             let controller = new Controller({req: req, res: res});
                             controller.renderData();
+                            //这里的渲染数据是不是应该拿到里面去执行,如果不这样,程序内部如果异步了,就很难搞了
                         })
                     })(Controller, attr);
                 } catch (err) {
