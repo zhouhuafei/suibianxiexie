@@ -5,6 +5,7 @@ class DevList extends Super {
     constructor(json) {
         super(json);
         this.initData();//调用超类型的初始化数据
+        this.renderData();//渲染数据
     }
 
     //获取数据(增)(覆盖超类型)

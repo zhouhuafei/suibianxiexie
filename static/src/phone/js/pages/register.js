@@ -26,16 +26,17 @@ window.addEventListener('load', function () {
             // })
 
             //获取验证码
+            let inputUsername = document.querySelector('#username');
             let btnGetVerifyCode = document.querySelector('.page-verify-code');
             btnGetVerifyCode.addEventListener('click', function () {
-                getVerifyCode();
+                getVerifyCode(inputUsername.value);
             });
-            function getVerifyCode() {
+            function getVerifyCode(username) {
                 axios({
                     url: '/phone/api/verify-code/',
                     method: 'get',
                     params: {
-                        username: '1123486116@qq.com'
+                        username: username
                     }
                 })
             }
