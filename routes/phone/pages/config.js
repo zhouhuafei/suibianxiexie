@@ -22,17 +22,29 @@ let routeName = [
         title: '开发词汇'
     },
     {
+        name: 'setting',//设置页
+        title: '设置'
+    },
+    {
         name: 'mine',//我的页面
         title: '我的',
         isValidateLogin: false//是否验证登陆
     },
     {
-        name: 'register',//注册页
-        title: '注册'
+        name: 'password-find',//忘记密码,去找回
+        title: '忘记密码,去找回'
+    },
+    {
+        name: 'password-reset',//修改密码,去重置
+        title: '修改密码,去重置'
     },
     {
         name: 'login',//登陆页
         title: '登陆'
+    },
+    {
+        name: 'register',//注册页
+        title: '注册'
     },
     {
         name: 'home',//首页

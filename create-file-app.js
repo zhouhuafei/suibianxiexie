@@ -1,9 +1,9 @@
 const tools = require('./base/tools');//工具方法集合
 const applications = require('./base/applications');//应用方法集合
 const CreateFile = applications.createFile();//创建文件函数
-const pathName = process.argv[2];//目录名字
-if (!pathName) {
-    console.log('pathName no find');
+const projectDirName = process.argv[2];//目录名字
+if (!projectDirName) {
+    console.log('projectDirName no find');
     return;
 }
 const fileName = process.argv[3];//文件名字
@@ -11,37 +11,37 @@ if (!fileName) {
     console.log('fileName no find');
     return;
 }
-const routeConfig = require(`./routes/${pathName}/config`);//路由的配置
+const routeConfig = require(`./routes/${projectDirName}/pages/config`);//路由的配置
 const pageTitle = routeConfig[fileName].title;//页面的标题
-const staticPath = `${__dirname}/static/${pathName}/src`;//前端静态文件所处的位置
-const controllerPath = `controllers/${pathName}/pages/`;//后台控制器文件所处的位置
+const staticPath = `${__dirname}/static/src/${projectDirName}/`;//前端静态文件所处的位置
+const controllerPath = `${__dirname}/controllers/${projectDirName}/pages/`;//后台控制器文件所处的位置
 
 //创建静态文件
 const file = {
     view: {
-        path: `${staticPath}/view/pages/`,
+        path: `${staticPath}views/pages/`,
         fileName: fileName,
         content: `<!DOCTYPE html>
 <html lang="en">
     <head>
-        {{>${fileName}/partials/head}}
+        {{>${projectDirName}/partials/head}}
     </head>
     <body>
         <div class="g-wrap">
-            {{>${fileName}/partials/header}}
+            {{>${projectDirName}/partials/header}}
             <!--page start-->
             <div class="g-body">
                 <!--结构待续...-->
             </div>
             <!--page end-->
-            {{>${fileName}/partials/footer}}
+            {{>${projectDirName}/partials/footer}}
         </div>
     </body>
 </html>`,
         extendName: '.hbs'
     },
     scss: {
-        path: `${staticPath}/scss/pages/`,
+        path: `${staticPath}scss/pages/`,
         fileName: fileName,
         content: `//基础样式
 @import "../base/config";
@@ -53,7 +53,7 @@ const file = {
         extendName: '.scss'
     },
     js: {
-        path: `${staticPath}/js/pages/`,
+        path: `${staticPath}js/pages/`,
         fileName: fileName,
         content: `window.addEventListener('load', function () {
     setTimeout(function () {
@@ -85,7 +85,7 @@ for (let attr in file) {
             path: controllerPath,
             fileName: fileName,
             content: `//${pageTitle},页面路由的控制器
-var Super = require('../super');//超类型
+let Super = require('./super');//超类型
 
 class ${humpFileName} extends Super {
     constructor(json) {
@@ -96,8 +96,8 @@ class ${humpFileName} extends Super {
     }
 
     handleData() {
-        var req = this.opts.req;
-        var query = req.query;
+        let req = this.opts.req;
+        let query = req.query;
         //pageInfo数据处理待续...
     }
 }
