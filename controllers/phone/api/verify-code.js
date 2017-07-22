@@ -1,5 +1,6 @@
 //开发列表,页面路由的控制器
 let Super = require('./super');//超类型
+let nodemailer = require('nodemailer');//邮箱模块
 
 class DevList extends Super {
     constructor(json) {
@@ -27,7 +28,36 @@ class DevList extends Super {
         //apiInfo数据处理待续...
         let opts = this.opts;
         let req = opts.req;
+        //检查用户名是否已被注册
+        //没被注册再发送验证码
+        function getVerifyCode(max, min) {
+            return Math.round(Math.random() * (max - min) + min);
+        }
 
+        let verifyCode = getVerifyCode(999999, 100000);
+
+        let transporter = nodemailer.createTransport({
+            service: 'qq',
+            auth: {
+                user: '1123486116@qq.com',
+                pass: 'qtpavohugfediehj' //授权码,通过QQ获取
+
+            }
+        });
+        let mailOptions = {
+            from: '1123486116@qq.com', // 发送者
+            to: '1256485941@qq.com', // 接受者,可以同时发送多个,以逗号隔开
+            subject: '验证码测试', // 标题
+            text: verifyCode, // 文本
+            html: ``//html
+        };
+        transporter.sendMail(mailOptions, function (err, info) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            console.log('发送成功');
+        });
     }
 }
 

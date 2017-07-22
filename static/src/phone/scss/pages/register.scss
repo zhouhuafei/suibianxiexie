@@ -19,4 +19,13 @@
             align-items: center;
         }
     }
+    .page-verify-code {
+        height: 100%;
+        width: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $g-warning-color;
+        color: #ffffff;
+    }
 }

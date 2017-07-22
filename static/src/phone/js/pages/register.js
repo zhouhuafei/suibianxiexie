@@ -24,6 +24,21 @@ window.addEventListener('load', function () {
             //         test: 1
             //     }
             // })
+
+            //获取验证码
+            let btnGetVerifyCode = document.querySelector('.page-verify-code');
+            btnGetVerifyCode.addEventListener('click', function () {
+                getVerifyCode();
+            });
+            function getVerifyCode() {
+                axios({
+                    url: '/phone/api/verify-code/',
+                    method: 'get',
+                    params: {
+                        username: '1123486116@qq.com'
+                    }
+                })
+            }
         })();
 
         let footer = require('../pages-commons/footer');//每个页面都要用到的js(一定要放到最底部)
