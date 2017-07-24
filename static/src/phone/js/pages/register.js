@@ -58,39 +58,7 @@ window.addEventListener('load', function () {
                 canvas.height = this.wrapDom.offsetHeight;
                 this.wrapDom.appendChild(canvas);
                 let context = canvas.getContext('2d');
-                context.fillStyle = 'rgba(255,255,255,1)';
                 context.strokeStyle = 'rgba(255,255,255,1)';
-                let data = [];
-                let text = '01';
-                let length = text.length;
-                for (let i = 0; i < 255; i++) {
-                    data.push(0);
-                }
-                function draw() {
-                    context.save();
-                    context.beginPath();
-                    context.fillStyle = 'rgba(0,0,0,0.06)';
-                    context.fillRect(0, 0, width, height);
-                    context.fillStyle = `rgba(7,247,70,1)`;
-                    context.font = '20px 微软雅黑';
-                    context.textAlign = 'left';
-                    context.textBaseline = 'top';
-                    data.forEach((v, i, a) => {
-                        context.fillText(text[i % length], i * 20, v);
-                        if (v >= height + Math.random() * 1e4) {
-                            a[i] = 0;
-                        } else {
-                            a[i] = v + 20;
-                        }
-                    });
-                    context.fill();
-                    context.closePath();
-                    context.restore();
-                }
-
-                setInterval(() => {
-                    draw();
-                }, 30);
             };
 
             new Canvas({
