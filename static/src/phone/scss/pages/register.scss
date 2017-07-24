@@ -2,10 +2,15 @@
 @import "../base/config";
 
 //页面样式
+.page-canvas {
+    height: px2rem(40);
+    margin-bottom: 20px;
+}
+
 .g-body {
     //样式待续...
     .page-input-wrap {
-        margin: px2px(10) 0;
+        margin-bottom: px2px(10);
     }
     .page-guide-wrap {
         display: flex;
@@ -14,7 +19,6 @@
         height: px2px(40);
         padding: 0 px2px(10);
         .page-guide-item {
-            color: $g-font-color-dark;
             display: flex;
             align-items: center;
         }
