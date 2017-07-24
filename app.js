@@ -39,23 +39,23 @@ app.use(function (req, res, next) {
 // });
 
 //mysql
-var Mysql = require('./config/mysql');
-var oMysql = new Mysql({isLocal: true});
-oMysql.init();
-var mysql = oMysql.connection;
-var tableName = 'user';
-mysql.query(
-    'SELECT * FROM ' + tableName,
-    function selectCb(error, results, fields) {
-        if (error) {
-            throw error;
-        }
-        if (results) {
-            console.log('mysql数据库user表里的数据', results);
-        }
-        mysql.end();
-    }
-);
+// var Mysql = require('./config/mysql');
+// var oMysql = new Mysql({isLocal: true});
+// oMysql.init();
+// var mysql = oMysql.connection;
+// var tableName = 'user';
+// mysql.query(
+//     'SELECT * FROM ' + tableName,
+//     function selectCb(error, results, fields) {
+//         if (error) {
+//             throw error;
+//         }
+//         if (results) {
+//             console.log('mysql数据库user表里的数据', results);
+//         }
+//         mysql.end();
+//     }
+// );
 
 //端口
 const server = app.listen('5555', function () {
