@@ -43,11 +43,7 @@ class DevList extends Super {
         //检查用户名是否已被注册
 
         //没被注册再发送验证码
-        function getVerifyCode(max, min) {
-            return Math.round(Math.random() * (max - min) + min);
-        }
-
-        let verifyCode = getVerifyCode(999999, 100000);//随即验证码
+        let verifyCode = tools.getRandom(100000, 999999);//随机验证码
         let expirationDate = 10;//有效期,单位是分钟
         let autoUser = 'this-is-a-code@foxmail.com';
         let transporter = nodemailer.createTransport({
