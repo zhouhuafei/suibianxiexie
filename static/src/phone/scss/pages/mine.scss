@@ -17,7 +17,7 @@
                 $width-height: 80;
                 width: px2rem($width-height);
                 height: px2rem($width-height);
-                border: 1px solid $g-border-color-default;
+                border: px2px(1) solid $g-border-color-default;
                 border-radius: 50%;
                 margin-right: px2rem(10);
                 overflow: hidden;

@@ -12,9 +12,9 @@
         justify-content: center;
         position: fixed;
         z-index: 3;
-        bottom: -1px;
+        bottom: px2px(-1);
         box-sizing: border-box;
-        border-top: 1px solid $g-border-color-default;
+        border-top: px2px(1) solid $g-border-color-default;
         background: #fff;
         .g-footer-nav-body {
             flex: 1;
