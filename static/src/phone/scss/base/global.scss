@@ -1,8 +1,8 @@
-//全局的配置
+//全局配置
 @import "config";
 //字体图标
 @import "../fonts/iconfont.css";
-//==================================================================清零样式的开始>
+//==================================================================重置样式>
 body {
     color: $g-font-color-default;
     font-family: "Microsoft Yahei", "Helvetica", "sans-serif";
@@ -34,10 +34,7 @@ div, input, button, textarea, select, label {
     font-size: inherit;
 }
 
-//==================================================================清零样式的结束>
-
-//==================================================================全局样式的开始>
-
+//==================================================================全局样式>
 //全局的容器
 .g-wrap {
     width: 100%;
@@ -572,7 +569,7 @@ html.g-pc {
     }
 }
 
-//g-tools
+//==================================================================工具样式>
 .g-display-none {
     display: none;
 }
@@ -585,36 +582,15 @@ html.g-pc {
     display: flex;
 }
 
-//以下改怎么设计有待考量
-.g-center-x {
+.g-justify-content-center {
     justify-content: center;
 }
 
-.g-center-y {
+.g-align-items-center {
     align-items: center;
 }
 
-.g-center-xy {
-    justify-content: center;
-    align-items: center;
-}
-
-.g-color-warn {
-
-}
-
-.g-color-highlight {
-
-}
-
-.g-bg-warn {
-
-}
-
-//==================================================================全局样式的结束>
-
-//==================================================================公用的模块开始>
+//==================================================================组件样式>
 @import "../components/g-footer-nav";
 @import "../components/g-copyright";
 @import "../components/g-mask";
-//==================================================================公用的模块结束>
