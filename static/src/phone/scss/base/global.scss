@@ -44,6 +44,10 @@ div, input, button, textarea, select, label {
     position: relative;
     .g-header {
         position: relative;
+        //二维码(扫码手机观看)
+        .g-qr-code {
+            display: none;
+        }
     }
     .g-body {
         position: relative;
@@ -70,13 +74,38 @@ html.g-pc {
         background: #fafafa;
     }
     .g-wrap {
+        $width-wrap: 414;
         min-height: 100%;
         margin: 0 auto;
-        width: px2px(414);
+        width: px2px($width-wrap);
         box-sizing: border-box;
         box-shadow: px2px(1) 0 px2px(4) $g-border-color-default, px2px(-1) 0 px2px(4) $g-border-color-default;
         //border-top: px2px(1) solid $g-border-color-default;
         //border-bottom: px2px(1) solid $g-border-color-default;
+        .g-header {
+            //二维码(扫码手机观看)
+            .g-qr-code {
+                $width: 144;
+                display: block;
+                box-sizing: border-box;
+                width: px2px($width);
+                padding: px2px(20);
+                background: #fff;
+                border: px2px(1) solid $g-border-color-default;
+                position: fixed;
+                top: px2px(20);
+                left: 50%;
+                margin-left: px2px(- 20 - $width - $width-wrap/2);
+                font-size: px2px(12);
+                .g-qr-code-text {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .g-qr-code-svg {
+                }
+            }
+        }
     }
 }
 
@@ -588,21 +617,4 @@ html.g-pc {
 @import "../components/g-footer-nav";
 @import "../components/g-copyright";
 @import "../components/g-mask";
-//二维码(扫码手机观看)
-.g-qr-code {
-    $width-height: 100;
-    width: px2px($width-height);
-    position: absolute;
-    top: px2px(20);
-    left: px2px(-20-$width-height);
-    font-size: px2px(12);
-    .g-qr-code-text {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .g-qr-code-svg {
-    }
-}
-
 //==================================================================公用的模块结束>
