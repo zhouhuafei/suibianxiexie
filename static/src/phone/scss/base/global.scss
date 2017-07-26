@@ -591,6 +591,168 @@ html.g-pc {
 }
 
 //==================================================================组件样式>
-@import "../components/g-footer-nav";
-@import "../components/g-copyright";
-@import "../components/g-mask";
+//底部导航
+.g-footer-nav {
+    $height: 44;
+    width: inherit;
+    height: px2rem($height);
+    .g-footer-nav-wrap {
+        width: inherit;
+        height: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        z-index: 3;
+        bottom: px2px(-1);
+        box-sizing: border-box;
+        border-top: px2px(1) solid $g-border-color-default;
+        background: #fff;
+        .g-footer-nav-body {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            height: 100%;
+            color: $g-font-color-default;
+            .g-footer-nav-body-icon {
+                $size: 20;
+                width: px2rem($size);
+                height: px2rem($size);
+                font-size: px2rem($size);
+            }
+            .g-footer-nav-body-text {
+                line-height: 1;
+                font-size: px2rem(12);
+                margin-top: px2rem(4);
+            }
+            .g-footer-nav-body-mark {
+                $width-height: 6;
+                width: px2rem($width-height);
+                height: px2rem($width-height);
+                border-radius: 50%;
+                background: $g-highlight-color;
+                position: absolute;
+                right: px2rem(4);
+                top: px2rem(4);
+            }
+            &.g-footer-nav-body-active {
+                .g-footer-nav-body-icon, .g-footer-nav-body-text {
+                    color: $g-highlight-color;
+                }
+            }
+        }
+    }
+}
+
+//版权
+.g-copyright {
+    padding: px2rem(20) 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .g-copyright-icon {
+        font-size: px2rem(24);
+    }
+    .g-copyright-txt {
+        font-size: px2rem(12);
+    }
+}
+
+//遮罩
+.g-mask {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 500;
+    &.g-mask-transparent {
+        z-index: 999;
+        background-color: transparent;
+    }
+}
+
+//返回顶部
+.g-go-top {
+    $width-height: 40;
+    position: fixed;
+    left: 50%;
+    margin-left: 5rem -  px2rem($width-height + 10);
+    bottom: px2rem(60);
+    width: px2rem($width-height);
+    height: px2rem($width-height);
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: px2rem(20);
+    color: #ffffff;
+    border-radius: 50%;
+    transition: opacity 0.4s;
+    z-index: -2;
+    opacity: 0;
+    &.g-go-top-active {
+        opacity: 1;
+        z-index: 2;
+    }
+}
+
+//延迟加载默认状态
+.g-lazy-load {
+    transition: opacity 0.4s;
+    opacity: 0;
+}
+
+//延迟加载活跃状态
+.g-lazy-load-active {
+    transition: opacity 0.4s;
+    opacity: 1;
+}
+
+//没有数据
+.g-no-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: px2rem(20) 0;
+    .g-no-data-icon {
+        font-size: px2rem(60);
+        margin-bottom: px2rem(20);
+    }
+    .g-no-data-txt {
+        font-size: px2rem(16);
+        margin-bottom: px2rem(20);
+    }
+}
+
+//表单验证失败的提示
+.g-validate-form-hint {
+    $height: 20;
+    color: #ffffff;
+    background: $g-hint-color;
+    height: px2rem($height);
+    @include center-xy-flex;
+    font-size: px2rem(12);
+    padding: 0 px2rem(10);
+    position: absolute;
+    right: px2rem(6);
+    top: px2rem(- $height - 10);
+    font-style: normal;
+    font-weight: normal;
+    border-radius: px2rem(100);
+    &:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border: px2rem(6) solid transparent;
+        border-top-color: $g-hint-color;
+        right: px2rem(10);
+        top: px2rem($height);
+    }
+}
