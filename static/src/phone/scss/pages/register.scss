@@ -35,5 +35,9 @@
         justify-content: center;
         background: $g-warning-color;
         color: #ffffff;
+        &.page-verify-code-inactive{
+            background: $g-background-color-disabled;
+            color: $g-font-color-disabled;
+        }
     }
 }
