@@ -40,30 +40,6 @@ window.addEventListener('load', function () {
                     }
                 })
             }
-
-            //canvas
-            function Canvas(json) {
-                this.opts = json || {};
-                this.wrapDom = document.querySelector(this.opts.wrap);
-                this.init();
-            }
-
-            Canvas.prototype.init = function () {
-                let canvas = document.createElement('canvas');
-                let width = this.wrapDom.offsetWidth;
-                let height = this.wrapDom.offsetHeight;
-                let centerX = Math.ceil(width / 2);
-                let centerY = Math.ceil(height / 2);
-                canvas.width = this.wrapDom.offsetWidth;
-                canvas.height = this.wrapDom.offsetHeight;
-                this.wrapDom.appendChild(canvas);
-                let context = canvas.getContext('2d');
-                context.strokeStyle = 'rgba(255,255,255,1)';
-            };
-
-            new Canvas({
-                wrap: '.page-canvas'
-            });
         })();
 
         let footer = require('../pages-commons/footer');//每个页面都要用到的js(一定要放到最底部)

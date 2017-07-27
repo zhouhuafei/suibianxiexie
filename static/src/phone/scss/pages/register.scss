@@ -2,8 +2,13 @@
 @import "../base/config";
 
 //页面样式
-.page-canvas {
-    height: px2rem(60);
+.page-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: px2px(120);
+    font-size: px2px(100);
+    color: $g-highlight-color;
 }
 
 .g-body {

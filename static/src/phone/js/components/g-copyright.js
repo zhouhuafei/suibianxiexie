@@ -26,7 +26,7 @@ SubType.prototype.moduleDomCreate = function () {
         attribute: {
             className: `g-copyright`,
             innerHTML: `
-                <div class="g-copyright-icon iconfont icon-banquan"></div>
+                <div class="g-copyright-icon iconfont icon-logo"></div>
                 <div class="g-copyright-txt">版权信息哟</div>
             `
         }
