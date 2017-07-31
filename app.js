@@ -2,12 +2,20 @@
 const ms = require('ms');//转成毫秒数
 const compression = require('compression');//gzip压缩
 const express = require('express');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const app = express();
 app.use(compression());//gzip压缩
 app.use(express.static('static', {maxAge: ms('1y')}));//托管静态文件(一年缓存)
 app.use(bodyParser.urlencoded({extended: false}));// parse application/x-www-form-urlencoded
 app.use(bodyParser.json());// parse application/json
+app.use(cookieParser());//cookie
+app.use(session({
+    resave: true, // don't save session if unmodified
+    saveUninitialized: false, // don't create session until something stored
+    secret: 'love'//这里是我的一个疑问
+}));//session
 
 //模版引擎(handlebars)
 const handlebars = require('express-handlebars');
@@ -20,9 +28,8 @@ app.engine('hbs', handlebars({
 app.set('view engine', 'hbs');
 app.set('views', `${__dirname}/views/`);
 
+
 //pc的路由待续...
-
-
 //phone的路由
 const RoutePhonePages = require('./routes/phone/pages/route');
 new RoutePhonePages({app: app});

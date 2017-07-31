@@ -11,14 +11,19 @@ class DevList extends Super {
     //获取数据(增)(覆盖超类型)
     postData() {
         //apiInfo数据处理待续...
+        let tools = this.tools;//工具方法集合
         let opts = this.opts;
         let req = opts.req;
-        let username = '';//用户名
-        let password = '';//密码
-        let verificationCode = '';//验证码
-        console.log('post');
-        console.log('body', this.opts.req.body);
-        console.log('query', this.opts.req.query);
+        let body = req.body;
+        let sesstion = req.session;
+        let username = body.username;//用户名
+        let password = body.password;//密码
+        let verifyCode = body.verifyCode;//验证码
+
+        console.log(tools.isEmail(username));
+        console.log(password);
+        console.log(verifyCode);
+        console.log(sesstion[username]);
     }
 
     //删除数据(删)(覆盖超类型)

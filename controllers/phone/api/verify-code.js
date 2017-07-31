@@ -26,8 +26,9 @@ class DevList extends Super {
 
     //查找数据(查)(覆盖超类型)
     getData() {
-        let self = this;
         //apiInfo数据处理待续...
+        let self = this;
+        let tools = this.tools;//工具方法集合
         let opts = this.opts;
         let req = opts.req;
         let {username} = req.query;
@@ -44,6 +45,9 @@ class DevList extends Super {
 
         //没被注册再发送验证码
         let verifyCode = tools.getRandom(100000, 999999);//随机验证码
+        //验证码存session
+        req.session[username] = verifyCode;
+        console.log(req.session);
         let expirationDate = 10;//有效期,单位是分钟
         let autoUser = 'this-is-a-code@foxmail.com';
         let transporter = nodemailer.createTransport({

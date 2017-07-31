@@ -2,8 +2,6 @@
 const tools = require('../../../base/tools');
 const config = require('./config');
 const controllerPath = `../../../controllers/phone/pages/`;//控制器的路径
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
 
 class Route {
     constructor(json) {
@@ -22,14 +20,6 @@ class Route {
     init() {
         let self = this;
         let app = self.opts.app;
-        //---->session使用开始
-        app.use(cookieParser());
-        app.use(session({
-            resave: true, // don't save session if unmodified
-            saveUninitialized: false, // don't create session until something stored
-            secret: 'love'//这里是我的一个疑问
-        }));
-        //<----session使用结束
         for (let attr in config) {
             if (config.hasOwnProperty(attr)) {
                 try {

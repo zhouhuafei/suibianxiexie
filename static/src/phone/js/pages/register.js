@@ -31,6 +31,7 @@ window.addEventListener('load', function () {
             btnGetVerifyCode.addEventListener('click', function () {
                 getVerifyCode(inputUsername.value);
             });
+
             function getVerifyCode(username) {
                 axios({
                     url: '/phone/api/verify-code/',
@@ -40,6 +41,19 @@ window.addEventListener('load', function () {
                     }
                 })
             }
+
+            //注册
+            document.querySelector('.js-register').addEventListener('click', function () {
+                axios({
+                    url: '/phone/api/register/',
+                    method: 'post',
+                    data: {
+                        username: '1123486116@qq.com',
+                        password: '123456',
+                        verifyCode: document.querySelector('.js-verify-code').value
+                    }
+                })
+            })
         })();
 
         let footer = require('../pages-commons/footer');//每个页面都要用到的js(一定要放到最底部)

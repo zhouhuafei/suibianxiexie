@@ -3,6 +3,7 @@ const tools = require('../../../base/tools');
 
 class Super {
     constructor(json) {
+        this.tools = tools;//工具方法集合
         this.opts = tools.extend({
             defaults: {
                 res: null,
