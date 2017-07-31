@@ -27,6 +27,7 @@ window.addEventListener('load', function () {
 
             //获取验证码
             let inputUsername = document.querySelector('#username');
+            let inputPassword = document.querySelector('#password');
             let btnGetVerifyCode = document.querySelector('.page-verify-code');
             btnGetVerifyCode.addEventListener('click', function () {
                 getVerifyCode(inputUsername.value);
@@ -42,15 +43,15 @@ window.addEventListener('load', function () {
                 })
             }
 
-            //注册
+            //立即注册
             document.querySelector('.js-register').addEventListener('click', function () {
                 axios({
                     url: '/phone/api/register/',
                     method: 'post',
                     data: {
-                        username: '1123486116@qq.com',
-                        password: '123456',
-                        verifyCode: document.querySelector('.js-verify-code').value
+                        username: inputUsername.value,
+                        password: inputPassword.value,
+                        verifyCode: document.querySelector('#verifyCode').value
                     }
                 })
             })
