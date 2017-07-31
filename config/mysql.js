@@ -31,7 +31,7 @@ Mysql.prototype.getDatabase=function(){
     return this.database;
 };
 Mysql.prototype.init=function(){
-    var self=this;
+    let self=this;
     this.mysql=require('mysql2');
     this.connection=this.mysql.createConnection({
         host:self.getHost(),
