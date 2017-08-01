@@ -2,7 +2,9 @@
 (function () {
     if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
         let Copyright = require('../components/g-copyright');
-        new Copyright();
+        new Copyright({
+            wrap: '.g-copyright-wrap'
+        });
     }
 })();
 
@@ -10,6 +12,7 @@
 (function () {
     if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
         let Footer = require('../components/g-footer-nav');
+        pageInfo.data.footerNav.wrap = '.g-footer-nav-wrap';
         new Footer(pageInfo.data.footerNav);
     }
 })();

@@ -592,6 +592,10 @@ html.g-pc {
 
 //==================================================================组件样式>
 //底部导航
+.g-footer-nav-wrap {
+    width: inherit;
+}
+
 .g-footer-nav {
     $height: 44;
     width: inherit;
@@ -648,6 +652,9 @@ html.g-pc {
 }
 
 //版权
+.g-copyright-wrap {
+}
+
 .g-copyright {
     padding: px2rem(20) 0;
     display: flex;

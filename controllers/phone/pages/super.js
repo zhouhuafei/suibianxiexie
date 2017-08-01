@@ -31,16 +31,20 @@ class Super {
                 routes: routesConfig,//路由的配置
                 qrCode: applications.qrCode(`http://${req.headers.host}${req.url}`),//二维码数据
                 title: new PageTitle(this.opts).result,//标题(需要从配置里读取)
-                footerNav: new PageFooterNav(this.opts).result//底部导航的数据(需要从配置里读取)
             }
         };
-        let data = this.pageInfo.data;
-        if (data.footerNav && data.footerNav.data && data.footerNav.data.length) {
-            data.footerNav.data.forEach((v) => {
-                if (v.routeName === this.fileName) {
-                    v.isHighlight = true;
-                }
-            })
+        let pageInfo = this.pageInfo;
+        let config = pageInfo.config;
+        let data = pageInfo.data;
+        if (config.isShowFooterNav) {
+            data.footerNav = new PageFooterNav(this.opts).result;//底部导航的数据(需要从配置里读取)
+            if (data.footerNav && data.footerNav.data && data.footerNav.data.length) {
+                data.footerNav.data.forEach((v) => {
+                    if (v.routeName === this.fileName) {
+                        v.isHighlight = true;
+                    }
+                })
+            }
         }
     }
 
