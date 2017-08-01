@@ -20,10 +20,12 @@ class DevList extends Super {
         let password = body.password;//密码
         let verifyCode = body.verifyCode;//验证码
 
-        console.log(tools.isEmail(username));
-        console.log(password);
-        console.log(verifyCode);
-        console.log(sesstion[username]);
+        if (!tools.isEmail(username) || tools.isSpace(password) || Number(sesstion[username]) !== Number(verifyCode)) {
+            return false;
+        }
+        delete sesstion[username];
+        //存入数据库
+        
     }
 
     //删除数据(删)(覆盖超类型)
