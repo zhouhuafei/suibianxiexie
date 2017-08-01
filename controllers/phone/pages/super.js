@@ -37,7 +37,7 @@ class Super {
         let config = pageInfo.config;
         let data = pageInfo.data;
         if (config.isShowFooterNav) {
-            data.footerNav = new PageFooterNav(this.opts).result;//底部导航的数据(需要从配置里读取)
+            data.footerNav = new PageFooterNav(this.opts).result;//底部导航的数据
             if (data.footerNav && data.footerNav.data && data.footerNav.data.length) {
                 data.footerNav.data.forEach((v) => {
                     if (v.routeName === this.fileName) {
