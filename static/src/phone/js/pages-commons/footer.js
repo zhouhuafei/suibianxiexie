@@ -18,7 +18,7 @@
 })();
 
 //延迟加载
-(function () {
-    let LazyLoad = require('../components/g-lazy-load');
-    new LazyLoad();
-})();
+let LazyLoad = require('../components/g-lazy-load');
+let lazyLoad = new LazyLoad();
+
+module.exports.lazyLoad = lazyLoad;
