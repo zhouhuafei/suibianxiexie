@@ -1,5 +1,5 @@
 //我的,页面路由的控制器
-var Super = require('./super');//超类型
+let Super = require('./super');//超类型
 
 class Mine extends Super {
     constructor(json) {
@@ -10,10 +10,10 @@ class Mine extends Super {
     }
 
     handleData() {
-        var req = this.opts.req;
-        var query = req.query;
+        let req = this.opts.req;
+        let query = req.query;
         //pageInfo数据处理待续...
-        var footerNavData = this.pageInfo.data.footerNav.data;
+        let footerNavData = this.pageInfo.footerNav.data;
         footerNavData.unshift(footerNavData.pop(footerNavData.length - 1));
     }
 }

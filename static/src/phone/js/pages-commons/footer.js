@@ -1,6 +1,6 @@
 //版权
 (function () {
-    if (pageInfo && pageInfo.config && pageInfo.config.isShowCopyright) {
+    if (pageInfo && pageInfo.isShowCopyright) {
         let Copyright = require('../components/g-copyright');
         new Copyright({
             wrap: '.g-copyright-wrap'
@@ -10,10 +10,10 @@
 
 //底部导航
 (function () {
-    if (pageInfo && pageInfo.config && pageInfo.config.isShowFooterNav) {
+    if (pageInfo && pageInfo.footerNav) {
         let Footer = require('../components/g-footer-nav');
-        pageInfo.data.footerNav.wrap = '.g-footer-nav-wrap';
-        new Footer(pageInfo.data.footerNav);
+        pageInfo.footerNav.wrap = '.g-footer-nav-wrap';
+        new Footer(pageInfo.footerNav);
     }
 })();
 

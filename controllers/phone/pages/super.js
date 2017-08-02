@@ -23,23 +23,18 @@ class Super {
     initData() {
         let req = this.opts.req;
         this.pageInfo = {
-            config: {
-                isShowCopyright: new PageCopyright(this.opts).isShowCopyright,//是否显示版权(需要从数据库里读取)
-                isShowFooterNav: routesConfig[this.fileName].isShowFooterNav//是否显示底部导航(需要从配置里读取)
-            },
-            data: {
-                routes: routesConfig,//路由的配置
-                qrCode: applications.qrCode(`http://${req.headers.host}${req.url}`),//二维码数据
-                title: new PageTitle(this.opts).result,//标题(需要从配置里读取)
-            }
+            isShowCopyright: new PageCopyright(this.opts).isShowCopyright,//是否显示版权(需要从数据库里读取)
+            routes: routesConfig,//路由的配置
+            qrCode: applications.qrCode(`http://${req.headers.host}${req.url}`),//二维码数据
+            title: new PageTitle(this.opts).result,//标题(需要从配置里读取)
         };
         let pageInfo = this.pageInfo;
-        let config = pageInfo.config;
-        let data = pageInfo.data;
-        if (config.isShowFooterNav) {
-            data.footerNav = new PageFooterNav(this.opts).result;//底部导航的数据
-            if (data.footerNav && data.footerNav.data && data.footerNav.data.length) {
-                data.footerNav.data.forEach((v) => {
+        let isShowFooterNav = routesConfig[this.fileName].isShowFooterNav;
+        if (isShowFooterNav) {
+            pageInfo.footerNav = new PageFooterNav(this.opts).result;//底部导航的数据
+            let footerNav = pageInfo.footerNav;
+            if (footerNav.data && footerNav.data.length) {
+                footerNav.data.forEach((v) => {
                     if (v.routeName === this.fileName) {
                         v.isHighlight = true;
                     }

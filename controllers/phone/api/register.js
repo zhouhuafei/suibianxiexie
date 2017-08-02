@@ -18,14 +18,17 @@ class DevList extends Super {
         let sesstion = req.session;
         let username = body.username;//用户名
         let password = body.password;//密码
-        let verifyCode = body.verifyCode;//验证码
+        let verifyCode = body['verify-code'];//验证码
+        console.log('username', username);
+        console.log('password', password);
+        console.log('verifyCode', verifyCode);
 
         if (!tools.isEmail(username) || tools.isSpace(password) || Number(sesstion[username]) !== Number(verifyCode)) {
             return false;
         }
         delete sesstion[username];
         //存入数据库
-        
+
     }
 
     //删除数据(删)(覆盖超类型)

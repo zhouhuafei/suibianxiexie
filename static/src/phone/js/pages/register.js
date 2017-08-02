@@ -51,7 +51,7 @@ window.addEventListener('load', function () {
                     data: {
                         username: inputUsername.value,
                         password: inputPassword.value,
-                        verifyCode: document.querySelector('#verifyCode').value
+                        'verify-code': document.querySelector('#verify-code').value
                     }
                 })
             })
