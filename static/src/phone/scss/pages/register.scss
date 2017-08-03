@@ -29,10 +29,16 @@
     }
     .page-verify-code {
         width: px2rem(110);
-        background: $g-warning-color;
+        height: inherit;
+        .g-button {
+            height: inherit;
+            background: $g-warning-color;
+        }
         &.page-verify-code-inactive {
-            background: $g-background-color-disabled;
-            color: $g-font-color-disabled;
+            .g-button {
+                background: $g-background-color-disabled;
+                color: $g-font-color-disabled;
+            }
         }
     }
 }
