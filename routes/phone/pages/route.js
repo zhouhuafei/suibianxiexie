@@ -38,7 +38,7 @@ class Route {
                             }
                             //渲染视图(渲染数据)
                             let controller = new Controller({req: req, res: res});
-                            if (req.query.isDev === 'true') {
+                            if (req.query.isApi === 'true') {
                                 controller.renderData();
                             } else {
                                 controller.renderView();
