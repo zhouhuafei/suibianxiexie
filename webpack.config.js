@@ -7,7 +7,6 @@ const projectDir = myConfig[1];//项目目录
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');//调用插件需要这个
-const autoprefixer = require('autoprefixer');//css3加前缀
 const ExtractTextPlugin = require("extract-text-webpack-plugin");//scss文件转css文件需要这个
 const HtmlWebpackPlugin = require('html-webpack-plugin');//html生成的插件
 const CleanWebpackPlugin = require('clean-webpack-plugin');//清空目录
