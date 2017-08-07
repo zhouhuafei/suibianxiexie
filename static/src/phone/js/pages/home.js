@@ -4,10 +4,6 @@ window.addEventListener('load', function () {
         let header = require('../pages-commons/header');//每个页面都要用到的js(一定要放到最顶部)
         let Vue = header.Vue;
 
-        require.ensure('../components/g-dialog.js', function (mDialog) {
-            //console.log(mDialog);
-        }, 'g-dialog');
-
         //slide切换
         (function () {
             let Slide = require('../components/g-slide');

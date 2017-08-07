@@ -20,13 +20,13 @@ window.addEventListener('load', function () {
 
         //base函数测试
         (function () {
-            var WhenScrollBottom = applications.whenScrollBottom();
+            let WhenScrollBottom = applications.whenScrollBottom();
             //测试滚动到底部loading
             new WhenScrollBottom({
                 callback: {
                     success: function (self) {
-                        var Loading = require('../components/g-loading');
-                        var loading = new Loading({
+                        let Loading = require('../components/g-loading');
+                        let loading = new Loading({
                             wrap: '.g-body',
                             config: {
                                 status: 'loading'
@@ -40,7 +40,7 @@ window.addEventListener('load', function () {
 
         //slide切换
         (function () {
-            var Slide = require('../components/g-slide');
+            let Slide = require('../components/g-slide');
             new Slide({
                 wrap: '.page-slide',
                 data: {
@@ -92,13 +92,13 @@ window.addEventListener('load', function () {
 
         //导航
         (function () {
-            var Navigation = require('../components/g-navigation');
+            let Navigation = require('../components/g-navigation');
             new Navigation({wrap: '.page-navigation'});
         })();
 
         //弹窗测试
         (function () {
-            var Dialog = require('../components/g-dialog');
+            let Dialog = require('../components/g-dialog');
             new Dialog({
                 callback: {
                     confirm: function () {
@@ -119,26 +119,26 @@ window.addEventListener('load', function () {
 
         //分页测试
         (function () {
-            var Pagination = require('../components/g-pagination');
+            let Pagination = require('../components/g-pagination');
             new Pagination({wrap: '.page-pagination'});
         })();
 
         //没有数据
         (function () {
-            var NoData = require('../components/g-no-data');
+            let NoData = require('../components/g-no-data');
             new NoData({wrap: '.page-no-data'});
         })();
 
         //加载中
         (function () {
-            var Loading = require('../components/g-loading');
-            var loading = new Loading({
+            let Loading = require('../components/g-loading');
+            let loading = new Loading({
                 config: {
                     status: 'loading'
                 }
             });
             loading.moduleDomShow();
-            var over = new Loading({
+            let over = new Loading({
                 config: {
                     status: 'over'
                 }
@@ -148,26 +148,26 @@ window.addEventListener('load', function () {
 
         //超类型模块测试
         (function () {
-            var SuperType = require('../components/g-super-type');
+            let SuperType = require('../components/g-super-type');
             new SuperType({wrap: `.page-super-type`});
-            var SubType = require('../components/g-sub-type');
+            let SubType = require('../components/g-sub-type');
             new SubType({wrap: `.page-super-type`});
-            var SuperTypeEs6 = require('../components/g-super-type-es6');
+            let SuperTypeEs6 = require('../components/g-super-type-es6');
             new SuperTypeEs6({wrap: `.page-super-type`}).init();//es6继承,不建立在超类型内部直接调init方法
-            var SubTypeEs6 = require('../components/g-sub-type-es6');
+            let SubTypeEs6 = require('../components/g-sub-type-es6');
             new SubTypeEs6({wrap: `.page-super-type`});
         })();
 
         //返回顶部
         (function () {
-            var GoTop = require('../components/g-go-top');
+            let GoTop = require('../components/g-go-top');
             new GoTop();
         })();
 
         //遮罩
         (function () {
-            var Mask = require('../components/g-mask');
-            var mask = new Mask({
+            let Mask = require('../components/g-mask');
+            let mask = new Mask({
                 callback: {
                     click: function () {
                         mask.moduleDomHide();

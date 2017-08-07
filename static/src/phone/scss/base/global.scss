@@ -582,6 +582,14 @@ html.g-pc {
 }
 
 //==================================================================组件样式>
+@import "../components/g-dialog";
+@import "../components/g-loading";
+@import "../components/g-navigation";
+@import "../components/g-pagination";
+@import "../components/g-radio-switch";
+@import "../components/g-slide";
+@import "../components/g-star";
+@import "../components/g-table";
 //底部导航
 .g-footer-nav-wrap {
     width: inherit;

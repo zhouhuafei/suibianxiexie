@@ -10,6 +10,7 @@ const webpack = require('webpack');//调用插件需要这个
 const ExtractTextPlugin = require("extract-text-webpack-plugin");//scss文件转css文件需要这个
 const HtmlWebpackPlugin = require('html-webpack-plugin');//html生成的插件
 const CleanWebpackPlugin = require('clean-webpack-plugin');//清空目录
+const WebpackMd5Hash = require('webpack-md5-hash');//解决this-is-global-file-vendor.js文件hash值一直改变的bug
 class ConfigPath {
     constructor() {
         this.projectDir = projectDir;//项目名称
@@ -69,6 +70,7 @@ let plugins = [
 if (isProduction) {
     //插件----压缩js
     plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
+    plugins.push(new WebpackMd5Hash());
 }
 //插件----处理视图模板页面文件
 let allPageHtml = fs.readdirSync(`${configPath.viewEntryPath}pages/`);
