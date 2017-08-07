@@ -22,6 +22,7 @@ class ConfigPath {
         this.viewOutputPath = `${__dirname}/views/${this.projectDir}/`;//视图的生产目录
     }
 }
+
 const configPath = new ConfigPath();//配置路径
 //环境----开发环境
 let productionConfig = {
@@ -62,8 +63,8 @@ let plugins = [
     new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", "window.jQuery": "jquery"}),
     //插件----提取css样式到文件
     new ExtractTextPlugin(`css/pages/[name].${productionConfig.contenthash}css`),
-    //插件----把每个入口都有用到的js和css分别提取为this-is-global-file.js和this-is-global-file.css
-    new webpack.optimize.CommonsChunkPlugin({name: 'this-is-global-file'})
+    //插件----把每个入口都有用到的js和css分别提取为this-is-global-file-vendor.js和this-is-global-file-vendor.css
+    new webpack.optimize.CommonsChunkPlugin({name: 'this-is-global-file-vendor'})
 ];
 if (isProduction) {
     //插件----压缩js
@@ -78,7 +79,7 @@ allPageHtml.forEach(function (v) {
             template: `${configPath.viewEntryPath}pages/${v}`,//模板
             filename: `${configPath.viewOutputPath}pages/${v}`,//文件名
             favicon: `${configPath.imagesEntryPath}partials/favicon.ico`,//网站的icon图标
-            chunks: ['this-is-global-file', fileName],//需要引入的chunk，不配置就会引入所有页面的资源
+            chunks: ['this-is-global-file-vendor', fileName],//需要引入的chunk，不配置就会引入所有页面的资源
             minify: productionConfig.minView//压缩视图模板文件
         })
     );
