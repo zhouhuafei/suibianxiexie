@@ -1,10 +1,4 @@
-<div class="g-footer">
-    <div class="g-copyright-wrap"></div>
-    <div class="g-footer-nav-wrap"></div>
-</div>
-<input type="hidden" id="page-info-str" value="{{pageInfoStr}}">
-<script>
-    var pageInfo = (function () {
+<div class="g-footer"><div class="g-copyright-wrap"></div><div class="g-footer-nav-wrap"></div></div><input type="hidden" id="page-info-str" value="{{pageInfoStr}}"><script>var pageInfo = (function () {
         var input = document.querySelector('#page-info-str');
         var value = input.value;
         input.parentNode.removeChild(input);
@@ -14,5 +8,4 @@
             console.log(err);
             return value;
         }
-    })();
-</script>
+    })();</script>
