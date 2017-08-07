@@ -70,6 +70,7 @@ let plugins = [
 if (isProduction) {
     //插件----压缩js
     plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
+    //插件----解决this-is-global-file-vendor.js文件hash值一直改变的bug
     plugins.push(new WebpackMd5Hash());
 }
 //插件----处理视图模板页面文件
