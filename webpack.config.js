@@ -112,7 +112,7 @@ let output = {
     path: `${configPath.buildPath}`,
     publicPath: `/dist/${configPath.projectDir}/`,
     filename: `js/pages/[name].${productionConfig.chunkhash}js`,
-    chunkFilename: `js/chunk/[name].[id].chunk.${productionConfig.chunkhash}js`
+    chunkFilename: `js/chunks/[name].[id].chunk.${productionConfig.chunkhash}js`
 };
 let webpackConfig = {
     //resolve----配置用来影响webpack模块解析规则
