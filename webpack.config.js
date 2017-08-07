@@ -41,7 +41,7 @@ if (isProduction) {
         contenthash: '[contenthash].',//css用到了这个contenthash
         min: 'min.',//第三方库是否引用压缩版(生产环境引用压缩版)
         isMinCss: true,//是否压缩css
-        isWatch: false,//是否监听
+        isWatch: true,//是否监听
         minView: {
             removeComments: true, //移除HTML中的注释
             collapseWhitespace: true //删除空白符与换行符
