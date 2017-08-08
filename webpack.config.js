@@ -107,7 +107,7 @@ allPageHtml.forEach(function (v) {
             template: `${configPath.viewEntryPath}pages/${v}`,//模板
             filename: `${configPath.viewOutputPath}pages/${v}`,//文件名
             favicon: `${configPath.imagesEntryPath}partials/favicon.ico`,//网站的icon图标
-            //需要引入的chunk,不配置就会引入所有页面的资源,模板视图文件里js的引入顺序和chunks里的排序无关
+            //需要引入的chunk,不配置就会引入所有页面的资源,模板视图文件里js的引入顺序和chunks里的排序无关,和CommonsChunkPlugin里的顺序有关(倒叙)
             chunks: ['this-is-global-file-manifest', 'this-is-global-file-vendor', 'this-is-global-file-common', fileName],
             minify: productionConfig.minView//压缩视图模板文件
         })
