@@ -10,7 +10,6 @@ const webpack = require('webpack');//调用插件需要这个
 const ExtractTextPlugin = require("extract-text-webpack-plugin");//scss文件转css文件需要这个
 const HtmlWebpackPlugin = require('html-webpack-plugin');//html生成的插件
 const CleanWebpackPlugin = require('clean-webpack-plugin');//清空目录
-const WebpackMd5Hash = require('webpack-md5-hash');//解决this-is-global-file-vendor.js文件hash值一直改变的bug
 class ConfigPath {
     constructor() {
         this.projectDir = projectDir;//项目名称
@@ -65,14 +64,13 @@ let plugins = [
     //插件----提取css样式到文件
     new ExtractTextPlugin(`css/pages/[name].${productionConfig.contenthash}css`),
     //插件----把每个入口都有用到的js和css分别提取为this-is-global-file-vendor.js和this-is-global-file-vendor.css
-    new webpack.optimize.CommonsChunkPlugin({name: 'this-is-global-file-vendor'})
+    new webpack.optimize.CommonsChunkPlugin({
+        name: ['this-is-global-file-vendor', 'this-is-global-file-manifest']//this-is-global-file-manifest:抽取变动部分，防止第三方控件的多次打包
+    })
 ];
 if (isProduction) {
     //插件----压缩js
     plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
-    //插件----解决this-is-global-file-vendor.js文件hash值一直改变的bug
-    //但是会导致异步ensure加载的js不能被热更新,所以建议不要使用ensure,两全其美的方法暂时没有
-    plugins.push(new WebpackMd5Hash());
 }
 //插件----处理视图模板页面文件
 let allPageHtml = fs.readdirSync(`${configPath.viewEntryPath}pages/`);
@@ -83,7 +81,7 @@ allPageHtml.forEach(function (v) {
             template: `${configPath.viewEntryPath}pages/${v}`,//模板
             filename: `${configPath.viewOutputPath}pages/${v}`,//文件名
             favicon: `${configPath.imagesEntryPath}partials/favicon.ico`,//网站的icon图标
-            chunks: ['this-is-global-file-vendor', fileName],//需要引入的chunk，不配置就会引入所有页面的资源
+            chunks: ['this-is-global-file-manifest', 'this-is-global-file-vendor', fileName],//需要引入的chunk，不配置就会引入所有页面的资源
             minify: productionConfig.minView//压缩视图模板文件
         })
     );

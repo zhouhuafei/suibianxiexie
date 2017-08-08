@@ -249,15 +249,26 @@ window.addEventListener('load', function () {
 
         //星评
         (function () {
-            const Star = require('../components/g-star');
-            const star = new Star({
-                wrap: `.page-star`,
-                callback: {
-                    click: function (json) {
-                        console.log(json);
+            // const Star = require('../components/g-star');
+            // const star = new Star({
+            //     wrap: `.page-star`,
+            //     callback: {
+            //         click: function (json) {
+            //             console.log(json);
+            //         }
+            //     }
+            // });
+            require.ensure([],function(require){
+                const Star = require('../components/g-star');
+                const star = new Star({
+                    wrap: `.page-star`,
+                    callback: {
+                        click: function (json) {
+                            console.log(json);
+                        }
                     }
-                }
-            });
+                });
+            },'g-star')
         })();
 
         let footer = require('../pages-commons/footer');//每个页面都要用到的js(一定要放到最底部)
