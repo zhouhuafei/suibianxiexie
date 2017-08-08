@@ -49,6 +49,28 @@ if (isProduction) {
         }
     };
 }
+//别名----配置
+let alias = {
+    vue: `vue/dist/vue.${productionConfig.min}js`,
+    'vue-router': `vue-router/dist/vue-router.${productionConfig.min}js`,
+    vuex: `vuex/dist/vuex.${productionConfig.min}js`,
+    axios: `axios/dist/axios.${productionConfig.min}js`
+};
+//入口----配置
+let entry = {};
+let allJs = fs.readdirSync(`${configPath.jsEntryPath}pages/`);
+allJs.forEach(function (v) {
+    let fileName = path.basename(v, '.js');
+    entry[fileName] = `${configPath.devPath}js/pages/${v}`;
+});
+entry['this-is-global-file-vendor'] = ['vue', 'vue-router', 'vuex', 'axios'];//公用的第三方库
+//出口----配置
+let output = {
+    path: `${configPath.buildPath}`,
+    publicPath: `/dist/${configPath.projectDir}/`,
+    filename: `js/pages/[name].${productionConfig.chunkhash}js`,
+    chunkFilename: `js/chunks/[name].[id].chunk.${productionConfig.chunkhash}js`
+};
 //插件----集合
 let plugins = [
     //插件----清空dist目录下对应的项目文件
@@ -63,14 +85,18 @@ let plugins = [
     new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", "window.jQuery": "jquery"}),
     //插件----提取css样式到文件
     new ExtractTextPlugin(`css/pages/[name].${productionConfig.contenthash}css`),
-    //插件----把每个入口都有用到的js和css分别提取为this-is-global-file-vendor.js和this-is-global-file-vendor.css
+    //插件----把每个入口都有用到的js和css分别提取为this-is-global-file-common.js和this-is-global-file-common.css
     new webpack.optimize.CommonsChunkPlugin({
-        name: ['this-is-global-file-vendor', 'this-is-global-file-manifest']//this-is-global-file-manifest:抽取变动部分，防止第三方控件的多次打包
+        //0.这里的打包方式是倒叙的
+        //1.this-is-global-file-manifest:抽取变动部分,防止第三方控件的多次打包
+        //2.this-is-global-file-vendor:公用的第三方库
+        //3.this-is-global-file-common:提取每个入口都有用到的js和css
+        name: ['this-is-global-file-common', 'this-is-global-file-vendor', 'this-is-global-file-manifest']
     })
 ];
 if (isProduction) {
     //插件----压缩js
-    plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
+    //plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
 }
 //插件----处理视图模板页面文件
 let allPageHtml = fs.readdirSync(`${configPath.viewEntryPath}pages/`);
@@ -81,7 +107,8 @@ allPageHtml.forEach(function (v) {
             template: `${configPath.viewEntryPath}pages/${v}`,//模板
             filename: `${configPath.viewOutputPath}pages/${v}`,//文件名
             favicon: `${configPath.imagesEntryPath}partials/favicon.ico`,//网站的icon图标
-            chunks: ['this-is-global-file-manifest', 'this-is-global-file-vendor', fileName],//需要引入的chunk，不配置就会引入所有页面的资源
+            //需要引入的chunk,不配置就会引入所有页面的资源,模板视图文件里js的引入顺序和chunks里的排序无关
+            chunks: ['this-is-global-file-manifest', 'this-is-global-file-vendor', 'this-is-global-file-common', fileName],
             minify: productionConfig.minView//压缩视图模板文件
         })
     );
@@ -98,25 +125,6 @@ allPartialsHtml.forEach(function (v) {
         })
     );
 });
-//别名----配置
-let alias = {
-    vue: `${__dirname}/node_modules/vue/dist/vue.${productionConfig.min}js`,
-    axios: `${__dirname}/node_modules/axios/dist/axios.min.js`
-};
-//入口----配置
-let entry = {};
-let allJs = fs.readdirSync(`${configPath.jsEntryPath}pages/`);
-allJs.forEach(function (v) {
-    let fileName = path.basename(v, '.js');
-    entry[fileName] = `${configPath.devPath}js/pages/${v}`;
-});
-//出口----配置
-let output = {
-    path: `${configPath.buildPath}`,
-    publicPath: `/dist/${configPath.projectDir}/`,
-    filename: `js/pages/[name].${productionConfig.chunkhash}js`,
-    chunkFilename: `js/chunks/[name].[id].chunk.${productionConfig.chunkhash}js`
-};
 let webpackConfig = {
     //resolve----配置用来影响webpack模块解析规则
     resolve: {
