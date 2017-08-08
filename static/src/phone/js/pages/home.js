@@ -1,8 +1,6 @@
 window.addEventListener('load', function () {
     setTimeout(function () {
-        require('../../scss/pages/home.scss');
-        let header = require('../pages-commons/header');//每个页面都要用到的js(一定要放到最顶部)
-        let Vue = header.Vue;
+        let Vue = require('vue');
 
         //slide切换
         (function () {
@@ -74,6 +72,7 @@ window.addEventListener('load', function () {
             //参数传输不进去
         })();
 
-        let footer = require('../pages-commons/footer');//每个页面都要用到的js(一定要放到最底部)
+        require('../../scss/pages/home.scss');//当前页面用到的样式
+        let common = require('../pages-commons/common');//每个页面都要用到的js(一定要放到最底部)
     }, 0)
 });

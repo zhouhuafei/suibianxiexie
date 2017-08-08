@@ -1,8 +1,6 @@
 window.addEventListener('load', function () {
     setTimeout(function () {
-        require('../../scss/pages/dev-components.scss');
-        let header = require('../pages-commons/header');//每个页面都要用到的js(一定要放到最顶部)
-        let applications = header.applications;
+        let applications = require('../base/applications');
 
         //ajax测试
         (function () {
@@ -258,7 +256,7 @@ window.addEventListener('load', function () {
             //         }
             //     }
             // });
-            require.ensure([],function(require){
+            require.ensure([], function (require) {
                 const Star = require('../components/g-star');
                 const star = new Star({
                     wrap: `.page-star`,
@@ -268,9 +266,10 @@ window.addEventListener('load', function () {
                         }
                     }
                 });
-            },'g-star')
+            }, 'g-star')
         })();
 
-        let footer = require('../pages-commons/footer');//每个页面都要用到的js(一定要放到最底部)
+        require('../../scss/pages/dev-components.scss');//当前页面用到的样式
+        let common = require('../pages-commons/common');//每个页面都要用到的js(一定要放到最底部)
     }, 0)
 });
