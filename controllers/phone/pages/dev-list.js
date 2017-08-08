@@ -1,5 +1,5 @@
 //开发列表,页面路由的控制器
-var Super = require('./super');//超类型
+let Super = require('./super');//超类型
 
 class DevList extends Super {
     constructor(json) {
@@ -10,8 +10,8 @@ class DevList extends Super {
     }
 
     handleData() {
-        var req = this.opts.req;
-        var query = req.query;
+        let req = this.opts.req;
+        let query = req.query;
         //pageInfo数据处理待续...
     }
 }

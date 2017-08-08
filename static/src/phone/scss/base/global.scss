@@ -108,13 +108,15 @@ html.g-pc {
 
 //按钮
 .g-button {
-    $height: 40;
-    width: px2rem(200);
-    height: px2rem($height);
+    height: px2rem(40);
+    background: $g-highlight-color;
+    color: #fff;
+    flex:1;
     display: flex;
     align-items: center;
     justify-content: center;
     .g-button-icon {
+        font-size: px2rem(20);
         margin: 0 px2rem(2);
     }
     .g-button-txt {
@@ -123,23 +125,12 @@ html.g-pc {
     //取消
     &.g-button-cancel {
         background: $g-background-color-dark;
-        color: #fff;
-    }
-    //确认
-    &.g-button-confirm {
-        background: $g-highlight-color;
-        color: #fff;
     }
     //禁用
     &.g-button-disable {
         background: $g-background-color-disabled;
         color: $g-font-color-disabled;
         cursor: not-allowed;
-    }
-    //铺满
-    &.g-button-full {
-        width: 100%;
-        border-radius: 0;
     }
 }
 
@@ -591,6 +582,14 @@ html.g-pc {
 }
 
 //==================================================================组件样式>
+@import "../components/g-dialog";
+@import "../components/g-loading";
+@import "../components/g-navigation";
+@import "../components/g-pagination";
+@import "../components/g-radio-switch";
+@import "../components/g-slide";
+@import "../components/g-star";
+@import "../components/g-table";
 //底部导航
 .g-footer-nav-wrap {
     width: inherit;
@@ -732,9 +731,12 @@ html.g-pc {
         font-size: px2rem(60);
         margin-bottom: px2rem(20);
     }
-    .g-no-data-txt {
+    .g-no-data-text {
         font-size: px2rem(16);
         margin-bottom: px2rem(20);
+    }
+    .g-no-data-button{
+        width: 50%;
     }
 }
 

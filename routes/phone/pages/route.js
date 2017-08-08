@@ -29,7 +29,7 @@ class Route {
                             //验证是否登陆
                             if (config[attr].isValidateLogin) {
                                 req.session.user = {username: '1123486116@qq.com'};//设置session
-                                console.log(req.session.user, 9999999);
+                                console.log(req.session.user, 'is login ?');
                                 let isLogin = req.session.user === undefined;
                                 if (!isLogin) {
                                     res.redirect(config.login.route);//重定向路由
@@ -38,7 +38,7 @@ class Route {
                             }
                             //渲染视图(渲染数据)
                             let controller = new Controller({req: req, res: res});
-                            if (req.query.isDev === 'true') {
+                            if (req.query.isApi === 'true') {
                                 controller.renderData();
                             } else {
                                 controller.renderView();

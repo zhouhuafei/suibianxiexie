@@ -164,7 +164,7 @@ SubType.prototype.renderConfirm = function () {
         }
         var htmlConfirm = ``;
         if (confirm.isShowConfirm) {
-            htmlConfirm = `<div class="g-button g-button-confirm g-dialog-confirm">${confirm.confirmContent}</div>`;
+            htmlConfirm = `<div class="g-button g-dialog-confirm">${confirm.confirmContent}</div>`;
         }
         htmlFooter = `<div class="g-dialog-footer">${htmlCancel}${htmlConfirm}</div>`;
     }

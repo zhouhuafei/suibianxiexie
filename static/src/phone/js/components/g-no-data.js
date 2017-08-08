@@ -42,10 +42,10 @@ SubType.prototype.moduleDomCreate = function () {
             className: `g-no-data`,
             innerHTML: `
                 <div class="g-no-data-icon iconfont ${data.icon}"></div>
-                <div class="g-no-data-txt">${data.txt}</div>
-                <a class="g-no-data-btn g-button g-button-confirm" href="${data.btn.link}">
+                <div class="g-no-data-text">${data.txt}</div>
+                <a class="g-no-data-button g-button" href="${data.btn.link}">
                     ${btnIconHtml}
-                    <div class="g-button-txt">${data.btn.txt}</div>
+                    <div class="g-button-text">${data.btn.txt}</div>
                 </a>
             `
         }

@@ -28,16 +28,17 @@
         }
     }
     .page-verify-code {
-        height: 100%;
-        width: 40%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: $g-warning-color;
-        color: #ffffff;
-        &.page-verify-code-inactive{
-            background: $g-background-color-disabled;
-            color: $g-font-color-disabled;
+        width: px2rem(110);
+        height: inherit;
+        .g-button {
+            height: inherit;
+            background: $g-warning-color;
+        }
+        &.page-verify-code-inactive {
+            .g-button {
+                background: $g-background-color-disabled;
+                color: $g-font-color-disabled;
+            }
         }
     }
 }
