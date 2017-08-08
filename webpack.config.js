@@ -96,7 +96,7 @@ let plugins = [
 ];
 if (isProduction) {
     //插件----压缩js
-    //plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
+    plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
 }
 //插件----处理视图模板页面文件
 let allPageHtml = fs.readdirSync(`${configPath.viewEntryPath}pages/`);
