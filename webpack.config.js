@@ -34,6 +34,7 @@ let productionConfig = {
     isMinCss: false,//是否压缩css
     isWatch: true,//是否监听
     minView: {},//压缩视图模板文件
+    devtool: ''//#source-map
 };
 //环境----生产环境
 if (isProduction) {
@@ -47,7 +48,8 @@ if (isProduction) {
         minView: {
             removeComments: true, //移除HTML中的注释
             collapseWhitespace: true //删除空白符与换行符
-        }
+        },
+        devtool: '#source-map'//#source-map
     };
 }
 //别名----配置
@@ -123,7 +125,12 @@ allPartialsHtml.forEach(function (v) {
 });
 if (isProduction) {
     //插件----压缩js
-    plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
+    plugins.push(new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        },
+        sourceMap: true
+    }));
     //插件----压缩图片
     plugins.push(new ImageminPlugin({
         disable: false,
@@ -133,6 +140,8 @@ if (isProduction) {
     }));
 }
 let webpackConfig = {
+    //devtool----#source-map
+    devtool: productionConfig.devtool,
     //resolve----配置用来影响webpack模块解析规则
     resolve: {
         //加速----默认的配置会采用向上递归搜索的方式去寻找node_modules,为了减少搜索我们直接写明node_modules的全路径
