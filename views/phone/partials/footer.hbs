@@ -6,6 +6,6 @@
             return JSON.parse(value);
         } catch (err) {
             console.log(err);
-            return value;
+            return value || {};
         }
     })();</script>
