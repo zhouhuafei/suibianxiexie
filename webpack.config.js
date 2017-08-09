@@ -199,7 +199,7 @@ let webpackConfig = {
                 exclude: /(node_modules|bower_components)/,
                 use: ['vue-loader']
             },
-            //loader----处理视图模板文件里的src
+            //loader----处理视图模板文件里的src(加hash值)
             {
                 test: /\.hbs/,
                 exclude: /(node_modules|bower_components)/,
