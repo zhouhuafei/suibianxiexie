@@ -1,8 +1,5 @@
-import app from '../../vue/pages/home.vue';
-
 window.addEventListener('load', function () {
     setTimeout(function () {
-        let Vue = require('vue');
 
         //slide切换
         (function () {
@@ -60,14 +57,6 @@ window.addEventListener('load', function () {
         (function () {
             let Navigation = require('../components/g-navigation');
             new Navigation({wrap: '.page-navigation'});
-        })();
-
-        //vue
-        (function () {
-            new Vue({
-                el: '.g-vue',
-                render: h => h(app)
-            })
         })();
 
         require('../../scss/pages/home.scss');//当前页面用到的样式

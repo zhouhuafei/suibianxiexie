@@ -55,9 +55,8 @@ if (isProduction) {
 //别名----配置
 let alias = {
     vue: `vue/dist/vue.${configEnvironment.min}js`,
-    'vue-router': `vue-router/dist/vue-router.${configEnvironment.min}js`,
-    vuex: `vuex/dist/vuex.${configEnvironment.min}js`,
-    axios: `axios/dist/axios.${configEnvironment.min}js`
+    axios: `axios/dist/axios.${configEnvironment.min}js`,
+    jquery: `jquery/dist/jquery.${configEnvironment.min}js`
 };
 //入口----配置
 let entry = {};
@@ -66,7 +65,7 @@ allJs.forEach(function (v) {
     let fileName = path.basename(v, '.js');
     entry[fileName] = `${configPath.devPath}js/pages/${v}`;
 });
-entry['this-is-global-file-vendor'] = ['vue', 'vue-router', 'vuex', 'axios'];//公用的第三方库
+entry['this-is-global-file-vendor'] = ['vue', 'axios'];//公用的第三方库
 //出口----配置
 let output = {
     path: `${configPath.buildPath}`,
@@ -84,8 +83,6 @@ let plugins = [
     }),
     //插件----清空views目录下对应的项目文件
     new CleanWebpackPlugin([configPath.projectDir], {root: `${__dirname}/views/`, verbose: true, dry: false}),
-    //插件----自动加载模块
-    new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", "window.jQuery": "jquery"}),
     //插件----提取css样式到文件
     new ExtractTextPlugin(`css/pages/[name].${configEnvironment.contenthash}css`),
     //插件----把每个入口都有用到的js和css分别提取为this-is-global-file-common.js和this-is-global-file-common.css
@@ -205,22 +202,6 @@ let webpackConfig = {
                         options: {
                             limit: 8192,
                             name: `fonts/[name].${configEnvironment.hash}[ext]`
-                        }
-                    }
-                ]
-            },
-            //loader----处理vue单文件
-            {
-                test: /\.vue$/,
-                exclude: /(node_modules|bower_components)/,
-                use: [
-                    {
-                        loader: 'vue-loader',
-                        options: {
-                            transformToRequire: {
-                                img: ['src', 'data-src'],
-                                image: 'xlink:href'
-                            }
                         }
                     }
                 ]
