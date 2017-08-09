@@ -106,7 +106,6 @@ allPageHtml.forEach(function (v) {
         new HtmlWebpackPlugin({
             template: `${configPath.viewEntryPath}pages/${v}`,//模板
             filename: `${configPath.viewOutputPath}pages/${v}`,//文件名
-            favicon: `${configPath.imagesEntryPath}partials/favicon.ico`,//网站的icon图标
             //需要引入的chunk,不配置就会引入所有页面的资源,模板视图文件里js的引入顺序和chunks里的排序无关,和CommonsChunkPlugin里的顺序有关(倒叙)
             chunks: ['this-is-global-file-manifest', 'this-is-global-file-vendor', 'this-is-global-file-common', fileName],
             minify: productionConfig.minView//压缩视图模板文件
@@ -199,11 +198,18 @@ let webpackConfig = {
                 exclude: /(node_modules|bower_components)/,
                 use: ['vue-loader']
             },
-            //loader----处理视图模板文件里的src(加hash值)
+            //loader----处理视图模板文件里的src
             {
                 test: /\.hbs/,
                 exclude: /(node_modules|bower_components)/,
-                use: ['html-loader']
+                use: [
+                    {
+                        loader: 'html-loader',
+                        options: {
+                            attrs: ['img:src', 'img:data-src', 'link:href']
+                        }
+                    }
+                ]
             }
         ]
     }
