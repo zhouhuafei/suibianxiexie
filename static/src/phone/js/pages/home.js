@@ -3,7 +3,7 @@ import home from '../../vue/pages/home.vue';
 window.addEventListener('load', function () {
     setTimeout(function () {
         let Vue = require('vue');
-        console.log('第一次打包会报错,无解么?')
+        console.log('第一次打包会报错,无解么?');
 
         //slide切换
         (function () {
