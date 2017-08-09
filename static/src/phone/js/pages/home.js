@@ -1,4 +1,4 @@
-import home from '../../vue/pages/home.vue';
+import app from '../../vue/pages/home.vue';
 
 window.addEventListener('load', function () {
     setTimeout(function () {
@@ -67,12 +67,8 @@ window.addEventListener('load', function () {
         (function () {
             new Vue({
                 el: '.g-vue',
-                data: {
-                    message: 'Hello Vue2!'
-                },
-                render: h => h(home)
-                // template: '<home></home>',
-                // components: {home}
+                template: '<app></app>',
+                components: {app}
             })
         })();
 

@@ -15,6 +15,10 @@ body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, te
     padding: 0;
 }
 
+div, input, button, textarea, select, label {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 li {
     list-style-type: none;
 }
@@ -26,8 +30,8 @@ a {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-div, input, button, textarea, select, label {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+img {
+    vertical-align: middle;
 }
 
 .iconfont {
@@ -111,7 +115,7 @@ html.g-pc {
     height: px2rem(40);
     background: $g-highlight-color;
     color: #fff;
-    flex:1;
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -119,7 +123,7 @@ html.g-pc {
         font-size: px2rem(20);
         margin: 0 px2rem(2);
     }
-    .g-button-txt {
+    .g-button-text {
         margin: 0 px2rem(2);
     }
     //取消
@@ -163,7 +167,7 @@ html.g-pc {
         background-size: 100% auto;
         display: none;
     }
-    .g-img-upload-txt {
+    .g-img-upload-text {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -197,7 +201,7 @@ html.g-pc {
         .g-img-upload-show {
             display: flex;
         }
-        .g-img-upload-txt {
+        .g-img-upload-text {
             margin-top: 0;
             position: absolute;
             left: 0;
@@ -287,7 +291,7 @@ html.g-pc {
     box-sizing: border-box;
     position: relative;
     border-radius: px2rem(0);
-    .g-input-txt {
+    .g-input-text {
         min-width: px2rem($height);
         padding: 0 px2rem(10);
         height: 100%;
@@ -347,7 +351,7 @@ html.g-pc {
     border-left: none;
     border-right: none;
     border-radius: px2rem(0);
-    .g-textarea-txt {
+    .g-textarea-text {
         min-width: px2rem(40);
         padding: 0 px2rem(10);
         height: 100%;
@@ -398,7 +402,7 @@ html.g-pc {
     box-sizing: border-box;
     position: relative;
     border-radius: px2rem(0);
-    .g-select-txt {
+    .g-select-text {
         min-width: px2rem($height);
         padding: 0 px2rem(10);
         height: 100%;
@@ -504,7 +508,7 @@ html.g-pc {
             }
         }
     }
-    .g-radio-txt {
+    .g-radio-text {
         line-height: 1;
         margin-left: px2rem(10);
     }
@@ -554,7 +558,7 @@ html.g-pc {
             display: none;
         }
     }
-    .g-checkbox-txt {
+    .g-checkbox-text {
         line-height: 1;
         margin-left: px2rem(10);
     }
@@ -662,7 +666,7 @@ html.g-pc {
     .g-copyright-icon {
         font-size: px2rem(40);
     }
-    .g-copyright-txt {
+    .g-copyright-text {
         padding: 0 px2px(6);
         font-size: px2rem(12);
     }
@@ -735,7 +739,7 @@ html.g-pc {
         font-size: px2rem(16);
         margin-bottom: px2rem(20);
     }
-    .g-no-data-button{
+    .g-no-data-button {
         width: 50%;
     }
 }

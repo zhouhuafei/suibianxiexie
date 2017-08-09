@@ -63,7 +63,7 @@ SubType.prototype.moduleDomCreate = function () {
         html += `
             <a href="${v.link}" class="g-navigation-item">
                 <div class="g-navigation-icon iconfont ${v.icon}"></div>
-                <div class="g-navigation-txt">${v.txt}</div>
+                <div class="g-navigation-text">${v.txt}</div>
                 ${markHtml}
             </a>
         `;

@@ -43,7 +43,7 @@ SubType.prototype.moduleDomCreate = function () {
         attribute: {
             className: `g-pagination`,
             innerHTML: `
-                <div class="g-pagination-txt">第</div>
+                <div class="g-pagination-text">第</div>
                 <div class="g-pagination-now-page">
                     <label class="g-select">
                         <span class="g-select-wrap">
@@ -54,7 +54,7 @@ SubType.prototype.moduleDomCreate = function () {
                         </span>
                     </label>
                 </div>
-                <div class="g-pagination-txt">页</div>
+                <div class="g-pagination-text">页</div>
                 <a href="javascript:;" class="g-pagination-btn g-pagination-btn-inactive iconfont icon-shangyiye"></a>
                 <a href="javascript:;" class="g-pagination-btn iconfont icon-xiayiye"></a>
             `

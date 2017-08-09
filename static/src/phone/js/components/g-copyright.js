@@ -27,7 +27,7 @@ SubType.prototype.moduleDomCreate = function () {
             className: `g-copyright`,
             innerHTML: `
                 <div class="g-copyright-icon iconfont icon-logo"></div>
-                <div class="g-copyright-txt">版权信息哟</div>
+                <div class="g-copyright-text">版权信息哟</div>
             `
         }
     });

@@ -24,7 +24,7 @@ SubType.prototype.moduleDomCreate = function () {
         attribute: {
             className: `g-sub-type`,
             innerHTML: `
-                <div class="g-sub-type-txt">周华飞爱侯丽杰,侯丽杰爱周华飞</div>
+                <div class="g-sub-type-text">周华飞爱侯丽杰,侯丽杰爱周华飞</div>
             `
         }
     });

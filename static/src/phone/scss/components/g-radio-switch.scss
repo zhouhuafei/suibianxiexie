@@ -30,7 +30,7 @@
             top: px2rem($top-round);
         }
     }
-    .g-radio-switch-txt {
+    .g-radio-switch-text {
         margin-left: px2rem(4);
     }
     &.g-radio-switch-active {
@@ -40,7 +40,7 @@
                 left: px2rem($left-round-active);
             }
         }
-        .g-radio-switch-txt {
+        .g-radio-switch-text {
             color: $g-highlight-color;
         }
     }

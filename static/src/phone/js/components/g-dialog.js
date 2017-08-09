@@ -118,7 +118,7 @@ SubType.prototype.renderAlert = function () {
     }
     return `
         ${htmlIcon}
-        <div class="g-dialog-alert-txt">${alert.content}</div>
+        <div class="g-dialog-alert-text">${alert.content}</div>
     `;
 };
 
@@ -142,7 +142,7 @@ SubType.prototype.renderConfirm = function () {
         var bodyClass = `g-dialog-body-system`;
         var bodyContent = `
             ${htmlIcon}
-            <div class="g-dialog-txt">${confirm.bodyContent}</div>
+            <div class="g-dialog-text">${confirm.bodyContent}</div>
         `;
         if (confirm.isCustom) {
             bodyClass = `g-dialog-body-custom`;

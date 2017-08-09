@@ -26,7 +26,7 @@ class ConfigPath {
 
 const configPath = new ConfigPath();//配置路径
 //环境----开发环境
-let productionConfig = {
+let configEnvironment = {
     hash: '[hash:8].',//图片和字体用到了这个hash
     chunkhash: '',//js用到了这个chunkhash
     contenthash: '',//css用到了这个contenthash
@@ -38,7 +38,7 @@ let productionConfig = {
 };
 //环境----生产环境
 if (isProduction) {
-    productionConfig = {
+    configEnvironment = {
         hash: '[hash:8].',//图片和字体用到了这个hash
         chunkhash: '[chunkhash].',//js用到了这个chunkhash
         contenthash: '[contenthash].',//css用到了这个contenthash
@@ -54,10 +54,10 @@ if (isProduction) {
 }
 //别名----配置
 let alias = {
-    vue: `vue/dist/vue.${productionConfig.min}js`,
-    'vue-router': `vue-router/dist/vue-router.${productionConfig.min}js`,
-    vuex: `vuex/dist/vuex.${productionConfig.min}js`,
-    axios: `axios/dist/axios.${productionConfig.min}js`
+    vue: `vue/dist/vue.${configEnvironment.min}js`,
+    'vue-router': `vue-router/dist/vue-router.${configEnvironment.min}js`,
+    vuex: `vuex/dist/vuex.${configEnvironment.min}js`,
+    axios: `axios/dist/axios.${configEnvironment.min}js`
 };
 //入口----配置
 let entry = {};
@@ -71,8 +71,8 @@ entry['this-is-global-file-vendor'] = ['vue', 'vue-router', 'vuex', 'axios'];//�
 let output = {
     path: `${configPath.buildPath}`,
     publicPath: `/dist/${configPath.projectDir}/`,
-    filename: `js/pages/[name].${productionConfig.chunkhash}js`,
-    chunkFilename: `js/chunks/[name].[id].chunk.${productionConfig.chunkhash}js`
+    filename: `js/pages/[name].${configEnvironment.chunkhash}js`,
+    chunkFilename: `js/chunks/[name].[id].chunk.${configEnvironment.chunkhash}js`
 };
 //插件----集合
 let plugins = [
@@ -87,7 +87,7 @@ let plugins = [
     //插件----自动加载模块
     new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", "window.jQuery": "jquery"}),
     //插件----提取css样式到文件
-    new ExtractTextPlugin(`css/pages/[name].${productionConfig.contenthash}css`),
+    new ExtractTextPlugin(`css/pages/[name].${configEnvironment.contenthash}css`),
     //插件----把每个入口都有用到的js和css分别提取为this-is-global-file-common.js和this-is-global-file-common.css
     new webpack.optimize.CommonsChunkPlugin({
         //0.这里的打包方式是倒叙的
@@ -107,7 +107,7 @@ allPageHtml.forEach(function (v) {
             filename: `${configPath.viewOutputPath}pages/${v}`,//文件名
             //需要引入的chunk,不配置就会引入所有页面的资源,模板视图文件里js的引入顺序和chunks里的排序无关,和CommonsChunkPlugin里的顺序有关(倒叙)
             chunks: ['this-is-global-file-manifest', 'this-is-global-file-vendor', 'this-is-global-file-common', fileName],
-            minify: productionConfig.minView//压缩视图模板文件
+            minify: configEnvironment.minView//压缩视图模板文件
         })
     );
 });
@@ -119,7 +119,7 @@ allPartialsHtml.forEach(function (v) {
             template: `${configPath.viewEntryPath}partials/${v}`,//模板
             filename: `${configPath.viewOutputPath}partials/${v}`,//文件名
             inject: false,
-            minify: productionConfig.minView//压缩视图模板文件
+            minify: configEnvironment.minView//压缩视图模板文件
         })
     );
 });
@@ -141,7 +141,7 @@ if (isProduction) {
 }
 let webpackConfig = {
     //devtool----#source-map
-    devtool: productionConfig.devtool,
+    devtool: configEnvironment.devtool,
     //resolve----配置用来影响webpack模块解析规则
     resolve: {
         //加速----默认的配置会采用向上递归搜索的方式去寻找node_modules,为了减少搜索我们直接写明node_modules的全路径
@@ -156,7 +156,7 @@ let webpackConfig = {
     //插件----配置
     plugins: plugins,
     //监听----配置
-    watch: productionConfig.isWatch,
+    watch: configEnvironment.isWatch,
     //模块----模块加载相关的配置
     module: {
         //rules----loader加载器的规则集合
@@ -170,7 +170,7 @@ let webpackConfig = {
                     use: [{
                         loader: 'css-loader',
                         options: {
-                            minimize: productionConfig.isMinCss //css压缩
+                            minimize: configEnvironment.isMinCss //css压缩
                         }
                     }, 'postcss-loader', 'sass-loader']
                 })
@@ -190,7 +190,7 @@ let webpackConfig = {
                         loader: 'url-loader',
                         options: {
                             limit: 8192,
-                            name: `images/[name].${productionConfig.hash}[ext]`
+                            name: `images/[name].${configEnvironment.hash}[ext]`
                         }
                     }
                 ]
@@ -204,7 +204,7 @@ let webpackConfig = {
                         loader: 'url-loader',
                         options: {
                             limit: 8192,
-                            name: `fonts/[name].${productionConfig.hash}[ext]`
+                            name: `fonts/[name].${configEnvironment.hash}[ext]`
                         }
                     }
                 ]

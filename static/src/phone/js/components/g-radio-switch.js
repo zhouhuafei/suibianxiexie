@@ -43,7 +43,7 @@ SubType.prototype.moduleDomCreate = function () {
                 <div class="g-radio-switch-wrap">
                     <div class="g-radio-switch-round"></div>
                 </div>
-                <div class="g-radio-switch-txt">${config.txt[config.status]}</div>
+                <div class="g-radio-switch-text">${config.txt[config.status]}</div>
             `
         }
     });
@@ -76,7 +76,7 @@ SubType.prototype.on = function () {
     if (!this.isOn()) {
         this.moduleDom.classList.add(this.moduleDomActiveClass);
         config.status = 'on';
-        this.moduleDom.querySelector('.g-radio-switch-txt').innerHTML = `${config.txt[config.status]}`;
+        this.moduleDom.querySelector('.g-radio-switch-text').innerHTML = `${config.txt[config.status]}`;
     }
 };
 
@@ -86,7 +86,7 @@ SubType.prototype.off = function () {
     if (this.isOn()) {
         this.moduleDom.classList.remove(this.moduleDomActiveClass);
         config.status = 'off';
-        this.moduleDom.querySelector('.g-radio-switch-txt').innerHTML = `${config.txt[config.status]}`;
+        this.moduleDom.querySelector('.g-radio-switch-text').innerHTML = `${config.txt[config.status]}`;
     }
 };
 

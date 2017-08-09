@@ -86,10 +86,10 @@
         .g-loading-over-icon {
             font-size: px2rem(24);
         }
-        .g-loading-over-txt {
+        .g-loading-over-text {
             font-size: px2rem(12);
         }
-        .g-mask ~ .g-loading-over-icon, .g-mask ~ .g-loading-over-txt {
+        .g-mask ~ .g-loading-over-icon, .g-mask ~ .g-loading-over-text {
             color: #ffffff;
             position: relative;
             z-index: 502;
