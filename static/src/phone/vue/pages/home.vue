@@ -17,7 +17,7 @@
 </template>
 
 <script>
-    import gTest from '../components/g-test.vue'
+    import gTest from '../components/g-test.vue';
 
     export default {
         data: function () {
