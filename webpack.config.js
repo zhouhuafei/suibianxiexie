@@ -10,6 +10,7 @@ const webpack = require('webpack');//调用插件需要这个
 const ExtractTextPlugin = require("extract-text-webpack-plugin");//scss文件转css文件需要这个
 const HtmlWebpackPlugin = require('html-webpack-plugin');//html生成的插件
 const CleanWebpackPlugin = require('clean-webpack-plugin');//清空目录
+const ImageminPlugin = require('imagemin-webpack-plugin').default;//压缩图片
 class ConfigPath {
     constructor() {
         this.projectDir = projectDir;//项目名称
@@ -94,10 +95,6 @@ let plugins = [
         name: ['this-is-global-file-common', 'this-is-global-file-vendor', 'this-is-global-file-manifest']
     })
 ];
-if (isProduction) {
-    //插件----压缩js
-    plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
-}
 //插件----处理视图模板页面文件
 let allPageHtml = fs.readdirSync(`${configPath.viewEntryPath}pages/`);
 allPageHtml.forEach(function (v) {
@@ -124,6 +121,17 @@ allPartialsHtml.forEach(function (v) {
         })
     );
 });
+if (isProduction) {
+    //插件----压缩js
+    plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
+    //插件----压缩图片
+    plugins.push(new ImageminPlugin({
+        disable: false,
+        pngquant: {
+            quality: '95-100'
+        }
+    }));
+}
 let webpackConfig = {
     //resolve----配置用来影响webpack模块解析规则
     resolve: {
