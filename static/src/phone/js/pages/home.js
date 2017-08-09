@@ -67,8 +67,6 @@ window.addEventListener('load', function () {
             new Vue({
                 el: '.g-vue',
                 render: h => h(app)
-                // template: '<app></app>',
-                // components: {app}
             })
         })();
 
