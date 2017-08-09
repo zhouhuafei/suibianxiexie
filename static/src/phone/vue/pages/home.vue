@@ -1,5 +1,13 @@
 <template>
     <div>
+        <div>vue和多页面混合使用,想用就用,不强制使用2</div>
+        <div>vue和多页面混合使用,想用就用,不强制使用2</div>
+        <div>vue和多页面混合使用,想用就用,不强制使用2</div>
+        <div>vue和多页面混合使用,想用就用,不强制使用2</div>
+        <div>vue和多页面混合使用,想用就用,不强制使用2</div>
+        <div>vue和多页面混合使用,想用就用,不强制使用2</div>
+        <div>vue和多页面混合使用,想用就用,不强制使用2</div>
+        <div>vue和多页面混合使用,想用就用,不强制使用2</div>
         <g-test></g-test>
         <img class="g-lazy-load" data-src="../../images/pages/p-waiting.jpg" alt="">
         <label class="g-input">
@@ -12,7 +20,6 @@
         </label>
         <div v-text="myMessage"></div>
         <div v-text="1313+1"></div>
-        <div>vue和多页面混合使用,想用就用,不强制使用2</div>
     </div>
 </template>
 
