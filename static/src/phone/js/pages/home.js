@@ -3,7 +3,6 @@ import app from '../../vue/pages/home.vue';
 window.addEventListener('load', function () {
     setTimeout(function () {
         let Vue = require('vue');
-        console.log('第一次打包会报错,无解么?');
 
         //slide切换
         (function () {
@@ -67,8 +66,9 @@ window.addEventListener('load', function () {
         (function () {
             new Vue({
                 el: '.g-vue',
-                template: '<app></app>',
-                components: {app}
+                render: h => h(app)
+                // template: '<app></app>',
+                // components: {app}
             })
         })();
 
