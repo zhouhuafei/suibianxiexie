@@ -213,7 +213,17 @@ let webpackConfig = {
             {
                 test: /\.vue$/,
                 exclude: /(node_modules|bower_components)/,
-                use: ['vue-loader']
+                use: [
+                    {
+                        loader: 'vue-loader',
+                        options: {
+                            transformToRequire: {
+                                img: ['src', 'data-src'],
+                                image: 'xlink:href'
+                            }
+                        }
+                    }
+                ]
             },
             //loader----处理视图模板文件里的src
             {

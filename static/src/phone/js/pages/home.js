@@ -1,3 +1,5 @@
+import home from '../../vue/pages/home.vue';
+
 window.addEventListener('load', function () {
     setTimeout(function () {
         let Vue = require('vue');
@@ -62,14 +64,15 @@ window.addEventListener('load', function () {
 
         //vue
         (function () {
-            require('../components-vue/g-test')(Vue);
             new Vue({
                 el: '.g-vue',
                 data: {
                     message: 'Hello Vue2!'
-                }
+                },
+                render: h => h(home)
+                // template: '<home></home>',
+                // components: {home}
             })
-            //参数传输不进去
         })();
 
         require('../../scss/pages/home.scss');//当前页面用到的样式
