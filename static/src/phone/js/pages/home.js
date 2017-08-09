@@ -59,6 +59,15 @@ window.addEventListener('load', function () {
             new Navigation({wrap: '.page-navigation'});
         })();
 
+        //vue
+        (function () {
+            let Vue = require('vue');
+            require('../components-vue/g-img-list');
+            new Vue({
+                el: '.page-vue'
+            })
+        })();
+
         require('../../scss/pages/home.scss');//当前页面用到的样式
         let common = require('../pages-commons/common');//每个页面都要用到的js(一定要放到最底部)
     }, 0)
