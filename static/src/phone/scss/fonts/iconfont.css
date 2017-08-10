@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1501133283119'); /* IE9*/
-  src: url('iconfont.eot?t=1501133283119#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1501133283119') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1501133283119') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1501133283119#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1502379073184'); /* IE9*/
+  src: url('iconfont.eot?t=1502379073184#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1502379073184') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1502379073184') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1502379073184#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -147,7 +147,7 @@
 
 .icon-shoucang:before { content: "\e678"; }
 
-.icon-xingping:before { content: "\e677"; }
+.icon-pingxing:before { content: "\e675"; }
 
 .icon-gengduo:before { content: "\e679"; }
 
