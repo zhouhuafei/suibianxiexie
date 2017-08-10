@@ -68,7 +68,7 @@ SubType.prototype.moduleDomCreate = function () {
     //模块创建
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
-        custom: this.opts.config.moduleDomCustomAttr,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
             className: `g-loading ${moduleDomClass}`,
             innerHTML: moduleDomHtml

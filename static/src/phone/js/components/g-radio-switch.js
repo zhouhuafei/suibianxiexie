@@ -35,8 +35,8 @@ SubType.prototype.moduleDomCreate = function () {
         isOn = this.moduleDomActiveClass;
     }
     this.moduleDom = applications.createElement({
-        style: config.moduleStyle,
-        custom: config.moduleDomCustomAttr,
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
         attribute: {
             className: `g-radio-switch ${isOn}`,
             innerHTML: `

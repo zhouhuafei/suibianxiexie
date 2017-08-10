@@ -20,7 +20,7 @@ var SubType = tools.constructorInherit({
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
-        custom: this.opts.config.moduleDomCustomAttr,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
             className: `g-sub-type`,
             innerHTML: `

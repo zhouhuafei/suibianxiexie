@@ -73,7 +73,7 @@ class SuperType {
                 //配置
                 config: {
                     //内部模块的自定义属性
-                    moduleDomCustomAttr: {},
+                    moduleDomCustomAttribute: {},
                     //内部模块插入到外部容器的方式
                     moduleDomRenderMethod: {
                         method: 'appendChild',//'appendChild','insertBefore'
@@ -124,7 +124,7 @@ class SuperType {
     moduleDomCreate() {
         this.moduleDom = applications.createElement({
             style: this.opts.config.moduleDomStyle,
-            custom: this.opts.config.moduleDomCustomAttr,
+            customAttribute: this.opts.config.moduleDomCustomAttribute,
             attribute: {
                 className: `g-super-type-es6`,
                 innerHTML: `

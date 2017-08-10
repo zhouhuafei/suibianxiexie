@@ -96,8 +96,8 @@ SubType.prototype.moduleDomCreate = function () {
         ${this.renderConfirm()}
     `;
     this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleStyle,
-        custom: this.opts.config.moduleDomCustomAttr,
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
             className: `g-dialog ${type} ${positionLocation}`,
             innerHTML: html

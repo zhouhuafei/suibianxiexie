@@ -43,7 +43,7 @@ Applications.prototype.createElement = function (json) {
     let opts = json || {};
     opts.elementName = opts.elementName || 'div';//标签名称
     opts.style = opts.style || {};//style样式
-    opts.custom = opts.custom || {};//自定义属性
+    opts.customAttribute = opts.customAttribute || {};//自定义属性
     opts.attribute = opts.attribute || {};//普通属性,checked,selected,innerHTML
     let elementNode = document.createElement(opts.elementName);//元素节点
     for (let attr0 in opts.style) {
@@ -51,10 +51,9 @@ Applications.prototype.createElement = function (json) {
             elementNode.style[attr0] = opts.style[attr0];
         }
     }
-    console.log(opts.style,elementNode);
-    for (let attr1 in opts.custom) {
-        if (opts.custom.hasOwnProperty(attr1)) {
-            elementNode.setAttribute('data-' + attr1, opts.custom[attr1]);
+    for (let attr1 in opts.customAttribute) {
+        if (opts.customAttribute.hasOwnProperty(attr1)) {
+            elementNode.setAttribute('data-' + attr1, opts.customAttribute[attr1]);
         }
     }
     for (let attr2 in opts.attribute) {
