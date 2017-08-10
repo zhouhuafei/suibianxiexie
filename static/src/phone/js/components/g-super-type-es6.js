@@ -79,7 +79,7 @@ class SuperType {
                         method: 'appendChild',//'appendChild','insertBefore'
                         child: null
                     },
-                    moduleDomStyle: ``,//内部模块的样式(写法和css相同)
+                    moduleDomStyle: {},//内部模块的样式
                     moduleDomIsShow: true,//内部模块是否显示(默认显示)
                     moduleDomIsClearTimer: true//内部模块是否清除所有定时器(默认清除)
                 },

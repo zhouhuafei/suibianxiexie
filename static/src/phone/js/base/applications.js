@@ -4,6 +4,7 @@ let tools = require('./tools');
 //应用方法集合
 function Applications() {
 }
+
 //设置cookie
 Applications.prototype.setCookie = function (json) {
     let opts = json || {};
@@ -41,21 +42,24 @@ Applications.prototype.removeCookie = function (json) {
 Applications.prototype.createElement = function (json) {
     let opts = json || {};
     opts.elementName = opts.elementName || 'div';//标签名称
-    opts.style = opts.style || ``;//style样式
+    opts.style = opts.style || {};//style样式
     opts.custom = opts.custom || {};//自定义属性
-    opts.attribute = opts.attribute || {};//普通属性,checked,selected
+    opts.attribute = opts.attribute || {};//普通属性,checked,selected,innerHTML
     let elementNode = document.createElement(opts.elementName);//元素节点
-    if (opts.style) {
-        elementNode.setAttribute('style', opts.style);
+    for (let attr0 in opts.style) {
+        if (opts.style.hasOwnProperty(attr0)) {
+            elementNode.style[attr0] = opts.style[attr0];
+        }
     }
+    console.log(opts.style,elementNode);
     for (let attr1 in opts.custom) {
         if (opts.custom.hasOwnProperty(attr1)) {
             elementNode.setAttribute('data-' + attr1, opts.custom[attr1]);
         }
     }
-    for (let attr0 in opts.attribute) {
-        if (opts.attribute.hasOwnProperty(attr0)) {
-            elementNode[attr0] = opts.attribute[attr0];
+    for (let attr2 in opts.attribute) {
+        if (opts.attribute.hasOwnProperty(attr2)) {
+            elementNode[attr2] = opts.attribute[attr2];
         }
     }
     return elementNode;
@@ -73,7 +77,7 @@ Applications.prototype.addMinusInput = function (json) {//购物加减商品系�
     let minus = json.minus;//减少的按钮
     let minusCallback = json.minusCallback;//减少的回调
     let overMinCallback = json.overMinCallback || function () {
-        };//减少到最小值之后继续减少
+    };//减少到最小值之后继续减少
     let input = json.input;//输入框的按钮
     let blurCallback = json.blurCallback;//失去焦点的回调
     let inventoryNum = parseInt(json.inventoryNum);//商品库存
@@ -238,12 +242,12 @@ Applications.prototype.imgUploadBase64 = function () {
         this.opts.limitNum = this.opts.limitNum || '5';
         //选择图片的回调
         this.opts.changeCallback = this.opts.changeCallback || function () {
-                console.log('no find changeCallback');
-            };
+            console.log('no find changeCallback');
+        };
         //把图片读取成base64编码的回调
         this.opts.base64Callback = this.opts.base64Callback || function () {
-                console.log('no find base64Callback');
-            };
+            console.log('no find base64Callback');
+        };
         //初始化
         this.init();
     }
