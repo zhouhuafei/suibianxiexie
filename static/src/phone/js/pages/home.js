@@ -64,7 +64,10 @@ window.addEventListener('load', function () {
             require('../components-vue/g-picture-list');
             let Vue = require('vue');
             new Vue({
-                el: '.page-vue'
+                el: '.page-vue-app',
+                template: `<div class="page-vue">
+                    <g-picture-list></g-picture-list>
+                </div>`
             })
         })();
 
