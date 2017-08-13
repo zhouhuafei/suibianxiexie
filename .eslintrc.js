@@ -6,7 +6,7 @@ module.exports = {
   extends: 'standard',
   env: {
     // commonjs: true,
-    // node: true,
+    node: true,
     browser: true
   },
   globals: {
