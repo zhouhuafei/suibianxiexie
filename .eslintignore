@@ -1,4 +1,6 @@
 dist
 node_modules
 fonts
+/static/src/phone/js/plugs/
+/static/src/phone/libs/
 /views/
