@@ -2,17 +2,18 @@ const tools = require('./tools');
 const fs = require('fs');
 const qr = require('qr-image');
 
-//应用方法集合
-function Applications() {
+// 应用方法集合
+function Applications () {
 }
-//生成二维码
+
+// 生成二维码
 Applications.prototype.qrCode = function (text) {
     return qr.imageSync(text, {type: 'svg'});
 };
-//创建文件
+// 创建文件
 Applications.prototype.createFile = function () {
     class CreateFile {
-        constructor(json) {
+        constructor (json) {
             this.opts = tools.extend({
                 defaults: {
                     callback: {
@@ -20,13 +21,13 @@ Applications.prototype.createFile = function () {
                         }
                     },
                     config: {
-                        isCover: false//是否覆盖已有文件
+                        isCover: false// 是否覆盖已有文件
                     },
                     data: {
-                        path: '',//路径
-                        fileName: '',//文件名
-                        extendName: '',//扩展名
-                        content: ''//文件的内容
+                        path: '', // 路径
+                        fileName: '', // 文件名
+                        extendName: '', // 扩展名
+                        content: ''// 文件的内容
                     }
                 },
                 inherits: json
@@ -34,11 +35,11 @@ Applications.prototype.createFile = function () {
             this.init();
         }
 
-        init() {
+        init () {
             this.errorHandle();
         }
 
-        errorHandle() {
+        errorHandle () {
             let data = this.opts.data;
             if (!data.path) {
                 console.log('路径不存在');
@@ -55,7 +56,7 @@ Applications.prototype.createFile = function () {
             this.power();
         }
 
-        writeFile() {
+        writeFile () {
             let self = this;
             let data = this.opts.data;
             let file = data.path + data.fileName + data.extendName;
@@ -69,7 +70,7 @@ Applications.prototype.createFile = function () {
             });
         }
 
-        power() {
+        power () {
             let self = this;
             let data = this.opts.data;
             let file = data.path + data.fileName + data.extendName;
@@ -77,15 +78,16 @@ Applications.prototype.createFile = function () {
                 if (self.opts.config.isCover) {
                     self.writeFile();
                 } else {
-                    if (response) {
-                        console.log(`文件已经存在,文件路径:${file}`);
-                    } else {
+                    if (error) {
                         self.writeFile();
+                    } else {
+                        console.log(`文件已经存在,文件路径:${file}`);
                     }
                 }
             });
         }
     }
+
     return CreateFile;
 };
 
