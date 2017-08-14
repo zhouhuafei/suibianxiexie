@@ -66,7 +66,6 @@ const file = {
         require('../pages-commons/common');// 每个页面都要用到的js(一定要放到最底部)
     }, 0);
 });
-
 `,
         extendName: '.js'
     }
@@ -102,8 +101,7 @@ class ${humpFileName} extends Super {
     }
 }
 
-module.exports = DevList;
-
+module.exports = ${humpFileName};
 `,
             extendName: '.js'
         }
