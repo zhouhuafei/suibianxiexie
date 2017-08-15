@@ -2,73 +2,89 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
         <style>
-            *{
+            * {
                 margin: 0;
                 padding: 0;
             }
-            html,body{
+
+            html, body {
                 height: 100%;
             }
-            ::-webkit-scrollbar{
-                width:6px;
-                background:#f1f1f1;
+
+            ::-webkit-scrollbar {
+                width: 6px;
+                background: #f1f1f1;
             }
-            ::-webkit-scrollbar-thumb{
-                background:#0089ff;
+
+            ::-webkit-scrollbar-thumb {
+                background: #0089ff;
                 border-radius: 100px;
             }
-            .g-container{
+
+            .g-container {
                 height: 100%;
                 display: flex;
                 color: #ffffff;
                 text-align: center;
             }
-            .g-aside{
+
+            .g-aside {
                 width: 200px;
             }
-            .g-menu{
+
+            .g-menu {
                 display: flex;
                 position: fixed;
                 height: 100%;
                 width: inherit;
             }
-            .g-menu-one{
+
+            .g-menu-one {
                 flex: 1;
                 background: #252834;
             }
-            .g-menu-two{
+
+            .g-menu-two {
                 flex: 1;
                 background: #5f626b;
             }
-            .g-menu-switch{
+
+            .g-menu-switch {
                 background: #ff0000;
                 width: 20px;
             }
-            .g-main{
+
+            .g-main {
                 flex: 1;
             }
-            .g-content{
+
+            .g-content {
                 min-height: 100%;
             }
-            .g-crumbs{
+
+            .g-crumbs {
                 background: #cccccc;
                 height: 100px;
                 line-height: 100px;
             }
-            .g-body{
+
+            .g-body {
                 padding-bottom: 100px;
                 background: #000;
             }
-            .g-copyright{
+
+            .g-copyright {
                 margin-top: -100px;
                 background: #333333;
                 height: 100px;
                 line-height: 100px;
             }
+
             @keyframes g-loading {
                 0% {
                     -webkit-transform: scaley(1);
@@ -85,11 +101,13 @@
                     transform: scaley(1);
                 }
             }
+
             .g-loading {
                 font-size: 0;
                 text-align: center;
                 margin: 20px auto;
             }
+
             .g-loading > div {
                 font-size: 0;
                 background-color: #6b6e77;
@@ -140,7 +158,13 @@
                     <div class="g-crumbs">面包屑</div>
                     <!--页面-->
                     <div class="g-body">
-                        <div class="g-loading"><div></div><div></div><div></div><div></div><div></div></div>
+                        <div class="g-loading">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
                         <p style="line-height: 300px;">哈哈</p>
                         <p style="line-height: 300px;">哈哈</p>
                         <p style="line-height: 300px;">哈哈</p>
@@ -161,9 +185,9 @@
                 <div class="g-copyright">版权</div>
             </div>
         </div>
-        <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+        <!--<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
         <script>
             console.log($(document).height());
-        </script>
+        </script>-->
     </body>
 </html>

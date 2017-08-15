@@ -1,15 +1,15 @@
-//页面路由
+// 页面路由
 const tools = require('../../../base/tools');
 const config = require('./config');
-const controllerPath = `../../../controllers/phone/pages/`;//控制器的路径
+const controllerPath = `../../../controllers/phone/pages/`;// 控制器的路径
 
 class Route {
-    constructor(json) {
+    constructor (json) {
         this.opts = tools.extend({
             defaults: {
-                app: null
+                app: null,
             },
-            inherits: json
+            inherits: json,
         });
         if (!this.opts.app) {
             return;
@@ -17,7 +17,7 @@ class Route {
         this.init();
     }
 
-    init() {
+    init () {
         let self = this;
         let app = self.opts.app;
         for (let attr in config) {
@@ -26,24 +26,24 @@ class Route {
                     let Controller = require(`${controllerPath}${attr}`);
                     (function (Controller, attr) {
                         app.get(config[attr].route, function (req, res) {
-                            //验证是否登陆
+                            // 验证是否登陆
                             if (config[attr].isValidateLogin) {
-                                req.session.user = {username: '1123486116@qq.com'};//设置session
+                                req.session.user = {username: '1123486116@qq.com'};// 设置session
                                 console.log(req.session.user, 'is login ?');
                                 let isLogin = req.session.user === undefined;
                                 if (!isLogin) {
-                                    res.redirect(config.login.route);//重定向路由
+                                    res.redirect(config.login.route);// 重定向路由
                                     return false;
                                 }
                             }
-                            //渲染视图(渲染数据)
+                            // 渲染视图(渲染数据)
                             let controller = new Controller({req: req, res: res});
                             if (req.query.isApi === 'true') {
                                 controller.renderData();
                             } else {
                                 controller.renderView();
                             }
-                        })
+                        });
                     })(Controller, attr);
                 } catch (err) {
                     console.log(err);

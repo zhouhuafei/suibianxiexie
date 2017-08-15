@@ -23,7 +23,7 @@ module.exports = {
     * */
     'rules': {
         'comma-dangle': ['error', 'always-multiline'],// 多行时总是使用拖尾逗号
-        'no-unused-vars': 1,// 未使用过的变量
+        'no-unused-vars': 0,// 未使用过的变量
         'no-new': 0,// 是否允许在使用new构造一个实例后不赋值
         'semi': ['error', 'always'],// 总是带分号
         'indent': ['error', 4, {'SwitchCase': 1}],// 缩进四个空格,switch下的case也要缩进四个空格

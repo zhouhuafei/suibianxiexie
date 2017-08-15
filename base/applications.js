@@ -18,19 +18,19 @@ Applications.prototype.createFile = function () {
                 defaults: {
                     callback: {
                         writeFile: function () {
-                        }
+                        },
                     },
                     config: {
-                        isCover: false// 是否覆盖已有文件
+                        isCover: false, // 是否覆盖已有文件
                     },
                     data: {
                         path: '', // 路径
                         fileName: '', // 文件名
                         extendName: '', // 扩展名
-                        content: ''// 文件的内容
-                    }
+                        content: '', // 文件的内容
+                    },
                 },
-                inherits: json
+                inherits: json,
             });
             this.init();
         }

@@ -1,26 +1,26 @@
-let tools = require('../base/tools');//工具方法集合
-let applications = require('../base/applications');//应用方法集合
-let SuperType = require('../components/g-super-type');//超类型(子类型继承的对象)
+let tools = require('../base/tools');// 工具方法集合
+let applications = require('../base/applications');// 应用方法集合
+let SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
 
-//子类型
+// 子类型
 var SubType = tools.constructorInherit({
     superType: SuperType,
-    //默认参数(继承超类型)
+    // 默认参数(继承超类型)
     parameter: {
-        //回调
+        // 回调
         callback: {},
-        //配置
+        // 配置
         config: {},
-        //数据
+        // 数据
         data: {
             header: [{content: 'undefined-header0'}, {content: 'undefined-header1'}, {content: 'undefined-header2'}],
             body: [[{content: 'undefined-body0-0'}, {content: 'undefined-body0-1'}, {content: 'undefined-body0-2'}]],
-            footer: ''
-        }
-    }
+            footer: '',
+        },
+    },
 });
 
-//内部模块的创建(覆盖超类型)
+// 内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
@@ -39,8 +39,8 @@ SubType.prototype.moduleDomCreate = function () {
                 <div class="g-table-footer">
                     ${this.moduleDomCreateFooter()}
                 </div>
-            `
-        }
+            `,
+        },
     });
 };
 
@@ -80,9 +80,9 @@ SubType.prototype.moduleDomCreateFooter = function () {
     return this.opts.data.footer;
 };
 
-//功能(覆盖超类型)
+// 功能(覆盖超类型)
 SubType.prototype.power = function () {
-    //功能重写待续...
+    // 功能重写待续...
 };
 
 module.exports = SubType;

@@ -1,34 +1,34 @@
-let tools = require('../base/tools');//工具方法集合
-let applications = require('../base/applications');//应用方法集合
-let SuperType = require('../components/g-super-type');//超类型(子类型继承的对象)
+let tools = require('../base/tools');// 工具方法集合
+let applications = require('../base/applications');// 应用方法集合
+let SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
 
-//子类型
+// 子类型
 var SubType = tools.constructorInherit({
     superType: SuperType,
-    //默认参数(继承超类型)
+    // 默认参数(继承超类型)
     parameter: {
-        //回调
+        // 回调
         callback: {},
-        //配置
+        // 配置
         config: {
             btn: {
-                isShowIcon: false
-            }
+                isShowIcon: false,
+            },
         },
-        //数据
+        // 数据
         data: {
             icon: 'icon-meiyoushuju',
             txt: '没有数据',
             btn: {
                 icon: 'icon-shouye',
                 txt: '回首页',
-                link: '/'
-            }
-        }
-    }
+                link: '/',
+            },
+        },
+    },
 });
 
-//内部模块的创建(覆盖超类型)
+// 内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     var data = this.opts.data;
     var btnIconHtml = ``;
@@ -47,14 +47,14 @@ SubType.prototype.moduleDomCreate = function () {
                     ${btnIconHtml}
                     <div class="g-button-text">${data.btn.txt}</div>
                 </a>
-            `
-        }
+            `,
+        },
     });
 };
 
-//功能(覆盖超类型)
+// 功能(覆盖超类型)
 SubType.prototype.power = function () {
-    //功能重写待续...
+    // 功能重写待续...
 };
 
 module.exports = SubType;

@@ -1,19 +1,19 @@
-let tools = require('../base/tools');//工具方法集合
-let applications = require('../base/applications');//应用方法集合
-let SuperType = require('../components/g-super-type');//超类型(子类型继承的对象)
+let tools = require('../base/tools');// 工具方法集合
+let applications = require('../base/applications');// 应用方法集合
+let SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
 
-//子类型
+// 子类型
 let SubType = tools.constructorInherit({
     superType: SuperType,
-    //默认参数(继承超类型)
+    // 默认参数(继承超类型)
     parameter: {
-        //容器
+        // 容器
         wrap: '.g-footer',
-        //回调
+        // 回调
         callback: {},
-        //配置
+        // 配置
         config: {},
-        //数据
+        // 数据
         data: [
             // {
             //     routeName: 'home',
@@ -23,8 +23,8 @@ let SubType = tools.constructorInherit({
             //     isHighlight: false,
             //     isShowMark: false
             // }
-        ]
-    }
+        ],
+    },
 });
 
 SubType.prototype.moduleDomCreate = function () {
@@ -54,14 +54,14 @@ SubType.prototype.moduleDomCreate = function () {
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
             className: this.moduleDomClass,
-            innerHTML: `<div class="g-footer-nav-wrap">${moduleDomHtml}</div>`
-        }
+            innerHTML: `<div class="g-footer-nav-wrap">${moduleDomHtml}</div>`,
+        },
     });
 };
 
-//功能(覆盖超类型)
+// 功能(覆盖超类型)
 SubType.prototype.power = function () {
-    //功能重写待续...
+    // 功能重写待续...
 };
 
 module.exports = SubType;

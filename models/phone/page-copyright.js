@@ -1,7 +1,7 @@
-//是否显示版权
+// 是否显示版权
 
 class pageCopyright {
-    constructor(json) {
+    constructor (json) {
         this.opts = json || {};
         this.isShowCopyright = true;
     }

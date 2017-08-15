@@ -4,7 +4,7 @@ require('../../scss/base/global.scss');// 全局的样式
     if (pageInfo && pageInfo.isShowCopyright) {
         let Copyright = require('../components/g-copyright');
         new Copyright({
-            wrap: '.g-copyright-wrap'
+            wrap: '.g-copyright-wrap',
         });
     }
 })();// 版权

@@ -163,12 +163,7 @@ let webpackConfig = {
                 test: /\.(js|vue)$/,
                 exclude: /(node_modules|bower_components)/,
                 enforce: 'pre',
-                use: [{
-                    loader: 'eslint-loader',
-                    options: {
-                        formatter: require('eslint-friendly-formatter'),
-                    },
-                }],
+                use: ['eslint-loader'],
             },
             // loader----处理sass
             {

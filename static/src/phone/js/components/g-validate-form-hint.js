@@ -1,7 +1,7 @@
-let tools = require('../base/tools');//工具方法集合
-let applications = require('../base/applications');//应用方法集合
+let tools = require('../base/tools');// 工具方法集合
+let applications = require('../base/applications');// 应用方法集合
 
-function ValidateForm(json) {
+function ValidateForm (json) {
     this.opts = json || {};
     this.element = applications.getDomArray({element: this.opts.element})[0];
     this.hintClass = this.opts.hintClass || 'g-validate-form-hint';
@@ -29,7 +29,7 @@ ValidateForm.prototype.renderHint = function () {
     this.hintDom.classList.add(this.hintClass);
 };
 ValidateForm.prototype.renderHintAdd = function (json) {
-    //只有没被隐藏的才进行验证
+    // 只有没被隐藏的才进行验证
     if (this.element.offsetWidth) {
         let opts = json || {};
         this.hintDom.innerHTML = opts.txt || '本项必填';
@@ -47,9 +47,9 @@ ValidateForm.prototype.validateSave = function () {
     let type = self.validateType.split(' ');
     let hintTxt = self.validateHintTxt.split(' ');
     let value = this.element.value;
-    this.isValidateSuccess = true;//是否验证成功了
+    this.isValidateSuccess = true;// 是否验证成功了
     type.forEach(function (v, i) {
-        if (v === 'no-space' && self.isValidateSuccess) {//设置了非空验证
+        if (v === 'no-space' && self.isValidateSuccess) { // 设置了非空验证
             if (tools.isSpace(value)) {
                 self.renderHintAdd({txt: hintTxt[i]});
                 self.isValidateSuccess = false;
@@ -58,7 +58,7 @@ ValidateForm.prototype.validateSave = function () {
                 self.isValidateSuccess = true;
             }
         }
-        if (v === 'no-zero' && self.isValidateSuccess) {//设置了非零验证
+        if (v === 'no-zero' && self.isValidateSuccess) { // 设置了非零验证
             if (tools.isZero(value)) {
                 self.renderHintAdd({txt: hintTxt[i]});
                 self.isValidateSuccess = false;
@@ -67,7 +67,7 @@ ValidateForm.prototype.validateSave = function () {
                 self.isValidateSuccess = true;
             }
         }
-        if (v === 'yes-integer' && self.isValidateSuccess) {//设置了整数验证
+        if (v === 'yes-integer' && self.isValidateSuccess) { // 设置了整数验证
             if (tools.isInteger(value)) {
                 self.renderHintRemove();
                 self.isValidateSuccess = true;

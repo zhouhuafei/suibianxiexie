@@ -39,7 +39,7 @@ Mysql.prototype.init = function () {
         port: self.getPort(),
         user: self.getUser(),
         password: self.getPassword(),
-        database: self.getDatabase()
+        database: self.getDatabase(),
     });
 };
 module.exports = Mysql;

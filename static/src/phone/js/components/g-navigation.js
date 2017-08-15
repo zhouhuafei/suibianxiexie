@@ -1,56 +1,56 @@
-let tools = require('../base/tools');//工具方法集合
-let applications = require('../base/applications');//应用方法集合
-let SuperType = require('../components/g-super-type');//超类型(子类型继承的对象)
+let tools = require('../base/tools');// 工具方法集合
+let applications = require('../base/applications');// 应用方法集合
+let SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
 let route = `/phone/`;
 
-//子类型
+// 子类型
 let SubType = tools.constructorInherit({
     superType: SuperType,
-    //默认参数(继承超类型)
+    // 默认参数(继承超类型)
     parameter: {
-        //回调
+        // 回调
         callback: {},
-        //配置
+        // 配置
         config: {},
-        //数据
+        // 数据
         data: {
             items: [
                 {
                     link: route,
                     icon: 'icon-shouye',
                     txt: '首页',
-                    isShowMark: false
+                    isShowMark: false,
                 },
                 {
                     link: `${route}dev-global`,
                     icon: 'icon-kaifa',
                     txt: '开发全局',
-                    isShowMark: false
+                    isShowMark: false,
                 },
                 {
                     link: `${route}dev-components`,
                     icon: 'icon-kaifa',
                     txt: '开发组件',
-                    isShowMark: false
+                    isShowMark: false,
                 },
                 {
                     link: `${route}dev-words`,
                     icon: 'icon-kaifa',
                     txt: '标准词汇',
-                    isShowMark: false
+                    isShowMark: false,
                 },
                 {
                     link: `${route}mine`,
                     icon: 'icon-wode',
                     txt: '我的',
-                    isShowMark: false
-                }
-            ]
-        }
-    }
+                    isShowMark: false,
+                },
+            ],
+        },
+    },
 });
 
-//内部模块的创建(覆盖超类型)
+// 内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     let data = this.opts.data;
     let items = data.items;
@@ -73,14 +73,14 @@ SubType.prototype.moduleDomCreate = function () {
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
             className: `g-navigation`,
-            innerHTML: html
-        }
+            innerHTML: html,
+        },
     });
 };
 
-//功能(覆盖超类型)
+// 功能(覆盖超类型)
 SubType.prototype.power = function () {
-    //功能重写待续...
+    // 功能重写待续...
 };
 
 module.exports = SubType;

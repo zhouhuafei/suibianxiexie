@@ -6,5 +6,5 @@ Vue.component('g-picture-list', {
         <img class="g-lazy-load" data-src="${require('../../images/pages/index/p-waiting.png')}" alt="">
         <img class="g-lazy-load" data-src="${require('../../images/pages/p-waiting.png')}" alt="">
         <img class="g-lazy-load" data-src="${require('../../images/pages/other/p-waiting.png')}" alt="">
-    </div>`
+    </div>`,
 });

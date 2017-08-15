@@ -64,9 +64,9 @@ Tools.prototype.constructorInherit = function (json) {
     let opts = self.extend({
         defaults: {
             superType: null, // 继承哪个超类(这个必须传的是一个构造函数,或者不传值)
-            parameter: {}// 默认参数(这个必须传的是一个对象,或者不传值)
+            parameter: {}, // 默认参数(这个必须传的是一个对象,或者不传值)
         },
-        inherits: json
+        inherits: json,
     });
     // 超类型(需要是个构造函数)
     let SuperType = opts.superType;
@@ -94,7 +94,7 @@ Tools.prototype.constructorInherit = function (json) {
          * */
         this.opts = self.extend({
             defaults: self.objRemoveQuote({obj: parameter}),
-            inherits: json
+            inherits: json,
         });
         // 子类型继承超类型的属性
         opts.superType.call(this, this.opts);
@@ -144,10 +144,10 @@ Tools.prototype.timeCountDown = function (json) {
                 run: function () {
                 },
                 over: function () {
-                }
-            }
+                },
+            },
         },
-        inherits: json
+        inherits: json,
     });
     let seconds = opts.seconds;// 秒数
     let run = opts.callback.run;// 运行的回调
@@ -224,9 +224,9 @@ Tools.prototype.strToHump = function (json) {
     let opts = this.extend({
         defaults: {
             str: '',
-            rule: '-'
+            rule: '-',
         },
-        inherits: json
+        inherits: json,
     });
     let str = opts.str;
     let rule = opts.rule;

@@ -35,7 +35,7 @@ class DevList extends Super {
         if (!tools.isEmail(username)) {
             self.apiInfo = {
                 status: 'failure',
-                message: '用户名需要是一个邮箱'
+                message: '用户名需要是一个邮箱',
             };
             self.renderData();
             return false;
@@ -54,27 +54,27 @@ class DevList extends Super {
             service: 'qq',
             auth: {
                 user: autoUser, // 发送者
-                pass: 'bwdddjldhdvihdaf'// 授权码,通过QQ获取
-            }
+                pass: 'bwdddjldhdvihdaf', // 授权码,通过QQ获取
+            },
         });
         let mailOptions = {
             from: autoUser, // 发送者
             to: username, // 接受者,可以同时发送多个,以逗号隔开
             subject: verifyCode, // 标题
             text: `这是一条验证码,有效期${expirationDate}分钟`, // 文本
-            html: ''// html
+            html: '', // html
         };
         transporter.sendMail(mailOptions, function (error, response) {
             if (error) {
                 self.apiInfo = {
                     status: 'failure',
-                    message: error
+                    message: error,
                 };
                 return;
             } else {
                 self.apiInfo = {
                     status: 'success',
-                    message: '验证码发送成功'
+                    message: '验证码发送成功',
                 };
             }
             self.renderData();// 渲染数据

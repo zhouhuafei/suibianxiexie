@@ -1,8 +1,8 @@
-//底部导航的数据
+// 底部导航的数据
 const routeConfig = require('../../routes/phone/pages/config');
 
 class FooterNav {
-    constructor(json) {
+    constructor (json) {
         this.opts = json || {};
         this.result = {
             config: {},
@@ -13,7 +13,7 @@ class FooterNav {
                     text: routeConfig['home'].title,
                     icon: 'icon-shouye',
                     isHighlight: false,
-                    isShowMark: false
+                    isShowMark: false,
                 },
                 {
                     routeName: 'dev-global',
@@ -21,7 +21,7 @@ class FooterNav {
                     text: routeConfig['dev-global'].title,
                     icon: 'icon-kaifa',
                     isHighlight: false,
-                    isShowMark: false
+                    isShowMark: false,
                 },
                 {
                     routeName: 'dev-components',
@@ -29,7 +29,7 @@ class FooterNav {
                     text: routeConfig['dev-components'].title,
                     icon: 'icon-kaifa',
                     isHighlight: false,
-                    isShowMark: false
+                    isShowMark: false,
                 },
                 {
                     routeName: 'dev-words',
@@ -37,7 +37,7 @@ class FooterNav {
                     text: routeConfig['dev-words'].title,
                     icon: 'icon-kaifa',
                     isHighlight: false,
-                    isShowMark: false
+                    isShowMark: false,
                 },
                 {
                     routeName: 'mine',
@@ -45,26 +45,26 @@ class FooterNav {
                     text: routeConfig['mine'].title,
                     icon: 'icon-wode',
                     isHighlight: false,
-                    isShowMark: false
-                }
+                    isShowMark: false,
+                },
 
-            ]
+            ],
         };
     }
 
-    insert() {
+    insert () {
 
     }
 
-    del() {
+    del () {
 
     }
 
-    update() {
+    update () {
 
     }
 
-    select() {
+    select () {
 
     }
 }

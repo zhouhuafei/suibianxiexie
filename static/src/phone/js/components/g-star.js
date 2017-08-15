@@ -1,29 +1,29 @@
-let tools = require('../base/tools');//工具方法集合
-let applications = require('../base/applications');//应用方法集合
-let SuperType = require('../components/g-super-type');//超类型(子类型继承的对象)
+let tools = require('../base/tools');// 工具方法集合
+let applications = require('../base/applications');// 应用方法集合
+let SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
 
-//子类型
+// 子类型
 var SubType = tools.constructorInherit({
     superType: SuperType,
-    //默认参数(继承超类型)
+    // 默认参数(继承超类型)
     parameter: {
-        //回调
+        // 回调
         callback: {
             click: function (obj) {
-            }
+            },
         },
-        //配置
+        // 配置
         config: {
-            isHaveEvent: true,//是否具备事件(默认具备)
-            allStarNum: 5,//所有的星星数
-            nowStarNum: 4//当前被选择的星星数
+            isHaveEvent: true, // 是否具备事件(默认具备)
+            allStarNum: 5, // 所有的星星数
+            nowStarNum: 4, // 当前被选择的星星数
         },
-        //数据
-        data: {}
-    }
+        // 数据
+        data: {},
+    },
 });
 
-//内部模块的创建(覆盖超类型)
+// 内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     var html = ``;
     for (var i = 0; i < this.opts.config.allStarNum; i++) {
@@ -38,13 +38,13 @@ SubType.prototype.moduleDomCreate = function () {
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
             className: `g-star`,
-            innerHTML: html
-        }
+            innerHTML: html,
+        },
     });
     this.opts.star = this.moduleDom.children;
 };
 
-//功能(覆盖超类型)
+// 功能(覆盖超类型)
 SubType.prototype.power = function () {
     var self = this;
     if (this.opts.config.isHaveEvent) {
@@ -61,7 +61,7 @@ SubType.prototype.power = function () {
                 }
                 self.opts.callback.click({element: this, index: index});
             }
-        })
+        });
     }
 };
 

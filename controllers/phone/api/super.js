@@ -7,9 +7,9 @@ class Super {
         this.opts = tools.extend({
             defaults: {
                 res: null,
-                req: null
+                req: null,
             },
-            inherits: json
+            inherits: json,
         });
         this.apiInfo = {
             status: 'failure', // 状态  'success'   'failure'
@@ -20,17 +20,17 @@ class Super {
                         picture: {
                             width: 0,
                             height: 0,
-                            url: ''
+                            url: '',
                         },
                         text: '请求失败了哟',
-                        link: ''
-                    }
+                        link: '',
+                    },
                 ], // 数据集合
                 allPage: 10, // 总页数
                 nowPage: 1, // 当前页
                 allCount: 200, // 数据总条数
-                nowCount: 20// 当前页的数据条数
-            }
+                nowCount: 20, // 当前页的数据条数
+            },
         };
     }
 

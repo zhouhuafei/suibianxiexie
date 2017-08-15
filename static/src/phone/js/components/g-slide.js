@@ -1,60 +1,60 @@
-let tools = require('../base/tools');//工具方法集合
-let applications = require('../base/applications');//应用方法集合
-let SuperType = require('../components/g-super-type');//超类型(子类型继承的对象)
-let TouchSlide = require('../plugs/touch-slide');//轮播图插件
+let tools = require('../base/tools');// 工具方法集合
+let applications = require('../base/applications');// 应用方法集合
+let SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
+let TouchSlide = require('../plugs/touch-slide');// 轮播图插件
 
-//子类型
+// 子类型
 var SubType = tools.constructorInherit({
     superType: SuperType,
-    //默认参数(继承超类型)
+    // 默认参数(继承超类型)
     parameter: {
-        //回调
+        // 回调
         callback: {
             startFun: function () {
             },
             endFun: function () {
-            }
+            },
         },
-        //配置
+        // 配置
         config: {
-            isShowHref: true,//是否有跳转
-            //TouchSlide插件的配置
+            isShowHref: true, // 是否有跳转
+            // TouchSlide插件的配置
             touchSlide: {
-                slideCell: '',//外部容器,这个值会在底部进行覆盖,因为在这里没办法获取this
-                mainCell: '.g-slide-body',//切换元素的包裹层对象
-                titCell: '.g-slide-header .g-slide-items',//导航元素对象
-                effect: "leftLoop",//效果'left' 'leftLoop'
-                autoPlay: true,//自动播放
-                delayTime: 200,//切换一次的持续时间
-                interTime: 3000,//多久切换一次
+                slideCell: '', // 外部容器,这个值会在底部进行覆盖,因为在这里没办法获取this
+                mainCell: '.g-slide-body', // 切换元素的包裹层对象
+                titCell: '.g-slide-header .g-slide-items', // 导航元素对象
+                effect: 'leftLoop', // 效果'left' 'leftLoop'
+                autoPlay: true, // 自动播放
+                delayTime: 200, // 切换一次的持续时间
+                interTime: 3000, // 多久切换一次
                 startFun: function () {
                     console.log('此处的函数会被覆盖,请在callback里执行回调');
                 },
                 endFun: function () {
                     console.log('此处的函数会被覆盖,请在callback里执行回调');
                 },
-                defaultIndex: 0,//默认的当前位置索引
-                switchLoadClass: '.pre-load',//预加载的class
-                switchLoad: 'data-src'//预加载的属性
-            }
+                defaultIndex: 0, // 默认的当前位置索引
+                switchLoadClass: '.pre-load', // 预加载的class
+                switchLoad: 'data-src', // 预加载的属性
+            },
         },
-        //数据
+        // 数据
         data: {
             items: [
                 {
                     img: {
                         width: 0,
                         height: 0,
-                        url: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg'
+                        url: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg',
                     },
-                    link: ''
-                }
-            ]
-        }
-    }
+                    link: '',
+                },
+            ],
+        },
+    },
 });
 
-//内部模块的创建(覆盖超类型)
+// 内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
@@ -64,8 +64,8 @@ SubType.prototype.moduleDomCreate = function () {
             innerHTML: `
                 ${this.renderHeader()}
                 ${this.renderBody()}
-            `
-        }
+            `,
+        },
     });
 };
 
@@ -75,7 +75,7 @@ SubType.prototype.renderHeader = function () {
     var data = self.opts.data;
     var className = ``;
     data.items.forEach(function (v, i) {
-        if (i == self.opts.config.touchSlide.defaultIndex) {
+        if (i === self.opts.config.touchSlide.defaultIndex) {
             className = `on`;
         }
         html += `<div class="g-slide-items ${className}"></div>`;
@@ -97,13 +97,13 @@ SubType.prototype.renderBody = function () {
     return `<div class="g-slide-body">${html}</div>`;
 };
 
-//功能(覆盖超类型)
+// 功能(覆盖超类型)
 SubType.prototype.power = function () {
     var self = this;
     var callback = self.opts.callback;
     var config = self.opts.config;
     var touchSlide = config.touchSlide;
-    touchSlide.slideCell = self.opts.wrap;//外部容器,必须是id
+    touchSlide.slideCell = self.opts.wrap;// 外部容器,必须是id
     touchSlide.startFun = function (i) {
         // 因为以下功能在插件本身进行了实现(本人对touch-slide插件进行了小修改),所以这里就注释了
         // var allImg = self.moduleDom.querySelectorAll('.g-slide-body .g-slide-items');
