@@ -1,7 +1,7 @@
 <script>(function (win, doc) {
-        function isPc() {
+        function isPc () {
             var userAgentInfo = navigator.userAgent;
-            var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+            var Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod'];
             var flag = true;
             for (var v = 0; v < Agents.length; v++) {
                 if (userAgentInfo.indexOf(Agents[v]) > 0) {
@@ -12,7 +12,7 @@
             return flag;
         }
 
-        function resize() {
+        function resize () {
             var html = doc.querySelector('html');
             var wrap = doc.querySelector('.g-wrap');
             if (isPc()) {
