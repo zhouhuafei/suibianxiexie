@@ -10,8 +10,8 @@ class Home extends Super {
     }
 
     handleData () {
-        // let req = this.opts.req;
-        // let query = req.query;
+        let req = this.opts.req;
+        let query = req.query;
         // pageInfo数据处理待续...
     }
 }

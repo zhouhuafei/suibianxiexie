@@ -14,7 +14,7 @@ app.use(cookieParser());// cookie
 app.use(session({
     resave: true, // don't save session if unmodified
     saveUninitialized: false, // don't create session until something stored
-    secret: 'love'// 这里是我的一个疑问
+    secret: 'love', // 这里是我的一个疑问
 }));// session
 
 // 模版引擎(handlebars)
@@ -23,7 +23,7 @@ app.engine('hbs', handlebars({
     partialsDir: `${__dirname}/views/`, // 设置页面布局模块文件的路径
     layoutsDir: `${__dirname}/views/`, // 设置页面布局模版文件的路径(本项目没有使用到页面布局模板文件)
     defaultLayout: '', // 设置页面的布局模版文件(本项目没有使用到页面布局模板文件)
-    extname: '.hbs'
+    extname: '.hbs',
 }));
 app.set('view engine', 'hbs');
 app.set('views', `${__dirname}/views/`);
@@ -40,28 +40,30 @@ app.use(function (req, res, next) {
     res.status(404).send('404 - not found');
 });
 // 500
-// app.use(function (err, req, res, next) {
-//     res.status(500).send('500 - server error');
-// });
+app.use(function (err, req, res) {
+    if (err) {
+        res.status(500).send('500 - server error');
+    }
+});
 
 // mysql
-// var Mysql = require('./config/mysql');
-// var oMysql = new Mysql({isLocal: true});
-// oMysql.init();
-// var mysql = oMysql.connection;
-// var tableName = 'user';
-// mysql.query(
-//     'SELECT * FROM ' + tableName,
-//     function selectCb(error, results, fields) {
-//         if (error) {
-//             throw error;
-//         }
-//         if (results) {
-//             console.log('mysql数据库user表里的数据', results);
-//         }
-//         mysql.end();
-//     }
-// );
+var Mysql = require('./config/mysql');
+var oMysql = new Mysql({isLocal: true});
+oMysql.init();
+var mysql = oMysql.connection;
+var tableName = 'user';
+mysql.query(
+    'SELECT * FROM ' + tableName,
+    function selectCb (error, results, fields) {
+        if (error) {
+            throw error;
+        }
+        if (results) {
+            console.log('mysql数据库user表里的数据', results);
+        }
+        mysql.end();
+    }
+);
 
 // 端口
 const server = app.listen('5555', function () {

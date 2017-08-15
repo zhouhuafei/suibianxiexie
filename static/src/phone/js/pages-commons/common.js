@@ -1,4 +1,4 @@
-require('../../scss/base/global.scss');//全局的样式
+require('../../scss/base/global.scss');// 全局的样式
 
 (function () {
     if (pageInfo && pageInfo.isShowCopyright) {
@@ -7,8 +7,7 @@ require('../../scss/base/global.scss');//全局的样式
             wrap: '.g-copyright-wrap'
         });
     }
-})();//版权
-
+})();// 版权
 
 (function () {
     if (pageInfo && pageInfo.footerNav) {
@@ -16,9 +15,9 @@ require('../../scss/base/global.scss');//全局的样式
         pageInfo.footerNav.wrap = '.g-footer-nav-wrap';
         new Footer(pageInfo.footerNav);
     }
-})();//底部导航
+})();// 底部导航
 
-//延迟加载
+// 延迟加载
 let LazyLoad = require('../components/g-lazy-load');
 let lazyLoad = new LazyLoad();
 

@@ -38,7 +38,7 @@ const file = {
         </div>
     </body>
 </html>`,
-        extendName: '.hbs'
+        extendName: '.hbs',
     },
     scss: {
         path: `${staticPath}scss/pages/`,
@@ -50,7 +50,7 @@ const file = {
 .g-body {
     //样式待续...
 }`,
-        extendName: '.scss'
+        extendName: '.scss',
     },
     js: {
         path: `${staticPath}js/pages/`,
@@ -63,12 +63,12 @@ const file = {
         })();
 
         require('../../scss/pages/${fileName}.scss');// 当前页面用到的样式
-        require('../pages-commons/common');// 每个页面都要用到的js(一定要放到最底部)
+        let common = require('../pages-commons/common');// 每个页面都要用到的js(一定要放到最底部)
     }, 0);
 });
 `,
-        extendName: '.js'
-    }
+        extendName: '.js',
+    },
 };
 for (let attr in file) {
     if (file.hasOwnProperty(attr)) {
@@ -95,15 +95,15 @@ class ${humpFileName} extends Super {
     }
 
     handleData () {
-        // let req = this.opts.req;
-        // let query = req.query;
+        let req = this.opts.req;
+        let query = req.query;
         // pageInfo数据处理待续...
     }
 }
 
 module.exports = ${humpFileName};
 `,
-            extendName: '.js'
-        }
+            extendName: '.js',
+        },
     });
 }

@@ -34,7 +34,7 @@ let configEnvironment = {
     isMinCss: false, // 是否压缩css
     isWatch: true, // 是否监听
     minView: {}, // 压缩视图模板文件
-    devtool: ''// #source-map
+    devtool: '', // #source-map
 };
 // 环境----生产环境
 if (isProduction) {
@@ -47,16 +47,16 @@ if (isProduction) {
         isWatch: true, // 是否监听
         minView: {
             removeComments: true, // 移除HTML中的注释
-            collapseWhitespace: true // 删除空白符与换行符
+            collapseWhitespace: true, // 删除空白符与换行符
         },
-        devtool: '#source-map'// #source-map
+        devtool: '#source-map', // #source-map
     };
 }
 // 别名----配置
 let alias = {
     vue: `vue/dist/vue.${configEnvironment.min}js`,
     axios: `axios/dist/axios.${configEnvironment.min}js`,
-    jquery: `jquery/dist/jquery.${configEnvironment.min}js`
+    jquery: `jquery/dist/jquery.${configEnvironment.min}js`,
 };
 // 入口----配置
 let entry = {};
@@ -71,7 +71,7 @@ let output = {
     path: `${configPath.buildPath}`,
     publicPath: `/dist/${configPath.projectDir}/`,
     filename: `js/pages/[name].${configEnvironment.chunkhash}js`,
-    chunkFilename: `js/chunks/[name].[id].chunk.${configEnvironment.chunkhash}js`
+    chunkFilename: `js/chunks/[name].[id].chunk.${configEnvironment.chunkhash}js`,
 };
 // 插件----集合
 let plugins = [
@@ -79,7 +79,7 @@ let plugins = [
     new CleanWebpackPlugin([configPath.projectDir], {
         root: `${configPath.staticPath}/dist/`,
         verbose: true,
-        dry: false
+        dry: false,
     }),
     // 插件----清空views目录下对应的项目文件
     new CleanWebpackPlugin([configPath.projectDir], {root: `${__dirname}/views/`, verbose: true, dry: false}),
@@ -87,12 +87,12 @@ let plugins = [
     new ExtractTextPlugin(`css/pages/[name].${configEnvironment.contenthash}css`),
     // 插件----把每个入口都有用到的js和css分别提取为this-is-global-file-common.js和this-is-global-file-common.css
     new webpack.optimize.CommonsChunkPlugin({
-    // 0.这里的打包方式是倒叙的
-    // 1.this-is-global-file-manifest:抽取变动部分,防止第三方控件的多次打包
-    // 2.this-is-global-file-vendor:公用的第三方库
-    // 3.this-is-global-file-common:提取每个入口都有用到的js和css
-        name: ['this-is-global-file-common', 'this-is-global-file-vendor', 'this-is-global-file-manifest']
-    })
+        // 0.这里的打包方式是倒叙的
+        // 1.this-is-global-file-manifest:抽取变动部分,防止第三方控件的多次打包
+        // 2.this-is-global-file-vendor:公用的第三方库
+        // 3.this-is-global-file-common:提取每个入口都有用到的js和css
+        name: ['this-is-global-file-common', 'this-is-global-file-vendor', 'this-is-global-file-manifest'],
+    }),
 ];
 // 插件----处理视图模板页面文件
 let allPageHtml = fs.readdirSync(`${configPath.viewEntryPath}pages/`);
@@ -104,7 +104,7 @@ allPageHtml.forEach(function (v) {
             filename: `${configPath.viewOutputPath}pages/${v}`, // 文件名
             // 需要引入的chunk,不配置就会引入所有页面的资源,模板视图文件里js的引入顺序和chunks里的排序无关,和CommonsChunkPlugin里的顺序有关(倒叙)
             chunks: ['this-is-global-file-manifest', 'this-is-global-file-vendor', 'this-is-global-file-common', fileName],
-            minify: configEnvironment.minView// 压缩视图模板文件
+            minify: configEnvironment.minView, // 压缩视图模板文件
         })
     );
 });
@@ -116,7 +116,7 @@ allPartialsHtml.forEach(function (v) {
             template: `${configPath.viewEntryPath}partials/${v}`, // 模板
             filename: `${configPath.viewOutputPath}partials/${v}`, // 文件名
             inject: false,
-            minify: configEnvironment.minView// 压缩视图模板文件
+            minify: configEnvironment.minView, // 压缩视图模板文件
         })
     );
 });
@@ -124,16 +124,16 @@ if (isProduction) {
     // 插件----压缩js
     plugins.push(new webpack.optimize.UglifyJsPlugin({
         compress: {
-            warnings: false
+            warnings: false,
         },
-        sourceMap: true
+        sourceMap: true,
     }));
     // 插件----压缩图片
     plugins.push(new ImageminPlugin({
         disable: false,
         pngquant: {
-            quality: '95-100'
-        }
+            quality: '95-100',
+        },
     }));
 }
 let webpackConfig = {
@@ -141,10 +141,10 @@ let webpackConfig = {
     devtool: configEnvironment.devtool,
     // resolve----配置用来影响webpack模块解析规则
     resolve: {
-    // 加速----默认的配置会采用向上递归搜索的方式去寻找node_modules,为了减少搜索我们直接写明node_modules的全路径
+        // 加速----默认的配置会采用向上递归搜索的方式去寻找node_modules,为了减少搜索我们直接写明node_modules的全路径
         modules: [`${__dirname}/node_modules/`],
         // 别名----引入开发版本还是生产版本
-        alias: alias
+        alias: alias,
     },
     // 入口----配置
     entry: entry,
@@ -156,7 +156,7 @@ let webpackConfig = {
     watch: configEnvironment.isWatch,
     // 模块----模块加载相关的配置
     module: {
-    // rules----loader加载器的规则集合
+        // rules----loader加载器的规则集合
         rules: [
             // loader----eslint检测js是否符合编码规范
             {
@@ -166,9 +166,9 @@ let webpackConfig = {
                 use: [{
                     loader: 'eslint-loader',
                     options: {
-                        formatter: require('eslint-friendly-formatter')
-                    }
-                }]
+                        formatter: require('eslint-friendly-formatter'),
+                    },
+                }],
             },
             // loader----处理sass
             {
@@ -179,16 +179,16 @@ let webpackConfig = {
                     use: [{
                         loader: 'css-loader',
                         options: {
-                            minimize: configEnvironment.isMinCss // css压缩
-                        }
-                    }, 'postcss-loader', 'sass-loader']
-                })
+                            minimize: configEnvironment.isMinCss, // css压缩
+                        },
+                    }, 'postcss-loader', 'sass-loader'],
+                }),
             },
             // loader----es6转成es5
             {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
-                use: ['babel-loader']
+                use: ['babel-loader'],
             },
             // loader----处理图片
             {
@@ -199,10 +199,10 @@ let webpackConfig = {
                         loader: 'url-loader',
                         options: {
                             limit: 8192,
-                            name: `images/[name].${configEnvironment.hash}[ext]`
-                        }
-                    }
-                ]
+                            name: `images/[name].${configEnvironment.hash}[ext]`,
+                        },
+                    },
+                ],
             },
             // loader----处理字体
             {
@@ -213,10 +213,10 @@ let webpackConfig = {
                         loader: 'url-loader',
                         options: {
                             limit: 8192,
-                            name: `fonts/[name].${configEnvironment.hash}[ext]`
-                        }
-                    }
-                ]
+                            name: `fonts/[name].${configEnvironment.hash}[ext]`,
+                        },
+                    },
+                ],
             },
             // loader----处理视图模板文件里的src
             {
@@ -226,12 +226,12 @@ let webpackConfig = {
                     {
                         loader: 'html-loader',
                         options: {
-                            attrs: ['img:src', 'img:data-src', 'link:href']
-                        }
-                    }
-                ]
-            }
-        ]
-    }
+                            attrs: ['img:src', 'img:data-src', 'link:href'],
+                        },
+                    },
+                ],
+            },
+        ],
+    },
 };
 module.exports = webpackConfig;
