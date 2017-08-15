@@ -158,13 +158,6 @@ let webpackConfig = {
     module: {
         // rules----loader加载器的规则集合
         rules: [
-            // loader----eslint检测js是否符合编码规范
-            {
-                test: /\.(js|vue)$/,
-                exclude: /(node_modules|bower_components)/,
-                enforce: 'pre',
-                use: ['eslint-loader'],
-            },
             // loader----处理sass
             {
                 test: /\.(css|scss)$/,
