@@ -15,15 +15,15 @@ class Super {
             status: 'failure', // 状态  'success'   'failure'
             message: '接口数据的基本格式', // 信息     '参数错误'
             result: {
-                items: [
+                data: [
                     {
-                        picture: {
+                        img: {
                             width: 0,
                             height: 0,
-                            url: '',
+                            src: '',
                         },
                         text: '请求失败了哟',
-                        link: '',
+                        href: '',
                     },
                 ], // 数据集合
                 allPage: 10, // 总页数
