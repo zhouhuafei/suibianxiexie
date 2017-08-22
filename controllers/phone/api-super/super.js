@@ -1,5 +1,5 @@
 // 接口数据
-const tools = require('../../../base/tools');
+const tools = require('../../../utils/tools');
 
 class Super {
     constructor (json) {

@@ -1,5 +1,5 @@
-const tools = require('./base/tools');// 工具方法集合
-const applications = require('./base/applications');// 应用方法集合
+const tools = require('./utils/tools');// 工具方法集合
+const applications = require('./utils/applications');// 应用方法集合
 const CreateFile = applications.createFile();// 创建文件函数
 const projectDirName = process.argv[2];// 目录名字
 if (!projectDirName) {

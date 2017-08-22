@@ -1,5 +1,5 @@
 // 页面路由
-const tools = require('../../../base/tools');
+const tools = require('../../../utils/tools');
 const config = require('./config');
 const controllerPath = `../../../controllers/phone/pages/`;// 控制器的路径
 
