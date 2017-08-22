@@ -262,7 +262,7 @@ Tools.prototype.isSpace = function (value) {
 Tools.prototype.isZero = function (value) {
     return Number(value) === 0;
 };
-// 是不是整数(包含0)
+// 是不是整数(正整数且包含0)
 Tools.prototype.isInteger = function (value) {
     let reg = /^\d+$/;
     return reg.test(value);
