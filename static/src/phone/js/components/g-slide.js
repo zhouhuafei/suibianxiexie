@@ -45,9 +45,9 @@ var SubType = tools.constructorInherit({
                     img: {
                         width: 0,
                         height: 0,
-                        url: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg',
+                        src: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg',
                     },
-                    link: '',
+                    href: '',
                 },
             ],
         },
@@ -89,9 +89,9 @@ SubType.prototype.renderBody = function () {
     var data = self.opts.data;
     data.items.forEach(function (v) {
         if (self.opts.config.isShowHref) {
-            html += `<a href="${v.link || 'javascript:;'}" class="g-slide-items pre-load" data-src="${v.img.url}"></a>`;
+            html += `<a href="${v.href || 'javascript:;'}" class="g-slide-items pre-load" data-src="${v.img.src}"></a>`;
         } else {
-            html += `<a class="g-slide-items pre-load" data-src="${v.img.url}"></a>`;
+            html += `<a class="g-slide-items pre-load" data-src="${v.img.src}"></a>`;
         }
     });
     return `<div class="g-slide-body">${html}</div>`;
