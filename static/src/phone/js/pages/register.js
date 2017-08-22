@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
     setTimeout(function () {
-        let axios = require('../base/axios');
+        let axios = require('../api/axios');
 
         // 注释待续...
         (function () {

@@ -1,5 +1,5 @@
 // 修改密码,去重置,页面路由的控制器
-let Super = require('./super');// 超类型
+let Super = require('../pages-super/super');// 超类型
 
 class PasswordReset extends Super {
     constructor (json) {

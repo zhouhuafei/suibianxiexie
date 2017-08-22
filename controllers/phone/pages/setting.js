@@ -1,5 +1,5 @@
 // 设置,页面路由的控制器
-let Super = require('./super');// 超类型
+let Super = require('../pages-super/super');// 超类型
 
 class Setting extends Super {
     constructor (json) {

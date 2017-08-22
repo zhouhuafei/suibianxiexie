@@ -1,5 +1,5 @@
 // 开发词汇,页面路由的控制器
-let Super = require('./super');// 超类型
+let Super = require('../pages-super/super');// 超类型
 
 class DevWord extends Super {
     constructor (json) {
