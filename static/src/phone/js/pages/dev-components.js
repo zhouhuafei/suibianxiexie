@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
     setTimeout(function () {
-        let applications = require('../base/applications');
+        let applications = require('../utils/applications');
 
         // ajax测试
         (function () {

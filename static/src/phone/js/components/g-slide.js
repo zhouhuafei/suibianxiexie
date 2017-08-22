@@ -1,5 +1,5 @@
-let tools = require('../base/tools');// 工具方法集合
-let applications = require('../base/applications');// 应用方法集合
+let tools = require('../utils/tools');// 工具方法集合
+let applications = require('../utils/applications');// 应用方法集合
 let SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
 let TouchSlide = require('../plugs/touch-slide');// 轮播图插件
 

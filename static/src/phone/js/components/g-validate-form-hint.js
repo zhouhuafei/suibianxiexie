@@ -1,5 +1,5 @@
-let tools = require('../base/tools');// 工具方法集合
-let applications = require('../base/applications');// 应用方法集合
+let tools = require('../utils/tools');// 工具方法集合
+let applications = require('../utils/applications');// 应用方法集合
 
 function ValidateForm (json) {
     this.opts = json || {};
