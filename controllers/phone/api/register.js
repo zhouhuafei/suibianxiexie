@@ -8,7 +8,7 @@ class DevList extends Super {
         this.renderData();// 渲染数据
     }
 
-    // 获取数据(增)(覆盖超类型)
+    // 新增数据(增)(覆盖超类型)
     postData () {
         // apiInfo数据处理待续...
         let tools = this.tools;// 工具方法集合
