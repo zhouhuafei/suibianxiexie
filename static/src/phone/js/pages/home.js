@@ -60,7 +60,7 @@ window.addEventListener('load', function () {
 
         // vue
         (function () {
-            require('../components-vue/g-picture-list');
+            require('../components-vue/g-img-list');
             let Vue = require('vue');
             new Vue({
                 el: '.page-vue-app',

@@ -1,4 +1,4 @@
-require('../../scss/global/global.scss');// 全局的样式
+require('../../scss/globals/global.scss');// 全局的样式
 
 (function () {
     if (pageInfo && pageInfo.isShowCopyright) {
