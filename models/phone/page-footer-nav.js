@@ -16,9 +16,9 @@ class FooterNav {
                     isShowMark: false,
                 },
                 {
-                    routeName: 'dev-global',
-                    href: routeConfig['dev-global'].route,
-                    text: routeConfig['dev-global'].title,
+                    routeName: 'dev-globals',
+                    href: routeConfig['dev-globals'].route,
+                    text: routeConfig['dev-globals'].title,
                     icon: 'icon-kaifa',
                     isHighlight: false,
                     isShowMark: false,

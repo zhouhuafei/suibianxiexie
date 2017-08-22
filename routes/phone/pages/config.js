@@ -10,7 +10,7 @@ let routeName = [
         title: '开发列表',
     },
     {
-        name: 'dev-global', // 开发-全局页
+        name: 'dev-globals', // 开发-全局页
         title: '开发全局',
     },
     {
