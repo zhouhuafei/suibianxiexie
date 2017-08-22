@@ -26,6 +26,6 @@ window.addEventListener('load', function () {
         })();
 
         require('../../scss/pages/dev-global.scss');// 当前页面用到的样式
-        let common = require('../pages-commons/common');// 每个页面都要用到的js(一定要放到最底部)
+        let global = require('../pages-globals/global');// 每个页面都要用到的js(一定要放到最底部)
     }, 0);
 });
