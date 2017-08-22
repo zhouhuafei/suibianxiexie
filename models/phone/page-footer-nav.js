@@ -9,7 +9,7 @@ class FooterNav {
             data: [
                 {
                     routeName: 'home',
-                    link: routeConfig['home'].route,
+                    href: routeConfig['home'].route,
                     text: routeConfig['home'].title,
                     icon: 'icon-shouye',
                     isHighlight: false,
@@ -17,7 +17,7 @@ class FooterNav {
                 },
                 {
                     routeName: 'dev-global',
-                    link: routeConfig['dev-global'].route,
+                    href: routeConfig['dev-global'].route,
                     text: routeConfig['dev-global'].title,
                     icon: 'icon-kaifa',
                     isHighlight: false,
@@ -25,7 +25,7 @@ class FooterNav {
                 },
                 {
                     routeName: 'dev-components',
-                    link: routeConfig['dev-components'].route,
+                    href: routeConfig['dev-components'].route,
                     text: routeConfig['dev-components'].title,
                     icon: 'icon-kaifa',
                     isHighlight: false,
@@ -33,7 +33,7 @@ class FooterNav {
                 },
                 {
                     routeName: 'dev-words',
-                    link: routeConfig['dev-words'].route,
+                    href: routeConfig['dev-words'].route,
                     text: routeConfig['dev-words'].title,
                     icon: 'icon-kaifa',
                     isHighlight: false,
@@ -41,7 +41,7 @@ class FooterNav {
                 },
                 {
                     routeName: 'mine',
-                    link: routeConfig['mine'].route,
+                    href: routeConfig['mine'].route,
                     text: routeConfig['mine'].title,
                     icon: 'icon-wode',
                     isHighlight: false,
@@ -52,19 +52,23 @@ class FooterNav {
         };
     }
 
-    insert () {
+    // 增
+    postData () {
 
     }
 
-    del () {
+    // 删
+    deleteData () {
 
     }
 
-    update () {
+    // 改
+    putData () {
 
     }
 
-    select () {
+    // 查
+    getData () {
 
     }
 }

@@ -17,7 +17,7 @@ let SubType = tools.constructorInherit({
         data: [
             // {
             //     routeName: 'home',
-            //     link: '/',
+            //     href: '/',
             //     text: '首页',
             //     icon: 'icon-shouye',
             //     isHighlight: false,
@@ -42,7 +42,7 @@ SubType.prototype.moduleDomCreate = function () {
             markHtml = `<div class="g-footer-nav-body-mark"></div>`;
         }
         moduleDomHtml += `
-            <a class="g-footer-nav-body ${highlightClass}" href="${v.link}">
+            <a class="g-footer-nav-body ${highlightClass}" href="${v.href}">
                 <div class="g-footer-nav-body-icon iconfont ${v.icon}"></div>
                 <div class="g-footer-nav-body-text">${v.text}</div>
                 ${markHtml}
