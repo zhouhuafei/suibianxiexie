@@ -49,7 +49,7 @@ window.addEventListener('load', function () {
                     data: {
                         username: inputUsername.value,
                         password: inputPassword.value,
-                        'verify-code': document.querySelector('#verify-code').value,
+                        verifyCode: document.querySelector('#verify-code').value,
                     },
                 });
             });
