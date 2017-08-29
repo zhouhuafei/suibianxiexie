@@ -2,6 +2,9 @@
 @import "../config/config";
 //字体图标
 @import "../fonts/iconfont.css";
+.iconfont {
+    font-size: inherit;
+}
 //==================================================================重置样式>
 body {
     color: $g-font-color-default;
@@ -32,10 +35,6 @@ a {
 
 img {
     vertical-align: middle;
-}
-
-.iconfont {
-    font-size: inherit;
 }
 
 //==================================================================工具样式>
