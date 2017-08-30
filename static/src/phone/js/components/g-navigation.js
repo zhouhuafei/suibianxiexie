@@ -18,31 +18,31 @@ let SubType = tools.constructorInherit({
                 {
                     href: route,
                     icon: 'icon-shouye',
-                    txt: '首页',
+                    text: '首页',
                     isShowMark: false,
                 },
                 {
                     href: `${route}dev-globals/`,
                     icon: 'icon-kaifa',
-                    txt: '开发全局',
+                    text: '开发全局',
                     isShowMark: false,
                 },
                 {
                     href: `${route}dev-components/`,
                     icon: 'icon-kaifa',
-                    txt: '开发组件',
+                    text: '开发组件',
                     isShowMark: false,
                 },
                 {
                     href: `${route}dev-words/`,
                     icon: 'icon-kaifa',
-                    txt: '标准词汇',
+                    text: '标准词汇',
                     isShowMark: false,
                 },
                 {
                     href: `${route}mine/`,
                     icon: 'icon-wode',
-                    txt: '我的',
+                    text: '我的',
                     isShowMark: false,
                 },
             ],
@@ -63,7 +63,7 @@ SubType.prototype.moduleDomCreate = function () {
         html += `
             <a href="${v.href}" class="g-navigation-item">
                 <div class="g-navigation-icon iconfont ${v.icon}"></div>
-                <div class="g-navigation-text">${v.txt}</div>
+                <div class="g-navigation-text">${v.text}</div>
                 ${markHtml}
             </a>
         `;
