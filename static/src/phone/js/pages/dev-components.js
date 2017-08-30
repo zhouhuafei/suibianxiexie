@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
     setTimeout(function () {
-        let applications = require('../utils/applications');
+        const applications = require('../utils/applications');
 
         // ajax测试
         (function () {
@@ -14,17 +14,17 @@ window.addEventListener('load', function () {
             //         hellow: 'hellow'
             //     }
             // })
-        })();
+        }());
 
         // base函数测试
         (function () {
-            let WhenScrollBottom = applications.whenScrollBottom();
+            const WhenScrollBottom = applications.whenScrollBottom();
             // 测试滚动到底部loading
             new WhenScrollBottom({
                 callback: {
                     success: function (self) {
-                        let Loading = require('../components/g-loading');
-                        let loading = new Loading({
+                        const Loading = require('../components/g-loading');
+                        const loading = new Loading({
                             wrap: '.g-body',
                             config: {
                                 status: 'loading',
@@ -34,11 +34,11 @@ window.addEventListener('load', function () {
                     },
                 },
             });
-        })();
+        }());
 
         // slide切换
         (function () {
-            let Slide = require('../components/g-slide');
+            const Slide = require('../components/g-slide');
             new Slide({
                 wrap: '.page-slide',
                 data: {
@@ -86,17 +86,17 @@ window.addEventListener('load', function () {
                     ],
                 },
             });
-        })();
+        }());
 
         // 导航
         (function () {
-            let Navigation = require('../components/g-navigation');
+            const Navigation = require('../components/g-navigation');
             new Navigation({wrap: '.page-navigation'});
-        })();
+        }());
 
         // 弹窗测试
         (function () {
-            let Dialog = require('../components/g-dialog');
+            const Dialog = require('../components/g-dialog');
             new Dialog({
                 callback: {
                     confirm: function () {
@@ -113,59 +113,59 @@ window.addEventListener('load', function () {
                     type: 'confirm',
                 },
             });
-        })();
+        }());
 
         // 分页测试
         (function () {
-            let Pagination = require('../components/g-pagination');
+            const Pagination = require('../components/g-pagination');
             new Pagination({wrap: '.page-pagination'});
-        })();
+        }());
 
         // 没有数据
         (function () {
-            let NoData = require('../components/g-no-data');
+            const NoData = require('../components/g-no-data');
             new NoData({wrap: '.page-no-data'});
-        })();
+        }());
 
         // 加载中
         (function () {
-            let Loading = require('../components/g-loading');
-            let loading = new Loading({
+            const Loading = require('../components/g-loading');
+            const loading = new Loading({
                 config: {
                     status: 'loading',
                 },
             });
             loading.moduleDomShow();
-            let over = new Loading({
+            const over = new Loading({
                 config: {
                     status: 'over',
                 },
             });
             over.moduleDomShow();
-        })();
+        }());
 
         // 超类型模块测试
         (function () {
-            let SuperType = require('../components/g-super-type');
-            new SuperType({wrap: `.page-super-type`});
-            let SubType = require('../components/g-sub-type');
-            new SubType({wrap: `.page-super-type`});
-            let SuperTypeEs6 = require('../components/g-super-type-es6');
-            new SuperTypeEs6({wrap: `.page-super-type`}).init();// es6继承,不建立在超类型内部直接调init方法
-            let SubTypeEs6 = require('../components/g-sub-type-es6');
-            new SubTypeEs6({wrap: `.page-super-type`});
-        })();
+            const SuperType = require('../components/g-super-type');
+            new SuperType({wrap: '.page-super-type'});
+            const SubType = require('../components/g-sub-type');
+            new SubType({wrap: '.page-super-type'});
+            const SuperTypeEs6 = require('../components/g-super-type-es6');
+            new SuperTypeEs6({wrap: '.page-super-type'}).init();// es6继承,不建立在超类型内部直接调init方法
+            const SubTypeEs6 = require('../components/g-sub-type-es6');
+            new SubTypeEs6({wrap: '.page-super-type'});
+        }());
 
         // 返回顶部
         (function () {
-            let GoTop = require('../components/g-go-top');
+            const GoTop = require('../components/g-go-top');
             new GoTop();
-        })();
+        }());
 
         // 遮罩
         (function () {
-            let Mask = require('../components/g-mask');
-            let mask = new Mask({
+            const Mask = require('../components/g-mask');
+            const mask = new Mask({
                 callback: {
                     click: function () {
                         mask.moduleDomHide();
@@ -173,7 +173,7 @@ window.addEventListener('load', function () {
                 },
             });
             // mask.moduleDomShow();
-        })();
+        }());
 
         // 单选开关
         (function () {
@@ -186,64 +186,64 @@ window.addEventListener('load', function () {
                     },
                 },
             });
-        })();
+        }());
 
         // 表格
         (function () {
             const Table = require('../components/g-table');
             const table = new Table({
-                wrap: `.page-table`,
+                wrap: '.page-table',
                 data: {
                     header: [
                         {
-                            content: `<div>header0</div>`,
+                            content: '<div>header0</div>',
                         },
                         {
-                            content: `<div>header1</div>`,
+                            content: '<div>header1</div>',
                         },
                         {
-                            content: `<div>header2</div>`,
+                            content: '<div>header2</div>',
                         },
                     ],
                     body: [
                         [
                             {
-                                content: `<div>body0-0</div>`,
+                                content: '<div>body0-0</div>',
                             },
                             {
-                                content: `<div>body1-0</div>`,
+                                content: '<div>body1-0</div>',
                             },
                             {
-                                content: `<div>body2-0</div>`,
-                            },
-                        ],
-                        [
-                            {
-                                content: `<div>body0-1</div>`,
-                            },
-                            {
-                                content: `<div>body1-1</div>`,
-                            },
-                            {
-                                content: `<div>body2-1</div>`,
+                                content: '<div>body2-0</div>',
                             },
                         ],
                         [
                             {
-                                content: `<div>body0-2</div>`,
+                                content: '<div>body0-1</div>',
                             },
                             {
-                                content: `<div>body1-2</div>`,
+                                content: '<div>body1-1</div>',
                             },
                             {
-                                content: `<div>body2-2</div>`,
+                                content: '<div>body2-1</div>',
+                            },
+                        ],
+                        [
+                            {
+                                content: '<div>body0-2</div>',
+                            },
+                            {
+                                content: '<div>body1-2</div>',
+                            },
+                            {
+                                content: '<div>body2-2</div>',
                             },
                         ],
                     ],
-                    footer: ``,
+                    footer: '',
                 },
             });
-        })();
+        }());
 
         // 星评
         (function () {
@@ -259,7 +259,7 @@ window.addEventListener('load', function () {
             require.ensure([], function (require) {
                 const Star = require('../components/g-star');
                 const star = new Star({
-                    wrap: `.page-star`,
+                    wrap: '.page-star',
                     callback: {
                         click: function (json) {
                             console.log(json);
@@ -267,9 +267,9 @@ window.addEventListener('load', function () {
                     },
                 });
             }, 'g-star');
-        })();
+        }());
 
         require('../../scss/pages/dev-components.scss');// 当前页面用到的样式
-        let global = require('../pages-globals/global');// 每个页面都要用到的js(一定要放到最底部)
+        const global = require('../pages-globals/global');// 每个页面都要用到的js(一定要放到最底部)
     }, 0);
 });

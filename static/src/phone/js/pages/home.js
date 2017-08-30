@@ -2,7 +2,7 @@ window.addEventListener('load', function () {
     setTimeout(function () {
         // slide切换
         (function () {
-            let Slide = require('../components/g-slide');
+            const Slide = require('../components/g-slide');
             new Slide({
                 wrap: '.page-slide',
                 data: {
@@ -50,27 +50,27 @@ window.addEventListener('load', function () {
                     ],
                 },
             });
-        })();
+        }());
 
         // 导航
         (function () {
-            let Navigation = require('../components/g-navigation');
+            const Navigation = require('../components/g-navigation');
             new Navigation({wrap: '.page-navigation'});
-        })();
+        }());
 
         // vue
         (function () {
             require('../components-vue/g-img-list');
-            let Vue = require('vue');
+            const Vue = require('vue');
             new Vue({
                 el: '.page-vue-app',
                 template: `<div class="page-vue">
                     <g-picture-list></g-picture-list>
                 </div>`,
             });
-        })();
+        }());
 
         require('../../scss/pages/home.scss');// 当前页面用到的样式
-        let global = require('../pages-globals/global');// 每个页面都要用到的js(一定要放到最底部)
+        const global = require('../pages-globals/global');// 每个页面都要用到的js(一定要放到最底部)
     }, 0);
 });

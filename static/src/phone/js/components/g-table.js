@@ -1,9 +1,9 @@
-let tools = require('../utils/tools');// 工具方法集合
-let applications = require('../utils/applications');// 应用方法集合
-let SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
+const tools = require('../utils/tools');// 工具方法集合
+const applications = require('../utils/applications');// 应用方法集合
+const SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
 
 // 子类型
-var SubType = tools.constructorInherit({
+const SubType = tools.constructorInherit({
     superType: SuperType,
     // 默认参数(继承超类型)
     parameter: {
@@ -26,7 +26,7 @@ SubType.prototype.moduleDomCreate = function () {
         style: this.opts.config.moduleDomStyle,
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
-            className: `g-table`,
+            className: 'g-table',
             innerHTML: `
                 <div class="g-table-header">
                     <div class="g-table-row">
@@ -45,7 +45,7 @@ SubType.prototype.moduleDomCreate = function () {
 };
 
 SubType.prototype.moduleDomCreateHeader = function () {
-    var html = ``;
+    let html = '';
     this.opts.data.header.forEach(function (v) {
         html += `
             <div class="g-table-col">
@@ -59,9 +59,9 @@ SubType.prototype.moduleDomCreateHeader = function () {
 };
 
 SubType.prototype.moduleDomCreateBody = function () {
-    var html = ``;
+    let html = '';
     this.opts.data.body.forEach(function (v0) {
-        var row = ``;
+        let row = '';
         v0.forEach(function (v1) {
             row += `
                 <div class="g-table-col">

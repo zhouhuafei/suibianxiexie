@@ -1,11 +1,11 @@
 window.addEventListener('load', function () {
     setTimeout(function () {
-        let applications = require('../utils/applications');
+        const applications = require('../utils/applications');
 
         // base函数测试
         (function () {
             // 测试全选
-            let Select = applications.select();
+            const Select = applications.select();
             new Select({
                 items: '.g-checkbox-checkbox',
                 callback: {
@@ -14,7 +14,7 @@ window.addEventListener('load', function () {
                     },
                 },
             });
-        })();
+        }());
 
         // 验证
         (function () {
@@ -23,9 +23,9 @@ window.addEventListener('load', function () {
             aInput.forEach(function (v) {
                 new ValidateInput({element: v});
             });
-        })();
+        }());
 
         require('../../scss/pages/dev-globals.scss');// 当前页面用到的样式
-        let global = require('../pages-globals/global');// 每个页面都要用到的js(一定要放到最底部)
+        const global = require('../pages-globals/global');// 每个页面都要用到的js(一定要放到最底部)
     }, 0);
 });

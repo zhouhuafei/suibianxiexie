@@ -1,9 +1,9 @@
-let tools = require('../utils/tools');// 工具方法集合
-let applications = require('../utils/applications');// 应用方法集合
-let SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
+const tools = require('../utils/tools');// 工具方法集合
+const applications = require('../utils/applications');// 应用方法集合
+const SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
 
 // 子类型
-var SubType = tools.constructorInherit({
+const SubType = tools.constructorInherit({
     superType: SuperType,
     // 默认参数(继承超类型)
     parameter: {
@@ -28,9 +28,9 @@ var SubType = tools.constructorInherit({
 
 // 内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    var config = this.opts.config;
-    this.moduleDomActiveClass = `g-radio-switch-active`;
-    var isOn = ``;
+    const config = this.opts.config;
+    this.moduleDomActiveClass = 'g-radio-switch-active';
+    let isOn = '';
     if (config.status === 'on') {
         isOn = this.moduleDomActiveClass;
     }
@@ -51,8 +51,8 @@ SubType.prototype.moduleDomCreate = function () {
 
 // 功能(覆盖超类型)
 SubType.prototype.power = function () {
-    var self = this;
-    var config = this.opts.config;
+    const self = this;
+    const config = this.opts.config;
     this.moduleDom.addEventListener('click', function () {
         if (!config.isHand) {
             if (!self.isOn()) {
@@ -72,7 +72,7 @@ SubType.prototype.isOn = function () {
 
 // 开启
 SubType.prototype.on = function () {
-    var config = this.opts.config;
+    const config = this.opts.config;
     if (!this.isOn()) {
         this.moduleDom.classList.add(this.moduleDomActiveClass);
         config.status = 'on';
@@ -82,7 +82,7 @@ SubType.prototype.on = function () {
 
 // 关闭
 SubType.prototype.off = function () {
-    var config = this.opts.config;
+    const config = this.opts.config;
     if (this.isOn()) {
         this.moduleDom.classList.remove(this.moduleDomActiveClass);
         config.status = 'off';

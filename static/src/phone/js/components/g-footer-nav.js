@@ -1,9 +1,9 @@
-let tools = require('../utils/tools');// 工具方法集合
-let applications = require('../utils/applications');// 应用方法集合
-let SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
+const tools = require('../utils/tools');// 工具方法集合
+const applications = require('../utils/applications');// 应用方法集合
+const SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
 
 // 子类型
-let SubType = tools.constructorInherit({
+const SubType = tools.constructorInherit({
     superType: SuperType,
     // 默认参数(继承超类型)
     parameter: {
@@ -28,18 +28,18 @@ let SubType = tools.constructorInherit({
 });
 
 SubType.prototype.moduleDomCreate = function () {
-    this.moduleDomClass = `g-footer-nav`;
-    let moduleDomHtml = ``;
-    let data = tools.jsonToArray({json: this.opts.data});
+    this.moduleDomClass = 'g-footer-nav';
+    let moduleDomHtml = '';
+    const data = tools.jsonToArray({json: this.opts.data});
     data.forEach(function (value) {
-        let v = value.value;
-        let highlightClass = ``;
+        const v = value.value;
+        let highlightClass = '';
         if (v.isHighlight) {
-            highlightClass = `g-footer-nav-body-active`;
+            highlightClass = 'g-footer-nav-body-active';
         }
-        let markHtml = ``;
+        let markHtml = '';
         if (v.isShowMark) {
-            markHtml = `<div class="g-footer-nav-body-mark"></div>`;
+            markHtml = '<div class="g-footer-nav-body-mark"></div>';
         }
         moduleDomHtml += `
             <a class="g-footer-nav-body ${highlightClass}" href="${v.href}">

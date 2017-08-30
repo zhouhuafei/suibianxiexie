@@ -1,9 +1,9 @@
-let tools = require('../utils/tools');// 工具方法集合
-let applications = require('../utils/applications');// 应用方法集合
-let SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
+const tools = require('../utils/tools');// 工具方法集合
+const applications = require('../utils/applications');// 应用方法集合
+const SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
 
 // 子类型
-let SubType = tools.constructorInherit({
+const SubType = tools.constructorInherit({
     superType: SuperType,
     // 默认参数(继承超类型)
     parameter: {
@@ -24,20 +24,20 @@ SubType.prototype.moduleDomCreate = function () {
         style: this.opts.config.moduleDomStyle,
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
-            className: `g-go-top`,
-            innerHTML: `<div class="g-go-top-icon iconfont icon-shangjiantou"></div>`,
+            className: 'g-go-top',
+            innerHTML: '<div class="g-go-top-icon iconfont icon-shangjiantou"></div>',
         },
     });
 };
 
 // 功能(覆盖超类型)
 SubType.prototype.power = function () {
-    var self = this;
+    const self = this;
     this.moduleDom.addEventListener('click', function () {
         applications.scrollTo({to: '0'});
     });
     window.addEventListener('scroll', function () {
-        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         if (scrollTop >= self.opts.config.showHeight) {
             self.moduleDom.classList.add('g-go-top-active');
         } else {

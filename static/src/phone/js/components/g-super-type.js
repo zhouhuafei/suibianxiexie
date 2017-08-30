@@ -1,14 +1,14 @@
-let tools = require('../utils/tools');// 工具方法集合
-let applications = require('../utils/applications');// 应用方法集合
+const tools = require('../utils/tools');// 工具方法集合
+const applications = require('../utils/applications');// 应用方法集合
 
 // 底层构造函数
-function SuperType (json) {
+function SuperType(json) {
     // 函数外部传来的参数(这个属性在其他模块的内部需要被重写)
     this.opts = tools.extend({
         // 内部默认参数
         defaults: {
             // 父级
-            wrap: `.g-body`, // 这个仅支持传入选择器和原生dom节点
+            wrap: '.g-body', // 这个仅支持传入选择器和原生dom节点
             // 回调
             callback: {
                 // 内部模块创建之前
@@ -104,7 +104,7 @@ SuperType.prototype.init = function () {
 SuperType.prototype.render = function () {
     this.moduleDomRemove();// 内部模块的移除(重新初始化的时候要移除掉以前有的内部模块)
 
-    let callback = this.opts.callback;
+    const callback = this.opts.callback;
     callback.moduleDomCreateBefore(this);
     this.moduleDomCreate();// 内部模块的创建
     callback.moduleDomCreateAfter(this);
@@ -124,7 +124,7 @@ SuperType.prototype.moduleDomCreate = function () {
         style: this.opts.config.moduleDomStyle,
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
-            className: `g-super-type`,
+            className: 'g-super-type',
             innerHTML: `
                 <div class="g-super-type-text">周华飞爱侯丽杰,侯丽杰爱周华飞</div>
             `,
@@ -134,13 +134,13 @@ SuperType.prototype.moduleDomCreate = function () {
 
 // 内部模块的渲染
 SuperType.prototype.moduleDomRender = function () {
-    let callback = this.opts.callback;
-    let config = this.opts.config;
+    const callback = this.opts.callback;
+    const config = this.opts.config;
     if (config.moduleDomIsShow && this.wrapDom) {
         callback.moduleDomRenderBefore(this);
-        let renderMethod = config.moduleDomRenderMethod;
+        const renderMethod = config.moduleDomRenderMethod;
         if (renderMethod.method === 'insertBefore') {
-            let dom = applications.getDomArray({element: renderMethod.child})[0];
+            const dom = applications.getDomArray({element: renderMethod.child})[0];
             if (dom) {
                 this.wrapDom.insertBefore(this.moduleDom, dom);
             } else {
@@ -156,7 +156,7 @@ SuperType.prototype.moduleDomRender = function () {
 
 // 内部模块的移除
 SuperType.prototype.moduleDomRemove = function () {
-    let callback = this.opts.callback;
+    const callback = this.opts.callback;
     if (this.moduleDom && this.moduleDom.parentNode) {
         callback.moduleDomRemoveBefore(this);
         this.moduleDom.parentNode.removeChild(this.moduleDom);
@@ -167,19 +167,18 @@ SuperType.prototype.moduleDomRemove = function () {
 
 // 内部模块的定时器清除(假设内部模块有定时器)
 SuperType.prototype.moduleDomClearTimer = function () {
-    if (this.opts.config.moduleDomIsClearTimer) {
-        for (let attr in this.moduleDomTimer) {
-            if (this.moduleDomTimer.hasOwnProperty(attr)) {
-                clearInterval(this.moduleDomTimer[attr]);
-                clearTimeout(this.moduleDomTimer[attr]);
-            }
-        }
+    const self = this;
+    if (self.opts.config.moduleDomIsClearTimer) {
+        Object.keys(self.moduleDomTimer).forEach(function (attr) {
+            clearInterval(self.moduleDomTimer[attr]);
+            clearTimeout(self.moduleDomTimer[attr]);
+        });
     }
 };
 
 // 内部模块的显示(显示隐藏和是否清除定时器无关)
 SuperType.prototype.moduleDomShow = function () {
-    let callback = this.opts.callback;
+    const callback = this.opts.callback;
     callback.moduleDomShowBefore(this);
     if (this.wrapDom) {
         this.opts.config.moduleDomIsShow = true;
@@ -190,7 +189,7 @@ SuperType.prototype.moduleDomShow = function () {
 
 // 内部模块的隐藏(显示隐藏和是否清除定时器无关)
 SuperType.prototype.moduleDomHide = function () {
-    let callback = this.opts.callback;
+    const callback = this.opts.callback;
     if (this.moduleDom.parentNode) {
         this.opts.config.moduleDomIsShow = false;
         callback.moduleDomHideBefore(this);
@@ -201,7 +200,7 @@ SuperType.prototype.moduleDomHide = function () {
 
 // 外部容器的获取
 SuperType.prototype.wrapDomGet = function () {
-    let callback = this.opts.callback;
+    const callback = this.opts.callback;
     callback.wrapDomGetBefore(this);
     this.wrapDom = applications.getDomArray({element: this.opts.wrap})[0];
     callback.wrapDomGetAfter(this);
@@ -209,7 +208,7 @@ SuperType.prototype.wrapDomGet = function () {
 
 // 外部容器的移除
 SuperType.prototype.wrapDomRemove = function () {
-    let callback = this.opts.callback;
+    const callback = this.opts.callback;
     // 先移除内部的模块
     this.moduleDomRemove();
     // 再移除外部的容器

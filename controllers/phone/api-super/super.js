@@ -2,7 +2,7 @@
 const tools = require('../../../utils/tools');
 
 class Super {
-    constructor (json) {
+    constructor(json) {
         this.tools = tools;// 工具方法集合
         this.opts = tools.extend({
             defaults: {
@@ -35,9 +35,9 @@ class Super {
     }
 
     // 初始化数据(这个方法需要在子类型里被调用)
-    initData () {
-        let req = this.opts.req;
-        let method = req.method.toLowerCase(); // 请求方式
+    initData() {
+        const req = this.opts.req;
+        const method = req.method.toLowerCase(); // 请求方式
         // 当请求方式是get时 用req.query接收数据
         // 当请求方式是post delete put时 用req.body接收数据(第三方模块body-parser)
 
@@ -63,24 +63,24 @@ class Super {
     }
 
     // 获取数据(增)(这个需要在子类型里被覆盖掉)
-    postData () {
+    postData() {
     }
 
     // 删除数据(删)(这个需要在子类型里被覆盖掉)
-    deleteData () {
+    deleteData() {
     }
 
     // 修改数据(改)(这个需要在子类型里被覆盖掉)
-    putData () {
+    putData() {
     }
 
     // 查找数据(查)(这个需要在子类型里被覆盖掉)
-    getData () {
+    getData() {
     }
 
     // 获取数据
-    renderData () {
-        let res = this.opts.res;
+    renderData() {
+        const res = this.opts.res;
         res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'});
         res.end(JSON.stringify(this.apiInfo));
     }

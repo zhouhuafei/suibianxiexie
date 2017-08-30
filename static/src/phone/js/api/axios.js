@@ -1,8 +1,8 @@
-let axios = require('axios');
-let tools = require('../utils/tools');
+const axios = require('axios');
+const tools = require('../utils/tools');
 
 module.exports = function (json) {
-    let opts = tools.extend({
+    const opts = tools.extend({
         defaults: {},
         inherits: json,
     });

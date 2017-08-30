@@ -1,9 +1,9 @@
-let tools = require('../utils/tools');// 工具方法集合
-let applications = require('../utils/applications');// 应用方法集合
-let SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
+const tools = require('../utils/tools');// 工具方法集合
+const applications = require('../utils/applications');// 应用方法集合
+const SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
 
 // 默认数据
-var defaultData = {
+const defaultData = {
     nowCount: 10, // 当前页的数据条数
     allCount: 100, // 数据总条数
     nowPage: 1, // 当前页
@@ -12,7 +12,7 @@ var defaultData = {
 defaultData.allPage = Math.ceil(defaultData.allCount / defaultData.nowCount);
 
 // 子类型
-var SubType = tools.constructorInherit({
+const SubType = tools.constructorInherit({
     superType: SuperType,
     // 默认参数(继承超类型)
     parameter: {
@@ -41,7 +41,7 @@ SubType.prototype.moduleDomCreate = function () {
         style: this.opts.config.moduleDomStyle,
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
-            className: `g-pagination`,
+            className: 'g-pagination',
             innerHTML: `
                 <div class="g-pagination-text">第</div>
                 <div class="g-pagination-now-page">
@@ -68,8 +68,8 @@ SubType.prototype.moduleDomCreate = function () {
 
 // 渲染第几页里面的页码
 SubType.prototype.renderOption = function () {
-    var html = ``;
-    for (var i = 0; i < this.opts.data.allPage; i++) {
+    let html = '';
+    for (let i = 0; i < this.opts.data.allPage; i++) {
         html += `<option value="${i + 1}">${i + 1}</option>`;
     }
     return html;
@@ -77,8 +77,8 @@ SubType.prototype.renderOption = function () {
 
 // 功能(覆盖超类型)
 SubType.prototype.power = function () {
-    var self = this;
-    var data = this.opts.data;
+    const self = this;
+    const data = this.opts.data;
     if (data.nowPage === 1) {
         this.prevPageDisable();
     }
@@ -105,10 +105,10 @@ SubType.prototype.power = function () {
 
 // 上一页
 SubType.prototype.prevPage = function () {
-    var data = this.opts.data;
+    const data = this.opts.data;
     if (data.nowPage > 1) {
         data.nowPage--;
-        var oldChecked = this.selectDom.querySelector('option:checked');
+        const oldChecked = this.selectDom.querySelector('option:checked');
         if (oldChecked.previousElementSibling) {
             oldChecked.selected = false;
             oldChecked.previousElementSibling.selected = true;
@@ -124,10 +124,10 @@ SubType.prototype.prevPage = function () {
 
 // 下一页
 SubType.prototype.nextPage = function () {
-    var data = this.opts.data;
+    const data = this.opts.data;
     if (data.nowPage < data.allPage) {
         data.nowPage++;
-        var oldChecked = this.selectDom.querySelector('option:checked');
+        const oldChecked = this.selectDom.querySelector('option:checked');
         if (oldChecked.nextElementSibling) {
             oldChecked.selected = false;
             oldChecked.nextElementSibling.selected = true;
@@ -143,7 +143,7 @@ SubType.prototype.nextPage = function () {
 
 // 选择第几页
 SubType.prototype.selectPage = function () {
-    var data = this.opts.data;
+    const data = this.opts.data;
     data.nowPage = this.selectDom.value;
     this.nextPageEnable();
     this.prevPageEnable();

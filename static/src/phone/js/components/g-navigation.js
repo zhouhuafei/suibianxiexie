@@ -1,10 +1,11 @@
-let tools = require('../utils/tools');// 工具方法集合
-let applications = require('../utils/applications');// 应用方法集合
-let SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
-let route = `/phone/`;
+const tools = require('../utils/tools');// 工具方法集合
+const applications = require('../utils/applications');// 应用方法集合
+const SuperType = require('../components/g-super-type');
+// 超类型(子类型继承的对象)
+const route = '/phone/';
 
 // 子类型
-let SubType = tools.constructorInherit({
+const SubType = tools.constructorInherit({
     superType: SuperType,
     // 默认参数(继承超类型)
     parameter: {
@@ -52,13 +53,13 @@ let SubType = tools.constructorInherit({
 
 // 内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    let data = this.opts.data;
-    let items = data.items;
-    let html = ``;
+    const data = this.opts.data;
+    const items = data.items;
+    let html = '';
     items.forEach(function (v) {
-        let markHtml = ``;
+        let markHtml = '';
         if (v.isShowMark) {
-            markHtml = `<div class="g-navigation-mark"></div>`;
+            markHtml = '<div class="g-navigation-mark"></div>';
         }
         html += `
             <a href="${v.href}" class="g-navigation-item">
@@ -72,7 +73,7 @@ SubType.prototype.moduleDomCreate = function () {
         style: this.opts.config.moduleDomStyle,
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
-            className: `g-navigation`,
+            className: 'g-navigation',
             innerHTML: html,
         },
     });

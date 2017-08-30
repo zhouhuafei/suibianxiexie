@@ -1,87 +1,80 @@
-let tools = require('./tools');
+const tools = require('./tools');
 
 // 应用方法集合
-function Applications () {
+function Applications() {
 }
 
 // 设置cookie
 Applications.prototype.setCookie = function (json) {
-    let opts = json || {};
-    let name = opts.name;
-    let value = opts.value;
-    let expires = opts.expires || '0';
-    let myDate = new Date();
-    let myTime = myDate.getTime();
+    const opts = json || {};
+    const name = opts.name;
+    const value = opts.value;
+    const expires = opts.expires || '0';
+    const myDate = new Date();
+    const myTime = myDate.getTime();
     myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000);
-    document.cookie = name + '=' + value + '; expires=' + myDate;
+    document.cookie = `${name}=${value}; expires=${myDate}`;
 };
 // 获取cookie
 Applications.prototype.getCookie = function (json) {
-    let opts = json || {};
-    let name = opts.name;
-    let cookie = document.cookie;
-    let arr = cookie.split('; ');
+    const opts = json || {};
+    const name = opts.name;
+    const cookie = document.cookie;
+    const arr = cookie.split('; ');
     let value = '';
     arr.forEach(function (v) {
-        let arr2 = v.split('=');
+        const arr2 = v.split('=');
         if (arr2[0] === name) {
             value = arr2[1];
-            return false;
         }
     });
     return value;
 };
 // 清除cookie
 Applications.prototype.removeCookie = function (json) {
-    let opts = json || {};
-    let name = opts.name;
+    const opts = json || {};
+    const name = opts.name;
     this.setCookie(name, '', -1);
 };
 // 创建元素节点
 Applications.prototype.createElement = function (json) {
-    let opts = json || {};
+    const opts = json || {};
     opts.elementName = opts.elementName || 'div';// 标签名称
     opts.style = opts.style || {};// style样式
     opts.customAttribute = opts.customAttribute || {};// 自定义属性
     opts.attribute = opts.attribute || {};// 普通属性,checked,selected,innerHTML
-    let elementNode = document.createElement(opts.elementName);// 元素节点
-    for (let attr0 in opts.style) {
-        if (opts.style.hasOwnProperty(attr0)) {
-            elementNode.style[attr0] = opts.style[attr0];
-        }
-    }
-    for (let attr1 in opts.customAttribute) {
-        if (opts.customAttribute.hasOwnProperty(attr1)) {
-            elementNode.setAttribute('data-' + attr1, opts.customAttribute[attr1]);
-        }
-    }
-    for (let attr2 in opts.attribute) {
-        if (opts.attribute.hasOwnProperty(attr2)) {
-            elementNode[attr2] = opts.attribute[attr2];
-        }
-    }
+    const elementNode = document.createElement(opts.elementName);// 元素节点
+    Object.keys(opts.style).forEach(function (attr0) {
+        elementNode.style[attr0] = opts.style[attr0];
+    });
+    Object.keys(opts.customAttribute).forEach(function (attr1) {
+        elementNode.setAttribute(`data-${attr1}`, opts.customAttribute[attr1]);
+    });
+    Object.keys(opts.attribute).forEach(function (attr2) {
+        elementNode[attr2] = opts.attribute[attr2];
+    });
     return elementNode;
 };
 // 加减操作
 Applications.prototype.addMinusInput = function (json) { // 购物加减商品系列
     if (!json) {
         console.log('no find parameter');
-        return false;
+        return;
     }
-    let noActiveClass = json.noActiveClass || 'on';// 不能点的时候的class
-    let minNum = json.minNum === undefined ? 1 : json.minNum;// 最小数量
-    let add = json.add;// 加的按钮
-    let addCallback = json.addCallback;// 加的回调
-    let minus = json.minus;// 减少的按钮
-    let minusCallback = json.minusCallback;// 减少的回调
-    let overMinCallback = json.overMinCallback || function () {
+    const noActiveClass = json.noActiveClass || 'on';// 不能点的时候的class
+    const minNum = json.minNum === undefined ? 1 : json.minNum;// 最小数量
+    const add = json.add;// 加的按钮
+    const addCallback = json.addCallback;// 加的回调
+    const minus = json.minus;// 减少的按钮
+    const minusCallback = json.minusCallback;// 减少的回调
+    const overMinCallback = json.overMinCallback || function () {
     };// 减少到最小值之后继续减少
-    let input = json.input;// 输入框的按钮
-    let blurCallback = json.blurCallback;// 失去焦点的回调
-    let inventoryNum = parseInt(json.inventoryNum);// 商品库存
-    let space = function () {
-        if (input['value'].trim() === '') {
-            input['value'] = minNum;
+    const input = json.input;// 输入框的按钮
+    const blurCallback = json.blurCallback;// 失去焦点的回调
+    const inventoryNum = parseInt(json.inventoryNum);// 商品库存
+    const space = function () {
+        if (input.value.trim() === '') {
+            input.value = minNum;
         }
     };
     // 增加
@@ -89,38 +82,42 @@ Applications.prototype.addMinusInput = function (json) { // 购物加减商品�
         space();
         let num = parseInt(input.value);
         num++;
-        input['value'] = num;
+        input.value = num;
         if (num >= inventoryNum) {
             if (inventoryNum === 0) {
-                input['value'] = minNum;
+                input.value = minNum;
             } else {
-                input['value'] = inventoryNum;
+                input.value = inventoryNum;
             }
             add.classList.add(noActiveClass);
         }
         minus.classList.remove(noActiveClass);
-        addCallback && addCallback();
+        if (addCallback) {
+            addCallback();
+        }
     };
     // 减少
     minus.onclick = function () {
         space();
         let num = parseInt(input.value);
         num--;
-        input['value'] = num;
+        input.value = num;
         if (num < minNum) {
-            input['value'] = minNum;
+            input.value = minNum;
             minus.classList.add(noActiveClass);
             overMinCallback();
         }
         add.classList.remove(noActiveClass);
-        minusCallback && minusCallback();
+        if (minusCallback) {
+            minusCallback();
+        }
     };
     // 获取焦点
-    input['onfocus'] = function () {
+    input.onfocus = function () {
         input.select();
     };
     // 失去焦点
-    input['onblur'] = function () {
+    input.onblur = function () {
         space();
         let num = parseInt(input.value);
         if (isNaN(num)) {
@@ -129,21 +126,23 @@ Applications.prototype.addMinusInput = function (json) { // 购物加减商品�
         minus.classList.remove(noActiveClass);
         add.classList.remove(noActiveClass);
         if (num >= inventoryNum) {
-            input['value'] = inventoryNum;
+            input.value = inventoryNum;
             add.classList.add(noActiveClass);
         }
         if (num <= minNum) {
-            input['value'] = minNum;
+            input.value = minNum;
             minus.classList.add(noActiveClass);
         }
-        blurCallback && blurCallback();
+        if (blurCallback) {
+            blurCallback();
+        }
     };
 };
 // 获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
 Applications.prototype.getDomArray = function (json) {
-    let opts = json || {};
+    const opts = json || {};
     let dom = [];
-    let element = opts.element ? opts.element : false;
+    const element = opts.element ? opts.element : false;
     if (element) {
         // 如果是字符串
         if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() === 'string') {
@@ -165,9 +164,9 @@ Applications.prototype.getDomArray = function (json) {
 };
 // 获取指定父级
 Applications.prototype.getParent = function (json) {
-    let opts = json || {};
+    const opts = json || {};
     let element = opts.element;
-    let wrap = opts.wrap;
+    const wrap = opts.wrap;
     if (!element) { // 第一参数不符合规范
         console.log('参数错误,第一参数需要一个元素节点对象');
         return null;
@@ -185,9 +184,8 @@ Applications.prototype.getParent = function (json) {
                     }
                     if (element.classList.contains(wrap.substring(1))) {
                         return element;
-                    } else {
-                        element = element.parentNode;
                     }
+                    element = element.parentNode;
                 }
                 break;
             case '#':// 通过id获取父级
@@ -198,9 +196,8 @@ Applications.prototype.getParent = function (json) {
                     }
                     if (element.id === wrap.substring(1)) {
                         return element;
-                    } else {
-                        element = element.parentNode;
                     }
+                    element = element.parentNode;
                 }
                 break;
             default:// 通过标签名获取父级
@@ -211,25 +208,25 @@ Applications.prototype.getParent = function (json) {
                     }
                     if (element.tagName.toLowerCase() === wrap) {
                         return element;
-                    } else {
-                        element = element.parentNode;
                     }
+                    element = element.parentNode;
                 }
                 break;
         }
     }
+    return null;
 };
 // html转成DOM节点
-Applications.prototype.htmlToDom = function htmlToDom (json) {
-    let opts = json || {};
-    let html = opts.html;
-    let div = document.createElement('div');
+Applications.prototype.htmlToDom = function htmlToDom(json) {
+    const opts = json || {};
+    const html = opts.html;
+    const div = document.createElement('div');
     div.innerHTML = html;
     return div.children[0];
 };
 // 图片上传
 Applications.prototype.imgUploadBase64 = function () {
-    function Fn (json) {
+    function Fn(json) {
         this.opts = json || {};
         // 如果没有选择文件的input,则不继续往下执行
         if (!this.opts.input) {
@@ -267,21 +264,17 @@ Applications.prototype.imgUploadBase64 = function () {
         this.eventsInputChange();
     };
     Fn.prototype.eventsInputChange = function () {
-        let self = this;
-        let limitNum = this.opts.limitNum;
+        const self = this;
+        const limitNum = this.opts.limitNum;
         this.opts.input.addEventListener('change', function () {
             let imagesNum = 0;
             // 图片的相关信息
             self.imgData = [];
-            let files = this.files;
-            let len = files.length;
+            const files = this.files;
+            const len = files.length;
             for (let i = 0; i < len; i++) {
-                let f = files[i];
-                let isImages = /image/ig.test(f.type);
-                // 不是图片
-                if (!isImages) {
-                    continue;
-                }
+                const f = files[i];
+                const isImages = /image/ig.test(f.type);
                 // 是图片
                 if (isImages) {
                     if (imagesNum < limitNum) { // 小于限制几张图片的数量
@@ -298,9 +291,9 @@ Applications.prototype.imgUploadBase64 = function () {
         });
     };
     Fn.prototype.fileReadAsDataURL = function () {
-        let self = this;
+        const self = this;
         this.imgData.forEach(function (v, i) {
-            let fileRender = new FileReader();
+            const fileRender = new FileReader();
             fileRender.readAsDataURL(v);
             fileRender.addEventListener('load', function () {
                 self.opts.base64Callback({base64: this.result, index: i});
@@ -311,8 +304,8 @@ Applications.prototype.imgUploadBase64 = function () {
 };
 // 是不是PC
 Applications.prototype.isPc = function () {
-    let userAgentInfo = navigator.userAgent;
-    let Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod'];
+    const userAgentInfo = navigator.userAgent;
+    const Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod'];
     let flag = true;
     for (let v = 0; v < Agents.length; v++) {
         if (userAgentInfo.indexOf(Agents[v]) > 0) {
@@ -336,8 +329,8 @@ Applications.prototype.isIphone = function () {
 };
 // 获取元素距离文档的left和top
 Applications.prototype.offset = function (json) {
-    let getDomArray = this.getDomArray;
-    let opts = tools.extend({
+    const getDomArray = this.getDomArray;
+    const opts = tools.extend({
         defaults: {
             element: null,
         },
@@ -358,13 +351,13 @@ Applications.prototype.offset = function (json) {
 };
 // 滚动到指定位置
 Applications.prototype.scrollTo = function (json) {
-    let opts = json || {};
-    let to = opts.to || '0';
-    let scale = 6;
+    const opts = json || {};
+    const to = opts.to || '0';
+    const scale = 6;
     let scrollT = document.documentElement.scrollTop || document.body.scrollTop;
     let speed = 0;
     let timer = null;
-    let fn = function () {
+    const fn = function () {
         speed = Math.ceil((scrollT - to) / scale);
         scrollT -= speed;
         window.scrollTo(0, scrollT);
@@ -377,9 +370,9 @@ Applications.prototype.scrollTo = function (json) {
 };
 // 全选,不选,反选
 Applications.prototype.select = function () {
-    let getDomArray = this.getDomArray;// 获取原生的dom节点并转换成数组
+    const getDomArray = this.getDomArray;// 获取原生的dom节点并转换成数组
 
-    function Select (json) {
+    function Select(json) {
         this.opts = tools.extend({
             defaults: {
                 items: null, // 所有的被选项
@@ -422,7 +415,7 @@ Applications.prototype.select = function () {
 
     // 当某一项被选中时,是否全部选项都被选中了
     Select.prototype.power = function () {
-        let self = this;
+        const self = this;
         this.itemsDom.forEach(function (v1) {
             v1.addEventListener('click', function () {
                 let isCheckedAll = true;// 是否全部的选项都被选中了(假设全部选中)
@@ -440,7 +433,7 @@ Applications.prototype.select = function () {
 };
 // 当滚动到了浏览器的底部
 Applications.prototype.whenScrollBottom = function () {
-    function WhenScrollBottom (json) {
+    function WhenScrollBottom(json) {
         this.opts = tools.extend({
             defaults: {
                 callback: {
@@ -467,10 +460,10 @@ Applications.prototype.whenScrollBottom = function () {
     };
 
     WhenScrollBottom.prototype.render = function () {
-        let callback = this.opts.callback;
-        let allH = document.body.scrollHeight;
-        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        let clientHeight = document.documentElement.clientHeight;
+        const callback = this.opts.callback;
+        const allH = document.body.scrollHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const clientHeight = document.documentElement.clientHeight;
         if (scrollTop + clientHeight >= allH - this.opts.errorHeight && !this.isLoadOver) {
             callback.success(this);
         } else {
@@ -485,7 +478,7 @@ Applications.prototype.whenScrollBottom = function () {
     };
 
     WhenScrollBottom.prototype.power = function () {
-        let self = this;
+        const self = this;
         let timer = null;
         window.addEventListener('scroll', function () {
             clearTimeout(timer);

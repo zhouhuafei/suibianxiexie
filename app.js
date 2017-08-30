@@ -5,6 +5,7 @@ const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+
 const app = express();
 app.use(compression());// gzip压缩
 app.use(express.static('static', {maxAge: ms('1y')}));// 托管静态文件(一年缓存)
@@ -19,6 +20,7 @@ app.use(session({
 
 // 模版引擎(handlebars)
 const handlebars = require('express-handlebars');
+
 app.engine('hbs', handlebars({
     partialsDir: `${__dirname}/views/`, // 设置页面布局模块文件的路径
     layoutsDir: `${__dirname}/views/`, // 设置页面布局模版文件的路径(本项目没有使用到页面布局模板文件)
@@ -31,8 +33,10 @@ app.set('views', `${__dirname}/views/`);
 // pc的路由待续...
 // phone的路由
 const RoutePhonePages = require('./routes/phone/pages/route');
+
 new RoutePhonePages({app: app});
 const RoutePhoneApi = require('./routes/phone/api/route');
+
 new RoutePhoneApi({app: app});
 
 // 404

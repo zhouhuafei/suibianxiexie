@@ -11,8 +11,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');// scss文件�
 const HtmlWebpackPlugin = require('html-webpack-plugin');// html生成的插件
 const CleanWebpackPlugin = require('clean-webpack-plugin');// 清空目录
 const ImageminPlugin = require('imagemin-webpack-plugin').default;// 压缩图片
+
 class ConfigPath {
-    constructor () {
+    constructor() {
         this.projectDir = projectDir;// 项目名称
         this.staticPath = `${__dirname}/static/`;// 静态文件的目录
         this.devPath = `${this.staticPath}src/${this.projectDir}/`;// 开发的目录
@@ -53,28 +54,28 @@ if (isProduction) {
     };
 }
 // 别名----配置
-let alias = {
+const alias = {
     vue: `vue/dist/vue.${configEnvironment.min}js`,
     axios: `axios/dist/axios.${configEnvironment.min}js`,
     jquery: `jquery/dist/jquery.${configEnvironment.min}js`,
 };
 // 入口----配置
-let entry = {};
-let allJs = fs.readdirSync(`${configPath.jsEntryPath}pages/`);
+const entry = {};
+const allJs = fs.readdirSync(`${configPath.jsEntryPath}pages/`);
 allJs.forEach(function (v) {
-    let fileName = path.basename(v, '.js');
+    const fileName = path.basename(v, '.js');
     entry[fileName] = `${configPath.devPath}js/pages/${v}`;
 });
 entry['this-is-global-file-vendor'] = ['vue', 'axios'];// 公用的第三方库
 // 出口----配置
-let output = {
+const output = {
     path: `${configPath.buildPath}`,
     publicPath: `/dist/${configPath.projectDir}/`,
     filename: `js/pages/[name].${configEnvironment.chunkhash}js`,
     chunkFilename: `js/chunks/[name].[id].chunk.${configEnvironment.chunkhash}js`,
 };
 // 插件----集合
-let plugins = [
+const plugins = [
     // 插件----清空dist目录下对应的项目文件
     new CleanWebpackPlugin([configPath.projectDir], {
         root: `${configPath.staticPath}/dist/`,
@@ -95,9 +96,9 @@ let plugins = [
     }),
 ];
 // 插件----处理视图模板页面文件
-let allPageHtml = fs.readdirSync(`${configPath.viewEntryPath}pages/`);
+const allPageHtml = fs.readdirSync(`${configPath.viewEntryPath}pages/`);
 allPageHtml.forEach(function (v) {
-    let fileName = path.basename(v, '.hbs');
+    const fileName = path.basename(v, '.hbs');
     plugins.push(
         new HtmlWebpackPlugin({
             template: `${configPath.viewEntryPath}pages/${v}`, // 模板
@@ -105,11 +106,11 @@ allPageHtml.forEach(function (v) {
             // 需要引入的chunk,不配置就会引入所有页面的资源,模板视图文件里js的引入顺序和chunks里的排序无关,和CommonsChunkPlugin里的顺序有关(倒叙)
             chunks: ['this-is-global-file-manifest', 'this-is-global-file-vendor', 'this-is-global-file-global', fileName],
             minify: configEnvironment.minView, // 压缩视图模板文件
-        })
+        }),
     );
 });
 // 插件----处理视图模板模块文件
-let allPartialsHtml = fs.readdirSync(`${configPath.viewEntryPath}partials/`);
+const allPartialsHtml = fs.readdirSync(`${configPath.viewEntryPath}partials/`);
 allPartialsHtml.forEach(function (v) {
     plugins.push(
         new HtmlWebpackPlugin({
@@ -117,7 +118,7 @@ allPartialsHtml.forEach(function (v) {
             filename: `${configPath.viewOutputPath}partials/${v}`, // 文件名
             inject: false,
             minify: configEnvironment.minView, // 压缩视图模板文件
-        })
+        }),
     );
 });
 if (isProduction) {
@@ -136,7 +137,7 @@ if (isProduction) {
         },
     }));
 }
-let webpackConfig = {
+const webpackConfig = {
     // devtool----#source-map
     devtool: configEnvironment.devtool,
     // resolve----配置用来影响webpack模块解析规则

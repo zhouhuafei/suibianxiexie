@@ -1,10 +1,10 @@
-let tools = require('../utils/tools');// 工具方法集合
-let applications = require('../utils/applications');// 应用方法集合
-let SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
-let TouchSlide = require('../plugs/touch-slide');// 轮播图插件
+const tools = require('../utils/tools');// 工具方法集合
+const applications = require('../utils/applications');// 应用方法集合
+const SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
+const TouchSlide = require('../plugs/touch-slide');// 轮播图插件
 
 // 子类型
-var SubType = tools.constructorInherit({
+const SubType = tools.constructorInherit({
     superType: SuperType,
     // 默认参数(继承超类型)
     parameter: {
@@ -60,7 +60,7 @@ SubType.prototype.moduleDomCreate = function () {
         style: this.opts.config.moduleDomStyle,
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
-            className: `g-slide`,
+            className: 'g-slide',
             innerHTML: `
                 ${this.renderHeader()}
                 ${this.renderBody()}
@@ -70,13 +70,13 @@ SubType.prototype.moduleDomCreate = function () {
 };
 
 SubType.prototype.renderHeader = function () {
-    var self = this;
-    var html = ``;
-    var data = self.opts.data;
-    var className = ``;
+    const self = this;
+    let html = '';
+    const data = self.opts.data;
+    let className = '';
     data.items.forEach(function (v, i) {
         if (i === self.opts.config.touchSlide.defaultIndex) {
-            className = `on`;
+            className = 'on';
         }
         html += `<div class="g-slide-items ${className}"></div>`;
     });
@@ -84,9 +84,9 @@ SubType.prototype.renderHeader = function () {
 };
 
 SubType.prototype.renderBody = function () {
-    var self = this;
-    var html = ``;
-    var data = self.opts.data;
+    const self = this;
+    let html = '';
+    const data = self.opts.data;
     data.items.forEach(function (v) {
         if (self.opts.config.isShowHref) {
             html += `<a href="${v.href || 'javascript:;'}" class="g-slide-items pre-load" data-src="${v.img.src}"></a>`;
@@ -99,10 +99,10 @@ SubType.prototype.renderBody = function () {
 
 // 功能(覆盖超类型)
 SubType.prototype.power = function () {
-    var self = this;
-    var callback = self.opts.callback;
-    var config = self.opts.config;
-    var touchSlide = config.touchSlide;
+    const self = this;
+    const callback = self.opts.callback;
+    const config = self.opts.config;
+    const touchSlide = config.touchSlide;
     touchSlide.slideCell = self.opts.wrap;// 外部容器,必须是id
     touchSlide.startFun = function (i) {
         // 因为以下功能在插件本身进行了实现(本人对touch-slide插件进行了小修改),所以这里就注释了

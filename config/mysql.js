@@ -1,4 +1,4 @@
-function Mysql (opt) {
+function Mysql(opt) {
     this.opt = opt || {};
     this.opt.isLocal = this.opt.isLocal && true;
     if (this.opt.isLocal) { // 本地
@@ -32,7 +32,7 @@ Mysql.prototype.getDatabase = function () {
     return this.database;
 };
 Mysql.prototype.init = function () {
-    let self = this;
+    const self = this;
     this.mysql = require('mysql2');
     this.connection = this.mysql.createConnection({
         host: self.getHost(),

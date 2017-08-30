@@ -2,15 +2,15 @@
 const routeConfig = require('../../routes/phone/pages/config');
 
 class FooterNav {
-    constructor (json) {
+    constructor(json) {
         this.opts = json || {};
         this.result = {
             config: {},
             data: [
                 {
                     routeName: 'home',
-                    href: routeConfig['home'].route,
-                    text: routeConfig['home'].title,
+                    href: routeConfig.home.route,
+                    text: routeConfig.home.title,
                     icon: 'icon-shouye',
                     isHighlight: false,
                     isShowMark: false,
@@ -41,8 +41,8 @@ class FooterNav {
                 },
                 {
                     routeName: 'mine',
-                    href: routeConfig['mine'].route,
-                    text: routeConfig['mine'].title,
+                    href: routeConfig.mine.route,
+                    text: routeConfig.mine.title,
                     icon: 'icon-wode',
                     isHighlight: false,
                     isShowMark: false,
@@ -53,22 +53,22 @@ class FooterNav {
     }
 
     // 增
-    postData () {
+    postData() {
 
     }
 
     // 删
-    deleteData () {
+    deleteData() {
 
     }
 
     // 改
-    putData () {
+    putData() {
 
     }
 
     // 查
-    getData () {
+    getData() {
 
     }
 }

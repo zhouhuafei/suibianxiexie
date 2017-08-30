@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
     setTimeout(function () {
-        let axios = require('../api/axios');
+        const axios = require('../api/axios');
 
         // 注释待续...
         (function () {
@@ -24,14 +24,11 @@ window.addEventListener('load', function () {
             // })
 
             // 获取验证码
-            let inputUsername = document.querySelector('#username');
-            let inputPassword = document.querySelector('#password');
-            let btnGetVerifyCode = document.querySelector('.page-verify-code');
-            btnGetVerifyCode.addEventListener('click', function () {
-                getVerifyCode(inputUsername.value);
-            });
+            const inputUsername = document.querySelector('#username');
+            const inputPassword = document.querySelector('#password');
+            const btnGetVerifyCode = document.querySelector('.page-verify-code');
 
-            function getVerifyCode (username) {
+            function getVerifyCode(username) {
                 axios({
                     url: '/phone/api/verify-code/',
                     method: 'get',
@@ -40,6 +37,10 @@ window.addEventListener('load', function () {
                     },
                 });
             }
+
+            btnGetVerifyCode.addEventListener('click', function () {
+                getVerifyCode(inputUsername.value);
+            });
 
             // 立即注册
             document.querySelector('.js-register').addEventListener('click', function () {
@@ -53,9 +54,9 @@ window.addEventListener('load', function () {
                     },
                 });
             });
-        })();
+        }());
 
         require('../../scss/pages/register.scss');// 当前页面用到的样式
-        let global = require('../pages-globals/global');// 每个页面都要用到的js(一定要放到最底部)
+        const global = require('../pages-globals/global');// 每个页面都要用到的js(一定要放到最底部)
     }, 0);
 });

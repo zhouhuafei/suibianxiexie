@@ -1,27 +1,26 @@
-function extend (json) {
-    let opts = json || {};
+function extend(json) {
+    const opts = json || {};
+    const self = this;
     opts.defaults = opts.defaults || {};// 默认对象
     opts.inherits = opts.inherits || {};// 继承对像
     opts.isDeep = opts.isDeep === false ? opts.isDeep : true;// 是否进行深拷贝(默认进行深拷贝)
-    let defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
-    let inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
+    const defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
+    const inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
     if (defaultsType === inheritsType && opts.isDeep) {
         if (defaultsType === 'object' || defaultsType === 'array') { // 当为对象或者为数组
-            for (let attr in opts.inherits) {
-                if (opts.inherits.hasOwnProperty(attr)) {
-                    let attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
-                    let attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
-                    if (attrDefaultsType === attrInheritsType && opts.isDeep) { // 类型相同
-                        if (attrDefaultsType === 'object' || attrDefaultsType === 'array') { // 当为对象或者为数组
-                            this.extend({defaults: opts.defaults[attr], inherits: opts.inherits[attr]});
-                        } else {
-                            opts.defaults[attr] = opts.inherits[attr];
-                        }
-                    } else { // 类型不同,直接后面的覆盖前面的
+            Object.keys(opts.inherits).forEach(function (attr) {
+                const attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
+                const attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
+                if (attrDefaultsType === attrInheritsType && opts.isDeep) { // 类型相同
+                    if (attrDefaultsType === 'object' || attrDefaultsType === 'array') { // 当为对象或者为数组
+                        self.extend({defaults: opts.defaults[attr], inherits: opts.inherits[attr]});
+                    } else {
                         opts.defaults[attr] = opts.inherits[attr];
                     }
+                } else { // 类型不同,直接后面的覆盖前面的
+                    opts.defaults[attr] = opts.inherits[attr];
                 }
-            }
+            });
         } else {
             opts.defaults = opts.inherits;
         }
@@ -32,7 +31,7 @@ function extend (json) {
 }
 
 // ajax封装
-function Ajax (json) {
+function Ajax(json) {
     this.opts = extend({
         defaults: {
             // 回调
@@ -93,43 +92,41 @@ function Ajax (json) {
     this.xhr.timeout = this.opts.config.timeout;// 超时设置
     this.init();
 }
+
 Ajax.prototype.init = function () {
     this.events();
     this.open();
     this.send();
 };
 Ajax.prototype.open = function () {
-    var opts = this.opts;
+    const opts = this.opts;
     if (opts.config.type.toLowerCase() === 'get') {
         // get
-        var search = ``;
-        var num = 0;
-        var data = opts.data;
+        let search = '';
+        let num = 0;
+        const data = opts.data;
         if (data) {
-            for (var attr in data) {
-                if (data.hasOwnProperty(attr)) {
-                    if (num === 0) {
-                        search += `${attr}=${data[attr]}`;
-                    } else {
-                        search += `&${attr}=${data[attr]}`;
-                    }
-                    num++;
+            Object.keys(data).forEach(function (attr) {
+                if (num === 0) {
+                    search += `${attr}=${data[attr]}`;
+                } else {
+                    search += `&${attr}=${data[attr]}`;
                 }
-            }
+                num++;
+            });
         }
-        var url = opts.config.url + opts.config.mark + search;
+        const url = opts.config.url + opts.config.mark + search;
         this.xhr.open(opts.config.type, url);
     } else if (opts.config.type.toLowerCase() === 'post') {
         // post
         this.xhr.open(opts.config.type, opts.config.url);
     } else {
         console.log('仅支持get和post请求');
-        return false;
     }
 };
 Ajax.prototype.send = function () {
-    var opts = this.opts;
-    var data = opts.data;
+    const opts = this.opts;
+    const data = opts.data;
     if (opts.config.type.toLowerCase() === 'get') {
         // get
         this.xhr.send(null);
@@ -139,12 +136,10 @@ Ajax.prototype.send = function () {
             if (Object.prototype.toString.call(data).slice(8, -1).toLocaleLowerCase() === 'formdata') {
                 this.xhr.send(data);
             } else {
-                var formData = new FormData();
-                for (var attr in data) {
-                    if (data.hasOwnProperty(attr)) {
-                        formData.append(attr, data[attr]);
-                    }
-                }
+                const formData = new FormData();
+                Object.keys(data).forEach(function (attr) {
+                    formData.append(attr, data[attr]);
+                });
                 this.xhr.send(formData);
             }
         } else {
@@ -152,11 +147,10 @@ Ajax.prototype.send = function () {
         }
     } else {
         console.log('仅支持get和post请求');
-        return false;
     }
 };
 Ajax.prototype.events = function () {
-    var self = this;
+    const self = this;
     // 上传期间持续不断地触发
     this.xhr.upload.addEventListener('progress', function (ProgressEvent) {
         self.uploadProgress();

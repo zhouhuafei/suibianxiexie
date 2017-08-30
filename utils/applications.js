@@ -3,7 +3,7 @@ const fs = require('fs');
 const qr = require('qr-image');
 
 // 应用方法集合
-function Applications () {
+function Applications() {
 }
 
 // 生成二维码
@@ -13,7 +13,7 @@ Applications.prototype.qrCode = function (text) {
 // 创建文件
 Applications.prototype.createFile = function () {
     class CreateFile {
-        constructor (json) {
+        constructor(json) {
             this.opts = tools.extend({
                 defaults: {
                     callback: {
@@ -35,31 +35,31 @@ Applications.prototype.createFile = function () {
             this.init();
         }
 
-        init () {
+        init() {
             this.errorHandle();
         }
 
-        errorHandle () {
-            let data = this.opts.data;
+        errorHandle() {
+            const data = this.opts.data;
             if (!data.path) {
                 console.log('路径不存在');
-                return false;
+                return;
             }
             if (!data.fileName) {
                 console.log('文件名不存在');
-                return false;
+                return;
             }
             if (!data.extendName) {
                 console.log('扩展名不存在');
-                return false;
+                return;
             }
             this.power();
         }
 
-        writeFile () {
-            let self = this;
-            let data = this.opts.data;
-            let file = data.path + data.fileName + data.extendName;
+        writeFile() {
+            const self = this;
+            const data = this.opts.data;
+            const file = data.path + data.fileName + data.extendName;
             fs.writeFile(file, data.content, function (error) {
                 if (error) {
                     console.log(`错误信息:${error}`);
@@ -70,19 +70,17 @@ Applications.prototype.createFile = function () {
             });
         }
 
-        power () {
-            let self = this;
-            let data = this.opts.data;
-            let file = data.path + data.fileName + data.extendName;
+        power() {
+            const self = this;
+            const data = this.opts.data;
+            const file = data.path + data.fileName + data.extendName;
             fs.readFile(file, function (error, response) {
                 if (self.opts.config.isCover) {
                     self.writeFile();
+                } else if (error) {
+                    self.writeFile();
                 } else {
-                    if (error) {
-                        self.writeFile();
-                    } else {
-                        console.log(`文件已经存在,文件路径:${file}`);
-                    }
+                    console.log(`文件已经存在,文件路径:${file}`);
                 }
             });
         }

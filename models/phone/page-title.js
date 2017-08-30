@@ -2,26 +2,25 @@
 const routeConfig = require('../../routes/phone/pages/config');
 
 class pageTitle {
-    constructor (json) {
+    constructor(json) {
         this.opts = json || {};
         this.result = '没有配置标题';
         this.init();
     }
 
-    init () {
-        let route = this.opts.req.route;
+    init() {
+        const self = this;
+        const route = self.opts.req.route;
         if (route) {
-            let path = route.path;
+            const path = route.path;
             // 页面标题
-            for (let attr in routeConfig) {
-                if (routeConfig.hasOwnProperty(attr)) {
-                    if (routeConfig[attr].route === path) {
-                        if (routeConfig[attr].title) {
-                            this.result = routeConfig[attr].title;
-                        }
+            Object.keys(routeConfig).forEach(function (attr) {
+                if (routeConfig[attr].route === path) {
+                    if (routeConfig[attr].title) {
+                        self.result = routeConfig[attr].title;
                     }
                 }
-            }
+            });
         }
     }
 }

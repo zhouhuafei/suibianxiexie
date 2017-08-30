@@ -1,9 +1,9 @@
-let tools = require('../utils/tools');// 工具方法集合
-let applications = require('../utils/applications');// 应用方法集合
-let SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
+const tools = require('../utils/tools');// 工具方法集合
+const applications = require('../utils/applications');// 应用方法集合
+const SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
 
 // 子类型
-var SubType = tools.constructorInherit({
+const SubType = tools.constructorInherit({
     superType: SuperType,
     // 默认参数(继承超类型)
     parameter: {
@@ -30,8 +30,8 @@ var SubType = tools.constructorInherit({
 
 // 内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    var data = this.opts.data;
-    var buttonIconHtml = ``;
+    const data = this.opts.data;
+    let buttonIconHtml = '';
     if (this.opts.config.button.isShowIcon) {
         buttonIconHtml = `<div class="g-button-icon iconfont ${data.button.icon}"></div>`;
     }
@@ -39,7 +39,7 @@ SubType.prototype.moduleDomCreate = function () {
         style: this.opts.config.moduleDomStyle,
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
-            className: `g-no-data`,
+            className: 'g-no-data',
             innerHTML: `
                 <div class="g-no-data-icon iconfont ${data.icon}"></div>
                 <div class="g-no-data-text">${data.text}</div>

@@ -1,7 +1,7 @@
-let tools = require('../utils/tools');// 工具方法集合
-let applications = require('../utils/applications');// 应用方法集合
+const tools = require('../utils/tools');// 工具方法集合
+const applications = require('../utils/applications');// 应用方法集合
 
-function ValidateForm (json) {
+function ValidateForm(json) {
     this.opts = json || {};
     this.element = applications.getDomArray({element: this.opts.element})[0];
     this.hintClass = this.opts.hintClass || 'g-validate-form-hint';
@@ -31,26 +31,26 @@ ValidateForm.prototype.renderHint = function () {
 ValidateForm.prototype.renderHintAdd = function (json) {
     // 只有没被隐藏的才进行验证
     if (this.element.offsetWidth) {
-        let opts = json || {};
+        const opts = json || {};
         this.hintDom.innerHTML = opts.txt || '本项必填';
         this.wrapDom.appendChild(this.hintDom);
     }
 };
 ValidateForm.prototype.renderHintRemove = function () {
-    let isHaveHintDom = this.wrapDom.querySelector(`.${this.hintClass}`);
+    const isHaveHintDom = this.wrapDom.querySelector(`.${this.hintClass}`);
     if (isHaveHintDom) {
         this.wrapDom.removeChild(this.hintDom);
     }
 };
 ValidateForm.prototype.validateSave = function () {
-    let self = this;
-    let type = self.validateType.split(' ');
-    let hintTxt = self.validateHintTxt.split(' ');
-    let value = this.element.value;
+    const self = this;
+    const type = self.validateType.split(' ');
+    const hintTxt = self.validateHintTxt.split(' ');
+    const value = this.element.value;
     this.isValidateSuccess = true;// 是否验证成功了
     type.forEach(function (v, i) {
         if (v === 'no-space' && self.isValidateSuccess) { // 设置了非空验证
-            if (tools.isSpace(value)) {
+            if (tools.isEmpty(value)) {
                 self.renderHintAdd({txt: hintTxt[i]});
                 self.isValidateSuccess = false;
             } else {
@@ -79,7 +79,7 @@ ValidateForm.prototype.validateSave = function () {
     });
 };
 ValidateForm.prototype.validateEvents = function () {
-    let self = this;
+    const self = this;
     if (self.element) {
         self.element.addEventListener(self.eventsType, function () {
             self.validateSave();

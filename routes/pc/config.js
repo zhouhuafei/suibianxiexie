@@ -1,10 +1,10 @@
 // 路径
-let pathConfig = {
-    route: `/pc/`,
-    view: `pc/pages/`,
+const pathConfig = {
+    route: '/pc/',
+    view: 'pc/pages/',
 };
 // 路由的名字
-let routeName = [
+const routeName = [
     {
         name: 'dev-list', // 开发-列表页
         title: '开发列表',
@@ -52,7 +52,7 @@ let routeName = [
     },
 ];
 // 路由的配置
-let routeConfig = {};
+const routeConfig = {};
 routeName.forEach(function (v) {
     let route = `${pathConfig.route}${v.name}/`;
     if (v.name === 'home') {

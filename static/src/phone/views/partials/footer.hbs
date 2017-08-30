@@ -4,9 +4,9 @@
 </div>
 <input type="hidden" id="page-info-str" value="{{pageInfoStr}}">
 <script>
-    var pageInfo = (function () {
-        var input = document.querySelector('#page-info-str');
-        var value = input.value;
+    const pageInfo = (function () {
+        const input = document.querySelector('#page-info-str');
+        const value = input.value;
         input.parentNode.removeChild(input);
         try {
             return JSON.parse(value);
@@ -14,5 +14,5 @@
             console.log(err);
             return value || {};
         }
-    })();
+    }());
 </script>

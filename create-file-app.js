@@ -1,5 +1,6 @@
 const tools = require('./utils/tools');// 工具方法集合
-const applications = require('./utils/applications');// 应用方法集合
+const applications = require('./utils/applications');
+// 应用方法集合
 const CreateFile = applications.createFile();// 创建文件函数
 const projectDirName = process.argv[2];// 目录名字
 if (!projectDirName) {
@@ -70,15 +71,13 @@ const file = {
         extendName: '.js',
     },
 };
-for (let attr in file) {
-    if (file.hasOwnProperty(attr)) {
-        new CreateFile({data: file[attr]});
-    }
-}
+Object.keys(file).forEach(function (attr) {
+    new CreateFile({data: file[attr]});
+});
 
 // 创建控制器文件
 {
-    let humpFileName = tools.strToHump({str: `-${fileName}`});
+    const humpFileName = tools.strToHump({str: `-${fileName}`});
     new CreateFile({
         data: {
             path: controllerPath,
