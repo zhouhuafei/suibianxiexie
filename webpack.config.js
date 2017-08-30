@@ -99,27 +99,23 @@ const plugins = [
 const allPageHtml = fs.readdirSync(`${configPath.viewEntryPath}pages/`);
 allPageHtml.forEach(function (v) {
     const fileName = path.basename(v, '.hbs');
-    plugins.push(
-        new HtmlWebpackPlugin({
-            template: `${configPath.viewEntryPath}pages/${v}`, // 模板
-            filename: `${configPath.viewOutputPath}pages/${v}`, // 文件名
-            // 需要引入的chunk,不配置就会引入所有页面的资源,模板视图文件里js的引入顺序和chunks里的排序无关,和CommonsChunkPlugin里的顺序有关(倒叙)
-            chunks: ['this-is-global-file-manifest', 'this-is-global-file-vendor', 'this-is-global-file-global', fileName],
-            minify: configEnvironment.minView, // 压缩视图模板文件
-        }),
-    );
+    plugins.push(new HtmlWebpackPlugin({
+        template: `${configPath.viewEntryPath}pages/${v}`, // 模板
+        filename: `${configPath.viewOutputPath}pages/${v}`, // 文件名
+        // 需要引入的chunk,不配置就会引入所有页面的资源,模板视图文件里js的引入顺序和chunks里的排序无关,和CommonsChunkPlugin里的顺序有关(倒叙)
+        chunks: ['this-is-global-file-manifest', 'this-is-global-file-vendor', 'this-is-global-file-global', fileName],
+        minify: configEnvironment.minView, // 压缩视图模板文件
+    }));
 });
 // 插件----处理视图模板模块文件
 const allPartialsHtml = fs.readdirSync(`${configPath.viewEntryPath}partials/`);
 allPartialsHtml.forEach(function (v) {
-    plugins.push(
-        new HtmlWebpackPlugin({
-            template: `${configPath.viewEntryPath}partials/${v}`, // 模板
-            filename: `${configPath.viewOutputPath}partials/${v}`, // 文件名
-            inject: false,
-            minify: configEnvironment.minView, // 压缩视图模板文件
-        }),
-    );
+    plugins.push(new HtmlWebpackPlugin({
+        template: `${configPath.viewEntryPath}partials/${v}`, // 模板
+        filename: `${configPath.viewOutputPath}partials/${v}`, // 文件名
+        inject: false,
+        minify: configEnvironment.minView, // 压缩视图模板文件
+    }));
 });
 if (isProduction) {
     // 插件----压缩js
