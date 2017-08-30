@@ -86,13 +86,13 @@ const plugins = [
     new CleanWebpackPlugin([configPath.projectDir], {root: `${__dirname}/views/`, verbose: true, dry: false}),
     // 插件----提取css样式到文件
     new ExtractTextPlugin(`css/pages/[name].${configEnvironment.contenthash}css`),
-    // 插件----把每个入口都有用到的js和css分别提取为this-is-global-file-global.js和this-is-global-file-global.css
+    // 插件----把每个入口都有用到的js和css分别提取为this-is-global-file-common.js和this-is-global-file-common.css
     new webpack.optimize.CommonsChunkPlugin({
         // 0.这里的打包方式是倒叙的
         // 1.this-is-global-file-manifest:抽取变动部分,防止第三方控件的多次打包
         // 2.this-is-global-file-vendor:公用的第三方库
-        // 3.this-is-global-file-global:提取每个入口都有用到的js和css
-        name: ['this-is-global-file-global', 'this-is-global-file-vendor', 'this-is-global-file-manifest'],
+        // 3.this-is-global-file-common:提取每个入口都有用到的js和css
+        name: ['this-is-global-file-common', 'this-is-global-file-vendor', 'this-is-global-file-manifest'],
     }),
 ];
 // 插件----处理视图模板页面文件
@@ -103,7 +103,7 @@ allPageHtml.forEach(function (v) {
         template: `${configPath.viewEntryPath}pages/${v}`, // 模板
         filename: `${configPath.viewOutputPath}pages/${v}`, // 文件名
         // 需要引入的chunk,不配置就会引入所有页面的资源,模板视图文件里js的引入顺序和chunks里的排序无关,和CommonsChunkPlugin里的顺序有关(倒叙)
-        chunks: ['this-is-global-file-manifest', 'this-is-global-file-vendor', 'this-is-global-file-global', fileName],
+        chunks: ['this-is-global-file-manifest', 'this-is-global-file-vendor', 'this-is-global-file-common', fileName],
         minify: configEnvironment.minView, // 压缩视图模板文件
     }));
 });
