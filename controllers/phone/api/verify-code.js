@@ -31,53 +31,63 @@ class DevList extends Super {
         const opts = this.opts;
         const req = opts.req;
         const {username} = req.query;
-        // 用户名是不是邮箱
         if (!tools.isEmail(username)) {
+            // 用户名不是邮箱
             self.apiInfo = {
                 status: 'failure',
                 message: '用户名需要是一个邮箱',
             };
             self.renderData();
-            return;
-        }
-        // 检查用户名是否已被注册
+        } else {
+            // 用户名是邮箱
 
-        // 没被注册再发送验证码
-        const verifyCode = tools.getRandom(100000, 999999);// 随机验证码
-        // 验证码存session
-        req.session[username] = verifyCode;
-        console.log(req.session);
-        const expirationDate = 10;// 有效期,单位是分钟
-        const autoUser = 'this-is-a-code@foxmail.com';
-        const transporter = nodemailer.createTransport({
-            service: 'qq',
-            auth: {
-                user: autoUser, // 发送者
-                pass: 'bwdddjldhdvihdaf', // 授权码,通过QQ获取
-            },
-        });
-        const mailOptions = {
-            from: autoUser, // 发送者
-            to: username, // 接受者,可以同时发送多个,以逗号隔开
-            subject: verifyCode, // 标题
-            text: `这是一条验证码,有效期${expirationDate}分钟`, // 文本
-            html: '', // html
-        };
-        transporter.sendMail(mailOptions, function (error, response) {
-            if (error) {
-                self.apiInfo = {
-                    status: 'failure',
-                    message: error,
-                };
-                return;
-            }
-            self.apiInfo = {
-                status: 'success',
-                message: '验证码发送成功',
+            // 检查用户名是否已被注册
+
+            // 没被注册再发送验证码
+            const verifyCode = tools.getRandom(100000, 999999);// 随机验证码
+            const expirationDate = 1;// 有效期,单位是分钟
+            const autoUser = 'this-is-a-code@foxmail.com';
+            const transporter = nodemailer.createTransport({
+                service: 'qq',
+                auth: {
+                    user: autoUser, // 发送者
+                    pass: 'bwdddjldhdvihdaf', // 授权码,通过QQ获取
+                },
+            });
+            const mailOptions = {
+                from: autoUser, // 发送者
+                to: username, // 接受者,可以同时发送多个,以逗号隔开
+                subject: verifyCode, // 标题
+                text: `这是一条验证码,有效期${expirationDate}分钟`, // 文本
+                html: '', // html
             };
-
-            self.renderData();// 渲染数据
-        });
+            transporter.sendMail(mailOptions, function (error, response) {
+                if (error) {
+                    self.apiInfo = {
+                        status: 'failure',
+                        message: '验证码发送失败',
+                        error: error,
+                    };
+                } else {
+                    self.apiInfo = {
+                        status: 'success',
+                        message: '验证码发送成功',
+                    };
+                    // 验证码存session
+                    req.session[username] = verifyCode;
+                    console.log('验证码过期之前的session:', req.session);
+                    (function (username) {
+                        setTimeout(function () {
+                            // 删除session有BUG,如果有两个验证码,有一个删不掉
+                            // 待续...
+                            delete req.session[username];
+                            console.log('验证码过期之后的session:', req.session);
+                        }, expirationDate * 10000);
+                    }(username));
+                }
+                self.renderData();// 渲染数据
+            });
+        }
     }
 }
 
