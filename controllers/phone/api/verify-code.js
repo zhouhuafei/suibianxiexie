@@ -31,6 +31,7 @@ class DevList extends Super {
         const opts = this.opts;
         const req = opts.req;
         const {username} = req.query;
+        // 用户名是不是邮箱
         if (!tools.isEmail(username)) {
             self.apiInfo = {
                 status: 'failure',
@@ -38,8 +39,7 @@ class DevList extends Super {
             };
             self.renderData();
             return;
-        }// 用户名是不是邮箱
-
+        }
         // 检查用户名是否已被注册
 
         // 没被注册再发送验证码
