@@ -42,7 +42,7 @@ LazyLoad.prototype.render = function () {
             const elementTop = applications.offset({element: v}).top;
             const elementBottom = elementTop + v.offsetHeight;
             // 出现在可视区才进行处理
-            if ((elementTop >= minTop && elementTop <= maxTop) || (elementBottom >= minTop && elementBottom <= maxTop)) {
+            if (elementBottom >= minTop && elementTop <= maxTop) {
                 if (v.tagName.toLowerCase() === 'img') {
                     if (v.getAttribute(self.opts.srcAttr)) {
                         v.src = v.getAttribute(self.opts.srcAttr);
