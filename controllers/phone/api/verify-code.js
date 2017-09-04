@@ -83,7 +83,7 @@ class DevList extends Super {
                             console.log('验证码键名:', username);
                             delete req.session[username];
                             console.log('验证码过期之后的session:', req.session);
-                        }, expirationDate * 10000);
+                        }, expirationDate * 60000);
                     }(username));
                 }
                 self.renderData();// 渲染数据
