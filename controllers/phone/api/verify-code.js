@@ -30,7 +30,8 @@ class DevList extends Super {
         const tools = this.tools;// 工具方法集合
         const opts = this.opts;
         const req = opts.req;
-        const {username} = req.query;
+        const query = req.query;
+        const username = query.username;
         if (!tools.isEmail(username)) {
             // 用户名不是邮箱
             self.apiInfo = {
@@ -74,17 +75,17 @@ class DevList extends Super {
                         message: '验证码发送成功',
                     };
                     // 验证码存session
-                    req.session[username] = verifyCode;
-                    console.log('验证码过期之前的session:', req.session);
-                    (function (username) {
-                        setTimeout(function () {
-                            // 删除session有BUG,如果有两个验证码,有一个删不掉
-                            // 待续...
-                            console.log('验证码键名:', username);
-                            delete req.session[username];
-                            console.log('验证码过期之后的session:', req.session);
-                        }, expirationDate * 60000);
-                    }(username));
+                    const session = req.session;
+                    session[username] = verifyCode;
+                    console.log('验证码过期之前的键名:', username);
+                    console.log('验证码过期之前的session:', session);
+                    setTimeout(function (key) {
+                        // 删除session有BUG,如果有两个验证码,有一个删不掉
+                        // 待续...
+                        console.log('验证码过期之后的键名:', key);
+                        delete session[key];
+                        console.log('验证码过期之后的session:', session);
+                    }, expirationDate * 60000, username);
                 }
                 self.renderData();// 渲染数据
             });
