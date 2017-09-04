@@ -80,6 +80,7 @@ class DevList extends Super {
                         setTimeout(function () {
                             // 删除session有BUG,如果有两个验证码,有一个删不掉
                             // 待续...
+                            console.log('验证码键名:', username);
                             delete req.session[username];
                             console.log('验证码过期之后的session:', req.session);
                         }, expirationDate * 10000);
