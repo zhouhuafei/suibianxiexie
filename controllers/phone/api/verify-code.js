@@ -83,7 +83,7 @@ class DevList extends Super {
                         // 删除session有BUG,如果有两个验证码,有一个删不掉
                         // 待续...
                         console.log('验证码过期之后的键名:', key);
-                        delete session[key];
+                        session[key] = null;
                         console.log('验证码过期之后的session:', session);
                     }, expirationDate * 60000, username);
                 }
