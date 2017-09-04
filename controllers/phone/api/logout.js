@@ -1,5 +1,5 @@
 // 开发列表,页面路由的控制器
-const Super = require('../api-super/super');// 超类型
+const Super = require('./super');// 超类型
 
 class DevList extends Super {
     constructor(json) {
