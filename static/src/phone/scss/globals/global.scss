@@ -2,10 +2,15 @@
 @import "../config/config";
 //字体图标
 @import "../fonts/iconfont.css";
-.iconfont {
-    font-size: inherit;
-}
 //==================================================================重置样式>
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
 body {
     color: $g-font-color-default;
     font-family: "Microsoft Yahei", "Helvetica", "sans-serif";
@@ -35,6 +40,10 @@ a {
 
 img {
     vertical-align: middle;
+}
+
+.iconfont {
+    font-size: inherit;
 }
 
 //==================================================================工具样式>
