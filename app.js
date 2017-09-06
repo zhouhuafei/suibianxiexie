@@ -49,17 +49,16 @@ app.use(function (err, req, res) {
 // mongodb
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
-const url = 'mongodb://localhost:27017/dbname';
+const url = 'mongodb://localhost:27017/suibianxiexie';
 MongoClient.connect(url, function (err, db) {
     if (err) {
-        console.error(err);
+        console.log('Connected incorrectly to server:\n', err);
     } else {
         console.log('Connected correctly to server');
-        db.close();
+        // db.close();
+        // 端口
+        const server = app.listen('5555', function () {
+            console.log(`访问地址:\nhttp://127.0.0.1:${server.address().port}`);
+        });
     }
-});
-
-// 端口
-const server = app.listen('5555', function () {
-    console.log(`访问地址:\nhttp://127.0.0.1:${server.address().port}`);
 });
