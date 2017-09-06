@@ -54,7 +54,7 @@ MongoClient.connect(url, function (err, db) {
     if (err) {
         console.log('Connected incorrectly to server:\n', err);
     } else {
-        console.log('Connected correctly to server');
+        console.log('Connected correctly to server:\n', db);
         // db.close();
         // 端口
         const server = app.listen('5555', function () {
