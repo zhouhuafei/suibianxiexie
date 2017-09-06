@@ -37,6 +37,7 @@ module.exports = {
         'func-names': 0, // 要求或禁止命名的 function 表达式
         'prefer-arrow-callback': 0, // 推荐使用箭头函数作为回调
         'linebreak-style': 0, // 强制使用一致的换行符风格
+        'import/newline-after-import': 0, // 导入语句后强制执行换行符
         'import/no-dynamic-require': 0, // 禁止require()使用表达式
         'import/no-extraneous-dependencies': 0, // 禁止使用无关的包
         'no-unused-vars': 0, // 禁止未使用过的变量

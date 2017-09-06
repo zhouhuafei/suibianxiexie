@@ -5,7 +5,6 @@ const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
 const app = express();
 app.use(compression());// gzip压缩
 app.use(express.static('static', {maxAge: ms('1y')}));// 托管静态文件(一年缓存)
@@ -20,7 +19,6 @@ app.use(session({
 
 // 模版引擎(handlebars)
 const handlebars = require('express-handlebars');
-
 app.engine('hbs', handlebars({
     partialsDir: `${__dirname}/views/`, // 设置页面布局模块文件的路径
     layoutsDir: `${__dirname}/views/`, // 设置页面布局模版文件的路径(本项目没有使用到页面布局模板文件)
@@ -33,10 +31,8 @@ app.set('views', `${__dirname}/views/`);
 // pc的路由待续...
 // phone的路由
 const RoutePhonePages = require('./routes/phone/pages/route');
-
 new RoutePhonePages({app: app});
 const RoutePhoneApi = require('./routes/phone/api/route');
-
 new RoutePhoneApi({app: app});
 
 // 404
@@ -50,24 +46,18 @@ app.use(function (err, req, res) {
     }
 });
 
-// mysql
-// var Mysql = require('./config/mysql');
-// var oMysql = new Mysql({isLocal: true});
-// oMysql.init();
-// var mysql = oMysql.connection;
-// var tableName = 'user';
-// mysql.query(
-//     'SELECT * FROM ' + tableName,
-//     function selectCb (error, results, fields) {
-//         if (error) {
-//             throw error;
-//         }
-//         if (results) {
-//             console.log('mysql数据库user表里的数据', results);
-//         }
-//         mysql.end();
-//     }
-// );
+// mongodb
+const mongodb = require('mongodb');
+const MongoClient = mongodb.MongoClient;
+const url = 'mongodb://localhost:27017/dbname';
+MongoClient.connect(url, function (err, db) {
+    if (err) {
+        console.error(err);
+    } else {
+        console.log('Connected correctly to server');
+        db.close();
+    }
+});
 
 // 端口
 const server = app.listen('5555', function () {
