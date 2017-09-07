@@ -50,7 +50,7 @@ app.use(function (err, req, res) {
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 const url = 'mongodb://localhost:27017/suibianxiexie';
-MongoClient.connect(url, function (err, db) {
+const oMongodb = MongoClient.connect(url, function (err, db) {
     if (err) {
         console.log('Connected incorrectly to server:\n', err);
     } else {
@@ -62,3 +62,4 @@ MongoClient.connect(url, function (err, db) {
         });
     }
 });
+console.log(oMongodb);
