@@ -39,6 +39,7 @@ new RoutePhoneApi({app: app});
 app.use(function (req, res, next) {
     res.status(404).send('404 - not found');
 });
+
 // 500
 app.use(function (err, req, res) {
     if (err) {
@@ -46,18 +47,10 @@ app.use(function (err, req, res) {
     }
 });
 
-// mongodb
-const mongodbConnect = require('./config/mongodb');
-mongodbConnect.then(function (db) {
-    if (db) {
-        // 端口
-        const server = app.listen('5555', function () {
-            console.log(`server address port:\nhttp://127.0.0.1:${server.address().port}`);
-        });
-        // 数据初次尝试
-        const collection = db.collection('user');
-        collection.find().toArray(function (err, docs) {
-            console.log('user集合里的文档信息:\n', docs);
-        });
-    }
+// mongodb数据库链接
+require('./config/mongoose');
+
+// 端口
+const server = app.listen('5555', function () {
+    console.log(`server address port:\nhttp://127.0.0.1:${server.address().port}`);
 });
