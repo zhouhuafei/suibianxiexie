@@ -75,6 +75,7 @@ class DevList extends Super {
                         message: '验证码发送成功',
                     };
                     // 验证码存session
+                    // 验证码存在数据库里吧,不用这么麻烦瞎搞了
                     const session = req.session;
                     session[username] = verifyCode;
                     console.log('验证码过期之前的键名:', username);
