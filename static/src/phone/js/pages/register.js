@@ -5,30 +5,13 @@ window.addEventListener('load', function () {
         // 注释待续...
         (function () {
             // 功能待续...
-            // axios get 请求数据 传参数要使用params
-            // axios({
-            //     url: '/phone/api/register/',
-            //     method: 'get',
-            //     params: {
-            //         test: 1
-            //     }
-            // })
-
-            // axios post delete put 请求数据  传参数要使用data
-            // axios({
-            //     url: '/phone/api/register/',
-            //     method: 'post',
-            //     data: {
-            //         test: 1
-            //     }
-            // })
 
             // 获取验证码
             const form = document.querySelector('#form');
             const inputUsername = document.querySelector('#username');
             const inputPassword = document.querySelector('#password');
             const inputVerifyCode = document.querySelector('#verify-code');
-            const btnGetVerifyCode = document.querySelector('.page-verify-code');
+            const btnGetVerifyCode = document.querySelector('.get-verify-code');
 
             function getVerifyCode(username) {
                 const formData = new FormData();
@@ -48,7 +31,7 @@ window.addEventListener('load', function () {
             });
 
             // 立即注册
-            document.querySelector('.js-register').addEventListener('click', function () {
+            document.querySelector('.register').addEventListener('click', function () {
                 const isFormData = true;
                 let userInfo = new FormData(form);
                 if (!isFormData) {

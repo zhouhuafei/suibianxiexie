@@ -2,17 +2,12 @@
 @import "../config/config";
 
 //页面样式
-.page-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: px2px(120);
-    font-size: px2px(100);
-    color: $g-highlight-color;
-}
-
 .g-body {
     //样式待续...
+    .page-canvas {
+        height: px2px(60);
+        background: $g-background-color-default;
+    }
     .page-input-wrap {
         margin-bottom: px2px(10);
     }
@@ -27,14 +22,14 @@
             align-items: center;
         }
     }
-    .page-verify-code {
+    .get-verify-code {
         width: px2rem(110);
         height: inherit;
         .g-button {
             height: inherit;
             background: $g-warning-color;
         }
-        &.page-verify-code-inactive {
+        &.get-verify-code-inactive {
             .g-button {
                 background: $g-background-color-disabled;
                 color: $g-font-color-disabled;
