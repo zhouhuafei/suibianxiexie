@@ -47,19 +47,17 @@ app.use(function (err, req, res) {
 });
 
 // mongodb
-const mongodb = require('mongodb');
-const MongoClient = mongodb.MongoClient;
-const url = 'mongodb://localhost:27017/suibianxiexie';
-const oMongodb = MongoClient.connect(url, function (err, db) {
-    if (err) {
-        console.log('Connected incorrectly to server:\n', err);
-    } else {
-        console.log('Connected correctly to server:\n', db);
-        // db.close();
+const mongodbConnect = require('./config/mongodb');
+mongodbConnect.then(function (db) {
+    if (db) {
         // 端口
         const server = app.listen('5555', function () {
-            console.log(`访问地址:\nhttp://127.0.0.1:${server.address().port}`);
+            console.log(`server address port:\nhttp://127.0.0.1:${server.address().port}`);
+        });
+        // 数据初次尝试
+        const collection = db.collection('user');
+        collection.find().toArray(function (err, docs) {
+            console.log('user集合里的文档信息:\n', docs);
         });
     }
 });
-console.log(oMongodb);
