@@ -9,17 +9,17 @@ mongoose.connect(url, {useMongoClient: true});
 
 // 连接成功
 mongoose.connection.on('connected', function () {
-    console.log('mongoose connection open to', url);
+    console.log('mongoose connection open to:\n', url);
 });
 
 // 连接异常
 mongoose.connection.on('error', function (error) {
-    console.log('mongoose connection error: ', error);
+    console.log('mongoose connection error:\n', error);
 });
 
 // 连接断开
 mongoose.connection.on('disconnected', function () {
-    console.log('mongoose connection disconnected');
+    console.log('mongoose connection disconnected:\n');
 });
 
 module.exports = mongoose;
