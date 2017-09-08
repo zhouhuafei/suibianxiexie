@@ -20,19 +20,19 @@ class Super {
     }
 
     // 初始化数据(这个方法需要在子类型里被调用)
-    initData() {
+    init() {
         const req = this.opts.req;
-        this.pageInfo = {
+        this.dataInfo = {
             isShowCopyright: new PageCopyright(this.opts).isShowCopyright, // 是否显示版权(需要从数据库里读取)
             routes: routesConfig, // 路由的配置
             qrCode: applications.qrCode(`http://${req.headers.host}${req.url}`), // 二维码数据
             title: new PageTitle(this.opts).result, // 标题(需要从配置里读取)
         };
-        const pageInfo = this.pageInfo;
+        const dataInfo = this.dataInfo;
         const isShowFooterNav = routesConfig[this.fileName].isShowFooterNav;
         if (isShowFooterNav) {
-            pageInfo.footerNav = new PageFooterNav(this.opts).result;// 底部导航的数据
-            const footerNav = pageInfo.footerNav;
+            dataInfo.footerNav = new PageFooterNav(this.opts).result;// 底部导航的数据
+            const footerNav = dataInfo.footerNav;
             if (footerNav.data && footerNav.data.length) {
                 footerNav.data.forEach((v) => {
                     if (v.routeName === this.fileName) {
@@ -41,14 +41,19 @@ class Super {
                 });
             }
         }
+        this.handleData();// 处理数据
+    }
+
+    // 处理数据(这个方法需要在子类型里被重写)
+    handleData() {
     }
 
     // 渲染视图
     renderView() {
         const res = this.opts.res;
         res.render(routesConfig[this.fileName].view, {
-            pageInfo: this.pageInfo,
-            pageInfoStr: JSON.stringify(this.pageInfo),
+            dataInfo: this.dataInfo,
+            dataInfoStr: JSON.stringify(this.dataInfo),
         });
     }
 
@@ -56,7 +61,17 @@ class Super {
     renderData() {
         const res = this.opts.res;
         res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'});
-        res.end(JSON.stringify(this.pageInfo));
+        res.end(JSON.stringify(this.dataInfo));
+    }
+
+    // 渲染(这个方法需要在子类型里被调用)
+    render() {
+        const req = this.opts.req;
+        if (req.query.isDev === 'true') {
+            this.renderData();// 渲染数据
+        } else {
+            this.renderView();// 渲染视图
+        }
     }
 }
 

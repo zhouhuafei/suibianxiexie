@@ -13,7 +13,7 @@ module.exports = {
         browser: true,
     },
     globals: {
-        pageInfo: true,
+        dataInfo: true,
     },
     plugins: ['html'],
     /*

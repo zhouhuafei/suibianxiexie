@@ -5,27 +5,27 @@ const nodemailer = require('nodemailer');// 邮箱模块
 class DevList extends Super {
     constructor(json) {
         super(json);
-        this.initData();// 调用超类型的初始化数据
+        this.init();// 调用超类型的初始化数据
     }
 
     // 获取数据(增)(覆盖超类型)
     postData() {
-        // apiInfo数据处理待续...
+        // dataInfo数据处理待续...
     }
 
     // 删除数据(删)(覆盖超类型)
     deleteData() {
-        // apiInfo数据处理待续...
+        // dataInfo数据处理待续...
     }
 
     // 修改数据(改)(覆盖超类型)
     putData() {
-        // apiInfo数据处理待续...
+        // dataInfo数据处理待续...
     }
 
     // 查找数据(查)(覆盖超类型)
     getData() {
-        // apiInfo数据处理待续...
+        // dataInfo数据处理待续...
         const self = this;
         const tools = this.tools;// 工具方法集合
         const opts = this.opts;
@@ -34,11 +34,11 @@ class DevList extends Super {
         const username = query.username;
         if (!tools.isEmail(username)) {
             // 用户名不是邮箱
-            self.apiInfo = {
+            self.dataInfo = {
                 status: 'failure',
                 message: '用户名需要是一个邮箱',
             };
-            self.renderData();
+            self.render();
         } else {
             // 用户名是邮箱
 
@@ -64,13 +64,13 @@ class DevList extends Super {
             };
             transporter.sendMail(mailOptions, function (error, response) {
                 if (error) {
-                    self.apiInfo = {
+                    self.dataInfo = {
                         status: 'failure',
                         message: '验证码发送失败',
                         error: error,
                     };
                 } else {
-                    self.apiInfo = {
+                    self.dataInfo = {
                         status: 'success',
                         message: '验证码发送成功',
                     };
@@ -88,7 +88,7 @@ class DevList extends Super {
                         console.log('验证码过期之后的session:', session);
                     }, expirationDate * 60000, username);
                 }
-                self.renderData();// 渲染数据
+                self.render();// 渲染数据
             });
         }
     }

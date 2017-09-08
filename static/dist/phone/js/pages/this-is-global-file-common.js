@@ -1058,7 +1058,7 @@ module.exports = SuperType;
 __webpack_require__(22); // 全局的样式
 
 (function () {
-    if (pageInfo && pageInfo.isShowCopyright) {
+    if (dataInfo && dataInfo.isShowCopyright) {
         var Copyright = __webpack_require__(23);
         new Copyright({
             wrap: '.g-copyright-wrap'
@@ -1067,10 +1067,10 @@ __webpack_require__(22); // 全局的样式
 })(); // 版权
 
 (function () {
-    if (pageInfo && pageInfo.footerNav) {
+    if (dataInfo && dataInfo.footerNav) {
         var Footer = __webpack_require__(24);
-        pageInfo.footerNav.wrap = '.g-footer-nav-wrap';
-        new Footer(pageInfo.footerNav);
+        dataInfo.footerNav.wrap = '.g-footer-nav-wrap';
+        new Footer(dataInfo.footerNav);
     }
 })(); // 底部导航
 

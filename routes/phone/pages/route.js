@@ -36,13 +36,7 @@ class Route {
                                 return;
                             }
                         }
-                        // 渲染视图(渲染数据)
-                        const controller = new Controller({req: req, res: res});
-                        if (req.query.isApi === 'true') {
-                            controller.renderData();
-                        } else {
-                            controller.renderView();
-                        }
+                        new Controller({req: req, res: res});// 渲染视图(渲染数据)
                     });
                 }(Controller, attr));
             } catch (err) {

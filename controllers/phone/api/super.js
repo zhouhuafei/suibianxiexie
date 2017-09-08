@@ -11,7 +11,7 @@ class Super {
             },
             inherits: json,
         });
-        this.apiInfo = {
+        this.dataInfo = {
             status: 'failure', // 状态  'success'   'failure'
             message: '接口数据的基本格式', // 信息     '参数错误'
             result: {
@@ -35,7 +35,7 @@ class Super {
     }
 
     // 初始化数据(这个方法需要在子类型里被调用)
-    initData() {
+    init() {
         const req = this.opts.req;
         const method = req.method.toLowerCase(); // 请求方式
         // 当请求方式是get时 用req.query接收数据
@@ -78,11 +78,11 @@ class Super {
     getData() {
     }
 
-    // 获取数据
-    renderData() {
+    // 渲染数据
+    render() {
         const res = this.opts.res;
         res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'});
-        res.end(JSON.stringify(this.apiInfo));
+        res.end(JSON.stringify(this.dataInfo));
     }
 }
 

@@ -5,14 +5,15 @@ class Register extends Super {
     constructor(json) {
         super(json);
         this.fileName = this.path.basename(__filename, '.js');// 覆盖超类型的属性
-        this.initData();// 调用超类型的初始化数据
-        this.handleData();// 处理数据pageInfo
+        this.init();// 调用超类型的初始化数据
+        this.render();// 渲染视图(渲染数据)
     }
 
+    // 处理数据dataInfo
     handleData() {
         const req = this.opts.req;
         const query = req.query;
-        // pageInfo数据处理待续...
+        // dataInfo数据处理待续...
     }
 }
 
