@@ -49,7 +49,7 @@ app.use(function (err, req, res) {
 
 // mongodb数据库链接
 require('./config/mongoose');
-const VerifyCode = require('./schemas/phone/register_verify_code');
+const VerifyCode = require('./schemas/phone/verify_code');
 const verifyCode = new VerifyCode({
     username: '1123486116@qq.com',
     verify_code: '959595',

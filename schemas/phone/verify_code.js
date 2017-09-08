@@ -6,4 +6,4 @@ const VerifyCode = mongoose.Schema({
     update_time: Date,
 });
 
-module.exports = mongoose.model('register_verify_code', VerifyCode);
+module.exports = mongoose.model('verify_code', VerifyCode);
