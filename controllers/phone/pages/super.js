@@ -67,7 +67,7 @@ class Super {
     // 渲染(这个方法需要在子类型里被调用)
     render() {
         const req = this.opts.req;
-        if (req.query.isDev === 'true') {
+        if (req.query.isOnlyRenderData === 'true') {
             this.renderData();// 渲染数据
         } else {
             this.renderView();// 渲染视图
