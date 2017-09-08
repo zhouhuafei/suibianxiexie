@@ -74,6 +74,21 @@ class DevList extends Super {
                         status: 'success',
                         message: '验证码发送成功',
                     };
+
+                    // 验证码存数据库里
+                    const VerifyCode = require('../../../schemas/phone/verify-code');
+                    const verifyCode = new VerifyCode({
+                        username: '1123486116@qq.com',
+                        verifyCode: '959595',
+                        createTime: new Date(),
+                    });
+                    verifyCode.save(function (err, res) {
+                        if (err) {
+                            console.log(`Error:${err}`);
+                        } else {
+                            console.log(`Res:${res}`);
+                        }
+                    });
                     // 验证码存session
                     // 验证码存在数据库里吧,不用这么麻烦瞎搞了
                     const session = req.session;

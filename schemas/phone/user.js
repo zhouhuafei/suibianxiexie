@@ -9,14 +9,14 @@ const User = mongoose.Schema({
         type: String,
         default: null,
     },
-    create_time: {
+    createTime: {
         type: String,
         default: null,
     },
-    update_time: {
+    updateTime: {
         type: String,
         default: null,
     },
 });
 
-module.exports = mongoose.model('User', User);
+module.exports = mongoose.model('user', User);
