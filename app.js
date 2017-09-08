@@ -49,6 +49,20 @@ app.use(function (err, req, res) {
 
 // mongodb数据库链接
 require('./config/mongoose');
+const VerifyCode = require('./schemas/phone/register_verify_code');
+const verifyCode = new VerifyCode({
+    username: '1123486116@qq.com',
+    verify_code: '959595',
+    create_time: new Date(),
+});
+verifyCode.save(function (err, res) {
+    if (err) {
+        console.log(`Error:${err}`);
+    } else {
+        console.log(`Res:${res}`);
+    }
+});
+
 
 // 端口
 const server = app.listen('5555', function () {
