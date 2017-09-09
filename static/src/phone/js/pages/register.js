@@ -19,8 +19,8 @@ window.addEventListener('load', function () {
                 formData.append('accountnum', 123456); // 数字 123456 会被立即转换成字符串 "123456"
                 axios({
                     url: '/phone/api/verify-code/',
-                    method: 'post',
-                    data: {
+                    method: 'get',
+                    params: {
                         username: username,
                     },
                 });

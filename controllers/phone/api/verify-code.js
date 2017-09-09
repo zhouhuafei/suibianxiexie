@@ -62,48 +62,38 @@ class DevList extends Super {
                 text: `这是一条验证码,有效期${expirationDate}分钟`, // 文本
                 html: '', // html
             };
-            transporter.sendMail(mailOptions, function (error, response) {
+            // 验证码存数据库里
+            const VerifyCodes = require('../../../schemas/phone/verify-codes');
+            const verifyCodes = new VerifyCodes({
+                username: '1123486116@qq.com',
+            });
+            verifyCodes.save(function (error, response) {
                 if (error) {
+                    console.log(`Error:${error}`);
                     self.dataInfo = {
                         status: 'failure',
                         message: '验证码发送失败',
                         error: error,
                     };
+                    self.render();// 渲染数据
                 } else {
-                    self.dataInfo = {
-                        status: 'success',
-                        message: '验证码发送成功',
-                    };
-
-                    // 验证码存数据库里
-                    const VerifyCode = require('../../../schemas/phone/verify-code');
-                    const verifyCode = new VerifyCode({
-                        username: '1123486116@qq.com',
-                        verifyCode: '959595',
-                        createTime: new Date(),
-                    });
-                    verifyCode.save(function (err, res) {
-                        if (err) {
-                            console.log(`Error:${err}`);
+                    console.log(`Res:${response}`);
+                    transporter.sendMail(mailOptions, function (error, response) {
+                        if (error) {
+                            self.dataInfo = {
+                                status: 'failure',
+                                message: '验证码发送失败',
+                                error: error,
+                            };
                         } else {
-                            console.log(`Res:${res}`);
+                            self.dataInfo = {
+                                status: 'success',
+                                message: '验证码发送成功',
+                            };
                         }
+                        self.render();// 渲染数据
                     });
-                    // 验证码存session
-                    // 验证码存在数据库里吧,不用这么麻烦瞎搞了
-                    const session = req.session;
-                    session[username] = verifyCode;
-                    console.log('验证码过期之前的键名:', username);
-                    console.log('验证码过期之前的session:', session);
-                    setTimeout(function (key) {
-                        // 删除session有BUG,如果有两个验证码,有一个删不掉
-                        // 待续...
-                        console.log('验证码过期之后的键名:', key);
-                        session[key] = null;
-                        console.log('验证码过期之后的session:', session);
-                    }, expirationDate * 60000, username);
                 }
-                self.render();// 渲染数据
             });
         }
     }

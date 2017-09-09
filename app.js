@@ -48,9 +48,10 @@ app.use(function (err, req, res) {
 });
 
 // mongodb数据库链接
-require('./config/mongoose');
-
-// 端口
-const server = app.listen('5555', function () {
-    console.log(`server address port:\nhttp://127.0.0.1:${server.address().port}`);
+const mongoose = require('./config/mongoose');
+mongoose.connection.on('connected', function () {
+    // 监听端口
+    const server = app.listen('5555', function () {
+        console.log(`server address port:\nhttp://127.0.0.1:${server.address().port}`);
+    });
 });
