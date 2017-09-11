@@ -36,7 +36,6 @@
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.3",
-    "glob": "^7.1.2",
     "mongoose": "^4.11.10",
     "ms": "^2.0.0",
     "multiparty": "^4.1.3",
