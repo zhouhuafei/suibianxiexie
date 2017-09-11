@@ -1,4 +1,10 @@
-<div class="g-footer"><div class="g-copyright-wrap"></div><div class="g-footer-nav-wrap"></div></div><input type="hidden" id="page-info-str" value="{{dataInfoStr}}"><script>const dataInfo = (function () {
+<div class="g-footer">
+    <div class="g-copyright-wrap"></div>
+    <div class="g-footer-nav-wrap"></div>
+</div>
+<input type="hidden" id="page-info-str" value="{{dataInfoStr}}">
+<script>
+    const dataInfo = (function () {
         const input = document.querySelector('#page-info-str');
         const value = input.value;
         input.parentNode.removeChild(input);
@@ -8,4 +14,5 @@
             console.log(err);
             return value || {};
         }
-    }());</script>
+    }());
+</script>

@@ -1,2 +1,0 @@
-webpackJsonp([13],{31:function(n,t,i){"use strict";window.addEventListener("load",function(){setTimeout(function(){i(32);i(3)},0)})},32:function(n,t){}},[31]);
-//# sourceMappingURL=dev-words.a23414d0e87b3b49fcf1.js.map
