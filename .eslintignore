@@ -1,6 +1,5 @@
 node_modules
-dist
 fonts
-/app/phone/static/src/js/plugs/
-/app/phone/static/src/libs/
-/app/phone/views/
+/dist/
+/app/phone/assets/src/js/plugs/
+/app/phone/assets/src/libs/

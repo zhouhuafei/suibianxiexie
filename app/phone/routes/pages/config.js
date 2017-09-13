@@ -1,7 +1,7 @@
 // 路径
 const pathConfig = {
     route: '/phone/',
-    view: 'phone/views/pages/',
+    view: 'phone/pages/',
 };
 // 路由的名字
 const routeName = [
