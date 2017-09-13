@@ -3,7 +3,7 @@ myConfig.forEach(function (v, i, a) {
     a[i] = v.trim();
 });
 const isProduction = myConfig[0] === 'production';// 是否是生产环境
-const projectDir = myConfig[1];// 项目目录
+const projectDirname = myConfig[1];// 项目目录名称
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');// 调用插件需要这个
@@ -14,15 +14,16 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default;// 压缩图�
 
 class ConfigPath {
     constructor() {
-        this.projectDir = projectDir;// 项目名称
-        this.projectPath = `${__dirname}/app/${this.projectDir}/`;// 项目目录
-        this.staticPath = `${this.projectPath}static/`;// 静态文件的目录
-        this.devPath = `${this.staticPath}src/`;// 开发的目录
-        this.buildPath = `${this.staticPath}dist/`;// 生产的目录
-        this.imagesEntryPath = `${this.devPath}images/`;// images的开发目录
-        this.jsEntryPath = `${this.devPath}js/`;// js的开发目录
-        this.viewEntryPath = `${this.devPath}views/`;// 视图的开发目录
-        this.viewOutputPath = `${this.projectPath}views/`;// 视图的生产目录
+        this.rootPath = `${__dirname}/`;// 根目录路径
+        this.projectDirname = projectDirname;// 项目目录名称
+        this.projectPath = `${this.rootPath}app/${this.projectDirname}/`;// 项目目录路径
+        this.assetsPath = `${this.projectPath}assets/`;// 资源文件的目录路径
+        this.devPath = `${this.assetsPath}src/`;// 开发的目录路径
+        this.buildPath = `${this.rootPath}static/${this.projectDirname}/`;// 生产的目录路径
+        this.imagesEntryPath = `${this.devPath}images/`;// images的开发目录路径
+        this.jsEntryPath = `${this.devPath}js/`;// js的开发目录路径
+        this.viewEntryPath = `${this.devPath}views/`;// 视图的开发目录路径
+        this.viewOutputPath = `${this.projectPath}views/`;// 视图的生产目录路径
     }
 }
 
@@ -77,9 +78,9 @@ const output = {
 };
 // 插件----集合
 const plugins = [
-    // 插件----清空项目文件下对应的dist目录
-    new CleanWebpackPlugin(['dist'], {
-        root: configPath.staticPath,
+    // 插件----清空static目录下对应的项目文件
+    new CleanWebpackPlugin([configPath.projectDirname], {
+        root: `${configPath.rootPath}static/`,
         verbose: true,
         dry: false,
     }),
