@@ -3,10 +3,10 @@
 npm i
 # 开发
 npm run phoneDev
-nodemon app.js
+npm run test
 # 生产
 npm run phoneBuild
-pm2 app.js
+npm run start
 ````
 
 ````
