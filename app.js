@@ -20,13 +20,13 @@ app.use(session({
 // 模版引擎(handlebars)
 const handlebars = require('express-handlebars');
 app.engine('hbs', handlebars({
-    partialsDir: `${__dirname}/dist/views/`, // 设置页面布局模块文件的路径
-    layoutsDir: `${__dirname}/dist/views/`, // 设置页面布局模版文件的路径(本项目没有使用到页面布局模板文件)
+    partialsDir: 'dist/views/', // 设置页面布局模块文件的路径
+    layoutsDir: 'dist/views/', // 设置页面布局模版文件的路径(本项目没有使用到页面布局模板文件)
     defaultLayout: '', // 设置页面的布局模版文件(本项目没有使用到页面布局模板文件)
     extname: '.hbs',
 }));
 app.set('view engine', 'hbs');
-app.set('views', `${__dirname}/dist/views/`);
+app.set('views', 'dist/views/');
 
 // pc的路由待续...
 // phone的路由
