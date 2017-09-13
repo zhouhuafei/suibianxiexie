@@ -63,7 +63,7 @@ class DevList extends Super {
                 html: '', // html
             };
             // 验证码存数据库里
-            const VerifyCodes = require('../../../schemas/phone/verify-codes');
+            const VerifyCodes = require('../../schemas/verify-codes');
             const verifyCodes = new VerifyCodes({
                 username: '1123486116@qq.com',
             });
