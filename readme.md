@@ -1,3 +1,50 @@
+````
+# 安装依赖
+npm i
+# 开发
+npm run phoneDev
+nodemon app.js
+# 生产
+npm run phoneBuild
+pm2 app.js
+````
+
+开发的目录结构
+assets/
+├── images
+│   ├── commons
+│   └── home
+├── js
+│   ├── api
+│   ├── commons
+│   ├── components
+│   ├── components-vue
+│   ├── pages
+│   ├── plugs
+│   └── utils
+├── libs
+│   └── laydate
+│       ├── need
+│       └── skins
+│           ├── dahong
+│           ├── danlan
+│           ├── default
+│           ├── huanglv
+│           ├── molv
+│           ├── qianhuang
+│           ├── yahui
+│           └── yalan
+├── scss
+│   ├── commons
+│   ├── components
+│   ├── config
+│   ├── fonts
+│   └── pages
+└── views
+    ├── layouts
+    ├── pages
+    └── partials
+
 代码装修中...
 <p>0.g-表示全局级别,m-表示模块级别,c-表示组件级别,有这些前缀的样式是整站通用的样式,要改的话就是整站都改</p>
 <p>1.base里放基础的工具方法</p>
