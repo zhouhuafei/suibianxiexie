@@ -24,16 +24,6 @@ assets/
 │   └── utils
 ├── libs
 │   └── laydate
-│       ├── need
-│       └── skins
-│           ├── dahong
-│           ├── danlan
-│           ├── default
-│           ├── huanglv
-│           ├── molv
-│           ├── qianhuang
-│           ├── yahui
-│           └── yalan
 ├── scss
 │   ├── commons
 │   ├── components
