@@ -5,8 +5,7 @@
             "script": "app.js",
             "exec_mode": "fork",
             "ignore_watch": [
-                "static",
-                "views"
+                "dist"
             ],
             "watch": true,
             "env": {

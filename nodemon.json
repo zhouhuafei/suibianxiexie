@@ -1,7 +1,6 @@
 {
     "ignore": [
-        "static",
-        "views"
+        "dist"
     ],
     "verbose": true,
     "env": {
