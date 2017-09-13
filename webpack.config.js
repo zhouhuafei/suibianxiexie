@@ -14,16 +14,15 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default;// 压缩图�
 
 class ConfigPath {
     constructor() {
-        this.rootPath = `${__dirname}/`;// 根目录路径
-        this.projectDirname = projectDirname;// 项目目录名称
-        this.projectPath = `${this.rootPath}app/${this.projectDirname}/`;// 项目目录路径
-        this.assetsPath = `${this.projectPath}assets/`;// 资源文件的目录路径
-        this.devPath = this.assetsPath;// 开发的目录路径
-        this.buildPath = `${this.rootPath}dist/static/${this.projectDirname}/`;// 生产静态资源文件的目录路径
-        this.imagesEntryPath = `${this.devPath}images/`;// images的开发目录路径
-        this.jsEntryPath = `${this.devPath}js/`;// js的开发目录路径
-        this.viewEntryPath = `${this.devPath}views/`;// 视图的开发目录路径
-        this.viewOutputPath = `${this.rootPath}dist/views/${this.projectDirname}/`;// 生产视图文件的目录路径
+        this.rootPath = `${__dirname}/`;// 根目录的目录路径
+        this.projectDirname = projectDirname;// 项目的目录名称
+        this.projectPath = `${this.rootPath}app/${this.projectDirname}/`;// 项目的目录路径
+        this.devPath = `${this.projectPath}assets/`;// 开发的目录路径
+        this.viewEntryPath = `${this.devPath}views/`;// 开发视图的目录路径
+        this.jsEntryPath = `${this.devPath}js/`;// 开发js的目录路径
+        this.buildPath = `${this.rootPath}dist/`;// 生产的目录路径
+        this.staticPath = `${this.buildPath}static/${this.projectDirname}/`; // 生产静态资源的目录路径
+        this.viewOutputPath = `${this.buildPath}views/${this.projectDirname}/`;// 生产视图的目录路径
     }
 }
 
@@ -71,7 +70,7 @@ allJs.forEach(function (v) {
 entry['this-is-global-file-vendor'] = ['vue', 'axios'];// 公用的第三方库
 // 出口----配置
 const output = {
-    path: `${configPath.buildPath}`,
+    path: `${configPath.staticPath}`,
     publicPath: `/${configPath.projectDirname}/`,
     filename: `js/pages/[name].${configEnvironment.chunkhash}js`,
     chunkFilename: `js/chunks/[name].[id].chunk.${configEnvironment.chunkhash}js`,
@@ -80,13 +79,13 @@ const output = {
 const plugins = [
     // 插件----清空dist/static目录下对应的项目文件
     new CleanWebpackPlugin([configPath.projectDirname], {
-        root: `${configPath.rootPath}dist/static/`,
+        root: `${configPath.buildPath}static/`,
         verbose: true,
         dry: false,
     }),
     // 插件----清空dist/views目录下对应的项目文件
     new CleanWebpackPlugin([configPath.projectDirname], {
-        root: `${configPath.rootPath}dist/views/`,
+        root: `${configPath.buildPath}views/`,
         verbose: true,
         dry: false,
     }),
