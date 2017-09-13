@@ -2,9 +2,9 @@ const tools = require('./utils/tools');// 工具方法集合
 const applications = require('./utils/applications');
 // 应用方法集合
 const CreateFile = applications.createFile();// 创建文件函数
-const projectDirName = process.argv[2];// 目录名字
-if (!projectDirName) {
-    console.log('projectDirName no find');
+const projectDirname = process.argv[2];// 目录名字
+if (!projectDirname) {
+    console.log('projectDirname no find');
     return;
 }
 const fileName = process.argv[3];// 文件名字
@@ -12,10 +12,10 @@ if (!fileName) {
     console.log('fileName no find');
     return;
 }
-const routeConfig = require(`./routes/${projectDirName}/pages/config`);// 路由的配置
+const routeConfig = require(`./routes/${projectDirname}/pages/config`);// 路由的配置
 const pageTitle = routeConfig[fileName].title;// 页面的标题
-const staticPath = `${__dirname}/static/src/${projectDirName}/`;// 前端静态文件所处的位置
-const controllerPath = `${__dirname}/controllers/${projectDirName}/pages/`;// 后台控制器文件所处的位置
+const staticPath = `${__dirname}/app/${projectDirname}/assets/`;// 前端静态文件所处的位置
+const controllerPath = `${__dirname}/app/${projectDirname}/controllers/pages/`;// 后台控制器文件所处的位置
 
 // 创建静态文件
 const file = {
@@ -25,17 +25,17 @@ const file = {
         content: `<!DOCTYPE html>
 <html lang="en">
     <head>
-        {{>${projectDirName}/partials/head}}
+        {{>${projectDirname}/partials/head}}
     </head>
     <body>
         <div class="g-wrap">
-            {{>${projectDirName}/partials/header}}
+            {{>${projectDirname}/partials/header}}
             <!--page start-->
             <div class="g-body">
                 <!--结构待续...-->
             </div>
             <!--page end-->
-            {{>${projectDirName}/partials/footer}}
+            {{>${projectDirname}/partials/footer}}
         </div>
     </body>
 </html>`,
