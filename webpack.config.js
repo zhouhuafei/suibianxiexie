@@ -72,7 +72,7 @@ entry['this-is-global-file-vendor'] = ['vue', 'axios'];// 公用的第三方库
 // 出口----配置
 const output = {
     path: `${configPath.buildPath}`,
-    publicPath: configPath.projectDirname,
+    publicPath: `/${configPath.projectDirname}/`,
     filename: `js/pages/[name].${configEnvironment.chunkhash}js`,
     chunkFilename: `js/chunks/[name].[id].chunk.${configEnvironment.chunkhash}js`,
 };
