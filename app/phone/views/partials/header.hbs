@@ -1,0 +1,37 @@
+<script>
+    (function (win, doc) {
+        function isPc() {
+            const userAgentInfo = navigator.userAgent;
+            const Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod'];
+            let flag = true;
+            for (let v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+
+        function resize() {
+            const html = doc.querySelector('html');
+            const wrap = doc.querySelector('.g-wrap');
+            if (isPc()) {
+                html.classList.add('g-pc');
+            } else {
+                html.classList.remove('g-pc');
+            }
+            html.style.fontSize = `${wrap.offsetWidth / 10}px`;
+        }
+
+        resize();
+        win.addEventListener('resize', resize);
+    }(window, document));
+</script>
+<div class="g-header">
+    <div class="g-qr-code">
+        <div class="g-qr-code-text">有码可依 有码必依</div>
+        <div class="g-qr-code-svg">{{{dataInfo.qrCode}}}</div>
+        <div class="g-qr-code-text">执码必严 违码必究</div>
+    </div>
+</div>

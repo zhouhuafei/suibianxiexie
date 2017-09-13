@@ -71,7 +71,7 @@ entry['this-is-global-file-vendor'] = ['vue', 'axios'];// 公用的第三方库
 // 出口----配置
 const output = {
     path: `${configPath.buildPath}`,
-    publicPath: `/${configPath.projectDir}/dist/`,
+    publicPath: '/dist/',
     filename: `js/pages/[name].${configEnvironment.chunkhash}js`,
     chunkFilename: `js/chunks/[name].[id].chunk.${configEnvironment.chunkhash}js`,
 };
@@ -79,13 +79,13 @@ const output = {
 const plugins = [
     // 插件----清空项目文件下对应的dist目录
     new CleanWebpackPlugin(['dist'], {
-        root: `${configPath.staticPath}`,
+        root: configPath.staticPath,
         verbose: true,
         dry: false,
     }),
     // 插件----清空项目文件下对应的views目录
-    new CleanWebpackPlugin(['view'], {
-        root: `${configPath.projectPath}views/`,
+    new CleanWebpackPlugin(['views'], {
+        root: configPath.projectPath,
         verbose: true,
         dry: false,
     }),
