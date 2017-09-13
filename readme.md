@@ -9,7 +9,8 @@ npm run phoneBuild
 pm2 app.js
 ````
 
-> 开发的目录结构
+````
+# 开发的目录结构
 assets/
 ├── images
 │   ├── commons
@@ -34,6 +35,7 @@ assets/
     ├── layouts
     ├── pages
     └── partials
+````
 
 代码装修中...
 <p>0.g-表示全局级别,m-表示模块级别,c-表示组件级别,有这些前缀的样式是整站通用的样式,要改的话就是整站都改</p>
