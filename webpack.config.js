@@ -15,13 +15,14 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default;// 压缩图�
 class ConfigPath {
     constructor() {
         this.projectDir = projectDir;// 项目名称
-        this.staticPath = `${__dirname}/static/`;// 静态文件的目录
-        this.devPath = `${this.staticPath}src/${this.projectDir}/`;// 开发的目录
-        this.buildPath = `${this.staticPath}dist/${this.projectDir}/`;// 生产的目录
+        this.projectPath = `${__dirname}/app/${this.projectDir}/`;// 项目目录
+        this.staticPath = `${this.projectPath}static/`;// 静态文件的目录
+        this.devPath = `${this.staticPath}src/`;// 开发的目录
+        this.buildPath = `${this.staticPath}dist/`;// 生产的目录
         this.imagesEntryPath = `${this.devPath}images/`;// images的开发目录
         this.jsEntryPath = `${this.devPath}js/`;// js的开发目录
         this.viewEntryPath = `${this.devPath}views/`;// 视图的开发目录
-        this.viewOutputPath = `${__dirname}/views/${this.projectDir}/`;// 视图的生产目录
+        this.viewOutputPath = `${this.projectPath}views/`;// 视图的生产目录
     }
 }
 
@@ -70,20 +71,24 @@ entry['this-is-global-file-vendor'] = ['vue', 'axios'];// 公用的第三方库
 // 出口----配置
 const output = {
     path: `${configPath.buildPath}`,
-    publicPath: `/dist/${configPath.projectDir}/`,
+    publicPath: `/${configPath.projectDir}/dist/`,
     filename: `js/pages/[name].${configEnvironment.chunkhash}js`,
     chunkFilename: `js/chunks/[name].[id].chunk.${configEnvironment.chunkhash}js`,
 };
 // 插件----集合
 const plugins = [
-    // 插件----清空dist目录下对应的项目文件
-    new CleanWebpackPlugin([configPath.projectDir], {
-        root: `${configPath.staticPath}/dist/`,
+    // 插件----清空项目文件下对应的dist目录
+    new CleanWebpackPlugin(['dist'], {
+        root: `${configPath.staticPath}`,
         verbose: true,
         dry: false,
     }),
-    // 插件----清空views目录下对应的项目文件
-    new CleanWebpackPlugin([configPath.projectDir], {root: `${__dirname}/views/`, verbose: true, dry: false}),
+    // 插件----清空项目文件下对应的views目录
+    new CleanWebpackPlugin(['view'], {
+        root: `${configPath.projectPath}views/`,
+        verbose: true,
+        dry: false,
+    }),
     // 插件----提取css样式到文件
     new ExtractTextPlugin(`css/pages/[name].${configEnvironment.contenthash}css`),
     // 插件----把每个入口都有用到的js和css分别提取为this-is-global-file-common.js和this-is-global-file-common.css
