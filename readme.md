@@ -9,7 +9,7 @@ npm run phoneBuild
 pm2 app.js
 ````
 
-开发的目录结构
+> 开发的目录结构
 assets/
 ├── images
 │   ├── commons
@@ -56,7 +56,6 @@ assets/
 <p>7.gulp browserify的默认根目录是js目录下的base目录(引入文件时需要注意,否则会报错)</p>
 <p>8.那些没办法做成模块的,我就单独放到了ui文件夹里</p>
 
-
 代码装修中...
 <p>0.约定大于一切,规则至上</p>
 <p>1.function文件夹里的所有js文件,都只是逻辑上的功能,不涉及业务层面,简单点说,就是不需要css配合</p>
@@ -67,11 +66,6 @@ assets/
 <p>4-2.例如出现多个选择元素   selector.a,selector.b,selector.c</p>
 <p>命名规范  m-开头的是模块 g-开头的是全局 c-开头的是组件  page-开头的是页面级别的</p>
 <p>轮播图比例  普通轮播图w:h==2:1  详情轮播图w:h==1:1</p>
-
-
-
-
-
 
 <p>static/src/js/   目录下的</p>
 <p>base:            放点什么好呢</p>
