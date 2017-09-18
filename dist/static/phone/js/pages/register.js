@@ -78,7 +78,13 @@ module.exports = function (json) {
         defaults: {},
         inherits: json
     });
-    return axios(opts);
+    return axios(opts).catch(function (error) {
+        console.log('axios error:', error);
+    }).then(function (json) {
+        var response = json || {};
+        console.log('axios response:', response);
+        return response.data || {};
+    });
 };
 
 /***/ }),
