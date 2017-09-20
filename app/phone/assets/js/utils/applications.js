@@ -170,7 +170,7 @@ Applications.prototype.getParent = function (element, parentSelector) {
         switch (parentSelector.charAt(0)) {
             case '.':// 通过class获取父级
                 while (element) {
-                    if (!element.classList) {
+                    if (!element.classList) { // element === document
                         console.log('no find class');
                         return null;
                     }
@@ -319,10 +319,10 @@ Applications.prototype.isIphone = function () {
 };
 // 获取元素距离文档的left和top
 Applications.prototype.offset = function (element) {
-    const getDomArray = this.getDomArray;
+    const self = this;
     let top = 0;
     let left = 0;
-    element = getDomArray(element)[0];
+    element = self.getDomArray(element)[0];
     while (element) {
         top += element.offsetTop;
         left += element.offsetLeft;
@@ -352,7 +352,7 @@ Applications.prototype.scrollToY = function (to = '0') {
 };
 // 全选,不选,反选
 Applications.prototype.select = function () {
-    const getDomArray = this.getDomArray;// 获取原生的dom节点并转换成数组
+    const self = this;
 
     function Select(json) {
         this.opts = tools.extend({
@@ -365,7 +365,7 @@ Applications.prototype.select = function () {
             },
             inherits: json,
         });
-        this.itemsDom = getDomArray(this.opts.items);
+        this.itemsDom = self.getDomArray(this.opts.items);// 获取原生的dom节点并转换成数组
         this.init();
     }
 

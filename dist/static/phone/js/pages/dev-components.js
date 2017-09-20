@@ -1106,16 +1106,16 @@ window.addEventListener('load', function () {
 
         // ajax测试
         (function () {
-            // var Ajax = require('../tools/ajax');
+            // const Ajax = require('../api/ajax');
             // new Ajax({
             //     callback: {},
             //     config: {
-            //         url: '/api/getList'
+            //         url: '/api/getList',
             //     },
             //     data: {
-            //         hellow: 'hellow'
-            //     }
-            // })
+            //         hellow: 'hellow',
+            //     },
+            // });
         })();
 
         // base函数测试
