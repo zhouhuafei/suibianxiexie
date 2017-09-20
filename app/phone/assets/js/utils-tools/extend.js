@@ -1,8 +1,8 @@
 /**
  * @description 对象的扩展
- * @param {Object} defaults - 默认对象
- * @param {Object} inherits - 继承对像
- * @param {Boolean} isDeep - 是否进行深拷贝(默认进行深拷贝)
+ * @param {Object} defaults = {} - 默认对象
+ * @param {Object} inherits = {} - 继承对像
+ * @param {Boolean} [isDeep = true] - 是否进行深拷贝(默认进行深拷贝)
  * */
 function extend(defaults = {}, inherits = {}, isDeep = true) {
     const defaultsType = Object.prototype.toString.call(defaults).slice(8, -1).toLowerCase();
