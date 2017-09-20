@@ -1,5 +1,5 @@
 // 日期格式化
-module.exports = function (date, format = 'year-month-date hour:minute:second day') {
+function format(date, format = 'year-month-date hour:minute:second day') {
     const myDate = new Date();
     let time = 0;
     if ({}.toString.call(date).slice(8, -1).toLowerCase() === 'date') {
@@ -22,4 +22,10 @@ module.exports = function (date, format = 'year-month-date hour:minute:second da
         format.replace(new RegExp(key), obj[key]);
     });
     return format;
-};
+}
+
+function countDown() {
+}
+
+module.exports.format = format;
+module.exports.countDown = countDown;
