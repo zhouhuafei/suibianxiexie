@@ -260,13 +260,13 @@ Tools.prototype.isInteger = function (value) {
     return reg.test(value);
 };
 // 保留几位小数(默认两位)
-Tools.prototype.reservedDecimal = function (num = 0, several = 2) {
-    const baseNum = 10 ** several;
+Tools.prototype.keepDecimal = function (num = 0, place = 2) {
+    const baseNum = 10 ** place;
     return (Math.floor(parseFloat(num) * baseNum) / baseNum).toFixed(2);
 };
-// 是不是保留了num位小数点(默认两位)
-Tools.prototype.isReservedDecimal = function (num, several = 2) {
-    const reg = new RegExp(`^\\d+\\.\\d{${several}}$`);
+// 是不是保留了place位小数(默认两位)
+Tools.prototype.isKeepDecimal = function (num, place = 2) {
+    const reg = new RegExp(`^\\d+\\.\\d{${place}}$`);
     return reg.test(num);
 };
 // 是不是手机号
