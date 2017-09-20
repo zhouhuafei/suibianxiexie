@@ -180,8 +180,73 @@ Tools.prototype.strLimitLength = function (json) {
     }
     return str;
 };
+// json转数组
+Tools.prototype.jsonToArray = function (json) {
+    const opts = json || {};
+    const obj = opts.json || {};
+    const arr = [];
+    if (obj instanceof Array) {
+        obj.forEach(function (v, i) {
+            arr.push({key: i, value: v});
+        });
+    } else {
+        Object.keys(obj).forEach(function (attr) {
+            arr.push({key: attr, value: obj[attr]});
+        });
+    }
+    return arr;
+};
+// 补零函数
+Tools.prototype.fillZero = function (json) {
+    const opts = json || {};
+    const num = opts.num || '0';
+    if (num < 10) {
+        return `0${num}`;
+    }
+    return `${num}`;
+};
+// px转rem
+Tools.prototype.px2rem = function (json) {
+    const opts = json || {};
+    const base = opts.base || '320';
+    const px = opts.px || '0';
+    return `${px / base * 10}rem`;
+};
+// 字符串转驼峰
+Tools.prototype.strToHump = function (json) {
+    const opts = this.extend({
+        defaults: {
+            str: '',
+            rule: '-',
+        },
+        inherits: json,
+    });
+    let str = opts.str;
+    const rule = opts.rule;
+    const type = this.typeOf(str);
+    if (type === 'string') {
+        const arr = str.split(rule);
+        arr.forEach(function (v, i) {
+            if (i !== 0) {
+                if (arr[i][0]) {
+                    arr[i] = arr[i][0].toUpperCase() + arr[i].substring(1);
+                }
+            }
+        });
+        str = arr.join('');
+    } else {
+        console.log('参数错误,请输入字符串');
+    }
+    return str;
+};
 // 获取随机数
-Tools.prototype.getRandom = require('../utils-tools/get-random');
+Tools.prototype.getRandom = function (min, max) {
+    const self = this;
+    min = self.typeOf(min) === 'number' ? min : 0;
+    max = self.typeOf(max) === 'number' ? max : 1;
+    return Math.round(Math.random() * (max - min) + min);
+};
+
 // 是不是空字符串
 Tools.prototype.isEmpty = function (value) {
     return value.toString().trim() === '';
@@ -190,15 +255,15 @@ Tools.prototype.isEmpty = function (value) {
 Tools.prototype.isZero = function (value) {
     return Number(value) === 0;
 };
-// 是不是整数(正整数且包含0)
+// 是不是正整数
 Tools.prototype.isPositiveInteger = function (value) {
     const reg = /^\d+$/;
     return reg.test(value);
 };
 // 是不是保留了place位小数(默认两位)
-Tools.prototype.isKeepDecimal = function (num, place = 2) {
-    const reg = new RegExp(`^\\d+\\.\\d{${place}}$`);
-    return reg.test(num);
+Tools.prototype.isKeepDecimal = function (value, num) {
+    const reg = new RegExp(`^\\d+\\.\\d{${num}}$`);
+    return reg.test(value);
 };
 // 是不是手机号
 Tools.prototype.isPhoneNum = function (value) {
@@ -210,5 +275,5 @@ Tools.prototype.isEmail = function (value) {
     const reg = /^([0-9A-Za-z\-_.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
     return reg.test(value);
 };
-// 输出
+
 module.exports = new Tools();
