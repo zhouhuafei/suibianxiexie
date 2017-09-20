@@ -246,7 +246,6 @@ Tools.prototype.getRandom = function (min, max) {
     max = self.typeOf(max) === 'number' ? max : 1;
     return Math.round(Math.random() * (max - min) + min);
 };
-
 // 是不是空字符串
 Tools.prototype.isEmpty = function (value) {
     return value.toString().trim() === '';
@@ -260,10 +259,15 @@ Tools.prototype.isInteger = function (value) {
     const reg = /^\d+$/;
     return reg.test(value);
 };
-// 是不是保留了num位小数点
-Tools.prototype.isReservedDecimal = function (value, num) {
-    const reg = new RegExp(`^\\d+\\.\\d{${num}}$`);
-    return reg.test(value);
+// 保留几位小数(默认两位)
+Tools.prototype.reservedDecimal = function (num = 0, several = 2) {
+    const baseNum = 10 ** several;
+    return (Math.floor(parseFloat(num) * baseNum) / baseNum).toFixed(2);
+};
+// 是不是保留了num位小数点(默认两位)
+Tools.prototype.isReservedDecimal = function (num, several = 2) {
+    const reg = new RegExp(`^\\d+\\.\\d{${several}}$`);
+    return reg.test(num);
 };
 // 是不是手机号
 Tools.prototype.isPhoneNum = function (value) {
@@ -275,7 +279,6 @@ Tools.prototype.isEmail = function (value) {
     const reg = /^([0-9A-Za-z\-_.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
     return reg.test(value);
 };
-
 // {a:1,b:2} 序列成 'a=1&b=2'
 Tools.prototype.queryStringify = function (json) {
     const obj = json || {};
@@ -285,7 +288,6 @@ Tools.prototype.queryStringify = function (json) {
     });
     return result.join('&');
 };
-
 // 'a=1&b=2' 解析成 {a:1,b:2}
 Tools.prototype.queryParse = function (str) {
     const result = {};
