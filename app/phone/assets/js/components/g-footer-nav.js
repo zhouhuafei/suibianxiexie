@@ -30,9 +30,9 @@ const SubType = tools.constructorInherit({
 SubType.prototype.moduleDomCreate = function () {
     this.moduleDomClass = 'g-footer-nav';
     let moduleDomHtml = '';
-    const data = tools.jsonToArray({json: this.opts.data});
-    data.forEach(function (value) {
-        const v = value.value;
+    const data = this.opts.data;
+    Object.keys(data).forEach(function (key) {
+        const v = data[key];
         let highlightClass = '';
         if (v.isHighlight) {
             highlightClass = 'g-footer-nav-body-active';

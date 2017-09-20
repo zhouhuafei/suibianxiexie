@@ -180,24 +180,6 @@ Tools.prototype.strLimitLength = function (json) {
     }
     return str;
 };
-// json转数组
-Tools.prototype.jsonToArray = function (json) {
-    const opts = json || {};
-    const obj = opts.json || {};
-    const arr = [];
-    if (obj instanceof Array) {
-        obj.forEach(function (v, i) {
-            arr.push({key: i, value: v});
-        });
-    } else {
-        Object.keys(obj).forEach(function (attr) {
-            arr.push({key: attr, value: obj[attr]});
-        });
-    }
-    return arr;
-};
-// px转rem
-Tools.prototype.px2rem = require('../utils-tools/px2rem');
 // 获取随机数
 Tools.prototype.getRandom = require('../utils-tools/get-random');
 // 是不是空字符串
