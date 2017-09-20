@@ -209,7 +209,7 @@ Applications.prototype.getParent = function (element, parentSelector) {
     return null;
 };
 // html转成DOM节点
-Applications.prototype.htmlToDom = function htmlToDom(html) {
+Applications.prototype.htmlToDom = function (html) {
     const div = document.createElement('div');
     div.innerHTML = html;
     return div.children[0];
