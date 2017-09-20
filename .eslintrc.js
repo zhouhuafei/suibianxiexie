@@ -22,6 +22,26 @@ module.exports = {
     * 2或者"error":打开规则,并且作为一个错误(exit code将会是1)
     * */
     rules: {
+        // 禁止某些对象属性（无限制属性）Math.pow允许被使用
+        'no-restricted-properties': [
+            2,
+            // 禁止使用arguments.callee
+            {
+                object: 'arguments',
+                property: 'callee',
+                message: 'arguments.callee is deprecated',
+            },
+            // 禁止使用__defineGetter__
+            {
+                property: '__defineGetter__',
+                message: 'Please use Object.defineProperty instead.',
+            },
+            // 禁止使用__defineSetter__
+            {
+                property: '__defineSetter__',
+                message: 'Please use Object.defineProperty instead.',
+            }
+        ],
         'no-script-url': 0, // 禁止使用 javascript: url
         'max-len': [0, 100], // 强制行的最大长度
         'class-methods-use-this': 0, // 强制使用类方法this

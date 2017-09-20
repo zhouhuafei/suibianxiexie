@@ -235,17 +235,17 @@ Tools.prototype.jsonToArray = function (json = {}) {
 /**
  * @description 补零函数
  * @param {Number} value - 数字
- * @param {Number} space - 这个数字是个几位数的数字,如果是个3位数的数字,不足三位,则补0
+ * @param {Number} place - 这个数字是个几位数的数字,如果是个3位数的数字,不足三位,则补0
  * */
-Tools.prototype.fillZero = function (value = 0, space = 2) {
+Tools.prototype.fillZero = function (value = 0, place = 2) {
     const valueLen = value.toString().length;
-    const zeroLen = space - valueLen;
+    const zeroLen = place - valueLen;
     const arr = [];
     for (let i = 0; i < zeroLen; i++) {
         arr.push('0');
     }
     const zero = arr.join('');
-    if (value < 10 ** space) {
+    if (value < Math.pow(10, place)) {
         return `${zero}${value}`;
     }
     return `${value}`;
@@ -333,7 +333,7 @@ Tools.prototype.queryParse = function (str) {
 };
 // 保留几位小数(默认两位)
 Tools.prototype.keepDecimal = function (value = 0, place = 2) {
-    const baseNum = 10 ** place;
+    const baseNum = Math.pow(10, place);
     return (Math.floor(parseFloat(value) * baseNum) / baseNum).toFixed(2);
 };
 // 输出

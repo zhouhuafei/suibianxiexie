@@ -220,7 +220,7 @@ Applications.prototype.getParent = function (element, parentSelector) {
     return null;
 };
 // html转成DOM节点
-Applications.prototype.htmlToDom = function htmlToDom(html) {
+Applications.prototype.htmlToDom = function (html) {
     var div = document.createElement('div');
     div.innerHTML = html;
     return div.children[0];
@@ -763,20 +763,20 @@ Tools.prototype.jsonToArray = function () {
 /**
  * @description 补零函数
  * @param {Number} value - 数字
- * @param {Number} space - 这个数字是个几位数的数字,如果是个3位数的数字,不足三位,则补0
+ * @param {Number} place - 这个数字是个几位数的数字,如果是个3位数的数字,不足三位,则补0
  * */
 Tools.prototype.fillZero = function () {
     var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    var space = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+    var place = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
 
     var valueLen = value.toString().length;
-    var zeroLen = space - valueLen;
+    var zeroLen = place - valueLen;
     var arr = [];
     for (var i = 0; i < zeroLen; i++) {
         arr.push('0');
     }
     var zero = arr.join('');
-    if (value < Math.pow(10, space)) {
+    if (value < Math.pow(10, place)) {
         return '' + zero + value;
     }
     return '' + value;
