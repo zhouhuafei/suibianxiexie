@@ -1,5 +1,5 @@
-// 日期格式化
 /**
+ * 对象的扩展
  * @param {Object} defaults - 默认对象
  * @param {Object} inherits - 继承对像
  * @param {Boolean} isDeep - 是否进行深拷贝(默认进行深拷贝)
