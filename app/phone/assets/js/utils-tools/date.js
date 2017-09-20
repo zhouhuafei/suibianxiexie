@@ -1,5 +1,5 @@
 // 日期格式化
-function format(date, format = 'year-month-date hour:minute:second day') {
+function format(date, result = 'year/month/date hour:minute:second day') {
     const myDate = new Date();
     let time = 0;
     if ({}.toString.call(date).slice(8, -1).toLowerCase() === 'date') {
@@ -19,9 +19,10 @@ function format(date, format = 'year-month-date hour:minute:second day') {
         day: `星期${['日', '一', '二', '三', '四', '五', '六'][myDate.getDay()]}`, // 星期
     };
     Object.keys(obj).forEach(function (key) {
-        format.replace(new RegExp(key), obj[key]);
+        result = result.replace(new RegExp(key), obj[key]);
     });
-    return format;
+    obj.result = result;
+    return obj;
 }
 
 function countDown() {
