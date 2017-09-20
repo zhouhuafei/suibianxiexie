@@ -299,5 +299,5 @@ Tools.prototype.queryParse = function (str) {
     }
     return result;
 };
-
+// 输出
 module.exports = new Tools();
