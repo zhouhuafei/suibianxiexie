@@ -3,15 +3,12 @@
  * @param {Number} date - 毫秒数
  * @param {String} result = 'year/month/date hour:minute:second day' - 格式
  * */
-function format(date, result = 'year/month/date hour:minute:second day') {
+function format(date = 0, result = 'year/month/date hour:minute:second day') {
     const myDate = new Date();
-    let time = 0;// 毫秒数
     if ({}.toString.call(date).slice(8, -1).toLowerCase() === 'date') {
-        time = date.getTime();
-    } else {
-        time = date;
+        date = date.getTime();
     }
-    myDate.setTime(time);
+    myDate.setTime(date);
     const obj = {
         year: myDate.getFullYear(), // 年
         month: myDate.getMonth() + 1, // 月
@@ -29,8 +26,23 @@ function format(date, result = 'year/month/date hour:minute:second day') {
     return obj;
 }
 
-function countDown() {
+// 秒转时间
+function secondsToTime(seconds = 0) {
+    // 天
+    const nowDay = Math.floor(seconds / 3600 / 24);
+    // 时
+    const nowHours = Math.floor(seconds / 3600 % 24);
+    // 分
+    const nowMinutes = Math.floor(seconds % 3600 / 60);
+    // 秒
+    const nowSeconds = Math.floor(seconds % 60);
+    return {nowDay: nowDay, nowHours: nowHours, nowMinutes: nowMinutes, nowSeconds: nowSeconds};
+}
+
+// 倒计时
+function timeCountDown() {
 }
 
 module.exports.format = format;
-module.exports.countDown = countDown;
+module.exports.secondsToTime = secondsToTime;
+module.exports.timeCountDown = timeCountDown;
