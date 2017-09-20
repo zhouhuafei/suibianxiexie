@@ -246,7 +246,6 @@ Tools.prototype.getRandom = function (min, max) {
     max = self.typeOf(max) === 'number' ? max : 1;
     return Math.round(Math.random() * (max - min) + min);
 };
-
 // 是不是空字符串
 Tools.prototype.isEmpty = function (value) {
     return value.toString().trim() === '';
@@ -259,6 +258,11 @@ Tools.prototype.isZero = function (value) {
 Tools.prototype.isPositiveInteger = function (value) {
     const reg = /^\d+$/;
     return reg.test(value);
+};
+// 保留几位小数(默认两位)
+Tools.prototype.keepDecimal = function (num = 0, place = 2) {
+    const baseNum = 10 ** place;
+    return (Math.floor(parseFloat(num) * baseNum) / baseNum).toFixed(2);
 };
 // 是不是保留了place位小数(默认两位)
 Tools.prototype.isKeepDecimal = function (value, num) {
@@ -275,5 +279,25 @@ Tools.prototype.isEmail = function (value) {
     const reg = /^([0-9A-Za-z\-_.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
     return reg.test(value);
 };
-
+// {a:1,b:2} 序列成 'a=1&b=2'
+Tools.prototype.queryStringify = function (json) {
+    const obj = json || {};
+    const result = [];
+    Object.keys(obj).forEach(function (key) {
+        result.push(`${key}=${obj[key]}`);
+    });
+    return result.join('&');
+};
+// 'a=1&b=2' 解析成 {a:1,b:2}
+Tools.prototype.queryParse = function (str) {
+    const result = {};
+    if (str) {
+        str.split('&').forEach(function (v) {
+            const arr = v.split('=');
+            result[arr[0]] = arr[1];
+        });
+    }
+    return result;
+};
+// 输出
 module.exports = new Tools();
