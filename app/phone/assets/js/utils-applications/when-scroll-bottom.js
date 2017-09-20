@@ -1,5 +1,12 @@
-const extend = require('../tools/extend');
-
+const extend = require('../utils-tools/extend');
+/**
+ * @description 当滚动到浏览器底部
+ * @constructor
+ * @param {Object} json
+ * @param {Object} json.callback
+ * @param {Function} json.callback.success
+ * @param {Function} json.callback.failure
+ * */
 function WhenScrollBottom(json) {
     this.opts = extend({
         callback: {
