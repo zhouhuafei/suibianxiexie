@@ -77,7 +77,7 @@ Object.keys(file).forEach(function (attr) {
 
 // 创建控制器文件
 {
-    const humpFileName = tools.strToHump({str: `-${fileName}`});
+    const humpFileName = tools.strToHump(`-${fileName}`);
     new CreateFile({
         data: {
             path: controllerPath,

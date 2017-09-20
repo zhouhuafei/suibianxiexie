@@ -34,7 +34,7 @@ SubType.prototype.moduleDomCreate = function () {
 SubType.prototype.power = function () {
     const self = this;
     this.moduleDom.addEventListener('click', function () {
-        applications.scrollTo({to: '0'});
+        applications.scrollToY('0');
     });
     window.addEventListener('scroll', function () {
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;

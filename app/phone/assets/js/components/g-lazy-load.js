@@ -15,6 +15,7 @@ function LazyLoad(json) {
     this.clientHeight = document.documentElement.clientHeight;
     this.init();
 }
+
 LazyLoad.prototype.init = function () {
     this.render();
     this.power();
@@ -26,7 +27,7 @@ LazyLoad.prototype.render = function () {
     const minTop = scrollTop - moreHeight;
     const maxTop = this.clientHeight + minTop + moreHeight;
     const src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
-    const aDom = applications.getDomArray({element: this.opts.element});
+    const aDom = applications.getDomArray(this.opts.element);
     aDom.forEach(function (v) {
         if (v.tagName.toLowerCase() === 'img') {
             if (!v.getAttribute('src')) {
@@ -39,7 +40,7 @@ LazyLoad.prototype.render = function () {
     aDom.forEach(function (v) {
         // 排除那些被none掉的元素(被none掉的元素,通过offsetWidth和offsetHeight获取到的值是0)
         if (v.offsetWidth) {
-            const elementTop = applications.offset({element: v}).top;
+            const elementTop = applications.offset(v).top;
             const elementBottom = elementTop + v.offsetHeight;
             // 出现在可视区才进行处理
             if (elementBottom >= minTop && elementTop <= maxTop) {

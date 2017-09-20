@@ -41,11 +41,12 @@ Tools.prototype.extend = function (json) {
     }
     return opts.defaults;
 };
-// 对象移除引用
-Tools.prototype.objRemoveQuote = function (json) {
+/**
+ * @description 对象移除引用
+ * @param {Object} obj - 参数需要是一个对象或者是一个数组,这里一定不能给默认值,否则undefined就没了
+ * */
+Tools.prototype.objRemoveQuote = function (obj) {
     const self = this;
-    const opts = json || {};
-    const obj = opts.obj;// 这里一定不能给默认值
     const objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
     if (objType !== 'object' && objType !== 'array') {
         return obj;
@@ -55,7 +56,7 @@ Tools.prototype.objRemoveQuote = function (json) {
         newObj = [];
     }
     Object.keys(obj).forEach(function (attr) {
-        newObj[attr] = self.objRemoveQuote({obj: obj[attr]});
+        newObj[attr] = self.objRemoveQuote(obj[attr]);
     });
     return newObj;
 };
@@ -94,7 +95,7 @@ Tools.prototype.constructorInherit = function (json) {
          * 所以我就封装了一个移除对象引用的函数
          * */
         this.opts = self.extend({
-            defaults: self.objRemoveQuote({obj: parameter}),
+            defaults: self.objRemoveQuote(parameter),
             inherits: json,
         });
         // 子类型继承超类型的属性
@@ -200,11 +201,12 @@ Tools.prototype.timeCountDown = function (json) {
         console.log('倒计时的秒数不能小于0');
     }
 };
-// 字符串限制长度
-Tools.prototype.strLimitLength = function (json) {
-    const opts = json || {};
-    const maxLength = opts.maxLength;
-    let str = opts.str;
+/**
+ * @description 字符串限制最大长度
+ * @param {String} str - 字符串
+ * @param {Number} maxLength - 限制最大长度
+ * */
+Tools.prototype.strLimitLength = function (str, maxLength) {
     if (!str) {
         return '';
     }
@@ -232,30 +234,34 @@ Tools.prototype.jsonToArray = function (json = {}) {
 };
 /**
  * @description 补零函数
- * @param {Number} num - 数字
+ * @param {Number} value - 数字
+ * @param {Number} space - 这个数字是个几位数的数字,如果是个3位数的数字,不足三位,则补0
  * */
-Tools.prototype.fillZero = function (num = 0) {
-    if (num < 10) {
-        return `0${num}`;
+Tools.prototype.fillZero = function (value = 0, space = 2) {
+    const valueLen = value.toString().length;
+    const zeroLen = space - valueLen;
+    const arr = [];
+    for (let i = 0; i < zeroLen; i++) {
+        arr.push('0');
     }
-    return `${num}`;
+    const zero = arr.join('');
+    if (value < 10 ** space) {
+        return `${zero}${value}`;
+    }
+    return `${value}`;
 };
 // px转rem
 Tools.prototype.px2rem = function (px = 0, base = 320) {
     return `${px / base * 10}rem`;
 };
-// 字符串转驼峰
-Tools.prototype.strToHump = function (json) {
-    const opts = this.extend({
-        defaults: {
-            str: '',
-            rule: '-',
-        },
-        inherits: json,
-    });
-    let str = opts.str;
-    const rule = opts.rule;
-    const type = this.typeOf(str);
+/**
+ * @description 字符串转驼峰
+ * @param {String} str - 字符串
+ * @param {String} rule - 规则
+ * */
+Tools.prototype.strToHump = function (str, rule = '-') {
+    const self = this;
+    const type = self.typeOf(str);
     if (type === 'string') {
         const arr = str.split(rule);
         arr.forEach(function (v, i) {
@@ -307,8 +313,7 @@ Tools.prototype.isEmail = function (value) {
     return reg.test(value);
 };
 // {a:1,b:2} 序列成 'a=1&b=2'
-Tools.prototype.queryStringify = function (json) {
-    const obj = json || {};
+Tools.prototype.queryStringify = function (obj = {}) {
     const result = [];
     Object.keys(obj).forEach(function (key) {
         result.push(`${key}=${obj[key]}`);

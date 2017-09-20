@@ -2,9 +2,12 @@
 function Tools() {
 }
 
-// 判断类型
-Tools.prototype.typeOf = function (obj) {
-    return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+/**
+ * @description 判断类型
+ * @param {*} whatever - 任何类型的数据都可以
+ * */
+Tools.prototype.typeOf = function (whatever) {
+    return Object.prototype.toString.call(whatever).slice(8, -1).toLowerCase();
 };
 // 对象扩展
 Tools.prototype.extend = function (json) {
@@ -38,11 +41,12 @@ Tools.prototype.extend = function (json) {
     }
     return opts.defaults;
 };
-// 对象移除引用
-Tools.prototype.objRemoveQuote = function (json) {
+/**
+ * @description 对象移除引用
+ * @param {Object} obj - 参数需要是一个对象或者是一个数组,这里一定不能给默认值,否则undefined就没了
+ * */
+Tools.prototype.objRemoveQuote = function (obj) {
     const self = this;
-    const opts = json || {};
-    const obj = opts.obj;// 这里一定不能给默认值
     const objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
     if (objType !== 'object' && objType !== 'array') {
         return obj;
@@ -52,7 +56,7 @@ Tools.prototype.objRemoveQuote = function (json) {
         newObj = [];
     }
     Object.keys(obj).forEach(function (attr) {
-        newObj[attr] = self.objRemoveQuote({obj: obj[attr]});
+        newObj[attr] = self.objRemoveQuote(obj[attr]);
     });
     return newObj;
 };
@@ -91,7 +95,7 @@ Tools.prototype.constructorInherit = function (json) {
          * 所以我就封装了一个移除对象引用的函数
          * */
         this.opts = self.extend({
-            defaults: self.objRemoveQuote({obj: parameter}),
+            defaults: self.objRemoveQuote(parameter),
             inherits: json,
         });
         // 子类型继承超类型的属性
@@ -116,10 +120,40 @@ Tools.prototype.arrayRemoveRepeat = function (array) {
     });
     return newArray;
 };
-// 秒转时间
-Tools.prototype.secondsToTime = function (json) {
-    const opts = json || {};
-    const seconds = opts.seconds;
+/**
+ * @description 日期格式化
+ * @param {Number} date - 毫秒数
+ * @param {String} result = 'year/month/day hours:minutes:seconds' - 格式
+ * */
+Tools.prototype.dateFormat = function (date = 0, result = 'year/month/day hours:minutes:seconds') {
+    const myDate = new Date();
+    if ({}.toString.call(date).slice(8, -1).toLowerCase() === 'date') {
+        date = date.getTime();
+    }
+    myDate.setTime(date);
+    const obj = {
+        year: myDate.getFullYear(), // 年
+        month: myDate.getMonth() + 1, // 月
+        day: myDate.getDate(), // 日
+        hours: myDate.getHours(), // 时
+        minutes: myDate.getMinutes(), // 分
+        seconds: myDate.getSeconds(), // 秒
+        milliseconds: myDate.getMilliseconds(), // 毫秒
+        week1: `星期${['日', '一', '二', '三', '四', '五', '六'][myDate.getDay()]}`, // 星期几
+        week2: `周${['日', '一', '二', '三', '四', '五', '六'][myDate.getDay()]}`, // 周几
+        week3: `礼拜${['日', '一', '二', '三', '四', '五', '六'][myDate.getDay()]}`, // 礼拜几
+    };
+    Object.keys(obj).forEach(function (key) {
+        result = result.replace(new RegExp(key), obj[key]);
+    });
+    obj.result = result;
+    return obj;
+};
+/**
+ * @description 秒转时间
+ * @param {Number} seconds - 秒数
+ * */
+Tools.prototype.secondsToTime = function (seconds = 0) {
     // 天
     const nowDay = Math.floor(seconds / 3600 / 24);
     // 时
@@ -150,12 +184,12 @@ Tools.prototype.timeCountDown = function (json) {
     const over = opts.callback.over;// 结束的回调
     // 时间大于等于0秒
     if (seconds >= 0) {
-        run(self.secondsToTime({seconds: seconds}));// 运行时的回调
+        run(self.secondsToTime(seconds));// 运行时的回调
         // 倒计时走你
         const timer = setInterval(function () {
             seconds--;
             if (seconds >= 0) {
-                run(self.secondsToTime({seconds: seconds}));// 运行时的回调
+                run(self.secondsToTime(seconds));// 运行时的回调
             } else {
                 over();// 结束时的回调
                 clearInterval(timer);
@@ -167,11 +201,12 @@ Tools.prototype.timeCountDown = function (json) {
         console.log('倒计时的秒数不能小于0');
     }
 };
-// 字符串限制长度
-Tools.prototype.strLimitLength = function (json) {
-    const opts = json || {};
-    const maxLength = opts.maxLength;
-    let str = opts.str;
+/**
+ * @description 字符串限制最大长度
+ * @param {String} str - 字符串
+ * @param {Number} maxLength - 限制最大长度
+ * */
+Tools.prototype.strLimitLength = function (str, maxLength) {
     if (!str) {
         return '';
     }
@@ -180,50 +215,53 @@ Tools.prototype.strLimitLength = function (json) {
     }
     return str;
 };
-// json转数组
-Tools.prototype.jsonToArray = function (json) {
-    const opts = json || {};
-    const obj = opts.json || {};
+/**
+ * @description json转数组
+ * @param {Object} json - json格式的对象{}
+ * */
+Tools.prototype.jsonToArray = function (json = {}) {
     const arr = [];
-    if (obj instanceof Array) {
-        obj.forEach(function (v, i) {
+    if (json instanceof Array) {
+        json.forEach(function (v, i) {
             arr.push({key: i, value: v});
         });
     } else {
-        Object.keys(obj).forEach(function (attr) {
-            arr.push({key: attr, value: obj[attr]});
+        Object.keys(json).forEach(function (attr) {
+            arr.push({key: attr, value: json[attr]});
         });
     }
     return arr;
 };
-// 补零函数
-Tools.prototype.fillZero = function (json) {
-    const opts = json || {};
-    const num = opts.num || '0';
-    if (num < 10) {
-        return `0${num}`;
+/**
+ * @description 补零函数
+ * @param {Number} value - 数字
+ * @param {Number} space - 这个数字是个几位数的数字,如果是个3位数的数字,不足三位,则补0
+ * */
+Tools.prototype.fillZero = function (value = 0, space = 2) {
+    const valueLen = value.toString().length;
+    const zeroLen = space - valueLen;
+    const arr = [];
+    for (let i = 0; i < zeroLen; i++) {
+        arr.push('0');
     }
-    return `${num}`;
+    const zero = arr.join('');
+    if (value < 10 ** space) {
+        return `${zero}${value}`;
+    }
+    return `${value}`;
 };
 // px转rem
-Tools.prototype.px2rem = function (json) {
-    const opts = json || {};
-    const base = opts.base || '320';
-    const px = opts.px || '0';
+Tools.prototype.px2rem = function (px = 0, base = 320) {
     return `${px / base * 10}rem`;
 };
-// 字符串转驼峰
-Tools.prototype.strToHump = function (json) {
-    const opts = this.extend({
-        defaults: {
-            str: '',
-            rule: '-',
-        },
-        inherits: json,
-    });
-    let str = opts.str;
-    const rule = opts.rule;
-    const type = this.typeOf(str);
+/**
+ * @description 字符串转驼峰
+ * @param {String} str - 字符串
+ * @param {String} rule - 规则
+ * */
+Tools.prototype.strToHump = function (str, rule = '-') {
+    const self = this;
+    const type = self.typeOf(str);
     if (type === 'string') {
         const arr = str.split(rule);
         arr.forEach(function (v, i) {
@@ -246,7 +284,6 @@ Tools.prototype.getRandom = function (min, max) {
     max = self.typeOf(max) === 'number' ? max : 1;
     return Math.round(Math.random() * (max - min) + min);
 };
-
 // 是不是空字符串
 Tools.prototype.isEmpty = function (value) {
     return value.toString().trim() === '';
@@ -255,14 +292,14 @@ Tools.prototype.isEmpty = function (value) {
 Tools.prototype.isZero = function (value) {
     return Number(value) === 0;
 };
-// 是不是整数(正整数且包含0)
-Tools.prototype.isInteger = function (value) {
-    const reg = /^\d+$/;
+// 是不是正整数
+Tools.prototype.isPositiveInteger = function (value) {
+    const reg = /^[1-9]\d*$/;
     return reg.test(value);
 };
-// 是不是保留了num位小数点
-Tools.prototype.isReservedDecimal = function (value, num) {
-    const reg = new RegExp(`^\\d+\\.\\d{${num}}$`);
+// 是不是保留了place位小数(默认两位)
+Tools.prototype.isKeepDecimal = function (value, place = 2) {
+    const reg = new RegExp(`^\\d+\\.\\d{${place}}$`);
     return reg.test(value);
 };
 // 是不是手机号
@@ -275,5 +312,29 @@ Tools.prototype.isEmail = function (value) {
     const reg = /^([0-9A-Za-z\-_.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
     return reg.test(value);
 };
-
+// {a:1,b:2} 序列成 'a=1&b=2'
+Tools.prototype.queryStringify = function (obj = {}) {
+    const result = [];
+    Object.keys(obj).forEach(function (key) {
+        result.push(`${key}=${obj[key]}`);
+    });
+    return result.join('&');
+};
+// 'a=1&b=2' 解析成 {a:1,b:2}
+Tools.prototype.queryParse = function (str) {
+    const result = {};
+    if (str) {
+        str.split('&').forEach(function (v) {
+            const arr = v.split('=');
+            result[arr[0]] = arr[1];
+        });
+    }
+    return result;
+};
+// 保留几位小数(默认两位)
+Tools.prototype.keepDecimal = function (value = 0, place = 2) {
+    const baseNum = 10 ** place;
+    return (Math.floor(parseFloat(value) * baseNum) / baseNum).toFixed(2);
+};
+// 输出
 module.exports = new Tools();

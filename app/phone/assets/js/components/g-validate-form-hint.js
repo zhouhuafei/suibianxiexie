@@ -3,7 +3,7 @@ const applications = require('../utils/applications');// 应用方法集合
 
 function ValidateForm(json) {
     this.opts = json || {};
-    this.element = applications.getDomArray({element: this.opts.element})[0];
+    this.element = applications.getDomArray(this.opts.element)[0];
     this.hintClass = this.opts.hintClass || 'g-validate-form-hint';
     this.eventsType = this.opts.eventsType || 'blur';
     this.validateType = this.element.dataset.validate || 'undefined';

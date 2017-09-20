@@ -5,20 +5,14 @@ function Applications() {
 }
 
 // 设置cookie
-Applications.prototype.setCookie = function (json) {
-    const opts = json || {};
-    const name = opts.name;
-    const value = opts.value;
-    const expires = opts.expires || '0';
+Applications.prototype.setCookie = function (name, value, expires = 0) {
     const myDate = new Date();
     const myTime = myDate.getTime();
     myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000);
     document.cookie = `${name}=${value}; expires=${myDate}`;
 };
 // 获取cookie
-Applications.prototype.getCookie = function (json) {
-    const opts = json || {};
-    const name = opts.name;
+Applications.prototype.getCookie = function (name) {
     const cookie = document.cookie;
     const arr = cookie.split('; ');
     let value = '';
@@ -31,9 +25,7 @@ Applications.prototype.getCookie = function (json) {
     return value;
 };
 // 清除cookie
-Applications.prototype.removeCookie = function (json) {
-    const opts = json || {};
-    const name = opts.name;
+Applications.prototype.removeCookie = function (name) {
     this.setCookie(name, '', -1);
 };
 // 创建元素节点
@@ -139,10 +131,8 @@ Applications.prototype.addMinusInput = function (json) { // 购物加减商品�
     };
 };
 // 获取原生的dom节点并转换成数组,传入的参数支持:1.原生的dom节点,2.原生的dom集合,3.css选择器
-Applications.prototype.getDomArray = function (json) {
-    const opts = json || {};
+Applications.prototype.getDomArray = function (element) {
     let dom = [];
-    const element = opts.element ? opts.element : false;
     if (element) {
         // 如果是字符串
         if (Object.prototype.toString.call(element).slice(8, -1).toLowerCase() === 'string') {
@@ -163,26 +153,28 @@ Applications.prototype.getDomArray = function (json) {
     return dom;
 };
 // 获取指定父级
-Applications.prototype.getParent = function (json) {
-    const opts = json || {};
-    let element = opts.element;
-    const wrap = opts.wrap;
-    if (!element) { // 第一参数不符合规范
-        console.log('参数错误,第一参数需要一个元素节点对象');
+Applications.prototype.getParent = function (element, parentSelector) {
+    const self = this;
+    element = self.getDomArray(element)[0];
+    // 第一参数不符合规范
+    if (!element) {
+        console.log('第一个参数有误');
         return null;
     }
-    if (!wrap) { // 没有第二参数默认选取直接父级
+    // 没有第二参数默认选取直接父级
+    if (!parentSelector) {
         return element.parentNode;
-    } else if (typeof wrap === 'string') {
+    }
+    if (typeof parentSelector === 'string') {
         element = element.parentNode;
-        switch (wrap.charAt(0)) {
+        switch (parentSelector.charAt(0)) {
             case '.':// 通过class获取父级
                 while (element) {
                     if (!element.classList) {
                         console.log('no find class');
                         return null;
                     }
-                    if (element.classList.contains(wrap.substring(1))) {
+                    if (element.classList.contains(parentSelector.substring(1))) {
                         return element;
                     }
                     element = element.parentNode;
@@ -194,7 +186,7 @@ Applications.prototype.getParent = function (json) {
                         console.log('no find id');
                         return null;
                     }
-                    if (element.id === wrap.substring(1)) {
+                    if (element.id === parentSelector.substring(1)) {
                         return element;
                     }
                     element = element.parentNode;
@@ -206,7 +198,7 @@ Applications.prototype.getParent = function (json) {
                         console.log('no find tagName');
                         return null;
                     }
-                    if (element.tagName.toLowerCase() === wrap) {
+                    if (element.tagName.toLowerCase() === parentSelector) {
                         return element;
                     }
                     element = element.parentNode;
@@ -217,9 +209,7 @@ Applications.prototype.getParent = function (json) {
     return null;
 };
 // html转成DOM节点
-Applications.prototype.htmlToDom = function htmlToDom(json) {
-    const opts = json || {};
-    const html = opts.html;
+Applications.prototype.htmlToDom = function htmlToDom(html) {
     const div = document.createElement('div');
     div.innerHTML = html;
     return div.children[0];
@@ -328,17 +318,11 @@ Applications.prototype.isIphone = function () {
     return window.navigator.appVersion.match(/iphone/ig);
 };
 // 获取元素距离文档的left和top
-Applications.prototype.offset = function (json) {
+Applications.prototype.offset = function (element) {
     const getDomArray = this.getDomArray;
-    const opts = tools.extend({
-        defaults: {
-            element: null,
-        },
-        inherits: json,
-    });
     let top = 0;
     let left = 0;
-    let element = getDomArray({element: opts.element})[0];
+    element = getDomArray(element)[0];
     while (element) {
         top += element.offsetTop;
         left += element.offsetLeft;
@@ -350,9 +334,7 @@ Applications.prototype.offset = function (json) {
     };
 };
 // 滚动到指定位置
-Applications.prototype.scrollTo = function (json) {
-    const opts = json || {};
-    const to = opts.to || '0';
+Applications.prototype.scrollToY = function (to = '0') {
     const scale = 6;
     let scrollT = document.documentElement.scrollTop || document.body.scrollTop;
     let speed = 0;
@@ -383,7 +365,7 @@ Applications.prototype.select = function () {
             },
             inherits: json,
         });
-        this.itemsDom = getDomArray({element: this.opts.items});
+        this.itemsDom = getDomArray(this.opts.items);
         this.init();
     }
 

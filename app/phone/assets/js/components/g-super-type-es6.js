@@ -142,7 +142,7 @@ class SuperType {
             callback.moduleDomRenderBefore(this);
             const renderMethod = config.moduleDomRenderMethod;
             if (renderMethod.method === 'insertBefore') {
-                const dom = applications.getDomArray({element: renderMethod.child})[0];
+                const dom = applications.getDomArray(renderMethod.child)[0];
                 if (dom) {
                     this.wrapDom.insertBefore(this.moduleDom, dom);
                 } else {
@@ -204,7 +204,7 @@ class SuperType {
     wrapDomGet() {
         const callback = this.opts.callback;
         callback.wrapDomGetBefore(this);
-        this.wrapDom = applications.getDomArray({element: this.opts.wrap})[0];
+        this.wrapDom = applications.getDomArray(this.opts.wrap)[0];
         callback.wrapDomGetAfter(this);
     }
 

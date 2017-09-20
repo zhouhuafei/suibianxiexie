@@ -51,13 +51,14 @@ var applications = __webpack_require__(0); // 应用方法集合
 
 function ValidateForm(json) {
     this.opts = json || {};
-    this.element = applications.getDomArray({ element: this.opts.element })[0];
+    this.element = applications.getDomArray(this.opts.element)[0];
     this.hintClass = this.opts.hintClass || 'g-validate-form-hint';
     this.eventsType = this.opts.eventsType || 'blur';
     this.validateType = this.element.dataset.validate || 'undefined';
     this.validateHintTxt = this.element.dataset.hint || 'undefined';
     this.init();
 }
+
 ValidateForm.prototype.init = function () {
     this.render();
     this.validateEvents();
@@ -117,9 +118,9 @@ ValidateForm.prototype.validateSave = function () {
                 self.isValidateSuccess = true;
             }
         }
-        if (v === 'yes-integer' && self.isValidateSuccess) {
-            // 设置了整数验证
-            if (tools.isInteger(value)) {
+        if (v === 'yes-positive-integer' && self.isValidateSuccess) {
+            // 设置了正整数验证
+            if (tools.isPositiveInteger(value)) {
                 self.renderHintRemove();
                 self.isValidateSuccess = true;
             } else {

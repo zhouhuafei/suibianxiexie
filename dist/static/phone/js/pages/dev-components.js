@@ -981,7 +981,7 @@ var SuperType = function () {
                 callback.moduleDomRenderBefore(this);
                 var renderMethod = config.moduleDomRenderMethod;
                 if (renderMethod.method === 'insertBefore') {
-                    var dom = applications.getDomArray({ element: renderMethod.child })[0];
+                    var dom = applications.getDomArray(renderMethod.child)[0];
                     if (dom) {
                         this.wrapDom.insertBefore(this.moduleDom, dom);
                     } else {
@@ -1058,7 +1058,7 @@ var SuperType = function () {
         value: function wrapDomGet() {
             var callback = this.opts.callback;
             callback.wrapDomGetBefore(this);
-            this.wrapDom = applications.getDomArray({ element: this.opts.wrap })[0];
+            this.wrapDom = applications.getDomArray(this.opts.wrap)[0];
             callback.wrapDomGetAfter(this);
         }
 
@@ -1978,7 +1978,7 @@ SubType.prototype.moduleDomCreate = function () {
 SubType.prototype.power = function () {
     var self = this;
     this.moduleDom.addEventListener('click', function () {
-        applications.scrollTo({ to: '0' });
+        applications.scrollToY('0');
     });
     window.addEventListener('scroll', function () {
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
