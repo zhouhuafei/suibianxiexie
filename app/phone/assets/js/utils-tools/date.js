@@ -1,7 +1,11 @@
-// 日期格式化
+/**
+ * 日期格式化
+ * @param {Number} date - 毫秒数
+ * @param {String} result = 'year/month/date hour:minute:second day' - 格式
+ * */
 function format(date, result = 'year/month/date hour:minute:second day') {
     const myDate = new Date();
-    let time = 0;
+    let time = 0;// 毫秒数
     if ({}.toString.call(date).slice(8, -1).toLowerCase() === 'date') {
         time = date.getTime();
     } else {
