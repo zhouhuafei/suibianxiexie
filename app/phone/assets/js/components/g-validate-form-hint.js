@@ -10,6 +10,7 @@ function ValidateForm(json) {
     this.validateHintTxt = this.element.dataset.hint || 'undefined';
     this.init();
 }
+
 ValidateForm.prototype.init = function () {
     this.render();
     this.validateEvents();
@@ -67,8 +68,8 @@ ValidateForm.prototype.validateSave = function () {
                 self.isValidateSuccess = true;
             }
         }
-        if (v === 'yes-integer' && self.isValidateSuccess) { // 设置了整数验证
-            if (tools.isInteger(value)) {
+        if (v === 'yes-positive-integer' && self.isValidateSuccess) { // 设置了正整数验证
+            if (tools.isPositiveInteger(value)) {
                 self.renderHintRemove();
                 self.isValidateSuccess = true;
             } else {

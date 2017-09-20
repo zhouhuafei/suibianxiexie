@@ -1,3 +1,4 @@
+// {a:1,b:2} 序列成 'a=1&b=2'
 function stringify(json) {
     const obj = json || {};
     const result = [];
@@ -7,6 +8,7 @@ function stringify(json) {
     return result.join('&');
 }
 
+// 'a=1&b=2' 解析成 {a:1,b:2}
 function parse(str) {
     const result = {};
     if (str) {
