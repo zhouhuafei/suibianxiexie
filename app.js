@@ -11,11 +11,12 @@ app.use(express.static('dist/static', {maxAge: ms('1y')}));// 托管静态文件
 app.use(bodyParser.urlencoded({extended: false}));// parse application/x-www-form-urlencoded
 app.use(bodyParser.json());// parse application/json
 app.use(cookieParser('love'));// cookie
+// session
 app.use(session({
     resave: true, // don't save session if unmodified
     saveUninitialized: false, // don't create session until something stored
     secret: 'love', // 这里是我的一个疑问
-}));// session
+}));
 
 // 模版引擎(handlebars)
 const handlebars = require('express-handlebars');
