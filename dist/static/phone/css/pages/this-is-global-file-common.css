@@ -292,8 +292,6 @@ img {
   .g-wrap .g-footer {
     position: relative;
     width: inherit; }
-    .g-wrap .g-footer .page-footer-nav-wrap {
-      width: inherit; }
 
 html.g-pc {
   height: 100%;
