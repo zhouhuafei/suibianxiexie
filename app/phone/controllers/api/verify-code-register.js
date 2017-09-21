@@ -34,10 +34,8 @@ class DevList extends Super {
         const username = query.username;
         if (!tools.isEmail(username)) {
             // 用户名不是邮箱
-            self.dataInfo = {
-                status: 'failure',
-                message: '用户名需要是一个邮箱',
-            };
+            self.dataInfo.status = 'failure';
+            self.dataInfo.message = '用户名需要是一个邮箱';
             self.render();
         } else {
             // 用户名是邮箱
@@ -70,26 +68,20 @@ class DevList extends Super {
             verifyCodes.save(function (error, response) {
                 if (error) {
                     console.log(`Error:${error}`);
-                    self.dataInfo = {
-                        status: 'failure',
-                        message: '验证码发送失败',
-                        error: error,
-                    };
+                    self.dataInfo.status = 'failure';
+                    self.dataInfo.message = '验证码发送失败';
+                    self.dataInfo.error = error;
                     self.render();// 渲染数据
                 } else {
                     console.log(`Res:${response}`);
                     transporter.sendMail(mailOptions, function (error, response) {
                         if (error) {
-                            self.dataInfo = {
-                                status: 'failure',
-                                message: '验证码发送失败',
-                                error: error,
-                            };
+                            self.dataInfo.status = 'failure';
+                            self.dataInfo.message = '验证码发送失败';
+                            self.dataInfo.error = error;
                         } else {
-                            self.dataInfo = {
-                                status: 'success',
-                                message: '验证码发送成功',
-                            };
+                            self.dataInfo.status = 'success';
+                            self.dataInfo.message = '验证码发送成功';
                         }
                         self.render();// 渲染数据
                     });
