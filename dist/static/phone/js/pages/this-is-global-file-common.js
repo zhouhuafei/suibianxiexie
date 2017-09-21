@@ -1263,13 +1263,13 @@ SubType.prototype.moduleDomCreate = function () {
         var v = data[key];
         var highlightClass = '';
         if (v.isHighlight) {
-            highlightClass = 'g-footer-nav-body-active';
+            highlightClass = 'g-footer-nav-item-active';
         }
         var markHtml = '';
         if (v.isShowMark) {
-            markHtml = '<div class="g-footer-nav-body-mark"></div>';
+            markHtml = '<div class="g-footer-nav-item-mark"></div>';
         }
-        moduleDomHtml += '\n            <a class="g-footer-nav-body ' + highlightClass + '" href="' + v.href + '">\n                <div class="g-footer-nav-body-icon iconfont ' + v.icon + '"></div>\n                <div class="g-footer-nav-body-text">' + v.text + '</div>\n                ' + markHtml + '\n            </a>\n        ';
+        moduleDomHtml += '\n            <a class="g-footer-nav-item ' + highlightClass + '" href="' + v.href + '">\n                <div class="g-footer-nav-item-icon iconfont ' + v.icon + '"></div>\n                <div class="g-footer-nav-item-text">' + v.text + '</div>\n                ' + markHtml + '\n            </a>\n        ';
     });
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,

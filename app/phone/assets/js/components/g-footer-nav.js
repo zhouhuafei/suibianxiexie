@@ -35,16 +35,16 @@ SubType.prototype.moduleDomCreate = function () {
         const v = data[key];
         let highlightClass = '';
         if (v.isHighlight) {
-            highlightClass = 'g-footer-nav-body-active';
+            highlightClass = 'g-footer-nav-item-active';
         }
         let markHtml = '';
         if (v.isShowMark) {
-            markHtml = '<div class="g-footer-nav-body-mark"></div>';
+            markHtml = '<div class="g-footer-nav-item-mark"></div>';
         }
         moduleDomHtml += `
-            <a class="g-footer-nav-body ${highlightClass}" href="${v.href}">
-                <div class="g-footer-nav-body-icon iconfont ${v.icon}"></div>
-                <div class="g-footer-nav-body-text">${v.text}</div>
+            <a class="g-footer-nav-item ${highlightClass}" href="${v.href}">
+                <div class="g-footer-nav-item-icon iconfont ${v.icon}"></div>
+                <div class="g-footer-nav-item-text">${v.text}</div>
                 ${markHtml}
             </a>
         `;
