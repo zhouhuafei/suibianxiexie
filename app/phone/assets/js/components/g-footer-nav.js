@@ -54,7 +54,7 @@ SubType.prototype.moduleDomCreate = function () {
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
             className: this.moduleDomClass,
-            innerHTML: `<div class="g-footer-nav-wrap">${moduleDomHtml}</div>`,
+            innerHTML: `<div class="g-footer-nav-fixed">${moduleDomHtml}</div>`,
         },
     });
 };
