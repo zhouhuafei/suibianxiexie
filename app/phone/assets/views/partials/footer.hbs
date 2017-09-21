@@ -11,7 +11,7 @@
         try {
             return JSON.parse(value);
         } catch (err) {
-            console.log(err);
+            console.log('dataInfo的json格式值出现错误:', err);
             return value || {};
         }
     }());
