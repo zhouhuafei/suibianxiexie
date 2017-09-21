@@ -1129,7 +1129,7 @@ __webpack_require__(22); // 全局的样式
     if (dataInfo && dataInfo.isShowCopyright) {
         var Copyright = __webpack_require__(23);
         new Copyright({
-            wrap: '.g-copyright-wrap'
+            wrap: '.page-copyright-wrap'
         });
     }
 })(); // 版权
@@ -1137,7 +1137,7 @@ __webpack_require__(22); // 全局的样式
 (function () {
     if (dataInfo && dataInfo.footerNav) {
         var Footer = __webpack_require__(24);
-        dataInfo.footerNav.wrap = '.g-footer-nav-wrap';
+        dataInfo.footerNav.wrap = '.page-footer-nav-wrap';
         new Footer(dataInfo.footerNav);
     }
 })(); // 底部导航
@@ -1276,7 +1276,7 @@ SubType.prototype.moduleDomCreate = function () {
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
             className: this.moduleDomClass,
-            innerHTML: '<div class="g-footer-nav-fixed">' + moduleDomHtml + '</div>'
+            innerHTML: '<div class="g-footer-nav-body">' + moduleDomHtml + '</div>'
         }
     });
 };

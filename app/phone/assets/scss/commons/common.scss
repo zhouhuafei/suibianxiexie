@@ -10,7 +10,7 @@
     position: relative;
     .g-header {
         position: relative;
-        //二维码(扫码手机观看)
+        // 二维码(扫码手机观看)
         .g-qr-code {
             display: none;
         }
@@ -27,6 +27,10 @@
     .g-footer {
         position: relative;
         width: inherit;
+        // 底部导航的容器
+        .page-footer-nav-wrap {
+            width: inherit;
+        }
     }
 }
 
@@ -46,10 +50,8 @@ html.g-pc {
         width: px2px($width-wrap);
         box-sizing: border-box;
         box-shadow: px2px(1) 0 px2px(4) $g-border-color-default, px2px(-1) 0 px2px(4) $g-border-color-default;
-        //border-top: px2px(1) solid $g-border-color-default;
-        //border-bottom: px2px(1) solid $g-border-color-default;
         .g-header {
-            //二维码(扫码手机观看)
+            // 二维码(扫码手机观看)
             .g-qr-code {
                 $width: 144;
                 display: block;
@@ -539,15 +541,11 @@ html.g-pc {
 @import "../components/g-star";
 @import "../components/g-table";
 //底部导航
-.g-footer-nav-wrap {
-    width: inherit;
-}
-
 .g-footer-nav {
     $height: 44;
     width: inherit;
     height: px2rem($height);
-    .g-footer-nav-fixed {
+    .g-footer-nav-body {
         width: inherit;
         height: inherit;
         display: flex;
@@ -599,9 +597,6 @@ html.g-pc {
 }
 
 //版权
-.g-copyright-wrap {
-}
-
 .g-copyright {
     padding: px2rem(20) 0;
     display: flex;
