@@ -5,13 +5,19 @@ function Applications() {
 }
 
 // 设置cookie
-Applications.prototype.setCookie = function (name, value, expires = 0, domain) {
+Applications.prototype.setCookie = function (name, value, expires = 0, domain, path, secure) {
     const myDate = new Date();
     const myTime = myDate.getTime();
-    myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000);
+    myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000); // 单位是天 1天 1/24天(1小时)
     let cookie = `${name}=${value}; expires=${myDate}`;
     if (domain) {
         cookie += `; domain=${domain}`;
+    }
+    if (path) {
+        cookie += `; path=${path}`;
+    }
+    if (secure) {
+        cookie += `; secure=${secure}`;
     }
     document.cookie = cookie;
 };
@@ -29,8 +35,8 @@ Applications.prototype.getCookie = function (name) {
     return value;
 };
 // 清除cookie
-Applications.prototype.removeCookie = function (name, domain) {
-    this.setCookie(name, '', -1, domain);
+Applications.prototype.removeCookie = function (name, domain, path, secure) {
+    this.setCookie(name, '', -1, domain, path, secure);
 };
 // 创建元素节点
 Applications.prototype.createElement = function (json) {
