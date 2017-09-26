@@ -13,11 +13,16 @@ function Applications() {}
 // 设置cookie
 Applications.prototype.setCookie = function (name, value) {
     var expires = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    var domain = arguments[3];
 
     var myDate = new Date();
     var myTime = myDate.getTime();
     myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000);
-    document.cookie = name + '=' + value + '; expires=' + myDate;
+    var cookie = name + '=' + value + '; expires=' + myDate;
+    if (domain) {
+        cookie += '; domain=' + domain;
+    }
+    document.cookie = cookie;
 };
 // 获取cookie
 Applications.prototype.getCookie = function (name) {
@@ -33,8 +38,8 @@ Applications.prototype.getCookie = function (name) {
     return value;
 };
 // 清除cookie
-Applications.prototype.removeCookie = function (name) {
-    this.setCookie(name, '', -1);
+Applications.prototype.removeCookie = function (name, domain) {
+    this.setCookie(name, '', -1, domain);
 };
 // 创建元素节点
 Applications.prototype.createElement = function (json) {
