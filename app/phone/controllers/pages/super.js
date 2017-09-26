@@ -73,6 +73,11 @@ class Super {
             this.renderView();// 渲染视图
         }
     }
+
+    // 扩展dataInfo数据
+    extendDataInfo(obj = {}) {
+        return this.tools.extend({defaults: this.dataInfo, inherits: obj});
+    }
 }
 
 module.exports = Super;

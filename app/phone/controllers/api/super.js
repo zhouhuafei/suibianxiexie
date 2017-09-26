@@ -84,6 +84,11 @@ class Super {
         res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'});
         res.end(JSON.stringify(this.dataInfo));
     }
+
+    // 扩展dataInfo数据
+    extendDataInfo(obj = {}) {
+        return this.tools.extend({defaults: this.dataInfo, inherits: obj});
+    }
 }
 
 module.exports = Super;
