@@ -1,5 +1,6 @@
 const axios = require('axios');
 const tools = require('../utils/tools');
+const Dialog = require('../components/g-dialog');
 
 module.exports = function (json) {
     const opts = tools.extend({
@@ -7,18 +8,29 @@ module.exports = function (json) {
         inherits: json,
     });
     return axios(opts).catch(function (error) {
-        console.log('axios error:', error);
+        new Dialog({
+            config: {
+                alert: {
+                    content: `接口请求错误:${error}`,
+                },
+            },
+        });
     }).then(function (response) {
-        console.log('axios response:', response); // 这个是axios的响应
-        let data = null; // 这个是node后台的响应的数据 整体
-        let result = null; // 这个是node后台响应的数据 结果
+        let dataInfo = null;
+        let result = null;
         if (response) {
-            data = response.data;
-            if (data.status === 'success') {
-                result = data.result;
+            dataInfo = response.data;
+            if (dataInfo.status === 'success') {
+                result = dataInfo.result;
             }
-            if (data.status === 'failure') {
-                console.log('错误信息:', data.message);
+            if (dataInfo.status === 'failure') {
+                new Dialog({
+                    config: {
+                        alert: {
+                            content: `接口请求失败:${dataInfo.message}`,
+                        },
+                    },
+                });
             }
         }
         return result;

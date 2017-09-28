@@ -19,7 +19,7 @@ window.addEventListener('load', function () {
         // 验证
         (function () {
             const ValidateInput = require('../components/g-validate-form-hint');
-            const aInput = [].slice.call(document.querySelectorAll('.g-validate-form'));
+            const aInput = [].slice.call(document.querySelectorAll('.page-validate-form'));
             aInput.forEach(function (v) {
                 new ValidateInput({element: v});
             });

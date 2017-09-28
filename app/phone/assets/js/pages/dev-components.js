@@ -156,12 +156,6 @@ window.addEventListener('load', function () {
             new SubTypeEs6({wrap: '.page-super-type'});
         }());
 
-        // 返回顶部
-        (function () {
-            const GoTop = require('../components/g-go-top');
-            new GoTop();
-        }());
-
         // 遮罩
         (function () {
             const Mask = require('../components/g-mask');

@@ -1,3 +1,21 @@
+@import "../config/config";
+
+.g-font-color-success {
+    color: $g-success-color;
+}
+
+.g-font-color-failure {
+    color: $g-failure-color;
+}
+
+.g-font-color-warning {
+    color: $g-warning-color;
+}
+
+.g-font-color-hint {
+    color: $g-hint-color;
+}
+
 // 工具样式
 .g-display-none {
     display: none;

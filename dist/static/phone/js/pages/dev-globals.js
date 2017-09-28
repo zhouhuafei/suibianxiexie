@@ -27,7 +27,7 @@ window.addEventListener('load', function () {
         // 验证
         (function () {
             var ValidateInput = __webpack_require__(27);
-            var aInput = [].slice.call(document.querySelectorAll('.g-validate-form'));
+            var aInput = [].slice.call(document.querySelectorAll('.page-validate-form'));
             aInput.forEach(function (v) {
                 new ValidateInput({ element: v });
             });

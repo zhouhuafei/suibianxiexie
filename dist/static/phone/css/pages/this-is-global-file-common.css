@@ -189,13 +189,9 @@
 .iconfont {
   font-size: inherit; }
 
-html {
+*, *:before, *:after {
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
-
-*, *:before, *:after {
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit; }
 
 body {
   color: #333333;
@@ -221,6 +217,18 @@ a {
 
 img {
   vertical-align: middle; }
+
+.g-font-color-success {
+  color: #13ce66; }
+
+.g-font-color-failure {
+  color: #ff4949; }
+
+.g-font-color-warning {
+  color: #f7ba2a; }
+
+.g-font-color-hint {
+  color: #f14344; }
 
 .g-display-none {
   display: none; }
@@ -362,6 +370,94 @@ html.g-pc {
     color: #91918e;
     cursor: not-allowed; }
 
+.g-input {
+  width: 100%;
+  height: 1.25rem;
+  background: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 1px solid #e6e7ed;
+  border-left: none;
+  border-right: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  border-radius: 0rem; }
+  .g-input .g-input-text {
+    min-width: 1.25rem;
+    padding: 0 0.3125rem;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+    .g-input .g-input-text ~ .g-input-input {
+      border-left: 1px solid #e6e7ed; }
+    .g-input .g-input-text .g-input-icon {
+      font-size: inherit; }
+  .g-input .g-input-icon {
+    font-size: 0.375rem;
+    padding: 0 0.0625rem; }
+    .g-input .g-input-icon ~ .g-input-input {
+      border-left: 1px solid #e6e7ed; }
+  .g-input .g-input-hint {
+    font-size: 0.375rem;
+    padding: 0 0.0625rem;
+    color: #f14344; }
+    .g-input .g-input-hint ~ .g-input-input {
+      border-left: 1px solid #e6e7ed; }
+  .g-input .g-input-input {
+    min-width: 1.5625rem;
+    border: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    color: inherit;
+    font-size: inherit;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    height: 100%;
+    background: inherit;
+    border-radius: inherit;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 0 0.3125rem; }
+
+.g-quick-enter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  font-size: 0.375rem;
+  overflow: hidden; }
+  .g-quick-enter .g-quick-enter-btn {
+    color: #bfbfbf;
+    padding: 0.125rem 0.1875rem;
+    border: 1px solid #e6e7ed;
+    margin: 0.0625rem;
+    background: #ffffff;
+    border-radius: 62.5rem; }
+
 .g-img-upload {
   width: 2.5rem;
   height: 2.5rem;
@@ -490,52 +586,20 @@ html.g-pc {
     .g-list .g-list-row:last-child {
       border-bottom: none; }
 
-.g-quick-enter {
+.g-checkbox {
+  height: 0.625rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  font-size: 0.375rem;
-  overflow: hidden; }
-  .g-quick-enter .g-quick-enter-btn {
-    color: #bfbfbf;
-    padding: 0.125rem 0.1875rem;
-    border: 1px solid #e6e7ed;
-    margin: 0.0625rem;
+          align-items: center; }
+  .g-checkbox .g-checkbox-wrap {
+    width: 0.625rem;
+    height: 100%;
+    border-radius: 0.125rem;
     background: #ffffff;
-    border-radius: 62.5rem; }
-
-.g-input {
-  width: 100%;
-  height: 1.25rem;
-  background: #ffffff;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border: 1px solid #e6e7ed;
-  border-left: none;
-  border-right: none;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  position: relative;
-  border-radius: 0rem; }
-  .g-input .g-input-text {
-    min-width: 1.25rem;
-    padding: 0 0.3125rem;
-    height: 100%;
+    position: relative;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -545,63 +609,55 @@ html.g-pc {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center; }
-    .g-input .g-input-text ~ .g-input-input {
-      border-left: 1px solid #e6e7ed; }
-    .g-input .g-input-text .g-input-icon {
-      font-size: inherit; }
-  .g-input .g-input-icon {
-    font-size: 0.375rem;
-    padding: 0 0.0625rem; }
-    .g-input .g-input-icon ~ .g-input-input {
-      border-left: 1px solid #e6e7ed; }
-  .g-input .g-input-hint {
-    font-size: 0.375rem;
-    padding: 0 0.0625rem;
-    color: #f14344; }
-    .g-input .g-input-hint ~ .g-input-input {
-      border-left: 1px solid #e6e7ed; }
-  .g-input .g-input-input {
-    min-width: 1.5625rem;
-    border: none;
-    -webkit-appearance: none;
-    -webkit-tap-highlight-color: transparent;
-    outline: none;
-    color: inherit;
-    font-size: inherit;
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    height: 100%;
-    background: inherit;
-    border-radius: inherit;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    padding: 0 0.3125rem; }
+    .g-checkbox .g-checkbox-wrap .g-checkbox-checkbox {
+      -webkit-appearance: none;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+      width: inherit;
+      height: inherit;
+      background: inherit;
+      border-radius: inherit;
+      border: 1px solid #e6e7ed; }
+      .g-checkbox .g-checkbox-wrap .g-checkbox-checkbox:checked {
+        border-color: #0089ff; }
+        .g-checkbox .g-checkbox-wrap .g-checkbox-checkbox:checked + .g-checkbox-mark {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          -webkit-box-pack: center;
+              -ms-flex-pack: center;
+                  justify-content: center; }
+    .g-checkbox .g-checkbox-wrap .g-checkbox-mark {
+      color: #0089ff;
+      font-size: 0.5rem;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: inherit;
+      height: inherit;
+      display: none; }
+  .g-checkbox .g-checkbox-text {
+    line-height: 1;
+    margin-left: 0.3125rem; }
 
-.g-textarea {
-  width: 100%;
-  height: 3.75rem;
-  line-height: 0.625rem;
-  background: #ffffff;
+.g-radio {
+  text-align: center;
+  height: 0.6375rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border: 1px solid #e6e7ed;
-  border-left: none;
-  border-right: none;
-  border-radius: 0rem; }
-  .g-textarea .g-textarea-text {
-    min-width: 1.25rem;
-    padding: 0 0.3125rem;
+          align-items: center; }
+  .g-radio .g-radio-wrap {
+    position: relative;
+    width: 0.6375rem;
     height: 100%;
+    background: #ffffff;
+    border-radius: 50%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -611,28 +667,52 @@ html.g-pc {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center; }
-    .g-textarea .g-textarea-text ~ .g-textarea-textarea {
-      border-left: 1px solid #e6e7ed; }
-  .g-textarea .g-textarea-textarea {
-    -webkit-appearance: none;
-    -webkit-tap-highlight-color: transparent;
-    outline: none;
-    color: inherit;
-    font-size: inherit;
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    height: 100%;
-    font-family: inherit;
-    line-height: inherit;
-    background: inherit;
-    border-radius: inherit;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    text-align: justify;
-    resize: none;
-    padding: 0.3125rem;
-    border: none; }
+    .g-radio .g-radio-wrap .g-radio-radio {
+      -webkit-appearance: none;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+      width: inherit;
+      height: inherit;
+      background: inherit;
+      border-radius: inherit;
+      border: 1px solid #e6e7ed; }
+      .g-radio .g-radio-wrap .g-radio-radio:checked {
+        border-color: #0089ff; }
+        .g-radio .g-radio-wrap .g-radio-radio:checked + .g-radio-mark {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          -webkit-box-pack: center;
+              -ms-flex-pack: center;
+                  justify-content: center; }
+    .g-radio .g-radio-wrap .g-radio-mark {
+      color: #0089ff;
+      font-size: 0.5rem;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: inherit;
+      height: inherit;
+      display: none; }
+      .g-radio .g-radio-wrap .g-radio-mark:before {
+        width: inherit;
+        height: inherit;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        line-height: 1; }
+  .g-radio .g-radio-text {
+    line-height: 1;
+    margin-left: 0.3125rem; }
 
 .g-select {
   width: 100%;
@@ -721,21 +801,30 @@ html.g-pc {
               box-sizing: border-box;
       border-radius: inherit; }
 
-.g-radio {
-  text-align: center;
-  height: 0.6375rem;
+.g-textarea {
+  width: 100%;
+  height: 3.75rem;
+  line-height: 0.625rem;
+  background: #ffffff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center; }
-  .g-radio .g-radio-wrap {
-    position: relative;
-    width: 0.6375rem;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid #e6e7ed;
+  border-left: none;
+  border-right: none;
+  border-radius: 0rem; }
+  .g-textarea .g-textarea-text {
+    min-width: 1.25rem;
+    padding: 0 0.3125rem;
     height: 100%;
-    background: #ffffff;
-    border-radius: 50%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -745,109 +834,28 @@ html.g-pc {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center; }
-    .g-radio .g-radio-wrap .g-radio-radio {
-      -webkit-appearance: none;
-      -webkit-tap-highlight-color: transparent;
-      outline: none;
-      width: inherit;
-      height: inherit;
-      background: inherit;
-      border-radius: inherit;
-      border: 1px solid #e6e7ed; }
-      .g-radio .g-radio-wrap .g-radio-radio:checked {
-        border-color: #0089ff; }
-        .g-radio .g-radio-wrap .g-radio-radio:checked + .g-radio-mark {
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-box-align: center;
-              -ms-flex-align: center;
-                  align-items: center;
-          -webkit-box-pack: center;
-              -ms-flex-pack: center;
-                  justify-content: center; }
-    .g-radio .g-radio-wrap .g-radio-mark {
-      color: #0089ff;
-      font-size: 0.5rem;
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: inherit;
-      height: inherit;
-      display: none; }
-      .g-radio .g-radio-wrap .g-radio-mark:before {
-        width: inherit;
-        height: inherit;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        line-height: 1; }
-  .g-radio .g-radio-text {
-    line-height: 1;
-    margin-left: 0.3125rem; }
-
-.g-checkbox {
-  height: 0.625rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center; }
-  .g-checkbox .g-checkbox-wrap {
-    width: 0.625rem;
+    .g-textarea .g-textarea-text ~ .g-textarea-textarea {
+      border-left: 1px solid #e6e7ed; }
+  .g-textarea .g-textarea-textarea {
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    color: inherit;
+    font-size: inherit;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
     height: 100%;
-    border-radius: 0.125rem;
-    background: #ffffff;
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center; }
-    .g-checkbox .g-checkbox-wrap .g-checkbox-checkbox {
-      -webkit-appearance: none;
-      -webkit-tap-highlight-color: transparent;
-      outline: none;
-      width: inherit;
-      height: inherit;
-      background: inherit;
-      border-radius: inherit;
-      border: 1px solid #e6e7ed; }
-      .g-checkbox .g-checkbox-wrap .g-checkbox-checkbox:checked {
-        border-color: #0089ff; }
-        .g-checkbox .g-checkbox-wrap .g-checkbox-checkbox:checked + .g-checkbox-mark {
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-box-align: center;
-              -ms-flex-align: center;
-                  align-items: center;
-          -webkit-box-pack: center;
-              -ms-flex-pack: center;
-                  justify-content: center; }
-    .g-checkbox .g-checkbox-wrap .g-checkbox-mark {
-      color: #0089ff;
-      font-size: 0.5rem;
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: inherit;
-      height: inherit;
-      display: none; }
-  .g-checkbox .g-checkbox-text {
-    line-height: 1;
-    margin-left: 0.3125rem; }
+    font-family: inherit;
+    line-height: inherit;
+    background: inherit;
+    border-radius: inherit;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    text-align: justify;
+    resize: none;
+    padding: 0.3125rem;
+    border: none; }
 
 .g-dialog {
   z-index: 505; }
@@ -861,23 +869,28 @@ html.g-pc {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    width: 7.5rem;
-    padding: 0.625rem;
+    width: 8.75rem;
+    padding: 0.5rem;
     border-radius: 0.125rem;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     background: rgba(0, 0, 0, 0.8); }
+    .g-dialog.g-dialog-alert .g-dialog-alert-close {
+      position: absolute;
+      right: 4px;
+      top: 4px;
+      color: #ffffff;
+      font-size: 10px; }
     .g-dialog.g-dialog-alert .g-dialog-alert-icon {
       margin-right: 0.3125rem;
-      color: #ff4949;
       font-size: 0.75rem; }
     .g-dialog.g-dialog-alert .g-dialog-alert-text {
-      color: #fff;
+      color: #ffffff;
       font-size: 0.4375rem;
       line-height: 1.2; }
   .g-dialog.g-dialog-confirm {
     background: #fff; }
-    .g-dialog.g-dialog-confirm .g-dialog-header {
+    .g-dialog.g-dialog-confirm .g-dialog-confirm-header {
       background: #0089ff;
       color: #ffffff;
       height: 1.25rem;
@@ -893,7 +906,7 @@ html.g-pc {
               align-items: center;
       text-align: justify;
       overflow: hidden; }
-    .g-dialog.g-dialog-confirm .g-dialog-body .g-dialog-body-system {
+    .g-dialog.g-dialog-confirm .g-dialog-confirm-body .g-dialog-confirm-body-system {
       width: 8.125rem;
       min-height: 2.53906rem;
       padding: 0.3125rem;
@@ -907,20 +920,19 @@ html.g-pc {
           -ms-flex-pack: center;
               justify-content: center;
       word-break: break-all; }
-      .g-dialog.g-dialog-confirm .g-dialog-body .g-dialog-body-system .g-dialog-icon {
+      .g-dialog.g-dialog-confirm .g-dialog-confirm-body .g-dialog-confirm-body-system .g-dialog-confirm-body-system-icon {
         margin-right: 0.1875rem;
-        color: #ff4949;
         font-size: 0.75rem; }
-      .g-dialog.g-dialog-confirm .g-dialog-body .g-dialog-body-system .g-dialog-text {
+      .g-dialog.g-dialog-confirm .g-dialog-confirm-body .g-dialog-confirm-body-system .g-dialog-confirm-body-system-text {
         font-size: 0.4375rem;
         line-height: 1.2; }
-    .g-dialog.g-dialog-confirm .g-dialog-body .g-dialog-body-custom {
+    .g-dialog.g-dialog-confirm .g-dialog-confirm-body .g-dialog-confirm-body-custom {
       min-width: 4.0625rem; }
-    .g-dialog.g-dialog-confirm .g-dialog-footer {
+    .g-dialog.g-dialog-confirm .g-dialog-confirm-footer {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex; }
-      .g-dialog.g-dialog-confirm .g-dialog-footer .g-dialog-cancel, .g-dialog.g-dialog-confirm .g-dialog-footer .g-dialog-confirm {
+      .g-dialog.g-dialog-confirm .g-dialog-confirm-footer .g-dialog-confirm-footer-cancel, .g-dialog.g-dialog-confirm .g-dialog-confirm-footer .g-dialog-confirm-footer-confirm {
         -webkit-box-flex: 1;
             -ms-flex: 1;
                 flex: 1;
@@ -935,7 +947,7 @@ html.g-pc {
                 justify-content: center;
         height: 1.25rem;
         width: auto; }
-    .g-dialog.g-dialog-confirm .g-dialog-close {
+    .g-dialog.g-dialog-confirm .g-dialog-confirm-close {
       position: absolute;
       top: 0;
       right: 0;
@@ -1299,6 +1311,34 @@ html.g-pc {
     color: #ffffff;
     border-top: 1px solid #e6e7ed; }
 
+.g-go-top {
+  position: fixed;
+  left: 50%;
+  margin-left: 3.75rem;
+  bottom: 1.875rem;
+  width: 0.9375rem;
+  height: 0.9375rem;
+  background: rgba(0, 0, 0, 0.6);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 0.625rem;
+  color: #ffffff;
+  border-radius: 4px;
+  -webkit-transition: opacity 0.4s;
+  transition: opacity 0.4s;
+  z-index: -2;
+  opacity: 0; }
+  .g-go-top.g-go-top-active {
+    opacity: 1;
+    z-index: 2; }
+
 .g-footer-nav {
   width: inherit;
   height: 1.375rem; }
@@ -1388,34 +1428,6 @@ html.g-pc {
   .g-mask.g-mask-transparent {
     z-index: 999;
     background-color: transparent; }
-
-.g-go-top {
-  position: fixed;
-  left: 50%;
-  margin-left: 3.4375rem;
-  bottom: 1.875rem;
-  width: 1.25rem;
-  height: 1.25rem;
-  background: rgba(0, 0, 0, 0.6);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  font-size: 0.625rem;
-  color: #ffffff;
-  border-radius: 50%;
-  -webkit-transition: opacity 0.4s;
-  transition: opacity 0.4s;
-  z-index: -2;
-  opacity: 0; }
-  .g-go-top.g-go-top-active {
-    opacity: 1;
-    z-index: 2; }
 
 .g-lazy-load {
   -webkit-transition: opacity 0.4s;

@@ -52,8 +52,10 @@ const SubType = tools.constructorInherit({
             positionLocation: 'center', // 弹窗的定位位置    positionMethod定位方式强制fixed
             // 提示框
             alert: {
-                time: 2000, // 展示的时间
-                isShowIcon: true, // 是否显示icon
+                timer: null, // 定时器装载
+                time: 3000, // 展示的时间
+                isShowIcon: false, // 是否显示icon
+                isShowClose: true, // 是否显示关闭按钮
                 icon: 'icon-chenggong', // icon的class
                 content: '成功', // 内容信息
             },
@@ -74,7 +76,7 @@ const SubType = tools.constructorInherit({
                 cancelContent: '取消', // 取消按钮的内容
                 isCustom: false, // 是否自定义
                 customContent: '', // 自定义的内容
-                isShowIcon: true, // 是否显示icon
+                isShowIcon: false, // 是否显示icon
                 icon: 'icon-jinggao', // icon的类型
                 isShowMask: true, // 是否显示遮罩
                 isHandHide: false, // 是否手动隐藏(一般只用于点击确认时)
@@ -116,7 +118,12 @@ SubType.prototype.renderAlert = function () {
     if (alert.isShowIcon) {
         htmlIcon = `<div class="g-dialog-alert-icon iconfont ${alert.icon}"></div>`;
     }
+    let closeHtml = '';
+    if (alert.isShowClose) {
+        closeHtml = '<div class="g-dialog-alert-close iconfont icon-guanbi" ></div>';
+    }
     return `
+        ${closeHtml}
         ${htmlIcon}
         <div class="g-dialog-alert-text">${alert.content}</div>
     `;
@@ -131,25 +138,25 @@ SubType.prototype.renderConfirm = function () {
     const confirm = config.confirm;
     let htmlHeader = '';
     if (confirm.isShowHeader) {
-        htmlHeader = `<div class="g-dialog-header">${confirm.headerContent}</div>`;
+        htmlHeader = `<div class="g-dialog-confirm-header">${confirm.headerContent}</div>`;
     }
     let htmlBody = '';
     if (confirm.isShowBody) {
         let htmlIcon = '';
         if (confirm.isShowIcon) {
-            htmlIcon = `<div class="g-dialog-icon iconfont ${confirm.icon}"></div>`;
+            htmlIcon = `<div class="g-dialog-confirm-body-system-icon iconfont ${confirm.icon}"></div>`;
         }
-        let bodyClass = 'g-dialog-body-system';
+        let bodyClass = 'g-dialog-confirm-body-system';
         let bodyContent = `
             ${htmlIcon}
-            <div class="g-dialog-text">${confirm.bodyContent}</div>
+            <div class="g-dialog-confirm-body-system-text">${confirm.bodyContent}</div>
         `;
         if (confirm.isCustom) {
-            bodyClass = 'g-dialog-body-custom';
+            bodyClass = 'g-dialog-confirm-body-custom';
             bodyContent = confirm.bodyContent;
         }
         htmlBody = `
-            <div class="g-dialog-body">
+            <div class="g-dialog-confirm-body">
                 <div class="${bodyClass}">
                     ${bodyContent}
                 </div>
@@ -160,17 +167,17 @@ SubType.prototype.renderConfirm = function () {
     if (confirm.isShowFooter) {
         let htmlCancel = '';
         if (confirm.isShowCancel) {
-            htmlCancel = `<div class="g-button g-button-cancel g-dialog-cancel">${confirm.cancelContent}</div>`;
+            htmlCancel = `<div class="g-button g-button-cancel g-dialog-confirm-footer-cancel">${confirm.cancelContent}</div>`;
         }
         let htmlConfirm = '';
         if (confirm.isShowConfirm) {
-            htmlConfirm = `<div class="g-button g-dialog-confirm">${confirm.confirmContent}</div>`;
+            htmlConfirm = `<div class="g-button g-dialog-confirm-footer-confirm">${confirm.confirmContent}</div>`;
         }
-        htmlFooter = `<div class="g-dialog-footer">${htmlCancel}${htmlConfirm}</div>`;
+        htmlFooter = `<div class="g-dialog-confirm-footer">${htmlCancel}${htmlConfirm}</div>`;
     }
     let htmlClose = '';
     if (confirm.isShowClose) {
-        htmlClose = `<div class="g-dialog-close">${confirm.closeContent}</div>`;
+        htmlClose = `<div class="g-dialog-confirm-close">${confirm.closeContent}</div>`;
     }
     return `
         ${htmlHeader}
@@ -186,27 +193,32 @@ SubType.prototype.power = function () {
     const config = this.opts.config;
     // 提示框
     if (config.type === 'alert') {
-        setTimeout(function () {
+        const close = this.moduleDom.querySelector('.g-dialog-alert-close');
+        config.alert.timer = setTimeout(function () {
             self.hide();
         }, config.alert.time);
+        close.addEventListener('click', function () {
+            clearTimeout(config.alert.timer);
+            self.hide();
+        });
     }
     // 确认框
     if (config.type === 'confirm') {
-        const close = this.moduleDom.querySelector('.g-dialog-close');
+        const close = this.moduleDom.querySelector('.g-dialog-confirm-close');
         if (close) {
             close.addEventListener('click', function () {
                 self.hide();
                 self.opts.callback.close();
             });
         }
-        const cancel = this.moduleDom.querySelector('.g-dialog-cancel');
+        const cancel = this.moduleDom.querySelector('.g-dialog-confirm-footer-cancel');
         if (cancel) {
             cancel.addEventListener('click', function () {
                 self.hide();
                 self.opts.callback.cancel();
             });
         }
-        const confirm = this.moduleDom.querySelector('.g-dialog-confirm');
+        const confirm = this.moduleDom.querySelector('.g-dialog-confirm-footer-confirm');
         if (confirm) {
             confirm.addEventListener('click', function () {
                 if (!self.opts.config.confirm.isHandHide) {

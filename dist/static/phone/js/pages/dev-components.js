@@ -1252,12 +1252,6 @@ window.addEventListener('load', function () {
             new SubTypeEs6({ wrap: '.page-super-type' });
         })();
 
-        // 返回顶部
-        (function () {
-            var GoTop = __webpack_require__(18);
-            new GoTop();
-        })();
-
         // 遮罩
         (function () {
             var Mask = __webpack_require__(9);
@@ -1408,8 +1402,10 @@ var SubType = tools.constructorInherit({
             positionLocation: 'center', // 弹窗的定位位置    positionMethod定位方式强制fixed
             // 提示框
             alert: {
-                time: 2000, // 展示的时间
-                isShowIcon: true, // 是否显示icon
+                timer: null, // 定时器装载
+                time: 3000, // 展示的时间
+                isShowIcon: false, // 是否显示icon
+                isShowClose: true, // 是否显示关闭按钮
                 icon: 'icon-chenggong', // icon的class
                 content: '成功' // 内容信息
             },
@@ -1430,7 +1426,7 @@ var SubType = tools.constructorInherit({
                 cancelContent: '取消', // 取消按钮的内容
                 isCustom: false, // 是否自定义
                 customContent: '', // 自定义的内容
-                isShowIcon: true, // 是否显示icon
+                isShowIcon: false, // 是否显示icon
                 icon: 'icon-jinggao', // icon的类型
                 isShowMask: true, // 是否显示遮罩
                 isHandHide: false // 是否手动隐藏(一般只用于点击确认时)
@@ -1469,7 +1465,11 @@ SubType.prototype.renderAlert = function () {
     if (alert.isShowIcon) {
         htmlIcon = '<div class="g-dialog-alert-icon iconfont ' + alert.icon + '"></div>';
     }
-    return '\n        ' + htmlIcon + '\n        <div class="g-dialog-alert-text">' + alert.content + '</div>\n    ';
+    var closeHtml = '';
+    if (alert.isShowClose) {
+        closeHtml = '<div class="g-dialog-alert-close iconfont icon-guanbi" ></div>';
+    }
+    return '\n        ' + closeHtml + '\n        ' + htmlIcon + '\n        <div class="g-dialog-alert-text">' + alert.content + '</div>\n    ';
 };
 
 // 确认框
@@ -1481,37 +1481,37 @@ SubType.prototype.renderConfirm = function () {
     var confirm = config.confirm;
     var htmlHeader = '';
     if (confirm.isShowHeader) {
-        htmlHeader = '<div class="g-dialog-header">' + confirm.headerContent + '</div>';
+        htmlHeader = '<div class="g-dialog-confirm-header">' + confirm.headerContent + '</div>';
     }
     var htmlBody = '';
     if (confirm.isShowBody) {
         var htmlIcon = '';
         if (confirm.isShowIcon) {
-            htmlIcon = '<div class="g-dialog-icon iconfont ' + confirm.icon + '"></div>';
+            htmlIcon = '<div class="g-dialog-confirm-body-system-icon iconfont ' + confirm.icon + '"></div>';
         }
-        var bodyClass = 'g-dialog-body-system';
-        var bodyContent = '\n            ' + htmlIcon + '\n            <div class="g-dialog-text">' + confirm.bodyContent + '</div>\n        ';
+        var bodyClass = 'g-dialog-confirm-body-system';
+        var bodyContent = '\n            ' + htmlIcon + '\n            <div class="g-dialog-confirm-body-system-text">' + confirm.bodyContent + '</div>\n        ';
         if (confirm.isCustom) {
-            bodyClass = 'g-dialog-body-custom';
+            bodyClass = 'g-dialog-confirm-body-custom';
             bodyContent = confirm.bodyContent;
         }
-        htmlBody = '\n            <div class="g-dialog-body">\n                <div class="' + bodyClass + '">\n                    ' + bodyContent + '\n                </div>\n            </div>\n        ';
+        htmlBody = '\n            <div class="g-dialog-confirm-body">\n                <div class="' + bodyClass + '">\n                    ' + bodyContent + '\n                </div>\n            </div>\n        ';
     }
     var htmlFooter = '';
     if (confirm.isShowFooter) {
         var htmlCancel = '';
         if (confirm.isShowCancel) {
-            htmlCancel = '<div class="g-button g-button-cancel g-dialog-cancel">' + confirm.cancelContent + '</div>';
+            htmlCancel = '<div class="g-button g-button-cancel g-dialog-confirm-footer-cancel">' + confirm.cancelContent + '</div>';
         }
         var htmlConfirm = '';
         if (confirm.isShowConfirm) {
-            htmlConfirm = '<div class="g-button g-dialog-confirm">' + confirm.confirmContent + '</div>';
+            htmlConfirm = '<div class="g-button g-dialog-confirm-footer-confirm">' + confirm.confirmContent + '</div>';
         }
-        htmlFooter = '<div class="g-dialog-footer">' + htmlCancel + htmlConfirm + '</div>';
+        htmlFooter = '<div class="g-dialog-confirm-footer">' + htmlCancel + htmlConfirm + '</div>';
     }
     var htmlClose = '';
     if (confirm.isShowClose) {
-        htmlClose = '<div class="g-dialog-close">' + confirm.closeContent + '</div>';
+        htmlClose = '<div class="g-dialog-confirm-close">' + confirm.closeContent + '</div>';
     }
     return '\n        ' + htmlHeader + '\n        ' + htmlBody + '\n        ' + htmlFooter + '\n        ' + htmlClose + ' \n    ';
 };
@@ -1522,27 +1522,32 @@ SubType.prototype.power = function () {
     var config = this.opts.config;
     // 提示框
     if (config.type === 'alert') {
-        setTimeout(function () {
+        var close = this.moduleDom.querySelector('.g-dialog-alert-close');
+        config.alert.timer = setTimeout(function () {
             self.hide();
         }, config.alert.time);
+        close.addEventListener('click', function () {
+            clearTimeout(config.alert.timer);
+            self.hide();
+        });
     }
     // 确认框
     if (config.type === 'confirm') {
-        var close = this.moduleDom.querySelector('.g-dialog-close');
-        if (close) {
-            close.addEventListener('click', function () {
+        var _close = this.moduleDom.querySelector('.g-dialog-confirm-close');
+        if (_close) {
+            _close.addEventListener('click', function () {
                 self.hide();
                 self.opts.callback.close();
             });
         }
-        var cancel = this.moduleDom.querySelector('.g-dialog-cancel');
+        var cancel = this.moduleDom.querySelector('.g-dialog-confirm-footer-cancel');
         if (cancel) {
             cancel.addEventListener('click', function () {
                 self.hide();
                 self.opts.callback.cancel();
             });
         }
-        var confirm = this.moduleDom.querySelector('.g-dialog-confirm');
+        var confirm = this.moduleDom.querySelector('.g-dialog-confirm-footer-confirm');
         if (confirm) {
             confirm.addEventListener('click', function () {
                 if (!self.opts.config.confirm.isHandHide) {
@@ -1936,63 +1941,7 @@ var SubType = function (_SuperType) {
 module.exports = SubType;
 
 /***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(0); // 应用方法集合
-var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {},
-        // 配置
-        config: {
-            showHeight: 200
-        },
-        // 数据
-        data: {}
-    }
-});
-
-// 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-go-top',
-            innerHTML: '<div class="g-go-top-icon iconfont icon-shangjiantou"></div>'
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-SubType.prototype.power = function () {
-    var self = this;
-    this.moduleDom.addEventListener('click', function () {
-        applications.scrollToY('0');
-    });
-    window.addEventListener('scroll', function () {
-        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        if (scrollTop >= self.opts.config.showHeight) {
-            self.moduleDom.classList.add('g-go-top-active');
-        } else {
-            self.moduleDom.classList.remove('g-go-top-active');
-        }
-    });
-};
-
-module.exports = SubType;
-
-/***/ }),
+/* 18 */,
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
