@@ -97,6 +97,7 @@ window.addEventListener('load', function () {
         // 弹窗测试
         (function () {
             const Dialog = require('../components/g-dialog');
+            /*
             new Dialog({
                 callback: {
                     confirm: function () {
@@ -113,6 +114,7 @@ window.addEventListener('load', function () {
                     type: 'confirm',
                 },
             });
+            */
         }());
 
         // 分页测试

@@ -1417,22 +1417,24 @@ window.addEventListener('load', function () {
         // 弹窗测试
         (function () {
             var Dialog = __webpack_require__(8);
+            /*
             new Dialog({
                 callback: {
-                    confirm: function confirm() {
-                        new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已确认' } } });
+                    confirm: function () {
+                        new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已确认'}}});
                     },
-                    cancel: function cancel() {
-                        new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已取消' } } });
+                    cancel: function () {
+                        new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已取消'}}});
                     },
-                    close: function close() {
-                        new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已关闭' } } });
-                    }
+                    close: function () {
+                        new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已关闭'}}});
+                    },
                 },
                 config: {
-                    type: 'confirm'
-                }
+                    type: 'confirm',
+                },
             });
+            */
         })();
 
         // 分页测试

@@ -95,11 +95,11 @@ Tools.prototype.constructorInherit = function (json) {
          * 所以我就封装了一个移除对象引用的函数
          * */
         this.opts = self.extend({
-            defaults: self.objRemoveQuote(parameter),
-            inherits: json,
+            defaults: self.objRemoveQuote(parameter), // 参数优先等级(中)
+            inherits: json, // 参数优先等级(高)
         });
         // 子类型继承超类型的属性
-        opts.superType.call(this, this.opts);
+        opts.superType.call(this, this.opts); // 参数优先等级(低)
     }
 
     // 子类型继承超类型的方法
