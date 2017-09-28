@@ -1,4 +1,4 @@
-webpackJsonp([2],{
+webpackJsonp([3],{
 
 /***/ 33:
 /***/ (function(module, exports, __webpack_require__) {
@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
     setTimeout(function () {
         // slide切换
         (function () {
-            var Slide = __webpack_require__(4);
+            var Slide = __webpack_require__(5);
             new Slide({
                 wrap: '.page-slide',
                 data: {
@@ -56,14 +56,14 @@ window.addEventListener('load', function () {
 
         // 导航
         (function () {
-            var Navigation = __webpack_require__(6);
+            var Navigation = __webpack_require__(7);
             new Navigation({ wrap: '.page-navigation' });
         })();
 
         // vue
         (function () {
             __webpack_require__(34);
-            var Vue = __webpack_require__(7);
+            var Vue = __webpack_require__(9);
             new Vue({
                 el: '.page-vue-app',
                 template: '<div class="page-vue">\n                    <g-picture-list></g-picture-list>\n                </div>'
@@ -83,7 +83,7 @@ window.addEventListener('load', function () {
 "use strict";
 
 
-var _vue = __webpack_require__(7);
+var _vue = __webpack_require__(9);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -116,7 +116,7 @@ module.exports = __webpack_require__.p + "images/p-waiting.054b1f3c.png";
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -125,7 +125,7 @@ module.exports = __webpack_require__.p + "images/p-waiting.054b1f3c.png";
 var tools = __webpack_require__(1); // 工具方法集合
 var applications = __webpack_require__(0); // 应用方法集合
 var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
-var TouchSlide = __webpack_require__(5); // 轮播图插件
+var TouchSlide = __webpack_require__(6); // 轮播图插件
 
 // 子类型
 var SubType = tools.constructorInherit({
@@ -246,7 +246,7 @@ module.exports = SubType;
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -695,7 +695,7 @@ module.exports = TouchSlide;
 
 /***/ }),
 
-/***/ 6:
+/***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

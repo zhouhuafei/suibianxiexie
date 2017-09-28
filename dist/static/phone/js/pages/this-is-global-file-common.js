@@ -1,4 +1,4 @@
-webpackJsonp([3],[
+webpackJsonp([2],[
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1136,12 +1136,12 @@ module.exports = SuperType;
 "use strict";
 
 
-__webpack_require__(22); // 全局的样式
+__webpack_require__(21); // 全局的样式
 
 // 版权
 (function () {
     if (dataInfo && dataInfo.isShowCopyright) {
-        var Copyright = __webpack_require__(23);
+        var Copyright = __webpack_require__(22);
         new Copyright({
             wrap: '.page-copyright-wrap'
         });
@@ -1151,7 +1151,7 @@ __webpack_require__(22); // 全局的样式
 // 底部导航
 (function () {
     if (dataInfo && dataInfo.footerNav) {
-        var Footer = __webpack_require__(24);
+        var Footer = __webpack_require__(23);
         dataInfo.footerNav.wrap = '.page-footer-nav-wrap';
         new Footer(dataInfo.footerNav);
     }
@@ -1159,7 +1159,7 @@ __webpack_require__(22); // 全局的样式
 
 // 返回顶部
 (function () {
-    var GoTop = __webpack_require__(18);
+    var GoTop = __webpack_require__(24);
     new GoTop({
         wrap: '.page-go-top-wrap'
     });
@@ -1185,73 +1185,16 @@ module.exports.lazyLoad = lazyLoad;
 /* 15 */,
 /* 16 */,
 /* 17 */,
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(0); // 应用方法集合
-var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {},
-        // 配置
-        config: {
-            showHeight: 200
-        },
-        // 数据
-        data: {}
-    }
-});
-
-// 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-go-top',
-            innerHTML: '<div class="g-go-top-icon iconfont icon-shangjiantou"></div>'
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-SubType.prototype.power = function () {
-    var self = this;
-    this.moduleDom.addEventListener('click', function () {
-        applications.scrollToY('0');
-    });
-    window.addEventListener('scroll', function () {
-        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        if (scrollTop >= self.opts.config.showHeight) {
-            self.moduleDom.classList.add('g-go-top-active');
-        } else {
-            self.moduleDom.classList.remove('g-go-top-active');
-        }
-    });
-};
-
-module.exports = SubType;
-
-/***/ }),
+/* 18 */,
 /* 19 */,
 /* 20 */,
-/* 21 */,
-/* 22 */
+/* 21 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1297,7 +1240,7 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1361,6 +1304,63 @@ SubType.prototype.moduleDomCreate = function () {
 // 功能(覆盖超类型)
 SubType.prototype.power = function () {
     // 功能重写待续...
+};
+
+module.exports = SubType;
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(1); // 工具方法集合
+var applications = __webpack_require__(0); // 应用方法集合
+var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var SubType = tools.constructorInherit({
+    superType: SuperType,
+    // 默认参数(继承超类型)
+    parameter: {
+        // 回调
+        callback: {},
+        // 配置
+        config: {
+            showHeight: 200
+        },
+        // 数据
+        data: {}
+    }
+});
+
+// 内部模块的创建(覆盖超类型)
+SubType.prototype.moduleDomCreate = function () {
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-go-top',
+            innerHTML: '<div class="g-go-top-icon iconfont icon-shangjiantou"></div>'
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+SubType.prototype.power = function () {
+    var self = this;
+    this.moduleDom.addEventListener('click', function () {
+        applications.scrollToY('0');
+    });
+    window.addEventListener('scroll', function () {
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop >= self.opts.config.showHeight) {
+            self.moduleDom.classList.add('g-go-top-active');
+        } else {
+            self.moduleDom.classList.remove('g-go-top-active');
+        }
+    });
 };
 
 module.exports = SubType;

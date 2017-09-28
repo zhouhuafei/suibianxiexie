@@ -1,6 +1,6 @@
-webpackJsonp([6],{
+webpackJsonp([4],{
 
-/***/ 13:
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9,7 +9,189 @@ webpackJsonp([6],{
 var tools = __webpack_require__(1); // 工具方法集合
 var applications = __webpack_require__(0); // 应用方法集合
 var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
-var Mask = __webpack_require__(9); // 遮罩
+
+// 子类型
+var SubType = tools.constructorInherit({
+    superType: SuperType,
+    // 默认参数(继承超类型)
+    parameter: {
+        wrap: '.g-wrap',
+        // 回调
+        callback: {
+            click: function click() {},
+            moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
+                    self.wrapDom.style.position = 'relative';
+                }
+            }
+        },
+        // 配置
+        config: {
+            isTransparent: false, // 是不是透明的(默认不透明)
+            moduleDomIsShow: false // 内部模块是否显示(默认不显示)
+        },
+        // 数据
+        data: {}
+    }
+});
+
+// 内部模块的创建(覆盖超类型)
+SubType.prototype.moduleDomCreate = function () {
+    var isTransparent = '';
+    if (this.opts.config.isTransparent) {
+        isTransparent = 'g-mask-transparent';
+    }
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-mask ' + isTransparent,
+            innerHTML: ''
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+SubType.prototype.power = function () {
+    var self = this;
+    this.moduleDom.addEventListener('click', function (ev) {
+        self.opts.callback.click();
+        ev.stopPropagation();
+    });
+};
+
+module.exports = SubType;
+
+/***/ }),
+
+/***/ 47:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+window.addEventListener('load', function () {
+    setTimeout(function () {
+        var axios = __webpack_require__(48);
+
+        // 注释待续...
+        (function () {
+            // 功能待续...
+
+            // 获取验证码
+            var form = document.querySelector('#form');
+            var inputUsername = document.querySelector('#username');
+            var inputPassword = document.querySelector('#password');
+            var inputVerifyCode = document.querySelector('#verify-code');
+            var btnGetVerifyCode = document.querySelector('.get-verify-code');
+
+            function getVerifyCode(username) {
+                var formData = new FormData();
+                formData.append('username', username);
+                formData.append('accountnum', 123456); // 数字 123456 会被立即转换成字符串 "123456"
+                axios({
+                    url: '/phone/api/verify-code-register/',
+                    method: 'get',
+                    params: {
+                        username: username
+                    }
+                });
+            }
+
+            btnGetVerifyCode.addEventListener('click', function () {
+                getVerifyCode(inputUsername.value);
+            });
+
+            // 立即注册
+            document.querySelector('.register').addEventListener('click', function () {
+                var isFormData = true;
+                var userInfo = new FormData(form);
+                if (!isFormData) {
+                    userInfo = {
+                        username: inputUsername.value,
+                        password: inputPassword.value,
+                        verifyCode: inputVerifyCode.value
+                    };
+                }
+                axios({
+                    url: '/phone/api/register/',
+                    method: 'post',
+                    data: userInfo
+                });
+            });
+        })();
+
+        __webpack_require__(50); // 当前页面用到的样式
+        var common = __webpack_require__(3); // 每个页面都要用到的js(一定要放到最底部)
+    }, 0);
+});
+
+/***/ }),
+
+/***/ 48:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var axios = __webpack_require__(12);
+var tools = __webpack_require__(1);
+var Dialog = __webpack_require__(8);
+
+module.exports = function (json) {
+    var opts = tools.extend({
+        defaults: {},
+        inherits: json
+    });
+    return axios(opts).catch(function (error) {
+        new Dialog({
+            config: {
+                alert: {
+                    content: '\u63A5\u53E3\u8BF7\u6C42\u9519\u8BEF:' + error
+                }
+            }
+        });
+    }).then(function (response) {
+        var dataInfo = null;
+        var result = null;
+        if (response) {
+            dataInfo = response.data;
+            if (dataInfo.status === 'success') {
+                result = dataInfo.result;
+            }
+            if (dataInfo.status === 'failure') {
+                new Dialog({
+                    config: {
+                        alert: {
+                            content: '\u63A5\u53E3\u8BF7\u6C42\u5931\u8D25:' + dataInfo.message
+                        }
+                    }
+                });
+            }
+        }
+        return result;
+    });
+};
+
+/***/ }),
+
+/***/ 50:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 8:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(1); // 工具方法集合
+var applications = __webpack_require__(0); // 应用方法集合
+var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
+var Mask = __webpack_require__(4); // 遮罩
 
 // 子类型
 var SubType = tools.constructorInherit({
@@ -219,188 +401,6 @@ SubType.prototype.hide = function () {
     if (this.mask) {
         this.mask.moduleDomHide();
     }
-};
-
-module.exports = SubType;
-
-/***/ }),
-
-/***/ 47:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-window.addEventListener('load', function () {
-    setTimeout(function () {
-        var axios = __webpack_require__(48);
-
-        // 注释待续...
-        (function () {
-            // 功能待续...
-
-            // 获取验证码
-            var form = document.querySelector('#form');
-            var inputUsername = document.querySelector('#username');
-            var inputPassword = document.querySelector('#password');
-            var inputVerifyCode = document.querySelector('#verify-code');
-            var btnGetVerifyCode = document.querySelector('.get-verify-code');
-
-            function getVerifyCode(username) {
-                var formData = new FormData();
-                formData.append('username', username);
-                formData.append('accountnum', 123456); // 数字 123456 会被立即转换成字符串 "123456"
-                axios({
-                    url: '/phone/api/verify-code-register/',
-                    method: 'get',
-                    params: {
-                        username: username
-                    }
-                });
-            }
-
-            btnGetVerifyCode.addEventListener('click', function () {
-                getVerifyCode(inputUsername.value);
-            });
-
-            // 立即注册
-            document.querySelector('.register').addEventListener('click', function () {
-                var isFormData = true;
-                var userInfo = new FormData(form);
-                if (!isFormData) {
-                    userInfo = {
-                        username: inputUsername.value,
-                        password: inputPassword.value,
-                        verifyCode: inputVerifyCode.value
-                    };
-                }
-                axios({
-                    url: '/phone/api/register/',
-                    method: 'post',
-                    data: userInfo
-                });
-            });
-        })();
-
-        __webpack_require__(50); // 当前页面用到的样式
-        var common = __webpack_require__(3); // 每个页面都要用到的js(一定要放到最底部)
-    }, 0);
-});
-
-/***/ }),
-
-/***/ 48:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var axios = __webpack_require__(11);
-var tools = __webpack_require__(1);
-var Dialog = __webpack_require__(13);
-
-module.exports = function (json) {
-    var opts = tools.extend({
-        defaults: {},
-        inherits: json
-    });
-    return axios(opts).catch(function (error) {
-        new Dialog({
-            config: {
-                alert: {
-                    content: '\u63A5\u53E3\u8BF7\u6C42\u9519\u8BEF:' + error
-                }
-            }
-        });
-    }).then(function (response) {
-        var dataInfo = null;
-        var result = null;
-        if (response) {
-            dataInfo = response.data;
-            if (dataInfo.status === 'success') {
-                result = dataInfo.result;
-            }
-            if (dataInfo.status === 'failure') {
-                new Dialog({
-                    config: {
-                        alert: {
-                            content: '\u63A5\u53E3\u8BF7\u6C42\u5931\u8D25:' + dataInfo.message
-                        }
-                    }
-                });
-            }
-        }
-        return result;
-    });
-};
-
-/***/ }),
-
-/***/ 50:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(0); // 应用方法集合
-var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        wrap: '.g-wrap',
-        // 回调
-        callback: {
-            click: function click() {},
-            moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
-                    self.wrapDom.style.position = 'relative';
-                }
-            }
-        },
-        // 配置
-        config: {
-            isTransparent: false, // 是不是透明的(默认不透明)
-            moduleDomIsShow: false // 内部模块是否显示(默认不显示)
-        },
-        // 数据
-        data: {}
-    }
-});
-
-// 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
-    var isTransparent = '';
-    if (this.opts.config.isTransparent) {
-        isTransparent = 'g-mask-transparent';
-    }
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-mask ' + isTransparent,
-            innerHTML: ''
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-SubType.prototype.power = function () {
-    var self = this;
-    this.moduleDom.addEventListener('click', function (ev) {
-        self.opts.callback.click();
-        ev.stopPropagation();
-    });
 };
 
 module.exports = SubType;
