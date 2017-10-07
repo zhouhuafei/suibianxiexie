@@ -104,7 +104,7 @@ window.addEventListener('load', function () {
 
             // 立即注册
             document.querySelector('.register').addEventListener('click', function () {
-                var isFormData = true;
+                var isFormData = false;
                 var userInfo = new FormData(form);
                 if (!isFormData) {
                     userInfo = {

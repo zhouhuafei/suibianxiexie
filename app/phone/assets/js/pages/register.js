@@ -32,7 +32,7 @@ window.addEventListener('load', function () {
 
             // 立即注册
             document.querySelector('.register').addEventListener('click', function () {
-                const isFormData = true;
+                const isFormData = false;
                 let userInfo = new FormData(form);
                 if (!isFormData) {
                     userInfo = {

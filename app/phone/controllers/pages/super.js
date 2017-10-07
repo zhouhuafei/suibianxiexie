@@ -66,18 +66,14 @@ class Super {
     }
 
     // 渲染(这个方法需要在子类型里被调用)
-    render() {
+    render(obj = {}) {
+        this.dataInfo = this.tools.extend({defaults: this.dataInfo, inherits: obj});
         const req = this.opts.req;
         if (req.query.isOnlyRenderData === 'true') {
             this.renderData();// 渲染数据
         } else {
             this.renderView();// 渲染视图
         }
-    }
-
-    // 扩展dataInfo数据
-    extendDataInfo(obj = {}) {
-        return this.tools.extend({defaults: this.dataInfo, inherits: obj});
     }
 }
 

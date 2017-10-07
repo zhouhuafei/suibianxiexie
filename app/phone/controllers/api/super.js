@@ -15,21 +15,24 @@ class Super {
             status: 'failure', // 状态  'success'   'failure'
             message: '接口数据的基本格式', // 信息     '参数错误'
             result: {
+                // 数据集合(格式必须统一为数组,哪怕只有一条数据)
                 data: [
+                    /*
                     {
                         img: {
                             width: 0,
                             height: 0,
                             src: '',
                         },
-                        text: '请求失败了哟',
+                        text: '请求失败!',
                         href: '',
                     },
-                ], // 数据集合
-                allPage: 10, // 总页数
+                    */
+                ],
+                allPage: 1, // 总页数
                 nowPage: 1, // 当前页
-                allCount: 200, // 数据总条数
-                nowCount: 20, // 当前页的数据条数
+                allCount: 1, // 数据总条数
+                nowCount: 1, // 当前页的数据条数
             },
         };
     }
@@ -79,15 +82,11 @@ class Super {
     }
 
     // 渲染数据
-    render() {
+    render(obj = {}) {
+        this.dataInfo = this.tools.extend({defaults: this.dataInfo, inherits: obj});
         const res = this.opts.res;
         res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
         res.end(JSON.stringify(this.dataInfo));
-    }
-
-    // 扩展dataInfo数据
-    extendDataInfo(obj = {}) {
-        return this.tools.extend({defaults: this.dataInfo, inherits: obj});
     }
 }
 

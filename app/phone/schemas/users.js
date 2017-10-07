@@ -15,7 +15,11 @@ module.exports = mongoose.model('phone-users', new mongoose.Schema({
         type: Date,
         default: null,
     },
-    updateTime: {
+    loginTimePrev: {
+        type: Date,
+        default: null,
+    },
+    loginTime: {
         type: Date,
         default: null,
     },
