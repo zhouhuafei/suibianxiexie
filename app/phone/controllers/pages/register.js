@@ -11,9 +11,14 @@ class Register extends Super {
 
     // 处理数据dataInfo
     handleData() {
-        const req = this.opts.req;
+        const self = this;
+        const tools = self.tools; // 工具方法集合
+        const req = self.opts.req;
         const query = req.query;
+        req.session['verify-code-register-canvas'] = tools.getRandom(100000, 999999);// canvas图形验证码
         // dataInfo数据处理待续...
+        console.log('session', req.session);
+        console.log('session', req.session['verify-code-register-random-1123486116@qq.com']);
     }
 }
 

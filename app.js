@@ -1,21 +1,25 @@
 // express
-const ms = require('ms');// 转成毫秒数
-const compression = require('compression');// gzip压缩
+const ms = require('ms'); // 转成毫秒数
+const compression = require('compression'); // gzip压缩
 const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const app = express();
+const secret = 'suibianxiexie'; // sessionID cookie的密钥
 app.use(compression());// gzip压缩
-app.use(express.static('dist/static', {maxAge: ms('1y')}));// 托管静态文件(一年缓存)
-app.use(bodyParser.urlencoded({extended: false}));// parse application/x-www-form-urlencoded
-app.use(bodyParser.json());// parse application/json
-app.use(cookieParser('love'));// cookie
+app.use(express.static('dist/static', {maxAge: ms('1y')})); // 托管静态文件(一年缓存)
+app.use(bodyParser.urlencoded({extended: false})); // parse application/x-www-form-urlencoded
+app.use(bodyParser.json()); // parse application/json
+app.use(cookieParser(secret)); // cookie
 // session
 app.use(session({
-    resave: true, // don't save session if unmodified
-    saveUninitialized: false, // don't create session until something stored
-    secret: 'love', // 这里是我的一个疑问
+    resave: false, // 是指每次请求都重新设置session cookie，假设你的cookie是10分钟过期，每次请求都会再设置10分钟
+    saveUninitialized: false, // 是指无论有没有session cookie，每次请求都设置个session cookie ，默认给个标示为 connect.sid
+    secret: secret, // 用于签署sessionID cookie的密钥
+    cookie: {
+        maxAge: ms('7 days'), // cookie过期时间
+    },
 }));
 
 // 模版引擎(handlebars)

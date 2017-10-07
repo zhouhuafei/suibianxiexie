@@ -12,13 +12,13 @@ module.exports = mongoose.model('phone-verify-codes', new mongoose.Schema({
     register: {
         type: Object,
         default: {
-            // 数字验证码
-            num: {
+            // random随机验证码
+            random: {
                 code: null,
                 createTime: null,
             },
-            // 图片验证码
-            img: {
+            // canvas图形验证码
+            canvas: {
                 code: null,
                 createTime: null,
             },

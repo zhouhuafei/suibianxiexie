@@ -45,7 +45,7 @@ class DevList extends Super {
             // 检查用户名是否已被注册
 
             // 没被注册再发送验证码
-            const verifyCode = tools.getRandom(100000, 999999);// 随机验证码
+            const verifyCode = tools.getRandom(100000, 999999);// random随机验证码
             const expirationDate = 1;// 有效期,单位是分钟
             const autoUser = 'this-is-a-code@foxmail.com';
             const transporter = nodemailer.createTransport({
@@ -62,7 +62,32 @@ class DevList extends Super {
                 text: `这是一条验证码,有效期${expirationDate}分钟`, // 文本
                 html: '', // html
             };
-            // 验证码存数据库里
+            // 验证码存session里
+            transporter.sendMail(mailOptions, function (error, response) {
+                if (error) {
+                    self.extendDataInfo({
+                        status: 'failure',
+                        message: '验证码发送失败',
+                        error: error,
+                    });
+                } else {
+                    self.extendDataInfo({
+                        status: 'success',
+                        message: '验证码发送成功',
+                        error: error,
+                    });
+                    (function (username) {
+                        req.session[`verify-code-register-random-${username}`] = verifyCode;
+                        setTimeout(function () {
+                            delete req.session[`verify-code-register-random-${username}`];
+                            console.log('over', req.session[`verify-code-register-random-${username}`]);
+                        }, expirationDate * 60 * 1000);
+                    }(username));
+                }
+                self.render();// 渲染数据
+            });
+            // 方案二 验证码存数据库里(过期时间要跑脚本,无奈,建议使用redis数据库)
+            /*
             const VerifyCodes = require('../../schemas/verify-codes');
             const verifyCodes = new VerifyCodes({
                 username: '1123486116@qq.com',
@@ -96,6 +121,7 @@ class DevList extends Super {
                     });
                 }
             });
+            */
         }
     }
 }

@@ -1,13 +1,14 @@
 // 模版渲染
-const PageTitle = require('../../models/page-title');// 页面标题
-const PageCopyright = require('../../models/page-copyright');// 页面配置
-const PageFooterNav = require('../../models/page-footer-nav');// 页面底部导航
-const routesConfig = require('../../routes/pages/config');// 路由配置
-const tools = require('../../../../utils/tools');// 工具方法集合
-const applications = require('../../../../utils/applications');// 应用方法集合
+const PageTitle = require('../../models/page-title'); // 页面标题
+const PageCopyright = require('../../models/page-copyright'); // 页面配置
+const PageFooterNav = require('../../models/page-footer-nav'); // 页面底部导航
+const routesConfig = require('../../routes/pages/config'); // 路由配置
+const tools = require('../../../../utils/tools'); // 工具方法集合
+const applications = require('../../../../utils/applications'); // 应用方法集合
 
 class Super {
     constructor(json) {
+        this.tools = tools; // 工具方法集合
         this.opts = tools.extend({
             defaults: {
                 res: null,
@@ -16,7 +17,7 @@ class Super {
             inherits: json,
         });
         this.path = require('path');
-        this.fileName = '';// 这个属性需要在子类型里被覆盖掉
+        this.fileName = ''; // 这个属性需要在子类型里被覆盖掉
     }
 
     // 初始化数据(这个方法需要在子类型里被调用)
@@ -41,7 +42,7 @@ class Super {
                 });
             }
         }
-        this.handleData();// 处理数据
+        this.handleData(); // 处理数据
     }
 
     // 处理数据(这个方法需要在子类型里被重写)
@@ -60,7 +61,7 @@ class Super {
     // 渲染数据
     renderData() {
         const res = this.opts.res;
-        res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'});
+        res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
         res.end(JSON.stringify(this.dataInfo));
     }
 

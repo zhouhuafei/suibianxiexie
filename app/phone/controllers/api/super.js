@@ -81,7 +81,7 @@ class Super {
     // 渲染数据
     render() {
         const res = this.opts.res;
-        res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'});
+        res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
         res.end(JSON.stringify(this.dataInfo));
     }
 
