@@ -93,7 +93,7 @@ class SuperType {
         this.moduleDom = null;// 内部的模块
         this.wrapDom = null;// 内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
         this.moduleDomTimer = {};// 内部模块的定时器存储(假设内部模块有定时器)
-        // this.init();//初始化(用es6继承的话,在超类里调初始化没有意义,因为子类的参数还没有被赋予新值,建议不要在超类里初始化,在子类里初始化)
+        this.init();
     }
 
     // 初始化

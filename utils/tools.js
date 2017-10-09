@@ -94,12 +94,11 @@ Tools.prototype.constructorInherit = function (json) {
          * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
          * 所以我就封装了一个移除对象引用的函数
          * */
-        this.opts = self.extend({
+        // 子类型继承超类型的属性
+        opts.superType.call(this, self.extend({
             defaults: self.objRemoveQuote(parameter),
             inherits: json,
-        });
-        // 子类型继承超类型的属性
-        opts.superType.call(this, this.opts);
+        }));
     }
 
     // 子类型继承超类型的方法
