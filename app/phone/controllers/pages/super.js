@@ -15,9 +15,10 @@ class Super {
             },
             inherits: json,
         });
+        this.init();
     }
 
-    // 初始化数据(这个方法需要在子类型里被调用)
+    // 初始化数据
     init() {
         const self = this;
         const opts = self.opts;

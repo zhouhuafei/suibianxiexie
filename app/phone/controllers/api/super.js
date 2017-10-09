@@ -37,9 +37,10 @@ class Super {
                 nowCount: 1, // 当前页的数据条数
             },
         };
+        this.init();
     }
 
-    // 初始化数据(这个方法需要在子类型里被调用)
+    // 初始化数据
     init() {
         const self = this;
         const isContinue = self.isValidateLogin(); // 是否验证登录

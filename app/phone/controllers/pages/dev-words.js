@@ -2,11 +2,6 @@
 const Super = require('./super');// 超类型
 
 class DevWord extends Super {
-    constructor(json) {
-        super(json);
-        this.init();// 调用超类型的初始化数据
-    }
-
     // 处理数据dataInfo
     handleData() {
         const self = this;
