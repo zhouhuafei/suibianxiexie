@@ -143,6 +143,7 @@ module.exports = function (json) {
         defaults: {},
         inherits: json
     });
+    // 这里如果实在不行的话就配合回调进行修改了待续...
     return axios(opts).catch(function (error) {
         new Dialog({
             config: {
