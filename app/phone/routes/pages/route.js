@@ -1,9 +1,7 @@
 // 页面路由
 const tools = require('../../../../utils/tools');
 const config = require('./config');
-
 const controllerPath = '../../controllers/pages/';// 控制器的路径
-
 class Route {
     constructor(json) {
         this.opts = tools.extend({
@@ -26,17 +24,13 @@ class Route {
                 const Controller = require(`${controllerPath}${attr}`);
                 (function (Controller, attr) {
                     app.get(config[attr].route, function (req, res) {
-                        // 验证是否登陆
-                        if (config[attr].isValidateLogin) {
-                            req.session.user = {username: '1123486116@qq.com'};// 设置session
-                            console.log(req.session.user, 'is login ?');
-                            const isLogin = req.session.user === undefined;
-                            if (!isLogin) {
-                                res.redirect(config.login.route);// 重定向路由
-                                return;
-                            }
-                        }
-                        new Controller({req: req, res: res});// 渲染视图(渲染数据)
+                        // 渲染数据
+                        new Controller({
+                            req: req,
+                            res: res,
+                            routeName: attr,
+                            isValidateLogin: config[attr].isValidateLogin,
+                        });
                     });
                 }(Controller, attr));
             } catch (err) {

@@ -28,7 +28,7 @@ const routeName = [
     {
         name: 'mine', // 我的页面
         title: '我的',
-        isValidateLogin: false, // 是否验证登陆
+        isValidateLogin: true, // 是否验证登陆
     },
     {
         name: 'password-find', // 忘记密码,去找回
@@ -59,9 +59,10 @@ routeName.forEach(function (v) {
         route = `${pathConfig.route}`;
     }
     routeConfig[v.name] = {
+        name: v.name, // 路由名称
+        title: v.title, // 标题
         route: route, // 路由
         view: `${pathConfig.view}${v.name}`, // 视图
-        title: v.title, // 标题
         isValidateLogin: v.isValidateLogin === true, // 是否验证登陆(默认不验证)
         isShowFooterNav: v.isShowFooterNav === undefined, // 是否显示底部导航(默认显示)
     };

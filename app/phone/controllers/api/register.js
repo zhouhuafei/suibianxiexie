@@ -55,7 +55,7 @@ class DevList extends Super {
                     result: {data: [{verifyCode: verifyCode}]},
                 });
             } else {
-                const Users = require('../../schemas/users');
+                const Users = require('../../models/users');
                 Users.find({username: username}, function (error, result) {
                     // 数据库查询出现错误
                     if (error) {

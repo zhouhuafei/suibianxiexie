@@ -1,10 +1,7 @@
 // 模版渲染
-const PageTitle = require('../../models/page-title'); // 页面标题
-const PageCopyright = require('../../models/page-copyright'); // 页面配置
-const PageFooterNav = require('../../models/page-footer-nav'); // 页面底部导航
-const routesConfig = require('../../routes/pages/config'); // 路由配置
 const tools = require('../../../../utils/tools'); // 工具方法集合
 const applications = require('../../../../utils/applications'); // 应用方法集合
+const routesConfig = require('../../routes/pages/config'); // 路由配置
 
 class Super {
     constructor(json) {
@@ -13,36 +10,100 @@ class Super {
             defaults: {
                 res: null,
                 req: null,
+                isValidateLogin: false, // 是否验证登录
+                routeName: null, // 路由名称
             },
             inherits: json,
         });
-        this.path = require('path');
-        this.fileName = ''; // 这个属性需要在子类型里被覆盖掉
     }
 
     // 初始化数据(这个方法需要在子类型里被调用)
     init() {
-        const req = this.opts.req;
+        const self = this;
+        const opts = self.opts;
+        const req = opts.req;
         this.dataInfo = {
-            isShowCopyright: new PageCopyright(this.opts).isShowCopyright, // 是否显示版权(需要从数据库里读取)
+            isShowCopyright: true, // 是否显示版权(需要从数据库里读取)
             routes: routesConfig, // 路由的配置
             qrCode: applications.qrCode(`http://${req.headers.host}${req.url}`), // 二维码数据
-            title: new PageTitle(this.opts).result, // 标题(需要从配置里读取)
+            title: routesConfig[opts.routeName].title || '没有配置标题', // 标题(需要从配置里读取)
         };
-        const dataInfo = this.dataInfo;
-        const isShowFooterNav = routesConfig[this.fileName].isShowFooterNav;
+        const dataInfo = self.dataInfo;
+        const isShowFooterNav = routesConfig[opts.routeName].isShowFooterNav;
         if (isShowFooterNav) {
-            dataInfo.footerNav = new PageFooterNav(this.opts).result;// 底部导航的数据
+            // 底部导航的数据
+            dataInfo.footerNav = {
+                config: {},
+                data: [
+                    {
+                        routeName: 'home',
+                        href: routesConfig.home.route,
+                        text: routesConfig.home.title,
+                        icon: 'icon-shouye',
+                        isHighlight: false,
+                        isShowMark: false,
+                    },
+                    {
+                        routeName: 'dev-globals',
+                        href: routesConfig['dev-globals'].route,
+                        text: routesConfig['dev-globals'].title,
+                        icon: 'icon-kaifa',
+                        isHighlight: false,
+                        isShowMark: false,
+                    },
+                    {
+                        routeName: 'dev-components',
+                        href: routesConfig['dev-components'].route,
+                        text: routesConfig['dev-components'].title,
+                        icon: 'icon-kaifa',
+                        isHighlight: false,
+                        isShowMark: false,
+                    },
+                    {
+                        routeName: 'dev-words',
+                        href: routesConfig['dev-words'].route,
+                        text: routesConfig['dev-words'].title,
+                        icon: 'icon-kaifa',
+                        isHighlight: false,
+                        isShowMark: false,
+                    },
+                    {
+                        routeName: 'mine',
+                        href: routesConfig.mine.route,
+                        text: routesConfig.mine.title,
+                        icon: 'icon-wode',
+                        isHighlight: false,
+                        isShowMark: false,
+                    },
+
+                ],
+            };
             const footerNav = dataInfo.footerNav;
             if (footerNav.data && footerNav.data.length) {
                 footerNav.data.forEach((v) => {
-                    if (v.routeName === this.fileName) {
+                    if (v.routeName === opts.routeName) {
                         v.isHighlight = true;
                     }
                 });
             }
         }
+        this.isValidateLogin(); // 是否验证登录
         this.handleData(); // 处理数据
+    }
+
+    // 是否验证登录
+    isValidateLogin() {
+        const self = this;
+        const opts = self.opts;
+        const req = opts.req;
+        const res = opts.res;
+        // 验证
+        if (opts.isValidateLogin) {
+            // 未登录
+            if (req.session.userInfo === undefined) {
+                res.redirect(routesConfig.login.route); // 重定向路由
+            }
+        }
     }
 
     // 处理数据(这个方法需要在子类型里被重写)
@@ -51,8 +112,10 @@ class Super {
 
     // 渲染视图
     renderView() {
-        const res = this.opts.res;
-        res.render(routesConfig[this.fileName].view, {
+        const self = this;
+        const opts = self.opts;
+        const res = opts.res;
+        res.render(routesConfig[opts.routeName].view, {
             dataInfo: this.dataInfo,
             dataInfoStr: JSON.stringify(this.dataInfo),
         });

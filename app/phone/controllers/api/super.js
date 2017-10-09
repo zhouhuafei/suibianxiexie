@@ -1,5 +1,5 @@
 // 接口数据
-const tools = require('../../../../utils/tools');
+const tools = require('../../../../utils/tools'); // 工具方法集合
 
 class Super {
     constructor(json) {
@@ -8,6 +8,8 @@ class Super {
             defaults: {
                 res: null,
                 req: null,
+                isValidateLogin: false, // 是否验证登录
+                routeName: '', // 路由名称
             },
             inherits: json,
         });
@@ -39,6 +41,7 @@ class Super {
 
     // 初始化数据(这个方法需要在子类型里被调用)
     init() {
+        this.isValidateLogin(); // 是否验证登录
         const req = this.opts.req;
         const method = req.method.toLowerCase(); // 请求方式
         // 当请求方式是get时 用req.query接收数据
@@ -62,6 +65,22 @@ class Super {
         // 查找数据(查)
         if (method === 'get') {
             this.getData();
+        }
+    }
+
+    // 是否验证登录
+    isValidateLogin() {
+        const self = this;
+        const opts = self.opts;
+        const req = opts.req;
+        // 验证
+        if (opts.isValidateLogin) {
+            // 未登录
+            if (req.session.userInfo === undefined) {
+                self.render({
+                    message: '未登录',
+                });
+            }
         }
     }
 

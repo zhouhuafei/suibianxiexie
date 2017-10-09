@@ -82,7 +82,7 @@ class DevList extends Super {
             });
             // 方案二 验证码存数据库里(过期时间要跑脚本,无奈,建议使用redis数据库)
             /*
-            const VerifyCodes = require('../../schemas/verify-codes');
+            const VerifyCodes = require('../../models/verify-codes');
             const verifyCodes = new VerifyCodes({
                 username: '1123486116@qq.com',
             });
