@@ -23,7 +23,7 @@ class Super {
         const self = this;
         const opts = self.opts;
         const req = opts.req;
-        this.dataInfo = {
+        self.dataInfo = {
             isShowCopyright: true, // 是否显示版权(需要从数据库里读取)
             routes: routesConfig, // 路由的配置
             qrCode: applications.qrCode(`http://${req.headers.host}${req.url}`), // 二维码数据
@@ -88,10 +88,11 @@ class Super {
                 });
             }
         }
-        const isContinue = this.isValidateLogin(); // 是否验证登录
-        if (isContinue) {
-            this.handleData(); // 处理数据
+        const isContinue = self.isValidateLogin(); // 是否验证登录
+        if (!isContinue) {
+            return;
         }
+        self.handleData(); // 处理数据
     }
 
     // 是否验证登录
