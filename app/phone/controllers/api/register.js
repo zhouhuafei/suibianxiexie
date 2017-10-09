@@ -56,7 +56,7 @@ class DevList extends Super {
                 });
             } else {
                 const Users = require('../../schemas/users');
-                Users.find({username: username}, function (error, response) {
+                Users.find({username: username}, function (error, result) {
                     // 数据库查询出现错误
                     if (error) {
                         self.render({
@@ -64,21 +64,20 @@ class DevList extends Super {
                             message: '数据库查询出现错误',
                         });
                     }
-                    // 已被注册
-                    if (response) {
+                    if (result.length) {
+                        // 已被注册
                         self.render({
                             status: 'failure',
                             message: '账号已被注册',
                         });
-                    }
-                    // 未被注册
-                    if (!response) {
+                    } else {
+                        // 未被注册
                         const users = new Users({
                             username: username,
                             password: password,
                             createTime: new Date(),
                         });
-                        users.save(function (error, response) {
+                        users.save(function (error, result) {
                             if (error) {
                                 // 数据库插入出现错误
                                 self.render({

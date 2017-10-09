@@ -63,7 +63,7 @@ class DevList extends Super {
                 html: '', // html
             };
             // 验证码存session里
-            transporter.sendMail(mailOptions, function (error, response) {
+            transporter.sendMail(mailOptions, function (error, result) {
                 if (error) {
                     // 验证码发送失败
                     self.render({
@@ -86,7 +86,7 @@ class DevList extends Super {
             const verifyCodes = new VerifyCodes({
                 username: '1123486116@qq.com',
             });
-            verifyCodes.save(function (error, response) {
+            verifyCodes.save(function (error, result) {
                 if (error) {
                     console.log(`Error:${error}`);
                     self.render({
@@ -95,8 +95,8 @@ class DevList extends Super {
                         error: error,
                     });
                 } else {
-                    console.log(`Res:${response}`);
-                    transporter.sendMail(mailOptions, function (error, response) {
+                    console.log(`Res:${result}`);
+                    transporter.sendMail(mailOptions, function (error, result) {
                         if (error) {
                             self.render({
                                 status: 'failure',

@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 // 路径,数据库名字
 const url = 'mongodb://localhost:27017/suibianxiexie';
 
+// mongoose不推荐使用它们自己封装好的Promise
+mongoose.Promise = global.Promise;
+
 // 链接
 mongoose.connect(url, {useMongoClient: true});
 
