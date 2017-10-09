@@ -1,6 +1,5 @@
 const mongoose = require('../../../config/mongoose');
-
-module.exports = mongoose.model('phone-users', new mongoose.Schema({
+const usersSchema = new mongoose.Schema({
     username: {
         type: String,
         default: null,
@@ -23,4 +22,27 @@ module.exports = mongoose.model('phone-users', new mongoose.Schema({
         type: Date,
         default: null,
     },
-}));
+});
+const bcrypt = require('bcrypt'); // 加密工具
+const saltStrength = 10; // 加密强度
+// 使用pre中间件在用户信息存储前进行密码加密
+usersSchema.pre('save', function (next) {
+    const self = this;
+    // 进行加密（加盐）
+    bcrypt.genSalt(saltStrength, function (error, salt) {
+        if (error) {
+            next(error);
+        } else {
+            bcrypt.hash(self.password, salt, function (error, hash) {
+                if (error) {
+                    next(error);
+                } else {
+                    self.password = hash;
+                    next();
+                }
+            });
+        }
+    });
+});
+
+module.exports = mongoose.model('phone-users', usersSchema);
