@@ -97,24 +97,24 @@ window.addEventListener('load', function () {
         // 弹窗测试
         (function () {
             const Dialog = require('../components/g-dialog');
-            /*
-            new Dialog({
-                callback: {
-                    confirm: function () {
-                        new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已确认'}}});
+            document.querySelector('.page-button-dialog').addEventListener('click', function () {
+                new Dialog({
+                    callback: {
+                        confirm: function () {
+                            new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已确认'}}});
+                        },
+                        cancel: function () {
+                            new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已取消'}}});
+                        },
+                        close: function () {
+                            new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已关闭'}}});
+                        },
                     },
-                    cancel: function () {
-                        new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已取消'}}});
+                    config: {
+                        type: 'confirm',
                     },
-                    close: function () {
-                        new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已关闭'}}});
-                    },
-                },
-                config: {
-                    type: 'confirm',
-                },
+                });
             });
-            */
         }());
 
         // 分页测试
@@ -153,7 +153,7 @@ window.addEventListener('load', function () {
             const SubType = require('../components/g-sub-type');
             new SubType({wrap: '.page-super-type'});
             const SuperTypeEs6 = require('../components/g-super-type-es6');
-            new SuperTypeEs6({wrap: '.page-super-type'}).init();// es6继承,不建立在超类型内部直接调init方法
+            new SuperTypeEs6({wrap: '.page-super-type'});
             const SubTypeEs6 = require('../components/g-sub-type-es6');
             new SubTypeEs6({wrap: '.page-super-type'});
         }());

@@ -126,7 +126,7 @@ SuperType.prototype.moduleDomCreate = function () {
         attribute: {
             className: 'g-super-type',
             innerHTML: `
-                <div class="g-super-type-text">周华飞爱侯丽杰,侯丽杰爱周华飞</div>
+                <div class="g-super-type-text">周华飞爱侯丽杰,侯丽杰爱周华飞sup-es5</div>
             `,
         },
     });

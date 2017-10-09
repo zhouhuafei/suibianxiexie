@@ -15,7 +15,13 @@
         box-sizing: border-box;
         position: relative;
         .g-navigation-icon {
-            font-size: px2rem(24);
+            $width-height: 24;
+            width: px2rem($width-height);
+            height: px2rem($width-height);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: px2rem($width-height);
             color: $g-highlight-color;
         }
         .g-navigation-text {

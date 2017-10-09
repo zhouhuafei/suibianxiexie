@@ -1029,7 +1029,7 @@ SuperType.prototype.moduleDomCreate = function () {
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
             className: 'g-super-type',
-            innerHTML: '\n                <div class="g-super-type-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            '
+            innerHTML: '\n                <div class="g-super-type-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsup-es5</div>\n            '
         }
     });
 };

@@ -1189,7 +1189,7 @@ var SuperType = function () {
                 customAttribute: this.opts.config.moduleDomCustomAttribute,
                 attribute: {
                     className: 'g-super-type-es6',
-                    innerHTML: '\n                    <div class="g-super-type-es6-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                '
+                    innerHTML: '\n                    <div class="g-super-type-es6-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsup-es6</div>\n                '
                 }
             });
         }
@@ -1417,24 +1417,24 @@ window.addEventListener('load', function () {
         // 弹窗测试
         (function () {
             var Dialog = __webpack_require__(8);
-            /*
-            new Dialog({
-                callback: {
-                    confirm: function () {
-                        new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已确认'}}});
+            document.querySelector('.page-button-dialog').addEventListener('click', function () {
+                new Dialog({
+                    callback: {
+                        confirm: function confirm() {
+                            new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已确认' } } });
+                        },
+                        cancel: function cancel() {
+                            new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已取消' } } });
+                        },
+                        close: function close() {
+                            new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已关闭' } } });
+                        }
                     },
-                    cancel: function () {
-                        new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已取消'}}});
-                    },
-                    close: function () {
-                        new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已关闭'}}});
-                    },
-                },
-                config: {
-                    type: 'confirm',
-                },
+                    config: {
+                        type: 'confirm'
+                    }
+                });
             });
-            */
         })();
 
         // 分页测试
@@ -1473,7 +1473,7 @@ window.addEventListener('load', function () {
             var SubType = __webpack_require__(16);
             new SubType({ wrap: '.page-super-type' });
             var SuperTypeEs6 = __webpack_require__(11);
-            new SuperTypeEs6({ wrap: '.page-super-type' }).init(); // es6继承,不建立在超类型内部直接调init方法
+            new SuperTypeEs6({ wrap: '.page-super-type' });
             var SubTypeEs6 = __webpack_require__(17);
             new SubTypeEs6({ wrap: '.page-super-type' });
         })();
@@ -1833,7 +1833,7 @@ SubType.prototype.moduleDomCreate = function () {
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
             className: 'g-sub-type',
-            innerHTML: '\n                <div class="g-sub-type-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n            '
+            innerHTML: '\n                <div class="g-sub-type-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsub-es5</div>\n            '
         }
     });
 };
@@ -1896,7 +1896,7 @@ var SubType = function (_SuperType) {
                 customAttribute: this.opts.config.moduleDomCustomAttribute,
                 attribute: {
                     className: 'g-sub-type-es6',
-                    innerHTML: '\n                    <div class="g-sub-type-es6-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DE</div>\n                '
+                    innerHTML: '\n                    <div class="g-sub-type-es6-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsub-es6</div>\n                '
                 }
             });
         }
