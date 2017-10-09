@@ -41,11 +41,19 @@ class Super {
 
     // 初始化数据(这个方法需要在子类型里被调用)
     init() {
-        this.isValidateLogin(); // 是否验证登录
-        const req = this.opts.req;
+        const self = this;
+        const isContinue = self.isValidateLogin(); // 是否验证登录
+        if (!isContinue) {
+            return;
+        }
+        const opts = self.opts;
+        const req = opts.req;
         const method = req.method.toLowerCase(); // 请求方式
-        // 当请求方式是get时 用req.query接收数据
-        // 当请求方式是post delete put时 用req.body接收数据(第三方模块body-parser)
+
+        /*
+        * 当请求方式是get时 用req.query接收数据
+        * 当请求方式是post delete put时 用req.body接收数据(第三方模块body-parser)
+        * */
 
         // 获取数据(增)
         if (method === 'post') {
@@ -73,15 +81,18 @@ class Super {
         const self = this;
         const opts = self.opts;
         const req = opts.req;
+        let isContinue = true;
         // 验证
         if (opts.isValidateLogin) {
             // 未登录
             if (req.session.userInfo === undefined) {
+                isContinue = false;
                 self.render({
                     message: '未登录',
                 });
             }
         }
+        return isContinue;
     }
 
     // 获取数据(增)(这个需要在子类型里被覆盖掉)
@@ -100,12 +111,13 @@ class Super {
     getData() {
     }
 
-    // 渲染数据
+    // 渲染数据(这个方法需要在子类型里被调用)
     render(obj = {}) {
-        this.dataInfo = this.tools.extend({defaults: this.dataInfo, inherits: obj});
-        const res = this.opts.res;
+        const self = this;
+        const res = self.opts.res;
+        self.dataInfo = self.tools.extend({defaults: self.dataInfo, inherits: obj});
         res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
-        res.end(JSON.stringify(this.dataInfo));
+        res.end(JSON.stringify(self.dataInfo));
     }
 }
 

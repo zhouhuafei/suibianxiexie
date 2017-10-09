@@ -11,7 +11,7 @@ module.exports = function (json) {
         new Dialog({
             config: {
                 alert: {
-                    content: `接口请求错误:${error}`,
+                    content: `错误 : ${error}`,
                 },
             },
         });
@@ -27,7 +27,7 @@ module.exports = function (json) {
                 new Dialog({
                     config: {
                         alert: {
-                            content: `接口请求失败:${dataInfo.message}`,
+                            content: `失败 : ${dataInfo.message}`,
                         },
                     },
                 });

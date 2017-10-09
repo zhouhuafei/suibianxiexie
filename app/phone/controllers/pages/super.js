@@ -87,8 +87,10 @@ class Super {
                 });
             }
         }
-        this.isValidateLogin(); // 是否验证登录
-        this.handleData(); // 处理数据
+        const isContinue = this.isValidateLogin(); // 是否验证登录
+        if (isContinue) {
+            this.handleData(); // 处理数据
+        }
     }
 
     // 是否验证登录
@@ -97,13 +99,16 @@ class Super {
         const opts = self.opts;
         const req = opts.req;
         const res = opts.res;
+        let isContinue = true;
         // 验证
         if (opts.isValidateLogin) {
             // 未登录
             if (req.session.userInfo === undefined) {
+                isContinue = false;
                 res.redirect(routesConfig.login.route); // 重定向路由
             }
         }
+        return isContinue;
     }
 
     // 处理数据(这个方法需要在子类型里被重写)
@@ -130,12 +135,13 @@ class Super {
 
     // 渲染(这个方法需要在子类型里被调用)
     render(obj = {}) {
-        this.dataInfo = this.tools.extend({defaults: this.dataInfo, inherits: obj});
-        const req = this.opts.req;
+        const self = this;
+        const req = self.opts.req;
+        self.dataInfo = self.tools.extend({defaults: self.dataInfo, inherits: obj});
         if (req.query.isOnlyRenderData === 'true') {
-            this.renderData();// 渲染数据
+            self.renderData();// 渲染数据
         } else {
-            this.renderView();// 渲染视图
+            self.renderView();// 渲染视图
         }
     }
 }

@@ -5,7 +5,6 @@ class DevWord extends Super {
     constructor(json) {
         super(json);
         this.init();// 调用超类型的初始化数据
-        this.render();// 渲染视图(渲染数据)
     }
 
     // 处理数据dataInfo
@@ -16,6 +15,7 @@ class DevWord extends Super {
         const req = opts.req;
         const query = req.query;
         // dataInfo数据处理待续...
+        this.render();// 渲染视图(渲染数据)
     }
 }
 

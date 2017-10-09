@@ -147,7 +147,7 @@ module.exports = function (json) {
         new Dialog({
             config: {
                 alert: {
-                    content: '\u63A5\u53E3\u8BF7\u6C42\u9519\u8BEF:' + error
+                    content: '\u9519\u8BEF : ' + error
                 }
             }
         });
@@ -163,7 +163,7 @@ module.exports = function (json) {
                 new Dialog({
                     config: {
                         alert: {
-                            content: '\u63A5\u53E3\u8BF7\u6C42\u5931\u8D25:' + dataInfo.message
+                            content: '\u5931\u8D25 : ' + dataInfo.message
                         }
                     }
                 });
