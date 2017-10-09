@@ -51,7 +51,7 @@ class DevList extends Super {
             } else if (Number(session[`verify-code-register-random-${username}`]) !== Number(verifyCode)) {
                 self.render({
                     status: 'failure',
-                    message: '验证码有误',
+                    message: '验证码有误,请重新获取验证码',
                     result: {data: [{verifyCode: verifyCode}]},
                 });
             } else {
