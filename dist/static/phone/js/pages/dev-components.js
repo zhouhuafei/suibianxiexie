@@ -991,7 +991,7 @@ SubType.prototype.moduleDomCreate = function () {
     var positionLocation = config.positionLocation;
     // 加载中
     if (status === 'loading') {
-        moduleDomClass = 'g-loading-loading ';
+        moduleDomClass = 'g-loading-run ';
         // 相对文档居中
         if (positionMethod === 'fixed') {
             moduleDomClass += 'g-loading-fixed g-loading-' + positionLocation;
@@ -1000,7 +1000,7 @@ SubType.prototype.moduleDomCreate = function () {
         if (positionMethod === 'absolute') {
             moduleDomClass += 'g-loading-absolute g-loading-' + positionLocation;
         }
-        moduleDomHtml = '\n            <div class="g-loading-wrap">\n                <div class="g-loading-loading-icon iconfont icon-jiazaizhong"></div>\n            </div>\n        ';
+        moduleDomHtml = '\n            <div class="g-loading-body">\n                <div class="g-loading-run-icon iconfont icon-jiazaizhong"></div>\n            </div>\n        ';
     }
     // 加载完毕
     if (status === 'over') {
@@ -1013,7 +1013,7 @@ SubType.prototype.moduleDomCreate = function () {
         if (positionMethod === 'absolute') {
             moduleDomClass += 'g-loading-absolute g-loading-' + positionLocation;
         }
-        moduleDomHtml = '\n            <div class="g-loading-wrap">\n                <div class="g-loading-over-icon iconfont icon-meiyoushuju"></div>\n                <div class="g-loading-over-text">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ';
+        moduleDomHtml = '\n            <div class="g-loading-body">\n                <div class="g-loading-over-icon iconfont icon-meiyoushuju"></div>\n                <div class="g-loading-over-text">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ';
     }
     // 模块创建
     this.moduleDom = applications.createElement({

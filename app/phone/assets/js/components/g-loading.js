@@ -32,7 +32,7 @@ SubType.prototype.moduleDomCreate = function () {
     const positionLocation = config.positionLocation;
     // 加载中
     if (status === 'loading') {
-        moduleDomClass = 'g-loading-loading ';
+        moduleDomClass = 'g-loading-run ';
         // 相对文档居中
         if (positionMethod === 'fixed') {
             moduleDomClass += `g-loading-fixed g-loading-${positionLocation}`;
@@ -42,8 +42,8 @@ SubType.prototype.moduleDomCreate = function () {
             moduleDomClass += `g-loading-absolute g-loading-${positionLocation}`;
         }
         moduleDomHtml = `
-            <div class="g-loading-wrap">
-                <div class="g-loading-loading-icon iconfont icon-jiazaizhong"></div>
+            <div class="g-loading-body">
+                <div class="g-loading-run-icon iconfont icon-jiazaizhong"></div>
             </div>
         `;
     }
@@ -59,7 +59,7 @@ SubType.prototype.moduleDomCreate = function () {
             moduleDomClass += `g-loading-absolute g-loading-${positionLocation}`;
         }
         moduleDomHtml = `
-            <div class="g-loading-wrap">
+            <div class="g-loading-body">
                 <div class="g-loading-over-icon iconfont icon-meiyoushuju"></div>
                 <div class="g-loading-over-text">没有数据了</div>
             </div>

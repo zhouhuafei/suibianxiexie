@@ -1007,7 +1007,7 @@ html.g-pc {
   100% {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg); } }
-  .g-loading .g-loading-wrap {
+  .g-loading .g-loading-body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1022,36 +1022,36 @@ html.g-pc {
     padding: 0.625rem 0;
     -webkit-box-sizing: border-box;
             box-sizing: border-box; }
-  .g-loading.g-loading-loading .g-loading-loading-icon {
+  .g-loading.g-loading-run .g-loading-run-icon {
     font-size: 0.9375rem;
     -webkit-animation: run 1s linear infinite;
             animation: run 1s linear infinite; }
-  .g-loading.g-loading-loading .g-mask ~ .g-loading-loading-icon {
+  .g-loading.g-loading-run .g-mask ~ .g-loading-run-icon {
     color: #ffffff;
     position: relative;
     z-index: 502; }
-  .g-loading.g-loading-loading.g-loading-fixed .g-loading-wrap {
+  .g-loading.g-loading-run.g-loading-fixed .g-loading-body {
     position: fixed;
     width: inherit;
     z-index: 501; }
-  .g-loading.g-loading-loading.g-loading-fixed.g-loading-top .g-loading-wrap {
+  .g-loading.g-loading-run.g-loading-fixed.g-loading-top .g-loading-body {
     top: 0; }
-  .g-loading.g-loading-loading.g-loading-fixed.g-loading-center .g-loading-wrap {
+  .g-loading.g-loading-run.g-loading-fixed.g-loading-center .g-loading-body {
     top: 0;
     height: 100%; }
-  .g-loading.g-loading-loading.g-loading-fixed.g-loading-bottom .g-loading-wrap {
+  .g-loading.g-loading-run.g-loading-fixed.g-loading-bottom .g-loading-body {
     bottom: 0; }
-  .g-loading.g-loading-loading.g-loading-absolute .g-loading-wrap {
+  .g-loading.g-loading-run.g-loading-absolute .g-loading-body {
     position: absolute;
     left: 0;
     width: 100%;
     z-index: 501; }
-  .g-loading.g-loading-loading.g-loading-absolute.g-loading-top .g-loading-wrap {
+  .g-loading.g-loading-run.g-loading-absolute.g-loading-top .g-loading-body {
     top: 0; }
-  .g-loading.g-loading-loading.g-loading-absolute.g-loading-center .g-loading-wrap {
+  .g-loading.g-loading-run.g-loading-absolute.g-loading-center .g-loading-body {
     top: 0;
     height: 100%; }
-  .g-loading.g-loading-loading.g-loading-absolute.g-loading-bottom .g-loading-wrap {
+  .g-loading.g-loading-run.g-loading-absolute.g-loading-bottom .g-loading-body {
     bottom: 0; }
   .g-loading.g-loading-over .g-loading-over-icon {
     font-size: 0.75rem; }
@@ -1061,13 +1061,13 @@ html.g-pc {
     color: #ffffff;
     position: relative;
     z-index: 502; }
-  .g-loading.g-loading-over.g-loading-fixed .g-loading-wrap {
+  .g-loading.g-loading-over.g-loading-fixed .g-loading-body {
     position: fixed;
     top: 0;
     width: inherit;
     height: 100%;
     z-index: 501; }
-  .g-loading.g-loading-over.g-loading-absolute .g-loading-wrap {
+  .g-loading.g-loading-over.g-loading-absolute .g-loading-body {
     position: absolute;
     left: 0;
     top: 0;
