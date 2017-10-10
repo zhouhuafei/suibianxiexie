@@ -6,8 +6,8 @@ webpackJsonp([0],{
 "use strict";
 
 
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(0); // 应用方法集合
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
 var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
 
 // 子类型

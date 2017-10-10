@@ -91,7 +91,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"g-star","1":"dev-components","2":"this-is-global-file-common","3":"home","4":"register","5":"this-is-global-file-vendor","6":"dev-globals","7":"setting","8":"sample","9":"password-reset","10":"password-find","11":"mine","12":"login","13":"dev-words","14":"dev-list"}[chunkId]||chunkId) + "." + chunkId + ".chunk.js";
+/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"g-star","1":"dev-components","2":"this-is-global-file-common","3":"home","4":"setting","5":"register","6":"login","7":"this-is-global-file-vendor","8":"dev-globals","9":"sample","10":"password-reset","11":"password-find","12":"mine","13":"dev-words","14":"dev-list"}[chunkId]||chunkId) + "." + chunkId + ".chunk.js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {

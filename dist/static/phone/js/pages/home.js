@@ -1,6 +1,90 @@
 webpackJsonp([3],{
 
-/***/ 33:
+/***/ 10:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var SuperType = __webpack_require__(2);
+// 超类型(子类型继承的对象)
+var route = '/phone/';
+
+// 子类型
+var SubType = tools.constructorInherit({
+    superType: SuperType,
+    // 默认参数(继承超类型)
+    parameter: {
+        // 回调
+        callback: {},
+        // 配置
+        config: {},
+        // 数据
+        data: {
+            items: [{
+                href: route,
+                icon: 'icon-shouye',
+                text: '首页',
+                isShowMark: false
+            }, {
+                href: route + 'dev-globals/',
+                icon: 'icon-kaifa',
+                text: '开发全局',
+                isShowMark: false
+            }, {
+                href: route + 'dev-components/',
+                icon: 'icon-kaifa',
+                text: '开发组件',
+                isShowMark: false
+            }, {
+                href: route + 'dev-words/',
+                icon: 'icon-kaifa',
+                text: '开发词汇',
+                isShowMark: false
+            }, {
+                href: route + 'mine/',
+                icon: 'icon-wode',
+                text: '我的',
+                isShowMark: false
+            }]
+        }
+    }
+});
+
+// 内部模块的创建(覆盖超类型)
+SubType.prototype.moduleDomCreate = function () {
+    var data = this.opts.data;
+    var items = data.items;
+    var html = '';
+    items.forEach(function (v) {
+        var markHtml = '';
+        if (v.isShowMark) {
+            markHtml = '<div class="g-navigation-mark"></div>';
+        }
+        html += '\n            <a href="' + v.href + '" class="g-navigation-item">\n                <div class="g-navigation-icon iconfont ' + v.icon + '"></div>\n                <div class="g-navigation-text">' + v.text + '</div>\n                ' + markHtml + '\n            </a>\n        ';
+    });
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-navigation',
+            innerHTML: html
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+SubType.prototype.power = function () {
+    // 功能重写待续...
+};
+
+module.exports = SubType;
+
+/***/ }),
+
+/***/ 34:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10,7 +94,7 @@ window.addEventListener('load', function () {
     setTimeout(function () {
         // slide切换
         (function () {
-            var Slide = __webpack_require__(5);
+            var Slide = __webpack_require__(8);
             new Slide({
                 wrap: '.page-slide',
                 data: {
@@ -56,76 +140,76 @@ window.addEventListener('load', function () {
 
         // 导航
         (function () {
-            var Navigation = __webpack_require__(7);
+            var Navigation = __webpack_require__(10);
             new Navigation({ wrap: '.page-navigation' });
         })();
 
         // vue
         (function () {
-            __webpack_require__(34);
-            var Vue = __webpack_require__(9);
+            __webpack_require__(35);
+            var Vue = __webpack_require__(11);
             new Vue({
                 el: '.page-vue-app',
                 template: '<div class="page-vue">\n                    <g-picture-list></g-picture-list>\n                </div>'
             });
         })();
 
-        __webpack_require__(38); // 当前页面用到的样式
+        __webpack_require__(39); // 当前页面用到的样式
         var common = __webpack_require__(3); // 每个页面都要用到的js(一定要放到最底部)
     }, 0);
 });
 
 /***/ }),
 
-/***/ 34:
+/***/ 35:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _vue = __webpack_require__(9);
+var _vue = __webpack_require__(11);
 
 var _vue2 = _interopRequireDefault(_vue);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.component('g-picture-list', {
-    template: '<div class="g-picture-list">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(36) + '" alt="">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(37) + '" alt="">\n    </div>'
+    template: '<div class="g-picture-list">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(37) + '" alt="">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(38) + '" alt="">\n    </div>'
 });
-
-/***/ }),
-
-/***/ 36:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/p-waiting.d4f6dd4c.jpg";
 
 /***/ }),
 
 /***/ 37:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/p-waiting.054b1f3c.png";
+module.exports = __webpack_require__.p + "images/p-waiting.d4f6dd4c.jpg";
 
 /***/ }),
 
 /***/ 38:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/p-waiting.054b1f3c.png";
+
+/***/ }),
+
+/***/ 39:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 5:
+/***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(0); // 应用方法集合
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
 var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
-var TouchSlide = __webpack_require__(6); // 轮播图插件
+var TouchSlide = __webpack_require__(9); // 轮播图插件
 
 // 子类型
 var SubType = tools.constructorInherit({
@@ -246,7 +330,7 @@ module.exports = SubType;
 
 /***/ }),
 
-/***/ 6:
+/***/ 9:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -693,90 +777,6 @@ var TouchSlide = function TouchSlide(a) {
 
 module.exports = TouchSlide;
 
-/***/ }),
-
-/***/ 7:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(0); // 应用方法集合
-var SuperType = __webpack_require__(2);
-// 超类型(子类型继承的对象)
-var route = '/phone/';
-
-// 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {},
-        // 配置
-        config: {},
-        // 数据
-        data: {
-            items: [{
-                href: route,
-                icon: 'icon-shouye',
-                text: '首页',
-                isShowMark: false
-            }, {
-                href: route + 'dev-globals/',
-                icon: 'icon-kaifa',
-                text: '开发全局',
-                isShowMark: false
-            }, {
-                href: route + 'dev-components/',
-                icon: 'icon-kaifa',
-                text: '开发组件',
-                isShowMark: false
-            }, {
-                href: route + 'dev-words/',
-                icon: 'icon-kaifa',
-                text: '开发词汇',
-                isShowMark: false
-            }, {
-                href: route + 'mine/',
-                icon: 'icon-wode',
-                text: '我的',
-                isShowMark: false
-            }]
-        }
-    }
-});
-
-// 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
-    var data = this.opts.data;
-    var items = data.items;
-    var html = '';
-    items.forEach(function (v) {
-        var markHtml = '';
-        if (v.isShowMark) {
-            markHtml = '<div class="g-navigation-mark"></div>';
-        }
-        html += '\n            <a href="' + v.href + '" class="g-navigation-item">\n                <div class="g-navigation-icon iconfont ' + v.icon + '"></div>\n                <div class="g-navigation-text">' + v.text + '</div>\n                ' + markHtml + '\n            </a>\n        ';
-    });
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-navigation',
-            innerHTML: html
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-SubType.prototype.power = function () {
-    // 功能重写待续...
-};
-
-module.exports = SubType;
-
 /***/ })
 
-},[33]);
+},[34]);

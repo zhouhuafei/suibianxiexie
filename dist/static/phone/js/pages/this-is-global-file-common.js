@@ -5,7 +5,377 @@ webpackJsonp([2],[
 "use strict";
 
 
-var tools = __webpack_require__(1);
+// 工具方法集合
+function Tools() {}
+
+/**
+ * @description 判断类型
+ * @param {*} whatever - 任何类型的数据都可以
+ * */
+Tools.prototype.typeOf = function (whatever) {
+    return Object.prototype.toString.call(whatever).slice(8, -1).toLowerCase();
+};
+// 对象扩展
+Tools.prototype.extend = function (json) {
+    var self = this;
+    var opts = json || {};
+    opts.defaults = opts.defaults || {}; // 默认对象
+    opts.inherits = opts.inherits || {}; // 继承对像
+    opts.isDeep = opts.isDeep === false ? opts.isDeep : true; // 是否进行深拷贝(默认进行深拷贝)
+    var defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
+    var inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
+    if (defaultsType === inheritsType && opts.isDeep) {
+        if (defaultsType === 'object' || defaultsType === 'array') {
+            // 当为对象或者为数组
+            Object.keys(opts.inherits).forEach(function (attr) {
+                var attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
+                var attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
+                if (attrDefaultsType === attrInheritsType && opts.isDeep) {
+                    // 类型相同
+                    if (attrDefaultsType === 'object' || attrDefaultsType === 'array') {
+                        // 当为对象或者为数组
+                        self.extend({ defaults: opts.defaults[attr], inherits: opts.inherits[attr] });
+                    } else {
+                        opts.defaults[attr] = opts.inherits[attr];
+                    }
+                } else {
+                    // 类型不同,直接后面的覆盖前面的
+                    opts.defaults[attr] = opts.inherits[attr];
+                }
+            });
+        } else {
+            opts.defaults = opts.inherits;
+        }
+    } else {
+        opts.defaults = opts.inherits;
+    }
+    return opts.defaults;
+};
+/**
+ * @description 对象移除引用
+ * @param {Object} obj - 参数需要是一个对象或者是一个数组,这里一定不能给默认值,否则undefined就没了
+ * */
+Tools.prototype.objRemoveQuote = function (obj) {
+    var self = this;
+    var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+    if (objType !== 'object' && objType !== 'array') {
+        return obj;
+    }
+    var newObj = {};
+    if (objType === 'array') {
+        newObj = [];
+    }
+    Object.keys(obj).forEach(function (attr) {
+        newObj[attr] = self.objRemoveQuote(obj[attr]);
+    });
+    return newObj;
+};
+// 面向对象继承
+Tools.prototype.constructorInherit = function (json) {
+    var self = this;
+    var opts = self.extend({
+        defaults: {
+            superType: null, // 继承哪个超类(这个必须传的是一个构造函数,或者不传值)
+            parameter: {} // 默认参数(这个必须传的是一个对象,或者不传值)
+        },
+        inherits: json
+    });
+    // 超类型(需要是个构造函数)
+    var SuperType = opts.superType;
+    // 子类型的默认参数(需要是个对象)
+    var parameter = opts.parameter;
+    // 如果超类型不存在
+    if (Object.prototype.toString.call(SuperType).toLowerCase().slice(8, -1) !== 'function') {
+        console.log('no find SuperType or SuperType error');
+        return false;
+    }
+
+    // 子类型
+    function SubType(json) {
+        // 子类型自身的属性
+        /*
+         * 注意:
+         * defaults要防止对象的引用(如果不防止的话,会出现BUG)
+         * 例如 wrap的默认值是'.g-wrap'
+         * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
+         * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
+         * 但是由于对象引用的原因,这里的值会变成'body'
+         * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
+         * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
+         * 所以我就封装了一个移除对象引用的函数
+         * */
+        // 子类型继承超类型的属性
+        opts.superType.call(this, self.extend({
+            defaults: self.objRemoveQuote(parameter),
+            inherits: json
+        }));
+    }
+
+    // 子类型继承超类型的方法
+    Object.keys(SuperType.prototype).forEach(function (attr) {
+        SubType.prototype[attr] = SuperType.prototype[attr];
+    });
+    return SubType;
+};
+// 数组去重
+Tools.prototype.arrayRemoveRepeat = function (array) {
+    var self = this;
+    array = self.typeOf(array) === 'array' ? array : [];
+    var newArray = [];
+    array.forEach(function (v) {
+        if (newArray.indexOf(v) === -1) {
+            newArray.push(v);
+        }
+    });
+    return newArray;
+};
+/**
+ * @description 日期格式化
+ * @param {Number} date - 毫秒数
+ * @param {String} result = 'year/month/day hours:minutes:seconds' - 格式
+ * */
+Tools.prototype.dateFormat = function () {
+    var date = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var result = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'year/month/day hours:minutes:seconds';
+
+    var myDate = new Date();
+    if ({}.toString.call(date).slice(8, -1).toLowerCase() === 'date') {
+        date = date.getTime();
+    }
+    myDate.setTime(date);
+    var obj = {
+        year: myDate.getFullYear(), // 年
+        month: myDate.getMonth() + 1, // 月
+        day: myDate.getDate(), // 日
+        hours: myDate.getHours(), // 时
+        minutes: myDate.getMinutes(), // 分
+        seconds: myDate.getSeconds(), // 秒
+        milliseconds: myDate.getMilliseconds(), // 毫秒
+        week1: '\u661F\u671F' + ['日', '一', '二', '三', '四', '五', '六'][myDate.getDay()], // 星期几
+        week2: '\u5468' + ['日', '一', '二', '三', '四', '五', '六'][myDate.getDay()], // 周几
+        week3: '\u793C\u62DC' + ['日', '一', '二', '三', '四', '五', '六'][myDate.getDay()] // 礼拜几
+    };
+    Object.keys(obj).forEach(function (key) {
+        result = result.replace(new RegExp(key), obj[key]);
+    });
+    obj.result = result;
+    return obj;
+};
+/**
+ * @description 秒转时间
+ * @param {Number} seconds - 秒数
+ * */
+Tools.prototype.secondsToTime = function () {
+    var seconds = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+    // 天
+    var nowDay = Math.floor(seconds / 3600 / 24);
+    // 时
+    var nowHours = Math.floor(seconds / 3600 % 24);
+    // 分
+    var nowMinutes = Math.floor(seconds % 3600 / 60);
+    // 秒
+    var nowSeconds = Math.floor(seconds % 60);
+    return { day: nowDay, hours: nowHours, minutes: nowMinutes, seconds: nowSeconds };
+};
+// 倒计时
+Tools.prototype.timeCountDown = function (json) {
+    var self = this;
+    var opts = self.extend({
+        defaults: {
+            seconds: 0,
+            callback: {
+                run: function run() {},
+                over: function over() {}
+            }
+        },
+        inherits: json
+    });
+    var seconds = opts.seconds; // 秒数
+    var run = opts.callback.run; // 运行的回调
+    var over = opts.callback.over; // 结束的回调
+    // 时间大于等于0秒
+    if (seconds >= 0) {
+        run(self.secondsToTime(seconds)); // 运行时的回调
+        // 倒计时走你
+        var timer = setInterval(function () {
+            seconds--;
+            if (seconds >= 0) {
+                run(self.secondsToTime(seconds)); // 运行时的回调
+            } else {
+                over(); // 结束时的回调
+                clearInterval(timer);
+            }
+        }, 1000);
+    }
+    // 时间小于0秒
+    if (seconds < 0) {
+        console.log('倒计时的秒数不能小于0');
+    }
+};
+/**
+ * @description 字符串限制最大长度
+ * @param {String} str - 字符串
+ * @param {Number} maxLength - 限制最大长度
+ * */
+Tools.prototype.strLimitLength = function (str, maxLength) {
+    if (!str) {
+        return '';
+    }
+    if (Number(str.length) > maxLength) {
+        str = str.substring(0, maxLength);
+    }
+    return str;
+};
+/**
+ * @description json转数组
+ * @param {Object} json - json格式的对象{}
+ * */
+Tools.prototype.jsonToArray = function () {
+    var json = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    var arr = [];
+    if (json instanceof Array) {
+        json.forEach(function (v, i) {
+            arr.push({ key: i, value: v });
+        });
+    } else {
+        Object.keys(json).forEach(function (attr) {
+            arr.push({ key: attr, value: json[attr] });
+        });
+    }
+    return arr;
+};
+/**
+ * @description 补零函数
+ * @param {Number} value - 数字
+ * @param {Number} place - 这个数字是个几位数的数字,如果是个3位数的数字,不足三位,则补0
+ * */
+Tools.prototype.fillZero = function () {
+    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var place = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+
+    var valueLen = value.toString().length;
+    var zeroLen = place - valueLen;
+    var arr = [];
+    for (var i = 0; i < zeroLen; i++) {
+        arr.push('0');
+    }
+    var zero = arr.join('');
+    if (value < Math.pow(10, place)) {
+        return '' + zero + value;
+    }
+    return '' + value;
+};
+// px转rem
+Tools.prototype.px2rem = function () {
+    var px = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var base = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 320;
+
+    return px / base * 10 + 'rem';
+};
+/**
+ * @description 字符串转驼峰
+ * @param {String} str - 字符串
+ * @param {String} rule - 规则
+ * */
+Tools.prototype.strToHump = function (str) {
+    var rule = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '-';
+
+    var self = this;
+    var type = self.typeOf(str);
+    if (type === 'string') {
+        var arr = str.split(rule);
+        arr.forEach(function (v, i) {
+            if (i !== 0) {
+                if (arr[i][0]) {
+                    arr[i] = arr[i][0].toUpperCase() + arr[i].substring(1);
+                }
+            }
+        });
+        str = arr.join('');
+    } else {
+        console.log('参数错误,请输入字符串');
+    }
+    return str;
+};
+// 获取随机数
+Tools.prototype.getRandom = function (min, max) {
+    var self = this;
+    min = self.typeOf(min) === 'number' ? min : 0;
+    max = self.typeOf(max) === 'number' ? max : 1;
+    return Math.round(Math.random() * (max - min) + min);
+};
+// 是不是空字符串
+Tools.prototype.isEmpty = function (value) {
+    return value.toString().trim() === '';
+};
+// 是不是数字0
+Tools.prototype.isZero = function (value) {
+    return Number(value) === 0;
+};
+// 是不是正整数
+Tools.prototype.isPositiveInteger = function (value) {
+    var reg = /^[1-9]\d*$/;
+    return reg.test(value);
+};
+// 是不是保留了place位小数(默认两位)
+Tools.prototype.isKeepDecimal = function (value) {
+    var place = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+
+    var reg = new RegExp('^\\d+\\.\\d{' + place + '}$');
+    return reg.test(value);
+};
+// 是不是手机号
+Tools.prototype.isPhoneNum = function (value) {
+    var reg = /^1[3458][0-9]\d{4,8}$/;
+    return reg.test(value);
+};
+// 是不是邮箱
+Tools.prototype.isEmail = function (value) {
+    var reg = /^([0-9A-Za-z\-_.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
+    return reg.test(value);
+};
+// {a:1,b:2} 序列成 'a=1&b=2'
+Tools.prototype.queryStringify = function () {
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    var result = [];
+    Object.keys(obj).forEach(function (key) {
+        result.push(key + '=' + obj[key]);
+    });
+    return result.join('&');
+};
+// 'a=1&b=2' 解析成 {a:1,b:2}
+Tools.prototype.queryParse = function (str) {
+    var result = {};
+    if (str) {
+        str.split('&').forEach(function (v) {
+            var arr = v.split('=');
+            result[arr[0]] = arr[1];
+        });
+    }
+    return result;
+};
+// 保留几位小数(默认两位)
+Tools.prototype.keepDecimal = function () {
+    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var place = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+
+    var baseNum = Math.pow(10, place);
+    return (Math.floor(parseFloat(value) * baseNum) / baseNum).toFixed(2);
+};
+// 输出
+module.exports = new Tools();
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0);
 
 // 应用方法集合
 function Applications() {}
@@ -526,384 +896,14 @@ Applications.prototype.whetherDisableScroll = function () {
 module.exports = new Applications();
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// 工具方法集合
-function Tools() {}
-
-/**
- * @description 判断类型
- * @param {*} whatever - 任何类型的数据都可以
- * */
-Tools.prototype.typeOf = function (whatever) {
-    return Object.prototype.toString.call(whatever).slice(8, -1).toLowerCase();
-};
-// 对象扩展
-Tools.prototype.extend = function (json) {
-    var self = this;
-    var opts = json || {};
-    opts.defaults = opts.defaults || {}; // 默认对象
-    opts.inherits = opts.inherits || {}; // 继承对像
-    opts.isDeep = opts.isDeep === false ? opts.isDeep : true; // 是否进行深拷贝(默认进行深拷贝)
-    var defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
-    var inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
-    if (defaultsType === inheritsType && opts.isDeep) {
-        if (defaultsType === 'object' || defaultsType === 'array') {
-            // 当为对象或者为数组
-            Object.keys(opts.inherits).forEach(function (attr) {
-                var attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
-                var attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
-                if (attrDefaultsType === attrInheritsType && opts.isDeep) {
-                    // 类型相同
-                    if (attrDefaultsType === 'object' || attrDefaultsType === 'array') {
-                        // 当为对象或者为数组
-                        self.extend({ defaults: opts.defaults[attr], inherits: opts.inherits[attr] });
-                    } else {
-                        opts.defaults[attr] = opts.inherits[attr];
-                    }
-                } else {
-                    // 类型不同,直接后面的覆盖前面的
-                    opts.defaults[attr] = opts.inherits[attr];
-                }
-            });
-        } else {
-            opts.defaults = opts.inherits;
-        }
-    } else {
-        opts.defaults = opts.inherits;
-    }
-    return opts.defaults;
-};
-/**
- * @description 对象移除引用
- * @param {Object} obj - 参数需要是一个对象或者是一个数组,这里一定不能给默认值,否则undefined就没了
- * */
-Tools.prototype.objRemoveQuote = function (obj) {
-    var self = this;
-    var objType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
-    if (objType !== 'object' && objType !== 'array') {
-        return obj;
-    }
-    var newObj = {};
-    if (objType === 'array') {
-        newObj = [];
-    }
-    Object.keys(obj).forEach(function (attr) {
-        newObj[attr] = self.objRemoveQuote(obj[attr]);
-    });
-    return newObj;
-};
-// 面向对象继承
-Tools.prototype.constructorInherit = function (json) {
-    var self = this;
-    var opts = self.extend({
-        defaults: {
-            superType: null, // 继承哪个超类(这个必须传的是一个构造函数,或者不传值)
-            parameter: {} // 默认参数(这个必须传的是一个对象,或者不传值)
-        },
-        inherits: json
-    });
-    // 超类型(需要是个构造函数)
-    var SuperType = opts.superType;
-    // 子类型的默认参数(需要是个对象)
-    var parameter = opts.parameter;
-    // 如果超类型不存在
-    if (Object.prototype.toString.call(SuperType).toLowerCase().slice(8, -1) !== 'function') {
-        console.log('no find SuperType or SuperType error');
-        return false;
-    }
-
-    // 子类型
-    function SubType(json) {
-        // 子类型自身的属性
-        /*
-         * 注意:
-         * defaults要防止对象的引用(如果不防止的话,会出现BUG)
-         * 例如 wrap的默认值是'.g-wrap'
-         * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
-         * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
-         * 但是由于对象引用的原因,这里的值会变成'body'
-         * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
-         * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
-         * 所以我就封装了一个移除对象引用的函数
-         * */
-        // 子类型继承超类型的属性
-        opts.superType.call(this, self.extend({
-            defaults: self.objRemoveQuote(parameter),
-            inherits: json
-        }));
-    }
-
-    // 子类型继承超类型的方法
-    Object.keys(SuperType.prototype).forEach(function (attr) {
-        SubType.prototype[attr] = SuperType.prototype[attr];
-    });
-    return SubType;
-};
-// 数组去重
-Tools.prototype.arrayRemoveRepeat = function (array) {
-    var self = this;
-    array = self.typeOf(array) === 'array' ? array : [];
-    var newArray = [];
-    array.forEach(function (v) {
-        if (newArray.indexOf(v) === -1) {
-            newArray.push(v);
-        }
-    });
-    return newArray;
-};
-/**
- * @description 日期格式化
- * @param {Number} date - 毫秒数
- * @param {String} result = 'year/month/day hours:minutes:seconds' - 格式
- * */
-Tools.prototype.dateFormat = function () {
-    var date = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    var result = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'year/month/day hours:minutes:seconds';
-
-    var myDate = new Date();
-    if ({}.toString.call(date).slice(8, -1).toLowerCase() === 'date') {
-        date = date.getTime();
-    }
-    myDate.setTime(date);
-    var obj = {
-        year: myDate.getFullYear(), // 年
-        month: myDate.getMonth() + 1, // 月
-        day: myDate.getDate(), // 日
-        hours: myDate.getHours(), // 时
-        minutes: myDate.getMinutes(), // 分
-        seconds: myDate.getSeconds(), // 秒
-        milliseconds: myDate.getMilliseconds(), // 毫秒
-        week1: '\u661F\u671F' + ['日', '一', '二', '三', '四', '五', '六'][myDate.getDay()], // 星期几
-        week2: '\u5468' + ['日', '一', '二', '三', '四', '五', '六'][myDate.getDay()], // 周几
-        week3: '\u793C\u62DC' + ['日', '一', '二', '三', '四', '五', '六'][myDate.getDay()] // 礼拜几
-    };
-    Object.keys(obj).forEach(function (key) {
-        result = result.replace(new RegExp(key), obj[key]);
-    });
-    obj.result = result;
-    return obj;
-};
-/**
- * @description 秒转时间
- * @param {Number} seconds - 秒数
- * */
-Tools.prototype.secondsToTime = function () {
-    var seconds = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-
-    // 天
-    var nowDay = Math.floor(seconds / 3600 / 24);
-    // 时
-    var nowHours = Math.floor(seconds / 3600 % 24);
-    // 分
-    var nowMinutes = Math.floor(seconds % 3600 / 60);
-    // 秒
-    var nowSeconds = Math.floor(seconds % 60);
-    return { day: nowDay, hours: nowHours, minutes: nowMinutes, seconds: nowSeconds };
-};
-// 倒计时
-Tools.prototype.timeCountDown = function (json) {
-    var self = this;
-    var opts = self.extend({
-        defaults: {
-            seconds: 0,
-            callback: {
-                run: function run() {},
-                over: function over() {}
-            }
-        },
-        inherits: json
-    });
-    var seconds = opts.seconds; // 秒数
-    var run = opts.callback.run; // 运行的回调
-    var over = opts.callback.over; // 结束的回调
-    // 时间大于等于0秒
-    if (seconds >= 0) {
-        run(self.secondsToTime(seconds)); // 运行时的回调
-        // 倒计时走你
-        var timer = setInterval(function () {
-            seconds--;
-            if (seconds >= 0) {
-                run(self.secondsToTime(seconds)); // 运行时的回调
-            } else {
-                over(); // 结束时的回调
-                clearInterval(timer);
-            }
-        }, 1000);
-    }
-    // 时间小于0秒
-    if (seconds < 0) {
-        console.log('倒计时的秒数不能小于0');
-    }
-};
-/**
- * @description 字符串限制最大长度
- * @param {String} str - 字符串
- * @param {Number} maxLength - 限制最大长度
- * */
-Tools.prototype.strLimitLength = function (str, maxLength) {
-    if (!str) {
-        return '';
-    }
-    if (Number(str.length) > maxLength) {
-        str = str.substring(0, maxLength);
-    }
-    return str;
-};
-/**
- * @description json转数组
- * @param {Object} json - json格式的对象{}
- * */
-Tools.prototype.jsonToArray = function () {
-    var json = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    var arr = [];
-    if (json instanceof Array) {
-        json.forEach(function (v, i) {
-            arr.push({ key: i, value: v });
-        });
-    } else {
-        Object.keys(json).forEach(function (attr) {
-            arr.push({ key: attr, value: json[attr] });
-        });
-    }
-    return arr;
-};
-/**
- * @description 补零函数
- * @param {Number} value - 数字
- * @param {Number} place - 这个数字是个几位数的数字,如果是个3位数的数字,不足三位,则补0
- * */
-Tools.prototype.fillZero = function () {
-    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    var place = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
-
-    var valueLen = value.toString().length;
-    var zeroLen = place - valueLen;
-    var arr = [];
-    for (var i = 0; i < zeroLen; i++) {
-        arr.push('0');
-    }
-    var zero = arr.join('');
-    if (value < Math.pow(10, place)) {
-        return '' + zero + value;
-    }
-    return '' + value;
-};
-// px转rem
-Tools.prototype.px2rem = function () {
-    var px = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    var base = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 320;
-
-    return px / base * 10 + 'rem';
-};
-/**
- * @description 字符串转驼峰
- * @param {String} str - 字符串
- * @param {String} rule - 规则
- * */
-Tools.prototype.strToHump = function (str) {
-    var rule = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '-';
-
-    var self = this;
-    var type = self.typeOf(str);
-    if (type === 'string') {
-        var arr = str.split(rule);
-        arr.forEach(function (v, i) {
-            if (i !== 0) {
-                if (arr[i][0]) {
-                    arr[i] = arr[i][0].toUpperCase() + arr[i].substring(1);
-                }
-            }
-        });
-        str = arr.join('');
-    } else {
-        console.log('参数错误,请输入字符串');
-    }
-    return str;
-};
-// 获取随机数
-Tools.prototype.getRandom = function (min, max) {
-    var self = this;
-    min = self.typeOf(min) === 'number' ? min : 0;
-    max = self.typeOf(max) === 'number' ? max : 1;
-    return Math.round(Math.random() * (max - min) + min);
-};
-// 是不是空字符串
-Tools.prototype.isEmpty = function (value) {
-    return value.toString().trim() === '';
-};
-// 是不是数字0
-Tools.prototype.isZero = function (value) {
-    return Number(value) === 0;
-};
-// 是不是正整数
-Tools.prototype.isPositiveInteger = function (value) {
-    var reg = /^[1-9]\d*$/;
-    return reg.test(value);
-};
-// 是不是保留了place位小数(默认两位)
-Tools.prototype.isKeepDecimal = function (value) {
-    var place = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
-
-    var reg = new RegExp('^\\d+\\.\\d{' + place + '}$');
-    return reg.test(value);
-};
-// 是不是手机号
-Tools.prototype.isPhoneNum = function (value) {
-    var reg = /^1[3458][0-9]\d{4,8}$/;
-    return reg.test(value);
-};
-// 是不是邮箱
-Tools.prototype.isEmail = function (value) {
-    var reg = /^([0-9A-Za-z\-_.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
-    return reg.test(value);
-};
-// {a:1,b:2} 序列成 'a=1&b=2'
-Tools.prototype.queryStringify = function () {
-    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    var result = [];
-    Object.keys(obj).forEach(function (key) {
-        result.push(key + '=' + obj[key]);
-    });
-    return result.join('&');
-};
-// 'a=1&b=2' 解析成 {a:1,b:2}
-Tools.prototype.queryParse = function (str) {
-    var result = {};
-    if (str) {
-        str.split('&').forEach(function (v) {
-            var arr = v.split('=');
-            result[arr[0]] = arr[1];
-        });
-    }
-    return result;
-};
-// 保留几位小数(默认两位)
-Tools.prototype.keepDecimal = function () {
-    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    var place = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
-
-    var baseNum = Math.pow(10, place);
-    return (Math.floor(parseFloat(value) * baseNum) / baseNum).toFixed(2);
-};
-// 输出
-module.exports = new Tools();
-
-/***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(0); // 应用方法集合
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
 
 // 底层构造函数
 function SuperType(json) {
@@ -1135,12 +1135,12 @@ module.exports = SuperType;
 "use strict";
 
 
-__webpack_require__(21); // 全局的样式
+__webpack_require__(22); // 全局的样式
 
 // 版权
 (function () {
     if (gDataInfo && gDataInfo.isShowCopyright) {
-        var Copyright = __webpack_require__(22);
+        var Copyright = __webpack_require__(23);
         new Copyright({
             wrap: '.page-copyright-wrap'
         });
@@ -1150,7 +1150,7 @@ __webpack_require__(21); // 全局的样式
 // 底部导航
 (function () {
     if (gDataInfo && gDataInfo.footerNav) {
-        var Footer = __webpack_require__(23);
+        var Footer = __webpack_require__(24);
         gDataInfo.footerNav.wrap = '.page-footer-nav-wrap';
         new Footer(gDataInfo.footerNav);
     }
@@ -1158,14 +1158,14 @@ __webpack_require__(21); // 全局的样式
 
 // 返回顶部
 (function () {
-    var GoTop = __webpack_require__(24);
+    var GoTop = __webpack_require__(25);
     new GoTop({
         wrap: '.page-go-top-wrap'
     });
 })();
 
 // 延迟加载
-var LazyLoad = __webpack_require__(25);
+var LazyLoad = __webpack_require__(26);
 var lazyLoad = new LazyLoad();
 module.exports.lazyLoad = lazyLoad;
 
@@ -1187,20 +1187,21 @@ module.exports.lazyLoad = lazyLoad;
 /* 18 */,
 /* 19 */,
 /* 20 */,
-/* 21 */
+/* 21 */,
+/* 22 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(0); // 应用方法集合
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
 var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
 
 // 子类型
@@ -1239,14 +1240,14 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(0); // 应用方法集合
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
 var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
 
 // 子类型
@@ -1308,14 +1309,14 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(0); // 应用方法集合
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
 var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
 
 // 子类型
@@ -1367,14 +1368,14 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(0); // 应用方法集合
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
 
 // 延迟加载
 function LazyLoad(json) {

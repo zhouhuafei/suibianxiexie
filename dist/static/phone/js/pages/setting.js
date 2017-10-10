@@ -1,4 +1,4 @@
-webpackJsonp([7],{
+webpackJsonp([4],{
 
 /***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
@@ -6,183 +6,10 @@ webpackJsonp([7],{
 "use strict";
 
 
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(0); // 应用方法集合
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
 var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {
-            click: function click() {},
-            moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
-                    self.wrapDom.style.position = 'relative';
-                }
-            }
-        },
-        // 配置
-        config: {
-            isTransparent: false, // 是不是透明的(默认不透明)
-            moduleDomIsShow: false, // 内部模块是否显示(默认不显示)
-            positionMethod: 'fixed' // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
-        },
-        // 数据
-        data: {}
-    }
-});
-
-// 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
-    var config = this.opts.config;
-    var className = '';
-    if (config.isTransparent) {
-        className = 'g-mask-transparent';
-    }
-    if (config.positionMethod === 'fixed') {
-        className = 'g-mask-fixed';
-    }
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-mask ' + className,
-            innerHTML: ''
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-SubType.prototype.power = function () {
-    var self = this;
-    this.moduleDom.addEventListener('click', function (ev) {
-        self.opts.callback.click();
-        ev.stopPropagation();
-    });
-};
-
-module.exports = SubType;
-
-/***/ }),
-
-/***/ 48:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var axios = __webpack_require__(12);
-var tools = __webpack_require__(1);
-var Dialog = __webpack_require__(8);
-
-module.exports = function (json) {
-    var opts = tools.extend({
-        defaults: {
-            isHandleError: true, // 是否处理错误
-            isHandleFailure: true // 是否处理失败
-        },
-        inherits: json
-    });
-    /*
-    * javascript axios get params
-    * javascript axios post/put/delete data
-    * 把上述四种数据的传参方式进行统一化,统一使用data
-    * nodejs express get req.query
-    * nodejs express post/put/delete body-parser req.body
-    * 把上述四种数据的传参方式进行统一化,统一使用req.data
-    * */
-    if (opts.method.toLowerCase() === 'get') {
-        opts.params = opts.data || opts.params;
-    }
-    return axios(opts).catch(function (error) {
-        if (opts.isHandleError) {
-            new Dialog({
-                config: {
-                    alert: {
-                        content: '\u9519\u8BEF : ' + error
-                    }
-                }
-            });
-        }
-    }).then(function (response) {
-        var dataInfo = null;
-        if (response) {
-            dataInfo = response.data;
-            if (dataInfo.status === 'failure' && opts.isHandleFailure) {
-                new Dialog({
-                    config: {
-                        alert: {
-                            content: '\u5931\u8D25 : ' + dataInfo.message
-                        }
-                    }
-                });
-            }
-        }
-        return dataInfo;
-    });
-};
-
-/***/ }),
-
-/***/ 53:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-window.addEventListener('load', function () {
-    setTimeout(function () {
-        var axios = __webpack_require__(48);
-        var Dialog = __webpack_require__(8);
-
-        // 退出账号
-        document.querySelector('.page-logout').addEventListener('click', function () {
-            new Dialog({
-                callback: {
-                    confirm: function confirm() {
-                        axios({
-                            url: gDataInfo.api.logout.route,
-                            method: 'get'
-                        }).then(function (dataInfo) {
-                            if (dataInfo.status === 'success') {
-                                window.location.href = gDataInfo.routes.login.route;
-                            }
-                        });
-                    }
-                },
-                config: {
-                    type: 'confirm'
-                }
-            });
-        });
-
-        __webpack_require__(54); // 当前页面用到的样式
-        var common = __webpack_require__(3); // 每个页面都要用到的js(一定要放到最底部)
-    }, 0);
-});
-
-/***/ }),
-
-/***/ 54:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 8:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(0); // 应用方法集合
-var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
-var Mask = __webpack_require__(4); // 遮罩
+var Mask = __webpack_require__(5); // 遮罩
 
 // 子类型
 var SubType = tools.constructorInherit({
@@ -394,6 +221,179 @@ SubType.prototype.hide = function () {
 };
 
 module.exports = SubType;
+
+/***/ }),
+
+/***/ 5:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var SubType = tools.constructorInherit({
+    superType: SuperType,
+    // 默认参数(继承超类型)
+    parameter: {
+        // 回调
+        callback: {
+            click: function click() {},
+            moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
+                    self.wrapDom.style.position = 'relative';
+                }
+            }
+        },
+        // 配置
+        config: {
+            isTransparent: false, // 是不是透明的(默认不透明)
+            moduleDomIsShow: false, // 内部模块是否显示(默认不显示)
+            positionMethod: 'fixed' // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
+        },
+        // 数据
+        data: {}
+    }
+});
+
+// 内部模块的创建(覆盖超类型)
+SubType.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var className = '';
+    if (config.isTransparent) {
+        className = 'g-mask-transparent';
+    }
+    if (config.positionMethod === 'fixed') {
+        className = 'g-mask-fixed';
+    }
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-mask ' + className,
+            innerHTML: ''
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+SubType.prototype.power = function () {
+    var self = this;
+    this.moduleDom.addEventListener('click', function (ev) {
+        self.opts.callback.click();
+        ev.stopPropagation();
+    });
+};
+
+module.exports = SubType;
+
+/***/ }),
+
+/***/ 53:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+window.addEventListener('load', function () {
+    setTimeout(function () {
+        var axios = __webpack_require__(6);
+        var Dialog = __webpack_require__(4);
+
+        // 退出账号
+        document.querySelector('.page-logout').addEventListener('click', function () {
+            new Dialog({
+                callback: {
+                    confirm: function confirm() {
+                        axios({
+                            url: gDataInfo.api.logout.route,
+                            method: 'get'
+                        }).then(function (dataInfo) {
+                            if (dataInfo.status === 'success') {
+                                window.location.href = gDataInfo.routes.login.route;
+                            }
+                        });
+                    }
+                },
+                config: {
+                    type: 'confirm'
+                }
+            });
+        });
+
+        __webpack_require__(54); // 当前页面用到的样式
+        var common = __webpack_require__(3); // 每个页面都要用到的js(一定要放到最底部)
+    }, 0);
+});
+
+/***/ }),
+
+/***/ 54:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 6:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var axios = __webpack_require__(7);
+var tools = __webpack_require__(0);
+var Dialog = __webpack_require__(4);
+
+module.exports = function (json) {
+    var opts = tools.extend({
+        defaults: {
+            isHandleError: true, // 是否处理错误
+            isHandleFailure: true // 是否处理失败
+        },
+        inherits: json
+    });
+    /*
+    * javascript axios get params
+    * javascript axios post/put/delete data
+    * 把上述四种数据的传参方式进行统一化,统一使用data
+    * nodejs express get req.query
+    * nodejs express post/put/delete body-parser req.body
+    * 把上述四种数据的传参方式进行统一化,统一使用req.data
+    * */
+    if (opts.method.toLowerCase() === 'get') {
+        opts.params = opts.data || opts.params;
+    }
+    return axios(opts).catch(function (error) {
+        if (opts.isHandleError) {
+            new Dialog({
+                config: {
+                    alert: {
+                        content: '\u9519\u8BEF : ' + error
+                    }
+                }
+            });
+        }
+    }).then(function (response) {
+        var dataInfo = null;
+        if (response) {
+            dataInfo = response.data;
+            if (dataInfo.status === 'failure' && opts.isHandleFailure) {
+                new Dialog({
+                    config: {
+                        alert: {
+                            content: '\u5931\u8D25 : ' + dataInfo.message
+                        }
+                    }
+                });
+            }
+        }
+        return dataInfo;
+    });
+};
 
 /***/ })
 

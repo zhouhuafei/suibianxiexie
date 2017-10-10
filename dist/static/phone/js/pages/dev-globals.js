@@ -1,6 +1,6 @@
-webpackJsonp([6],{
+webpackJsonp([8],{
 
-/***/ 26:
+/***/ 27:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ webpackJsonp([6],{
 
 window.addEventListener('load', function () {
     setTimeout(function () {
-        var applications = __webpack_require__(0);
+        var applications = __webpack_require__(1);
 
         // base函数测试
         (function () {
@@ -26,28 +26,28 @@ window.addEventListener('load', function () {
 
         // 验证
         (function () {
-            var ValidateInput = __webpack_require__(27);
+            var ValidateInput = __webpack_require__(28);
             var aInput = [].slice.call(document.querySelectorAll('.page-validate-form'));
             aInput.forEach(function (v) {
                 new ValidateInput({ element: v });
             });
         })();
 
-        __webpack_require__(28); // 当前页面用到的样式
+        __webpack_require__(29); // 当前页面用到的样式
         var common = __webpack_require__(3); // 每个页面都要用到的js(一定要放到最底部)
     }, 0);
 });
 
 /***/ }),
 
-/***/ 27:
+/***/ 28:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(0); // 应用方法集合
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
 
 function ValidateForm(json) {
     this.opts = json || {};
@@ -143,11 +143,11 @@ module.exports = ValidateForm;
 
 /***/ }),
 
-/***/ 28:
+/***/ 29:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
 
-},[26]);
+},[27]);

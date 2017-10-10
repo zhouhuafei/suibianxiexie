@@ -1,6 +1,6 @@
 webpackJsonp([14],{
 
-/***/ 29:
+/***/ 30:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13,18 +13,18 @@ window.addEventListener('load', function () {
             // 功能待续...
         })();
 
-        __webpack_require__(30); // 当前页面用到的样式
+        __webpack_require__(31); // 当前页面用到的样式
         var common = __webpack_require__(3); // 每个页面都要用到的js(一定要放到最底部)
     }, 0);
 });
 
 /***/ }),
 
-/***/ 30:
+/***/ 31:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
 
-},[29]);
+},[30]);
