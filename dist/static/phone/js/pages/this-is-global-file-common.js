@@ -1017,12 +1017,12 @@ SuperType.prototype.render = function () {
     this.moduleDomRender(); // 内部模块的渲染(如果外部容器存在,就把内部模块填充到外部容器里)
 };
 
-// 功能(这个方法在其他模块的内部需要被重写)
+// 功能(这个方法需要在子类型里被覆盖掉)
 SuperType.prototype.power = function () {
     // 功能待续...
 };
 
-// 内部模块的创建(这个方法在其他模块的内部需要被重写)
+// 内部模块的创建(这个方法需要在子类型里被覆盖掉)
 SuperType.prototype.moduleDomCreate = function () {
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
@@ -1139,7 +1139,7 @@ __webpack_require__(21); // 全局的样式
 
 // 版权
 (function () {
-    if (dataInfo && dataInfo.isShowCopyright) {
+    if (gDataInfo && gDataInfo.isShowCopyright) {
         var Copyright = __webpack_require__(22);
         new Copyright({
             wrap: '.page-copyright-wrap'
@@ -1149,10 +1149,10 @@ __webpack_require__(21); // 全局的样式
 
 // 底部导航
 (function () {
-    if (dataInfo && dataInfo.footerNav) {
+    if (gDataInfo && gDataInfo.footerNav) {
         var Footer = __webpack_require__(23);
-        dataInfo.footerNav.wrap = '.page-footer-nav-wrap';
-        new Footer(dataInfo.footerNav);
+        gDataInfo.footerNav.wrap = '.page-footer-nav-wrap';
+        new Footer(gDataInfo.footerNav);
     }
 })();
 

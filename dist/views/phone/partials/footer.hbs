@@ -5,10 +5,14 @@
 </div>
 <input type="hidden" id="page-info-str" value="{{dataInfoStr}}">
 <script>
-    var dataInfo = (function () {
+    var gDataInfo = (function () {
         var input = document.querySelector('#page-info-str');
         var value = input.value;
         input.parentNode.removeChild(input);
+        var wrap = document.querySelector('.g-wrap');
+        [].slice.call(wrap.querySelectorAll('script')).forEach(function (v) {
+            wrap.removeChild(v);
+        });
         try {
             return JSON.parse(value);
         } catch (err) {

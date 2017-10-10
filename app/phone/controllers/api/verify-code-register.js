@@ -3,30 +3,15 @@ const Super = require('./super');// 超类型
 const nodemailer = require('nodemailer');// 邮箱模块
 
 class DevList extends Super {
-    // 获取数据(增)(覆盖超类型)
-    postData() {
-        // dataInfo数据处理待续...
-    }
-
-    // 删除数据(删)(覆盖超类型)
-    deleteData() {
-        // dataInfo数据处理待续...
-    }
-
-    // 修改数据(改)(覆盖超类型)
-    putData() {
-        // dataInfo数据处理待续...
-    }
-
-    // 查找数据(查)(覆盖超类型)
+    // (查)查找数据(覆盖超类型)
     getData() {
         // dataInfo数据处理待续...
         const self = this;
         const tools = this.tools;// 工具方法集合
         const opts = this.opts;
         const req = opts.req;
-        const query = req.query;
-        const username = query.username;
+        const data = req.data;
+        const username = data.username;
         if (!tools.isEmail(username)) {
             // 用户名不是邮箱
             self.render({

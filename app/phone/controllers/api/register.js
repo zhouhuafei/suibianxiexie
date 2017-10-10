@@ -2,7 +2,7 @@
 const Super = require('./super'); // 超类型
 
 class DevList extends Super {
-    // 新增数据(增)(覆盖超类型)
+    // (增)新增数据(覆盖超类型)
     postData() {
         // dataInfo数据处理待续...
         const self = this;
@@ -26,10 +26,10 @@ class DevList extends Super {
                 });
             });
         } else {
-            const body = req.body;
-            const username = body.username;// 用户名
-            const password = body.password;// 密码
-            const verifyCode = body.verifyCode;// 验证码
+            const data = req.data;
+            const username = data.username;// 用户名
+            const password = data.password;// 密码
+            const verifyCode = data.verifyCode;// 验证码
             const session = req.session;
             if (!tools.isEmail(username)) {
                 self.render({
@@ -95,30 +95,6 @@ class DevList extends Super {
                 });
             }
         }
-    }
-
-    // 删除数据(删)(覆盖超类型)
-    deleteData() {
-        // dataInfo数据处理待续...
-        console.log('delete');
-        console.log('body', this.opts.req.body);
-        console.log('query', this.opts.req.query);
-    }
-
-    // 修改数据(改)(覆盖超类型)
-    putData() {
-        // dataInfo数据处理待续...
-        console.log('put');
-        console.log('body', this.opts.req.body);
-        console.log('query', this.opts.req.query);
-    }
-
-    // 查找数据(查)(覆盖超类型)
-    getData() {
-        // dataInfo数据处理待续...
-        console.log('get');
-        console.log('body', this.opts.req.body);
-        console.log('query', this.opts.req.query);
     }
 }
 

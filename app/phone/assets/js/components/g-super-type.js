@@ -113,12 +113,12 @@ SuperType.prototype.render = function () {
     this.moduleDomRender();// 内部模块的渲染(如果外部容器存在,就把内部模块填充到外部容器里)
 };
 
-// 功能(这个方法在其他模块的内部需要被重写)
+// 功能(这个方法需要在子类型里被覆盖掉)
 SuperType.prototype.power = function () {
     // 功能待续...
 };
 
-// 内部模块的创建(这个方法在其他模块的内部需要被重写)
+// 内部模块的创建(这个方法需要在子类型里被覆盖掉)
 SuperType.prototype.moduleDomCreate = function () {
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,

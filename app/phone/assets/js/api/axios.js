@@ -4,27 +4,38 @@ const Dialog = require('../components/g-dialog');
 
 module.exports = function (json) {
     const opts = tools.extend({
-        defaults: {},
+        defaults: {
+            isHandleError: true, // 是否处理错误
+            isHandleFailure: true, // 是否处理失败
+        },
         inherits: json,
     });
-    // 这里如果实在不行的话就配合回调进行修改了待续...
+    /*
+    * javascript axios get params
+    * javascript axios post/put/delete data
+    * 把上述四种数据的传参方式进行统一化,统一使用data
+    * nodejs express get req.query
+    * nodejs express post/put/delete body-parser req.body
+    * 把上述四种数据的传参方式进行统一化,统一使用req.data
+    * */
+    if (opts.method.toLowerCase() === 'get') {
+        opts.params = opts.data || opts.params;
+    }
     return axios(opts).catch(function (error) {
-        new Dialog({
-            config: {
-                alert: {
-                    content: `错误 : ${error}`,
+        if (opts.isHandleError) {
+            new Dialog({
+                config: {
+                    alert: {
+                        content: `错误 : ${error}`,
+                    },
                 },
-            },
-        });
+            });
+        }
     }).then(function (response) {
         let dataInfo = null;
-        let result = null;
         if (response) {
             dataInfo = response.data;
-            if (dataInfo.status === 'success') {
-                result = dataInfo.result;
-            }
-            if (dataInfo.status === 'failure') {
+            if (dataInfo.status === 'failure' && opts.isHandleFailure) {
                 new Dialog({
                     config: {
                         alert: {
@@ -34,6 +45,6 @@ module.exports = function (json) {
                 });
             }
         }
-        return result;
+        return dataInfo;
     });
 };

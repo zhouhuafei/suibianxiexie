@@ -74,52 +74,47 @@ window.addEventListener('load', function () {
     setTimeout(function () {
         var axios = __webpack_require__(48);
 
-        // 注释待续...
-        (function () {
-            // 功能待续...
+        // 获取验证码
+        var domForm = document.querySelector('#form');
+        var domUsername = document.querySelector('#username');
+        var domPassword = document.querySelector('#password');
+        var domVerifyCode = document.querySelector('#verify-code');
+        var domGetVerifyCode = document.querySelector('.get-verify-code');
 
-            // 获取验证码
-            var form = document.querySelector('#form');
-            var inputUsername = document.querySelector('#username');
-            var inputPassword = document.querySelector('#password');
-            var inputVerifyCode = document.querySelector('#verify-code');
-            var btnGetVerifyCode = document.querySelector('.get-verify-code');
-
-            function getVerifyCode(username) {
-                var formData = new FormData();
-                formData.append('username', username);
-                formData.append('accountnum', 123456); // 数字 123456 会被立即转换成字符串 "123456"
-                axios({
-                    url: '/phone/api/verify-code-register/',
-                    method: 'get',
-                    params: {
-                        username: username
-                    }
-                });
-            }
-
-            btnGetVerifyCode.addEventListener('click', function () {
-                getVerifyCode(inputUsername.value);
-            });
-
-            // 立即注册
-            document.querySelector('.register').addEventListener('click', function () {
-                var isFormData = false;
-                var userInfo = new FormData(form);
-                if (!isFormData) {
-                    userInfo = {
-                        username: inputUsername.value,
-                        password: inputPassword.value,
-                        verifyCode: inputVerifyCode.value
-                    };
+        function getVerifyCode(username) {
+            var formData = new FormData();
+            formData.append('username', username);
+            formData.append('accountnum', 123456); // 数字 123456 会被立即转换成字符串 "123456"
+            axios({
+                url: gDataInfo.api['verify-code-register'].route,
+                method: 'get',
+                data: {
+                    username: username
                 }
-                axios({
-                    url: '/phone/api/register/',
-                    method: 'post',
-                    data: userInfo
-                });
             });
-        })();
+        }
+
+        domGetVerifyCode.addEventListener('click', function () {
+            getVerifyCode(domUsername.value);
+        });
+
+        // 立即注册
+        document.querySelector('.register').addEventListener('click', function () {
+            var isFormData = false;
+            var userInfo = new FormData(domForm);
+            if (!isFormData) {
+                userInfo = {
+                    username: domUsername.value,
+                    password: domPassword.value,
+                    verifyCode: domVerifyCode.value
+                };
+            }
+            axios({
+                url: gDataInfo.api.register.route,
+                method: 'post',
+                data: userInfo
+            });
+        });
 
         __webpack_require__(50); // 当前页面用到的样式
         var common = __webpack_require__(3); // 每个页面都要用到的js(一定要放到最底部)
@@ -140,27 +135,38 @@ var Dialog = __webpack_require__(8);
 
 module.exports = function (json) {
     var opts = tools.extend({
-        defaults: {},
+        defaults: {
+            isHandleError: true, // 是否处理错误
+            isHandleFailure: true // 是否处理失败
+        },
         inherits: json
     });
-    // 这里如果实在不行的话就配合回调进行修改了待续...
+    /*
+    * javascript axios get params
+    * javascript axios post/put/delete data
+    * 把上述四种数据的传参方式进行统一化,统一使用data
+    * nodejs express get req.query
+    * nodejs express post/put/delete body-parser req.body
+    * 把上述四种数据的传参方式进行统一化,统一使用req.data
+    * */
+    if (opts.method.toLowerCase() === 'get') {
+        opts.params = opts.data || opts.params;
+    }
     return axios(opts).catch(function (error) {
-        new Dialog({
-            config: {
-                alert: {
-                    content: '\u9519\u8BEF : ' + error
+        if (opts.isHandleError) {
+            new Dialog({
+                config: {
+                    alert: {
+                        content: '\u9519\u8BEF : ' + error
+                    }
                 }
-            }
-        });
+            });
+        }
     }).then(function (response) {
         var dataInfo = null;
-        var result = null;
         if (response) {
             dataInfo = response.data;
-            if (dataInfo.status === 'success') {
-                result = dataInfo.result;
-            }
-            if (dataInfo.status === 'failure') {
+            if (dataInfo.status === 'failure' && opts.isHandleFailure) {
                 new Dialog({
                     config: {
                         alert: {
@@ -170,7 +176,7 @@ module.exports = function (json) {
                 });
             }
         }
-        return result;
+        return dataInfo;
     });
 };
 

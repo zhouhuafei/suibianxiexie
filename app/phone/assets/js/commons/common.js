@@ -2,7 +2,7 @@ require('../../scss/commons/common.scss');// 全局的样式
 
 // 版权
 (function () {
-    if (dataInfo && dataInfo.isShowCopyright) {
+    if (gDataInfo && gDataInfo.isShowCopyright) {
         const Copyright = require('../components/g-copyright');
         new Copyright({
             wrap: '.page-copyright-wrap',
@@ -12,10 +12,10 @@ require('../../scss/commons/common.scss');// 全局的样式
 
 // 底部导航
 (function () {
-    if (dataInfo && dataInfo.footerNav) {
+    if (gDataInfo && gDataInfo.footerNav) {
         const Footer = require('../components/g-footer-nav');
-        dataInfo.footerNav.wrap = '.page-footer-nav-wrap';
-        new Footer(dataInfo.footerNav);
+        gDataInfo.footerNav.wrap = '.page-footer-nav-wrap';
+        new Footer(gDataInfo.footerNav);
     }
 }());
 

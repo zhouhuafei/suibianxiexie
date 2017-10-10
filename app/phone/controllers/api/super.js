@@ -40,7 +40,7 @@ class Super {
         this.init();
     }
 
-    // 初始化数据
+    // (初)初始化数据
     init() {
         const self = this;
         const isContinue = self.isValidateLogin(); // 是否验证登录
@@ -50,34 +50,34 @@ class Super {
         const opts = self.opts;
         const req = opts.req;
         const method = req.method.toLowerCase(); // 请求方式
-
         /*
-        * 当请求方式是get时 用req.query接收数据
-        * 当请求方式是post delete put时 用req.body接收数据(第三方模块body-parser)
+        * javascript axios get params
+        * javascript axios post/put/delete data
+        * 把上述四种数据的传参方式进行统一化,统一使用data
+        * nodejs express get req.query
+        * nodejs express post/put/delete body-parser req.body
+        * 把上述四种数据的传参方式进行统一化,统一使用req.data
         * */
-
-        // 获取数据(增)
-        if (method === 'post') {
-            this.postData();
-        }
-
-        // 删除数据(删)
-        if (method === 'delete') {
-            this.deleteData();
-        }
-
-        // 修改数据(改)
-        if (method === 'put') {
-            this.putData();
-        }
-
-        // 查找数据(查)
         if (method === 'get') {
-            this.getData();
+            req.data = req.query;
+        } else {
+            req.data = req.body;
+        }
+        if (method === 'post') {
+            this.postData(); // 获取数据(增)
+        }
+        if (method === 'delete') {
+            this.deleteData(); // 删除数据(删)
+        }
+        if (method === 'put') {
+            this.putData(); // 修改数据(改)
+        }
+        if (method === 'get') {
+            this.getData(); // 查找数据(查)
         }
     }
 
-    // 是否验证登录
+    // (验)是否验证登录
     isValidateLogin() {
         const self = this;
         const opts = self.opts;
@@ -96,23 +96,31 @@ class Super {
         return isContinue;
     }
 
-    // 获取数据(增)(这个需要在子类型里被覆盖掉)
+    // (增)(盖)获取数据(这个方法需要在子类型里被覆盖掉)
     postData() {
+        console.log('postData:', this.opts.req.data);
+        this.render();
     }
 
-    // 删除数据(删)(这个需要在子类型里被覆盖掉)
+    // (删)(盖)删除数据(这个方法需要在子类型里被覆盖掉)
     deleteData() {
+        console.log('deleteData:', this.opts.req.data);
+        this.render();
     }
 
-    // 修改数据(改)(这个需要在子类型里被覆盖掉)
+    // (改)(盖)修改数据(这个方法需要在子类型里被覆盖掉)
     putData() {
+        console.log('putData:', this.opts.req.data);
+        this.render();
     }
 
-    // 查找数据(查)(这个需要在子类型里被覆盖掉)
+    // (查)(盖)查找数据(这个方法需要在子类型里被覆盖掉)
     getData() {
+        console.log('getData:', this.opts.req.data);
+        this.render();
     }
 
-    // 渲染数据(这个方法需要在子类型里被调用)
+    // (渲)渲染数据(这个方法需要在子类型里被调用)
     render(obj = {}) {
         const self = this;
         const res = self.opts.res;
