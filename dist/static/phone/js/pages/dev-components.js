@@ -1054,7 +1054,6 @@ var SuperType = function () {
         _classCallCheck(this, SuperType);
 
         // 函数外部传来的参数
-        // (这个属性在其他模块的内部需要被重写)
         this.opts = tools.extend({
             // 内部默认参数
             defaults: {

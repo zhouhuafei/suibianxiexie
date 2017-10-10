@@ -3,7 +3,7 @@ const applications = require('../utils/applications');// 应用方法集合
 
 // 底层构造函数
 function SuperType(json) {
-    // 函数外部传来的参数(这个属性在其他模块的内部需要被重写)
+    // 函数外部传来的参数
     this.opts = tools.extend({
         // 内部默认参数
         defaults: {
