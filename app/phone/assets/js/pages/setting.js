@@ -13,7 +13,7 @@ window.addEventListener('load', function () {
                             method: 'get',
                         }).then(function (dataInfo) {
                             if (dataInfo.status === 'success') {
-                                window.location.href = gDataInfo.routes.login.href;
+                                window.location.href = gDataInfo.routes.login.route;
                             }
                         });
                     },
