@@ -113,6 +113,10 @@ window.addEventListener('load', function () {
                 url: gDataInfo.api.register.route,
                 method: 'post',
                 data: userInfo
+            }).then(function (dataInfo) {
+                if (dataInfo.status === 'success') {
+                    window.location.href = gDataInfo.routes.login.href;
+                }
             });
         });
 

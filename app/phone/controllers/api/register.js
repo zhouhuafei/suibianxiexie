@@ -2,9 +2,8 @@
 const Super = require('./super'); // 超类型
 
 class DevList extends Super {
-    // (增)新增数据(覆盖超类型)
+    // (增)(盖)新增数据(覆盖超类型)
     postData() {
-        // dataInfo数据处理待续...
         const self = this;
         const tools = self.tools;// 工具方法集合
         const opts = self.opts;

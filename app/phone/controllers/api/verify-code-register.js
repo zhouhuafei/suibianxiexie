@@ -3,9 +3,8 @@ const Super = require('./super');// 超类型
 const nodemailer = require('nodemailer');// 邮箱模块
 
 class DevList extends Super {
-    // (查)查找数据(覆盖超类型)
+    // (查)(盖)查找数据(覆盖超类型)
     getData() {
-        // dataInfo数据处理待续...
         const self = this;
         const tools = this.tools;// 工具方法集合
         const opts = this.opts;
