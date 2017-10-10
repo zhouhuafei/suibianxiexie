@@ -11,7 +11,6 @@ const SubType = tools.constructorInherit({
         callback: {},
         // 配置
         config: {
-            // isShowMask: false,  //是否显示遮罩(默认不显示)
             status: 'loading', // 加载状态 loading(加载中) over(加载完毕)
             positionMethod: '', // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
             positionLocation: 'center', // 模块的定位位置

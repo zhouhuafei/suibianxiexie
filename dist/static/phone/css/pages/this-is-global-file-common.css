@@ -1026,10 +1026,6 @@ html.g-pc {
     font-size: 0.9375rem;
     -webkit-animation: run 1s linear infinite;
             animation: run 1s linear infinite; }
-  .g-loading.g-loading-run .g-mask ~ .g-loading-run-icon {
-    color: #ffffff;
-    position: relative;
-    z-index: 502; }
   .g-loading.g-loading-run.g-loading-fixed .g-loading-body {
     position: fixed;
     width: inherit;
@@ -1057,10 +1053,6 @@ html.g-pc {
     font-size: 0.75rem; }
   .g-loading.g-loading-over .g-loading-over-text {
     font-size: 0.375rem; }
-  .g-loading.g-loading-over .g-mask ~ .g-loading-over-icon, .g-loading.g-loading-over .g-mask ~ .g-loading-over-text {
-    color: #ffffff;
-    position: relative;
-    z-index: 502; }
   .g-loading.g-loading-over.g-loading-fixed .g-loading-body {
     position: fixed;
     top: 0;
@@ -1440,6 +1432,8 @@ html.g-pc {
   .g-mask.g-mask-transparent {
     z-index: 999;
     background-color: transparent; }
+  .g-mask.g-mask-fixed {
+    position: fixed; }
 
 .g-lazy-load {
   -webkit-transition: opacity 0.4s;

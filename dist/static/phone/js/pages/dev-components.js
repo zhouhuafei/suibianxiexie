@@ -18,7 +18,6 @@ var SubType = tools.constructorInherit({
     superType: SuperType,
     // 默认参数(继承超类型)
     parameter: {
-        wrap: '.g-wrap',
         // 回调
         callback: {
             click: function click() {},
@@ -31,7 +30,8 @@ var SubType = tools.constructorInherit({
         // 配置
         config: {
             isTransparent: false, // 是不是透明的(默认不透明)
-            moduleDomIsShow: false // 内部模块是否显示(默认不显示)
+            moduleDomIsShow: false, // 内部模块是否显示(默认不显示)
+            positionMethod: 'fixed' // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
         },
         // 数据
         data: {}
@@ -40,15 +40,19 @@ var SubType = tools.constructorInherit({
 
 // 内部模块的创建(覆盖超类型)
 SubType.prototype.moduleDomCreate = function () {
-    var isTransparent = '';
-    if (this.opts.config.isTransparent) {
-        isTransparent = 'g-mask-transparent';
+    var config = this.opts.config;
+    var className = '';
+    if (config.isTransparent) {
+        className = 'g-mask-transparent';
+    }
+    if (config.positionMethod === 'fixed') {
+        className = 'g-mask-fixed';
     }
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
-            className: 'g-mask ' + isTransparent,
+            className: 'g-mask ' + className,
             innerHTML: ''
         }
     });
@@ -970,7 +974,6 @@ var SubType = tools.constructorInherit({
         callback: {},
         // 配置
         config: {
-            // isShowMask: false,  //是否显示遮罩(默认不显示)
             status: 'loading', // 加载状态 loading(加载中) over(加载完毕)
             positionMethod: '', // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
             positionLocation: 'center', // 模块的定位位置

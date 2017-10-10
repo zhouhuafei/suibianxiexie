@@ -25,11 +25,6 @@
             font-size: px2rem(30);
             animation: run 1s linear infinite;
         }
-        .g-mask ~ .g-loading-run-icon {
-            color: #ffffff;
-            position: relative;
-            z-index: 502;
-        }
         //相对于文档居中
         &.g-loading-fixed {
             .g-loading-body {
@@ -88,11 +83,6 @@
         }
         .g-loading-over-text {
             font-size: px2rem(12);
-        }
-        .g-mask ~ .g-loading-over-icon, .g-mask ~ .g-loading-over-text {
-            color: #ffffff;
-            position: relative;
-            z-index: 502;
         }
         &.g-loading-fixed {
             .g-loading-body {

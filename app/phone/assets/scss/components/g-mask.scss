@@ -13,4 +13,7 @@
         z-index: 999;
         background-color: transparent;
     }
+    &.g-mask-fixed {
+        position: fixed;
+    }
 }
