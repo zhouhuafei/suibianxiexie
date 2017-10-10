@@ -65,7 +65,7 @@ const SubType = tools.constructorInherit({
                 isShowHeader: true, // 是否显示头部
                 headerContent: '提示:', // 头部内容
                 isShowBody: true, // 是否显示主体
-                bodyContent: '<div>确定要执行这个操作?</div>', // 主体内容
+                content: '<div>确定要执行这个操作?</div>', // 主体内容
                 isShowFooter: true, // 是否显示尾部
                 footerContent: '', // 尾部内容
                 isShowClose: true, // 是否显示关闭按钮
@@ -75,7 +75,6 @@ const SubType = tools.constructorInherit({
                 isShowCancel: true, // 是否显示取消按钮
                 cancelContent: '取消', // 取消按钮的内容
                 isCustom: false, // 是否自定义
-                customContent: '', // 自定义的内容
                 isShowIcon: false, // 是否显示icon
                 icon: 'icon-jinggao', // icon的类型
                 isShowMask: true, // 是否显示遮罩
@@ -149,11 +148,11 @@ SubType.prototype.renderConfirm = function () {
         let bodyClass = 'g-dialog-confirm-body-system';
         let bodyContent = `
             ${htmlIcon}
-            <div class="g-dialog-confirm-body-system-text">${confirm.bodyContent}</div>
+            <div class="g-dialog-confirm-body-system-text">${confirm.content}</div>
         `;
         if (confirm.isCustom) {
             bodyClass = 'g-dialog-confirm-body-custom';
-            bodyContent = confirm.bodyContent;
+            bodyContent = confirm.content;
         }
         htmlBody = `
             <div class="g-dialog-confirm-body">

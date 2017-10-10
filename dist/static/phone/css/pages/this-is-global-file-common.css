@@ -926,8 +926,6 @@ html.g-pc {
       .g-dialog.g-dialog-confirm .g-dialog-confirm-body .g-dialog-confirm-body-system .g-dialog-confirm-body-system-text {
         font-size: 0.4375rem;
         line-height: 1.2; }
-    .g-dialog.g-dialog-confirm .g-dialog-confirm-body .g-dialog-confirm-body-custom {
-      min-width: 4.0625rem; }
     .g-dialog.g-dialog-confirm .g-dialog-confirm-footer {
       display: -webkit-box;
       display: -ms-flexbox;
