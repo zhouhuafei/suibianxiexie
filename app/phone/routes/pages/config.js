@@ -28,27 +28,31 @@ const routeName = [
     {
         name: 'mine', // 我的页面
         title: '我的',
-        isValidateLogin: true, // 是否验证登陆
     },
     {
         name: 'password-find', // 忘记密码,去找回
         title: '忘记密码,去找回',
+        isValidateLogin: false, // 是否验证登陆
     },
     {
         name: 'password-reset', // 修改密码,去重置
         title: '修改密码,去重置',
+        isValidateLogin: false, // 是否验证登陆
     },
     {
         name: 'login', // 登陆页
         title: '登陆',
+        isValidateLogin: false, // 是否验证登陆
     },
     {
         name: 'register', // 注册页
         title: '注册',
+        isValidateLogin: false, // 是否验证登陆
     },
     {
         name: 'home', // 首页
         title: '首页',
+        isValidateLogin: false, // 是否验证登陆
     },
 ];
 // 路由的配置
@@ -63,7 +67,7 @@ routeName.forEach(function (v) {
         title: v.title, // 标题
         route: route, // 路由
         view: `${pathConfig.view}${v.name}`, // 视图
-        isValidateLogin: v.isValidateLogin === true, // 是否验证登陆(默认不验证)
+        isValidateLogin: v.isValidateLogin !== false, // 是否验证登陆(默认验证)
         isShowFooterNav: v.isShowFooterNav === undefined, // 是否显示底部导航(默认显示)
     };
 });

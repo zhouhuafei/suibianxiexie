@@ -688,7 +688,7 @@ var SubType = tools.constructorInherit({
             }, {
                 href: route + 'dev-words/',
                 icon: 'icon-kaifa',
-                text: '标准词汇',
+                text: '开发词汇',
                 isShowMark: false
             }, {
                 href: route + 'mine/',
