@@ -1,7 +1,7 @@
 // 注册,页面路由的控制器
 const Super = require('./super');// 超类型
 
-class Register extends Super {
+class Sub extends Super {
     // 处理数据(覆盖超类型)
     handleData() {
         const self = this;
@@ -16,4 +16,4 @@ class Register extends Super {
     }
 }
 
-module.exports = Register;
+module.exports = Sub;

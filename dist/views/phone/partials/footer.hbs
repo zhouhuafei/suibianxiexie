@@ -4,20 +4,3 @@
     <div class="page-go-top-wrap"></div>
 </div>
 <input type="hidden" id="page-info-str" value="{{dataInfoStr}}">
-<script>
-    var gDataInfo = (function () {
-        var input = document.querySelector('#page-info-str');
-        var value = input.value;
-        input.parentNode.removeChild(input);
-        var wrap = document.querySelector('.g-wrap');
-        [].slice.call(wrap.querySelectorAll('script')).forEach(function (v) {
-            wrap.removeChild(v);
-        });
-        try {
-            return JSON.parse(value);
-        } catch (err) {
-            console.log('dataInfo的json格式值出现错误:', err);
-            return value || {};
-        }
-    }());
-</script>

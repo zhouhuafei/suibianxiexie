@@ -1,7 +1,6 @@
-// 开发列表,页面路由的控制器
 const Super = require('./super');// 超类型
 
-class DevList extends Super {
+class Sub extends Super {
     // 获取数据(增)(覆盖超类型)
     postData() {
         // dataInfo数据处理待续...
@@ -23,4 +22,4 @@ class DevList extends Super {
     }
 }
 
-module.exports = DevList;
+module.exports = Sub;

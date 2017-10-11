@@ -1,7 +1,7 @@
 // 接口数据
 const tools = require('../../../../utils/tools'); // 工具方法集合
 
-class Super {
+class Sub {
     constructor(json) {
         this.tools = tools;// 工具方法集合
         this.opts = tools.extend({
@@ -130,4 +130,4 @@ class Super {
     }
 }
 
-module.exports = Super;
+module.exports = Sub;

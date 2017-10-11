@@ -1,7 +1,7 @@
 // 登陆,页面路由的控制器
 const Super = require('./super');// 超类型
 
-class Login extends Super {
+class Sub extends Super {
 }
 
-module.exports = Login;
+module.exports = Sub;

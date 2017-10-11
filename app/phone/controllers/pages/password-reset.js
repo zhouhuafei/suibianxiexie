@@ -1,7 +1,7 @@
 // 修改密码,去重置,页面路由的控制器
 const Super = require('./super');// 超类型
 
-class PasswordReset extends Super {
+class Sub extends Super {
 }
 
-module.exports = PasswordReset;
+module.exports = Sub;

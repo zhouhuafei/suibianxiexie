@@ -1,5 +1,3 @@
-// http://eslint.org/docs/user-guide/configuring
-
 module.exports = {
     root: true,
     parser: 'babel-eslint',
@@ -12,11 +10,10 @@ module.exports = {
         node: true,
         browser: true,
     },
-    globals: {
-        gDataInfo: true,
-    },
     plugins: ['html'],
     /*
+    * 官网: http://eslint.org | http://eslint.cn
+    * 配置: http://eslint.org/docs/user-guide/configuring | http://eslint.cn/docs/user-guide/configuring
     * 0或者"off":关闭规则
     * 1或者"warn":打开规则,并且作为一个警告(不影响exit code)
     * 2或者"error":打开规则,并且作为一个错误(exit code将会是1)

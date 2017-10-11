@@ -1,8 +1,7 @@
-// 开发列表,页面路由的控制器
 const Super = require('./super');// 超类型
 const nodemailer = require('nodemailer');// 邮箱模块
 
-class DevList extends Super {
+class Sub extends Super {
     // (查)(盖)查找数据(覆盖超类型)
     getData() {
         const self = this;
@@ -97,4 +96,4 @@ class DevList extends Super {
     }
 }
 
-module.exports = DevList;
+module.exports = Sub;

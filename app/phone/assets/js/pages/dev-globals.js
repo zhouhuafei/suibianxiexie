@@ -1,6 +1,10 @@
-window.addEventListener('load', function () {
-    setTimeout(function () {
-        const applications = require('../utils/applications');
+require('../../scss/pages/dev-globals.scss');
+const Super = require('./super');
+
+class Sub extends Super {
+    power() {
+        const self = this;
+        const applications = self.applications;
 
         // base函数测试
         (function () {
@@ -24,8 +28,7 @@ window.addEventListener('load', function () {
                 new ValidateInput({element: v});
             });
         }());
+    }
+}
 
-        require('../../scss/pages/dev-globals.scss');// 当前页面用到的样式
-        const common = require('../commons/common');// 每个页面都要用到的js(一定要放到最底部)
-    }, 0);
-});
+new Sub();

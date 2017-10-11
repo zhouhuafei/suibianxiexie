@@ -1,6 +1,11 @@
-window.addEventListener('load', function () {
-    setTimeout(function () {
-        const axios = require('../api/axios');
+require('../../scss/pages/login.scss');
+const Super = require('./super');
+
+class Sub extends Super {
+    power() {
+        const self = this;
+        const gDataInfo = self.dataInfo;
+        const axios = self.axios;
 
         // 登录
         const domUsername = document.querySelector('#username');
@@ -19,8 +24,7 @@ window.addEventListener('load', function () {
                 }
             });
         });
+    }
+}
 
-        require('../../scss/pages/login.scss');// 当前页面用到的样式
-        const common = require('../commons/common');// 每个页面都要用到的js(一定要放到最底部)
-    }, 0);
-});
+new Sub();

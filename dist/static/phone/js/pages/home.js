@@ -1,206 +1,138 @@
 webpackJsonp([3],{
 
-/***/ 10:
+/***/ 31:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var SuperType = __webpack_require__(2);
-// 超类型(子类型继承的对象)
-var route = '/phone/';
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-// 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {},
-        // 配置
-        config: {},
-        // 数据
-        data: {
-            items: [{
-                href: route,
-                icon: 'icon-shouye',
-                text: '首页',
-                isShowMark: false
-            }, {
-                href: route + 'dev-globals/',
-                icon: 'icon-kaifa',
-                text: '开发全局',
-                isShowMark: false
-            }, {
-                href: route + 'dev-components/',
-                icon: 'icon-kaifa',
-                text: '开发组件',
-                isShowMark: false
-            }, {
-                href: route + 'dev-words/',
-                icon: 'icon-kaifa',
-                text: '开发词汇',
-                isShowMark: false
-            }, {
-                href: route + 'mine/',
-                icon: 'icon-wode',
-                text: '我的',
-                isShowMark: false
-            }]
-        }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+__webpack_require__(61);
+var Super = __webpack_require__(3);
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub() {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).apply(this, arguments));
     }
-});
 
-// 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
-    var data = this.opts.data;
-    var items = data.items;
-    var html = '';
-    items.forEach(function (v) {
-        var markHtml = '';
-        if (v.isShowMark) {
-            markHtml = '<div class="g-navigation-mark"></div>';
+    _createClass(Sub, [{
+        key: 'power',
+        value: function power() {
+            // slide切换
+            (function () {
+                var Slide = __webpack_require__(5);
+                new Slide({
+                    wrap: '.page-slide',
+                    data: {
+                        items: [{
+                            img: {
+                                width: 0,
+                                height: 0,
+                                src: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg'
+                            },
+                            href: ''
+                        }, {
+                            img: {
+                                width: 0,
+                                height: 0,
+                                src: 'http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg'
+                            },
+                            href: ''
+                        }, {
+                            img: {
+                                width: 0,
+                                height: 0,
+                                src: 'http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg'
+                            },
+                            href: ''
+                        }, {
+                            img: {
+                                width: 0,
+                                height: 0,
+                                src: 'http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg'
+                            },
+                            href: ''
+                        }, {
+                            img: {
+                                width: 0,
+                                height: 0,
+                                src: 'http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg'
+                            },
+                            href: ''
+                        }]
+                    }
+                });
+            })();
+
+            // 导航
+            (function () {
+                var Navigation = __webpack_require__(7);
+                new Navigation({ wrap: '.page-navigation' });
+            })();
+
+            // vue
+            (function () {
+                __webpack_require__(32);
+                var Vue = __webpack_require__(8);
+                new Vue({
+                    el: '.page-vue-app',
+                    template: '<div class="page-vue">\n                    <g-picture-list></g-picture-list>\n                </div>'
+                });
+            })();
         }
-        html += '\n            <a href="' + v.href + '" class="g-navigation-item">\n                <div class="g-navigation-icon iconfont ' + v.icon + '"></div>\n                <div class="g-navigation-text">' + v.text + '</div>\n                ' + markHtml + '\n            </a>\n        ';
-    });
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-navigation',
-            innerHTML: html
-        }
-    });
-};
+    }]);
 
-// 功能(覆盖超类型)
-SubType.prototype.power = function () {
-    // 功能重写待续...
-};
+    return Sub;
+}(Super);
 
-module.exports = SubType;
+new Sub();
 
 /***/ }),
 
-/***/ 34:
+/***/ 32:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-window.addEventListener('load', function () {
-    setTimeout(function () {
-        // slide切换
-        (function () {
-            var Slide = __webpack_require__(8);
-            new Slide({
-                wrap: '.page-slide',
-                data: {
-                    items: [{
-                        img: {
-                            width: 0,
-                            height: 0,
-                            src: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg'
-                        },
-                        href: ''
-                    }, {
-                        img: {
-                            width: 0,
-                            height: 0,
-                            src: 'http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg'
-                        },
-                        href: ''
-                    }, {
-                        img: {
-                            width: 0,
-                            height: 0,
-                            src: 'http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg'
-                        },
-                        href: ''
-                    }, {
-                        img: {
-                            width: 0,
-                            height: 0,
-                            src: 'http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg'
-                        },
-                        href: ''
-                    }, {
-                        img: {
-                            width: 0,
-                            height: 0,
-                            src: 'http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg'
-                        },
-                        href: ''
-                    }]
-                }
-            });
-        })();
-
-        // 导航
-        (function () {
-            var Navigation = __webpack_require__(10);
-            new Navigation({ wrap: '.page-navigation' });
-        })();
-
-        // vue
-        (function () {
-            __webpack_require__(35);
-            var Vue = __webpack_require__(11);
-            new Vue({
-                el: '.page-vue-app',
-                template: '<div class="page-vue">\n                    <g-picture-list></g-picture-list>\n                </div>'
-            });
-        })();
-
-        __webpack_require__(39); // 当前页面用到的样式
-        var common = __webpack_require__(3); // 每个页面都要用到的js(一定要放到最底部)
-    }, 0);
-});
-
-/***/ }),
-
-/***/ 35:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _vue = __webpack_require__(11);
+var _vue = __webpack_require__(8);
 
 var _vue2 = _interopRequireDefault(_vue);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.component('g-picture-list', {
-    template: '<div class="g-picture-list">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(37) + '" alt="">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(38) + '" alt="">\n    </div>'
+    template: '<div class="g-picture-list">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(34) + '" alt="">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(35) + '" alt="">\n    </div>'
 });
 
 /***/ }),
 
-/***/ 37:
+/***/ 34:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/p-waiting.d4f6dd4c.jpg";
 
 /***/ }),
 
-/***/ 38:
+/***/ 35:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/p-waiting.054b1f3c.png";
 
 /***/ }),
 
-/***/ 39:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 8:
+/***/ 5:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -209,7 +141,7 @@ module.exports = __webpack_require__.p + "images/p-waiting.054b1f3c.png";
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
 var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
-var TouchSlide = __webpack_require__(9); // 轮播图插件
+var TouchSlide = __webpack_require__(6); // 轮播图插件
 
 // 子类型
 var SubType = tools.constructorInherit({
@@ -330,7 +262,7 @@ module.exports = SubType;
 
 /***/ }),
 
-/***/ 9:
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -777,6 +709,97 @@ var TouchSlide = function TouchSlide(a) {
 
 module.exports = TouchSlide;
 
+/***/ }),
+
+/***/ 61:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 7:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var SuperType = __webpack_require__(2);
+// 超类型(子类型继承的对象)
+var route = '/phone/';
+
+// 子类型
+var SubType = tools.constructorInherit({
+    superType: SuperType,
+    // 默认参数(继承超类型)
+    parameter: {
+        // 回调
+        callback: {},
+        // 配置
+        config: {},
+        // 数据
+        data: {
+            items: [{
+                href: route,
+                icon: 'icon-shouye',
+                text: '首页',
+                isShowMark: false
+            }, {
+                href: route + 'dev-globals/',
+                icon: 'icon-kaifa',
+                text: '开发全局',
+                isShowMark: false
+            }, {
+                href: route + 'dev-components/',
+                icon: 'icon-kaifa',
+                text: '开发组件',
+                isShowMark: false
+            }, {
+                href: route + 'dev-words/',
+                icon: 'icon-kaifa',
+                text: '开发词汇',
+                isShowMark: false
+            }, {
+                href: route + 'mine/',
+                icon: 'icon-wode',
+                text: '我的',
+                isShowMark: false
+            }]
+        }
+    }
+});
+
+// 内部模块的创建(覆盖超类型)
+SubType.prototype.moduleDomCreate = function () {
+    var data = this.opts.data;
+    var items = data.items;
+    var html = '';
+    items.forEach(function (v) {
+        var markHtml = '';
+        if (v.isShowMark) {
+            markHtml = '<div class="g-navigation-mark"></div>';
+        }
+        html += '\n            <a href="' + v.href + '" class="g-navigation-item">\n                <div class="g-navigation-icon iconfont ' + v.icon + '"></div>\n                <div class="g-navigation-text">' + v.text + '</div>\n                ' + markHtml + '\n            </a>\n        ';
+    });
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-navigation',
+            innerHTML: html
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+SubType.prototype.power = function () {
+    // 功能重写待续...
+};
+
+module.exports = SubType;
+
 /***/ })
 
-},[34]);
+},[31]);

@@ -1,6 +1,10 @@
-window.addEventListener('load', function () {
-    setTimeout(function () {
-        const applications = require('../utils/applications');
+require('../../scss/pages/dev-components.scss');
+const Super = require('./super');
+
+class Sub extends Super {
+    power() {
+        const self = this;
+        const applications = self.applications;
 
         // ajax测试
         (function () {
@@ -22,7 +26,7 @@ window.addEventListener('load', function () {
             // 测试滚动到底部loading
             new WhenScrollBottom({
                 callback: {
-                    success: function (self) {
+                    success: function () {
                         const Loading = require('../components/g-loading');
                         const loading = new Loading({
                             wrap: '.g-body',
@@ -187,7 +191,7 @@ window.addEventListener('load', function () {
         // 表格
         (function () {
             const Table = require('../components/g-table');
-            const table = new Table({
+            new Table({
                 wrap: '.page-table',
                 data: {
                     header: [
@@ -244,7 +248,7 @@ window.addEventListener('load', function () {
         // 星评
         (function () {
             // const Star = require('../components/g-star');
-            // const star = new Star({
+            // new Star({
             //     wrap: `.page-star`,
             //     callback: {
             //         click: function (json) {
@@ -254,7 +258,7 @@ window.addEventListener('load', function () {
             // });
             require.ensure([], function (require) {
                 const Star = require('../components/g-star');
-                const star = new Star({
+                new Star({
                     wrap: '.page-star',
                     callback: {
                         click: function (json) {
@@ -264,8 +268,7 @@ window.addEventListener('load', function () {
                 });
             }, 'g-star');
         }());
+    }
+}
 
-        require('../../scss/pages/dev-components.scss');// 当前页面用到的样式
-        const common = require('../commons/common');// 每个页面都要用到的js(一定要放到最底部)
-    }, 0);
-});
+new Sub();
