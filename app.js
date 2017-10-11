@@ -9,6 +9,7 @@ const app = express();
 const secret = 'suibianxiexie'; // sessionID cookie的密钥
 app.use(compression());// gzip压缩
 app.use(express.static('dist/static', {maxAge: ms('1y')})); // 托管静态文件(一年缓存)
+app.use(express.static('dist/assets')); // 托管静态文件
 app.use(bodyParser.urlencoded({extended: false})); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
 app.use(cookieParser(secret)); // cookie
