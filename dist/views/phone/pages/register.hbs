@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {{>phone/partials/head}}
+    <link href="/phone/css/pages/this-is-global-file-common.css" rel="stylesheet"><link href="/phone/css/pages/register.css" rel="stylesheet"></head>
+    <body>
+        <div class="g-wrap">
+            {{>phone/partials/header}}
+            <div class="g-body">
+                <!--page start-->
+                <form id="form" action="">
+                    <div class="page-input-wrap">
+                        <div class="page-canvas"></div>
+                    </div>
+                    <div class="page-input-wrap">
+                        <label class="g-input">
+                            <span class="g-input-text">图片验证码:</span>
+                            <input class="g-input-input g-validate-form" data-validate="no-space no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" name="imgVerifyCode" id="img-verify-code" value="" type="tel" placeholder="请输入图片上的验证码">
+                            <span class="g-input-hint iconfont icon-bitian"></span>
+                        </label>
+                    </div>
+                    <div class="page-input-wrap">
+                        <label class="g-input">
+                            <span class="g-input-text">账号:</span>
+                            <input class="g-input-input g-validate-form" data-validate="no-space no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" name="username" id="username" value="" placeholder="请输入您的邮箱">
+                            <span class="g-input-hint iconfont icon-bitian"></span>
+                        </label>
+                    </div>
+                    <div class="page-input-wrap">
+                        <label class="g-input">
+                            <span class="g-input-text">密码:</span>
+                            <input class="g-input-input" type="password" name="password" id="password" value="" placeholder="请输入您的密码">
+                            <span class="g-input-icon iconfont icon-zhengyan"></span>
+                            <span class="g-input-icon iconfont icon-qingkong"></span>
+                            <span class="g-input-hint iconfont icon-bitian"></span>
+                        </label>
+                    </div>
+                    <div class="page-input-wrap">
+                        <label class="g-input">
+                        <span class="get-verify-code">
+                            <span class="g-button">获取验证码</span>
+                        </span>
+                            <input class="g-input-input g-validate-form" data-validate="no-space no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" name="verifyCode" id="verify-code" value="" type="tel" placeholder="请输入您邮箱里接收到的验证码">
+                            <span class="g-input-hint iconfont icon-bitian"></span>
+                        </label>
+                    </div>
+                    <div class="g-button register">
+                        <div class="g-button-text">立即注册</div>
+                    </div>
+                    <div class="page-guide-wrap">
+                        <a href="{{dataInfo.routes.login.route}}" class="page-guide-item">
+                            <span>已有账号,去登陆</span>
+                            <span class="iconfont icon-youjiantou"></span>
+                        </a>
+                        <a href="{{dataInfo.routes.password-find.route}}" class="page-guide-item">
+                            <span>忘记密码,去找回</span>
+                            <span class="iconfont icon-youjiantou"></span>
+                        </a>
+                    </div>
+                </form>
+                <!--page end-->
+            </div>
+            {{>phone/partials/footer}}
+        </div>
+    <script type="text/javascript" src="/phone/js/pages/this-is-global-file-manifest.js"></script><script type="text/javascript" src="/phone/js/pages/this-is-global-file-vendor.js"></script><script type="text/javascript" src="/phone/js/pages/this-is-global-file-common.js"></script><script type="text/javascript" src="/phone/js/pages/register.js"></script></body>
+</html>

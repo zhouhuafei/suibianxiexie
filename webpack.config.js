@@ -11,6 +11,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin'); // scss文件�
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // html生成的插件
 const CleanWebpackPlugin = require('clean-webpack-plugin'); // 清空目录
 const ImageminPlugin = require('imagemin-webpack-plugin').default; // 压缩图片
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 class ConfigPath {
     constructor() {
@@ -18,9 +19,11 @@ class ConfigPath {
         this.projectDirname = projectDirname; // 项目的目录名称
         this.projectPath = `${this.rootPath}app/${this.projectDirname}/`; // 项目的目录路径
         this.devPath = `${this.projectPath}static/`; // 开发的目录路径
+        this.copyEntryPath = `${this.projectPath}assets/`; // 开发文拷的目录路径
         this.viewsEntryPath = `${this.devPath}views/`; // 开发视图的目录路径
         this.jsEntryPath = `${this.devPath}js/`; // 开发js的目录路径
         this.buildPath = `${this.rootPath}dist/`; // 生产的目录路径
+        this.copyOutputPath = `${this.buildPath}assets/${this.projectDirname}/`; // 生产文拷的目录路径
         this.staticPath = `${this.buildPath}static/${this.projectDirname}/`; // 生产静态资源的目录路径
         this.viewsOutputPath = `${this.buildPath}views/${this.projectDirname}/`; // 生产视图的目录路径
     }
@@ -83,6 +86,12 @@ const plugins = [
         verbose: true,
         dry: false,
     }),
+    // 插件----清空dist/assets目录下对应的项目文件
+    new CleanWebpackPlugin([configPath.projectDirname], {
+        root: `${configPath.buildPath}assets/`,
+        verbose: true,
+        dry: false,
+    }),
     // 插件----清空dist/views目录下对应的项目文件
     new CleanWebpackPlugin([configPath.projectDirname], {
         root: `${configPath.buildPath}views/`,
@@ -99,6 +108,8 @@ const plugins = [
         // 3.this-is-global-file-common:提取每个入口都有用到的js和css
         name: ['this-is-global-file-common', 'this-is-global-file-vendor', 'this-is-global-file-manifest'],
     }),
+    // 插件----文件拷贝
+    new CopyWebpackPlugin([{from: configPath.copyEntryPath, to: configPath.copyOutputPath}]),
 ];
 // 插件----处理视图模板页面文件
 const allPageHtml = fs.readdirSync(`${configPath.viewsEntryPath}pages/`);

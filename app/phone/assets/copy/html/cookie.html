@@ -8,32 +8,32 @@
         <script>
             // 设置cookie
             function setCookie(name, value, expires, domain, path, secure) {
-                const myDate = new Date();
-                const myTime = myDate.getTime();
+                var myDate = new Date();
+                var myTime = myDate.getTime();
                 myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000); // 单位是天 1天 1/24天(1小时)
-                let cookie = `${name}=${value}`;
+                var cookie = name + '=' + value;
                 if (expires) {
-                    cookie += `; expires=${myDate}`;
+                    cookie += '; expires=' + myDate;
                 }
                 if (domain) {
-                    cookie += `; domain=${domain}`;
+                    cookie += '; domain=' + domain;
                 }
                 if (path) {
-                    cookie += `; path=${path}`;
+                    cookie += '; path=' + path;
                 }
                 if (secure) {
-                    cookie += `; secure=${secure}`;
+                    cookie += '; secure=' + secure;
                 }
                 document.cookie = cookie;
             }
 
             // 获取cookie
             function getCookie(name) {
-                const cookie = document.cookie;
-                const arr = cookie.split('; ');
-                let value = '';
+                var cookie = document.cookie;
+                var arr = cookie.split('; ');
+                var value = '';
                 arr.forEach(function (v) {
-                    const arr2 = v.split('=');
+                    var arr2 = v.split('=');
                     if (arr2[0] === name) {
                         value = arr2[1];
                     }
@@ -47,9 +47,9 @@
             }
 
             window.addEventListener('message', function (result) {
-                const data = result.data;
+                var data = result.data;
                 setCookie(data.name, data.value, data.expires, data.domain, data.path);
-            })
+            });
         </script>
     </body>
 </html>
