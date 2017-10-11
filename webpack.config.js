@@ -2,31 +2,31 @@ const myConfig = process.env.NODE_ENV.split('-');
 myConfig.forEach(function (v, i, a) {
     a[i] = v.trim();
 });
-const isProduction = myConfig[0] === 'production';// 是否是生产环境
-const projectDirname = myConfig[1];// 项目目录名称
+const isProduction = myConfig[0] === 'production'; // 是否是生产环境
+const projectDirname = myConfig[1]; // 项目目录名称
 const fs = require('fs');
 const path = require('path');
-const webpack = require('webpack');// 调用插件需要这个
-const ExtractTextPlugin = require('extract-text-webpack-plugin');// scss文件转css文件需要这个
-const HtmlWebpackPlugin = require('html-webpack-plugin');// html生成的插件
-const CleanWebpackPlugin = require('clean-webpack-plugin');// 清空目录
-const ImageminPlugin = require('imagemin-webpack-plugin').default;// 压缩图片
+const webpack = require('webpack'); // 调用插件需要这个
+const ExtractTextPlugin = require('extract-text-webpack-plugin'); // scss文件转css文件需要这个
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // html生成的插件
+const CleanWebpackPlugin = require('clean-webpack-plugin'); // 清空目录
+const ImageminPlugin = require('imagemin-webpack-plugin').default; // 压缩图片
 
 class ConfigPath {
     constructor() {
-        this.rootPath = `${__dirname}/`;// 根目录的目录路径
-        this.projectDirname = projectDirname;// 项目的目录名称
-        this.projectPath = `${this.rootPath}app/${this.projectDirname}/`;// 项目的目录路径
-        this.devPath = `${this.projectPath}assets/`;// 开发的目录路径
-        this.viewEntryPath = `${this.devPath}views/`;// 开发视图的目录路径
-        this.jsEntryPath = `${this.devPath}js/`;// 开发js的目录路径
-        this.buildPath = `${this.rootPath}dist/`;// 生产的目录路径
-        this.staticPath = `${this.buildPath}static/${this.projectDirname}/`; // 生产静态资源的目录路径
-        this.viewOutputPath = `${this.buildPath}views/${this.projectDirname}/`;// 生产视图的目录路径
+        this.rootPath = `${__dirname}/`; // 根目录的目录路径
+        this.projectDirname = projectDirname; // 项目的目录名称
+        this.projectPath = `${this.rootPath}app/${this.projectDirname}/`; // 项目的目录路径
+        this.devPath = `${this.projectPath}assets/`; // 开发的目录路径
+        this.viewsEntryPath = `${this.devPath}views/`; // 开发视图的目录路径
+        this.jsEntryPath = `${this.devPath}js/`; // 开发js的目录路径
+        this.buildPath = `${this.rootPath}dist/`; // 生产的目录路径
+        this.assetsPath = `${this.buildPath}assets/${this.projectDirname}/`; // 生产静态资源的目录路径
+        this.viewsOutputPath = `${this.buildPath}views/${this.projectDirname}/`; // 生产视图的目录路径
     }
 }
 
-const configPath = new ConfigPath();// 配置路径
+const configPath = new ConfigPath(); // 配置路径
 // 环境----开发环境
 let configEnvironment = {
     hash: '[hash:8].', // 图片和字体用到了这个hash
@@ -70,16 +70,16 @@ allJs.forEach(function (v) {
 entry['this-is-global-file-vendor'] = ['vue', 'axios'];// 公用的第三方库
 // 出口----配置
 const output = {
-    path: `${configPath.staticPath}`,
+    path: `${configPath.assetsPath}`,
     publicPath: `/${configPath.projectDirname}/`,
     filename: `js/pages/[name].${configEnvironment.chunkhash}js`,
     chunkFilename: `js/chunks/[name].[id].chunk.${configEnvironment.chunkhash}js`,
 };
 // 插件----集合
 const plugins = [
-    // 插件----清空dist/static目录下对应的项目文件
+    // 插件----清空dist/assets目录下对应的项目文件
     new CleanWebpackPlugin([configPath.projectDirname], {
-        root: `${configPath.buildPath}static/`,
+        root: `${configPath.buildPath}assets/`,
         verbose: true,
         dry: false,
     }),
@@ -101,23 +101,23 @@ const plugins = [
     }),
 ];
 // 插件----处理视图模板页面文件
-const allPageHtml = fs.readdirSync(`${configPath.viewEntryPath}pages/`);
+const allPageHtml = fs.readdirSync(`${configPath.viewsEntryPath}pages/`);
 allPageHtml.forEach(function (v) {
     const fileName = path.basename(v, '.hbs');
     plugins.push(new HtmlWebpackPlugin({
-        template: `${configPath.viewEntryPath}pages/${v}`, // 模板
-        filename: `${configPath.viewOutputPath}pages/${v}`, // 文件名
+        template: `${configPath.viewsEntryPath}pages/${v}`, // 模板
+        filename: `${configPath.viewsOutputPath}pages/${v}`, // 文件名
         // 需要引入的chunk,不配置就会引入所有页面的资源,模板视图文件里js的引入顺序和chunks里的排序无关,和CommonsChunkPlugin里的顺序有关(倒叙)
         chunks: [fileName, 'this-is-global-file-common', 'this-is-global-file-vendor', 'this-is-global-file-manifest'],
         minify: configEnvironment.minView, // 压缩视图模板文件
     }));
 });
 // 插件----处理视图模板模块文件
-const allPartialsHtml = fs.readdirSync(`${configPath.viewEntryPath}partials/`);
+const allPartialsHtml = fs.readdirSync(`${configPath.viewsEntryPath}partials/`);
 allPartialsHtml.forEach(function (v) {
     plugins.push(new HtmlWebpackPlugin({
-        template: `${configPath.viewEntryPath}partials/${v}`, // 模板
-        filename: `${configPath.viewOutputPath}partials/${v}`, // 文件名
+        template: `${configPath.viewsEntryPath}partials/${v}`, // 模板
+        filename: `${configPath.viewsOutputPath}partials/${v}`, // 文件名
         inject: false,
         minify: configEnvironment.minView, // 压缩视图模板文件
     }));
