@@ -6,6 +6,7 @@
     position: relative;
     .g-header {
         position: relative;
+        width: inherit;
         // 二维码(扫码手机观看)
         .g-qr-code {
             display: none;
@@ -13,6 +14,7 @@
     }
     .g-body {
         position: relative;
+        width: inherit;
         &:before, &:after {
             content: ' ';
             display: block;
@@ -29,10 +31,8 @@
 //pc展示
 html.g-pc {
     height: 100%;
-    box-sizing: border-box;
     body {
         height: inherit;
-        box-sizing: inherit;
         background: #fafafa;
     }
     .g-wrap {
@@ -40,14 +40,12 @@ html.g-pc {
         min-height: 100%;
         margin: 0 auto;
         width: px2px($width-wrap);
-        box-sizing: border-box;
         box-shadow: px2px(1) 0 px2px(4) $g-border-color-default, px2px(-1) 0 px2px(4) $g-border-color-default;
         .g-header {
             // 二维码(扫码手机观看)
             .g-qr-code {
                 $width: 144;
                 display: block;
-                box-sizing: border-box;
                 width: px2px($width);
                 padding: px2px(20);
                 background: #fff;
