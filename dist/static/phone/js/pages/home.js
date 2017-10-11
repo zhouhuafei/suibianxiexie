@@ -1,6 +1,6 @@
 webpackJsonp([3],{
 
-/***/ 31:
+/***/ 35:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,7 +14,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(61);
+__webpack_require__(36);
 var Super = __webpack_require__(3);
 
 var Sub = function (_Super) {
@@ -83,7 +83,7 @@ var Sub = function (_Super) {
 
             // vue
             (function () {
-                __webpack_require__(32);
+                __webpack_require__(37);
                 var Vue = __webpack_require__(8);
                 new Vue({
                     el: '.page-vue-app',
@@ -100,7 +100,14 @@ new Sub();
 
 /***/ }),
 
-/***/ 32:
+/***/ 36:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 37:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -113,19 +120,19 @@ var _vue2 = _interopRequireDefault(_vue);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.component('g-picture-list', {
-    template: '<div class="g-picture-list">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(34) + '" alt="">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(35) + '" alt="">\n    </div>'
+    template: '<div class="g-picture-list">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(39) + '" alt="">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(40) + '" alt="">\n    </div>'
 });
 
 /***/ }),
 
-/***/ 34:
+/***/ 39:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/p-waiting.d4f6dd4c.jpg";
 
 /***/ }),
 
-/***/ 35:
+/***/ 40:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/p-waiting.054b1f3c.png";
@@ -711,13 +718,6 @@ module.exports = TouchSlide;
 
 /***/ }),
 
-/***/ 61:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -802,4 +802,4 @@ module.exports = SubType;
 
 /***/ })
 
-},[31]);
+},[35]);

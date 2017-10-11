@@ -1,6 +1,6 @@
 webpackJsonp([5],{
 
-/***/ 27:
+/***/ 28:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,7 +14,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(55);
+__webpack_require__(29);
 var Super = __webpack_require__(3);
 
 var Sub = function (_Super) {
@@ -48,7 +48,7 @@ var Sub = function (_Super) {
 
             // 验证
             (function () {
-                var ValidateInput = __webpack_require__(28);
+                var ValidateInput = __webpack_require__(30);
                 var aInput = [].slice.call(document.querySelectorAll('.page-validate-form'));
                 aInput.forEach(function (v) {
                     new ValidateInput({ element: v });
@@ -64,7 +64,14 @@ new Sub();
 
 /***/ }),
 
-/***/ 28:
+/***/ 29:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 30:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -165,13 +172,6 @@ ValidateForm.prototype.validateEvents = function () {
 
 module.exports = ValidateForm;
 
-/***/ }),
-
-/***/ 55:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
 /***/ })
 
-},[27]);
+},[28]);

@@ -1137,7 +1137,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-__webpack_require__(14);
+__webpack_require__(15);
 
 var Super = function () {
     function Super(json) {
@@ -1146,7 +1146,7 @@ var Super = function () {
         var self = this;
         self.tools = __webpack_require__(0); // 工具方法集合
         self.applications = __webpack_require__(1); // 应用方法集合
-        self.axios = __webpack_require__(15); // ajax
+        self.axios = __webpack_require__(16); // ajax
         self.opts = self.tools.extend({
             defaults: {},
             inherits: json
@@ -1209,7 +1209,7 @@ var Super = function () {
 
             // 版权
             if (gDataInfo && gDataInfo.isShowCopyright) {
-                var Copyright = __webpack_require__(17);
+                var Copyright = __webpack_require__(18);
                 new Copyright({
                     wrap: '.page-copyright-wrap'
                 });
@@ -1217,19 +1217,19 @@ var Super = function () {
 
             // 底部导航
             if (gDataInfo && gDataInfo.footerNav) {
-                var Footer = __webpack_require__(18);
+                var Footer = __webpack_require__(19);
                 gDataInfo.footerNav.wrap = '.page-footer-nav-wrap';
                 new Footer(gDataInfo.footerNav);
             }
 
             // 返回顶部
-            var GoTop = __webpack_require__(19);
+            var GoTop = __webpack_require__(20);
             new GoTop({
                 wrap: '.page-go-top-wrap'
             });
 
             // 延迟加载
-            var LazyLoad = __webpack_require__(20);
+            var LazyLoad = __webpack_require__(21);
             self.lazyLoad = new LazyLoad();
         }
     }]);
@@ -1538,13 +1538,14 @@ module.exports = SubType;
 /* 11 */,
 /* 12 */,
 /* 13 */,
-/* 14 */
+/* 14 */,
+/* 15 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1602,8 +1603,8 @@ module.exports = function (json) {
 };
 
 /***/ }),
-/* 16 */,
-/* 17 */
+/* 17 */,
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1649,7 +1650,7 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1718,7 +1719,7 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1777,7 +1778,7 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

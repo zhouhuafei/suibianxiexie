@@ -1,1168 +1,10 @@
-webpackJsonp([1],{
-
-/***/ 11:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {},
-        // 配置
-        config: {
-            status: 'loading', // 加载状态 loading(加载中) over(加载完毕)
-            positionMethod: '', // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
-            positionLocation: 'center', // 模块的定位位置
-            moduleDomIsShow: false // 内部模块是否显示(默认不显示)
-        },
-        // 数据
-        data: {}
-    }
-});
-
-// 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
-    var config = this.opts.config;
-    var moduleDomHtml = '';
-    var moduleDomClass = '';
-    var status = config.status;
-    var positionMethod = config.positionMethod;
-    var positionLocation = config.positionLocation;
-    // 加载中
-    if (status === 'loading') {
-        moduleDomClass = 'g-loading-run ';
-        // 相对文档居中
-        if (positionMethod === 'fixed') {
-            moduleDomClass += 'g-loading-fixed g-loading-' + positionLocation;
-        }
-        // 相对容器居中
-        if (positionMethod === 'absolute') {
-            moduleDomClass += 'g-loading-absolute g-loading-' + positionLocation;
-        }
-        moduleDomHtml = '\n            <div class="g-loading-body">\n                <div class="g-loading-run-icon iconfont icon-jiazaizhong"></div>\n            </div>\n        ';
-    }
-    // 加载完毕
-    if (status === 'over') {
-        moduleDomClass = 'g-loading-over ';
-        // 相对文档居中
-        if (positionMethod === 'fixed') {
-            moduleDomClass += 'g-loading-fixed g-loading-' + positionLocation;
-        }
-        // 相对容器居中
-        if (positionMethod === 'absolute') {
-            moduleDomClass += 'g-loading-absolute g-loading-' + positionLocation;
-        }
-        moduleDomHtml = '\n            <div class="g-loading-body">\n                <div class="g-loading-over-icon iconfont icon-meiyoushuju"></div>\n                <div class="g-loading-over-text">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ';
-    }
-    // 模块创建
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-loading ' + moduleDomClass,
-            innerHTML: moduleDomHtml
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-SubType.prototype.power = function () {
-    // 功能重写待续...
-};
-
-module.exports = SubType;
-
-/***/ }),
-
-/***/ 12:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-
-// 底层构造函数
-
-var SuperType = function () {
-    function SuperType(json) {
-        _classCallCheck(this, SuperType);
-
-        // 函数外部传来的参数
-        this.opts = tools.extend({
-            // 内部默认参数
-            defaults: {
-                // 父级
-                wrap: '.g-body', // 这个仅支持传入选择器和原生dom节点
-                // 回调
-                callback: {
-                    // 内部模块创建之前
-                    moduleDomCreateBefore: function moduleDomCreateBefore(self) {
-                        // 内部模块创建之前的回调待续...
-                    },
-                    // 内部模块创建之后
-                    moduleDomCreateAfter: function moduleDomCreateAfter(self) {
-                        // 内部模块创建之后的回调待续...
-                    },
-                    // 内部模块渲染之前
-                    moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                        // 内部模块渲染之前的回调待续...
-                    },
-                    // 内部模块渲染之后
-                    moduleDomRenderAfter: function moduleDomRenderAfter(self) {
-                        // 内部模块渲染之后的回调待续...
-                    },
-                    // 内部模块移除之前
-                    moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {
-                        // 内部模块移除之前的回调待续...
-                    },
-                    // 内部模块移除之后
-                    moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {
-                        // 内部模块移除之后的回调待续...
-                    },
-                    // 内部模块显示之前
-                    moduleDomShowBefore: function moduleDomShowBefore(self) {
-                        // 内部模块显示之前的回调待续...
-                    },
-                    // 内部模块显示之后
-                    moduleDomShowAfter: function moduleDomShowAfter(self) {
-                        // 内部模块显示之后的回调待续...
-                    },
-                    // 内部模块隐藏之前
-                    moduleDomHideBefore: function moduleDomHideBefore(self) {
-                        // 内部模块隐藏之前的回调待续...
-                    },
-                    // 内部模块隐藏之后
-                    moduleDomHideAfter: function moduleDomHideAfter(self) {
-                        // 内部模块隐藏之后的回调待续...
-                    },
-                    // 外部容器获取之前
-                    wrapDomGetBefore: function wrapDomGetBefore(self) {
-                        // 外部容器获取之前的回调待续...
-                    },
-                    // 外部容器获取之后
-                    wrapDomGetAfter: function wrapDomGetAfter(self) {
-                        // 外部容器获取之后的回调待续...
-                    },
-                    // 外部容器移除之前
-                    wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {
-                        // 外部容器移除之前的回调待续...
-                    },
-                    // 外部容器移除之后
-                    wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {
-                        // 外部容器移除之后的回调待续...
-                    }
-                },
-                // 配置
-                config: {
-                    // 内部模块的自定义属性
-                    moduleDomCustomAttribute: {},
-                    // 内部模块插入到外部容器的方式
-                    moduleDomRenderMethod: {
-                        method: 'appendChild', // 'appendChild','insertBefore'
-                        child: null
-                    },
-                    moduleDomStyle: {}, // 内部模块的样式
-                    moduleDomIsShow: true, // 内部模块是否显示(默认显示)
-                    moduleDomIsClearTimer: true // 内部模块是否清除所有定时器(默认清除)
-                },
-                // 数据
-                data: {}
-            },
-            // 外部传入参数
-            inherits: json
-        });
-        // 函数内部自带的属性
-        this.moduleDom = null; // 内部的模块
-        this.wrapDom = null; // 内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
-        this.moduleDomTimer = {}; // 内部模块的定时器存储(假设内部模块有定时器)
-        this.init();
-    }
-
-    // 初始化
-
-
-    _createClass(SuperType, [{
-        key: 'init',
-        value: function init() {
-            this.render();
-            this.power();
-        }
-
-        // 渲染
-
-    }, {
-        key: 'render',
-        value: function render() {
-            this.moduleDomRemove(); // 内部模块的移除(重新初始化的时候要移除掉以前有的内部模块)
-
-            var callback = this.opts.callback;
-            callback.moduleDomCreateBefore(this);
-            this.moduleDomCreate(); // 内部模块的创建
-            callback.moduleDomCreateAfter(this);
-
-            this.wrapDomGet(); // 外部容器的获取
-            this.moduleDomRender(); // 内部模块的渲染(如果外部容器存在,就把内部模块填充到外部容器里)
-        }
-
-        // 功能(这个方法需要在子类型里被覆盖掉)
-
-    }, {
-        key: 'power',
-        value: function power() {}
-        // 功能待续...
-
-
-        // 内部模块的创建(这个方法需要在子类型里被覆盖掉)
-
-    }, {
-        key: 'moduleDomCreate',
-        value: function moduleDomCreate() {
-            this.moduleDom = applications.createElement({
-                style: this.opts.config.moduleDomStyle,
-                customAttribute: this.opts.config.moduleDomCustomAttribute,
-                attribute: {
-                    className: 'g-super-type-es6',
-                    innerHTML: '\n                    <div class="g-super-type-es6-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsup-es6</div>\n                '
-                }
-            });
-        }
-
-        // 内部模块的渲染
-
-    }, {
-        key: 'moduleDomRender',
-        value: function moduleDomRender() {
-            var callback = this.opts.callback;
-            var config = this.opts.config;
-            if (config.moduleDomIsShow && this.wrapDom) {
-                callback.moduleDomRenderBefore(this);
-                var renderMethod = config.moduleDomRenderMethod;
-                if (renderMethod.method === 'insertBefore') {
-                    var dom = applications.getDomArray(renderMethod.child)[0];
-                    if (dom) {
-                        this.wrapDom.insertBefore(this.moduleDom, dom);
-                    } else {
-                        this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
-                    }
-                }
-                if (renderMethod.method === 'appendChild') {
-                    this.wrapDom.appendChild(this.moduleDom);
-                }
-                callback.moduleDomRenderAfter(this);
-            }
-        }
-
-        // 内部模块的移除
-
-    }, {
-        key: 'moduleDomRemove',
-        value: function moduleDomRemove() {
-            var callback = this.opts.callback;
-            if (this.moduleDom && this.moduleDom.parentNode) {
-                callback.moduleDomRemoveBefore(this);
-                this.moduleDom.parentNode.removeChild(this.moduleDom);
-                callback.moduleDomRemoveAfter(this);
-            }
-            this.moduleDomClearTimer();
-        }
-
-        // 内部模块的定时器清除(假设内部模块有定时器)
-
-    }, {
-        key: 'moduleDomClearTimer',
-        value: function moduleDomClearTimer() {
-            var self = this;
-            if (self.opts.config.moduleDomIsClearTimer) {
-                Object.keys(self.moduleDomTimer).forEach(function (attr) {
-                    clearInterval(self.moduleDomTimer[attr]);
-                    clearTimeout(self.moduleDomTimer[attr]);
-                });
-            }
-        }
-
-        // 内部模块的显示(显示隐藏和是否清除定时器无关)
-
-    }, {
-        key: 'moduleDomShow',
-        value: function moduleDomShow() {
-            var callback = this.opts.callback;
-            callback.moduleDomShowBefore(this);
-            if (this.wrapDom) {
-                this.opts.config.moduleDomIsShow = true;
-                this.moduleDomRender();
-            }
-            callback.moduleDomShowAfter(this);
-        }
-
-        // 内部模块的隐藏(显示隐藏和是否清除定时器无关)
-
-    }, {
-        key: 'moduleDomHide',
-        value: function moduleDomHide() {
-            var callback = this.opts.callback;
-            if (this.moduleDom.parentNode) {
-                this.opts.config.moduleDomIsShow = false;
-                callback.moduleDomHideBefore(this);
-                this.moduleDom.parentNode.removeChild(this.moduleDom);
-                callback.moduleDomHideAfter(this);
-            }
-        }
-
-        // 外部容器的获取
-
-    }, {
-        key: 'wrapDomGet',
-        value: function wrapDomGet() {
-            var callback = this.opts.callback;
-            callback.wrapDomGetBefore(this);
-            this.wrapDom = applications.getDomArray(this.opts.wrap)[0];
-            callback.wrapDomGetAfter(this);
-        }
-
-        // 外部容器的移除
-
-    }, {
-        key: 'wrapDomRemove',
-        value: function wrapDomRemove() {
-            var callback = this.opts.callback;
-            // 先移除内部的模块
-            this.moduleDomRemove();
-            // 再移除外部的容器
-            if (this.wrapDom) {
-                callback.wrapDomRemoveBefore(this);
-                this.wrapDom.parentNode.removeChild(this.wrapDom);
-                callback.wrapDomRemoveAfter(this);
-            }
-        }
-
-        // 获取内部模块的整体html结构
-
-    }, {
-        key: 'getModuleDomHtml',
-        value: function getModuleDomHtml() {
-            return this.moduleDom.outerHTML;
-        }
-    }]);
-
-    return SuperType;
-}();
-
-module.exports = SuperType;
-
-/***/ }),
-
-/***/ 13:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-__webpack_require__(53);
-var Super = __webpack_require__(3);
-
-var Sub = function (_Super) {
-    _inherits(Sub, _Super);
-
-    function Sub() {
-        _classCallCheck(this, Sub);
-
-        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).apply(this, arguments));
-    }
-
-    _createClass(Sub, [{
-        key: 'power',
-        value: function power() {
-            var self = this;
-            var applications = self.applications;
-
-            // ajax测试
-            (function () {
-                // const Ajax = require('../api/ajax');
-                // new Ajax({
-                //     callback: {},
-                //     config: {
-                //         url: '/api/getList',
-                //     },
-                //     data: {
-                //         hellow: 'hellow',
-                //     },
-                // });
-            })();
-
-            // base函数测试
-            (function () {
-                var WhenScrollBottom = applications.whenScrollBottom();
-                // 测试滚动到底部loading
-                new WhenScrollBottom({
-                    callback: {
-                        success: function success() {
-                            var Loading = __webpack_require__(11);
-                            var loading = new Loading({
-                                wrap: '.g-body',
-                                config: {
-                                    status: 'loading'
-                                }
-                            });
-                            loading.moduleDomShow();
-                        }
-                    }
-                });
-            })();
-
-            // slide切换
-            (function () {
-                var Slide = __webpack_require__(5);
-                new Slide({
-                    wrap: '.page-slide',
-                    data: {
-                        items: [{
-                            img: {
-                                width: 0,
-                                height: 0,
-                                src: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg'
-                            },
-                            href: ''
-                        }, {
-                            img: {
-                                width: 0,
-                                height: 0,
-                                src: 'http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg'
-                            },
-                            href: ''
-                        }, {
-                            img: {
-                                width: 0,
-                                height: 0,
-                                src: 'http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg'
-                            },
-                            href: ''
-                        }, {
-                            img: {
-                                width: 0,
-                                height: 0,
-                                src: 'http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg'
-                            },
-                            href: ''
-                        }, {
-                            img: {
-                                width: 0,
-                                height: 0,
-                                src: 'http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg'
-                            },
-                            href: ''
-                        }]
-                    }
-                });
-            })();
-
-            // 导航
-            (function () {
-                var Navigation = __webpack_require__(7);
-                new Navigation({ wrap: '.page-navigation' });
-            })();
-
-            // 弹窗测试
-            (function () {
-                var Dialog = __webpack_require__(4);
-                document.querySelector('.page-button-dialog').addEventListener('click', function () {
-                    new Dialog({
-                        callback: {
-                            confirm: function confirm() {
-                                new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已确认' } } });
-                            },
-                            cancel: function cancel() {
-                                new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已取消' } } });
-                            },
-                            close: function close() {
-                                new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已关闭' } } });
-                            }
-                        },
-                        config: {
-                            type: 'confirm'
-                        }
-                    });
-                });
-            })();
-
-            // 分页测试
-            (function () {
-                var Pagination = __webpack_require__(21);
-                new Pagination({ wrap: '.page-pagination' });
-            })();
-
-            // 没有数据
-            (function () {
-                var NoData = __webpack_require__(22);
-                new NoData({ wrap: '.page-no-data' });
-            })();
-
-            // 加载中
-            (function () {
-                var Loading = __webpack_require__(11);
-                var loading = new Loading({
-                    config: {
-                        status: 'loading'
-                    }
-                });
-                loading.moduleDomShow();
-                var over = new Loading({
-                    config: {
-                        status: 'over'
-                    }
-                });
-                over.moduleDomShow();
-            })();
-
-            // 超类型模块测试
-            (function () {
-                var SuperType = __webpack_require__(2);
-                new SuperType({ wrap: '.page-super-type' });
-                var SubType = __webpack_require__(23);
-                new SubType({ wrap: '.page-super-type' });
-                var SuperTypeEs6 = __webpack_require__(12);
-                new SuperTypeEs6({ wrap: '.page-super-type' });
-                var SubTypeEs6 = __webpack_require__(24);
-                new SubTypeEs6({ wrap: '.page-super-type' });
-            })();
-
-            // 遮罩
-            (function () {
-                var Mask = __webpack_require__(10);
-                var mask = new Mask({
-                    callback: {
-                        click: function click() {
-                            mask.moduleDomHide();
-                        }
-                    }
-                });
-                // mask.moduleDomShow();
-            })();
-
-            // 单选开关
-            (function () {
-                var Radio = __webpack_require__(25);
-                new Radio({
-                    wrap: '.page-radio-switch',
-                    callback: {
-                        click: function click(json) {
-                            console.log(json);
-                        }
-                    }
-                });
-            })();
-
-            // 表格
-            (function () {
-                var Table = __webpack_require__(26);
-                new Table({
-                    wrap: '.page-table',
-                    data: {
-                        header: [{
-                            content: '<div>header0</div>'
-                        }, {
-                            content: '<div>header1</div>'
-                        }, {
-                            content: '<div>header2</div>'
-                        }],
-                        body: [[{
-                            content: '<div>body0-0</div>'
-                        }, {
-                            content: '<div>body1-0</div>'
-                        }, {
-                            content: '<div>body2-0</div>'
-                        }], [{
-                            content: '<div>body0-1</div>'
-                        }, {
-                            content: '<div>body1-1</div>'
-                        }, {
-                            content: '<div>body2-1</div>'
-                        }], [{
-                            content: '<div>body0-2</div>'
-                        }, {
-                            content: '<div>body1-2</div>'
-                        }, {
-                            content: '<div>body2-2</div>'
-                        }]],
-                        footer: ''
-                    }
-                });
-            })();
-
-            // 星评
-            (function () {
-                // const Star = require('../components/g-star');
-                // new Star({
-                //     wrap: `.page-star`,
-                //     callback: {
-                //         click: function (json) {
-                //             console.log(json);
-                //         }
-                //     }
-                // });
-                __webpack_require__.e/* require.ensure */(0).then((function (require) {
-                    var Star = __webpack_require__(44);
-                    new Star({
-                        wrap: '.page-star',
-                        callback: {
-                            click: function click(json) {
-                                console.log(json);
-                            }
-                        }
-                    });
-                }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
-            })();
-        }
-    }]);
-
-    return Sub;
-}(Super);
-
-new Sub();
-
-/***/ }),
-
-/***/ 21:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 默认数据
-var defaultData = {
-    nowCount: 10, // 当前页的数据条数
-    allCount: 100, // 数据总条数
-    nowPage: 1, // 当前页
-    allPage: null // 总页数
-};
-defaultData.allPage = Math.ceil(defaultData.allCount / defaultData.nowCount);
-
-// 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {
-            // 上一页的回调
-            prevPage: function prevPage() {},
-            // 下一页的回调
-            nextPage: function nextPage() {},
-            // 选择某一页的回调
-            selectPage: function selectPage() {}
-        },
-        // 配置
-        config: {},
-        // 数据
-        data: defaultData
-    }
-});
-
-// 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-pagination',
-            innerHTML: '\n                <div class="g-pagination-text">\u7B2C</div>\n                <div class="g-pagination-now-page">\n                    <label class="g-select">\n                        <span class="g-select-wrap">\n                            <select class="g-select-select">\n                                ' + this.renderOption() + '\n                            </select>\n                            <span class="g-select-mark iconfont icon-select"></span>\n                        </span>\n                    </label>\n                </div>\n                <div class="g-pagination-text">\u9875</div>\n                <a href="javascript:;" class="g-pagination-btn g-pagination-btn-inactive iconfont icon-shangyiye"></a>\n                <a href="javascript:;" class="g-pagination-btn iconfont icon-xiayiye"></a>\n            '
-        }
-    });
-    this.prevDom = this.moduleDom.querySelectorAll('.g-pagination-btn')[0]; // 上一页的按钮
-    this.nextDom = this.moduleDom.querySelectorAll('.g-pagination-btn')[1]; // 下一页的按钮
-    this.btnInactiveClass = 'g-pagination-btn-inactive'; // 上一页和下一页的禁用状态
-    this.selectDom = this.moduleDom.querySelector('.g-pagination-now-page .g-select-select'); // 选择某一页的按钮
-};
-
-// 渲染第几页里面的页码
-SubType.prototype.renderOption = function () {
-    var html = '';
-    for (var i = 0; i < this.opts.data.allPage; i++) {
-        html += '<option value="' + (i + 1) + '">' + (i + 1) + '</option>';
-    }
-    return html;
-};
-
-// 功能(覆盖超类型)
-SubType.prototype.power = function () {
-    var self = this;
-    var data = this.opts.data;
-    if (data.nowPage === 1) {
-        this.prevPageDisable();
-    }
-    if (data.nowPage === data.allPage) {
-        this.nextPageDisable();
-    }
-
-    this.prevDom.addEventListener('click', function () {
-        if (!this.classList.contains(self.btnInactiveClass)) {
-            self.prevPage();
-        }
-    });
-
-    this.nextDom.addEventListener('click', function () {
-        if (!this.classList.contains(self.btnInactiveClass)) {
-            self.nextPage();
-        }
-    });
-
-    this.selectDom.addEventListener('change', function () {
-        self.selectPage();
-    });
-};
-
-// 上一页
-SubType.prototype.prevPage = function () {
-    var data = this.opts.data;
-    if (data.nowPage > 1) {
-        data.nowPage--;
-        var oldChecked = this.selectDom.querySelector('option:checked');
-        if (oldChecked.previousElementSibling) {
-            oldChecked.selected = false;
-            oldChecked.previousElementSibling.selected = true;
-        }
-        this.nextPageEnable();
-        this.opts.callback.prevPage(this);
-    }
-    if (data.nowPage === 1) {
-        this.prevPageDisable();
-    }
-    console.log(data);
-};
-
-// 下一页
-SubType.prototype.nextPage = function () {
-    var data = this.opts.data;
-    if (data.nowPage < data.allPage) {
-        data.nowPage++;
-        var oldChecked = this.selectDom.querySelector('option:checked');
-        if (oldChecked.nextElementSibling) {
-            oldChecked.selected = false;
-            oldChecked.nextElementSibling.selected = true;
-        }
-        this.prevPageEnable();
-        this.opts.callback.nextPage(this);
-    }
-    if (data.nowPage === data.allPage) {
-        this.nextPageDisable();
-    }
-    console.log(data);
-};
-
-// 选择第几页
-SubType.prototype.selectPage = function () {
-    var data = this.opts.data;
-    data.nowPage = this.selectDom.value;
-    this.nextPageEnable();
-    this.prevPageEnable();
-    if (data.nowPage === 1) {
-        this.prevPageDisable();
-    }
-    if (data.nowPage === data.allPage) {
-        this.nextPageDisable();
-    }
-    this.opts.callback.selectPage(this);
-    console.log(data);
-};
-
-// 上一页禁用
-SubType.prototype.prevPageDisable = function () {
-    this.prevDom.classList.add(this.btnInactiveClass);
-};
-
-// 上一页启用
-SubType.prototype.prevPageEnable = function () {
-    this.prevDom.classList.remove(this.btnInactiveClass);
-};
-
-// 下一页禁用
-SubType.prototype.nextPageDisable = function () {
-    this.nextDom.classList.add(this.btnInactiveClass);
-};
-
-// 下一页启用
-SubType.prototype.nextPageEnable = function () {
-    this.nextDom.classList.remove(this.btnInactiveClass);
-};
-
-module.exports = SubType;
-
-/***/ }),
-
-/***/ 22:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {},
-        // 配置
-        config: {
-            button: {
-                isShowIcon: false
-            }
-        },
-        // 数据
-        data: {
-            icon: 'icon-meiyoushuju',
-            text: '没有数据',
-            button: {
-                icon: 'icon-shouye',
-                text: '回首页',
-                href: '/'
-            }
-        }
-    }
-});
-
-// 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
-    var data = this.opts.data;
-    var buttonIconHtml = '';
-    if (this.opts.config.button.isShowIcon) {
-        buttonIconHtml = '<div class="g-button-icon iconfont ' + data.button.icon + '"></div>';
-    }
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-no-data',
-            innerHTML: '\n                <div class="g-no-data-icon iconfont ' + data.icon + '"></div>\n                <div class="g-no-data-text">' + data.text + '</div>\n                <a class="g-no-data-button g-button" href="' + data.button.href + '">\n                    ' + buttonIconHtml + '\n                    <div class="g-button-text">' + data.button.text + '</div>\n                </a>\n            '
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-SubType.prototype.power = function () {
-    // 功能重写待续...
-};
-
-module.exports = SubType;
-
-/***/ }),
-
-/***/ 23:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {},
-        // 配置
-        config: {},
-        // 数据
-        data: {}
-    }
-});
-
-// 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-sub-type',
-            innerHTML: '\n                <div class="g-sub-type-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsub-es5</div>\n            '
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-SubType.prototype.power = function () {
-    // 功能重写待续...
-};
-
-module.exports = SubType;
-
-/***/ }),
-
-/***/ 24:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var SuperType = __webpack_require__(12); // 超类型(子类型继承的对象)
-
-// 子类型
-
-var SubType = function (_SuperType) {
-    _inherits(SubType, _SuperType);
-
-    function SubType(json) {
-        _classCallCheck(this, SubType);
-
-        return _possibleConstructorReturn(this, (SubType.__proto__ || Object.getPrototypeOf(SubType)).call(this, tools.extend({
-            defaults: {
-                // 回调
-                callback: {},
-                // 配置
-                config: {},
-                // 数据
-                data: {}
-            },
-            inherits: json
-        })));
-    }
-
-    // 内部模块的创建(覆盖超类型)
-
-
-    _createClass(SubType, [{
-        key: 'moduleDomCreate',
-        value: function moduleDomCreate() {
-            this.moduleDom = applications.createElement({
-                style: this.opts.config.moduleDomStyle,
-                customAttribute: this.opts.config.moduleDomCustomAttribute,
-                attribute: {
-                    className: 'g-sub-type-es6',
-                    innerHTML: '\n                    <div class="g-sub-type-es6-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsub-es6</div>\n                '
-                }
-            });
-        }
-
-        // 功能重写(覆盖超类型)
-
-    }, {
-        key: 'power',
-        value: function power() {
-            // 功能重写待续...
-        }
-    }]);
-
-    return SubType;
-}(SuperType);
-
-module.exports = SubType;
-
-/***/ }),
-
-/***/ 25:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {
-            click: function click() {}
-        },
-        // 配置
-        config: {
-            isHand: false, // 是否手动控制
-            status: 'on', // 状态
-            txt: {
-                on: '已开启',
-                off: '已关闭'
-            }
-        },
-        // 数据
-        data: {}
-    }
-});
-
-// 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
-    var config = this.opts.config;
-    this.moduleDomActiveClass = 'g-radio-switch-active';
-    var isOn = '';
-    if (config.status === 'on') {
-        isOn = this.moduleDomActiveClass;
-    }
-    this.moduleDom = applications.createElement({
-        style: config.moduleDomStyle,
-        customAttribute: config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-radio-switch ' + isOn,
-            innerHTML: '\n                <div class="g-radio-switch-wrap">\n                    <div class="g-radio-switch-round"></div>\n                </div>\n                <div class="g-radio-switch-text">' + config.txt[config.status] + '</div>\n            '
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-SubType.prototype.power = function () {
-    var self = this;
-    var config = this.opts.config;
-    this.moduleDom.addEventListener('click', function () {
-        if (!config.isHand) {
-            if (!self.isOn()) {
-                self.on();
-            } else {
-                self.off();
-            }
-        }
-        self.opts.callback.click({ status: config.status });
-    });
-};
-
-// 是否处于开启状态
-SubType.prototype.isOn = function () {
-    return this.moduleDom.classList.contains(this.moduleDomActiveClass);
-};
-
-// 开启
-SubType.prototype.on = function () {
-    var config = this.opts.config;
-    if (!this.isOn()) {
-        this.moduleDom.classList.add(this.moduleDomActiveClass);
-        config.status = 'on';
-        this.moduleDom.querySelector('.g-radio-switch-text').innerHTML = '' + config.txt[config.status];
-    }
-};
-
-// 关闭
-SubType.prototype.off = function () {
-    var config = this.opts.config;
-    if (this.isOn()) {
-        this.moduleDom.classList.remove(this.moduleDomActiveClass);
-        config.status = 'off';
-        this.moduleDom.querySelector('.g-radio-switch-text').innerHTML = '' + config.txt[config.status];
-    }
-};
-
-module.exports = SubType;
-
-/***/ }),
-
-/***/ 26:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {},
-        // 配置
-        config: {},
-        // 数据
-        data: {
-            header: [{ content: 'undefined-header0' }, { content: 'undefined-header1' }, { content: 'undefined-header2' }],
-            body: [[{ content: 'undefined-body0-0' }, { content: 'undefined-body0-1' }, { content: 'undefined-body0-2' }]],
-            footer: ''
-        }
-    }
-});
-
-// 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-table',
-            innerHTML: '\n                <div class="g-table-header">\n                    <div class="g-table-row">\n                        ' + this.moduleDomCreateHeader() + '\n                    </div>\n                </div>\n                <div class="g-table-body">\n                    ' + this.moduleDomCreateBody() + '\n                </div>\n                <div class="g-table-footer">\n                    ' + this.moduleDomCreateFooter() + '\n                </div>\n            '
-        }
-    });
-};
-
-SubType.prototype.moduleDomCreateHeader = function () {
-    var html = '';
-    this.opts.data.header.forEach(function (v) {
-        html += '\n            <div class="g-table-col">\n                <div class="g-table-col-wrap">\n                    ' + v.content + '\n                </div>\n            </div>\n        ';
-    });
-    return html;
-};
-
-SubType.prototype.moduleDomCreateBody = function () {
-    var html = '';
-    this.opts.data.body.forEach(function (v0) {
-        var row = '';
-        v0.forEach(function (v1) {
-            row += '\n                <div class="g-table-col">\n                    <div class="g-table-col-wrap">\n                        ' + v1.content + '\n                    </div>\n                </div>\n            ';
-        });
-        html += '<div class="g-table-row">' + row + '</div>';
-    });
-    return html;
-};
-
-SubType.prototype.moduleDomCreateFooter = function () {
-    return this.opts.data.footer;
-};
-
-// 功能(覆盖超类型)
-SubType.prototype.power = function () {
-    // 功能重写待续...
-};
-
-module.exports = SubType;
-
-/***/ }),
-
-/***/ 5:
+webpackJsonp([1],[
+/* 0 */,
+/* 1 */,
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1291,15 +133,7 @@ SubType.prototype.power = function () {
 module.exports = SubType;
 
 /***/ }),
-
-/***/ 53:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 6:
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1747,8 +581,7 @@ var TouchSlide = function TouchSlide(a) {
 module.exports = TouchSlide;
 
 /***/ }),
-
-/***/ 7:
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1830,6 +663,1174 @@ SubType.prototype.power = function () {
 
 module.exports = SubType;
 
-/***/ })
+/***/ }),
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
 
-},[13]);
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var SubType = tools.constructorInherit({
+    superType: SuperType,
+    // 默认参数(继承超类型)
+    parameter: {
+        // 回调
+        callback: {},
+        // 配置
+        config: {
+            status: 'loading', // 加载状态 loading(加载中) over(加载完毕)
+            positionMethod: '', // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
+            positionLocation: 'center', // 模块的定位位置
+            moduleDomIsShow: false // 内部模块是否显示(默认不显示)
+        },
+        // 数据
+        data: {}
+    }
+});
+
+// 内部模块的创建(覆盖超类型)
+SubType.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var moduleDomHtml = '';
+    var moduleDomClass = '';
+    var status = config.status;
+    var positionMethod = config.positionMethod;
+    var positionLocation = config.positionLocation;
+    // 加载中
+    if (status === 'loading') {
+        moduleDomClass = 'g-loading-run ';
+        // 相对文档居中
+        if (positionMethod === 'fixed') {
+            moduleDomClass += 'g-loading-fixed g-loading-' + positionLocation;
+        }
+        // 相对容器居中
+        if (positionMethod === 'absolute') {
+            moduleDomClass += 'g-loading-absolute g-loading-' + positionLocation;
+        }
+        moduleDomHtml = '\n            <div class="g-loading-body">\n                <div class="g-loading-run-icon iconfont icon-jiazaizhong"></div>\n            </div>\n        ';
+    }
+    // 加载完毕
+    if (status === 'over') {
+        moduleDomClass = 'g-loading-over ';
+        // 相对文档居中
+        if (positionMethod === 'fixed') {
+            moduleDomClass += 'g-loading-fixed g-loading-' + positionLocation;
+        }
+        // 相对容器居中
+        if (positionMethod === 'absolute') {
+            moduleDomClass += 'g-loading-absolute g-loading-' + positionLocation;
+        }
+        moduleDomHtml = '\n            <div class="g-loading-body">\n                <div class="g-loading-over-icon iconfont icon-meiyoushuju"></div>\n                <div class="g-loading-over-text">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ';
+    }
+    // 模块创建
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-loading ' + moduleDomClass,
+            innerHTML: moduleDomHtml
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+SubType.prototype.power = function () {
+    // 功能重写待续...
+};
+
+module.exports = SubType;
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+
+// 底层构造函数
+
+var SuperType = function () {
+    function SuperType(json) {
+        _classCallCheck(this, SuperType);
+
+        // 函数外部传来的参数
+        this.opts = tools.extend({
+            // 内部默认参数
+            defaults: {
+                // 父级
+                wrap: '.g-body', // 这个仅支持传入选择器和原生dom节点
+                // 回调
+                callback: {
+                    // 内部模块创建之前
+                    moduleDomCreateBefore: function moduleDomCreateBefore(self) {
+                        // 内部模块创建之前的回调待续...
+                    },
+                    // 内部模块创建之后
+                    moduleDomCreateAfter: function moduleDomCreateAfter(self) {
+                        // 内部模块创建之后的回调待续...
+                    },
+                    // 内部模块渲染之前
+                    moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                        // 内部模块渲染之前的回调待续...
+                    },
+                    // 内部模块渲染之后
+                    moduleDomRenderAfter: function moduleDomRenderAfter(self) {
+                        // 内部模块渲染之后的回调待续...
+                    },
+                    // 内部模块移除之前
+                    moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {
+                        // 内部模块移除之前的回调待续...
+                    },
+                    // 内部模块移除之后
+                    moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {
+                        // 内部模块移除之后的回调待续...
+                    },
+                    // 内部模块显示之前
+                    moduleDomShowBefore: function moduleDomShowBefore(self) {
+                        // 内部模块显示之前的回调待续...
+                    },
+                    // 内部模块显示之后
+                    moduleDomShowAfter: function moduleDomShowAfter(self) {
+                        // 内部模块显示之后的回调待续...
+                    },
+                    // 内部模块隐藏之前
+                    moduleDomHideBefore: function moduleDomHideBefore(self) {
+                        // 内部模块隐藏之前的回调待续...
+                    },
+                    // 内部模块隐藏之后
+                    moduleDomHideAfter: function moduleDomHideAfter(self) {
+                        // 内部模块隐藏之后的回调待续...
+                    },
+                    // 外部容器获取之前
+                    wrapDomGetBefore: function wrapDomGetBefore(self) {
+                        // 外部容器获取之前的回调待续...
+                    },
+                    // 外部容器获取之后
+                    wrapDomGetAfter: function wrapDomGetAfter(self) {
+                        // 外部容器获取之后的回调待续...
+                    },
+                    // 外部容器移除之前
+                    wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {
+                        // 外部容器移除之前的回调待续...
+                    },
+                    // 外部容器移除之后
+                    wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {
+                        // 外部容器移除之后的回调待续...
+                    }
+                },
+                // 配置
+                config: {
+                    // 内部模块的自定义属性
+                    moduleDomCustomAttribute: {},
+                    // 内部模块插入到外部容器的方式
+                    moduleDomRenderMethod: {
+                        method: 'appendChild', // 'appendChild','insertBefore'
+                        child: null
+                    },
+                    moduleDomStyle: {}, // 内部模块的样式
+                    moduleDomIsShow: true, // 内部模块是否显示(默认显示)
+                    moduleDomIsClearTimer: true // 内部模块是否清除所有定时器(默认清除)
+                },
+                // 数据
+                data: {}
+            },
+            // 外部传入参数
+            inherits: json
+        });
+        // 函数内部自带的属性
+        this.moduleDom = null; // 内部的模块
+        this.wrapDom = null; // 内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+        this.moduleDomTimer = {}; // 内部模块的定时器存储(假设内部模块有定时器)
+        this.init();
+    }
+
+    // 初始化
+
+
+    _createClass(SuperType, [{
+        key: 'init',
+        value: function init() {
+            this.render();
+            this.power();
+        }
+
+        // 渲染
+
+    }, {
+        key: 'render',
+        value: function render() {
+            this.moduleDomRemove(); // 内部模块的移除(重新初始化的时候要移除掉以前有的内部模块)
+
+            var callback = this.opts.callback;
+            callback.moduleDomCreateBefore(this);
+            this.moduleDomCreate(); // 内部模块的创建
+            callback.moduleDomCreateAfter(this);
+
+            this.wrapDomGet(); // 外部容器的获取
+            this.moduleDomRender(); // 内部模块的渲染(如果外部容器存在,就把内部模块填充到外部容器里)
+        }
+
+        // 功能(这个方法需要在子类型里被覆盖掉)
+
+    }, {
+        key: 'power',
+        value: function power() {}
+        // 功能待续...
+
+
+        // 内部模块的创建(这个方法需要在子类型里被覆盖掉)
+
+    }, {
+        key: 'moduleDomCreate',
+        value: function moduleDomCreate() {
+            this.moduleDom = applications.createElement({
+                style: this.opts.config.moduleDomStyle,
+                customAttribute: this.opts.config.moduleDomCustomAttribute,
+                attribute: {
+                    className: 'g-super-type-es6',
+                    innerHTML: '\n                    <div class="g-super-type-es6-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsup-es6</div>\n                '
+                }
+            });
+        }
+
+        // 内部模块的渲染
+
+    }, {
+        key: 'moduleDomRender',
+        value: function moduleDomRender() {
+            var callback = this.opts.callback;
+            var config = this.opts.config;
+            if (config.moduleDomIsShow && this.wrapDom) {
+                callback.moduleDomRenderBefore(this);
+                var renderMethod = config.moduleDomRenderMethod;
+                if (renderMethod.method === 'insertBefore') {
+                    var dom = applications.getDomArray(renderMethod.child)[0];
+                    if (dom) {
+                        this.wrapDom.insertBefore(this.moduleDom, dom);
+                    } else {
+                        this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
+                    }
+                }
+                if (renderMethod.method === 'appendChild') {
+                    this.wrapDom.appendChild(this.moduleDom);
+                }
+                callback.moduleDomRenderAfter(this);
+            }
+        }
+
+        // 内部模块的移除
+
+    }, {
+        key: 'moduleDomRemove',
+        value: function moduleDomRemove() {
+            var callback = this.opts.callback;
+            if (this.moduleDom && this.moduleDom.parentNode) {
+                callback.moduleDomRemoveBefore(this);
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+                callback.moduleDomRemoveAfter(this);
+            }
+            this.moduleDomClearTimer();
+        }
+
+        // 内部模块的定时器清除(假设内部模块有定时器)
+
+    }, {
+        key: 'moduleDomClearTimer',
+        value: function moduleDomClearTimer() {
+            var self = this;
+            if (self.opts.config.moduleDomIsClearTimer) {
+                Object.keys(self.moduleDomTimer).forEach(function (attr) {
+                    clearInterval(self.moduleDomTimer[attr]);
+                    clearTimeout(self.moduleDomTimer[attr]);
+                });
+            }
+        }
+
+        // 内部模块的显示(显示隐藏和是否清除定时器无关)
+
+    }, {
+        key: 'moduleDomShow',
+        value: function moduleDomShow() {
+            var callback = this.opts.callback;
+            callback.moduleDomShowBefore(this);
+            if (this.wrapDom) {
+                this.opts.config.moduleDomIsShow = true;
+                this.moduleDomRender();
+            }
+            callback.moduleDomShowAfter(this);
+        }
+
+        // 内部模块的隐藏(显示隐藏和是否清除定时器无关)
+
+    }, {
+        key: 'moduleDomHide',
+        value: function moduleDomHide() {
+            var callback = this.opts.callback;
+            if (this.moduleDom.parentNode) {
+                this.opts.config.moduleDomIsShow = false;
+                callback.moduleDomHideBefore(this);
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+                callback.moduleDomHideAfter(this);
+            }
+        }
+
+        // 外部容器的获取
+
+    }, {
+        key: 'wrapDomGet',
+        value: function wrapDomGet() {
+            var callback = this.opts.callback;
+            callback.wrapDomGetBefore(this);
+            this.wrapDom = applications.getDomArray(this.opts.wrap)[0];
+            callback.wrapDomGetAfter(this);
+        }
+
+        // 外部容器的移除
+
+    }, {
+        key: 'wrapDomRemove',
+        value: function wrapDomRemove() {
+            var callback = this.opts.callback;
+            // 先移除内部的模块
+            this.moduleDomRemove();
+            // 再移除外部的容器
+            if (this.wrapDom) {
+                callback.wrapDomRemoveBefore(this);
+                this.wrapDom.parentNode.removeChild(this.wrapDom);
+                callback.wrapDomRemoveAfter(this);
+            }
+        }
+
+        // 获取内部模块的整体html结构
+
+    }, {
+        key: 'getModuleDomHtml',
+        value: function getModuleDomHtml() {
+            return this.moduleDom.outerHTML;
+        }
+    }]);
+
+    return SuperType;
+}();
+
+module.exports = SuperType;
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+__webpack_require__(14);
+var Super = __webpack_require__(3);
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub() {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).apply(this, arguments));
+    }
+
+    _createClass(Sub, [{
+        key: 'power',
+        value: function power() {
+            var self = this;
+            var applications = self.applications;
+
+            // ajax测试
+            (function () {
+                // const Ajax = require('../api/ajax');
+                // new Ajax({
+                //     callback: {},
+                //     config: {
+                //         url: '/api/getList',
+                //     },
+                //     data: {
+                //         hellow: 'hellow',
+                //     },
+                // });
+            })();
+
+            // base函数测试
+            (function () {
+                var WhenScrollBottom = applications.whenScrollBottom();
+                // 测试滚动到底部loading
+                new WhenScrollBottom({
+                    callback: {
+                        success: function success() {
+                            var Loading = __webpack_require__(11);
+                            var loading = new Loading({
+                                wrap: '.g-body',
+                                config: {
+                                    status: 'loading'
+                                }
+                            });
+                            loading.moduleDomShow();
+                        }
+                    }
+                });
+            })();
+
+            // slide切换
+            (function () {
+                var Slide = __webpack_require__(5);
+                new Slide({
+                    wrap: '.page-slide',
+                    data: {
+                        items: [{
+                            img: {
+                                width: 0,
+                                height: 0,
+                                src: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg'
+                            },
+                            href: ''
+                        }, {
+                            img: {
+                                width: 0,
+                                height: 0,
+                                src: 'http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg'
+                            },
+                            href: ''
+                        }, {
+                            img: {
+                                width: 0,
+                                height: 0,
+                                src: 'http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg'
+                            },
+                            href: ''
+                        }, {
+                            img: {
+                                width: 0,
+                                height: 0,
+                                src: 'http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg'
+                            },
+                            href: ''
+                        }, {
+                            img: {
+                                width: 0,
+                                height: 0,
+                                src: 'http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg'
+                            },
+                            href: ''
+                        }]
+                    }
+                });
+            })();
+
+            // 导航
+            (function () {
+                var Navigation = __webpack_require__(7);
+                new Navigation({ wrap: '.page-navigation' });
+            })();
+
+            // 弹窗测试
+            (function () {
+                var Dialog = __webpack_require__(4);
+                document.querySelector('.page-button-dialog').addEventListener('click', function () {
+                    new Dialog({
+                        callback: {
+                            confirm: function confirm() {
+                                new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已确认' } } });
+                            },
+                            cancel: function cancel() {
+                                new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已取消' } } });
+                            },
+                            close: function close() {
+                                new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已关闭' } } });
+                            }
+                        },
+                        config: {
+                            type: 'confirm'
+                        }
+                    });
+                });
+            })();
+
+            // 分页测试
+            (function () {
+                var Pagination = __webpack_require__(22);
+                new Pagination({ wrap: '.page-pagination' });
+            })();
+
+            // 没有数据
+            (function () {
+                var NoData = __webpack_require__(23);
+                new NoData({ wrap: '.page-no-data' });
+            })();
+
+            // 加载中
+            (function () {
+                var Loading = __webpack_require__(11);
+                var loading = new Loading({
+                    config: {
+                        status: 'loading'
+                    }
+                });
+                loading.moduleDomShow();
+                var over = new Loading({
+                    config: {
+                        status: 'over'
+                    }
+                });
+                over.moduleDomShow();
+            })();
+
+            // 超类型模块测试
+            (function () {
+                var SuperType = __webpack_require__(2);
+                new SuperType({ wrap: '.page-super-type' });
+                var SubType = __webpack_require__(24);
+                new SubType({ wrap: '.page-super-type' });
+                var SuperTypeEs6 = __webpack_require__(12);
+                new SuperTypeEs6({ wrap: '.page-super-type' });
+                var SubTypeEs6 = __webpack_require__(25);
+                new SubTypeEs6({ wrap: '.page-super-type' });
+            })();
+
+            // 遮罩
+            (function () {
+                var Mask = __webpack_require__(10);
+                var mask = new Mask({
+                    callback: {
+                        click: function click() {
+                            mask.moduleDomHide();
+                        }
+                    }
+                });
+                // mask.moduleDomShow();
+            })();
+
+            // 单选开关
+            (function () {
+                var Radio = __webpack_require__(26);
+                new Radio({
+                    wrap: '.page-radio-switch',
+                    callback: {
+                        click: function click(json) {
+                            console.log(json);
+                        }
+                    }
+                });
+            })();
+
+            // 表格
+            (function () {
+                var Table = __webpack_require__(27);
+                new Table({
+                    wrap: '.page-table',
+                    data: {
+                        header: [{
+                            content: '<div>header0</div>'
+                        }, {
+                            content: '<div>header1</div>'
+                        }, {
+                            content: '<div>header2</div>'
+                        }],
+                        body: [[{
+                            content: '<div>body0-0</div>'
+                        }, {
+                            content: '<div>body1-0</div>'
+                        }, {
+                            content: '<div>body2-0</div>'
+                        }], [{
+                            content: '<div>body0-1</div>'
+                        }, {
+                            content: '<div>body1-1</div>'
+                        }, {
+                            content: '<div>body2-1</div>'
+                        }], [{
+                            content: '<div>body0-2</div>'
+                        }, {
+                            content: '<div>body1-2</div>'
+                        }, {
+                            content: '<div>body2-2</div>'
+                        }]],
+                        footer: ''
+                    }
+                });
+            })();
+
+            // 星评
+            (function () {
+                // const Star = require('../components/g-star');
+                // new Star({
+                //     wrap: `.page-star`,
+                //     callback: {
+                //         click: function (json) {
+                //             console.log(json);
+                //         }
+                //     }
+                // });
+                __webpack_require__.e/* require.ensure */(0).then((function (require) {
+                    var Star = __webpack_require__(56);
+                    new Star({
+                        wrap: '.page-star',
+                        callback: {
+                            click: function click(json) {
+                                console.log(json);
+                            }
+                        }
+                    });
+                }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+            })();
+        }
+    }]);
+
+    return Sub;
+}(Super);
+
+new Sub();
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 默认数据
+var defaultData = {
+    nowCount: 10, // 当前页的数据条数
+    allCount: 100, // 数据总条数
+    nowPage: 1, // 当前页
+    allPage: null // 总页数
+};
+defaultData.allPage = Math.ceil(defaultData.allCount / defaultData.nowCount);
+
+// 子类型
+var SubType = tools.constructorInherit({
+    superType: SuperType,
+    // 默认参数(继承超类型)
+    parameter: {
+        // 回调
+        callback: {
+            // 上一页的回调
+            prevPage: function prevPage() {},
+            // 下一页的回调
+            nextPage: function nextPage() {},
+            // 选择某一页的回调
+            selectPage: function selectPage() {}
+        },
+        // 配置
+        config: {},
+        // 数据
+        data: defaultData
+    }
+});
+
+// 内部模块的创建(覆盖超类型)
+SubType.prototype.moduleDomCreate = function () {
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-pagination',
+            innerHTML: '\n                <div class="g-pagination-text">\u7B2C</div>\n                <div class="g-pagination-now-page">\n                    <label class="g-select">\n                        <span class="g-select-wrap">\n                            <select class="g-select-select">\n                                ' + this.renderOption() + '\n                            </select>\n                            <span class="g-select-mark iconfont icon-select"></span>\n                        </span>\n                    </label>\n                </div>\n                <div class="g-pagination-text">\u9875</div>\n                <a href="javascript:;" class="g-pagination-btn g-pagination-btn-inactive iconfont icon-shangyiye"></a>\n                <a href="javascript:;" class="g-pagination-btn iconfont icon-xiayiye"></a>\n            '
+        }
+    });
+    this.prevDom = this.moduleDom.querySelectorAll('.g-pagination-btn')[0]; // 上一页的按钮
+    this.nextDom = this.moduleDom.querySelectorAll('.g-pagination-btn')[1]; // 下一页的按钮
+    this.btnInactiveClass = 'g-pagination-btn-inactive'; // 上一页和下一页的禁用状态
+    this.selectDom = this.moduleDom.querySelector('.g-pagination-now-page .g-select-select'); // 选择某一页的按钮
+};
+
+// 渲染第几页里面的页码
+SubType.prototype.renderOption = function () {
+    var html = '';
+    for (var i = 0; i < this.opts.data.allPage; i++) {
+        html += '<option value="' + (i + 1) + '">' + (i + 1) + '</option>';
+    }
+    return html;
+};
+
+// 功能(覆盖超类型)
+SubType.prototype.power = function () {
+    var self = this;
+    var data = this.opts.data;
+    if (data.nowPage === 1) {
+        this.prevPageDisable();
+    }
+    if (data.nowPage === data.allPage) {
+        this.nextPageDisable();
+    }
+
+    this.prevDom.addEventListener('click', function () {
+        if (!this.classList.contains(self.btnInactiveClass)) {
+            self.prevPage();
+        }
+    });
+
+    this.nextDom.addEventListener('click', function () {
+        if (!this.classList.contains(self.btnInactiveClass)) {
+            self.nextPage();
+        }
+    });
+
+    this.selectDom.addEventListener('change', function () {
+        self.selectPage();
+    });
+};
+
+// 上一页
+SubType.prototype.prevPage = function () {
+    var data = this.opts.data;
+    if (data.nowPage > 1) {
+        data.nowPage--;
+        var oldChecked = this.selectDom.querySelector('option:checked');
+        if (oldChecked.previousElementSibling) {
+            oldChecked.selected = false;
+            oldChecked.previousElementSibling.selected = true;
+        }
+        this.nextPageEnable();
+        this.opts.callback.prevPage(this);
+    }
+    if (data.nowPage === 1) {
+        this.prevPageDisable();
+    }
+    console.log(data);
+};
+
+// 下一页
+SubType.prototype.nextPage = function () {
+    var data = this.opts.data;
+    if (data.nowPage < data.allPage) {
+        data.nowPage++;
+        var oldChecked = this.selectDom.querySelector('option:checked');
+        if (oldChecked.nextElementSibling) {
+            oldChecked.selected = false;
+            oldChecked.nextElementSibling.selected = true;
+        }
+        this.prevPageEnable();
+        this.opts.callback.nextPage(this);
+    }
+    if (data.nowPage === data.allPage) {
+        this.nextPageDisable();
+    }
+    console.log(data);
+};
+
+// 选择第几页
+SubType.prototype.selectPage = function () {
+    var data = this.opts.data;
+    data.nowPage = this.selectDom.value;
+    this.nextPageEnable();
+    this.prevPageEnable();
+    if (data.nowPage === 1) {
+        this.prevPageDisable();
+    }
+    if (data.nowPage === data.allPage) {
+        this.nextPageDisable();
+    }
+    this.opts.callback.selectPage(this);
+    console.log(data);
+};
+
+// 上一页禁用
+SubType.prototype.prevPageDisable = function () {
+    this.prevDom.classList.add(this.btnInactiveClass);
+};
+
+// 上一页启用
+SubType.prototype.prevPageEnable = function () {
+    this.prevDom.classList.remove(this.btnInactiveClass);
+};
+
+// 下一页禁用
+SubType.prototype.nextPageDisable = function () {
+    this.nextDom.classList.add(this.btnInactiveClass);
+};
+
+// 下一页启用
+SubType.prototype.nextPageEnable = function () {
+    this.nextDom.classList.remove(this.btnInactiveClass);
+};
+
+module.exports = SubType;
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var SubType = tools.constructorInherit({
+    superType: SuperType,
+    // 默认参数(继承超类型)
+    parameter: {
+        // 回调
+        callback: {},
+        // 配置
+        config: {
+            button: {
+                isShowIcon: false
+            }
+        },
+        // 数据
+        data: {
+            icon: 'icon-meiyoushuju',
+            text: '没有数据',
+            button: {
+                icon: 'icon-shouye',
+                text: '回首页',
+                href: '/'
+            }
+        }
+    }
+});
+
+// 内部模块的创建(覆盖超类型)
+SubType.prototype.moduleDomCreate = function () {
+    var data = this.opts.data;
+    var buttonIconHtml = '';
+    if (this.opts.config.button.isShowIcon) {
+        buttonIconHtml = '<div class="g-button-icon iconfont ' + data.button.icon + '"></div>';
+    }
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-no-data',
+            innerHTML: '\n                <div class="g-no-data-icon iconfont ' + data.icon + '"></div>\n                <div class="g-no-data-text">' + data.text + '</div>\n                <a class="g-no-data-button g-button" href="' + data.button.href + '">\n                    ' + buttonIconHtml + '\n                    <div class="g-button-text">' + data.button.text + '</div>\n                </a>\n            '
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+SubType.prototype.power = function () {
+    // 功能重写待续...
+};
+
+module.exports = SubType;
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var SubType = tools.constructorInherit({
+    superType: SuperType,
+    // 默认参数(继承超类型)
+    parameter: {
+        // 回调
+        callback: {},
+        // 配置
+        config: {},
+        // 数据
+        data: {}
+    }
+});
+
+// 内部模块的创建(覆盖超类型)
+SubType.prototype.moduleDomCreate = function () {
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-sub-type',
+            innerHTML: '\n                <div class="g-sub-type-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsub-es5</div>\n            '
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+SubType.prototype.power = function () {
+    // 功能重写待续...
+};
+
+module.exports = SubType;
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var SuperType = __webpack_require__(12); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var SubType = function (_SuperType) {
+    _inherits(SubType, _SuperType);
+
+    function SubType(json) {
+        _classCallCheck(this, SubType);
+
+        return _possibleConstructorReturn(this, (SubType.__proto__ || Object.getPrototypeOf(SubType)).call(this, tools.extend({
+            defaults: {
+                // 回调
+                callback: {},
+                // 配置
+                config: {},
+                // 数据
+                data: {}
+            },
+            inherits: json
+        })));
+    }
+
+    // 内部模块的创建(覆盖超类型)
+
+
+    _createClass(SubType, [{
+        key: 'moduleDomCreate',
+        value: function moduleDomCreate() {
+            this.moduleDom = applications.createElement({
+                style: this.opts.config.moduleDomStyle,
+                customAttribute: this.opts.config.moduleDomCustomAttribute,
+                attribute: {
+                    className: 'g-sub-type-es6',
+                    innerHTML: '\n                    <div class="g-sub-type-es6-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsub-es6</div>\n                '
+                }
+            });
+        }
+
+        // 功能重写(覆盖超类型)
+
+    }, {
+        key: 'power',
+        value: function power() {
+            // 功能重写待续...
+        }
+    }]);
+
+    return SubType;
+}(SuperType);
+
+module.exports = SubType;
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var SubType = tools.constructorInherit({
+    superType: SuperType,
+    // 默认参数(继承超类型)
+    parameter: {
+        // 回调
+        callback: {
+            click: function click() {}
+        },
+        // 配置
+        config: {
+            isHand: false, // 是否手动控制
+            status: 'on', // 状态
+            txt: {
+                on: '已开启',
+                off: '已关闭'
+            }
+        },
+        // 数据
+        data: {}
+    }
+});
+
+// 内部模块的创建(覆盖超类型)
+SubType.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    this.moduleDomActiveClass = 'g-radio-switch-active';
+    var isOn = '';
+    if (config.status === 'on') {
+        isOn = this.moduleDomActiveClass;
+    }
+    this.moduleDom = applications.createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-radio-switch ' + isOn,
+            innerHTML: '\n                <div class="g-radio-switch-wrap">\n                    <div class="g-radio-switch-round"></div>\n                </div>\n                <div class="g-radio-switch-text">' + config.txt[config.status] + '</div>\n            '
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+SubType.prototype.power = function () {
+    var self = this;
+    var config = this.opts.config;
+    this.moduleDom.addEventListener('click', function () {
+        if (!config.isHand) {
+            if (!self.isOn()) {
+                self.on();
+            } else {
+                self.off();
+            }
+        }
+        self.opts.callback.click({ status: config.status });
+    });
+};
+
+// 是否处于开启状态
+SubType.prototype.isOn = function () {
+    return this.moduleDom.classList.contains(this.moduleDomActiveClass);
+};
+
+// 开启
+SubType.prototype.on = function () {
+    var config = this.opts.config;
+    if (!this.isOn()) {
+        this.moduleDom.classList.add(this.moduleDomActiveClass);
+        config.status = 'on';
+        this.moduleDom.querySelector('.g-radio-switch-text').innerHTML = '' + config.txt[config.status];
+    }
+};
+
+// 关闭
+SubType.prototype.off = function () {
+    var config = this.opts.config;
+    if (this.isOn()) {
+        this.moduleDom.classList.remove(this.moduleDomActiveClass);
+        config.status = 'off';
+        this.moduleDom.querySelector('.g-radio-switch-text').innerHTML = '' + config.txt[config.status];
+    }
+};
+
+module.exports = SubType;
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var SubType = tools.constructorInherit({
+    superType: SuperType,
+    // 默认参数(继承超类型)
+    parameter: {
+        // 回调
+        callback: {},
+        // 配置
+        config: {},
+        // 数据
+        data: {
+            header: [{ content: 'undefined-header0' }, { content: 'undefined-header1' }, { content: 'undefined-header2' }],
+            body: [[{ content: 'undefined-body0-0' }, { content: 'undefined-body0-1' }, { content: 'undefined-body0-2' }]],
+            footer: ''
+        }
+    }
+});
+
+// 内部模块的创建(覆盖超类型)
+SubType.prototype.moduleDomCreate = function () {
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-table',
+            innerHTML: '\n                <div class="g-table-header">\n                    <div class="g-table-row">\n                        ' + this.moduleDomCreateHeader() + '\n                    </div>\n                </div>\n                <div class="g-table-body">\n                    ' + this.moduleDomCreateBody() + '\n                </div>\n                <div class="g-table-footer">\n                    ' + this.moduleDomCreateFooter() + '\n                </div>\n            '
+        }
+    });
+};
+
+SubType.prototype.moduleDomCreateHeader = function () {
+    var html = '';
+    this.opts.data.header.forEach(function (v) {
+        html += '\n            <div class="g-table-col">\n                <div class="g-table-col-wrap">\n                    ' + v.content + '\n                </div>\n            </div>\n        ';
+    });
+    return html;
+};
+
+SubType.prototype.moduleDomCreateBody = function () {
+    var html = '';
+    this.opts.data.body.forEach(function (v0) {
+        var row = '';
+        v0.forEach(function (v1) {
+            row += '\n                <div class="g-table-col">\n                    <div class="g-table-col-wrap">\n                        ' + v1.content + '\n                    </div>\n                </div>\n            ';
+        });
+        html += '<div class="g-table-row">' + row + '</div>';
+    });
+    return html;
+};
+
+SubType.prototype.moduleDomCreateFooter = function () {
+    return this.opts.data.footer;
+};
+
+// 功能(覆盖超类型)
+SubType.prototype.power = function () {
+    // 功能重写待续...
+};
+
+module.exports = SubType;
+
+/***/ })
+],[13]);
