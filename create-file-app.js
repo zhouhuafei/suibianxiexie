@@ -41,8 +41,8 @@ const file = {
     scss: {
         path: `${staticPath}scss/pages/`,
         fileName: fileName,
-        content: `@import "../base/config";
-        
+        content: `@import "../config/config";
+
 .g-body {
 }
 `,
@@ -53,7 +53,7 @@ const file = {
         fileName: fileName,
         content: `require('../../scss/pages/${fileName}.scss');
 const Super = require('./super');
-        
+
 class Sub extends Super {
 }
 
@@ -72,7 +72,7 @@ new CreateFile({
         path: controllerPath,
         fileName: fileName,
         content: `const Super = require('./super'); // 超类型
-            
+
 class Sub extends Super {
 }
 
