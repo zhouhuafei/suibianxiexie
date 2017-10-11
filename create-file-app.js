@@ -11,7 +11,7 @@ if (!fileName) {
     console.log('fileName no find');
     return;
 }
-const staticPath = `${__dirname}/app/${projectDirname}/assets/`;// 前端静态文件所处的位置
+const staticPath = `${__dirname}/app/${projectDirname}/static/`;// 前端静态文件所处的位置
 const controllerPath = `${__dirname}/app/${projectDirname}/controllers/pages/`;// 后台控制器文件所处的位置
 
 // 创建静态文件

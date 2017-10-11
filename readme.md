@@ -11,7 +11,7 @@ npm run start
 
 ````
 # 开发的目录结构
-assets/
+static/
 ├── images
 │   ├── commons
 │   └── home

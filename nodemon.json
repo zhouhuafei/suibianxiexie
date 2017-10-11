@@ -1,7 +1,7 @@
 {
     "ignore": [
         "dist",
-        "app/**/assets"
+        "app/**/static"
     ],
     "verbose": true,
     "env": {

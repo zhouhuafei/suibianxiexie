@@ -17,11 +17,11 @@ class ConfigPath {
         this.rootPath = `${__dirname}/`; // 根目录的目录路径
         this.projectDirname = projectDirname; // 项目的目录名称
         this.projectPath = `${this.rootPath}app/${this.projectDirname}/`; // 项目的目录路径
-        this.devPath = `${this.projectPath}assets/`; // 开发的目录路径
+        this.devPath = `${this.projectPath}static/`; // 开发的目录路径
         this.viewsEntryPath = `${this.devPath}views/`; // 开发视图的目录路径
         this.jsEntryPath = `${this.devPath}js/`; // 开发js的目录路径
         this.buildPath = `${this.rootPath}dist/`; // 生产的目录路径
-        this.assetsPath = `${this.buildPath}assets/${this.projectDirname}/`; // 生产静态资源的目录路径
+        this.staticPath = `${this.buildPath}static/${this.projectDirname}/`; // 生产静态资源的目录路径
         this.viewsOutputPath = `${this.buildPath}views/${this.projectDirname}/`; // 生产视图的目录路径
     }
 }
@@ -70,16 +70,16 @@ allJs.forEach(function (v) {
 entry['this-is-global-file-vendor'] = ['vue', 'axios'];// 公用的第三方库
 // 出口----配置
 const output = {
-    path: `${configPath.assetsPath}`,
+    path: `${configPath.staticPath}`,
     publicPath: `/${configPath.projectDirname}/`,
     filename: `js/pages/[name].${configEnvironment.chunkhash}js`,
     chunkFilename: `js/chunks/[name].[id].chunk.${configEnvironment.chunkhash}js`,
 };
 // 插件----集合
 const plugins = [
-    // 插件----清空dist/assets目录下对应的项目文件
+    // 插件----清空dist/static目录下对应的项目文件
     new CleanWebpackPlugin([configPath.projectDirname], {
-        root: `${configPath.buildPath}assets/`,
+        root: `${configPath.buildPath}static/`,
         verbose: true,
         dry: false,
     }),
