@@ -381,16 +381,14 @@ var tools = __webpack_require__(0);
 function Applications() {}
 
 // 设置cookie
-Applications.prototype.setCookie = function (name, value) {
-    var expires = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    var domain = arguments[3];
-    var path = arguments[4];
-    var secure = arguments[5];
-
+Applications.prototype.setCookie = function (name, value, expires, domain, path, secure) {
     var myDate = new Date();
     var myTime = myDate.getTime();
     myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000); // 单位是天 1天 1/24天(1小时)
-    var cookie = name + '=' + value + '; expires=' + myDate;
+    var cookie = name + '=' + value;
+    if (expires) {
+        cookie += '; expires=' + myDate;
+    }
     if (domain) {
         cookie += '; domain=' + domain;
     }

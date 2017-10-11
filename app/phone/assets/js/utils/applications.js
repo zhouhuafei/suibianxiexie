@@ -5,11 +5,14 @@ function Applications() {
 }
 
 // 设置cookie
-Applications.prototype.setCookie = function (name, value, expires = 0, domain, path, secure) {
+Applications.prototype.setCookie = function (name, value, expires, domain, path, secure) {
     const myDate = new Date();
     const myTime = myDate.getTime();
     myDate.setTime(myTime + expires * 24 * 60 * 60 * 1000); // 单位是天 1天 1/24天(1小时)
-    let cookie = `${name}=${value}; expires=${myDate}`;
+    let cookie = `${name}=${value}`;
+    if (expires) {
+        cookie += `; expires=${myDate}`;
+    }
     if (domain) {
         cookie += `; domain=${domain}`;
     }
