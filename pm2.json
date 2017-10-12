@@ -6,7 +6,6 @@
             "exec_mode": "fork",
             "ignore_watch": [
                 "dist",
-                "app/**/static",
                 "app/**/assets"
             ],
             "watch": true,

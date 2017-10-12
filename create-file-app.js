@@ -11,13 +11,13 @@ if (!fileName) {
     console.log('fileName no find');
     return;
 }
-const staticPath = `${__dirname}/app/${projectDirname}/static/`;// 前端静态文件所处的位置
+const assetsPath = `${__dirname}/app/${projectDirname}/assets/`;// 前端资源文件所处的位置
 const controllerPath = `${__dirname}/app/${projectDirname}/controllers/pages/`;// 后台控制器文件所处的位置
 
 // 创建静态文件
 const file = {
     view: {
-        path: `${staticPath}views/pages/`,
+        path: `${assetsPath}views/pages/`,
         fileName: fileName,
         content: `<!DOCTYPE html>
 <html lang="en">
@@ -39,7 +39,7 @@ const file = {
         extendName: '.hbs',
     },
     scss: {
-        path: `${staticPath}scss/pages/`,
+        path: `${assetsPath}scss/pages/`,
         fileName: fileName,
         content: `@import "../config/config";
 
@@ -49,7 +49,7 @@ const file = {
         extendName: '.scss',
     },
     js: {
-        path: `${staticPath}js/pages/`,
+        path: `${assetsPath}js/pages/`,
         fileName: fileName,
         content: `require('../../scss/pages/${fileName}.scss');
 const Super = require('./super');

@@ -11,7 +11,7 @@ npm run start
 
 ````
 # 开发的目录结构
-static/
+assets/
 ├── images
 │   ├── commons
 │   └── home
@@ -59,7 +59,7 @@ static/
 <p>命名规范  m-开头的是模块 g-开头的是全局 c-开头的是组件  page-开头的是页面级别的</p>
 <p>轮播图比例  普通轮播图w:h==2:1  详情轮播图w:h==1:1</p>
 
-<p>static/src/js/   目录下的</p>
+<p>assets/js/       目录下的</p>
 <p>base:            放点什么好呢</p>
 <p>business:        存放和业务逻辑有关的js</p>
 <p>commons:         存放页面公用的js</p>

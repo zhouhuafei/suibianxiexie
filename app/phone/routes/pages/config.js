@@ -54,6 +54,13 @@ const routeName = [
         title: '首页',
         isValidateLogin: false, // 是否验证登陆
     },
+    {
+        name: 'sample', // 模板样本
+        title: '模板样本',
+        isValidateLogin: false, // 是否验证登陆
+        isShowFooterNav: false, // 是否显示底部导航
+        isShowCopyright: false, // 是否显示版权信息
+    },
 ];
 // 路由的配置
 const routeConfig = {};
