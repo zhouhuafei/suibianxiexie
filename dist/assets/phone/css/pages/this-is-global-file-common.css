@@ -216,7 +216,8 @@ a {
   -webkit-tap-highlight-color: transparent; }
 
 img {
-  vertical-align: middle; }
+  vertical-align: middle;
+  max-width: 10rem; }
 
 .g-font-color-success {
   color: #13ce66; }
