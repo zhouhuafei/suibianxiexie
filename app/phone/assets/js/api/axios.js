@@ -7,6 +7,7 @@ module.exports = function (json) {
         defaults: {
             isHandleError: true, // 是否处理错误
             isHandleFailure: true, // 是否处理失败
+            timeout: 5000, // 超时
         },
         inherits: json,
     });

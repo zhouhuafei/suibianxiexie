@@ -1579,7 +1579,8 @@ module.exports = function (json) {
     var opts = tools.extend({
         defaults: {
             isHandleError: true, // 是否处理错误
-            isHandleFailure: true // 是否处理失败
+            isHandleFailure: true, // 是否处理失败
+            timeout: 5000 // 超时
         },
         inherits: json
     });
