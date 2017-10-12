@@ -12,29 +12,29 @@ npm run start
 ````
 # 开发的目录结构
 assets/
-├── images
-│   ├── commons
-│   └── home
-├── js
-│   ├── api
-│   ├── commons
-│   ├── components
-│   ├── components-vue
-│   ├── pages
-│   ├── plugs
-│   └── utils
-├── libs
-│   └── laydate
-├── scss
-│   ├── commons
-│   ├── components
-│   ├── config
-│   ├── fonts
-│   └── pages
-└── views
-    ├── layouts
-    ├── pages
-    └── partials
+├─html
+├─images
+│  ├─commons
+│  └─home
+├─js
+│  ├─api
+│  ├─components
+│  ├─components-vue
+│  ├─pages
+│  ├─plugs
+│  └─utils
+├─libs
+│  └─laydate
+├─scss
+│  ├─commons
+│  ├─components
+│  ├─config
+│  ├─fonts
+│  └─pages
+└─views
+    ├─layouts
+    ├─pages
+    └─partials
 ````
 
 代码装修中...
