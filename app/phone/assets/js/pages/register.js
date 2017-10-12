@@ -27,7 +27,7 @@ class Sub extends Super {
             }).then(function (dataInfo) {
                 if (dataInfo.status === 'success') {
                     const Dialog = require('../components/g-dialog');
-                    new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已发送'}}});
+                    new Dialog({config: {alert: {icon: 'icon-chenggong', content: '验证码已发送'}}});
                 }
             });
         }

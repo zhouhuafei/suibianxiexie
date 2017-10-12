@@ -50,6 +50,11 @@ var Sub = function (_Super) {
                     data: {
                         username: username
                     }
+                }).then(function (dataInfo) {
+                    if (dataInfo.status === 'success') {
+                        var Dialog = __webpack_require__(4);
+                        new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '验证码已发送' } } });
+                    }
                 });
             }
 
@@ -74,7 +79,7 @@ var Sub = function (_Super) {
                     data: userInfo
                 }).then(function (dataInfo) {
                     if (dataInfo.status === 'success') {
-                        window.location.href = gDataInfo.routes.login.href;
+                        window.location.href = gDataInfo.routes.login.route;
                     }
                 });
             });
