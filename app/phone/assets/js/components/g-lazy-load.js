@@ -9,6 +9,7 @@ function LazyLoad(json) {
             srcAttr: 'data-src', // 默认获取哪里的属性值当做src
             moreHeight: 0, // 多加载一部分高度的图片
             interval: 80, // 函数节流时间(延迟时间)
+            isInitRender: true, // 是否初始化的时候就进行render
         },
         inherits: json,
     });
@@ -17,7 +18,9 @@ function LazyLoad(json) {
 }
 
 LazyLoad.prototype.init = function () {
-    this.render();
+    if (this.opts.isInitRender) {
+        this.render();
+    }
     this.power();
 };
 LazyLoad.prototype.render = function () {

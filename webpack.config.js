@@ -17,12 +17,14 @@ class ConfigPath {
         this.rootPath = `${__dirname}/`; // 根目录的目录路径
         this.projectDirname = projectDirname; // 项目的目录名称
         this.projectPath = `${this.rootPath}app/${this.projectDirname}/`; // 项目的目录路径
-        this.devPath = `${this.projectPath}assets/`; // 开发的目录路径(开发资源的目录路径)
-        this.viewsEntryPath = `${this.devPath}views/`; // 开发视图的目录路径
-        this.jsEntryPath = `${this.devPath}js/`; // 开发js的目录路径
-        this.buildPath = `${this.rootPath}dist/`; // 生产的目录路径
-        this.assetsPath = `${this.buildPath}assets/${this.projectDirname}/`; // 生产资源的目录路径
-        this.viewsOutputPath = `${this.buildPath}views/${this.projectDirname}/`; // 生产视图的目录路径
+        this.assetsEntryPath = `${this.projectPath}assets/`; // 开发资源的目录路径
+        this.viewsEntryPath = `${this.assetsEntryPath}views/`; // 开发视图的目录路径
+        this.jsEntryPath = `${this.assetsEntryPath}js/`; // 开发js的目录路径
+        this.htmlEntryPath = `${this.assetsEntryPath}html/`; // 开发html的目录路径
+        this.distPath = `${this.rootPath}dist/`; // 生产的目录路径
+        this.assetsOutputPath = `${this.distPath}assets/${this.projectDirname}/`; // 生产资源的目录路径
+        this.viewsOutputPath = `${this.distPath}views/${this.projectDirname}/`; // 生产视图的目录路径
+        this.htmlOutputPath = `${this.assetsOutputPath}html/`; // 生产html的目录路径
     }
 }
 
@@ -58,19 +60,18 @@ if (isProduction) {
 const alias = {
     vue: `vue/dist/vue.${configEnvironment.min}js`,
     axios: `axios/dist/axios.${configEnvironment.min}js`,
-    jquery: `jquery/dist/jquery.${configEnvironment.min}js`,
 };
 // 入口----配置
 const entry = {};
 const allJs = fs.readdirSync(`${configPath.jsEntryPath}pages/`);
 allJs.forEach(function (v) {
     const fileName = path.basename(v, '.js');
-    entry[fileName] = `${configPath.devPath}js/pages/${v}`;
+    entry[fileName] = `${configPath.assetsEntryPath}js/pages/${v}`;
 });
 entry['this-is-global-file-vendor'] = ['vue', 'axios'];// 公用的第三方库
 // 出口----配置
 const output = {
-    path: `${configPath.assetsPath}`,
+    path: `${configPath.assetsOutputPath}`,
     publicPath: `/${configPath.projectDirname}/`,
     filename: `js/pages/[name].${configEnvironment.chunkhash}js`,
     chunkFilename: `js/chunks/[name].[id].chunk.${configEnvironment.chunkhash}js`,
@@ -79,13 +80,13 @@ const output = {
 const plugins = [
     // 插件----清空dist/assets目录下对应的项目文件
     new CleanWebpackPlugin([configPath.projectDirname], {
-        root: `${configPath.buildPath}assets/`,
+        root: `${configPath.distPath}assets/`,
         verbose: true,
         dry: false,
     }),
     // 插件----清空dist/views目录下对应的项目文件
     new CleanWebpackPlugin([configPath.projectDirname], {
-        root: `${configPath.buildPath}views/`,
+        root: `${configPath.distPath}views/`,
         verbose: true,
         dry: false,
     }),
@@ -100,9 +101,9 @@ const plugins = [
         name: ['this-is-global-file-common', 'this-is-global-file-vendor', 'this-is-global-file-manifest'],
     }),
 ];
-// 插件----处理视图模板页面文件
-const allPageHtml = fs.readdirSync(`${configPath.viewsEntryPath}pages/`);
-allPageHtml.forEach(function (v) {
+// 插件----处理页面视图模板页面文件
+const allPagesViews = fs.readdirSync(`${configPath.viewsEntryPath}pages/`);
+allPagesViews.forEach(function (v) {
     const fileName = path.basename(v, '.hbs');
     plugins.push(new HtmlWebpackPlugin({
         template: `${configPath.viewsEntryPath}pages/${v}`, // 模板
@@ -112,12 +113,22 @@ allPageHtml.forEach(function (v) {
         minify: configEnvironment.minView, // 压缩视图模板文件
     }));
 });
-// 插件----处理视图模板模块文件
-const allPartialsHtml = fs.readdirSync(`${configPath.viewsEntryPath}partials/`);
-allPartialsHtml.forEach(function (v) {
+// 插件----处理模块视图模板模块文件
+const allPartialsViews = fs.readdirSync(`${configPath.viewsEntryPath}partials/`);
+allPartialsViews.forEach(function (v) {
     plugins.push(new HtmlWebpackPlugin({
         template: `${configPath.viewsEntryPath}partials/${v}`, // 模板
         filename: `${configPath.viewsOutputPath}partials/${v}`, // 文件名
+        inject: false,
+        minify: configEnvironment.minView, // 压缩视图模板文件
+    }));
+});
+// 插件----处理html资源文件
+const allHtml = fs.readdirSync(configPath.htmlEntryPath);
+allHtml.forEach(function (v) {
+    plugins.push(new HtmlWebpackPlugin({
+        template: `${configPath.htmlEntryPath}${v}`, // 模板
+        filename: `${configPath.htmlOutputPath}${v}`, // 文件名
         inject: false,
         minify: configEnvironment.minView, // 压缩视图模板文件
     }));

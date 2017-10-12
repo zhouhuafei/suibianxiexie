@@ -26,7 +26,7 @@ class Sub {
                             height: 0,
                             src: '',
                         },
-                        text: '请求失败!',
+                        text: '接口格式保持一致',
                         href: '',
                     },
                     */

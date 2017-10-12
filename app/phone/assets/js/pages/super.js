@@ -7,7 +7,11 @@ class Super {
         self.applications = require('../utils/applications'); // 应用方法集合
         self.axios = require('../api/axios'); // ajax
         self.opts = self.tools.extend({
-            defaults: {},
+            defaults: {
+                lazyload: {
+                    isInitRender: false,
+                },
+            },
             inherits: json,
         });
         self.init();
@@ -27,11 +31,14 @@ class Super {
 
     // (功)(盖)功能(这个方法需要在子类型里被覆盖掉)
     power() {
+        console.log('dataInfo:', this.dataInfo);
     }
 
     // (渲)渲染
     renderHeader() {
         const self = this;
+
+        // 数据信息
         self.dataInfo = (function () {
             const input = document.querySelector('#page-info-str');
             const value = input.value;
@@ -47,6 +54,10 @@ class Super {
                 return value || {};
             }
         }());
+
+        // 延迟加载
+        const LazyLoad = require('../components/g-lazy-load');
+        self.lazyload = new LazyLoad(self.opts.lazyload);
     }
 
     // (渲)渲染
@@ -76,8 +87,7 @@ class Super {
         });
 
         // 延迟加载
-        const LazyLoad = require('../components/g-lazy-load');
-        self.lazyLoad = new LazyLoad();
+        self.lazyload.render();
     }
 }
 

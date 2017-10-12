@@ -39,7 +39,7 @@ class Super {
             req.data = req.body;
         }
         self.dataInfo = {
-            isShowCopyright: true, // 是否显示版权(需要从数据库里读取)
+            isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
             routes: routesConfig, // 路由的配置
             api: apiConfig, // 接口配置
             qrCode: applications.qrCode(`http://${req.headers.host}${req.url}`), // 二维码数据

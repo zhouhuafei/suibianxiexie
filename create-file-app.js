@@ -14,7 +14,7 @@ if (!fileName) {
 const assetsPath = `${__dirname}/app/${projectDirname}/assets/`;// 前端资源文件所处的位置
 const controllerPath = `${__dirname}/app/${projectDirname}/controllers/pages/`;// 后台控制器文件所处的位置
 
-// 创建静态文件
+// 创建资源文件
 const file = {
     view: {
         path: `${assetsPath}views/pages/`,

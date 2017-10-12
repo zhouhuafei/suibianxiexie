@@ -32,34 +32,34 @@ const routeName = [
     {
         name: 'password-find', // 忘记密码,去找回
         title: '忘记密码,去找回',
-        isValidateLogin: false, // 是否验证登陆
+        isValidateLogin: false,
     },
     {
         name: 'password-reset', // 修改密码,去重置
         title: '修改密码,去重置',
-        isValidateLogin: false, // 是否验证登陆
+        isValidateLogin: false,
     },
     {
         name: 'login', // 登陆页
         title: '登陆',
-        isValidateLogin: false, // 是否验证登陆
+        isValidateLogin: false,
     },
     {
         name: 'register', // 注册页
         title: '注册',
-        isValidateLogin: false, // 是否验证登陆
+        isValidateLogin: false,
     },
     {
         name: 'home', // 首页
         title: '首页',
-        isValidateLogin: false, // 是否验证登陆
+        isValidateLogin: false,
     },
     {
-        name: 'sample', // 模板样本
-        title: '模板样本',
-        isValidateLogin: false, // 是否验证登陆
-        isShowFooterNav: false, // 是否显示底部导航
-        isShowCopyright: false, // 是否显示版权信息
+        name: 'sample', // 视图模板样本
+        title: '视图模板样本',
+        isValidateLogin: false,
+        isShowCopyright: false,
+        isShowFooterNav: false,
     },
 ];
 // 路由的配置
@@ -74,7 +74,8 @@ routeName.forEach(function (v) {
         title: v.title, // 标题
         route: route, // 路由
         view: `${pathConfig.view}${v.name}`, // 视图
-        isValidateLogin: v.isValidateLogin !== false, // 是否验证登陆(默认验证)
+        isValidateLogin: v.isValidateLogin === undefined, // 是否验证登陆信息(默认验证)
+        isShowCopyright: v.isShowCopyright === undefined, // 是否显示版权信息(默认显示)
         isShowFooterNav: v.isShowFooterNav === undefined, // 是否显示底部导航(默认显示)
     };
 });
