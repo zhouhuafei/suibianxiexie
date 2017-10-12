@@ -48,7 +48,7 @@ class Sub extends Super {
                 data: userInfo,
             }).then(function (dataInfo) {
                 if (dataInfo.status === 'success') {
-                    window.location.href = gDataInfo.routes.login.href;
+                    window.location.href = gDataInfo.routes.login.route;
                 }
             });
         });
