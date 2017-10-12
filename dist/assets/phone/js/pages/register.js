@@ -39,27 +39,48 @@ var Sub = function (_Super) {
             var domPassword = document.querySelector('#password');
             var domVerifyCode = document.querySelector('#verify-code');
             var domGetVerifyCode = document.querySelector('.get-verify-code');
-
-            function getVerifyCode(username) {
-                var formData = new FormData();
-                formData.append('username', username);
-                formData.append('accountnum', 123456); // 数字 123456 会被立即转换成字符串 "123456"
-                axios({
-                    url: gDataInfo.api['verify-code-register'].route,
-                    method: 'get',
-                    data: {
-                        username: username
-                    }
-                }).then(function (dataInfo) {
-                    if (dataInfo.status === 'success') {
-                        var Dialog = __webpack_require__(4);
-                        new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '验证码已发送' } } });
-                    }
-                });
-            }
-
-            domGetVerifyCode.addEventListener('click', function () {
-                getVerifyCode(domUsername.value);
+            var domGetVerifyCodeHtml = domGetVerifyCode.innerHTML;
+            var domGetVerifyCodeInactive = 'get-verify-code-inactive';
+            var isCanGetVerifyCode = true;
+            domGetVerifyCode.addEventListener('click', function (ev) {
+                var domSelf = this;
+                ev.preventDefault();
+                if (isCanGetVerifyCode) {
+                    isCanGetVerifyCode = false;
+                    var username = domUsername.value;
+                    var formData = new FormData();
+                    formData.append('username', username);
+                    formData.append('accountnum', 123456); // 数字 123456 会被立即转换成字符串 "123456"
+                    axios({
+                        url: gDataInfo.api['verify-code-register'].route,
+                        method: 'get',
+                        data: {
+                            username: username
+                        }
+                    }).then(function (dataInfo) {
+                        if (dataInfo.status === 'success') {
+                            var Dialog = __webpack_require__(4);
+                            new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '验证码已发送' } } });
+                            domSelf.classList.add(domGetVerifyCodeInactive);
+                            self.tools.timeCountDown({
+                                seconds: 90,
+                                isToTime: false,
+                                callback: {
+                                    run: function run(obj) {
+                                        domGetVerifyCode.innerHTML = '<span class="g-button">' + obj.seconds + '\u79D2</span>';
+                                    },
+                                    over: function over() {
+                                        isCanGetVerifyCode = true;
+                                        domGetVerifyCode.innerHTML = domGetVerifyCodeHtml;
+                                        domSelf.classList.remove(domGetVerifyCodeInactive);
+                                    }
+                                }
+                            });
+                        } else {
+                            isCanGetVerifyCode = true;
+                        }
+                    });
+                }
             });
 
             // 立即注册

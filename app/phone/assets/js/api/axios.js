@@ -32,7 +32,7 @@ module.exports = function (json) {
             });
         }
     }).then(function (response) {
-        let dataInfo = null;
+        let dataInfo = {};
         if (response) {
             dataInfo = response.data;
             if (dataInfo.status === 'failure' && opts.isHandleFailure) {

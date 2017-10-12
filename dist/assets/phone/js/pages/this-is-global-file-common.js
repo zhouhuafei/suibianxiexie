@@ -184,6 +184,7 @@ Tools.prototype.timeCountDown = function (json) {
     var opts = self.extend({
         defaults: {
             seconds: 0,
+            isToTime: true, // 是否转换成时间
             callback: {
                 run: function run() {},
                 over: function over() {}
@@ -196,12 +197,20 @@ Tools.prototype.timeCountDown = function (json) {
     var over = opts.callback.over; // 结束的回调
     // 时间大于等于0秒
     if (seconds >= 0) {
-        run(self.secondsToTime(seconds)); // 运行时的回调
+        if (opts.isToTime) {
+            run(self.secondsToTime(seconds)); // 运行时的回调
+        } else {
+            run({ day: 0, hours: 0, minutes: 0, seconds: seconds }); // 运行时的回调
+        }
         // 倒计时走你
         var timer = setInterval(function () {
             seconds--;
             if (seconds >= 0) {
-                run(self.secondsToTime(seconds)); // 运行时的回调
+                if (opts.isToTime) {
+                    run(self.secondsToTime(seconds)); // 运行时的回调
+                } else {
+                    run({ day: 0, hours: 0, minutes: 0, seconds: seconds }); // 运行时的回调
+                }
             } else {
                 over(); // 结束时的回调
                 clearInterval(timer);
@@ -1596,7 +1605,7 @@ module.exports = function (json) {
             });
         }
     }).then(function (response) {
-        var dataInfo = null;
+        var dataInfo = {};
         if (response) {
             dataInfo = response.data;
             if (dataInfo.status === 'failure' && opts.isHandleFailure) {
