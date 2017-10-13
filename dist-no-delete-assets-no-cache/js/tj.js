@@ -32,7 +32,7 @@ window.addEventListener('load', function () {
             var expires = 7;
             var domain = '192.168.51.93';
             var path = '/';
-            var iframeSrc = site + '/phone/html/cookie.html';
+            var iframeSrc = site + '/html/cookie.html';
             var iframe = document.createElement('iframe');
             var cookieName = 'click';
             var enentCollection = {
