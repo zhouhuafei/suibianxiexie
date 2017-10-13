@@ -20,11 +20,9 @@ class ConfigPath {
         this.assetsEntryPath = `${this.projectPath}assets/`; // 开发资源的目录路径
         this.viewsEntryPath = `${this.assetsEntryPath}views/`; // 开发视图的目录路径
         this.jsEntryPath = `${this.assetsEntryPath}js/`; // 开发js的目录路径
-        this.htmlEntryPath = `${this.assetsEntryPath}html/`; // 开发html的目录路径
         this.distPath = `${this.rootPath}dist/`; // 生产的目录路径
         this.assetsOutputPath = `${this.distPath}assets/${this.projectDirname}/`; // 生产资源的目录路径
         this.viewsOutputPath = `${this.distPath}views/${this.projectDirname}/`; // 生产视图的目录路径
-        this.htmlOutputPath = `${this.assetsOutputPath}html/`; // 生产html的目录路径
     }
 }
 
@@ -119,16 +117,6 @@ allPartialsViews.forEach(function (v) {
     plugins.push(new HtmlWebpackPlugin({
         template: `${configPath.viewsEntryPath}partials/${v}`, // 模板
         filename: `${configPath.viewsOutputPath}partials/${v}`, // 文件名
-        inject: false,
-        minify: configEnvironment.minView, // 压缩视图模板文件
-    }));
-});
-// 插件----处理html资源文件
-const allHtml = fs.readdirSync(configPath.htmlEntryPath);
-allHtml.forEach(function (v) {
-    plugins.push(new HtmlWebpackPlugin({
-        template: `${configPath.htmlEntryPath}${v}`, // 模板
-        filename: `${configPath.htmlOutputPath}${v}`, // 文件名
         inject: false,
         minify: configEnvironment.minView, // 压缩视图模板文件
     }));
