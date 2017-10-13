@@ -126,38 +126,6 @@ Tools.prototype.arrayRemoveRepeat = function (array) {
     return newArray;
 };
 /**
- * @description 日期格式化
- * @param {Number} date - 毫秒数
- * @param {String} result = 'year/month/day hours:minutes:seconds' - 格式
- * */
-Tools.prototype.dateFormat = function () {
-    var date = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    var result = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'year/month/day hours:minutes:seconds';
-
-    var myDate = new Date();
-    if ({}.toString.call(date).slice(8, -1).toLowerCase() === 'date') {
-        date = date.getTime();
-    }
-    myDate.setTime(date);
-    var obj = {
-        year: myDate.getFullYear(), // 年
-        month: myDate.getMonth() + 1, // 月
-        day: myDate.getDate(), // 日
-        hours: myDate.getHours(), // 时
-        minutes: myDate.getMinutes(), // 分
-        seconds: myDate.getSeconds(), // 秒
-        milliseconds: myDate.getMilliseconds(), // 毫秒
-        week1: '\u661F\u671F' + ['日', '一', '二', '三', '四', '五', '六'][myDate.getDay()], // 星期几
-        week2: '\u5468' + ['日', '一', '二', '三', '四', '五', '六'][myDate.getDay()], // 周几
-        week3: '\u793C\u62DC' + ['日', '一', '二', '三', '四', '五', '六'][myDate.getDay()] // 礼拜几
-    };
-    Object.keys(obj).forEach(function (key) {
-        result = result.replace(new RegExp(key), obj[key]);
-    });
-    obj.result = result;
-    return obj;
-};
-/**
  * @description 秒转时间
  * @param {Number} seconds - 秒数
  * */
@@ -362,13 +330,62 @@ Tools.prototype.queryParse = function (str) {
     }
     return result;
 };
-// 保留几位小数(默认两位)
+/**
+ * @description 保留几位小数
+ * @param {Number} value - 数字
+ * @param {Number} place - 保留几位小数(默认两位)
+ * @param {Boolean} isFormat - 是否格式化(默认格式化)
+ * */
 Tools.prototype.keepDecimal = function () {
     var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
     var place = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+    var isFormat = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
+    var format = /(?!\b)(?=(\d{3})+$)/;
+    var result = value;
     var baseNum = Math.pow(10, place);
-    return (Math.floor(parseFloat(value) * baseNum) / baseNum).toFixed(2);
+    if (Number(place) !== 0) {
+        result = (Math.floor(parseFloat(value) * baseNum) / baseNum).toFixed(2);
+    }
+    if (isFormat) {
+        var arr = result.split('.');
+        arr[0] = arr[0].replace(format, ',');
+        result = arr.join('.');
+    }
+    return result;
+};
+/**
+ * @description 日期格式化
+ * @param {Number} date - 毫秒数
+ * @param {String} result - 'year/month/day hours:minutes:seconds' - 格式
+ * */
+Tools.prototype.dateFormat = function () {
+    var date = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var result = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'year/month/day hours:minutes:seconds';
+
+    var self = this;
+    var myDate = new Date();
+    if ({}.toString.call(date).slice(8, -1).toLowerCase() === 'date') {
+        date = date.getTime();
+    }
+    myDate.setTime(date);
+    var obj = {
+        year: myDate.getFullYear(), // 年
+        month: self.fillZero(myDate.getMonth() + 1, 2), // 月
+        day: self.fillZero(myDate.getDate(), 2), // 日
+        hours: self.fillZero(myDate.getHours(), 2), // 时
+        minutes: self.fillZero(myDate.getMinutes(), 2), // 分
+        seconds: self.fillZero(myDate.getSeconds(), 2), // 秒
+        milliseconds: myDate.getMilliseconds(), // 毫秒
+        week1: '\u661F\u671F' + ['日', '一', '二', '三', '四', '五', '六'][myDate.getDay()], // 星期几
+        week2: '\u5468' + ['日', '一', '二', '三', '四', '五', '六'][myDate.getDay()], // 周几
+        week3: '\u793C\u62DC' + ['日', '一', '二', '三', '四', '五', '六'][myDate.getDay()] // 礼拜几
+    };
+    Object.keys(obj).forEach(function (key) {
+        result = result.replace(new RegExp(key), obj[key]);
+    });
+    obj.result = result;
+    return obj;
 };
 // 输出
 module.exports = new Tools();
