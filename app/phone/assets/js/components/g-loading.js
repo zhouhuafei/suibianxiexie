@@ -1,28 +1,24 @@
 const tools = require('../utils/tools');// 工具方法集合
 const applications = require('../utils/applications');// 应用方法集合
-const SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
+const Super = require('../components/g-super');// 超类型(子类型继承的对象)
 
 // 子类型
-const SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {},
-        // 配置
-        config: {
-            status: 'loading', // 加载状态 loading(加载中) over(加载完毕)
-            positionMethod: '', // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
-            positionLocation: 'center', // 模块的定位位置
-            moduleDomIsShow: false, // 内部模块是否显示(默认不显示)
-        },
-        // 数据
-        data: {},
+const Sub = tools.constructorInherit(Super, {
+    // 回调
+    callback: {},
+    // 配置
+    config: {
+        status: 'loading', // 加载状态 loading(加载中) over(加载完毕)
+        positionMethod: '', // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
+        positionLocation: 'center', // 模块的定位位置
+        moduleDomIsShow: false, // 内部模块是否显示(默认不显示)
     },
+    // 数据
+    data: {},
 });
 
 // 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
+Sub.prototype.moduleDomCreate = function () {
     const config = this.opts.config;
     let moduleDomHtml = '';
     let moduleDomClass = '';
@@ -76,8 +72,8 @@ SubType.prototype.moduleDomCreate = function () {
 };
 
 // 功能(覆盖超类型)
-SubType.prototype.power = function () {
+Sub.prototype.power = function () {
     // 功能重写待续...
 };
 
-module.exports = SubType;
+module.exports = Sub;

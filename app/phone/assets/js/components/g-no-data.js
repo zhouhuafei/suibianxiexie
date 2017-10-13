@@ -1,35 +1,31 @@
 const tools = require('../utils/tools');// 工具方法集合
 const applications = require('../utils/applications');// 应用方法集合
-const SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
+const Super = require('../components/g-super');// 超类型(子类型继承的对象)
 
 // 子类型
-const SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {},
-        // 配置
-        config: {
-            button: {
-                isShowIcon: false,
-            },
+const Sub = tools.constructorInherit(Super, {
+    // 回调
+    callback: {},
+    // 配置
+    config: {
+        button: {
+            isShowIcon: false,
         },
-        // 数据
-        data: {
-            icon: 'icon-meiyoushuju',
-            text: '没有数据',
-            button: {
-                icon: 'icon-shouye',
-                text: '回首页',
-                href: '/',
-            },
+    },
+    // 数据
+    data: {
+        icon: 'icon-meiyoushuju',
+        text: '没有数据',
+        button: {
+            icon: 'icon-shouye',
+            text: '回首页',
+            href: '/',
         },
     },
 });
 
 // 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
+Sub.prototype.moduleDomCreate = function () {
     const data = this.opts.data;
     let buttonIconHtml = '';
     if (this.opts.config.button.isShowIcon) {
@@ -53,8 +49,8 @@ SubType.prototype.moduleDomCreate = function () {
 };
 
 // 功能(覆盖超类型)
-SubType.prototype.power = function () {
+Sub.prototype.power = function () {
     // 功能重写待续...
 };
 
-module.exports = SubType;
+module.exports = Sub;

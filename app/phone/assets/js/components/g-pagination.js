@@ -1,6 +1,6 @@
 const tools = require('../utils/tools');// 工具方法集合
 const applications = require('../utils/applications');// 应用方法集合
-const SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
+const Super = require('../components/g-super');// 超类型(子类型继承的对象)
 
 // 默认数据
 const defaultData = {
@@ -12,31 +12,27 @@ const defaultData = {
 defaultData.allPage = Math.ceil(defaultData.allCount / defaultData.nowCount);
 
 // 子类型
-const SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {
-            // 上一页的回调
-            prevPage: function () {
-            },
-            // 下一页的回调
-            nextPage: function () {
-            },
-            // 选择某一页的回调
-            selectPage: function () {
-            },
+const Sub = tools.constructorInherit(Super, {
+    // 回调
+    callback: {
+        // 上一页的回调
+        prevPage: function () {
         },
-        // 配置
-        config: {},
-        // 数据
-        data: defaultData,
+        // 下一页的回调
+        nextPage: function () {
+        },
+        // 选择某一页的回调
+        selectPage: function () {
+        },
     },
+    // 配置
+    config: {},
+    // 数据
+    data: defaultData,
 });
 
 // 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
+Sub.prototype.moduleDomCreate = function () {
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         customAttribute: this.opts.config.moduleDomCustomAttribute,
@@ -67,7 +63,7 @@ SubType.prototype.moduleDomCreate = function () {
 };
 
 // 渲染第几页里面的页码
-SubType.prototype.renderOption = function () {
+Sub.prototype.renderOption = function () {
     let html = '';
     for (let i = 0; i < this.opts.data.allPage; i++) {
         html += `<option value="${i + 1}">${i + 1}</option>`;
@@ -76,7 +72,7 @@ SubType.prototype.renderOption = function () {
 };
 
 // 功能(覆盖超类型)
-SubType.prototype.power = function () {
+Sub.prototype.power = function () {
     const self = this;
     const data = this.opts.data;
     if (data.nowPage === 1) {
@@ -104,7 +100,7 @@ SubType.prototype.power = function () {
 };
 
 // 上一页
-SubType.prototype.prevPage = function () {
+Sub.prototype.prevPage = function () {
     const data = this.opts.data;
     if (data.nowPage > 1) {
         data.nowPage--;
@@ -123,7 +119,7 @@ SubType.prototype.prevPage = function () {
 };
 
 // 下一页
-SubType.prototype.nextPage = function () {
+Sub.prototype.nextPage = function () {
     const data = this.opts.data;
     if (data.nowPage < data.allPage) {
         data.nowPage++;
@@ -142,7 +138,7 @@ SubType.prototype.nextPage = function () {
 };
 
 // 选择第几页
-SubType.prototype.selectPage = function () {
+Sub.prototype.selectPage = function () {
     const data = this.opts.data;
     data.nowPage = this.selectDom.value;
     this.nextPageEnable();
@@ -158,23 +154,23 @@ SubType.prototype.selectPage = function () {
 };
 
 // 上一页禁用
-SubType.prototype.prevPageDisable = function () {
+Sub.prototype.prevPageDisable = function () {
     this.prevDom.classList.add(this.btnInactiveClass);
 };
 
 // 上一页启用
-SubType.prototype.prevPageEnable = function () {
+Sub.prototype.prevPageEnable = function () {
     this.prevDom.classList.remove(this.btnInactiveClass);
 };
 
 // 下一页禁用
-SubType.prototype.nextPageDisable = function () {
+Sub.prototype.nextPageDisable = function () {
     this.nextDom.classList.add(this.btnInactiveClass);
 };
 
 // 下一页启用
-SubType.prototype.nextPageEnable = function () {
+Sub.prototype.nextPageEnable = function () {
     this.nextDom.classList.remove(this.btnInactiveClass);
 };
 
-module.exports = SubType;
+module.exports = Sub;

@@ -70,52 +70,48 @@ Tools.prototype.objRemoveQuote = function (obj) {
     });
     return newObj;
 };
-// 面向对象继承
-Tools.prototype.constructorInherit = function (json) {
+/**
+ * @description 面向对象继承
+ * @param {Function} Super - 继承自某个超类型(这个必须传的是一个构造函数)
+ * @param {Object} parameter - 子类型的参数(这个必须传的是一个对象)
+ * */
+Tools.prototype.constructorInherit = function (Super) {
+    var parameter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
     var self = this;
-    var opts = self.extend({
-        defaults: {
-            superType: null, // 继承哪个超类(这个必须传的是一个构造函数,或者不传值)
-            parameter: {} // 默认参数(这个必须传的是一个对象,或者不传值)
-        },
-        inherits: json
-    });
-    // 超类型(需要是个构造函数)
-    var SuperType = opts.superType;
-    // 子类型的默认参数(需要是个对象)
-    var parameter = opts.parameter;
+
     // 如果超类型不存在
-    if (Object.prototype.toString.call(SuperType).toLowerCase().slice(8, -1) !== 'function') {
-        console.log('no find SuperType or SuperType error');
+    if (Object.prototype.toString.call(Super).toLowerCase().slice(8, -1) !== 'function') {
+        console.log('no find Super or Super error');
         return false;
     }
 
     // 子类型
-    function SubType(json) {
-        // 子类型自身的属性
-        /*
-         * 注意:
-         * defaults要防止对象的引用(如果不防止的话,会出现BUG)
-         * 例如 wrap的默认值是'.g-wrap'
-         * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
-         * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
-         * 但是由于对象引用的原因,这里的值会变成'body'
-         * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
-         * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
-         * 所以我就封装了一个移除对象引用的函数
-         * */
+    function Sub(json) {
         // 子类型继承超类型的属性
-        opts.superType.call(this, self.extend({
+        Super.call(this, self.extend({
+            /*
+             * 注意:
+             * defaults要防止对象的引用(如果不防止的话,会出现BUG)
+             * 例如 wrap的默认值是'.g-wrap'
+             * 第一次   var obj1=new Sub({wrap:'body'});   wrap的值是'body'
+             * 第二次   var obj2=new Sub();    这里按理说wrap的值应该是默认值'.g-wrap'
+             * 但是由于对象引用的原因,这里的值会变成'body'
+             * 因此这里要处理掉对象的引用,所以我使用了JSON的方法进行了阻止
+             * 但是JSON.stringify方法居然会过滤掉对象内部的所有函数,真是日了狗了
+             * 所以我就封装了一个移除对象引用的函数
+             * */
             defaults: self.objRemoveQuote(parameter),
             inherits: json
         }));
     }
 
     // 子类型继承超类型的方法
-    Object.keys(SuperType.prototype).forEach(function (attr) {
-        SubType.prototype[attr] = SuperType.prototype[attr];
+    Object.keys(Super.prototype).forEach(function (attr) {
+        Sub.prototype[attr] = Super.prototype[attr];
     });
-    return SubType;
+
+    return Sub;
 };
 // 数组去重
 Tools.prototype.arrayRemoveRepeat = function (array) {
@@ -913,7 +909,7 @@ var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
 
 // 底层构造函数
-function SuperType(json) {
+function Super(json) {
     // 函数外部传来的参数
     this.opts = tools.extend({
         // 内部默认参数
@@ -1006,13 +1002,13 @@ function SuperType(json) {
 }
 
 // 初始化
-SuperType.prototype.init = function () {
+Super.prototype.init = function () {
     this.render();
     this.power();
 };
 
 // 渲染
-SuperType.prototype.render = function () {
+Super.prototype.render = function () {
     this.moduleDomRemove(); // 内部模块的移除(重新初始化的时候要移除掉以前有的内部模块)
 
     var callback = this.opts.callback;
@@ -1025,12 +1021,12 @@ SuperType.prototype.render = function () {
 };
 
 // 功能(这个方法需要在子类型里被覆盖掉)
-SuperType.prototype.power = function () {
+Super.prototype.power = function () {
     // 功能待续...
 };
 
 // 内部模块的创建(这个方法需要在子类型里被覆盖掉)
-SuperType.prototype.moduleDomCreate = function () {
+Super.prototype.moduleDomCreate = function () {
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         customAttribute: this.opts.config.moduleDomCustomAttribute,
@@ -1042,7 +1038,7 @@ SuperType.prototype.moduleDomCreate = function () {
 };
 
 // 内部模块的渲染
-SuperType.prototype.moduleDomRender = function () {
+Super.prototype.moduleDomRender = function () {
     var callback = this.opts.callback;
     var config = this.opts.config;
     if (config.moduleDomIsShow && this.wrapDom) {
@@ -1064,7 +1060,7 @@ SuperType.prototype.moduleDomRender = function () {
 };
 
 // 内部模块的移除
-SuperType.prototype.moduleDomRemove = function () {
+Super.prototype.moduleDomRemove = function () {
     var callback = this.opts.callback;
     if (this.moduleDom && this.moduleDom.parentNode) {
         callback.moduleDomRemoveBefore(this);
@@ -1075,7 +1071,7 @@ SuperType.prototype.moduleDomRemove = function () {
 };
 
 // 内部模块的定时器清除(假设内部模块有定时器)
-SuperType.prototype.moduleDomClearTimer = function () {
+Super.prototype.moduleDomClearTimer = function () {
     var self = this;
     if (self.opts.config.moduleDomIsClearTimer) {
         Object.keys(self.moduleDomTimer).forEach(function (attr) {
@@ -1086,7 +1082,7 @@ SuperType.prototype.moduleDomClearTimer = function () {
 };
 
 // 内部模块的显示(显示隐藏和是否清除定时器无关)
-SuperType.prototype.moduleDomShow = function () {
+Super.prototype.moduleDomShow = function () {
     var callback = this.opts.callback;
     callback.moduleDomShowBefore(this);
     if (this.wrapDom) {
@@ -1097,7 +1093,7 @@ SuperType.prototype.moduleDomShow = function () {
 };
 
 // 内部模块的隐藏(显示隐藏和是否清除定时器无关)
-SuperType.prototype.moduleDomHide = function () {
+Super.prototype.moduleDomHide = function () {
     var callback = this.opts.callback;
     if (this.moduleDom.parentNode) {
         this.opts.config.moduleDomIsShow = false;
@@ -1108,7 +1104,7 @@ SuperType.prototype.moduleDomHide = function () {
 };
 
 // 外部容器的获取
-SuperType.prototype.wrapDomGet = function () {
+Super.prototype.wrapDomGet = function () {
     var callback = this.opts.callback;
     callback.wrapDomGetBefore(this);
     this.wrapDom = applications.getDomArray(this.opts.wrap)[0];
@@ -1116,7 +1112,7 @@ SuperType.prototype.wrapDomGet = function () {
 };
 
 // 外部容器的移除
-SuperType.prototype.wrapDomRemove = function () {
+Super.prototype.wrapDomRemove = function () {
     var callback = this.opts.callback;
     // 先移除内部的模块
     this.moduleDomRemove();
@@ -1129,11 +1125,11 @@ SuperType.prototype.wrapDomRemove = function () {
 };
 
 // 获取内部模块的整体html结构
-SuperType.prototype.getModuleDomHtml = function () {
+Super.prototype.getModuleDomHtml = function () {
     return this.moduleDom.outerHTML;
 };
 
-module.exports = SuperType;
+module.exports = Super;
 
 /***/ }),
 /* 3 */
@@ -1268,91 +1264,87 @@ module.exports = Super;
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
 var Mask = __webpack_require__(10); // 遮罩
 
 // 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {
-            moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                if (self.opts.config.type === 'confirm') {
-                    if (self.opts.config.confirm.isShowMask) {
-                        self.mask = new Mask({
-                            config: {
-                                moduleDomIsShow: true,
-                                moduleDomRenderMethod: { method: 'insertBefore' }
-                            }
-                        });
-                    }
-                    if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
-                        self.wrapDom.style.position = 'relative';
-                    }
+var Sub = tools.constructorInherit(Super, {
+    // 回调
+    callback: {
+        moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+            if (self.opts.config.type === 'confirm') {
+                if (self.opts.config.confirm.isShowMask) {
+                    self.mask = new Mask({
+                        config: {
+                            moduleDomIsShow: true,
+                            moduleDomRenderMethod: { method: 'insertBefore' }
+                        }
+                    });
                 }
-            },
-            // 确认
-            confirm: function confirm() {},
-            // 取消
-            cancel: function cancel() {},
-            // 关闭
-            close: function close() {}
-        },
-        // 配置
-        config: {
-            /*
-             * 弹窗类型
-             * `alert`  提示信息类型
-             * `confirm`    确认框类型
-             * */
-            type: 'alert', // 默认是提示框
-            /*
-             * 弹窗位置
-             * `center` 居中
-             * `bottom` 居下
-             * `top` 居上
-             * */
-            positionLocation: 'center', // 弹窗的定位位置    positionMethod定位方式强制fixed
-            // 提示框
-            alert: {
-                timer: null, // 定时器装载
-                time: 3000, // 展示的时间
-                isShowIcon: false, // 是否显示icon
-                isShowClose: true, // 是否显示关闭按钮
-                icon: 'icon-chenggong', // icon的class
-                content: '成功' // 内容信息
-            },
-            // 确认框
-            confirm: {
-                // 点击确认是否关闭弹窗
-                isShowHeader: true, // 是否显示头部
-                headerContent: '提示:', // 头部内容
-                isShowBody: true, // 是否显示主体
-                content: '<div>确定要执行这个操作?</div>', // 主体内容
-                isShowFooter: true, // 是否显示尾部
-                footerContent: '', // 尾部内容
-                isShowClose: true, // 是否显示关闭按钮
-                closeContent: '<div class="iconfont icon-guanbi"></div>', // 关闭按钮的内容
-                isShowConfirm: true, // 是否显示确认按钮
-                confirmContent: '确认', // 确认按钮的内容
-                isShowCancel: true, // 是否显示取消按钮
-                cancelContent: '取消', // 取消按钮的内容
-                isCustom: false, // 是否自定义
-                isShowIcon: false, // 是否显示icon
-                icon: 'icon-jinggao', // icon的类型
-                isShowMask: true, // 是否显示遮罩
-                isHandHide: false // 是否手动隐藏(一般只用于点击确认时)
+                if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
+                    self.wrapDom.style.position = 'relative';
+                }
             }
         },
-        // 数据
-        data: {}
-    }
+        // 确认
+        confirm: function confirm() {},
+        // 取消
+        cancel: function cancel() {},
+        // 关闭
+        close: function close() {}
+    },
+    // 配置
+    config: {
+        /*
+         * 弹窗类型
+         * `alert`  提示信息类型
+         * `confirm`    确认框类型
+         * */
+        type: 'alert', // 默认是提示框
+        /*
+         * 弹窗位置
+         * `center` 居中
+         * `bottom` 居下
+         * `top` 居上
+         * */
+        positionLocation: 'center', // 弹窗的定位位置    positionMethod定位方式强制fixed
+        // 提示框
+        alert: {
+            timer: null, // 定时器装载
+            time: 3000, // 展示的时间
+            isShowIcon: false, // 是否显示icon
+            isShowClose: true, // 是否显示关闭按钮
+            icon: 'icon-chenggong', // icon的class
+            content: '成功' // 内容信息
+        },
+        // 确认框
+        confirm: {
+            // 点击确认是否关闭弹窗
+            isShowHeader: true, // 是否显示头部
+            headerContent: '提示:', // 头部内容
+            isShowBody: true, // 是否显示主体
+            content: '<div>确定要执行这个操作?</div>', // 主体内容
+            isShowFooter: true, // 是否显示尾部
+            footerContent: '', // 尾部内容
+            isShowClose: true, // 是否显示关闭按钮
+            closeContent: '<div class="iconfont icon-guanbi"></div>', // 关闭按钮的内容
+            isShowConfirm: true, // 是否显示确认按钮
+            confirmContent: '确认', // 确认按钮的内容
+            isShowCancel: true, // 是否显示取消按钮
+            cancelContent: '取消', // 取消按钮的内容
+            isCustom: false, // 是否自定义
+            isShowIcon: false, // 是否显示icon
+            icon: 'icon-jinggao', // icon的类型
+            isShowMask: true, // 是否显示遮罩
+            isHandHide: false // 是否手动隐藏(一般只用于点击确认时)
+        }
+    },
+    // 数据
+    data: {}
 });
 
 // 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
+Sub.prototype.moduleDomCreate = function () {
     var config = this.opts.config;
     var type = 'g-dialog-' + config.type; // 弹窗类型
     var positionLocation = 'g-dialog-' + config.positionLocation; // 弹窗的定位位置
@@ -1369,7 +1361,7 @@ SubType.prototype.moduleDomCreate = function () {
 };
 
 // 提示框
-SubType.prototype.renderAlert = function () {
+Sub.prototype.renderAlert = function () {
     var config = this.opts.config;
     if (config.type !== 'alert') {
         return '';
@@ -1387,7 +1379,7 @@ SubType.prototype.renderAlert = function () {
 };
 
 // 确认框
-SubType.prototype.renderConfirm = function () {
+Sub.prototype.renderConfirm = function () {
     var config = this.opts.config;
     if (config.type !== 'confirm') {
         return '';
@@ -1431,7 +1423,7 @@ SubType.prototype.renderConfirm = function () {
 };
 
 // 功能(覆盖超类型)
-SubType.prototype.power = function () {
+Sub.prototype.power = function () {
     var self = this;
     var config = this.opts.config;
     // 提示框
@@ -1473,14 +1465,14 @@ SubType.prototype.power = function () {
     }
 };
 
-SubType.prototype.hide = function () {
+Sub.prototype.hide = function () {
     this.moduleDomHide();
     if (this.mask) {
         this.mask.moduleDomHide();
     }
 };
 
-module.exports = SubType;
+module.exports = Sub;
 
 /***/ }),
 /* 5 */,
@@ -1496,35 +1488,31 @@ module.exports = SubType;
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
 
 // 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {
-            click: function click() {},
-            moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
-                    self.wrapDom.style.position = 'relative';
-                }
+var Sub = tools.constructorInherit(Super, {
+    // 回调
+    callback: {
+        click: function click() {},
+        moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+            if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
+                self.wrapDom.style.position = 'relative';
             }
-        },
-        // 配置
-        config: {
-            isTransparent: false, // 是不是透明的(默认不透明)
-            moduleDomIsShow: false, // 内部模块是否显示(默认不显示)
-            positionMethod: 'fixed' // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
-        },
-        // 数据
-        data: {}
-    }
+        }
+    },
+    // 配置
+    config: {
+        isTransparent: false, // 是不是透明的(默认不透明)
+        moduleDomIsShow: false, // 内部模块是否显示(默认不显示)
+        positionMethod: 'fixed' // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
+    },
+    // 数据
+    data: {}
 });
 
 // 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
+Sub.prototype.moduleDomCreate = function () {
     var config = this.opts.config;
     var className = '';
     if (config.isTransparent) {
@@ -1544,7 +1532,7 @@ SubType.prototype.moduleDomCreate = function () {
 };
 
 // 功能(覆盖超类型)
-SubType.prototype.power = function () {
+Sub.prototype.power = function () {
     var self = this;
     this.moduleDom.addEventListener('click', function (ev) {
         self.opts.callback.click();
@@ -1552,7 +1540,7 @@ SubType.prototype.power = function () {
     });
 };
 
-module.exports = SubType;
+module.exports = Sub;
 
 /***/ }),
 /* 11 */,
@@ -1716,26 +1704,22 @@ module.exports = LazyLoad;
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
 
 // 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 容器
-        wrap: '.g-footer',
-        // 回调
-        callback: {},
-        // 配置
-        config: {},
-        // 数据
-        data: {}
-    }
+var Sub = tools.constructorInherit(Super, {
+    // 容器
+    wrap: '.g-footer',
+    // 回调
+    callback: {},
+    // 配置
+    config: {},
+    // 数据
+    data: {}
 });
 
 // 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
+Sub.prototype.moduleDomCreate = function () {
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         customAttribute: this.opts.config.moduleDomCustomAttribute,
@@ -1747,11 +1731,11 @@ SubType.prototype.moduleDomCreate = function () {
 };
 
 // 功能(覆盖超类型)
-SubType.prototype.power = function () {
+Sub.prototype.power = function () {
     // 功能重写待续...
 };
 
-module.exports = SubType;
+module.exports = Sub;
 
 /***/ }),
 /* 20 */
@@ -1762,34 +1746,30 @@ module.exports = SubType;
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
 
 // 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 容器
-        wrap: '.g-footer',
-        // 回调
-        callback: {},
-        // 配置
-        config: {},
-        // 数据
-        data: [
-            // {
-            //     routeName: 'home',
-            //     href: '/',
-            //     text: '首页',
-            //     icon: 'icon-shouye',
-            //     isHighlight: false,
-            //     isShowMark: false
-            // }
-        ]
-    }
+var Sub = tools.constructorInherit(Super, {
+    // 容器
+    wrap: '.g-footer',
+    // 回调
+    callback: {},
+    // 配置
+    config: {},
+    // 数据
+    data: [
+        // {
+        //     routeName: 'home',
+        //     href: '/',
+        //     text: '首页',
+        //     icon: 'icon-shouye',
+        //     isHighlight: false,
+        //     isShowMark: false
+        // }
+    ]
 });
 
-SubType.prototype.moduleDomCreate = function () {
+Sub.prototype.moduleDomCreate = function () {
     this.moduleDomClass = 'g-footer-nav';
     var moduleDomHtml = '';
     var data = this.opts.data;
@@ -1816,11 +1796,11 @@ SubType.prototype.moduleDomCreate = function () {
 };
 
 // 功能(覆盖超类型)
-SubType.prototype.power = function () {
+Sub.prototype.power = function () {
     // 功能重写待续...
 };
 
-module.exports = SubType;
+module.exports = Sub;
 
 /***/ }),
 /* 21 */
@@ -1831,28 +1811,24 @@ module.exports = SubType;
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
 
 // 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 容器
-        wrap: '.g-footer',
-        // 回调
-        callback: {},
-        // 配置
-        config: {
-            showHeight: 200
-        },
-        // 数据
-        data: {}
-    }
+var Sub = tools.constructorInherit(Super, {
+    // 容器
+    wrap: '.g-footer',
+    // 回调
+    callback: {},
+    // 配置
+    config: {
+        showHeight: 200
+    },
+    // 数据
+    data: {}
 });
 
 // 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
+Sub.prototype.moduleDomCreate = function () {
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         customAttribute: this.opts.config.moduleDomCustomAttribute,
@@ -1864,7 +1840,7 @@ SubType.prototype.moduleDomCreate = function () {
 };
 
 // 功能(覆盖超类型)
-SubType.prototype.power = function () {
+Sub.prototype.power = function () {
     var self = this;
     this.moduleDom.addEventListener('click', function () {
         applications.scrollToY('0');
@@ -1879,7 +1855,7 @@ SubType.prototype.power = function () {
     });
 };
 
-module.exports = SubType;
+module.exports = Sub;
 
 /***/ })
 ]);

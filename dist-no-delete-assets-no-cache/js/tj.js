@@ -3,6 +3,7 @@ window.addEventListener('load', function () {
         // 京选加cookie进行统计(凡是需要登录的地方都要加cookie统计)
         (function () {
             /**
+             * @description 事件委托
              * @param {String} eventType 事件的类型
              * @param {String} el - 选择器只支持传入class   例:.page-collect
              * @param {Function} cb - 回调
@@ -116,6 +117,16 @@ window.addEventListener('load', function () {
                         });
                     })
                 });
+                // 提供对外的测试接口
+                window.testSetCookie = function (value) {
+                    iframe.contentWindow.postMessage({
+                        name: 'test-set-cookie',
+                        value: 'test-set-cookie-' + value,
+                        expires: expires,
+                        domain: domain,
+                        path: path,
+                    }, site);
+                }
             });
             iframe.src = iframeSrc;
             document.body.appendChild(iframe);

@@ -147,58 +147,54 @@ module.exports = __webpack_require__.p + "images/p-waiting.054b1f3c.png";
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var SuperType = __webpack_require__(2); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
 var TouchSlide = __webpack_require__(6); // 轮播图插件
 
 // 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {
-            startFun: function startFun() {},
-            endFun: function endFun() {}
-        },
-        // 配置
-        config: {
-            isShowHref: true, // 是否有跳转
-            // TouchSlide插件的配置
-            touchSlide: {
-                slideCell: '', // 外部容器,这个值会在底部进行覆盖,因为在这里没办法获取this
-                mainCell: '.g-slide-body', // 切换元素的包裹层对象
-                titCell: '.g-slide-header .g-slide-items', // 导航元素对象
-                effect: 'leftLoop', // 效果'left' 'leftLoop'
-                autoPlay: true, // 自动播放
-                delayTime: 200, // 切换一次的持续时间
-                interTime: 3000, // 多久切换一次
-                startFun: function startFun() {
-                    console.log('此处的函数会被覆盖,请在callback里执行回调');
-                },
-                endFun: function endFun() {
-                    console.log('此处的函数会被覆盖,请在callback里执行回调');
-                },
-                defaultIndex: 0, // 默认的当前位置索引
-                switchLoadClass: '.pre-load', // 预加载的class
-                switchLoad: 'data-src' // 预加载的属性
-            }
-        },
-        // 数据
-        data: {
-            items: [{
-                img: {
-                    width: 0,
-                    height: 0,
-                    src: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg'
-                },
-                href: ''
-            }]
+var Sub = tools.constructorInherit(Super, {
+    // 回调
+    callback: {
+        startFun: function startFun() {},
+        endFun: function endFun() {}
+    },
+    // 配置
+    config: {
+        isShowHref: true, // 是否有跳转
+        // TouchSlide插件的配置
+        touchSlide: {
+            slideCell: '', // 外部容器,这个值会在底部进行覆盖,因为在这里没办法获取this
+            mainCell: '.g-slide-body', // 切换元素的包裹层对象
+            titCell: '.g-slide-header .g-slide-items', // 导航元素对象
+            effect: 'leftLoop', // 效果'left' 'leftLoop'
+            autoPlay: true, // 自动播放
+            delayTime: 200, // 切换一次的持续时间
+            interTime: 3000, // 多久切换一次
+            startFun: function startFun() {
+                console.log('此处的函数会被覆盖,请在callback里执行回调');
+            },
+            endFun: function endFun() {
+                console.log('此处的函数会被覆盖,请在callback里执行回调');
+            },
+            defaultIndex: 0, // 默认的当前位置索引
+            switchLoadClass: '.pre-load', // 预加载的class
+            switchLoad: 'data-src' // 预加载的属性
         }
+    },
+    // 数据
+    data: {
+        items: [{
+            img: {
+                width: 0,
+                height: 0,
+                src: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg'
+            },
+            href: ''
+        }]
     }
 });
 
 // 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
+Sub.prototype.moduleDomCreate = function () {
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         customAttribute: this.opts.config.moduleDomCustomAttribute,
@@ -209,7 +205,7 @@ SubType.prototype.moduleDomCreate = function () {
     });
 };
 
-SubType.prototype.renderHeader = function () {
+Sub.prototype.renderHeader = function () {
     var self = this;
     var html = '';
     var data = self.opts.data;
@@ -223,7 +219,7 @@ SubType.prototype.renderHeader = function () {
     return '<div class="g-slide-header">' + html + '</div>';
 };
 
-SubType.prototype.renderBody = function () {
+Sub.prototype.renderBody = function () {
     var self = this;
     var html = '';
     var data = self.opts.data;
@@ -238,7 +234,7 @@ SubType.prototype.renderBody = function () {
 };
 
 // 功能(覆盖超类型)
-SubType.prototype.power = function () {
+Sub.prototype.power = function () {
     var self = this;
     var callback = self.opts.callback;
     var config = self.opts.config;
@@ -265,7 +261,7 @@ SubType.prototype.power = function () {
     TouchSlide(self.opts.config.touchSlide);
 };
 
-module.exports = SubType;
+module.exports = Sub;
 
 /***/ }),
 
@@ -726,53 +722,49 @@ module.exports = TouchSlide;
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var SuperType = __webpack_require__(2);
+var Super = __webpack_require__(2);
 // 超类型(子类型继承的对象)
 var route = '/phone/';
 
 // 子类型
-var SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {},
-        // 配置
-        config: {},
-        // 数据
-        data: {
-            items: [{
-                href: route,
-                icon: 'icon-shouye',
-                text: '首页',
-                isShowMark: false
-            }, {
-                href: route + 'dev-globals/',
-                icon: 'icon-kaifa',
-                text: '开发全局',
-                isShowMark: false
-            }, {
-                href: route + 'dev-components/',
-                icon: 'icon-kaifa',
-                text: '开发组件',
-                isShowMark: false
-            }, {
-                href: route + 'dev-words/',
-                icon: 'icon-kaifa',
-                text: '开发词汇',
-                isShowMark: false
-            }, {
-                href: route + 'mine/',
-                icon: 'icon-wode',
-                text: '我的',
-                isShowMark: false
-            }]
-        }
+var Sub = tools.constructorInherit(Super, {
+    // 回调
+    callback: {},
+    // 配置
+    config: {},
+    // 数据
+    data: {
+        items: [{
+            href: route,
+            icon: 'icon-shouye',
+            text: '首页',
+            isShowMark: false
+        }, {
+            href: route + 'dev-globals/',
+            icon: 'icon-kaifa',
+            text: '开发全局',
+            isShowMark: false
+        }, {
+            href: route + 'dev-components/',
+            icon: 'icon-kaifa',
+            text: '开发组件',
+            isShowMark: false
+        }, {
+            href: route + 'dev-words/',
+            icon: 'icon-kaifa',
+            text: '开发词汇',
+            isShowMark: false
+        }, {
+            href: route + 'mine/',
+            icon: 'icon-wode',
+            text: '我的',
+            isShowMark: false
+        }]
     }
 });
 
 // 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
+Sub.prototype.moduleDomCreate = function () {
     var data = this.opts.data;
     var items = data.items;
     var html = '';
@@ -794,11 +786,11 @@ SubType.prototype.moduleDomCreate = function () {
 };
 
 // 功能(覆盖超类型)
-SubType.prototype.power = function () {
+Sub.prototype.power = function () {
     // 功能重写待续...
 };
 
-module.exports = SubType;
+module.exports = Sub;
 
 /***/ })
 

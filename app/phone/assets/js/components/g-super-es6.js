@@ -2,7 +2,7 @@ const tools = require('../utils/tools');// 工具方法集合
 const applications = require('../utils/applications');// 应用方法集合
 
 // 底层构造函数
-class SuperType {
+class Super {
     constructor(json) {
         // 函数外部传来的参数
         this.opts = tools.extend({
@@ -226,4 +226,4 @@ class SuperType {
     }
 }
 
-module.exports = SuperType;
+module.exports = Super;

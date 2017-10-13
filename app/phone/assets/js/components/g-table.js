@@ -1,27 +1,23 @@
 const tools = require('../utils/tools');// 工具方法集合
 const applications = require('../utils/applications');// 应用方法集合
-const SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
+const Super = require('../components/g-super');// 超类型(子类型继承的对象)
 
 // 子类型
-const SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {},
-        // 配置
-        config: {},
-        // 数据
-        data: {
-            header: [{content: 'undefined-header0'}, {content: 'undefined-header1'}, {content: 'undefined-header2'}],
-            body: [[{content: 'undefined-body0-0'}, {content: 'undefined-body0-1'}, {content: 'undefined-body0-2'}]],
-            footer: '',
-        },
+const Sub = tools.constructorInherit(Super, {
+    // 回调
+    callback: {},
+    // 配置
+    config: {},
+    // 数据
+    data: {
+        header: [{content: 'undefined-header0'}, {content: 'undefined-header1'}, {content: 'undefined-header2'}],
+        body: [[{content: 'undefined-body0-0'}, {content: 'undefined-body0-1'}, {content: 'undefined-body0-2'}]],
+        footer: '',
     },
 });
 
 // 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
+Sub.prototype.moduleDomCreate = function () {
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         customAttribute: this.opts.config.moduleDomCustomAttribute,
@@ -44,7 +40,7 @@ SubType.prototype.moduleDomCreate = function () {
     });
 };
 
-SubType.prototype.moduleDomCreateHeader = function () {
+Sub.prototype.moduleDomCreateHeader = function () {
     let html = '';
     this.opts.data.header.forEach(function (v) {
         html += `
@@ -58,7 +54,7 @@ SubType.prototype.moduleDomCreateHeader = function () {
     return html;
 };
 
-SubType.prototype.moduleDomCreateBody = function () {
+Sub.prototype.moduleDomCreateBody = function () {
     let html = '';
     this.opts.data.body.forEach(function (v0) {
         let row = '';
@@ -76,13 +72,13 @@ SubType.prototype.moduleDomCreateBody = function () {
     return html;
 };
 
-SubType.prototype.moduleDomCreateFooter = function () {
+Sub.prototype.moduleDomCreateFooter = function () {
     return this.opts.data.footer;
 };
 
 // 功能(覆盖超类型)
-SubType.prototype.power = function () {
+Sub.prototype.power = function () {
     // 功能重写待续...
 };
 
-module.exports = SubType;
+module.exports = Sub;

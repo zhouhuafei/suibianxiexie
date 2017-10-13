@@ -1,61 +1,57 @@
 const tools = require('../utils/tools');// 工具方法集合
 const applications = require('../utils/applications');// 应用方法集合
-const SuperType = require('../components/g-super-type');// 超类型(子类型继承的对象)
+const Super = require('../components/g-super');// 超类型(子类型继承的对象)
 const TouchSlide = require('../plugs/touch-slide');// 轮播图插件
 
 // 子类型
-const SubType = tools.constructorInherit({
-    superType: SuperType,
-    // 默认参数(继承超类型)
-    parameter: {
-        // 回调
-        callback: {
+const Sub = tools.constructorInherit(Super, {
+    // 回调
+    callback: {
+        startFun: function () {
+        },
+        endFun: function () {
+        },
+    },
+    // 配置
+    config: {
+        isShowHref: true, // 是否有跳转
+        // TouchSlide插件的配置
+        touchSlide: {
+            slideCell: '', // 外部容器,这个值会在底部进行覆盖,因为在这里没办法获取this
+            mainCell: '.g-slide-body', // 切换元素的包裹层对象
+            titCell: '.g-slide-header .g-slide-items', // 导航元素对象
+            effect: 'leftLoop', // 效果'left' 'leftLoop'
+            autoPlay: true, // 自动播放
+            delayTime: 200, // 切换一次的持续时间
+            interTime: 3000, // 多久切换一次
             startFun: function () {
+                console.log('此处的函数会被覆盖,请在callback里执行回调');
             },
             endFun: function () {
+                console.log('此处的函数会被覆盖,请在callback里执行回调');
             },
+            defaultIndex: 0, // 默认的当前位置索引
+            switchLoadClass: '.pre-load', // 预加载的class
+            switchLoad: 'data-src', // 预加载的属性
         },
-        // 配置
-        config: {
-            isShowHref: true, // 是否有跳转
-            // TouchSlide插件的配置
-            touchSlide: {
-                slideCell: '', // 外部容器,这个值会在底部进行覆盖,因为在这里没办法获取this
-                mainCell: '.g-slide-body', // 切换元素的包裹层对象
-                titCell: '.g-slide-header .g-slide-items', // 导航元素对象
-                effect: 'leftLoop', // 效果'left' 'leftLoop'
-                autoPlay: true, // 自动播放
-                delayTime: 200, // 切换一次的持续时间
-                interTime: 3000, // 多久切换一次
-                startFun: function () {
-                    console.log('此处的函数会被覆盖,请在callback里执行回调');
+    },
+    // 数据
+    data: {
+        items: [
+            {
+                img: {
+                    width: 0,
+                    height: 0,
+                    src: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg',
                 },
-                endFun: function () {
-                    console.log('此处的函数会被覆盖,请在callback里执行回调');
-                },
-                defaultIndex: 0, // 默认的当前位置索引
-                switchLoadClass: '.pre-load', // 预加载的class
-                switchLoad: 'data-src', // 预加载的属性
+                href: '',
             },
-        },
-        // 数据
-        data: {
-            items: [
-                {
-                    img: {
-                        width: 0,
-                        height: 0,
-                        src: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg',
-                    },
-                    href: '',
-                },
-            ],
-        },
+        ],
     },
 });
 
 // 内部模块的创建(覆盖超类型)
-SubType.prototype.moduleDomCreate = function () {
+Sub.prototype.moduleDomCreate = function () {
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
         customAttribute: this.opts.config.moduleDomCustomAttribute,
@@ -69,7 +65,7 @@ SubType.prototype.moduleDomCreate = function () {
     });
 };
 
-SubType.prototype.renderHeader = function () {
+Sub.prototype.renderHeader = function () {
     const self = this;
     let html = '';
     const data = self.opts.data;
@@ -83,7 +79,7 @@ SubType.prototype.renderHeader = function () {
     return `<div class="g-slide-header">${html}</div>`;
 };
 
-SubType.prototype.renderBody = function () {
+Sub.prototype.renderBody = function () {
     const self = this;
     let html = '';
     const data = self.opts.data;
@@ -98,7 +94,7 @@ SubType.prototype.renderBody = function () {
 };
 
 // 功能(覆盖超类型)
-SubType.prototype.power = function () {
+Sub.prototype.power = function () {
     const self = this;
     const callback = self.opts.callback;
     const config = self.opts.config;
@@ -125,4 +121,4 @@ SubType.prototype.power = function () {
     TouchSlide(self.opts.config.touchSlide);
 };
 
-module.exports = SubType;
+module.exports = Sub;

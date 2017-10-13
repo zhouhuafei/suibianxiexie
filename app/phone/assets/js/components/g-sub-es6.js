@@ -1,9 +1,9 @@
 const tools = require('../utils/tools');// 工具方法集合
 const applications = require('../utils/applications');// 应用方法集合
-const SuperType = require('../components/g-super-type-es6');// 超类型(子类型继承的对象)
+const Super = require('../components/g-super-es6');// 超类型(子类型继承的对象)
 
 // 子类型
-class SubType extends SuperType {
+class Sub extends Super {
     constructor(json) {
         super(tools.extend({
             defaults: {
@@ -38,4 +38,4 @@ class SubType extends SuperType {
     }
 }
 
-module.exports = SubType;
+module.exports = Sub;
