@@ -1611,7 +1611,7 @@ module.exports = function (json) {
             });
         }
     }).then(function (response) {
-        var dataInfo = {};
+        var dataInfo = { status: 'error' };
         if (response) {
             dataInfo = response.data;
             if (dataInfo.status === 'failure' && opts.isHandleFailure) {
