@@ -72,6 +72,15 @@ class Sub extends Super {
                 </div>`,
             });
         }());
+
+        // jsonp
+        this.applications.jsonp({
+            url: '/jsonp/',
+            data: {a: 1, b: 2, c: []},
+            callback: function (json) {
+                console.log('jsonp测试:', json);
+            },
+        });
     }
 }
 

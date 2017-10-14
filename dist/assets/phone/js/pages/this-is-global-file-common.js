@@ -313,9 +313,15 @@ Tools.prototype.isEmail = function (value) {
 Tools.prototype.queryStringify = function () {
     var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
+    var self = this;
     var result = [];
     Object.keys(obj).forEach(function (key) {
-        result.push(key + '=' + obj[key]);
+        var vType = self.typeOf(obj[key]);
+        if (vType === 'object' || vType === 'array') {
+            result.push(key + '=' + JSON.stringify(obj[key]));
+        } else {
+            result.push(key + '=' + obj[key]);
+        }
     });
     return result.join('&');
 };
@@ -325,7 +331,11 @@ Tools.prototype.queryParse = function (str) {
     if (str) {
         str.split('&').forEach(function (v) {
             var arr = v.split('=');
-            result[arr[0]] = arr[1];
+            try {
+                result[arr[0]] = JSON.parse(arr[1]);
+            } catch (e) {
+                result[arr[0]] = arr[1];
+            }
         });
     }
     return result;
@@ -911,6 +921,32 @@ Applications.prototype.whetherDisableScroll = function () {
             document.documentElement.style.overflow = 'auto';
         }
     };
+};
+
+// jsonp - jsonp只支持get请求,其他一概不支持
+Applications.prototype.jsonp = function (obj) {
+    var url = obj.url;
+    var data = obj.data || {};
+    var callback = obj.callback || function () {};
+    if (url) {
+        var fnName = 'jsonpCallback' + new Date().getTime();
+        window[fnName] = function (json) {
+            callback(json);
+        };
+        var script = document.createElement('script');
+        script.addEventListener('load', function () {
+            document.body.removeChild(script);
+        });
+        var parameter = tools.queryStringify(data);
+        if (parameter) {
+            script.src = url + '?' + parameter + '&callback=' + fnName;
+        } else {
+            script.src = url + '?callback=' + fnName;
+        }
+        document.body.appendChild(script);
+    } else {
+        console.log('url not find');
+    }
 };
 
 module.exports = new Applications();

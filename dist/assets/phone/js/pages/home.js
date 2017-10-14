@@ -90,6 +90,15 @@ var Sub = function (_Super) {
                     template: '<div class="page-vue">\n                    <g-picture-list></g-picture-list>\n                </div>'
                 });
             })();
+
+            // jsonp
+            this.applications.jsonp({
+                url: '/jsonp/',
+                data: { a: 1, b: 2, c: [] },
+                callback: function callback(json) {
+                    console.log('jsonp测试:', json);
+                }
+            });
         }
     }]);
 

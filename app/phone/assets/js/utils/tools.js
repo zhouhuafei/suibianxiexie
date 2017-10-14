@@ -287,9 +287,15 @@ Tools.prototype.isEmail = function (value) {
 };
 // {a:1,b:2} 序列成 'a=1&b=2'
 Tools.prototype.queryStringify = function (obj = {}) {
+    const self = this;
     const result = [];
     Object.keys(obj).forEach(function (key) {
-        result.push(`${key}=${obj[key]}`);
+        const vType = self.typeOf(obj[key]);
+        if (vType === 'object' || vType === 'array') {
+            result.push(`${key}=${JSON.stringify(obj[key])}`);
+        } else {
+            result.push(`${key}=${obj[key]}`);
+        }
     });
     return result.join('&');
 };
@@ -299,7 +305,11 @@ Tools.prototype.queryParse = function (str) {
     if (str) {
         str.split('&').forEach(function (v) {
             const arr = v.split('=');
-            result[arr[0]] = arr[1];
+            try {
+                result[arr[0]] = JSON.parse(arr[1]);
+            } catch (e) {
+                result[arr[0]] = arr[1];
+            }
         });
     }
     return result;

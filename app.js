@@ -45,6 +45,18 @@ const RoutePhonePages = require('./app/phone/routes/pages/route');
 new RoutePhonePages({app: app});
 const RoutePhoneApi = require('./app/phone/routes/api/route');
 new RoutePhoneApi({app: app});
+// jsonp测试
+app.get('/jsonp/', function (req, res) {
+    res.writeHead(200, {'Content-Type': 'application/json;charset=utf-8'});
+    const data = {
+        a: 1,
+        b: 2,
+        c: 3,
+        d: [],
+        e: {},
+    };
+    res.end(`${req.query.callback || `jsonpCallback${new Date().getTime()}`}(${JSON.stringify(data)})`);
+});
 
 // 404
 app.use(function (req, res, next) {
