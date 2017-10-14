@@ -1,4 +1,5 @@
 // express
+const isProduction = process.env.NODE_ENV !== 'development'; // 是否是生产环境
 const ms = require('ms'); // 转成毫秒数
 const compression = require('compression'); // gzip压缩
 const express = require('express');
@@ -8,7 +9,11 @@ const bodyParser = require('body-parser');
 const app = express();
 const secret = 'suibianxiexie'; // sessionID cookie的密钥
 app.use(compression());// gzip压缩
-app.use(express.static('dist/assets', {maxAge: ms('1y')})); // 托管资源文件(一年缓存)
+if (isProduction) {
+    app.use(express.static('dist/assets', {maxAge: ms('1y')})); // 托管资源文件(一年缓存)
+} else {
+    app.use(express.static('dist/assets')); // 托管资源文件(无缓存)
+}
 app.use(express.static('dist-no-delete-assets-no-cache')); // 托管资源文件(无缓存)
 app.use(bodyParser.urlencoded({extended: false})); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
