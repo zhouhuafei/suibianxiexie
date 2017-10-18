@@ -10,12 +10,7 @@ const Sub = tools.constructorInherit(Super, {
         moduleDomRenderBefore: function (self) {
             if (self.opts.config.type === 'confirm') {
                 if (self.opts.config.confirm.isShowMask) {
-                    self.mask = new Mask({
-                        config: {
-                            moduleDomIsShow: true,
-                            moduleDomRenderMethod: {method: 'insertBefore'},
-                        },
-                    });
+                    self.mask = new Mask(self.opts.config.mask);
                 }
                 if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
                     self.wrapDom.style.position = 'relative';
@@ -76,6 +71,12 @@ const Sub = tools.constructorInherit(Super, {
             icon: 'icon-jinggao', // icon的类型
             isShowMask: true, // 是否显示遮罩
             isHandHide: false, // 是否手动隐藏(一般只用于点击确认时)
+        },
+        // 遮罩
+        mask: {
+            config: {
+                moduleDomIsShow: true,
+            },
         },
     },
     // 数据
