@@ -9,10 +9,10 @@ class Super {
         this.tools = tools; // 工具方法集合
         this.opts = tools.extend({
             defaults: {
-                res: null,
                 req: null,
-                isValidateLogin: false, // 是否验证登录
+                res: null,
                 routeName: null, // 路由名称
+                isValidateLogin: false, // 是否验证登录
             },
             inherits: json,
         });

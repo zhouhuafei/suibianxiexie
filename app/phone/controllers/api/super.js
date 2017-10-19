@@ -6,10 +6,14 @@ class Sub {
         this.tools = tools;// 工具方法集合
         this.opts = tools.extend({
             defaults: {
-                res: null,
                 req: null,
+                res: null,
+                routeName: null, // 路由名称
                 isValidateLogin: false, // 是否验证登录
-                routeName: '', // 路由名称
+                isTriggerEnd: true, // 是否触发数据返回(api默认直接输出数据,但是当给视图模板使用时,只需要拿数据,不需要触发end方法,但不建议使用)
+                // 渲染完毕的回调(接口不应该给视图模板使用,因为会导致页面加载很慢,所以这个callback回调方法,和isTriggerEnd属性只需要知道有这种东西即可,但不建议使用)
+                callback: function (self) {
+                },
             },
             inherits: json,
         });
@@ -18,19 +22,17 @@ class Sub {
             message: '接口数据的基本格式', // 信息     '参数错误'
             result: {
                 // 数据集合(格式必须统一为数组,哪怕只有一条数据)
-                data: [
+                data: [{
                     /*
-                    {
-                        img: {
-                            width: 0,
-                            height: 0,
-                            src: '',
-                        },
-                        text: '接口格式保持一致',
-                        href: '',
+                    img: {
+                        width: 0,
+                        height: 0,
+                        src: '',
                     },
+                    text: '接口格式保持一致',
+                    href: '',
                     */
-                ],
+                }],
                 allPage: 1, // 总页数
                 nowPage: 1, // 当前页
                 allCount: 1, // 数据总条数
@@ -125,8 +127,11 @@ class Sub {
         const self = this;
         const res = self.opts.res;
         self.dataInfo = self.tools.extend({defaults: self.dataInfo, inherits: obj});
-        res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
-        res.end(JSON.stringify(self.dataInfo));
+        self.opts.callback(self);
+        if (self.opts.isTriggerEnd) {
+            res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+            res.end(JSON.stringify(self.dataInfo));
+        }
     }
 }
 
