@@ -23,30 +23,30 @@ module.exports = function (json) {
         opts.params = opts.data || opts.params;
     }
     return axios(opts).catch(function (error) {
-        const dataInfo = {
+        const response = {
             data: {
                 status: 'error',
                 message: '接口出错',
-                error: error,
+                error: error, // 这里的error其实是一个Error类型的数据
             },
         };
         if (opts.isHandleError) {
             new Dialog({
                 config: {
                     alert: {
-                        content: `错误 : ${dataInfo.error}`,
+                        content: error,
                     },
                 },
             });
         }
-        return dataInfo;
+        return response;
     }).then(function (response) {
         const dataInfo = response.data;
         if (dataInfo.status === 'failure' && opts.isHandleFailure) {
             new Dialog({
                 config: {
                     alert: {
-                        content: `失败 : ${dataInfo.message}`,
+                        content: `失败: ${dataInfo.message}`,
                     },
                 },
             });

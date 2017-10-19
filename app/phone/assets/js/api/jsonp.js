@@ -20,14 +20,14 @@ module.exports = function (json) {
         const dataInfo = {
             status: 'error',
             message: '接口出错',
-            error: 'url - 404 not found',
+            error: 'Request failed with status code 404',
         };
         callback(dataInfo);
         if (opts.isHandleError) {
             new Dialog({
                 config: {
                     alert: {
-                        content: `错误 : ${dataInfo.error}`,
+                        content: `Error: ${dataInfo.error}`,
                     },
                 },
             });
@@ -42,19 +42,19 @@ module.exports = function (json) {
                 new Dialog({
                     config: {
                         alert: {
-                            content: `失败 : ${dataInfo.message}`,
+                            content: `失败: ${dataInfo.message}`,
                         },
                     },
                 });
             }
         };
         const script = document.createElement('script');
-        script.addEventListener('load', function () {
-            document.body.removeChild(script);
-        });
-        script.addEventListener('error', function (ev) {
+        script.addEventListener('error', function () {
             document.body.removeChild(script);
             fnError();
+        });
+        script.addEventListener('load', function () {
+            document.body.removeChild(script);
         });
         const parameter = tools.queryStringify(data);
         // jsonp - jsonp只支持get请求,其他一概不支持

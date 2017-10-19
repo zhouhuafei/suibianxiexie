@@ -1031,30 +1031,30 @@ module.exports = function (json) {
         opts.params = opts.data || opts.params;
     }
     return axios(opts).catch(function (error) {
-        var dataInfo = {
+        var response = {
             data: {
                 status: 'error',
                 message: '接口出错',
-                error: error
+                error: error // 这里的error其实是一个Error类型的数据
             }
         };
         if (opts.isHandleError) {
             new Dialog({
                 config: {
                     alert: {
-                        content: '\u9519\u8BEF : ' + dataInfo.error
+                        content: error
                     }
                 }
             });
         }
-        return dataInfo;
+        return response;
     }).then(function (response) {
         var dataInfo = response.data;
         if (dataInfo.status === 'failure' && opts.isHandleFailure) {
             new Dialog({
                 config: {
                     alert: {
-                        content: '\u5931\u8D25 : ' + dataInfo.message
+                        content: '\u5931\u8D25: ' + dataInfo.message
                     }
                 }
             });
@@ -1922,14 +1922,14 @@ module.exports = function (json) {
         var dataInfo = {
             status: 'error',
             message: '接口出错',
-            error: 'url - 404 not found'
+            error: 'Request failed with status code 404'
         };
         callback(dataInfo);
         if (opts.isHandleError) {
             new Dialog({
                 config: {
                     alert: {
-                        content: '\u9519\u8BEF : ' + dataInfo.error
+                        content: 'Error: ' + dataInfo.error
                     }
                 }
             });
@@ -1944,19 +1944,19 @@ module.exports = function (json) {
                 new Dialog({
                     config: {
                         alert: {
-                            content: '\u5931\u8D25 : ' + dataInfo.message
+                            content: '\u5931\u8D25: ' + dataInfo.message
                         }
                     }
                 });
             }
         };
         var script = document.createElement('script');
-        script.addEventListener('load', function () {
-            document.body.removeChild(script);
-        });
-        script.addEventListener('error', function (ev) {
+        script.addEventListener('error', function () {
             document.body.removeChild(script);
             fnError();
+        });
+        script.addEventListener('load', function () {
+            document.body.removeChild(script);
         });
         var parameter = tools.queryStringify(data);
         // jsonp - jsonp只支持get请求,其他一概不支持

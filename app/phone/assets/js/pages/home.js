@@ -73,20 +73,23 @@ class Sub extends Super {
             });
         }());
 
-        // jsonp
+        // jsonp错误测试
         this.jsonp({
             url: '/phone/api/verify-code-register2/',
             data: {
                 isJsonp: true,
-                a: 1,
-                b: 2,
-                c: [],
             },
-            callback: function (dataInfo) {
-                if (dataInfo.status === 'success') {
-                    console.log('jsonp测试:', dataInfo);
-                }
+            callback: function (dadaInfo) {
+                console.log('jsonp error test:\n', dadaInfo);
             },
+        });
+
+        // axios错误测试
+        this.axios({
+            url: '/phone/api/verify-code-register2/',
+            method: 'get',
+        }).then(function (dadaInfo) {
+            console.log('axios error test:\n', dadaInfo);
         });
     }
 }

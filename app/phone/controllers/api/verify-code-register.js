@@ -54,7 +54,6 @@ class Sub extends Super {
                     self.render({
                         status: 'success',
                         message: '验证码发送成功',
-                        error: error,
                     });
                 }
             });
@@ -85,7 +84,6 @@ class Sub extends Super {
                             self.render({
                                 status: 'success',
                                 message: '验证码发送成功',
-                                error: error,
                             });
                         }
                     });

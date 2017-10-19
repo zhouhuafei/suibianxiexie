@@ -84,7 +84,6 @@ class Sub extends Super {
                                 self.render({
                                     status: 'success',
                                     message: '注册成功',
-                                    error: error,
                                     result: {data: [{username: username}]},
                                 });
                             }
