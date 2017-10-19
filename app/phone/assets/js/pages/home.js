@@ -74,11 +74,18 @@ class Sub extends Super {
         }());
 
         // jsonp
-        this.applications.jsonp({
-            url: '/jsonp/',
-            data: {a: 1, b: 2, c: []},
-            callback: function (json) {
-                console.log('jsonp测试:', json);
+        this.jsonp({
+            url: '/phone/api/verify-code-register2/',
+            data: {
+                isJsonp: true,
+                a: 1,
+                b: 2,
+                c: [],
+            },
+            callback: function (dataInfo) {
+                if (dataInfo.status === 'success') {
+                    console.log('jsonp测试:', dataInfo);
+                }
             },
         });
     }

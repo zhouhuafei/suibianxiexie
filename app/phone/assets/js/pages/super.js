@@ -5,7 +5,8 @@ class Super {
         const self = this;
         self.tools = require('../utils/tools'); // 工具方法集合
         self.applications = require('../utils/applications'); // 应用方法集合
-        self.axios = require('../api/axios'); // ajax
+        self.axios = require('../api/axios'); // axios
+        self.jsonp = require('../api/jsonp'); // jsonp
         self.opts = self.tools.extend({
             defaults: {
                 lazyload: {

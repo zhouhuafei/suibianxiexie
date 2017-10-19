@@ -513,31 +513,4 @@ Applications.prototype.whetherDisableScroll = function () {
     };
 };
 
-// jsonp - jsonp只支持get请求,其他一概不支持
-Applications.prototype.jsonp = function (obj) {
-    const url = obj.url;
-    const data = obj.data || {};
-    const callback = obj.callback || function () {
-    };
-    if (url) {
-        const fnName = `jsonpCallback${new Date().getTime()}`;
-        window[fnName] = function (json) {
-            callback(json);
-        };
-        const script = document.createElement('script');
-        script.addEventListener('load', function () {
-            document.body.removeChild(script);
-        });
-        const parameter = tools.queryStringify(data);
-        if (parameter) {
-            script.src = `${url}?${parameter}&callback=${fnName}`;
-        } else {
-            script.src = `${url}?callback=${fnName}`;
-        }
-        document.body.appendChild(script);
-    } else {
-        console.log('url not find');
-    }
-};
-
 module.exports = new Applications();

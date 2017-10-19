@@ -1,5 +1,6 @@
-webpackJsonp([2],[
-/* 0 */
+webpackJsonp([2],{
+
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -401,7 +402,8 @@ Tools.prototype.dateFormat = function () {
 module.exports = new Tools();
 
 /***/ }),
-/* 1 */
+
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -923,36 +925,274 @@ Applications.prototype.whetherDisableScroll = function () {
     };
 };
 
-// jsonp - jsonp只支持get请求,其他一概不支持
-Applications.prototype.jsonp = function (obj) {
-    var url = obj.url;
-    var data = obj.data || {};
-    var callback = obj.callback || function () {};
-    if (url) {
-        var fnName = 'jsonpCallback' + new Date().getTime();
-        window[fnName] = function (json) {
-            callback(json);
-        };
-        var script = document.createElement('script');
-        script.addEventListener('load', function () {
-            document.body.removeChild(script);
-        });
-        var parameter = tools.queryStringify(data);
-        if (parameter) {
-            script.src = url + '?' + parameter + '&callback=' + fnName;
-        } else {
-            script.src = url + '?callback=' + fnName;
-        }
-        document.body.appendChild(script);
-    } else {
-        console.log('url not find');
-    }
-};
-
 module.exports = new Applications();
 
 /***/ }),
-/* 2 */
+
+/***/ 10:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    // 回调
+    callback: {
+        click: function click() {},
+        moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+            if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
+                self.wrapDom.style.position = 'relative';
+            }
+        }
+    },
+    // 配置
+    config: {
+        isTransparent: false, // 是不是透明的(默认不透明)
+        moduleDomIsShow: false, // 内部模块是否显示(默认不显示)
+        positionMethod: 'fixed' // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
+    },
+    // 数据
+    data: {}
+});
+
+// 内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var className = '';
+    if (config.isTransparent) {
+        className = 'g-mask-transparent';
+    }
+    if (config.positionMethod === 'fixed') {
+        className = 'g-mask-fixed';
+    }
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-mask ' + className,
+            innerHTML: ''
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    this.moduleDom.addEventListener('click', function (ev) {
+        self.opts.callback.click();
+        ev.stopPropagation();
+    });
+};
+
+module.exports = Sub;
+
+/***/ }),
+
+/***/ 15:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 16:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var axios = __webpack_require__(9);
+var tools = __webpack_require__(0);
+var Dialog = __webpack_require__(4);
+
+module.exports = function (json) {
+    var opts = tools.extend({
+        defaults: {
+            isHandleError: true, // 是否处理错误
+            isHandleFailure: true, // 是否处理失败
+            timeout: 5000 // 超时
+        },
+        inherits: json
+    });
+    /*
+    * javascript axios get params
+    * javascript axios post/put/delete data
+    * 把上述四种数据的传参方式进行统一化,统一使用data
+    * nodejs express get req.query
+    * nodejs express post/put/delete body-parser req.body
+    * 把上述四种数据的传参方式进行统一化,统一使用req.data
+    * */
+    if (opts.method.toLowerCase() === 'get') {
+        opts.params = opts.data || opts.params;
+    }
+    return axios(opts).catch(function (error) {
+        var dataInfo = {
+            data: {
+                status: 'error',
+                message: '接口出错',
+                error: error
+            }
+        };
+        if (opts.isHandleError) {
+            new Dialog({
+                config: {
+                    alert: {
+                        content: '\u9519\u8BEF : ' + dataInfo.error
+                    }
+                }
+            });
+        }
+        return dataInfo;
+    }).then(function (response) {
+        var dataInfo = response.data;
+        if (dataInfo.status === 'failure' && opts.isHandleFailure) {
+            new Dialog({
+                config: {
+                    alert: {
+                        content: '\u5931\u8D25 : ' + dataInfo.message
+                    }
+                }
+            });
+        }
+        return dataInfo;
+    });
+};
+
+/***/ }),
+
+/***/ 18:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+
+// 延迟加载
+function LazyLoad(json) {
+    this.opts = tools.extend({
+        defaults: {
+            element: '.g-lazy-load', // 哪些元素进行懒加载
+            srcAttr: 'data-src', // 默认获取哪里的属性值当做src
+            moreHeight: 0, // 多加载一部分高度的图片
+            interval: 80, // 函数节流时间(延迟时间)
+            isInitRender: true // 是否初始化的时候就进行render
+        },
+        inherits: json
+    });
+    this.clientHeight = document.documentElement.clientHeight;
+    this.init();
+}
+
+LazyLoad.prototype.init = function () {
+    if (this.opts.isInitRender) {
+        this.render();
+    }
+    this.power();
+};
+LazyLoad.prototype.render = function () {
+    var self = this;
+    var moreHeight = this.opts.moreHeight;
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    var minTop = scrollTop - moreHeight;
+    var maxTop = this.clientHeight + minTop + moreHeight;
+    var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
+    var aDom = applications.getDomArray(this.opts.element);
+    aDom.forEach(function (v) {
+        if (v.tagName.toLowerCase() === 'img') {
+            if (!v.getAttribute('src')) {
+                v.src = src;
+            }
+            v.setAttribute('height', '100%');
+            v.setAttribute('width', '100%');
+        }
+    });
+    aDom.forEach(function (v) {
+        // 排除那些被none掉的元素(被none掉的元素,通过offsetWidth和offsetHeight获取到的值是0)
+        if (v.offsetWidth) {
+            var elementTop = applications.offset(v).top;
+            var elementBottom = elementTop + v.offsetHeight;
+            // 出现在可视区才进行处理
+            if (elementBottom >= minTop && elementTop <= maxTop) {
+                if (v.tagName.toLowerCase() === 'img') {
+                    if (v.getAttribute(self.opts.srcAttr)) {
+                        v.src = v.getAttribute(self.opts.srcAttr);
+                    }
+                    v.removeAttribute('height');
+                    v.removeAttribute('width');
+                } else if (v.getAttribute(self.opts.srcAttr)) {
+                    v.style.backgroundImage = 'url(' + v.getAttribute(self.opts.srcAttr) + ')';
+                }
+                v.classList.remove('g-lazy-load');
+                v.classList.add('g-lazy-load-active');
+            }
+        }
+    });
+};
+LazyLoad.prototype.power = function () {
+    var self = this;
+    var timer = null;
+    window.addEventListener('scroll', function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            self.render();
+        }, self.opts.interval);
+    });
+};
+module.exports = LazyLoad;
+
+/***/ }),
+
+/***/ 19:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    // 容器
+    wrap: '.g-footer',
+    // 回调
+    callback: {},
+    // 配置
+    config: {},
+    // 数据
+    data: {}
+});
+
+// 内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-copyright',
+            innerHTML: '\n                <div class="g-copyright-icon iconfont icon-logo"></div>\n                <div class="g-copyright-text">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            '
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+Sub.prototype.power = function () {
+    // 功能重写待续...
+};
+
+module.exports = Sub;
+
+/***/ }),
+
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1185,7 +1425,130 @@ Super.prototype.getModuleDomHtml = function () {
 module.exports = Super;
 
 /***/ }),
-/* 3 */
+
+/***/ 20:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    // 容器
+    wrap: '.g-footer',
+    // 回调
+    callback: {},
+    // 配置
+    config: {},
+    // 数据
+    data: [
+        // {
+        //     routeName: 'home',
+        //     href: '/',
+        //     text: '首页',
+        //     icon: 'icon-shouye',
+        //     isHighlight: false,
+        //     isShowMark: false
+        // }
+    ]
+});
+
+Sub.prototype.moduleDomCreate = function () {
+    this.moduleDomClass = 'g-footer-nav';
+    var moduleDomHtml = '';
+    var data = this.opts.data;
+    Object.keys(data).forEach(function (key) {
+        var v = data[key];
+        var highlightClass = '';
+        if (v.isHighlight) {
+            highlightClass = 'g-footer-nav-item-active';
+        }
+        var markHtml = '';
+        if (v.isShowMark) {
+            markHtml = '<div class="g-footer-nav-item-mark"></div>';
+        }
+        moduleDomHtml += '\n            <a class="g-footer-nav-item ' + highlightClass + '" href="' + v.href + '">\n                <div class="g-footer-nav-item-icon iconfont ' + v.icon + '"></div>\n                <div class="g-footer-nav-item-text">' + v.text + '</div>\n                ' + markHtml + '\n            </a>\n        ';
+    });
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: this.moduleDomClass,
+            innerHTML: '<div class="g-footer-nav-body">' + moduleDomHtml + '</div>'
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+Sub.prototype.power = function () {
+    // 功能重写待续...
+};
+
+module.exports = Sub;
+
+/***/ }),
+
+/***/ 21:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    // 容器
+    wrap: '.g-footer',
+    // 回调
+    callback: {},
+    // 配置
+    config: {
+        showHeight: 200
+    },
+    // 数据
+    data: {}
+});
+
+// 内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-go-top',
+            innerHTML: '<div class="g-go-top-icon iconfont icon-shangjiantou"></div>'
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    this.moduleDom.addEventListener('click', function () {
+        applications.scrollToY('0');
+    });
+    window.addEventListener('scroll', function () {
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop >= self.opts.config.showHeight) {
+            self.moduleDom.classList.add('g-go-top-active');
+        } else {
+            self.moduleDom.classList.remove('g-go-top-active');
+        }
+    });
+};
+
+module.exports = Sub;
+
+/***/ }),
+
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1204,7 +1567,8 @@ var Super = function () {
         var self = this;
         self.tools = __webpack_require__(0); // 工具方法集合
         self.applications = __webpack_require__(1); // 应用方法集合
-        self.axios = __webpack_require__(16); // ajax
+        self.axios = __webpack_require__(16); // axios
+        self.jsonp = __webpack_require__(77); // jsonp
         self.opts = self.tools.extend({
             defaults: {
                 lazyload: {
@@ -1309,7 +1673,8 @@ var Super = function () {
 module.exports = Super;
 
 /***/ }),
-/* 4 */
+
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1529,128 +1894,52 @@ Sub.prototype.hide = function () {
 module.exports = Sub;
 
 /***/ }),
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */
+
+/***/ 77:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    // 回调
-    callback: {
-        click: function click() {},
-        moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-            if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
-                self.wrapDom.style.position = 'relative';
-            }
-        }
-    },
-    // 配置
-    config: {
-        isTransparent: false, // 是不是透明的(默认不透明)
-        moduleDomIsShow: false, // 内部模块是否显示(默认不显示)
-        positionMethod: 'fixed' // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
-    },
-    // 数据
-    data: {}
-});
-
-// 内部模块的创建(覆盖超类型)
-Sub.prototype.moduleDomCreate = function () {
-    var config = this.opts.config;
-    var className = '';
-    if (config.isTransparent) {
-        className = 'g-mask-transparent';
-    }
-    if (config.positionMethod === 'fixed') {
-        className = 'g-mask-fixed';
-    }
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-mask ' + className,
-            innerHTML: ''
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-Sub.prototype.power = function () {
-    var self = this;
-    this.moduleDom.addEventListener('click', function (ev) {
-        self.opts.callback.click();
-        ev.stopPropagation();
-    });
-};
-
-module.exports = Sub;
-
-/***/ }),
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var axios = __webpack_require__(9);
 var tools = __webpack_require__(0);
 var Dialog = __webpack_require__(4);
-
 module.exports = function (json) {
     var opts = tools.extend({
         defaults: {
+            url: '',
+            data: {},
             isHandleError: true, // 是否处理错误
             isHandleFailure: true, // 是否处理失败
-            timeout: 5000 // 超时
+            callback: function callback() {}
         },
         inherits: json
     });
-    /*
-    * javascript axios get params
-    * javascript axios post/put/delete data
-    * 把上述四种数据的传参方式进行统一化,统一使用data
-    * nodejs express get req.query
-    * nodejs express post/put/delete body-parser req.body
-    * 把上述四种数据的传参方式进行统一化,统一使用req.data
-    * */
-    if (opts.method.toLowerCase() === 'get') {
-        opts.params = opts.data || opts.params;
-    }
-    return axios(opts).catch(function (error) {
+    var url = opts.url;
+    var data = opts.data;
+    var callback = opts.callback;
+
+    function fnError() {
+        var dataInfo = {
+            status: 'error',
+            message: '接口出错',
+            error: 'url - 404 not found'
+        };
+        callback(dataInfo);
         if (opts.isHandleError) {
             new Dialog({
                 config: {
                     alert: {
-                        content: '\u9519\u8BEF : ' + error
+                        content: '\u9519\u8BEF : ' + dataInfo.error
                     }
                 }
             });
         }
-    }).then(function (response) {
-        var dataInfo = { status: 'error' };
-        if (response) {
-            dataInfo = response.data;
+    }
+
+    if (url) {
+        var fnName = 'jsonpCallback' + new Date().getTime();
+        window[fnName] = function (dataInfo) {
+            callback(dataInfo);
             if (dataInfo.status === 'failure' && opts.isHandleFailure) {
                 new Dialog({
                     config: {
@@ -1660,256 +1949,28 @@ module.exports = function (json) {
                     }
                 });
             }
-        }
-        return dataInfo;
-    });
-};
-
-/***/ }),
-/* 17 */,
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-
-// 延迟加载
-function LazyLoad(json) {
-    this.opts = tools.extend({
-        defaults: {
-            element: '.g-lazy-load', // 哪些元素进行懒加载
-            srcAttr: 'data-src', // 默认获取哪里的属性值当做src
-            moreHeight: 0, // 多加载一部分高度的图片
-            interval: 80, // 函数节流时间(延迟时间)
-            isInitRender: true // 是否初始化的时候就进行render
-        },
-        inherits: json
-    });
-    this.clientHeight = document.documentElement.clientHeight;
-    this.init();
-}
-
-LazyLoad.prototype.init = function () {
-    if (this.opts.isInitRender) {
-        this.render();
-    }
-    this.power();
-};
-LazyLoad.prototype.render = function () {
-    var self = this;
-    var moreHeight = this.opts.moreHeight;
-    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    var minTop = scrollTop - moreHeight;
-    var maxTop = this.clientHeight + minTop + moreHeight;
-    var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
-    var aDom = applications.getDomArray(this.opts.element);
-    aDom.forEach(function (v) {
-        if (v.tagName.toLowerCase() === 'img') {
-            if (!v.getAttribute('src')) {
-                v.src = src;
-            }
-            v.setAttribute('height', '100%');
-            v.setAttribute('width', '100%');
-        }
-    });
-    aDom.forEach(function (v) {
-        // 排除那些被none掉的元素(被none掉的元素,通过offsetWidth和offsetHeight获取到的值是0)
-        if (v.offsetWidth) {
-            var elementTop = applications.offset(v).top;
-            var elementBottom = elementTop + v.offsetHeight;
-            // 出现在可视区才进行处理
-            if (elementBottom >= minTop && elementTop <= maxTop) {
-                if (v.tagName.toLowerCase() === 'img') {
-                    if (v.getAttribute(self.opts.srcAttr)) {
-                        v.src = v.getAttribute(self.opts.srcAttr);
-                    }
-                    v.removeAttribute('height');
-                    v.removeAttribute('width');
-                } else if (v.getAttribute(self.opts.srcAttr)) {
-                    v.style.backgroundImage = 'url(' + v.getAttribute(self.opts.srcAttr) + ')';
-                }
-                v.classList.remove('g-lazy-load');
-                v.classList.add('g-lazy-load-active');
-            }
-        }
-    });
-};
-LazyLoad.prototype.power = function () {
-    var self = this;
-    var timer = null;
-    window.addEventListener('scroll', function () {
-        clearTimeout(timer);
-        timer = setTimeout(function () {
-            self.render();
-        }, self.opts.interval);
-    });
-};
-module.exports = LazyLoad;
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    // 容器
-    wrap: '.g-footer',
-    // 回调
-    callback: {},
-    // 配置
-    config: {},
-    // 数据
-    data: {}
-});
-
-// 内部模块的创建(覆盖超类型)
-Sub.prototype.moduleDomCreate = function () {
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-copyright',
-            innerHTML: '\n                <div class="g-copyright-icon iconfont icon-logo"></div>\n                <div class="g-copyright-text">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            '
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-Sub.prototype.power = function () {
-    // 功能重写待续...
-};
-
-module.exports = Sub;
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    // 容器
-    wrap: '.g-footer',
-    // 回调
-    callback: {},
-    // 配置
-    config: {},
-    // 数据
-    data: [
-        // {
-        //     routeName: 'home',
-        //     href: '/',
-        //     text: '首页',
-        //     icon: 'icon-shouye',
-        //     isHighlight: false,
-        //     isShowMark: false
-        // }
-    ]
-});
-
-Sub.prototype.moduleDomCreate = function () {
-    this.moduleDomClass = 'g-footer-nav';
-    var moduleDomHtml = '';
-    var data = this.opts.data;
-    Object.keys(data).forEach(function (key) {
-        var v = data[key];
-        var highlightClass = '';
-        if (v.isHighlight) {
-            highlightClass = 'g-footer-nav-item-active';
-        }
-        var markHtml = '';
-        if (v.isShowMark) {
-            markHtml = '<div class="g-footer-nav-item-mark"></div>';
-        }
-        moduleDomHtml += '\n            <a class="g-footer-nav-item ' + highlightClass + '" href="' + v.href + '">\n                <div class="g-footer-nav-item-icon iconfont ' + v.icon + '"></div>\n                <div class="g-footer-nav-item-text">' + v.text + '</div>\n                ' + markHtml + '\n            </a>\n        ';
-    });
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: this.moduleDomClass,
-            innerHTML: '<div class="g-footer-nav-body">' + moduleDomHtml + '</div>'
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-Sub.prototype.power = function () {
-    // 功能重写待续...
-};
-
-module.exports = Sub;
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    // 容器
-    wrap: '.g-footer',
-    // 回调
-    callback: {},
-    // 配置
-    config: {
-        showHeight: 200
-    },
-    // 数据
-    data: {}
-});
-
-// 内部模块的创建(覆盖超类型)
-Sub.prototype.moduleDomCreate = function () {
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-go-top',
-            innerHTML: '<div class="g-go-top-icon iconfont icon-shangjiantou"></div>'
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-Sub.prototype.power = function () {
-    var self = this;
-    this.moduleDom.addEventListener('click', function () {
-        applications.scrollToY('0');
-    });
-    window.addEventListener('scroll', function () {
-        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        if (scrollTop >= self.opts.config.showHeight) {
-            self.moduleDom.classList.add('g-go-top-active');
+        };
+        var script = document.createElement('script');
+        script.addEventListener('load', function () {
+            document.body.removeChild(script);
+        });
+        script.addEventListener('error', function (ev) {
+            document.body.removeChild(script);
+            fnError();
+        });
+        var parameter = tools.queryStringify(data);
+        // jsonp - jsonp只支持get请求,其他一概不支持
+        if (parameter) {
+            script.src = url + '?' + parameter + '&callback=' + fnName;
         } else {
-            self.moduleDom.classList.remove('g-go-top-active');
+            script.src = url + '?callback=' + fnName;
         }
-    });
+        document.body.appendChild(script);
+    } else {
+        fnError();
+    }
 };
-
-module.exports = Sub;
 
 /***/ })
-]);
+
+});

@@ -23,28 +23,33 @@ module.exports = function (json) {
         opts.params = opts.data || opts.params;
     }
     return axios(opts).catch(function (error) {
+        const dataInfo = {
+            data: {
+                status: 'error',
+                message: '接口出错',
+                error: error,
+            },
+        };
         if (opts.isHandleError) {
             new Dialog({
                 config: {
                     alert: {
-                        content: `错误 : ${error}`,
+                        content: `错误 : ${dataInfo.error}`,
                     },
                 },
             });
         }
+        return dataInfo;
     }).then(function (response) {
-        let dataInfo = {status: 'error'};
-        if (response) {
-            dataInfo = response.data;
-            if (dataInfo.status === 'failure' && opts.isHandleFailure) {
-                new Dialog({
-                    config: {
-                        alert: {
-                            content: `失败 : ${dataInfo.message}`,
-                        },
+        const dataInfo = response.data;
+        if (dataInfo.status === 'failure' && opts.isHandleFailure) {
+            new Dialog({
+                config: {
+                    alert: {
+                        content: `失败 : ${dataInfo.message}`,
                     },
-                });
-            }
+                },
+            });
         }
         return dataInfo;
     });

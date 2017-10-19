@@ -18,8 +18,9 @@ class Sub {
             inherits: json,
         });
         this.dataInfo = {
-            status: 'failure', // 状态  'success'   'failure'
-            message: '接口数据的基本格式', // 信息     '参数错误'
+            status: 'failure', // 状态信息 - 成功(success) 失败(failure) 错误(error)
+            message: '接口数据的基本格式', // 提示信息 - '参数错误'
+            error: null, // 错误信息
             result: {
                 // 数据集合(格式必须统一为数组,哪怕只有一条数据)
                 data: [{
@@ -125,12 +126,20 @@ class Sub {
     // (渲)渲染数据(这个方法需要在子类型里被调用)
     render(obj = {}) {
         const self = this;
-        const res = self.opts.res;
+        const opts = self.opts;
+        const req = opts.req;
+        const res = opts.res;
+        const data = req.data;
+        const isJsonp = data.isJsonp === 'true'; // 是否是jsonp(jsonp only supports the get method)
         self.dataInfo = self.tools.extend({defaults: self.dataInfo, inherits: obj});
         self.opts.callback(self);
         if (self.opts.isTriggerEnd) {
             res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
-            res.end(JSON.stringify(self.dataInfo));
+            if (isJsonp) {
+                res.end(`${req.query.callback || `jsonpCallback${new Date().getTime()}`}(${JSON.stringify(self.dataInfo)})`);
+            } else {
+                res.end(JSON.stringify(self.dataInfo));
+            }
         }
     }
 }
