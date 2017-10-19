@@ -16,7 +16,7 @@ window.addEventListener('load', function () {
                         var ev = ev || window.event;
                         var target = ev.target || ev.srcElement;
                         var isContains = false;
-                        while (target !== document && isContains === false) {
+                        while (target && target !== document && isContains === false) {
                             isContains = target.classList.contains(el.substring(1));
                             target = target.parentNode;
                         }
