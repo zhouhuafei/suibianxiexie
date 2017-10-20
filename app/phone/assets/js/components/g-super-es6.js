@@ -79,7 +79,8 @@ class Super {
                         child: null,
                     },
                     moduleDomStyle: {}, // 内部模块的样式
-                    moduleDomIsShow: true, // 内部模块是否显示(默认显示)
+                    moduleDomIsShow: true, // 内部模块是否显示(默认显示,尽量使用这个属性,性能高)
+                    moduleDomIsRender: true, // 内部模块是否渲染(默认渲染,尽量不用这个属性,性能低)
                     moduleDomIsClearTimer: true, // 内部模块是否清除所有定时器(默认清除)
                 },
                 // 数据
@@ -127,7 +128,7 @@ class Super {
             attribute: {
                 className: 'g-super-type-es6',
                 innerHTML: `
-                    <div class="g-super-type-es6-text">周华飞爱侯丽杰,侯丽杰爱周华飞sup-es6</div>
+                    <div class="g-super-type-es6-text" style="text-align: center;">周华飞爱侯丽杰,侯丽杰爱周华飞sup-es6</div>
                 `,
             },
         });
@@ -137,7 +138,10 @@ class Super {
     moduleDomRender() {
         const callback = this.opts.callback;
         const config = this.opts.config;
-        if (config.moduleDomIsShow && this.wrapDom) {
+        if (!config.moduleDomIsShow) {
+            this.moduleDom.style.display = 'none';
+        }
+        if (config.moduleDomIsRender && this.wrapDom) {
             callback.moduleDomRenderBefore(this);
             const renderMethod = config.moduleDomRenderMethod;
             if (renderMethod.method === 'insertBefore') {
@@ -177,26 +181,20 @@ class Super {
         }
     }
 
+    // 内部模块的隐藏(显示隐藏和是否清除定时器无关)
+    moduleDomHide() {
+        const callback = this.opts.callback;
+        callback.moduleDomHideBefore(this);
+        this.moduleDom.style.display = 'none';
+        callback.moduleDomHideAfter(this);
+    }
+
     // 内部模块的显示(显示隐藏和是否清除定时器无关)
     moduleDomShow() {
         const callback = this.opts.callback;
         callback.moduleDomShowBefore(this);
-        if (this.wrapDom) {
-            this.opts.config.moduleDomIsShow = true;
-            this.moduleDomRender();
-        }
+        this.moduleDom.style.display = '';
         callback.moduleDomShowAfter(this);
-    }
-
-    // 内部模块的隐藏(显示隐藏和是否清除定时器无关)
-    moduleDomHide() {
-        const callback = this.opts.callback;
-        if (this.moduleDom.parentNode) {
-            this.opts.config.moduleDomIsShow = false;
-            callback.moduleDomHideBefore(this);
-            this.moduleDom.parentNode.removeChild(this.moduleDom);
-            callback.moduleDomHideAfter(this);
-        }
     }
 
     // 外部容器的获取

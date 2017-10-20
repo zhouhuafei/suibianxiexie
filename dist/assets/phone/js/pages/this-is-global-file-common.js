@@ -1,6 +1,5 @@
-webpackJsonp([2],{
-
-/***/ 0:
+webpackJsonp([2],[
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -402,8 +401,7 @@ Tools.prototype.dateFormat = function () {
 module.exports = new Tools();
 
 /***/ }),
-
-/***/ 1:
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -928,271 +926,7 @@ Applications.prototype.whetherDisableScroll = function () {
 module.exports = new Applications();
 
 /***/ }),
-
-/***/ 10:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    // 回调
-    callback: {
-        click: function click() {},
-        moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-            if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
-                self.wrapDom.style.position = 'relative';
-            }
-        }
-    },
-    // 配置
-    config: {
-        isTransparent: false, // 是不是透明的(默认不透明)
-        moduleDomIsShow: false, // 内部模块是否显示(默认不显示)
-        positionMethod: 'fixed' // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
-    },
-    // 数据
-    data: {}
-});
-
-// 内部模块的创建(覆盖超类型)
-Sub.prototype.moduleDomCreate = function () {
-    var config = this.opts.config;
-    var className = '';
-    if (config.isTransparent) {
-        className = 'g-mask-transparent';
-    }
-    if (config.positionMethod === 'fixed') {
-        className = 'g-mask-fixed';
-    }
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-mask ' + className,
-            innerHTML: ''
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-Sub.prototype.power = function () {
-    var self = this;
-    this.moduleDom.addEventListener('click', function (ev) {
-        self.opts.callback.click();
-        ev.stopPropagation();
-    });
-};
-
-module.exports = Sub;
-
-/***/ }),
-
-/***/ 15:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 16:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var axios = __webpack_require__(9);
-var tools = __webpack_require__(0);
-var Dialog = __webpack_require__(4);
-
-module.exports = function (json) {
-    var opts = tools.extend({
-        defaults: {
-            isHandleError: true, // 是否处理错误
-            isHandleFailure: true, // 是否处理失败
-            timeout: 5000 // 超时
-        },
-        inherits: json
-    });
-    /*
-    * javascript axios get params
-    * javascript axios post/put/delete data
-    * 把上述四种数据的传参方式进行统一化,统一使用data
-    * nodejs express get req.query
-    * nodejs express post/put/delete body-parser req.body
-    * 把上述四种数据的传参方式进行统一化,统一使用req.data
-    * */
-    if (opts.method.toLowerCase() === 'get') {
-        opts.params = opts.data || opts.params;
-    }
-    return axios(opts).catch(function (error) {
-        var response = {
-            data: {
-                status: 'error',
-                message: '接口出错',
-                error: error // 这里的error其实是一个Error类型的数据
-            }
-        };
-        if (opts.isHandleError) {
-            new Dialog({
-                config: {
-                    alert: {
-                        content: error
-                    }
-                }
-            });
-        }
-        return response;
-    }).then(function (response) {
-        var dataInfo = response.data;
-        if (dataInfo.status === 'failure' && opts.isHandleFailure) {
-            new Dialog({
-                config: {
-                    alert: {
-                        content: '\u5931\u8D25: ' + dataInfo.message
-                    }
-                }
-            });
-        }
-        return dataInfo;
-    });
-};
-
-/***/ }),
-
-/***/ 18:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-
-// 延迟加载
-function LazyLoad(json) {
-    this.opts = tools.extend({
-        defaults: {
-            element: '.g-lazy-load', // 哪些元素进行懒加载
-            srcAttr: 'data-src', // 默认获取哪里的属性值当做src
-            moreHeight: 0, // 多加载一部分高度的图片
-            interval: 80, // 函数节流时间(延迟时间)
-            isInitRender: true // 是否初始化的时候就进行render
-        },
-        inherits: json
-    });
-    this.clientHeight = document.documentElement.clientHeight;
-    this.init();
-}
-
-LazyLoad.prototype.init = function () {
-    if (this.opts.isInitRender) {
-        this.render();
-    }
-    this.power();
-};
-LazyLoad.prototype.render = function () {
-    var self = this;
-    var moreHeight = this.opts.moreHeight;
-    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    var minTop = scrollTop - moreHeight;
-    var maxTop = this.clientHeight + minTop + moreHeight;
-    var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
-    var aDom = applications.getDomArray(this.opts.element);
-    aDom.forEach(function (v) {
-        if (v.tagName.toLowerCase() === 'img') {
-            if (!v.getAttribute('src')) {
-                v.src = src;
-            }
-            v.setAttribute('height', '100%');
-            v.setAttribute('width', '100%');
-        }
-    });
-    aDom.forEach(function (v) {
-        // 排除那些被none掉的元素(被none掉的元素,通过offsetWidth和offsetHeight获取到的值是0)
-        if (v.offsetWidth) {
-            var elementTop = applications.offset(v).top;
-            var elementBottom = elementTop + v.offsetHeight;
-            // 出现在可视区才进行处理
-            if (elementBottom >= minTop && elementTop <= maxTop) {
-                if (v.tagName.toLowerCase() === 'img') {
-                    if (v.getAttribute(self.opts.srcAttr)) {
-                        v.src = v.getAttribute(self.opts.srcAttr);
-                    }
-                    v.removeAttribute('height');
-                    v.removeAttribute('width');
-                } else if (v.getAttribute(self.opts.srcAttr)) {
-                    v.style.backgroundImage = 'url(' + v.getAttribute(self.opts.srcAttr) + ')';
-                }
-                v.classList.remove('g-lazy-load');
-                v.classList.add('g-lazy-load-active');
-            }
-        }
-    });
-};
-LazyLoad.prototype.power = function () {
-    var self = this;
-    var timer = null;
-    window.addEventListener('scroll', function () {
-        clearTimeout(timer);
-        timer = setTimeout(function () {
-            self.render();
-        }, self.opts.interval);
-    });
-};
-module.exports = LazyLoad;
-
-/***/ }),
-
-/***/ 19:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    // 容器
-    wrap: '.g-footer',
-    // 回调
-    callback: {},
-    // 配置
-    config: {},
-    // 数据
-    data: {}
-});
-
-// 内部模块的创建(覆盖超类型)
-Sub.prototype.moduleDomCreate = function () {
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-copyright',
-            innerHTML: '\n                <div class="g-copyright-icon iconfont icon-logo"></div>\n                <div class="g-copyright-text">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            '
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-Sub.prototype.power = function () {
-    // 功能重写待续...
-};
-
-module.exports = Sub;
-
-/***/ }),
-
-/***/ 2:
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1278,7 +1012,8 @@ function Super(json) {
                     child: null
                 },
                 moduleDomStyle: {}, // 内部模块的样式
-                moduleDomIsShow: true, // 内部模块是否显示(默认显示)
+                moduleDomIsShow: true, // 内部模块是否显示(默认显示,尽量使用这个属性,性能高)
+                moduleDomIsRender: true, // 内部模块是否渲染(默认渲染,尽量不用这个属性,性能低)
                 moduleDomIsClearTimer: true // 内部模块是否清除所有定时器(默认清除)
             },
             // 数据
@@ -1325,7 +1060,7 @@ Super.prototype.moduleDomCreate = function () {
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
             className: 'g-super-type',
-            innerHTML: '\n                <div class="g-super-type-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsup-es5</div>\n            '
+            innerHTML: '\n                <div class="g-super-type-text" style="text-align: center;">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsup-es5</div>\n            '
         }
     });
 };
@@ -1334,7 +1069,10 @@ Super.prototype.moduleDomCreate = function () {
 Super.prototype.moduleDomRender = function () {
     var callback = this.opts.callback;
     var config = this.opts.config;
-    if (config.moduleDomIsShow && this.wrapDom) {
+    if (!config.moduleDomIsShow) {
+        this.moduleDom.style.display = 'none';
+    }
+    if (config.moduleDomIsRender && this.wrapDom) {
         callback.moduleDomRenderBefore(this);
         var renderMethod = config.moduleDomRenderMethod;
         if (renderMethod.method === 'insertBefore') {
@@ -1374,26 +1112,20 @@ Super.prototype.moduleDomClearTimer = function () {
     }
 };
 
+// 内部模块的隐藏(显示隐藏和是否清除定时器无关)
+Super.prototype.moduleDomHide = function () {
+    var callback = this.opts.callback;
+    callback.moduleDomHideBefore(this);
+    this.moduleDom.style.display = 'none';
+    callback.moduleDomHideAfter(this);
+};
+
 // 内部模块的显示(显示隐藏和是否清除定时器无关)
 Super.prototype.moduleDomShow = function () {
     var callback = this.opts.callback;
     callback.moduleDomShowBefore(this);
-    if (this.wrapDom) {
-        this.opts.config.moduleDomIsShow = true;
-        this.moduleDomRender();
-    }
+    this.moduleDom.style.display = '';
     callback.moduleDomShowAfter(this);
-};
-
-// 内部模块的隐藏(显示隐藏和是否清除定时器无关)
-Super.prototype.moduleDomHide = function () {
-    var callback = this.opts.callback;
-    if (this.moduleDom.parentNode) {
-        this.opts.config.moduleDomIsShow = false;
-        callback.moduleDomHideBefore(this);
-        this.moduleDom.parentNode.removeChild(this.moduleDom);
-        callback.moduleDomHideAfter(this);
-    }
 };
 
 // 外部容器的获取
@@ -1425,130 +1157,7 @@ Super.prototype.getModuleDomHtml = function () {
 module.exports = Super;
 
 /***/ }),
-
-/***/ 20:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    // 容器
-    wrap: '.g-footer',
-    // 回调
-    callback: {},
-    // 配置
-    config: {},
-    // 数据
-    data: [
-        // {
-        //     routeName: 'home',
-        //     href: '/',
-        //     text: '首页',
-        //     icon: 'icon-shouye',
-        //     isHighlight: false,
-        //     isShowMark: false
-        // }
-    ]
-});
-
-Sub.prototype.moduleDomCreate = function () {
-    this.moduleDomClass = 'g-footer-nav';
-    var moduleDomHtml = '';
-    var data = this.opts.data;
-    Object.keys(data).forEach(function (key) {
-        var v = data[key];
-        var highlightClass = '';
-        if (v.isHighlight) {
-            highlightClass = 'g-footer-nav-item-active';
-        }
-        var markHtml = '';
-        if (v.isShowMark) {
-            markHtml = '<div class="g-footer-nav-item-mark"></div>';
-        }
-        moduleDomHtml += '\n            <a class="g-footer-nav-item ' + highlightClass + '" href="' + v.href + '">\n                <div class="g-footer-nav-item-icon iconfont ' + v.icon + '"></div>\n                <div class="g-footer-nav-item-text">' + v.text + '</div>\n                ' + markHtml + '\n            </a>\n        ';
-    });
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: this.moduleDomClass,
-            innerHTML: '<div class="g-footer-nav-body">' + moduleDomHtml + '</div>'
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-Sub.prototype.power = function () {
-    // 功能重写待续...
-};
-
-module.exports = Sub;
-
-/***/ }),
-
-/***/ 21:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    // 容器
-    wrap: '.g-footer',
-    // 回调
-    callback: {},
-    // 配置
-    config: {
-        showHeight: 200
-    },
-    // 数据
-    data: {}
-});
-
-// 内部模块的创建(覆盖超类型)
-Sub.prototype.moduleDomCreate = function () {
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-go-top',
-            innerHTML: '<div class="g-go-top-icon iconfont icon-shangjiantou"></div>'
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-Sub.prototype.power = function () {
-    var self = this;
-    this.moduleDom.addEventListener('click', function () {
-        applications.scrollToY('0');
-    });
-    window.addEventListener('scroll', function () {
-        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        if (scrollTop >= self.opts.config.showHeight) {
-            self.moduleDom.classList.add('g-go-top-active');
-        } else {
-            self.moduleDom.classList.remove('g-go-top-active');
-        }
-    });
-};
-
-module.exports = Sub;
-
-/***/ }),
-
-/***/ 3:
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1568,7 +1177,7 @@ var Super = function () {
         self.tools = __webpack_require__(0); // 工具方法集合
         self.applications = __webpack_require__(1); // 应用方法集合
         self.axios = __webpack_require__(16); // axios
-        self.jsonp = __webpack_require__(77); // jsonp
+        self.jsonp = __webpack_require__(18); // jsonp
         self.opts = self.tools.extend({
             defaults: {
                 lazyload: {
@@ -1629,7 +1238,7 @@ var Super = function () {
             }();
 
             // 延迟加载
-            var LazyLoad = __webpack_require__(18);
+            var LazyLoad = __webpack_require__(19);
             self.lazyload = new LazyLoad(self.opts.lazyload);
         }
 
@@ -1643,7 +1252,7 @@ var Super = function () {
 
             // 版权
             if (gDataInfo && gDataInfo.isShowCopyright) {
-                var Copyright = __webpack_require__(19);
+                var Copyright = __webpack_require__(20);
                 new Copyright({
                     wrap: '.page-copyright-wrap'
                 });
@@ -1651,13 +1260,13 @@ var Super = function () {
 
             // 底部导航
             if (gDataInfo && gDataInfo.footerNav) {
-                var Footer = __webpack_require__(20);
+                var Footer = __webpack_require__(21);
                 gDataInfo.footerNav.wrap = '.page-footer-nav-wrap';
                 new Footer(gDataInfo.footerNav);
             }
 
             // 返回顶部
-            var GoTop = __webpack_require__(21);
+            var GoTop = __webpack_require__(22);
             new GoTop({
                 wrap: '.page-go-top-wrap'
             });
@@ -1673,8 +1282,7 @@ var Super = function () {
 module.exports = Super;
 
 /***/ }),
-
-/***/ 4:
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1691,12 +1299,22 @@ var Sub = tools.constructorInherit(Super, {
     callback: {
         moduleDomRenderBefore: function moduleDomRenderBefore(self) {
             if (self.opts.config.type === 'confirm') {
-                if (self.opts.config.confirm.isShowMask) {
+                if (self.opts.config.confirm.isShowMask && !self.mask) {
                     self.mask = new Mask(self.opts.config.mask);
                 }
                 if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
                     self.wrapDom.style.position = 'relative';
                 }
+            }
+        },
+        moduleDomShowBefore: function moduleDomShowBefore(self) {
+            if (self.mask) {
+                self.mask.moduleDomShow();
+            }
+        },
+        moduleDomHideAfter: function moduleDomHideAfter(self) {
+            if (self.mask) {
+                self.mask.moduleDomHide();
             }
         },
         // 确认
@@ -1708,6 +1326,7 @@ var Sub = tools.constructorInherit(Super, {
     },
     // 配置
     config: {
+        moduleDomIsShow: false,
         /*
          * 弹窗类型
          * `alert`  提示信息类型
@@ -1753,9 +1372,7 @@ var Sub = tools.constructorInherit(Super, {
         },
         // 遮罩
         mask: {
-            config: {
-                moduleDomIsShow: true
-            }
+            config: {}
         }
     },
     // 数据
@@ -1849,11 +1466,11 @@ Sub.prototype.power = function () {
     if (config.type === 'alert') {
         var close = this.moduleDom.querySelector('.g-dialog-alert-close');
         config.alert.timer = setTimeout(function () {
-            self.hide();
+            self.moduleDomHide();
         }, config.alert.time);
         close.addEventListener('click', function () {
             clearTimeout(config.alert.timer);
-            self.hide();
+            self.moduleDomHide();
         });
     }
     // 确认框
@@ -1861,14 +1478,14 @@ Sub.prototype.power = function () {
         var _close = this.moduleDom.querySelector('.g-dialog-confirm-close');
         if (_close) {
             _close.addEventListener('click', function () {
-                self.hide();
+                self.moduleDomHide();
                 self.opts.callback.close();
             });
         }
         var cancel = this.moduleDom.querySelector('.g-dialog-confirm-footer-cancel');
         if (cancel) {
             cancel.addEventListener('click', function () {
-                self.hide();
+                self.moduleDomHide();
                 self.opts.callback.cancel();
             });
         }
@@ -1876,7 +1493,7 @@ Sub.prototype.power = function () {
         if (confirm) {
             confirm.addEventListener('click', function () {
                 if (!self.opts.config.confirm.isHandHide) {
-                    self.hide();
+                    self.moduleDomHide();
                 }
                 self.opts.callback.confirm();
             });
@@ -1884,18 +1501,153 @@ Sub.prototype.power = function () {
     }
 };
 
-Sub.prototype.hide = function () {
-    this.moduleDomHide();
-    if (this.mask) {
-        this.mask.moduleDomHide();
+module.exports = Sub;
+
+/***/ }),
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    // 回调
+    callback: {
+        click: function click() {},
+        moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+            if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
+                self.wrapDom.style.position = 'relative';
+            }
+        }
+    },
+    // 配置
+    config: {
+        moduleDomIsShow: false,
+        isTransparent: false, // 是不是透明的(默认不透明)
+        positionMethod: 'fixed' // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
+    },
+    // 数据
+    data: {}
+});
+
+// 内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var className = '';
+    if (config.isTransparent) {
+        className = 'g-mask-transparent';
     }
+    if (config.positionMethod === 'fixed') {
+        className = 'g-mask-fixed';
+    }
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-mask ' + className,
+            innerHTML: ''
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    this.moduleDom.addEventListener('click', function (ev) {
+        self.opts.callback.click();
+        ev.stopPropagation();
+    });
 };
 
 module.exports = Sub;
 
 /***/ }),
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */
+/***/ (function(module, exports) {
 
-/***/ 77:
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var axios = __webpack_require__(9);
+var tools = __webpack_require__(0);
+var Dialog = __webpack_require__(4);
+
+module.exports = function (json) {
+    var opts = tools.extend({
+        defaults: {
+            isHandleError: true, // 是否处理错误
+            isHandleFailure: true, // 是否处理失败
+            timeout: 5000 // 超时
+        },
+        inherits: json
+    });
+    /*
+    * javascript axios get params
+    * javascript axios post/put/delete data
+    * 把上述四种数据的传参方式进行统一化,统一使用data
+    * nodejs express get req.query
+    * nodejs express post/put/delete body-parser req.body
+    * 把上述四种数据的传参方式进行统一化,统一使用req.data
+    * */
+    if (opts.method.toLowerCase() === 'get') {
+        opts.params = opts.data || opts.params;
+    }
+    return axios(opts).catch(function (error) {
+        var response = {
+            data: {
+                status: 'error',
+                message: '接口出错',
+                error: error // 这里的error其实是一个Error类型的数据
+            }
+        };
+        if (opts.isHandleError) {
+            new Dialog({
+                config: {
+                    alert: {
+                        content: error
+                    }
+                }
+            });
+        }
+        return response;
+    }).then(function (response) {
+        var dataInfo = response.data;
+        if (dataInfo.status === 'failure' && opts.isHandleFailure) {
+            new Dialog({
+                config: {
+                    alert: {
+                        content: '\u5931\u8D25: ' + dataInfo.message
+                    }
+                }
+            });
+        }
+        return dataInfo;
+    });
+};
+
+/***/ }),
+/* 17 */,
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1971,6 +1723,250 @@ module.exports = function (json) {
     }
 };
 
-/***/ })
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+
+// 延迟加载
+function LazyLoad(json) {
+    this.opts = tools.extend({
+        defaults: {
+            element: '.g-lazy-load', // 哪些元素进行懒加载
+            srcAttr: 'data-src', // 默认获取哪里的属性值当做src
+            moreHeight: 0, // 多加载一部分高度的图片
+            interval: 80, // 函数节流时间(延迟时间)
+            isInitRender: true // 是否初始化的时候就进行render
+        },
+        inherits: json
+    });
+    this.clientHeight = document.documentElement.clientHeight;
+    this.init();
+}
+
+LazyLoad.prototype.init = function () {
+    if (this.opts.isInitRender) {
+        this.render();
+    }
+    this.power();
+};
+LazyLoad.prototype.render = function () {
+    var self = this;
+    var moreHeight = this.opts.moreHeight;
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    var minTop = scrollTop - moreHeight;
+    var maxTop = this.clientHeight + minTop + moreHeight;
+    var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
+    var aDom = applications.getDomArray(this.opts.element);
+    aDom.forEach(function (v) {
+        if (v.tagName.toLowerCase() === 'img') {
+            if (!v.getAttribute('src')) {
+                v.src = src;
+            }
+            v.setAttribute('height', '100%');
+            v.setAttribute('width', '100%');
+        }
+    });
+    aDom.forEach(function (v) {
+        // 排除那些被none掉的元素(被none掉的元素,通过offsetWidth和offsetHeight获取到的值是0)
+        if (v.offsetWidth) {
+            var elementTop = applications.offset(v).top;
+            var elementBottom = elementTop + v.offsetHeight;
+            // 出现在可视区才进行处理
+            if (elementBottom >= minTop && elementTop <= maxTop) {
+                if (v.tagName.toLowerCase() === 'img') {
+                    if (v.getAttribute(self.opts.srcAttr)) {
+                        v.src = v.getAttribute(self.opts.srcAttr);
+                    }
+                    v.removeAttribute('height');
+                    v.removeAttribute('width');
+                } else if (v.getAttribute(self.opts.srcAttr)) {
+                    v.style.backgroundImage = 'url(' + v.getAttribute(self.opts.srcAttr) + ')';
+                }
+                v.classList.remove('g-lazy-load');
+                v.classList.add('g-lazy-load-active');
+            }
+        }
+    });
+};
+LazyLoad.prototype.power = function () {
+    var self = this;
+    var timer = null;
+    window.addEventListener('scroll', function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            self.render();
+        }, self.opts.interval);
+    });
+};
+module.exports = LazyLoad;
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    // 容器
+    wrap: '.g-footer',
+    // 回调
+    callback: {},
+    // 配置
+    config: {},
+    // 数据
+    data: {}
 });
+
+// 内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-copyright',
+            innerHTML: '\n                <div class="g-copyright-icon iconfont icon-logo"></div>\n                <div class="g-copyright-text">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            '
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+Sub.prototype.power = function () {
+    // 功能重写待续...
+};
+
+module.exports = Sub;
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    // 容器
+    wrap: '.g-footer',
+    // 回调
+    callback: {},
+    // 配置
+    config: {},
+    // 数据
+    data: [
+        // {
+        //     routeName: 'home',
+        //     href: '/',
+        //     text: '首页',
+        //     icon: 'icon-shouye',
+        //     isHighlight: false,
+        //     isShowMark: false
+        // }
+    ]
+});
+
+Sub.prototype.moduleDomCreate = function () {
+    this.moduleDomClass = 'g-footer-nav';
+    var moduleDomHtml = '';
+    var data = this.opts.data;
+    Object.keys(data).forEach(function (key) {
+        var v = data[key];
+        var highlightClass = '';
+        if (v.isHighlight) {
+            highlightClass = 'g-footer-nav-item-active';
+        }
+        var markHtml = '';
+        if (v.isShowMark) {
+            markHtml = '<div class="g-footer-nav-item-mark"></div>';
+        }
+        moduleDomHtml += '\n            <a class="g-footer-nav-item ' + highlightClass + '" href="' + v.href + '">\n                <div class="g-footer-nav-item-icon iconfont ' + v.icon + '"></div>\n                <div class="g-footer-nav-item-text">' + v.text + '</div>\n                ' + markHtml + '\n            </a>\n        ';
+    });
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: this.moduleDomClass,
+            innerHTML: '<div class="g-footer-nav-body">' + moduleDomHtml + '</div>'
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+Sub.prototype.power = function () {
+    // 功能重写待续...
+};
+
+module.exports = Sub;
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    // 容器
+    wrap: '.g-footer',
+    // 回调
+    callback: {},
+    // 配置
+    config: {
+        showHeight: 200
+    },
+    // 数据
+    data: {}
+});
+
+// 内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-go-top',
+            innerHTML: '<div class="g-go-top-icon iconfont icon-shangjiantou"></div>'
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    this.moduleDom.addEventListener('click', function () {
+        applications.scrollToY('0');
+    });
+    window.addEventListener('scroll', function () {
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop >= self.opts.config.showHeight) {
+            self.moduleDom.classList.add('g-go-top-active');
+        } else {
+            self.moduleDom.classList.remove('g-go-top-active');
+        }
+    });
+};
+
+module.exports = Sub;
+
+/***/ })
+]);

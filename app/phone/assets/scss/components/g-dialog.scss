@@ -50,7 +50,7 @@
                 width: px2rem($width);
                 min-height: px2rem($width / 3.2);
                 padding: px2rem(10);
-                @include center-xy-flex;
+                @include xy-center-flex;
                 .g-dialog-confirm-body-system-icon {
                     margin-right: px2rem(6);
                     font-size: px2rem(24);
@@ -82,7 +82,7 @@
             height: px2rem($height);
             font-size: px2rem(14);
             color: #ffffff;
-            @include center-xy-flex;
+            @include xy-center-flex;
         }
     }
     &.g-dialog-center {

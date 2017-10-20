@@ -19,7 +19,7 @@
                 border-radius: 50%;
                 margin-right: px2rem(10);
                 overflow: hidden;
-                @include center-xy-flex;
+                @include xy-center-flex;
                 img {
                     max-width: 100%;
                     max-height: 100%;

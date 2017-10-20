@@ -232,15 +232,15 @@ img {
   color: #f14344; }
 
 .g-display-none {
-  display: none; }
+  display: none !important; }
 
 .g-display-block {
-  display: block; }
+  display: block !important; }
 
 .g-display-flex {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex; }
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important; }
 
 .g-flex-1 {
   -webkit-box-flex: 1;
@@ -275,14 +275,58 @@ img {
   white-space: nowrap;
   text-overflow: ellipsis; }
 
-.g-xy-center {
+.g-xy-center-sham {
   font-size: 0;
   text-align: center; }
-  .g-xy-center:before {
-    content: '';
+  .g-xy-center-sham > :nth-child(n) {
     display: inline-block;
-    height: 100%;
     vertical-align: middle; }
+  .g-xy-center-sham:before {
+    content: '';
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle; }
+
+.g-xy-center-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  word-break: break-all; }
+
+.g-margin-top-0 {
+  margin-top: 0 !important; }
+
+.g-margin-right-0 {
+  margin-right: 0 !important; }
+
+.g-margin-bottom-0 {
+  margin-bottom: 0 !important; }
+
+.g-margin-left-0 {
+  margin-left: 0 !important; }
+
+.g-padding-top-0 {
+  padding-top: 0 !important; }
+
+.g-padding-right-0 {
+  padding-right: 0 !important; }
+
+.g-padding-bottom-0 {
+  padding-bottom: 0 !important; }
+
+.g-padding-left-0 {
+  padding-left: 0 !important; }
+
+.g-text-indent-0 {
+  text-indent: 0 !important; }
 
 .g-wrap {
   width: 100%;
@@ -914,6 +958,8 @@ html.g-pc {
       -webkit-box-pack: center;
           -ms-flex-pack: center;
               justify-content: center;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
       word-break: break-all; }
       .g-dialog.g-dialog-confirm .g-dialog-confirm-body .g-dialog-confirm-body-system .g-dialog-confirm-body-system-icon {
         margin-right: 0.1875rem;
@@ -957,6 +1003,8 @@ html.g-pc {
       -webkit-box-pack: center;
           -ms-flex-pack: center;
               justify-content: center;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
       word-break: break-all; }
   .g-dialog.g-dialog-center {
     position: fixed;
@@ -1489,6 +1537,8 @@ html.g-pc {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   word-break: break-all;
   font-size: 0.375rem;
   padding: 0 0.3125rem;

@@ -20,21 +20,32 @@ class Sub extends Super {
             // });
         }());
 
-        // base函数测试
+        // 测试滚动到底部功能以及loading组件
         (function () {
+            const Loading = require('../components/g-loading');
             const WhenScrollBottom = applications.whenScrollBottom();
-            // 测试滚动到底部loading
+            let num = 0;
             new WhenScrollBottom({
+                isInitRender: false,
                 callback: {
-                    success: function () {
-                        const Loading = require('../components/g-loading');
-                        const loading = new Loading({
-                            wrap: '.g-body',
-                            config: {
-                                status: 'loading',
-                            },
-                        });
-                        loading.moduleDomShow();
+                    success: function (self) {
+                        if (num < 5) {
+                            num++;
+                            const Loading = require('../components/g-loading');
+                            new Loading({
+                                wrap: '.g-body',
+                                config: {
+                                    status: 'loading',
+                                },
+                            });
+                        } else {
+                            self.isLoadOver = true;
+                            new Loading({
+                                config: {
+                                    status: 'over',
+                                },
+                            });
+                        }
                     },
                 },
             });
@@ -101,23 +112,29 @@ class Sub extends Super {
         // 弹窗测试
         (function () {
             const Dialog = require('../components/g-dialog');
+            const dialogAlert = new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已确认'}}});
+            const dialogAlertConfig = dialogAlert.opts.config.alert;
+            const dialogConfirm = new Dialog({
+                callback: {
+                    confirm: function () {
+                        dialogAlertConfig.content = '已确认';
+                        dialogAlert.moduleDomShow();
+                    },
+                    cancel: function () {
+                        dialogAlertConfig.content = '已取消';
+                        dialogAlert.moduleDomShow();
+                    },
+                    close: function () {
+                        dialogAlertConfig.content = '已关闭';
+                        dialogAlert.moduleDomShow();
+                    },
+                },
+                config: {
+                    type: 'confirm',
+                },
+            });
             document.querySelector('.page-button-dialog').addEventListener('click', function () {
-                new Dialog({
-                    callback: {
-                        confirm: function () {
-                            new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已确认'}}});
-                        },
-                        cancel: function () {
-                            new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已取消'}}});
-                        },
-                        close: function () {
-                            new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已关闭'}}});
-                        },
-                    },
-                    config: {
-                        type: 'confirm',
-                    },
-                });
+                dialogConfirm.moduleDomShow();
             });
         }());
 
@@ -133,23 +150,6 @@ class Sub extends Super {
             new NoData({wrap: '.page-no-data'});
         }());
 
-        // 加载中
-        (function () {
-            const Loading = require('../components/g-loading');
-            const loading = new Loading({
-                config: {
-                    status: 'loading',
-                },
-            });
-            loading.moduleDomShow();
-            const over = new Loading({
-                config: {
-                    status: 'over',
-                },
-            });
-            over.moduleDomShow();
-        }());
-
         // 超类型模块测试
         (function () {
             const Super = require('../components/g-super');
@@ -161,19 +161,6 @@ class Sub extends Super {
             new SuperEs6({wrap: '.page-super-type'});
             const SubEs6 = require('../components/g-sub-es6');
             new SubEs6({wrap: '.page-super-type'});
-        }());
-
-        // 遮罩
-        (function () {
-            const Mask = require('../components/g-mask');
-            const mask = new Mask({
-                callback: {
-                    click: function () {
-                        mask.moduleDomHide();
-                    },
-                },
-            });
-            // mask.moduleDomShow();
         }());
 
         // 单选开关

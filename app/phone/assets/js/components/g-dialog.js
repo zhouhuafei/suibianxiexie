@@ -9,12 +9,22 @@ const Sub = tools.constructorInherit(Super, {
     callback: {
         moduleDomRenderBefore: function (self) {
             if (self.opts.config.type === 'confirm') {
-                if (self.opts.config.confirm.isShowMask) {
+                if (self.opts.config.confirm.isShowMask && !self.mask) {
                     self.mask = new Mask(self.opts.config.mask);
                 }
                 if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
                     self.wrapDom.style.position = 'relative';
                 }
+            }
+        },
+        moduleDomShowBefore: function (self) {
+            if (self.mask) {
+                self.mask.moduleDomShow();
+            }
+        },
+        moduleDomHideAfter: function (self) {
+            if (self.mask) {
+                self.mask.moduleDomHide();
             }
         },
         // 确认
@@ -29,6 +39,7 @@ const Sub = tools.constructorInherit(Super, {
     },
     // 配置
     config: {
+        moduleDomIsShow: false,
         /*
          * 弹窗类型
          * `alert`  提示信息类型
@@ -74,9 +85,7 @@ const Sub = tools.constructorInherit(Super, {
         },
         // 遮罩
         mask: {
-            config: {
-                moduleDomIsShow: true,
-            },
+            config: {},
         },
     },
     // 数据
@@ -191,11 +200,11 @@ Sub.prototype.power = function () {
     if (config.type === 'alert') {
         const close = this.moduleDom.querySelector('.g-dialog-alert-close');
         config.alert.timer = setTimeout(function () {
-            self.hide();
+            self.moduleDomHide();
         }, config.alert.time);
         close.addEventListener('click', function () {
             clearTimeout(config.alert.timer);
-            self.hide();
+            self.moduleDomHide();
         });
     }
     // 确认框
@@ -203,14 +212,14 @@ Sub.prototype.power = function () {
         const close = this.moduleDom.querySelector('.g-dialog-confirm-close');
         if (close) {
             close.addEventListener('click', function () {
-                self.hide();
+                self.moduleDomHide();
                 self.opts.callback.close();
             });
         }
         const cancel = this.moduleDom.querySelector('.g-dialog-confirm-footer-cancel');
         if (cancel) {
             cancel.addEventListener('click', function () {
-                self.hide();
+                self.moduleDomHide();
                 self.opts.callback.cancel();
             });
         }
@@ -218,18 +227,11 @@ Sub.prototype.power = function () {
         if (confirm) {
             confirm.addEventListener('click', function () {
                 if (!self.opts.config.confirm.isHandHide) {
-                    self.hide();
+                    self.moduleDomHide();
                 }
                 self.opts.callback.confirm();
             });
         }
-    }
-};
-
-Sub.prototype.hide = function () {
-    this.moduleDomHide();
-    if (this.mask) {
-        this.mask.moduleDomHide();
     }
 };
 

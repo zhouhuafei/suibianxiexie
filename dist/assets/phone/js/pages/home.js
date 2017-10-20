@@ -1,6 +1,6 @@
 webpackJsonp([3],{
 
-/***/ 35:
+/***/ 36:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,7 +14,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(36);
+__webpack_require__(37);
 var Super = __webpack_require__(3);
 
 var Sub = function (_Super) {
@@ -83,7 +83,7 @@ var Sub = function (_Super) {
 
             // vue
             (function () {
-                __webpack_require__(37);
+                __webpack_require__(38);
                 var Vue = __webpack_require__(8);
                 new Vue({
                     el: '.page-vue-app',
@@ -92,23 +92,27 @@ var Sub = function (_Super) {
             })();
 
             // jsonp错误测试
+            /*
             this.jsonp({
                 url: '/phone/api/verify-code-register2/',
                 data: {
-                    isJsonp: true
+                    isJsonp: true,
                 },
-                callback: function callback(dadaInfo) {
+                callback: function (dadaInfo) {
                     console.log('jsonp error test:\n', dadaInfo);
-                }
+                },
             });
+            */
 
             // axios错误测试
+            /*
             this.axios({
                 url: '/phone/api/verify-code-register2/',
-                method: 'get'
+                method: 'get',
             }).then(function (dadaInfo) {
                 console.log('axios error test:\n', dadaInfo);
             });
+            */
         }
     }]);
 
@@ -119,14 +123,14 @@ new Sub();
 
 /***/ }),
 
-/***/ 36:
+/***/ 37:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 37:
+/***/ 38:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -139,19 +143,19 @@ var _vue2 = _interopRequireDefault(_vue);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.component('g-picture-list', {
-    template: '<div class="g-picture-list">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(39) + '" alt="">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(40) + '" alt="">\n    </div>'
+    template: '<div class="g-picture-list">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(40) + '" alt="">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(41) + '" alt="">\n    </div>'
 });
 
 /***/ }),
 
-/***/ 39:
+/***/ 40:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/p-waiting.d4f6dd4c.jpg";
 
 /***/ }),
 
-/***/ 40:
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/p-waiting.054b1f3c.png";
@@ -813,4 +817,4 @@ module.exports = Sub;
 
 /***/ })
 
-},[35]);
+},[36]);

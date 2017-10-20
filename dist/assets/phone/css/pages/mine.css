@@ -34,6 +34,8 @@
       -webkit-box-pack: center;
           -ms-flex-pack: center;
               justify-content: center;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
       word-break: break-all; }
       .g-body .page-header .page-header-wrap .page-header-photo img {
         max-width: 100%;

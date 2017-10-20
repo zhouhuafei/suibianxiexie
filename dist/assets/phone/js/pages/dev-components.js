@@ -677,8 +677,7 @@ var Sub = tools.constructorInherit(Super, {
     config: {
         status: 'loading', // 加载状态 loading(加载中) over(加载完毕)
         positionMethod: '', // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
-        positionLocation: 'center', // 模块的定位位置
-        moduleDomIsShow: false // 内部模块是否显示(默认不显示)
+        positionLocation: 'center' // 模块的定位位置
     },
     // 数据
     data: {}
@@ -831,7 +830,8 @@ var Super = function () {
                         child: null
                     },
                     moduleDomStyle: {}, // 内部模块的样式
-                    moduleDomIsShow: true, // 内部模块是否显示(默认显示)
+                    moduleDomIsShow: true, // 内部模块是否显示(默认显示,尽量使用这个属性,性能高)
+                    moduleDomIsRender: true, // 内部模块是否渲染(默认渲染,尽量不用这个属性,性能低)
                     moduleDomIsClearTimer: true // 内部模块是否清除所有定时器(默认清除)
                 },
                 // 数据
@@ -891,7 +891,7 @@ var Super = function () {
                 customAttribute: this.opts.config.moduleDomCustomAttribute,
                 attribute: {
                     className: 'g-super-type-es6',
-                    innerHTML: '\n                    <div class="g-super-type-es6-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsup-es6</div>\n                '
+                    innerHTML: '\n                    <div class="g-super-type-es6-text" style="text-align: center;">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsup-es6</div>\n                '
                 }
             });
         }
@@ -903,7 +903,10 @@ var Super = function () {
         value: function moduleDomRender() {
             var callback = this.opts.callback;
             var config = this.opts.config;
-            if (config.moduleDomIsShow && this.wrapDom) {
+            if (!config.moduleDomIsShow) {
+                this.moduleDom.style.display = 'none';
+            }
+            if (config.moduleDomIsRender && this.wrapDom) {
                 callback.moduleDomRenderBefore(this);
                 var renderMethod = config.moduleDomRenderMethod;
                 if (renderMethod.method === 'insertBefore') {
@@ -949,6 +952,17 @@ var Super = function () {
             }
         }
 
+        // 内部模块的隐藏(显示隐藏和是否清除定时器无关)
+
+    }, {
+        key: 'moduleDomHide',
+        value: function moduleDomHide() {
+            var callback = this.opts.callback;
+            callback.moduleDomHideBefore(this);
+            this.moduleDom.style.display = 'none';
+            callback.moduleDomHideAfter(this);
+        }
+
         // 内部模块的显示(显示隐藏和是否清除定时器无关)
 
     }, {
@@ -956,25 +970,8 @@ var Super = function () {
         value: function moduleDomShow() {
             var callback = this.opts.callback;
             callback.moduleDomShowBefore(this);
-            if (this.wrapDom) {
-                this.opts.config.moduleDomIsShow = true;
-                this.moduleDomRender();
-            }
+            this.moduleDom.style.display = '';
             callback.moduleDomShowAfter(this);
-        }
-
-        // 内部模块的隐藏(显示隐藏和是否清除定时器无关)
-
-    }, {
-        key: 'moduleDomHide',
-        value: function moduleDomHide() {
-            var callback = this.opts.callback;
-            if (this.moduleDom.parentNode) {
-                this.opts.config.moduleDomIsShow = false;
-                callback.moduleDomHideBefore(this);
-                this.moduleDom.parentNode.removeChild(this.moduleDom);
-                callback.moduleDomHideAfter(this);
-            }
         }
 
         // 外部容器的获取
@@ -1065,21 +1062,32 @@ var Sub = function (_Super) {
                 // });
             })();
 
-            // base函数测试
+            // 测试滚动到底部功能以及loading组件
             (function () {
+                var Loading = __webpack_require__(11);
                 var WhenScrollBottom = applications.whenScrollBottom();
-                // 测试滚动到底部loading
+                var num = 0;
                 new WhenScrollBottom({
+                    isInitRender: false,
                     callback: {
-                        success: function success() {
-                            var Loading = __webpack_require__(11);
-                            var loading = new Loading({
-                                wrap: '.g-body',
-                                config: {
-                                    status: 'loading'
-                                }
-                            });
-                            loading.moduleDomShow();
+                        success: function success(self) {
+                            if (num < 5) {
+                                num++;
+                                var _Loading = __webpack_require__(11);
+                                new _Loading({
+                                    wrap: '.g-body',
+                                    config: {
+                                        status: 'loading'
+                                    }
+                                });
+                            } else {
+                                self.isLoadOver = true;
+                                new Loading({
+                                    config: {
+                                        status: 'over'
+                                    }
+                                });
+                            }
                         }
                     }
                 });
@@ -1140,84 +1148,60 @@ var Sub = function (_Super) {
             // 弹窗测试
             (function () {
                 var Dialog = __webpack_require__(4);
-                document.querySelector('.page-button-dialog').addEventListener('click', function () {
-                    new Dialog({
-                        callback: {
-                            confirm: function confirm() {
-                                new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已确认' } } });
-                            },
-                            cancel: function cancel() {
-                                new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已取消' } } });
-                            },
-                            close: function close() {
-                                new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已关闭' } } });
-                            }
+                var dialogAlert = new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已确认' } } });
+                var dialogAlertConfig = dialogAlert.opts.config.alert;
+                var dialogConfirm = new Dialog({
+                    callback: {
+                        confirm: function confirm() {
+                            dialogAlertConfig.content = '已确认';
+                            dialogAlert.moduleDomShow();
                         },
-                        config: {
-                            type: 'confirm'
+                        cancel: function cancel() {
+                            dialogAlertConfig.content = '已取消';
+                            dialogAlert.moduleDomShow();
+                        },
+                        close: function close() {
+                            dialogAlertConfig.content = '已关闭';
+                            dialogAlert.moduleDomShow();
                         }
-                    });
+                    },
+                    config: {
+                        type: 'confirm'
+                    }
+                });
+                document.querySelector('.page-button-dialog').addEventListener('click', function () {
+                    dialogConfirm.moduleDomShow();
                 });
             })();
 
             // 分页测试
             (function () {
-                var Pagination = __webpack_require__(22);
+                var Pagination = __webpack_require__(23);
                 new Pagination({ wrap: '.page-pagination' });
             })();
 
             // 没有数据
             (function () {
-                var NoData = __webpack_require__(23);
+                var NoData = __webpack_require__(24);
                 new NoData({ wrap: '.page-no-data' });
-            })();
-
-            // 加载中
-            (function () {
-                var Loading = __webpack_require__(11);
-                var loading = new Loading({
-                    config: {
-                        status: 'loading'
-                    }
-                });
-                loading.moduleDomShow();
-                var over = new Loading({
-                    config: {
-                        status: 'over'
-                    }
-                });
-                over.moduleDomShow();
             })();
 
             // 超类型模块测试
             (function () {
                 var Super = __webpack_require__(2);
                 new Super({ wrap: '.page-super-type' });
-                var Sub = __webpack_require__(24);
+                var Sub = __webpack_require__(25);
                 new Sub({ wrap: '.page-super-type' });
                 new Sub(); // constructorInherit里parameter去掉了对象引用,否则这个子类的默认参数wrap会变成上面.page-super-type(bug回忆)
                 var SuperEs6 = __webpack_require__(12);
                 new SuperEs6({ wrap: '.page-super-type' });
-                var SubEs6 = __webpack_require__(25);
+                var SubEs6 = __webpack_require__(26);
                 new SubEs6({ wrap: '.page-super-type' });
-            })();
-
-            // 遮罩
-            (function () {
-                var Mask = __webpack_require__(10);
-                var mask = new Mask({
-                    callback: {
-                        click: function click() {
-                            mask.moduleDomHide();
-                        }
-                    }
-                });
-                // mask.moduleDomShow();
             })();
 
             // 单选开关
             (function () {
-                var Radio = __webpack_require__(26);
+                var Radio = __webpack_require__(27);
                 new Radio({
                     wrap: '.page-radio-switch',
                     callback: {
@@ -1230,7 +1214,7 @@ var Sub = function (_Super) {
 
             // 表格
             (function () {
-                var Table = __webpack_require__(27);
+                var Table = __webpack_require__(28);
                 new Table({
                     wrap: '.page-table',
                     data: {
@@ -1277,7 +1261,7 @@ var Sub = function (_Super) {
                 //     }
                 // });
                 __webpack_require__.e/* require.ensure */(0).then((function (require) {
-                    var Star = __webpack_require__(56);
+                    var Star = __webpack_require__(57);
                     new Star({
                         wrap: '.page-star',
                         callback: {
@@ -1310,7 +1294,8 @@ new Sub();
 /* 19 */,
 /* 20 */,
 /* 21 */,
-/* 22 */
+/* 22 */,
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1476,7 +1461,7 @@ Sub.prototype.nextPageEnable = function () {
 module.exports = Sub;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1533,7 +1518,7 @@ Sub.prototype.power = function () {
 module.exports = Sub;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1560,7 +1545,7 @@ Sub.prototype.moduleDomCreate = function () {
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
             className: 'g-sub-type',
-            innerHTML: '\n                <div class="g-sub-type-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsub-es5</div>\n            '
+            innerHTML: '\n                <div class="g-sub-type-text" style="text-align: center;">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsub-es5</div>\n            '
         }
     });
 };
@@ -1573,7 +1558,7 @@ Sub.prototype.power = function () {
 module.exports = Sub;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1623,7 +1608,7 @@ var Sub = function (_Super) {
                 customAttribute: this.opts.config.moduleDomCustomAttribute,
                 attribute: {
                     className: 'g-sub-type-es6',
-                    innerHTML: '\n                    <div class="g-sub-type-es6-text">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsub-es6</div>\n                '
+                    innerHTML: '\n                    <div class="g-sub-type-es6-text" style="text-align: center;">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsub-es6</div>\n                '
                 }
             });
         }
@@ -1643,7 +1628,7 @@ var Sub = function (_Super) {
 module.exports = Sub;
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1734,7 +1719,7 @@ Sub.prototype.off = function () {
 module.exports = Sub;
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
