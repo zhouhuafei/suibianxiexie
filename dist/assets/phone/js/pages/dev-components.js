@@ -664,83 +664,6 @@ module.exports = Sub;
 "use strict";
 
 
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    // 回调
-    callback: {},
-    // 配置
-    config: {
-        status: 'loading', // 加载状态 loading(加载中) over(加载完毕)
-        positionMethod: '', // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
-        positionLocation: 'center' // 模块的定位位置
-    },
-    // 数据
-    data: {}
-});
-
-// 内部模块的创建(覆盖超类型)
-Sub.prototype.moduleDomCreate = function () {
-    var config = this.opts.config;
-    var moduleDomHtml = '';
-    var moduleDomClass = '';
-    var status = config.status;
-    var positionMethod = config.positionMethod;
-    var positionLocation = config.positionLocation;
-    // 加载中
-    if (status === 'loading') {
-        moduleDomClass = 'g-loading-run ';
-        // 相对文档居中
-        if (positionMethod === 'fixed') {
-            moduleDomClass += 'g-loading-fixed g-loading-' + positionLocation;
-        }
-        // 相对容器居中
-        if (positionMethod === 'absolute') {
-            moduleDomClass += 'g-loading-absolute g-loading-' + positionLocation;
-        }
-        moduleDomHtml = '\n            <div class="g-loading-body">\n                <div class="g-loading-run-icon iconfont icon-jiazaizhong"></div>\n            </div>\n        ';
-    }
-    // 加载完毕
-    if (status === 'over') {
-        moduleDomClass = 'g-loading-over ';
-        // 相对文档居中
-        if (positionMethod === 'fixed') {
-            moduleDomClass += 'g-loading-fixed g-loading-' + positionLocation;
-        }
-        // 相对容器居中
-        if (positionMethod === 'absolute') {
-            moduleDomClass += 'g-loading-absolute g-loading-' + positionLocation;
-        }
-        moduleDomHtml = '\n            <div class="g-loading-body">\n                <div class="g-loading-over-icon iconfont icon-meiyoushuju"></div>\n                <div class="g-loading-over-text">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ';
-    }
-    // 模块创建
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-loading ' + moduleDomClass,
-            innerHTML: moduleDomHtml
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-Sub.prototype.power = function () {
-    // 功能重写待续...
-};
-
-module.exports = Sub;
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1017,7 +940,7 @@ var Super = function () {
 module.exports = Super;
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1031,7 +954,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(13);
+__webpack_require__(12);
 var Super = __webpack_require__(3);
 
 var Sub = function (_Super) {
@@ -1065,7 +988,7 @@ var Sub = function (_Super) {
 
             // 测试滚动到底部功能以及loading组件
             (function () {
-                var Loading = __webpack_require__(10);
+                var Loading = __webpack_require__(22);
                 var WhenScrollBottom = applications.whenScrollBottom();
                 var num = 0;
                 new WhenScrollBottom({
@@ -1186,7 +1109,7 @@ var Sub = function (_Super) {
                 var Sub = __webpack_require__(25);
                 new Sub({ wrap: '.page-super-type' });
                 new Sub(); // constructorInherit里parameter去掉了对象引用,否则这个子类的默认参数wrap会变成上面.page-super-type(bug回忆)
-                var SuperEs6 = __webpack_require__(11);
+                var SuperEs6 = __webpack_require__(10);
                 new SuperEs6({ wrap: '.page-super-type' });
                 var SubEs6 = __webpack_require__(26);
                 new SubEs6({ wrap: '.page-super-type' });
@@ -1274,12 +1197,13 @@ var Sub = function (_Super) {
 new Sub();
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
+/* 13 */,
 /* 14 */,
 /* 15 */,
 /* 16 */,
@@ -1288,7 +1212,83 @@ new Sub();
 /* 19 */,
 /* 20 */,
 /* 21 */,
-/* 22 */,
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    // 回调
+    callback: {},
+    // 配置
+    config: {
+        status: 'loading', // 加载状态 loading(加载中) over(加载完毕)
+        positionMethod: '', // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
+        positionLocation: 'center' // 模块的定位位置
+    },
+    // 数据
+    data: {}
+});
+
+// 内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var moduleDomHtml = '';
+    var moduleDomClass = '';
+    var status = config.status;
+    var positionMethod = config.positionMethod;
+    var positionLocation = config.positionLocation;
+    // 加载中
+    if (status === 'loading') {
+        moduleDomClass = 'g-loading-run ';
+        // 相对文档居中
+        if (positionMethod === 'fixed') {
+            moduleDomClass += 'g-loading-fixed g-loading-' + positionLocation;
+        }
+        // 相对容器居中
+        if (positionMethod === 'absolute') {
+            moduleDomClass += 'g-loading-absolute g-loading-' + positionLocation;
+        }
+        moduleDomHtml = '\n            <div class="g-loading-body">\n                <div class="g-loading-run-icon iconfont icon-jiazaizhong"></div>\n            </div>\n        ';
+    }
+    // 加载完毕
+    if (status === 'over') {
+        moduleDomClass = 'g-loading-over ';
+        // 相对文档居中
+        if (positionMethod === 'fixed') {
+            moduleDomClass += 'g-loading-fixed g-loading-' + positionLocation;
+        }
+        // 相对容器居中
+        if (positionMethod === 'absolute') {
+            moduleDomClass += 'g-loading-absolute g-loading-' + positionLocation;
+        }
+        moduleDomHtml = '\n            <div class="g-loading-body">\n                <div class="g-loading-over-icon iconfont icon-meiyoushuju"></div>\n                <div class="g-loading-over-text">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ';
+    }
+    // 模块创建
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-loading ' + moduleDomClass,
+            innerHTML: moduleDomHtml
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+Sub.prototype.power = function () {
+    // 功能重写待续...
+};
+
+module.exports = Sub;
+
+/***/ }),
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1568,7 +1568,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(11); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
 
 // 子类型
 
@@ -1781,4 +1781,4 @@ Sub.prototype.power = function () {
 module.exports = Sub;
 
 /***/ })
-],[12]);
+],[11]);
