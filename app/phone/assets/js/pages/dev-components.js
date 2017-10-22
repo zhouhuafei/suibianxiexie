@@ -29,16 +29,14 @@ class Sub extends Super {
                 isInitRender: false,
                 callback: {
                     success: function (self) {
-                        if (num < 5) {
-                            num++;
-                            const Loading = require('../components/g-loading');
-                            new Loading({
-                                wrap: '.g-body',
-                                config: {
-                                    status: 'loading',
-                                },
-                            });
-                        } else {
+                        num++;
+                        new Loading({
+                            wrap: '.g-body',
+                            config: {
+                                status: 'loading',
+                            },
+                        });
+                        if (num >= 5) {
                             self.isLoadOver = true;
                             new Loading({
                                 config: {
@@ -112,29 +110,23 @@ class Sub extends Super {
         // 弹窗测试
         (function () {
             const Dialog = require('../components/g-dialog');
-            const dialogAlert = new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已确认'}}});
-            const dialogAlertConfig = dialogAlert.opts.config.alert;
-            const dialogConfirm = new Dialog({
-                callback: {
-                    confirm: function () {
-                        dialogAlertConfig.content = '已确认';
-                        dialogAlert.moduleDomShow();
-                    },
-                    cancel: function () {
-                        dialogAlertConfig.content = '已取消';
-                        dialogAlert.moduleDomShow();
-                    },
-                    close: function () {
-                        dialogAlertConfig.content = '已关闭';
-                        dialogAlert.moduleDomShow();
-                    },
-                },
-                config: {
-                    type: 'confirm',
-                },
-            });
             document.querySelector('.page-button-dialog').addEventListener('click', function () {
-                dialogConfirm.moduleDomShow();
+                new Dialog({
+                    callback: {
+                        confirm: function () {
+                            new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已确认'}}});
+                        },
+                        cancel: function () {
+                            new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已取消'}}});
+                        },
+                        close: function () {
+                            new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已关闭'}}});
+                        },
+                    },
+                    config: {
+                        type: 'confirm',
+                    },
+                });
             });
         }());
 

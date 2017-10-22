@@ -66,6 +66,12 @@ class Super {
         const self = this;
         const gDataInfo = self.dataInfo;
 
+        // 返回顶部
+        const GoTop = require('../components/g-go-top');
+        new GoTop({
+            wrap: '.page-go-top-wrap',
+        });
+
         // 版权
         if (gDataInfo && gDataInfo.isShowCopyright) {
             const Copyright = require('../components/g-copyright');
@@ -80,12 +86,6 @@ class Super {
             gDataInfo.footerNav.wrap = '.page-footer-nav-wrap';
             new Footer(gDataInfo.footerNav);
         }
-
-        // 返回顶部
-        const GoTop = require('../components/g-go-top');
-        new GoTop({
-            wrap: '.page-go-top-wrap',
-        });
 
         // 延迟加载
         self.lazyload.render();

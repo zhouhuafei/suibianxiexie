@@ -658,8 +658,7 @@ module.exports = Sub;
 /***/ }),
 /* 8 */,
 /* 9 */,
-/* 10 */,
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -736,7 +735,7 @@ Sub.prototype.power = function () {
 module.exports = Sub;
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -830,8 +829,7 @@ var Super = function () {
                         child: null
                     },
                     moduleDomStyle: {}, // 内部模块的样式
-                    moduleDomIsShow: true, // 内部模块是否显示(默认显示,尽量使用这个属性,性能高)
-                    moduleDomIsRender: true, // 内部模块是否渲染(默认渲染,尽量不用这个属性,性能低)
+                    moduleDomIsRender: true, // 内部模块是否渲染
                     moduleDomIsClearTimer: true // 内部模块是否清除所有定时器(默认清除)
                 },
                 // 数据
@@ -903,9 +901,6 @@ var Super = function () {
         value: function moduleDomRender() {
             var callback = this.opts.callback;
             var config = this.opts.config;
-            if (!config.moduleDomIsShow) {
-                this.moduleDom.style.display = 'none';
-            }
             if (config.moduleDomIsRender && this.wrapDom) {
                 callback.moduleDomRenderBefore(this);
                 var renderMethod = config.moduleDomRenderMethod;
@@ -958,9 +953,12 @@ var Super = function () {
         key: 'moduleDomHide',
         value: function moduleDomHide() {
             var callback = this.opts.callback;
-            callback.moduleDomHideBefore(this);
-            this.moduleDom.style.display = 'none';
-            callback.moduleDomHideAfter(this);
+            if (this.moduleDom.parentNode) {
+                this.opts.config.moduleDomIsRender = false;
+                callback.moduleDomHideBefore(this);
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+                callback.moduleDomHideAfter(this);
+            }
         }
 
         // 内部模块的显示(显示隐藏和是否清除定时器无关)
@@ -970,7 +968,10 @@ var Super = function () {
         value: function moduleDomShow() {
             var callback = this.opts.callback;
             callback.moduleDomShowBefore(this);
-            this.moduleDom.style.display = '';
+            if (this.wrapDom) {
+                this.opts.config.moduleDomIsRender = true;
+                this.moduleDomRender();
+            }
             callback.moduleDomShowAfter(this);
         }
 
@@ -1016,7 +1017,7 @@ var Super = function () {
 module.exports = Super;
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1030,7 +1031,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(14);
+__webpack_require__(13);
 var Super = __webpack_require__(3);
 
 var Sub = function (_Super) {
@@ -1064,23 +1065,21 @@ var Sub = function (_Super) {
 
             // 测试滚动到底部功能以及loading组件
             (function () {
-                var Loading = __webpack_require__(11);
+                var Loading = __webpack_require__(10);
                 var WhenScrollBottom = applications.whenScrollBottom();
                 var num = 0;
                 new WhenScrollBottom({
                     isInitRender: false,
                     callback: {
                         success: function success(self) {
-                            if (num < 5) {
-                                num++;
-                                var _Loading = __webpack_require__(11);
-                                new _Loading({
-                                    wrap: '.g-body',
-                                    config: {
-                                        status: 'loading'
-                                    }
-                                });
-                            } else {
+                            num++;
+                            new Loading({
+                                wrap: '.g-body',
+                                config: {
+                                    status: 'loading'
+                                }
+                            });
+                            if (num >= 5) {
                                 self.isLoadOver = true;
                                 new Loading({
                                     config: {
@@ -1148,29 +1147,23 @@ var Sub = function (_Super) {
             // 弹窗测试
             (function () {
                 var Dialog = __webpack_require__(4);
-                var dialogAlert = new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已确认' } } });
-                var dialogAlertConfig = dialogAlert.opts.config.alert;
-                var dialogConfirm = new Dialog({
-                    callback: {
-                        confirm: function confirm() {
-                            dialogAlertConfig.content = '已确认';
-                            dialogAlert.moduleDomShow();
-                        },
-                        cancel: function cancel() {
-                            dialogAlertConfig.content = '已取消';
-                            dialogAlert.moduleDomShow();
-                        },
-                        close: function close() {
-                            dialogAlertConfig.content = '已关闭';
-                            dialogAlert.moduleDomShow();
-                        }
-                    },
-                    config: {
-                        type: 'confirm'
-                    }
-                });
                 document.querySelector('.page-button-dialog').addEventListener('click', function () {
-                    dialogConfirm.moduleDomShow();
+                    new Dialog({
+                        callback: {
+                            confirm: function confirm() {
+                                new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已确认' } } });
+                            },
+                            cancel: function cancel() {
+                                new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已取消' } } });
+                            },
+                            close: function close() {
+                                new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '已关闭' } } });
+                            }
+                        },
+                        config: {
+                            type: 'confirm'
+                        }
+                    });
                 });
             })();
 
@@ -1193,7 +1186,7 @@ var Sub = function (_Super) {
                 var Sub = __webpack_require__(25);
                 new Sub({ wrap: '.page-super-type' });
                 new Sub(); // constructorInherit里parameter去掉了对象引用,否则这个子类的默认参数wrap会变成上面.page-super-type(bug回忆)
-                var SuperEs6 = __webpack_require__(12);
+                var SuperEs6 = __webpack_require__(11);
                 new SuperEs6({ wrap: '.page-super-type' });
                 var SubEs6 = __webpack_require__(26);
                 new SubEs6({ wrap: '.page-super-type' });
@@ -1281,12 +1274,13 @@ var Sub = function (_Super) {
 new Sub();
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
+/* 14 */,
 /* 15 */,
 /* 16 */,
 /* 17 */,
@@ -1574,7 +1568,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(11); // 超类型(子类型继承的对象)
 
 // 子类型
 
@@ -1787,4 +1781,4 @@ Sub.prototype.power = function () {
 module.exports = Sub;
 
 /***/ })
-],[13]);
+],[12]);

@@ -79,8 +79,7 @@ class Super {
                         child: null,
                     },
                     moduleDomStyle: {}, // 内部模块的样式
-                    moduleDomIsShow: true, // 内部模块是否显示(默认显示,尽量使用这个属性,性能高)
-                    moduleDomIsRender: true, // 内部模块是否渲染(默认渲染,尽量不用这个属性,性能低)
+                    moduleDomIsRender: true, // 内部模块是否渲染
                     moduleDomIsClearTimer: true, // 内部模块是否清除所有定时器(默认清除)
                 },
                 // 数据
@@ -138,9 +137,6 @@ class Super {
     moduleDomRender() {
         const callback = this.opts.callback;
         const config = this.opts.config;
-        if (!config.moduleDomIsShow) {
-            this.moduleDom.style.display = 'none';
-        }
         if (config.moduleDomIsRender && this.wrapDom) {
             callback.moduleDomRenderBefore(this);
             const renderMethod = config.moduleDomRenderMethod;
@@ -184,16 +180,22 @@ class Super {
     // 内部模块的隐藏(显示隐藏和是否清除定时器无关)
     moduleDomHide() {
         const callback = this.opts.callback;
-        callback.moduleDomHideBefore(this);
-        this.moduleDom.style.display = 'none';
-        callback.moduleDomHideAfter(this);
+        if (this.moduleDom.parentNode) {
+            this.opts.config.moduleDomIsRender = false;
+            callback.moduleDomHideBefore(this);
+            this.moduleDom.parentNode.removeChild(this.moduleDom);
+            callback.moduleDomHideAfter(this);
+        }
     }
 
     // 内部模块的显示(显示隐藏和是否清除定时器无关)
     moduleDomShow() {
         const callback = this.opts.callback;
         callback.moduleDomShowBefore(this);
-        this.moduleDom.style.display = '';
+        if (this.wrapDom) {
+            this.opts.config.moduleDomIsRender = true;
+            this.moduleDomRender();
+        }
         callback.moduleDomShowAfter(this);
     }
 

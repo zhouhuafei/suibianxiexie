@@ -1012,8 +1012,7 @@ function Super(json) {
                     child: null
                 },
                 moduleDomStyle: {}, // 内部模块的样式
-                moduleDomIsShow: true, // 内部模块是否显示(默认显示,尽量使用这个属性,性能高)
-                moduleDomIsRender: true, // 内部模块是否渲染(默认渲染,尽量不用这个属性,性能低)
+                moduleDomIsRender: true, // 内部模块是否渲染
                 moduleDomIsClearTimer: true // 内部模块是否清除所有定时器(默认清除)
             },
             // 数据
@@ -1069,9 +1068,6 @@ Super.prototype.moduleDomCreate = function () {
 Super.prototype.moduleDomRender = function () {
     var callback = this.opts.callback;
     var config = this.opts.config;
-    if (!config.moduleDomIsShow) {
-        this.moduleDom.style.display = 'none';
-    }
     if (config.moduleDomIsRender && this.wrapDom) {
         callback.moduleDomRenderBefore(this);
         var renderMethod = config.moduleDomRenderMethod;
@@ -1115,16 +1111,22 @@ Super.prototype.moduleDomClearTimer = function () {
 // 内部模块的隐藏(显示隐藏和是否清除定时器无关)
 Super.prototype.moduleDomHide = function () {
     var callback = this.opts.callback;
-    callback.moduleDomHideBefore(this);
-    this.moduleDom.style.display = 'none';
-    callback.moduleDomHideAfter(this);
+    if (this.moduleDom.parentNode) {
+        this.opts.config.moduleDomIsRender = false;
+        callback.moduleDomHideBefore(this);
+        this.moduleDom.parentNode.removeChild(this.moduleDom);
+        callback.moduleDomHideAfter(this);
+    }
 };
 
 // 内部模块的显示(显示隐藏和是否清除定时器无关)
 Super.prototype.moduleDomShow = function () {
     var callback = this.opts.callback;
     callback.moduleDomShowBefore(this);
-    this.moduleDom.style.display = '';
+    if (this.wrapDom) {
+        this.opts.config.moduleDomIsRender = true;
+        this.moduleDomRender();
+    }
     callback.moduleDomShowAfter(this);
 };
 
@@ -1167,7 +1169,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-__webpack_require__(15);
+__webpack_require__(14);
 
 var Super = function () {
     function Super(json) {
@@ -1176,7 +1178,7 @@ var Super = function () {
         var self = this;
         self.tools = __webpack_require__(0); // 工具方法集合
         self.applications = __webpack_require__(1); // 应用方法集合
-        self.axios = __webpack_require__(16); // axios
+        self.axios = __webpack_require__(15); // axios
         self.jsonp = __webpack_require__(18); // jsonp
         self.opts = self.tools.extend({
             defaults: {
@@ -1250,6 +1252,12 @@ var Super = function () {
             var self = this;
             var gDataInfo = self.dataInfo;
 
+            // 返回顶部
+            var GoTop = __webpack_require__(22);
+            new GoTop({
+                wrap: '.page-go-top-wrap'
+            });
+
             // 版权
             if (gDataInfo && gDataInfo.isShowCopyright) {
                 var Copyright = __webpack_require__(20);
@@ -1264,12 +1272,6 @@ var Super = function () {
                 gDataInfo.footerNav.wrap = '.page-footer-nav-wrap';
                 new Footer(gDataInfo.footerNav);
             }
-
-            // 返回顶部
-            var GoTop = __webpack_require__(22);
-            new GoTop({
-                wrap: '.page-go-top-wrap'
-            });
 
             // 延迟加载
             self.lazyload.render();
@@ -1291,7 +1293,7 @@ module.exports = Super;
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
 var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
-var Mask = __webpack_require__(10); // 遮罩
+var Mask = __webpack_require__(17); // 遮罩
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -1301,15 +1303,11 @@ var Sub = tools.constructorInherit(Super, {
             if (self.opts.config.type === 'confirm') {
                 if (self.opts.config.confirm.isShowMask && !self.mask) {
                     self.mask = new Mask(self.opts.config.mask);
+                    self.mask.moduleDomShow();
                 }
                 if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
                     self.wrapDom.style.position = 'relative';
                 }
-            }
-        },
-        moduleDomShowBefore: function moduleDomShowBefore(self) {
-            if (self.mask) {
-                self.mask.moduleDomShow();
             }
         },
         moduleDomHideAfter: function moduleDomHideAfter(self) {
@@ -1326,7 +1324,6 @@ var Sub = tools.constructorInherit(Super, {
     },
     // 配置
     config: {
-        moduleDomIsShow: false,
         /*
          * 弹窗类型
          * `alert`  提示信息类型
@@ -1509,80 +1506,17 @@ module.exports = Sub;
 /* 7 */,
 /* 8 */,
 /* 9 */,
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    // 回调
-    callback: {
-        click: function click() {},
-        moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-            if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
-                self.wrapDom.style.position = 'relative';
-            }
-        }
-    },
-    // 配置
-    config: {
-        moduleDomIsShow: false,
-        isTransparent: false, // 是不是透明的(默认不透明)
-        positionMethod: 'fixed' // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
-    },
-    // 数据
-    data: {}
-});
-
-// 内部模块的创建(覆盖超类型)
-Sub.prototype.moduleDomCreate = function () {
-    var config = this.opts.config;
-    var className = '';
-    if (config.isTransparent) {
-        className = 'g-mask-transparent';
-    }
-    if (config.positionMethod === 'fixed') {
-        className = 'g-mask-fixed';
-    }
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-mask ' + className,
-            innerHTML: ''
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-Sub.prototype.power = function () {
-    var self = this;
-    this.moduleDom.addEventListener('click', function (ev) {
-        self.opts.callback.click();
-        ev.stopPropagation();
-    });
-};
-
-module.exports = Sub;
-
-/***/ }),
+/* 10 */,
 /* 11 */,
 /* 12 */,
 /* 13 */,
-/* 14 */,
-/* 15 */
+/* 14 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1646,7 +1580,70 @@ module.exports = function (json) {
 };
 
 /***/ }),
-/* 17 */,
+/* 16 */,
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    // 回调
+    callback: {
+        click: function click() {},
+        moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+            if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
+                self.wrapDom.style.position = 'relative';
+            }
+        }
+    },
+    // 配置
+    config: {
+        moduleDomIsRender: false,
+        isTransparent: false, // 是不是透明的(默认不透明)
+        positionMethod: 'fixed' // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
+    },
+    // 数据
+    data: {}
+});
+
+// 内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var className = '';
+    if (config.isTransparent) {
+        className = 'g-mask-transparent';
+    }
+    if (config.positionMethod === 'fixed') {
+        className = 'g-mask-fixed';
+    }
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-mask ' + className,
+            innerHTML: ''
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    this.moduleDom.addEventListener('click', function (ev) {
+        self.opts.callback.click();
+        ev.stopPropagation();
+    });
+};
+
+module.exports = Sub;
+
+/***/ }),
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
