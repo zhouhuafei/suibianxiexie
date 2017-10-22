@@ -1303,7 +1303,6 @@ var Sub = tools.constructorInherit(Super, {
             if (self.opts.config.type === 'confirm') {
                 if (self.opts.config.confirm.isShowMask && !self.mask) {
                     self.mask = new Mask(self.opts.config.mask);
-                    self.mask.moduleDomShow();
                 }
                 if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
                     self.wrapDom.style.position = 'relative';
@@ -1603,7 +1602,6 @@ var Sub = tools.constructorInherit(Super, {
     },
     // 配置
     config: {
-        moduleDomIsRender: false,
         isTransparent: false, // 是不是透明的(默认不透明)
         positionMethod: 'fixed' // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
     },

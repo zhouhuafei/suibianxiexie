@@ -11,7 +11,6 @@ const Sub = tools.constructorInherit(Super, {
             if (self.opts.config.type === 'confirm') {
                 if (self.opts.config.confirm.isShowMask && !self.mask) {
                     self.mask = new Mask(self.opts.config.mask);
-                    self.mask.moduleDomShow();
                 }
                 if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
                     self.wrapDom.style.position = 'relative';

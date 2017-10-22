@@ -16,7 +16,6 @@ const Sub = tools.constructorInherit(Super, {
     },
     // 配置
     config: {
-        moduleDomIsRender: false,
         isTransparent: false, // 是不是透明的(默认不透明)
         positionMethod: 'fixed', // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
     },
