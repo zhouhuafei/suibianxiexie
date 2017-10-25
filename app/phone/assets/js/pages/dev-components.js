@@ -227,15 +227,6 @@ class Sub extends Super {
 
         // 星评
         (function () {
-            // const Star = require('../components-dom/g-star');
-            // new Star({
-            //     wrap: `.page-star`,
-            //     callback: {
-            //         click: function (json) {
-            //             console.log(json);
-            //         }
-            //     }
-            // });
             require.ensure([], function (require) {
                 const Star = require('../components-dom/g-star');
                 new Star({

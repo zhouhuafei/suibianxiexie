@@ -59,6 +59,16 @@ class Super {
         // 延迟加载
         const LazyLoad = require('../components-dom/g-lazy-load');
         self.lazyload = new LazyLoad(self.opts.lazyload);
+
+        // Vue
+        const Vue = require('vue');
+        Vue.config.productionTip = false;
+        Vue.prototype.$tools = self.tools;
+        Vue.prototype.$applications = self.applications;
+        Vue.prototype.$axios = self.axios;
+        Vue.prototype.$jsonp = self.jsonp;
+        Vue.prototype.$lazyload = self.lazyload;
+        self.Vue = Vue;
     }
 
     // (渲)渲染

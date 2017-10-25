@@ -29,6 +29,7 @@ var Sub = function (_Super) {
     _createClass(Sub, [{
         key: 'power',
         value: function power() {
+            var superSelf = this;
             // slide切换
             (function () {
                 var Slide = __webpack_require__(5);
@@ -83,12 +84,22 @@ var Sub = function (_Super) {
 
             // vue
             (function () {
-                __webpack_require__(38);
-                var Vue = __webpack_require__(8);
-                new Vue({
-                    el: '.page-vue-app',
-                    template: '<div class="page-vue">\n                    <g-img-list></g-img-list>\n                </div>'
-                });
+                var Vue = superSelf.Vue;
+                __webpack_require__.e/* require.ensure */(17).then((function (require) {
+                    __webpack_require__(38)(Vue);
+                    new Vue({
+                        el: '.page-vue-app',
+                        template: '<div class="page-vue">\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                    </div>',
+                        mounted: function mounted() {
+                            console.log('this.$tools\n', this.$tools);
+                            console.log('this.$applications\n', this.$applications);
+                            console.log('this.$axios\n', this.$axios);
+                            console.log('this.$jsonp\n', this.$jsonp);
+                            console.log('this.$lazyload\n', this.$lazyload);
+                            // console.log('this.$store.state\n', this.$store.state);
+                        }
+                    });
+                }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
             })();
 
             // jsonp错误测试
@@ -127,38 +138,6 @@ new Sub();
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 38:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _vue = __webpack_require__(8);
-
-var _vue2 = _interopRequireDefault(_vue);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_vue2.default.component('g-img-list', {
-    template: '<div class="g-img-list">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(40) + '" alt="">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(41) + '" alt="">\n    </div>'
-});
-
-/***/ }),
-
-/***/ 40:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/p-waiting.d4f6dd4c.jpg";
-
-/***/ }),
-
-/***/ 41:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/p-waiting.054b1f3c.png";
 
 /***/ }),
 

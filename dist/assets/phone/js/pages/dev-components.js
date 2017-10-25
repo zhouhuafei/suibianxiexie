@@ -1167,15 +1167,6 @@ var Sub = function (_Super) {
 
             // 星评
             (function () {
-                // const Star = require('../components-dom/g-star');
-                // new Star({
-                //     wrap: `.page-star`,
-                //     callback: {
-                //         click: function (json) {
-                //             console.log(json);
-                //         }
-                //     }
-                // });
                 __webpack_require__.e/* require.ensure */(0).then((function (require) {
                     var Star = __webpack_require__(57);
                     new Star({

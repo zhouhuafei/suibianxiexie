@@ -3,6 +3,7 @@ const Super = require('./super');
 
 class Sub extends Super {
     power() {
+        const superSelf = this;
         // slide切换
         (function () {
             const Slide = require('../components-dom/g-slide');
@@ -63,14 +64,33 @@ class Sub extends Super {
 
         // vue
         (function () {
-            require('../components-vue/g-img-list');
-            const Vue = require('vue');
-            new Vue({
-                el: '.page-vue-app',
-                template: `<div class="page-vue">
-                    <g-img-list></g-img-list>
-                </div>`,
-            });
+            const Vue = superSelf.Vue;
+            require.ensure([], function (require) {
+                require('../components-vue/g-img-list')(Vue);
+                new Vue({
+                    el: '.page-vue-app',
+                    template: `<div class="page-vue">
+                        <g-img-list></g-img-list>
+                        <g-img-list></g-img-list>
+                        <g-img-list></g-img-list>
+                        <g-img-list></g-img-list>
+                        <g-img-list></g-img-list>
+                        <g-img-list></g-img-list>
+                        <g-img-list></g-img-list>
+                        <g-img-list></g-img-list>
+                        <g-img-list></g-img-list>
+                        <g-img-list></g-img-list>
+                    </div>`,
+                    mounted() {
+                        console.log('this.$tools\n', this.$tools);
+                        console.log('this.$applications\n', this.$applications);
+                        console.log('this.$axios\n', this.$axios);
+                        console.log('this.$jsonp\n', this.$jsonp);
+                        console.log('this.$lazyload\n', this.$lazyload);
+                        // console.log('this.$store.state\n', this.$store.state);
+                    },
+                });
+            }, 'g-img-list');
         }());
 
         // jsonp错误测试

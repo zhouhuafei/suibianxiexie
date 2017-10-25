@@ -1242,6 +1242,16 @@ var Super = function () {
             // 延迟加载
             var LazyLoad = __webpack_require__(18);
             self.lazyload = new LazyLoad(self.opts.lazyload);
+
+            // Vue
+            var Vue = __webpack_require__(8);
+            Vue.config.productionTip = false;
+            Vue.prototype.$tools = self.tools;
+            Vue.prototype.$applications = self.applications;
+            Vue.prototype.$axios = self.axios;
+            Vue.prototype.$jsonp = self.jsonp;
+            Vue.prototype.$lazyload = self.lazyload;
+            self.Vue = Vue;
         }
 
         // (渲)渲染
