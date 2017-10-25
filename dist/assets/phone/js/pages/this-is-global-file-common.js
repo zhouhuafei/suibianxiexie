@@ -1,4 +1,4 @@
-webpackJsonp([2],[
+webpackJsonp([3],[
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1244,7 +1244,7 @@ var Super = function () {
             self.lazyload = new LazyLoad(self.opts.lazyload);
 
             // Vue
-            var Vue = __webpack_require__(8);
+            var Vue = __webpack_require__(9);
             Vue.config.productionTip = false;
             Vue.prototype.$tools = self.tools;
             Vue.prototype.$applications = self.applications;
@@ -1263,14 +1263,14 @@ var Super = function () {
             var gDataInfo = self.dataInfo;
 
             // 返回顶部
-            var GoTop = __webpack_require__(19);
+            var GoTop = __webpack_require__(20);
             new GoTop({
                 wrap: '.page-go-top-wrap'
             });
 
             // 版权
             if (gDataInfo && gDataInfo.isShowCopyright) {
-                var Copyright = __webpack_require__(20);
+                var Copyright = __webpack_require__(21);
                 new Copyright({
                     wrap: '.page-copyright-wrap'
                 });
@@ -1278,7 +1278,7 @@ var Super = function () {
 
             // 底部导航
             if (gDataInfo && gDataInfo.footerNav) {
-                var Footer = __webpack_require__(21);
+                var Footer = __webpack_require__(22);
                 gDataInfo.footerNav.wrap = '.page-footer-nav-wrap';
                 new Footer(gDataInfo.footerNav);
             }
@@ -1530,7 +1530,7 @@ module.exports = Sub;
 "use strict";
 
 
-var axios = __webpack_require__(9);
+var axios = __webpack_require__(8);
 var tools = __webpack_require__(0);
 var Dialog = __webpack_require__(4);
 
@@ -1811,7 +1811,8 @@ LazyLoad.prototype.power = function () {
 module.exports = LazyLoad;
 
 /***/ }),
-/* 19 */
+/* 19 */,
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1866,7 +1867,7 @@ Sub.prototype.power = function () {
 module.exports = Sub;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1908,7 +1909,7 @@ Sub.prototype.power = function () {
 module.exports = Sub;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

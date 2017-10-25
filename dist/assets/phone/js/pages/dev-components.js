@@ -1,4 +1,4 @@
-webpackJsonp([1],[
+webpackJsonp([2],[
 /* 0 */,
 /* 1 */,
 /* 2 */,
@@ -988,7 +988,7 @@ var Sub = function (_Super) {
 
             // 测试滚动到底部功能以及loading组件
             (function () {
-                var Loading = __webpack_require__(22);
+                var Loading = __webpack_require__(23);
                 var WhenScrollBottom = applications.whenScrollBottom();
                 var num = 0;
                 new WhenScrollBottom({
@@ -1092,13 +1092,13 @@ var Sub = function (_Super) {
 
             // 分页测试
             (function () {
-                var Pagination = __webpack_require__(23);
+                var Pagination = __webpack_require__(24);
                 new Pagination({ wrap: '.page-pagination' });
             })();
 
             // 没有数据
             (function () {
-                var NoData = __webpack_require__(24);
+                var NoData = __webpack_require__(25);
                 new NoData({ wrap: '.page-no-data' });
             })();
 
@@ -1106,18 +1106,18 @@ var Sub = function (_Super) {
             (function () {
                 var Super = __webpack_require__(2);
                 new Super({ wrap: '.page-super-type' });
-                var Sub = __webpack_require__(25);
+                var Sub = __webpack_require__(26);
                 new Sub({ wrap: '.page-super-type' });
                 new Sub(); // constructorInherit里parameter去掉了对象引用,否则这个子类的默认参数wrap会变成上面.page-super-type(bug回忆)
                 var SuperEs6 = __webpack_require__(10);
                 new SuperEs6({ wrap: '.page-super-type' });
-                var SubEs6 = __webpack_require__(26);
+                var SubEs6 = __webpack_require__(27);
                 new SubEs6({ wrap: '.page-super-type' });
             })();
 
             // 单选开关
             (function () {
-                var Radio = __webpack_require__(27);
+                var Radio = __webpack_require__(28);
                 new Radio({
                     wrap: '.page-radio-switch',
                     callback: {
@@ -1130,7 +1130,7 @@ var Sub = function (_Super) {
 
             // 表格
             (function () {
-                var Table = __webpack_require__(28);
+                var Table = __webpack_require__(29);
                 new Table({
                     wrap: '.page-table',
                     data: {
@@ -1167,8 +1167,8 @@ var Sub = function (_Super) {
 
             // 星评
             (function () {
-                __webpack_require__.e/* require.ensure */(0).then((function (require) {
-                    var Star = __webpack_require__(57);
+                __webpack_require__.e/* require.ensure */(1).then((function (require) {
+                    var Star = __webpack_require__(54);
                     new Star({
                         wrap: '.page-star',
                         callback: {
@@ -1203,7 +1203,8 @@ new Sub();
 /* 19 */,
 /* 20 */,
 /* 21 */,
-/* 22 */
+/* 22 */,
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1280,7 +1281,7 @@ Sub.prototype.power = function () {
 module.exports = Sub;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1446,7 +1447,7 @@ Sub.prototype.nextPageEnable = function () {
 module.exports = Sub;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1503,7 +1504,7 @@ Sub.prototype.power = function () {
 module.exports = Sub;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1543,7 +1544,7 @@ Sub.prototype.power = function () {
 module.exports = Sub;
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1613,7 +1614,7 @@ var Sub = function (_Super) {
 module.exports = Sub;
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1704,7 +1705,7 @@ Sub.prototype.off = function () {
 module.exports = Sub;
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
