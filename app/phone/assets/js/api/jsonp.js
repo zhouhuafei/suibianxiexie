@@ -1,5 +1,5 @@
 const tools = require('../utils/tools');
-const Dialog = require('../components/g-dialog');
+const Dialog = require('../components-dom/g-dialog');
 module.exports = function (json) {
     const opts = tools.extend({
         defaults: {

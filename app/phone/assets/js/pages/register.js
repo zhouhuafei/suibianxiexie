@@ -33,7 +33,7 @@ class Sub extends Super {
                     },
                 }).then(function (dataInfo) {
                     if (dataInfo.status === 'success') {
-                        const Dialog = require('../components/g-dialog');
+                        const Dialog = require('../components-dom/g-dialog');
                         new Dialog({config: {alert: {icon: 'icon-chenggong', content: '验证码已发送'}}});
                         domSelf.classList.add(domGetVerifyCodeInactive);
                         self.tools.timeCountDown({

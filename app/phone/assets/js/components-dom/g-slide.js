@@ -1,6 +1,6 @@
 const tools = require('../utils/tools');// 工具方法集合
 const applications = require('../utils/applications');// 应用方法集合
-const Super = require('../components/g-super');// 超类型(子类型继承的对象)
+const Super = require('./g-super');// 超类型(子类型继承的对象)
 const TouchSlide = require('../plugs/touch-slide');// 轮播图插件
 
 // 子类型

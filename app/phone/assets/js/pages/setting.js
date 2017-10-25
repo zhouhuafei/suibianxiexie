@@ -6,7 +6,7 @@ class Sub extends Super {
         const self = this;
         const gDataInfo = self.dataInfo;
         const axios = self.axios;
-        const Dialog = require('../components/g-dialog');
+        const Dialog = require('../components-dom/g-dialog');
 
         // 退出账号
         document.querySelector('.page-logout').addEventListener('click', function () {

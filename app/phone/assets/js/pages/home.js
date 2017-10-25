@@ -5,7 +5,7 @@ class Sub extends Super {
     power() {
         // slide切换
         (function () {
-            const Slide = require('../components/g-slide');
+            const Slide = require('../components-dom/g-slide');
             new Slide({
                 wrap: '.page-slide',
                 data: {
@@ -57,7 +57,7 @@ class Sub extends Super {
 
         // 导航
         (function () {
-            const Navigation = require('../components/g-navigation');
+            const Navigation = require('../components-dom/g-navigation');
             new Navigation({wrap: '.page-navigation'});
         }());
 

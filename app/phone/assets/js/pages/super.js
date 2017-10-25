@@ -57,7 +57,7 @@ class Super {
         }());
 
         // 延迟加载
-        const LazyLoad = require('../components/g-lazy-load');
+        const LazyLoad = require('../components-dom/g-lazy-load');
         self.lazyload = new LazyLoad(self.opts.lazyload);
     }
 
@@ -67,14 +67,14 @@ class Super {
         const gDataInfo = self.dataInfo;
 
         // 返回顶部
-        const GoTop = require('../components/g-go-top');
+        const GoTop = require('../components-dom/g-go-top');
         new GoTop({
             wrap: '.page-go-top-wrap',
         });
 
         // 版权
         if (gDataInfo && gDataInfo.isShowCopyright) {
-            const Copyright = require('../components/g-copyright');
+            const Copyright = require('../components-dom/g-copyright');
             new Copyright({
                 wrap: '.page-copyright-wrap',
             });
@@ -82,7 +82,7 @@ class Super {
 
         // 底部导航
         if (gDataInfo && gDataInfo.footerNav) {
-            const Footer = require('../components/g-footer-nav');
+            const Footer = require('../components-dom/g-footer-nav');
             gDataInfo.footerNav.wrap = '.page-footer-nav-wrap';
             new Footer(gDataInfo.footerNav);
         }

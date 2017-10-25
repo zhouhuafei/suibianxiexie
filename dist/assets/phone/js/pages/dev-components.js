@@ -1167,7 +1167,7 @@ var Sub = function (_Super) {
 
             // 星评
             (function () {
-                // const Star = require('../components/g-star');
+                // const Star = require('../components-dom/g-star');
                 // new Star({
                 //     wrap: `.page-star`,
                 //     callback: {

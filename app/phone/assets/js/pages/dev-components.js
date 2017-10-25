@@ -22,7 +22,7 @@ class Sub extends Super {
 
         // 测试滚动到底部功能以及loading组件
         (function () {
-            const Loading = require('../components/g-loading');
+            const Loading = require('../components-dom/g-loading');
             const WhenScrollBottom = applications.whenScrollBottom();
             let num = 0;
             new WhenScrollBottom({
@@ -51,7 +51,7 @@ class Sub extends Super {
 
         // slide切换
         (function () {
-            const Slide = require('../components/g-slide');
+            const Slide = require('../components-dom/g-slide');
             new Slide({
                 wrap: '.page-slide',
                 data: {
@@ -103,13 +103,13 @@ class Sub extends Super {
 
         // 导航
         (function () {
-            const Navigation = require('../components/g-navigation');
+            const Navigation = require('../components-dom/g-navigation');
             new Navigation({wrap: '.page-navigation'});
         }());
 
         // 弹窗测试
         (function () {
-            const Dialog = require('../components/g-dialog');
+            const Dialog = require('../components-dom/g-dialog');
             document.querySelector('.page-button-dialog').addEventListener('click', function () {
                 new Dialog({
                     callback: {
@@ -132,32 +132,32 @@ class Sub extends Super {
 
         // 分页测试
         (function () {
-            const Pagination = require('../components/g-pagination');
+            const Pagination = require('../components-dom/g-pagination');
             new Pagination({wrap: '.page-pagination'});
         }());
 
         // 没有数据
         (function () {
-            const NoData = require('../components/g-no-data');
+            const NoData = require('../components-dom/g-no-data');
             new NoData({wrap: '.page-no-data'});
         }());
 
         // 超类型模块测试
         (function () {
-            const Super = require('../components/g-super');
+            const Super = require('../components-dom/g-super');
             new Super({wrap: '.page-super-type'});
-            const Sub = require('../components/g-sub');
+            const Sub = require('../components-dom/g-sub');
             new Sub({wrap: '.page-super-type'});
             new Sub(); // constructorInherit里parameter去掉了对象引用,否则这个子类的默认参数wrap会变成上面.page-super-type(bug回忆)
-            const SuperEs6 = require('../components/g-super-es6');
+            const SuperEs6 = require('../components-dom/g-super-es6');
             new SuperEs6({wrap: '.page-super-type'});
-            const SubEs6 = require('../components/g-sub-es6');
+            const SubEs6 = require('../components-dom/g-sub-es6');
             new SubEs6({wrap: '.page-super-type'});
         }());
 
         // 单选开关
         (function () {
-            const Radio = require('../components/g-radio-switch');
+            const Radio = require('../components-dom/g-radio-switch');
             new Radio({
                 wrap: '.page-radio-switch',
                 callback: {
@@ -170,7 +170,7 @@ class Sub extends Super {
 
         // 表格
         (function () {
-            const Table = require('../components/g-table');
+            const Table = require('../components-dom/g-table');
             new Table({
                 wrap: '.page-table',
                 data: {
@@ -227,7 +227,7 @@ class Sub extends Super {
 
         // 星评
         (function () {
-            // const Star = require('../components/g-star');
+            // const Star = require('../components-dom/g-star');
             // new Star({
             //     wrap: `.page-star`,
             //     callback: {
@@ -237,7 +237,7 @@ class Sub extends Super {
             //     }
             // });
             require.ensure([], function (require) {
-                const Star = require('../components/g-star');
+                const Star = require('../components-dom/g-star');
                 new Star({
                     wrap: '.page-star',
                     callback: {
