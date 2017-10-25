@@ -87,7 +87,7 @@ var Sub = function (_Super) {
                 var Vue = __webpack_require__(8);
                 new Vue({
                     el: '.page-vue-app',
-                    template: '<div class="page-vue">\n                    <g-picture-list></g-picture-list>\n                </div>'
+                    template: '<div class="page-vue">\n                    <g-img-list></g-img-list>\n                </div>'
                 });
             })();
 
@@ -142,8 +142,8 @@ var _vue2 = _interopRequireDefault(_vue);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_vue2.default.component('g-picture-list', {
-    template: '<div class="g-picture-list">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(40) + '" alt="">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(41) + '" alt="">\n    </div>'
+_vue2.default.component('g-img-list', {
+    template: '<div class="g-img-list">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(40) + '" alt="">\n        <img class="g-lazy-load" data-src="' + __webpack_require__(41) + '" alt="">\n    </div>'
 });
 
 /***/ }),

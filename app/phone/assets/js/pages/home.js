@@ -68,7 +68,7 @@ class Sub extends Super {
             new Vue({
                 el: '.page-vue-app',
                 template: `<div class="page-vue">
-                    <g-picture-list></g-picture-list>
+                    <g-img-list></g-img-list>
                 </div>`,
             });
         }());
