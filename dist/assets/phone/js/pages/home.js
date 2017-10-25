@@ -96,7 +96,6 @@ var Sub = function (_Super) {
                             console.log('this.$axios\n', this.$axios);
                             console.log('this.$jsonp\n', this.$jsonp);
                             console.log('this.$lazyload\n', this.$lazyload);
-                            // console.log('this.$store.state\n', this.$store.state);
                         }
                     });
                 }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);

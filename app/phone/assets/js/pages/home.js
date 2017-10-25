@@ -87,7 +87,6 @@ class Sub extends Super {
                         console.log('this.$axios\n', this.$axios);
                         console.log('this.$jsonp\n', this.$jsonp);
                         console.log('this.$lazyload\n', this.$lazyload);
-                        // console.log('this.$store.state\n', this.$store.state);
                     },
                 });
             }, 'g-img-list');
