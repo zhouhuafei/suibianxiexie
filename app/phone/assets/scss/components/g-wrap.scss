@@ -61,6 +61,9 @@ html.g-pc {
                     justify-content: center;
                 }
                 .g-qr-code-svg {
+                    svg {
+                        vertical-align: middle;
+                    }
                 }
             }
         }

@@ -380,6 +380,8 @@ html.g-pc {
         -webkit-box-pack: center;
             -ms-flex-pack: center;
                 justify-content: center; }
+      html.g-pc .g-wrap .g-header .g-qr-code .g-qr-code-svg svg {
+        vertical-align: middle; }
 
 .g-button {
   height: 1.25rem;
