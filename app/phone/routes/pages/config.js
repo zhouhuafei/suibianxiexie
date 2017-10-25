@@ -6,6 +6,10 @@ const pathConfig = {
 // 路由的名字
 const routeName = [
     {
+        name: 'game-list', // 游戏-列表页
+        title: '游戏列表',
+    },
+    {
         name: 'dev-list', // 开发-列表页
         title: '开发列表',
     },

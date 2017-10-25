@@ -102,7 +102,7 @@ const plugins = [
 // 插件----处理页面视图模板页面文件
 const allPagesViews = fs.readdirSync(`${configPath.viewsEntryPath}pages/`);
 allPagesViews.forEach(function (v) {
-    const fileName = path.basename(v, '.hbs');
+    const fileName = path.basename(v, '.ejs');
     plugins.push(new HtmlWebpackPlugin({
         template: `${configPath.viewsEntryPath}pages/${v}`, // 模板
         filename: `${configPath.viewsOutputPath}pages/${v}`, // 文件名
@@ -111,12 +111,12 @@ allPagesViews.forEach(function (v) {
         minify: configEnvironment.minView, // 压缩视图模板文件
     }));
 });
-// 插件----处理模块视图模板模块文件
-const allPartialsViews = fs.readdirSync(`${configPath.viewsEntryPath}partials/`);
+// 插件----处理页面视图模板公共文件
+const allPartialsViews = fs.readdirSync(`${configPath.viewsEntryPath}commons/`);
 allPartialsViews.forEach(function (v) {
     plugins.push(new HtmlWebpackPlugin({
-        template: `${configPath.viewsEntryPath}partials/${v}`, // 模板
-        filename: `${configPath.viewsOutputPath}partials/${v}`, // 文件名
+        template: `${configPath.viewsEntryPath}commons/${v}`, // 模板
+        filename: `${configPath.viewsOutputPath}commons/${v}`, // 文件名
         inject: false,
         minify: configEnvironment.minView, // 压缩视图模板文件
     }));
@@ -209,7 +209,7 @@ const webpackConfig = {
             },
             // loader----处理视图模板文件里的src
             {
-                test: /\.hbs/,
+                test: /\.ejs/,
                 exclude: /(node_modules|bower_components)/,
                 use: [
                     {

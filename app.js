@@ -28,16 +28,10 @@ app.use(session({
     },
 }));
 
-// 模版引擎(handlebars)
-const handlebars = require('express-handlebars');
-app.engine('hbs', handlebars({
-    partialsDir: 'dist/views/', // 设置页面布局模块文件的路径
-    layoutsDir: 'dist/views/', // 设置页面布局模版文件的路径(本项目没有使用到页面布局模板文件)
-    defaultLayout: '', // 设置页面的布局模版文件(本项目没有使用到页面布局模板文件)
-    extname: '.hbs',
-}));
-app.set('view engine', 'hbs');
+// 模版引擎(ejs)
+const ejs = require('ejs');
 app.set('views', 'dist/views/');
+app.set('view engine', 'ejs');
 
 // pc的路由待续...
 // phone的路由
