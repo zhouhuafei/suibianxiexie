@@ -1,4 +1,4 @@
-const mongoose = require('../../../config/mongoose');
+const mongoose = require('../../../db/mongoose');
 
 module.exports = mongoose.model('phone-personals', new mongoose.Schema({
     username: {
