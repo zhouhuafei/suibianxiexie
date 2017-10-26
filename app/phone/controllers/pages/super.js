@@ -61,26 +61,10 @@ class Super {
                         isShowMark: false,
                     },
                     {
-                        routeName: 'dev-globals',
-                        href: routesConfig['dev-globals'].route,
-                        text: routesConfig['dev-globals'].title,
-                        icon: 'icon-kaifa',
-                        isHighlight: false,
-                        isShowMark: false,
-                    },
-                    {
-                        routeName: 'dev-components',
-                        href: routesConfig['dev-components'].route,
-                        text: routesConfig['dev-components'].title,
-                        icon: 'icon-kaifa',
-                        isHighlight: false,
-                        isShowMark: false,
-                    },
-                    {
-                        routeName: 'dev-words',
-                        href: routesConfig['dev-words'].route,
-                        text: routesConfig['dev-words'].title,
-                        icon: 'icon-kaifa',
+                        routeName: 'game-list',
+                        href: routesConfig['game-list'].route,
+                        text: routesConfig['game-list'].title,
+                        icon: 'icon-youxi',
                         isHighlight: false,
                         isShowMark: false,
                     },
@@ -92,7 +76,6 @@ class Super {
                         isHighlight: false,
                         isShowMark: false,
                     },
-
                 ],
             };
             const footerNav = dataInfo.footerNav;
@@ -137,7 +120,7 @@ class Super {
         const req = opts.req;
         const data = req.data;
         // self.dataInfo数据处理待续...
-        this.render();// 渲染视图(渲染数据)
+        self.render();// 渲染视图(渲染数据)
     }
 
     // (渲)渲染视图

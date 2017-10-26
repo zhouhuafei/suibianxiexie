@@ -7,11 +7,13 @@ const pathConfig = {
 const routeName = [
     {
         name: 'game-list', // 游戏-列表页
-        title: '游戏列表',
+        title: '游戏',
+        isValidateLogin: false,
     },
     {
         name: 'dev-list', // 开发-列表页
         title: '开发列表',
+        isValidateLogin: false,
     },
     {
         name: 'dev-globals', // 开发-全局页
@@ -32,6 +34,7 @@ const routeName = [
     {
         name: 'mine', // 我的页面
         title: '我的',
+        isValidateLogin: false,
     },
     {
         name: 'password-find', // 忘记密码,去找回

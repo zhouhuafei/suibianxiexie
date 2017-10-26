@@ -11,7 +11,7 @@ class Sub extends Super {
         if (contentType === 'multipart/form-data') {
             const multiparter = require('multiparty');
             const form = new multiparter.Form();
-            form.parse(req, function (err, fields, files) {
+            form.parse(req, function (error, fields, files) {
                 const username = fields.username;// 用户名
                 const password = fields.password;// 密码
                 const verifyCode = fields.verifyCode;// 验证码
