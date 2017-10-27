@@ -22,16 +22,16 @@ const file = {
         content: `<!DOCTYPE html>
 <html lang="en">
     <head>
-        {{>${projectDirname}/partials/head}}
+        <% include ../commons/head.ejs %>
     </head>
     <body>
         <div class="g-wrap">
-            {{>${projectDirname}/partials/header}}            
+            <% include ../commons/header.ejs %>
             <div class="g-body">
                 <!--page start-->
                 <!--page end-->
             </div>
-            {{>${projectDirname}/partials/footer}}
+            <% include ../commons/footer.ejs %>
         </div>
     </body>
 </html>
