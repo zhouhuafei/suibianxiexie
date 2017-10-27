@@ -229,7 +229,7 @@ img {
   color: #f7ba2a; }
 
 .g-font-color-hint {
-  color: #f14344; }
+  color: #ff4949; }
 
 .g-display-none {
   display: none !important; }
@@ -456,7 +456,7 @@ html.g-pc {
   .g-input .g-input-hint {
     font-size: 0.375rem;
     padding: 0 0.0625rem;
-    color: #f14344; }
+    color: #ff4949; }
     .g-input .g-input-hint ~ .g-input-input {
       border-left: 1px solid #e6e7ed; }
   .g-input .g-input-input {
@@ -1528,7 +1528,7 @@ html.g-pc {
 
 .g-validate-form-hint {
   color: #ffffff;
-  background: #f14344;
+  background: #ff4949;
   height: 0.625rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1556,6 +1556,6 @@ html.g-pc {
     width: 0;
     height: 0;
     border: 0.1875rem solid transparent;
-    border-top-color: #f14344;
+    border-top-color: #ff4949;
     right: 0.3125rem;
     top: 0.625rem; }
