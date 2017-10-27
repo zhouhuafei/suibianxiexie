@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 57:
+/***/ 58:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ webpackJsonp([0],{
 
 module.exports = function (Vue) {
     Vue.component('g-img-list', {
-        template: '<div class="g-img-list">\n            <div style="min-height: 120px;">\n                <img class="g-lazy-load" data-src="' + __webpack_require__(58) + '" alt="">\n            </div>\n            <div style="min-height: 120px;">\n                <img class="g-lazy-load" data-src="' + __webpack_require__(59) + '" alt="">\n            </div>\n        </div>',
+        template: '<div class="g-img-list">\n            <div style="min-height: 120px;">\n                <img class="g-lazy-load" data-src="' + __webpack_require__(59) + '" alt="">\n            </div>\n            <div style="min-height: 120px;">\n                <img class="g-lazy-load" data-src="' + __webpack_require__(60) + '" alt="">\n            </div>\n        </div>',
         mounted: function mounted() {
             this.$lazyload.render();
         }
@@ -17,14 +17,14 @@ module.exports = function (Vue) {
 
 /***/ }),
 
-/***/ 58:
+/***/ 59:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/p-waiting.d4f6dd4c.jpg";
 
 /***/ }),
 
-/***/ 59:
+/***/ 60:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/p-waiting.054b1f3c.png";

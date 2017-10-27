@@ -42,6 +42,9 @@ const file = {
         path: `${assetsPath}scss/pages/`,
         fileName: fileName,
         content: `@import "../config/config";
+
+.g-body {
+}
 `,
         extendName: '.scss',
     },
@@ -60,7 +63,7 @@ new Sub();
     },
 };
 Object.keys(file).forEach(function (attr) {
-    new CreateFile({ data: file[attr] });
+    new CreateFile({data: file[attr]});
 });
 
 // 创建控制器文件
