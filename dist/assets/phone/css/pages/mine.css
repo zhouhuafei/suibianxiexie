@@ -21,7 +21,7 @@
     .g-body .page-header .page-header-wrap .page-header-photo {
       width: 2.5rem;
       height: 2.5rem;
-      border: px2px(1) solid #0089ff;
+      border: 1px solid #0089ff;
       border-radius: 0.3125rem;
       margin-right: 0.3125rem;
       overflow: hidden;
