@@ -36,7 +36,7 @@ const file = {
     </body>
 </html>
 `,
-        extendName: '.hbs',
+        extendName: '.ejs',
     },
     scss: {
         path: `${assetsPath}scss/pages/`,
