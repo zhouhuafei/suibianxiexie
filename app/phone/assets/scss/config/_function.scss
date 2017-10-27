@@ -2,8 +2,3 @@
 @function px2rem($px,$psd:320) {
     @return $px / $psd * 10rem;
 }
-
-//px转px(这个函数没有任何意义,留作纪念吧)
-@function px2px($px) {
-    @return $px * 1px;
-}

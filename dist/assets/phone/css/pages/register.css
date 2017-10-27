@@ -1,9 +1,9 @@
 .g-body .page-canvas {
-  height: 60px;
+  height: px2px(60);
   background: #e0e0e0; }
 
 .g-body .page-input-wrap {
-  margin-bottom: 10px; }
+  margin-bottom: px2px(10); }
 
 .g-body .page-guide-wrap {
   display: -webkit-box;
@@ -15,8 +15,8 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  height: 40px;
-  padding: 0 10px; }
+  height: px2px(40);
+  padding: 0 px2px(10); }
   .g-body .page-guide-wrap .page-guide-item {
     display: -webkit-box;
     display: -ms-flexbox;
