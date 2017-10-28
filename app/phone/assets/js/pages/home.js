@@ -81,6 +81,9 @@ class Sub extends Super {
                         <g-img-list></g-img-list>
                         <g-img-list></g-img-list>
                     </div>`,
+                    mounted: function () {
+                        console.log(this);
+                    },
                 });
             }, 'g-img-list');
         }());

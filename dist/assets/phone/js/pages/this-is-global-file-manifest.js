@@ -91,7 +91,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"g-img-list","1":"g-star","2":"dev-components","3":"this-is-global-file-common","4":"home","5":"this-is-global-file-vendor","6":"dev-globals","7":"setting","8":"sample","9":"register","10":"password-reset","11":"password-find","12":"mine","13":"login","14":"game-list","15":"dev-words","16":"dev-list","17":"game-biecaibaikuai","18":"super"}[chunkId]||chunkId) + "." + chunkId + ".chunk.js";
+/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"g-img-list","1":"g-star","2":"dev-components","3":"this-is-global-file-common","4":"home","5":"this-is-global-file-vendor","6":"dev-globals","7":"setting","8":"sample","9":"register","10":"password-reset","11":"password-find","12":"mine","13":"login","14":"game-list","15":"game-biecaibaikuaier","16":"dev-words","17":"dev-list","18":"super"}[chunkId]||chunkId) + "." + chunkId + ".chunk.js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {

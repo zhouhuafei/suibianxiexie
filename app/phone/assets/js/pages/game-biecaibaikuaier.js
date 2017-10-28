@@ -1,4 +1,4 @@
-require('../../scss/pages/game-biecaibaikuai.scss');
+require('../../scss/pages/game-biecaibaikuaier.scss');
 const Super = require('./super');
 
 class Sub extends Super {

@@ -76,6 +76,13 @@ class Super {
         const self = this;
         const gDataInfo = self.dataInfo;
 
+        // 二维码
+        const qrDom = document.querySelector('.g-qr-code-svg');
+        const qr = require('qr-image');
+        if (qrDom) {
+            qrDom.innerHTML = qr.imageSync(window.location.href, {type: 'svg'});
+        }
+
         // 返回顶部
         const GoTop = require('../components-dom/g-go-top');
         new GoTop({

@@ -42,7 +42,6 @@ class Super {
             isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
             routes: routesConfig, // 路由的配置
             api: apiConfig, // 接口配置
-            qrCode: applications.qrCode(`http://${req.headers.host}${req.url}`), // 二维码数据
             title: routesConfig[opts.routeName].title || '没有配置标题', // 标题(需要从配置里读取)
         };
         const dataInfo = self.dataInfo;

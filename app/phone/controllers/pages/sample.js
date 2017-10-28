@@ -9,7 +9,7 @@ class Sub extends Super {
         const req = opts.req;
         const data = req.data;
         // self.dataInfo数据处理待续...
-        console.log(req);
+        console.log(self);
         // self.dataInfo数据处理待续...
         self.render();// 渲染视图(渲染数据)
     }

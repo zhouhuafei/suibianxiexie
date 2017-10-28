@@ -46,7 +46,6 @@ html.g-pc {
             .g-qr-code {
                 $width: 144;
                 display: block;
-                width: px2px($width);
                 padding: px2px(20);
                 background: #fff;
                 border: px2px(1) solid $g-border-color-default;
@@ -61,6 +60,9 @@ html.g-pc {
                     justify-content: center;
                 }
                 .g-qr-code-svg {
+                    $width-height: 102;
+                    width: px2px($width-height);
+                    height: px2px($width-height);
                     svg {
                         vertical-align: middle;
                     }
