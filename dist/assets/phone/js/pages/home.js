@@ -1,6 +1,6 @@
 webpackJsonp([4],{
 
-/***/ 40:
+/***/ 39:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,7 +14,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(41);
+__webpack_require__(40);
 var Super = __webpack_require__(3);
 
 var Sub = function (_Super) {
@@ -86,17 +86,10 @@ var Sub = function (_Super) {
             (function () {
                 var Vue = superSelf.Vue;
                 __webpack_require__.e/* require.ensure */(0).then((function (require) {
-                    __webpack_require__(58)(Vue);
+                    __webpack_require__(57)(Vue);
                     new Vue({
                         el: '.page-vue-app',
-                        template: '<div class="page-vue">\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                    </div>',
-                        mounted: function mounted() {
-                            console.log('this.$tools\n', this.$tools);
-                            console.log('this.$applications\n', this.$applications);
-                            console.log('this.$axios\n', this.$axios);
-                            console.log('this.$jsonp\n', this.$jsonp);
-                            console.log('this.$lazyload\n', this.$lazyload);
-                        }
+                        template: '<div class="page-vue">\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                        <g-img-list></g-img-list>\n                    </div>'
                     });
                 }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
             })();
@@ -133,7 +126,7 @@ new Sub();
 
 /***/ }),
 
-/***/ 41:
+/***/ 40:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -795,4 +788,4 @@ module.exports = Sub;
 
 /***/ })
 
-},[40]);
+},[39]);
