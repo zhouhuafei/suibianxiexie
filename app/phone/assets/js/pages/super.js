@@ -78,9 +78,8 @@ class Super {
 
         // 二维码
         const qrDom = document.querySelector('.g-qr-code-svg');
-        const qr = require('qr-image');
         if (qrDom) {
-            qrDom.innerHTML = qr.imageSync(window.location.href, {type: 'svg'});
+            qrDom.innerHTML = self.applications.qrCode(window.location.href);
         }
 
         // 返回顶部
