@@ -29,7 +29,7 @@ class Sub extends Super {
                 service: 'qq',
                 auth: {
                     user: autoUser, // 发送者
-                    pass: 'bwdddjldhdvihdaf', // 授权码,通过QQ获取
+                    pass: 'prbywmamncvrgbcd', // 授权码,通过QQ获取
                 },
             });
             const mailOptions = {
@@ -57,39 +57,7 @@ class Sub extends Super {
                     });
                 }
             });
-            // 方案二 验证码存数据库里(过期时间要跑脚本,无奈,建议使用redis数据库)
-            /*
-            const VerifyCodes = require('../../models/verify-codes');
-            const verifyCodes = new VerifyCodes({
-                username: '1123486116@qq.com',
-            });
-            verifyCodes.save(function (error, result) {
-                if (error) {
-                    console.log(`Error:${error}`);
-                    self.render({
-                        status: 'failure',
-                        message: '验证码发送失败',
-                        error: error,
-                    });
-                } else {
-                    console.log(`Res:${result}`);
-                    transporter.sendMail(mailOptions, function (error, result) {
-                        if (error) {
-                            self.render({
-                                status: 'failure',
-                                message: '验证码发送失败',
-                                error: error,
-                            });
-                        } else {
-                            self.render({
-                                status: 'success',
-                                message: '验证码发送成功',
-                            });
-                        }
-                    });
-                }
-            });
-            */
+            // 验证码存redis待续
         }
     }
 }
