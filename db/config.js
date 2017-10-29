@@ -15,12 +15,12 @@ module.exports = {
         development: {
             host: 'localhost',
             port: '6379',
-            db: 7,
+            db: 0,
         },
         production: {
             host: 'localhost',
             port: '6379',
-            db: 7,
+            db: 0,
         },
     },
 };
