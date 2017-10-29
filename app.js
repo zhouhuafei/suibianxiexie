@@ -61,6 +61,9 @@ app.use(function (err, req, res) {
 // mongodb数据库链接
 const mongoose = require('./db/mongoose');
 mongoose.connection.on('connected', function () {
+    // redis数据库链接
+    const redis = require('./db/redis');
+
     // 监听端口
     const server = app.listen('5555', function () {
         console.log('server address port:\n', `http://127.0.0.1:${server.address().port}`);
