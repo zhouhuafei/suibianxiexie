@@ -3,7 +3,7 @@ const env = process.env.NODE_ENV; // 开发环境 or 生产环境
 const isProduction = env !== 'development'; // 是否是生产环境
 const configDb = require('./db/config'); // 数据库配置
 const configRedis = configDb.redis[env]; // redis的配置
-configRedis.db = 7; // 用第7数据库存储session
+configRedis.db = 11; // 用第11个数据库存储session
 const ms = require('ms'); // 转成毫秒数
 const compression = require('compression'); // gzip压缩
 const express = require('express'); // express
