@@ -26,6 +26,7 @@ class Route {
                     app.all(apiConfig[attr].route, function (req, res) {
                         // 渲染数据
                         new Controller({
+                            app: app,
                             req: req,
                             res: res,
                             routeName: attr,

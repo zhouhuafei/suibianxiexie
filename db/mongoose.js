@@ -19,7 +19,7 @@ mongoose.connect(url, {useMongoClient: true});
 
 // 连接成功
 mongoose.connection.on('connected', function () {
-    console.log('mongoose connection open to:\n', `http://${configMongodb.host}:${configMongodb.port}/${configMongodb.db}`);
+    console.log('mongoose connection open to:\n', `http://${configMongodb.host}:${configMongodb.port}`);
 });
 
 // 连接异常

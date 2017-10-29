@@ -9,6 +9,7 @@ class Super {
         this.tools = tools; // 工具方法集合
         this.opts = tools.extend({
             defaults: {
+                app: null,
                 req: null,
                 res: null,
                 routeName: null, // 路由名称

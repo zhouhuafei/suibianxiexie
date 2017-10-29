@@ -3,7 +3,6 @@ const env = process.env.NODE_ENV; // 开发环境 or 生产环境
 const isProduction = env !== 'development'; // 是否是生产环境
 const configDb = require('./db/config'); // 数据库配置
 const configRedis = configDb.redis[env]; // redis的配置
-configRedis.db = 11; // 用第11个数据库存储session
 const ms = require('ms'); // 转成毫秒数
 const compression = require('compression'); // gzip压缩
 const express = require('express'); // express
@@ -62,10 +61,13 @@ app.use(function (err, req, res) {
 const mongoose = require('./db/mongoose');
 mongoose.connection.on('connected', function () {
     // redis数据库链接
-    const redis = require('./db/redis');
-
-    // 监听端口
-    const server = app.listen('5555', function () {
-        console.log('server address port:\n', `http://127.0.0.1:${server.address().port}`);
+    const redisClient = require('./db/redis');
+    redisClient.on('connect', function () {
+        // 把redis的客户端应用到全局到app上使用
+        app.redisClient = redisClient;
+        // 监听端口
+        const server = app.listen('5555', function () {
+            console.log('server connection open to:\n', `http://localhost:${server.address().port}`);
+        });
     });
 });

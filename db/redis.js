@@ -8,10 +8,15 @@ const configRedis = config.redis[env];
 
 // redis
 const redis = require('redis');
-const client = redis.createClient(configRedis.port, configRedis.host);
+const redisClient = redis.createClient(configRedis.port, configRedis.host);
 
-client.on('error', function (error) {
+// 连接成功
+redisClient.on('connect', function () {
+    console.log('redis connection open to:\n', `http://${configRedis.host}:${configRedis.port}`);
+});
+
+redisClient.on('error', function (error) {
     console.log('redis connection error:\n', error);
 });
 
-module.exports = client;
+module.exports = redisClient;
