@@ -1,28 +1,26 @@
-const dbName = 'suibianxiexie';
-
 module.exports = {
     mongodb: {
         development: {
             host: 'localhost',
             port: '27017',
-            db: dbName,
+            db: 'suibianxiexie',
         },
         production: {
             host: 'localhost',
             port: '27017',
-            db: dbName,
+            db: 'suibianxiexie',
         },
     },
     redis: {
         development: {
             host: 'localhost',
             port: '6379',
-            db: dbName,
+            db: 7,
         },
         production: {
             host: 'localhost',
             port: '6379',
-            db: dbName,
+            db: 7,
         },
     },
 };

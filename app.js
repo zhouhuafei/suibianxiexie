@@ -1,12 +1,15 @@
 // express
-const isProduction = process.env.NODE_ENV !== 'development'; // 是否是生产环境
+const env = process.env.NODE_ENV; // 开发环境 or 生产环境
+const isProduction = env !== 'development'; // 是否是生产环境
+const dbConfig = require('./db/config'); // 数据库配置
 const ms = require('ms'); // 转成毫秒数
 const compression = require('compression'); // gzip压缩
-const express = require('express');
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const app = express();
+const express = require('express'); // express
+const session = require('express-session'); // session
+const RedisStore = require('connect-redis')(session); // session存redis
+const cookieParser = require('cookie-parser'); // cookie数据解析
+const bodyParser = require('body-parser'); // post数据解析
+const app = express(); // app
 const secret = 'suibianxiexie'; // sessionID cookie的密钥
 app.use(compression());// gzip压缩
 if (isProduction) {
@@ -26,6 +29,7 @@ app.use(session({
     cookie: {
         maxAge: ms('7 days'), // cookie过期时间
     },
+    store: new RedisStore(dbConfig.redis[env]), // session存redis
 }));
 
 // 模版引擎(ejs)
