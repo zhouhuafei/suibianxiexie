@@ -38,7 +38,6 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
-    "hiredis": "^0.5.0",
     "mongoose": "^4.12.1",
     "ms": "^2.0.0",
     "multiparty": "^4.1.3",
