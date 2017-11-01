@@ -8,7 +8,10 @@ const routeName = [
         name: 'list', // 列表
     },
     {
-        name: 'verify-code-register', // 验证码-注册
+        name: 'verify-code-register-canvas', // 验证码-注册图文随机
+    },
+    {
+        name: 'verify-code-register-random', // 验证码-注册数字随机
     },
     {
         name: 'password-find', // 忘记密码,去找回

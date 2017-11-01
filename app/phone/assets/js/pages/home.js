@@ -91,7 +91,7 @@ class Sub extends Super {
         // jsonp错误测试
         /*
         this.jsonp({
-            url: '/phone/api/verify-code-register2/',
+            url: '/phone/api/verify-code-register-random2/',
             data: {
                 isJsonp: true,
             },
@@ -104,7 +104,7 @@ class Sub extends Super {
         // axios错误测试
         /*
         this.axios({
-            url: '/phone/api/verify-code-register2/',
+            url: '/phone/api/verify-code-register-random2/',
             method: 'get',
         }).then(function (dadaInfo) {
             console.log('axios error test:\n', dadaInfo);

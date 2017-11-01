@@ -26,7 +26,7 @@ class Sub extends Super {
                 formData.append('username', username);
                 formData.append('accountnum', 123456); // 数字 123456 会被立即转换成字符串 "123456"
                 axios({
-                    url: gDataInfo.api['verify-code-register'].route,
+                    url: gDataInfo.api['verify-code-register-random'].route,
                     method: 'get',
                     data: {
                         username: username,
