@@ -130,6 +130,7 @@ class Super {
         const res = opts.res;
         res.render(routesConfig[opts.routeName].view, {
             dataInfo: this.dataInfo,
+            ...this.dataInfo,
             dataInfoStr: JSON.stringify(this.dataInfo),
         });
     }
