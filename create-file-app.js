@@ -52,7 +52,7 @@ const file = {
         path: `${assetsPath}js/pages/`,
         fileName: fileName,
         content: `require('../../scss/pages/${fileName}.scss');
-const Super = require('./super');
+const Super = require('../pages-super/super');
 
 class Sub extends Super {
 }
@@ -71,7 +71,7 @@ new CreateFile({
     data: {
         path: controllerPath,
         fileName: fileName,
-        content: `const Super = require('./super'); // 超类型
+        content: `const Super = require('../pages-super/super'); // 超类型
 
 class Sub extends Super {
 }

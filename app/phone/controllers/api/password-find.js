@@ -1,4 +1,4 @@
-const Super = require('./super');// 超类型
+const Super = require('../api-super/super'); // 超类型
 
 class Sub extends Super {
 }

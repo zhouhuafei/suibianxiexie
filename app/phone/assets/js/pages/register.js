@@ -1,5 +1,5 @@
 require('../../scss/pages/register.scss');
-const Super = require('./super');
+const Super = require('../pages-super/super');
 
 class Sub extends Super {
     power() {
