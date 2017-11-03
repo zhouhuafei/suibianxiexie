@@ -1,6 +1,6 @@
-const tools = require('../utils/tools');// 工具方法集合
-const applications = require('../utils/applications');// 应用方法集合
-const Super = require('./g-super');// 超类型(子类型继承的对象)
+const tools = require('../utils/tools'); // 工具方法集合
+const applications = require('../utils/applications'); // 应用方法集合
+const Super = require('../components-dom-super/g-super'); // 超类型(子类型继承的对象)
 
 // 默认数据
 const defaultData = {

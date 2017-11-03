@@ -144,12 +144,12 @@ class Sub extends Super {
 
         // 超类型模块测试
         (function () {
-            const Super = require('../components-dom/g-super');
+            const Super = require('../components-dom-super/g-super');
             new Super({wrap: '.page-super-type'});
             const Sub = require('../components-dom/g-sub');
             new Sub({wrap: '.page-super-type'});
             new Sub(); // constructorInherit里parameter去掉了对象引用,否则这个子类的默认参数wrap会变成上面.page-super-type(bug回忆)
-            const SuperEs6 = require('../components-dom/g-super-es6');
+            const SuperEs6 = require('../components-dom-super/g-super-es6');
             new SuperEs6({wrap: '.page-super-type'});
             const SubEs6 = require('../components-dom/g-sub-es6');
             new SubEs6({wrap: '.page-super-type'});

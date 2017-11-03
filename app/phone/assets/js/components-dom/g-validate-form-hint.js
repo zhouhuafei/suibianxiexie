@@ -1,5 +1,5 @@
-const tools = require('../utils/tools');// 工具方法集合
-const applications = require('../utils/applications');// 应用方法集合
+const tools = require('../utils/tools'); // 工具方法集合
+const applications = require('../utils/applications'); // 应用方法集合
 
 function ValidateForm(json) {
     this.opts = json || {};

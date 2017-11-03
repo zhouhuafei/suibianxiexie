@@ -583,7 +583,7 @@ module.exports = TouchSlide;
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2);
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
 // 超类型(子类型继承的对象)
 var route = '/phone/';
 
