@@ -47,12 +47,14 @@ const ejs = require('ejs');
 app.set('views', 'dist/views/');
 app.set('view engine', 'ejs');
 
-// 路由(phone-pages)
-const RoutePhonePages = require('./app/phone/routes/pages/route');
-new RoutePhonePages({app: app});
-// 路由(phone-api)
-const RoutePhoneApi = require('./app/phone/routes/api/route'); // phone-api的路由
-new RoutePhoneApi({app: app});
+// 路由
+[
+    './app/phone/routes/pages/route',
+    './app/phone/routes/api/route',
+].forEach(function (v) {
+    const Route = require(v);
+    new Route({app: app});
+});
 
 // 404
 app.use(function (req, res, next) {

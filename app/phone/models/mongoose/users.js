@@ -1,25 +1,55 @@
-const mongoose = require('../../../db/mongoose');
+const mongoose = require('../../../../db/mongoose');
 const schema = new mongoose.Schema({
+    // 用户名(账号)
     username: {
         type: String,
         default: null,
         unique: true,
         required: [true, 'username is required'],
     },
+    // 账号密码
     password: {
         type: String,
         default: null,
     },
+    // 账号创建时间
     createTime: {
         type: Date,
         default: null,
     },
+    // 上次登录时间
     loginTimePrev: {
         type: Date,
         default: null,
     },
+    // 本次登录时间
     loginTime: {
         type: Date,
+        default: null,
+    },
+    // 邮箱
+    email: {
+        type: String,
+        default: null,
+    },
+    // 昵称
+    nickname: {
+        type: String,
+        default: null,
+    },
+    // 身高
+    height: {
+        type: String,
+        default: null,
+    },
+    // 年龄
+    age: {
+        type: String,
+        default: null,
+    },
+    // 性别
+    sex: {
+        type: String,
         default: null,
     },
 });
