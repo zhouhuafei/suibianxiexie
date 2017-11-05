@@ -62,11 +62,13 @@ app.use(function (req, res, next) {
 });
 
 // 500
+/*
 app.use(function (err, req, res, next) {
     if (err) {
         res.status(500).send('500 - server error');
     }
 });
+*/
 
 // mongodb数据库链接
 const mongoose = require('./db/mongoose');

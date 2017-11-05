@@ -23,7 +23,7 @@ class Sub extends Super {
 
             // 没被注册再发送验证码
             const verifyCode = tools.getRandom(100000, 999999);// random随机验证码
-            const expirationDate = 1;// 有效期,单位是分钟
+            const expirationDate = 10;// 有效期,单位是分钟
             const autoUser = 'this-is-a-code@foxmail.com';
             const transporter = nodemailer.createTransport({
                 service: 'qq',
@@ -36,8 +36,7 @@ class Sub extends Super {
                 from: autoUser, // 发送者
                 to: username, // 接受者,可以同时发送多个,以逗号隔开
                 subject: verifyCode, // 标题
-                // text: `这是一条验证码,有效期${expirationDate}分钟`, // 文本
-                text: '说出来你可能不信,这是一条验证码!', // 文本
+                text: `这是一条验证码,有效期${expirationDate}分钟`, // 文本
                 html: '', // html
             };
             // 验证码存session里
@@ -50,7 +49,7 @@ class Sub extends Super {
                         error: error,
                     });
                 } else {
-                    req.session[`verify-code-register-random-${username}`] = verifyCode;
+                    self.opts.app.redisClient.set(`verify-code-register-random-${username}`, verifyCode, 'EX', expirationDate * 60);
                     self.render({
                         status: 'success',
                         message: '验证码发送成功',
