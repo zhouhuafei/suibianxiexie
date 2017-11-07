@@ -30,21 +30,23 @@ class Sub {
             error: null, // 错误信息
             result: {
                 // 数据集合(格式必须统一为数组,哪怕只有一条数据)
-                data: [{
+                data: [
                     /*
-                    img: {
-                        width: 0,
-                        height: 0,
-                        src: '',
+                    {
+                        img: {
+                            width: 0,
+                            height: 0,
+                            src: '',
+                        },
+                        text: '接口格式保持一致',
+                        href: '',
                     },
-                    text: '接口格式保持一致',
-                    href: '',
                     */
-                }],
+                ],
                 allPage: 1, // 总页数
                 nowPage: 1, // 当前页
-                allCount: 1, // 数据总条数
-                nowCount: 1, // 当前页的数据条数
+                allCount: 0, // 数据总条数
+                nowCount: 0, // 当前页的数据条数
             },
         };
         this.init();
