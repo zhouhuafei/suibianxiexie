@@ -25,14 +25,14 @@
             }
             .g-list-mark {
                 font-size: px2rem(12);
-                color: $g-font-color-dark;
+                color: $g-ignore-color;
             }
             .g-list-more {
                 font-size: px2rem(14);
             }
         }
         .g-list-info {
-            color: $g-font-color-dark;
+            color: $g-ignore-color;
             font-size: px2rem(12);
         }
         &:last-child {

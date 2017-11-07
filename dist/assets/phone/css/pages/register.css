@@ -1,6 +1,6 @@
 .g-body .page-canvas {
   height: 60px;
-  background: #e0e0e0; }
+  background: #bbbbbb; }
 
 .g-body .page-input-wrap {
   margin-bottom: 10px; }
@@ -30,7 +30,7 @@
   height: inherit; }
   .g-body .get-verify-code .g-button {
     height: inherit;
-    background: #f7ba2a; }
+    background: #eb9e05; }
   .g-body .get-verify-code.get-verify-code-inactive .g-button {
     background: #ebebe4;
     color: #91918e; }

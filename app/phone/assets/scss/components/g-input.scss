@@ -39,7 +39,7 @@
     .g-input-hint {
         font-size: px2rem(12);
         padding: 0 px2rem(2);
-        color: $g-failure-color;
+        color: $g-danger-color;
         & ~ .g-input-input {
             border-left: px2px(1) solid $g-border-color-default;
         }

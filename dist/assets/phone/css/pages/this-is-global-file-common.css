@@ -192,16 +192,13 @@
 
 body {
   color: #333333;
-  font-family: "Microsoft Yahei", "Helvetica", "sans-serif";
+  font-family: "Microsoft Yahei", "Helvetica", "sans-serif", "Arial";
   font-size: 0.375rem;
   background: #fafafa; }
 
 body, p, figure, menu, ol, ul, dl, dd, h1, h2, h3, h4, h5, h6, input, button, textarea {
   margin: 0;
   padding: 0; }
-
-div, input, button, textarea, select, label {
-  -webkit-tap-highlight-color: transparent; }
 
 li {
   list-style-type: none; }
@@ -217,16 +214,13 @@ img {
   max-width: 10rem; }
 
 .g-font-color-success {
-  color: #13ce66; }
-
-.g-font-color-failure {
-  color: #ff4949; }
+  color: #67C23A; }
 
 .g-font-color-warning {
-  color: #f7ba2a; }
+  color: #eb9e05; }
 
-.g-font-color-hint {
-  color: #ff4949; }
+.g-font-color-danger {
+  color: #fa5555; }
 
 .g-display-none {
   display: none !important; }
@@ -458,7 +452,7 @@ html.g-pc {
   .g-input .g-input-hint {
     font-size: 0.375rem;
     padding: 0 0.0625rem;
-    color: #ff4949; }
+    color: #fa5555; }
     .g-input .g-input-hint ~ .g-input-input {
       border-left: 1px solid #e6e7ed; }
   .g-input .g-input-input {
@@ -1295,7 +1289,7 @@ html.g-pc {
             justify-content: center; }
     .g-slide .g-slide-header .g-slide-items {
       margin: 0 0.125rem;
-      background-color: #e0e0e0;
+      background-color: #bbbbbb;
       width: 0.21875rem;
       height: 0.21875rem;
       border-radius: 50%; }
@@ -1530,7 +1524,7 @@ html.g-pc {
 
 .g-validate-form-hint {
   color: #ffffff;
-  background: #ff4949;
+  background: #fa5555;
   height: 0.625rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1558,6 +1552,6 @@ html.g-pc {
     width: 0;
     height: 0;
     border: 0.1875rem solid transparent;
-    border-top-color: #ff4949;
+    border-top-color: #fa5555;
     right: 0.3125rem;
     top: 0.625rem; }
