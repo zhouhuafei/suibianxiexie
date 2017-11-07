@@ -54,7 +54,7 @@ class Sub extends Super {
                 } else if (value !== verifyCode) {
                     self.render({
                         status: 'failure',
-                        message: '验证码有误,请重新获取验证码',
+                        message: '验证码有误,请重新输入或重新获取并输入',
                         result: {data: [{verifyCode: verifyCode}]},
                     });
                 } else {

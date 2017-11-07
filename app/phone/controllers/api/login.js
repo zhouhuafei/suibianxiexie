@@ -56,14 +56,14 @@ class Sub extends Super {
                         } else {
                             self.render({
                                 status: 'failure',
-                                message: '账号或者密码错误',
+                                message: '账号和密码不匹配',
                             });
                         }
                     });
                 } else {
                     self.render({
                         status: 'failure',
-                        message: '账号或者密码错误',
+                        message: '账号不存在',
                     });
                 }
             });
