@@ -131,14 +131,14 @@ class Sub {
     }
 
     // (渲)渲染数据(这个方法需要在子类型里被调用)
-    render(obj = {}) {
+    render(json = {}) {
         const self = this;
         const opts = self.opts;
         const req = opts.req;
         const res = opts.res;
         const data = req.data;
         const isJsonp = data.isJsonp === 'true'; // 是否是jsonp(jsonp only supports the get method)
-        self.dataInfo = self.tools.extend({defaults: self.dataInfo, inherits: obj});
+        self.dataInfo = self.tools.extend({defaults: self.dataInfo, inherits: json});
         self.opts.callback(self);
         if (self.opts.isTriggerEnd) {
             res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});

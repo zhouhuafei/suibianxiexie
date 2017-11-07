@@ -30,7 +30,7 @@ var Sub = function (_Super) {
         key: 'power',
         value: function power() {
             var self = this;
-            var gDataInfo = self.dataInfo;
+            var dataInfo = self.dataInfo;
             var axios = self.axios;
 
             // 获取验证码
@@ -52,13 +52,13 @@ var Sub = function (_Super) {
                     formData.append('username', username);
                     formData.append('accountnum', 123456); // 数字 123456 会被立即转换成字符串 "123456"
                     axios({
-                        url: gDataInfo.api['verify-code-register-random'].route,
+                        url: dataInfo.api['verify-code-register-random'].route,
                         method: 'get',
                         data: {
                             username: username
                         }
-                    }).then(function (dataInfo) {
-                        if (dataInfo.status === 'success') {
+                    }).then(function (json) {
+                        if (json.status === 'success') {
                             var Dialog = __webpack_require__(10);
                             new Dialog({ config: { alert: { icon: 'icon-chenggong', content: '验证码已发送' } } });
                             domSelf.classList.add(domGetVerifyCodeInactive);
@@ -95,12 +95,12 @@ var Sub = function (_Super) {
                     };
                 }
                 axios({
-                    url: gDataInfo.api.register.route,
+                    url: dataInfo.api.register.route,
                     method: 'post',
                     data: userInfo
-                }).then(function (dataInfo) {
-                    if (dataInfo.status === 'success') {
-                        window.location.href = gDataInfo.routes.login.route;
+                }).then(function (json) {
+                    if (json.status === 'success') {
+                        window.location.href = dataInfo.routes.login.route;
                     }
                 });
             });

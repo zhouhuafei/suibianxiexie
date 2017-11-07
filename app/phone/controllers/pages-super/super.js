@@ -142,10 +142,10 @@ class Super {
     }
 
     // (渲)渲染(这个方法需要在子类型里被调用)
-    render(obj = {}) {
+    render(json = {}) {
         const self = this;
         const req = self.opts.req;
-        self.dataInfo = self.tools.extend({defaults: self.dataInfo, inherits: obj});
+        self.dataInfo = self.tools.extend({defaults: self.dataInfo, inherits: json});
         if (req.data.isOnlyRenderData === 'true') {
             self.renderData();// 渲染数据
         } else {

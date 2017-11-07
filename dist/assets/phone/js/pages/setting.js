@@ -30,7 +30,7 @@ var Sub = function (_Super) {
         key: 'power',
         value: function power() {
             var self = this;
-            var gDataInfo = self.dataInfo;
+            var dataInfo = self.dataInfo;
             var axios = self.axios;
             var Dialog = __webpack_require__(10);
 
@@ -40,11 +40,11 @@ var Sub = function (_Super) {
                     callback: {
                         confirm: function confirm() {
                             axios({
-                                url: gDataInfo.api.logout.route,
+                                url: dataInfo.api.logout.route,
                                 method: 'get'
-                            }).then(function (dataInfo) {
-                                if (dataInfo.status === 'success') {
-                                    window.location.href = gDataInfo.routes.login.route;
+                            }).then(function (json) {
+                                if (json.status === 'success') {
+                                    window.location.href = dataInfo.routes.login.route;
                                 }
                             });
                         }

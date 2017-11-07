@@ -4,7 +4,7 @@ const Super = require('../pages-super/super');
 class Sub extends Super {
     power() {
         const self = this;
-        const gDataInfo = self.dataInfo;
+        const dataInfo = self.dataInfo;
         const axios = self.axios;
         const Dialog = require('../components-dom/g-dialog');
 
@@ -14,11 +14,11 @@ class Sub extends Super {
                 callback: {
                     confirm: function () {
                         axios({
-                            url: gDataInfo.api.logout.route,
+                            url: dataInfo.api.logout.route,
                             method: 'get',
-                        }).then(function (dataInfo) {
-                            if (dataInfo.status === 'success') {
-                                window.location.href = gDataInfo.routes.login.route;
+                        }).then(function (json) {
+                            if (json.status === 'success') {
+                                window.location.href = dataInfo.routes.login.route;
                             }
                         });
                     },

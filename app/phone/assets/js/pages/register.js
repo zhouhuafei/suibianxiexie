@@ -4,7 +4,7 @@ const Super = require('../pages-super/super');
 class Sub extends Super {
     power() {
         const self = this;
-        const gDataInfo = self.dataInfo;
+        const dataInfo = self.dataInfo;
         const axios = self.axios;
 
         // 获取验证码
@@ -26,13 +26,13 @@ class Sub extends Super {
                 formData.append('username', username);
                 formData.append('accountnum', 123456); // 数字 123456 会被立即转换成字符串 "123456"
                 axios({
-                    url: gDataInfo.api['verify-code-register-random'].route,
+                    url: dataInfo.api['verify-code-register-random'].route,
                     method: 'get',
                     data: {
                         username: username,
                     },
-                }).then(function (dataInfo) {
-                    if (dataInfo.status === 'success') {
+                }).then(function (json) {
+                    if (json.status === 'success') {
                         const Dialog = require('../components-dom/g-dialog');
                         new Dialog({config: {alert: {icon: 'icon-chenggong', content: '验证码已发送'}}});
                         domSelf.classList.add(domGetVerifyCodeInactive);
@@ -69,12 +69,12 @@ class Sub extends Super {
                 };
             }
             axios({
-                url: gDataInfo.api.register.route,
+                url: dataInfo.api.register.route,
                 method: 'post',
                 data: userInfo,
-            }).then(function (dataInfo) {
-                if (dataInfo.status === 'success') {
-                    window.location.href = gDataInfo.routes.login.route;
+            }).then(function (json) {
+                if (json.status === 'success') {
+                    window.location.href = dataInfo.routes.login.route;
                 }
             });
         });

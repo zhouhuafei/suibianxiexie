@@ -4,7 +4,7 @@ const Super = require('../pages-super/super');
 class Sub extends Super {
     power() {
         const self = this;
-        const gDataInfo = self.dataInfo;
+        const dataInfo = self.dataInfo;
         const axios = self.axios;
 
         // 登录
@@ -12,15 +12,15 @@ class Sub extends Super {
         const domPassword = document.querySelector('#password');
         document.querySelector('.page-login').addEventListener('click', function () {
             axios({
-                url: gDataInfo.api.login.route,
+                url: dataInfo.api.login.route,
                 method: 'post',
                 data: {
                     username: domUsername.value,
                     password: domPassword.value,
                 },
-            }).then(function (dataInfo) {
-                if (dataInfo.status === 'success') {
-                    window.location.href = gDataInfo.routes.mine.route;
+            }).then(function (json) {
+                if (json.status === 'success') {
+                    window.location.href = dataInfo.routes.mine.route;
                 }
             });
         });

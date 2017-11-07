@@ -1266,7 +1266,7 @@ var Super = function () {
         key: 'renderFooter',
         value: function renderFooter() {
             var self = this;
-            var gDataInfo = self.dataInfo;
+            var dataInfo = self.dataInfo;
 
             // 二维码
             var qrDom = document.querySelector('.g-qr-code-svg');
@@ -1281,7 +1281,7 @@ var Super = function () {
             });
 
             // 版权
-            if (gDataInfo && gDataInfo.isShowCopyright) {
+            if (dataInfo && dataInfo.isShowCopyright) {
                 var Copyright = __webpack_require__(74);
                 new Copyright({
                     wrap: '.page-copyright-wrap'
@@ -1289,10 +1289,10 @@ var Super = function () {
             }
 
             // 底部导航
-            if (gDataInfo && gDataInfo.footerNav) {
+            if (dataInfo && dataInfo.footerNav) {
                 var Footer = __webpack_require__(75);
-                gDataInfo.footerNav.wrap = '.page-footer-nav-wrap';
-                new Footer(gDataInfo.footerNav);
+                dataInfo.footerNav.wrap = '.page-footer-nav-wrap';
+                new Footer(dataInfo.footerNav);
             }
 
             // 延迟加载

@@ -74,7 +74,7 @@ class Super {
     // (渲)渲染
     renderFooter() {
         const self = this;
-        const gDataInfo = self.dataInfo;
+        const dataInfo = self.dataInfo;
 
         // 二维码
         const qrDom = document.querySelector('.g-qr-code-svg');
@@ -89,7 +89,7 @@ class Super {
         });
 
         // 版权
-        if (gDataInfo && gDataInfo.isShowCopyright) {
+        if (dataInfo && dataInfo.isShowCopyright) {
             const Copyright = require('../components-dom/g-copyright');
             new Copyright({
                 wrap: '.page-copyright-wrap',
@@ -97,10 +97,10 @@ class Super {
         }
 
         // 底部导航
-        if (gDataInfo && gDataInfo.footerNav) {
+        if (dataInfo && dataInfo.footerNav) {
             const Footer = require('../components-dom/g-footer-nav');
-            gDataInfo.footerNav.wrap = '.page-footer-nav-wrap';
-            new Footer(gDataInfo.footerNav);
+            dataInfo.footerNav.wrap = '.page-footer-nav-wrap';
+            new Footer(dataInfo.footerNav);
         }
 
         // 延迟加载
