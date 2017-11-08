@@ -15829,6 +15829,7 @@ var Dialog = __webpack_require__(10);
 module.exports = function (json) {
     var opts = tools.extend({
         defaults: {
+            method: 'get', // 请求方式默认get
             isHandleError: true, // 是否处理错误
             isHandleFailure: true, // 是否处理失败
             timeout: 5000 // 超时
