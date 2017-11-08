@@ -89,19 +89,11 @@ class Sub extends Super {
                                 } else {
                                     // 数据库插入成功
                                     redisClient.del(`verify-code-register-random-${username}`, function (error, value) {
-                                        if (error) {
-                                            self.render({
-                                                status: 'success',
-                                                message: '验证码清除出现错误',
-                                                result: {data: [{username: username}]},
-                                            });
-                                        } else {
-                                            self.render({
-                                                status: 'success',
-                                                message: '注册成功',
-                                                result: {data: [{username: username}]},
-                                            });
-                                        }
+                                        self.render({
+                                            status: 'success',
+                                            message: '注册成功',
+                                            result: {data: [{username: username}]},
+                                        });
                                     });
                                 }
                             });
