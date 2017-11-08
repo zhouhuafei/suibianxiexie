@@ -14,7 +14,7 @@
     "pcBuild": "set myConfig=production-pc && gulp && npm run webpack",
     "adminDev": "export myConfig=development-admin && gulp && npm run webpack",
     "adminBuild": "export myConfig=production-admin && gulp && npm run webpack",
-    "server": "browser-sync start --proxy 127.0.0.1:5555 --files dist/assets/**/*.*",
+    "proxy": "browser-sync start --proxy 127.0.0.1:5555 --files dist/assets/**/*.*",
     "lint": "eslint --ext .js ./",
     "fix": "eslint --fix --ext .js ./"
   },
