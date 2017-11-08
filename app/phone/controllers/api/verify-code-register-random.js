@@ -36,7 +36,7 @@ class Sub extends Super {
                 from: autoUser, // 发送者
                 to: username, // 接受者,可以同时发送多个,以逗号隔开
                 subject: verifyCode, // 标题
-                text: `这是一条验证码,有效期${expirationDate}分钟`, // 文本
+                text: `这是一条验证码,有效期${expirationDate}分钟,此验证码仅用于账号注册`, // 文本
                 html: '', // html
             };
             // 验证码存session里

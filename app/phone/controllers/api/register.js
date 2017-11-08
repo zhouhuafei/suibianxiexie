@@ -30,10 +30,8 @@ class Sub extends Super {
             const username = data.username; // 用户名
             const password = data.password; // 密码
             const verifyCode = data.verifyCode; // 验证码
-            // redis如何删除一个键待续...?
-            redisClient.get(`verify-code-register-random-${username}`, function (err, value) {
-                console.log('验证吗删除之后', value);
-                if (err) {
+            redisClient.get(`verify-code-register-random-${username}`, function (error, value) {
+                if (error) {
                     self.render({
                         status: 'failure',
                         message: '账号格式有误',
@@ -90,11 +88,20 @@ class Sub extends Super {
                                     });
                                 } else {
                                     // 数据库插入成功
-                                    // 清空redis里存储的`verify-code-register-random-${username}`验证码
-                                    self.render({
-                                        status: 'success',
-                                        message: '注册成功',
-                                        result: {data: [{username: username}]},
+                                    redisClient.del(`verify-code-register-random-${username}`, function (error, value) {
+                                        if (error) {
+                                            self.render({
+                                                status: 'success',
+                                                message: '验证码清除出现错误',
+                                                result: {data: [{username: username}]},
+                                            });
+                                        } else {
+                                            self.render({
+                                                status: 'success',
+                                                message: '注册成功',
+                                                result: {data: [{username: username}]},
+                                            });
+                                        }
                                     });
                                 }
                             });
