@@ -37,7 +37,7 @@ module.exports = {
             {
                 property: '__defineSetter__',
                 message: 'Please use Object.defineProperty instead.',
-            }
+            },
         ],
         'no-script-url': 0, // 禁止使用 javascript: url
         'max-len': [0, 100], // 强制行的最大长度
