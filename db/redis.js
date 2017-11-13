@@ -5,7 +5,6 @@ const env = process.env.NODE_ENV;
 const config = require('./config');
 const configRedis = config.redis[env];
 
-
 // redis
 const redis = require('redis');
 const redisClient = redis.createClient(configRedis.port, configRedis.host);

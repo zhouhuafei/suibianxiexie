@@ -14,16 +14,23 @@ class Sub extends Super {
             const multiparter = require('multiparty');
             const form = new multiparter.Form();
             form.parse(req, function (error, fields, files) {
-                const username = fields.username; // 用户名
-                const password = fields.password; // 密码
-                const verifyCode = fields.verifyCode; // 验证码
-                console.log('username', username);
-                console.log('password', password);
-                console.log('verifyCode', verifyCode);
-                self.render({
-                    status: 'failure',
-                    message: '数据库操作待续...',
-                });
+                if (error) {
+                    self.render({
+                        status: 'failure',
+                        message: '数据库操作待续...',
+                    });
+                } else {
+                    const username = fields.username; // 用户名
+                    const password = fields.password; // 密码
+                    const verifyCode = fields.verifyCode; // 验证码
+                    console.log('username', username);
+                    console.log('password', password);
+                    console.log('verifyCode', verifyCode);
+                    self.render({
+                        status: 'failure',
+                        message: '数据库操作待续...',
+                    });
+                }
             });
         } else {
             const data = req.data;
@@ -89,11 +96,19 @@ class Sub extends Super {
                                 } else {
                                     // 数据库插入成功
                                     redisClient.del(`verify-code-register-random-${username}`, function (error, value) {
-                                        self.render({
-                                            status: 'success',
-                                            message: '注册成功',
-                                            result: {data: [{username: username}]},
-                                        });
+                                        if (error) {
+                                            self.render({
+                                                status: 'success',
+                                                message: '虽然redis删除验证码失败,但是注册依然成功了',
+                                                result: {data: [{username: username}]},
+                                            });
+                                        } else {
+                                            self.render({
+                                                status: 'success',
+                                                message: '注册成功',
+                                                result: {data: [{username: username}]},
+                                            });
+                                        }
                                     });
                                 }
                             });
