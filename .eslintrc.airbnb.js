@@ -4,7 +4,7 @@ module.exports = {
     parserOptions: {
         sourceType: 'module',
     },
-    extends: 'standard',
+    extends: 'airbnb-base',
     env: {
         commonjs: true,
         node: true,
@@ -48,6 +48,7 @@ module.exports = {
         'no-script-url': 0, // 禁止使用 javascript: url
         'no-unused-vars': 0, // 禁止未使用过的变量
         'no-new': 0, // 禁止new一个实例后不赋值
+        'indent': [2, 4, {SwitchCase: 1}], // 强制使用一致的缩进
         'linebreak-style': 0, // 强制使用一致的换行符风格
         'max-len': [0, 80], // 强制行的最大长度
         'object-curly-spacing': [2, 'never'], // 强制在花括号中使用一致的空格
@@ -60,10 +61,5 @@ module.exports = {
         'import/newline-after-import': 0, // 导入语句后强制执行换行符
         'import/no-dynamic-require': 0, // 禁止require()使用表达式
         'import/no-extraneous-dependencies': 0, // 禁止使用无关的包
-
-
-        'indent': [2, 4, {SwitchCase: 1}], // 强制使用一致的缩进
-        semi: [2, 'always'], // 要求或禁止使用分号代替 ASI(自动分号插入)
-        'comma-dangle':[2, 'always'], // 要求或禁止使用拖尾逗号
     },
 };
