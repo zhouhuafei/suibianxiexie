@@ -19,7 +19,6 @@ module.exports = {
     * 2或者"error":打开规则,并且作为一个错误(exit code将会是1)
     * */
     rules: {
-        'no-unused-expressions': 0, // 禁止未使用过的表达式
         // 禁止某些对象属性（无限制属性）Math.pow允许被使用
         'no-restricted-properties': [
             2,
@@ -42,6 +41,7 @@ module.exports = {
         ],
         'no-console': 0, // 禁用 console
         'no-shadow': 0, // 禁止变量声明覆盖外层作用域的变量
+        'no-unused-expressions': 0, // 禁止未使用过的表达式
         'no-param-reassign': 0, // 禁止对函数参数再赋值
         'no-plusplus': 0, // 禁止使用一元操作符 ++ 和 --
         'no-mixed-operators': 0, // 禁止混合使用不同的操作符
