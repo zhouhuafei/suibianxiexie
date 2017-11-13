@@ -19,6 +19,7 @@ module.exports = {
     * 2或者"error":打开规则,并且作为一个错误(exit code将会是1)
     * */
     rules: {
+        'no-unused-expressions': 0, // 禁止未使用过的表达式
         // 禁止某些对象属性（无限制属性）Math.pow允许被使用
         'no-restricted-properties': [
             2,
