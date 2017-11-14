@@ -1,6 +1,6 @@
 node_modules
 fonts
-/dist/
-/dist-no-delete-assets-no-cache/
-/app/phone/assets/js/plugs/
-/app/phone/assets/libs/
+/main/dist/
+/main/dist-no-delete-assets-no-cache/
+/main/app/phone/assets/js/plugs/
+/main/app/phone/assets/libs/
