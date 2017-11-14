@@ -1,4 +1,8 @@
 ````
-1.npm install
-2.npm run dev | npm run build
+# 安装依赖
+npm install
+# 开发
+npm run dev
+# 生产
+npm run build
 ````
