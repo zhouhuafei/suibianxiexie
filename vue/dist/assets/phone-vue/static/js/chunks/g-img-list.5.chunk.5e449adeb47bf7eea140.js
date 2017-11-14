@@ -3,6 +3,7 @@ webpackJsonp([5],{
 /***/ 92:
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
 var Component = __webpack_require__(32)(
   /* script */
   __webpack_require__(93),
@@ -15,6 +16,25 @@ var Component = __webpack_require__(32)(
   /* moduleIdentifier (server only) */
   null
 )
+Component.options.__file = "/Users/zhouhuafei/Desktop/suibianxiexie/vue/phone/src/components-vue/g-img-list.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] g-img-list.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3b23a9db", Component.options)
+  } else {
+    hotAPI.reload("data-v-3b23a9db", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
 
 module.exports = Component.exports
 
@@ -84,6 +104,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })])])
 }]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3b23a9db", module.exports)
+  }
+}
 
 /***/ }),
 
@@ -102,4 +129,4 @@ module.exports = __webpack_require__.p + "static/images/p-waiting.054b1f3c.png";
 /***/ })
 
 });
-//# sourceMappingURL=g-img-list.5.chunk.2cccccaec108bb9d513c.js.map
+//# sourceMappingURL=g-img-list.5.chunk.5e449adeb47bf7eea140.js.map

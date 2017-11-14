@@ -1,4 +1,9 @@
-const isProduction = process.env.NODE_ENV === 'production';// 是否是生产环境
+const myConfig = process.env.NODE_ENV.split('-');
+myConfig.forEach(function (v, i, a) {
+    a[i] = v.trim();
+});
+const isProduction = myConfig[0] === 'production'; // 是否是生产环境
+const projectDirname = myConfig[1]; // 项目目录名称
 const webpack = require('webpack');// 调用插件需要这个
 const ExtractTextPlugin = require('extract-text-webpack-plugin');// scss文件转css文件需要这个
 const HtmlWebpackPlugin = require('html-webpack-plugin');// html生成的插件
@@ -6,8 +11,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');// 清空目录
 const ImageminPlugin = require('imagemin-webpack-plugin').default;// 压缩图片
 // 配置入口路径和出口路径
 const configPath = {
-    entry: `${__dirname}/src/`,
-    output: `${__dirname}/dist/assets/phone-vue/`,
+    entry: `${__dirname}/${projectDirname}/src/`,
+    output: `${__dirname}/dist/assets/${projectDirname}-vue/`,
 };
 // 环境----开发环境
 let configEnvironment = {
