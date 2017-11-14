@@ -15,10 +15,10 @@
         "adminDev": "export myConfig=development-admin && gulp && npm run webpack",
         "adminBuild": "export myConfig=production-admin && gulp && npm run webpack",
         "proxy": "browser-sync start --proxy 127.0.0.1:5555 --files dist/assets/**/*.*",
-        "vuePhoneDev": "cross-env NODE_ENV=development-vue/phone webpack-dev-server --inline --config webpack.config.vue.js",
-        "vuePhoneBuild": "cross-env NODE_ENV=production-vue/phone webpack --colors --profile --progress --display-modules --config webpack.config.vue.js",
         "lint": "eslint --ext .js,.vue,.html ./",
-        "fix": "eslint --fix --ext .js,.vue,.html ./"
+        "fix": "eslint --fix --ext .js,.vue,.html ./",
+        "vuePhoneDev": "cross-env NODE_ENV=development-vue/phone webpack-dev-server --inline --config webpack.config.vue.js",
+        "vuePhoneBuild": "cross-env NODE_ENV=production-vue/phone webpack --colors --profile --progress --display-modules --config webpack.config.vue.js"
     },
     "repository": {
         "type": "git",
