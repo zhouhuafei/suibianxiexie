@@ -1,8 +1,4 @@
 {
-  "name": "suibianxiexie",
-  "version": "1.0.0",
-  "description": "suibianxiexie",
-  "main": "app.js",
   "scripts": {
     "test": "nodemon app.js",
     "start": "pm2 start pm2.json",
@@ -14,20 +10,8 @@
     "pcBuild": "set myConfig=production-pc && gulp && npm run webpack",
     "adminDev": "export myConfig=development-admin && gulp && npm run webpack",
     "adminBuild": "export myConfig=production-admin && gulp && npm run webpack",
-    "proxy": "browser-sync start --proxy 127.0.0.1:5555 --files dist/assets/**/*.*",
-    "lint": "eslint --ext .js ./",
-    "fix": "eslint --fix --ext .js ./"
+    "proxy": "browser-sync start --proxy 127.0.0.1:5555 --files dist/assets/**/*.*"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/zhouhuafei/suibianxiexie.git"
-  },
-  "author": "zhouhuafei <1123486116@qq.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zhouhuafei/suibianxiexie/issues"
-  },
-  "homepage": "https://github.com/zhouhuafei/suibianxiexie#readme",
   "dependencies": {
     "axios": "^0.16.2",
     "bcrypt": "^1.0.3",

@@ -1,6 +1,6 @@
 node_modules
 fonts
 dist
-/api/dist-no-delete-assets-no-cache/
-/api/app/phone/assets/js/plugs/
-/api/app/phone/assets/libs/
+/service/static/
+/service/app/phone/assets/js/plugs/
+/service/app/phone/assets/libs/
