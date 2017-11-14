@@ -12,8 +12,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');// 清空目录
 const ImageminPlugin = require('imagemin-webpack-plugin').default;// 压缩图片
 // 配置入口路径和出口路径
 const configPath = {
-    entry: `${__dirname}/${projectDirPath}/src/`,
-    output: isProduction ? `${__dirname}/service/dist/assets/${projectDirname}-vue/` : `${__dirname}/dist/assets/${projectDirname}-vue/`,
+    entry: `${__dirname}/${projectDirPath}/`,
+    output: `${__dirname}/dist/assets/${projectDirname}-vue/`,
 };
 // 环境----开发环境
 let configEnvironment = {
@@ -67,7 +67,7 @@ const output = {
 // 插件----集合
 const plugins = [
     // 插件----清空phone-vue目录
-    new CleanWebpackPlugin(['phone-vue'], {root: `${__dirname}/service/dist/assets/`, verbose: true, dry: false}),
+    new CleanWebpackPlugin(['phone-vue'], {root: `${__dirname}/dist/assets/`, verbose: true, dry: false}),
     // 插件----提取css样式到文件
     new ExtractTextPlugin(`static/css/[name].${configEnvironment.contenthash}css`),
     // 插件----处理视图模板页面文件
