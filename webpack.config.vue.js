@@ -3,7 +3,8 @@ myConfig.forEach(function (v, i, a) {
     a[i] = v.trim();
 });
 const isProduction = myConfig[0] === 'production'; // 是否是生产环境
-const projectDirname = myConfig[1]; // 项目目录名称
+const projectDirPath = myConfig[1]; // 项目目录路径
+const projectDirname = projectDirPath.split('/')[1]; // 项目目录名称
 const webpack = require('webpack');// 调用插件需要这个
 const ExtractTextPlugin = require('extract-text-webpack-plugin');// scss文件转css文件需要这个
 const HtmlWebpackPlugin = require('html-webpack-plugin');// html生成的插件
@@ -11,8 +12,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');// 清空目录
 const ImageminPlugin = require('imagemin-webpack-plugin').default;// 压缩图片
 // 配置入口路径和出口路径
 const configPath = {
-    entry: `${__dirname}/${projectDirname}/src/`,
-    output: `${__dirname}/dist/assets/${projectDirname}-vue/`,
+    entry: `${__dirname}/${projectDirPath}/src/`,
+    output: isProduction ? `${__dirname}/service/dist/assets/${projectDirname}-vue/` : `${__dirname}/dist/assets/${projectDirname}-vue/`,
 };
 // 环境----开发环境
 let configEnvironment = {
@@ -65,8 +66,8 @@ const output = {
 };
 // 插件----集合
 const plugins = [
-    // 插件----清空dist目录
-    new CleanWebpackPlugin(['dist'], {root: __dirname, verbose: true, dry: false}),
+    // 插件----清空phone-vue目录
+    new CleanWebpackPlugin(['phone-vue'], {root: `${__dirname}/service/dist/assets/`, verbose: true, dry: false}),
     // 插件----提取css样式到文件
     new ExtractTextPlugin(`static/css/[name].${configEnvironment.contenthash}css`),
     // 插件----处理视图模板页面文件

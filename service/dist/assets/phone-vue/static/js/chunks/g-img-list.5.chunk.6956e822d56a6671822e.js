@@ -27,9 +27,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3b23a9db", Component.options)
+    hotAPI.createRecord("data-v-26065107", Component.options)
   } else {
-    hotAPI.reload("data-v-3b23a9db", Component.options)
+    hotAPI.reload("data-v-26065107", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -108,7 +108,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-3b23a9db", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-26065107", module.exports)
   }
 }
 
@@ -129,4 +129,4 @@ module.exports = __webpack_require__.p + "static/images/p-waiting.054b1f3c.png";
 /***/ })
 
 });
-//# sourceMappingURL=g-img-list.5.chunk.5e449adeb47bf7eea140.js.map
+//# sourceMappingURL=g-img-list.5.chunk.6956e822d56a6671822e.js.map
