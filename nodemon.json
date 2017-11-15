@@ -1,7 +1,7 @@
 {
     "ignore": [
         "dist",
-        "static",
+        "dist-no-delete-assets-no-cache",
         "app/**/assets"
     ],
     "verbose": true,
