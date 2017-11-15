@@ -4,20 +4,20 @@ myConfig.forEach(function (v, i, a) {
 });
 const isProduction = myConfig[0] === 'production'; // 是否是生产环境
 const projectDirPath = myConfig[1]; // 项目目录路径
-const projectDirname = projectDirPath.split('/')[1]; // 项目目录名称
-const webpack = require('webpack');// 调用插件需要这个
-const ExtractTextPlugin = require('extract-text-webpack-plugin');// scss文件转css文件需要这个
-const HtmlWebpackPlugin = require('html-webpack-plugin');// html生成的插件
-const CleanWebpackPlugin = require('clean-webpack-plugin');// 清空目录
-const ImageminPlugin = require('imagemin-webpack-plugin').default;// 压缩图片
+const projectDirname = `${projectDirPath.split('/')[1]}-vue`; // 项目目录名称
+const webpack = require('webpack'); // 调用插件需要这个
+const ExtractTextPlugin = require('extract-text-webpack-plugin'); // scss文件转css文件需要这个
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // html生成的插件
+const CleanWebpackPlugin = require('clean-webpack-plugin'); // 清空目录
+const ImageminPlugin = require('imagemin-webpack-plugin').default; // 压缩图片
 // 配置入口路径和出口路径
 const configPath = {
     entry: `${__dirname}/${projectDirPath}/`,
-    output: `${__dirname}/dist/assets/${projectDirname}-vue/`,
+    output: `${__dirname}/dist/assets/${projectDirname}/`,
 };
 // 环境----开发环境
 let configEnvironment = {
-    publicPath: '/dist/assets/phone-vue/', // 出口路径----指定资源文件引用的目录
+    publicPath: `/dist/assets/${projectDirname}/`, // 出口路径----指定资源文件引用的目录
     hash: '[hash:8].', // 图片和字体用到了这个hash
     chunkhash: '', // js用到了这个chunkhash
     contenthash: '', // css用到了这个contenthash
@@ -30,7 +30,7 @@ let configEnvironment = {
 // 环境----生产环境
 if (isProduction) {
     configEnvironment = {
-        publicPath: '/phone-vue/', // 出口路径----指定资源文件引用的目录
+        publicPath: `/${projectDirname}/`, // 出口路径----指定资源文件引用的目录
         hash: '[hash:8].', // 图片和字体用到了这个hash
         chunkhash: '[chunkhash].', // js用到了这个chunkhash
         contenthash: '[contenthash].', // css用到了这个contenthash
@@ -66,8 +66,8 @@ const output = {
 };
 // 插件----集合
 const plugins = [
-    // 插件----清空phone-vue目录
-    new CleanWebpackPlugin(['phone-vue'], {root: `${__dirname}/dist/assets/`, verbose: true, dry: false}),
+    // 插件----清空dist/assets目录下对应的项目文件
+    new CleanWebpackPlugin([projectDirname], {root: `${__dirname}/dist/assets/`, verbose: true, dry: false}),
     // 插件----提取css样式到文件
     new ExtractTextPlugin(`css/[name].${configEnvironment.contenthash}css`),
     // 插件----处理视图模板页面文件
@@ -206,7 +206,7 @@ const webpackConfig = {
         inline: true,
         open: true,
         port: 5556,
-        openPage: 'dist/assets/phone-vue/',
+        openPage: `dist/assets/${projectDirname}/`,
         // 代理实现接口跨域
         proxy: {
             '/': { // 需要代理的路径

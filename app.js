@@ -46,6 +46,7 @@ app.use(session({
 const ejs = require('ejs');
 app.set('views', 'dist/views/');
 app.set('view engine', 'ejs');
+app.set('view cache', true);
 
 // 路由
 [
