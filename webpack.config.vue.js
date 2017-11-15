@@ -61,15 +61,15 @@ const entry = {
 const output = {
     path: configPath.output, // 出口路径----用来存放打包后文件的输出目录
     publicPath: configEnvironment.publicPath, // 出口路径----指定资源文件引用的目录
-    filename: `static/js/pages/[name].${configEnvironment.chunkhash}js`,
-    chunkFilename: `static/js/chunks/[name].[id].chunk.${configEnvironment.chunkhash}js`,
+    filename: `js/pages/[name].${configEnvironment.chunkhash}js`,
+    chunkFilename: `js/chunks/[name].[id].chunk.${configEnvironment.chunkhash}js`,
 };
 // 插件----集合
 const plugins = [
     // 插件----清空phone-vue目录
     new CleanWebpackPlugin(['phone-vue'], {root: `${__dirname}/dist/assets/`, verbose: true, dry: false}),
     // 插件----提取css样式到文件
-    new ExtractTextPlugin(`static/css/[name].${configEnvironment.contenthash}css`),
+    new ExtractTextPlugin(`css/[name].${configEnvironment.contenthash}css`),
     // 插件----处理视图模板页面文件
     new HtmlWebpackPlugin({
         template: `${configPath.entry}index.html`,
@@ -150,7 +150,7 @@ const webpackConfig = {
                         loader: 'url-loader',
                         options: {
                             limit: 8192,
-                            name: `static/images/[name].${configEnvironment.hash}[ext]`,
+                            name: `images/[name].${configEnvironment.hash}[ext]`,
                         },
                     },
                 ],
@@ -164,7 +164,7 @@ const webpackConfig = {
                         loader: 'url-loader',
                         options: {
                             limit: 8192,
-                            name: `static/fonts/[name].${configEnvironment.hash}[ext]`,
+                            name: `fonts/[name].${configEnvironment.hash}[ext]`,
                         },
                     },
                 ],

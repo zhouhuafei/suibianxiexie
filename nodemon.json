@@ -1,8 +1,9 @@
 {
     "ignore": [
+        "app/**/assets",
         "dist",
         "dist-no-delete-assets-no-cache",
-        "app/**/assets"
+        "vue"
     ],
     "verbose": true,
     "env": {
