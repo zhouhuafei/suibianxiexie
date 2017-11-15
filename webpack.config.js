@@ -3,7 +3,8 @@ myConfig.forEach(function (v, i, a) {
     a[i] = v.trim();
 });
 const isProduction = myConfig[0] === 'production'; // 是否是生产环境
-const projectDirname = myConfig[1]; // 项目目录名称
+const projectDirPath = `${myConfig[1]}/`; // 项目目录路径
+const projectDirname = `${projectDirPath.split('/')[1]}`; // 项目目录名称
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack'); // 调用插件需要这个
@@ -16,7 +17,7 @@ class ConfigPath {
     constructor() {
         this.rootPath = `${__dirname}/`; // 根目录的目录路径
         this.projectDirname = projectDirname; // 项目的目录名称
-        this.projectPath = `${this.rootPath}app/${this.projectDirname}/`; // 项目的目录路径
+        this.projectPath = `${this.rootPath}${projectDirPath}`; // 项目的目录路径
         this.assetsEntryPath = `${this.projectPath}assets/`; // 开发资源的目录路径
         this.viewsEntryPath = `${this.assetsEntryPath}views/`; // 开发视图的目录路径
         this.jsEntryPath = `${this.assetsEntryPath}js/`; // 开发js的目录路径
