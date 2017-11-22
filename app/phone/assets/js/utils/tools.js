@@ -126,7 +126,7 @@ Tools.prototype.secondsToTime = function (seconds = 0) {
     const nowMinutes = Math.floor(seconds % 3600 / 60);
     // 秒
     const nowSeconds = Math.floor(seconds % 60);
-    return {day: nowDay, hours: nowHours, minutes: nowMinutes, seconds: nowSeconds};
+    return {day: nowDay, hours: nowHours, minutes: nowMinutes, seconds: nowSeconds, allSeconds: seconds};
 };
 // 倒计时
 Tools.prototype.timeCountDown = function (json) {
