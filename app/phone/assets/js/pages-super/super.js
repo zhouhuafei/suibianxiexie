@@ -31,9 +31,7 @@ class Super {
     }
 
     // (功)(盖)功能(这个方法需要在子类型里被覆盖掉)
-    power() {
-        console.log('dataInfo:', this.dataInfo);
-    }
+    power() {}
 
     // (渲)渲染
     renderHeader() {
@@ -55,6 +53,7 @@ class Super {
                 return value || {};
             }
         }());
+        console.log('dataInfo:\n', self.dataInfo);
 
         // 延迟加载
         const LazyLoad = require('../components-dom/g-lazy-load');
@@ -96,12 +95,14 @@ class Super {
             });
         }
 
+        /*
         // 底部导航
         if (dataInfo && dataInfo.footerNav) {
             const Footer = require('../components-dom/g-footer-nav');
             dataInfo.footerNav.wrap = '.page-footer-nav-wrap';
             new Footer(dataInfo.footerNav);
         }
+        */
 
         // 延迟加载
         self.lazyload.render();

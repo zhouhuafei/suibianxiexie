@@ -1,5 +1,3 @@
-@import "../config/config";
-
 /* 盒模型重置 */
 *, *:before, *:after {
     box-sizing: border-box;
@@ -9,10 +7,10 @@
 body {
     margin: 0;
     font-family: "微软雅黑", "Helvetica", "Arial", "sans-serif";
-    font-size: px2rem(12);
+    font-size: 12px;
     line-height: 1.5;
-    color: $g-font-color-default;
-    background: $g-background-color-floor;
+    color: #333333;
+    background: #ffffff;
 }
 
 /* 标题重置 */
@@ -45,7 +43,7 @@ input, select, textarea, button {
     line-height: inherit;
     color: inherit;
     background: #ffffff;
-    border: px2px(1) solid $g-border-color-default;
+    border: 1px solid #dddddd;
     vertical-align: middle;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -75,5 +73,5 @@ p {
 /* 图片重置 */
 img {
     vertical-align: middle;
-    max-width: 10rem;
+    max-width: 100%;
 }

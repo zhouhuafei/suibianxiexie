@@ -12,7 +12,7 @@
     color: $g-danger-color;
 }
 
-// 工具样式
+/* 工具样式 */
 .g-display-none {
     display: none !important;
 }
@@ -63,7 +63,7 @@
     text-overflow: ellipsis;
 }
 
-// 水平垂直居中(伪类)
+/* 水平垂直居中 - 伪类 */
 .g-xy-center-sham {
     font-size: 0;
     text-align: center;
@@ -79,7 +79,7 @@
     }
 }
 
-// 水平垂直居中(flex)
+/* 水平垂直居中 - flex */
 .g-xy-center-flex {
     display: flex;
     align-items: center;
@@ -88,7 +88,7 @@
     word-break: break-all;
 }
 
-// 系列 - 0
+/* 系列 - 0 */
 .g-margin-top-0 {
     margin-top: 0 !important;
 }
