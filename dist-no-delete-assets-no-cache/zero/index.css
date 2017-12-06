@@ -39,22 +39,35 @@ input[type=text], input[type=radio], input[type=checkbox], select, textarea {
     margin: 0;
     padding: 0;
     outline: none;
-    font-size: inherit;
-    line-height: inherit;
-    color: inherit;
     background: #ffffff;
-    border: 1px solid #dddddd;
+    color: inherit;
+    line-height: inherit;
+    font-size: inherit;
+    font-family: inherit;
     vertical-align: middle;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    font-family: inherit;
+}
+
+textarea {
+    resize: none;
+}
+
+input[type=text], textarea {
+    padding: 0 6px;
+}
+
+input[type=text], select, textarea {
+    border: 1px solid #a9a9a9;
 }
 
 button, input[type=button], input[type=submit], input[type=file] {
-    vertical-align: middle;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
+    outline: none;
     color: inherit;
+    line-height: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 /* 表格重置 */
