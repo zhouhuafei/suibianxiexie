@@ -94,6 +94,7 @@ p {
 
 /* 图片重置 */
 img {
+    border: none;
     vertical-align: middle;
     max-width: 100%;
 }
