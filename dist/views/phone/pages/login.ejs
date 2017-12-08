@@ -2,13 +2,13 @@
 <html lang="en">
     <head>
         <% include ../commons/head.ejs %>
-    </head>
+    <link href="/phone/css/pages/this-is-global-file-common.css" rel="stylesheet"><link href="/phone/css/pages/login.css" rel="stylesheet"></head>
     <body>
         <div class="g-wrap">
             <% include ../commons/header.ejs %>
             <div class="g-body">
                 <!--page start-->
-                <div style="display: none" class="page-tab">
+                <div style="display: none;" class="page-tab">
                     <div class="page-tab-password">密码登录</div>
                     <div class="page-tab-verify">验证码登陆</div>
                 </div>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
 
-                <div style="display: none" class="page-third-party">
+                <div style="display: none;" class="page-third-party">
                     第三方登陆
                 </div>
                 <!--page end-->
