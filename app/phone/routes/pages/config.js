@@ -65,7 +65,7 @@ const routeName = [
     },
     {
         name: 'home', // 首页
-        title: '首页2',
+        title: '首页',
         isValidateLogin: false,
     },
     {
