@@ -11,7 +11,7 @@ const app = express(); // app
 
 // gzip压缩
 const compression = require('compression'); // gzip压缩
-app.use(compression());// gzip压缩
+app.use(compression()); // gzip压缩
 
 // 静态资源
 if (isProduction) {
