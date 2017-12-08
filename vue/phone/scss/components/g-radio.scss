@@ -43,14 +43,14 @@
             width: inherit;
             height: inherit;
             display: none;
-            //&:before {
-            //    width: inherit;
-            //    height: inherit;
-            //    display: flex;
-            //    align-items: center;
-            //    justify-content: center;
-            //    line-height: 1;
-            //}
+            &:before {
+                width: inherit;
+                height: inherit;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                line-height: 1;
+            }
         }
     }
     .g-radio-text {
