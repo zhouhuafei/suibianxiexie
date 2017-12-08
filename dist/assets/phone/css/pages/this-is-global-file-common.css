@@ -218,15 +218,33 @@ li {
   list-style-type: none; }
 
 /* 表单重置 */
-input, select, textarea, button {
+input[type=text], input[type=radio], input[type=checkbox], select, textarea {
   margin: 0;
   padding: 0;
   outline: none;
-  font-size: inherit;
-  line-height: inherit;
-  color: inherit;
   background: #ffffff;
-  border: 1px solid #e6e7ed;
+  color: inherit;
+  line-height: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  vertical-align: middle;
+  -webkit-tap-highlight-color: transparent; }
+
+textarea {
+  resize: none; }
+
+input[type=text], textarea {
+  padding: 0 6px; }
+
+input[type=text], select, textarea {
+  border: 1px solid #a9a9a9; }
+
+button, input[type=button], input[type=submit], input[type=file] {
+  outline: none;
+  color: inherit;
+  line-height: inherit;
+  font-size: inherit;
+  font-family: inherit;
   vertical-align: middle;
   -webkit-tap-highlight-color: transparent; }
 
@@ -250,6 +268,7 @@ p {
 
 /* 图片重置 */
 img {
+  border: none;
   vertical-align: middle;
   max-width: 10rem; }
 
