@@ -2,7 +2,7 @@
 
 //单选框
 .g-radio {
-    $height: 20.4;
+    $height: 24;
     text-align: center;
     height: px2rem($height);
     display: flex;
@@ -43,14 +43,6 @@
             width: inherit;
             height: inherit;
             display: none;
-            //&:before {
-            //    width: inherit;
-            //    height: inherit;
-            //    display: flex;
-            //    align-items: center;
-            //    justify-content: center;
-            //    line-height: 1;
-            //}
         }
     }
     .g-radio-text {
