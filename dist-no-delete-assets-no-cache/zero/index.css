@@ -86,16 +86,10 @@ td {
 
 /* 超链接重置 */
 a {
-    display: inline-block;
     color: inherit;
     outline: none;
     text-decoration: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-/* span标签重置 */
-span {
-    display: inline-block;
 }
 
 /* 段落重置 */
