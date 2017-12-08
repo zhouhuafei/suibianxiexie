@@ -35,6 +35,11 @@ li {
 }
 
 /* 表单重置 */
+label {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 input[type=text], input[type=radio], input[type=checkbox], select, textarea {
     margin: 0;
     padding: 0;
