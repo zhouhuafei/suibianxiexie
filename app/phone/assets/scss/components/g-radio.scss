@@ -2,7 +2,7 @@
 
 //单选框
 .g-radio {
-    $height: 24;
+    $height: 20;
     text-align: center;
     height: px2rem($height);
     display: flex;
@@ -12,7 +12,7 @@
         width: px2rem($height);
         height: 100%;
         background: #ffffff;
-        border-radius: 50%;
+        border-radius: px2rem(4);
         display: flex;
         align-items: center;
         justify-content: center;

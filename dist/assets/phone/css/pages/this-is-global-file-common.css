@@ -747,7 +747,7 @@ html.g-pc {
 
 .g-radio {
   text-align: center;
-  height: 0.75rem;
+  height: 0.625rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -756,10 +756,10 @@ html.g-pc {
           align-items: center; }
   .g-radio .g-radio-wrap {
     position: relative;
-    width: 0.75rem;
+    width: 0.625rem;
     height: 100%;
     background: #ffffff;
-    border-radius: 50%;
+    border-radius: 0.125rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
