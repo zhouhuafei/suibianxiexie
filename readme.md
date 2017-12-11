@@ -1,4 +1,4 @@
-````
+```
 # 安装依赖
 npm i
 # 开发
@@ -7,9 +7,9 @@ npm run dev
 # 生产
 npm run appPhoneBuild
 npm run start
-````
+```
 
-````
+```
 # 开发的目录结构
 assets/
 ├── images
@@ -36,7 +36,7 @@ assets/
 └── views
     ├── commons
     └── pages
-````
+```
 
 # 代码装修中...
 * g-表示全局级别,有这个前缀的样式是整站通用的样式,要改的话就是整站都改
