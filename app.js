@@ -79,7 +79,7 @@ mongoose.connection.on('connected', function () {
         app.redisClient = redisClient;
 
         // 监听端口
-        const server = app.listen('5555', function () {
+        const server = app.listen('5551', function () {
             console.log('server connection open to:\n', `http://localhost:${server.address().port}`);
         });
     });
