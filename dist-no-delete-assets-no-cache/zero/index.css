@@ -48,7 +48,7 @@ input[type=radio], input[type=checkbox], input[type=text], input[type=password],
     margin: 0;
     padding: 0;
     background: #ffffff;
-    border: 1px solid #f00;
+    border: 1px solid #333333;
     outline: none;
     color: inherit;
     line-height: inherit;
