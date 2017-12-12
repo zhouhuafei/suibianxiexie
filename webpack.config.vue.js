@@ -205,12 +205,12 @@ const webpackConfig = {
         historyApiFallback: true,
         inline: true,
         open: true,
-        port: 5556,
+        port: 2333,
         openPage: `dist/assets/${projectDirname}/`,
         // 代理实现接口跨域
         proxy: {
             '/': { // 需要代理的路径
-                target: 'http://127.0.0.1:5555/', // 需要代理的域名
+                target: 'http://127.0.0.1:5551/', // 需要代理的域名
                 changeOrigin: true, // 必须配置为true，才能正确代理
             },
         },
