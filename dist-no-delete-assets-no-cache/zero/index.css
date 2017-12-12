@@ -56,7 +56,6 @@ input[type=radio], input[type=checkbox], input[type=text], input[type=password],
     font-family: inherit;
     vertical-align: middle;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    padding: 0 6px;
 }
 
 input[type=radio], input[type=checkbox] {
