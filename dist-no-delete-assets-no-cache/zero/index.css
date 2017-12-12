@@ -43,7 +43,16 @@ label {
 textarea {
     resize: none;
     vertical-align: bottom;
-    padding: 0 6px;
+    padding: 60px;
+    margin: 0;
+    background: #ffffff;
+    border: 1px solid #a9a9a9;
+    outline: none;
+    color: inherit;
+    line-height: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 input[type=radio], input[type=checkbox], input[type=text], input[type=password], input[type=tel], input[type=number], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime-local], input[type=month], input[type=week], input[type=color], textarea, select {
