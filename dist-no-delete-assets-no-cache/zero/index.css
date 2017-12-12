@@ -48,6 +48,7 @@ input[type=radio], input[type=checkbox], input[type=text], input[type=password],
     margin: 0;
     padding: 0;
     background: #ffffff;
+    border: 1px solid #a9a9a9;
     outline: none;
     color: inherit;
     line-height: inherit;
@@ -55,7 +56,6 @@ input[type=radio], input[type=checkbox], input[type=text], input[type=password],
     font-family: inherit;
     vertical-align: middle;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    border: 1px solid #a9a9a9;
 }
 
 input[type=radio], input[type=checkbox] {
