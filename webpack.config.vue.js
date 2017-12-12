@@ -205,7 +205,7 @@ const webpackConfig = {
         historyApiFallback: true,
         inline: true,
         open: true,
-        port: 2333,
+        port: 1555,
         openPage: `dist/assets/${projectDirname}/`,
         // 代理实现接口跨域
         proxy: {
