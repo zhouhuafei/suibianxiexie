@@ -274,6 +274,9 @@ img {
   vertical-align: middle;
   max-width: 10rem; }
 
+.g-font-color-highlight {
+  color: #0089ff; }
+
 .g-font-color-success {
   color: #67C23A; }
 
@@ -282,6 +285,9 @@ img {
 
 .g-font-color-danger {
   color: #fa5555; }
+
+.g-font-color-ignore {
+  color: #bfbfbf; }
 
 /* 工具样式 */
 .g-display-none {
