@@ -129,7 +129,7 @@ ValidateForm.prototype.validateSave = function () {
     var value = this.element.value;
     this.isValidateSuccess = true; // 是否验证成功了
     type.forEach(function (v, i) {
-        if (v === 'no-space' && self.isValidateSuccess) {
+        if (v === 'no-empty' && self.isValidateSuccess) {
             // 设置了非空验证
             if (tools.isEmpty(value)) {
                 self.renderHintAdd({ txt: hintTxt[i] });
