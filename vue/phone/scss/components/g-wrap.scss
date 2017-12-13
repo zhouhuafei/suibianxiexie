@@ -46,7 +46,6 @@ html.g-pc {
             .g-qr-code {
                 $width: 144;
                 display: block;
-                width: px2px($width);
                 padding: px2px(20);
                 background: #fff;
                 border: px2px(1) solid $g-border-color-default;
