@@ -23,11 +23,11 @@ class Sub {
             * 状态信息:
             * 成功(success)   有返回结果,结果的状态是success,预定义的数据格式:{status: 'success'}
             * 失败(failure)   有返回结果,结果的状态是failure,预定义的数据格式:{status: 'failure'}
-            * 错误(error)     未知的返回结果,错误的情况下,在浏览器的network -> response 里看不到预定义的数据格式
             * */
             status: 'failure', // 状态信息
             message: '接口数据的基本格式', // 提示信息 - '参数错误'
-            error: null, // 错误信息
+            failureInfo: null, // 错误信息
+            failureCode: null, // 401 未授权,未登录
             result: {
                 // 数据集合(格式必须统一为数组,哪怕只有一条数据)
                 data: [
@@ -102,6 +102,7 @@ class Sub {
                 isContinue = false;
                 self.render({
                     message: '未登录',
+                    failureCode: 401,
                 });
             }
         }

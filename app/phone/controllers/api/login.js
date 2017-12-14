@@ -41,7 +41,7 @@ class Sub extends Super {
                             self.render({
                                 status: 'failure',
                                 message: '密码对比出现错误',
-                                error: error,
+                                failureInfo: error,
                             });
                         }
                         if (isMatch) {

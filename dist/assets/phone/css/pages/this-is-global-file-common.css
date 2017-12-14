@@ -984,10 +984,10 @@ html.g-pc {
     background: rgba(0, 0, 0, 0.8); }
     .g-dialog.g-dialog-alert .g-dialog-alert-close {
       position: absolute;
-      right: 4px;
-      top: 4px;
+      left: 0.125rem;
+      top: 0.125rem;
       color: #ffffff;
-      font-size: 12px; }
+      font-size: 0.375rem; }
     .g-dialog.g-dialog-alert .g-dialog-alert-icon {
       margin-right: 0.3125rem;
       font-size: 0.75rem; }

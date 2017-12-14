@@ -46,7 +46,7 @@ class Sub extends Super {
                     self.render({
                         status: 'failure',
                         message: '验证码发送失败,请重新发送',
-                        error: error,
+                        failureInfo: error,
                     });
                 } else {
                     self.opts.app.redisClient.set(`verify-code-register-random-${username}`, verifyCode, 'ex', expirationDate * 60);

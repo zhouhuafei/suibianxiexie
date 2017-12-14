@@ -91,7 +91,7 @@ class Sub extends Super {
                                     self.render({
                                         status: 'failure',
                                         message: '数据库插入出现错误',
-                                        error: error,
+                                        failureInfo: error,
                                     });
                                 } else {
                                     // 数据库插入成功
