@@ -49,7 +49,7 @@ class Sub extends Super {
                         error: error,
                     });
                 } else {
-                    self.opts.app.redisClient.set(`verify-code-register-random-${username}`, verifyCode, 'EX', expirationDate * 60);
+                    self.opts.app.redisClient.set(`verify-code-register-random-${username}`, verifyCode, 'ex', expirationDate * 60);
                     self.render({
                         status: 'success',
                         message: '验证码发送成功',
