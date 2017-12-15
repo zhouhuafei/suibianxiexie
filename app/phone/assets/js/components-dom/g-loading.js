@@ -56,6 +56,7 @@ Sub.prototype.moduleDomCreate = function () {
             <div class="g-loading-body">
                 <div class="g-loading-over-icon iconfont icon-meiyoushuju"></div>
                 <div class="g-loading-over-text">没有数据了</div>
+                <div class="g-loading-over-icon iconfont icon-meiyoushuju"></div>
             </div>
         `;
     }
