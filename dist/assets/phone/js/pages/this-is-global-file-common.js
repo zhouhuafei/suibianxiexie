@@ -16260,16 +16260,14 @@ module.exports = function (json) {
     return axios(opts).catch(function (error) {
         var response = {
             data: {
-                status: 'error',
-                message: '接口出错',
-                error: error // 这里的error其实是一个Error类型的数据
+                status: 'error'
             }
         };
         if (opts.isHandleError) {
             new Dialog({
                 config: {
                     alert: {
-                        content: error
+                        content: error // 这里的error其实是一个Error类型的数据
                     }
                 }
             });
