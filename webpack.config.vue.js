@@ -13,11 +13,15 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default; // 压缩图�
 // 配置入口路径和出口路径
 const configPath = {
     entry: `${__dirname}/${projectDirPath}`,
-    output: `${__dirname}/dist/assets/${projectDirname}/`,
+    // output: `${__dirname}/dist/assets/${projectDirname}/`,
+    // 为了保证开发环境和生产环境的路径一致,上面一行需要修改为下面一行
+    output: `${__dirname}/${isProduction ? 'dist/assets/' : ''}${projectDirname}/`,
 };
 // 环境----开发环境
 let configEnvironment = {
-    publicPath: `/dist/assets/${projectDirname}/`, // 出口路径----指定资源文件引用的目录
+    // publicPath: `/dist/assets/${projectDirname}/`, // 出口路径----指定资源文件引用的目录
+    // 为了保证开发环境和生产环境的路径一致,上面一行需要修改为下面一行
+    publicPath: `/${projectDirname}/`, // 出口路径----指定资源文件引用的目录
     hash: '[hash:8].', // 图片和字体用到了这个hash
     chunkhash: '', // js用到了这个chunkhash
     contenthash: '', // css用到了这个contenthash
@@ -206,7 +210,9 @@ const webpackConfig = {
         inline: true,
         open: true,
         port: 1555,
-        openPage: `dist/assets/${projectDirname}/`,
+        // openPage: `dist/assets/${projectDirname}/`,
+        // 为了保证开发环境和生产环境的路径一致,上面一行需要修改为下面一行
+        openPage: `${projectDirname}/`,
         // 代理实现接口跨域
         proxy: {
             '/': { // 需要代理的路径
