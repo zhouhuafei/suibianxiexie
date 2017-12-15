@@ -1250,7 +1250,7 @@ Sub.prototype.moduleDomCreate = function () {
         if (positionMethod === 'absolute') {
             moduleDomClass += 'g-loading-absolute g-loading-' + positionLocation;
         }
-        moduleDomHtml = '\n            <div class="g-loading-body">\n                <div class="g-loading-over-icon iconfont icon-meiyoushuju"></div>\n                <div class="g-loading-over-text">\u6CA1\u6709\u6570\u636E\u4E86</div>\n                <div class="g-loading-over-icon iconfont icon-meiyoushuju"></div>\n            </div>\n        ';
+        moduleDomHtml = '\n            <div class="g-loading-body">\n                <div class="g-loading-over-icon iconfont icon-meiyoushuju"></div>\n                <div class="g-loading-over-text">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ';
     }
     // 模块创建
     this.moduleDom = applications.createElement({
