@@ -443,13 +443,15 @@ Applications.prototype.whenScrollBottom = function () {
                     failure: function () {
                     },
                 },
+                isBindScrollEvent: true, // 是否绑定滚动事件
                 isInitRender: true, // 是否初始化的时候就进行渲染
                 interval: 80, // 函数节流时间(延迟时间)
                 errorHeight: 0, // 滚动到底部上面一定高度就算是滚动到底部了(误差高度)
             },
             inherits: json,
         });
-        this.isLoadOver = false;// 数据是否加载完毕
+        this.timer = null; // 定时器
+        this.isLoadOver = false; // 数据是否加载完毕
         this.init();
     }
 
@@ -478,15 +480,21 @@ Applications.prototype.whenScrollBottom = function () {
         // 数据加载完毕,手动调用这个方法,或者手动把isLoadOver属性变成true,建议掉方法
     };
 
+    WhenScrollBottom.prototype.scroll = function () {
+        const self = this;
+        clearTimeout(self.timer);
+        self.timer = setTimeout(function () {
+            self.render();
+        }, self.opts.interval);
+    };
+
     WhenScrollBottom.prototype.power = function () {
         const self = this;
-        let timer = null;
-        window.addEventListener('scroll', function () {
-            clearTimeout(timer);
-            timer = setTimeout(function () {
-                self.render();
-            }, self.opts.interval);
-        });
+        if (self.opts.isBindScrollEvent) {
+            window.addEventListener('scroll', function () {
+                self.scroll();
+            });
+        }
     };
     return WhenScrollBottom;
 };
