@@ -37,12 +37,13 @@ class Sub extends Super {
                             },
                         });
                         if (num >= 5) {
-                            self.isLoadOver = true;
                             new Loading({
                                 config: {
                                     status: 'over',
                                 },
                             });
+                        } else {
+                            self.dataLoadContinue();
                         }
                     },
                 },
