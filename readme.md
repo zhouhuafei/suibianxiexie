@@ -2,11 +2,11 @@
 # 安装依赖
 npm i
 # 开发
-npm run appPhoneDev
 npm run serverDev
+npm run appPhoneDev
 # 生产
-npm run appPhoneBuild
 npm run serverStart
+npm run appPhoneBuild
 ```
 
 ```
