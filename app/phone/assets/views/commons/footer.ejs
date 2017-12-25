@@ -2,6 +2,7 @@
     <div class="page-go-top-wrap"></div>
     <div class="page-copyright-wrap"></div>
     <!--<div style="width: inherit;" class="page-footer-nav-wrap"></div>-->
+    <% if(dataInfo.footerNav) { %>
     <div class="g-footer-nav">
         <div class="g-footer-nav-body">
             <% dataInfo.footerNav.data.forEach(function (v) { %>
@@ -15,5 +16,6 @@
             <% }) %>
         </div>
     </div>
+    <% } %>
 </div>
 <input type="hidden" id="page-info-str" value="<%= dataInfoStr %>">
