@@ -31,7 +31,8 @@ class Super {
     }
 
     // (功)(盖)功能(这个方法需要在子类型里被覆盖掉)
-    power() {}
+    power() {
+    }
 
     // (渲)渲染
     renderHeader() {
@@ -76,9 +77,10 @@ class Super {
         const dataInfo = self.dataInfo;
 
         // 二维码
+        const qr = require('qr-image');
         const qrDom = document.querySelector('.g-qr-code-svg');
         if (qrDom) {
-            qrDom.innerHTML = self.applications.qrCode(window.location.href);
+            qrDom.innerHTML = qr.imageSync(window.location.href, {type: 'svg'});
         }
 
         // 返回顶部
