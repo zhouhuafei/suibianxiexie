@@ -8,6 +8,8 @@ import axios from './api/axios';
 import jsonp from './api/jsonp';
 import Lazyload from './components-dom/g-lazy-load';
 
+const qr = require('qr-image');
+
 // 公共的样式
 require('./scss/commons/common.scss');
 
@@ -41,7 +43,7 @@ router.afterEach(function (to, from) {
     // 二维码
     const qrDom = document.querySelector('.g-qr-code-svg');
     if (qrDom) {
-        qrDom.innerHTML = applications.qrCode(window.location.href);
+        qrDom.innerHTML = qr.imageSync(window.location.href, {type: 'svg'});
     }
 });
 

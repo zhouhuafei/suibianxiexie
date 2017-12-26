@@ -1,14 +1,8 @@
 const tools = require('./tools');
-const qr = require('qr-image');
 
 // 应用方法集合
 function Applications() {
 }
-
-// 生成二维码
-Applications.prototype.qrCode = function (text) {
-    return qr.imageSync(text, {type: 'svg'});
-};
 
 // 设置cookie
 Applications.prototype.setCookie = function (name, value, expires, domain, path, secure) {
