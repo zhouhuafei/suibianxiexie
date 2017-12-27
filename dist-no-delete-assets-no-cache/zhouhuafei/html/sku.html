@@ -8,7 +8,8 @@
         <!-- ie以最高级模式渲染文档 -->
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <!-- 窗口宽度等于设备宽度以及禁止缩放 -->
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <!-- 是否需要默认的工具栏和菜单栏(针对苹果手机,默认值yes,需要) -->
         <meta name="apple-mobile-web-app-capable" content="yes">
         <!-- 控制状态栏的样式(针对苹果手机,黑色) -->
@@ -36,9 +37,9 @@
         <script>
             // 目标数组(一维数组和二维数组的长度都是不固定的)
             const target = [
-                ['a', 'b', 'c'],
-                [1, 2, 3],
-                ['77', '88', '99'],
+                ['a', 'b', 'c'], // 一级规格
+                [1, 2, 3], // 二级规格
+                ['77', '88', '99'], // 三级规格
             ];
             // 结果数组
             const result = [
@@ -71,14 +72,33 @@
                 ['c', 3, '99'],
             ];
 
-            //请完善函数
             function sku(arr) {
-                const result = [];
-                target.forEach(function (value) {
+                const length = arr.length;
+                let num = 0;
+                let result = [];
+                if (length !== 0) {
+                    arr[0].forEach(function (v) {
+                        result.push([v]);
+                    });
+                    fn(arr);
+                }
 
-                });
-                //请完善请完善函数
+                function fn(arr) {
+                    num++;
+                    if (num < length) {
+                        const r = [];
+                        result.forEach(function (v1) {
+                            arr[num].forEach(function (v2) {
+                                r.push(v1.concat(v2));
+                            });
+                        });
+                        result = r;
+                        fn(arr);
+                    }
+                }
+
                 console.log(result);
+                return result;
             }
 
             sku(target);
