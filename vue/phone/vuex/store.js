@@ -62,14 +62,14 @@ export default new Vuex.Store({
                 {
                     href: '/',
                     text: '首页',
-                    icon: 'icon-shouye',
+                    icon: 'icon-home',
                     isHighlight: true,
                     isShowMark: false,
                 },
                 {
                     href: '/mine/',
                     text: '我的',
-                    icon: 'icon-wode',
+                    icon: 'icon-mine',
                     isHighlight: false,
                     isShowMark: false,
                 },

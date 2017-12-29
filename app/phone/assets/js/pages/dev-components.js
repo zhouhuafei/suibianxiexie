@@ -115,13 +115,13 @@ class Sub extends Super {
                 new Dialog({
                     callback: {
                         confirm: function () {
-                            new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已确认'}}});
+                            new Dialog({config: {alert: {icon: 'icon-success', content: '已确认'}}});
                         },
                         cancel: function () {
-                            new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已取消'}}});
+                            new Dialog({config: {alert: {icon: 'icon-success', content: '已取消'}}});
                         },
                         close: function () {
-                            new Dialog({config: {alert: {icon: 'icon-chenggong', content: '已关闭'}}});
+                            new Dialog({config: {alert: {icon: 'icon-success', content: '已关闭'}}});
                         },
                     },
                     config: {

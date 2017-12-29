@@ -53,7 +53,7 @@ const Sub = tools.constructorInherit(Super, {
             time: 3000, // 展示的时间
             isShowIcon: false, // 是否显示icon
             isShowClose: true, // 是否显示关闭按钮
-            icon: 'icon-chenggong', // icon的class
+            icon: 'icon-success', // icon的class
             content: '成功', // 内容信息
         },
         // 确认框
@@ -66,7 +66,7 @@ const Sub = tools.constructorInherit(Super, {
             isShowFooter: true, // 是否显示尾部
             footerContent: '', // 尾部内容
             isShowClose: true, // 是否显示关闭按钮
-            closeContent: '<div class="iconfont icon-guanbi"></div>', // 关闭按钮的内容
+            closeContent: '<div class="iconfont icon-close"></div>', // 关闭按钮的内容
             isShowConfirm: true, // 是否显示确认按钮
             confirmContent: '确认', // 确认按钮的内容
             isShowCancel: true, // 是否显示取消按钮
@@ -119,7 +119,7 @@ Sub.prototype.renderAlert = function () {
     }
     let closeHtml = '';
     if (alert.isShowClose) {
-        closeHtml = '<div class="g-dialog-alert-close iconfont icon-guanbi" ></div>';
+        closeHtml = '<div class="g-dialog-alert-close iconfont icon-close" ></div>';
     }
     return `
         ${closeHtml}

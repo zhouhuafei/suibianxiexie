@@ -1,1 +1,31 @@
-<!DOCTYPE html><html lang="en"><head> <% include ../commons/head.ejs %> <link href="/phone/css/pages/this-is-global-file-common.62eb2c67454529e2c82048c0baa5616f.css" rel="stylesheet"><link href="/phone/css/pages/dev-list.d41d8cd98f00b204e9800998ecf8427e.css" rel="stylesheet"></head><body><div class="g-wrap"> <% include ../commons/header.ejs %> <div class="g-body"><div class="g-list"> <% dataInfo.routesRender.forEach(function (v) { %> <a href="<%= v.route %>" class="g-list-row"><div class="g-list-wrap"><div class="g-list-wrap"><div class="g-list-icon iconfont icon-kaifa"></div><div class="g-list-text"><%= v.name %></div></div><div class="g-list-wrap"><div class="g-list-more iconfont icon-gengduo"></div></div></div></a> <% }) %> </div></div> <% include ../commons/footer.ejs %> </div><script type="text/javascript" src="/phone/js/pages/this-is-global-file-manifest.d5c796fe88d0a3a626e5.js"></script><script type="text/javascript" src="/phone/js/pages/this-is-global-file-vendor.94fa6e731eee4e4e0630.js"></script><script type="text/javascript" src="/phone/js/pages/this-is-global-file-common.39ad781a942789e59353.js"></script><script type="text/javascript" src="/phone/js/pages/dev-list.1f115844d4c34d0a649a.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../commons/head.ejs %>
+    <link href="/phone/css/pages/this-is-global-file-common.css" rel="stylesheet"><link href="/phone/css/pages/dev-list.css" rel="stylesheet"></head>
+    <body>
+        <div class="g-wrap">
+            <% include ../commons/header.ejs %>
+            <div class="g-body">
+                <!--page start-->
+                <div class="g-list">
+                    <% dataInfo.routesRender.forEach(function (v) { %>
+                    <a href="<%= v.route %>" class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-wrap">
+                                <div class="g-list-icon iconfont icon-dev"></div>
+                                <div class="g-list-text"><%= v.name %></div>
+                            </div>
+                            <div class="g-list-wrap">
+                                <div class="g-list-more iconfont icon-more"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <% }) %>
+                </div>
+                <!--page end-->
+            </div>
+            <% include ../commons/footer.ejs %>
+        </div>
+    <script type="text/javascript" src="/phone/js/pages/this-is-global-file-manifest.js"></script><script type="text/javascript" src="/phone/js/pages/this-is-global-file-vendor.js"></script><script type="text/javascript" src="/phone/js/pages/this-is-global-file-common.js"></script><script type="text/javascript" src="/phone/js/pages/dev-list.js"></script></body>
+</html>
