@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <!-- 字符编码 -->
@@ -29,14 +29,44 @@
         <meta name="description" content="zhouhuafei,周华飞">
         <!-- 页面作者 -->
         <meta name="author" content="zhouhuafei,周华飞,1123486116@qq.com">
-        <title>欢迎来到我的网站</title>
+        <!--页面标题-->
+        <title>async</title>
     </head>
     <body>
-        <h1>hello world</h1>
-        <ul>
-            <li><a href="/zero/">zero</a></li>
-            <li><a href="/phone/">phone</a></li>
-            <li><a href="/phone-vue/">phone-vue</a></li>
-        </ul>
+        <script>
+            function ajax1() {
+                return new Promise(function (resolve, reject) {
+                    setTimeout(function () {
+                        resolve('ajax1');
+                        //reject('error');
+                    }, 3000);
+                });
+            }
+
+            function ajax2() {
+                return new Promise(function (resolve, reject) {
+                    setTimeout(function () {
+                        resolve('ajax2');
+                        //reject('error');
+                    }, 3000);
+                });
+            }
+
+            async function fn() {
+                try {
+                    console.log('3秒前');
+                    var resultAjax1 = await ajax1();
+                    console.log(resultAjax1);
+                    console.log('3秒后');
+                    var resultAjax2 = await ajax2();
+                    console.log(resultAjax2);
+                    console.log('6秒后');
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+
+            fn();
+        </script>
     </body>
 </html>

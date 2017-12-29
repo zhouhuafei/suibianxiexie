@@ -1,6 +1,5 @@
 // 模版渲染
 const tools = require('../../../../utils/tools'); // 工具方法集合
-const applications = require('../../../../utils/applications'); // 应用方法集合
 const routesConfig = require('../../routes/pages/config'); // 路由配置
 const apiConfig = require('../../routes/api/config'); // 接口配置
 
