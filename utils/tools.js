@@ -325,7 +325,7 @@ Tools.prototype.keepDecimal = function (value = 0, place = 2, isFormat = true) {
     let result = value;
     const baseNum = Math.pow(10, place);
     if (Number(place) !== 0) {
-        result = (Math.floor(parseFloat(value) * baseNum) / baseNum).toFixed(2);
+        result = (Math.floor(parseFloat(value) * baseNum) / baseNum).toFixed(place);
     }
     if (isFormat) {
         const arr = result.split('.');
