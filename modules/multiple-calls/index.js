@@ -19,6 +19,7 @@ function multipleCalls(num, fn) {
     };
 }
 
+/*
 const mulCalls = multipleCalls(3, function (error, result) {
     if (!error) {
         console.log(`调用${result.initNum}次才会触发我哟`);
@@ -27,5 +28,6 @@ const mulCalls = multipleCalls(3, function (error, result) {
 mulCalls();
 mulCalls();
 mulCalls();
+*/
 
 module.exports = multipleCalls;
