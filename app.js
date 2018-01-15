@@ -69,18 +69,23 @@ app.use(function (err, req, res, next) {
     }
 });
 
+const multipleCalls = require('./modules/multiple-calls');
+const server = multipleCalls(2, function () {
+    const server = app.listen('5551', function () {
+        console.log('server connection open to:\n', `http://localhost:${server.address().port}`);
+    });
+});
+
 // mongodb数据库链接
 const mongoose = require('./db/mongoose');
 mongoose.connection.on('connected', function () {
-    // redis数据库链接
-    const redisClient = require('./db/redis');
-    redisClient.on('connect', function () {
-        // 把redis的客户端应用到全局的app上使用
-        app.redisClient = redisClient;
+    server();
+});
 
-        // 监听端口
-        const server = app.listen('5551', function () {
-            console.log('server connection open to:\n', `http://localhost:${server.address().port}`);
-        });
-    });
+// redis数据库链接
+const redisClient = require('./db/redis');
+redisClient.on('connect', function () {
+    // 把redis的客户端应用到全局的app上使用
+    app.redisClient = redisClient;
+    server();
 });
