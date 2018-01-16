@@ -26,6 +26,7 @@ function sku(arr) {
     return result;
 }
 
+/*
 // 目标数组(一维数组和二维数组的长度都是不固定的)
 const target = [
     ['a', 'b', 'c'], // 一级规格
@@ -65,5 +66,6 @@ const result = [
 ];
 
 console.log(sku(target));
+*/
 
 module.exports = sku;
