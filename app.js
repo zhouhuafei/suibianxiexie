@@ -50,6 +50,8 @@ app.set('view cache', true);
 
 // 路由
 [
+    './app/admin/routes/pages/route',
+    './app/admin/routes/api/route',
     './app/phone/routes/pages/route',
     './app/phone/routes/api/route',
 ].forEach(function (v) {
@@ -65,7 +67,8 @@ app.use(function (req, res, next) {
 // 500
 app.use(function (err, req, res, next) {
     if (err) {
-        res.status(500).send(`500 - server error\n${err}`);
+        console.error(err.stack);
+        res.status(500).send(`500 - server error\n${err.stack}`);
     }
 });
 
