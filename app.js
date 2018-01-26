@@ -72,7 +72,7 @@ app.use(function (err, req, res, next) {
     }
 });
 
-const multipleCalls = require('./modules/multiple-calls');
+const multipleCalls = require('zhf.multiple-calls');
 const server = multipleCalls(2, function () {
     const server = app.listen('5551', function () {
         console.log('server connection open to:\n', `http://localhost:${server.address().port}`);

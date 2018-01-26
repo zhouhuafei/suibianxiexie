@@ -6,7 +6,7 @@ class Sub extends Super {
         const self = this;
         const opts = self.opts;
         const req = opts.req;
-        delete req.session.userInfo;
+        delete req.session.phoneUserInfo;
         this.render({
             status: 'success',
             message: '退出成功',

@@ -98,7 +98,7 @@ class Sub {
         // 验证
         if (opts.isValidateLogin) {
             // 未登录
-            if (req.session.userInfo === undefined) {
+            if (req.session.phoneUserInfo === undefined) {
                 isContinue = false;
                 self.render({
                     message: '未登录',

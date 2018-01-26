@@ -103,7 +103,7 @@ class Super {
         // 验证
         if (opts.isValidateLogin) {
             // 未登录
-            if (req.session.userInfo === undefined) {
+            if (req.session.phoneUserInfo === undefined) {
                 isContinue = false;
                 res.redirect(routesConfig.login.route); // 重定向路由
             }

@@ -23,9 +23,9 @@ routeName.forEach(function (v) {
         title: v.title, // 标题
         route: route, // 路由
         view: `${pathConfig.view}${v.name}`, // 视图
-        isValidateLogin: v.isValidateLogin === undefined, // 是否验证登陆信息(默认验证)
-        isShowCopyright: v.isShowCopyright === undefined, // 是否显示版权信息(默认显示)
-        isShowFooterNav: v.isShowFooterNav === undefined, // 是否显示底部导航(默认显示)
+        isValidateLogin: v.isValidateLogin !== false, // 是否验证登陆信息(默认验证)
+        isShowCopyright: v.isShowCopyright !== false, // 是否显示版权信息(默认显示)
+        isShowFooterNav: v.isShowFooterNav !== false, // 是否显示底部导航(默认显示)
     };
 });
 module.exports = routeConfig;
