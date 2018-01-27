@@ -1,5 +1,5 @@
-function px2rem(px, base = 750) {
-    return `${px / base * 10}rem`;
+function px2rem(px, psd = 750) {
+    return `${px / psd * 10}rem`;
 }
 
 module.exports = px2rem;
