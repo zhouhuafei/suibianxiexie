@@ -1623,3 +1623,11 @@ html.g-pc {
     border-top-color: #fa5555;
     right: 0.3125rem;
     top: 0.625rem; }
+
+.g-img-list .g-img-list-big img {
+  width: 5.875rem;
+  height: 2.5rem; }
+
+.g-img-list .g-img-list-small img {
+  width: 2.25rem;
+  height: 2.29688rem; }

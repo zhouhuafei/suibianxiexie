@@ -8,7 +8,7 @@ webpackJsonp([0],{
 
 module.exports = function (Vue) {
     Vue.component('g-img-list', {
-        template: '<div class="g-img-list">\n            <div style="min-height: 120px;">\n                <img style="width:5.013333333333334rem;height: 2.1333333333333333rem;" class="g-lazy-load" data-src="' + __webpack_require__(112) + '" alt="">\n            </div>\n            <div style="min-height: 120px;">\n                <img style="width:1.92rem;height:1.96rem;" class="g-lazy-load" data-src="' + __webpack_require__(113) + '" alt="">\n            </div>\n        </div>',
+        template: '<div class="g-img-list">\n            <div class="g-img-list-big">\n                <img class="g-lazy-load" data-src="' + __webpack_require__(112) + '" alt="">\n            </div>\n            <div class="g-img-list-small">\n                <img class="g-lazy-load" data-src="' + __webpack_require__(113) + '" alt="">\n            </div>\n        </div>',
         mounted: function mounted() {
             this.$lazyload.render();
         }

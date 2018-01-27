@@ -24,3 +24,14 @@
 @import "../components/g-lazy-load";
 @import "../components/g-no-data";
 @import "../components/g-validate-form-hint";
+
+.g-img-list {
+    .g-img-list-big img {
+        width: px2rem(376/2);
+        height: px2rem(160/2);
+    }
+    .g-img-list-small img {
+        width: px2rem(144/2);
+        height: px2rem(147/2);
+    }
+}
