@@ -15,6 +15,7 @@ app.use(compression()); // gzip压缩
 
 // 静态资源
 if (isProduction) {
+    app.isProduction = isProduction;
     app.use(express.static('dist/assets', {maxAge: ms('1y')})); // 托管资源文件(一年缓存)
 } else {
     app.use(express.static('dist/assets')); // 托管资源文件(无缓存)
