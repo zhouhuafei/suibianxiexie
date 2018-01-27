@@ -1,4 +1,12 @@
 ```
+待续...
+*. vconsole - 调试工具的应用
+*. swiper,jquery - 大型的第三方库,webpack打包起来很慢,如何解决
+*. vue,axios - 大型的第三方库,webpack打包起来很慢,如何解决
+*. 是否要使用bower_components
+```
+
+```
 # 安装依赖
 npm i
 # 开发
