@@ -108,8 +108,6 @@ class Super {
 
         // 延迟加载
         self.lazyload.render();
-
-        // vconsole
     }
 }
 
