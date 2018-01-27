@@ -4,6 +4,8 @@
 *. swiper,jquery - 大型的第三方库,webpack打包起来很慢,如何解决
 *. vue,axios - 大型的第三方库,webpack打包起来很慢,如何解决
 *. 是否要使用bower_components
+*. 用了jq要不要继续使用axios了,如果不用axios,还是二次封装一次ajax,axios的二次封装已经封装好了,所以我个人是倾向继续使用axios的
+*. 因为继续使用axios,并没有多出很多代码不是么
 ```
 
 ```
