@@ -27,11 +27,11 @@
 
 .g-img-list {
     .g-img-list-big img {
-        width: px2rem(376/2);
-        height: px2rem(160/2);
+        width: px2rem(376, 750);
+        height: px2rem(160, 750);
     }
     .g-img-list-small img {
-        width: px2rem(144/2);
-        height: px2rem(147/2);
+        width: px2rem(144, 750);
+        height: px2rem(147, 750);
     }
 }
