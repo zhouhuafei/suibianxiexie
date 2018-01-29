@@ -20,9 +20,12 @@ ValidateForm.prototype.render = function () {
     this.renderHint();
 };
 ValidateForm.prototype.renderWrap = function () {
-    this.wrapDom = this.element.parentNode;
-    if (this.wrapDom && getComputedStyle(this.wrapDom).position === 'static') {
-        this.wrapDom.style.position = 'relative';
+    const self = this;
+    self.wrapDom = self.element.parentNode;
+    if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
+        if (self.wrapDom.style.position === '' || self.wrapDom.style.position === 'static') {
+            self.wrapDom.style.position = 'relative';
+        }
     }
 };
 ValidateForm.prototype.renderHint = function () {

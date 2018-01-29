@@ -10,7 +10,9 @@ const Sub = tools.constructorInherit(Super, {
         },
         moduleDomRenderBefore: function (self) {
             if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
-                self.wrapDom.style.position = 'relative';
+                if (self.wrapDom.style.position === '' || self.wrapDom.style.position === 'static') {
+                    self.wrapDom.style.position = 'relative';
+                }
             }
         },
     },
