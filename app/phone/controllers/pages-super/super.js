@@ -47,6 +47,10 @@ class Super {
             if (api.indexOf('::ffff:') !== -1) {
                 api = api.substring(7);
             }
+            console.log('req.headers[\'x-forwarded-for\']', req.headers['x-forwarded-for']);
+            console.log('req.connection.remoteAddress', req.connection.remoteAddress);
+            console.log('req.socket.remoteAddress', req.socket.remoteAddress);
+            console.log('req.connection.socket ? req.connection.socket.remoteAddress : null', req.connection.socket ? req.connection.socket.remoteAddress : null);
             return api;
         }
 
