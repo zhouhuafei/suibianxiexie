@@ -40,18 +40,19 @@ class Super {
         }
 
         function getClientIp(req) {
-            let api = req.headers['x-forwarded-for'] ||
+            let ip = req.headers['x-forwarded-for'] ||
                 req.connection.remoteAddress ||
                 req.socket.remoteAddress ||
                 (req.connection.socket ? req.connection.socket.remoteAddress : null);
-            if (api.indexOf('::ffff:') !== -1) {
-                api = api.substring(7);
+            if (ip.indexOf('::ffff:') !== -1) {
+                ip = ip.substring(7);
             }
             console.log('req.headers[\'x-forwarded-for\']', req.headers['x-forwarded-for']);
             console.log('req.connection.remoteAddress', req.connection.remoteAddress);
             console.log('req.socket.remoteAddress', req.socket.remoteAddress);
             console.log('req.connection.socket ? req.connection.socket.remoteAddress : null', req.connection.socket ? req.connection.socket.remoteAddress : null);
-            return api;
+            console.log('req.ip', req.ip);
+            return ip;
         }
 
         self.dataInfo = {
