@@ -44,7 +44,7 @@ class Super {
                 req.connection.remoteAddress ||
                 req.socket.remoteAddress ||
                 (req.connection.socket ? req.connection.socket.remoteAddress : null);
-            if (api.indexOf('ffff') !== -1) {
+            if (api.indexOf('::ffff:') !== -1) {
                 api = api.substring(7);
             }
             return api;
