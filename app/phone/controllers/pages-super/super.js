@@ -38,7 +38,16 @@ class Super {
         } else {
             req.data = req.body;
         }
+
+        function getClientIp(req) {
+            return req.headers['x-forwarded-for'] ||
+                req.connection.remoteAddress ||
+                req.socket.remoteAddress ||
+                req.connection.socket.remoteAddress;
+        }
+
         self.dataInfo = {
+            ip: getClientIp(req),
             env: process.env.NODE_ENV,
             isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
             routes: routesConfig, // 路由的配置
