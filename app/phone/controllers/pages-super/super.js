@@ -47,12 +47,13 @@ class Super {
             if (ip.indexOf('::ffff:') !== -1) {
                 ip = ip.substring(7);
             }
-            console.log('req.headers[\'x-forwarded-for\']', req.headers['x-forwarded-for']);
-            console.log('req.connection.remoteAddress', req.connection.remoteAddress);
-            console.log('req.socket.remoteAddress', req.socket.remoteAddress);
-            console.log('req.connection.socket ? req.connection.socket.remoteAddress : null', req.connection.socket ? req.connection.socket.remoteAddress : null);
-            console.log('req.ip', req.ip);
-            return ip;
+            const result = [];
+            result.push('req.headers[\'x-forwarded-for\']', req.headers['x-forwarded-for']);
+            result.push('req.connection.remoteAddress', req.connection.remoteAddress);
+            result.push('req.socket.remoteAddress', req.socket.remoteAddress);
+            result.push('req.connection.socket ? req.connection.socket.remoteAddress : null', req.connection.socket ? req.connection.socket.remoteAddress : null);
+            result.push('req.ip', req.ip);
+            return result;
         }
 
         self.dataInfo = {
