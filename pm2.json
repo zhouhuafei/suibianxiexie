@@ -4,7 +4,7 @@
             "name": "suibianxiexie",
             "script": "app.js",
             "exec_mode": "cluster",
-            "instances": 1,
+            "instances": 2,
             "ignore_watch": [
                 "app/phone/assets",
                 "dist",
