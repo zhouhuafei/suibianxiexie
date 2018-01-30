@@ -3290,7 +3290,9 @@ var Sub = tools.constructorInherit(Super, {
                     self.mask = new Mask(self.opts.config.mask);
                 }
                 if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
-                    self.wrapDom.style.position = 'relative';
+                    if (self.wrapDom.style.position === '' || self.wrapDom.style.position === 'static') {
+                        self.wrapDom.style.position = 'relative';
+                    }
                 }
             }
         },
@@ -7874,7 +7876,9 @@ var Sub = tools.constructorInherit(Super, {
         click: function click() {},
         moduleDomRenderBefore: function moduleDomRenderBefore(self) {
             if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
-                self.wrapDom.style.position = 'relative';
+                if (self.wrapDom.style.position === '' || self.wrapDom.style.position === 'static') {
+                    self.wrapDom.style.position = 'relative';
+                }
             }
         }
     },
