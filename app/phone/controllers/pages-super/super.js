@@ -39,9 +39,18 @@ class Super {
         } else {
             req.data = req.body;
         }
+
+        function getClientIp(req) {
+            let api = req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null) || req.headers['x-forwarded-for']; // x-forwarded-for容易被伪造
+            if (api.indexOf('::ffff:') !== -1) {
+                api = api.substring(7);
+            }
+            return api;
+        }
+
         self.dataInfo = {
             ip: ip.address(),
-            publicIp: req.connection.remoteAddress,
+            publicIp: getClientIp(req),
             env: process.env.NODE_ENV,
             isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
             routes: routesConfig, // 路由的配置
