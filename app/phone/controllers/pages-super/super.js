@@ -56,7 +56,7 @@ class Super {
             if (ip.indexOf('::ffff:') !== -1) {
                 ip = ip.substring(7);
             }
-            return [ip, req.headers];
+            return ip;
         }
 
         const env = process.env.NODE_ENV;
