@@ -61,6 +61,7 @@ class Super {
                 req.connection.remoteAddress,
                 req.socket.remoteAddress,
                 req.ip,
+                req.headers,
             ];
         }
 
