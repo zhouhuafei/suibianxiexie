@@ -40,12 +40,21 @@ class Super {
             req.data = req.body;
         }
 
-        function getClientIp(req) {
-            let api = req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null) || req.headers['x-forwarded-for']; // x-forwarded-for容易被伪造
+        function getClientIp(req, isProxy = true) {
+            let api = req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null);
+            // 如果使用了nginx代理
+            if (isProxy) {
+                api = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || api; // 请求头headers上面的信息容易被伪造,服务器用了代理要承受这种风险
+            }
             if (api.indexOf('::ffff:') !== -1) {
                 api = api.substring(7);
             }
-            return api;
+            return [
+                'x-real-ip',
+                req.headers['x-real-ip'],
+                'x-forwarded-for',
+                req.headers['x-forwarded-for'],
+            ];
         }
 
         self.dataInfo = {
