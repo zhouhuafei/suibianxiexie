@@ -56,12 +56,17 @@ class Super {
             if (ip.indexOf('::ffff:') !== -1) {
                 ip = ip.substring(7);
             }
-            return ip;
+            return [
+                ip,
+                req.connection.remoteAddress,
+                req.socket.remoteAddress,
+                req.ip,
+            ];
         }
 
         const env = process.env.NODE_ENV;
         self.dataInfo = {
-            ip: getClientIp(req, env === 'production' ? 'nginx' : ''), // 公网ip
+            ip: getClientIp(req, env !== 'production' ? 'nginx' : ''), // 公网ip
             env: env, // 环境
             api: apiConfig, // 接口配置
             routes: routesConfig, // 路由的配置
