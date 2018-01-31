@@ -49,14 +49,14 @@ class Super {
         }
 
         self.dataInfo = {
-            page: {},
-            ip: ip.address(),
-            publicIp: getClientIp(req),
-            env: process.env.NODE_ENV,
-            isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
-            routes: routesConfig, // 路由的配置
+            ip: ip.address(), // 局域网ip
+            publicIp: getClientIp(req), // 公网ip
+            env: process.env.NODE_ENV, // 环境
             api: apiConfig, // 接口配置
+            routes: routesConfig, // 路由的配置
             title: routesConfig[opts.routeName].title || '没有配置标题', // 标题(需要从配置里读取)
+            isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
+            page: {}, // 当前视图的数据
         };
         const dataInfo = self.dataInfo;
         const isShowFooterNav = routesConfig[opts.routeName].isShowFooterNav;
