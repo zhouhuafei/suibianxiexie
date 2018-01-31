@@ -40,7 +40,6 @@ class Super {
         }
 
         function getClientIp(req, proxyType) {
-            proxyType = proxyType || req.headers['x-nginx-proxy'] ? 'nginx' : '';
             let ip = req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null);
             // 如果使用了nginx代理
             if (proxyType === 'nginx') {
@@ -60,9 +59,10 @@ class Super {
             return ip;
         }
 
+        const env = process.env.NODE_ENV;
         self.dataInfo = {
-            ip: getClientIp(req), // 公网ip
-            env: process.env.NODE_ENV, // 环境
+            ip: getClientIp(req, env === 'production' ? 'nginx' : ''), // 公网ip
+            env: env, // 环境
             api: apiConfig, // 接口配置
             routes: routesConfig, // 路由的配置
             title: routesConfig[opts.routeName].title || '没有配置标题', // 标题(需要从配置里读取)
