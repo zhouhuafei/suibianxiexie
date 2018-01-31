@@ -2,7 +2,6 @@
 const tools = require('../../../../utils/tools'); // 工具方法集合
 const routesConfig = require('../../routes/pages/config'); // 路由配置
 const apiConfig = require('../../routes/api/config'); // 接口配置
-const ip = require('ip');
 
 class Super {
     constructor(json) {
@@ -46,9 +45,10 @@ class Super {
             if (isProxy) {
                 ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || ip; // 请求头headers上面的信息容易被伪造,服务器用了代理要承受这种风险
             }
+            const ipArr = ip.split(',');
+            ip = ipArr[ipArr.length - 1];
             if (ip.indexOf('::ffff:') !== -1) {
-                const ipArr = ip.substring(7).split(',');
-                ip = ipArr[ipArr.length - 1];
+                ip = ip.substring(7);
             }
             return [
                 'x-real-ip',
@@ -57,12 +57,13 @@ class Super {
                 req.headers['x-forwarded-for'],
                 'ip',
                 ip,
+                'header',
+                req.headers,
             ];
         }
 
         self.dataInfo = {
-            ip: ip.address(), // 局域网ip
-            publicIp: getClientIp(req), // 公网ip
+            ip: getClientIp(req), // 公网ip
             env: process.env.NODE_ENV, // 环境
             api: apiConfig, // 接口配置
             routes: routesConfig, // 路由的配置
