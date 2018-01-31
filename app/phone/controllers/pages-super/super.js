@@ -41,19 +41,22 @@ class Super {
         }
 
         function getClientIp(req, isProxy = true) {
-            let api = req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null);
+            let ip = req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null);
             // 如果使用了nginx代理
             if (isProxy) {
-                api = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || api; // 请求头headers上面的信息容易被伪造,服务器用了代理要承受这种风险
+                ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || ip; // 请求头headers上面的信息容易被伪造,服务器用了代理要承受这种风险
             }
-            if (api.indexOf('::ffff:') !== -1) {
-                api = api.substring(7);
+            if (ip.indexOf('::ffff:') !== -1) {
+                const ipArr = ip.substring(7).split(',');
+                ip = ipArr[ipArr.length - 1];
             }
             return [
                 'x-real-ip',
                 req.headers['x-real-ip'],
                 'x-forwarded-for',
                 req.headers['x-forwarded-for'],
+                'ip',
+                ip,
             ];
         }
 
