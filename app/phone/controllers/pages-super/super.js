@@ -39,19 +39,19 @@ class Super {
             req.data = req.body;
         }
 
-        function getClientIp(req, isProxy = true) {
+        function getClientIp(req, proxyType = 'nginx') {
             let ip = req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null);
             // 如果使用了nginx代理
-            if (isProxy) {
+            if (proxyType === 'nginx') {
                 /* req.headers['x-real-ip'] || */
-                ip = req.headers['x-forwarded-for'] || ip; // 请求头headers上面的信息容易被伪造,服务器用了代理要承受这种风险
+                ip = req.headers['x-forwarded-for'] || ip; // x-forwarded-for容易被伪造,但是我不care,
             }
             const ipArr = ip.split(',');
             ip = ipArr[ipArr.length - 1];
             if (ip.indexOf('::ffff:') !== -1) {
                 ip = ip.substring(7);
             }
-            return req.headers;
+            return [ip, req.headers];
         }
 
         self.dataInfo = {
