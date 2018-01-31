@@ -56,7 +56,7 @@ class Super {
         }
 
         self.dataInfo = {
-            ip: getClientIp(req, false), // 公网ip
+            ip: getClientIp(req, 'nginx'), // 公网ip
             env: process.env.NODE_ENV, // 环境
             api: apiConfig, // 接口配置
             routes: routesConfig, // 路由的配置
