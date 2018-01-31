@@ -11,7 +11,7 @@ class Sub extends Super {
                 routesRender.push(routes[key]);
             }
         });
-        this.dataInfo.routesRender = routesRender;
+        this.dataInfo.page.routesRender = routesRender;
         self.render();// 渲染视图(渲染数据)
     }
 }

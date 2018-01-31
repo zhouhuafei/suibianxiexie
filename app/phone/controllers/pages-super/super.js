@@ -49,6 +49,7 @@ class Super {
         }
 
         self.dataInfo = {
+            page: {},
             ip: ip.address(),
             publicIp: getClientIp(req),
             env: process.env.NODE_ENV,
