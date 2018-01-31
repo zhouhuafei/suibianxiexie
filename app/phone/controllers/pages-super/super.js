@@ -39,12 +39,13 @@ class Super {
             req.data = req.body;
         }
 
-        function getClientIp(req, proxyType = 'nginx') {
+        function getClientIp(req, proxyType = req.headers['x-nginx-proxy'] ? 'nginx' : '') {
             let ip = req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null);
             // 如果使用了nginx代理
             if (proxyType === 'nginx') {
-                /* req.headers['x-real-ip'] || */
-                ip = req.headers['x-forwarded-for'] || ip; // x-forwarded-for容易被伪造,但是我不care,
+                // headers上的信息容易被伪造,但是我不care,自有办法过滤,例如'x-nginx-proxy'和'x-real-ip'我在nginx配置里做了一层拦截把他们设置成了'true'和真实ip,所以不用担心被伪造
+                // 如果没用代理的话,我直接通过req.connection.remoteAddress获取到的也是真实ip,所以我不care
+                ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || ip;
             }
             const ipArr = ip.split(',');
             ip = ipArr[ipArr.length - 1];
@@ -55,7 +56,7 @@ class Super {
         }
 
         self.dataInfo = {
-            ip: getClientIp(req), // 公网ip
+            ip: getClientIp(req, false), // 公网ip
             env: process.env.NODE_ENV, // 环境
             api: apiConfig, // 接口配置
             routes: routesConfig, // 路由的配置
