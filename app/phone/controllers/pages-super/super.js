@@ -39,27 +39,8 @@ class Super {
         } else {
             req.data = req.body;
         }
-
-        function getClientIp(req) {
-            let ip = req.connection.remoteAddress ||
-                req.socket.remoteAddress ||
-                (req.connection.socket ? req.connection.socket.remoteAddress : null) ||
-                req.ip ||
-                req.headers['x-forwarded-for']; // x-forwarded-for很容易被欺骗
-            if (ip.indexOf('::ffff:') !== -1) {
-                ip = ip.substring(7);
-            }
-            const result = [];
-            result.push('req.headers[\'x-forwarded-for\']', req.headers['x-forwarded-for']);
-            result.push('req.connection.remoteAddress', req.connection.remoteAddress);
-            result.push('req.socket.remoteAddress', req.socket.remoteAddress);
-            result.push('req.connection.socket ? req.connection.socket.remoteAddress : null', req.connection.socket ? req.connection.socket.remoteAddress : null);
-            result.push('req.ip', req.ip);
-            return result;
-        }
-
         self.dataInfo = {
-            ip: getClientIp(req),
+            ip: ip.address(),
             env: process.env.NODE_ENV,
             isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
             routes: routesConfig, // 路由的配置
