@@ -2,6 +2,7 @@
 const tools = require('../../../../utils/tools'); // 工具方法集合
 const routesConfig = require('../../routes/pages/config'); // 路由配置
 const apiConfig = require('../../routes/api/config'); // 接口配置
+const ip = require('ip');
 
 class Super {
     constructor(json) {
@@ -40,10 +41,11 @@ class Super {
         }
 
         function getClientIp(req) {
-            let ip = req.headers['x-forwarded-for'] ||
-                req.connection.remoteAddress ||
+            let ip = req.connection.remoteAddress ||
                 req.socket.remoteAddress ||
-                (req.connection.socket ? req.connection.socket.remoteAddress : null);
+                (req.connection.socket ? req.connection.socket.remoteAddress : null) ||
+                req.ip ||
+                req.headers['x-forwarded-for']; // x-forwarded-for很容易被欺骗
             if (ip.indexOf('::ffff:') !== -1) {
                 ip = ip.substring(7);
             }
@@ -57,7 +59,7 @@ class Super {
         }
 
         self.dataInfo = {
-            ip: getClientIp(req),
+            ip: ip.address(),
             env: process.env.NODE_ENV,
             isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
             routes: routesConfig, // 路由的配置
