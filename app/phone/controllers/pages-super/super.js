@@ -50,16 +50,7 @@ class Super {
             if (ip.indexOf('::ffff:') !== -1) {
                 ip = ip.substring(7);
             }
-            return [
-                'x-real-ip',
-                req.headers['x-real-ip'],
-                'x-forwarded-for',
-                req.headers['x-forwarded-for'],
-                'ip',
-                ip,
-                'header',
-                req.headers,
-            ];
+            return req.headers;
         }
 
         self.dataInfo = {
