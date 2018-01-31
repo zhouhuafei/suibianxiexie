@@ -49,11 +49,15 @@ class Super {
                 ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || ip;
             }
             const ipArr = ip.split(',');
-            ip = ipArr[ipArr.length - 1];
+            // 如果使用了nginx代理,如果没配置'x-real-ip'只配置了'x-forwarded-for'为$proxy_add_x_forwarded_for,如果客户端也设置了'x-forwarded-for'进行伪造ip
+            // 则req.headers['x-forwarded-for']的格式为ip1,ip2只有最后一个才是真实的ip
+            if (proxyType === 'nginx') {
+                ip = ipArr[ipArr.length - 1];
+            }
             if (ip.indexOf('::ffff:') !== -1) {
                 ip = ip.substring(7);
             }
-            return [ip, req.headers];
+            return ip;
         }
 
         self.dataInfo = {
