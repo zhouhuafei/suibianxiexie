@@ -43,7 +43,8 @@ class Super {
             let ip = req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null);
             // 如果使用了nginx代理
             if (isProxy) {
-                ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || ip; // 请求头headers上面的信息容易被伪造,服务器用了代理要承受这种风险
+                /* req.headers['x-real-ip'] || */
+                ip = req.headers['x-forwarded-for'] || ip; // 请求头headers上面的信息容易被伪造,服务器用了代理要承受这种风险
             }
             const ipArr = ip.split(',');
             ip = ipArr[ipArr.length - 1];
