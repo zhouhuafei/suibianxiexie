@@ -1,6 +1,6 @@
-webpackJsonp([13],{
+webpackJsonp([14],{
 
-/***/ 97:
+/***/ 93:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,7 +14,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(98);
+__webpack_require__(94);
 var Super = __webpack_require__(3);
 
 var Sub = function (_Super) {
@@ -29,27 +29,24 @@ var Sub = function (_Super) {
     _createClass(Sub, [{
         key: 'power',
         value: function power() {
-            var self = this;
-            var dataInfo = self.dataInfo;
-            var axios = self.axios;
-
-            // 登录
-            var domUsername = document.querySelector('#username');
-            var domPassword = document.querySelector('#password');
-            document.querySelector('.page-login').addEventListener('click', function () {
-                axios({
-                    url: dataInfo.api.login.route,
-                    method: 'post',
-                    data: {
-                        username: domUsername.value,
-                        password: domPassword.value
-                    }
-                }).then(function (json) {
-                    if (json.status === 'success') {
-                        window.location.href = dataInfo.routes.mine.route;
-                    }
-                });
+            var applications = this.applications;
+            var canvasWrap = document.querySelector('.canvas-wrap');
+            var w = document.documentElement.clientWidth;
+            var h = document.documentElement.clientHeight;
+            var size = w - 30;
+            var lineNum = 15;
+            var gap = size / 15;
+            canvasWrap.style.width = w + 'px';
+            canvasWrap.style.height = h + 'px';
+            var canvas = applications.createElement({
+                elementName: 'canvas',
+                attribute: {
+                    width: size,
+                    height: size
+                }
             });
+            var ctx = canvas.getContext('2d');
+            canvasWrap.appendChild(canvas);
         }
     }]);
 
@@ -60,11 +57,11 @@ new Sub();
 
 /***/ }),
 
-/***/ 98:
+/***/ 94:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
 
-},[97]);
+},[93]);

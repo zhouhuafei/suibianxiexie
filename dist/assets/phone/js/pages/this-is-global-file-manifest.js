@@ -34,7 +34,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		18: 0
+/******/ 		19: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -91,7 +91,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"g-img-list","1":"g-star","2":"this-is-global-file-common","3":"dev-components","4":"this-is-global-file-vendor","5":"home","6":"dev-globals","7":"setting","8":"sample","9":"register","10":"password-reset","11":"password-find","12":"mine","13":"login","14":"game-list","15":"game-biecaibaikuai","16":"dev-words","17":"dev-list"}[chunkId]||chunkId) + "." + chunkId + ".chunk.js";
+/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"g-img-list","1":"g-star","2":"this-is-global-file-common","3":"dev-components","4":"this-is-global-file-vendor","5":"home","6":"dev-globals","7":"setting","8":"sample","9":"register","10":"password-reset","11":"password-find","12":"mine","13":"login","14":"game-wuziqi","15":"game-list","16":"game-biecaibaikuai","17":"dev-words","18":"dev-list"}[chunkId]||chunkId) + "." + chunkId + ".chunk.js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {

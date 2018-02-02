@@ -1167,7 +1167,7 @@ var Sub = function (_Super) {
             // 星评
             (function () {
                 __webpack_require__.e/* require.ensure */(1).then((function (require) {
-                    var Star = __webpack_require__(110);
+                    var Star = __webpack_require__(112);
                     new Star({
                         wrap: '.page-star',
                         callback: {
