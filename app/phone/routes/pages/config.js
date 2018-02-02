@@ -6,8 +6,15 @@ const pathConfig = {
 // 路由的名字
 const routeName = [
     {
-        name: 'game-biecaibaikuaier', // 游戏-别踩白块儿
-        title: '别踩白块儿',
+        name: 'game-wuziqi', // 游戏-五子棋
+        title: '五子棋',
+        isValidateLogin: false,
+        isShowCopyright: false,
+        isShowFooterNav: false,
+    },
+    {
+        name: 'game-biecaibaikuai', // 游戏-别踩白块
+        title: '别踩白块',
         isValidateLogin: false,
         isShowCopyright: false,
         isShowFooterNav: false,
