@@ -73,6 +73,16 @@ class Sub extends Super {
             ctx.restore();
         };
         drawTxt();
+        const drawCoordinate = function (v) {
+            ctx.save();
+            ctx.beginPath();
+            ctx.font = '10px 微软雅黑';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(`${v.x},${v.y}`, v.left, v.top);
+            ctx.closePath();
+            ctx.restore();
+        };
         map.forEach(function (v, i) {
             if (v.x === 0) {
                 const target = map[i + colNum - 1];
@@ -85,16 +95,21 @@ class Sub extends Super {
             if (i === Math.floor(map.length / 2)) {
                 drawCircle(v.left, v.top, v.radius / 4, 'black');
             }
+            // drawCoordinate(v); // 画坐标
         });
         canvas.addEventListener('click', function (ev) {
             const clientX = ev.clientX - applications.offset(canvasWrap).left;
             const clientY = ev.clientY;
+            let nowX = null;
+            let nowY = null;
             map.forEach(function (v) {
                 if (clientX >= v.left - v.radius && clientX <= v.left + v.radius && clientY >= v.top - v.radius && clientY <= v.top + v.radius) {
                     // 判断点击范围是否是正确的区域
                     if (v.type === 'transparent') {
                         drawCircle(v.left, v.top, v.radius, game.nextColor);
                         v.type = game.nextColor;
+                        nowX = v.x;
+                        nowY = v.y;
                         if (game.nextColor === 'black') {
                             game.blackNum++;
                             game.nextColor = 'white';
@@ -108,8 +123,46 @@ class Sub extends Super {
             // 提示信息
             drawTxt();
             // 判断输赢
+            const result = ['', '', '', ''];
             map.forEach(function (v) {
-
+                let str = '';
+                if (v.type === 'transparent') {
+                    str = 't';
+                }
+                if (v.type === 'black') {
+                    str = 'b';
+                }
+                if (v.type === 'white') {
+                    str = 'w';
+                }
+                if (v.x === nowX) { //  垂直
+                    result[0] += str;
+                }
+                if (v.y === nowY) { //  水平
+                    result[1] += str;
+                }
+                if (v.x + v.y === nowX + nowY) { // 左斜
+                    result[2] += str;
+                }
+                if (v.x - v.y === nowX - nowY) { // 右斜
+                    result[3] += str;
+                }
+            });
+            result.forEach(function (v) {
+                if (v.length >= 5) {
+                    if (v.indexOf('bbbbb') !== -1) {
+                        setTimeout(function () {
+                            alert('黑棋获胜');
+                            window.location.reload();
+                        }, 60);
+                    }
+                    if (v.indexOf('wwwww') !== -1) {
+                        setTimeout(function () {
+                            alert('白棋获胜');
+                            window.location.reload();
+                        }, 60);
+                    }
+                }
             });
         });
         canvasWrap.appendChild(canvas);

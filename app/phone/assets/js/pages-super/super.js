@@ -54,7 +54,7 @@ class Super {
                 return value || {};
             }
         }());
-        console.log('dataInfo:\n', self.dataInfo);
+        // console.log('dataInfo:\n', self.dataInfo);
 
         // 延迟加载
         const LazyLoad = require('../components-dom/g-lazy-load');
