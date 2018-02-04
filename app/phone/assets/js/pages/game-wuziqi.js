@@ -3,13 +3,21 @@ const Super = require('../pages-super/super');
 
 class Sub extends Super {
     power() {
+        // 横屏的时候 90 -190 , 横屏的时候 0 180
+        if (window.orientation === 90 || window.orientation === -90) {
+            alert('请竖屏之后，刷新页面进行游戏');
+        }
         const applications = this.applications;
         const canvasWrap = document.querySelector('.canvas-wrap');
         const w = canvasWrap.offsetWidth;
         const h = document.documentElement.clientHeight;
         const padding = 20.5;
-        const colNum = 15 - 4; // 正规应该是15列
-        let gobangColor = 'black'; // 五子棋的颜色
+        const colNum = 15; // 正规应该是15列
+        const game = {
+            nextColor: 'black', // 下一颗棋子的颜色
+            blackNum: 0, // 黑色棋子个数
+            whiteNum: 0, // 白色棋子个数
+        };
         const colWidth = (w - padding * 2) / (colNum - 1);
         const initX = padding;
         const initY = (h - w) / 2 + padding;
@@ -53,6 +61,18 @@ class Sub extends Super {
             ctx.closePath();
             ctx.restore();
         };
+        const drawTxt = function () {
+            ctx.save();
+            ctx.beginPath();
+            ctx.clearRect(0, 0, w, initY / 1.4);
+            ctx.font = '16px 微软雅黑';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(`请${game.nextColor === 'black' ? '黑色' : '白色'}棋子落子`, w / 2, initY / 2);
+            ctx.closePath();
+            ctx.restore();
+        };
+        drawTxt();
         map.forEach(function (v, i) {
             if (v.x === 0) {
                 const target = map[i + colNum - 1];
@@ -73,12 +93,20 @@ class Sub extends Super {
                 if (clientX >= v.left - v.radius && clientX <= v.left + v.radius && clientY >= v.top - v.radius && clientY <= v.top + v.radius) {
                     // 判断点击范围是否是正确的区域
                     if (v.type === 'transparent') {
-                        drawCircle(v.left, v.top, v.radius, gobangColor);
-                        v.type = gobangColor;
-                        gobangColor = gobangColor === 'black' ? 'white' : 'black';
+                        drawCircle(v.left, v.top, v.radius, game.nextColor);
+                        v.type = game.nextColor;
+                        if (game.nextColor === 'black') {
+                            game.blackNum++;
+                            game.nextColor = 'white';
+                        } else {
+                            game.whiteNum++;
+                            game.nextColor = 'black';
+                        }
                     }
                 }
             });
+            // 提示信息
+            drawTxt();
             // 判断输赢
             map.forEach(function (v) {
 
