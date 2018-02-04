@@ -31,21 +31,83 @@ var Sub = function (_Super) {
         value: function power() {
             var applications = this.applications;
             var canvasWrap = document.querySelector('.canvas-wrap');
-            var w = document.documentElement.clientWidth;
+            var w = canvasWrap.offsetWidth;
             var h = document.documentElement.clientHeight;
-            var size = w - 30;
-            var lineNum = 15;
-            var gap = size / 15;
-            canvasWrap.style.width = w + 'px';
-            canvasWrap.style.height = h + 'px';
+            var padding = 20.5;
+            var colNum = 15 - 4; // 正规应该是15列
+            var gobangColor = 'black'; // 五子棋的颜色
+            var colWidth = (w - padding * 2) / (colNum - 1);
+            var initX = padding;
+            var initY = (h - w) / 2 + padding;
+            var map = [];
+            for (var i = 0; i < Math.pow(colNum, 2); i++) {
+                var x = i % colNum;
+                var y = Math.floor(i / colNum);
+                map.push({
+                    x: x,
+                    y: y,
+                    left: x * colWidth + initX,
+                    top: y * colWidth + initY,
+                    radius: colWidth / 2.4,
+                    type: 'transparent'
+                });
+            }
             var canvas = applications.createElement({
                 elementName: 'canvas',
                 attribute: {
-                    width: size,
-                    height: size
+                    width: w,
+                    height: h
                 }
             });
             var ctx = canvas.getContext('2d');
+            var drawLine = function drawLine(startX, startY, endX, endY) {
+                ctx.save();
+                ctx.beginPath();
+                ctx.strokeStyle = '#000';
+                ctx.moveTo(startX, startY);
+                ctx.lineTo(endX, endY);
+                ctx.stroke();
+                ctx.closePath();
+                ctx.restore();
+            };
+            var drawCircle = function drawCircle(x, y, r, fillStyle) {
+                ctx.save();
+                ctx.beginPath();
+                ctx.fillStyle = fillStyle;
+                ctx.arc(x, y, r, 0, Math.PI * 2, false);
+                ctx.fill();
+                ctx.closePath();
+                ctx.restore();
+            };
+            map.forEach(function (v, i) {
+                if (v.x === 0) {
+                    var target = map[i + colNum - 1];
+                    drawLine(v.left, v.top, target.left, target.top);
+                }
+                if (v.y === 0) {
+                    var _target = map[colNum * colNum - 1 - (colNum - 1) + v.x];
+                    drawLine(v.left, v.top, _target.left, _target.top);
+                }
+                if (i === Math.floor(map.length / 2)) {
+                    drawCircle(v.left, v.top, v.radius / 4, 'black');
+                }
+            });
+            canvas.addEventListener('click', function (ev) {
+                var clientX = ev.clientX - applications.offset(canvasWrap).left;
+                var clientY = ev.clientY;
+                map.forEach(function (v) {
+                    if (clientX >= v.left - v.radius && clientX <= v.left + v.radius && clientY >= v.top - v.radius && clientY <= v.top + v.radius) {
+                        // 判断点击范围是否是正确的区域
+                        if (v.type === 'transparent') {
+                            drawCircle(v.left, v.top, v.radius, gobangColor);
+                            v.type = gobangColor;
+                            gobangColor = gobangColor === 'black' ? 'white' : 'black';
+                        }
+                    }
+                });
+                // 判断输赢
+                map.forEach(function (v) {});
+            });
             canvasWrap.appendChild(canvas);
         }
     }]);
