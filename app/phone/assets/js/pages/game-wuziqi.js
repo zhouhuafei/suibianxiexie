@@ -149,19 +149,17 @@ class Sub extends Super {
                 }
             });
             result.forEach(function (v) {
-                if (v.length >= 5) {
-                    if (v.indexOf('bbbbb') !== -1) {
-                        setTimeout(function () {
-                            alert('黑棋获胜');
-                            window.location.reload();
-                        }, 60);
-                    }
-                    if (v.indexOf('wwwww') !== -1) {
-                        setTimeout(function () {
-                            alert('白棋获胜');
-                            window.location.reload();
-                        }, 60);
-                    }
+                if (v.indexOf('tbbbbt') !== -1) {
+                    setTimeout(function () {
+                        alert('黑棋获胜');
+                        window.location.reload();
+                    }, 60);
+                }
+                if (v.indexOf('twwwwt') !== -1) {
+                    setTimeout(function () {
+                        alert('白棋获胜');
+                        window.location.reload();
+                    }, 60);
                 }
             });
         });
