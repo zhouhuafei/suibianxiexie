@@ -148,19 +148,33 @@ class Sub extends Super {
                     result[3] += str;
                 }
             });
-            result.forEach(function (v) {
-                if (v.indexOf('tbbbbt') !== -1) {
-                    setTimeout(function () {
-                        alert('黑棋获胜');
-                        window.location.reload();
-                    }, 60);
-                }
-                if (v.indexOf('twwwwt') !== -1) {
-                    setTimeout(function () {
-                        alert('白棋获胜');
-                        window.location.reload();
-                    }, 60);
-                }
+            const victory = [
+                {
+                    k: 'bbbbb',
+                    v: '黑棋获胜',
+                },
+                {
+                    k: 'wwwww',
+                    v: '白棋获胜',
+                },
+                {
+                    k: 'tbbbbt',
+                    v: '黑棋获胜',
+                },
+                {
+                    k: 'twwwwt',
+                    v: '白棋获胜',
+                },
+            ];
+            result.forEach(function (v1) {
+                victory.forEach(function (v2) {
+                    if (v1.indexOf(v2.k) !== -1) {
+                        setTimeout(function () {
+                            alert(v2.v);
+                            window.location.reload();
+                        }, 60);
+                    }
+                });
             });
         });
         canvasWrap.appendChild(canvas);
