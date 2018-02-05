@@ -77,10 +77,12 @@ class Super {
         const dataInfo = self.dataInfo;
 
         // 二维码
-        const qr = require('qr-image');
-        const qrDom = document.querySelector('.g-qr-code-svg');
-        if (qrDom) {
-            qrDom.innerHTML = qr.imageSync(window.location.href, {type: 'svg'});
+        if (dataInfo && dataInfo.isShowQrCode) {
+            const qr = require('qr-image');
+            const qrDom = document.querySelector('.g-qr-code-svg');
+            if (qrDom) {
+                qrDom.innerHTML = qr.imageSync(window.location.href, {type: 'svg'});
+            }
         }
 
         // 返回顶部

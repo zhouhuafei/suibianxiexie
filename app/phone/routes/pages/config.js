@@ -99,6 +99,7 @@ routeName.forEach(function (v) {
         isValidateLogin: v.isValidateLogin !== false, // 是否验证登陆信息(默认验证)
         isShowCopyright: v.isShowCopyright !== false, // 是否显示版权信息(默认显示)
         isShowFooterNav: v.isShowFooterNav !== false, // 是否显示底部导航(默认显示)
+        isShowQrCode: v.isShowQrCode !== false, // 是否显示二维码(默认显示)
     };
 });
 module.exports = routeConfig;
