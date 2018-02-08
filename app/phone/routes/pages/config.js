@@ -83,6 +83,13 @@ const routeName = [
         isShowCopyright: false,
         isShowFooterNav: false,
     },
+    /*
+    {
+        name: 'website-master', // 站长介绍
+        title: '站长介绍',
+        isValidateLogin: false,
+    },
+    */
 ];
 // 路由的配置
 const routeConfig = {};
