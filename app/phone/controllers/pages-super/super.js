@@ -2,7 +2,7 @@
 const tools = require('../../../../utils/tools'); // 工具方法集合
 const routesConfig = require('../../routes/pages/config'); // 路由配置
 const apiConfig = require('../../routes/api/config'); // 接口配置
-const getClientIp = require('zhf.ip');
+const getClientIp = require('zhf.get-client-ip');
 
 class Super {
     constructor(json) {
