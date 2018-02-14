@@ -215,6 +215,20 @@ const webpackConfig = {
                     },
                 ],
             },
+            // loader----处理音频
+            {
+                test: /\.(mp3)(\?.*)?$/,
+                exclude: /(node_modules|bower_components)/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8192,
+                            name: `audios/[name].${configEnvironment.hash}[ext]`,
+                        },
+                    },
+                ],
+            },
             // loader----处理视图模板文件里的src
             {
                 test: /\.ejs/,
@@ -223,7 +237,7 @@ const webpackConfig = {
                     {
                         loader: 'html-loader',
                         options: {
-                            attrs: ['img:src', 'img:data-src', 'link:href'],
+                            attrs: ['img:src', 'img:data-src', 'link:href', 'audio:src'],
                         },
                     },
                 ],

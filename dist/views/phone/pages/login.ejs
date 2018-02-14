@@ -1,1 +1,54 @@
-<!DOCTYPE html><html lang="en"><head> <% include ../commons/head.ejs %> <link href="/phone/css/pages/this-is-global-file-common.17000a67bc8139ba26b80ec12ed58947.css" rel="stylesheet"><link href="/phone/css/pages/login.051ad80dc135c530d5b81700742e4a61.css" rel="stylesheet"></head><body><div class="g-wrap"> <% include ../commons/header.ejs %> <div class="g-body"><div style="display: none;" class="page-tab"><div class="page-tab-password">密码登录</div><div class="page-tab-verify">验证码登陆</div></div><div class="page-input-wrap"><label class="g-input"><span class="g-input-text">账号:</span> <input class="g-input-input g-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="text" name="username" id="username" value="" placeholder="请输入邮箱"> <span class="g-input-icon iconfont icon-clear"></span> <span class="g-input-hint iconfont icon-required"></span></label></div><div class="page-input-wrap"><label class="g-input"><span class="g-input-text">密码:</span> <input class="g-input-input" type="password" name="password" id="password" value="" placeholder="请输入密码"> <span class="g-input-icon iconfont icon-eye-on"></span> <span class="g-input-icon iconfont icon-clear"></span> <span class="g-input-hint iconfont icon-required"></span></label></div><div class="g-button page-login"><div class="g-button-text">立即登陆</div></div><div class="page-guide-wrap"><div class="page-guide-item"><a href="<%= dataInfo.routes['register'].route %>">没有账号,去注册</a> <span class="iconfont icon-right"></span></div><div class="page-guide-item"><a href="<%= dataInfo.routes['password-find'].route %>">忘记密码,去找回</a> <span class="iconfont icon-right"></span></div></div><div style="display: none;" class="page-third-party">第三方登陆</div></div> <% include ../commons/footer.ejs %> </div><script type="text/javascript" src="/phone/js/pages/this-is-global-file-manifest.74fc2c6e183f2bb8f832.js"></script><script type="text/javascript" src="/phone/js/pages/this-is-global-file-vendor.3df444db78cf54c3ee2d.js"></script><script type="text/javascript" src="/phone/js/pages/this-is-global-file-common.1abb46bcc1db9b118224.js"></script><script type="text/javascript" src="/phone/js/pages/login.b1ca4dfe6b8b42305708.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../commons/head.ejs %>
+    <link href="/phone/css/pages/this-is-global-file-common.css" rel="stylesheet"><link href="/phone/css/pages/login.css" rel="stylesheet"></head>
+    <body>
+        <div class="g-wrap">
+            <% include ../commons/header.ejs %>
+            <div class="g-body">
+                <!--page start-->
+                <div style="display: none;" class="page-tab">
+                    <div class="page-tab-password">密码登录</div>
+                    <div class="page-tab-verify">验证码登陆</div>
+                </div>
+                <div class="page-input-wrap">
+                    <label class="g-input">
+                        <span class="g-input-text">账号:</span>
+                        <input class="g-input-input g-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="text" name="username" id="username" value="" placeholder="请输入邮箱">
+                        <span class="g-input-icon iconfont icon-clear"></span>
+                        <span class="g-input-hint iconfont icon-required"></span>
+                    </label>
+                </div>
+                <div class="page-input-wrap">
+                    <label class="g-input">
+                        <span class="g-input-text">密码:</span>
+                        <input class="g-input-input" type="password" name="password" id="password" value="" placeholder="请输入密码">
+                        <span class="g-input-icon iconfont icon-eye-on"></span>
+                        <span class="g-input-icon iconfont icon-clear"></span>
+                        <span class="g-input-hint iconfont icon-required"></span>
+                    </label>
+                </div>
+                <div class="g-button page-login">
+                    <div class="g-button-text">立即登陆</div>
+                </div>
+                <div class="page-guide-wrap">
+                    <div class="page-guide-item">
+                        <a href="<%= dataInfo.routes['register'].route %>">没有账号,去注册</a>
+                        <span class="iconfont icon-right"></span>
+                    </div>
+                    <div class="page-guide-item">
+                        <a href="<%= dataInfo.routes['password-find'].route %>">忘记密码,去找回</a>
+                        <span class="iconfont icon-right"></span>
+                    </div>
+                </div>
+
+                <div style="display: none;" class="page-third-party">
+                    第三方登陆
+                </div>
+                <!--page end-->
+            </div>
+            <% include ../commons/footer.ejs %>
+        </div>
+    <script type="text/javascript" src="/phone/js/pages/this-is-global-file-manifest.js"></script><script type="text/javascript" src="/phone/js/pages/this-is-global-file-vendor.js"></script><script type="text/javascript" src="/phone/js/pages/this-is-global-file-common.js"></script><script type="text/javascript" src="/phone/js/pages/login.js"></script></body>
+</html>
