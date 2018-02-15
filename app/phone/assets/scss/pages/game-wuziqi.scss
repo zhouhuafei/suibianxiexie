@@ -6,4 +6,33 @@
             background: #f6cb65;
         }
     }
+    .audios-wrap {
+        position: relative;
+        ._icon {
+            position: absolute;
+            top: px2rem(40);
+            left: px2rem(20);
+            width: px2rem(20);
+            height: px2rem(20);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            ._item-on {
+                display: none;
+            }
+        }
+        ._audio {
+            display: none;
+        }
+        &._on {
+            ._icon {
+                ._item-off {
+                    display: none;
+                }
+                ._item-on {
+                    display: block;
+                }
+            }
+        }
+    }
 }

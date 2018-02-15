@@ -97,6 +97,19 @@ class Sub extends Super {
             }
             // drawCoordinate(v); // 画坐标
         });
+        // 声音
+        const audioWrap = document.querySelector('.audios-wrap');
+        const audioDom = applications.createElement({elementName: 'audio'});
+        const audioSrc = [];
+        for (let i = 0; i < 7; i++) {
+            audioSrc.push(require(`../../audios/syllable/${i + 1}.mp3`));
+        }
+        let hasSound = audioWrap.classList.contains('_on');
+        audioWrap.addEventListener('click', function () {
+            hasSound = !hasSound;
+            this.classList.toggle('_on');
+        });
+        // 落子
         canvas.addEventListener('click', function (ev) {
             const clientX = ev.clientX - applications.offset(canvasWrap).left;
             const clientY = ev.clientY;
@@ -116,6 +129,11 @@ class Sub extends Super {
                         } else {
                             game.whiteNum++;
                             game.nextColor = 'black';
+                        }
+                        // 音乐
+                        if (hasSound) {
+                            audioDom.setAttribute('src', audioSrc[(game.blackNum + game.whiteNum) % audioSrc.length]);
+                            audioDom.play();
                         }
                     }
                 }
