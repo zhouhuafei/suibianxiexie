@@ -100,7 +100,7 @@ class Sub extends Super {
                 map.forEach(function (row, index) {
                     if (row[0][1] >= h) {
                         map.splice(index, 1);
-                        hp--;
+                        // hp--;
                     }
                 });
                 move();
@@ -129,6 +129,7 @@ class Sub extends Super {
             ev = isPc ? ev : ev.changedTouches[0];
             const clientX = ev.clientX - applications.offset(canvasWrap).left;
             const clientY = ev.clientY;
+            let isClickSuccess = false;
             map.forEach(function (row, index) {
                 row.forEach(function (v, i) {
                     if (clientX >= v[0] && clientX <= v[0] + item.w && clientY >= v[1] && clientY <= v[1] + item.h) {
@@ -139,18 +140,20 @@ class Sub extends Super {
                             audioDom.setAttribute('src', audioSrc[tools.getRandom(0, audioSrc.length - 1)]);
                             audioDom.play();
                         }
-                    } else {
-                        hp--;
-                        if (hp < 0) {
-                            alert(`游戏结束,总积分${score}`);
-                            window.location.reload();
-                        }
+                        isClickSuccess = true;
                     }
                 });
                 if (row.length === 0) {
                     map.splice(index, 1);
                 }
             });
+            if (!isClickSuccess) {
+                hp--;
+                if (hp < 0) {
+                    alert(`游戏结束,总积分${score}`);
+                    window.location.reload();
+                }
+            }
         });
 
         // 游戏开始
