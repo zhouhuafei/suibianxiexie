@@ -100,7 +100,7 @@ class Sub extends Super {
                 map.forEach(function (row, index) {
                     if (row[0][1] >= h) {
                         map.splice(index, 1);
-                        // hp--;
+                        hp--;
                     }
                 });
                 move();
