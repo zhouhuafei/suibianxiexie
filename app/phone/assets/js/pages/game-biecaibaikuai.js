@@ -24,8 +24,9 @@ class Sub extends Super {
         const col = 4;
         const row = 4;
         const gap = 10;
-        const step = 6;
+        const step = 10;
         let score = 0;
+        let hp = 100;
         const item = {
             w: (w - (col - 1) * gap) / col,
             h: (h - (row - 1) * gap) / row,
@@ -35,10 +36,36 @@ class Sub extends Super {
 
         function randomMap() {
             const result = [];
-            const random = tools.getRandom(0, col - 1);
-            result.push([random * item.w + random * gap, -item.h, item.w, item.h]);
+            const max = 5;
+            const randomRow = tools.getRandom(0, max); // 当随机数等于10的时候,一行两个
+            let colNum = 1;
+            if (randomRow === max) {
+                colNum = 2;
+            }
+            const randomResult = [];
+            // 随机2个时,这2个不允许被随机到同一个位置
+            let random = tools.getRandom(0, col - 1); // 当前这个在这一行是第几个
+            while (randomResult.indexOf(random) === -1 && randomResult.length < colNum) {
+                randomResult.push(random);
+                random = tools.getRandom(0, col - 1); // 当前这个在这一行是第几个
+            }
+            randomResult.forEach(function (v) {
+                result.push([v * item.w + v * gap, -item.h, item.w, item.h]);
+            });
             return result;
         }
+
+        const drawTxt = function () {
+            ctx.save();
+            ctx.beginPath();
+            ctx.fillStyle = '#f00';
+            ctx.font = '12px 微软雅黑';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(`积分:${score},生命值:${hp}`, w / 2, 20);
+            ctx.closePath();
+            ctx.restore();
+        };
 
         function move() {
             requestAnimationFrame(() => {
@@ -50,7 +77,7 @@ class Sub extends Super {
                     }
                 }
                 ctx.clearRect(0, 0, w, h);
-                map.forEach(function (row, index) {
+                map.forEach(function (row) {
                     row.forEach(function (v) {
                         ctx.save();
                         ctx.beginPath();
@@ -62,9 +89,18 @@ class Sub extends Super {
                         ctx.restore();
                     });
                 });
+                if (hp < 0) {
+                    setTimeout(function () {
+                        alert(`游戏结束,总积分${score}`);
+                        window.location.reload();
+                    }, 60);
+                    return;
+                }
+                drawTxt();
                 map.forEach(function (row, index) {
                     if (row[0][1] >= h) {
                         map.splice(index, 1);
+                        hp--;
                     }
                 });
                 move();
@@ -102,6 +138,12 @@ class Sub extends Super {
                         if (hasSound) {
                             audioDom.setAttribute('src', audioSrc[tools.getRandom(0, audioSrc.length - 1)]);
                             audioDom.play();
+                        }
+                    } else {
+                        hp--;
+                        if (hp < 0) {
+                            alert(`游戏结束,总积分${score}`);
+                            window.location.reload();
                         }
                     }
                 });
