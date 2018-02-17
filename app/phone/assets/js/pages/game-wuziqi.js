@@ -7,6 +7,7 @@ class Sub extends Super {
         if (window.orientation === 90 || window.orientation === -90) {
             alert('请竖屏之后，刷新页面进行游戏');
         }
+        const tools = this.tools;
         const applications = this.applications;
         const canvasWrap = document.querySelector('.canvas-wrap');
         const w = canvasWrap.offsetWidth;
@@ -119,6 +120,12 @@ class Sub extends Super {
                 if (clientX >= v.left - v.radius && clientX <= v.left + v.radius && clientY >= v.top - v.radius && clientY <= v.top + v.radius) {
                     // 判断点击范围是否是正确的区域
                     if (v.type === 'transparent') {
+                        // 音乐
+                        if (hasSound) {
+                            // audioDom.setAttribute('src', audioSrc[(game.blackNum + game.whiteNum) % audioSrc.length]);
+                            audioDom.setAttribute('src', audioSrc[tools.getRandom(0, audioSrc.length - 1)]);
+                            audioDom.play();
+                        }
                         drawCircle(v.left, v.top, v.radius, game.nextColor);
                         v.type = game.nextColor;
                         nowX = v.x;
@@ -129,11 +136,6 @@ class Sub extends Super {
                         } else {
                             game.whiteNum++;
                             game.nextColor = 'black';
-                        }
-                        // 音乐
-                        if (hasSound) {
-                            audioDom.setAttribute('src', audioSrc[(game.blackNum + game.whiteNum) % audioSrc.length]);
-                            audioDom.play();
                         }
                     }
                 }

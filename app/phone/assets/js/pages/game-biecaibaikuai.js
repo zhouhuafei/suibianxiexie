@@ -19,14 +19,13 @@ class Sub extends Super {
                 height: h,
             },
         });
-        canvas.addEventListener('click', function () {
-
-        });
         canvasWrap.appendChild(canvas);
         const ctx = canvas.getContext('2d');
         const col = 4;
         const row = 4;
         const gap = 10;
+        const step = 6;
+        let score = 0;
         const item = {
             w: (w - (col - 1) * gap) / col,
             h: (h - (row - 1) * gap) / row,
@@ -41,45 +40,83 @@ class Sub extends Super {
             return result;
         }
 
-        setInterval(function () {
-            if (map.length === 0) {
-                map.push(randomMap());
-            } else {
-                if (map[map.length - 1][0][1] >= gap) {
-                    map.push(randomMap());
-                }
-            }
-        }, 60);
-
-        function drawRect(row, index, array) {
-            ctx.save();
-            ctx.beginPath();
-            ctx.fillStyle = '#000';
-            row.forEach(function (v) {
-                ctx.rect(...v);
-                if (v[1] >= h) {
-                    array.splice(index, 1);
-                    console.log(map);
-                } else {
-                    v[1] += 10;
-                }
-            });
-            ctx.fill();
-            ctx.closePath();
-            ctx.restore();
-        }
-
-        function step() {
+        function move() {
             requestAnimationFrame(() => {
+                if (map.length === 0) {
+                    map.push(randomMap());
+                } else {
+                    if (map[map.length - 1][0][1] >= gap) {
+                        map.push(randomMap());
+                    }
+                }
                 ctx.clearRect(0, 0, w, h);
-                map.forEach(function (row, index, array) {
-                    drawRect(row, index, array);
+                map.forEach(function (row, index) {
+                    row.forEach(function (v) {
+                        ctx.save();
+                        ctx.beginPath();
+                        ctx.fillStyle = '#000';
+                        ctx.rect(...v);
+                        v[1] += step;
+                        ctx.fill();
+                        ctx.closePath();
+                        ctx.restore();
+                    });
                 });
-                step();
+                map.forEach(function (row, index) {
+                    if (row[0][1] >= h) {
+                        map.splice(index, 1);
+                    }
+                });
+                move();
             });
         }
 
-        step();
+        // 声音
+        const audioWrap = document.querySelector('.audios-wrap');
+        const audioDom = applications.createElement({elementName: 'audio'});
+        const audioSrc = [];
+        for (let i = 0; i < 7; i++) {
+            audioSrc.push(require(`../../audios/syllable/${i + 1}.mp3`));
+        }
+        let hasSound = audioWrap.classList.contains('_on');
+        audioWrap.addEventListener('click', function () {
+            hasSound = !hasSound;
+            this.classList.toggle('_on');
+        });
+
+        const isPc = document.querySelector('html').classList.contains('g-pc');
+
+        // 踩黑块
+        canvas.addEventListener(`${isPc ? 'click' : 'touchstart'}`, function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            ev = isPc ? ev : ev.changedTouches[0];
+            const clientX = ev.clientX - applications.offset(canvasWrap).left;
+            const clientY = ev.clientY;
+            map.forEach(function (row, index) {
+                row.forEach(function (v, i) {
+                    if (clientX >= v[0] && clientX <= v[0] + item.w && clientY >= v[1] && clientY <= v[1] + item.h) {
+                        row.splice(i, 1);
+                        score++;
+                        // 音乐
+                        if (hasSound) {
+                            audioDom.setAttribute('src', audioSrc[tools.getRandom(0, audioSrc.length - 1)]);
+                            audioDom.play();
+                        }
+                    }
+                });
+                if (row.length === 0) {
+                    map.splice(index, 1);
+                }
+            });
+        });
+
+        // 游戏开始
+        document.querySelector('.game-start').addEventListener('click', function () {
+            this.style.display = 'none';
+            audioWrap.style.display = 'none';
+            move();
+        });
     }
 }
 
