@@ -10,7 +10,8 @@ class Sub extends Super {
         // 登录
         const domUsername = document.querySelector('#username');
         const domPassword = document.querySelector('#password');
-        document.querySelector('.page-login').addEventListener('click', function () {
+
+        function login() {
             axios({
                 url: dataInfo.api.login.route,
                 method: 'post',
@@ -23,6 +24,15 @@ class Sub extends Super {
                     window.location.href = dataInfo.routes.mine.route;
                 }
             });
+        }
+
+        domPassword.addEventListener('keydown', function (ev) {
+            if (ev.keyCode === 13) {
+                login();
+            }
+        });
+        document.querySelector('.page-login').addEventListener('click', function () {
+            login();
         });
     }
 }

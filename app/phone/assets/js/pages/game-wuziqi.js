@@ -100,7 +100,6 @@ class Sub extends Super {
         });
         // 声音
         const audioWrap = document.querySelector('.audios-wrap');
-        const audioDom = applications.createElement({elementName: 'audio'});
         const audioSrc = [];
         for (let i = 0; i < 7; i++) {
             audioSrc.push(require(`../../audios/syllable/${i + 1}.mp3`));
@@ -122,9 +121,11 @@ class Sub extends Super {
                     if (v.type === 'transparent') {
                         // 音乐
                         if (hasSound) {
+                            let audioDom = applications.createElement({elementName: 'audio'});
                             // audioDom.setAttribute('src', audioSrc[(game.blackNum + game.whiteNum) % audioSrc.length]);
                             audioDom.setAttribute('src', audioSrc[tools.getRandom(0, audioSrc.length - 1)]);
                             audioDom.play();
+                            audioDom = null;
                         }
                         drawCircle(v.left, v.top, v.radius, game.nextColor);
                         v.type = game.nextColor;

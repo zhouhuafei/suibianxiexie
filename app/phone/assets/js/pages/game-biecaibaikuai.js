@@ -36,10 +36,13 @@ class Sub extends Super {
 
         function randomMap() {
             const result = [];
-            const max = 5;
-            const randomRow = tools.getRandom(0, max); // 当随机数等于10的时候,一行两个
+            const max = 10;
+            const randomRow = tools.getRandom(0, max);
             let colNum = 1;
-            if (randomRow === max) {
+            if (randomRow === max) { // 当随机数等于max的时候,一行3个
+                colNum = 3;
+            }
+            if (randomRow === max / 2) { // 当随机数等于max/2的时候,一行2个
                 colNum = 2;
             }
             const randomResult = [];
@@ -109,7 +112,6 @@ class Sub extends Super {
 
         // 声音
         const audioWrap = document.querySelector('.audios-wrap');
-        const audioDom = applications.createElement({elementName: 'audio'});
         const audioSrc = [];
         for (let i = 0; i < 7; i++) {
             audioSrc.push(require(`../../audios/syllable/${i + 1}.mp3`));
@@ -137,8 +139,11 @@ class Sub extends Super {
                         score++;
                         // 音乐
                         if (hasSound) {
+                            let audioDom = applications.createElement({elementName: 'audio'});
+                            // audioDom.setAttribute('src', audioSrc[score % audioSrc.length]);
                             audioDom.setAttribute('src', audioSrc[tools.getRandom(0, audioSrc.length - 1)]);
                             audioDom.play();
+                            audioDom = null;
                         }
                         isClickSuccess = true;
                     }
