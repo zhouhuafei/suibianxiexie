@@ -5,7 +5,7 @@ const configDb = require('./db/config'); // 数据库配置
 const configRedis = configDb.redis[env]; // redis的配置
 const ms = require('ms'); // 转成毫秒数
 const getClientIp = require('zhf.get-client-ip'); // 获取客户端的ip
-const blacklistIp = require('./blacklist/ip'); // ip黑名单
+const blacklistIp = require('./blacklist/ip'); // 黑名单 - ip
 
 // express应用
 const express = require('express'); // express
