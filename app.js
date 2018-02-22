@@ -4,10 +4,22 @@ const isProduction = env !== 'development'; // 是否是生产环境
 const configDb = require('./db/config'); // 数据库配置
 const configRedis = configDb.redis[env]; // redis的配置
 const ms = require('ms'); // 转成毫秒数
+const getClientIp = require('zhf.get-client-ip'); // 获取客户端的ip
+const blacklistIp = require('./blacklist/ip'); // ip黑名单
 
 // express应用
 const express = require('express'); // express
 const app = express(); // app
+
+// 屏蔽ip
+app.use(function (req, res, next) {
+    const ip = getClientIp(req, env === 'production' ? 'nginx' : '');
+    if (blacklistIp.indexOf(ip) !== -1) {
+        res.status(403).send('403 - forbidden');
+    } else {
+        next();
+    }
+});
 
 // gzip压缩
 const compression = require('compression'); // gzip压缩
