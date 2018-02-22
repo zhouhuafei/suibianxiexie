@@ -13,6 +13,7 @@ const Sub = tools.constructorInherit(Super, {
     // 数据
     data: {
         items: [
+            /*
             {
                 href: route,
                 icon: 'icon-home',
@@ -43,6 +44,7 @@ const Sub = tools.constructorInherit(Super, {
                 text: '我的',
                 isShowMark: false,
             },
+            */
         ],
     },
 });
