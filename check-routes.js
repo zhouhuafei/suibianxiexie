@@ -1,74 +1,68 @@
-// 检查路由对应的文件是否全部存在
+/**
+ * 检测路由对应的文件是否有所缺失
+ * */
+
 const fs = require('fs');
-// check - phone
-const phoneApiConfig = require('./app/phone/routes/api/config');
-const phonePagesConfig = require('./app/phone/routes/pages/config');
-const phoneApiFilesPath = './app/phone/controllers/api/';
-const phonePagesFilesPath = './app/phone/controllers/pages/';
-const phonePagesViewsPath = './app/phone/assets/views/pages/';
-const phonePagesScssPath = './app/phone/assets/scss/pages/';
-const phonePagesJsPath = './app/phone/assets/js/pages/';
-const phoneApiFiles = fs.readdirSync(phoneApiFilesPath);
-const phonePagesFiles = fs.readdirSync(phonePagesFilesPath);
-const phonePagesViews = fs.readdirSync(phonePagesViewsPath);
-const phonePagesScss = fs.readdirSync(phonePagesScssPath);
-const phonePagesJs = fs.readdirSync(phonePagesJsPath);
-Object.keys(phoneApiConfig).forEach(function (k) {
-    const name = `${k}.js`;
-    if (phoneApiFiles.indexOf(name) === -1) {
-        console.log(`文件缺失 ${phoneApiFilesPath}${name}`);
+
+class Phone {
+    constructor() {
+        this.apiConfig = require('./app/phone/routes/api/config');
+        this.pagesConfig = require('./app/phone/routes/pages/config');
+        this.apiFilesPath = './app/phone/controllers/api/';
+        this.pagesFilesPath = './app/phone/controllers/pages/';
+        this.pagesViewsPath = './app/phone/assets/views/pages/';
+        this.pagesScssPath = './app/phone/assets/scss/pages/';
+        this.pagesJsPath = './app/phone/assets/js/pages/';
+        this.apiFiles = fs.readdirSync(this.apiFilesPath);
+        this.pagesFiles = fs.readdirSync(this.pagesFilesPath);
+        this.pagesViews = fs.readdirSync(this.pagesViewsPath);
+        this.pagesScss = fs.readdirSync(this.pagesScssPath);
+        this.pagesJs = fs.readdirSync(this.pagesJsPath);
     }
-});
-Object.keys(phonePagesConfig).forEach(function (k) {
-    let name = `${k}.js`;
-    if (phonePagesFiles.indexOf(name) === -1) {
-        console.log(`文件缺失 ${phonePagesFilesPath}${name}`);
+}
+
+class Admin {
+    constructor() {
+        this.apiConfig = require('./app/admin/routes/api/config');
+        this.pagesConfig = require('./app/admin/routes/pages/config');
+        this.apiFilesPath = './app/admin/controllers/api/';
+        this.pagesFilesPath = './app/admin/controllers/pages/';
+        this.pagesViewsPath = './app/admin/assets/views/pages/';
+        this.pagesScssPath = './app/admin/assets/scss/pages/';
+        this.pagesJsPath = './app/admin/assets/js/pages/';
+        this.apiFiles = fs.readdirSync(this.apiFilesPath);
+        this.pagesFiles = fs.readdirSync(this.pagesFilesPath);
+        this.pagesViews = fs.readdirSync(this.pagesViewsPath);
+        this.pagesScss = fs.readdirSync(this.pagesScssPath);
+        this.pagesJs = fs.readdirSync(this.pagesJsPath);
     }
-    if (phonePagesJs.indexOf(name) === -1) {
-        console.log(`文件缺失 ${phonePagesJsPath}${name}`);
-    }
-    name = `${k}.ejs`;
-    if (phonePagesViews.indexOf(name) === -1) {
-        console.log(`文件缺失 ${phonePagesViewsPath}${name}`);
-    }
-    name = `${k}.scss`;
-    if (phonePagesScss.indexOf(name) === -1) {
-        console.log(`文件缺失 ${phonePagesScssPath}${name}`);
-    }
-});
-// check - admin
-const adminApiConfig = require('./app/admin/routes/api/config');
-const adminPagesConfig = require('./app/admin/routes/pages/config');
-const adminApiFilesPath = './app/admin/controllers/api/';
-const adminPagesFilesPath = './app/admin/controllers/pages/';
-const adminPagesViewsPath = './app/admin/assets/views/pages/';
-const adminPagesScssPath = './app/admin/assets/scss/pages/';
-const adminPagesJsPath = './app/admin/assets/js/pages/';
-const adminApiFiles = fs.readdirSync(adminApiFilesPath);
-const adminPagesFiles = fs.readdirSync(adminPagesFilesPath);
-const adminPagesViews = fs.readdirSync(adminPagesViewsPath);
-const adminPagesScss = fs.readdirSync(adminPagesScssPath);
-const adminPagesJs = fs.readdirSync(adminPagesJsPath);
-Object.keys(adminApiConfig).forEach(function (k) {
-    const name = `${k}.js`;
-    if (adminApiFiles.indexOf(name) === -1) {
-        console.log(`文件缺失 ${adminApiFilesPath}${name}`);
-    }
-});
-Object.keys(adminPagesConfig).forEach(function (k) {
-    let name = `${k}.js`;
-    if (adminPagesFiles.indexOf(name) === -1) {
-        console.log(`文件缺失 ${adminPagesFilesPath}${name}`);
-    }
-    if (adminPagesJs.indexOf(name) === -1) {
-        console.log(`文件缺失 ${adminPagesJsPath}${name}`);
-    }
-    name = `${k}.ejs`;
-    if (adminPagesViews.indexOf(name) === -1) {
-        console.log(`文件缺失 ${adminPagesViewsPath}${name}`);
-    }
-    name = `${k}.scss`;
-    if (adminPagesScss.indexOf(name) === -1) {
-        console.log(`文件缺失 ${adminPagesScssPath}${name}`);
-    }
-});
+}
+
+function check(obj) {
+    Object.keys(obj.apiConfig).forEach(function (k) {
+        const name = `${k}.js`;
+        if (obj.apiFiles.indexOf(name) === -1) {
+            console.log(`文件缺失 ${obj.apiFilesPath}${name}`);
+        }
+    });
+    Object.keys(obj.pagesConfig).forEach(function (k) {
+        let name = `${k}.js`;
+        if (obj.pagesFiles.indexOf(name) === -1) {
+            console.log(`文件缺失 ${obj.pagesFilesPath}${name}`);
+        }
+        if (obj.pagesJs.indexOf(name) === -1) {
+            console.log(`文件缺失 ${obj.pagesJsPath}${name}`);
+        }
+        name = `${k}.ejs`;
+        if (obj.pagesViews.indexOf(name) === -1) {
+            console.log(`文件缺失 ${obj.pagesViewsPath}${name}`);
+        }
+        name = `${k}.scss`;
+        if (obj.pagesScss.indexOf(name) === -1) {
+            console.log(`文件缺失 ${obj.pagesScssPath}${name}`);
+        }
+    });
+}
+
+check(new Phone());
+check(new Admin());
