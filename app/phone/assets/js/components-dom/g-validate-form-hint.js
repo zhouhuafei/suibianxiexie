@@ -100,3 +100,4 @@ ValidateForm.prototype.power = function () {
 };
 
 module.exports = ValidateForm;
+
