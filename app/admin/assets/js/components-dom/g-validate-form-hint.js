@@ -16,9 +16,9 @@ ValidateForm.prototype.init = function () {
 ValidateForm.prototype.render = function () {
     const self = this;
     self.element.forEach(function (v) {
-        domAddPosition(v.parentNode, 'relative');
-    });
-    self.element.forEach(function (v) {
+        if (v.parentNode) {
+            domAddPosition(v.parentNode, 'relative');
+        }
         v.hintDom = document.createElement('span');
         v.hintDom.classList.add(self.hintClass);
     });
@@ -92,7 +92,7 @@ ValidateForm.prototype.isAllPassValidate = function () {
 ValidateForm.prototype.power = function () {
     const self = this;
     self.element.forEach(function (v) {
-        const eventsType = v.dataset.events || 'blur';
+        const eventsType = v.dataset.event || 'blur';
         v.addEventListener(eventsType, function () {
             self.validateInput(this);
         });
