@@ -1,94 +1,102 @@
 const tools = require('../utils/tools'); // 工具方法集合
 const applications = require('../utils/applications'); // 应用方法集合
+const domAddPosition = require('zhf.dom-add-position');
 
 function ValidateForm(json) {
     this.opts = json || {};
-    this.element = applications.getDomArray(this.opts.element)[0];
+    this.element = applications.getDomArray(this.opts.element);
     this.hintClass = this.opts.hintClass || 'g-validate-form-hint';
-    this.eventsType = this.opts.eventsType || 'blur';
-    this.validateType = this.element.dataset.validate || 'undefined';
-    this.validateHintTxt = this.element.dataset.hint || 'undefined';
     this.init();
 }
 
 ValidateForm.prototype.init = function () {
     this.render();
-    this.validateEvents();
+    this.power();
 };
 ValidateForm.prototype.render = function () {
-    this.renderWrap();
-    this.renderHint();
-};
-ValidateForm.prototype.renderWrap = function () {
     const self = this;
-    self.wrapDom = self.element.parentNode;
-    if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
-        if (self.wrapDom.style.position === '' || self.wrapDom.style.position === 'static') {
-            self.wrapDom.style.position = 'relative';
-        }
-    }
+    self.element.forEach(function (v) {
+        domAddPosition(v.parentNode, 'relative');
+    });
+    self.element.forEach(function (v) {
+        v.hintDom = document.createElement('span');
+        v.hintDom.classList.add(self.hintClass);
+    });
 };
-ValidateForm.prototype.renderHint = function () {
-    this.hintDom = document.createElement('span');
-    this.hintDom.classList.add(this.hintClass);
-};
-ValidateForm.prototype.renderHintAdd = function (json) {
+ValidateForm.prototype.renderHintAdd = function (opts = {}) {
     // 只有没被隐藏的才进行验证
-    if (this.element.offsetWidth) {
-        const opts = json || {};
-        this.hintDom.innerHTML = opts.txt || '本项必填';
-        this.wrapDom.appendChild(this.hintDom);
+    const input = opts.input;
+    const hintDom = input.hintDom;
+    if (input.offsetWidth && hintDom) {
+        hintDom.innerHTML = opts.txt || '本项必填';
+        input.parentNode.appendChild(hintDom);
     }
 };
-ValidateForm.prototype.renderHintRemove = function () {
-    const isHaveHintDom = this.wrapDom.querySelector(`.${this.hintClass}`);
-    if (isHaveHintDom) {
-        this.wrapDom.removeChild(this.hintDom);
+ValidateForm.prototype.renderHintRemove = function (opts = {}) {
+    const input = opts.input;
+    const parentDom = input.parentNode;
+    const hintDom = input.parentNode.querySelector(`.${this.hintClass}`);
+    if (parentDom && hintDom) {
+        parentDom.removeChild(input.hintDom);
     }
 };
-ValidateForm.prototype.validateSave = function () {
+ValidateForm.prototype.validateInput = function (input) {
     const self = this;
-    const type = self.validateType.split(' ');
-    const hintTxt = self.validateHintTxt.split(' ');
-    const value = this.element.value;
-    this.isValidateSuccess = true;// 是否验证成功了
+    const validateType = input.dataset.validate || 'undefined';
+    const validateHintTxt = input.dataset.hint || 'undefined';
+    const type = validateType.split(' ');
+    const hintTxt = validateHintTxt.split(' ');
+    const value = input.value;
+    let isValidateSuccess = true; // 是否验证成功了
     type.forEach(function (v, i) {
-        if (v === 'no-empty' && self.isValidateSuccess) { // 设置了非空验证
+        if (v === 'no-empty' && isValidateSuccess) { // 设置了非空验证
             if (tools.isEmpty(value)) {
-                self.renderHintAdd({txt: hintTxt[i]});
-                self.isValidateSuccess = false;
+                self.renderHintAdd({txt: hintTxt[i], input: input});
+                isValidateSuccess = false;
             } else {
-                self.renderHintRemove();
-                self.isValidateSuccess = true;
+                self.renderHintRemove({input: input});
+                isValidateSuccess = true;
             }
         }
-        if (v === 'no-zero' && self.isValidateSuccess) { // 设置了非零验证
+        if (v === 'no-zero' && isValidateSuccess) { // 设置了非零验证
             if (tools.isZero(value)) {
-                self.renderHintAdd({txt: hintTxt[i]});
-                self.isValidateSuccess = false;
+                self.renderHintAdd({txt: hintTxt[i], input: input});
+                isValidateSuccess = false;
             } else {
-                self.renderHintRemove();
-                self.isValidateSuccess = true;
+                self.renderHintRemove({input: input});
+                isValidateSuccess = true;
             }
         }
-        if (v === 'yes-positive-integer' && self.isValidateSuccess) { // 设置了正整数验证
+        if (v === 'yes-positive-integer' && isValidateSuccess) { // 设置了正整数验证
             if (tools.isPositiveInteger(value)) {
-                self.renderHintRemove();
-                self.isValidateSuccess = true;
+                self.renderHintRemove({input: input});
+                isValidateSuccess = true;
             } else {
-                self.renderHintAdd({txt: hintTxt[i]});
-                self.isValidateSuccess = false;
+                self.renderHintAdd({txt: hintTxt[i], input: input});
+                isValidateSuccess = false;
             }
         }
     });
+    input.isValidateSuccess = isValidateSuccess;
 };
-ValidateForm.prototype.validateEvents = function () {
+ValidateForm.prototype.isAllPassValidate = function () {
     const self = this;
-    if (self.element) {
-        self.element.addEventListener(self.eventsType, function () {
-            self.validateSave();
+    let isValidateSuccess = true;
+    self.element.forEach(function (v) {
+        if (v.isValidateSuccess !== true) {
+            isValidateSuccess = false;
+        }
+    });
+    return isValidateSuccess;
+};
+ValidateForm.prototype.power = function () {
+    const self = this;
+    self.element.forEach(function (v) {
+        const eventsType = v.dataset.events || 'blur';
+        v.addEventListener(eventsType, function () {
+            self.validateInput(this);
         });
-    }
+    });
 };
 
 module.exports = ValidateForm;

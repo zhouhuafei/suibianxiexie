@@ -23,10 +23,7 @@ class Sub extends Super {
         // 验证
         (function () {
             const ValidateInput = require('../components-dom/g-validate-form-hint');
-            const aInput = [].slice.call(document.querySelectorAll('.page-validate-form'));
-            aInput.forEach(function (v) {
-                new ValidateInput({element: v});
-            });
+            new ValidateInput({element: '.page-validate-form'});
         }());
     }
 }
