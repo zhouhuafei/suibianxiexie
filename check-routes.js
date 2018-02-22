@@ -29,21 +29,6 @@ class Phone {
     }
 }
 
-class Admin extends Phone {
-    constructor() {
-        super({
-            apiConfig: require('./app/admin/routes/api/config'),
-            pagesConfig: require('./app/admin/routes/pages/config'),
-            apiFilesPath: './app/admin/controllers/api/',
-            pagesFilesPath: './app/admin/controllers/pages/',
-            pagesViewsPath: './app/admin/assets/views/pages/',
-            pagesScssPath: './app/admin/assets/scss/pages/',
-            pagesJsPath: './app/admin/assets/js/pages/',
-        });
-    }
-}
-
-/*
 class Pc extends Phone {
     constructor() {
         super({
@@ -57,7 +42,20 @@ class Pc extends Phone {
         });
     }
 }
-*/
+
+class Admin extends Phone {
+    constructor() {
+        super({
+            apiConfig: require('./app/admin/routes/api/config'),
+            pagesConfig: require('./app/admin/routes/pages/config'),
+            apiFilesPath: './app/admin/controllers/api/',
+            pagesFilesPath: './app/admin/controllers/pages/',
+            pagesViewsPath: './app/admin/assets/views/pages/',
+            pagesScssPath: './app/admin/assets/scss/pages/',
+            pagesJsPath: './app/admin/assets/js/pages/',
+        });
+    }
+}
 
 function check(obj) {
     Object.keys(obj.apiConfig).forEach(function (k) {
@@ -87,3 +85,4 @@ function check(obj) {
 
 check(new Phone());
 check(new Admin());
+check(new Pc());
