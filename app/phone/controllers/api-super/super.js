@@ -3,7 +3,7 @@ const tools = require('zhf.tools'); // 工具方法集合
 
 class Sub {
     constructor(json) {
-        this.tools = tools;// 工具方法集合
+        this.tools = tools; // 工具方法集合
         this.opts = tools.extend({
             app: null,
             req: null,

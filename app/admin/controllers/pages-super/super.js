@@ -1,5 +1,5 @@
 // 模版渲染
-const tools = require('../../../../utils/tools'); // 工具方法集合
+const tools = require('zhf.tools'); // 工具方法集合
 const routesConfig = require('../../routes/pages/config'); // 路由配置
 const apiConfig = require('../../routes/api/config'); // 接口配置
 
@@ -7,15 +7,12 @@ class Super {
     constructor(json) {
         this.tools = tools; // 工具方法集合
         this.opts = tools.extend({
-            defaults: {
-                app: null,
-                req: null,
-                res: null,
-                routeName: null, // 路由名称
-                isValidateLogin: false, // 是否验证登录
-            },
-            inherits: json,
-        });
+            app: null,
+            req: null,
+            res: null,
+            routeName: null, // 路由名称
+            isValidateLogin: false, // 是否验证登录
+        }, json);
         this.init();
     }
 
@@ -120,7 +117,7 @@ class Super {
     render(json = {}) {
         const self = this;
         const req = self.opts.req;
-        self.dataInfo = self.tools.extend({defaults: self.dataInfo, inherits: json});
+        self.dataInfo = self.tools.extend(self.dataInfo, json);
         if (req.data.isOnlyRenderData === 'true') {
             self.renderData();// 渲染数据
         } else {

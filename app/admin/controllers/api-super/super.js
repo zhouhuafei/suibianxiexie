@@ -1,23 +1,20 @@
 // 接口数据
-const tools = require('../../../../utils/tools'); // 工具方法集合
+const tools = require('zhf.tools'); // 工具方法集合
 
 class Sub {
     constructor(json) {
-        this.tools = tools;// 工具方法集合
+        this.tools = tools; // 工具方法集合
         this.opts = tools.extend({
-            defaults: {
-                app: null,
-                req: null,
-                res: null,
-                routeName: null, // 路由名称
-                isValidateLogin: false, // 是否验证登录
-                isTriggerEnd: true, // 是否触发数据返回(api默认直接输出数据,但是当给视图模板使用时,只需要拿数据,不需要触发end方法,但不建议使用)
-                // 渲染完毕的回调(接口不应该给视图模板使用,因为会导致页面加载很慢,所以这个callback回调方法,和isTriggerEnd属性只需要知道有这种东西即可,但不建议使用)
-                callback: function (self) {
-                },
+            app: null,
+            req: null,
+            res: null,
+            routeName: null, // 路由名称
+            isValidateLogin: false, // 是否验证登录
+            isTriggerEnd: true, // 是否触发数据返回(api默认直接输出数据,但是当给视图模板使用时,只需要拿数据,不需要触发end方法,但不建议使用)
+            // 渲染完毕的回调(接口不应该给视图模板使用,因为会导致页面加载很慢,所以这个callback回调方法,和isTriggerEnd属性只需要知道有这种东西即可,但不建议使用)
+            callback: function (self) {
             },
-            inherits: json,
-        });
+        }, json);
         this.dataInfo = {
             /*
             * 状态信息:
@@ -141,7 +138,7 @@ class Sub {
         const res = opts.res;
         const data = req.data;
         const isJsonp = data.isJsonp === 'true'; // 是否是jsonp(jsonp only supports the get method)
-        self.dataInfo = self.tools.extend({defaults: self.dataInfo, inherits: json});
+        self.dataInfo = self.tools.extend(self.dataInfo, json);
         self.opts.callback(self);
         if (self.opts.isTriggerEnd) {
             res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
