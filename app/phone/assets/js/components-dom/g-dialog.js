@@ -2,6 +2,7 @@ const tools = require('../utils/tools'); // 工具方法集合
 const applications = require('../utils/applications'); // 应用方法集合
 const Super = require('../components-dom-super/g-super'); // 超类型(子类型继承的对象)
 const Mask = require('./g-mask'); // 遮罩
+const domAddPosition = require('zhf.dom-add-position');
 
 // 子类型
 const Sub = tools.constructorInherit(Super, {
@@ -12,11 +13,7 @@ const Sub = tools.constructorInherit(Super, {
                 if (self.opts.config.confirm.isShowMask && !self.mask) {
                     self.mask = new Mask(self.opts.config.mask);
                 }
-                if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
-                    if (self.wrapDom.style.position === '' || self.wrapDom.style.position === 'static') {
-                        self.wrapDom.style.position = 'relative';
-                    }
-                }
+                domAddPosition(self.wrapDom, 'relative');
             }
         },
         moduleDomHideAfter: function (self) {
