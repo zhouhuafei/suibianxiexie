@@ -1,18 +1,16 @@
-const applications = require('./utils/applications');
-// 应用方法集合
-const CreateFile = applications.createFile();// 创建文件函数
-const projectDirname = process.argv[2];// 目录名字
+const CreateFile = require('zhf.create-file'); // 创建文件函数
+const projectDirname = process.argv[2]; // 目录名字
 if (!projectDirname) {
     console.log('projectDirname no find');
     return;
 }
-const fileName = process.argv[3];// 文件名字
+const fileName = process.argv[3]; // 文件名字
 if (!fileName) {
     console.log('fileName no find');
     return;
 }
-const assetsPath = `${__dirname}/app/${projectDirname}/assets/`;// 前端资源文件所处的位置
-const controllerPath = `${__dirname}/app/${projectDirname}/controllers/pages/`;// 后台控制器文件所处的位置
+const assetsPath = `${__dirname}/app/${projectDirname}/assets/`; // 前端资源文件所处的位置
+const controllerPath = `${__dirname}/app/${projectDirname}/controllers/pages/`; // 后台控制器文件所处的位置
 
 // 创建资源文件
 const file = {

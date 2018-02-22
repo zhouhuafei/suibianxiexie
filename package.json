@@ -89,6 +89,7 @@
         "vue": "^2.4.4",
         "vue-router": "^2.8.0",
         "vuex": "^2.5.0",
+        "zhf.create-file": "^1.0.18",
         "zhf.dom-add-position": "^1.0.3",
         "zhf.get-client-ip": "^1.0.1",
         "zhf.multiple-calls": "^1.0.2"
