@@ -5,14 +5,22 @@
 const fs = require('fs');
 
 class Phone {
-    constructor() {
-        this.apiConfig = require('./app/phone/routes/api/config');
-        this.pagesConfig = require('./app/phone/routes/pages/config');
-        this.apiFilesPath = './app/phone/controllers/api/';
-        this.pagesFilesPath = './app/phone/controllers/pages/';
-        this.pagesViewsPath = './app/phone/assets/views/pages/';
-        this.pagesScssPath = './app/phone/assets/scss/pages/';
-        this.pagesJsPath = './app/phone/assets/js/pages/';
+    constructor(opt = {
+        apiConfig: require('./app/phone/routes/api/config'),
+        pagesConfig: require('./app/phone/routes/pages/config'),
+        apiFilesPath: './app/phone/controllers/api/',
+        pagesFilesPath: './app/phone/controllers/pages/',
+        pagesViewsPath: './app/phone/assets/views/pages/',
+        pagesScssPath: './app/phone/assets/scss/pages/',
+        pagesJsPath: './app/phone/assets/js/pages/',
+    }) {
+        this.apiConfig = opt.apiConfig;
+        this.pagesConfig = opt.pagesConfig;
+        this.apiFilesPath = opt.apiFilesPath;
+        this.pagesFilesPath = opt.pagesFilesPath;
+        this.pagesViewsPath = opt.pagesViewsPath;
+        this.pagesScssPath = opt.pagesScssPath;
+        this.pagesJsPath = opt.pagesJsPath;
         this.apiFiles = fs.readdirSync(this.apiFilesPath);
         this.pagesFiles = fs.readdirSync(this.pagesFilesPath);
         this.pagesViews = fs.readdirSync(this.pagesViewsPath);
@@ -21,22 +29,35 @@ class Phone {
     }
 }
 
-class Admin {
+class Admin extends Phone {
     constructor() {
-        this.apiConfig = require('./app/admin/routes/api/config');
-        this.pagesConfig = require('./app/admin/routes/pages/config');
-        this.apiFilesPath = './app/admin/controllers/api/';
-        this.pagesFilesPath = './app/admin/controllers/pages/';
-        this.pagesViewsPath = './app/admin/assets/views/pages/';
-        this.pagesScssPath = './app/admin/assets/scss/pages/';
-        this.pagesJsPath = './app/admin/assets/js/pages/';
-        this.apiFiles = fs.readdirSync(this.apiFilesPath);
-        this.pagesFiles = fs.readdirSync(this.pagesFilesPath);
-        this.pagesViews = fs.readdirSync(this.pagesViewsPath);
-        this.pagesScss = fs.readdirSync(this.pagesScssPath);
-        this.pagesJs = fs.readdirSync(this.pagesJsPath);
+        super({
+            apiConfig: require('./app/admin/routes/api/config'),
+            pagesConfig: require('./app/admin/routes/pages/config'),
+            apiFilesPath: './app/admin/controllers/api/',
+            pagesFilesPath: './app/admin/controllers/pages/',
+            pagesViewsPath: './app/admin/assets/views/pages/',
+            pagesScssPath: './app/admin/assets/scss/pages/',
+            pagesJsPath: './app/admin/assets/js/pages/',
+        });
     }
 }
+
+/*
+class Pc extends Phone {
+    constructor() {
+        super({
+            apiConfig: require('./app/pc/routes/api/config'),
+            pagesConfig: require('./app/pc/routes/pages/config'),
+            apiFilesPath: './app/pc/controllers/api/',
+            pagesFilesPath: './app/pc/controllers/pages/',
+            pagesViewsPath: './app/pc/assets/views/pages/',
+            pagesScssPath: './app/pc/assets/scss/pages/',
+            pagesJsPath: './app/pc/assets/js/pages/',
+        });
+    }
+}
+*/
 
 function check(obj) {
     Object.keys(obj.apiConfig).forEach(function (k) {
