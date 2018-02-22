@@ -5,4 +5,8 @@ const routesFilePath = [
     `${__dirname}/app/admin/routes/pages/`,
     `${__dirname}/app/admin/routes/pages/`,
 ];
-const routesConfig = {};
+const phoneApiConfig = require('./app/phone/routes/api/config');
+const phoneRoutesConfig = require('./app/phone/routes/pages/config');
+const adminApiConfig = require('./app/admin/routes/api/config');
+const adminRoutesConfig = require('./app/admin/routes/pages/config');
+// 未完待续...
