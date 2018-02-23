@@ -58,9 +58,9 @@ if (isProduction) {
 // 别名----配置
 const alias = {
     vue: `vue/dist/vue.${configEnvironment.min}js`,
-    axios: `axios/dist/axios.${configEnvironment.min}js`,
+    axios: `axios/dist/axios.min.js`,
     jquery: `jquery/dist/jquery.min.js`,
-    swiper: `swiper/dist/swiper.min.js`,
+    swiper: `swiper/dist/js/swiper.min.js`,
     laydate: `layui-laydate/dist/laydate.js`,
 };
 // 入口----配置

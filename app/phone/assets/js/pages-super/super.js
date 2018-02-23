@@ -3,18 +3,15 @@ require('../../scss/commons/common.scss');
 class Super {
     constructor(json) {
         const self = this;
-        self.tools = require('../utils/tools'); // 工具方法集合
-        self.applications = require('../utils/applications'); // 应用方法集合
+        self.tools = require('zhf.tools'); // 工具方法集合
+        self.applications = require('zhf.applications'); // 应用方法集合
         self.axios = require('../api/axios'); // axios
         self.jsonp = require('../api/jsonp'); // jsonp
         self.opts = self.tools.extend({
-            defaults: {
-                lazyload: {
-                    isInitRender: false,
-                },
+            lazyload: {
+                isInitRender: false,
             },
-            inherits: json,
-        });
+        }, json);
         self.init();
     }
 

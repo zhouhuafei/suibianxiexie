@@ -1,5 +1,5 @@
-const tools = require('../utils/tools'); // 工具方法集合
-const applications = require('../utils/applications'); // 应用方法集合
+const tools = require('zhf.tools'); // 工具方法集合
+const applications = require('zhf.applications'); // 应用方法集合
 const Super = require('../components-dom-super/g-super'); // 超类型(子类型继承的对象)
 const TouchSlide = require('../plugs/touch-slide'); // 轮播图插件
 
@@ -14,6 +14,7 @@ const Sub = tools.constructorInherit(Super, {
     },
     // 配置
     config: {
+        heightWidthScale: 1 / 2,
         isShowHref: true, // 是否有跳转
         // TouchSlide插件的配置
         touchSlide: {
@@ -99,7 +100,9 @@ Sub.prototype.power = function () {
     const callback = self.opts.callback;
     const config = self.opts.config;
     const touchSlide = config.touchSlide;
-    touchSlide.slideCell = self.opts.wrap;// 外部容器,必须是id
+    const moduleDom = self.moduleDom;
+    moduleDom.style.height = `${moduleDom.offsetWidth * config.heightWidthScale}px`;
+    touchSlide.slideCell = moduleDom;
     touchSlide.startFun = function (i) {
         // 因为以下功能在插件本身进行了实现(本人对touch-slide插件进行了小修改),所以这里就注释了
         // var allImg = self.moduleDom.querySelectorAll('.g-slide-body .g-slide-items');

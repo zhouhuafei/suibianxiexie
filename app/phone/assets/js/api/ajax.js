@@ -1,93 +1,91 @@
-function extend(json) {
-    const opts = json || {};
-    const self = this;
-    opts.defaults = opts.defaults || {};// 默认对象
-    opts.inherits = opts.inherits || {};// 继承对像
-    opts.isDeep = opts.isDeep === false ? opts.isDeep : true;// 是否进行深拷贝(默认进行深拷贝)
-    const defaultsType = Object.prototype.toString.call(opts.defaults).slice(8, -1).toLowerCase();
-    const inheritsType = Object.prototype.toString.call(opts.inherits).slice(8, -1).toLowerCase();
-    if (defaultsType === inheritsType && opts.isDeep) {
+/**
+ * @description 对象的扩展
+ * @param {*} defaults - 默认对象
+ * @param {*} inherits - 继承对像
+ * @param {Boolean} isDeep - 是否进行深拷贝(默认进行深拷贝)
+ * */
+function extend(defaults = {}, inherits = {}, isDeep = true) {
+    const defaultsType = Object.prototype.toString.call(defaults).slice(8, -1).toLowerCase();
+    const inheritsType = Object.prototype.toString.call(inherits).slice(8, -1).toLowerCase();
+    if (defaultsType === inheritsType && isDeep) {
         if (defaultsType === 'object' || defaultsType === 'array') { // 当为对象或者为数组
-            Object.keys(opts.inherits).forEach(function (attr) {
-                const attrDefaultsType = Object.prototype.toString.call(opts.defaults[attr]).slice(8, -1).toLowerCase();
-                const attrInheritsType = Object.prototype.toString.call(opts.inherits[attr]).slice(8, -1).toLowerCase();
-                if (attrDefaultsType === attrInheritsType && opts.isDeep) { // 类型相同
+            Object.keys(inherits).forEach(function (attr) {
+                const attrDefaultsType = Object.prototype.toString.call(defaults[attr]).slice(8, -1).toLowerCase();
+                const attrInheritsType = Object.prototype.toString.call(inherits[attr]).slice(8, -1).toLowerCase();
+                if (attrDefaultsType === attrInheritsType && isDeep) { // 类型相同
                     if (attrDefaultsType === 'object' || attrDefaultsType === 'array') { // 当为对象或者为数组
-                        self.extend({defaults: opts.defaults[attr], inherits: opts.inherits[attr]});
+                        extend(defaults[attr], inherits[attr]);
                     } else {
-                        opts.defaults[attr] = opts.inherits[attr];
+                        defaults[attr] = inherits[attr];
                     }
                 } else { // 类型不同,直接后面的覆盖前面的
-                    opts.defaults[attr] = opts.inherits[attr];
+                    defaults[attr] = inherits[attr];
                 }
             });
         } else {
-            opts.defaults = opts.inherits;
+            defaults = inherits;
         }
     } else {
-        opts.defaults = opts.inherits;
+        defaults = inherits;
     }
-    return opts.defaults;
+    return defaults;
 }
 
 // ajax封装
 function Ajax(json) {
     this.opts = extend({
-        defaults: {
-            // 回调
-            callback: {
-                // 上传期间持续不断地触发
-                uploadProgress: function () {
-                },
-                // 上传完成时触发
-                uploadLoad: function () {
-                },
-                // 在接收到响应数据的第一个字节时触发
-                loadStart: function () {
-                },
-                // 在接收响应期间持续不断地触发
-                progress: function () {
-                },
-                // 在请求发生错误时触发
-                error: function () {
-                },
-                // 在因为调用abort()方法而终止请求时触发
-                abort: function () {
-                },
-                // 在接收到完整的响应数据时触发
-                load: function () {
-                },
-                // 接收到完整的响应且响应状态为200
-                success: function () {
-                },
-                // 接收到完整的响应且响应状态不为200
-                failure: function () {
-                },
-                // 在通信完成或者触发error、abort或load事件后触发
-                loadEnd: function () {
-                },
-                // 等同于loadEnd
-                complete: function () {
-                },
-                // 请求超时
-                timeout: function () {
-                },
+        // 回调
+        callback: {
+            // 上传期间持续不断地触发
+            uploadProgress: function () {
             },
-            // 配置
-            config: {
-                // ajax的配置
-                type: 'post', // 请求类型(默认post)
-                url: '', // url
-                dataType: 'json', // 数据类型(默认json)
-                async: true, // 默认异步
-                timeout: 5000, // 超时时间(默认3秒)
-                mark: '#', // 当请求类型为get时,url后面的数据用什么符号开头url:'index.php',1.?ctl=seller&act=setting,2.#ctl=seller&act=setting
+            // 上传完成时触发
+            uploadLoad: function () {
             },
-            // 数据
-            data: {},
+            // 在接收到响应数据的第一个字节时触发
+            loadStart: function () {
+            },
+            // 在接收响应期间持续不断地触发
+            progress: function () {
+            },
+            // 在请求发生错误时触发
+            error: function () {
+            },
+            // 在因为调用abort()方法而终止请求时触发
+            abort: function () {
+            },
+            // 在接收到完整的响应数据时触发
+            load: function () {
+            },
+            // 接收到完整的响应且响应状态为200
+            success: function () {
+            },
+            // 接收到完整的响应且响应状态不为200
+            failure: function () {
+            },
+            // 在通信完成或者触发error、abort或load事件后触发
+            loadEnd: function () {
+            },
+            // 等同于loadEnd
+            complete: function () {
+            },
+            // 请求超时
+            timeout: function () {
+            },
         },
-        inherits: json,
-    });
+        // 配置
+        config: {
+            // ajax的配置
+            type: 'post', // 请求类型(默认post)
+            url: '', // url
+            dataType: 'json', // 数据类型(默认json)
+            async: true, // 默认异步
+            timeout: 5000, // 超时时间(默认3秒)
+            mark: '#', // 当请求类型为get时,url后面的数据用什么符号开头url:'index.php',1.?ctl=seller&act=setting,2.#ctl=seller&act=setting
+        },
+        // 数据
+        data: {},
+    }, json);
     this.xhr = new XMLHttpRequest();// xhr
     this.xhr.timeout = this.opts.config.timeout;// 超时设置
     this.init();

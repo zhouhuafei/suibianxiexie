@@ -1,18 +1,15 @@
-const tools = require('../utils/tools'); // 工具方法集合
-const applications = require('../utils/applications'); // 应用方法集合
+const tools = require('zhf.tools'); // 工具方法集合
+const applications = require('zhf.applications'); // 应用方法集合
 
 // 延迟加载
 function LazyLoad(json) {
     this.opts = tools.extend({
-        defaults: {
-            element: '.g-lazy-load', // 哪些元素进行懒加载
-            srcAttr: 'data-src', // 默认获取哪里的属性值当做src
-            moreHeight: 0, // 多加载一部分高度的图片
-            interval: 80, // 函数节流时间(延迟时间)
-            isInitRender: true, // 是否初始化的时候就进行render
-        },
-        inherits: json,
-    });
+        element: '.g-lazy-load', // 哪些元素进行懒加载
+        srcAttr: 'data-src', // 默认获取哪里的属性值当做src
+        moreHeight: 0, // 多加载一部分高度的图片
+        interval: 80, // 函数节流时间(延迟时间)
+        isInitRender: true, // 是否初始化的时候就进行render
+    }, json);
     this.clientHeight = document.documentElement.clientHeight;
     this.init();
 }

@@ -24,3 +24,41 @@
 @import "../components/g-lazy-load";
 @import "../components/g-no-data";
 @import "../components/g-validate-form-hint";
+
+.g-img-list {
+    .g-img-list-big img {
+        width: px2rem(376, 750);
+        height: px2rem(160, 750);
+    }
+    .g-img-list-small img {
+        width: px2rem(144, 750);
+        height: px2rem(147, 750);
+    }
+}
+
+.g-audios-wrap {
+    position: relative;
+    ._icon {
+        position: absolute;
+        top: px2rem(40);
+        left: px2rem(20);
+        width: px2rem(20);
+        height: px2rem(20);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        ._item-on {
+            display: none;
+        }
+    }
+    &._on {
+        ._icon {
+            ._item-off {
+                display: none;
+            }
+            ._item-on {
+                display: block;
+            }
+        }
+    }
+}

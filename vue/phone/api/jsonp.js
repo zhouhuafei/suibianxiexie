@@ -1,17 +1,14 @@
-const tools = require('../utils/tools');
+const tools = require('zhf.tools');
 const Dialog = require('../components-dom/g-dialog');
 module.exports = function (json) {
     const opts = tools.extend({
-        defaults: {
-            url: '',
-            data: {},
-            isHandleError: true, // 是否处理错误
-            isHandleFailure: true, // 是否处理失败
-            callback: function () {
-            },
+        url: '',
+        data: {},
+        isHandleError: true, // 是否处理错误
+        isHandleFailure: true, // 是否处理失败
+        callback: function () {
         },
-        inherits: json,
-    });
+    }, json);
     const url = opts.url;
     const data = opts.data;
     const callback = opts.callback;

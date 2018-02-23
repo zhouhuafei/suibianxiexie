@@ -1,12 +1,12 @@
-const tools = require('../utils/tools'); // 工具方法集合
-const applications = require('../utils/applications'); // 应用方法集合
+const tools = require('zhf.tools'); // 工具方法集合
+const applications = require('zhf.applications'); // 应用方法集合
 
 // 底层构造函数
 function Super(json) {
     // 函数外部传来的参数
-    this.opts = tools.extend({
+    this.opts = tools.extend(
         // 内部默认参数
-        defaults: {
+        {
             // 父级
             wrap: '.g-body', // 这个仅支持传入选择器和原生dom节点
             // 回调
@@ -85,8 +85,8 @@ function Super(json) {
             data: {},
         },
         // 外部传入参数
-        inherits: json,
-    });
+        json,
+    );
     // 函数内部自带的属性
     this.moduleDom = null;// 内部的模块
     this.wrapDom = null;// 内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了

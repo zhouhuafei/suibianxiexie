@@ -51,15 +51,15 @@ if (isProduction) {
 // 别名----配置
 const alias = {
     vue: `vue/dist/vue.${configEnvironment.min}js`,
-    'vue-router': `vue-router/dist/vue-router.${configEnvironment.min}js`,
-    vuex: `vuex/dist/vuex.${configEnvironment.min}js`,
-    axios: `axios/dist/axios.${configEnvironment.min}js`,
+    'vue-router': `vue-router/dist/vue-router.min.js`,
+    vuex: `vuex/dist/vuex.min.js`,
+    axios: `axios/dist/axios.min.js`,
 };
 // 入口----配置
 const entry = {
     app: `${configPath.entry}/app.js`,
     'this-is-global-file-vendor': ['vue', 'vue-router', 'vuex', 'axios'],
-    'this-is-global-file-common': [`${configPath.entry}utils/tools.js`, `${configPath.entry}utils/applications.js`],
+    'this-is-global-file-common': ['zhf.tools', 'zhf.applications'],
 };
 // 出口----配置
 const output = {

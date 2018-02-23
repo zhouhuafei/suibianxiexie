@@ -1,5 +1,5 @@
-const tools = require('../utils/tools'); // 工具方法集合
-const applications = require('../utils/applications'); // 应用方法集合
+const tools = require('zhf.tools'); // 工具方法集合
+const applications = require('zhf.applications'); // 应用方法集合
 const domAddPosition = require('zhf.dom-add-position');
 
 function ValidateForm(json) {

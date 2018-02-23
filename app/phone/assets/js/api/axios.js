@@ -1,18 +1,15 @@
 const axios = require('axios');
-const tools = require('../utils/tools');
+const tools = require('zhf.tools');
 const Dialog = require('../components-dom/g-dialog');
 
 module.exports = function (json) {
     json.method = json.method || json.type || 'get';
     const opts = tools.extend({
-        defaults: {
-            method: 'get', // 请求方式默认get
-            isHandleError: true, // 是否处理错误
-            isHandleFailure: true, // 是否处理失败
-            timeout: 5000, // 超时
-        },
-        inherits: json,
-    });
+        method: 'get', // 请求方式默认get
+        isHandleError: true, // 是否处理错误
+        isHandleFailure: true, // 是否处理失败
+        timeout: 5000, // 超时
+    }, json);
     /*
     * javascript axios get params
     * javascript axios post/put/delete data

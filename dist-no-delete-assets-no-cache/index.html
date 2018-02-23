@@ -31,15 +31,23 @@
         <meta name="author" content="zhouhuafei,周华飞,1123486116@qq.com">
         <!--页面标题-->
         <title>网站</title>
+        <link rel="stylesheet" href="static/zero/index.css">
         <style>
-            body {
-                text-align: center;
+            .wrap-item {
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 16px;
+                font-weight: bold;
             }
         </style>
     </head>
     <body>
-        <h2><a href="/phone/">访问手机端</a></h2>
-        <h2><a href="/pc/">访问电脑端</a></h2>
-        <h2><a href="/admin/">访问管理端</a></h2>
+        <div class="wrap">
+            <div class="wrap-item"><a href="/phone/">访问手机端</a></div>
+            <div class="wrap-item"><a href="/pc/">(暂未开发)访问电脑端</a></div>
+            <div class="wrap-item"><a href="/admin/">(暂未开发)访问管理端</a></div>
+        </div>
     </body>
 </html>
