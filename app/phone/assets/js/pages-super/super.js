@@ -106,12 +106,6 @@ class Super {
 
         // 延迟加载
         self.lazyload.render();
-
-        // 移除loading
-        const gLoading = document.querySelector('#g-loading');
-        if (gLoading) {
-            gLoading.parentNode.removeChild(gLoading);
-        }
     }
 }
 
