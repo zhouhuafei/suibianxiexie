@@ -45,7 +45,7 @@ class Sub extends Super {
                             });
                         }
                         if (isMatch) {
-                            session.phoneUserInfo = userInfo;
+                            session.userInfo = userInfo;
                             self.render({
                                 status: 'success',
                                 message: '登录成功',

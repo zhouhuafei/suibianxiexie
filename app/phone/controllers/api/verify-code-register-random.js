@@ -10,18 +10,12 @@ class Sub extends Super {
         const req = opts.req;
         const data = req.data;
         const username = data.username;
-        if (!tools.isEmail(username)) {
-            // 用户名不是邮箱
+        if (!tools.isEmail(username)) { // 用户名不是邮箱
             self.render({
                 status: 'failure',
                 message: '账号需要是一个邮箱',
             });
-        } else {
-            // 用户名是邮箱
-
-            // 检查用户名是否已被注册
-
-            // 没被注册再发送验证码
+        } else { // 用户名是邮箱
             const verifyCode = tools.getRandom(100000, 999999);// random随机验证码
             const expirationDate = 10;// 有效期,单位是分钟
             const autoUser = 'this-is-a-code@foxmail.com';
@@ -39,7 +33,7 @@ class Sub extends Super {
                 text: `这是一条验证码,有效期${expirationDate}分钟,此验证码仅用于账号注册`, // 文本
                 html: '', // html
             };
-            // 验证码存session里
+            // 验证码存redis里
             transporter.sendMail(mailOptions, function (error, result) {
                 if (error) {
                     // 验证码发送失败
@@ -56,7 +50,6 @@ class Sub extends Super {
                     });
                 }
             });
-            // 验证码存redis待续
         }
     }
 }
