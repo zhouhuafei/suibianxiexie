@@ -59,9 +59,6 @@ if (isProduction) {
 const alias = {
     vue: `vue/dist/vue.${configEnvironment.min}js`,
     axios: `axios/dist/axios.min.js`,
-    jquery: `jquery/dist/jquery.min.js`,
-    swiper: `swiper/dist/js/swiper.min.js`,
-    laydate: `layui-laydate/dist/laydate.js`,
 };
 // 入口----配置
 const entry = {};
@@ -154,6 +151,8 @@ const webpackConfig = {
     // 忽略----从输出的bundle中排除依赖
     externals: {
         jquery: 'window.jQuery',
+        laydate: 'window.laydate',
+        swiper: 'window.Swiper',
     },
     // 入口----配置
     entry: entry,

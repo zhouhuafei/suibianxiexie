@@ -1,0 +1,23 @@
+{
+  "name": "suibianxiexie",
+  "description": "suibianxiexie",
+  "main": "",
+  "authors": [
+    "zhouhuafei <1123486116@qq.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/zhouhuafei/suibianxiexie",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "laydate": "^5.0.85",
+    "swiper": "^4.1.6",
+    "jquery": "^3.3.1",
+    "vConsole": "^2.5.1"
+  }
+}

@@ -50,13 +50,13 @@
             timer = setInterval(function () {
                 heart(point[num][0], point[num][1]);
                 num++;
-                if (num == len) {
+                if (num === len) {
                     clearInterval(timer);
                     num = 0;
                     timer = setInterval(function () {
                         drawStar(point[num][0], point[num][1]);
                         num++;
-                        if (num == len) {
+                        if (num === len) {
                             clearInterval(timer);
                             love(0, 0, 'zhf love hlj');
                         }
@@ -65,7 +65,7 @@
             }, 10);
 
             function heart(x, y) {
-                r = 0.4;
+                var r = 0.4;
                 context.save();
                 context.beginPath();
                 for (var i = 0; i < len; i++) {
@@ -110,7 +110,7 @@
                     setTimeout(function () {
                         start(num);
                         num++;
-                        if (num == max) {
+                        if (num === max) {
                             clearInterval(timer);
                         }
                     }, 30);

@@ -37,9 +37,11 @@ class Super {
             req.data = req.body;
         }
         const env = process.env.NODE_ENV;
+        const isProduction = env === 'production';
         self.dataInfo = {
-            ip: getClientIp(req, env === 'production' ? 'nginx' : ''), // 公网ip
+            ip: getClientIp(req, isProduction ? 'nginx' : ''), // 公网ip
             env: env, // 环境
+            isProduction: isProduction, // 是否是生产环境
             api: apiConfig, // 接口配置
             routes: routesConfig, // 路由的配置
             title: routesConfig[opts.routeName].title || '没有配置标题', // 标题(需要从配置里读取)

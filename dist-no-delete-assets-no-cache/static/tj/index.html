@@ -22,7 +22,7 @@
                             var domEl = document.querySelector(el);
                             if (domEl) {
                                 document.addEventListener(eventType, function (ev) {
-                                    var ev = ev || window.event;
+                                    ev = ev || window.event;
                                     var target = ev.target || ev.srcElement;
                                     var isContains = false;
                                     while (target && target !== document && isContains === false) {

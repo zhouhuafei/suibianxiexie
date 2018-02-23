@@ -13,7 +13,7 @@ const app = express(); // app
 
 // 屏蔽ip
 app.use(function (req, res, next) {
-    const ip = getClientIp(req, env === 'production' ? 'nginx' : '');
+    const ip = getClientIp(req, isProduction ? 'nginx' : '');
     if (blacklistIp.indexOf(ip) !== -1) {
         res.status(403).send('403 - forbidden');
     } else {
@@ -26,12 +26,8 @@ const compression = require('compression'); // gzip压缩
 app.use(compression()); // gzip压缩
 
 // 静态资源
-if (isProduction) {
-    app.isProduction = isProduction;
-    app.use(express.static('dist/assets', {maxAge: ms('1y')})); // 托管资源文件(一年缓存)
-} else {
-    app.use(express.static('dist/assets')); // 托管资源文件(无缓存)
-}
+app.use(express.static('dist/assets', {maxAge: ms('1y')})); // 托管资源文件(一年缓存)
+app.use(express.static('bower_components', {maxAge: ms('1y')})); // 托管资源文件(无缓存)
 app.use(express.static('dist-no-delete-assets-no-cache')); // 托管资源文件(无缓存)
 
 // 数据解析
