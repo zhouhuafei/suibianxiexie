@@ -20,9 +20,6 @@ Vue.prototype.$axios = axios;
 Vue.prototype.$jsonp = jsonp;
 Vue.prototype.$lazyload = new Lazyload({isInitRender: false});
 
-// 关闭vue的提示
-Vue.config.productionTip = false;
-
 // 路由处理
 router.beforeEach(function (to, from, next) {
     // 标题

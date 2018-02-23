@@ -59,7 +59,6 @@ class Super {
 
         // Vue
         const Vue = require('vue');
-        Vue.config.productionTip = false;
         Vue.prototype.$tools = self.tools;
         Vue.prototype.$applications = self.applications;
         Vue.prototype.$axios = self.axios;
