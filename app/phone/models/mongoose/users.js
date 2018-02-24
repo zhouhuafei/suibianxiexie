@@ -12,7 +12,7 @@ const schema = new mongoose.Schema({
         type: String,
         default: null,
     },
-    // 上次密码重置时间
+    // 密码重置时间
     passwordResetTime: {
         type: Date,
         default: null,
@@ -22,12 +22,7 @@ const schema = new mongoose.Schema({
         type: Date,
         default: null,
     },
-    // 上次登录时间
-    loginTimePrev: {
-        type: Date,
-        default: null,
-    },
-    // 本次登录时间
+    // 登录时间
     loginTime: {
         type: Date,
         default: null,
