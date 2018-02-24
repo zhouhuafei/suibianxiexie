@@ -12,17 +12,22 @@ const schema = new mongoose.Schema({
         type: String,
         default: null,
     },
-    // 上次更改密码的时间
-    passwordUpdateTime: {
+    // 上次密码重置时间
+    passwordResetTime: {
         type: Date,
         default: null,
     },
-    // 账号的创建时间
+    // 账号创建时间
     createTime: {
         type: Date,
         default: null,
     },
-    // 上次登录账号的时间
+    // 上次登录时间
+    loginTimePrev: {
+        type: Date,
+        default: null,
+    },
+    // 本次登录时间
     loginTime: {
         type: Date,
         default: null,
