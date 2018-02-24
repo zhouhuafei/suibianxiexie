@@ -44,4 +44,7 @@ assets/
 * 当同一种类型的东西只出现一次那就直接用即可,如果出现多次建议绑定到一个对象上
     - 例如出现多个回调函数 callback.a,callback.b,callback.c
     - 例如出现多个选择元素 selector.a,selector.b,selector.c
+    
+# 关于更新
+* 如果服务器用到的npm包有所更改，请先单独把package.json文件更新到服务器。然后在服务器上把最新的npm包下载完成之后，再更新服务器上的业务代码。
 
