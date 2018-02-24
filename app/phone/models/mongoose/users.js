@@ -12,6 +12,11 @@ const schema = new mongoose.Schema({
         type: String,
         default: null,
     },
+    // 上次密码重置时间
+    passwordResetTime: {
+        type: Date,
+        default: null,
+    },
     // 账号创建时间
     createTime: {
         type: Date,
@@ -51,6 +56,11 @@ const schema = new mongoose.Schema({
     sex: {
         type: String,
         default: null,
+    },
+    // 是否是管理员
+    isAdmin: {
+        type: Boolean,
+        default: false,
     },
 });
 const bcrypt = require('bcrypt'); // 加密工具
