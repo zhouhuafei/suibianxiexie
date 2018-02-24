@@ -178,14 +178,6 @@ class Sub extends Super {
                     k: 'wwwww',
                     v: '白棋获胜',
                 },
-                {
-                    k: 'tbbbbt',
-                    v: '黑棋获胜',
-                },
-                {
-                    k: 'twwwwt',
-                    v: '白棋获胜',
-                },
             ];
             result.forEach(function (v1) {
                 victory.forEach(function (v2) {
