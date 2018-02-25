@@ -22,7 +22,12 @@ const schema = new mongoose.Schema({
         type: Date,
         default: null,
     },
-    // 登录时间
+    // 上次登录时间
+    loginTimePrev: {
+        type: Date,
+        default: null,
+    },
+    // 本次登录时间
     loginTime: {
         type: Date,
         default: null,
