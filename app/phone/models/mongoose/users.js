@@ -101,4 +101,4 @@ schema.methods.comparePassword = function (candidatePassword, callback) {
     });
 };
 
-module.exports = mongoose.model('phone-users', schema);
+module.exports = mongoose.model('users', schema);
