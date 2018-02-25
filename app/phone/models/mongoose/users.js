@@ -44,12 +44,12 @@ const schema = new mongoose.Schema({
     },
     // 身高
     height: {
-        type: String,
+        type: Number,
         default: null,
     },
     // 年龄
     age: {
-        type: String,
+        type: Number,
         default: null,
     },
     // 性别
