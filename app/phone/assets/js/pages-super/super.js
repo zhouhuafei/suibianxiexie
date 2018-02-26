@@ -106,6 +106,12 @@ class Super {
 
         // 延迟加载
         self.lazyload.render();
+
+        // spacing-loading移除
+        const spacingLoading = document.querySelector('#spacing-loading');
+        if (spacingLoading) {
+            spacingLoading.parentNode.removeChild(spacingLoading);
+        }
     }
 }
 
