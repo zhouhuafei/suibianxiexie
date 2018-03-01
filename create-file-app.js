@@ -23,6 +23,7 @@ const file = {
         <% include ../commons/head.ejs %>
     </head>
     <body>
+        <% include ../commons/top.ejs %>
         <div class="g-wrap">
             <% include ../commons/header.ejs %>
             <div class="g-body">
@@ -31,6 +32,7 @@ const file = {
             </div>
             <% include ../commons/footer.ejs %>
         </div>
+        <% include ../commons/bottom.ejs %>
     </body>
 </html>
 `,
