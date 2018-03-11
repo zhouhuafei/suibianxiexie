@@ -138,6 +138,15 @@ class Sub extends Super {
                 console.log('jsonp error test:\n', dataInfo);
             },
         });
+        this.jsonp({
+            url: '/phone/api/verify-code-register-random2/',
+            data: {
+                isJsonp: true,
+            },
+            callback: function (dataInfo) {
+                console.log('jsonp error test:\n', dataInfo);
+            },
+        });
         */
 
         // axios错误测试
