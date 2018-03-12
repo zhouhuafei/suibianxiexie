@@ -15,7 +15,7 @@ const configPath = {
     entry: `${__dirname}/${projectDirPath}`,
     // output: `${__dirname}/dist/assets/${projectDirname}/`,
     // 为了保证开发环境和生产环境的路径一致,上面一行需要修改为下面一行
-    output: `${__dirname}/${isProduction ? 'dist/assets/' : ''}${projectDirname}/`,
+    output: `${__dirname}/dist/assets/${projectDirname}/`,
 };
 // 环境----开发环境
 let configEnvironment = {

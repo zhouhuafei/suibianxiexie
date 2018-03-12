@@ -21,11 +21,14 @@
         "appPcBuild": "cross-env NODE_ENV=production-app/pc npm run webpack",
         "appAdminDev": "cross-env NODE_ENV=development-app/admin npm run webpack",
         "appAdminBuild": "cross-env NODE_ENV=production-app/admin npm run webpack",
-        "vuePhoneDev": "cross-env NODE_ENV=development-vue/phone webpack-dev-server --inline --config webpack.config.vue.js",
+        "vuePhoneDev": "cross-env NODE_ENV=development-vue/phone webpack --colors --profile --progress --display-modules --config webpack.config.vue.js",
+        "vuePhoneDevHot": "cross-env NODE_ENV=development-vue/phone webpack-dev-server --inline --config webpack.config.vue.js",
         "vuePhoneBuild": "cross-env NODE_ENV=production-vue/phone webpack --colors --profile --progress --display-modules --config webpack.config.vue.js",
-        "vuePcDev": "cross-env NODE_ENV=development-vue/pc webpack-dev-server --inline --config webpack.config.vue.js",
+        "vuePcDev": "cross-env NODE_ENV=development-vue/pc webpack --colors --profile --progress --display-modules --config webpack.config.vue.js",
+        "vuePcDevHot": "cross-env NODE_ENV=development-vue/pc webpack-dev-server --inline --config webpack.config.vue.js",
         "vuePcBuild": "cross-env NODE_ENV=production-vue/pc webpack --colors --profile --progress --display-modules --config webpack.config.vue.js",
-        "vueAdminDev": "cross-env NODE_ENV=development-vue/admin webpack-dev-server --inline --config webpack.config.vue.js",
+        "vueAdminDev": "cross-env NODE_ENV=development-vue/admin webpack --colors --profile --progress --display-modules --config webpack.config.vue.js",
+        "vueAdminDevHot": "cross-env NODE_ENV=development-vue/admin webpack-dev-server --inline --config webpack.config.vue.js",
         "vueAdminBuild": "cross-env NODE_ENV=production-vue/admin webpack --colors --profile --progress --display-modules --config webpack.config.vue.js"
     },
     "repository": {
