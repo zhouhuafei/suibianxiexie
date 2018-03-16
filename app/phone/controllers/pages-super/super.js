@@ -39,6 +39,7 @@ class Super {
         const env = process.env.NODE_ENV;
         const isProduction = env === 'production';
         self.dataInfo = {
+            staticV: '1.0.0', // 静态资源版本号(清缓存)
             ip: getClientIp(req, isProduction ? 'nginx' : ''), // 公网ip
             env: env, // 环境
             isProduction: isProduction, // 是否是生产环境

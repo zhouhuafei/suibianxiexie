@@ -53,7 +53,7 @@ class Super {
         }());
         // console.log('dataInfo:\n', self.dataInfo);
 
-        // 延迟加载
+        // 延迟加载 power方法里如果有切换也使用到延迟加载 那么放在尾部就无解了 放在这里power里可以调用self.lazyload.render方法触发
         const LazyLoad = require('../components-dom/g-lazy-load');
         self.lazyload = new LazyLoad(self.opts.lazyload);
 
