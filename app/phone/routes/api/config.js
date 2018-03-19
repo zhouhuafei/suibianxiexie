@@ -12,6 +12,7 @@ const routeName = [
     },
     {
         name: 'verify-code-register-random', // 验证码-注册数字随机
+        isSupportJsonp: true, // 是否支持jsonp
     },
     {
         name: 'password-find', // 忘记密码,去找回
@@ -37,6 +38,7 @@ routeName.forEach(function (v) {
         name: v.name, // 路由名称
         route: route, // 路由
         isValidateLogin: v.isValidateLogin === true, // 是否验证登陆(默认不验证)
+        isSupportJsonp: v.isSupportJsonp === true, // 是否支持jsonp(默认不支持)
     };
 });
 

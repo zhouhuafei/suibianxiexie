@@ -28,6 +28,7 @@ class Route {
                             res: res,
                             routeName: attr,
                             isValidateLogin: apiConfig[attr].isValidateLogin,
+                            isSupportJsonp: apiConfig[attr].isSupportJsonp,
                         });
                     });
                 }(Controller, attr));
