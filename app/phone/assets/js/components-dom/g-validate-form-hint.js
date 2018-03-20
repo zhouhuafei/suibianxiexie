@@ -7,7 +7,6 @@ function ValidateForm(json) {
         element: '',
         hintClass: 'g-validate-form-hint',
     }, json);
-    this.customValidateRule = {}; // 自定义验证规则
     if (this.opts.element) {
         this.element = applications.getDomArray(this.opts.element);
     }
@@ -26,8 +25,9 @@ ValidateForm.prototype.render = function () {
         if (v.parentNode) {
             domAddPosition(v.parentNode, 'relative');
         }
+        v.customValidateRule = {}; // 自定义规则
         v.hintDom = document.createElement('span');
-        v.hintDom.classList.add(self.hintClass);
+        v.hintDom.classList.add(self.opts.hintClass);
     });
 };
 ValidateForm.prototype.renderHintAdd = function (opts = {}) {
@@ -35,7 +35,6 @@ ValidateForm.prototype.renderHintAdd = function (opts = {}) {
     const input = opts.input;
     const hintDom = input.hintDom;
     if (input.offsetWidth && hintDom) {
-        // hintDom.innerHTML = opts.txt || '本项必填';
         hintDom.innerHTML = opts.txt;
         input.parentNode.appendChild(hintDom);
     }
@@ -43,14 +42,14 @@ ValidateForm.prototype.renderHintAdd = function (opts = {}) {
 ValidateForm.prototype.renderHintRemove = function (opts = {}) {
     const input = opts.input;
     const parentDom = input.parentNode;
-    const hintDom = input.parentNode.querySelector(`.${this.hintClass}`);
+    const hintDom = input.parentNode.querySelector(`.${this.opts.hintClass}`);
     if (parentDom && hintDom) {
         parentDom.removeChild(input.hintDom);
     }
 };
 ValidateForm.prototype.validateInput = function (input) {
     const self = this;
-    const customValidateRule = self.customValidateRule;
+    const customValidateRule = input.customValidateRule;
     const validateType = input.dataset.validate || 'undefined';
     const validateHintTxt = input.dataset.hint || 'undefined';
     const type = validateType.split(' ');
@@ -58,41 +57,40 @@ ValidateForm.prototype.validateInput = function (input) {
     const value = input.value;
     let isValidateSuccess = true; // 是否验证成功了
     type.forEach(function (v, i) {
-        if (customValidateRule[v]) {
-            if (customValidateRule[v].isValidateSuccess && isValidateSuccess) {
+        if (isValidateSuccess && v === 'no-empty') { // 设置了非空验证
+            if (tools.isEmpty(value)) {
+                self.renderHintAdd({txt: hintTxt[i], input: input});
+                isValidateSuccess = false;
+            } else {
+                self.renderHintRemove({input: input});
+                isValidateSuccess = true;
+            }
+        }
+        if (isValidateSuccess && v === 'no-zero') { // 设置了非零验证
+            if (tools.isZero(value)) {
+                self.renderHintAdd({txt: hintTxt[i], input: input});
+                isValidateSuccess = false;
+            } else {
+                self.renderHintRemove({input: input});
+                isValidateSuccess = true;
+            }
+        }
+        if (isValidateSuccess && v === 'yes-positive-integer') { // 设置了正整数验证
+            if (tools.isPositiveInteger(value)) {
                 self.renderHintRemove({input: input});
                 isValidateSuccess = true;
             } else {
                 self.renderHintAdd({txt: hintTxt[i], input: input});
                 isValidateSuccess = false;
             }
-        } else {
-            if (v === 'no-empty' && isValidateSuccess) { // 设置了非空验证
-                if (tools.isEmpty(value)) {
-                    self.renderHintAdd({txt: hintTxt[i], input: input});
-                    isValidateSuccess = false;
-                } else {
-                    self.renderHintRemove({input: input});
-                    isValidateSuccess = true;
-                }
-            }
-            if (v === 'no-zero' && isValidateSuccess) { // 设置了非零验证
-                if (tools.isZero(value)) {
-                    self.renderHintAdd({txt: hintTxt[i], input: input});
-                    isValidateSuccess = false;
-                } else {
-                    self.renderHintRemove({input: input});
-                    isValidateSuccess = true;
-                }
-            }
-            if (v === 'yes-positive-integer' && isValidateSuccess) { // 设置了正整数验证
-                if (tools.isPositiveInteger(value)) {
-                    self.renderHintRemove({input: input});
-                    isValidateSuccess = true;
-                } else {
-                    self.renderHintAdd({txt: hintTxt[i], input: input});
-                    isValidateSuccess = false;
-                }
+        }
+        if (customValidateRule[v]) {
+            if (isValidateSuccess && customValidateRule[v].isValidateSuccess) {
+                self.renderHintRemove({input: input});
+                isValidateSuccess = true;
+            } else {
+                self.renderHintAdd({txt: hintTxt[i], input: input});
+                isValidateSuccess = false;
             }
         }
     });
@@ -113,6 +111,11 @@ ValidateForm.prototype.power = function () {
     self.element.forEach(function (v) {
         const eventsType = v.dataset.event || 'blur';
         v.addEventListener(eventsType, function () {
+            const customValidateRule = this.customValidateRule;
+            Object.keys(customValidateRule).forEach((keys) => {
+                const obj = customValidateRule[keys];
+                obj.isValidateSuccess = obj.fn(this.value);
+            });
             self.validateInput(this);
         });
     });
@@ -120,9 +123,12 @@ ValidateForm.prototype.power = function () {
 
 // 自定义验证规则
 ValidateForm.prototype.setValidate = function (name, fn) {
-    this.customValidateRule[name] = {
-        isValidateSuccess: fn(),
-    };
+    this.element.forEach(function (v) {
+        v.customValidateRule[name] = {
+            fn: fn,
+            isValidateSuccess: fn(v.value),
+        };
+    });
 };
 
 module.exports = ValidateForm;
