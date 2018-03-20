@@ -3,10 +3,17 @@ const applications = require('zhf.applications'); // 应用方法集合
 const domAddPosition = require('zhf.dom-add-position');
 
 function ValidateForm(json) {
-    this.opts = json || {};
-    this.element = applications.getDomArray(this.opts.element);
-    this.hintClass = this.opts.hintClass || 'g-validate-form-hint';
-    this.init();
+    this.opts = tools.extend({
+        element: '',
+        hintClass: 'g-validate-form-hint',
+    }, json);
+    this.customValidateRule = {}; // 自定义验证规则
+    if (this.opts.element) {
+        this.element = applications.getDomArray(this.opts.element);
+    }
+    if (this.element.length) {
+        this.init();
+    }
 }
 
 ValidateForm.prototype.init = function () {
@@ -42,6 +49,7 @@ ValidateForm.prototype.renderHintRemove = function (opts = {}) {
 };
 ValidateForm.prototype.validateInput = function (input) {
     const self = this;
+    const customValidateRule = self.customValidateRule;
     const validateType = input.dataset.validate || 'undefined';
     const validateHintTxt = input.dataset.hint || 'undefined';
     const type = validateType.split(' ');
@@ -49,31 +57,41 @@ ValidateForm.prototype.validateInput = function (input) {
     const value = input.value;
     let isValidateSuccess = true; // 是否验证成功了
     type.forEach(function (v, i) {
-        if (v === 'no-empty' && isValidateSuccess) { // 设置了非空验证
-            if (tools.isEmpty(value)) {
-                self.renderHintAdd({txt: hintTxt[i], input: input});
-                isValidateSuccess = false;
-            } else {
+        if (customValidateRule[v]) {
+            if (customValidateRule[v].isValidateSuccess && isValidateSuccess) {
                 self.renderHintRemove({input: input});
                 isValidateSuccess = true;
+            } else {
+                self.renderHintAdd({txt: hintTxt[i], input: input});
+                isValidateSuccess = false;
             }
-        }
-        if (v === 'no-zero' && isValidateSuccess) { // 设置了非零验证
-            if (tools.isZero(value)) {
-                self.renderHintAdd({txt: hintTxt[i], input: input});
-                isValidateSuccess = false;
-            } else {
-                self.renderHintRemove({input: input});
-                isValidateSuccess = true;
+        } else {
+            if (v === 'no-empty' && isValidateSuccess) { // 设置了非空验证
+                if (tools.isEmpty(value)) {
+                    self.renderHintAdd({txt: hintTxt[i], input: input});
+                    isValidateSuccess = false;
+                } else {
+                    self.renderHintRemove({input: input});
+                    isValidateSuccess = true;
+                }
             }
-        }
-        if (v === 'yes-positive-integer' && isValidateSuccess) { // 设置了正整数验证
-            if (tools.isPositiveInteger(value)) {
-                self.renderHintRemove({input: input});
-                isValidateSuccess = true;
-            } else {
-                self.renderHintAdd({txt: hintTxt[i], input: input});
-                isValidateSuccess = false;
+            if (v === 'no-zero' && isValidateSuccess) { // 设置了非零验证
+                if (tools.isZero(value)) {
+                    self.renderHintAdd({txt: hintTxt[i], input: input});
+                    isValidateSuccess = false;
+                } else {
+                    self.renderHintRemove({input: input});
+                    isValidateSuccess = true;
+                }
+            }
+            if (v === 'yes-positive-integer' && isValidateSuccess) { // 设置了正整数验证
+                if (tools.isPositiveInteger(value)) {
+                    self.renderHintRemove({input: input});
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({txt: hintTxt[i], input: input});
+                    isValidateSuccess = false;
+                }
             }
         }
     });
@@ -97,6 +115,13 @@ ValidateForm.prototype.power = function () {
             self.validateInput(this);
         });
     });
+};
+
+// 自定义验证规则
+ValidateForm.prototype.setValidate = function (name, fn) {
+    this.customValidateRule[name] = {
+        isValidateSuccess: fn(),
+    };
 };
 
 module.exports = ValidateForm;
