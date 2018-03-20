@@ -35,7 +35,8 @@ ValidateForm.prototype.renderHintAdd = function (opts = {}) {
     const input = opts.input;
     const hintDom = input.hintDom;
     if (input.offsetWidth && hintDom) {
-        hintDom.innerHTML = opts.txt || '本项必填';
+        // hintDom.innerHTML = opts.txt || '本项必填';
+        hintDom.innerHTML = opts.txt;
         input.parentNode.appendChild(hintDom);
     }
 };
