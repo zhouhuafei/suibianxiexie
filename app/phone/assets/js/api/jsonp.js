@@ -6,11 +6,13 @@ module.exports = function (json) {
         data: {},
         isHandleError: true, // 是否处理错误
         isHandleFailure: true, // 是否处理失败
+        callbackName: null, // 自定义服务器接收的callback名称
         callback: function () {
         },
     }, json);
     const url = opts.url;
     const data = opts.data;
+    const callbackName = opts.callbackName;
     const callback = opts.callback;
 
     function fnError() {
@@ -33,7 +35,10 @@ module.exports = function (json) {
 
     if (url) {
         const random = ('' + Math.random()).substring(2);
-        const fnName = `jsonpCallback${new Date().getTime()}${random}`;
+        let fnName = `jsonpCallback${new Date().getTime()}${random}`;
+        if (callbackName && tools.typeOf(callbackName) === 'string') {
+            fnName = callbackName;
+        }
         window[fnName] = function (dataInfo) {
             callback(dataInfo);
             if (dataInfo.status === 'failure' && opts.isHandleFailure) {
