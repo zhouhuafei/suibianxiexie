@@ -97,6 +97,6 @@
         "zhf.dom-add-position": "^1.0.3",
         "zhf.get-client-ip": "^1.0.1",
         "zhf.multiple-calls": "^1.0.2",
-        "zhf.tools": "^1.1.1"
+        "zhf.tools": "^1.1.2"
     }
 }

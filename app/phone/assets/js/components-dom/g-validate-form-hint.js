@@ -50,6 +50,10 @@ ValidateForm.prototype.renderHintRemove = function (opts = {}) {
 ValidateForm.prototype.validateInput = function (input) {
     const self = this;
     const customValidateRule = input.customValidateRule;
+    Object.keys(customValidateRule).forEach((keys) => {
+        const obj = customValidateRule[keys];
+        obj.isValidateSuccess = obj.fn(input.value);
+    });
     const validateType = input.dataset.validate || 'undefined';
     const validateHintTxt = input.dataset.hint || 'undefined';
     const type = validateType.split(' ');
@@ -57,40 +61,42 @@ ValidateForm.prototype.validateInput = function (input) {
     const value = input.value;
     let isValidateSuccess = true; // 是否验证成功了
     type.forEach(function (v, i) {
-        if (isValidateSuccess && v === 'no-empty') { // 设置了非空验证
-            if (tools.isEmpty(value)) {
-                self.renderHintAdd({txt: hintTxt[i], input: input});
-                isValidateSuccess = false;
-            } else {
-                self.renderHintRemove({input: input});
-                isValidateSuccess = true;
-            }
-        }
-        if (isValidateSuccess && v === 'no-zero') { // 设置了非零验证
-            if (tools.isZero(value)) {
-                self.renderHintAdd({txt: hintTxt[i], input: input});
-                isValidateSuccess = false;
-            } else {
-                self.renderHintRemove({input: input});
-                isValidateSuccess = true;
-            }
-        }
-        if (isValidateSuccess && v === 'yes-positive-integer') { // 设置了正整数验证
-            if (tools.isPositiveInteger(value)) {
-                self.renderHintRemove({input: input});
-                isValidateSuccess = true;
-            } else {
-                self.renderHintAdd({txt: hintTxt[i], input: input});
-                isValidateSuccess = false;
-            }
-        }
-        if (customValidateRule[v]) {
+        if (isValidateSuccess && customValidateRule[v]) {
             if (isValidateSuccess && customValidateRule[v].isValidateSuccess) {
                 self.renderHintRemove({input: input});
                 isValidateSuccess = true;
             } else {
                 self.renderHintAdd({txt: hintTxt[i], input: input});
                 isValidateSuccess = false;
+            }
+        }
+        if (isValidateSuccess && !customValidateRule[v]) {
+            if (isValidateSuccess && v === 'no-empty') { // 设置了非空验证
+                if (tools.isEmpty(value)) {
+                    self.renderHintAdd({txt: hintTxt[i], input: input});
+                    isValidateSuccess = false;
+                } else {
+                    self.renderHintRemove({input: input});
+                    isValidateSuccess = true;
+                }
+            }
+            if (isValidateSuccess && v === 'no-zero') { // 设置了非零验证
+                if (tools.isZero(value)) {
+                    self.renderHintAdd({txt: hintTxt[i], input: input});
+                    isValidateSuccess = false;
+                } else {
+                    self.renderHintRemove({input: input});
+                    isValidateSuccess = true;
+                }
+            }
+            if (isValidateSuccess && v === 'yes-positive-integer') { // 设置了正整数验证
+                if (tools.isPositiveInteger(value)) {
+                    self.renderHintRemove({input: input});
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({txt: hintTxt[i], input: input});
+                    isValidateSuccess = false;
+                }
             }
         }
     });
@@ -100,6 +106,7 @@ ValidateForm.prototype.isAllPassValidate = function () {
     const self = this;
     let isValidateSuccess = true;
     self.element.forEach(function (v) {
+        self.validateInput(v);
         if (v.isValidateSuccess !== true) {
             isValidateSuccess = false;
         }
@@ -111,11 +118,6 @@ ValidateForm.prototype.power = function () {
     self.element.forEach(function (v) {
         const eventsType = v.dataset.event || 'blur';
         v.addEventListener(eventsType, function () {
-            const customValidateRule = this.customValidateRule;
-            Object.keys(customValidateRule).forEach((keys) => {
-                const obj = customValidateRule[keys];
-                obj.isValidateSuccess = obj.fn(this.value);
-            });
             self.validateInput(this);
         });
     });
