@@ -15,6 +15,15 @@ body {
     background: $g-background-color-floor;
 }
 
+/* 内联标签重置 */
+small, sub, sup {
+    font-size: inherit;
+}
+
+i, em {
+    font-style: normal;
+}
+
 /* 标题重置 */
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
