@@ -108,5 +108,6 @@ canvas {
 img {
     border: none;
     vertical-align: middle;
+    max-height: 100%;
     max-width: 100%;
 }
