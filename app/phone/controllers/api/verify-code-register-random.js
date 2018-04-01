@@ -23,7 +23,7 @@ class Sub extends Super {
                 service: 'qq',
                 auth: {
                     user: autoUser, // 发送者
-                    pass: 'fycxbmhqlildhjib', // 授权码,通过QQ获取
+                    pass: 'paudrqaxbntmigfe', // 授权码,通过QQ获取
                 },
             });
             const mailOptions = {
@@ -43,7 +43,7 @@ class Sub extends Super {
                         failureInfo: error,
                     });
                 } else {
-                    self.opts.app.redisClient.set(`verify-code-register-random-${username}`, verifyCode, 'ex', expirationDate * 60);
+                    self.opts.app.redisClient.set(`suibianxiexie-verify-code-register-random-${username}`, verifyCode, 'ex', expirationDate * 60);
                     self.render({
                         status: 'success',
                         message: '验证码发送成功',
