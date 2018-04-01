@@ -36,3 +36,20 @@
 <% if(dataInfo.isProduction !== true){ %>
 <script src="/bower_components/vConsole/dist/vconsole.min.js?v=<%= dataInfo.staticV %>"></script>
 <% } %>
+<script>
+    /*
+    * 代码是为了解决，手机端retina屏上，1px边框截图放到ps里测量，发现呈现出的是2px或者3px甚至更高倍边框。
+    * 原因是因为设备像素比为2或者3甚至更高导致的。2倍情况下，1像素的设备独立像素占2像素的设备物理像素，所以看起来更粗。
+    * 2倍情况下，加上0.5倍缩放之后，1css像素占0.5像素的设备独立像素，等同于占1像素的设备物理像素，所以看起来会变细。
+    * 如果有其他站点传入的带px的数据，则需要把window.devicePixelRatio设置成1。
+    * 因为和边框相比，防止数据呈现异常是更重要的事。
+    * */
+    (function () {
+        var viewport = document.querySelector('meta[name=viewport]');
+        var dpr = window.devicePixelRatio;
+        var scale = 1 / dpr;
+        var content = 'width=device-width,user-scalable=no,initial-scale=' + scale + ',maximum-scale=' + scale + ',minimum-scale=' + scale;
+        document.querySelector('html').setAttribute('data-dpr', dpr);
+        viewport.setAttribute('content', content);
+    })();
+</script>
