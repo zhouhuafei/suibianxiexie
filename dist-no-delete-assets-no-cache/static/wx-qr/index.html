@@ -37,19 +37,6 @@
             html, body {
                 height: 100%;
             }
-
-            .mask {
-                position: fixed;
-                width: 100%;
-                height: 100%;
-                left: 0;
-                top: 0;
-                background: rgba(0, 0, 0, 0.4);
-            }
-            .wrap{
-                background: #ff0000;
-                color: #ffffff;
-            }
         </style>
     </head>
     <body>
@@ -58,54 +45,11 @@
             * 如果href里面为空或者没有href都可以识别。
             * 但是如果href里面是javascript:;就识别不了。
         -->
-        <div class="mask">
-            <a href="javascript:;"><img src="./qr.png" alt=""></a>
-            <img src="../zero/img.jpg" alt="">
-        </div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
-        <div class="wrap">测试识别二维码</div>
+        <!-- 下面三种情况都可以识别 -->
+        <a href=""><img src="./qr.png" alt=""></a>
+        <a href><img src="./qr.png" alt=""></a>
+        <a href="http://www.baidu.com"><img src="./qr.png" alt=""></a>
+        <!-- 下面这种情况识别不了 -->
+        <a href="javascript:;"><img src="./qr.png" alt=""></a>
     </body>
 </html>
