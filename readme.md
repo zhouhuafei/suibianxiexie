@@ -37,31 +37,32 @@ assets/
     └── pages
 ```
 
-# 约定大于一切,规则至上-css
+# 约定大于一切，规则至上-css
 * g-表示全局级别,有这个前缀的样式是整站通用的样式。
 * m-表示局部级别,有这个前缀的样式是当前页面内通用的样式。
 * js-表示当前元素身上有对应的js操作。
 * 层级仅限于2-999之间,g-mask层级是500,g-mask-transparent层级是999,弹窗类型大于500即可,非弹窗类型请小于500。
-* css命名规范你可以有下面两种选择方式。
-    - 忘记了这种命名方式的名字，我就叫他长链接方式吧。
+* css命名规范。
+    - 使用长链接方式表示容器。
     ```
         .g-components .g-components-header {}
+        .g-components .g-components-header-item {}
     ```
-    - 我觉上面的太长了，想到了下面这种。
+    - 使用下划线表示状态。状态类的css不可以独立写，必须依附于某个class，防止没必要的冲突。
     ```
-        .g-components ._header {}
-    ```
-* 下划线开头的css表示是属于某个父级的，不可以独立写，必须写成从某个父类下进行选择。
-    ```
-        .g-components ._header {}
-    ```
-* 状态类的class要使用双下划线并遵从上面的约束。
-    ```
-        .g-components.__on {}
-        .g-components.__off {}
+        .g-components .g-components-header-item._on {}
+        .g-components .g-components-header-item._off {}
+        .g-components .g-components-header-item._active {}
+        .g-components .g-components-header-item._inactive {}
+        .g-components .g-components-header-item._window {}
+        .g-components .g-components-header-item._list {}
+        .g-components .g-components-header-item._col-1 {}
+        .g-components .g-components-header-item._col-2 {}
+        .g-components .g-components-header-item._col-3 {}
+        .g-components .g-components-header-item._col-4 {}
     ```
 
-# 约定大于一切,规则至上-js
+# 约定大于一切，规则至上-js
 * 参数element支持传入选择器和原生dom节点。
 * 当同一种类型的东西只出现一次那就直接用即可,如果出现多次建议绑定到一个对象上。
     - 例如出现多个回调函数 callback.a,callback.b,callback.c
