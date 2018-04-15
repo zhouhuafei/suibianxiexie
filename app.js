@@ -3,7 +3,7 @@ const env = process.env.NODE_ENV; // 开发环境 or 生产环境
 const isProduction = env !== 'development'; // 是否是生产环境
 const configDb = require('./db/config'); // 数据库配置
 const configRedis = configDb.redis[env]; // redis的配置
-const ms = require('ms'); // 转成毫秒数
+const ms = require('ms');// 转成毫秒数
 const getClientIp = require('zhf.get-client-ip'); // 获取客户端的ip
 const blacklistIp = require('./blacklist/ip'); // 黑名单 - ip
 
