@@ -5,9 +5,9 @@
     "main": "",
     "scripts": {
         "codeLint": "eslint --ext .js,.vue,.html ./",
+        "codeFix": "eslint --fix --ext .js,.vue,.html ./",
         "precommit": "npm run codeLint",
         "prepush": "npm run codeLint",
-        "codeFix": "eslint --fix --ext .js,.vue,.html ./",
         "serverDev": "nodemon app.js",
         "serverStart": "pm2 start pm2.json",
         "serverStop": "pm2 stop all",
