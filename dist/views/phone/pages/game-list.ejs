@@ -1,1 +1,74 @@
-<!DOCTYPE html><html lang="en"><head> <% include ../commons/head.ejs %> <link href="/phone/css/pages/this-is-global-file-common.83ffa61fb78720addcf28147cfc05cfa.css" rel="stylesheet"><link href="/phone/css/pages/game-list.96ddee67877e58e756ca8eb19710e038.css" rel="stylesheet"></head><body> <% include ../commons/top.ejs %> <div class="g-wrap"> <% include ../commons/header.ejs %> <div class="g-body"><div class="g-list"><a href="<%= dataInfo.routes['game-wuziqi'].route %>" class="g-list-row"><div class="g-list-wrap"><div class="g-list-wrap"><div class="g-list-icon iconfont icon-game"></div><div class="g-list-text">五子棋</div></div><div class="g-list-wrap"><div class="g-list-more iconfont icon-more"></div></div></div><div class="g-list-info">简介：“今日的我，你爱点不点。明日的我，你爱点不点！”</div></a></div><div class="g-list"><a href="<%= dataInfo.routes['game-biecaibaikuai'].route %>" class="g-list-row"><div class="g-list-wrap"><div class="g-list-wrap"><div class="g-list-icon iconfont icon-game"></div><div class="g-list-text">别踩白块</div></div><div class="g-list-wrap"><div class="g-list-more iconfont icon-more"></div></div></div><div class="g-list-info">简介：“今日的我，你爱踩不踩。明日的我，你爱踩不踩！”</div></a></div><div class="g-list"><a href="" class="g-list-row"><div class="g-list-wrap"><div class="g-list-wrap"><div class="g-list-icon iconfont icon-game"></div><div class="g-list-text">坦克大战(暂未开发)</div></div><div class="g-list-wrap"><div class="g-list-more iconfont icon-more"></div></div></div><div class="g-list-info">简介：“今日的我，你爱坦不坦。明日的我，你爱坦不坦！”</div></a></div><div class="g-list"><a href="" class="g-list-row"><div class="g-list-wrap"><div class="g-list-wrap"><div class="g-list-icon iconfont icon-game"></div><div class="g-list-text">祖玛(暂未开发)</div></div><div class="g-list-wrap"><div class="g-list-more iconfont icon-more"></div></div></div><div class="g-list-info">简介：“今日的我，你爱组不组。明日的我，你爱组不组！”</div></a></div></div> <% include ../commons/footer.ejs %> </div> <% include ../commons/bottom.ejs %> <script type="text/javascript" src="/phone/js/pages/this-is-global-file-manifest.6d047b79d473db50a6c2.js"></script><script type="text/javascript" src="/phone/js/pages/this-is-global-file-vendor.d45956d29068107ecbd6.js"></script><script type="text/javascript" src="/phone/js/pages/this-is-global-file-common.fd21faa4d25372c71bd6.js"></script><script type="text/javascript" src="/phone/js/pages/game-list.8460c9fb8e742a523001.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../commons/head.ejs %>
+    <link href="/phone/css/pages/this-is-global-file-common.css" rel="stylesheet"><link href="/phone/css/pages/game-list.css" rel="stylesheet"></head>
+    <body>
+        <% include ../commons/top.ejs %>
+        <div class="g-wrap">
+            <% include ../commons/header.ejs %>
+            <div class="g-body">
+                <!--page start-->
+                <div class="g-list">
+                    <a href="<%= dataInfo.routes['game-wuziqi'].route %>" class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-wrap">
+                                <div class="g-list-icon iconfont icon-game"></div>
+                                <div class="g-list-text">五子棋</div>
+                            </div>
+                            <div class="g-list-wrap">
+                                <div class="g-list-more iconfont icon-more"></div>
+                            </div>
+                        </div>
+                        <div class="g-list-info">简介：“今日的我，你爱点不点。明日的我，你爱点不点！”</div>
+                    </a>
+                </div>
+                <div class="g-list">
+                    <a href="<%= dataInfo.routes['game-biecaibaikuai'].route %>" class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-wrap">
+                                <div class="g-list-icon iconfont icon-game"></div>
+                                <div class="g-list-text">别踩白块</div>
+                            </div>
+                            <div class="g-list-wrap">
+                                <div class="g-list-more iconfont icon-more"></div>
+                            </div>
+                        </div>
+                        <div class="g-list-info">简介：“今日的我，你爱踩不踩。明日的我，你爱踩不踩！”</div>
+                    </a>
+                </div>
+                <div class="g-list">
+                    <a href="" class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-wrap">
+                                <div class="g-list-icon iconfont icon-game"></div>
+                                <div class="g-list-text">坦克大战(暂未开发)</div>
+                            </div>
+                            <div class="g-list-wrap">
+                                <div class="g-list-more iconfont icon-more"></div>
+                            </div>
+                        </div>
+                        <div class="g-list-info">简介：“今日的我，你爱坦不坦。明日的我，你爱坦不坦！”</div>
+                    </a>
+                </div>
+                <div class="g-list">
+                    <a href="" class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-wrap">
+                                <div class="g-list-icon iconfont icon-game"></div>
+                                <div class="g-list-text">祖玛(暂未开发)</div>
+                            </div>
+                            <div class="g-list-wrap">
+                                <div class="g-list-more iconfont icon-more"></div>
+                            </div>
+                        </div>
+                        <div class="g-list-info">简介：“今日的我，你爱组不组。明日的我，你爱组不组！”</div>
+                    </a>
+                </div>
+                <!--page end-->
+            </div>
+            <% include ../commons/footer.ejs %>
+        </div>
+        <% include ../commons/bottom.ejs %>
+    <script type="text/javascript" src="/phone/js/pages/this-is-global-file-manifest.js"></script><script type="text/javascript" src="/phone/js/pages/this-is-global-file-vendor.js"></script><script type="text/javascript" src="/phone/js/pages/this-is-global-file-common.js"></script><script type="text/javascript" src="/phone/js/pages/game-list.js"></script></body>
+</html>
