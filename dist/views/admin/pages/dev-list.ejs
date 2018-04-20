@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../commons/head.ejs %>
+    <link href="/admin/css/pages/this-is-global-file-common.css" rel="stylesheet"><link href="/admin/css/pages/dev-list.css" rel="stylesheet"></head>
+    <body>
+        <% include ../commons/top.ejs %>
+        <div class="g-wrap">
+            <% include ../commons/header.ejs %>
+            <div class="g-body">
+                <!--page start-->
+                <div class="g-list">
+                    <% dataInfo.page.routesRender.forEach(function (v) { %>
+                    <a href="<%= v.route %>" class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-wrap">
+                                <div class="g-list-icon iconfont icon-dev"></div>
+                                <div class="g-list-text"><%= v.name %></div>
+                            </div>
+                            <div class="g-list-wrap">
+                                <div class="g-list-more iconfont icon-more"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <% }) %>
+                </div>
+                <!--page end-->
+            </div>
+            <% include ../commons/footer.ejs %>
+        </div>
+        <% include ../commons/bottom.ejs %>
+    <script type="text/javascript" src="/admin/js/pages/this-is-global-file-manifest.js"></script><script type="text/javascript" src="/admin/js/pages/this-is-global-file-vendor.js"></script><script type="text/javascript" src="/admin/js/pages/this-is-global-file-common.js"></script><script type="text/javascript" src="/admin/js/pages/dev-list.js"></script></body>
+</html>

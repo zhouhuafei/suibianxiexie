@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../commons/head.ejs %>
+    </head>
+    <body>
+        <% include ../commons/top.ejs %>
+        <div class="g-wrap">
+            <% include ../commons/header.ejs %>
+            <div class="g-body">
+                <!--page start-->
+                <div class="g-list">
+                    <a href="<%= dataInfo.routes['game-wuziqi'].route %>" class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-wrap">
+                                <div class="g-list-icon iconfont icon-game"></div>
+                                <div class="g-list-text">五子棋</div>
+                            </div>
+                            <div class="g-list-wrap">
+                                <div class="g-list-more iconfont icon-more"></div>
+                            </div>
+                        </div>
+                        <div class="g-list-info">简介：“今日的我，你爱点不点。明日的我，你爱点不点！”</div>
+                    </a>
+                </div>
+                <div class="g-list">
+                    <a href="<%= dataInfo.routes['game-biecaibaikuai'].route %>" class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-wrap">
+                                <div class="g-list-icon iconfont icon-game"></div>
+                                <div class="g-list-text">别踩白块</div>
+                            </div>
+                            <div class="g-list-wrap">
+                                <div class="g-list-more iconfont icon-more"></div>
+                            </div>
+                        </div>
+                        <div class="g-list-info">简介：“今日的我，你爱踩不踩。明日的我，你爱踩不踩！”</div>
+                    </a>
+                </div>
+                <div class="g-list">
+                    <a href="" class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-wrap">
+                                <div class="g-list-icon iconfont icon-game"></div>
+                                <div class="g-list-text">坦克大战(暂未开发)</div>
+                            </div>
+                            <div class="g-list-wrap">
+                                <div class="g-list-more iconfont icon-more"></div>
+                            </div>
+                        </div>
+                        <div class="g-list-info">简介：“今日的我，你爱坦不坦。明日的我，你爱坦不坦！”</div>
+                    </a>
+                </div>
+                <div class="g-list">
+                    <a href="" class="g-list-row">
+                        <div class="g-list-wrap">
+                            <div class="g-list-wrap">
+                                <div class="g-list-icon iconfont icon-game"></div>
+                                <div class="g-list-text">祖玛(暂未开发)</div>
+                            </div>
+                            <div class="g-list-wrap">
+                                <div class="g-list-more iconfont icon-more"></div>
+                            </div>
+                        </div>
+                        <div class="g-list-info">简介：“今日的我，你爱组不组。明日的我，你爱组不组！”</div>
+                    </a>
+                </div>
+                <!--page end-->
+            </div>
+            <% include ../commons/footer.ejs %>
+        </div>
+        <% include ../commons/bottom.ejs %>
+    </body>
+</html>

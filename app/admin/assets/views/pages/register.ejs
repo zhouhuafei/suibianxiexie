@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../commons/head.ejs %>
+    </head>
+    <body>
+        <% include ../commons/top.ejs %>
+        <div class="g-wrap">
+            <% include ../commons/header.ejs %>
+            <div class="g-body">
+                <!--page start-->
+                <form id="form" action="">
+                    <div class="page-input-wrap">
+                        <div class="page-canvas"></div>
+                    </div>
+                    <div class="page-input-wrap">
+                        <label class="g-input">
+                            <span class="g-input-text">(暂未开发)图片验证码:</span>
+                            <input class="g-input-input g-validate-form"
+                                   data-validate="no-empty no-zero yes-positive-integer"
+                                   data-hint="本项必填 本项不可为零 请输入正整数"
+                                   name="imgVerifyCode"
+                                   id="img-verify-code"
+                                   value=""
+                                   type="tel"
+                                   placeholder="请输入图片上的验证码">
+                            <span class="g-input-hint iconfont icon-required"></span>
+                        </label>
+                    </div>
+                    <div class="page-input-wrap">
+                        <label class="g-input">
+                            <span class="g-input-text">账号:</span>
+                            <input class="g-input-input g-validate-form"
+                                   data-validate="no-empty no-zero yes-positive-integer"
+                                   data-hint="本项必填 本项不可为零 请输入正整数"
+                                   name="username" id="username" value="" placeholder="请输入您的邮箱">
+                            <span class="g-input-hint iconfont icon-required"></span>
+                        </label>
+                    </div>
+                    <div class="page-input-wrap">
+                        <label class="g-input">
+                            <span class="g-input-text">密码:</span>
+                            <input class="g-input-input"
+                                   type="password"
+                                   name="password"
+                                   id="password"
+                                   value="" placeholder="请输入您的密码">
+                            <span class="g-input-icon iconfont icon-eye-on"></span>
+                            <span class="g-input-icon iconfont icon-clear"></span>
+                            <span class="g-input-hint iconfont icon-required"></span>
+                        </label>
+                    </div>
+                    <div class="page-input-wrap">
+                        <label class="g-input">
+                        <span class="get-verify-code">
+                            <span class="g-button">获取验证码</span>
+                        </span>
+                            <input class="g-input-input g-validate-form"
+                                   data-validate="no-empty no-zero yes-positive-integer"
+                                   data-hint="本项必填 本项不可为零 请输入正整数"
+                                   name="verifyCode"
+                                   id="verify-code"
+                                   value=""
+                                   type="tel"
+                                   placeholder="请输入您邮箱里接收到的验证码">
+                            <span class="g-input-hint iconfont icon-required"></span>
+                        </label>
+                    </div>
+                    <div class="g-button register">
+                        <div class="g-button-text">立即注册</div>
+                    </div>
+                    <div class="page-guide-wrap">
+                        <a href="<%= dataInfo.routes['login'].route %>" class="page-guide-item">
+                            <span>已有账号,去登陆</span>
+                            <span class="iconfont icon-right"></span>
+                        </a>
+                        <a href="<%= dataInfo.routes['password-find'].route %>" class="page-guide-item">
+                            <span>忘记密码,去找回</span>
+                            <span class="iconfont icon-right"></span>
+                        </a>
+                    </div>
+                </form>
+                <!--page end-->
+            </div>
+            <% include ../commons/footer.ejs %>
+        </div>
+        <% include ../commons/bottom.ejs %>
+    </body>
+</html>
