@@ -2,72 +2,59 @@
 
 //全局的容器
 .g-wrap {
-    width: 100%;
-    position: relative;
-    .g-header {
-        position: relative;
-        width: inherit;
-        // 二维码(扫码手机观看)
-        .g-qr-code {
-            display: none;
-        }
-    }
-    .g-body {
-        position: relative;
-        width: inherit;
-        &:before, &:after {
-            content: ' ';
-            display: block;
-            height: 0;
-            overflow: hidden;
-        }
-    }
-    .g-footer {
-        position: relative;
-        width: inherit;
-    }
-}
-
-//pc展示
-html.g-pc {
-    height: 100%;
-    body {
-        height: inherit;
-        background: #fafafa;
-    }
-    .g-wrap {
-        $width-wrap: 414;
-        min-height: 100%;
-        margin: 0 auto;
-        width: px2px($width-wrap);
-        box-shadow: px2px(1) 0 px2px(4) $g-border-color-default, px2px(-1) 0 px2px(4) $g-border-color-default;
-        .g-header {
-            // 二维码(扫码手机观看)
-            .g-qr-code {
-                $width: 144;
-                display: block;
-                padding: px2px(20);
-                background: #fff;
-                border: px2px(1) solid $g-border-color-default;
-                position: fixed;
-                top: px2px(20);
-                left: 50%;
-                margin-left: px2px(- 20 - $width - $width-wrap/2);
-                font-size: px2px(12);
-                .g-qr-code-text {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+    $w: 200;
+    .g-menu {
+        width: px2px($w);
+        background: #252834;
+        color: #8a8d96;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        overflow: auto;
+        user-select: none;
+        .g-menu-item {
+            .g-menu-item-title {
+                display: flex;
+                align-items: center;
+                padding: 0 px2px(5);
+                line-height: px2px(30);
+                .g-menu-item-title-icon {
+                    width: px2px(14);
+                    margin-right: px2px(5);
                 }
-                .g-qr-code-svg {
-                    $width-height: 102;
-                    width: px2px($width-height);
-                    height: px2px($width-height);
-                    svg {
-                        vertical-align: middle;
+                &:hover {
+                    background: #383c49;
+                }
+            }
+            .g-menu-item-body {
+                display: none;
+                line-height: px2px(30);
+                .g-menu-item-body-item {
+                    cursor: pointer;
+                    padding: 0 px2px(5) 0 px2px(30);
+                    &.g-menu-item-body-item-active, &.g-menu-item-body-item-active:hover {
+                        background: $g-background-color-floor;
+                        color: #252834;
+                    }
+                    &:hover {
+                        background: #383c49;
                     }
                 }
             }
+            &.g-menu-item-active {
+                .g-menu-item-title-icon {
+                    transform: rotate(90deg);
+                }
+                .g-menu-item-body {
+                    display: block;
+                }
+            }
         }
+    }
+
+    .g-main {
+        margin-left: px2px($w);
+        padding: px2px(20);
     }
 }

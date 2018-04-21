@@ -65,6 +65,20 @@ class Super {
         Vue.prototype.$jsonp = self.jsonp;
         Vue.prototype.$lazyload = self.lazyload;
         self.Vue = Vue;
+
+        // 菜单
+        (function () {
+            const btn = document.querySelectorAll('.g-menu-item-title');
+            const activeClass = 'g-menu-item-active';
+            btn.forEach(function (v) {
+                v.addEventListener('click', function () {
+                    // btn.forEach(function (v) {
+                    //     v.parentNode.classList.remove(activeClass);
+                    // });
+                    this.parentNode.classList.toggle(activeClass);
+                });
+            });
+        })();
     }
 
     // (渲)渲染

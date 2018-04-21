@@ -1,13 +1,577 @@
-webpackJsonp([3],{
+webpackJsonp([2],{
 
-/***/ 14:
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/slide1.76c52cf8.jpg";
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+
+// 底层构造函数
+
+var Super = function () {
+    function Super(json) {
+        _classCallCheck(this, Super);
+
+        // 函数外部传来的参数
+        this.opts = tools.extend(
+        // 内部默认参数
+        {
+            // 父级
+            wrap: '.g-body', // 这个仅支持传入选择器和原生dom节点
+            // 回调
+            callback: {
+                // 内部模块创建之前
+                moduleDomCreateBefore: function moduleDomCreateBefore(self) {
+                    // 内部模块创建之前的回调待续...
+                },
+                // 内部模块创建之后
+                moduleDomCreateAfter: function moduleDomCreateAfter(self) {
+                    // 内部模块创建之后的回调待续...
+                },
+                // 内部模块渲染之前
+                moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+                    // 内部模块渲染之前的回调待续...
+                },
+                // 内部模块渲染之后
+                moduleDomRenderAfter: function moduleDomRenderAfter(self) {
+                    // 内部模块渲染之后的回调待续...
+                },
+                // 内部模块移除之前
+                moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {
+                    // 内部模块移除之前的回调待续...
+                },
+                // 内部模块移除之后
+                moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {
+                    // 内部模块移除之后的回调待续...
+                },
+                // 内部模块显示之前
+                moduleDomShowBefore: function moduleDomShowBefore(self) {
+                    // 内部模块显示之前的回调待续...
+                },
+                // 内部模块显示之后
+                moduleDomShowAfter: function moduleDomShowAfter(self) {
+                    // 内部模块显示之后的回调待续...
+                },
+                // 内部模块隐藏之前
+                moduleDomHideBefore: function moduleDomHideBefore(self) {
+                    // 内部模块隐藏之前的回调待续...
+                },
+                // 内部模块隐藏之后
+                moduleDomHideAfter: function moduleDomHideAfter(self) {
+                    // 内部模块隐藏之后的回调待续...
+                },
+                // 外部容器获取之前
+                wrapDomGetBefore: function wrapDomGetBefore(self) {
+                    // 外部容器获取之前的回调待续...
+                },
+                // 外部容器获取之后
+                wrapDomGetAfter: function wrapDomGetAfter(self) {
+                    // 外部容器获取之后的回调待续...
+                },
+                // 外部容器移除之前
+                wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {
+                    // 外部容器移除之前的回调待续...
+                },
+                // 外部容器移除之后
+                wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {
+                    // 外部容器移除之后的回调待续...
+                }
+            },
+            // 配置
+            config: {
+                // 内部模块的自定义属性
+                moduleDomCustomAttribute: {},
+                // 内部模块插入到外部容器的方式
+                moduleDomRenderMethod: {
+                    method: 'appendChild', // 'appendChild','insertBefore'
+                    child: null
+                },
+                moduleDomStyle: {}, // 内部模块的样式
+                moduleDomIsRender: true, // 内部模块是否渲染
+                moduleDomIsClearTimer: true // 内部模块是否清除所有定时器(默认清除)
+            },
+            // 数据
+            data: {}
+        },
+        // 外部传入参数
+        json);
+        // 函数内部自带的属性
+        this.moduleDom = null; // 内部的模块
+        this.wrapDom = null; // 内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+        this.moduleDomTimer = {}; // 内部模块的定时器存储(假设内部模块有定时器)
+        this.init();
+    }
+
+    // 初始化
+
+
+    _createClass(Super, [{
+        key: 'init',
+        value: function init() {
+            this.render();
+            this.power();
+        }
+
+        // 渲染
+
+    }, {
+        key: 'render',
+        value: function render() {
+            this.moduleDomRemove(); // 内部模块的移除(重新初始化的时候要移除掉以前有的内部模块)
+
+            var callback = this.opts.callback;
+            callback.moduleDomCreateBefore(this);
+            this.moduleDomCreate(); // 内部模块的创建
+            callback.moduleDomCreateAfter(this);
+
+            this.wrapDomGet(); // 外部容器的获取
+            this.moduleDomRender(); // 内部模块的渲染(如果外部容器存在,就把内部模块填充到外部容器里)
+        }
+
+        // 功能(这个方法需要在子类型里被覆盖掉)
+
+    }, {
+        key: 'power',
+        value: function power() {}
+        // 功能待续...
+
+
+        // 内部模块的创建(这个方法需要在子类型里被覆盖掉)
+
+    }, {
+        key: 'moduleDomCreate',
+        value: function moduleDomCreate() {
+            this.moduleDom = applications.createElement({
+                style: this.opts.config.moduleDomStyle,
+                customAttribute: this.opts.config.moduleDomCustomAttribute,
+                attribute: {
+                    className: 'g-super-type-es6',
+                    innerHTML: '\n                    <div class="g-super-type-es6-text" style="text-align: center;">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsup-es6</div>\n                '
+                }
+            });
+        }
+
+        // 内部模块的渲染
+
+    }, {
+        key: 'moduleDomRender',
+        value: function moduleDomRender() {
+            var callback = this.opts.callback;
+            var config = this.opts.config;
+            if (config.moduleDomIsRender && this.wrapDom) {
+                callback.moduleDomRenderBefore(this);
+                var renderMethod = config.moduleDomRenderMethod;
+                if (renderMethod.method === 'insertBefore') {
+                    var dom = applications.getDomArray(renderMethod.child)[0];
+                    if (dom) {
+                        this.wrapDom.insertBefore(this.moduleDom, dom);
+                    } else {
+                        this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
+                    }
+                }
+                if (renderMethod.method === 'appendChild') {
+                    this.wrapDom.appendChild(this.moduleDom);
+                }
+                callback.moduleDomRenderAfter(this);
+            }
+        }
+
+        // 内部模块的移除
+
+    }, {
+        key: 'moduleDomRemove',
+        value: function moduleDomRemove() {
+            var callback = this.opts.callback;
+            if (this.moduleDom && this.moduleDom.parentNode) {
+                callback.moduleDomRemoveBefore(this);
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+                callback.moduleDomRemoveAfter(this);
+            }
+            this.moduleDomClearTimer();
+        }
+
+        // 内部模块的定时器清除(假设内部模块有定时器)
+
+    }, {
+        key: 'moduleDomClearTimer',
+        value: function moduleDomClearTimer() {
+            var self = this;
+            if (self.opts.config.moduleDomIsClearTimer) {
+                Object.keys(self.moduleDomTimer).forEach(function (attr) {
+                    clearInterval(self.moduleDomTimer[attr]);
+                    clearTimeout(self.moduleDomTimer[attr]);
+                });
+            }
+        }
+
+        // 内部模块的隐藏(显示隐藏和是否清除定时器无关)
+
+    }, {
+        key: 'moduleDomHide',
+        value: function moduleDomHide() {
+            var callback = this.opts.callback;
+            if (this.moduleDom.parentNode) {
+                this.opts.config.moduleDomIsRender = false;
+                callback.moduleDomHideBefore(this);
+                this.moduleDom.parentNode.removeChild(this.moduleDom);
+                callback.moduleDomHideAfter(this);
+            }
+        }
+
+        // 内部模块的显示(显示隐藏和是否清除定时器无关)
+
+    }, {
+        key: 'moduleDomShow',
+        value: function moduleDomShow() {
+            var callback = this.opts.callback;
+            callback.moduleDomShowBefore(this);
+            if (this.wrapDom) {
+                this.opts.config.moduleDomIsRender = true;
+                this.moduleDomRender();
+            }
+            callback.moduleDomShowAfter(this);
+        }
+
+        // 外部容器的获取
+
+    }, {
+        key: 'wrapDomGet',
+        value: function wrapDomGet() {
+            var callback = this.opts.callback;
+            callback.wrapDomGetBefore(this);
+            this.wrapDom = applications.getDomArray(this.opts.wrap)[0];
+            callback.wrapDomGetAfter(this);
+        }
+
+        // 外部容器的移除
+
+    }, {
+        key: 'wrapDomRemove',
+        value: function wrapDomRemove() {
+            var callback = this.opts.callback;
+            // 先移除内部的模块
+            this.moduleDomRemove();
+            // 再移除外部的容器
+            if (this.wrapDom) {
+                callback.wrapDomRemoveBefore(this);
+                this.wrapDom.parentNode.removeChild(this.wrapDom);
+                callback.wrapDomRemoveAfter(this);
+            }
+        }
+
+        // 获取内部模块的整体html结构
+
+    }, {
+        key: 'getModuleDomHtml',
+        value: function getModuleDomHtml() {
+            return this.moduleDom.outerHTML;
+        }
+    }]);
+
+    return Super;
+}();
+
+module.exports = Super;
 
 /***/ }),
 
-/***/ 19:
+/***/ 42:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+__webpack_require__(43);
+var Super = __webpack_require__(2);
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub() {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).apply(this, arguments));
+    }
+
+    _createClass(Sub, [{
+        key: 'power',
+        value: function power() {
+            var superSelf = this;
+            var applications = superSelf.applications;
+            var dataInfo = superSelf.dataInfo;
+            var routes = dataInfo.routes;
+
+            // ajax测试
+            (function () {
+                // const Ajax = require('../api/ajax');
+                // new Ajax({
+                //     callback: {},
+                //     config: {
+                //         url: '/api/getList',
+                //     },
+                //     data: {
+                //         hellow: 'hellow',
+                //     },
+                // });
+            })();
+
+            // 测试滚动到底部功能以及loading组件
+            (function () {
+                var Loading = __webpack_require__(84);
+                var WhenScrollBottom = applications.whenScrollBottom();
+                var num = 0;
+                new WhenScrollBottom({
+                    isInitRender: false,
+                    callback: {
+                        success: function success(self) {
+                            num++;
+                            new Loading({
+                                wrap: '.g-body',
+                                config: {
+                                    status: 'loading'
+                                }
+                            });
+                            if (num >= 5) {
+                                new Loading({
+                                    config: {
+                                        status: 'over'
+                                    }
+                                });
+                            } else {
+                                self.dataLoadContinue();
+                            }
+                        }
+                    }
+                });
+            })();
+
+            // slide切换
+            (function () {
+                var Slide = __webpack_require__(85);
+                new Slide({
+                    wrap: '.page-slide',
+                    data: {
+                        items: [{
+                            img: {
+                                width: 0,
+                                height: 0,
+                                src: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg'
+                            },
+                            href: ''
+                        }, {
+                            img: {
+                                width: 0,
+                                height: 0,
+                                src: 'http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg'
+                            },
+                            href: ''
+                        }, {
+                            img: {
+                                width: 0,
+                                height: 0,
+                                src: 'http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg'
+                            },
+                            href: ''
+                        }, {
+                            img: {
+                                width: 0,
+                                height: 0,
+                                src: 'http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg'
+                            },
+                            href: ''
+                        }, {
+                            img: {
+                                width: 0,
+                                height: 0,
+                                src: 'http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg'
+                            },
+                            href: ''
+                        }]
+                    }
+                });
+            })();
+
+            // 导航
+            (function () {
+                var Navigation = __webpack_require__(89);
+                new Navigation({
+                    wrap: '.page-navigation',
+                    data: {
+                        items: [{
+                            href: routes['home'].route,
+                            icon: 'icon-home',
+                            text: '首页',
+                            isShowMark: false
+                        }, {
+                            href: routes['dev-globals'].route,
+                            icon: 'icon-dev',
+                            text: '开发全局',
+                            isShowMark: false
+                        }, {
+                            href: routes['dev-components'].route,
+                            icon: 'icon-dev',
+                            text: '开发组件',
+                            isShowMark: false
+                        }, {
+                            href: routes['dev-words'].route,
+                            icon: 'icon-dev',
+                            text: '开发词汇',
+                            isShowMark: false
+                        }, {
+                            href: routes['mine'].route,
+                            icon: 'icon-mine',
+                            text: '我的',
+                            isShowMark: false
+                        }]
+                    }
+                });
+            })();
+
+            // 弹窗测试
+            (function () {
+                var Dialog = __webpack_require__(9);
+                document.querySelector('.page-button-dialog').addEventListener('click', function () {
+                    new Dialog({
+                        callback: {
+                            confirm: function confirm() {
+                                new Dialog({ config: { alert: { icon: 'icon-success', content: '已确认' } } });
+                            },
+                            cancel: function cancel() {
+                                new Dialog({ config: { alert: { icon: 'icon-success', content: '已取消' } } });
+                            },
+                            close: function close() {
+                                new Dialog({ config: { alert: { icon: 'icon-success', content: '已关闭' } } });
+                            }
+                        },
+                        config: {
+                            type: 'confirm'
+                        }
+                    });
+                });
+            })();
+
+            // 分页测试
+            (function () {
+                var Pagination = __webpack_require__(90);
+                new Pagination({ wrap: '.page-pagination' });
+            })();
+
+            // 没有数据
+            (function () {
+                var NoData = __webpack_require__(91);
+                new NoData({ wrap: '.page-no-data' });
+            })();
+
+            // 超类型模块测试
+            (function () {
+                var Super = __webpack_require__(3);
+                new Super({ wrap: '.page-super-type' });
+                var Sub = __webpack_require__(92);
+                new Sub({ wrap: '.page-super-type' });
+                new Sub(); // constructorInherit里parameter去掉了对象引用,否则这个子类的默认参数wrap会变成上面.page-super-type(bug回忆)
+                var SuperEs6 = __webpack_require__(41);
+                new SuperEs6({ wrap: '.page-super-type' });
+                var SubEs6 = __webpack_require__(93);
+                new SubEs6({ wrap: '.page-super-type' });
+            })();
+
+            // 单选开关
+            (function () {
+                var Radio = __webpack_require__(94);
+                new Radio({
+                    wrap: '.page-radio-switch',
+                    callback: {
+                        click: function click(json) {
+                            console.log(json);
+                        }
+                    }
+                });
+            })();
+
+            // 表格
+            (function () {
+                var Table = __webpack_require__(95);
+                new Table({
+                    wrap: '.page-table',
+                    data: {
+                        header: [{
+                            content: '<div>header0</div>'
+                        }, {
+                            content: '<div>header1</div>'
+                        }, {
+                            content: '<div>header2</div>'
+                        }],
+                        body: [[{
+                            content: '<div>body0-0</div>'
+                        }, {
+                            content: '<div>body1-0</div>'
+                        }, {
+                            content: '<div>body2-0</div>'
+                        }], [{
+                            content: '<div>body0-1</div>'
+                        }, {
+                            content: '<div>body1-1</div>'
+                        }, {
+                            content: '<div>body2-1</div>'
+                        }], [{
+                            content: '<div>body0-2</div>'
+                        }, {
+                            content: '<div>body1-2</div>'
+                        }, {
+                            content: '<div>body2-2</div>'
+                        }]],
+                        footer: ''
+                    }
+                });
+            })();
+
+            // 星评
+            (function () {
+                __webpack_require__.e/* require.ensure */(0).then((function (require) {
+                    var Star = __webpack_require__(126);
+                    new Star({
+                        wrap: '.page-star',
+                        callback: {
+                            click: function click(json) {
+                                console.log(json);
+                            }
+                        }
+                    });
+                }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+            })();
+        }
+    }]);
+
+    return Sub;
+}(Super);
+
+new Sub();
+
+/***/ }),
+
+/***/ 43:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 84:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15,9 +579,87 @@ module.exports = __webpack_require__.p + "images/slide1.76c52cf8.jpg";
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
-var TouchSlide = __webpack_require__(20); // 轮播图插件
-var px2rem = __webpack_require__(21);
+var Super = __webpack_require__(3); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    // 回调
+    callback: {},
+    // 配置
+    config: {
+        status: 'loading', // 加载状态 loading(加载中) over(加载完毕)
+        positionMethod: '', // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
+        positionLocation: 'center' // 模块的定位位置
+    },
+    // 数据
+    data: {}
+});
+
+// 内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var moduleDomHtml = '';
+    var moduleDomClass = '';
+    var status = config.status;
+    var positionMethod = config.positionMethod;
+    var positionLocation = config.positionLocation;
+    // 加载中
+    if (status === 'loading') {
+        moduleDomClass = 'g-loading-run ';
+        // 相对文档居中
+        if (positionMethod === 'fixed') {
+            moduleDomClass += 'g-loading-fixed g-loading-' + positionLocation;
+        }
+        // 相对容器居中
+        if (positionMethod === 'absolute') {
+            moduleDomClass += 'g-loading-absolute g-loading-' + positionLocation;
+        }
+        moduleDomHtml = '\n            <div class="g-loading-body">\n                <div class="g-loading-run-icon iconfont icon-loading"></div>\n            </div>\n        ';
+    }
+    // 加载完毕
+    if (status === 'over') {
+        moduleDomClass = 'g-loading-over ';
+        // 相对文档居中
+        if (positionMethod === 'fixed') {
+            moduleDomClass += 'g-loading-fixed g-loading-' + positionLocation;
+        }
+        // 相对容器居中
+        if (positionMethod === 'absolute') {
+            moduleDomClass += 'g-loading-absolute g-loading-' + positionLocation;
+        }
+        moduleDomHtml = '\n            <div class="g-loading-body">\n                <div class="g-loading-over-icon iconfont icon-no-data"></div>\n                <div class="g-loading-over-text">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ';
+    }
+    // 模块创建
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-loading ' + moduleDomClass,
+            innerHTML: moduleDomHtml
+        }
+    });
+};
+
+// 功能(覆盖超类型)
+Sub.prototype.power = function () {
+    // 功能重写待续...
+};
+
+module.exports = Sub;
+
+/***/ }),
+
+/***/ 85:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(1); // 应用方法集合
+var Super = __webpack_require__(3); // 超类型(子类型继承的对象)
+var TouchSlide = __webpack_require__(86); // 轮播图插件
+var px2rem = __webpack_require__(87);
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -56,7 +698,7 @@ var Sub = tools.constructorInherit(Super, {
             img: {
                 width: 0,
                 height: 0,
-                src: __webpack_require__(14)
+                src: __webpack_require__(88)
             },
             href: ''
         }]
@@ -138,7 +780,7 @@ module.exports = Sub;
 
 /***/ }),
 
-/***/ 20:
+/***/ 86:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -589,7 +1231,7 @@ module.exports = TouchSlide;
 
 /***/ }),
 
-/***/ 21:
+/***/ 87:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -605,7 +1247,14 @@ module.exports = px2rem;
 
 /***/ }),
 
-/***/ 22:
+/***/ 88:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/slide1.76c52cf8.jpg";
+
+/***/ }),
+
+/***/ 89:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -613,7 +1262,7 @@ module.exports = px2rem;
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(3); // 超类型(子类型继承的对象)
 // 超类型(子类型继承的对象)
 var route = '/phone/';
 
@@ -693,655 +1342,6 @@ module.exports = Sub;
 
 /***/ }),
 
-/***/ 46:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-
-// 底层构造函数
-
-var Super = function () {
-    function Super(json) {
-        _classCallCheck(this, Super);
-
-        // 函数外部传来的参数
-        this.opts = tools.extend(
-        // 内部默认参数
-        {
-            // 父级
-            wrap: '.g-body', // 这个仅支持传入选择器和原生dom节点
-            // 回调
-            callback: {
-                // 内部模块创建之前
-                moduleDomCreateBefore: function moduleDomCreateBefore(self) {
-                    // 内部模块创建之前的回调待续...
-                },
-                // 内部模块创建之后
-                moduleDomCreateAfter: function moduleDomCreateAfter(self) {
-                    // 内部模块创建之后的回调待续...
-                },
-                // 内部模块渲染之前
-                moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-                    // 内部模块渲染之前的回调待续...
-                },
-                // 内部模块渲染之后
-                moduleDomRenderAfter: function moduleDomRenderAfter(self) {
-                    // 内部模块渲染之后的回调待续...
-                },
-                // 内部模块移除之前
-                moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {
-                    // 内部模块移除之前的回调待续...
-                },
-                // 内部模块移除之后
-                moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {
-                    // 内部模块移除之后的回调待续...
-                },
-                // 内部模块显示之前
-                moduleDomShowBefore: function moduleDomShowBefore(self) {
-                    // 内部模块显示之前的回调待续...
-                },
-                // 内部模块显示之后
-                moduleDomShowAfter: function moduleDomShowAfter(self) {
-                    // 内部模块显示之后的回调待续...
-                },
-                // 内部模块隐藏之前
-                moduleDomHideBefore: function moduleDomHideBefore(self) {
-                    // 内部模块隐藏之前的回调待续...
-                },
-                // 内部模块隐藏之后
-                moduleDomHideAfter: function moduleDomHideAfter(self) {
-                    // 内部模块隐藏之后的回调待续...
-                },
-                // 外部容器获取之前
-                wrapDomGetBefore: function wrapDomGetBefore(self) {
-                    // 外部容器获取之前的回调待续...
-                },
-                // 外部容器获取之后
-                wrapDomGetAfter: function wrapDomGetAfter(self) {
-                    // 外部容器获取之后的回调待续...
-                },
-                // 外部容器移除之前
-                wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {
-                    // 外部容器移除之前的回调待续...
-                },
-                // 外部容器移除之后
-                wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {
-                    // 外部容器移除之后的回调待续...
-                }
-            },
-            // 配置
-            config: {
-                // 内部模块的自定义属性
-                moduleDomCustomAttribute: {},
-                // 内部模块插入到外部容器的方式
-                moduleDomRenderMethod: {
-                    method: 'appendChild', // 'appendChild','insertBefore'
-                    child: null
-                },
-                moduleDomStyle: {}, // 内部模块的样式
-                moduleDomIsRender: true, // 内部模块是否渲染
-                moduleDomIsClearTimer: true // 内部模块是否清除所有定时器(默认清除)
-            },
-            // 数据
-            data: {}
-        },
-        // 外部传入参数
-        json);
-        // 函数内部自带的属性
-        this.moduleDom = null; // 内部的模块
-        this.wrapDom = null; // 内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
-        this.moduleDomTimer = {}; // 内部模块的定时器存储(假设内部模块有定时器)
-        this.init();
-    }
-
-    // 初始化
-
-
-    _createClass(Super, [{
-        key: 'init',
-        value: function init() {
-            this.render();
-            this.power();
-        }
-
-        // 渲染
-
-    }, {
-        key: 'render',
-        value: function render() {
-            this.moduleDomRemove(); // 内部模块的移除(重新初始化的时候要移除掉以前有的内部模块)
-
-            var callback = this.opts.callback;
-            callback.moduleDomCreateBefore(this);
-            this.moduleDomCreate(); // 内部模块的创建
-            callback.moduleDomCreateAfter(this);
-
-            this.wrapDomGet(); // 外部容器的获取
-            this.moduleDomRender(); // 内部模块的渲染(如果外部容器存在,就把内部模块填充到外部容器里)
-        }
-
-        // 功能(这个方法需要在子类型里被覆盖掉)
-
-    }, {
-        key: 'power',
-        value: function power() {}
-        // 功能待续...
-
-
-        // 内部模块的创建(这个方法需要在子类型里被覆盖掉)
-
-    }, {
-        key: 'moduleDomCreate',
-        value: function moduleDomCreate() {
-            this.moduleDom = applications.createElement({
-                style: this.opts.config.moduleDomStyle,
-                customAttribute: this.opts.config.moduleDomCustomAttribute,
-                attribute: {
-                    className: 'g-super-type-es6',
-                    innerHTML: '\n                    <div class="g-super-type-es6-text" style="text-align: center;">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsup-es6</div>\n                '
-                }
-            });
-        }
-
-        // 内部模块的渲染
-
-    }, {
-        key: 'moduleDomRender',
-        value: function moduleDomRender() {
-            var callback = this.opts.callback;
-            var config = this.opts.config;
-            if (config.moduleDomIsRender && this.wrapDom) {
-                callback.moduleDomRenderBefore(this);
-                var renderMethod = config.moduleDomRenderMethod;
-                if (renderMethod.method === 'insertBefore') {
-                    var dom = applications.getDomArray(renderMethod.child)[0];
-                    if (dom) {
-                        this.wrapDom.insertBefore(this.moduleDom, dom);
-                    } else {
-                        this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
-                    }
-                }
-                if (renderMethod.method === 'appendChild') {
-                    this.wrapDom.appendChild(this.moduleDom);
-                }
-                callback.moduleDomRenderAfter(this);
-            }
-        }
-
-        // 内部模块的移除
-
-    }, {
-        key: 'moduleDomRemove',
-        value: function moduleDomRemove() {
-            var callback = this.opts.callback;
-            if (this.moduleDom && this.moduleDom.parentNode) {
-                callback.moduleDomRemoveBefore(this);
-                this.moduleDom.parentNode.removeChild(this.moduleDom);
-                callback.moduleDomRemoveAfter(this);
-            }
-            this.moduleDomClearTimer();
-        }
-
-        // 内部模块的定时器清除(假设内部模块有定时器)
-
-    }, {
-        key: 'moduleDomClearTimer',
-        value: function moduleDomClearTimer() {
-            var self = this;
-            if (self.opts.config.moduleDomIsClearTimer) {
-                Object.keys(self.moduleDomTimer).forEach(function (attr) {
-                    clearInterval(self.moduleDomTimer[attr]);
-                    clearTimeout(self.moduleDomTimer[attr]);
-                });
-            }
-        }
-
-        // 内部模块的隐藏(显示隐藏和是否清除定时器无关)
-
-    }, {
-        key: 'moduleDomHide',
-        value: function moduleDomHide() {
-            var callback = this.opts.callback;
-            if (this.moduleDom.parentNode) {
-                this.opts.config.moduleDomIsRender = false;
-                callback.moduleDomHideBefore(this);
-                this.moduleDom.parentNode.removeChild(this.moduleDom);
-                callback.moduleDomHideAfter(this);
-            }
-        }
-
-        // 内部模块的显示(显示隐藏和是否清除定时器无关)
-
-    }, {
-        key: 'moduleDomShow',
-        value: function moduleDomShow() {
-            var callback = this.opts.callback;
-            callback.moduleDomShowBefore(this);
-            if (this.wrapDom) {
-                this.opts.config.moduleDomIsRender = true;
-                this.moduleDomRender();
-            }
-            callback.moduleDomShowAfter(this);
-        }
-
-        // 外部容器的获取
-
-    }, {
-        key: 'wrapDomGet',
-        value: function wrapDomGet() {
-            var callback = this.opts.callback;
-            callback.wrapDomGetBefore(this);
-            this.wrapDom = applications.getDomArray(this.opts.wrap)[0];
-            callback.wrapDomGetAfter(this);
-        }
-
-        // 外部容器的移除
-
-    }, {
-        key: 'wrapDomRemove',
-        value: function wrapDomRemove() {
-            var callback = this.opts.callback;
-            // 先移除内部的模块
-            this.moduleDomRemove();
-            // 再移除外部的容器
-            if (this.wrapDom) {
-                callback.wrapDomRemoveBefore(this);
-                this.wrapDom.parentNode.removeChild(this.wrapDom);
-                callback.wrapDomRemoveAfter(this);
-            }
-        }
-
-        // 获取内部模块的整体html结构
-
-    }, {
-        key: 'getModuleDomHtml',
-        value: function getModuleDomHtml() {
-            return this.moduleDom.outerHTML;
-        }
-    }]);
-
-    return Super;
-}();
-
-module.exports = Super;
-
-/***/ }),
-
-/***/ 47:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-__webpack_require__(48);
-var Super = __webpack_require__(3);
-
-var Sub = function (_Super) {
-    _inherits(Sub, _Super);
-
-    function Sub() {
-        _classCallCheck(this, Sub);
-
-        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).apply(this, arguments));
-    }
-
-    _createClass(Sub, [{
-        key: 'power',
-        value: function power() {
-            var superSelf = this;
-            var applications = superSelf.applications;
-            var dataInfo = superSelf.dataInfo;
-            var routes = dataInfo.routes;
-
-            // ajax测试
-            (function () {
-                // const Ajax = require('../api/ajax');
-                // new Ajax({
-                //     callback: {},
-                //     config: {
-                //         url: '/api/getList',
-                //     },
-                //     data: {
-                //         hellow: 'hellow',
-                //     },
-                // });
-            })();
-
-            // 测试滚动到底部功能以及loading组件
-            (function () {
-                var Loading = __webpack_require__(89);
-                var WhenScrollBottom = applications.whenScrollBottom();
-                var num = 0;
-                new WhenScrollBottom({
-                    isInitRender: false,
-                    callback: {
-                        success: function success(self) {
-                            num++;
-                            new Loading({
-                                wrap: '.g-body',
-                                config: {
-                                    status: 'loading'
-                                }
-                            });
-                            if (num >= 5) {
-                                new Loading({
-                                    config: {
-                                        status: 'over'
-                                    }
-                                });
-                            } else {
-                                self.dataLoadContinue();
-                            }
-                        }
-                    }
-                });
-            })();
-
-            // slide切换
-            (function () {
-                var Slide = __webpack_require__(19);
-                new Slide({
-                    wrap: '.page-slide',
-                    data: {
-                        items: [{
-                            img: {
-                                width: 0,
-                                height: 0,
-                                src: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg'
-                            },
-                            href: ''
-                        }, {
-                            img: {
-                                width: 0,
-                                height: 0,
-                                src: 'http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg'
-                            },
-                            href: ''
-                        }, {
-                            img: {
-                                width: 0,
-                                height: 0,
-                                src: 'http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg'
-                            },
-                            href: ''
-                        }, {
-                            img: {
-                                width: 0,
-                                height: 0,
-                                src: 'http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg'
-                            },
-                            href: ''
-                        }, {
-                            img: {
-                                width: 0,
-                                height: 0,
-                                src: 'http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg'
-                            },
-                            href: ''
-                        }]
-                    }
-                });
-            })();
-
-            // 导航
-            (function () {
-                var Navigation = __webpack_require__(22);
-                new Navigation({
-                    wrap: '.page-navigation',
-                    data: {
-                        items: [{
-                            href: routes['home'].route,
-                            icon: 'icon-home',
-                            text: '首页',
-                            isShowMark: false
-                        }, {
-                            href: routes['dev-globals'].route,
-                            icon: 'icon-dev',
-                            text: '开发全局',
-                            isShowMark: false
-                        }, {
-                            href: routes['dev-components'].route,
-                            icon: 'icon-dev',
-                            text: '开发组件',
-                            isShowMark: false
-                        }, {
-                            href: routes['dev-words'].route,
-                            icon: 'icon-dev',
-                            text: '开发词汇',
-                            isShowMark: false
-                        }, {
-                            href: routes['mine'].route,
-                            icon: 'icon-mine',
-                            text: '我的',
-                            isShowMark: false
-                        }]
-                    }
-                });
-            })();
-
-            // 弹窗测试
-            (function () {
-                var Dialog = __webpack_require__(9);
-                document.querySelector('.page-button-dialog').addEventListener('click', function () {
-                    new Dialog({
-                        callback: {
-                            confirm: function confirm() {
-                                new Dialog({ config: { alert: { icon: 'icon-success', content: '已确认' } } });
-                            },
-                            cancel: function cancel() {
-                                new Dialog({ config: { alert: { icon: 'icon-success', content: '已取消' } } });
-                            },
-                            close: function close() {
-                                new Dialog({ config: { alert: { icon: 'icon-success', content: '已关闭' } } });
-                            }
-                        },
-                        config: {
-                            type: 'confirm'
-                        }
-                    });
-                });
-            })();
-
-            // 分页测试
-            (function () {
-                var Pagination = __webpack_require__(90);
-                new Pagination({ wrap: '.page-pagination' });
-            })();
-
-            // 没有数据
-            (function () {
-                var NoData = __webpack_require__(91);
-                new NoData({ wrap: '.page-no-data' });
-            })();
-
-            // 超类型模块测试
-            (function () {
-                var Super = __webpack_require__(2);
-                new Super({ wrap: '.page-super-type' });
-                var Sub = __webpack_require__(92);
-                new Sub({ wrap: '.page-super-type' });
-                new Sub(); // constructorInherit里parameter去掉了对象引用,否则这个子类的默认参数wrap会变成上面.page-super-type(bug回忆)
-                var SuperEs6 = __webpack_require__(46);
-                new SuperEs6({ wrap: '.page-super-type' });
-                var SubEs6 = __webpack_require__(93);
-                new SubEs6({ wrap: '.page-super-type' });
-            })();
-
-            // 单选开关
-            (function () {
-                var Radio = __webpack_require__(94);
-                new Radio({
-                    wrap: '.page-radio-switch',
-                    callback: {
-                        click: function click(json) {
-                            console.log(json);
-                        }
-                    }
-                });
-            })();
-
-            // 表格
-            (function () {
-                var Table = __webpack_require__(95);
-                new Table({
-                    wrap: '.page-table',
-                    data: {
-                        header: [{
-                            content: '<div>header0</div>'
-                        }, {
-                            content: '<div>header1</div>'
-                        }, {
-                            content: '<div>header2</div>'
-                        }],
-                        body: [[{
-                            content: '<div>body0-0</div>'
-                        }, {
-                            content: '<div>body1-0</div>'
-                        }, {
-                            content: '<div>body2-0</div>'
-                        }], [{
-                            content: '<div>body0-1</div>'
-                        }, {
-                            content: '<div>body1-1</div>'
-                        }, {
-                            content: '<div>body2-1</div>'
-                        }], [{
-                            content: '<div>body0-2</div>'
-                        }, {
-                            content: '<div>body1-2</div>'
-                        }, {
-                            content: '<div>body2-2</div>'
-                        }]],
-                        footer: ''
-                    }
-                });
-            })();
-
-            // 星评
-            (function () {
-                __webpack_require__.e/* require.ensure */(1).then((function (require) {
-                    var Star = __webpack_require__(130);
-                    new Star({
-                        wrap: '.page-star',
-                        callback: {
-                            click: function click(json) {
-                                console.log(json);
-                            }
-                        }
-                    });
-                }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
-            })();
-        }
-    }]);
-
-    return Sub;
-}(Super);
-
-new Sub();
-
-/***/ }),
-
-/***/ 48:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 89:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    // 回调
-    callback: {},
-    // 配置
-    config: {
-        status: 'loading', // 加载状态 loading(加载中) over(加载完毕)
-        positionMethod: '', // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
-        positionLocation: 'center' // 模块的定位位置
-    },
-    // 数据
-    data: {}
-});
-
-// 内部模块的创建(覆盖超类型)
-Sub.prototype.moduleDomCreate = function () {
-    var config = this.opts.config;
-    var moduleDomHtml = '';
-    var moduleDomClass = '';
-    var status = config.status;
-    var positionMethod = config.positionMethod;
-    var positionLocation = config.positionLocation;
-    // 加载中
-    if (status === 'loading') {
-        moduleDomClass = 'g-loading-run ';
-        // 相对文档居中
-        if (positionMethod === 'fixed') {
-            moduleDomClass += 'g-loading-fixed g-loading-' + positionLocation;
-        }
-        // 相对容器居中
-        if (positionMethod === 'absolute') {
-            moduleDomClass += 'g-loading-absolute g-loading-' + positionLocation;
-        }
-        moduleDomHtml = '\n            <div class="g-loading-body">\n                <div class="g-loading-run-icon iconfont icon-loading"></div>\n            </div>\n        ';
-    }
-    // 加载完毕
-    if (status === 'over') {
-        moduleDomClass = 'g-loading-over ';
-        // 相对文档居中
-        if (positionMethod === 'fixed') {
-            moduleDomClass += 'g-loading-fixed g-loading-' + positionLocation;
-        }
-        // 相对容器居中
-        if (positionMethod === 'absolute') {
-            moduleDomClass += 'g-loading-absolute g-loading-' + positionLocation;
-        }
-        moduleDomHtml = '\n            <div class="g-loading-body">\n                <div class="g-loading-over-icon iconfont icon-no-data"></div>\n                <div class="g-loading-over-text">\u6CA1\u6709\u6570\u636E\u4E86</div>\n            </div>\n        ';
-    }
-    // 模块创建
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-loading ' + moduleDomClass,
-            innerHTML: moduleDomHtml
-        }
-    });
-};
-
-// 功能(覆盖超类型)
-Sub.prototype.power = function () {
-    // 功能重写待续...
-};
-
-module.exports = Sub;
-
-/***/ }),
-
 /***/ 90:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1350,7 +1350,7 @@ module.exports = Sub;
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(3); // 超类型(子类型继承的对象)
 
 // 默认数据
 var defaultData = {
@@ -1517,7 +1517,7 @@ module.exports = Sub;
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(3); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -1575,7 +1575,7 @@ module.exports = Sub;
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(3); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -1624,7 +1624,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(46); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(41); // 超类型(子类型继承的对象)
 
 // 子类型
 
@@ -1684,7 +1684,7 @@ module.exports = Sub;
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(3); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -1776,7 +1776,7 @@ module.exports = Sub;
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(3); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -1837,4 +1837,4 @@ module.exports = Sub;
 
 /***/ })
 
-},[47]);
+},[42]);

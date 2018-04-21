@@ -1,4 +1,4 @@
-webpackJsonp([6],{
+webpackJsonp([4],{
 
 /***/ 103:
 /***/ (function(module, exports, __webpack_require__) {
@@ -17,7 +17,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 __webpack_require__(104);
-var Super = __webpack_require__(3);
+var Super = __webpack_require__(2);
 
 var Sub = function (_Super) {
     _inherits(Sub, _Super);
@@ -144,7 +144,7 @@ var Sub = function (_Super) {
             var audioWrap = document.querySelector('.audios-wrap');
             var audioSrc = [];
             for (var i = 0; i < 7; i++) {
-                audioSrc.push(__webpack_require__(23)("./" + (i + 1) + '.mp3'));
+                audioSrc.push(__webpack_require__(18)("./" + (i + 1) + '.mp3'));
             }
             var hasSound = audioWrap.classList.contains('_on');
             audioWrap.addEventListener('click', function () {
@@ -214,17 +214,17 @@ new Sub();
 
 /***/ }),
 
-/***/ 23:
+/***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./1.mp3": 24,
-	"./2.mp3": 25,
-	"./3.mp3": 26,
-	"./4.mp3": 27,
-	"./5.mp3": 28,
-	"./6.mp3": 29,
-	"./7.mp3": 30
+	"./1.mp3": 19,
+	"./2.mp3": 20,
+	"./3.mp3": 21,
+	"./4.mp3": 22,
+	"./5.mp3": 23,
+	"./6.mp3": 24,
+	"./7.mp3": 25
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -240,53 +240,53 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 23;
+webpackContext.id = 18;
 
 /***/ }),
 
-/***/ 24:
+/***/ 19:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "audios/1.38e46759.mp3";
 
 /***/ }),
 
-/***/ 25:
+/***/ 20:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "audios/2.5576c20e.mp3";
 
 /***/ }),
 
-/***/ 26:
+/***/ 21:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "audios/3.25e1d33d.mp3";
 
 /***/ }),
 
-/***/ 27:
+/***/ 22:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "audios/4.220478be.mp3";
 
 /***/ }),
 
-/***/ 28:
+/***/ 23:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "audios/5.ab15dc12.mp3";
 
 /***/ }),
 
-/***/ 29:
+/***/ 24:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "audios/6.44295654.mp3";
 
 /***/ }),
 
-/***/ 30:
+/***/ 25:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "audios/7.c04a5503.mp3";

@@ -1,4 +1,4 @@
-webpackJsonp([8],{
+webpackJsonp([6],{
 
 /***/ 96:
 /***/ (function(module, exports, __webpack_require__) {
@@ -15,7 +15,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 __webpack_require__(97);
-var Super = __webpack_require__(3);
+var Super = __webpack_require__(2);
 
 var Sub = function (_Super) {
     _inherits(Sub, _Super);
@@ -79,7 +79,7 @@ new Sub();
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var domAddPosition = __webpack_require__(15);
+var domAddPosition = __webpack_require__(14);
 
 function ValidateForm(json) {
     this.opts = tools.extend({
