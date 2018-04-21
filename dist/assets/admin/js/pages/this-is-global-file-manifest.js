@@ -34,7 +34,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		18: 0
+/******/ 		4: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -91,7 +91,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"g-star","1":"this-is-global-file-common","2":"dev-components","3":"game-wuziqi","4":"game-biecaibaikuai","5":"this-is-global-file-vendor","6":"home","7":"dev-globals","8":"setting","9":"sample","10":"register","11":"password-reset","12":"password-find","13":"mine","14":"login","15":"game-list","16":"dev-words","17":"dev-list"}[chunkId]||chunkId) + "." + chunkId + ".chunk.js";
+/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"this-is-global-file-common","1":"this-is-global-file-vendor","2":"website-info","3":"home"}[chunkId]||chunkId) + "." + chunkId + ".chunk.js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {

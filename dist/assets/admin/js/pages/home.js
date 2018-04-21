@@ -1,6 +1,6 @@
-webpackJsonp([6],{
+webpackJsonp([3],{
 
-/***/ 109:
+/***/ 35:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,8 +14,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(110);
-var Super = __webpack_require__(2);
+__webpack_require__(16);
+var Super = __webpack_require__(17);
 
 var Sub = function (_Super) {
     _inherits(Sub, _Super);
@@ -35,7 +35,7 @@ var Sub = function (_Super) {
 
             // 验证
             (function () {
-                var ValidateInput = __webpack_require__(18);
+                var ValidateInput = __webpack_require__(34);
                 new ValidateInput({ element: '.page-validate-form' });
             })();
         }
@@ -46,165 +46,6 @@ var Sub = function (_Super) {
 
 new Sub();
 
-/***/ }),
-
-/***/ 110:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 18:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(1); // 应用方法集合
-var domAddPosition = __webpack_require__(11);
-
-function ValidateForm(json) {
-    this.opts = tools.extend({
-        element: '',
-        hintClass: 'g-validate-form-hint'
-    }, json);
-    if (this.opts.element) {
-        this.element = applications.getDomArray(this.opts.element);
-    }
-    if (this.element.length) {
-        this.init();
-    }
-}
-
-ValidateForm.prototype.init = function () {
-    this.render();
-    this.power();
-};
-ValidateForm.prototype.render = function () {
-    var self = this;
-    self.element.forEach(function (v) {
-        if (v.parentNode) {
-            domAddPosition(v.parentNode, 'relative');
-        }
-        v.customValidateRule = {}; // 自定义规则
-        v.hintDom = document.createElement('span');
-        v.hintDom.classList.add(self.opts.hintClass);
-    });
-};
-ValidateForm.prototype.renderHintAdd = function () {
-    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    // 只有没被隐藏的才进行验证
-    var input = opts.input;
-    var hintDom = input.hintDom;
-    if (input.offsetWidth && hintDom) {
-        hintDom.innerHTML = opts.txt;
-        input.parentNode.appendChild(hintDom);
-    }
-};
-ValidateForm.prototype.renderHintRemove = function () {
-    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    var input = opts.input;
-    var parentDom = input.parentNode;
-    var hintDom = input.parentNode.querySelector('.' + this.opts.hintClass);
-    if (parentDom && hintDom) {
-        parentDom.removeChild(input.hintDom);
-    }
-};
-ValidateForm.prototype.validateInput = function (input) {
-    var self = this;
-    var customValidateRule = input.customValidateRule;
-    Object.keys(customValidateRule).forEach(function (keys) {
-        var obj = customValidateRule[keys];
-        obj.isValidateSuccess = obj.fn(input.value);
-    });
-    var validateType = input.dataset.validate || 'undefined';
-    var validateHintTxt = input.dataset.hint || 'undefined';
-    var type = validateType.split(' ');
-    var hintTxt = validateHintTxt.split(' ');
-    var value = input.value;
-    var isValidateSuccess = true; // 是否验证成功了
-    type.forEach(function (v, i) {
-        if (isValidateSuccess && customValidateRule[v]) {
-            if (isValidateSuccess && customValidateRule[v].isValidateSuccess) {
-                self.renderHintRemove({ input: input });
-                isValidateSuccess = true;
-            } else {
-                self.renderHintAdd({ txt: hintTxt[i], input: input });
-                isValidateSuccess = false;
-            }
-        }
-        if (isValidateSuccess && !customValidateRule[v]) {
-            if (isValidateSuccess && v === 'no-empty') {
-                // 设置了非空验证
-                if (tools.isEmpty(value)) {
-                    self.renderHintAdd({ txt: hintTxt[i], input: input });
-                    isValidateSuccess = false;
-                } else {
-                    self.renderHintRemove({ input: input });
-                    isValidateSuccess = true;
-                }
-            }
-            if (isValidateSuccess && v === 'no-zero') {
-                // 设置了非零验证
-                if (tools.isZero(value)) {
-                    self.renderHintAdd({ txt: hintTxt[i], input: input });
-                    isValidateSuccess = false;
-                } else {
-                    self.renderHintRemove({ input: input });
-                    isValidateSuccess = true;
-                }
-            }
-            if (isValidateSuccess && v === 'yes-positive-integer') {
-                // 设置了正整数验证
-                if (tools.isPositiveInteger(value)) {
-                    self.renderHintRemove({ input: input });
-                    isValidateSuccess = true;
-                } else {
-                    self.renderHintAdd({ txt: hintTxt[i], input: input });
-                    isValidateSuccess = false;
-                }
-            }
-        }
-    });
-    input.isValidateSuccess = isValidateSuccess;
-};
-ValidateForm.prototype.isAllPassValidate = function () {
-    var self = this;
-    var isValidateSuccess = true;
-    self.element.forEach(function (v) {
-        self.validateInput(v);
-        if (v.isValidateSuccess !== true) {
-            isValidateSuccess = false;
-        }
-    });
-    return isValidateSuccess;
-};
-ValidateForm.prototype.power = function () {
-    var self = this;
-    self.element.forEach(function (v) {
-        var eventsType = v.dataset.event || 'blur';
-        v.addEventListener(eventsType, function () {
-            self.validateInput(this);
-        });
-    });
-};
-
-// 自定义验证规则
-ValidateForm.prototype.setValidate = function (name, fn) {
-    this.element.forEach(function (v) {
-        v.customValidateRule[name] = {
-            fn: fn,
-            isValidateSuccess: fn(v.value)
-        };
-    });
-};
-
-module.exports = ValidateForm;
-
 /***/ })
 
-},[109]);
+},[35]);

@@ -7,6 +7,9 @@ const routeName = [
     {
         name: 'list', // 列表
     },
+    {
+        name: 'login', // 登陆
+    },
 ];
 // 路由的配置
 const routeConfig = {};

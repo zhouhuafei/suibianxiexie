@@ -48,34 +48,38 @@ class Super {
             title: routesConfig[opts.routeName].title || '没有配置标题', // 标题(需要从配置里读取)
             isShowQrCode: routesConfig[opts.routeName].isShowQrCode, // 是否显示二维码
             isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
-            page: {}, // 当前视图的数据
+            // 当前视图的数据
+            page: {
+                routeName: opts.routeName,
+            },
         };
         const dataInfo = self.dataInfo;
-        const isShowFooterNav = routesConfig[opts.routeName].isShowFooterNav;
-        if (isShowFooterNav) {
-            // 底部导航的数据
-            dataInfo.footerNav = {
-                config: {},
-                data: [
-                    {
-                        routeName: 'home',
-                        href: routesConfig.home.route,
-                        text: routesConfig.home.title,
-                        icon: 'icon-home',
-                        isHighlight: false,
-                        isShowMark: false,
-                    },
-                ],
-            };
-            const footerNav = dataInfo.footerNav;
-            if (footerNav.data && footerNav.data.length) {
-                footerNav.data.forEach((v) => {
-                    if (v.routeName === opts.routeName) {
+        // 底部导航的数据
+        (function () {
+            const menu = [
+                {
+                    title: '网站',
+                    isHighlight: false,
+                    items: [
+                        {
+                            name: routesConfig['website-info'].name,
+                            title: '信息',
+                            route: routesConfig[opts.routeName].route,
+                            isHighlight: false,
+                        },
+                    ],
+                },
+            ];
+            menu.forEach(function (v) {
+                v.items.forEach(function (v2) {
+                    if (v2.name === opts.routeName) {
                         v.isHighlight = true;
+                        v2.isHighlight = true;
                     }
                 });
-            }
-        }
+            });
+            dataInfo.menu = menu;
+        })();
         const isContinue = self.isValidateLogin(); // 是否验证登录
         if (!isContinue) {
             return;
@@ -95,7 +99,7 @@ class Super {
             // 未登录
             if (req.session.userInfo === undefined) {
                 isContinue = false;
-                res.redirect(routesConfig.login.route); // 重定向路由
+                res.redirect(routesConfig.home.route); // 重定向路由
             }
         }
         return isContinue;

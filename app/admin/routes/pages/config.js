@@ -10,6 +10,11 @@ const routeName = [
         title: '首页',
         isValidateLogin: false,
     },
+    {
+        name: 'website-info', // 网站信息
+        title: '网站信息',
+        isValidateLogin: false,
+    },
 ];
 // 路由的配置
 const routeConfig = {};

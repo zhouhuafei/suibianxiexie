@@ -12,56 +12,6 @@ const schema = new mongoose.Schema({
         type: String,
         default: null,
     },
-    // 密码重置时间
-    passwordResetTime: {
-        type: Date,
-        default: null,
-    },
-    // 账号创建时间
-    createTime: {
-        type: Date,
-        default: null,
-    },
-    // 上次登录时间
-    loginTimePrev: {
-        type: Date,
-        default: null,
-    },
-    // 本次登录时间
-    loginTime: {
-        type: Date,
-        default: null,
-    },
-    // 邮箱
-    email: {
-        type: String,
-        default: null,
-    },
-    // 昵称
-    nickname: {
-        type: String,
-        default: null,
-    },
-    // 身高
-    height: {
-        type: Number,
-        default: null,
-    },
-    // 年龄
-    age: {
-        type: Number,
-        default: null,
-    },
-    // 性别
-    sex: {
-        type: String,
-        default: null,
-    },
-    // 是否是管理员
-    isAdmin: {
-        type: Boolean,
-        default: false,
-    },
 });
 const bcrypt = require('bcrypt'); // 加密工具
 const saltStrength = 10; // 加密强度
