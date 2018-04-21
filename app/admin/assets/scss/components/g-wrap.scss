@@ -19,12 +19,18 @@
                 align-items: center;
                 padding: 0 px2px(5);
                 line-height: px2px(30);
+                .g-menu-item-title-text {
+                    transition: 0.4s;
+                }
                 .g-menu-item-title-icon {
                     width: px2px(14);
                     margin-right: px2px(5);
                 }
                 &:hover {
-                    background: #383c49;
+                    .g-menu-item-title-text {
+                        text-indent: px2px(6);
+                    }
+                    //background: #383c49;
                 }
             }
             .g-menu-item-body {

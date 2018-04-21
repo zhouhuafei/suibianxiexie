@@ -39,7 +39,6 @@ assets/
 
 # 约定大于一切，规则至上-css
 * g-表示全局级别,有这个前缀的样式是整站通用的样式。
-* m-表示局部级别,有这个前缀的样式是当前页面内通用的样式。
 * js-表示当前元素身上有对应的js操作。
 * 层级仅限于2-999之间,g-mask层级是500,g-mask-transparent层级是999,弹窗类型大于500即可,非弹窗类型请小于500。
 * css命名规范。
@@ -48,18 +47,18 @@ assets/
         .g-components .g-components-header {}
         .g-components .g-components-header-item {}
     ```
-    - 使用下划线表示状态。状态类的css不可以独立写，必须依附于某个class，防止没必要的冲突。
+    - 使用长链接方式表示状态。
     ```
-        .g-components .g-components-header-item._on {}
-        .g-components .g-components-header-item._off {}
-        .g-components .g-components-header-item._active {}
-        .g-components .g-components-header-item._inactive {}
-        .g-components .g-components-header-item._window {}
-        .g-components .g-components-header-item._list {}
-        .g-components .g-components-header-item._col-1 {}
-        .g-components .g-components-header-item._col-2 {}
-        .g-components .g-components-header-item._col-3 {}
-        .g-components .g-components-header-item._col-4 {}
+        .g-components .g-components-header-item.g-components-header-item-on {}
+        .g-components .g-components-header-item.g-components-header-item-off {}
+        .g-components .g-components-header-item.g-components-header-item-active {}
+        .g-components .g-components-header-item.g-components-header-item-inactive {}
+        .g-components .g-components-header-item.g-components-header-item-window {}
+        .g-components .g-components-header-item.g-components-header-item-list {}
+        .g-components .g-components-header-item.g-components-header-item-col-1 {}
+        .g-components .g-components-header-item.g-components-header-item-col-2 {}
+        .g-components .g-components-header-item.g-components-header-item-col-3 {}
+        .g-components .g-components-header-item.g-components-header-item-col-4 {}
     ```
 
 # 约定大于一切，规则至上-js

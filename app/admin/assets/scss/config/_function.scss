@@ -1,6 +1,7 @@
 //px转rem
 @function px2rem($px,$psd:320) {
-    @return $px / $psd * 10rem;
+    //@return $px / $psd * 10rem;
+    @return $px * 1px;
 }
 
 //px转px
