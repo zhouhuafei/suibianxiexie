@@ -39,6 +39,7 @@
                 .g-menu-item-body-item {
                     cursor: pointer;
                     padding: 0 px2px(5) 0 px2px(30);
+                    transition: 0.4s;
                     &.g-menu-item-body-item-active, &.g-menu-item-body-item-active:hover {
                         background: $g-background-color-floor;
                         color: #252834;
@@ -61,6 +62,6 @@
 
     .g-main {
         margin-left: px2px($w);
-        padding: px2px(20);
+        padding: px2px(40) px2px(20);
     }
 }

@@ -439,7 +439,9 @@ img {
     line-height: 30px; }
     .g-wrap .g-menu .g-menu-item .g-menu-item-body .g-menu-item-body-item {
       cursor: pointer;
-      padding: 0 5px 0 30px; }
+      padding: 0 5px 0 30px;
+      -webkit-transition: 0.4s;
+      transition: 0.4s; }
       .g-wrap .g-menu .g-menu-item .g-menu-item-body .g-menu-item-body-item.g-menu-item-body-item-active, .g-wrap .g-menu .g-menu-item .g-menu-item-body .g-menu-item-body-item.g-menu-item-body-item-active:hover {
         background: #f4f4f4;
         color: #252834; }
@@ -453,7 +455,7 @@ img {
 
 .g-wrap .g-main {
   margin-left: 200px;
-  padding: 20px; }
+  padding: 40px 20px; }
 
 .g-button {
   height: 40px;
