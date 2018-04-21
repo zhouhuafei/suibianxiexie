@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 41:
+/***/ 42:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -282,7 +282,7 @@ module.exports = Super;
 
 /***/ }),
 
-/***/ 42:
+/***/ 43:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -296,7 +296,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(43);
+__webpack_require__(44);
 var Super = __webpack_require__(2);
 
 var Sub = function (_Super) {
@@ -332,7 +332,7 @@ var Sub = function (_Super) {
 
             // 测试滚动到底部功能以及loading组件
             (function () {
-                var Loading = __webpack_require__(84);
+                var Loading = __webpack_require__(85);
                 var WhenScrollBottom = applications.whenScrollBottom();
                 var num = 0;
                 new WhenScrollBottom({
@@ -362,7 +362,7 @@ var Sub = function (_Super) {
 
             // slide切换
             (function () {
-                var Slide = __webpack_require__(85);
+                var Slide = __webpack_require__(86);
                 new Slide({
                     wrap: '.page-slide',
                     data: {
@@ -408,7 +408,7 @@ var Sub = function (_Super) {
 
             // 导航
             (function () {
-                var Navigation = __webpack_require__(89);
+                var Navigation = __webpack_require__(90);
                 new Navigation({
                     wrap: '.page-navigation',
                     data: {
@@ -467,13 +467,13 @@ var Sub = function (_Super) {
 
             // 分页测试
             (function () {
-                var Pagination = __webpack_require__(90);
+                var Pagination = __webpack_require__(91);
                 new Pagination({ wrap: '.page-pagination' });
             })();
 
             // 没有数据
             (function () {
-                var NoData = __webpack_require__(91);
+                var NoData = __webpack_require__(92);
                 new NoData({ wrap: '.page-no-data' });
             })();
 
@@ -481,18 +481,18 @@ var Sub = function (_Super) {
             (function () {
                 var Super = __webpack_require__(3);
                 new Super({ wrap: '.page-super-type' });
-                var Sub = __webpack_require__(92);
+                var Sub = __webpack_require__(93);
                 new Sub({ wrap: '.page-super-type' });
                 new Sub(); // constructorInherit里parameter去掉了对象引用,否则这个子类的默认参数wrap会变成上面.page-super-type(bug回忆)
-                var SuperEs6 = __webpack_require__(41);
+                var SuperEs6 = __webpack_require__(42);
                 new SuperEs6({ wrap: '.page-super-type' });
-                var SubEs6 = __webpack_require__(93);
+                var SubEs6 = __webpack_require__(94);
                 new SubEs6({ wrap: '.page-super-type' });
             })();
 
             // 单选开关
             (function () {
-                var Radio = __webpack_require__(94);
+                var Radio = __webpack_require__(95);
                 new Radio({
                     wrap: '.page-radio-switch',
                     callback: {
@@ -505,7 +505,7 @@ var Sub = function (_Super) {
 
             // 表格
             (function () {
-                var Table = __webpack_require__(95);
+                var Table = __webpack_require__(96);
                 new Table({
                     wrap: '.page-table',
                     data: {
@@ -564,14 +564,14 @@ new Sub();
 
 /***/ }),
 
-/***/ 43:
+/***/ 44:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 84:
+/***/ 85:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -649,7 +649,7 @@ module.exports = Sub;
 
 /***/ }),
 
-/***/ 85:
+/***/ 86:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -658,8 +658,8 @@ module.exports = Sub;
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
 var Super = __webpack_require__(3); // 超类型(子类型继承的对象)
-var TouchSlide = __webpack_require__(86); // 轮播图插件
-var px2rem = __webpack_require__(87);
+var TouchSlide = __webpack_require__(87); // 轮播图插件
+var px2rem = __webpack_require__(88);
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -698,7 +698,7 @@ var Sub = tools.constructorInherit(Super, {
             img: {
                 width: 0,
                 height: 0,
-                src: __webpack_require__(88)
+                src: __webpack_require__(89)
             },
             href: ''
         }]
@@ -780,7 +780,7 @@ module.exports = Sub;
 
 /***/ }),
 
-/***/ 86:
+/***/ 87:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1231,7 +1231,7 @@ module.exports = TouchSlide;
 
 /***/ }),
 
-/***/ 87:
+/***/ 88:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1247,14 +1247,14 @@ module.exports = px2rem;
 
 /***/ }),
 
-/***/ 88:
+/***/ 89:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/slide1.76c52cf8.jpg";
 
 /***/ }),
 
-/***/ 89:
+/***/ 90:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1342,7 +1342,7 @@ module.exports = Sub;
 
 /***/ }),
 
-/***/ 90:
+/***/ 91:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1509,7 +1509,7 @@ module.exports = Sub;
 
 /***/ }),
 
-/***/ 91:
+/***/ 92:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1567,7 +1567,7 @@ module.exports = Sub;
 
 /***/ }),
 
-/***/ 92:
+/***/ 93:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1608,7 +1608,7 @@ module.exports = Sub;
 
 /***/ }),
 
-/***/ 93:
+/***/ 94:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1624,7 +1624,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var Super = __webpack_require__(41); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(42); // 超类型(子类型继承的对象)
 
 // 子类型
 
@@ -1676,7 +1676,7 @@ module.exports = Sub;
 
 /***/ }),
 
-/***/ 94:
+/***/ 95:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1768,7 +1768,7 @@ module.exports = Sub;
 
 /***/ }),
 
-/***/ 95:
+/***/ 96:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1837,4 +1837,4 @@ module.exports = Sub;
 
 /***/ })
 
-},[42]);
+},[43]);

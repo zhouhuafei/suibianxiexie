@@ -144,7 +144,7 @@ var Sub = function (_Super) {
             var audioWrap = document.querySelector('.audios-wrap');
             var audioSrc = [];
             for (var i = 0; i < 7; i++) {
-                audioSrc.push(__webpack_require__(18)("./" + (i + 1) + '.mp3'));
+                audioSrc.push(__webpack_require__(19)("./" + (i + 1) + '.mp3'));
             }
             var hasSound = audioWrap.classList.contains('_on');
             audioWrap.addEventListener('click', function () {
@@ -214,17 +214,17 @@ new Sub();
 
 /***/ }),
 
-/***/ 18:
+/***/ 19:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./1.mp3": 19,
-	"./2.mp3": 20,
-	"./3.mp3": 21,
-	"./4.mp3": 22,
-	"./5.mp3": 23,
-	"./6.mp3": 24,
-	"./7.mp3": 25
+	"./1.mp3": 20,
+	"./2.mp3": 21,
+	"./3.mp3": 22,
+	"./4.mp3": 23,
+	"./5.mp3": 24,
+	"./6.mp3": 25,
+	"./7.mp3": 26
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -240,53 +240,53 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 18;
-
-/***/ }),
-
-/***/ 19:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "audios/1.38e46759.mp3";
+webpackContext.id = 19;
 
 /***/ }),
 
 /***/ 20:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "audios/2.5576c20e.mp3";
+module.exports = __webpack_require__.p + "audios/1.38e46759.mp3";
 
 /***/ }),
 
 /***/ 21:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "audios/3.25e1d33d.mp3";
+module.exports = __webpack_require__.p + "audios/2.5576c20e.mp3";
 
 /***/ }),
 
 /***/ 22:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "audios/4.220478be.mp3";
+module.exports = __webpack_require__.p + "audios/3.25e1d33d.mp3";
 
 /***/ }),
 
 /***/ 23:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "audios/5.ab15dc12.mp3";
+module.exports = __webpack_require__.p + "audios/4.220478be.mp3";
 
 /***/ }),
 
 /***/ 24:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "audios/6.44295654.mp3";
+module.exports = __webpack_require__.p + "audios/5.ab15dc12.mp3";
 
 /***/ }),
 
 /***/ 25:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "audios/6.44295654.mp3";
+
+/***/ }),
+
+/***/ 26:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "audios/7.c04a5503.mp3";

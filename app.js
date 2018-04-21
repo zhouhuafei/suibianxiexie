@@ -26,7 +26,11 @@ const compression = require('compression'); // gzip压缩
 app.use(compression()); // gzip压缩
 
 // 静态资源
-app.use(express.static('dist/assets', {maxAge: ms('1y')})); // 托管资源文件(一年缓存)
+if (isProduction) {
+    app.use(express.static('dist/assets', {maxAge: ms('1y')})); // 托管资源文件(一年缓存)
+} else {
+    app.use(express.static('dist/assets')); // 托管资源文件(无缓存)
+}
 app.use(express.static('dist-no-delete-assets-no-cache')); // 托管资源文件(无缓存)
 
 // 数据解析

@@ -1,4 +1,4 @@
-webpackJsonp([14],{
+webpackJsonp([6],{
 
 /***/ 109:
 /***/ (function(module, exports, __webpack_require__) {
@@ -35,7 +35,7 @@ var Sub = function (_Super) {
 
             // 验证
             (function () {
-                var ValidateInput = __webpack_require__(98);
+                var ValidateInput = __webpack_require__(18);
                 new ValidateInput({ element: '.page-validate-form' });
             })();
         }
@@ -55,7 +55,7 @@ new Sub();
 
 /***/ }),
 
-/***/ 98:
+/***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63,7 +63,7 @@ new Sub();
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(1); // 应用方法集合
-var domAddPosition = __webpack_require__(14);
+var domAddPosition = __webpack_require__(11);
 
 function ValidateForm(json) {
     this.opts = tools.extend({
