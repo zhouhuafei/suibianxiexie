@@ -67,7 +67,7 @@ app.set('view cache', true);
     // './app/pc/routes/pages/route',
     // './app/pc/routes/api/route',
     './app/admin/routes/pages/route',
-    // './app/admin/routes/api/route',
+    './app/admin/routes/api/route',
 ].forEach(function (v) {
     const Route = require(v);
     new Route({app: app});

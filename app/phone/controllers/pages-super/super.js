@@ -20,6 +20,11 @@ class Super {
     // (初)初始化数据
     init() {
         const self = this;
+        // 是否验证登录
+        const isContinue = self.isValidateLogin();
+        if (!isContinue) {
+            return;
+        }
         const opts = self.opts;
         const req = opts.req;
         const method = req.method.toLowerCase(); // 请求方式
@@ -91,10 +96,6 @@ class Super {
                     }
                 });
             }
-        }
-        const isContinue = self.isValidateLogin(); // 是否验证登录
-        if (!isContinue) {
-            return;
         }
         self.handleData(); // 处理数据
     }

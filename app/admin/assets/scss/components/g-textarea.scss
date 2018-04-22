@@ -15,12 +15,12 @@
     border-right: none;
     border-radius: px2rem(0);
     .g-textarea-text {
-        min-width: px2rem(40);
+        min-width: px2rem(120);
         padding: 0 px2rem(10);
         height: 100%;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-end;
         & ~ .g-textarea-textarea {
             border-left: px2px(1) solid $g-border-color-default;
         }

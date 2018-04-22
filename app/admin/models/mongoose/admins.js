@@ -51,4 +51,4 @@ schema.methods.comparePassword = function (candidatePassword, callback) {
     });
 };
 
-module.exports = mongoose.model('admin', schema);
+module.exports = mongoose.model('admins', schema);

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../commons/head.ejs %>
+    <link href="/admin/css/pages/this-is-global-file-common.css" rel="stylesheet"><link href="/admin/css/pages/register.css" rel="stylesheet"></head>
+    <body>
+        <% include ../commons/top.ejs %>
+        <div class="g-wrap">
+            <% include ../commons/menu.ejs %>
+            <div class="g-body">
+                <div class="page-item">
+                    <label class="g-input">
+                        <span class="g-input-text">用户名:</span>
+                        <input class="g-input-input page-validate-form" data-validate="no-empty" data-hint="本项必填" type="text" name="username" id="username" value="" placeholder="请输入用户名">
+                        <span class="g-input-icon iconfont icon-clear"></span>
+                        <span class="g-input-hint iconfont icon-required"></span>
+                    </label>
+                </div>
+                <div class="page-item">
+                    <label class="g-input">
+                        <span class="g-input-text">密码:</span>
+                        <input class="g-input-input page-validate-form" data-validate="no-empty" data-hint="本项必填" type="password" name="password" id="password" value="" placeholder="请输入密码">
+                        <span class="g-input-icon iconfont icon-eye"></span>
+                        <span class="g-input-icon iconfont icon-clear"></span>
+                        <span class="g-input-hint iconfont icon-required"></span>
+                    </label>
+                </div>
+                <div class="g-button js-button">注册</div>
+                <div class="page-guide-wrap">
+                    <a href="<%= dataInfo.routes['login'].route %>" class="page-guide-item">
+                        <span>已有账号,去登陆</span>
+                        <span class="iconfont icon-right"></span>
+                    </a>
+                    <a href="<%= dataInfo.routes['login'].route %>" class="page-guide-item">
+                        <span>忘记密码,去重置</span>
+                        <span class="iconfont icon-right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <% include ../commons/bottom.ejs %>
+    <script type="text/javascript" src="/admin/js/pages/this-is-global-file-manifest.js"></script><script type="text/javascript" src="/admin/js/pages/this-is-global-file-vendor.js"></script><script type="text/javascript" src="/admin/js/pages/this-is-global-file-common.js"></script><script type="text/javascript" src="/admin/js/pages/register.js"></script></body>
+</html>

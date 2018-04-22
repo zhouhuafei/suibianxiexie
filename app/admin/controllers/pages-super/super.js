@@ -20,6 +20,11 @@ class Super {
     // (初)初始化数据
     init() {
         const self = this;
+        // 是否验证登录
+        const isContinue = self.isValidateLogin();
+        if (!isContinue) {
+            return;
+        }
         const opts = self.opts;
         const req = opts.req;
         const method = req.method.toLowerCase(); // 请求方式
@@ -54,36 +59,54 @@ class Super {
             },
         };
         const dataInfo = self.dataInfo;
-        // 底部导航的数据
+        // 菜单的数据
         (function () {
-            const menu = [
-                {
-                    title: '网站',
-                    isHighlight: false,
-                    items: [
-                        {
-                            name: routesConfig['website-info'].name,
-                            title: '信息',
-                            route: routesConfig[opts.routeName].route,
-                            isHighlight: false,
-                        },
-                    ],
-                },
-            ];
-            menu.forEach(function (v) {
-                v.items.forEach(function (v2) {
-                    if (v2.name === opts.routeName) {
-                        v.isHighlight = true;
-                        v2.isHighlight = true;
-                    }
+            const isShowMenu = routesConfig[opts.routeName].isShowMenu;
+            if (isShowMenu) {
+                const menu = [
+                    {
+                        title: '网站',
+                        items: [
+                            {
+                                name: 'website-info',
+                                title: '信息',
+                            },
+                        ],
+                    },
+                    {
+                        title: '账号',
+                        items: [
+                            {
+                                name: 'register',
+                                title: '注册',
+                            },
+                            {
+                                name: 'login',
+                                title: '登陆',
+                            },
+                            {
+                                name: 'logout',
+                                title: '退出',
+                                power: 'js-logout', // 功能型菜单
+                            },
+                        ],
+                    },
+                ];
+                menu.forEach(function (v) {
+                    v.isHighlight = true;
+                    v.items.forEach(function (v2) {
+                        v2.isHighlight = false;
+                        v2.power = v2.power || ''; // 功能型菜单
+                        v2.route = v2.power ? 'javascript:;' : routesConfig[v2.name].route; // 功能型菜单无跳转
+                        if (v2.name === opts.routeName) {
+                            v.isHighlight = true;
+                            v2.isHighlight = true;
+                        }
+                    });
                 });
-            });
-            dataInfo.menu = menu;
+                dataInfo.menu = menu;
+            }
         })();
-        const isContinue = self.isValidateLogin(); // 是否验证登录
-        if (!isContinue) {
-            return;
-        }
         self.handleData(); // 处理数据
     }
 
@@ -97,9 +120,9 @@ class Super {
         // 验证
         if (opts.isValidateLogin) {
             // 未登录
-            if (req.session.userInfo === undefined) {
+            if (req.session.adminInfo === undefined) {
                 isContinue = false;
-                res.redirect(routesConfig.home.route); // 重定向路由
+                res.redirect(routesConfig.login.route); // 重定向路由
             }
         }
         return isContinue;

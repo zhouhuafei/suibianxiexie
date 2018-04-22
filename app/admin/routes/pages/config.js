@@ -8,12 +8,22 @@ const routeName = [
     {
         name: 'home', // 首页
         title: '首页',
-        isValidateLogin: false,
     },
     {
         name: 'website-info', // 网站信息
         title: '网站信息',
+    },
+    {
+        name: 'login', // 登陆
+        title: '登陆',
         isValidateLogin: false,
+        isShowMenu: false,
+    },
+    {
+        name: 'register', // 注册
+        title: '注册',
+        isValidateLogin: false,
+        isShowMenu: false,
     },
 ];
 // 路由的配置
@@ -30,8 +40,8 @@ routeName.forEach(function (v) {
         view: `${pathConfig.view}${v.name}`, // 视图
         isValidateLogin: v.isValidateLogin !== false, // 是否验证登陆信息(默认验证)
         isShowCopyright: v.isShowCopyright !== false, // 是否显示版权信息(默认显示)
-        isShowFooterNav: v.isShowFooterNav !== false, // 是否显示底部导航(默认显示)
         isShowQrCode: v.isShowQrCode !== false, // 是否显示二维码(默认显示)
+        isShowMenu: v.isShowMenu !== false, // 是否显示左侧菜单(默认显示)
     };
 });
 module.exports = routeConfig;

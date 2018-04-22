@@ -1,6 +1,6 @@
 // 路径
 const pathConfig = {
-    route: '/phone/api/',
+    route: '/admin/api/',
 };
 // 路由的名字
 const routeName = [
@@ -8,7 +8,15 @@ const routeName = [
         name: 'list', // 列表
     },
     {
+        name: 'register', // 注册
+        isValidateLogin: false,
+    },
+    {
         name: 'login', // 登陆
+        isValidateLogin: false,
+    },
+    {
+        name: 'logout', // 退出
     },
 ];
 // 路由的配置
@@ -18,7 +26,7 @@ routeName.forEach(function (v) {
     routeConfig[v.name] = {
         name: v.name, // 路由名称
         route: route, // 路由
-        isValidateLogin: v.isValidateLogin === true, // 是否验证登陆(默认不验证)
+        isValidateLogin: v.isValidateLogin !== false, // 是否验证登陆(默认验证)
         isSupportJsonp: v.isSupportJsonp === true, // 是否支持jsonp(默认不支持)
     };
 });

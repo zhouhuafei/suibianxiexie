@@ -17,12 +17,12 @@
     border-radius: px2rem(0);
     font-size: px2rem(12);
     .g-input-text {
-        min-width: px2rem($height);
+        min-width: px2rem($height*3);
         padding: 0 px2rem(10);
         height: 100%;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-end;
         & ~ .g-input-input {
             border-left: px2px(1) solid $g-border-color-default;
         }

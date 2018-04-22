@@ -47,14 +47,15 @@ class Sub {
                 nowCount: 0, // 当前页的数据条数
             },
         };
-        this.isRendered = false; // 是否已经响应过了结果 一次请求只能响应一次结果 多次响应会报错 Can't set headers after they are sent.
+        this.isRendered = false; // 是否已经响应过了结果 一次请求只能响应一次结果 多次响应(render)会报错 Can't set headers after they are sent.
         this.init();
     }
 
     // (初)初始化数据
     init() {
         const self = this;
-        const isContinue = self.isValidateLogin(); // 是否验证登录
+        // 是否验证登录
+        const isContinue = self.isValidateLogin();
         if (!isContinue) {
             return;
         }
@@ -140,14 +141,14 @@ class Sub {
             const opts = self.opts;
             const req = opts.req;
             const res = opts.res;
-            const data = req.data;
+            const data = req.data || {}; // 没登录走这里会报错，用{}兼容一下
             const isJsonp = data.isJsonp === 'true'; // 是否是jsonp(jsonp only supports the get method)
             self.dataInfo = self.tools.extend(self.dataInfo, json);
             self.opts.callback(self);
             if (self.opts.isTriggerEnd) {
                 res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
                 if (isJsonp && self.opts.isSupportJsonp) {
-                    res.end(`${req.query.callback || `jsonpCallback${new Date().getTime()}`}(${JSON.stringify(self.dataInfo)})`);
+                    res.end(`${req.query.callback || 'jsonpCallback'}(${JSON.stringify(self.dataInfo)})`);
                 } else {
                     res.end(JSON.stringify(self.dataInfo));
                 }

@@ -24,7 +24,8 @@ class Sub extends Super {
             });
         } else {
             const Admins = require('../../models/mongoose/admins');
-            Admins.find({username: username}, function (error, result) {
+            // 如果管理员账号存在则不可以注册
+            Admins.find({}, function (error, result) {
                 // 数据库查询出现错误
                 if (error) {
                     self.render({
@@ -32,32 +33,28 @@ class Sub extends Super {
                     });
                 }
                 if (result.length) {
-                    const adminInfo = result[0];
-                    adminInfo.comparePassword(password, function (error, isMatch) {
-                        if (error) {
-                            self.render({
-                                message: '密码对比出现错误',
-                                failureInfo: error,
-                            });
-                        }
-                        if (isMatch) {
-                            session.adminInfo = adminInfo;
-                            self.render({
-                                status: 'success',
-                                message: '登录成功',
-                                result: {
-                                    data: [{username: adminInfo.username}],
-                                },
-                            });
-                        } else {
-                            self.render({
-                                message: '账号和密码不匹配',
-                            });
-                        }
+                    self.render({
+                        message: '管理员账号已经存在',
                     });
                 } else {
-                    self.render({
-                        message: '账号不存在',
+                    const admins = new Admins({
+                        username: username,
+                        password: password,
+                    });
+                    admins.save(function (error, result) {
+                        // 数据库插入出现错误
+                        if (error) {
+                            self.render({
+                                message: '数据库插入出现错误',
+                                failureInfo: error,
+                            });
+                            return;
+                        }
+                        self.render({
+                            status: 'success',
+                            message: '注册成功',
+                            result: {data: [{username: username}]},
+                        });
                     });
                 }
             });

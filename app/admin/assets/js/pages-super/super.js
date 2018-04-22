@@ -79,6 +79,64 @@ class Super {
                 });
             });
         })();
+
+        // 账号退出
+        (function () {
+            const btn = document.querySelector('.js-logout');
+            const api = self.dataInfo.api;
+            const routes = self.dataInfo.routes;
+            const Dialog = require('../components-dom/g-dialog');
+            btn && btn.addEventListener('click', function () {
+                new Dialog({
+                    config: {
+                        type: 'confirm', // 默认是提示框
+                        confirm: {
+                            content: '确认退出账号？',
+                        },
+                    },
+                    callback: {
+                        confirm: function () {
+                            self.axios({
+                                url: api.logout.route,
+                                method: 'get',
+                            }).then(function (json) {
+                                if (json.status === 'success') {
+                                    window.location.href = routes['login'].route;
+                                }
+                            });
+                        },
+                    },
+                });
+            });
+        })();
+
+        // input图标相关的操作
+        (function () {
+            document.querySelectorAll('.g-input-icon.iconfont.icon-clear').forEach(function (v) {
+                v.addEventListener('click', function () {
+                    const parent = this.parentNode;
+                    const input = parent.querySelector('.g-input-input');
+                    if (input) {
+                        input.value = '';
+                    }
+                });
+            });
+            document.querySelectorAll('.g-input-icon.iconfont.icon-eye').forEach(function (v) {
+                v.addEventListener('click', function () {
+                    const parent = this.parentNode;
+                    const input = parent.querySelector('.g-input-input');
+                    if (this.classList.contains('icon-eye')) {
+                        this.classList.remove('icon-eye');
+                        this.classList.add('icon-eye-on');
+                        input && (input.type = 'text');
+                    } else {
+                        this.classList.remove('icon-eye-on');
+                        this.classList.add('icon-eye');
+                        input && (input.type = 'password');
+                    }
+                });
+            });
+        })();
     }
 
     // (渲)渲染
@@ -108,15 +166,6 @@ class Super {
                 wrap: '.page-copyright-wrap',
             });
         }
-
-        /*
-        // 底部导航
-        if (dataInfo && dataInfo.footerNav) {
-            const Footer = require('../components-dom/g-footer-nav');
-            dataInfo.footerNav.wrap = '.page-footer-nav-wrap';
-            new Footer(dataInfo.footerNav);
-        }
-        */
 
         // 延迟加载
         self.lazyload.render();

@@ -1879,7 +1879,7 @@ if (typeof Object.create === 'function') {
 
 /*<replacement>*/
 
-var processNextTick = __webpack_require__(9);
+var processNextTick = __webpack_require__(10);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -1899,7 +1899,7 @@ util.inherits = __webpack_require__(5);
 /*</replacement>*/
 
 var Readable = __webpack_require__(25);
-var Writable = __webpack_require__(15);
+var Writable = __webpack_require__(18);
 
 util.inherits(Duplex, Readable);
 
@@ -2090,6 +2090,216 @@ function objectToString(o) {
 
 /***/ }),
 /* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+__webpack_require__(36);
+
+var Super = function () {
+    function Super(json) {
+        _classCallCheck(this, Super);
+
+        var self = this;
+        self.tools = __webpack_require__(1); // 工具方法集合
+        self.applications = __webpack_require__(3); // 应用方法集合
+        self.axios = __webpack_require__(38); // axios
+        self.jsonp = __webpack_require__(41); // jsonp
+        self.opts = self.tools.extend({
+            lazyload: {
+                isInitRender: false
+            }
+        }, json);
+        self.init();
+    }
+
+    // (初)初始化数据
+
+
+    _createClass(Super, [{
+        key: 'init',
+        value: function init() {
+            var self = this;
+            window.addEventListener('load', function () {
+                setTimeout(function () {
+                    self.renderHeader();
+                    self.power();
+                    self.renderFooter();
+                }, 0);
+            });
+        }
+
+        // (功)(盖)功能(这个方法需要在子类型里被覆盖掉)
+
+    }, {
+        key: 'power',
+        value: function power() {}
+
+        // (渲)渲染
+
+    }, {
+        key: 'renderHeader',
+        value: function renderHeader() {
+            var self = this;
+
+            // 数据信息
+            self.dataInfo = function () {
+                var input = document.querySelector('#page-info-str');
+                var value = input.value;
+                input.parentNode.removeChild(input);
+                var wrap = document.querySelector('.g-wrap');
+                [].slice.call(wrap.querySelectorAll('script')).forEach(function (v) {
+                    wrap.removeChild(v);
+                });
+                try {
+                    return JSON.parse(value);
+                } catch (err) {
+                    console.log('dataInfo的json格式值出现错误:', err);
+                    return value || {};
+                }
+            }();
+            // console.log('dataInfo:\n', self.dataInfo);
+
+            // 延迟加载 power方法里如果有切换也使用到延迟加载 那么放在尾部就无解了 放在这里power里可以调用self.lazyload.render方法触发
+            var LazyLoad = __webpack_require__(42);
+            self.lazyload = new LazyLoad(self.opts.lazyload);
+
+            // Vue
+            var Vue = __webpack_require__(21);
+            Vue.prototype.$tools = self.tools;
+            Vue.prototype.$applications = self.applications;
+            Vue.prototype.$axios = self.axios;
+            Vue.prototype.$jsonp = self.jsonp;
+            Vue.prototype.$lazyload = self.lazyload;
+            self.Vue = Vue;
+
+            // 菜单
+            (function () {
+                var btn = document.querySelectorAll('.g-menu-item-title');
+                var activeClass = 'g-menu-item-active';
+                btn.forEach(function (v) {
+                    v.addEventListener('click', function () {
+                        // btn.forEach(function (v) {
+                        //     v.parentNode.classList.remove(activeClass);
+                        // });
+                        this.parentNode.classList.toggle(activeClass);
+                    });
+                });
+            })();
+
+            // 账号退出
+            (function () {
+                var btn = document.querySelector('.js-logout');
+                var api = self.dataInfo.api;
+                var routes = self.dataInfo.routes;
+                var Dialog = __webpack_require__(14);
+                btn && btn.addEventListener('click', function () {
+                    new Dialog({
+                        config: {
+                            type: 'confirm', // 默认是提示框
+                            confirm: {
+                                content: '确认退出账号？'
+                            }
+                        },
+                        callback: {
+                            confirm: function confirm() {
+                                self.axios({
+                                    url: api.logout.route,
+                                    method: 'get'
+                                }).then(function (json) {
+                                    if (json.status === 'success') {
+                                        window.location.href = routes['login'].route;
+                                    }
+                                });
+                            }
+                        }
+                    });
+                });
+            })();
+
+            // input图标相关的操作
+            (function () {
+                document.querySelectorAll('.g-input-icon.iconfont.icon-clear').forEach(function (v) {
+                    v.addEventListener('click', function () {
+                        var parent = this.parentNode;
+                        var input = parent.querySelector('.g-input-input');
+                        if (input) {
+                            input.value = '';
+                        }
+                    });
+                });
+                document.querySelectorAll('.g-input-icon.iconfont.icon-eye').forEach(function (v) {
+                    v.addEventListener('click', function () {
+                        var parent = this.parentNode;
+                        var input = parent.querySelector('.g-input-input');
+                        if (this.classList.contains('icon-eye')) {
+                            this.classList.remove('icon-eye');
+                            this.classList.add('icon-eye-on');
+                            input && (input.type = 'text');
+                        } else {
+                            this.classList.remove('icon-eye-on');
+                            this.classList.add('icon-eye');
+                            input && (input.type = 'password');
+                        }
+                    });
+                });
+            })();
+        }
+
+        // (渲)渲染
+
+    }, {
+        key: 'renderFooter',
+        value: function renderFooter() {
+            var self = this;
+            var dataInfo = self.dataInfo;
+
+            // 二维码
+            if (dataInfo && dataInfo.isShowQrCode) {
+                var qr = __webpack_require__(44);
+                var qrDom = document.querySelector('.g-qr-code-svg');
+                if (qrDom) {
+                    qrDom.innerHTML = qr.imageSync(window.location.href, { type: 'svg' });
+                }
+            }
+
+            // 返回顶部
+            var GoTop = __webpack_require__(74);
+            new GoTop({
+                wrap: '.page-go-top-wrap'
+            });
+
+            // 版权
+            if (dataInfo && dataInfo.isShowCopyright) {
+                var Copyright = __webpack_require__(75);
+                new Copyright({
+                    wrap: '.page-copyright-wrap'
+                });
+            }
+
+            // 延迟加载
+            self.lazyload.render();
+
+            // spacing-loading移除
+            var spacingLoading = document.querySelector('#spacing-loading');
+            if (spacingLoading) {
+                spacingLoading.parentNode.removeChild(spacingLoading);
+            }
+        }
+    }]);
+
+    return Super;
+}();
+
+module.exports = Super;
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2321,7 +2531,7 @@ Super.prototype.getModuleDomHtml = function () {
 module.exports = Super;
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2372,7 +2582,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* eslint-disable node/no-deprecated-api */
@@ -2440,7 +2650,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2552,14 +2762,380 @@ exports.setTyped(TYPED_OK);
 
 
 /***/ }),
-/* 12 */
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(1); // 工具方法集合
+var applications = __webpack_require__(3); // 应用方法集合
+var domAddPosition = __webpack_require__(15);
+
+function ValidateForm(json) {
+    this.opts = tools.extend({
+        element: '',
+        hintClass: 'g-validate-form-hint'
+    }, json);
+    if (this.opts.element) {
+        this.element = applications.getDomArray(this.opts.element);
+    }
+    if (this.element.length) {
+        this.init();
+    }
+}
+
+ValidateForm.prototype.init = function () {
+    this.render();
+    this.power();
+};
+ValidateForm.prototype.render = function () {
+    var self = this;
+    self.element.forEach(function (v) {
+        if (v.parentNode) {
+            domAddPosition(v.parentNode, 'relative');
+        }
+        v.customValidateRule = {}; // 自定义规则
+        v.hintDom = document.createElement('span');
+        v.hintDom.classList.add(self.opts.hintClass);
+    });
+};
+ValidateForm.prototype.renderHintAdd = function () {
+    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    // 只有没被隐藏的才进行验证
+    var input = opts.input;
+    var hintDom = input.hintDom;
+    if (input.offsetWidth && hintDom) {
+        hintDom.innerHTML = opts.txt;
+        input.parentNode.appendChild(hintDom);
+    }
+};
+ValidateForm.prototype.renderHintRemove = function () {
+    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    var input = opts.input;
+    var parentDom = input.parentNode;
+    var hintDom = input.parentNode.querySelector('.' + this.opts.hintClass);
+    if (parentDom && hintDom) {
+        parentDom.removeChild(input.hintDom);
+    }
+};
+ValidateForm.prototype.validateInput = function (input) {
+    var self = this;
+    var customValidateRule = input.customValidateRule;
+    Object.keys(customValidateRule).forEach(function (keys) {
+        var obj = customValidateRule[keys];
+        obj.isValidateSuccess = obj.fn(input.value);
+    });
+    var validateType = input.dataset.validate || 'undefined';
+    var validateHintTxt = input.dataset.hint || 'undefined';
+    var type = validateType.split(' ');
+    var hintTxt = validateHintTxt.split(' ');
+    var value = input.value;
+    var isValidateSuccess = true; // 是否验证成功了
+    type.forEach(function (v, i) {
+        if (isValidateSuccess && customValidateRule[v]) {
+            if (isValidateSuccess && customValidateRule[v].isValidateSuccess) {
+                self.renderHintRemove({ input: input });
+                isValidateSuccess = true;
+            } else {
+                self.renderHintAdd({ txt: hintTxt[i], input: input });
+                isValidateSuccess = false;
+            }
+        }
+        if (isValidateSuccess && !customValidateRule[v]) {
+            if (isValidateSuccess && v === 'no-empty') {
+                // 设置了非空验证
+                if (tools.isEmpty(value)) {
+                    self.renderHintAdd({ txt: hintTxt[i], input: input });
+                    isValidateSuccess = false;
+                } else {
+                    self.renderHintRemove({ input: input });
+                    isValidateSuccess = true;
+                }
+            }
+            if (isValidateSuccess && v === 'no-zero') {
+                // 设置了非零验证
+                if (tools.isZero(value)) {
+                    self.renderHintAdd({ txt: hintTxt[i], input: input });
+                    isValidateSuccess = false;
+                } else {
+                    self.renderHintRemove({ input: input });
+                    isValidateSuccess = true;
+                }
+            }
+            if (isValidateSuccess && v === 'yes-positive-integer') {
+                // 设置了正整数验证
+                if (tools.isPositiveInteger(value)) {
+                    self.renderHintRemove({ input: input });
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({ txt: hintTxt[i], input: input });
+                    isValidateSuccess = false;
+                }
+            }
+        }
+    });
+    input.isValidateSuccess = isValidateSuccess;
+};
+ValidateForm.prototype.isAllPassValidate = function () {
+    var self = this;
+    var isValidateSuccess = true;
+    self.element.forEach(function (v) {
+        self.validateInput(v);
+        if (v.isValidateSuccess !== true) {
+            isValidateSuccess = false;
+        }
+    });
+    return isValidateSuccess;
+};
+ValidateForm.prototype.power = function () {
+    var self = this;
+    self.element.forEach(function (v) {
+        var eventsType = v.dataset.event || 'blur';
+        v.addEventListener(eventsType, function () {
+            self.validateInput(this);
+        });
+    });
+};
+
+// 自定义验证规则
+ValidateForm.prototype.setValidate = function (name, fn) {
+    this.element.forEach(function (v) {
+        v.customValidateRule[name] = {
+            fn: fn,
+            isValidateSuccess: fn(v.value)
+        };
+    });
+};
+
+module.exports = ValidateForm;
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(1); // 工具方法集合
+var applications = __webpack_require__(3); // 应用方法集合
+var Super = __webpack_require__(9); // 超类型(子类型继承的对象)
+var Mask = __webpack_require__(39); // 遮罩
+var domAddPosition = __webpack_require__(15);
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    // 回调
+    callback: {
+        moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+            if (self.opts.config.type === 'confirm') {
+                if (self.opts.config.confirm.isShowMask && !self.mask) {
+                    self.mask = new Mask(self.opts.config.mask);
+                }
+                domAddPosition(self.wrapDom, 'relative');
+            }
+        },
+        moduleDomHideAfter: function moduleDomHideAfter(self) {
+            if (self.mask) {
+                self.mask.moduleDomHide();
+            }
+        },
+        // 确认
+        confirm: function confirm() {},
+        // 取消
+        cancel: function cancel() {},
+        // 关闭
+        close: function close() {}
+    },
+    // 配置
+    config: {
+        /*
+         * 弹窗类型
+         * `alert`  提示信息类型
+         * `confirm`    确认框类型
+         * */
+        type: 'alert', // 默认是提示框
+        /*
+         * 弹窗位置
+         * `center` 居中
+         * `bottom` 居下
+         * `top` 居上
+         * */
+        positionLocation: 'center', // 弹窗的定位位置    positionMethod定位方式强制fixed
+        // 提示框
+        alert: {
+            timer: null, // 定时器装载
+            time: 3000, // 展示的时间
+            isShowIcon: false, // 是否显示icon
+            isShowClose: true, // 是否显示关闭按钮
+            icon: 'icon-success', // icon的class
+            content: '成功' // 内容信息
+        },
+        // 确认框
+        confirm: {
+            // 点击确认是否关闭弹窗
+            isShowHeader: true, // 是否显示头部
+            headerContent: '提示:', // 头部内容
+            isShowBody: true, // 是否显示主体
+            content: '<div>确定要执行这个操作?</div>', // 主体内容
+            isShowFooter: true, // 是否显示尾部
+            footerContent: '', // 尾部内容
+            isShowClose: true, // 是否显示关闭按钮
+            closeContent: '<div class="iconfont icon-close"></div>', // 关闭按钮的内容
+            isShowConfirm: true, // 是否显示确认按钮
+            confirmContent: '确认', // 确认按钮的内容
+            isShowCancel: true, // 是否显示取消按钮
+            cancelContent: '取消', // 取消按钮的内容
+            isCustom: false, // 是否自定义
+            isShowIcon: false, // 是否显示icon
+            icon: 'icon-warning', // icon的类型
+            isShowMask: true, // 是否显示遮罩
+            isHandHide: false // 是否手动隐藏(一般只用于点击确认时)
+        },
+        // 遮罩
+        mask: {
+            config: {}
+        }
+    },
+    // 数据
+    data: {}
+});
+
+// 内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var type = 'g-dialog-' + config.type; // 弹窗类型
+    var positionLocation = 'g-dialog-' + config.positionLocation; // 弹窗的定位位置
+    // 弹窗结构
+    var html = '\n        ' + this.renderAlert() + '\n        ' + this.renderConfirm() + '\n    ';
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-dialog ' + type + ' ' + positionLocation,
+            innerHTML: html
+        }
+    });
+};
+
+// 提示框
+Sub.prototype.renderAlert = function () {
+    var config = this.opts.config;
+    if (config.type !== 'alert') {
+        return '';
+    }
+    var alert = config.alert;
+    var htmlIcon = '';
+    if (alert.isShowIcon) {
+        htmlIcon = '<div class="g-dialog-alert-icon iconfont ' + alert.icon + '"></div>';
+    }
+    var closeHtml = '';
+    if (alert.isShowClose) {
+        closeHtml = '<div class="g-dialog-alert-close iconfont icon-close" ></div>';
+    }
+    return '\n        ' + closeHtml + '\n        ' + htmlIcon + '\n        <div class="g-dialog-alert-text">' + alert.content + '</div>\n    ';
+};
+
+// 确认框
+Sub.prototype.renderConfirm = function () {
+    var config = this.opts.config;
+    if (config.type !== 'confirm') {
+        return '';
+    }
+    var confirm = config.confirm;
+    var htmlHeader = '';
+    if (confirm.isShowHeader) {
+        htmlHeader = '<div class="g-dialog-confirm-header">' + confirm.headerContent + '</div>';
+    }
+    var htmlBody = '';
+    if (confirm.isShowBody) {
+        var htmlIcon = '';
+        if (confirm.isShowIcon) {
+            htmlIcon = '<div class="g-dialog-confirm-body-system-icon iconfont ' + confirm.icon + '"></div>';
+        }
+        var bodyClass = 'g-dialog-confirm-body-system';
+        var bodyContent = '\n            ' + htmlIcon + '\n            <div class="g-dialog-confirm-body-system-text">' + confirm.content + '</div>\n        ';
+        if (confirm.isCustom) {
+            bodyClass = 'g-dialog-confirm-body-custom';
+            bodyContent = confirm.content;
+        }
+        htmlBody = '\n            <div class="g-dialog-confirm-body">\n                <div class="' + bodyClass + '">\n                    ' + bodyContent + '\n                </div>\n            </div>\n        ';
+    }
+    var htmlFooter = '';
+    if (confirm.isShowFooter) {
+        var htmlCancel = '';
+        if (confirm.isShowCancel) {
+            htmlCancel = '<div class="g-button g-button-cancel g-dialog-confirm-footer-cancel">' + confirm.cancelContent + '</div>';
+        }
+        var htmlConfirm = '';
+        if (confirm.isShowConfirm) {
+            htmlConfirm = '<div class="g-button g-dialog-confirm-footer-confirm">' + confirm.confirmContent + '</div>';
+        }
+        htmlFooter = '<div class="g-dialog-confirm-footer">' + htmlCancel + htmlConfirm + '</div>';
+    }
+    var htmlClose = '';
+    if (confirm.isShowClose) {
+        htmlClose = '<div class="g-dialog-confirm-close">' + confirm.closeContent + '</div>';
+    }
+    return '\n        ' + htmlHeader + '\n        ' + htmlBody + '\n        ' + htmlFooter + '\n        ' + htmlClose + ' \n    ';
+};
+
+// 功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    var config = this.opts.config;
+    // 提示框
+    if (config.type === 'alert') {
+        var close = this.moduleDom.querySelector('.g-dialog-alert-close');
+        config.alert.timer = setTimeout(function () {
+            self.moduleDomHide();
+        }, config.alert.time);
+        close.addEventListener('click', function () {
+            clearTimeout(config.alert.timer);
+            self.moduleDomHide();
+        });
+    }
+    // 确认框
+    if (config.type === 'confirm') {
+        var _close = this.moduleDom.querySelector('.g-dialog-confirm-close');
+        if (_close) {
+            _close.addEventListener('click', function () {
+                self.moduleDomHide();
+                self.opts.callback.close();
+            });
+        }
+        var cancel = this.moduleDom.querySelector('.g-dialog-confirm-footer-cancel');
+        if (cancel) {
+            cancel.addEventListener('click', function () {
+                self.moduleDomHide();
+                self.opts.callback.cancel();
+            });
+        }
+        var confirm = this.moduleDom.querySelector('.g-dialog-confirm-footer-confirm');
+        if (confirm) {
+            confirm.addEventListener('click', function () {
+                if (!self.opts.config.confirm.isHandHide) {
+                    self.moduleDomHide();
+                }
+                self.opts.callback.confirm();
+            });
+        }
+    }
+};
+
+module.exports = Sub;
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var getDomArray=__webpack_require__(20),DomPosition=__webpack_require__(40);function domAddPosition(o){var i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"relative",t=arguments.length>2&&void 0!==arguments[2]&&arguments[2],e=getDomArray(o)[0];e?t?e.style.position=i:new DomPosition(e).hasPosition()||(e.style.position=i):console.log("no find dom")}module.exports=domAddPosition;
 
 /***/ }),
-/* 13 */
+/* 16 */
 /***/ (function(module, exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -2867,20 +3443,20 @@ function isUndefined(arg) {
 
 
 /***/ }),
-/* 14 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(25);
 exports.Stream = exports;
 exports.Readable = exports;
-exports.Writable = __webpack_require__(15);
+exports.Writable = __webpack_require__(18);
 exports.Duplex = __webpack_require__(6);
 exports.Transform = __webpack_require__(29);
 exports.PassThrough = __webpack_require__(50);
 
 
 /***/ }),
-/* 15 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2913,7 +3489,7 @@ exports.PassThrough = __webpack_require__(50);
 
 /*<replacement>*/
 
-var processNextTick = __webpack_require__(9);
+var processNextTick = __webpack_require__(10);
 /*</replacement>*/
 
 module.exports = Writable;
@@ -2965,7 +3541,7 @@ var Stream = __webpack_require__(26);
 /*</replacement>*/
 
 /*<replacement>*/
-var Buffer = __webpack_require__(10).Buffer;
+var Buffer = __webpack_require__(11).Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -3551,384 +4127,7 @@ Writable.prototype._destroy = function (err, cb) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(22).setImmediate, __webpack_require__(4)))
 
 /***/ }),
-/* 16 */,
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-__webpack_require__(36);
-
-var Super = function () {
-    function Super(json) {
-        _classCallCheck(this, Super);
-
-        var self = this;
-        self.tools = __webpack_require__(1); // 工具方法集合
-        self.applications = __webpack_require__(3); // 应用方法集合
-        self.axios = __webpack_require__(38); // axios
-        self.jsonp = __webpack_require__(41); // jsonp
-        self.opts = self.tools.extend({
-            lazyload: {
-                isInitRender: false
-            }
-        }, json);
-        self.init();
-    }
-
-    // (初)初始化数据
-
-
-    _createClass(Super, [{
-        key: 'init',
-        value: function init() {
-            var self = this;
-            window.addEventListener('load', function () {
-                setTimeout(function () {
-                    self.renderHeader();
-                    self.power();
-                    self.renderFooter();
-                }, 0);
-            });
-        }
-
-        // (功)(盖)功能(这个方法需要在子类型里被覆盖掉)
-
-    }, {
-        key: 'power',
-        value: function power() {}
-
-        // (渲)渲染
-
-    }, {
-        key: 'renderHeader',
-        value: function renderHeader() {
-            var self = this;
-
-            // 数据信息
-            self.dataInfo = function () {
-                var input = document.querySelector('#page-info-str');
-                var value = input.value;
-                input.parentNode.removeChild(input);
-                var wrap = document.querySelector('.g-wrap');
-                [].slice.call(wrap.querySelectorAll('script')).forEach(function (v) {
-                    wrap.removeChild(v);
-                });
-                try {
-                    return JSON.parse(value);
-                } catch (err) {
-                    console.log('dataInfo的json格式值出现错误:', err);
-                    return value || {};
-                }
-            }();
-            // console.log('dataInfo:\n', self.dataInfo);
-
-            // 延迟加载 power方法里如果有切换也使用到延迟加载 那么放在尾部就无解了 放在这里power里可以调用self.lazyload.render方法触发
-            var LazyLoad = __webpack_require__(42);
-            self.lazyload = new LazyLoad(self.opts.lazyload);
-
-            // Vue
-            var Vue = __webpack_require__(21);
-            Vue.prototype.$tools = self.tools;
-            Vue.prototype.$applications = self.applications;
-            Vue.prototype.$axios = self.axios;
-            Vue.prototype.$jsonp = self.jsonp;
-            Vue.prototype.$lazyload = self.lazyload;
-            self.Vue = Vue;
-
-            // 菜单
-            (function () {
-                var btn = document.querySelectorAll('.g-menu-item-title');
-                var activeClass = 'g-menu-item-active';
-                btn.forEach(function (v) {
-                    v.addEventListener('click', function () {
-                        // btn.forEach(function (v) {
-                        //     v.parentNode.classList.remove(activeClass);
-                        // });
-                        this.parentNode.classList.toggle(activeClass);
-                    });
-                });
-            })();
-        }
-
-        // (渲)渲染
-
-    }, {
-        key: 'renderFooter',
-        value: function renderFooter() {
-            var self = this;
-            var dataInfo = self.dataInfo;
-
-            // 二维码
-            if (dataInfo && dataInfo.isShowQrCode) {
-                var qr = __webpack_require__(44);
-                var qrDom = document.querySelector('.g-qr-code-svg');
-                if (qrDom) {
-                    qrDom.innerHTML = qr.imageSync(window.location.href, { type: 'svg' });
-                }
-            }
-
-            // 返回顶部
-            var GoTop = __webpack_require__(74);
-            new GoTop({
-                wrap: '.page-go-top-wrap'
-            });
-
-            // 版权
-            if (dataInfo && dataInfo.isShowCopyright) {
-                var Copyright = __webpack_require__(75);
-                new Copyright({
-                    wrap: '.page-copyright-wrap'
-                });
-            }
-
-            /*
-            // 底部导航
-            if (dataInfo && dataInfo.footerNav) {
-                const Footer = require('../components-dom/g-footer-nav');
-                dataInfo.footerNav.wrap = '.page-footer-nav-wrap';
-                new Footer(dataInfo.footerNav);
-            }
-            */
-
-            // 延迟加载
-            self.lazyload.render();
-
-            // spacing-loading移除
-            var spacingLoading = document.querySelector('#spacing-loading');
-            if (spacingLoading) {
-                spacingLoading.parentNode.removeChild(spacingLoading);
-            }
-        }
-    }]);
-
-    return Super;
-}();
-
-module.exports = Super;
-
-/***/ }),
-/* 18 */,
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(8); // 超类型(子类型继承的对象)
-var Mask = __webpack_require__(39); // 遮罩
-var domAddPosition = __webpack_require__(12);
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    // 回调
-    callback: {
-        moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-            if (self.opts.config.type === 'confirm') {
-                if (self.opts.config.confirm.isShowMask && !self.mask) {
-                    self.mask = new Mask(self.opts.config.mask);
-                }
-                domAddPosition(self.wrapDom, 'relative');
-            }
-        },
-        moduleDomHideAfter: function moduleDomHideAfter(self) {
-            if (self.mask) {
-                self.mask.moduleDomHide();
-            }
-        },
-        // 确认
-        confirm: function confirm() {},
-        // 取消
-        cancel: function cancel() {},
-        // 关闭
-        close: function close() {}
-    },
-    // 配置
-    config: {
-        /*
-         * 弹窗类型
-         * `alert`  提示信息类型
-         * `confirm`    确认框类型
-         * */
-        type: 'alert', // 默认是提示框
-        /*
-         * 弹窗位置
-         * `center` 居中
-         * `bottom` 居下
-         * `top` 居上
-         * */
-        positionLocation: 'center', // 弹窗的定位位置    positionMethod定位方式强制fixed
-        // 提示框
-        alert: {
-            timer: null, // 定时器装载
-            time: 3000, // 展示的时间
-            isShowIcon: false, // 是否显示icon
-            isShowClose: true, // 是否显示关闭按钮
-            icon: 'icon-success', // icon的class
-            content: '成功' // 内容信息
-        },
-        // 确认框
-        confirm: {
-            // 点击确认是否关闭弹窗
-            isShowHeader: true, // 是否显示头部
-            headerContent: '提示:', // 头部内容
-            isShowBody: true, // 是否显示主体
-            content: '<div>确定要执行这个操作?</div>', // 主体内容
-            isShowFooter: true, // 是否显示尾部
-            footerContent: '', // 尾部内容
-            isShowClose: true, // 是否显示关闭按钮
-            closeContent: '<div class="iconfont icon-close"></div>', // 关闭按钮的内容
-            isShowConfirm: true, // 是否显示确认按钮
-            confirmContent: '确认', // 确认按钮的内容
-            isShowCancel: true, // 是否显示取消按钮
-            cancelContent: '取消', // 取消按钮的内容
-            isCustom: false, // 是否自定义
-            isShowIcon: false, // 是否显示icon
-            icon: 'icon-warning', // icon的类型
-            isShowMask: true, // 是否显示遮罩
-            isHandHide: false // 是否手动隐藏(一般只用于点击确认时)
-        },
-        // 遮罩
-        mask: {
-            config: {}
-        }
-    },
-    // 数据
-    data: {}
-});
-
-// 内部模块的创建(覆盖超类型)
-Sub.prototype.moduleDomCreate = function () {
-    var config = this.opts.config;
-    var type = 'g-dialog-' + config.type; // 弹窗类型
-    var positionLocation = 'g-dialog-' + config.positionLocation; // 弹窗的定位位置
-    // 弹窗结构
-    var html = '\n        ' + this.renderAlert() + '\n        ' + this.renderConfirm() + '\n    ';
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-dialog ' + type + ' ' + positionLocation,
-            innerHTML: html
-        }
-    });
-};
-
-// 提示框
-Sub.prototype.renderAlert = function () {
-    var config = this.opts.config;
-    if (config.type !== 'alert') {
-        return '';
-    }
-    var alert = config.alert;
-    var htmlIcon = '';
-    if (alert.isShowIcon) {
-        htmlIcon = '<div class="g-dialog-alert-icon iconfont ' + alert.icon + '"></div>';
-    }
-    var closeHtml = '';
-    if (alert.isShowClose) {
-        closeHtml = '<div class="g-dialog-alert-close iconfont icon-close" ></div>';
-    }
-    return '\n        ' + closeHtml + '\n        ' + htmlIcon + '\n        <div class="g-dialog-alert-text">' + alert.content + '</div>\n    ';
-};
-
-// 确认框
-Sub.prototype.renderConfirm = function () {
-    var config = this.opts.config;
-    if (config.type !== 'confirm') {
-        return '';
-    }
-    var confirm = config.confirm;
-    var htmlHeader = '';
-    if (confirm.isShowHeader) {
-        htmlHeader = '<div class="g-dialog-confirm-header">' + confirm.headerContent + '</div>';
-    }
-    var htmlBody = '';
-    if (confirm.isShowBody) {
-        var htmlIcon = '';
-        if (confirm.isShowIcon) {
-            htmlIcon = '<div class="g-dialog-confirm-body-system-icon iconfont ' + confirm.icon + '"></div>';
-        }
-        var bodyClass = 'g-dialog-confirm-body-system';
-        var bodyContent = '\n            ' + htmlIcon + '\n            <div class="g-dialog-confirm-body-system-text">' + confirm.content + '</div>\n        ';
-        if (confirm.isCustom) {
-            bodyClass = 'g-dialog-confirm-body-custom';
-            bodyContent = confirm.content;
-        }
-        htmlBody = '\n            <div class="g-dialog-confirm-body">\n                <div class="' + bodyClass + '">\n                    ' + bodyContent + '\n                </div>\n            </div>\n        ';
-    }
-    var htmlFooter = '';
-    if (confirm.isShowFooter) {
-        var htmlCancel = '';
-        if (confirm.isShowCancel) {
-            htmlCancel = '<div class="g-button g-button-cancel g-dialog-confirm-footer-cancel">' + confirm.cancelContent + '</div>';
-        }
-        var htmlConfirm = '';
-        if (confirm.isShowConfirm) {
-            htmlConfirm = '<div class="g-button g-dialog-confirm-footer-confirm">' + confirm.confirmContent + '</div>';
-        }
-        htmlFooter = '<div class="g-dialog-confirm-footer">' + htmlCancel + htmlConfirm + '</div>';
-    }
-    var htmlClose = '';
-    if (confirm.isShowClose) {
-        htmlClose = '<div class="g-dialog-confirm-close">' + confirm.closeContent + '</div>';
-    }
-    return '\n        ' + htmlHeader + '\n        ' + htmlBody + '\n        ' + htmlFooter + '\n        ' + htmlClose + ' \n    ';
-};
-
-// 功能(覆盖超类型)
-Sub.prototype.power = function () {
-    var self = this;
-    var config = this.opts.config;
-    // 提示框
-    if (config.type === 'alert') {
-        var close = this.moduleDom.querySelector('.g-dialog-alert-close');
-        config.alert.timer = setTimeout(function () {
-            self.moduleDomHide();
-        }, config.alert.time);
-        close.addEventListener('click', function () {
-            clearTimeout(config.alert.timer);
-            self.moduleDomHide();
-        });
-    }
-    // 确认框
-    if (config.type === 'confirm') {
-        var _close = this.moduleDom.querySelector('.g-dialog-confirm-close');
-        if (_close) {
-            _close.addEventListener('click', function () {
-                self.moduleDomHide();
-                self.opts.callback.close();
-            });
-        }
-        var cancel = this.moduleDom.querySelector('.g-dialog-confirm-footer-cancel');
-        if (cancel) {
-            cancel.addEventListener('click', function () {
-                self.moduleDomHide();
-                self.opts.callback.cancel();
-            });
-        }
-        var confirm = this.moduleDom.querySelector('.g-dialog-confirm-footer-confirm');
-        if (confirm) {
-            confirm.addEventListener('click', function () {
-                if (!self.opts.config.confirm.isHandHide) {
-                    self.moduleDomHide();
-                }
-                self.opts.callback.confirm();
-            });
-        }
-    }
-};
-
-module.exports = Sub;
-
-/***/ }),
+/* 19 */,
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3979,11 +4178,11 @@ module.exports = Array.isArray || function (arr) {
 
 module.exports = Stream;
 
-var EE = __webpack_require__(13).EventEmitter;
+var EE = __webpack_require__(16).EventEmitter;
 var inherits = __webpack_require__(5);
 
 inherits(Stream, EE);
-Stream.Readable = __webpack_require__(14);
+Stream.Readable = __webpack_require__(17);
 Stream.Writable = __webpack_require__(51);
 Stream.Duplex = __webpack_require__(52);
 Stream.Transform = __webpack_require__(53);
@@ -4115,7 +4314,7 @@ Stream.prototype.pipe = function(dest, options) {
 
 /*<replacement>*/
 
-var processNextTick = __webpack_require__(9);
+var processNextTick = __webpack_require__(10);
 /*</replacement>*/
 
 module.exports = Readable;
@@ -4131,7 +4330,7 @@ var Duplex;
 Readable.ReadableState = ReadableState;
 
 /*<replacement>*/
-var EE = __webpack_require__(13).EventEmitter;
+var EE = __webpack_require__(16).EventEmitter;
 
 var EElistenerCount = function (emitter, type) {
   return emitter.listeners(type).length;
@@ -4145,7 +4344,7 @@ var Stream = __webpack_require__(26);
 // TODO(bmeurer): Change this back to const once hole checks are
 // properly optimized away early in Ignition+TurboFan.
 /*<replacement>*/
-var Buffer = __webpack_require__(10).Buffer;
+var Buffer = __webpack_require__(11).Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -5103,7 +5302,7 @@ function indexOf(xs, x) {
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(13).EventEmitter;
+module.exports = __webpack_require__(16).EventEmitter;
 
 
 /***/ }),
@@ -5115,7 +5314,7 @@ module.exports = __webpack_require__(13).EventEmitter;
 
 /*<replacement>*/
 
-var processNextTick = __webpack_require__(9);
+var processNextTick = __webpack_require__(10);
 /*</replacement>*/
 
 // undocumented cb() API, needed for core, not for public API
@@ -5191,7 +5390,7 @@ module.exports = {
 "use strict";
 
 
-var Buffer = __webpack_require__(10).Buffer;
+var Buffer = __webpack_require__(11).Buffer;
 
 var isEncoding = Buffer.isEncoding || function (encoding) {
   encoding = '' + encoding;
@@ -6898,157 +7097,7 @@ module.exports = crc32;
 
 
 /***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
-var domAddPosition = __webpack_require__(12);
-
-function ValidateForm(json) {
-    this.opts = tools.extend({
-        element: '',
-        hintClass: 'g-validate-form-hint'
-    }, json);
-    if (this.opts.element) {
-        this.element = applications.getDomArray(this.opts.element);
-    }
-    if (this.element.length) {
-        this.init();
-    }
-}
-
-ValidateForm.prototype.init = function () {
-    this.render();
-    this.power();
-};
-ValidateForm.prototype.render = function () {
-    var self = this;
-    self.element.forEach(function (v) {
-        if (v.parentNode) {
-            domAddPosition(v.parentNode, 'relative');
-        }
-        v.customValidateRule = {}; // 自定义规则
-        v.hintDom = document.createElement('span');
-        v.hintDom.classList.add(self.opts.hintClass);
-    });
-};
-ValidateForm.prototype.renderHintAdd = function () {
-    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    // 只有没被隐藏的才进行验证
-    var input = opts.input;
-    var hintDom = input.hintDom;
-    if (input.offsetWidth && hintDom) {
-        hintDom.innerHTML = opts.txt;
-        input.parentNode.appendChild(hintDom);
-    }
-};
-ValidateForm.prototype.renderHintRemove = function () {
-    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    var input = opts.input;
-    var parentDom = input.parentNode;
-    var hintDom = input.parentNode.querySelector('.' + this.opts.hintClass);
-    if (parentDom && hintDom) {
-        parentDom.removeChild(input.hintDom);
-    }
-};
-ValidateForm.prototype.validateInput = function (input) {
-    var self = this;
-    var customValidateRule = input.customValidateRule;
-    Object.keys(customValidateRule).forEach(function (keys) {
-        var obj = customValidateRule[keys];
-        obj.isValidateSuccess = obj.fn(input.value);
-    });
-    var validateType = input.dataset.validate || 'undefined';
-    var validateHintTxt = input.dataset.hint || 'undefined';
-    var type = validateType.split(' ');
-    var hintTxt = validateHintTxt.split(' ');
-    var value = input.value;
-    var isValidateSuccess = true; // 是否验证成功了
-    type.forEach(function (v, i) {
-        if (isValidateSuccess && customValidateRule[v]) {
-            if (isValidateSuccess && customValidateRule[v].isValidateSuccess) {
-                self.renderHintRemove({ input: input });
-                isValidateSuccess = true;
-            } else {
-                self.renderHintAdd({ txt: hintTxt[i], input: input });
-                isValidateSuccess = false;
-            }
-        }
-        if (isValidateSuccess && !customValidateRule[v]) {
-            if (isValidateSuccess && v === 'no-empty') {
-                // 设置了非空验证
-                if (tools.isEmpty(value)) {
-                    self.renderHintAdd({ txt: hintTxt[i], input: input });
-                    isValidateSuccess = false;
-                } else {
-                    self.renderHintRemove({ input: input });
-                    isValidateSuccess = true;
-                }
-            }
-            if (isValidateSuccess && v === 'no-zero') {
-                // 设置了非零验证
-                if (tools.isZero(value)) {
-                    self.renderHintAdd({ txt: hintTxt[i], input: input });
-                    isValidateSuccess = false;
-                } else {
-                    self.renderHintRemove({ input: input });
-                    isValidateSuccess = true;
-                }
-            }
-            if (isValidateSuccess && v === 'yes-positive-integer') {
-                // 设置了正整数验证
-                if (tools.isPositiveInteger(value)) {
-                    self.renderHintRemove({ input: input });
-                    isValidateSuccess = true;
-                } else {
-                    self.renderHintAdd({ txt: hintTxt[i], input: input });
-                    isValidateSuccess = false;
-                }
-            }
-        }
-    });
-    input.isValidateSuccess = isValidateSuccess;
-};
-ValidateForm.prototype.isAllPassValidate = function () {
-    var self = this;
-    var isValidateSuccess = true;
-    self.element.forEach(function (v) {
-        self.validateInput(v);
-        if (v.isValidateSuccess !== true) {
-            isValidateSuccess = false;
-        }
-    });
-    return isValidateSuccess;
-};
-ValidateForm.prototype.power = function () {
-    var self = this;
-    self.element.forEach(function (v) {
-        var eventsType = v.dataset.event || 'blur';
-        v.addEventListener(eventsType, function () {
-            self.validateInput(this);
-        });
-    });
-};
-
-// 自定义验证规则
-ValidateForm.prototype.setValidate = function (name, fn) {
-    this.element.forEach(function (v) {
-        v.customValidateRule[name] = {
-            fn: fn,
-            isValidateSuccess: fn(v.value)
-        };
-    });
-};
-
-module.exports = ValidateForm;
-
-/***/ }),
+/* 34 */,
 /* 35 */,
 /* 36 */
 /***/ (function(module, exports) {
@@ -7069,9 +7118,9 @@ function extend(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{
 "use strict";
 
 
-var axios = __webpack_require__(18);
+var axios = __webpack_require__(19);
 var tools = __webpack_require__(1);
-var Dialog = __webpack_require__(19);
+var Dialog = __webpack_require__(14);
 
 module.exports = function (json) {
     json.method = json.method || json.type || 'get';
@@ -7132,8 +7181,8 @@ module.exports = function (json) {
 
 var tools = __webpack_require__(1); // 工具方法集合
 var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(8); // 超类型(子类型继承的对象)
-var domAddPosition = __webpack_require__(12);
+var Super = __webpack_require__(9); // 超类型(子类型继承的对象)
+var domAddPosition = __webpack_require__(15);
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -7199,7 +7248,7 @@ var _createClass=function(){function t(t,i){for(var o=0;o<i.length;o++){var n=i[
 
 
 var tools = __webpack_require__(1);
-var Dialog = __webpack_require__(19);
+var Dialog = __webpack_require__(14);
 module.exports = function (json) {
     var opts = tools.extend({
         url: '',
@@ -7709,7 +7758,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Buffer = __webpack_require__(10).Buffer;
+var Buffer = __webpack_require__(11).Buffer;
 /*</replacement>*/
 
 function copyBuffer(src, target, offset) {
@@ -7909,7 +7958,7 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 /* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(15);
+module.exports = __webpack_require__(18);
 
 
 /***/ }),
@@ -7923,14 +7972,14 @@ module.exports = __webpack_require__(6);
 /* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(14).Transform
+module.exports = __webpack_require__(17).Transform
 
 
 /***/ }),
 /* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(14).PassThrough
+module.exports = __webpack_require__(17).PassThrough
 
 
 /***/ }),
@@ -9944,7 +9993,7 @@ module.exports = ZStream;
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils   = __webpack_require__(11);
+var utils   = __webpack_require__(12);
 var trees   = __webpack_require__(65);
 var adler32 = __webpack_require__(32);
 var crc32   = __webpack_require__(33);
@@ -11825,7 +11874,7 @@ exports.deflateTune = deflateTune;
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils = __webpack_require__(11);
+var utils = __webpack_require__(12);
 
 /* Public constants ==========================================================*/
 /* ===========================================================================*/
@@ -13091,7 +13140,7 @@ module.exports = {
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils         = __webpack_require__(11);
+var utils         = __webpack_require__(12);
 var adler32       = __webpack_require__(32);
 var crc32         = __webpack_require__(33);
 var inflate_fast  = __webpack_require__(68);
@@ -15006,7 +15055,7 @@ module.exports = function inflate_fast(strm, start) {
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils = __webpack_require__(11);
+var utils = __webpack_require__(12);
 
 var MAXBITS = 15;
 var ENOUGH_LENS = 852;
@@ -15796,7 +15845,7 @@ module.exports = {
 
 var tools = __webpack_require__(1); // 工具方法集合
 var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(8); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(9); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -15851,7 +15900,7 @@ module.exports = Sub;
 
 var tools = __webpack_require__(1); // 工具方法集合
 var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(8); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(9); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {

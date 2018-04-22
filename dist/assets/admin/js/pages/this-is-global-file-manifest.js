@@ -34,7 +34,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		4: 0
+/******/ 		6: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -91,7 +91,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"this-is-global-file-common","1":"this-is-global-file-vendor","2":"website-info","3":"home"}[chunkId]||chunkId) + "." + chunkId + ".chunk.js";
+/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"this-is-global-file-common","1":"this-is-global-file-vendor","2":"website-info","3":"register","4":"login","5":"home"}[chunkId]||chunkId) + "." + chunkId + ".chunk.js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {

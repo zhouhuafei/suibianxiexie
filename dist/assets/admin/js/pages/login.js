@@ -1,6 +1,6 @@
-webpackJsonp([5],{
+webpackJsonp([4],{
 
-/***/ 34:
+/***/ 76:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,7 +14,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(35);
+__webpack_require__(77);
 var Super = __webpack_require__(8);
 
 var Sub = function (_Super) {
@@ -32,11 +32,35 @@ var Sub = function (_Super) {
             var superSelf = this;
             var dataInfo = superSelf.dataInfo;
             var routes = dataInfo.routes;
+            var api = dataInfo.api;
+            var axios = superSelf.axios;
 
             // 验证
             (function () {
                 var ValidateInput = __webpack_require__(13);
                 new ValidateInput({ element: '.page-validate-form' });
+            })();
+
+            // 登陆
+            (function () {
+                var username = document.querySelector('#username');
+                var password = document.querySelector('#password');
+                var btn = document.querySelector('.js-button');
+                btn.addEventListener('click', function () {
+                    axios({
+                        url: api.login.route,
+                        method: 'post',
+                        data: {
+                            username: username.value,
+                            password: password.value
+                        }
+                    }).then(function (json) {
+                        if (json.status === 'success') {
+                            // window.location.replace(routes['website-info'].route);
+                            window.location.href = routes['website-info'].route;
+                        }
+                    });
+                });
             })();
         }
     }]);
@@ -48,11 +72,11 @@ new Sub();
 
 /***/ }),
 
-/***/ 35:
+/***/ 77:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
 
-},[34]);
+},[76]);
