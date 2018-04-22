@@ -8,6 +8,10 @@ const routeName = [
         name: 'list', // 列表
     },
     {
+        name: 'password-reset', // 修改密码,去重置
+        isValidateLogin: false,
+    },
+    {
         name: 'register', // 注册
         isValidateLogin: false,
     },

@@ -45,6 +45,7 @@ var Sub = function (_Super) {
             (function () {
                 var username = document.querySelector('#username');
                 var password = document.querySelector('#password');
+                var repeatPassword = document.querySelector('#repeat-password');
                 var btn = document.querySelector('.js-button');
                 btn.addEventListener('click', function () {
                     axios({
@@ -52,7 +53,8 @@ var Sub = function (_Super) {
                         method: 'post',
                         data: {
                             username: username.value,
-                            password: password.value
+                            password: password.value,
+                            're-password': repeatPassword.value
                         }
                     }).then(function (json) {
                         if (json.status === 'success') {

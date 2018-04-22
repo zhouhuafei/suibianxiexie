@@ -14,6 +14,12 @@ const routeName = [
         title: '网站信息',
     },
     {
+        name: 'password-reset', // 修改密码,去重置
+        title: '修改密码,正在重置',
+        isValidateLogin: false,
+        isShowMenu: false,
+    },
+    {
         name: 'login', // 登陆
         title: '登陆',
         isValidateLogin: false,

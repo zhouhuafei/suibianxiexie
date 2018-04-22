@@ -52,12 +52,12 @@ const routeName = [
     },
     {
         name: 'password-find', // 忘记密码,去找回
-        title: '忘记密码,去找回',
+        title: '忘记密码,正在找回',
         isValidateLogin: false,
     },
     {
         name: 'password-reset', // 修改密码,去重置
-        title: '修改密码,去重置',
+        title: '修改密码,正在重置',
         isValidateLogin: false,
     },
     {

@@ -19,6 +19,7 @@ class Sub extends Super {
         (function () {
             const username = document.querySelector('#username');
             const password = document.querySelector('#password');
+            const repeatPassword = document.querySelector('#repeat-password');
             const btn = document.querySelector('.js-button');
             btn.addEventListener('click', function () {
                 axios({
@@ -27,6 +28,7 @@ class Sub extends Super {
                     data: {
                         username: username.value,
                         password: password.value,
+                        're-password': repeatPassword.value,
                     },
                 }).then(function (json) {
                     if (json.status === 'success') {

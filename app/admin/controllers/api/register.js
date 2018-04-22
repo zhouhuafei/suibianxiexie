@@ -4,14 +4,13 @@ class Sub extends Super {
     // (增)(盖)获取数据(覆盖超类型)
     postData() {
         const self = this;
-        const tools = self.tools;// 工具方法集合
+        const tools = self.tools; // 工具方法集合
         const opts = self.opts;
         const req = opts.req;
         const data = req.data;
-        const username = data.username;// 用户名
-        const password = data.password;// 密码
-        const verifyCode = data.verifyCode;// 验证码
-        const session = req.session;
+        const username = data.username; // 用户名
+        const password = data.password; // 密码
+        const repeatPassword = data['repeat-password']; // 密码二次确认
         if (tools.isEmpty(username)) {
             self.render({
                 message: '账号不能为空',
@@ -21,6 +20,11 @@ class Sub extends Super {
             self.render({
                 message: '密码不能为空',
                 result: {data: [{password: password}]},
+            });
+        } else if (password !== repeatPassword) {
+            self.render({
+                message: '两次输入的密码不一致',
+                result: {data: [{password: password, repeatPassword: repeatPassword}]},
             });
         } else {
             const Admins = require('../../models/mongoose/admins');
