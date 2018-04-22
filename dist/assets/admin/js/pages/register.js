@@ -54,7 +54,7 @@ var Sub = function (_Super) {
                         data: {
                             username: username.value,
                             password: password.value,
-                            're-password': repeatPassword.value
+                            'repeat-password': repeatPassword.value
                         }
                     }).then(function (json) {
                         if (json.status === 'success') {
