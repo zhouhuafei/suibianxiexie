@@ -16,7 +16,7 @@ const schema = new mongoose.Schema({
 const bcrypt = require('bcrypt'); // 加密工具
 const saltStrength = 10; // 加密强度
 // 使用pre中间件在用户信息存储前进行密码加密
-schema.pre('save', function (next) {
+const saltPassword = function (next) {
     const self = this;
     // 当密码有更改或者是新密码的时候
     if (self.isModified('password')) {
@@ -38,7 +38,8 @@ schema.pre('save', function (next) {
     } else {
         next();
     }
-});
+};
+schema.pre('save', saltPassword);
 
 // 对比密码
 schema.methods.comparePassword = function (candidatePassword, callback) {

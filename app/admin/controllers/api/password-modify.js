@@ -60,35 +60,25 @@ class Sub extends Super {
                             });
                         }
                         if (isMatch) {
-                            /*
-                            const admins = new Admins({
-                                username: username,
-                                password: newPassword,
-                            });
-                            admins.save(function (error, result) {
-                                // 数据库插入出现错误
+                            // 用户名和老密码匹配了,则进行密码替换
+                            Admins.update({_id: adminInfo._id}, {$set: {password: newPassword}}, function (error) {
+                                // 数据库更新出现错误
                                 if (error) {
                                     self.render({
-                                        message: '数据库插入出现错误',
+                                        message: '数据库更新出现错误',
                                         failureInfo: error,
                                     });
                                     return;
                                 }
                                 self.render({
                                     status: 'success',
-                                    message: '注册成功',
-                                    result: {data: [{username: username}]},
+                                    message: '已成功修改密码',
+                                    result: {
+                                        data: [{username: adminInfo.username}],
+                                    },
                                 });
+                                // delete session.adminInfo; // 不加这句话，改了密码，不会掉线，加了这句话也只是当前用户掉线，其他人不掉线。
                             });
-                            */
-                            self.render({
-                                status: 'success',
-                                message: '已成功修改密码',
-                                result: {
-                                    data: [{username: adminInfo.username}],
-                                },
-                            });
-                            delete session.adminInfo;
                         } else {
                             self.render({
                                 message: '用户名和老密码不匹配',
