@@ -12,6 +12,7 @@ class Sub extends Super {
         const oldPassword = data['old-password']; // 旧密码
         const newPassword = data['new-password']; // 新密码
         const repeatNewPassword = data['repeat-new-password']; // 新密码二次确认
+        const session = req.session;
         if (tools.isEmpty(username)) {
             self.render({
                 message: '账号不能为空',
@@ -50,28 +51,53 @@ class Sub extends Super {
                     });
                 }
                 if (result.length) {
-                    self.render({
-                        message: '管理员账号已经存在',
-                    });
-                } else {
-                    const admins = new Admins({
-                        username: username,
-                        password: newPassword,
-                    });
-                    admins.save(function (error, result) {
-                        // 数据库插入出现错误
+                    const adminInfo = result[0];
+                    adminInfo.comparePassword(oldPassword, function (error, isMatch) {
                         if (error) {
                             self.render({
-                                message: '数据库插入出现错误',
+                                message: '密码对比出现错误',
                                 failureInfo: error,
                             });
-                            return;
                         }
-                        self.render({
-                            status: 'success',
-                            message: '注册成功',
-                            result: {data: [{username: username}]},
-                        });
+                        if (isMatch) {
+                            /*
+                            const admins = new Admins({
+                                username: username,
+                                password: newPassword,
+                            });
+                            admins.save(function (error, result) {
+                                // 数据库插入出现错误
+                                if (error) {
+                                    self.render({
+                                        message: '数据库插入出现错误',
+                                        failureInfo: error,
+                                    });
+                                    return;
+                                }
+                                self.render({
+                                    status: 'success',
+                                    message: '注册成功',
+                                    result: {data: [{username: username}]},
+                                });
+                            });
+                            */
+                            self.render({
+                                status: 'success',
+                                message: '已成功修改密码',
+                                result: {
+                                    data: [{username: adminInfo.username}],
+                                },
+                            });
+                            delete session.adminInfo;
+                        } else {
+                            self.render({
+                                message: '用户名和老密码不匹配',
+                            });
+                        }
+                    });
+                } else {
+                    self.render({
+                        message: '账号不存在',
                     });
                 }
             });

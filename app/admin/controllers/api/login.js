@@ -51,7 +51,7 @@ class Sub extends Super {
                             });
                         } else {
                             self.render({
-                                message: '账号和密码不匹配',
+                                message: '用户名和密码不匹配',
                             });
                         }
                     });
