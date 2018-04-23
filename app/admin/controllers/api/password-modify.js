@@ -61,23 +61,44 @@ class Sub extends Super {
                         }
                         if (isMatch) {
                             // 用户名和老密码匹配了,则进行密码替换
-                            Admins.update({_id: adminInfo._id}, {$set: {password: newPassword}}, function (error) {
-                                // 数据库更新出现错误
+                            const bcrypt = require('bcrypt'); // 加密工具
+                            const saltStrength = 10; // 加密强度
+                            // 密码加密
+                            bcrypt.genSalt(saltStrength, function (error, salt) {
                                 if (error) {
                                     self.render({
-                                        message: '数据库更新出现错误',
+                                        message: '密码加密出现错误',
                                         failureInfo: error,
                                     });
-                                    return;
+                                } else {
+                                    bcrypt.hash(newPassword, salt, function (error, hash) {
+                                        if (error) {
+                                            self.render({
+                                                message: '密码加密出现错误',
+                                                failureInfo: error,
+                                            });
+                                        } else {
+                                            Admins.update({_id: adminInfo._id}, {$set: {password: hash}}, function (error) {
+                                                // 数据库更新出现错误
+                                                if (error) {
+                                                    self.render({
+                                                        message: '密码更新出现错误',
+                                                        failureInfo: error,
+                                                    });
+                                                    return;
+                                                }
+                                                delete session.adminInfo; // 不加这句话，改了密码，不会掉线，加了这句话也只是当前用户掉线，其他人不掉线。
+                                                self.render({
+                                                    status: 'success',
+                                                    message: '已成功修改密码',
+                                                    result: {
+                                                        data: [{username: adminInfo.username}],
+                                                    },
+                                                });
+                                            });
+                                        }
+                                    });
                                 }
-                                self.render({
-                                    status: 'success',
-                                    message: '已成功修改密码',
-                                    result: {
-                                        data: [{username: adminInfo.username}],
-                                    },
-                                });
-                                // delete session.adminInfo; // 不加这句话，改了密码，不会掉线，加了这句话也只是当前用户掉线，其他人不掉线。
                             });
                         } else {
                             self.render({

@@ -39,7 +39,7 @@ const saltPassword = function (next) {
         next();
     }
 };
-schema.pre('save', saltPassword);
+schema.pre('save', saltPassword); // 更新密码不会触发这个，所以更新密码时，需要重新加密。
 
 // 对比密码
 schema.methods.comparePassword = function (candidatePassword, callback) {

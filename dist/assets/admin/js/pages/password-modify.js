@@ -73,6 +73,19 @@ var Sub = function (_Super) {
                     }).then(function (json) {
                         if (json.status === 'success') {
                             window.location.href = routes['login'].route;
+                            /*
+                            const seconds = 1;
+                            new superSelf.Dialog({
+                                config: {
+                                    alert: {
+                                        content: `${json.message}，${seconds}秒后自动跳转到登录页`,
+                                    },
+                                },
+                            });
+                            setTimeout(function () {
+                                window.location.href = routes['login'].route;
+                            }, seconds * 1000);
+                            */
                         }
                     });
                 });
