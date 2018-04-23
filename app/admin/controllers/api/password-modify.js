@@ -17,20 +17,32 @@ class Sub extends Super {
                 message: '账号不能为空',
                 result: {data: [{username: username}]},
             });
-        } else if (tools.isEmpty(oldPassword)) {
+        } else if (tools.isEmpty(oldPassword) || tools.isEmpty(newPassword) || tools.isEmpty(repeatNewPassword)) {
             self.render({
                 message: '密码不能为空',
-                result: {data: [{oldPassword: oldPassword}]},
+                result: {
+                    data: [{
+                        'old-password': oldPassword,
+                        'new-password': newPassword,
+                        'repeat-new-password': repeatNewPassword,
+                    }],
+                },
             });
-        } else if (oldPassword !== repeatNewPassword) {
+        } else if (newPassword !== repeatNewPassword) {
             self.render({
-                message: '两次输入的密码不一致',
-                result: {data: [{password: oldPassword, repeatPassword: repeatNewPassword}]},
+                message: '两次输入的新密码不一致',
+                result: {
+                    data: [{
+                        'old-password': oldPassword,
+                        'new-password': newPassword,
+                        'repeat-new-password': repeatNewPassword,
+                    }],
+                },
             });
         } else {
             const Admins = require('../../models/mongoose/admins');
-            // 如果管理员账号存在则不可以注册
-            Admins.find({}, function (error, result) {
+            // 如果管理员账号存在并且老密码正确则可以修改密码待续...
+            Admins.find({username: username}, function (error, result) {
                 // 数据库查询出现错误
                 if (error) {
                     self.render({

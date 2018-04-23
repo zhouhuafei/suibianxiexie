@@ -16,15 +16,15 @@ class Sub extends Super {
                 message: '账号不能为空',
                 result: {data: [{username: username}]},
             });
-        } else if (tools.isEmpty(password)) {
+        } else if (tools.isEmpty(password) || tools.isEmpty(repeatPassword)) {
             self.render({
                 message: '密码不能为空',
-                result: {data: [{password: password}]},
+                result: {data: [{password: password, 'repeat-password': repeatPassword}]},
             });
         } else if (password !== repeatPassword) {
             self.render({
                 message: '两次输入的密码不一致',
-                result: {data: [{password: password, repeatPassword: repeatPassword}]},
+                result: {data: [{password: password, 'repeat-password': repeatPassword}]},
             });
         } else {
             const Admins = require('../../models/mongoose/admins');
