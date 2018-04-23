@@ -30,13 +30,7 @@ class Sub extends Super {
                     },
                 }).then(function (json) {
                     if (json.status === 'success') {
-                        const DialogJumpLink = require('../components-dom/g-dialog-jump-link');
-                        new DialogJumpLink({
-                            title: json.message,
-                            seconds: 3,
-                            pageTitle: routes['website-info'].title,
-                            href: routes['website-info'].route,
-                        });
+                        window.location.href = routes['website-info'].route;
                     }
                 });
             });

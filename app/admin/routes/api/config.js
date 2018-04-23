@@ -9,7 +9,6 @@ const routeName = [
     },
     {
         name: 'password-modify', // 更改密码,去修改
-        isValidateLogin: false,
     },
     {
         name: 'register', // 注册
