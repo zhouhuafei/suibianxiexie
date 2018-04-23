@@ -1,4 +1,4 @@
-webpackJsonp([3],{
+webpackJsonp([4],{
 
 /***/ 19:
 /***/ (function(module, exports) {
@@ -7,7 +7,7 @@ webpackJsonp([3],{
 
 /***/ }),
 
-/***/ 80:
+/***/ 79:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48,11 +48,12 @@ var Sub = function (_Super) {
                 new ValidateInput({ element: '.page-validate-form' });
             })();
 
-            // 注册
+            // 修改
             (function () {
                 var username = document.querySelector('#username');
-                var password = document.querySelector('#password');
-                var repeatPassword = document.querySelector('#repeat-password');
+                var oldPassword = document.querySelector('#old-password');
+                var newPassword = document.querySelector('#new-password');
+                var repeatNewPassword = document.querySelector('#repeat-new-password');
                 var btn = document.querySelector('.js-button');
                 btn.addEventListener('click', function () {
                     axios({
@@ -60,8 +61,9 @@ var Sub = function (_Super) {
                         method: 'post',
                         data: {
                             username: username.value,
-                            password: password.value,
-                            'repeat-password': repeatPassword.value
+                            'old-password': oldPassword.value,
+                            'new-password': newPassword.value,
+                            'repeat-password': repeatNewPassword.value
                         }
                     }).then(function (json) {
                         if (json.status === 'success') {
@@ -70,6 +72,18 @@ var Sub = function (_Super) {
                     });
                 });
             })();
+
+            // 忘记密码,去删库
+            document.querySelector('.js-del-db').addEventListener('click', function () {
+                new superSelf.Dialog({
+                    config: {
+                        type: 'confirm', // 默认是提示框
+                        confirm: {
+                            content: '<div style="line-height: 24px;">\n                            <div>1. \u94FE\u63A5\u4F60\u7684mongodb\u6570\u636E\u5E93</div>\n                            <div>2. \u627E\u5230\u540D\u4E3Asuibianxiexie\u6570\u636E\u5E93</div>\n                            <div>3. \u627E\u5230\u540D\u4E3Aadmins\u7684\u96C6\u5408</div>\n                            <div>4. \u5220\u6389\u8FD9\u4E2A\u96C6\u5408</div>\n                            <div>5. \u5728\u540E\u53F0\u7BA1\u7406\u7CFB\u7EDF\u91CC\u91CD\u65B0\u6CE8\u518C\u7BA1\u7406\u5458\u8D26\u53F7\u3002</div>\n                        </div>'
+                        }
+                    }
+                });
+            });
         }
     }]);
 
@@ -80,4 +94,4 @@ new Sub();
 
 /***/ })
 
-},[80]);
+},[79]);

@@ -18,7 +18,7 @@ const routeName = [
         name: 'password-find', // 忘记密码,去找回
     },
     {
-        name: 'password-reset', // 修改密码,去重置
+        name: 'password-modify', // 更改密码,去修改
     },
     {
         name: 'logout', // 退出

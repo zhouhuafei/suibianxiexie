@@ -85,6 +85,10 @@ class Super {
                                 title: '登陆',
                             },
                             {
+                                name: 'password-modify', // 更改密码,去修改
+                                title: '改密',
+                            },
+                            {
                                 name: 'logout',
                                 title: '退出',
                                 power: 'js-logout', // 功能型菜单
@@ -97,7 +101,7 @@ class Super {
                     v.items.forEach(function (v2) {
                         v2.isHighlight = false;
                         v2.power = v2.power || ''; // 功能型菜单
-                        v2.route = v2.power ? 'javascript:;' : routesConfig[v2.name].route; // 功能型菜单无跳转
+                        v2.route = (v2.power || !routesConfig[v2.name]) ? 'javascript:;' : routesConfig[v2.name].route; // 功能型菜单无跳转
                         if (v2.name === opts.routeName) {
                             v.isHighlight = true;
                             v2.isHighlight = true;

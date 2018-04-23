@@ -6,7 +6,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: px2rem(280);
+        width: px2rem(280*1.5);
         padding: px2rem(16);
         border-radius: px2rem(4);
         box-sizing: border-box;
@@ -31,7 +31,7 @@
     }
     &.g-dialog-confirm {
         $height: 40;
-        $width: 260;
+        $width: 280*1.5;
         background: #fff;
         .g-dialog-confirm-header {
             background: $g-highlight-color;

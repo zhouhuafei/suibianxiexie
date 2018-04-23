@@ -7,6 +7,7 @@ class Super {
         self.applications = require('zhf.applications'); // 应用方法集合
         self.axios = require('../api/axios'); // axios
         self.jsonp = require('../api/jsonp'); // jsonp
+        self.Dialog = require('../components-dom/g-dialog'); // 弹窗组件
         self.opts = self.tools.extend({
             lazyload: {
                 isInitRender: false,
@@ -85,7 +86,7 @@ class Super {
             const btn = document.querySelector('.js-logout');
             const api = self.dataInfo.api;
             const routes = self.dataInfo.routes;
-            const Dialog = require('../components-dom/g-dialog');
+            const Dialog = self.Dialog;
             btn && btn.addEventListener('click', function () {
                 new Dialog({
                     config: {

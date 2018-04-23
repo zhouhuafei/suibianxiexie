@@ -56,8 +56,8 @@ const routeName = [
         isValidateLogin: false,
     },
     {
-        name: 'password-reset', // 修改密码,去重置
-        title: '修改密码,正在重置',
+        name: 'password-modify', // 更改密码,去修改
+        title: '更改密码,正在修改',
         isValidateLogin: false,
     },
     {
