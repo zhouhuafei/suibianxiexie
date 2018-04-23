@@ -32,12 +32,6 @@ var Sub = function (_Super) {
             var superSelf = this;
             var dataInfo = superSelf.dataInfo;
             var routes = dataInfo.routes;
-
-            // 验证
-            (function () {
-                var ValidateInput = __webpack_require__(9);
-                new ValidateInput({ element: '.page-validate-form' });
-            })();
         }
     }]);
 

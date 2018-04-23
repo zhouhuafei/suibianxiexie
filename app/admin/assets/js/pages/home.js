@@ -6,12 +6,6 @@ class Sub extends Super {
         const superSelf = this;
         const dataInfo = superSelf.dataInfo;
         const routes = dataInfo.routes;
-
-        // 验证
-        (function () {
-            const ValidateInput = require('../components-dom/g-validate-form-hint');
-            new ValidateInput({element: '.page-validate-form'});
-        }());
     }
 }
 
