@@ -50,6 +50,7 @@ var Sub = function (_Super) {
 
             // 修改
             (function () {
+                var form = document.querySelector('#form');
                 var username = document.querySelector('#username');
                 var oldPassword = document.querySelector('#old-password');
                 var newPassword = document.querySelector('#new-password');
@@ -57,14 +58,18 @@ var Sub = function (_Super) {
                 var btn = document.querySelector('.js-button');
                 btn.addEventListener('click', function () {
                     axios({
-                        url: api.register.route,
-                        method: 'post',
+                        url: form.action,
+                        method: form.method,
+                        /*
                         data: {
                             username: username.value,
                             'old-password': oldPassword.value,
                             'new-password': newPassword.value,
-                            'repeat-password': repeatNewPassword.value
-                        }
+                            'repeat-password': repeatNewPassword.value,
+                        },
+                        */
+                        data: $(form).serialize()
+                        // data: new FormData(form),
                     }).then(function (json) {
                         if (json.status === 'success') {
                             window.location.href = routes['login'].route;

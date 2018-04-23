@@ -17,6 +17,7 @@ class Sub extends Super {
 
         // 修改
         (function () {
+            const form = document.querySelector('#form');
             const username = document.querySelector('#username');
             const oldPassword = document.querySelector('#old-password');
             const newPassword = document.querySelector('#new-password');
@@ -24,14 +25,18 @@ class Sub extends Super {
             const btn = document.querySelector('.js-button');
             btn.addEventListener('click', function () {
                 axios({
-                    url: api.register.route,
-                    method: 'post',
+                    url: form.action,
+                    method: form.method,
+                    /*
                     data: {
                         username: username.value,
                         'old-password': oldPassword.value,
                         'new-password': newPassword.value,
                         'repeat-password': repeatNewPassword.value,
                     },
+                    */
+                    data: $(form).serialize(),
+                    // data: new FormData(form),
                 }).then(function (json) {
                     if (json.status === 'success') {
                         window.location.href = routes['login'].route;
