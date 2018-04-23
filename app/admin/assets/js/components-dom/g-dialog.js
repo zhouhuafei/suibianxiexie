@@ -57,7 +57,6 @@ const Sub = tools.constructorInherit(Super, {
         },
         // 确认框
         confirm: {
-            // 点击确认是否关闭弹窗
             isShowHeader: true, // 是否显示头部
             headerContent: '提示:', // 头部内容
             isShowBody: true, // 是否显示主体

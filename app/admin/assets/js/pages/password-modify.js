@@ -64,7 +64,7 @@ class Sub extends Super {
                 config: {
                     type: 'confirm', // 默认是提示框
                     confirm: {
-                        content: `<div style="line-height: 24px;">
+                        content: `<div class="page-dialog-del-db">
                             <div>1. 链接你的mongodb数据库</div>
                             <div>2. 找到名为suibianxiexie数据库</div>
                             <div>3. 找到名为admins的集合</div>

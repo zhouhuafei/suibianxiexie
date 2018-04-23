@@ -1110,6 +1110,22 @@ img {
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%); }
 
+.g-dialog-jump-link {
+  line-height: 24px;
+  text-align: center; }
+  .g-dialog-jump-link .g-dialog-jump-link-title {
+    color: #0089ff; }
+  .g-dialog-jump-link .g-dialog-jump-link-body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+    .g-dialog-jump-link .g-dialog-jump-link-body .g-dialog-jump-link-body-seconds {
+      color: #0089ff; }
+    .g-dialog-jump-link .g-dialog-jump-link-body .g-dialog-jump-link-body-page-title {
+      color: #0089ff; }
+  .g-dialog-jump-link .g-dialog-jump-link-footer {
+    color: #0089ff; }
+
 /*加载更多的底部加载中*/
 .g-loading {
   width: inherit; }

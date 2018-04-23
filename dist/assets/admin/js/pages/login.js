@@ -1,6 +1,74 @@
-webpackJsonp([5],{
+webpackJsonp([2],{
 
-/***/ 77:
+/***/ 35:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var tools = __webpack_require__(1); // 工具方法集合
+var Dialog = __webpack_require__(14); // 弹窗
+
+// 专门为请求成功写的跳转链接弹窗
+
+var Super = function Super(opts) {
+    _classCallCheck(this, Super);
+
+    opts = tools.extend({
+        title: '操作成功',
+        seconds: 3,
+        pageTitle: '登录',
+        href: 'javascript:;'
+    }, opts);
+    var content = '<div class="g-dialog-jump-link">\n            <div class="g-dialog-jump-link-title">' + opts.title + '</div>\n            <div class="g-dialog-jump-link-body">\n                <div class="g-dialog-jump-link-body-seconds">' + opts.seconds + '</div>\n                <div>\u79D2\u540E\u81EA\u52A8\u8DF3\u8F6C\u5230</div>\n                <a href="' + opts.href + '" class="g-dialog-jump-link-body-page-title">' + opts.pageTitle + '\u9875</a>\n            </div>\n            <a href="' + opts.href + '" class="g-dialog-jump-link-footer">\u70B9\u51FB\u6B64\u5904\u624B\u52A8\u8DF3\u8F6C</a>\n        </div>';
+    var dialog = new Dialog({
+        config: {
+            type: 'confirm', // 默认是提示框
+            positionLocation: 'center', // 弹窗的定位位置
+            // 确认框
+            confirm: {
+                // 点击确认是否关闭弹窗
+                isShowHeader: false, // 是否显示头部
+                headerContent: '提示:', // 头部内容
+                isShowBody: true, // 是否显示主体
+                content: content, // 主体内容
+                isShowFooter: false, // 是否显示尾部
+                footerContent: '', // 尾部内容
+                isShowClose: false, // 是否显示关闭按钮
+                closeContent: '<div class="iconfont icon-close"></div>', // 关闭按钮的内容
+                isShowConfirm: false, // 是否显示确认按钮
+                confirmContent: '确认', // 确认按钮的内容
+                isShowCancel: false, // 是否显示取消按钮
+                cancelContent: '取消', // 取消按钮的内容
+                isCustom: false, // 是否自定义
+                isShowIcon: false, // 是否显示icon
+                icon: 'icon-warning', // icon的类型
+                isShowMask: true, // 是否显示遮罩
+                isHandHide: false // 是否手动隐藏(一般只用于点击确认时)
+            }
+        }
+    });
+    var seconds = dialog.moduleDom.querySelector('.g-dialog-jump-link-body-seconds');
+    tools.timeCountDown({
+        seconds: opts.seconds,
+        callback: {
+            run: function run(obj) {
+                seconds.innerHTML = obj.seconds;
+            },
+            over: function over() {
+                window.location.href = opts.href;
+            }
+        }
+    });
+};
+
+module.exports = Super;
+
+/***/ }),
+
+/***/ 78:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,7 +82,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(78);
+__webpack_require__(79);
 var Super = __webpack_require__(7);
 
 var Sub = function (_Super) {
@@ -56,8 +124,13 @@ var Sub = function (_Super) {
                         }
                     }).then(function (json) {
                         if (json.status === 'success') {
-                            // window.location.replace(routes['website-info'].route);
-                            window.location.href = routes['website-info'].route;
+                            var DialogJumpLink = __webpack_require__(35);
+                            new DialogJumpLink({
+                                title: json.message,
+                                seconds: 3,
+                                pageTitle: routes['website-info'].title,
+                                href: routes['website-info'].route
+                            });
                         }
                     });
                 });
@@ -72,11 +145,11 @@ new Sub();
 
 /***/ }),
 
-/***/ 78:
+/***/ 79:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
 
-},[77]);
+},[78]);
