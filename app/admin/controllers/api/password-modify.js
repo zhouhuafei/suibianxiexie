@@ -44,7 +44,7 @@ class Sub extends Super {
                 } else {
                     const admins = new Admins({
                         username: username,
-                        password: password,
+                        password: newPassword,
                     });
                     admins.save(function (error, result) {
                         // 数据库插入出现错误
