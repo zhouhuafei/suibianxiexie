@@ -1707,3 +1707,7 @@ img {
   .g-form .g-form-right {
     padding: 10px;
     border-left: 1px solid #e6e7ed; }
+
+.g-verify-code-register-canvas {
+  width: 160px;
+  height: 100%; }

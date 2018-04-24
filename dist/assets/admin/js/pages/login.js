@@ -43,17 +43,21 @@ var Sub = function (_Super) {
 
             // 登陆
             (function () {
+                var form = document.querySelector('#form');
                 var username = document.querySelector('#username');
                 var password = document.querySelector('#password');
                 var btn = document.querySelector('.js-button');
                 btn.addEventListener('click', function () {
                     axios({
-                        url: api.login.route,
-                        method: 'post',
+                        url: form.action,
+                        method: form.method,
+                        /*
                         data: {
                             username: username.value,
-                            password: password.value
-                        }
+                            password: password.value,
+                        },
+                        */
+                        data: $(form).serialize()
                     }).then(function (json) {
                         if (json.status === 'success') {
                             window.location.href = routes['website-info'].route;

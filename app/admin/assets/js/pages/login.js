@@ -17,17 +17,21 @@ class Sub extends Super {
 
         // 登陆
         (function () {
+            const form = document.querySelector('#form');
             const username = document.querySelector('#username');
             const password = document.querySelector('#password');
             const btn = document.querySelector('.js-button');
             btn.addEventListener('click', function () {
                 axios({
-                    url: api.login.route,
-                    method: 'post',
+                    url: form.action,
+                    method: form.method,
+                    /*
                     data: {
                         username: username.value,
                         password: password.value,
                     },
+                    */
+                    data: $(form).serialize(),
                 }).then(function (json) {
                     if (json.status === 'success') {
                         window.location.href = routes['website-info'].route;

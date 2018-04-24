@@ -17,19 +17,23 @@ class Sub extends Super {
 
         // 注册
         (function () {
+            const form = document.querySelector('#form');
             const username = document.querySelector('#username');
             const password = document.querySelector('#password');
             const repeatPassword = document.querySelector('#repeat-password');
             const btn = document.querySelector('.js-button');
             btn.addEventListener('click', function () {
                 axios({
-                    url: api.register.route,
-                    method: 'post',
+                    url: form.action,
+                    method: form.method,
+                    /*
                     data: {
                         username: username.value,
                         password: password.value,
                         'repeat-password': repeatPassword.value,
                     },
+                    */
+                    data: $(form).serialize(),
                 }).then(function (json) {
                     if (json.status === 'success') {
                         window.location.href = routes['login'].route;
