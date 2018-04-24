@@ -52,6 +52,7 @@ class Super {
             routes: routesConfig, // 路由的配置
             title: routesConfig[opts.routeName].title || '没有配置标题', // 标题(需要从配置里读取)
             routeName: opts.routeName, // 路由名称
+            query: req.query, // 参数
             isShowQrCode: routesConfig[opts.routeName].isShowQrCode, // 是否显示二维码
             isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
             // 当前视图的数据
