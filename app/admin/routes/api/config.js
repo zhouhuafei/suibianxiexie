@@ -19,6 +19,10 @@ const routeName = [
         isValidateLogin: false,
     },
     {
+        name: 'verify-code-canvas', // 图文验证码
+        isValidateLogin: false,
+    },
+    {
         name: 'logout', // 退出
     },
 ];

@@ -99,7 +99,7 @@ class Super {
                         confirm: function () {
                             self.axios({
                                 url: api.logout.route,
-                                method: 'get',
+                                method: 'post',
                             }).then(function (json) {
                                 if (json.status === 'success') {
                                     window.location.href = routes['login'].route;
