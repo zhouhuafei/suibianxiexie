@@ -3,6 +3,17 @@ webpackJsonp([0],[
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t};!function(t,e){"object"===( false?"undefined":_typeof(exports))&&"undefined"!=typeof module?module.exports=e(): true?!(__WEBPACK_AMD_DEFINE_FACTORY__ = (e),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):("object"!==Object.prototype.toString.call(window.zhf).slice(8,-1).toLowerCase()&&(window.zhf={}),window.zhf.tools=e())}(0,function(){function t(){}return t.prototype.typeOf=function(t){return Object.prototype.toString.call(t).slice(8,-1).toLowerCase()},t.prototype.extend=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},o=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],r=this,n=Object.prototype.toString.call(t).slice(8,-1).toLowerCase();return n===Object.prototype.toString.call(e).slice(8,-1).toLowerCase()&&o&&("object"===n||"array"===n)?Object.keys(e).forEach(function(n){var i=Object.prototype.toString.call(t[n]).slice(8,-1).toLowerCase();i===Object.prototype.toString.call(e[n]).slice(8,-1).toLowerCase()&&o&&("object"===i||"array"===i)?r.extend(t[n],e[n]):t[n]=e[n]}):t=e,t},t.prototype.objRemoveQuote=function(t){var e=this,o=Object.prototype.toString.call(t).slice(8,-1).toLowerCase();if("object"!==o&&"array"!==o)return t;var r={};return"array"===o&&(r=[]),Object.keys(t).forEach(function(o){r[o]=e.objRemoveQuote(t[o])}),r},t.prototype.constructorInherit=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},o=this;if("function"!==Object.prototype.toString.call(t).toLowerCase().slice(8,-1))return console.log("no find Super or Super error"),!1;function r(r){t.call(this,o.extend(o.objRemoveQuote(e),r))}return Object.keys(t.prototype).forEach(function(e){r.prototype[e]=t.prototype[e]}),r},t.prototype.arrayRemoveRepeat=function(t){var e=[];return(t="array"===this.typeOf(t)?t:[]).forEach(function(t){-1===e.indexOf(t)&&e.push(t)}),e},t.prototype.secondsToTime=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0;return{day:Math.floor(t/3600/24),hours:Math.floor(t/3600%24),minutes:Math.floor(t%3600/60),seconds:Math.floor(t%60),allSeconds:t}},t.prototype.timeCountDown=function(t){var e=this,o=e.extend({seconds:0,isToTime:!0,callback:{run:function(){},over:function(){}}},t),r=o.seconds,n=o.callback.run,i=o.callback.over;if(r>=0){o.isToTime?n(e.secondsToTime(r)):n({day:0,hours:0,minutes:0,seconds:r});var c=setInterval(function(){--r>=0?o.isToTime?n(e.secondsToTime(r)):n({day:0,hours:0,minutes:0,seconds:r}):(i(),clearInterval(c))},1e3)}r<0&&console.log("倒计时的秒数不能小于0")},t.prototype.strLimitLength=function(t,e){return t?(Number(t.length)>e&&(t=t.substring(0,e)),t):""},t.prototype.jsonToArray=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=[];return t instanceof Array?t.forEach(function(t,o){e.push({key:o,value:t})}):Object.keys(t).forEach(function(o){e.push({key:o,value:t[o]})}),e},t.prototype.fillZero=function(){for(var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0,e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:2,o=e-t.toString().length,r=[],n=0;n<o;n++)r.push("0");var i=r.join("");return t<Math.pow(10,e)?""+i+t:""+t},t.prototype.px2rem=function(){return(arguments.length>0&&void 0!==arguments[0]?arguments[0]:0)/(arguments.length>1&&void 0!==arguments[1]?arguments[1]:320)*10+"rem"},t.prototype.strToHump=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"-";if("string"===this.typeOf(t)){var o=t.split(e);o.forEach(function(t,e){0!==e&&o[e][0]&&(o[e]=o[e][0].toUpperCase()+o[e].substring(1))}),t=o.join("")}else console.log("参数错误,请输入字符串");return t},t.prototype.getRandom=function(t,e){return t="number"===this.typeOf(t)?t:0,e="number"===this.typeOf(e)?e:1,Math.round(Math.random()*(e-t)+t)},t.prototype.isEmpty=function(t){return""===t.toString().trim()},t.prototype.isZero=function(t){return"0"===t.toString().trim()},t.prototype.isPositiveInteger=function(t){return/^[1-9]\d*$/.test(t)},t.prototype.isKeepDecimal=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:2;return new RegExp("^\\d+\\.\\d{"+e+"}$").test(t)},t.prototype.isPhoneNum=function(t){return/^1[34578]\d{9}$/.test(t)},t.prototype.isEmail=function(t){return/^([0-9A-Za-z\-_.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g.test(t)},t.prototype.queryStringify=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=this,o=[];return Object.keys(t).forEach(function(r){var n=e.typeOf(t[r]);"object"===n||"array"===n?o.push(r+"="+JSON.stringify(t[r])):o.push(r+"="+t[r])}),o.join("&")},t.prototype.queryParse=function(t){var e={};return t&&t.split("&").forEach(function(t){var o=t.split("=");try{e[o[0]]=JSON.parse(o[1])}catch(t){e[o[0]]=o[1]}}),e},t.prototype.keepDecimal=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0,e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:2,o=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],r=t,n=Math.pow(10,e);if(0!==Number(e)&&(r=(Math.floor(parseFloat(t)*n)/n).toFixed(e)),o){var i=r.split(".");i[0]=i[0].replace(/(?!\b)(?=(\d{3})+$)/,","),r=i.join(".")}return r},t.prototype.dateFormat=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0,e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"year/month/day hours:minutes:seconds",o=this,r=new Date;"date"==={}.toString.call(t).slice(8,-1).toLowerCase()&&(t=t.getTime()),r.setTime(t);var n={year:r.getFullYear(),month:o.fillZero(r.getMonth()+1,2),day:o.fillZero(r.getDate(),2),hours:o.fillZero(r.getHours(),2),minutes:o.fillZero(r.getMinutes(),2),seconds:o.fillZero(r.getSeconds(),2),milliseconds:r.getMilliseconds(),week1:"星期"+["日","一","二","三","四","五","六"][r.getDay()],week2:"周"+["日","一","二","三","四","五","六"][r.getDay()],week3:"礼拜"+["日","一","二","三","四","五","六"][r.getDay()]};return Object.keys(n).forEach(function(t){e=e.replace(new RegExp(t),n[t])}),n.result=e,n},t.prototype.strEncode=function(t){if("string"!==Object.prototype.toString.call(t).slice(8,-1).toLowerCase())return"";var e=t.split("");return e.forEach(function(t,e,o){">"===t&&(o[e]="&#62;"),"<"===t&&(o[e]="&#60;")}),e.join("")},new t});
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/*!
  * The buffer module from node.js, for the browser.
  *
@@ -1796,25 +1807,14 @@ function isnan (val) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t};!function(t,e){"object"===( false?"undefined":_typeof(exports))&&"undefined"!=typeof module?module.exports=e(): true?!(__WEBPACK_AMD_DEFINE_FACTORY__ = (e),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):("object"!==Object.prototype.toString.call(window.zhf).slice(8,-1).toLowerCase()&&(window.zhf={}),window.zhf.tools=e())}(0,function(){function t(){}return t.prototype.typeOf=function(t){return Object.prototype.toString.call(t).slice(8,-1).toLowerCase()},t.prototype.extend=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},o=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],r=this,n=Object.prototype.toString.call(t).slice(8,-1).toLowerCase();return n===Object.prototype.toString.call(e).slice(8,-1).toLowerCase()&&o&&("object"===n||"array"===n)?Object.keys(e).forEach(function(n){var i=Object.prototype.toString.call(t[n]).slice(8,-1).toLowerCase();i===Object.prototype.toString.call(e[n]).slice(8,-1).toLowerCase()&&o&&("object"===i||"array"===i)?r.extend(t[n],e[n]):t[n]=e[n]}):t=e,t},t.prototype.objRemoveQuote=function(t){var e=this,o=Object.prototype.toString.call(t).slice(8,-1).toLowerCase();if("object"!==o&&"array"!==o)return t;var r={};return"array"===o&&(r=[]),Object.keys(t).forEach(function(o){r[o]=e.objRemoveQuote(t[o])}),r},t.prototype.constructorInherit=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},o=this;if("function"!==Object.prototype.toString.call(t).toLowerCase().slice(8,-1))return console.log("no find Super or Super error"),!1;function r(r){t.call(this,o.extend(o.objRemoveQuote(e),r))}return Object.keys(t.prototype).forEach(function(e){r.prototype[e]=t.prototype[e]}),r},t.prototype.arrayRemoveRepeat=function(t){var e=[];return(t="array"===this.typeOf(t)?t:[]).forEach(function(t){-1===e.indexOf(t)&&e.push(t)}),e},t.prototype.secondsToTime=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0;return{day:Math.floor(t/3600/24),hours:Math.floor(t/3600%24),minutes:Math.floor(t%3600/60),seconds:Math.floor(t%60),allSeconds:t}},t.prototype.timeCountDown=function(t){var e=this,o=e.extend({seconds:0,isToTime:!0,callback:{run:function(){},over:function(){}}},t),r=o.seconds,n=o.callback.run,i=o.callback.over;if(r>=0){o.isToTime?n(e.secondsToTime(r)):n({day:0,hours:0,minutes:0,seconds:r});var c=setInterval(function(){--r>=0?o.isToTime?n(e.secondsToTime(r)):n({day:0,hours:0,minutes:0,seconds:r}):(i(),clearInterval(c))},1e3)}r<0&&console.log("倒计时的秒数不能小于0")},t.prototype.strLimitLength=function(t,e){return t?(Number(t.length)>e&&(t=t.substring(0,e)),t):""},t.prototype.jsonToArray=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=[];return t instanceof Array?t.forEach(function(t,o){e.push({key:o,value:t})}):Object.keys(t).forEach(function(o){e.push({key:o,value:t[o]})}),e},t.prototype.fillZero=function(){for(var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0,e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:2,o=e-t.toString().length,r=[],n=0;n<o;n++)r.push("0");var i=r.join("");return t<Math.pow(10,e)?""+i+t:""+t},t.prototype.px2rem=function(){return(arguments.length>0&&void 0!==arguments[0]?arguments[0]:0)/(arguments.length>1&&void 0!==arguments[1]?arguments[1]:320)*10+"rem"},t.prototype.strToHump=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"-";if("string"===this.typeOf(t)){var o=t.split(e);o.forEach(function(t,e){0!==e&&o[e][0]&&(o[e]=o[e][0].toUpperCase()+o[e].substring(1))}),t=o.join("")}else console.log("参数错误,请输入字符串");return t},t.prototype.getRandom=function(t,e){return t="number"===this.typeOf(t)?t:0,e="number"===this.typeOf(e)?e:1,Math.round(Math.random()*(e-t)+t)},t.prototype.isEmpty=function(t){return""===t.toString().trim()},t.prototype.isZero=function(t){return"0"===t.toString().trim()},t.prototype.isPositiveInteger=function(t){return/^[1-9]\d*$/.test(t)},t.prototype.isKeepDecimal=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:2;return new RegExp("^\\d+\\.\\d{"+e+"}$").test(t)},t.prototype.isPhoneNum=function(t){return/^1[34578]\d{9}$/.test(t)},t.prototype.isEmail=function(t){return/^([0-9A-Za-z\-_.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g.test(t)},t.prototype.queryStringify=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=this,o=[];return Object.keys(t).forEach(function(r){var n=e.typeOf(t[r]);"object"===n||"array"===n?o.push(r+"="+JSON.stringify(t[r])):o.push(r+"="+t[r])}),o.join("&")},t.prototype.queryParse=function(t){var e={};return t&&t.split("&").forEach(function(t){var o=t.split("=");try{e[o[0]]=JSON.parse(o[1])}catch(t){e[o[0]]=o[1]}}),e},t.prototype.keepDecimal=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0,e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:2,o=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],r=t,n=Math.pow(10,e);if(0!==Number(e)&&(r=(Math.floor(parseFloat(t)*n)/n).toFixed(e)),o){var i=r.split(".");i[0]=i[0].replace(/(?!\b)(?=(\d{3})+$)/,","),r=i.join(".")}return r},t.prototype.dateFormat=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0,e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"year/month/day hours:minutes:seconds",o=this,r=new Date;"date"==={}.toString.call(t).slice(8,-1).toLowerCase()&&(t=t.getTime()),r.setTime(t);var n={year:r.getFullYear(),month:o.fillZero(r.getMonth()+1,2),day:o.fillZero(r.getDate(),2),hours:o.fillZero(r.getHours(),2),minutes:o.fillZero(r.getMinutes(),2),seconds:o.fillZero(r.getSeconds(),2),milliseconds:r.getMilliseconds(),week1:"星期"+["日","一","二","三","四","五","六"][r.getDay()],week2:"周"+["日","一","二","三","四","五","六"][r.getDay()],week3:"礼拜"+["日","一","二","三","四","五","六"][r.getDay()]};return Object.keys(n).forEach(function(t){e=e.replace(new RegExp(t),n[t])}),n.result=e,n},t.prototype.strEncode=function(t){if("string"!==Object.prototype.toString.call(t).slice(8,-1).toLowerCase())return"";var e=t.split("");return e.forEach(function(t,e,o){">"===t&&(o[e]="&#62;"),"<"===t&&(o[e]="&#60;")}),e.join("")},new t});
-
-/***/ }),
-/* 2 */,
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var extend=__webpack_require__(38);function Applications(){}Applications.prototype.setCookie=function(t,e,o,n,i,r){var s=new Date,a=s.getTime();s.setTime(a+24*o*60*60*1e3);var c=t+"="+e;o&&(c+="; expires="+s),n&&(c+="; domain="+n),i&&(c+="; path="+i),r&&(c+="; secure="+r),document.cookie=c},Applications.prototype.getCookie=function(t){var e="";return document.cookie.split("; ").forEach(function(o){var n=o.split("=");n[0]===t&&(e=n[1])}),e},Applications.prototype.removeCookie=function(t,e,o,n){this.setCookie(t,"",-1,e,o,n)},Applications.prototype.createElement=function(t){var e=t||{};e.elementName=e.elementName||"div",e.style=e.style||{},e.customAttribute=e.customAttribute||{},e.attribute=e.attribute||{};var o=document.createElement(e.elementName);return Object.keys(e.style).forEach(function(t){o.style[t]=e.style[t]}),Object.keys(e.customAttribute).forEach(function(t){o.setAttribute("data-"+t,e.customAttribute[t])}),Object.keys(e.attribute).forEach(function(t){o[t]=e.attribute[t]}),o},Applications.prototype.addMinusInput=function(t){if(t){var e=t.noActiveClass||"on",o=void 0===t.minNum?1:t.minNum,n=t.add,i=t.addCallback,r=t.minus,s=t.minusCallback,a=t.overMinCallback||function(){},c=t.input,l=t.blurCallback,u=parseInt(t.inventoryNum),p=function(){""===c.value.trim()&&(c.value=o)};n.onclick=function(){p();var t=parseInt(c.value);t++,c.value=t,t>=u&&(c.value=0===u?o:u,n.classList.add(e)),r.classList.remove(e),i&&i()},r.onclick=function(){p();var t=parseInt(c.value);t--,c.value=t,t<o&&(c.value=o,r.classList.add(e),a()),n.classList.remove(e),s&&s()},c.onfocus=function(){c.select()},c.onblur=function(){p();var t=parseInt(c.value);isNaN(t)&&(t=o),r.classList.remove(e),n.classList.remove(e),t>=u&&(c.value=u,n.classList.add(e)),t<=o&&(c.value=o,r.classList.add(e)),l&&l()}}else console.log("no find parameter")},Applications.prototype.getDomArray=function(t){var e=[];return t&&("string"===Object.prototype.toString.call(t).slice(8,-1).toLowerCase()&&(e=[].slice.call(document.querySelectorAll(t))),1===t.nodeType&&(e=[t]),"htmlcollection"!==Object.prototype.toString.call(t).slice(8,-1).toLowerCase()&&"nodelist"!==Object.prototype.toString.call(t).slice(8,-1).toLowerCase()||(e=[].slice.call(t))),e},Applications.prototype.getParent=function(t,e){if(!(t=this.getDomArray(t)[0]))return console.log("第一个参数有误"),null;if(!e)return t.parentNode;if("string"==typeof e)switch(t=t.parentNode,e.charAt(0)){case".":for(;t;){if(!t.classList)return console.log("no find class"),null;if(t.classList.contains(e.substring(1)))return t;t=t.parentNode}break;case"#":for(;t;){if(t===document)return console.log("no find id"),null;if(t.id===e.substring(1))return t;t=t.parentNode}break;default:for(;t;){if(t===document)return console.log("no find tagName"),null;if(t.tagName.toLowerCase()===e)return t;t=t.parentNode}}return null},Applications.prototype.htmlToDom=function(t){var e=document.createElement("div");return e.innerHTML=t,e.children[0]},Applications.prototype.imgUploadBase64=function(){function t(t){this.opts=t||{},this.opts.input?(this.opts.limitNum=this.opts.limitNum||"5",this.opts.changeCallback=this.opts.changeCallback||function(){console.log("no find changeCallback")},this.opts.base64Callback=this.opts.base64Callback||function(){console.log("no find base64Callback")},this.init()):console.log("no find input")}return t.prototype.init=function(){this.render(),this.power()},t.prototype.render=function(){},t.prototype.power=function(){this.events()},t.prototype.events=function(){this.eventsInputChange()},t.prototype.eventsInputChange=function(){var t=this,e=this.opts.limitNum;this.opts.input.addEventListener("change",function(){var o=0;t.imgData=[];for(var n=this.files,i=n.length,r=0;r<i;r++){var s=n[r];/image/gi.test(s.type)&&o<e&&(t.imgData.push(s),o++)}t.opts.changeCallback({imgData:t.imgData}),t.fileReadAsDataURL()})},t.prototype.fileReadAsDataURL=function(){var t=this;this.imgData.forEach(function(e,o){var n=new FileReader;n.readAsDataURL(e),n.addEventListener("load",function(){t.opts.base64Callback({base64:this.result,index:o})})})},t},Applications.prototype.isPc=function(){for(var t=navigator.userAgent,e=["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod"],o=!0,n=0;n<e.length;n++)if(t.indexOf(e[n])>0){o=!1;break}return o},Applications.prototype.isH5=function(){return!this.isPc()},Applications.prototype.isWeiXin=function(){return navigator.userAgent.toLowerCase().match(/MicroMessenger/gi)},Applications.prototype.isAndroid=function(){return window.navigator.appVersion.match(/android/gi)},Applications.prototype.isIos=function(){return window.navigator.appVersion.match(/iphone/gi)},Applications.prototype.offset=function(t){var e=0,o=0;for(t=this.getDomArray(t)[0];t;)e+=t.offsetTop,o+=t.offsetLeft,t=t.offsetParent;return{top:e,left:o}},Applications.prototype.scrollToY=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"0",e=document.documentElement.scrollTop||document.body.scrollTop,o=0,n=null;requestAnimationFrame(function i(){o=Math.ceil((e-t)/6),e-=o,window.scrollTo(0,e),n=requestAnimationFrame(i),e<=1*t&&cancelAnimationFrame(n)})},Applications.prototype.select=function(){var t=this;function e(e){this.opts=extend({items:null,callback:{click:function(){}}},e),this.itemsDom=t.getDomArray(this.opts.items),this.init()}return e.prototype.init=function(){this.power()},e.prototype.selectNothing=function(){this.itemsDom.forEach(function(t){t.checked=!1})},e.prototype.selectAll=function(){this.itemsDom.forEach(function(t){t.checked=!0})},e.prototype.selectReverse=function(){this.itemsDom.forEach(function(t){t.checked=!t.checked})},e.prototype.power=function(){var t=this;this.itemsDom.forEach(function(e){e.addEventListener("click",function(){var e=!0;t.itemsDom.forEach(function(t){!1===t.checked&&(e=!1)}),t.opts.callback.click({element:this,isCheckedAll:e})})})},e},Applications.prototype.whenScrollBottom=function(){function t(t){this.opts=extend({callback:{success:function(){},failure:function(){}},isBindScrollEvent:!0,isInitRender:!0,interval:80,errorHeight:0},t),this.timer=null,this.isLoadOver=!1,this.init()}return t.prototype.init=function(){this.opts.isInitRender&&this.render(),this.power()},t.prototype.render=function(){var t=this.opts.callback,e=document.body.scrollHeight;(document.documentElement.scrollTop||document.body.scrollTop)+document.documentElement.clientHeight>=e-this.opts.errorHeight&&!this.isLoadOver?(this.isLoadOver=!0,t.success(this)):t.failure()},t.prototype.dataLoadContinue=function(){this.isLoadOver=!1},t.prototype.scroll=function(){var t=this;clearTimeout(t.timer),t.timer=setTimeout(function(){t.render()},t.opts.interval)},t.prototype.power=function(){var t=this;t.opts.isBindScrollEvent&&window.addEventListener("scroll",function(){t.scroll()})},t},Applications.prototype.whetherDisableScroll=function(){return{stopPropagation:function(t){t.stopPropagation()},preventDefault:function(t){t.preventDefault()},returnFalse:function(t){t.preventDefault(),t.stopPropagation()},noScroll:function(){document.addEventListener("touchmove",this.preventDefault,!1),document.documentElement.style.overflow="hidden"},yesScroll:function(){document.removeEventListener("touchmove",this.preventDefault,!1),document.documentElement.style.overflow="auto"}}},module.exports=new Applications;
 
 /***/ }),
+/* 3 */,
 /* 4 */,
 /* 5 */
 /***/ (function(module, exports) {
@@ -1879,7 +1879,7 @@ if (typeof Object.create === 'function') {
 
 /*<replacement>*/
 
-var processNextTick = __webpack_require__(11);
+var processNextTick = __webpack_require__(12);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -1894,7 +1894,7 @@ var objectKeys = Object.keys || function (obj) {
 module.exports = Duplex;
 
 /*<replacement>*/
-var util = __webpack_require__(8);
+var util = __webpack_require__(10);
 util.inherits = __webpack_require__(5);
 /*</replacement>*/
 
@@ -1975,7 +1975,15 @@ function forEach(xs, f) {
 }
 
 /***/ }),
-/* 7 */
+/* 7 */,
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var getDomArray=__webpack_require__(21),DomPosition=__webpack_require__(41);function domAddPosition(o){var i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"relative",t=arguments.length>2&&void 0!==arguments[2]&&arguments[2],e=getDomArray(o)[0];e?t?e.style.position=i:new DomPosition(e).hasPosition()||(e.style.position=i):console.log("no find dom")}module.exports=domAddPosition;
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1992,11 +2000,11 @@ var Super = function () {
         _classCallCheck(this, Super);
 
         var self = this;
-        self.tools = __webpack_require__(1); // 工具方法集合
-        self.applications = __webpack_require__(3); // 应用方法集合
+        self.tools = __webpack_require__(0); // 工具方法集合
+        self.applications = __webpack_require__(2); // 应用方法集合
         self.axios = __webpack_require__(39); // axios
         self.jsonp = __webpack_require__(42); // jsonp
-        self.Dialog = __webpack_require__(14); // 弹窗组件
+        self.Dialog = __webpack_require__(15); // 弹窗组件
         self.opts = self.tools.extend({
             lazyload: {
                 isInitRender: false
@@ -2097,7 +2105,7 @@ var Super = function () {
                             confirm: function confirm() {
                                 self.axios({
                                     url: api.logout.route,
-                                    method: 'get'
+                                    method: 'post'
                                 }).then(function (json) {
                                     if (json.status === 'success') {
                                         window.location.href = routes['login'].route;
@@ -2186,7 +2194,7 @@ var Super = function () {
 module.exports = Super;
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright Joyent, Inc. and other Node contributors.
@@ -2297,18 +2305,17 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1).Buffer))
 
 /***/ }),
-/* 9 */,
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(2); // 应用方法集合
 
 // 底层构造函数
 function Super(json) {
@@ -2533,7 +2540,7 @@ Super.prototype.getModuleDomHtml = function () {
 module.exports = Super;
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2581,14 +2588,14 @@ function nextTick(fn, arg1, arg2, arg3) {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* eslint-disable node/no-deprecated-api */
-var buffer = __webpack_require__(0)
+var buffer = __webpack_require__(1)
 var Buffer = buffer.Buffer
 
 // alternative to using Object.keys for old browsers
@@ -2652,7 +2659,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2764,17 +2771,17 @@ exports.setTyped(TYPED_OK);
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(2); // 应用方法集合
+var Super = __webpack_require__(11); // 超类型(子类型继承的对象)
 var Mask = __webpack_require__(40); // 遮罩
-var domAddPosition = __webpack_require__(15);
+var domAddPosition = __webpack_require__(8);
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -2976,13 +2983,6 @@ Sub.prototype.power = function () {
 };
 
 module.exports = Sub;
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var getDomArray=__webpack_require__(21),DomPosition=__webpack_require__(41);function domAddPosition(o){var i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"relative",t=arguments.length>2&&void 0!==arguments[2]&&arguments[2],e=getDomArray(o)[0];e?t?e.style.position=i:new DomPosition(e).hasPosition()||(e.style.position=i):console.log("no find dom")}module.exports=domAddPosition;
 
 /***/ }),
 /* 16 */
@@ -3339,7 +3339,7 @@ exports.PassThrough = __webpack_require__(51);
 
 /*<replacement>*/
 
-var processNextTick = __webpack_require__(11);
+var processNextTick = __webpack_require__(12);
 /*</replacement>*/
 
 module.exports = Writable;
@@ -3376,7 +3376,7 @@ var Duplex;
 Writable.WritableState = WritableState;
 
 /*<replacement>*/
-var util = __webpack_require__(8);
+var util = __webpack_require__(10);
 util.inherits = __webpack_require__(5);
 /*</replacement>*/
 
@@ -3391,7 +3391,7 @@ var Stream = __webpack_require__(27);
 /*</replacement>*/
 
 /*<replacement>*/
-var Buffer = __webpack_require__(12).Buffer;
+var Buffer = __webpack_require__(13).Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -3974,7 +3974,7 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(23).setImmediate, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(23).setImmediate, __webpack_require__(4)))
 
 /***/ }),
 /* 19 */,
@@ -4165,7 +4165,7 @@ Stream.prototype.pipe = function(dest, options) {
 
 /*<replacement>*/
 
-var processNextTick = __webpack_require__(11);
+var processNextTick = __webpack_require__(12);
 /*</replacement>*/
 
 module.exports = Readable;
@@ -4195,7 +4195,7 @@ var Stream = __webpack_require__(27);
 // TODO(bmeurer): Change this back to const once hole checks are
 // properly optimized away early in Ignition+TurboFan.
 /*<replacement>*/
-var Buffer = __webpack_require__(12).Buffer;
+var Buffer = __webpack_require__(13).Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -4206,7 +4206,7 @@ function _isUint8Array(obj) {
 /*</replacement>*/
 
 /*<replacement>*/
-var util = __webpack_require__(8);
+var util = __webpack_require__(10);
 util.inherits = __webpack_require__(5);
 /*</replacement>*/
 
@@ -5147,7 +5147,7 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(3)))
 
 /***/ }),
 /* 27 */
@@ -5165,7 +5165,7 @@ module.exports = __webpack_require__(16).EventEmitter;
 
 /*<replacement>*/
 
-var processNextTick = __webpack_require__(11);
+var processNextTick = __webpack_require__(12);
 /*</replacement>*/
 
 // undocumented cb() API, needed for core, not for public API
@@ -5241,7 +5241,7 @@ module.exports = {
 "use strict";
 
 
-var Buffer = __webpack_require__(12).Buffer;
+var Buffer = __webpack_require__(13).Buffer;
 
 var isEncoding = Buffer.isEncoding || function (encoding) {
   encoding = '' + encoding;
@@ -5587,7 +5587,7 @@ module.exports = Transform;
 var Duplex = __webpack_require__(6);
 
 /*<replacement>*/
-var util = __webpack_require__(8);
+var util = __webpack_require__(10);
 util.inherits = __webpack_require__(5);
 /*</replacement>*/
 
@@ -6821,7 +6821,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(3)))
 
 /***/ }),
 /* 33 */
@@ -6970,8 +6970,8 @@ function extend(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{
 
 
 var axios = __webpack_require__(20);
-var tools = __webpack_require__(1);
-var Dialog = __webpack_require__(14);
+var tools = __webpack_require__(0);
+var Dialog = __webpack_require__(15);
 
 module.exports = function (json) {
     json.method = json.method || json.type || 'get';
@@ -7030,10 +7030,10 @@ module.exports = function (json) {
 "use strict";
 
 
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
-var domAddPosition = __webpack_require__(15);
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(2); // 应用方法集合
+var Super = __webpack_require__(11); // 超类型(子类型继承的对象)
+var domAddPosition = __webpack_require__(8);
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -7098,8 +7098,8 @@ var _createClass=function(){function t(t,i){for(var o=0;o<i.length;o++){var n=i[
 "use strict";
 
 
-var tools = __webpack_require__(1);
-var Dialog = __webpack_require__(14);
+var tools = __webpack_require__(0);
+var Dialog = __webpack_require__(15);
 module.exports = function (json) {
     var opts = tools.extend({
         url: '',
@@ -7178,8 +7178,8 @@ module.exports = function (json) {
 "use strict";
 
 
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(2); // 应用方法集合
 
 // 延迟加载
 function LazyLoad(json) {
@@ -7379,7 +7379,7 @@ module.exports = {
     svgObject: svg_object
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(0).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(1).Buffer))
 
 /***/ }),
 /* 46 */
@@ -7609,7 +7609,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Buffer = __webpack_require__(12).Buffer;
+var Buffer = __webpack_require__(13).Buffer;
 /*</replacement>*/
 
 function copyBuffer(src, target, offset) {
@@ -7789,7 +7789,7 @@ module.exports = PassThrough;
 var Transform = __webpack_require__(30);
 
 /*<replacement>*/
-var util = __webpack_require__(8);
+var util = __webpack_require__(10);
 util.inherits = __webpack_require__(5);
 /*</replacement>*/
 
@@ -8019,7 +8019,7 @@ module.exports = {
     fillTemplate: fillTemplate,
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1).Buffer))
 
 /***/ }),
 /* 57 */
@@ -8202,7 +8202,7 @@ function encode(data, parse_url) {
 // {{{1 export functions
 module.exports = encode;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1).Buffer))
 
 /***/ }),
 /* 58 */
@@ -8287,7 +8287,7 @@ module.exports = function calculate_ec(msg, ec_len) {
     return new Buffer(msg);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1).Buffer))
 
 /***/ }),
 /* 59 */
@@ -8647,7 +8647,7 @@ module.exports = {
     calculatePenalty: calculatePenalty,
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1).Buffer))
 
 /***/ }),
 /* 60 */
@@ -8719,7 +8719,7 @@ module.exports = {
     png: png
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1).Buffer))
 
 /***/ }),
 /* 61 */
@@ -8728,12 +8728,12 @@ module.exports = {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var Buffer = __webpack_require__(0).Buffer;
+var Buffer = __webpack_require__(1).Buffer;
 var Transform = __webpack_require__(25).Transform;
 var binding = __webpack_require__(62);
 var util = __webpack_require__(32);
 var assert = __webpack_require__(31).ok;
-var kMaxLength = __webpack_require__(0).kMaxLength;
+var kMaxLength = __webpack_require__(1).kMaxLength;
 var kRangeErrorMessage = 'Cannot create final Buffer. It would be larger ' + 'than 0x' + kMaxLength.toString(16) + ' bytes';
 
 // zlib doesn't provide these, so kludge them in following the same
@@ -9335,7 +9335,7 @@ util.inherits(Gunzip, Zlib);
 util.inherits(DeflateRaw, Zlib);
 util.inherits(InflateRaw, Zlib);
 util.inherits(Unzip, Zlib);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 62 */
@@ -9751,7 +9751,7 @@ Zlib.prototype._reset = function () {
 };
 
 exports.Zlib = Zlib;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0).Buffer, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1).Buffer, __webpack_require__(3)))
 
 /***/ }),
 /* 63 */
@@ -9844,7 +9844,7 @@ module.exports = ZStream;
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils   = __webpack_require__(13);
+var utils   = __webpack_require__(14);
 var trees   = __webpack_require__(66);
 var adler32 = __webpack_require__(33);
 var crc32   = __webpack_require__(34);
@@ -11725,7 +11725,7 @@ exports.deflateTune = deflateTune;
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils = __webpack_require__(13);
+var utils = __webpack_require__(14);
 
 /* Public constants ==========================================================*/
 /* ===========================================================================*/
@@ -12991,7 +12991,7 @@ module.exports = {
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils         = __webpack_require__(13);
+var utils         = __webpack_require__(14);
 var adler32       = __webpack_require__(33);
 var crc32         = __webpack_require__(34);
 var inflate_fast  = __webpack_require__(69);
@@ -14906,7 +14906,7 @@ module.exports = function inflate_fast(strm, start) {
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils = __webpack_require__(13);
+var utils = __webpack_require__(14);
 
 var MAXBITS = 15;
 var ENOUGH_LENS = 852;
@@ -15360,7 +15360,7 @@ module.exports = crc32;
     
 })();
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(0).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(1).Buffer))
 
 /***/ }),
 /* 73 */
@@ -15418,7 +15418,7 @@ function crc32(/* arguments */) {
 
 module.exports = crc32;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1).Buffer))
 
 /***/ }),
 /* 74 */
@@ -15694,9 +15694,9 @@ module.exports = {
 "use strict";
 
 
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(2); // 应用方法集合
+var Super = __webpack_require__(11); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -15749,9 +15749,9 @@ module.exports = Sub;
 "use strict";
 
 
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(2); // 应用方法集合
+var Super = __webpack_require__(11); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
