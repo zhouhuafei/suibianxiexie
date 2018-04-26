@@ -8,15 +8,16 @@ class Sub extends Super {
         const opts = self.opts;
         const req = opts.req;
         const data = req.data;
-        const username = data.username; // 用户名
+        const oldUsername = data['old-username']; // 旧用户名
+        const newUsername = data['new-username']; // 新用户名
         const oldPassword = data['old-password']; // 旧密码
         const newPassword = data['new-password']; // 新密码
         const repeatNewPassword = data['repeat-new-password']; // 新密码二次确认
         const session = req.session;
-        if (tools.isEmpty(username)) {
+        if (tools.isEmpty(oldUsername)) {
             self.render({
                 message: '账号不能为空',
-                result: {data: [{username: username}]},
+                result: {data: [{'old-username': oldUsername}]},
             });
         } else if (tools.isEmpty(oldPassword) || tools.isEmpty(newPassword) || tools.isEmpty(repeatNewPassword)) {
             self.render({
@@ -43,7 +44,7 @@ class Sub extends Super {
         } else {
             const Admins = require('../../models/mongoose/admins');
             // 如果管理员账号存在并且老密码正确则可以修改密码待续...
-            Admins.find({username: username}, function (error, result) {
+            Admins.find({username: oldUsername}, function (error, result) {
                 // 数据库查询出现错误
                 if (error) {
                     self.render({
@@ -78,7 +79,12 @@ class Sub extends Super {
                                                 failureInfo: error,
                                             });
                                         } else {
-                                            Admins.update({_id: adminInfo._id}, {$set: {password: hash}}, function (error) {
+                                            Admins.update({_id: adminInfo._id}, {
+                                                $set: {
+                                                    username: newUsername || oldUsername,
+                                                    password: hash,
+                                                },
+                                            }, function (error) {
                                                 // 数据库更新出现错误
                                                 if (error) {
                                                     self.render({

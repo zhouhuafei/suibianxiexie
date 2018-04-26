@@ -47,6 +47,10 @@
         & ~ .g-input-input {
             border-left: px2px(1) solid $g-border-color-default;
         }
+        &.g-input-hint-off {
+            color: $g-font-color-disabled;
+            opacity: 0;
+        }
     }
     .g-input-input {
         min-width: px2rem(50);
