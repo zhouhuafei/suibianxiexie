@@ -1,5 +1,4 @@
 const Super = require('../api-super/super'); // 超类型
-const Canvas = require('canvas');
 const fnVerifyCodeCanvas = require('../../../../utils/verify-code-canvas'); // 验证码,图文随机
 
 class Sub extends Super {
