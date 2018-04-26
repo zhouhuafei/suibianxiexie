@@ -72,7 +72,7 @@
     border-left: none;
     border-right: none;
     display: flex;
-    .g-form-left {
+    .g-form-left { // g-form-text
         padding: 10px;
         min-width: px2px(120);
         text-align: right;
@@ -80,13 +80,19 @@
         align-items: center;
         justify-content: flex-end;
     }
-    .g-form-right {
+    .g-form-right { // g-form-pack
         padding: 10px;
         border-left: 1px solid $g-border-color-default;
     }
 }
 
+// g-form改版 g-form g-form-text g-form-pack g-form-icon g-form-hint
+
 .g-verify-code-canvas {
     width: px2rem(160);
     height: 100%;
+    img {
+        width: 100%;
+        height: 100%;
+    }
 }

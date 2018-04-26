@@ -19,7 +19,7 @@ const routeName = [
         isValidateLogin: false,
     },
     {
-        name: 'verify-code-canvas', // 图文验证码
+        name: 'verify-code-canvas', // 验证码,图文随机
         isValidateLogin: false,
     },
     {

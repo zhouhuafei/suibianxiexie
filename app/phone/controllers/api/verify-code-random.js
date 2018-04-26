@@ -43,7 +43,7 @@ class Sub extends Super {
                         failureInfo: error,
                     });
                 } else {
-                    self.opts.app.redisClient.set(`suibianxiexie-verify-code-register-random-${username}`, verifyCode, 'ex', expirationDate * 60);
+                    self.opts.app.redisClient.set(`suibianxiexie-verify-code-random-${username}`, verifyCode, 'ex', expirationDate * 60);
                     self.render({
                         status: 'success',
                         message: '验证码发送成功',

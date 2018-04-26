@@ -33,7 +33,7 @@
             /*
             // 接口跨域测试
             this.$axios({
-                url: '/phone/api/verify-code-register-random/', // 代理进行了跨域
+                url: '/phone/api/verify-code-random/', // 代理进行了跨域
                 data: {
                     username: '1123486116@qq.com',
                 },
