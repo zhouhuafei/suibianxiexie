@@ -71,6 +71,6 @@ assets/
 * 如果服务器用到的npm包有所更改，请先单独把package.json文件更新到服务器。然后在服务器上把最新的npm包下载完成之后，再更新服务器上的业务代码。
 
 # 坑点
-* 安装canvas(node-canvas)时，linux出现报错，请参阅 https://github.com/Automattic/node-canvas
-* 安装canvas(node-canvas)时，windows出现报错，请参阅 https://github.com/felixrieseberg/windows-build-tools
+* 安装canvas(node-canvas)时，出现报错。请参阅 https://github.com/Automattic/node-canvas
+    - 参阅之后，执行了操作，但是windows下依然报错。请使用 https://github.com/felixrieseberg/windows-build-tools
 
