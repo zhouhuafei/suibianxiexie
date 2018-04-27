@@ -1,5 +1,6 @@
 // 接口数据
 const tools = require('zhf.tools'); // 工具方法集合
+const Admins = require(`../../models/mongoose/admins`);
 
 class Super {
     constructor(json) {
@@ -54,11 +55,6 @@ class Super {
     // (初)初始化数据
     init() {
         const self = this;
-        // 是否验证登录
-        const isContinue = self.isValidateLogin();
-        if (!isContinue) {
-            return;
-        }
         const opts = self.opts;
         const req = opts.req;
         const method = req.method.toLowerCase(); // 请求方式
@@ -75,38 +71,49 @@ class Super {
         } else {
             req.data = req.body;
         }
-        if (method === 'post') {
-            this.postData(); // 获取数据(增)
-        }
-        if (method === 'delete') {
-            this.deleteData(); // 删除数据(删)
-        }
-        if (method === 'put') {
-            this.putData(); // 修改数据(改)
-        }
-        if (method === 'get') {
-            this.getData(); // 查找数据(查)
-        }
-    }
 
-    // (验)是否验证登录
-    isValidateLogin() {
-        const self = this;
-        const opts = self.opts;
-        const req = opts.req;
-        let isContinue = true;
-        // 验证
-        if (opts.isValidateLogin) {
+        // 是否验证登录(请不要挪动顺序，保证位置在处理完的req.data之后，否则render时，req.data会是undefined，导致出现报错。)
+        const session = req.session;
+        const adminInfo = session.adminInfo;
+        if (opts.isValidateLogin) { // 验证登录
             // 未登录，管理端的接口都应该登陆后才有权调用。
-            if (req.session.adminInfo === undefined) {
-                isContinue = false;
-                self.render({
-                    message: '未登录',
-                    failureCode: 401,
+            if (adminInfo === undefined) { // 未登录
+                self.render({message: '未登录', failureCode: 401});
+            } else {
+                Admins.findOne({username: adminInfo.username}, function (error, result) {
+                    if (error) { // 数据库查询出现错误
+                        self.render({message: '验证登录时,数据库查询出现错误'});
+                    }
+                    if (result) {
+                        if (result.login.stamp === adminInfo.login.stamp) { // 登录了
+                            fnCrud();
+                        } else {
+                            self.render({message: '未登录', failureCode: 401});
+                        }
+                    } else { // 账号不存在
+                        self.render({message: '验证登录时,发现管理员账号不存在'});
+                    }
                 });
             }
+            return;
         }
-        return isContinue;
+
+        fnCrud();
+
+        function fnCrud() {
+            if (method === 'post') {
+                self.postData(); // 获取数据(增)
+            }
+            if (method === 'delete') {
+                self.deleteData(); // 删除数据(删)
+            }
+            if (method === 'put') {
+                self.putData(); // 修改数据(改)
+            }
+            if (method === 'get') {
+                self.getData(); // 查找数据(查)
+            }
+        }
     }
 
     // (增)(盖)获取数据(这个方法需要在子类型里被覆盖掉)
@@ -141,7 +148,7 @@ class Super {
             const opts = self.opts;
             const req = opts.req;
             const res = opts.res;
-            const data = req.data || {}; // 没登录走这里会报错，用{}兼容一下
+            const data = req.data;
             const isJsonp = data.isJsonp === 'true'; // 是否是jsonp(jsonp only supports the get method)
             self.dataInfo = self.tools.extend(self.dataInfo, json);
             self.opts.callback(self);
