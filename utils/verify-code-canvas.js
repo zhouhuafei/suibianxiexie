@@ -32,7 +32,7 @@ module.exports = function () {
     ctx.restore();
 
     return {
-        text: randomNum,
+        text: `${randomNum}`,
         base64: canvas.toDataURL(),
         width: width,
         height: height,
