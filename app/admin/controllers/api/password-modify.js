@@ -55,15 +55,15 @@ class Sub extends Super {
         } else {
             const Admins = require('../../models/mongoose/admins');
             // 如果管理员账号存在并且老密码正确则可以修改密码
-            Admins.find({username: oldUsername}, function (error, result) {
+            Admins.findOne({username: oldUsername}, function (error, result) {
                 // 数据库查询出现错误
                 if (error) {
                     self.render({
                         message: '数据库查询出现错误',
                     });
                 }
-                if (result.length) {
-                    const adminInfo = result[0];
+                if (result) {
+                    const adminInfo = result;
                     adminInfo.comparePassword(oldPassword, function (error, isMatch) {
                         if (error) {
                             self.render({
@@ -100,7 +100,7 @@ class Sub extends Super {
                                             });
                                             return;
                                         }
-                                        delete session.adminInfo; // 不加这句话，改了密码，不会掉线，加了这句话也只是当前用户掉线，其他人不掉线。
+                                        delete session.adminInfo; // 不加这句话，改了密码，不会掉线，加了这句话也只是当前用户掉线，其他人不掉线，集体掉线需另做处理。
                                         self.render({
                                             status: 'success',
                                             message: '已成功修改密码',

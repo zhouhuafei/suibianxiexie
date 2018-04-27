@@ -36,15 +36,15 @@ class Sub extends Super {
             });
         } else {
             const Admins = require('../../models/mongoose/admins');
-            Admins.find({username: username}, function (error, result) {
+            Admins.findOne({username: username}, function (error, result) {
                 // 数据库查询出现错误
                 if (error) {
                     self.render({
                         message: '数据库查询出现错误',
                     });
                 }
-                if (result.length) {
-                    const adminInfo = result[0];
+                if (result) {
+                    const adminInfo = result;
                     adminInfo.comparePassword(password, function (error, isMatch) {
                         if (error) {
                             self.render({
@@ -55,10 +55,11 @@ class Sub extends Super {
                         if (isMatch) {
                             session.adminInfo = adminInfo;
                             if (appConfig.isEnabledSingleDeviceLogin) { // 如果开启了单设备登录
+                                const stamp = `${Math.random()}`.split('.')[1];
                                 Admins.update({_id: adminInfo._id}, {
                                     $set: {
                                         login: {
-                                            stamp: `${Math.random()}`.split('.')[1],
+                                            stamp: stamp,
                                         },
                                     },
                                 }, function (error) {
@@ -70,6 +71,7 @@ class Sub extends Super {
                                         });
                                         return;
                                     }
+                                    session.adminInfo.login.stamp = stamp; // 登录成功更改登录戳
                                     self.render({
                                         status: 'success',
                                         message: '登录成功',

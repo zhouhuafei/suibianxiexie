@@ -41,14 +41,14 @@ class Sub extends Super {
         } else {
             const Admins = require('../../models/mongoose/admins');
             // 如果管理员账号存在则不可以注册
-            Admins.find({}, function (error, result) {
+            Admins.findOne({}, function (error, result) {
                 // 数据库查询出现错误
                 if (error) {
                     self.render({
                         message: '数据库查询出现错误',
                     });
                 }
-                if (result.length) {
+                if (result) {
                     self.render({
                         message: '管理员账号已经存在',
                     });
