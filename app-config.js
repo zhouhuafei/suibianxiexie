@@ -9,7 +9,7 @@ class Config {
         this.staticCacheDirectory = `${__dirname}/dist/`; // 静态缓存资源目录
         this.staticNoCacheDirectory = `${__dirname}/dist-no-delete-assets-no-cache/`; // 静态非缓存资源目录
         this.utilsDirectory = `${__dirname}/utils/`; // utils目录
-        this.isEnabledSingleDeviceLogin = false; // 是否启用单设备登录
+        this.isEnabledSingleDeviceLogin = true; // 是否启用单设备登录
         // mongodb数据库
         this.mongodb = {
             development: {

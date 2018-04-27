@@ -55,7 +55,29 @@ class Sub extends Super {
                         if (isMatch) {
                             session.adminInfo = adminInfo;
                             if (appConfig.isEnabledSingleDeviceLogin) { // 如果开启了单设备登录
-
+                                Admins.update({_id: adminInfo._id}, {
+                                    $set: {
+                                        login: {
+                                            stamp: `${Math.random()}`.split('.')[1],
+                                        },
+                                    },
+                                }, function (error) {
+                                    // 数据库更新出现错误
+                                    if (error) {
+                                        self.render({
+                                            message: '更新登录戳出现错误',
+                                            failureInfo: error,
+                                        });
+                                        return;
+                                    }
+                                    self.render({
+                                        status: 'success',
+                                        message: '登录成功',
+                                        result: {
+                                            data: [{username: adminInfo.username}],
+                                        },
+                                    });
+                                });
                             } else {
                                 self.render({
                                     status: 'success',
