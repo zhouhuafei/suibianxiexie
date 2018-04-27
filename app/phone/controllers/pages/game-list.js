@@ -1,7 +1,7 @@
 const Super = require('../pages-super/super'); // 超类型
 
 class Sub extends Super {
-    // 处理数据(覆盖超类型)
+    // (盖)处理数据(覆盖超类型)
     handleData() {
         const self = this;
         const tools = self.tools; // 工具方法集合

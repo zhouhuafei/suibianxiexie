@@ -15,6 +15,10 @@ const routeName = [
         isValidateLogin: false,
     },
     {
+        name: 'is-login', // 是否登陆了
+        isValidateLogin: false,
+    },
+    {
         name: 'login', // 登陆
         isValidateLogin: false,
     },

@@ -54,7 +54,7 @@ class Sub extends Super {
             });
         } else {
             const Admins = require('../../models/mongoose/admins');
-            // 如果管理员账号存在并且老密码正确则可以修改密码待续...
+            // 如果管理员账号存在并且老密码正确则可以修改密码
             Admins.find({username: oldUsername}, function (error, result) {
                 // 数据库查询出现错误
                 if (error) {
@@ -94,6 +94,9 @@ class Sub extends Super {
                                                 $set: {
                                                     username: newUsername || oldUsername,
                                                     password: hash,
+                                                    login: {
+                                                        stamp: `${Math.random()}`.split('.')[1],
+                                                    },
                                                 },
                                             }, function (error) {
                                                 // 数据库更新出现错误
