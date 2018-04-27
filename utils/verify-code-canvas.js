@@ -18,14 +18,14 @@ module.exports = function () {
     ctx.font = `${fontSize}px Impact`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillStyle = 'rgba(0, 137, 255, 1)';
+    ctx.fillStyle = `rgba(${fnRandomNum(0, 255)}, ${fnRandomNum(0, 255)}, ${fnRandomNum(0, 255)}, ${fnRandomNum(4, 10) / 10})`;
     ctx.fillText(randomNum, centerX, centerY);
     ctx.closePath();
     ctx.restore();
     // 划线
     ctx.save();
     ctx.beginPath();
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
+    ctx.fillStyle = `rgba(${fnRandomNum(0, 255)}, ${fnRandomNum(0, 255)}, ${fnRandomNum(0, 255)}, ${fnRandomNum(4, 10) / 10})`;
     ctx.fillRect(0, centerY - lineH - skew, width, lineH);
     ctx.fillRect(0, centerY + skew, width, lineH);
     ctx.closePath();
