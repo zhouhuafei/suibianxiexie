@@ -6,6 +6,8 @@ class Sub extends Super {
         const self = this;
         const tools = self.tools; // 工具方法集合
         const opts = self.opts;
+        const app = opts.app;
+        const appConfig = app.appConfig;
         const req = opts.req;
         const session = req.session;
         const data = req.data;
@@ -52,13 +54,17 @@ class Sub extends Super {
                         }
                         if (isMatch) {
                             session.adminInfo = adminInfo;
-                            self.render({
-                                status: 'success',
-                                message: '登录成功',
-                                result: {
-                                    data: [{username: adminInfo.username}],
-                                },
-                            });
+                            if (appConfig.isEnabledSingleDeviceLogin) { // 如果开启了单设备登录
+
+                            } else {
+                                self.render({
+                                    status: 'success',
+                                    message: '登录成功',
+                                    result: {
+                                        data: [{username: adminInfo.username}],
+                                    },
+                                });
+                            }
                         } else {
                             self.render({
                                 message: '用户名和密码不匹配',

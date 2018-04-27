@@ -1,3 +1,11 @@
+// express应用
+const express = require('express'); // express
+const app = express(); // app
+
+// app的配置
+const appConfig = require('./app-config');
+app.appConfig = appConfig;
+
 // 环境以及配置
 const env = process.env.NODE_ENV; // 开发环境 or 生产环境
 const isProduction = env !== 'development'; // 是否是生产环境
@@ -6,10 +14,6 @@ const configRedis = configDb.redis[env]; // redis的配置
 const ms = require('ms'); // 转成毫秒数
 const getClientIp = require('zhf.get-client-ip'); // 获取客户端的ip
 const blacklistIp = require('./blacklist/ip'); // 黑名单 - ip
-
-// express应用
-const express = require('express'); // express
-const app = express(); // app
 
 // 屏蔽ip
 app.use(function (req, res, next) {
