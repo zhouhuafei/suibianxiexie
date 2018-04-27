@@ -113,6 +113,23 @@ class Super {
 
         // input图标相关的操作
         (function () {
+            // 刷新验证码
+            const refreshVerifyCode = function () {
+                const img = this;
+                self.axios({
+                    url: self.dataInfo.api['verify-code-canvas'].route,
+                }).then(function (json) {
+                    if (json.status === 'success') {
+                        img.src = json.result.data[0].base64;
+                    }
+                });
+            };
+            const verifyCode = document.querySelectorAll('.g-verify-code-canvas');
+            verifyCode.forEach(function (v) {
+                v.querySelector('img').addEventListener('click', refreshVerifyCode);
+            });
+
+            // 刷新输入框
             document.querySelectorAll('.g-input-icon.iconfont.icon-clear').forEach(function (v) {
                 v.addEventListener('click', function () {
                     const parent = this.parentNode;
@@ -120,8 +137,14 @@ class Super {
                     if (input) {
                         input.value = '';
                     }
+                    const verifyCode = parent.querySelector('.g-verify-code-canvas img');
+                    if (verifyCode) {
+                        refreshVerifyCode.call(verifyCode);
+                    }
                 });
             });
+
+            // 密码是否可视
             document.querySelectorAll('.g-input-icon.iconfont.icon-eye').forEach(function (v) {
                 v.addEventListener('click', function () {
                     const parent = this.parentNode;
