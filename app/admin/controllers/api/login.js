@@ -4,14 +4,14 @@ class Sub extends Super {
     // (增)(盖)获取数据(覆盖超类型)
     postData() {
         const self = this;
-        const tools = self.tools;// 工具方法集合
+        const tools = self.tools; // 工具方法集合
         const opts = self.opts;
         const req = opts.req;
-        const data = req.data;
-        const username = data.username;// 用户名
-        const password = data.password;// 密码
-        const verifyCode = data.verifyCode;// 验证码
         const session = req.session;
+        const data = req.data;
+        const username = data.username; // 用户名
+        const password = data.password; // 密码
+        const verifyCodeCanvas = data['verify-code-canvas']; // 验证码,图文随机
         if (tools.isEmpty(username)) {
             self.render({
                 message: '账号不能为空',
@@ -21,6 +21,11 @@ class Sub extends Super {
             self.render({
                 message: '密码不能为空',
                 result: {data: [{password: password}]},
+            });
+        } else if (tools.isEmpty(verifyCodeCanvas) || verifyCodeCanvas !== session.adminVerifyCodeCanvas) {
+            self.render({
+                message: '验证码错误',
+                result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
             });
         } else {
             const Admins = require('../../models/mongoose/admins');

@@ -7,10 +7,12 @@ class Sub extends Super {
         const tools = self.tools; // 工具方法集合
         const opts = self.opts;
         const req = opts.req;
+        const session = req.session;
         const data = req.data;
         const username = data.username; // 用户名
         const password = data.password; // 密码
         const repeatPassword = data['repeat-password']; // 密码二次确认
+        const verifyCodeCanvas = data['verify-code-canvas']; // 验证码,图文随机
         if (tools.isEmpty(username)) {
             self.render({
                 message: '账号不能为空',
@@ -25,6 +27,11 @@ class Sub extends Super {
             self.render({
                 message: '两次输入的密码不一致',
                 result: {data: [{password: password, 'repeat-password': repeatPassword}]},
+            });
+        } else if (tools.isEmpty(verifyCodeCanvas) || verifyCodeCanvas !== session.adminVerifyCodeCanvas) {
+            self.render({
+                message: '验证码错误',
+                result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
             });
         } else {
             const Admins = require('../../models/mongoose/admins');

@@ -7,13 +7,14 @@ class Sub extends Super {
         const tools = self.tools; // 工具方法集合
         const opts = self.opts;
         const req = opts.req;
+        const session = req.session;
         const data = req.data;
         const oldUsername = data['old-username']; // 旧用户名
         const newUsername = data['new-username']; // 新用户名
         const oldPassword = data['old-password']; // 旧密码
         const newPassword = data['new-password']; // 新密码
         const repeatNewPassword = data['repeat-new-password']; // 新密码二次确认
-        const session = req.session;
+        const verifyCodeCanvas = data['verify-code-canvas']; // 验证码,图文随机
         if (tools.isEmpty(oldUsername)) {
             self.render({
                 message: '账号不能为空',
@@ -40,6 +41,11 @@ class Sub extends Super {
                         'repeat-new-password': repeatNewPassword,
                     }],
                 },
+            });
+        } else if (tools.isEmpty(verifyCodeCanvas) || verifyCodeCanvas !== session.adminVerifyCodeCanvas) {
+            self.render({
+                message: '验证码错误',
+                result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
             });
         } else {
             const Admins = require('../../models/mongoose/admins');
