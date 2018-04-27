@@ -1,7 +1,7 @@
 // 接口数据
 const tools = require('zhf.tools'); // 工具方法集合
 
-class Sub {
+class Super {
     constructor(json) {
         this.tools = tools; // 工具方法集合
         this.opts = tools.extend({
@@ -157,4 +157,4 @@ class Sub {
     }
 }
 
-module.exports = Sub;
+module.exports = Super;
