@@ -12,6 +12,17 @@ const schema = new mongoose.Schema({
         type: String,
         default: null,
     },
+    // 登录
+    login: {
+        type: Object,
+        default: {
+            // 登录戳，用来做修改密码集体下线以及单设备登录的。
+            stamp: {
+                type: String,
+                default: null,
+            },
+        },
+    },
 });
 const bcrypt = require('bcrypt'); // 加密工具
 const saltStrength = 10; // 加密强度
