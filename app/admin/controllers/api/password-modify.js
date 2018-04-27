@@ -42,7 +42,12 @@ class Sub extends Super {
                     }],
                 },
             });
-        } else if (tools.isEmpty(verifyCodeCanvas) || verifyCodeCanvas !== session.adminVerifyCodeCanvas) {
+        } else if (tools.isEmpty(verifyCodeCanvas)) {
+            self.render({
+                message: '验证码不能为空',
+                result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
+            });
+        } else if (verifyCodeCanvas !== session.adminVerifyCodeCanvas) {
             self.render({
                 message: '验证码错误',
                 result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
