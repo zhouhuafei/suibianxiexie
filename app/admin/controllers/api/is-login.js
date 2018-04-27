@@ -12,32 +12,40 @@ class Sub extends Super {
         const req = opts.req;
         const session = req.session;
         const data = req.data;
-        const username = data.username; // 用户名
+        const username = data.username || ''; // 用户名
         let isLogin = false;
-        Admins.findOne({username: username}, function (error, result) {
-            // 数据库查询出现错误
-            if (error) {
-                self.render({
-                    message: '数据库查询出现错误',
-                });
-            }
-            if (result) {
-                if (session.adminInfo) {
-                    isLogin = result.login.stamp === session.adminInfo.login.stamp;
+        if (tools.isEmpty(username)) {
+            self.render({message: '用户名不能为空'});
+            return;
+        }
+        if (!session.adminInfo) {
+            self.render({
+                status: 'success',
+                message: `未登录`,
+                result: {
+                    data: [{isLogin: isLogin}],
+                },
+            });
+        } else {
+            Admins.findOne({username: username}, function (error, result) {
+                // 数据库查询出现错误
+                if (error) {
+                    self.render({message: '数据库查询出现错误'});
                 }
-                self.render({
-                    status: 'success',
-                    message: `${isLogin ? '已' : '未'}登录`,
-                    result: {
-                        data: [{isLogin: isLogin}],
-                    },
-                });
-            } else {
-                self.render({
-                    message: '账号不存在',
-                });
-            }
-        });
+                if (result) {
+                    isLogin = result.login.stamp === session.adminInfo.login.stamp;
+                    self.render({
+                        status: 'success',
+                        message: `${isLogin ? '已' : '未'}登录`,
+                        result: {
+                            data: [{isLogin: isLogin}],
+                        },
+                    });
+                } else {
+                    self.render({message: '账号不存在'});
+                }
+            });
+        }
     }
 }
 
