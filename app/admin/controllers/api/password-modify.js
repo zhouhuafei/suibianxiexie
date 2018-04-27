@@ -73,50 +73,41 @@ class Sub extends Super {
                         }
                         if (isMatch) {
                             // 用户名和老密码匹配了,则进行密码替换
-                            const bcrypt = require('bcrypt'); // 加密工具
-                            const saltStrength = 10; // 加密强度
+                            const fnBcrypt = require('../../../../utils/bcrypt'); // 加密工具
                             // 密码加密
-                            bcrypt.genSalt(saltStrength, function (error, salt) {
+                            fnBcrypt(newPassword, function (error, hash) {
                                 if (error) {
                                     self.render({
                                         message: '密码加密出现错误',
                                         failureInfo: error,
                                     });
                                 } else {
-                                    bcrypt.hash(newPassword, salt, function (error, hash) {
+                                    // 更新数据库
+                                    Admins.update({_id: adminInfo._id}, {
+                                        $set: {
+                                            username: newUsername || oldUsername,
+                                            password: hash,
+                                            login: {
+                                                stamp: `${Math.random()}`.split('.')[1],
+                                            },
+                                        },
+                                    }, function (error) {
+                                        // 数据库更新出现错误
                                         if (error) {
                                             self.render({
-                                                message: '密码加密出现错误',
+                                                message: '密码更新出现错误',
                                                 failureInfo: error,
                                             });
-                                        } else {
-                                            Admins.update({_id: adminInfo._id}, {
-                                                $set: {
-                                                    username: newUsername || oldUsername,
-                                                    password: hash,
-                                                    login: {
-                                                        stamp: `${Math.random()}`.split('.')[1],
-                                                    },
-                                                },
-                                            }, function (error) {
-                                                // 数据库更新出现错误
-                                                if (error) {
-                                                    self.render({
-                                                        message: '密码更新出现错误',
-                                                        failureInfo: error,
-                                                    });
-                                                    return;
-                                                }
-                                                delete session.adminInfo; // 不加这句话，改了密码，不会掉线，加了这句话也只是当前用户掉线，其他人不掉线。
-                                                self.render({
-                                                    status: 'success',
-                                                    message: '已成功修改密码',
-                                                    result: {
-                                                        data: [{username: adminInfo.username}],
-                                                    },
-                                                });
-                                            });
+                                            return;
                                         }
+                                        delete session.adminInfo; // 不加这句话，改了密码，不会掉线，加了这句话也只是当前用户掉线，其他人不掉线。
+                                        self.render({
+                                            status: 'success',
+                                            message: '已成功修改密码',
+                                            result: {
+                                                data: [{username: adminInfo.username}],
+                                            },
+                                        });
                                     });
                                 }
                             });
