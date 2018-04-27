@@ -3,6 +3,7 @@ const tools = require('zhf.tools'); // 工具方法集合
 const routesConfig = require('../../routes/pages/config'); // 路由配置
 const apiConfig = require('../../routes/api/config'); // 接口配置
 const getClientIp = require('zhf.get-client-ip');
+const Admins = require(`../../models/mongoose/admins`);
 
 class Super {
     constructor(json) {
@@ -14,20 +15,53 @@ class Super {
             routeName: null, // 路由名称
             isValidateLogin: false, // 是否验证登录
         }, json);
-        this.init();
+
+        // 是否验证登录
+        const self = this;
+        const opts = self.opts;
+        const req = opts.req;
+        const res = opts.res;
+        const session = req.session;
+        const adminInfo = session.adminInfo;
+        if (opts.isValidateLogin) { // 验证登录
+            if (adminInfo === undefined) { // 未登录
+                res.redirect(routesConfig.login.route); // 重定向路由
+            } else {
+                Admins.findOne({username: adminInfo.username}, function (error, result) {
+                    if (error) { // 数据库查询出现错误
+                        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+                        res.end(`<div style="text-align: center;">
+                            <h1>数据库查询出现错误</h1>
+                            <hr />
+                            <h2><a href="${routesConfig[opts.routeName].route}">点击此处进行重试</a></h2>
+                        </div>`);
+                    }
+                    if (result) {
+                        if (result.loginStamp === adminInfo.loginStamp) { // 登录了
+                            self.init();
+                        } else { // 未登录
+                            res.redirect(routesConfig.login.route); // 重定向路由
+                        }
+                    } else { // 账号不存在
+                        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+                        res.end(`<div style="text-align: center;">
+                            <h1>账号不存在</h1>
+                            <hr />
+                            <h2><a href="${routesConfig.register.route}">点击此处进行注册</a></h2>
+                        </div>`);
+                    }
+                });
+            }
+        } else { // 不验证登录
+            self.init();
+        }
     }
 
     // (初)初始化数据
     init() {
         const self = this;
-        // 是否验证登录
-        const isContinue = self.isValidateLogin();
-        if (!isContinue) {
-            return;
-        }
         const opts = self.opts;
         const req = opts.req;
-        const method = req.method.toLowerCase(); // 请求方式
         /*
         * javascript axios get params
         * javascript axios post/put/delete data
@@ -36,6 +70,7 @@ class Super {
         * nodejs express post/put/delete body-parser req.body
         * 把上述四种数据的传参方式进行统一化,统一使用req.data
         * */
+        const method = req.method.toLowerCase(); // 请求方式
         if (method === 'get') {
             req.data = req.query;
         } else {
@@ -116,24 +151,6 @@ class Super {
             }
         })();
         self.handleData(); // 处理数据
-    }
-
-    // (验)是否验证登录
-    isValidateLogin() {
-        const self = this;
-        const opts = self.opts;
-        const req = opts.req;
-        const res = opts.res;
-        let isContinue = true;
-        // 验证
-        if (opts.isValidateLogin) {
-            // 未登录
-            if (req.session.adminInfo === undefined) {
-                isContinue = false;
-                res.redirect(routesConfig.login.route); // 重定向路由
-            }
-        }
-        return isContinue;
     }
 
     // (盖)处理数据(这个方法需要在子类型里被覆盖掉)

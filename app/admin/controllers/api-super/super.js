@@ -57,7 +57,6 @@ class Super {
         const self = this;
         const opts = self.opts;
         const req = opts.req;
-        const method = req.method.toLowerCase(); // 请求方式
         /*
         * javascript axios get params
         * javascript axios post/put/delete data
@@ -66,6 +65,7 @@ class Super {
         * nodejs express post/put/delete body-parser req.body
         * 把上述四种数据的传参方式进行统一化,统一使用req.data
         * */
+        const method = req.method.toLowerCase(); // 请求方式
         if (method === 'get') {
             req.data = req.query;
         } else {
@@ -76,8 +76,7 @@ class Super {
         const session = req.session;
         const adminInfo = session.adminInfo;
         if (opts.isValidateLogin) { // 验证登录
-            // 未登录，管理端的接口都应该登陆后才有权调用。
-            if (adminInfo === undefined) { // 未登录
+            if (adminInfo === undefined) { // 未登录，管理端的接口都应该登陆后才有权调用。
                 self.render({message: '未登录', failureCode: 401});
             } else {
                 Admins.findOne({username: adminInfo.username}, function (error, result) {
@@ -85,9 +84,9 @@ class Super {
                         self.render({message: '验证登录时,数据库查询出现错误'});
                     }
                     if (result) {
-                        if (result.login.stamp === adminInfo.login.stamp) { // 登录了
+                        if (result.loginStamp === adminInfo.loginStamp) { // 登录了
                             fnCrud();
-                        } else {
+                        } else { // 未登录
                             self.render({message: '未登录', failureCode: 401});
                         }
                     } else { // 账号不存在
@@ -95,10 +94,9 @@ class Super {
                     }
                 });
             }
-            return;
+        } else { // 不验证登录
+            fnCrud();
         }
-
-        fnCrud();
 
         function fnCrud() {
             if (method === 'post') {

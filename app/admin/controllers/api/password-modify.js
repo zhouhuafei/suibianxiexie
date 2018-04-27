@@ -9,12 +9,12 @@ class Sub extends Super {
         const req = opts.req;
         const session = req.session;
         const data = req.data;
-        const oldUsername = data['old-username']; // 旧用户名
-        const newUsername = data['new-username']; // 新用户名
-        const oldPassword = data['old-password']; // 旧密码
-        const newPassword = data['new-password']; // 新密码
-        const repeatNewPassword = data['repeat-new-password']; // 新密码二次确认
-        const verifyCodeCanvas = data['verify-code-canvas']; // 验证码,图文随机
+        const oldUsername = data['old-username'] || ''; // 旧用户名
+        const newUsername = data['new-username'] || ''; // 新用户名
+        const oldPassword = data['old-password'] || ''; // 旧密码
+        const newPassword = data['new-password'] || ''; // 新密码
+        const repeatNewPassword = data['repeat-new-password'] || ''; // 新密码二次确认
+        const verifyCodeCanvas = data['verify-code-canvas'] || ''; // 验证码,图文随机
         if (tools.isEmpty(oldUsername)) {
             self.render({
                 message: '账号不能为空',
@@ -87,9 +87,7 @@ class Sub extends Super {
                                         $set: {
                                             username: newUsername || oldUsername,
                                             password: hash,
-                                            login: {
-                                                stamp: `${Math.random()}`.split('.')[1],
-                                            },
+                                            loginStamp: `${Math.random()}`.split('.')[1],
                                         },
                                     }, function (error) {
                                         // 数据库更新出现错误

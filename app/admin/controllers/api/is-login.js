@@ -7,8 +7,6 @@ class Sub extends Super {
         const self = this;
         const tools = self.tools; // 工具方法集合
         const opts = self.opts;
-        const app = opts.app;
-        const appConfig = app.appConfig;
         const req = opts.req;
         const session = req.session;
         const data = req.data;
@@ -33,7 +31,7 @@ class Sub extends Super {
                     self.render({message: '数据库查询出现错误'});
                 }
                 if (result) {
-                    isLogin = result.login.stamp === session.adminInfo.login.stamp;
+                    isLogin = result.loginStamp === session.adminInfo.loginStamp;
                     self.render({
                         status: 'success',
                         message: `${isLogin ? '已' : '未'}登录`,

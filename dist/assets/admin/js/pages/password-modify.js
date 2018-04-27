@@ -245,7 +245,7 @@ var Sub = function (_Super) {
                     config: {
                         type: 'confirm', // 默认是提示框
                         confirm: {
-                            content: '<div class="page-dialog-del-db">\n                            <div>1. \u94FE\u63A5\u4F60\u7684mongodb\u6570\u636E\u5E93</div>\n                            <div>2. \u627E\u5230\u540D\u4E3Asuibianxiexie\u7684\u6570\u636E\u5E93</div>\n                            <div>3. \u627E\u5230\u540D\u4E3Aadmins\u7684\u96C6\u5408</div>\n                            <div>4. \u5220\u6389\u8FD9\u4E2A\u96C6\u5408</div>\n                            <div>5. \u5728\u540E\u53F0\u7BA1\u7406\u7CFB\u7EDF\u91CC\u91CD\u65B0\u6CE8\u518C\u7BA1\u7406\u5458\u8D26\u53F7\u3002</div>\n                        </div>'
+                            content: '<div class="page-dialog-del-db">\n                            <div>1. \u94FE\u63A5\u4F60\u7684mongodb\u6570\u636E\u5E93\u3002</div>\n                            <div>2. \u627E\u5230\u540D\u4E3Asuibianxiexie\u7684\u6570\u636E\u5E93\u3002</div>\n                            <div>3. \u627E\u5230\u5E76\u5220\u9664\u540D\u4E3Aadmins\u7684\u96C6\u5408\u3002</div>\n                            <div>4. \u94FE\u63A5\u4F60\u7684redis\u6570\u636E\u5E93\u3002</div>\n                            <div>5. \u627E\u5230\u5E76\u5220\u9664\u7B2C11\u4E2A\u6570\u636E\u5E93\u91CC\u6240\u6709\u7684session\u3002</div>\n                            <div>6. \u5728\u540E\u53F0\u7BA1\u7406\u7CFB\u7EDF\u91CC\u91CD\u65B0\u6CE8\u518C\u7BA1\u7406\u5458\u8D26\u53F7\u3002</div>\n                        </div>'
                         }
                     }
                 });

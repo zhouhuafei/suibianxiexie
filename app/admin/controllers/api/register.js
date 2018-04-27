@@ -9,10 +9,10 @@ class Sub extends Super {
         const req = opts.req;
         const session = req.session;
         const data = req.data;
-        const username = data.username; // 用户名
-        const password = data.password; // 密码
-        const repeatPassword = data['repeat-password']; // 密码二次确认
-        const verifyCodeCanvas = data['verify-code-canvas']; // 验证码,图文随机
+        const username = data.username || ''; // 用户名
+        const password = data.password || ''; // 密码
+        const repeatPassword = data['repeat-password'] || ''; // 密码二次确认
+        const verifyCodeCanvas = data['verify-code-canvas'] || ''; // 验证码,图文随机
         if (tools.isEmpty(username)) {
             self.render({
                 message: '账号不能为空',

@@ -11,9 +11,9 @@ class Sub extends Super {
         const req = opts.req;
         const session = req.session;
         const data = req.data;
-        const username = data.username; // 用户名
-        const password = data.password; // 密码
-        const verifyCodeCanvas = data['verify-code-canvas']; // 验证码,图文随机
+        const username = data.username || ''; // 用户名
+        const password = data.password || ''; // 密码
+        const verifyCodeCanvas = data['verify-code-canvas'] || ''; // 验证码,图文随机
         if (tools.isEmpty(username)) {
             self.render({
                 message: '账号不能为空',
@@ -55,14 +55,8 @@ class Sub extends Super {
                         if (isMatch) {
                             session.adminInfo = adminInfo;
                             if (appConfig.isEnabledSingleDeviceLogin) { // 如果开启了单设备登录
-                                const stamp = `${Math.random()}`.split('.')[1];
-                                Admins.update({_id: adminInfo._id}, {
-                                    $set: {
-                                        login: {
-                                            stamp: stamp,
-                                        },
-                                    },
-                                }, function (error) {
+                                const loginStamp = `${Math.random()}`.split('.')[1];
+                                Admins.update({_id: adminInfo._id}, {$set: {loginStamp: loginStamp}}, function (error) {
                                     // 数据库更新出现错误
                                     if (error) {
                                         self.render({
@@ -71,7 +65,7 @@ class Sub extends Super {
                                         });
                                         return;
                                     }
-                                    session.adminInfo.login.stamp = stamp; // 登录成功更改登录戳
+                                    session.adminInfo.loginStamp = loginStamp; // 登录成功更改登录戳
                                     self.render({
                                         status: 'success',
                                         message: '登录成功',
