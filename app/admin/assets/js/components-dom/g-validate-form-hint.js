@@ -59,6 +59,8 @@ ValidateForm.prototype.validateInput = function (input) {
     const type = validateType.split(' ');
     const hintTxt = validateHintTxt.split(' ');
     const value = input.value;
+    const inputType = input.type;
+    const isPassword = inputType === 'password';
     let isValidateSuccess = true; // 是否验证成功了
     type.forEach(function (v, i) {
         if (isValidateSuccess && customValidateRule[v]) {
@@ -72,7 +74,11 @@ ValidateForm.prototype.validateInput = function (input) {
         }
         if (isValidateSuccess && !customValidateRule[v]) {
             if (isValidateSuccess && v === 'no-empty') { // 设置了非空验证
-                if (tools.isEmpty(value)) {
+                let isEmpty = tools.isEmpty(value);
+                if (isPassword) {
+                    isEmpty = value === ''; // input为password类型的进行特殊处理
+                }
+                if (isEmpty) {
                     self.renderHintAdd({txt: hintTxt[i], input: input});
                     isValidateSuccess = false;
                 } else {
