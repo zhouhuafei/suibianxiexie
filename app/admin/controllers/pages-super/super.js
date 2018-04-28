@@ -34,6 +34,18 @@ class Super {
                             <h1>数据库查询出现错误</h1>
                             <hr />
                             <h2><a href="${routesConfig[opts.routeName].route}">点击此处进行重试</a></h2>
+                            <h3><a href="${routesConfig[opts.routeName].route}"><span>3</span>秒后自动刷新</a></h3>
+                            <script>
+                                var span = document.querySelector('span');
+                                var num = span.innerHTML;
+                                setInterval(function() {
+                                    num--;
+                                    span.innerHTML=num;
+                                    if(num < 0){
+                                        window.location.reload();
+                                    }
+                                }, 1000);
+                            </script>
                         </div>`);
                     }
                     if (result) {
@@ -43,12 +55,7 @@ class Super {
                             res.redirect(routesConfig.login.route); // 重定向路由
                         }
                     } else { // 账号不存在
-                        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-                        res.end(`<div style="text-align: center;">
-                            <h1>账号不存在</h1>
-                            <hr />
-                            <h2><a href="${routesConfig.register.route}">点击此处进行注册</a></h2>
-                        </div>`);
+                        res.redirect(routesConfig.register.route); // 重定向路由
                     }
                 });
             }
