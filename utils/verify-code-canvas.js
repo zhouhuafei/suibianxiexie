@@ -3,8 +3,8 @@ const fnRandomNum = require('zhf.random-num');
 
 module.exports = function () {
     const randomNum = fnRandomNum(100000, 999999);
-    const width = 320;
-    const height = 80;
+    const width = 640;
+    const height = 160;
     const centerX = width / 2;
     const centerY = height / 2;
     const fontSize = height * 0.8;
