@@ -409,7 +409,9 @@ img {
   display: -ms-flexbox;
   display: flex; }
   .g-wrap .g-menu-wrap {
-    width: 200px; }
+    width: 200px;
+    position: relative;
+    z-index: 2; }
     .g-wrap .g-menu-wrap .g-menu {
       width: inherit;
       background: #252834;
@@ -463,7 +465,9 @@ img {
     -webkit-box-flex: 1;
         -ms-flex: 1;
             flex: 1;
-    padding: 40px 20px; }
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1; }
 
 .g-button {
   height: 40px;
@@ -1693,9 +1697,10 @@ img {
   border-right: none;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  position: relative; }
   .g-form .g-form-left {
-    padding: 10px;
+    padding: 0 10px;
     min-width: 120px;
     text-align: right;
     display: -webkit-box;
@@ -1708,8 +1713,38 @@ img {
         -ms-flex-pack: end;
             justify-content: flex-end; }
   .g-form .g-form-right {
-    padding: 10px;
-    border-left: 1px solid #e6e7ed; }
+    border-left: 1px solid #e6e7ed;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1; }
+  .g-form .g-form-icon {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    min-width: 20px;
+    padding: 0 2px; }
+  .g-form .g-form-hint {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    min-width: 20px;
+    padding: 0 2px;
+    color: #fa5555; }
+    .g-form .g-form-hint.g-input-hint-off {
+      color: #91918e;
+      opacity: 0; }
 
 .g-verify-code-canvas {
   width: 160px;

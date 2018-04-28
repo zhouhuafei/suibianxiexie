@@ -6,6 +6,8 @@
     display: flex;
     .g-menu-wrap {
         width: px2px($w);
+        position: relative;
+        z-index: 2;
         .g-menu {
             width: inherit;
             background: #252834;
@@ -68,5 +70,7 @@
     .g-body {
         flex: 1;
         padding: px2px(40) px2px(20);
+        position: relative;
+        z-index: 1;
     }
 }
