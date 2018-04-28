@@ -12,14 +12,14 @@ class Sub extends Super {
         const session = req.session;
         const data = req.data;
         const username = data.username || ''; // 用户名
-        const password = data.password || ''; // 密码
+        const password = data.password || ''; // 密码 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
         const verifyCodeCanvas = data['verify-code-canvas'] || ''; // 验证码,图文随机
         if (tools.isEmpty(username)) {
             self.render({
                 message: '账号不能为空',
                 result: {data: [{username: username}]},
             });
-        } else if (tools.isEmpty(password)) {
+        } else if (password === '') {
             self.render({
                 message: '密码不能为空',
                 result: {data: [{password: password}]},

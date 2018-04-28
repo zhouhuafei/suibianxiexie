@@ -11,16 +11,16 @@ class Sub extends Super {
         const data = req.data;
         const oldUsername = data['old-username'] || ''; // 旧用户名
         const newUsername = data['new-username'] || ''; // 新用户名
-        const oldPassword = data['old-password'] || ''; // 旧密码
-        const newPassword = data['new-password'] || ''; // 新密码
-        const repeatNewPassword = data['repeat-new-password'] || ''; // 新密码二次确认
+        const oldPassword = data['old-password'] || ''; // 旧密码 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
+        const newPassword = data['new-password'] || ''; // 新密码 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
+        const repeatNewPassword = data['repeat-new-password'] || ''; // 新密码二次确认 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
         const verifyCodeCanvas = data['verify-code-canvas'] || ''; // 验证码,图文随机
         if (tools.isEmpty(oldUsername)) {
             self.render({
                 message: '账号不能为空',
                 result: {data: [{'old-username': oldUsername}]},
             });
-        } else if (tools.isEmpty(oldPassword) || tools.isEmpty(newPassword) || tools.isEmpty(repeatNewPassword)) {
+        } else if (oldPassword === '' || newPassword === '' || repeatNewPassword === '') {
             self.render({
                 message: '密码不能为空',
                 result: {
