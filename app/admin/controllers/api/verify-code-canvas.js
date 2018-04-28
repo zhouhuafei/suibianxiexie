@@ -6,18 +6,26 @@ class Sub extends Super {
     getData() {
         const self = this;
         const opts = self.opts;
+        const res = opts.res;
         const req = opts.req;
         const session = req.session;
+        const data = req.data;
+        const isHtml = data.isOnlyRenderHtml;
         const verifyCodeCanvas = fnVerifyCodeCanvas();
         session.adminVerifyCodeCanvas = verifyCodeCanvas.text;
         delete verifyCodeCanvas.text;
-        this.render({
-            status: 'success',
-            message: '成功',
-            result: {
-                data: [verifyCodeCanvas],
-            },
-        });
+        if (isHtml === 'true') {
+            res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+            res.end(`<img src="${verifyCodeCanvas.base64}" alt="" />`);
+        } else {
+            this.render({
+                status: 'success',
+                message: '成功',
+                result: {
+                    data: [verifyCodeCanvas],
+                },
+            });
+        }
     }
 }
 
