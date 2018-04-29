@@ -84,14 +84,14 @@ class Super {
         // 返回顶部
         const GoTop = require('../components-dom/g-go-top');
         new GoTop({
-            wrap: '.page-go-top-wrap',
+            wrap: '.g-go-top-wrap',
         });
 
         // 版权
         if (dataInfo && dataInfo.isShowCopyright) {
             const Copyright = require('../components-dom/g-copyright');
             new Copyright({
-                wrap: '.page-copyright-wrap',
+                wrap: '.g-copyright-wrap',
             });
         }
 

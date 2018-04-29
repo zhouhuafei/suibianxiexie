@@ -9,8 +9,8 @@ class Sub extends Super {
         // base函数测试
         (function () {
             // 测试全选
-            const Select = applications.select();
-            new Select({
+            const SelectAll = applications.SelectAll;
+            new SelectAll({
                 items: '.g-checkbox-checkbox',
                 callback: {
                     click: function (obj) {

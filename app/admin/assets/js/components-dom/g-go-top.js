@@ -32,7 +32,7 @@ Sub.prototype.moduleDomCreate = function () {
 Sub.prototype.power = function () {
     const self = this;
     this.moduleDom.addEventListener('click', function () {
-        applications.scrollToY('0');
+        applications.scrollMoveTo(0, 0);
     });
     window.addEventListener('scroll', function () {
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;

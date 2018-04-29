@@ -25,7 +25,7 @@ class Sub extends Super {
         // 测试滚动到底部功能以及loading组件
         (function () {
             const Loading = require('../components-dom/g-loading');
-            const WhenScrollBottom = applications.whenScrollBottom();
+            const WhenScrollBottom = applications.WhenScrollBottom;
             let num = 0;
             new WhenScrollBottom({
                 isInitRender: false,

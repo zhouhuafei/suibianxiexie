@@ -12,12 +12,29 @@ if (!fileName) {
 const assetsPath = `${__dirname}/app/${projectDirname}/assets/`; // 前端资源文件所处的位置
 const controllerPath = `${__dirname}/app/${projectDirname}/controllers/pages/`; // 后台控制器文件所处的位置
 
-// 创建资源文件
-const file = {
-    view: {
-        path: `${assetsPath}views/pages/`,
-        fileName: fileName,
-        content: `<!DOCTYPE html>
+// 文件内容
+let viewContent = '';
+if (projectDirname === 'admin') {
+    viewContent = `<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../commons/head.ejs %>
+    </head>
+    <body>
+        <% include ../commons/top.ejs %>
+        <div class="g-wrap">
+            <% include ../commons/menu.ejs %>
+            <div class="g-body">
+                <!--page start-->
+                <!--page end-->
+            </div>
+        </div>
+        <% include ../commons/bottom.ejs %>
+    </body>
+</html>
+`;
+} else if (projectDirname === 'phone') {
+    viewContent = `<!DOCTYPE html>
 <html lang="en">
     <head>
         <% include ../commons/head.ejs %>
@@ -35,16 +52,27 @@ const file = {
         <% include ../commons/bottom.ejs %>
     </body>
 </html>
-`,
+`;
+} else if (projectDirname === 'pc') {
+    console.log('pc undeveloped');
+    return;
+} else {
+    console.log('projectDirname error');
+    return;
+}
+
+// 创建资源文件
+const file = {
+    view: {
+        path: `${assetsPath}views/pages/`,
+        fileName: fileName,
+        content: viewContent,
         extendName: '.ejs',
     },
     scss: {
         path: `${assetsPath}scss/pages/`,
         fileName: fileName,
         content: `@import "../config/config";
-
-.g-body {
-}
 `,
         extendName: '.scss',
     },
