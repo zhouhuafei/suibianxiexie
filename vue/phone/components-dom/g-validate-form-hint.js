@@ -1,6 +1,7 @@
 const tools = require('zhf.tools'); // 工具方法集合
 const applications = require('zhf.applications'); // 应用方法集合
 const domAddPosition = require('zhf.dom-add-position');
+const checkStr = tools.checkStr;
 
 function ValidateForm(json) {
     this.opts = tools.extend({
@@ -74,7 +75,7 @@ ValidateForm.prototype.validateInput = function (input) {
         }
         if (isValidateSuccess && !customValidateRule[v]) {
             if (isValidateSuccess && v === 'no-empty') { // 设置了非空验证
-                let isEmpty = tools.isEmpty(value);
+                let isEmpty = checkStr.isEmpty(value);
                 if (isPassword) {
                     isEmpty = value === ''; // input为password类型的进行特殊处理
                 }
@@ -87,7 +88,7 @@ ValidateForm.prototype.validateInput = function (input) {
                 }
             }
             if (isValidateSuccess && v === 'no-zero') { // 设置了非零验证
-                if (tools.isZero(value)) {
+                if (checkStr.isZero(value)) {
                     self.renderHintAdd({txt: hintTxt[i], input: input});
                     isValidateSuccess = false;
                 } else {
@@ -96,7 +97,7 @@ ValidateForm.prototype.validateInput = function (input) {
                 }
             }
             if (isValidateSuccess && v === 'yes-positive-integer') { // 设置了正整数验证
-                if (tools.isPositiveInteger(value)) {
+                if (checkStr.isPositiveInteger(value)) {
                     self.renderHintRemove({input: input});
                     isValidateSuccess = true;
                 } else {

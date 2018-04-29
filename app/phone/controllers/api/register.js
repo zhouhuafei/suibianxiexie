@@ -37,7 +37,8 @@ class Sub extends Super {
             const username = data.username; // 用户名
             const password = data.password; // 密码
             const verifyCode = data.verifyCode; // 验证码
-            if (!tools.isEmail(username)) {
+            const checkStr = tools.checkStr;
+            if (!checkStr.isEmail(username)) {
                 self.render({
                     status: 'failure',
                     message: '账号格式有误',
@@ -45,7 +46,7 @@ class Sub extends Super {
                 });
                 return;
             }
-            if (tools.isEmpty(password)) {
+            if (checkStr.isEmpty(password)) {
                 self.render({
                     status: 'failure',
                     message: '密码不能为空',

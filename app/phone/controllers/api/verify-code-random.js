@@ -10,13 +10,14 @@ class Sub extends Super {
         const req = opts.req;
         const data = req.data;
         const username = data.username;
-        if (!tools.isEmail(username)) { // 用户名不是邮箱
+        const checkStr = tools.checkStr;
+        if (!checkStr.isEmail(username)) { // 用户名不是邮箱
             self.render({
                 status: 'failure',
                 message: '账号需要是一个邮箱',
             });
         } else { // 用户名是邮箱
-            const verifyCode = tools.getRandom(100000, 999999);// random随机验证码
+            const verifyCode = tools.randomNum(100000, 999999);// random随机验证码
             const expirationDate = 10;// 有效期,单位是分钟
             const autoUser = 'this-is-a-code@foxmail.com';
             const transporter = nodemailer.createTransport({

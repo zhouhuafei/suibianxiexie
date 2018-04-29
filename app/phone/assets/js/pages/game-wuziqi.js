@@ -123,7 +123,7 @@ class Sub extends Super {
                         if (hasSound) {
                             let audioDom = applications.createElement({elementName: 'audio'});
                             // audioDom.setAttribute('src', audioSrc[(game.blackNum + game.whiteNum) % audioSrc.length]);
-                            audioDom.setAttribute('src', audioSrc[tools.getRandom(0, audioSrc.length - 1)]);
+                            audioDom.setAttribute('src', audioSrc[tools.randomNum(0, audioSrc.length - 1)]);
                             audioDom.play();
                             audioDom = null;
                         }

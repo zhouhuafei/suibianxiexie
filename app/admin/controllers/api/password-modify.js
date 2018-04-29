@@ -15,7 +15,8 @@ class Sub extends Super {
         const newPassword = data['new-password'] || ''; // 新密码 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
         const repeatNewPassword = data['repeat-new-password'] || ''; // 新密码二次确认 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
         const verifyCodeCanvas = data['verify-code-canvas'] || ''; // 验证码,图文随机
-        if (tools.isEmpty(oldUsername)) {
+        const checkStr = tools.checkStr;
+        if (checkStr.isEmpty(oldUsername)) {
             self.render({
                 message: '账号不能为空',
                 result: {data: [{'old-username': oldUsername}]},
@@ -42,7 +43,7 @@ class Sub extends Super {
                     }],
                 },
             });
-        } else if (tools.isEmpty(verifyCodeCanvas)) {
+        } else if (checkStr.isEmpty(verifyCodeCanvas)) {
             self.render({
                 message: '验证码不能为空',
                 result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},

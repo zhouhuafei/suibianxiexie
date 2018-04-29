@@ -37,7 +37,7 @@ class Sub extends Super {
         function randomMap() {
             const result = [];
             const max = 10;
-            const randomRow = tools.getRandom(0, max);
+            const randomRow = tools.randomNum(0, max);
             let colNum = 1;
             if (randomRow === max) { // 当随机数等于max的时候,一行3个
                 colNum = 3;
@@ -47,10 +47,10 @@ class Sub extends Super {
             }
             const randomResult = [];
             // 随机2个时,这2个不允许被随机到同一个位置
-            let random = tools.getRandom(0, col - 1); // 当前这个在这一行是第几个
+            let random = tools.randomNum(0, col - 1); // 当前这个在这一行是第几个
             while (randomResult.indexOf(random) === -1 && randomResult.length < colNum) {
                 randomResult.push(random);
-                random = tools.getRandom(0, col - 1); // 当前这个在这一行是第几个
+                random = tools.randomNum(0, col - 1); // 当前这个在这一行是第几个
             }
             randomResult.forEach(function (v) {
                 result.push([v * item.w + v * gap, -item.h, item.w, item.h]);
@@ -141,7 +141,7 @@ class Sub extends Super {
                         if (hasSound) {
                             let audioDom = applications.createElement({elementName: 'audio'});
                             // audioDom.setAttribute('src', audioSrc[score % audioSrc.length]);
-                            audioDom.setAttribute('src', audioSrc[tools.getRandom(0, audioSrc.length - 1)]);
+                            audioDom.setAttribute('src', audioSrc[tools.randomNum(0, audioSrc.length - 1)]);
                             audioDom.play();
                             audioDom = null;
                         }

@@ -1,5 +1,27 @@
 # Change Log
 
+## [Swiper 4.2.2](https://github.com/nolimits4web/swiper/compare/v4.2.0...v4.2.2) - Released on April 1, 2018
+  * Core
+    * Respect and update breakpoints when calling Swiper's `.update()` method
+  * Pagination
+    * New `progressbarOpposite` parameter to make pagination progressbar opposite to `direction` parameter, means vertical progressbar for horizontal swiper direction and horizontal progressbar for vertical swiper direction
+  * Mousewheel
+    * Fixed issue in `loop` + `freeMode` for loop not being set correctly
+  * Minor fixes
+
+## [Swiper 4.2.0](https://github.com/nolimits4web/swiper/compare/v4.1.6...v4.2.0) - Released on March 16, 2018
+  * Core
+    * `swiper.updateAutoHeight(speed)` now supports `speed` parameter to resize swiper wrapper with duration
+    * Fixed issues in free mode with `freeModeSticky` not being able to snap to closest snap point
+    * New `swiper.slideToClosest()` method to slide to closest snap point when it is somewhere in between
+  * A11y (Accessibility)
+    * It is now enabled by default (if installed)
+  * Controller
+    * Fixed RTL issue when vertical swiper controls horizontal one
+  * Lazy
+    * Fixed issue when lazy loading not always triggered on window resize
+  * Minor fixes
+
 ## [Swiper 4.1.6](https://github.com/nolimits4web/swiper/compare/v4.1.5...v4.1.6) - Released on February 11, 2018
   * Fixed onTouchMoveOpposite event on touch devices
 

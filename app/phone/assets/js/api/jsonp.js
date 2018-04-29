@@ -1,5 +1,7 @@
 const tools = require('zhf.tools');
 const Dialog = require('../components-dom/g-dialog');
+const queryString = tools.queryString;
+
 module.exports = function (json) {
     const opts = tools.extend({
         url: '',
@@ -59,7 +61,7 @@ module.exports = function (json) {
         script.addEventListener('load', function () {
             document.body.removeChild(script);
         });
-        const parameter = tools.queryStringify(data);
+        const parameter = queryString.queryStringify(data);
         // jsonp - jsonp只支持get请求,其他一概不支持
         if (parameter) {
             script.src = `${url}?${parameter}&callback=${fnName}`;

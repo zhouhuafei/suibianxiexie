@@ -9,7 +9,7 @@ class Sub extends Super {
         const req = opts.req;
         const data = req.data;
         // 图文验证码应该是一个单独的接口才对
-        // req.session['verify-code-canvas'] = tools.getRandom(100000, 999999);// canvas图形验证码
+        // req.session['verify-code-canvas'] = tools.randomNum(100000, 999999);// canvas图形验证码
         // console.log('session', req.session);
         this.render();// 渲染视图(渲染数据)
     }

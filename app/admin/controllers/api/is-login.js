@@ -12,7 +12,7 @@ class Sub extends Super {
         const data = req.data;
         const username = data.username || ''; // 用户名
         let isLogin = false;
-        if (tools.isEmpty(username)) {
+        if (tools.checkStr.isEmpty(username)) {
             self.render({message: '用户名不能为空'});
             return;
         }

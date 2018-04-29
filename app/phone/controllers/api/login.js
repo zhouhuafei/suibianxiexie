@@ -12,13 +12,14 @@ class Sub extends Super {
         const password = data.password;// 密码
         const verifyCode = data.verifyCode;// 验证码
         const session = req.session;
-        if (!tools.isEmail(username)) {
+        const checkStr = tools.checkStr;
+        if (!checkStr.isEmail(username)) {
             self.render({
                 status: 'failure',
                 message: '账号格式有误',
                 result: {data: [{username: username}]},
             });
-        } else if (tools.isEmpty(password)) {
+        } else if (checkStr.isEmpty(password)) {
             self.render({
                 status: 'failure',
                 message: '密码不能为空',
