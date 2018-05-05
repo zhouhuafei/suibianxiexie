@@ -116,7 +116,7 @@ ValidateForm.prototype.render = function () {
     var self = this;
     self.element.forEach(function (v) {
         if (v.parentNode) {
-            domAddPosition(v.parentNode, 'relative');
+            // domAddPosition(v.parentNode, 'relative');
         }
         v.customValidateRule = {}; // 自定义规则
         v.hintDom = document.createElement('span');
