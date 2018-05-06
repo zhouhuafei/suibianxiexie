@@ -93,7 +93,7 @@
             flex: 1;
             border-left: 1px solid $g-border-color-default;
             .g-img-upload {
-                margin: 10px;
+                margin: px2rem(10);
             }
             .g-form-body-input {
                 min-width: px2rem(50);
@@ -184,17 +184,15 @@
             min-width: px2rem($height / 2);
             padding: 0 px2rem(2);
         }
-        .g-form-hint {
+        .g-form-limit {
             display: flex;
             align-items: center;
-            justify-content: center;
-            min-width: px2rem($height / 2);
+            justify-content: flex-end;
+            min-width: px2rem(44);
             padding: 0 px2rem(2);
+        }
+        .g-form-hint {
             color: $g-danger-color;
-            &.g-input-hint-off {
-                color: $g-font-color-disabled;
-                opacity: 0;
-            }
         }
         &:last-of-type {
             border-bottom: none;

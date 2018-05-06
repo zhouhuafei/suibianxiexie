@@ -3,12 +3,12 @@
 //多选框
 .g-checkbox {
     $height: 20;
-    height: px2rem($height);
     display: flex;
     align-items: center;
+    margin-left: px2rem(10);
     .g-checkbox-wrap {
         width: px2rem($height);
-        height: 100%;
+        height: px2rem($height);
         border-radius: px2rem(4);
         background: #ffffff;
         position: relative;
@@ -46,6 +46,6 @@
     }
     .g-checkbox-text {
         line-height: 1;
-        margin-left: px2rem(10);
+        margin-left: px2rem(4);
     }
 }

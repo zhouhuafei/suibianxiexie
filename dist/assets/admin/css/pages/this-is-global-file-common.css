@@ -727,16 +727,16 @@ img {
       border-bottom: none; }
 
 .g-checkbox {
-  height: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center; }
+          align-items: center;
+  margin-left: 10px; }
   .g-checkbox .g-checkbox-wrap {
     width: 20px;
-    height: 100%;
+    height: 20px;
     border-radius: 4px;
     background: #ffffff;
     position: relative;
@@ -781,21 +781,21 @@ img {
       display: none; }
   .g-checkbox .g-checkbox-text {
     line-height: 1;
-    margin-left: 10px; }
+    margin-left: 4px; }
 
 .g-radio {
   text-align: center;
-  height: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center; }
+          align-items: center;
+  margin-left: 10px; }
   .g-radio .g-radio-wrap {
     position: relative;
     width: 20px;
-    height: 100%;
+    height: 20px;
     background: #ffffff;
     border-radius: 2000px;
     display: -webkit-box;
@@ -839,7 +839,7 @@ img {
       display: none; }
   .g-radio .g-radio-text {
     line-height: 1;
-    margin-left: 10px; }
+    margin-left: 4px; }
 
 .g-select {
   width: 100%;
@@ -1833,22 +1833,20 @@ img {
               justify-content: center;
       min-width: 20px;
       padding: 0 2px; }
-    .g-form-wrap .g-form .g-form-hint {
+    .g-form-wrap .g-form .g-form-limit {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
       -webkit-box-align: center;
           -ms-flex-align: center;
               align-items: center;
-      -webkit-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center;
-      min-width: 20px;
-      padding: 0 2px;
+      -webkit-box-pack: end;
+          -ms-flex-pack: end;
+              justify-content: flex-end;
+      min-width: 44px;
+      padding: 0 2px; }
+    .g-form-wrap .g-form .g-form-hint {
       color: #fa5555; }
-      .g-form-wrap .g-form .g-form-hint.g-input-hint-off {
-        color: #91918e;
-        opacity: 0; }
     .g-form-wrap .g-form:last-of-type {
       border-bottom: none; }
 

@@ -2,15 +2,15 @@
 
 //单选框
 .g-radio {
-    $height: 20;
     text-align: center;
-    height: px2rem($height);
     display: flex;
     align-items: center;
+    margin-left: px2rem(10);
     .g-radio-wrap {
+        $height: 20;
         position: relative;
         width: px2rem($height);
-        height: 100%;
+        height: px2rem($height);
         background: #ffffff;
         border-radius: px2rem(2000);
         display: flex;
@@ -47,6 +47,6 @@
     }
     .g-radio-text {
         line-height: 1;
-        margin-left: px2rem(10);
+        margin-left: px2rem(4);
     }
 }
