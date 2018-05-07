@@ -186,6 +186,12 @@
 .icon-mine:before { content: "\E698"; }
 
 @charset "UTF-8";
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 /* 盒模型重置 */
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
@@ -288,6 +294,12 @@ img {
   font-size: inherit;
   line-height: 1; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-font-color-highlight {
   color: #0089ff; }
 
@@ -404,6 +416,12 @@ img {
 .g-text-indent-0 {
   text-indent: 0 !important; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -469,6 +487,12 @@ img {
     position: relative;
     z-index: 1; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-button {
   height: 40px;
   background: #0089ff;
@@ -497,26 +521,39 @@ img {
     color: #91918e;
     cursor: not-allowed; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 input.g-input {
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
   outline: none;
   color: inherit;
   font-size: inherit;
-  background: inherit;
   border-radius: inherit;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  height: 100%;
+  width: 100%;
+  height: 40px;
   padding: 0 10px;
+  background: #ffffff;
   border: 1px solid #e6e7ed;
   border-left: none;
   border-right: none;
   min-width: 50px; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-quick-enter {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -539,6 +576,12 @@ input.g-input {
     background: #ffffff;
     border-radius: 2000px; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-img-upload {
   width: 80px;
   height: 80px;
@@ -631,6 +674,12 @@ input.g-input {
       display: -ms-flexbox;
       display: flex; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-list {
   width: 100%;
   background: #fff; }
@@ -667,6 +716,12 @@ input.g-input {
     .g-list .g-list-row:last-child {
       border-bottom: none; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-checkbox {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -724,6 +779,12 @@ input.g-input {
     line-height: 1;
     margin-left: 4px; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-radio {
   text-align: center;
   display: -webkit-box;
@@ -782,36 +843,45 @@ input.g-input {
     line-height: 1;
     margin-left: 4px; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-select {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  width: 0;
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100%;
-  position: relative; }
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  width: 100%;
+  height: 40px;
+  background: #ffffff;
+  border: 1px solid #e6e7ed;
+  border-left: none;
+  border-right: none; }
   .g-select select.g-select-body {
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    width: 0;
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
     outline: none;
     color: inherit;
     font-size: inherit;
-    height: 100%;
     background: transparent;
     border-radius: inherit;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     position: relative;
     z-index: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    height: 100%;
     padding-left: 10px;
     padding-right: 32px;
     border: none; }
@@ -835,10 +905,14 @@ input.g-input {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     border-radius: inherit;
-    border: 1px dashed #e6e7ed;
-    border-top: none;
-    border-bottom: none; }
+    border-left: 1px dashed #e6e7ed; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 textarea.g-textarea {
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
@@ -848,7 +922,6 @@ textarea.g-textarea {
   font-size: inherit;
   font-family: inherit;
   line-height: inherit;
-  background: inherit;
   border-radius: inherit;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -856,12 +929,20 @@ textarea.g-textarea {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  width: 100%;
   height: 120px;
+  background: #ffffff;
   padding: 10px;
   border: 1px solid #e6e7ed;
   border-left: none;
   border-right: none; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-dialog {
   z-index: 505; }
   .g-dialog.g-dialog-alert {
@@ -995,6 +1076,12 @@ textarea.g-textarea {
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%); }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-dialog-jump-link {
   line-height: 24px;
   text-align: center; }
@@ -1011,6 +1098,12 @@ textarea.g-textarea {
   .g-dialog-jump-link .g-dialog-jump-link-footer {
     color: #0089ff; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 /*加载更多的底部加载中*/
 .g-loading {
   width: inherit; }
@@ -1090,6 +1183,12 @@ textarea.g-textarea {
     height: 100%;
     z-index: 501; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-navigation {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1142,6 +1241,12 @@ textarea.g-textarea {
       right: 4px;
       top: 4px; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-pagination {
   padding: 10px 0;
   height: 24px;
@@ -1186,6 +1291,12 @@ textarea.g-textarea {
     .g-pagination .g-pagination-btn.g-pagination-btn-inactive {
       color: #91918e; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-radio-switch {
   height: 22px;
   cursor: pointer;
@@ -1224,6 +1335,12 @@ textarea.g-textarea {
   .g-radio-switch.g-radio-switch-active .g-radio-switch-text {
     color: #0089ff; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-slide {
   background: #fff;
   min-height: 50px;
@@ -1278,6 +1395,12 @@ textarea.g-textarea {
       .g-slide .g-slide-header .g-slide-items.on {
         background-color: #0089ff; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-star {
   -webkit-tap-highlight-color: transparent;
   font-size: 0;
@@ -1297,6 +1420,12 @@ textarea.g-textarea {
     .g-star .g-star-items.g-star-items-active {
       color: #0089ff; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-table {
   color: #333333;
   text-align: center;
@@ -1336,6 +1465,12 @@ textarea.g-textarea {
     color: #ffffff;
     border-top: 1px solid #e6e7ed; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-go-top {
   position: fixed;
   left: 50%;
@@ -1364,6 +1499,12 @@ textarea.g-textarea {
     opacity: 1;
     z-index: 2; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-footer-nav {
   width: inherit;
   height: 44px; }
@@ -1425,6 +1566,12 @@ textarea.g-textarea {
       .g-footer-nav .g-footer-nav-body .g-footer-nav-item.g-footer-nav-item-active .g-footer-nav-item-icon, .g-footer-nav .g-footer-nav-body .g-footer-nav-item.g-footer-nav-item-active .g-footer-nav-item-text {
         color: #0089ff; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-copyright {
   padding: 20px 0;
   display: -webkit-box;
@@ -1442,6 +1589,12 @@ textarea.g-textarea {
     padding: 0 6px;
     font-size: 12px; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-mask {
   background-color: rgba(0, 0, 0, 0.6);
   position: absolute;
@@ -1456,6 +1609,12 @@ textarea.g-textarea {
   .g-mask.g-mask-fixed {
     position: fixed; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-lazy-load {
   -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
@@ -1466,6 +1625,12 @@ textarea.g-textarea {
   transition: opacity 0.4s;
   opacity: 1; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-no-data {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1502,6 +1667,12 @@ textarea.g-textarea {
   .g-no-data .g-no-data-button {
     width: 50%; }
 
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
 .g-validate-form-hint {
   color: #ffffff;
   background: #fa5555;
@@ -1536,17 +1707,9 @@ textarea.g-textarea {
     right: 10px;
     top: 20px; }
 
-.g-img-list .g-img-list-big img {
-  width: 376px;
-  height: 160px; }
-
-.g-img-list .g-img-list-small img {
-  width: 144px;
-  height: 147px; }
-
-.g-audios-wrap {
+.g-audio {
   position: relative; }
-  .g-audios-wrap ._icon {
+  .g-audio .g-audio-icon {
     position: absolute;
     top: 40px;
     left: 20px;
@@ -1561,12 +1724,12 @@ textarea.g-textarea {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center; }
-    .g-audios-wrap ._icon ._item-on {
+    .g-audio .g-audio-icon .g-audio-icon-item.g-audio-icon-item-on {
       display: none; }
-  .g-audios-wrap._on ._icon ._item-off {
-    display: none; }
-  .g-audios-wrap._on ._icon ._item-on {
+  .g-audio.g-audio-on .g-audio-icon .g-audio-icon-item.g-audio-icon-item-on {
     display: block; }
+  .g-audio.g-audio-on .g-audio-icon .g-audio-icon-item.g-audio-icon-item-off {
+    display: none; }
 
 .g-form-wrap {
   margin-bottom: 10px;
@@ -1607,6 +1770,7 @@ textarea.g-textarea {
       /* 重置g-img-upload */
       /* 重置g-input */
       /* 重置g-textarea */
+      /* 重置g-select */
       /* 多行情况 */ }
       .g-form-wrap .g-form .g-form-body .g-img-upload {
         margin: 10px; }
@@ -1614,6 +1778,10 @@ textarea.g-textarea {
         border: none; }
       .g-form-wrap .g-form .g-form-body .g-textarea {
         border: none; }
+      .g-form-wrap .g-form .g-form-body .g-select {
+        border: none; }
+        .g-form-wrap .g-form .g-form-body .g-select .g-select-mark {
+          border-right: 1px dashed #e6e7ed; }
       .g-form-wrap .g-form .g-form-body.g-form-body-more-row {
         /* 重置g-form-body */
         padding-bottom: 10px;

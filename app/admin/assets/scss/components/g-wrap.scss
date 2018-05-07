@@ -5,7 +5,7 @@
     $w: 200;
     display: flex;
     .g-menu-wrap {
-        width: px2px($w);
+        width: px2rem($w);
         position: relative;
         z-index: 2;
         .g-menu {
@@ -22,29 +22,29 @@
                 .g-menu-item-title {
                     display: flex;
                     align-items: center;
-                    padding: 0 px2px(5);
-                    line-height: px2px(30);
+                    padding: 0 px2rem(5);
+                    line-height: px2rem(30);
                     .g-menu-item-title-text {
                         transition: 0.4s;
                     }
                     .g-menu-item-title-icon {
-                        width: px2px(14);
-                        margin-right: px2px(5);
+                        width: px2rem(14);
+                        margin-right: px2rem(5);
                     }
                     &:hover {
                         .g-menu-item-title-text {
-                            text-indent: px2px(6);
+                            text-indent: px2rem(6);
                         }
                         //background: #383c49;
                     }
                 }
                 .g-menu-item-body {
                     display: none;
-                    line-height: px2px(30);
+                    line-height: px2rem(30);
                     .g-menu-item-body-item {
                         display: block;
                         cursor: pointer;
-                        padding: 0 px2px(5) 0 px2px(30);
+                        padding: 0 px2rem(5) 0 px2rem(30);
                         transition: 0.4s;
                         &.g-menu-item-body-item-active, &.g-menu-item-body-item-active:hover {
                             background: $g-background-color-floor;
@@ -69,7 +69,7 @@
 
     .g-body {
         flex: 1;
-        padding: px2px(40) px2px(20);
+        padding: px2rem(40) px2rem(20);
         position: relative;
         z-index: 1;
     }

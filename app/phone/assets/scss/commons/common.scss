@@ -38,9 +38,9 @@
     }
 }
 
-.g-audios-wrap {
+.g-audio {
     position: relative;
-    ._icon {
+    .g-audio-icon {
         position: absolute;
         top: px2rem(40);
         left: px2rem(20);
@@ -49,17 +49,21 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        ._item-on {
-            display: none;
-        }
-    }
-    &._on {
-        ._icon {
-            ._item-off {
+        .g-audio-icon-item {
+            &.g-audio-icon-item-on {
                 display: none;
             }
-            ._item-on {
-                display: block;
+        }
+    }
+    &.g-audio-on {
+        .g-audio-icon {
+            .g-audio-icon-item {
+                &.g-audio-icon-item-on {
+                    display: block;
+                }
+                &.g-audio-icon-item-off {
+                    display: none;
+                }
             }
         }
     }

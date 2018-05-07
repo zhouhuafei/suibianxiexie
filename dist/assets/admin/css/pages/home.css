@@ -1,2 +1,7 @@
-.page-item {
-  margin-bottom: 10px; }
+@charset "UTF-8";
+/*
+// px转rem(phone)
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/

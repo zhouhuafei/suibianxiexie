@@ -28,20 +28,9 @@
 @import "../components/g-no-data";
 @import "../components/g-validate-form-hint";
 
-.g-img-list {
-    .g-img-list-big img {
-        width: px2rem(376, 750);
-        height: px2rem(160, 750);
-    }
-    .g-img-list-small img {
-        width: px2rem(144, 750);
-        height: px2rem(147, 750);
-    }
-}
-
-.g-audios-wrap {
+.g-audio {
     position: relative;
-    ._icon {
+    .g-audio-icon {
         position: absolute;
         top: px2rem(40);
         left: px2rem(20);
@@ -50,17 +39,21 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        ._item-on {
-            display: none;
-        }
-    }
-    &._on {
-        ._icon {
-            ._item-off {
+        .g-audio-icon-item {
+            &.g-audio-icon-item-on {
                 display: none;
             }
-            ._item-on {
-                display: block;
+        }
+    }
+    &.g-audio-on {
+        .g-audio-icon {
+            .g-audio-icon-item {
+                &.g-audio-icon-item-on {
+                    display: block;
+                }
+                &.g-audio-icon-item-off {
+                    display: none;
+                }
             }
         }
     }
@@ -69,21 +62,21 @@
 // 表单
 .g-form-wrap {
     margin-bottom: px2rem(10);
-    border: 1px solid $g-border-color-default;
+    border: px2rem(1) solid $g-border-color-default;
     border-left: none;
     border-right: none;
     .g-form {
         $height: 40;
         display: flex;
         position: relative;
-        border-bottom: 1px solid $g-border-color-default;
+        border-bottom: px2rem(1) solid $g-border-color-default;
         background: #ffffff;
         min-height: px2rem(40);
         .g-form-text {
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            padding: 0 10px;
+            padding: 0 px2rem(10);
             min-width: px2rem(120);
             text-align: right;
         }
@@ -91,7 +84,7 @@
             display: flex;
             flex-wrap: wrap;
             flex: 1;
-            border-left: 1px solid $g-border-color-default;
+            border-left: px2rem(1) solid $g-border-color-default;
             /* 重置g-img-upload */
             .g-img-upload {
                 margin: px2rem(10);
@@ -103,6 +96,13 @@
             /* 重置g-textarea */
             .g-textarea {
                 border: none;
+            }
+            /* 重置g-select */
+            .g-select {
+                border: none;
+                .g-select-mark {
+                    border-right: px2rem(1) dashed $g-border-color-default;
+                }
             }
             /* 多行情况 */
             &.g-form-body-more-row {

@@ -23,7 +23,7 @@
             height: inherit;
             background: inherit;
             border-radius: inherit;
-            border: px2px(1) solid $g-border-color-default;
+            border: px2rem(1) solid $g-border-color-default;
             &:checked {
                 border-color: $g-highlight-color;
                 & + .g-checkbox-body-mark {
