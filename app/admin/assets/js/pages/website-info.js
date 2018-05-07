@@ -10,7 +10,12 @@ class Sub extends Super {
         // 验证
         (function () {
             const ValidateInput = require('../components-dom/g-validate-form-hint');
-            new ValidateInput({element: '.page-validate-form'});
+            const validateInput = new ValidateInput({element: '.page-validate-form'});
+            validateInput.setValidate('no-999', function (value) {
+                return Number(value) !== 999;
+            });
+            const isAllPassValidate = validateInput.isAllPassValidate();
+            console.log('isAllPassValidate', isAllPassValidate);
         }());
     }
 }

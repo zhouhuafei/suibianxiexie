@@ -92,6 +92,8 @@ var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(2); // 应用方法集合
 var domAddPosition = __webpack_require__(10);
 var checkStr = tools.checkStr;
+var getParent = applications.getParent;
+var getDomArray = applications.getDomArray;
 
 function ValidateForm(json) {
     this.opts = tools.extend({
@@ -99,7 +101,7 @@ function ValidateForm(json) {
         hintClass: 'g-validate-form-hint'
     }, json);
     if (this.opts.element) {
-        this.element = applications.getDomArray(this.opts.element);
+        this.element = getDomArray(this.opts.element);
     }
     if (this.element.length) {
         this.init();
@@ -113,13 +115,25 @@ ValidateForm.prototype.init = function () {
 ValidateForm.prototype.render = function () {
     var self = this;
     self.element.forEach(function (v) {
-        if (v.parentNode) {
-            // domAddPosition(v.parentNode, 'relative');
+        var inputWrapDom = self.getInputParent(v);
+        if (inputWrapDom) {
+            domAddPosition(inputWrapDom, 'relative');
+            v.inputWrapDom = inputWrapDom;
         }
         v.customValidateRule = {}; // 自定义规则
         v.hintDom = document.createElement('span');
         v.hintDom.classList.add(self.opts.hintClass);
     });
+};
+ValidateForm.prototype.getInputParent = function (input) {
+    var parent = getParent(input, '.g-form'); // 把这个放上面，是为了少调用一次getParent方法，因为g-form布局用的居多，g-validate-form-hint-wrap没怎么使用。
+    if (!parent) {
+        parent = getParent(input, '.g-validate-form-hint-wrap');
+    }
+    if (!parent) {
+        parent = input.parentNode;
+    }
+    return parent;
 };
 ValidateForm.prototype.renderHintAdd = function () {
     var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -129,36 +143,53 @@ ValidateForm.prototype.renderHintAdd = function () {
     var hintDom = input.hintDom;
     if (input.offsetWidth && hintDom) {
         hintDom.innerHTML = opts.txt;
-        input.parentNode.appendChild(hintDom);
+        var inputWrapDom = input.inputWrapDom;
+        var hintDomIsExist = inputWrapDom.querySelector('.' + this.opts.hintClass);
+        if (inputWrapDom && !hintDomIsExist) {
+            inputWrapDom.appendChild(hintDom);
+        }
     }
 };
 ValidateForm.prototype.renderHintRemove = function () {
     var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
     var input = opts.input;
-    var parentDom = input.parentNode;
-    var hintDom = input.parentNode.querySelector('.' + this.opts.hintClass);
-    if (parentDom && hintDom) {
-        parentDom.removeChild(input.hintDom);
+    var inputWrapDom = input.inputWrapDom;
+    var hintDom = inputWrapDom.querySelector('.' + this.opts.hintClass);
+    if (inputWrapDom && hintDom) {
+        inputWrapDom.removeChild(hintDom);
     }
 };
 ValidateForm.prototype.validateInput = function (input) {
     var self = this;
-    var customValidateRule = input.customValidateRule;
-    Object.keys(customValidateRule).forEach(function (keys) {
-        var obj = customValidateRule[keys];
-        obj.isValidateSuccess = obj.fn(input.value);
-    });
     var validateType = input.dataset.validate || 'undefined';
     var validateHintTxt = input.dataset.hint || 'undefined';
     var type = validateType.split(' ');
     var hintTxt = validateHintTxt.split(' ');
-    var value = input.value;
+    var inputWrapDom = input.inputWrapDom;
     var inputType = input.type;
+    var inputName = input.name;
     var isPassword = inputType === 'password';
-    var isValidateSuccess = true; // 是否验证成功了
+    var isRadio = inputType === 'radio';
+    var isCheckbox = inputType === 'checkbox';
+    var isFile = inputType === 'file';
+    var isHidden = inputType === 'hidden';
+    var value = input.value;
+    if (isFile) {
+        // 如果是file类型的input，值就是input身上的自定义属性data-value
+        value = input.dataset.value;
+    }
+    // 验证自定义的规则
+    var customValidateRule = input.customValidateRule;
+    Object.keys(customValidateRule).forEach(function (keys) {
+        var obj = customValidateRule[keys];
+        obj.isValidateSuccess = obj.fn(value);
+    });
+    // 验证非自定义的规则
+    var isValidateSuccess = true; // 是否验证成功了，假设验证通过了。
     type.forEach(function (v, i) {
         if (isValidateSuccess && customValidateRule[v]) {
+            // 验证通过了且自定义验证存在则校验自定义的规则是否通过了
             if (isValidateSuccess && customValidateRule[v].isValidateSuccess) {
                 self.renderHintRemove({ input: input });
                 isValidateSuccess = true;
@@ -168,11 +199,18 @@ ValidateForm.prototype.validateInput = function (input) {
             }
         }
         if (isValidateSuccess && !customValidateRule[v]) {
+            // 验证通过了且自定义验证不存在则校验非自定义的规则是否通过了
             if (isValidateSuccess && v === 'no-empty') {
                 // 设置了非空验证
                 var isEmpty = checkStr.isEmpty(value);
                 if (isPassword) {
-                    isEmpty = value === ''; // input为password类型的进行特殊处理
+                    // input为password类型的进行特殊处理
+                    isEmpty = value === ''; // 因为密码可以输入空格，所以没必要去除首尾空格。
+                }
+                if (isRadio || isCheckbox) {
+                    // input为radio类型和input为checkbox类型的进行特殊处理（这两种类型只验证是否必填就够用了，file类型和select下拉框也是只验证必填就够用了。）
+                    var isChecked = inputWrapDom.querySelector('input[name=' + inputName + ']:checked');
+                    isEmpty = isChecked === null;
                 }
                 if (isEmpty) {
                     self.renderHintAdd({ txt: hintTxt[i], input: input });
@@ -232,7 +270,7 @@ ValidateForm.prototype.setValidate = function (name, fn) {
     this.element.forEach(function (v) {
         v.customValidateRule[name] = {
             fn: fn,
-            isValidateSuccess: fn(v.value)
+            isValidateSuccess: false
         };
     });
 };

@@ -33,7 +33,7 @@
                         <div class="g-form-text">网站logo:</div>
                         <div class="g-form-body g-form-body-more-row">
                             <label class="g-img-upload">
-                                <input class="g-img-upload-input" type="file" accept="image/gif,image/jpg,image/png">
+                                <input class="g-img-upload-input page-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必传" data-value="" type="file" accept="image/gif,image/jpg,image/png">
                                 <span class="g-img-upload-icon iconfont icon-upload"></span>
                                 <span class="g-img-upload-show"></span>
                                 <span class="g-img-upload-text">640*640</span>
@@ -59,10 +59,10 @@
                         <div class="g-form-text">g-form-text:</div>
                         <div class="g-form-body">
                             <span class="g-select">
-                                <select class="g-select-body" name="" title="请选择你喜欢的球类">
+                                <select class="g-select-body page-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" name="" title="请选择你喜欢的球类">
                                     <option value="">请选择你喜欢的球类</option>
-                                    <option value="">乒乓球</option>
-                                    <option value="">篮球</option>
+                                    <option value="1">乒乓球</option>
+                                    <option value="2">篮球</option>
                                 </select>
                                 <span class="g-select-mark iconfont icon-select"></span>
                             </span>
@@ -72,7 +72,7 @@
                     <div class="g-form">
                         <div class="g-form-text">g-form-text:</div>
                         <div class="g-form-body">
-                            <textarea placeholder="请输入" class="g-textarea page-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数"></textarea>
+                            <textarea class="g-textarea page-validate-form" data-validate="no-empty no-zero yes-positive-integer no-999" data-hint="本项必填 本项不可为零 请输入正整数 不允许是999" placeholder="请输入">999</textarea>
                         </div>
                         <div class="g-form-limit">0/100</div>
                         <div class="g-form-icon iconfont icon-refresh"></div>
@@ -83,14 +83,14 @@
                         <div class="g-form-body">
                             <div class="g-radio">
                                 <div class="g-radio-body">
-                                    <input title="" class="g-radio-body-radio" checked="checked" type="radio" name="sex" value="">
+                                    <input title="" class="g-radio-body-radio page-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="radio" name="sex" value="">
                                     <div class="g-radio-body-mark iconfont icon-radio"></div>
                                 </div>
                                 <div class="g-radio-text">男</div>
                             </div>
                             <div class="g-radio">
                                 <div class="g-radio-body">
-                                    <input title="" class="g-radio-body-radio" type="radio" name="sex" value="">
+                                    <input title="" class="g-radio-body-radio page-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="radio" name="sex" value="">
                                     <div class="g-radio-body-mark iconfont icon-radio"></div>
                                 </div>
                                 <div class="g-radio-text">女</div>
@@ -103,21 +103,21 @@
                         <div class="g-form-body g-form-body-more-row">
                             <label class="g-checkbox">
                                 <span class="g-checkbox-body">
-                                    <input checked="checked" title="" class="g-checkbox-body-checkbox" type="checkbox" name="hobby" value="pingpangqiu">
+                                    <input title="" class="g-checkbox-body-checkbox page-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="checkbox" name="hobby" value="pingpangqiu">
                                     <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
                                 </span>
                                 <span class="g-checkbox-text">天</span>
                             </label>
                             <label class="g-checkbox">
                                 <span class="g-checkbox-body">
-                                    <input title="" class="g-checkbox-body-checkbox" type="checkbox" name="hobby" value="lanqiu">
+                                    <input title="" class="g-checkbox-body-checkbox page-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="checkbox" name="hobby" value="lanqiu">
                                     <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
                                 </span>
                                 <span class="g-checkbox-text">地</span>
                             </label>
                             <label class="g-checkbox">
                                 <span class="g-checkbox-body">
-                                    <input title="" class="g-checkbox-body-checkbox" type="checkbox" name="hobby" value="zuqiu">
+                                    <input title="" class="g-checkbox-body-checkbox page-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="checkbox" name="hobby" value="zuqiu">
                                     <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
                                 </span>
                                 <span class="g-checkbox-text">人</span>
@@ -128,50 +128,56 @@
                 </div>
 
                 <div style="background: #ccc;padding: 10px 0;margin-bottom: 10px;">
-                    <input style="margin-bottom: 10px;" placeholder="请输入" class="g-input page-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="text">
-                    <span style="margin-bottom: 10px;" class="g-select">
-                                <select class="g-select-body" name="" title="请选择你喜欢的球类">
-                                    <option value="">请选择你喜欢的球类</option>
-                                    <option value="">乒乓球</option>
-                                    <option value="">篮球</option>
-                                </select>
-                                <span class="g-select-mark iconfont icon-select"></span>
-                            </span>
-                    <textarea style="margin-bottom: 10px;" placeholder="请输入" class="g-textarea page-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数"></textarea>
-                    <div style="margin-bottom: 10px; padding: 10px 0; display: flex; background: #ffffff;">
+                    <div>
+                        <input style="margin-bottom: 10px;" placeholder="请输入" class="g-input page-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="text">
+                    </div>
+                    <div>
+                        <span style="margin-bottom: 10px;" class="g-select">
+                            <select class="g-select-body page-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" name="" title="请选择你喜欢的球类">
+                                <option value="">请选择你喜欢的球类</option>
+                                <option value="1">乒乓球</option>
+                                <option value="2">篮球</option>
+                            </select>
+                            <span class="g-select-mark iconfont icon-select"></span>
+                        </span>
+                    </div>
+                    <div>
+                        <textarea style="margin-bottom: 10px;" class="g-textarea page-validate-form" data-validate="no-empty no-zero yes-positive-integer no-999" data-hint="本项必填 本项不可为零 请输入正整数 不允许是999" placeholder="请输入">999</textarea>
+                    </div>
+                    <div class="g-validate-form-hint-wrap" style="margin-bottom: 10px; padding: 10px 0; display: flex; background: #ffffff;">
                         <div class="g-radio">
                             <div class="g-radio-body">
-                                <input title="" class="g-radio-body-radio" checked="checked" type="radio" name="sex" value="">
+                                <input title="" class="g-radio-body-radio page-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="radio" name="sex2" value="">
                                 <div class="g-radio-body-mark iconfont icon-radio"></div>
                             </div>
                             <div class="g-radio-text">男</div>
                         </div>
                         <div class="g-radio">
                             <div class="g-radio-body">
-                                <input title="" class="g-radio-body-radio" type="radio" name="sex" value="">
+                                <input title="" class="g-radio-body-radio page-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="radio" name="sex2" value="">
                                 <div class="g-radio-body-mark iconfont icon-radio"></div>
                             </div>
                             <div class="g-radio-text">女</div>
                         </div>
                     </div>
-                    <div style="padding: 10px 0; display: flex; background: #ffffff;">
+                    <div class="g-validate-form-hint-wrap" style="padding: 10px 0; display: flex; background: #ffffff;">
                         <label class="g-checkbox">
                                 <span class="g-checkbox-body">
-                                    <input checked="checked" title="" class="g-checkbox-body-checkbox" type="checkbox" name="hobby" value="pingpangqiu">
+                                    <input title="" class="g-checkbox-body-checkbox page-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="checkbox" name="hobby2" value="pingpangqiu">
                                     <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
                                 </span>
                             <span class="g-checkbox-text">天</span>
                         </label>
                         <label class="g-checkbox">
                                 <span class="g-checkbox-body">
-                                    <input title="" class="g-checkbox-body-checkbox" type="checkbox" name="hobby" value="lanqiu">
+                                    <input title="" class="g-checkbox-body-checkbox page-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="checkbox" name="hobby2" value="lanqiu">
                                     <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
                                 </span>
                             <span class="g-checkbox-text">地</span>
                         </label>
                         <label class="g-checkbox">
                                 <span class="g-checkbox-body">
-                                    <input title="" class="g-checkbox-body-checkbox" type="checkbox" name="hobby" value="zuqiu">
+                                    <input title="" class="g-checkbox-body-checkbox page-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="checkbox" name="hobby2" value="zuqiu">
                                     <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
                                 </span>
                             <span class="g-checkbox-text">人</span>

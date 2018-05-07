@@ -603,9 +603,12 @@ input.g-input {
           justify-content: center;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  color: #0089ff; }
+  color: #0089ff;
+  overflow: hidden; }
   .g-img-upload .g-img-upload-input {
-    display: none; }
+    position: absolute;
+    z-index: -1;
+    opacity: 0; }
   .g-img-upload .g-img-upload-icon {
     font-size: 32px; }
   .g-img-upload .g-img-upload-show {
@@ -1675,7 +1678,7 @@ textarea.g-textarea {
 */
 .g-validate-form-hint {
   color: #ffffff;
-  background: #fa5555;
+  background-color: rgba(250, 85, 85, 0.9);
   height: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1703,7 +1706,7 @@ textarea.g-textarea {
     width: 0;
     height: 0;
     border: 6px solid transparent;
-    border-top-color: #fa5555;
+    border-top-color: rgba(250, 85, 85, 0.9);
     right: 10px;
     top: 20px; }
 
