@@ -45,10 +45,34 @@
                                            data-validate="no-empty yes-limit-length-1"
                                            data-hint="本项必传 最多上传1张图片"
                                            data-value="true"
-                                           type="file" accept="image/gif,image/jpg,image/png">
+                                           type="file" accept="image/gif, image/jpeg, image/png">
+                                    <input type="hidden" name="website-logo">
                                     <span class="g-upload-icon iconfont icon-upload-img"></span>
                                     <span class="g-upload-show"></span>
                                     <span class="g-upload-text">640*640</span>
+                                    <span class="g-upload-opts">
+                                        <span class="g-upload-opts-item g-upload-opts-close iconfont icon-delete"></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="g-form-icon g-form-hint iconfont icon-required"></div>
+                        </div>
+                    </div>
+                    <div class="g-form-wrap">
+                        <div class="g-form">
+                            <div class="g-form-text">网站favicon:</div>
+                            <div class="g-form-body g-form-body-more-row">
+                                <label class="g-upload">
+                                    <input class="g-upload-input page-validate-form"
+                                           data-event="change"
+                                           data-validate="no-empty yes-limit-length-1"
+                                           data-hint="本项必传 最多上传1张图片"
+                                           data-value="true"
+                                           type="file" accept="image/vnd.microsoft.icon">
+                                    <input type="hidden" name="website-favicon">
+                                    <span class="g-upload-icon iconfont icon-upload-img"></span>
+                                    <span class="g-upload-show"></span>
+                                    <span class="g-upload-text">32*32</span>
                                     <span class="g-upload-opts">
                                         <span class="g-upload-opts-item g-upload-opts-close iconfont icon-delete"></span>
                                     </span>

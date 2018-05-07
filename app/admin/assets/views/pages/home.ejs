@@ -13,7 +13,7 @@
                     <div>更多功能敬请期待</div>
                     <div>以下是表单验证的功能测试</div>
                 </div>
-                <form action="" method="post">
+                <form action="" method="get">
                     <div class="g-form-wrap">
                         <label class="g-form">
                             <span class="g-form-text">网站密码:</span>
@@ -59,7 +59,8 @@
                             <div class="g-form-text">网站logo:</div>
                             <div class="g-form-body g-form-body-more-row">
                                 <label class="g-upload g-upload-active">
-                                    <input class="g-upload-input" type="file" accept="image/gif,image/jpg,image/png">
+                                    <input class="g-upload-input" type="file" accept="image/gif, image/jpeg, image/png">
+                                    <input type="hidden" name="website-logo">
                                     <span class="g-upload-icon iconfont icon-upload-img"></span>
                                     <span class="g-upload-show"></span>
                                     <span class="g-upload-text">640*640</span>
@@ -68,7 +69,8 @@
                                     </span>
                                 </label>
                                 <label class="g-upload g-upload-active">
-                                    <input class="g-upload-input" type="file" accept="image/gif,image/jpg,image/png">
+                                    <input class="g-upload-input" type="file" accept="image/gif, image/jpeg, image/png">
+                                    <input type="hidden" name="website-logo">
                                     <span class="g-upload-icon iconfont icon-upload-img"></span>
                                     <span class="g-upload-show"></span>
                                     <span class="g-upload-text">640*640</span>
@@ -82,7 +84,8 @@
                                            data-validate="no-empty yes-limit-length-1"
                                            data-hint="本项必传 最多上传1张图片"
                                            data-value="true"
-                                           type="file" accept="image/gif,image/jpg,image/png">
+                                           type="file" accept="image/gif, image/jpeg, image/png">
+                                    <input type="hidden" name="">
                                     <span class="g-upload-icon iconfont icon-upload-img"></span>
                                     <span class="g-upload-show"></span>
                                     <span class="g-upload-text">640*640</span>
@@ -287,7 +290,7 @@
                     </div>
 
                     <div class="g-display-flex">
-                        <div class="g-button">保存</div>
+                        <input class="g-button" type="submit">保存</input>
                     </div>
                 </form>
             </div>
