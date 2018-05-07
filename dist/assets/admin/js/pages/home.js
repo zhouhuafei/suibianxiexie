@@ -1,5 +1,12 @@
 webpackJsonp([6],{
 
+/***/ 114:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 39:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14,7 +21,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(40);
+__webpack_require__(114);
 var Super = __webpack_require__(11);
 
 var Sub = function (_Super) {
@@ -32,6 +39,21 @@ var Sub = function (_Super) {
             var superSelf = this;
             var dataInfo = superSelf.dataInfo;
             var routes = dataInfo.routes;
+
+            // 验证
+            (function () {
+                var ValidateInput = __webpack_require__(9);
+                var validateInput = new ValidateInput({ element: '.page-validate-form' });
+                validateInput.setValidate('no-999', function (value) {
+                    return Number(value) !== 999;
+                });
+                var isAllPassValidate = validateInput.isAllPassValidate();
+                console.log('isAllPassValidate', isAllPassValidate);
+
+                document.querySelector('.js-upload-input').addEventListener('change', function () {
+                    validateInput.validateInput(this);
+                });
+            })();
         }
     }]);
 
@@ -39,13 +61,6 @@ var Sub = function (_Super) {
 }(Super);
 
 new Sub();
-
-/***/ }),
-
-/***/ 40:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 

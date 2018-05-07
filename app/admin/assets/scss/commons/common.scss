@@ -5,7 +5,7 @@
 @import "../components/g-button";
 @import "../components/g-input";
 @import "../components/g-quick-enter";
-@import "../components/g-img-upload";
+@import "../components/g-upload";
 @import "../components/g-list";
 @import "../components/g-checkbox";
 @import "../components/g-radio";
@@ -85,8 +85,8 @@
             flex-wrap: wrap;
             flex: 1;
             border-left: px2rem(1) solid $g-border-color-default;
-            /* 重置g-img-upload */
-            .g-img-upload {
+            /* 重置g-upload */
+            .g-upload {
                 margin: px2rem(10);
             }
             /* 重置g-input */
@@ -108,8 +108,8 @@
             &.g-form-body-more-row {
                 /* 重置g-form-body */
                 padding-bottom: px2rem(10);
-                /* 重置g-img-upload */
-                .g-img-upload {
+                /* 重置g-upload */
+                .g-upload {
                     margin: px2rem(10) px2rem(0) px2rem(0) px2rem(10);
                 }
                 /* 重置g-checkbox */
