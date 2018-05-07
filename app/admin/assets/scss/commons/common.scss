@@ -92,93 +92,28 @@
             flex-wrap: wrap;
             flex: 1;
             border-left: 1px solid $g-border-color-default;
+            /* 重置g-img-upload */
             .g-img-upload {
                 margin: px2rem(10);
             }
-            .g-form-body-input {
-                min-width: px2rem(50);
-                border: none;
-                -webkit-appearance: none;
-                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-                outline: none;
-                color: inherit;
-                font-size: inherit;
-                flex: 1;
-                height: 100%;
-                background: inherit;
-                border-radius: inherit;
-                box-sizing: border-box;
-                padding: 0 px2rem(10);
-            }
-            .g-form-body-textarea {
-                -webkit-appearance: none;
-                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-                outline: none;
-                color: inherit;
-                font-size: inherit;
-                flex: 1;
-                height: px2rem(120);
-                font-family: inherit;
-                line-height: inherit;
-                background: inherit;
-                border-radius: inherit;
-                box-sizing: border-box;
-                text-align: justify;
-                resize: none;
-                padding: px2rem(10);
+            /* 重置g-input */
+            .g-input {
                 border: none;
             }
-            .g-form-body-select {
-                $select-height: 40;
-                $mark-font-size: 12;
-                $mark-width: $mark-font-size + 20;
-                $select-padding-left: 10;
-                $select-padding-right: $mark-width;
-                flex: 1;
-                width: 0;
-                display: flex;
-                align-items: center;
-                height: 100%;
-                position: relative;
-                .g-form-body-select-body {
-                    flex: 1;
-                    width: 0;
-                    -webkit-appearance: none;
-                    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-                    outline: none;
-                    color: inherit;
-                    font-size: inherit;
-                    height: 100%;
-                    background: transparent;
-                    border-radius: inherit;
-                    box-sizing: border-box;
-                    position: relative;
-                    z-index: 1;
-                    padding-left: px2rem($select-padding-left);
-                    padding-right: px2rem($select-padding-right);
-                    border: none;
-                }
-                .g-form-body-select-mark {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: px2rem($mark-font-size);
-                    color: $g-ignore-color;
-                    width: px2rem($mark-width);
-                    height: 100%;
-                    position: absolute;
-                    right: 0;
-                    top: 0;
-                    box-sizing: border-box;
-                    border-radius: inherit;
-                    border: px2rem(1) dashed $g-border-color-default;
-                    border-top: none;
-                    border-bottom: none;
-                }
+            /* 重置g-textarea */
+            .g-textarea {
+                border: none;
             }
+            /* 多行情况 */
             &.g-form-body-more-row {
+                /* 重置g-form-body */
                 padding-bottom: px2rem(10);
-                .g-img-upload, .g-checkbox {
+                /* 重置g-img-upload */
+                .g-img-upload {
+                    margin: px2rem(10) px2rem(0) px2rem(0) px2rem(10);
+                }
+                /* 重置g-checkbox */
+                .g-checkbox {
                     margin: px2rem(10) px2rem(0) px2rem(0) px2rem(10);
                 }
             }

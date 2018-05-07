@@ -497,84 +497,25 @@ img {
     color: #91918e;
     cursor: not-allowed; }
 
-.g-input {
-  width: 100%;
-  height: 40px;
-  background: #ffffff;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+input.g-input {
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  color: inherit;
+  font-size: inherit;
+  background: inherit;
+  border-radius: inherit;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100%;
+  padding: 0 10px;
   border: 1px solid #e6e7ed;
   border-left: none;
   border-right: none;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  position: relative;
-  border-radius: 0px;
-  font-size: 12px; }
-  .g-input .g-input-text {
-    min-width: 120px;
-    padding: 0 10px;
-    height: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end; }
-    .g-input .g-input-text ~ .g-input-input {
-      border-left: 1px solid #e6e7ed; }
-    .g-input .g-input-text .g-input-icon {
-      font-size: inherit; }
-  .g-input .g-input-icon {
-    min-width: 20px;
-    padding: 0 2px;
-    height: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center; }
-    .g-input .g-input-icon ~ .g-input-input {
-      border-left: 1px solid #e6e7ed; }
-  .g-input .g-input-hint {
-    padding: 0 2px;
-    color: #fa5555; }
-    .g-input .g-input-hint ~ .g-input-input {
-      border-left: 1px solid #e6e7ed; }
-    .g-input .g-input-hint.g-input-hint-off {
-      color: #91918e;
-      opacity: 0; }
-  .g-input .g-input-input {
-    min-width: 50px;
-    border: none;
-    -webkit-appearance: none;
-    -webkit-tap-highlight-color: transparent;
-    outline: none;
-    color: inherit;
-    font-size: inherit;
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    height: 100%;
-    background: inherit;
-    border-radius: inherit;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    padding: 0 10px; }
+  min-width: 50px; }
 
 .g-quick-enter {
   display: -webkit-box;
@@ -842,147 +783,84 @@ img {
     margin-left: 4px; }
 
 .g-select {
-  width: 100%;
-  height: 40px;
-  background: #ffffff;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  width: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border: 1px solid #e6e7ed;
-  border-left: none;
-  border-right: none;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  position: relative;
-  border-radius: 0px; }
-  .g-select .g-select-text {
-    min-width: 120px;
-    padding: 0 10px;
-    height: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end; }
-    .g-select .g-select-text ~ .g-select-wrap {
-      border-left: 1px solid #e6e7ed; }
-  .g-select .g-select-wrap {
+  height: 100%;
+  position: relative; }
+  .g-select select.g-select-body {
     -webkit-box-flex: 1;
         -ms-flex: 1;
             flex: 1;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    height: 100%; }
-    .g-select .g-select-wrap .g-select-select {
-      -webkit-box-flex: 1;
-          -ms-flex: 1;
-              flex: 1;
-      -webkit-appearance: none;
-      -webkit-tap-highlight-color: transparent;
-      outline: none;
-      color: inherit;
-      font-size: inherit;
-      height: 100%;
-      background: transparent;
-      border-radius: inherit;
-      -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-      position: relative;
-      z-index: 1;
-      padding-left: 10px;
-      padding-right: 50px;
-      border: none; }
-    .g-select .g-select-wrap .g-select-mark {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center;
-      font-size: inherit;
-      color: #bfbfbf;
-      width: 40px;
-      height: 100%;
-      position: absolute;
-      right: 0;
-      top: 0;
-      border-left: 1px solid #e6e7ed;
-      -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-      border-radius: inherit; }
-
-.g-textarea {
-  width: 100%;
-  height: 120px;
-  line-height: 20px;
-  background: #ffffff;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border: 1px solid #e6e7ed;
-  border-left: none;
-  border-right: none;
-  border-radius: 0px; }
-  .g-textarea .g-textarea-text {
-    min-width: 120px;
-    padding: 0 10px;
-    height: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end; }
-    .g-textarea .g-textarea-text ~ .g-textarea-textarea {
-      border-left: 1px solid #e6e7ed; }
-  .g-textarea .g-textarea-textarea {
+    width: 0;
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
     outline: none;
     color: inherit;
     font-size: inherit;
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
     height: 100%;
-    font-family: inherit;
-    line-height: inherit;
-    background: inherit;
+    background: transparent;
     border-radius: inherit;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    text-align: justify;
-    resize: none;
-    padding: 10px;
+    position: relative;
+    z-index: 1;
+    padding-left: 10px;
+    padding-right: 32px;
     border: none; }
+  .g-select .g-select-mark {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    font-size: 12px;
+    color: #bfbfbf;
+    width: 32px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    border-radius: inherit;
+    border: 1px dashed #e6e7ed;
+    border-top: none;
+    border-bottom: none; }
+
+textarea.g-textarea {
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  resize: none;
+  outline: none;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  background: inherit;
+  border-radius: inherit;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: justify;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 120px;
+  padding: 10px;
+  border: 1px solid #e6e7ed;
+  border-left: none;
+  border-right: none; }
 
 .g-dialog {
   z-index: 505; }
@@ -1725,105 +1603,25 @@ img {
       -webkit-box-flex: 1;
           -ms-flex: 1;
               flex: 1;
-      border-left: 1px solid #e6e7ed; }
+      border-left: 1px solid #e6e7ed;
+      /* 重置g-img-upload */
+      /* 重置g-input */
+      /* 重置g-textarea */
+      /* 多行情况 */ }
       .g-form-wrap .g-form .g-form-body .g-img-upload {
         margin: 10px; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-input {
-        min-width: 50px;
-        border: none;
-        -webkit-appearance: none;
-        -webkit-tap-highlight-color: transparent;
-        outline: none;
-        color: inherit;
-        font-size: inherit;
-        -webkit-box-flex: 1;
-            -ms-flex: 1;
-                flex: 1;
-        height: 100%;
-        background: inherit;
-        border-radius: inherit;
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-        padding: 0 10px; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-textarea {
-        -webkit-appearance: none;
-        -webkit-tap-highlight-color: transparent;
-        outline: none;
-        color: inherit;
-        font-size: inherit;
-        -webkit-box-flex: 1;
-            -ms-flex: 1;
-                flex: 1;
-        height: 120px;
-        font-family: inherit;
-        line-height: inherit;
-        background: inherit;
-        border-radius: inherit;
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-        text-align: justify;
-        resize: none;
-        padding: 10px;
+      .g-form-wrap .g-form .g-form-body .g-input {
         border: none; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-select {
-        -webkit-box-flex: 1;
-            -ms-flex: 1;
-                flex: 1;
-        width: 0;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        height: 100%;
-        position: relative; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-select .g-form-body-select-body {
-          -webkit-box-flex: 1;
-              -ms-flex: 1;
-                  flex: 1;
-          width: 0;
-          -webkit-appearance: none;
-          -webkit-tap-highlight-color: transparent;
-          outline: none;
-          color: inherit;
-          font-size: inherit;
-          height: 100%;
-          background: transparent;
-          border-radius: inherit;
-          -webkit-box-sizing: border-box;
-                  box-sizing: border-box;
-          position: relative;
-          z-index: 1;
-          padding-left: 10px;
-          padding-right: 32px;
-          border: none; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-select .g-form-body-select-mark {
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-box-align: center;
-              -ms-flex-align: center;
-                  align-items: center;
-          -webkit-box-pack: center;
-              -ms-flex-pack: center;
-                  justify-content: center;
-          font-size: 12px;
-          color: #bfbfbf;
-          width: 32px;
-          height: 100%;
-          position: absolute;
-          right: 0;
-          top: 0;
-          -webkit-box-sizing: border-box;
-                  box-sizing: border-box;
-          border-radius: inherit;
-          border: 1px dashed #e6e7ed;
-          border-top: none;
-          border-bottom: none; }
+      .g-form-wrap .g-form .g-form-body .g-textarea {
+        border: none; }
       .g-form-wrap .g-form .g-form-body.g-form-body-more-row {
-        padding-bottom: 10px; }
-        .g-form-wrap .g-form .g-form-body.g-form-body-more-row .g-img-upload, .g-form-wrap .g-form .g-form-body.g-form-body-more-row .g-checkbox {
+        /* 重置g-form-body */
+        padding-bottom: 10px;
+        /* 重置g-img-upload */
+        /* 重置g-checkbox */ }
+        .g-form-wrap .g-form .g-form-body.g-form-body-more-row .g-img-upload {
+          margin: 10px 0px 0px 10px; }
+        .g-form-wrap .g-form .g-form-body.g-form-body-more-row .g-checkbox {
           margin: 10px 0px 0px 10px; }
     .g-form-wrap .g-form .g-form-icon {
       display: -webkit-box;

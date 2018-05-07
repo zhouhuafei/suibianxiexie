@@ -45,7 +45,7 @@
                     <div class="g-form">
                         <div class="g-form-text">g-form-text:</div>
                         <div class="g-form-body">
-                            <input placeholder="请输入" class="g-form-body-input page-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="text">
+                            <input placeholder="请输入" class="g-input page-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="text">
                         </div>
                         <div class="g-form-limit">0/100</div>
                         <div class="g-form-icon iconfont icon-refresh"></div>
@@ -54,13 +54,13 @@
                     <div class="g-form">
                         <div class="g-form-text">g-form-text:</div>
                         <div class="g-form-body">
-                            <span class="g-form-body-select">
-                                <select class="g-form-body-select-body" name="" title="请选择你喜欢的球类">
+                            <span class="g-select">
+                                <select class="g-select-body" name="" title="请选择你喜欢的球类">
                                     <option value="">请选择你喜欢的球类</option>
                                     <option value="">乒乓球</option>
                                     <option value="">篮球</option>
                                 </select>
-                                <span class="g-form-body-select-mark iconfont icon-select"></span>
+                                <span class="g-select-mark iconfont icon-select"></span>
                             </span>
                         </div>
                         <div class="g-form-icon iconfont icon-required g-form-hint"></div>
@@ -68,7 +68,7 @@
                     <div class="g-form">
                         <div class="g-form-text">g-form-text:</div>
                         <div class="g-form-body">
-                            <textarea placeholder="请输入" class="g-form-body-textarea page-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数"></textarea>
+                            <textarea placeholder="请输入" class="g-textarea page-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数"></textarea>
                         </div>
                         <div class="g-form-limit">0/100</div>
                         <div class="g-form-icon iconfont icon-refresh"></div>
@@ -122,6 +122,59 @@
                         <div class="g-form-icon iconfont icon-required g-form-hint"></div>
                     </div>
                 </div>
+
+                <div>
+                    <input placeholder="请输入" class="g-input page-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="text">
+                    <span class="g-select">
+                                <select class="g-select-body" name="" title="请选择你喜欢的球类">
+                                    <option value="">请选择你喜欢的球类</option>
+                                    <option value="">乒乓球</option>
+                                    <option value="">篮球</option>
+                                </select>
+                                <span class="g-select-mark iconfont icon-select"></span>
+                            </span>
+                    <textarea placeholder="请输入" class="g-textarea page-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数"></textarea>
+                    <div>
+                        <div class="g-radio">
+                            <div class="g-radio-body">
+                                <input title="" class="g-radio-body-radio" checked="checked" type="radio" name="sex" value="">
+                                <div class="g-radio-body-mark iconfont icon-radio"></div>
+                            </div>
+                            <div class="g-radio-text">男</div>
+                        </div>
+                        <div class="g-radio">
+                            <div class="g-radio-body">
+                                <input title="" class="g-radio-body-radio" type="radio" name="sex" value="">
+                                <div class="g-radio-body-mark iconfont icon-radio"></div>
+                            </div>
+                            <div class="g-radio-text">女</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="g-checkbox">
+                                <span class="g-checkbox-body">
+                                    <input checked="checked" title="" class="g-checkbox-body-checkbox" type="checkbox" name="hobby" value="pingpangqiu">
+                                    <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
+                                </span>
+                            <span class="g-checkbox-text">天</span>
+                        </label>
+                        <label class="g-checkbox">
+                                <span class="g-checkbox-body">
+                                    <input title="" class="g-checkbox-body-checkbox" type="checkbox" name="hobby" value="lanqiu">
+                                    <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
+                                </span>
+                            <span class="g-checkbox-text">地</span>
+                        </label>
+                        <label class="g-checkbox">
+                                <span class="g-checkbox-body">
+                                    <input title="" class="g-checkbox-body-checkbox" type="checkbox" name="hobby" value="zuqiu">
+                                    <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
+                                </span>
+                            <span class="g-checkbox-text">人</span>
+                        </label>
+                    </div>
+                </div>
+
                 <div class="g-display-flex">
                     <div class="g-button">保存</div>
                 </div>
