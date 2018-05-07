@@ -130,12 +130,16 @@ class Super {
             });
 
             // 刷新输入框
-            document.querySelectorAll('.g-input-icon.iconfont.icon-clear').forEach(function (v) {
+            document.querySelectorAll('.g-form-icon.iconfont.icon-clear').forEach(function (v) {
                 v.addEventListener('click', function () {
                     const parent = this.parentNode;
-                    const input = parent.querySelector('.g-input-input');
+                    const input = parent.querySelector('.g-input');
                     if (input) {
                         input.value = '';
+                    }
+                    const textarea = parent.querySelector('.g-textarea');
+                    if (textarea) {
+                        textarea.value = '';
                     }
                     const verifyCode = parent.querySelector('.g-verify-code-canvas img');
                     if (verifyCode) {
@@ -145,10 +149,10 @@ class Super {
             });
 
             // 密码是否可视
-            document.querySelectorAll('.g-input-icon.iconfont.icon-eye-off').forEach(function (v) {
+            document.querySelectorAll('.g-form-icon.iconfont.icon-eye-off').forEach(function (v) {
                 v.addEventListener('click', function () {
                     const parent = this.parentNode;
-                    const input = parent.querySelector('.g-input-input');
+                    const input = parent.querySelector('.g-input');
                     if (this.classList.contains('icon-eye-off')) {
                         this.classList.remove('icon-eye-off');
                         this.classList.add('icon-eye-on');
