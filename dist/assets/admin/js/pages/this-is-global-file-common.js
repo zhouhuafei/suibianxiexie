@@ -3041,6 +3041,7 @@ var domAddPosition = __webpack_require__(18);
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
+    wrap: '.g-wrap',
     // 回调
     callback: {
         moduleDomRenderBefore: function moduleDomRenderBefore(self) {

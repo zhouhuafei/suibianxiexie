@@ -6,6 +6,7 @@ const domAddPosition = require('zhf.dom-add-position');
 
 // 子类型
 const Sub = tools.constructorInherit(Super, {
+    wrap: '.g-wrap',
     // 回调
     callback: {
         moduleDomRenderBefore: function (self) {
