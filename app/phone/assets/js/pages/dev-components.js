@@ -63,7 +63,7 @@ class Sub extends Super {
                             img: {
                                 width: 0,
                                 height: 0,
-                                src: 'http://img1.imgtn.bdimg.com/it/u=1056872014,4038868309&fm=23&gp=0.jpg',
+                                src: require('../../images/home/slide1.jpg'),
                             },
                             href: '',
                         },
@@ -71,7 +71,7 @@ class Sub extends Super {
                             img: {
                                 width: 0,
                                 height: 0,
-                                src: 'http://img3.imgtn.bdimg.com/it/u=1732308780,3782498029&fm=23&gp=0.jpg',
+                                src: require('../../images/home/slide2.jpg'),
                             },
                             href: '',
                         },
@@ -79,7 +79,7 @@ class Sub extends Super {
                             img: {
                                 width: 0,
                                 height: 0,
-                                src: 'http://img3.imgtn.bdimg.com/it/u=4027566086,3099254237&fm=23&gp=0.jpg',
+                                src: require('../../images/home/slide3.jpg'),
                             },
                             href: '',
                         },
@@ -87,7 +87,7 @@ class Sub extends Super {
                             img: {
                                 width: 0,
                                 height: 0,
-                                src: 'http://img4.imgtn.bdimg.com/it/u=120609946,455952432&fm=23&gp=0.jpg',
+                                src: require('../../images/home/slide4.jpg'),
                             },
                             href: '',
                         },
@@ -95,7 +95,7 @@ class Sub extends Super {
                             img: {
                                 width: 0,
                                 height: 0,
-                                src: 'http://img2.imgtn.bdimg.com/it/u=2763208243,961494673&fm=23&gp=0.jpg',
+                                src: require('../../images/home/slide5.jpg'),
                             },
                             href: '',
                         },

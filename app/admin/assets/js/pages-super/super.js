@@ -145,17 +145,17 @@ class Super {
             });
 
             // 密码是否可视
-            document.querySelectorAll('.g-input-icon.iconfont.icon-eye').forEach(function (v) {
+            document.querySelectorAll('.g-input-icon.iconfont.icon-eye-off').forEach(function (v) {
                 v.addEventListener('click', function () {
                     const parent = this.parentNode;
                     const input = parent.querySelector('.g-input-input');
-                    if (this.classList.contains('icon-eye')) {
-                        this.classList.remove('icon-eye');
+                    if (this.classList.contains('icon-eye-off')) {
+                        this.classList.remove('icon-eye-off');
                         this.classList.add('icon-eye-on');
                         input && (input.type = 'text');
                     } else {
                         this.classList.remove('icon-eye-on');
-                        this.classList.add('icon-eye');
+                        this.classList.add('icon-eye-off');
                         input && (input.type = 'password');
                     }
                 });
