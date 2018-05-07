@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     margin-left: px2rem(10);
-    .g-checkbox-wrap {
+    .g-checkbox-body {
         width: px2rem($height);
         height: px2rem($height);
         border-radius: px2rem(4);
@@ -15,7 +15,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        .g-checkbox-checkbox {
+        .g-checkbox-body-checkbox {
             -webkit-appearance: none;
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             outline: none;
@@ -26,14 +26,14 @@
             border: px2px(1) solid $g-border-color-default;
             &:checked {
                 border-color: $g-highlight-color;
-                & + .g-checkbox-mark {
+                & + .g-checkbox-body-mark {
                     display: flex;
                     align-items: center;
                     justify-content: center;
                 }
             }
         }
-        .g-checkbox-mark {
+        .g-checkbox-body-mark {
             color: $g-highlight-color;
             font-size: px2rem(16);
             position: absolute;

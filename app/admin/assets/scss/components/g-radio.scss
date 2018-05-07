@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     margin-left: px2rem(10);
-    .g-radio-wrap {
+    .g-radio-body {
         $height: 20;
         position: relative;
         width: px2rem($height);
@@ -16,7 +16,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        .g-radio-radio {
+        .g-radio-body-radio {
             -webkit-appearance: none;
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             outline: none;
@@ -27,14 +27,14 @@
             border: px2px(1) solid $g-border-color-default;
             &:checked {
                 border-color: $g-highlight-color;
-                & + .g-radio-mark {
+                & + .g-radio-body-mark {
                     display: flex;
                     align-items: center;
                     justify-content: center;
                 }
             }
         }
-        .g-radio-mark {
+        .g-radio-body-mark {
             color: $g-highlight-color;
             font-size: px2rem(16);
             position: absolute;
