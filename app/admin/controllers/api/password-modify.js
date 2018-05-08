@@ -109,7 +109,7 @@ class Sub extends Super {
                                         return;
                                     }
                                     delete session.adminInfo; // 不加这句话，改了密码，不会掉线，加了这句话也只是当前用户掉线，其他人不掉线，集体掉线需另做处理(数据库加loginStamp字段进行一系列处理)。
-                                    delete session.verifyCodeCanvasAdmin; // 成功之后清掉验证码，让验证码无效。
+                                    delete session.verifyCodeCanvasAdmin; // 成功之后清掉验证码，验证码使用之后，让验证码无效。
                                     self.render({
                                         status: 'success',
                                         message: '已成功修改密码',

@@ -67,7 +67,7 @@ class Sub extends Super {
                                         return;
                                     }
                                     session.adminInfo.loginStamp = loginStamp; // 登录成功更改登录戳。
-                                    delete session.verifyCodeCanvasAdmin; // 成功之后清掉验证码，让验证码无效。
+                                    delete session.verifyCodeCanvasAdmin; // 成功之后清掉验证码，验证码使用之后，让验证码无效。
                                     self.render({
                                         status: 'success',
                                         message: '登录成功',
