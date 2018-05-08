@@ -34,7 +34,7 @@ class Sub extends Super {
                 text: `这是一条验证码,有效期${expirationDate}分钟,此验证码仅用于账号注册`, // 文本
                 html: '', // html
             };
-            // 验证码存redis里
+            // 验证码存redis里(不存session，是因为session主要用来存用户登录的有效期，时间比较长，验证码过期期限比较短，过期时间不一致，所以不能存到一起。)
             transporter.sendMail(mailOptions, function (error, result) {
                 if (error) {
                     // 验证码发送失败
