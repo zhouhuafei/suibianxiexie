@@ -685,14 +685,14 @@ input.g-input {
     @return $px / $psd * 10rem;
 }
 */
-.g-list {
+.g-list-wrap {
   width: 100%;
   background: #fff; }
-  .g-list .g-list-row {
+  .g-list-wrap .g-list {
     display: block;
     padding: 10px 10px;
     border-bottom: 1px solid #e6e7ed; }
-    .g-list .g-list-row .g-list-wrap {
+    .g-list-wrap .g-list .g-list-body {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -702,23 +702,23 @@ input.g-input {
       -webkit-box-pack: justify;
           -ms-flex-pack: justify;
               justify-content: space-between; }
-      .g-list .g-list-row .g-list-wrap .g-list-icon {
+      .g-list-wrap .g-list .g-list-body .g-list-body-icon {
         width: 24px;
         height: 24px;
         font-size: 24px;
         margin-right: 10px;
         color: #0089ff; }
-      .g-list .g-list-row .g-list-wrap .g-list-text {
+      .g-list-wrap .g-list .g-list-body .g-list-body-text {
         font-size: 12px; }
-      .g-list .g-list-row .g-list-wrap .g-list-mark {
+      .g-list-wrap .g-list .g-list-body .g-list-body-mark {
         font-size: 12px;
         color: #bfbfbf; }
-      .g-list .g-list-row .g-list-wrap .g-list-more {
+      .g-list-wrap .g-list .g-list-body .g-list-body-more {
         font-size: 14px; }
-    .g-list .g-list-row .g-list-info {
+    .g-list-wrap .g-list .g-list-info {
       color: #bfbfbf;
       font-size: 12px; }
-    .g-list .g-list-row:last-child {
+    .g-list-wrap .g-list:last-child {
       border-bottom: none; }
 
 /*

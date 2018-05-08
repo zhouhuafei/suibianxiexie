@@ -2,16 +2,16 @@
     <div class="g-view">
         <div>首页</div>
         <div class="js-dialog">弹窗</div>
-        <g-img-list></g-img-list>
-        <g-img-list></g-img-list>
-        <g-img-list></g-img-list>
-        <g-img-list></g-img-list>
-        <g-img-list></g-img-list>
-        <g-img-list></g-img-list>
-        <g-img-list></g-img-list>
-        <g-img-list></g-img-list>
-        <g-img-list></g-img-list>
-        <g-img-list></g-img-list>
+        <g-img-test></g-img-test>
+        <g-img-test></g-img-test>
+        <g-img-test></g-img-test>
+        <g-img-test></g-img-test>
+        <g-img-test></g-img-test>
+        <g-img-test></g-img-test>
+        <g-img-test></g-img-test>
+        <g-img-test></g-img-test>
+        <g-img-test></g-img-test>
+        <g-img-test></g-img-test>
     </div>
 </template>
 
@@ -23,10 +23,10 @@
         },
         methods: {},
         components: {
-            'g-img-list': function (resolve) {
+            'g-img-test': function (resolve) {
                 require.ensure([], function () {
-                    resolve(require('../components-vue/g-img-list.vue'));
-                }, 'g-img-list');
+                    resolve(require('../components-vue/g-img-test.vue'));
+                }, 'g-img-test');
             },
         },
         created() {

@@ -105,26 +105,26 @@ class Sub extends Super {
         (function () {
             const Vue = superSelf.Vue;
             require.ensure([], function (require) {
-                require('../components-vue/g-img-list')(Vue);
+                require('../components-vue/g-img-test')(Vue);
                 new Vue({
                     el: '.page-vue-app',
                     template: `<div class="page-vue">
-                        <g-img-list></g-img-list>
-                        <g-img-list></g-img-list>
-                        <g-img-list></g-img-list>
-                        <g-img-list></g-img-list>
-                        <g-img-list></g-img-list>
-                        <g-img-list></g-img-list>
-                        <g-img-list></g-img-list>
-                        <g-img-list></g-img-list>
-                        <g-img-list></g-img-list>
-                        <g-img-list></g-img-list>
+                        <g-img-test></g-img-test>
+                        <g-img-test></g-img-test>
+                        <g-img-test></g-img-test>
+                        <g-img-test></g-img-test>
+                        <g-img-test></g-img-test>
+                        <g-img-test></g-img-test>
+                        <g-img-test></g-img-test>
+                        <g-img-test></g-img-test>
+                        <g-img-test></g-img-test>
+                        <g-img-test></g-img-test>
                     </div>`,
                     mounted: function () {
                         console.log(this);
                     },
                 });
-            }, 'g-img-list');
+            }, 'g-img-test');
         }());
 
         // jsonp错误测试

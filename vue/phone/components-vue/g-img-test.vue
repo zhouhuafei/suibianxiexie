@@ -1,5 +1,5 @@
 <template>
-    <div class="g-img-list">
+    <div class="g-img-test">
         <div style="min-height: 120px;">
             <img class="g-lazy-load" data-src="../images/home/p-waiting.jpg" alt="" src="">
         </div>
@@ -11,7 +11,7 @@
 
 <script>
     export default {
-        name: 'g-img-list',
+        name: 'g-img-test',
         props: {},
         data() {
             return {};
