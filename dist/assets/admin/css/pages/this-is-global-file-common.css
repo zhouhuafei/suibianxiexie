@@ -1833,5 +1833,4 @@ textarea.g-textarea {
     height: 100%; }
 
 :-webkit-autofill {
-  -webkit-transition: background-color 5000s ease-in-out 0s;
-  transition: background-color 5000s ease-in-out 0s; }
+  -webkit-box-shadow: 0 0 0 1000px white inset; }
