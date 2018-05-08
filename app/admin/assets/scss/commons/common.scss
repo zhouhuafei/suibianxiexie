@@ -28,6 +28,7 @@
 @import "../components/g-no-data";
 @import "../components/g-validate-form-hint";
 
+// 音频
 .g-audio {
     position: relative;
     .g-audio-icon {
@@ -149,4 +150,9 @@
         width: 100%;
         height: 100%;
     }
+}
+
+// 修复浏览器记住密码时输入框内异常的背景色
+:-webkit-autofill {
+    transition: background-color 5000s ease-in-out 0s;
 }
