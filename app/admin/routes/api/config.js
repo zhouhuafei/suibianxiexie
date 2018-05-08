@@ -8,6 +8,9 @@ const routeName = [
         name: 'list', // 列表
     },
     {
+        name: 'upload', // 文件上传
+    },
+    {
         name: 'password-modify', // 更改密码,去修改
     },
     {

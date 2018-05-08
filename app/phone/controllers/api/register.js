@@ -15,10 +15,7 @@ class Sub extends Super {
             const form = new multiparter.Form();
             form.parse(req, function (error, fields, files) {
                 if (error) {
-                    self.render({
-                        status: 'failure',
-                        message: '数据库操作待续...',
-                    });
+                    self.render({message: 'multiparty模块数据解析parse失败'});
                 } else {
                     const username = fields.username; // 用户名
                     const password = fields.password; // 密码
@@ -27,7 +24,7 @@ class Sub extends Super {
                     console.log('password', password);
                     console.log('verifyCode', verifyCode);
                     self.render({
-                        status: 'failure',
+                        status: 'success',
                         message: '数据库操作待续...',
                     });
                 }
