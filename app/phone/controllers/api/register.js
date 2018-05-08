@@ -55,7 +55,7 @@ class Sub extends Super {
                 return;
             }
 
-            redisClient.get(`suibianxiexie-user-verify-code-random-${username}`, function (error, value) {
+            redisClient.get(`verify-code-random-user-${username}-suibianxiexie`, function (error, value) {
                 if (error) {
                     self.render({
                         status: 'failure',
@@ -107,7 +107,7 @@ class Sub extends Super {
                             return;
                         }
                         // 数据库插入成功
-                        redisClient.del(`suibianxiexie-user-verify-code-random-${username}`, function (error, value) {
+                        redisClient.del(`verify-code-random-user-${username}-suibianxiexie`, function (error, value) {
                             if (error) {
                                 self.render({
                                     status: 'success',

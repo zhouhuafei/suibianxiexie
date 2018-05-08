@@ -13,7 +13,7 @@ class Sub extends Super {
         const page = dataInfo.page;
         const fnVerifyCodeCanvas = require('../../../../utils/verify-code-canvas'); // 验证码,图文随机
         const verifyCodeCanvas = fnVerifyCodeCanvas();
-        session.adminVerifyCodeCanvas = verifyCodeCanvas.text;
+        session.verifyCodeCanvasAdmin = verifyCodeCanvas.text;
         delete verifyCodeCanvas.text;
         page.verifyCodeCanvas = verifyCodeCanvas;
         self.render(); // 渲染视图(渲染数据)

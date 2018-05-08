@@ -34,7 +34,7 @@ class Sub extends Super {
                 message: '验证码不能为空',
                 result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
             });
-        } else if (verifyCodeCanvas !== session.adminVerifyCodeCanvas) {
+        } else if (verifyCodeCanvas !== session.verifyCodeCanvasAdmin) {
             self.render({
                 message: '验证码错误',
                 result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
@@ -67,6 +67,7 @@ class Sub extends Super {
                             });
                             return;
                         }
+                        delete session.verifyCodeCanvasAdmin; // 成功之后清掉验证码，让验证码无效。
                         self.render({
                             status: 'success',
                             message: '注册成功',

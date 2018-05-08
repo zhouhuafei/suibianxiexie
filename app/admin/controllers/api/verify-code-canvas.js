@@ -12,7 +12,7 @@ class Sub extends Super {
         const data = req.data;
         const isHtml = data.isOnlyRenderHtml;
         const verifyCodeCanvas = fnVerifyCodeCanvas();
-        session.adminVerifyCodeCanvas = verifyCodeCanvas.text;
+        session.verifyCodeCanvasAdmin = verifyCodeCanvas.text;
         delete verifyCodeCanvas.text;
         if (isHtml === 'true') {
             res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
