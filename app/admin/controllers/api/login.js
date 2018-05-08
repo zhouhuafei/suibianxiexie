@@ -55,7 +55,7 @@ class Sub extends Super {
                         }
                         if (isMatch) {
                             session.adminInfo = adminInfo;
-                            if (appConfig.isEnabledSingleDeviceLogin) { // 如果开启了单设备登录
+                            if (appConfig.isEnabledSingleDeviceLoginAdmin) { // 如果开启了单设备登录
                                 const loginStamp = `${Math.random()}`.split('.')[1];
                                 Admins.update({_id: adminInfo._id}, {$set: {loginStamp: loginStamp}}, function (error) {
                                     // 数据库更新出现错误

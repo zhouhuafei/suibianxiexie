@@ -9,7 +9,8 @@ class Config {
         this.staticCacheDirectory = `${__dirname}/dist/`; // 静态缓存资源目录
         this.staticNoCacheDirectory = `${__dirname}/dist-no-delete-assets-no-cache/`; // 静态非缓存资源目录
         this.utilsDirectory = `${__dirname}/utils/`; // utils目录
-        this.isEnabledSingleDeviceLogin = true; // 是否启用单设备登录，目前只有这个在使用，其他的尚未使用，这个要不要区分admin和user？不区分的话，就是整站控制是否启用单设备登录。
+        this.isEnabledSingleDeviceLoginUser = true; // 前台站点是否启用单设备登录。
+        this.isEnabledSingleDeviceLoginAdmin = true; // 后台管理系统是否启用单设备登录。
         // mongodb数据库
         this.mongodb = {
             development: {
