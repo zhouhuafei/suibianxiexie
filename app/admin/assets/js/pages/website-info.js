@@ -11,8 +11,13 @@ class Sub extends Super {
         // 验证
         (function () {
             const ValidateInput = require('../components-dom/g-validate-form-hint');
-            new ValidateInput({element: '.page-validate-form'});
+            new ValidateInput({element: '.js-validate-form'});
         }());
+
+        // 上传
+        document.querySelector('.js-upload').addEventListener('change', function () {
+            console.log('待续...');
+        });
     }
 }
 

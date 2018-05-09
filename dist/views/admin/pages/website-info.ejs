@@ -1,1 +1,76 @@
-<!DOCTYPE html><html lang="en"><head> <% include ../commons/head.ejs %> <link href="/admin/css/pages/this-is-global-file-common.d1aa807f3866a25ffdece74b850d8e06.css" rel="stylesheet"><link href="/admin/css/pages/website-info.d41d8cd98f00b204e9800998ecf8427e.css" rel="stylesheet"></head><body> <% include ../commons/top.ejs %> <div class="g-wrap"> <% include ../commons/menu.ejs %> <div class="g-body"><form action="" method="post"><div class="g-form-wrap"><label class="g-form"><span class="g-form-text">网站名称:</span> <span class="g-form-body"><input class="g-input page-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="text" name="website-name" value="" placeholder="请输入网站标题"> </span><span class="g-form-icon iconfont icon-clear"></span> <span class="g-form-icon g-form-hint iconfont icon-required"></span></label></div><div class="g-form-wrap"><label class="g-form"><span class="g-form-text">联系电话:</span> <span class="g-form-body"><input class="g-input page-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="tel" name="website-phone" value="" placeholder="请输入联系电话"> </span><span class="g-form-icon iconfont icon-clear"></span> <span class="g-form-icon g-form-hint iconfont icon-required"></span></label></div><div class="g-form-wrap"><div class="g-form"><div class="g-form-text">网站logo:</div><div class="g-form-body g-form-body-more-row"><label class="g-upload"><input class="g-upload-input page-validate-form" data-event="change" data-validate="no-empty yes-limit-length-1" data-hint="本项必传 最多上传1张图片" data-value="true" type="file" accept="image/gif, image/jpeg, image/png"> <input type="hidden" name="website-logo"> <span class="g-upload-icon iconfont icon-upload-img"></span> <span class="g-upload-show"></span> <span class="g-upload-text">640*640</span> <span class="g-upload-opts"><span class="g-upload-opts-item g-upload-opts-close iconfont icon-delete"></span></span></label></div><div class="g-form-icon g-form-hint iconfont icon-required"></div></div></div><div class="g-form-wrap"><div class="g-form"><div class="g-form-text">网站favicon:</div><div class="g-form-body g-form-body-more-row"><label class="g-upload"><input class="g-upload-input page-validate-form" data-event="change" data-validate="no-empty yes-limit-length-1" data-hint="本项必传 最多上传1张图片" data-value="true" type="file" accept="image/vnd.microsoft.icon"> <input type="hidden" name="website-favicon"> <span class="g-upload-icon iconfont icon-upload-img"></span> <span class="g-upload-show"></span> <span class="g-upload-text">32*32</span> <span class="g-upload-opts"><span class="g-upload-opts-item g-upload-opts-close iconfont icon-delete"></span></span></label></div><div class="g-form-icon g-form-hint iconfont icon-required"></div></div></div><div class="g-display-flex"><div class="g-button">保存</div></div></form></div></div> <% include ../commons/bottom.ejs %> <script type="text/javascript" src="/admin/js/pages/this-is-global-file-manifest.a2a97021c3bdbec36175.js"></script><script type="text/javascript" src="/admin/js/pages/this-is-global-file-vendor.c2b72d1bfeedc783be29.js"></script><script type="text/javascript" src="/admin/js/pages/this-is-global-file-common.b476b4605d02ab8c6c74.js"></script><script type="text/javascript" src="/admin/js/pages/website-info.88159d20af30988df83a.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../commons/head.ejs %>
+    <link href="/admin/css/pages/this-is-global-file-common.css" rel="stylesheet"><link href="/admin/css/pages/website-info.css" rel="stylesheet"></head>
+    <body>
+        <% include ../commons/top.ejs %>
+        <div class="g-wrap">
+            <% include ../commons/menu.ejs %>
+            <div class="g-body">
+                <form action="" method="post">
+                    <div class="g-form-wrap">
+                        <label class="g-form">
+                            <span class="g-form-text">网站名称:</span>
+                            <span class="g-form-body">
+                            <input class="g-input js-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="text" name="website-name" value="" placeholder="请输入网站标题">
+                        </span>
+                            <span class="g-form-icon iconfont icon-clear"></span>
+                            <span class="g-form-icon g-form-hint iconfont icon-required"></span>
+                        </label>
+                    </div>
+                    <div class="g-form-wrap">
+                        <label class="g-form">
+                            <span class="g-form-text">联系电话:</span>
+                            <span class="g-form-body">
+                            <input class="g-input js-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="tel" name="website-phone" value="" placeholder="请输入联系电话">
+                        </span>
+                            <span class="g-form-icon iconfont icon-clear"></span>
+                            <span class="g-form-icon g-form-hint iconfont icon-required"></span>
+                        </label>
+                    </div>
+                    <div class="g-form-wrap">
+                        <div class="g-form">
+                            <div class="g-form-text">网站logo:</div>
+                            <div class="g-form-body g-form-body-more-row">
+                                <label class="g-upload">
+                                    <input class="g-upload-input js-validate-form js-upload" data-event="change" data-validate="no-empty yes-limit-length-1" data-hint="本项必传 最多上传1张图片" data-value="true" data-accept="image/gif, image/jpeg, image/png" type="file">
+                                    <input type="hidden" name="website-logo">
+                                    <span class="g-upload-icon iconfont icon-upload-img"></span>
+                                    <span class="g-upload-show"></span>
+                                    <span class="g-upload-text">640*640</span>
+                                    <span class="g-upload-opts">
+                                        <span class="g-upload-opts-item g-upload-opts-close iconfont icon-delete"></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="g-form-icon g-form-hint iconfont icon-required"></div>
+                        </div>
+                    </div>
+                    <div class="g-form-wrap">
+                        <div class="g-form">
+                            <div class="g-form-text">网站favicon:</div>
+                            <div class="g-form-body g-form-body-more-row">
+                                <label class="g-upload">
+                                    <input class="g-upload-input js-validate-form" data-event="change" data-validate="no-empty yes-limit-length-1" data-hint="本项必传 最多上传1张图片" data-value="true" type="file" accept="image/vnd.microsoft.icon">
+                                    <input type="hidden" name="website-favicon">
+                                    <span class="g-upload-icon iconfont icon-upload-img"></span>
+                                    <span class="g-upload-show"></span>
+                                    <span class="g-upload-text">32*32</span>
+                                    <span class="g-upload-opts">
+                                        <span class="g-upload-opts-item g-upload-opts-close iconfont icon-delete"></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="g-form-icon g-form-hint iconfont icon-required"></div>
+                        </div>
+                    </div>
+                    <div class="g-display-flex">
+                        <div class="g-button">保存</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <% include ../commons/bottom.ejs %>
+    <script type="text/javascript" src="/admin/js/pages/this-is-global-file-manifest.js"></script><script type="text/javascript" src="/admin/js/pages/this-is-global-file-vendor.js"></script><script type="text/javascript" src="/admin/js/pages/this-is-global-file-common.js"></script><script type="text/javascript" src="/admin/js/pages/website-info.js"></script></body>
+</html>

@@ -1,4 +1,5 @@
 const Super = require('../api-super/super'); // 超类型
+const Uploads = require('../../models/mongoose/uploads');
 const multiparter = require('multiparty');
 const form = new multiparter.Form();
 
@@ -14,12 +15,38 @@ class Sub extends Super {
 
         function parse(error, fields, files) {
             if (error) {
-                self.render({message: 'multiparty模块数据解析parse失败'});
+                self.render({message: 'multiparty模块数据解析(parse)失败'});
             } else {
-                self.render({
-                    status: 'success',
-                    message: '数据库操作待续...',
+                console.log('fields', fields);
+                console.log('files', files);
+                /*
+                const uploads = new Uploads({
+                    name: null,
+                    type: null,
+                    size: {
+                        B: null, // 多少字节
+                        KB: null, // 多少千字节
+                        M: null, // 多少兆
+                    },
+                    url: null,
+                    createTime: null,
                 });
+                uploads.save(function (error, result) {
+                    // 数据库插入出现错误
+                    if (error) {
+                        self.render({
+                            message: '数据库插入出现错误',
+                            failureInfo: error,
+                        });
+                        return;
+                    }
+                    self.render({
+                        status: 'success',
+                        message: '上传成功',
+                        result: {data: []},
+                    });
+                });
+                */
             }
         }
     }

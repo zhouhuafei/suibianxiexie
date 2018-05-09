@@ -14,6 +14,11 @@ const schema = new mongoose.Schema({
         type: String,
         default: null,
     },
+    // 账号创建的时间
+    createTime: {
+        type: Date,
+        default: null,
+    },
     // 登录戳，用来做修改密码集体下线以及单设备登录的。
     loginStamp: {
         type: String,

@@ -13,7 +13,7 @@
                         <label class="g-form">
                             <span class="g-form-text">网站名称:</span>
                             <span class="g-form-body">
-                            <input class="g-input page-validate-form"
+                            <input class="g-input js-validate-form"
                                    data-validate="no-empty no-zero yes-positive-integer"
                                    data-hint="本项必填 本项不可为零 请输入正整数"
                                    type="text" name="website-name" value="" placeholder="请输入网站标题">
@@ -26,7 +26,7 @@
                         <label class="g-form">
                             <span class="g-form-text">联系电话:</span>
                             <span class="g-form-body">
-                            <input class="g-input page-validate-form"
+                            <input class="g-input js-validate-form"
                                    data-validate="no-empty no-zero yes-positive-integer"
                                    data-hint="本项必填 本项不可为零 请输入正整数"
                                    type="tel" name="website-phone" value="" placeholder="请输入联系电话">
@@ -40,12 +40,13 @@
                             <div class="g-form-text">网站logo:</div>
                             <div class="g-form-body g-form-body-more-row">
                                 <label class="g-upload">
-                                    <input class="g-upload-input page-validate-form"
+                                    <input class="g-upload-input js-validate-form js-upload"
                                            data-event="change"
                                            data-validate="no-empty yes-limit-length-1"
                                            data-hint="本项必传 最多上传1张图片"
                                            data-value="true"
-                                           type="file" accept="image/gif, image/jpeg, image/png">
+                                           data-accept="image/gif, image/jpeg, image/png"
+                                           type="file">
                                     <input type="hidden" name="website-logo">
                                     <span class="g-upload-icon iconfont icon-upload-img"></span>
                                     <span class="g-upload-show"></span>
@@ -63,7 +64,7 @@
                             <div class="g-form-text">网站favicon:</div>
                             <div class="g-form-body g-form-body-more-row">
                                 <label class="g-upload">
-                                    <input class="g-upload-input page-validate-form"
+                                    <input class="g-upload-input js-validate-form"
                                            data-event="change"
                                            data-validate="no-empty yes-limit-length-1"
                                            data-hint="本项必传 最多上传1张图片"

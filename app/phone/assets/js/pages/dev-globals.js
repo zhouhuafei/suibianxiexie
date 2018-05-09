@@ -24,7 +24,7 @@ class Sub extends Super {
         // 验证
         (function () {
             const ValidateInput = require('../components-dom/g-validate-form-hint');
-            const validateInput = new ValidateInput({element: '.page-validate-form'});
+            const validateInput = new ValidateInput({element: '.js-validate-form'});
             validateInput.setValidate('no-999', function (value) {
                 return Number(value) !== 999;
             });
