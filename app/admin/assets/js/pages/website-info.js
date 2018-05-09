@@ -1,5 +1,6 @@
 require('../../scss/pages/website-info.scss');
 const Super = require('../pages-super/super');
+const axios = require('../api/axios');
 
 class Sub extends Super {
     // (功)(覆)功能(覆盖超类型)
@@ -16,7 +17,18 @@ class Sub extends Super {
 
         // 上传
         document.querySelector('.js-upload').addEventListener('change', function () {
-            console.log('待续...');
+            const files = [].slice.call(this.files);
+            const formData = new FormData();
+            files.forEach(function (file) {
+                formData.append('upload', file);
+            });
+            axios({
+                url: dataInfo.api.upload.route,
+                method: 'post',
+                data: formData,
+            }).then(function (json) {
+                console.log(json);
+            });
         });
     }
 }

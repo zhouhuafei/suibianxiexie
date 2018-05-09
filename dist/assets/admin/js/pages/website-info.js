@@ -16,6 +16,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 __webpack_require__(115);
 var Super = __webpack_require__(9);
+var axios = __webpack_require__(70);
 
 var Sub = function (_Super) {
     _inherits(Sub, _Super);
@@ -43,7 +44,18 @@ var Sub = function (_Super) {
 
             // 上传
             document.querySelector('.js-upload').addEventListener('change', function () {
-                console.log('待续...');
+                var files = [].slice.call(this.files);
+                var formData = new FormData();
+                files.forEach(function (file) {
+                    formData.append('upload', file);
+                });
+                axios({
+                    url: dataInfo.api.upload.route,
+                    method: 'post',
+                    data: formData
+                }).then(function (json) {
+                    console.log(json);
+                });
             });
         }
     }]);

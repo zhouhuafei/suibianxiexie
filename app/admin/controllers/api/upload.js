@@ -1,7 +1,9 @@
 const Super = require('../api-super/super'); // 超类型
 const Uploads = require('../../models/mongoose/uploads');
 const multiparter = require('multiparty');
-const form = new multiparter.Form();
+const appConfig = require('../../../../app-config');
+console.log(`${appConfig.projectDirectory}dist-upload/admin/`);
+const form = new multiparter.Form({uploadDir: `${appConfig.projectDirectory}dist-upload/admin/`});
 
 class Sub extends Super {
     // (增)(覆)获取数据(覆盖超类型)
@@ -15,10 +17,18 @@ class Sub extends Super {
 
         function parse(error, fields, files) {
             if (error) {
-                self.render({message: 'multiparty模块数据解析(parse)失败'});
+                self.render({
+                    message: 'multiparty模块数据解析(parse)失败',
+                    failureInfo: error,
+                });
             } else {
                 console.log('fields', fields);
                 console.log('files', files);
+                self.render({
+                    status: 'success',
+                    message: '上传成功',
+                    result: {data: []},
+                });
                 /*
                 const uploads = new Uploads({
                     name: null,
