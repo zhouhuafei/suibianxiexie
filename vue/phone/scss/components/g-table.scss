@@ -9,10 +9,10 @@
         min-height: px2rem(44);
         border-bottom: px2rem(1) solid $g-border-color-default;
         &:nth-of-type(2n) {
-            background: rgba(0, 0, 0, 0.04);
+            background: rgba(0, 0, 255, 0.04);
         }
         &:hover {
-            background: rgba(0, 0, 0, 0.02);
+            background: rgba(0, 0, 255, 0.02);
         }
         .g-table-col {
             position: relative;
