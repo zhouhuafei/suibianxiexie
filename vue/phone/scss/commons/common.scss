@@ -2,45 +2,46 @@
 @import "iconfont";
 @import "tools";
 @import "../components/g-wrap";
-@import "../components/g-button";
 @import "../components/g-input";
-@import "../components/g-quick-enter";
-@import "../components/g-upload";
-@import "../components/g-list";
-@import "../components/g-checkbox";
-@import "../components/g-radio";
 @import "../components/g-select";
 @import "../components/g-textarea";
-@import "../components/g-dialog";
+@import "../components/g-radio";
+@import "../components/g-checkbox";
+@import "../components/g-validate-form-hint";
+@import "../components/g-radio-switch";
+@import "../components/g-upload";
+@import "../components/g-button";
+@import "../components/g-table";
+@import "../components/g-list";
 @import "../components/g-loading";
+@import "../components/g-mask";
+@import "../components/g-dialog";
+@import "../components/g-dialog-jump-link";
 @import "../components/g-navigation";
 @import "../components/g-pagination";
-@import "../components/g-radio-switch";
 @import "../components/g-slide";
 @import "../components/g-star";
-@import "../components/g-table";
 @import "../components/g-go-top";
-@import "../components/g-footer-nav";
-@import "../components/g-copyright";
-@import "../components/g-mask";
-@import "../components/g-lazy-load";
 @import "../components/g-no-data";
-@import "../components/g-validate-form-hint";
+@import "../components/g-copyright";
+@import "../components/g-lazy-load";
+@import "../components/g-footer-nav";
+@import "../components/g-quick-enter";
 
+// 图片列表测试
 .g-img-test {
     .g-img-test-big img {
-        width: px2rem(376, 750);
-        height: px2rem(160, 750);
+        height: px2rem(80);
     }
     .g-img-test-small img {
-        width: px2rem(144, 750);
-        height: px2rem(147, 750);
+        height: px2rem(60);
     }
 }
 
-.g-audios-wrap {
+// 音频
+.g-audio {
     position: relative;
-    ._icon {
+    .g-audio-icon {
         position: absolute;
         top: px2rem(40);
         left: px2rem(20);
@@ -49,18 +50,132 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        ._item-on {
-            display: none;
-        }
-    }
-    &._on {
-        ._icon {
-            ._item-off {
+        .g-audio-icon-item {
+            &.g-audio-icon-item-on {
                 display: none;
             }
-            ._item-on {
-                display: block;
+        }
+    }
+    &.g-audio-on {
+        .g-audio-icon {
+            .g-audio-icon-item {
+                &.g-audio-icon-item-on {
+                    display: block;
+                }
+                &.g-audio-icon-item-off {
+                    display: none;
+                }
             }
+        }
+    }
+}
+
+// 表单
+.g-form-wrap {
+    margin-bottom: px2rem(10);
+    border: px2rem(1) solid $g-border-color-default;
+    border-left: none;
+    border-right: none;
+    .g-form {
+        $height: 40;
+        display: flex;
+        position: relative;
+        border-bottom: px2rem(1) solid $g-border-color-default;
+        background: #ffffff;
+        min-height: px2rem(40);
+        .g-form-text {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 px2rem(10);
+            min-width: px2rem(120);
+            text-align: right;
+        }
+        .g-form-body {
+            display: flex;
+            flex-wrap: wrap;
+            flex: 1;
+            border-left: px2rem(1) solid $g-border-color-default;
+            /* 重置g-upload */
+            .g-upload {
+                margin: px2rem(10);
+            }
+            /* 重置g-input */
+            .g-input {
+                border: none;
+            }
+            /* 重置g-textarea */
+            .g-textarea {
+                border: none;
+            }
+            /* 重置g-select */
+            .g-select {
+                border: none;
+                .g-select-mark {
+                    border-right: px2rem(1) dashed $g-border-color-default;
+                }
+            }
+            /* 多行情况 */
+            &.g-form-body-more-row {
+                /* 重置g-form-body */
+                padding-bottom: px2rem(10);
+                /* 重置g-upload */
+                .g-upload {
+                    margin: px2rem(10) px2rem(0) px2rem(0) px2rem(10);
+                }
+                /* 重置g-checkbox */
+                .g-checkbox {
+                    margin: px2rem(10) px2rem(0) px2rem(0) px2rem(10);
+                }
+            }
+        }
+        .g-form-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: px2rem($height / 2);
+            padding: 0 px2rem(2);
+        }
+        .g-form-limit {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            min-width: px2rem(44);
+            padding: 0 px2rem(2);
+        }
+        .g-form-hint {
+            color: $g-danger-color;
+        }
+        &:last-of-type {
+            border-bottom: none;
+        }
+    }
+}
+
+// 验证码
+.g-verify-code-canvas {
+    width: px2rem(160);
+    height: 100%;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+// 登录,注册,改密的跳转引导
+.g-jump-guide {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: px2rem(40);
+    padding: 0 px2rem(10);
+    .g-jump-guide-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .g-jump-guide-item-text {
+        }
+        .g-jump-guide-item-icon {
         }
     }
 }

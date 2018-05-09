@@ -1,4 +1,4 @@
-require('../../scss/pages/website-info.scss');
+require('../../scss/pages/home.scss');
 const Super = require('../pages-super/super');
 
 class Sub extends Super {

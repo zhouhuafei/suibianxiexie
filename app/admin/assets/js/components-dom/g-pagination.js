@@ -42,12 +42,10 @@ Sub.prototype.moduleDomCreate = function () {
                 <div class="g-pagination-text">第</div>
                 <div class="g-pagination-now-page">
                     <label class="g-select">
-                        <span class="g-select-wrap">
-                            <select class="g-select-select">
-                                ${this.renderOption()}
-                            </select>
-                            <span class="g-select-mark iconfont icon-select"></span>
-                        </span>
+                        <select class="g-select-body">
+                            ${this.renderOption()}
+                        </select>
+                        <span class="g-select-mark iconfont icon-select"></span>
                     </label>
                 </div>
                 <div class="g-pagination-text">页</div>
@@ -59,7 +57,7 @@ Sub.prototype.moduleDomCreate = function () {
     this.prevDom = this.moduleDom.querySelectorAll('.g-pagination-btn')[0];// 上一页的按钮
     this.nextDom = this.moduleDom.querySelectorAll('.g-pagination-btn')[1];// 下一页的按钮
     this.btnInactiveClass = 'g-pagination-btn-inactive';// 上一页和下一页的禁用状态
-    this.selectDom = this.moduleDom.querySelector('.g-pagination-now-page .g-select-select');// 选择某一页的按钮
+    this.selectDom = this.moduleDom.querySelector('.g-pagination-now-page .g-select-body');// 选择某一页的按钮
 };
 
 // 渲染第几页里面的页码

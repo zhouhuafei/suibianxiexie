@@ -2,31 +2,41 @@
 @import "iconfont";
 @import "tools";
 @import "../components/g-wrap";
-@import "../components/g-button";
 @import "../components/g-input";
-@import "../components/g-quick-enter";
-@import "../components/g-upload";
-@import "../components/g-list";
-@import "../components/g-checkbox";
-@import "../components/g-radio";
 @import "../components/g-select";
 @import "../components/g-textarea";
+@import "../components/g-radio";
+@import "../components/g-checkbox";
+@import "../components/g-validate-form-hint";
+@import "../components/g-radio-switch";
+@import "../components/g-upload";
+@import "../components/g-button";
+@import "../components/g-table";
+@import "../components/g-list";
+@import "../components/g-loading";
+@import "../components/g-mask";
 @import "../components/g-dialog";
 @import "../components/g-dialog-jump-link";
-@import "../components/g-loading";
 @import "../components/g-navigation";
 @import "../components/g-pagination";
-@import "../components/g-radio-switch";
 @import "../components/g-slide";
 @import "../components/g-star";
-@import "../components/g-table";
 @import "../components/g-go-top";
-@import "../components/g-footer-nav";
-@import "../components/g-copyright";
-@import "../components/g-mask";
-@import "../components/g-lazy-load";
 @import "../components/g-no-data";
-@import "../components/g-validate-form-hint";
+@import "../components/g-copyright";
+@import "../components/g-lazy-load";
+@import "../components/g-footer-nav";
+@import "../components/g-quick-enter";
+
+// 图片列表测试
+.g-img-test {
+    .g-img-test-big img {
+        height: px2rem(80);
+    }
+    .g-img-test-small img {
+        height: px2rem(60);
+    }
+}
 
 // 音频
 .g-audio {
@@ -149,5 +159,23 @@
     img {
         width: 100%;
         height: 100%;
+    }
+}
+
+// 登录,注册,改密的跳转引导
+.g-jump-guide {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: px2rem(40);
+    padding: 0 px2rem(10);
+    .g-jump-guide-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .g-jump-guide-item-text {
+        }
+        .g-jump-guide-item-icon {
+        }
     }
 }

@@ -1,19 +1,18 @@
 @import "../config/config";
 
-.g-body {
-    .canvas-wrap {
-        canvas {
-            background: #f6cb65;
-        }
+.canvas-wrap {
+    canvas {
+        background: #f6cb65;
     }
-    .game-start {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: px2rem(160);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+}
+
+.game-start {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: px2rem(160);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

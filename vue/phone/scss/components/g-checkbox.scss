@@ -3,19 +3,19 @@
 //多选框
 .g-checkbox {
     $height: 20;
-    height: px2rem($height);
     display: flex;
     align-items: center;
-    .g-checkbox-wrap {
+    margin-left: px2rem(10);
+    .g-checkbox-body {
         width: px2rem($height);
-        height: 100%;
+        height: px2rem($height);
         border-radius: px2rem(4);
         background: #ffffff;
         position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
-        .g-checkbox-checkbox {
+        .g-checkbox-body-checkbox {
             -webkit-appearance: none;
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             outline: none;
@@ -23,17 +23,17 @@
             height: inherit;
             background: inherit;
             border-radius: inherit;
-            border: px2px(1) solid $g-border-color-default;
+            border: px2rem(1) solid $g-border-color-default;
             &:checked {
                 border-color: $g-highlight-color;
-                & + .g-checkbox-mark {
+                & + .g-checkbox-body-mark {
                     display: flex;
                     align-items: center;
                     justify-content: center;
                 }
             }
         }
-        .g-checkbox-mark {
+        .g-checkbox-body-mark {
             color: $g-highlight-color;
             font-size: px2rem(16);
             position: absolute;
@@ -46,6 +46,6 @@
     }
     .g-checkbox-text {
         line-height: 1;
-        margin-left: px2rem(10);
+        margin-left: px2rem(4);
     }
 }

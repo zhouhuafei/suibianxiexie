@@ -1,13 +1,1 @@
 @import "../config/config";
-
-.page-guide-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: px2rem(40);
-    padding: 0 px2rem(10);
-    .page-guide-item {
-        display: flex;
-        align-items: center;
-    }
-}

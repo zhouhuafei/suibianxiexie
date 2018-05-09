@@ -15,7 +15,7 @@
             height: inherit;
             min-width: px2rem($height * 2.4);
             border: px2rem(1) solid $g-border-color-default;
-            .g-select-select {
+            select.g-select-body {
                 padding: 0 px2rem($height + 20) 0 px2rem(20);
             }
             .g-select-mark {

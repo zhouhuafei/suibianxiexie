@@ -12,7 +12,7 @@ class Sub extends Super {
             // 测试全选
             const SelectAll = applications.SelectAll;
             new SelectAll({
-                items: '.g-checkbox-checkbox',
+                items: '.g-checkbox-body-checkbox',
                 callback: {
                     click: function (obj) {
                         console.log(obj);
@@ -27,6 +27,29 @@ class Sub extends Super {
             const validateInput = new ValidateInput({element: '.page-validate-form'});
             validateInput.setValidate('no-999', function (value) {
                 return Number(value) !== 999;
+            });
+        }());
+
+        // 弹窗测试
+        (function () {
+            const Dialog = require('../components-dom/g-dialog');
+            document.querySelector('.js-button-dialog').addEventListener('click', function () {
+                new Dialog({
+                    callback: {
+                        confirm: function () {
+                            new Dialog({config: {alert: {icon: 'icon-success', content: '已确认'}}});
+                        },
+                        cancel: function () {
+                            new Dialog({config: {alert: {icon: 'icon-success', content: '已取消'}}});
+                        },
+                        close: function () {
+                            new Dialog({config: {alert: {icon: 'icon-success', content: '已关闭'}}});
+                        },
+                    },
+                    config: {
+                        type: 'confirm',
+                    },
+                });
             });
         }());
     }

@@ -5,7 +5,7 @@
     $width-height: 30;
     position: fixed;
     left: 50%;
-    margin-left: 5rem -  px2rem($width-height + 10);
+    margin-left: px2rem(160) -  px2rem($width-height + 10);
     bottom: px2rem(60);
     width: px2rem($width-height);
     height: px2rem($width-height);

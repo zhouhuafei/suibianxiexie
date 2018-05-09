@@ -1,4 +1,4 @@
-require('../../scss/pages/register.scss');
+require('../../scss/pages/password-modify.scss');
 const Super = require('../pages-super/super');
 
 class Sub extends Super {

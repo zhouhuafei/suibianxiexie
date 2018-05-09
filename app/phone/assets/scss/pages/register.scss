@@ -1,36 +1,20 @@
 @import "../config/config";
 
-.g-body {
-    .page-canvas {
-        height: px2rem(60);
-        background: $g-background-color-default;
+.page-canvas {
+    height: px2rem(60);
+    background: $g-background-color-default;
+}
+
+.get-verify-code {
+    width: px2rem(110);
+    .g-button {
+        height: 100%;
+        background: $g-warning-color;
     }
-    .page-input-wrap {
-        margin-bottom: px2rem(10);
-    }
-    .page-guide-wrap {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: px2rem(40);
-        padding: 0 px2rem(10);
-        .page-guide-item {
-            display: flex;
-            align-items: center;
-        }
-    }
-    .get-verify-code {
-        width: px2rem(110);
-        height: inherit;
+    &.get-verify-code-inactive {
         .g-button {
-            height: inherit;
-            background: $g-warning-color;
-        }
-        &.get-verify-code-inactive {
-            .g-button {
-                background: $g-background-color-disabled;
-                color: $g-font-color-disabled;
-            }
+            background: $g-background-color-disabled;
+            color: $g-font-color-disabled;
         }
     }
 }

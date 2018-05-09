@@ -50,15 +50,15 @@
                         </label>
                     </div>
                     <div class="g-button js-button">登陆</div>
-                    <div class="page-guide-wrap">
-                        <div class="page-guide-item">
-                            <a href="<%= dataInfo.routes['register'].route %>">没有账号,去注册</a>
-                            <span class="iconfont icon-right"></span>
-                        </div>
-                        <div class="page-guide-item">
-                            <a href="<%= dataInfo.routes['password-modify'].route %>">更改密码,去修改</a>
-                            <span class="iconfont icon-right"></span>
-                        </div>
+                    <div class="g-jump-guide">
+                        <a href="<%= dataInfo.routes['register'].route %>" class="g-jump-guide-item">
+                            <span class="g-jump-guide-item-text">没有账号,去注册</span>
+                            <span class="g-jump-guide-item-icon iconfont icon-right"></span>
+                        </a>
+                        <a href="<%= dataInfo.routes['password-modify'].route %>" class="g-jump-guide-item">
+                            <span class="g-jump-guide-item-text">更改密码,去修改</span>
+                            <span class="g-jump-guide-item-icon iconfont icon-right"></span>
+                        </a>
                     </div>
                 </form>
             </div>

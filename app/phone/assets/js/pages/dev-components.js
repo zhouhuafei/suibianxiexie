@@ -147,29 +147,6 @@ class Sub extends Super {
             });
         }());
 
-        // 弹窗测试
-        (function () {
-            const Dialog = require('../components-dom/g-dialog');
-            document.querySelector('.page-button-dialog').addEventListener('click', function () {
-                new Dialog({
-                    callback: {
-                        confirm: function () {
-                            new Dialog({config: {alert: {icon: 'icon-success', content: '已确认'}}});
-                        },
-                        cancel: function () {
-                            new Dialog({config: {alert: {icon: 'icon-success', content: '已取消'}}});
-                        },
-                        close: function () {
-                            new Dialog({config: {alert: {icon: 'icon-success', content: '已关闭'}}});
-                        },
-                    },
-                    config: {
-                        type: 'confirm',
-                    },
-                });
-            });
-        }());
-
         // 分页测试
         (function () {
             const Pagination = require('../components-dom/g-pagination');

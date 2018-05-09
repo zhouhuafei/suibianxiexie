@@ -1,11 +1,11 @@
 @import "../config/config";
 
-//图片上传
+// 上传图片
 .g-upload {
     $width-height: 80;
     width: px2rem($width-height);
     height: px2rem($width-height);
-    border: px2px(1) dashed $g-highlight-color;
+    border: px2rem(1) dashed $g-highlight-color;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     position: relative;
     display: flex;
@@ -14,8 +14,11 @@
     justify-content: center;
     box-sizing: border-box;
     color: $g-highlight-color;
+    overflow: hidden;
     .g-upload-input {
-        display: none;
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
     }
     .g-upload-icon {
         font-size: px2rem($width-height*0.4);
