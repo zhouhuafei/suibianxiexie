@@ -49,7 +49,7 @@ const Sub = tools.constructorInherit(Super, {
     },
 });
 
-// 内部模块的创建(覆盖超类型)
+// (建)(覆)内部模块的创建(覆盖超类型)
 Sub.prototype.moduleDomCreate = function () {
     const data = this.opts.data;
     const items = data.items;
@@ -57,12 +57,12 @@ Sub.prototype.moduleDomCreate = function () {
     items.forEach(function (v) {
         let markHtml = '';
         if (v.isShowMark) {
-            markHtml = '<div class="g-navigation-mark"></div>';
+            markHtml = '<div class="g-navigation-item-mark"></div>';
         }
         html += `
             <a href="${v.href}" class="g-navigation-item">
-                <div class="g-navigation-icon iconfont ${v.icon}"></div>
-                <div class="g-navigation-text">${v.text}</div>
+                <div class="g-navigation-item-icon iconfont ${v.icon}"></div>
+                <div class="g-navigation-item-text">${v.text}</div>
                 ${markHtml}
             </a>
         `;
@@ -77,9 +77,8 @@ Sub.prototype.moduleDomCreate = function () {
     });
 };
 
-// 功能(覆盖超类型)
+// (功)(覆)功能(覆盖超类型)
 Sub.prototype.power = function () {
-    // 功能重写待续...
 };
 
 module.exports = Sub;

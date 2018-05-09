@@ -15,7 +15,7 @@ class Sub extends Super {
         }, json));
     }
 
-    // 内部模块的创建(覆盖超类型)
+    // (建)(覆)内部模块的创建(覆盖超类型)
     moduleDomCreate() {
         this.moduleDom = applications.createElement({
             style: this.opts.config.moduleDomStyle,
@@ -29,9 +29,8 @@ class Sub extends Super {
         });
     }
 
-    // 功能重写(覆盖超类型)
+    // (功)(覆)功能(覆盖超类型)
     power() {
-        // 功能重写待续...
     }
 }
 

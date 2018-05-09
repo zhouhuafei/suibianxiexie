@@ -7,15 +7,18 @@
     .g-table-row {
         display: flex;
         min-height: px2rem(44);
-        border-bottom: px2px(1) solid $g-border-color-default;
+        border-bottom: px2rem(1) solid $g-border-color-default;
+        &:nth-of-type(2n) {
+            background: rgba(0, 0, 0, 0.04);
+        }
         &:hover {
-            background: $g-highlight-color;
-            color: #ffffff;
+            background: rgba(0, 0, 0, 0.02);
         }
         .g-table-col {
             position: relative;
             flex: 1;
-            .g-table-col-wrap {
+            /* 加这一层是为了防止g-table-col的宽度被撑大 */
+            .g-table-col-body {
                 width: 100%;
                 height: 100%;
                 display: flex;
@@ -24,12 +27,13 @@
                 word-break: break-all;
                 padding: px2rem(4);
                 box-sizing: border-box;
+                text-align: justify;
             }
         }
     }
     .g-table-header {
         background: $g-highlight-color;
         color: #ffffff;
-        border-top: px2px(1) solid $g-border-color-default;
+        border-top: px2rem(1) solid $g-border-color-default;
     }
 }

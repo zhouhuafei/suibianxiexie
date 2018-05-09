@@ -2,6 +2,7 @@ require('../../scss/pages/setting.scss');
 const Super = require('../pages-super/super');
 
 class Sub extends Super {
+    // (功)(覆)功能(覆盖超类型)
     power() {
         const self = this;
         const dataInfo = self.dataInfo;

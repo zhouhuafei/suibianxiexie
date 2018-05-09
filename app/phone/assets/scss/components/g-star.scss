@@ -7,10 +7,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    .g-star-items {
+    .g-star-item {
         color: $g-ignore-color;
         font-size: px2rem(36);
-        &.g-star-items-active {
+        &.g-star-item-active {
             color: $g-highlight-color;
         }
     }

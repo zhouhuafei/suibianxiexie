@@ -16,7 +16,7 @@ const Sub = tools.constructorInherit(Super, {
     },
 });
 
-// 内部模块的创建(覆盖超类型)
+// (建)(覆)内部模块的创建(覆盖超类型)
 Sub.prototype.moduleDomCreate = function () {
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
@@ -45,7 +45,7 @@ Sub.prototype.moduleDomCreateHeader = function () {
     this.opts.data.header.forEach(function (v) {
         html += `
             <div class="g-table-col">
-                <div class="g-table-col-wrap">
+                <div class="g-table-col-body">
                     ${v.content}
                 </div>
             </div>
@@ -61,7 +61,7 @@ Sub.prototype.moduleDomCreateBody = function () {
         v0.forEach(function (v1) {
             row += `
                 <div class="g-table-col">
-                    <div class="g-table-col-wrap">
+                    <div class="g-table-col-body">
                         ${v1.content}
                     </div>
                 </div>
@@ -76,9 +76,8 @@ Sub.prototype.moduleDomCreateFooter = function () {
     return this.opts.data.footer;
 };
 
-// 功能(覆盖超类型)
+// (功)(覆)功能(覆盖超类型)
 Sub.prototype.power = function () {
-    // 功能重写待续...
 };
 
 module.exports = Sub;

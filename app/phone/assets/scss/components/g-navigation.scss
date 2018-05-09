@@ -14,7 +14,7 @@
         flex-direction: column;
         box-sizing: border-box;
         position: relative;
-        .g-navigation-icon {
+        .g-navigation-item-icon {
             $width-height: 24;
             width: px2rem($width-height);
             height: px2rem($width-height);
@@ -24,10 +24,10 @@
             font-size: px2rem($width-height);
             color: $g-highlight-color;
         }
-        .g-navigation-text {
+        .g-navigation-item-text {
             font-size: px2rem(12);
         }
-        .g-navigation-mark {
+        .g-navigation-item-mark {
             $width-height: 6;
             width: px2rem($width-height);
             height: px2rem($width-height);

@@ -24,7 +24,7 @@ const Sub = tools.constructorInherit(Super, {
     },
 });
 
-// 内部模块的创建(覆盖超类型)
+// (建)(覆)内部模块的创建(覆盖超类型)
 Sub.prototype.moduleDomCreate = function () {
     const data = this.opts.data;
     let buttonIconHtml = '';
@@ -48,9 +48,8 @@ Sub.prototype.moduleDomCreate = function () {
     });
 };
 
-// 功能(覆盖超类型)
+// (功)(覆)功能(覆盖超类型)
 Sub.prototype.power = function () {
-    // 功能重写待续...
 };
 
 module.exports = Sub;

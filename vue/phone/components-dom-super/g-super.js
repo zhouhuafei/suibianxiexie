@@ -11,61 +11,47 @@ function Super(json) {
             wrap: '.g-body', // 这个仅支持传入选择器和原生dom节点
             // 回调
             callback: {
-                // 内部模块创建之前
+                // 内部模块创建之前的回调
                 moduleDomCreateBefore: function (self) {
-                    // 内部模块创建之前的回调待续...
                 },
-                // 内部模块创建之后
+                // 内部模块创建之后的回调
                 moduleDomCreateAfter: function (self) {
-                    // 内部模块创建之后的回调待续...
                 },
-                // 内部模块渲染之前
+                // 内部模块渲染之前的回调
                 moduleDomRenderBefore: function (self) {
-                    // 内部模块渲染之前的回调待续...
                 },
-                // 内部模块渲染之后
+                // 内部模块渲染之后的回调
                 moduleDomRenderAfter: function (self) {
-                    // 内部模块渲染之后的回调待续...
                 },
-                // 内部模块移除之前
+                // 内部模块移除之前的回调
                 moduleDomRemoveBefore: function (self) {
-                    // 内部模块移除之前的回调待续...
                 },
-                // 内部模块移除之后
+                // 内部模块移除之后的回调
                 moduleDomRemoveAfter: function (self) {
-                    // 内部模块移除之后的回调待续...
                 },
-                // 内部模块显示之前
+                // 内部模块显示之前的回调
                 moduleDomShowBefore: function (self) {
-                    // 内部模块显示之前的回调待续...
                 },
-                // 内部模块显示之后
+                // 内部模块显示之后的回调
                 moduleDomShowAfter: function (self) {
-                    // 内部模块显示之后的回调待续...
                 },
-                // 内部模块隐藏之前
+                // 内部模块隐藏之前的回调
                 moduleDomHideBefore: function (self) {
-                    // 内部模块隐藏之前的回调待续...
                 },
-                // 内部模块隐藏之后
+                // 内部模块隐藏之后的回调
                 moduleDomHideAfter: function (self) {
-                    // 内部模块隐藏之后的回调待续...
                 },
-                // 外部容器获取之前
+                // 外部容器获取之前的回调
                 wrapDomGetBefore: function (self) {
-                    // 外部容器获取之前的回调待续...
                 },
-                // 外部容器获取之后
+                // 外部容器获取之后的回调
                 wrapDomGetAfter: function (self) {
-                    // 外部容器获取之后的回调待续...
                 },
-                // 外部容器移除之前
+                // 外部容器移除之前的回调
                 wrapDomRemoveBefore: function (self) {
-                    // 外部容器移除之前的回调待续...
                 },
-                // 外部容器移除之后
+                // 外部容器移除之后的回调
                 wrapDomRemoveAfter: function (self) {
-                    // 外部容器移除之后的回调待续...
                 },
             },
             // 配置
@@ -113,12 +99,11 @@ Super.prototype.render = function () {
     this.moduleDomRender();// 内部模块的渲染(如果外部容器存在,就把内部模块填充到外部容器里)
 };
 
-// 功能(这个方法需要在子类型里被覆盖掉)
+// (功)(覆)功能(这个方法需要在子类型里被覆盖掉)
 Super.prototype.power = function () {
-    // 功能待续...
 };
 
-// 内部模块的创建(这个方法需要在子类型里被覆盖掉)
+// (建)(覆)内部模块的创建(这个方法需要在子类型里被覆盖掉)
 Super.prototype.moduleDomCreate = function () {
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,

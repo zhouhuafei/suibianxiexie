@@ -31,16 +31,16 @@ Sub.prototype.moduleDomCreate = function () {
         const v = data[key];
         let highlightClass = '';
         if (v.isHighlight) {
-            highlightClass = 'g-footer-nav-item-active';
+            highlightClass = 'g-footer-nav-body-item-active';
         }
         let markHtml = '';
         if (v.isShowMark) {
-            markHtml = '<div class="g-footer-nav-item-mark"></div>';
+            markHtml = '<div class="g-footer-nav-body-item-mark"></div>';
         }
         moduleDomHtml += `
-            <a class="g-footer-nav-item ${highlightClass}" href="${v.href}">
-                <div class="g-footer-nav-item-icon iconfont ${v.icon}"></div>
-                <div class="g-footer-nav-item-text">${v.text}</div>
+            <a class="g-footer-nav-body-item ${highlightClass}" href="${v.href}">
+                <div class="g-footer-nav-body-item-icon iconfont ${v.icon}"></div>
+                <div class="g-footer-nav-body-item-text">${v.text}</div>
                 ${markHtml}
             </a>
         `;
@@ -55,9 +55,8 @@ Sub.prototype.moduleDomCreate = function () {
     });
 };
 
-// 功能(覆盖超类型)
+// (功)(覆)功能(覆盖超类型)
 Sub.prototype.power = function () {
-    // 功能重写待续...
 };
 
 module.exports = Sub;

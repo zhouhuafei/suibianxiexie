@@ -21,7 +21,7 @@ const Sub = tools.constructorInherit(Super, {
         touchSlide: {
             slideCell: '', // 外部容器,这个值会在底部进行覆盖,因为在这里没办法获取this
             mainCell: '.g-slide-body', // 切换元素的包裹层对象
-            titCell: '.g-slide-header .g-slide-items', // 导航元素对象
+            titCell: '.g-slide-header .g-slide-header-item', // 导航元素对象
             effect: 'leftLoop', // 效果'left' 'leftLoop'
             autoPlay: true, // 自动播放
             delayTime: 200, // 切换一次的持续时间
@@ -52,7 +52,7 @@ const Sub = tools.constructorInherit(Super, {
     },
 });
 
-// 内部模块的创建(覆盖超类型)
+// (建)(覆)内部模块的创建(覆盖超类型)
 Sub.prototype.moduleDomCreate = function () {
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
@@ -76,7 +76,7 @@ Sub.prototype.renderHeader = function () {
         if (i === self.opts.config.touchSlide.defaultIndex) {
             className = 'on';
         }
-        html += `<div class="g-slide-items ${className}"></div>`;
+        html += `<div class="g-slide-header-item ${className}"></div>`;
     });
     return `<div class="g-slide-header">${html}</div>`;
 };
@@ -87,15 +87,15 @@ Sub.prototype.renderBody = function () {
     const data = self.opts.data;
     data.items.forEach(function (v) {
         if (self.opts.config.isShowHref) {
-            html += `<a href="${v.href || 'javascript:;'}" class="g-slide-items pre-load" data-src="${v.img.src}"></a>`;
+            html += `<a href="${v.href || 'javascript:;'}" class="g-slide-body-item pre-load" data-src="${v.img.src}"></a>`;
         } else {
-            html += `<a class="g-slide-items pre-load" data-src="${v.img.src}"></a>`;
+            html += `<a class="g-slide-body-item pre-load" data-src="${v.img.src}"></a>`;
         }
     });
     return `<div class="g-slide-body">${html}</div>`;
 };
 
-// 功能(覆盖超类型)
+// (功)(覆)功能(覆盖超类型)
 Sub.prototype.power = function () {
     const self = this;
     const callback = self.opts.callback;
@@ -107,7 +107,7 @@ Sub.prototype.power = function () {
     touchSlide.slideCell = moduleDom;
     touchSlide.startFun = function (i) {
         // 因为以下功能在插件本身进行了实现(本人对touch-slide插件进行了小修改),所以这里就注释了
-        // var allImg = self.moduleDom.querySelectorAll('.g-slide-body .g-slide-items');
+        // var allImg = self.moduleDom.querySelectorAll('.g-slide-body .g-slide-body-item');
         // var nowIndex = ( i + 1);
         // if (touchSlide.effect == 'left') {
         //     nowIndex = i;

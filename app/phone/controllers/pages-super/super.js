@@ -121,14 +121,13 @@ class Super {
         return isContinue;
     }
 
-    // (盖)处理数据(这个方法需要在子类型里被覆盖掉)
+    // (处)(覆)处理数据(这个方法需要在子类型里被覆盖掉)
     handleData() {
         const self = this;
         const tools = self.tools; // 工具方法集合
         const opts = self.opts;
         const req = opts.req;
         const data = req.data;
-        // self.dataInfo数据处理待续...
         self.render();// 渲染视图(渲染数据)
     }
 

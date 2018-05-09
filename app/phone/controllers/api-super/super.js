@@ -109,25 +109,25 @@ class Super {
         return isContinue;
     }
 
-    // (增)(盖)获取数据(这个方法需要在子类型里被覆盖掉)
+    // (增)(覆)获取数据(这个方法需要在子类型里被覆盖掉)
     postData() {
         console.log('postData:', this.opts.req.data);
         this.render();
     }
 
-    // (删)(盖)删除数据(这个方法需要在子类型里被覆盖掉)
+    // (删)(覆)删除数据(这个方法需要在子类型里被覆盖掉)
     deleteData() {
         console.log('deleteData:', this.opts.req.data);
         this.render();
     }
 
-    // (改)(盖)修改数据(这个方法需要在子类型里被覆盖掉)
+    // (改)(覆)修改数据(这个方法需要在子类型里被覆盖掉)
     putData() {
         console.log('putData:', this.opts.req.data);
         this.render();
     }
 
-    // (查)(盖)查找数据(这个方法需要在子类型里被覆盖掉)
+    // (查)(覆)查找数据(这个方法需要在子类型里被覆盖掉)
     getData() {
         console.log('getData:', this.opts.req.data);
         this.render();

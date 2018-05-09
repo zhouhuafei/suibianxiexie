@@ -17,7 +17,7 @@
         box-sizing: border-box;
         border-top: px2px(1) solid $g-border-color-default;
         background: #fff;
-        .g-footer-nav-item {
+        .g-footer-nav-body-item {
             flex: 1;
             display: flex;
             align-items: center;
@@ -26,18 +26,18 @@
             position: relative;
             height: 100%;
             color: $g-font-color-default;
-            .g-footer-nav-item-icon {
+            .g-footer-nav-body-item-icon {
                 $size: 20;
                 width: px2rem($size);
                 height: px2rem($size);
                 font-size: px2rem($size);
             }
-            .g-footer-nav-item-text {
+            .g-footer-nav-body-item-text {
                 line-height: 1;
                 font-size: px2rem(12);
                 margin-top: px2rem(4);
             }
-            .g-footer-nav-item-mark {
+            .g-footer-nav-body-item-mark {
                 $width-height: 6;
                 width: px2rem($width-height);
                 height: px2rem($width-height);
@@ -47,8 +47,8 @@
                 right: px2rem(4);
                 top: px2rem(4);
             }
-            &.g-footer-nav-item-active {
-                .g-footer-nav-item-icon, .g-footer-nav-item-text {
+            &.g-footer-nav-body-item-active {
+                .g-footer-nav-body-item-icon, .g-footer-nav-body-item-text {
                     color: $g-highlight-color;
                 }
             }

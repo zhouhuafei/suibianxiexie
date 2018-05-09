@@ -26,14 +26,14 @@
                     <template v-for="value in $store.state.footerNav.data">
                         <router-link
                             :to="value.href"
-                            :class="{'g-footer-nav-item-active': value.href === $route.path}"
-                            class="g-footer-nav-item">
+                            :class="{'g-footer-nav-body-item-active': value.href === $route.path}"
+                            class="g-footer-nav-body-item">
                             <div
                                 :class="[value.icon]"
-                                class="g-footer-nav-item-icon iconfont"></div>
+                                class="g-footer-nav-body-item-icon iconfont"></div>
                             <div
                                 v-text="value.text"
-                                class="g-footer-nav-item-text"></div>
+                                class="g-footer-nav-body-item-text"></div>
                         </router-link>
                     </template>
                 </div>

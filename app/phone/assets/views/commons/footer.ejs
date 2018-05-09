@@ -6,11 +6,11 @@
     <div class="g-footer-nav">
         <div class="g-footer-nav-body">
             <% dataInfo.footerNav.data.forEach(function (v) { %>
-            <a class="g-footer-nav-item <%= v.isHighlight ? 'g-footer-nav-item-active' : '' %>" href="<%= v.href %>">
-                <div class="g-footer-nav-item-icon iconfont <%= v.icon %>"></div>
-                <div class="g-footer-nav-item-text"><%= v.text %></div>
+            <a class="g-footer-nav-body-item <%= v.isHighlight ? 'g-footer-nav-body-item-active' : '' %>" href="<%= v.href %>">
+                <div class="g-footer-nav-body-item-icon iconfont <%= v.icon %>"></div>
+                <div class="g-footer-nav-body-item-text"><%= v.text %></div>
                 <% if(v.isShowMark) { %>
-                <div class="g-footer-nav-item-mark"></div>
+                <div class="g-footer-nav-body-item-mark"></div>
                 <% } %>
             </a>
             <% }) %>

@@ -2,6 +2,7 @@ require('../../scss/pages/game-wuziqi.scss');
 const Super = require('../pages-super/super');
 
 class Sub extends Super {
+    // (功)(覆)功能(覆盖超类型)
     power() {
         // 横屏的时候 90 -190 , 横屏的时候 0 180
         if (window.orientation === 90 || window.orientation === -90) {

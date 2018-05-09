@@ -84,7 +84,7 @@ const Sub = tools.constructorInherit(Super, {
     data: {},
 });
 
-// 内部模块的创建(覆盖超类型)
+// (建)(覆)内部模块的创建(覆盖超类型)
 Sub.prototype.moduleDomCreate = function () {
     const config = this.opts.config;
     const type = `g-dialog-${config.type}`;// 弹窗类型
@@ -184,7 +184,7 @@ Sub.prototype.renderConfirm = function () {
     `;
 };
 
-// 功能(覆盖超类型)
+// (功)(覆)功能(覆盖超类型)
 Sub.prototype.power = function () {
     const self = this;
     const config = this.opts.config;
