@@ -2,7 +2,6 @@ const Super = require('../api-super/super'); // 超类型
 const Uploads = require('../../models/mongoose/uploads');
 const multiparter = require('multiparty');
 const appConfig = require('../../../../app-config');
-console.log(`${appConfig.projectDir}dist-upload/admin/`);
 const form = new multiparter.Form({uploadDir: `${appConfig.projectDir}static-cache-wrap/static-cache/upload/admin/`});
 
 class Sub extends Super {
