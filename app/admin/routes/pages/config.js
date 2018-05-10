@@ -17,19 +17,19 @@ const routeName = [
         name: 'password-modify', // 更改密码,去修改
         title: '更改密码,正在修改',
         isValidateLogin: false,
-        // isShowMenu: false,
+        isShowMenu: false,
     },
     {
         name: 'login', // 登陆
         title: '登陆',
         isValidateLogin: false,
-        // isShowMenu: false,
+        isShowMenu: false,
     },
     {
         name: 'register', // 注册
         title: '注册',
         isValidateLogin: false,
-        // isShowMenu: false,
+        isShowMenu: false,
     },
 ];
 // 路由的配置
