@@ -29,10 +29,16 @@ class Route {
                             dest: `${appConfig.projectDir}static-cache-wrap/static-cache/galleries/admin/`,
                             limits: {},
                             fileFilter: function (req, file, cb) {
-                                console.log(file);
-                                // cb(null, false);
-                                // cb(null, true);
-                                // cb(new Error('I don\'t have a clue!'));
+                                const mimeType = file.mimetype;
+                                cb(null, mimeType.split('/')[0] === 'image');
+                                /*
+                                // 拒绝这个文件，使用`false`，像这样:
+                                cb(null, false);
+                                // 接受这个文件，使用`true`，像这样:
+                                cb(null, true);
+                                // 如果有问题，你可以总是这样发送一个错误:
+                                cb(new Error('only receive image !'));
+                                */
                             },
                         }).array('images');
                     }

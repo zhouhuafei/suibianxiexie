@@ -10,6 +10,11 @@ class Sub extends Super {
         const req = opts.req;
         const data = req.data;
         const files = req.files;
+        const length = files.length;
+        if (length === 0) {
+            self.render({message: '请选择图片'});
+            return;
+        }
         self.render({
             status: 'success',
             message: '上传成功',
