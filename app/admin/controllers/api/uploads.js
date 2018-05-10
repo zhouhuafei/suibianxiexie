@@ -15,17 +15,7 @@ class Sub extends Super {
             result: {data: [data, req.files, req.file]},
         });
         /*
-        const uploads = new Uploads({
-            name: null,
-            type: null,
-            size: {
-                B: null, // 多少字节
-                KB: null, // 多少千字节
-                M: null, // 多少兆
-            },
-            url: null,
-            createTime: null,
-        });
+        const uploads = new Uploads();
         uploads.save(function (error, result) {
             // 数据库插入出现错误
             if (error) {
