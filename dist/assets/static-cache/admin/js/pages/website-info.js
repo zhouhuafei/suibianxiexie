@@ -49,6 +49,7 @@ var Sub = function (_Super) {
                 files.forEach(function (file) {
                     formData.append('files', file);
                 });
+                formData.append('test', 'test');
                 axios({
                     url: dataInfo.api.uploads.route,
                     method: 'post',

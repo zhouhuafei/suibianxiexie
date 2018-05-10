@@ -22,6 +22,7 @@ class Sub extends Super {
             files.forEach(function (file) {
                 formData.append('files', file);
             });
+            formData.append('test', 'test');
             axios({
                 url: dataInfo.api.uploads.route,
                 method: 'post',
