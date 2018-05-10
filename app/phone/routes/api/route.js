@@ -25,7 +25,25 @@ class Route {
                 const Controller = require(`${controllerPath}${attr}`);
                 (function (Controller, attr) {
                     if (attr === 'galleries') {
-                        upload = multer({dest: `${appConfig.projectDir}static-cache-wrap/static-cache/galleries/phone/`}).array('images');
+                        upload = multer({
+                            dest: `${appConfig.projectDir}static-cache-wrap/static-cache/galleries/admin/`,
+                            limits: {
+                                fileSize: 300 * 1024, // 单个文件的大小不能超过300kb。
+                                files: 6, // 每次最多上传6个文件。
+                            },
+                            fileFilter: function (req, file, cb) {
+                                const mimeType = file.mimetype;
+                                cb(null, mimeType.split('/')[0] === 'image');
+                                /*
+                                // 拒绝这个文件，使用`false`，像这样:
+                                cb(null, false);
+                                // 接受这个文件，使用`true`，像这样:
+                                cb(null, true);
+                                // 如果有问题，你可以总是这样发送一个错误:
+                                cb(new Error('only receive image !'));
+                                */
+                            },
+                        }).array('images');
                     }
                     app.all(apiConfig[attr].route, upload, function (req, res) {
                         // 渲染数据
