@@ -15,13 +15,13 @@ const configPath = {
     entry: `${__dirname}/${projectDirPath}`,
     // output: `${__dirname}/dist/assets/${projectDirname}/`,
     // 为了保证开发环境和生产环境的路径一致,上面一行需要修改为下面一行
-    output: `${__dirname}/dist/assets/${projectDirname}/`,
+    output: `${__dirname}/dist/assets/static-cache/${projectDirname}/`,
 };
 // 环境----开发环境
 let configEnvironment = {
-    // publicPath: `/dist/assets/${projectDirname}/`, // 出口路径----指定资源文件引用的目录
+    // publicPath: `/dist/assets/static-cache/${projectDirname}/`, // 出口路径----指定资源文件引用的目录
     // 为了保证开发环境和生产环境的路径一致,上面一行需要修改为下面一行
-    publicPath: `/${projectDirname}/`, // 出口路径----指定资源文件引用的目录
+    publicPath: `/static-cache/${projectDirname}/`, // 出口路径----指定资源文件引用的目录
     hash: '[hash:8].', // 图片和字体用到了这个hash
     chunkhash: '', // js用到了这个chunkhash
     contenthash: '', // css用到了这个contenthash
@@ -34,7 +34,7 @@ let configEnvironment = {
 // 环境----生产环境
 if (isProduction) {
     configEnvironment = {
-        publicPath: `/${projectDirname}/`, // 出口路径----指定资源文件引用的目录
+        publicPath: `/static-cache/${projectDirname}/`, // 出口路径----指定资源文件引用的目录
         hash: '[hash:8].', // 图片和字体用到了这个hash
         chunkhash: '[chunkhash].', // js用到了这个chunkhash
         contenthash: '[contenthash].', // css用到了这个contenthash
@@ -71,7 +71,7 @@ const output = {
 // 插件----集合
 const plugins = [
     // 插件----清空dist/assets目录下对应的项目文件
-    new CleanWebpackPlugin([projectDirname], {root: `${__dirname}/dist/assets/`, verbose: true, dry: false}),
+    new CleanWebpackPlugin([projectDirname], {root: `${__dirname}/dist/assets/static-cache/`, verbose: true, dry: false}),
     // 插件----提取css样式到文件
     new ExtractTextPlugin(`css/[name].${configEnvironment.contenthash}css`),
     // 插件----处理视图模板页面文件
