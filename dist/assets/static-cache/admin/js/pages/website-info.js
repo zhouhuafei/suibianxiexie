@@ -77,9 +77,9 @@ var Sub = function (_Super) {
 
                 // 测试
                 var formData3 = new FormData();
-                formData3.append('', files[0]);
-                formData3.append(null, files[0]);
-                formData3.append(undefined, files[0]);
+                // formData3.append('', files[0]);
+                // formData3.append(null, files[0]);
+                // formData3.append(undefined, files[0]);
                 formData3.append('list', '789');
                 axios({
                     url: dataInfo.api.list.route,

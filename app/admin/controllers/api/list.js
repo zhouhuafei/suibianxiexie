@@ -10,12 +10,8 @@ class Sub extends Super {
         const data = req.data;
         self.render({
             status: 'success',
-            message: '上传成功',
-            result: {data: [data, req.files, req.file]},
-        });
-        this.render({
-            status: 'success',
             message: '成功',
+            result: {data: [data, req.files, req.file]},
         });
     }
 
