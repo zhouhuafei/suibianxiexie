@@ -45,7 +45,6 @@ class Pc extends Phone {
 }
 */
 
-/*
 class Admin extends Phone {
     constructor() {
         super({
@@ -59,7 +58,6 @@ class Admin extends Phone {
         });
     }
 }
-*/
 
 function check(obj) {
     Object.keys(obj.apiConfig).forEach(function (k) {
@@ -88,5 +86,5 @@ function check(obj) {
 }
 
 check(new Phone());
-// check(new Admin());
+check(new Admin());
 // check(new Pc());

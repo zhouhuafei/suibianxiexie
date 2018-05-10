@@ -1,7 +1,11 @@
 {
     "ignore": [
+        "logs",
         "app/phone/assets",
+        "app/pc/assets",
+        "app/admin/assets",
         "dist",
+        "static-cache-wrap",
         "static-no-cache-wrap",
         "vue"
     ],

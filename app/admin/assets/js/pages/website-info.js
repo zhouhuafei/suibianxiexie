@@ -23,11 +23,22 @@ class Sub extends Super {
                 formData.append('files', file);
             });
             axios({
-                url: dataInfo.api.upload.route,
+                url: dataInfo.api.uploads.route,
                 method: 'post',
                 data: formData,
             }).then(function (json) {
-                console.log(json);
+                console.log('测试formData', json);
+            });
+
+            // 测试
+            const formData2 = new FormData();
+            formData2.append('isOnlyRenderData', 'true');
+            axios({
+                url: dataInfo.api.uploads.route,
+                method: 'post',
+                data: formData2,
+            }).then(function (json) {
+                console.log('测试formData2', json);
             });
         });
     }

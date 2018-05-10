@@ -2,6 +2,8 @@
 const tools = require('zhf.tools'); // 工具方法集合
 const apiConfig = require('./config');
 const controllerPath = '../../controllers/api/'; // 控制器的路径
+const multer = require('multer'); // 用于处理 multipart/form-data 类型的表单数据，它主要用于上传文件。
+
 class Route {
     constructor(json) {
         this.opts = tools.extend({
@@ -16,11 +18,16 @@ class Route {
     init() {
         const self = this;
         const app = self.opts.app;
+        const appConfig = app.appConfig;
+        let upload = multer().array();
         Object.keys(apiConfig).forEach(function (attr) {
             try {
                 const Controller = require(`${controllerPath}${attr}`);
                 (function (Controller, attr) {
-                    app.all(apiConfig[attr].route, function (req, res) {
+                    if (attr === 'uploads') {
+                        upload = multer({dest: `${appConfig.projectDir}static-cache-wrap/static-cache/uploads/admin/`}).array('files');
+                    }
+                    app.all(apiConfig[attr].route, upload, function (req, res) {
                         // 渲染数据
                         new Controller({
                             app: app,
@@ -32,8 +39,9 @@ class Route {
                         });
                     });
                 }(Controller, attr));
-            } catch (err) {
-                console.log(err);
+            } catch (error) {
+                const logs = require(`${appConfig.projectDir}utils/logs`);
+                logs(error, `${appConfig.logsDir}admin.log`);
             }
         });
     }

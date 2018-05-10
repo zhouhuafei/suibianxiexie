@@ -6,8 +6,12 @@
             "exec_mode": "cluster",
             "instances": 2,
             "ignore_watch": [
+                "logs",
                 "app/phone/assets",
+                "app/pc/assets",
+                "app/admin/assets",
                 "dist",
+                "static-cache-wrap",
                 "static-no-cache-wrap",
                 "vue"
             ],
