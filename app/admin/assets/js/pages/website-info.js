@@ -20,7 +20,7 @@ class Sub extends Super {
             const files = [].slice.call(this.files);
             const formData = new FormData();
             files.forEach(function (file) {
-                formData.append('upload', file);
+                formData.append('files', file);
             });
             axios({
                 url: dataInfo.api.upload.route,

@@ -2,7 +2,7 @@ const Super = require('../api-super/super'); // 超类型
 const appConfig = require('../../../../app-config');
 const Uploads = require('../../models/mongoose/uploads');
 const multer = require('multer');
-const uploadMulter = multer({dest: `${appConfig.projectDir}static-cache-wrap/static-cache/upload/admin/`});
+const uploadMulter = multer({dest: `${appConfig.projectDir}static-cache-wrap/static-cache/uploads/admin/`}).array('files');
 
 class Sub extends Super {
     // (增)(覆)获取数据(覆盖超类型)
@@ -20,12 +20,10 @@ class Sub extends Super {
                     failureInfo: error,
                 });
             } else {
-                console.log('fields', fields);
-                console.log('files', files);
                 self.render({
                     status: 'success',
                     message: '上传成功',
-                    result: {data: []},
+                    result: {data: [fields, files]},
                 });
             }
         });
