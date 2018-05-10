@@ -27,7 +27,10 @@ class Route {
                     if (attr === 'galleries') {
                         upload = multer({
                             dest: `${appConfig.projectDir}static-cache-wrap/static-cache/galleries/admin/`,
-                            limits: {},
+                            limits: {
+                                fileSize: 500 * 1024, // 500kb 在 multipart 表单中，文件最大长度 (字节单位)，经过验证，这里限制的是单个文件的大小。
+                                files: 6, // 每次最多上传6个文件
+                            },
                             fileFilter: function (req, file, cb) {
                                 const mimeType = file.mimetype;
                                 cb(null, mimeType.split('/')[0] === 'image');
