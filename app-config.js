@@ -2,13 +2,15 @@ class Config {
     constructor() {
         this.env = process.env.NODE_ENV; // 开发环境 or 生产环境
         this.isProduction = this.env !== 'development'; // 是否是生产环境
-        this.projectDirectory = `${__dirname}/`; // 项目根目录
-        this.adminDirectory = `${__dirname}/admin/`; // admin的目录
-        this.phoneDirectory = `${__dirname}/phone/`; // phone的目录
-        this.pcDirectory = `${__dirname}/pc/`; // pc的目录
-        this.staticCacheDirectory = `${__dirname}/dist/`; // 静态缓存资源目录
-        this.staticNoCacheDirectory = `${__dirname}/dist-no-delete-assets-no-cache/`; // 静态非缓存资源目录
-        this.utilsDirectory = `${__dirname}/utils/`; // utils目录
+        this.projectDir = `${__dirname}/`; // 项目根目录
+        this.adminDir = `${__dirname}/admin/`; // admin的目录
+        this.phoneDir = `${__dirname}/phone/`; // phone的目录
+        this.pcDir = `${__dirname}/pc/`; // pc的目录
+        this.staticCacheDir = `${__dirname}/dist/`; // 静态缓存资源目录
+        this.staticNoCacheDir = `${__dirname}/static-no-cache-wrap/`; // 静态非缓存资源目录
+        this.utilsDir = `${__dirname}/utils/`; // utils目录
+        this.bowerComponentsDir = `/static-cache/bower_components/`; // bower_components的目录
+        // 目录区分开为后端给require使用的目录，以及前端使用的绝对目录/
         this.isEnabledSingleDeviceLoginUser = true; // 前台站点是否启用单设备登录。
         this.isEnabledSingleDeviceLoginAdmin = true; // 后台管理系统是否启用单设备登录。
         // mongodb数据库

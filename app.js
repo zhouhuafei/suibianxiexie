@@ -35,7 +35,8 @@ if (isProduction) {
 } else {
     app.use(express.static('dist/assets')); // 托管资源文件(无缓存)
 }
-app.use(express.static('dist-no-delete-assets-no-cache')); // 托管资源文件(无缓存)
+app.use(express.static('static-cache-wrap', {maxAge: ms('1y')})); // 托管资源文件(一年缓存)
+app.use(express.static('static-no-cache-wrap')); // 托管资源文件(无缓存)
 
 // 数据解析
 const bodyParser = require('body-parser'); // 可以对post delete update请求方式进行数据解析

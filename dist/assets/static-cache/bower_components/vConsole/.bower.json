@@ -1,0 +1,14 @@
+{
+  "name": "vConsole",
+  "homepage": "https://github.com/webx32/vConsole",
+  "version": "2.5.1",
+  "_release": "2.5.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.5.1",
+    "commit": "96526062d4b52102a3219fd5f4d024e84bb05fb9"
+  },
+  "_source": "https://github.com/webx32/vConsole.git",
+  "_target": "^2.5.1",
+  "_originalSource": "vConsole"
+}

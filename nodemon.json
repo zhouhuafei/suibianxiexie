@@ -2,7 +2,7 @@
     "ignore": [
         "app/phone/assets",
         "dist",
-        "dist-no-delete-assets-no-cache",
+        "static-no-cache-wrap",
         "vue"
     ],
     "verbose": true,

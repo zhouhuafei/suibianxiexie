@@ -8,7 +8,7 @@
             "ignore_watch": [
                 "app/phone/assets",
                 "dist",
-                "dist-no-delete-assets-no-cache",
+                "static-no-cache-wrap",
                 "vue"
             ],
             "watch": true,
