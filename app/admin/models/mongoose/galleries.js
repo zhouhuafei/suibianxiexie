@@ -59,4 +59,4 @@ const schema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model('uploads', schema);
+module.exports = mongoose.model('galleries', schema);

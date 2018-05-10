@@ -1,5 +1,5 @@
 const Super = require('../api-super/super'); // 超类型
-const Uploads = require('../../models/mongoose/uploads');
+const Galleries = require('../../models/mongoose/galleries');
 
 class Sub extends Super {
     // (增)(覆)获取数据(覆盖超类型)
@@ -9,14 +9,15 @@ class Sub extends Super {
         const opts = self.opts;
         const req = opts.req;
         const data = req.data;
+        const files = req.files;
         self.render({
             status: 'success',
             message: '上传成功',
             result: {data: [data, req.files, req.file]},
         });
         /*
-        const uploads = new Uploads();
-        uploads.save(function (error, result) {
+        const galleries = new Galleries();
+        galleries.save(function (error, result) {
             // 数据库插入出现错误
             if (error) {
                 self.render({

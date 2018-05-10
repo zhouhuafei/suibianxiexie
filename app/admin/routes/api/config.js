@@ -8,7 +8,7 @@ const routeName = [
         name: 'list', // 列表
     },
     {
-        name: 'uploads', // 文件上传
+        name: 'galleries', // 图片库
     },
     {
         name: 'password-modify', // 更改密码,去修改

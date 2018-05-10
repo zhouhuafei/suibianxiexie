@@ -47,11 +47,10 @@ var Sub = function (_Super) {
                 var files = [].slice.call(this.files);
                 var formData = new FormData();
                 files.forEach(function (file) {
-                    formData.append('files', file);
+                    formData.append('images', file);
                 });
-                formData.append('test', 'test');
                 axios({
-                    url: dataInfo.api.uploads.route,
+                    url: dataInfo.api.galleries.route,
                     method: 'post',
                     data: formData,
                     onUploadProgress: function onUploadProgress(progressEvent) {
@@ -63,31 +62,6 @@ var Sub = function (_Super) {
                     }
                 }).then(function (json) {
                     console.log('测试formData', json);
-                });
-
-                // 测试
-                var formData2 = new FormData();
-                formData2.append('isOnlyRenderData', 'true');
-                axios({
-                    url: dataInfo.api.uploads.route,
-                    method: 'post',
-                    data: formData2
-                }).then(function (json) {
-                    console.log('测试formData2', json);
-                });
-
-                // 测试
-                var formData3 = new FormData();
-                // formData3.append('', files[0]);
-                // formData3.append(null, files[0]);
-                // formData3.append(undefined, files[0]);
-                formData3.append('list', '789');
-                axios({
-                    url: dataInfo.api.list.route,
-                    method: 'post',
-                    data: formData3
-                }).then(function (json) {
-                    console.log('测试formData3', json);
                 });
             });
         }

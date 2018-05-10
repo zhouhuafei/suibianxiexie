@@ -3,6 +3,7 @@ const tools = require('zhf.tools'); // 工具方法集合
 const apiConfig = require('./config');
 const controllerPath = '../../controllers/api/'; // 控制器的路径
 const multer = require('multer'); // 用于处理 multipart/form-data 类型的表单数据，它主要用于上传文件。
+let upload = multer().array(); // 只要array后面不传参数，其他接口如果你传文件就报错，这是对的，如果传的是multipart/form-data类型的文本域表单，则是可以接收到的，这是对的。
 
 class Route {
     constructor(json) {
@@ -19,13 +20,21 @@ class Route {
         const self = this;
         const app = self.opts.app;
         const appConfig = app.appConfig;
-        let upload = multer().array(); // 只要array后面不传参数，其他接口如果你传文件就报错，这是对的，如果传的是multipart/form-data类型的文本域表单，则是可以接收到的，这是对的。
         Object.keys(apiConfig).forEach(function (attr) {
             try {
                 const Controller = require(`${controllerPath}${attr}`);
                 (function (Controller, attr) {
-                    if (attr === 'uploads') {
-                        upload = multer({dest: `${appConfig.projectDir}static-cache-wrap/static-cache/uploads/admin/`}).array('files');
+                    if (attr === 'galleries') {
+                        upload = multer({
+                            dest: `${appConfig.projectDir}static-cache-wrap/static-cache/galleries/admin/`,
+                            limits: {},
+                            fileFilter: function (req, file, cb) {
+                                console.log(file);
+                                // cb(null, false);
+                                // cb(null, true);
+                                // cb(new Error('I don\'t have a clue!'));
+                            },
+                        }).array('images');
                     }
                     app.all(apiConfig[attr].route, upload, function (req, res) {
                         // 渲染数据
