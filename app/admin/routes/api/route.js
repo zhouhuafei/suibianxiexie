@@ -1,4 +1,5 @@
 // 页面路由
+const Admins = require(`../../models/mongoose/admins`);
 const tools = require('zhf.tools'); // 工具方法集合
 const apiConfig = require('./config');
 const controllerPath = '../../controllers/api/'; // 控制器的路径
@@ -20,7 +21,8 @@ class Route {
         const self = this;
         const app = self.opts.app;
         const appConfig = app.appConfig;
-        const logs = require(`${appConfig.projectDir}utils/logs`);
+        const logs = require(`${appConfig.utilsDir}logs`);
+        const apiDataFormat = require(`${appConfig.utilsDir}api-data-format`);
         Object.keys(apiConfig).forEach(function (attr) {
             try {
                 const Controller = require(`${controllerPath}${attr}`);
@@ -46,7 +48,33 @@ class Route {
                             },
                         }).array('images');
                     }
-                    app.all(apiConfig[attr].route, upload, function (req, res) {
+                    app.all(apiConfig[attr].route, function (req, res, next) {
+                        // 是否验证登录，如果验证，则继续验证是否登录了
+                        const session = req.session;
+                        const adminInfo = session.adminInfo;
+                        if (apiConfig[attr].isValidateLogin) { // 验证登录
+                            if (adminInfo === undefined) { // 未登录，管理端的接口都应该登陆后才有权调用。
+                                res.json(apiDataFormat({message: '未登录', failureCode: 401}));
+                            } else {
+                                Admins.findOne({username: adminInfo.username}, function (error, result) {
+                                    if (error) { // 数据库查询出现错误
+                                        res.json(apiDataFormat({message: '验证登录时,数据库查询出现错误'}));
+                                    }
+                                    if (result) {
+                                        if (result.loginStamp === adminInfo.loginStamp) { // 登录了
+                                            next();
+                                        } else { // 未登录
+                                            res.json(apiDataFormat({message: '未登录', failureCode: 401}));
+                                        }
+                                    } else { // 账号不存在
+                                        res.json(apiDataFormat({message: '验证登录时,发现管理员账号不存在'}));
+                                    }
+                                });
+                            }
+                        } else { // 不验证登录
+                            next();
+                        }
+                    }, upload, function (req, res) {
                         // 渲染数据
                         new Controller({
                             app: app,

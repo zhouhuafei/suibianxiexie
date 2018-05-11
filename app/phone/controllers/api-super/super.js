@@ -146,7 +146,7 @@ class Super {
             self.dataInfo = self.tools.extend(self.dataInfo, json);
             self.opts.callback(self);
             if (self.opts.isTriggerEnd) {
-                res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+                res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'}); // res.json默认返回的就是200和application/json
                 if (isJsonp && self.opts.isSupportJsonp) {
                     res.end(`${req.query.callback || 'jsonpCallback'}(${JSON.stringify(self.dataInfo)})`);
                 } else {

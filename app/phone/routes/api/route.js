@@ -20,7 +20,7 @@ class Route {
         const self = this;
         const app = self.opts.app;
         const appConfig = app.appConfig;
-        const logs = require(`${appConfig.projectDir}utils/logs`);
+        const logs = require(`${appConfig.utilsDir}logs`);
         Object.keys(apiConfig).forEach(function (attr) {
             try {
                 const Controller = require(`${controllerPath}${attr}`);

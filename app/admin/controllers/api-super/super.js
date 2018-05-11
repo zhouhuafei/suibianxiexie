@@ -1,6 +1,5 @@
 // 接口数据
 const tools = require('zhf.tools'); // 工具方法集合
-const Admins = require(`../../models/mongoose/admins`);
 
 class Super {
     constructor(json) {
@@ -17,37 +16,6 @@ class Super {
             callback: function (self) {
             },
         }, json);
-        this.dataInfo = {
-            /*
-            * 状态信息:
-            * 成功(success)   有返回结果,结果的状态是success,预定义的数据格式:{status: 'success'}
-            * 失败(failure)   有返回结果,结果的状态是failure,预定义的数据格式:{status: 'failure'}
-            * */
-            status: 'failure', // 状态信息
-            message: '接口数据的基本格式', // 提示信息 - '参数错误'
-            failureInfo: null, // 错误信息
-            failureCode: null, // 401 未授权,未登录
-            result: {
-                // 数据集合(格式必须统一为数组,哪怕只有一条数据)
-                data: [
-                    /*
-                    {
-                        img: {
-                            width: 0,
-                            height: 0,
-                            src: '',
-                        },
-                        text: '接口格式保持一致',
-                        href: '',
-                    },
-                    */
-                ],
-                allPage: 1, // 总页数
-                nowPage: 1, // 当前页
-                allCount: 0, // 数据总条数
-                nowCount: 0, // 当前页的数据条数
-            },
-        };
         this.isRendered = false; // 是否已经响应过了结果 一次请求只能响应一次结果 多次响应(render)会报错 Can't set headers after they are sent.
         this.init();
     }
@@ -72,31 +40,7 @@ class Super {
             req.data = req.body;
         }
 
-        // 是否验证登录(请不要挪动顺序，保证位置在处理完的req.data之后，否则render时，req.data会是undefined，导致出现报错。)
-        const session = req.session;
-        const adminInfo = session.adminInfo;
-        if (opts.isValidateLogin) { // 验证登录
-            if (adminInfo === undefined) { // 未登录，管理端的接口都应该登陆后才有权调用。
-                self.render({message: '未登录', failureCode: 401});
-            } else {
-                Admins.findOne({username: adminInfo.username}, function (error, result) {
-                    if (error) { // 数据库查询出现错误
-                        self.render({message: '验证登录时,数据库查询出现错误'});
-                    }
-                    if (result) {
-                        if (result.loginStamp === adminInfo.loginStamp) { // 登录了
-                            fnCrud();
-                        } else { // 未登录
-                            self.render({message: '未登录', failureCode: 401});
-                        }
-                    } else { // 账号不存在
-                        self.render({message: '验证登录时,发现管理员账号不存在'});
-                    }
-                });
-            }
-        } else { // 不验证登录
-            fnCrud();
-        }
+        fnCrud();
 
         function fnCrud() {
             if (method === 'post') {
@@ -144,18 +88,21 @@ class Super {
         if (!self.isRendered) {
             self.isRendered = true;
             const opts = self.opts;
+            const app = opts.app;
+            const appConfig = app.appConfig;
             const req = opts.req;
             const res = opts.res;
             const data = req.data;
             const isJsonp = data.isJsonp === 'true'; // 是否是jsonp(jsonp only supports the get method)
-            self.dataInfo = self.tools.extend(self.dataInfo, json);
+            const apiDataFormat = require(`${appConfig.utilsDir}api-data-format`);
+            const dataInfo = apiDataFormat(json);
             self.opts.callback(self);
             if (self.opts.isTriggerEnd) {
-                res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+                res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'}); // res.json默认返回的就是200和application/json
                 if (isJsonp && self.opts.isSupportJsonp) {
-                    res.end(`${req.query.callback || 'jsonpCallback'}(${JSON.stringify(self.dataInfo)})`);
+                    res.end(`${req.query.callback || 'jsonpCallback'}(${JSON.stringify(dataInfo)})`);
                 } else {
-                    res.end(JSON.stringify(self.dataInfo));
+                    res.end(JSON.stringify(dataInfo));
                 }
             }
         }
