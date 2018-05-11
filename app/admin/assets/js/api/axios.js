@@ -19,7 +19,7 @@ module.exports = function (json) {
     * 把上述四种数据的传参方式进行统一化,统一使用req.data
     * */
     if (opts.method.toLowerCase() === 'get') {
-        opts.params = opts.data || opts.params;
+        opts.params = opts.data || opts.params; // 这里和$.ajax是不一样的，这里以前使用$.ajax的习惯传入data
     }
     return axios(opts).catch(function (error) {
         const response = {
