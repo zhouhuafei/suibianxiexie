@@ -10,6 +10,7 @@ module.exports = function (json) {
         isHandleFailure: true, // 是否处理失败
         timeout: 8000, // 超时
     }, json);
+    /*
     opts.success = function (dataInfo, mark, xhr) {
         if (dataInfo.status === 'failure' && opts.isHandleFailure) {
             new Dialog({
@@ -35,6 +36,7 @@ module.exports = function (json) {
             });
         };
     }
+    */
     /*
     * javascript axios get params
     * javascript axios post/put/delete data
@@ -46,5 +48,30 @@ module.exports = function (json) {
     if (opts.method.toLowerCase() === 'get') {
         opts.data = opts.data || opts.params; // 这里和axios是不一样的，这里以前使用axios的习惯传入params
     }
-    return $.ajax(opts);
+    return $.ajax(opts).catch(function (xhr, mark, message) {
+        const response = {
+            status: 'error',
+        };
+        if (opts.isHandleError) {
+            new Dialog({
+                config: {
+                    alert: {
+                        content: `错误: ${message}`, // 这里的message就是error信息，只是一段普通的字符信息
+                    },
+                },
+            });
+        }
+        return response;
+    }).then(function (dataInfo, mark, xhr) {
+        if (dataInfo.status === 'failure' && opts.isHandleFailure) {
+            new Dialog({
+                config: {
+                    alert: {
+                        content: `失败: ${dataInfo.message}`,
+                    },
+                },
+            });
+        }
+        return dataInfo;
+    });
 };

@@ -4,6 +4,8 @@ class Sub extends Super {
     // (增)(覆)获取数据(覆盖超类型)
     postData() {
         const self = this;
+        console.log(self.opts.req.data);
+        console.log(self.opts.req.data);
         self.render({
             status: 'success',
             message: '成功',
@@ -31,6 +33,8 @@ class Sub extends Super {
     // (查)(覆)查找数据(覆盖超类型)
     getData() {
         const self = this;
+        console.log(self.opts.req.data);
+        console.log(self.opts.req.data);
         self.render({
             status: 'success',
             message: '成功',

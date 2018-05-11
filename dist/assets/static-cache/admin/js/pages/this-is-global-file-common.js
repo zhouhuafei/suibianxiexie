@@ -1800,7 +1800,7 @@ function isnan (val) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-function Tools(){}Tools.prototype.typeOf=__webpack_require__(42),Tools.prototype.extend=__webpack_require__(6),Tools.prototype.objRemoveQuote=__webpack_require__(21),Tools.prototype.constructorInherit=__webpack_require__(43),Tools.prototype.arrayRemoveRepeat=__webpack_require__(44),Tools.prototype.secondsToTime=__webpack_require__(22),Tools.prototype.timeCountDown=__webpack_require__(45),Tools.prototype.fillZero=__webpack_require__(23),Tools.prototype.jsonToArray=__webpack_require__(46),Tools.prototype.strToHump=__webpack_require__(47),Tools.prototype.randomNum=__webpack_require__(48),Tools.prototype.checkStr=__webpack_require__(49),Tools.prototype.queryString=__webpack_require__(50),Tools.prototype.keepDecimal=__webpack_require__(51),Tools.prototype.dateFormat=__webpack_require__(52),Tools.prototype.isLeapYear=__webpack_require__(53),Tools.prototype.howManyDays=__webpack_require__(54),Tools.prototype.createUniqueChar=__webpack_require__(55),Tools.prototype.htmlEncode=__webpack_require__(56),Tools.prototype.dataType=__webpack_require__(57),Tools.prototype.multipleCalls=__webpack_require__(58),module.exports=new Tools;
+function Tools(){}Tools.prototype.typeOf=__webpack_require__(42),Tools.prototype.extend=__webpack_require__(6),Tools.prototype.objRemoveQuote=__webpack_require__(22),Tools.prototype.constructorInherit=__webpack_require__(43),Tools.prototype.arrayRemoveRepeat=__webpack_require__(44),Tools.prototype.secondsToTime=__webpack_require__(23),Tools.prototype.timeCountDown=__webpack_require__(45),Tools.prototype.fillZero=__webpack_require__(24),Tools.prototype.jsonToArray=__webpack_require__(46),Tools.prototype.strToHump=__webpack_require__(47),Tools.prototype.randomNum=__webpack_require__(48),Tools.prototype.checkStr=__webpack_require__(49),Tools.prototype.queryString=__webpack_require__(50),Tools.prototype.keepDecimal=__webpack_require__(51),Tools.prototype.dateFormat=__webpack_require__(52),Tools.prototype.isLeapYear=__webpack_require__(53),Tools.prototype.howManyDays=__webpack_require__(54),Tools.prototype.createUniqueChar=__webpack_require__(55),Tools.prototype.htmlEncode=__webpack_require__(56),Tools.prototype.dataType=__webpack_require__(57),Tools.prototype.multipleCalls=__webpack_require__(58),module.exports=new Tools;
 
 /***/ }),
 /* 2 */,
@@ -1893,7 +1893,7 @@ if (typeof Object.create === 'function') {
 
 /*<replacement>*/
 
-var processNextTick = __webpack_require__(13);
+var processNextTick = __webpack_require__(14);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -1913,7 +1913,7 @@ util.inherits = __webpack_require__(7);
 /*</replacement>*/
 
 var Readable = __webpack_require__(30);
-var Writable = __webpack_require__(20);
+var Writable = __webpack_require__(21);
 
 util.inherits(Duplex, Readable);
 
@@ -2008,9 +2008,9 @@ var Super = function () {
         var self = this;
         self.tools = __webpack_require__(1); // 工具方法集合
         self.applications = __webpack_require__(3); // 应用方法集合
-        self.axios = __webpack_require__(24); // axios
+        self.axios = __webpack_require__(17); // axios
         self.jsonp = __webpack_require__(73); // jsonp
-        self.Dialog = __webpack_require__(16); // 弹窗组件
+        self.Dialog = __webpack_require__(12); // 弹窗组件
         self.opts = self.tools.extend({
             lazyload: {
                 isInitRender: false
@@ -2349,7 +2349,7 @@ function objectToString(o) {
 
 var tools = __webpack_require__(1); // 工具方法集合
 var applications = __webpack_require__(3); // 应用方法集合
-var domAddPosition = __webpack_require__(17);
+var domAddPosition = __webpack_require__(18);
 var checkStr = tools.checkStr;
 var getParent = applications.getParent;
 var getDomArray = applications.getDomArray;
@@ -2571,442 +2571,9 @@ module.exports = ValidateForm;
 
 var tools = __webpack_require__(1); // 工具方法集合
 var applications = __webpack_require__(3); // 应用方法集合
-
-// 底层构造函数
-function Super(json) {
-    // 函数外部传来的参数
-    this.opts = tools.extend(
-    // 内部默认参数
-    {
-        // 父级
-        wrap: '.g-body', // 这个仅支持传入选择器和原生dom节点
-        // 回调
-        callback: {
-            // 内部模块创建之前的回调
-            moduleDomCreateBefore: function moduleDomCreateBefore(self) {},
-            // 内部模块创建之后的回调
-            moduleDomCreateAfter: function moduleDomCreateAfter(self) {},
-            // 内部模块渲染之前的回调
-            moduleDomRenderBefore: function moduleDomRenderBefore(self) {},
-            // 内部模块渲染之后的回调
-            moduleDomRenderAfter: function moduleDomRenderAfter(self) {},
-            // 内部模块移除之前的回调
-            moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {},
-            // 内部模块移除之后的回调
-            moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {},
-            // 内部模块显示之前的回调
-            moduleDomShowBefore: function moduleDomShowBefore(self) {},
-            // 内部模块显示之后的回调
-            moduleDomShowAfter: function moduleDomShowAfter(self) {},
-            // 内部模块隐藏之前的回调
-            moduleDomHideBefore: function moduleDomHideBefore(self) {},
-            // 内部模块隐藏之后的回调
-            moduleDomHideAfter: function moduleDomHideAfter(self) {},
-            // 外部容器获取之前的回调
-            wrapDomGetBefore: function wrapDomGetBefore(self) {},
-            // 外部容器获取之后的回调
-            wrapDomGetAfter: function wrapDomGetAfter(self) {},
-            // 外部容器移除之前的回调
-            wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {},
-            // 外部容器移除之后的回调
-            wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {}
-        },
-        // 配置
-        config: {
-            // 内部模块的自定义属性
-            moduleDomCustomAttribute: {},
-            // 内部模块插入到外部容器的方式
-            moduleDomRenderMethod: {
-                method: 'appendChild', // 'appendChild','insertBefore'
-                child: null
-            },
-            moduleDomStyle: {}, // 内部模块的样式
-            moduleDomIsRender: true, // 内部模块是否渲染
-            moduleDomIsClearTimer: true // 内部模块是否清除所有定时器(默认清除)
-        },
-        // 数据
-        data: {}
-    },
-    // 外部传入参数
-    json);
-    // 函数内部自带的属性
-    this.moduleDom = null; // 内部的模块
-    this.wrapDom = null; // 内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
-    this.moduleDomTimer = {}; // 内部模块的定时器存储(假设内部模块有定时器)
-    this.init(); // 初始化
-}
-
-// 初始化
-Super.prototype.init = function () {
-    this.render();
-    this.power();
-};
-
-// 渲染
-Super.prototype.render = function () {
-    this.moduleDomRemove(); // 内部模块的移除(重新初始化的时候要移除掉以前有的内部模块)
-
-    var callback = this.opts.callback;
-    callback.moduleDomCreateBefore(this);
-    this.moduleDomCreate(); // 内部模块的创建
-    callback.moduleDomCreateAfter(this);
-
-    this.wrapDomGet(); // 外部容器的获取
-    this.moduleDomRender(); // 内部模块的渲染(如果外部容器存在,就把内部模块填充到外部容器里)
-};
-
-// (功)(覆)功能(这个方法需要在子类型里被覆盖掉)
-Super.prototype.power = function () {};
-
-// (建)(覆)内部模块的创建(这个方法需要在子类型里被覆盖掉)
-Super.prototype.moduleDomCreate = function () {
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-super-type',
-            innerHTML: '\n                <div class="g-super-type-text" style="text-align: center;">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsup-es5</div>\n            '
-        }
-    });
-};
-
-// 内部模块的渲染
-Super.prototype.moduleDomRender = function () {
-    var callback = this.opts.callback;
-    var config = this.opts.config;
-    if (config.moduleDomIsRender && this.wrapDom) {
-        callback.moduleDomRenderBefore(this);
-        var renderMethod = config.moduleDomRenderMethod;
-        if (renderMethod.method === 'insertBefore') {
-            var dom = applications.getDomArray(renderMethod.child)[0];
-            if (dom) {
-                this.wrapDom.insertBefore(this.moduleDom, dom);
-            } else {
-                this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
-            }
-        }
-        if (renderMethod.method === 'appendChild') {
-            this.wrapDom.appendChild(this.moduleDom);
-        }
-        callback.moduleDomRenderAfter(this);
-    }
-};
-
-// 内部模块的移除
-Super.prototype.moduleDomRemove = function () {
-    var callback = this.opts.callback;
-    if (this.moduleDom && this.moduleDom.parentNode) {
-        callback.moduleDomRemoveBefore(this);
-        this.moduleDom.parentNode.removeChild(this.moduleDom);
-        callback.moduleDomRemoveAfter(this);
-    }
-    this.moduleDomClearTimer();
-};
-
-// 内部模块的定时器清除(假设内部模块有定时器)
-Super.prototype.moduleDomClearTimer = function () {
-    var self = this;
-    if (self.opts.config.moduleDomIsClearTimer) {
-        Object.keys(self.moduleDomTimer).forEach(function (attr) {
-            clearInterval(self.moduleDomTimer[attr]);
-            clearTimeout(self.moduleDomTimer[attr]);
-        });
-    }
-};
-
-// 内部模块的隐藏(显示隐藏和是否清除定时器无关)
-Super.prototype.moduleDomHide = function () {
-    var callback = this.opts.callback;
-    if (this.moduleDom.parentNode) {
-        this.opts.config.moduleDomIsRender = false;
-        callback.moduleDomHideBefore(this);
-        this.moduleDom.parentNode.removeChild(this.moduleDom);
-        callback.moduleDomHideAfter(this);
-    }
-};
-
-// 内部模块的显示(显示隐藏和是否清除定时器无关)
-Super.prototype.moduleDomShow = function () {
-    var callback = this.opts.callback;
-    callback.moduleDomShowBefore(this);
-    if (this.wrapDom) {
-        this.opts.config.moduleDomIsRender = true;
-        this.moduleDomRender();
-    }
-    callback.moduleDomShowAfter(this);
-};
-
-// 外部容器的获取
-Super.prototype.wrapDomGet = function () {
-    var callback = this.opts.callback;
-    callback.wrapDomGetBefore(this);
-    this.wrapDom = applications.getDomArray(this.opts.wrap)[0];
-    callback.wrapDomGetAfter(this);
-};
-
-// 外部容器的移除
-Super.prototype.wrapDomRemove = function () {
-    var callback = this.opts.callback;
-    // 先移除内部的模块
-    this.moduleDomRemove();
-    // 再移除外部的容器
-    if (this.wrapDom) {
-        callback.wrapDomRemoveBefore(this);
-        this.wrapDom.parentNode.removeChild(this.wrapDom);
-        callback.wrapDomRemoveAfter(this);
-    }
-};
-
-// 获取内部模块的整体html结构
-Super.prototype.getModuleDomHtml = function () {
-    return this.moduleDom.outerHTML;
-};
-
-module.exports = Super;
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-if (!process.version ||
-    process.version.indexOf('v0.') === 0 ||
-    process.version.indexOf('v1.') === 0 && process.version.indexOf('v1.8.') !== 0) {
-  module.exports = nextTick;
-} else {
-  module.exports = process.nextTick;
-}
-
-function nextTick(fn, arg1, arg2, arg3) {
-  if (typeof fn !== 'function') {
-    throw new TypeError('"callback" argument must be a function');
-  }
-  var len = arguments.length;
-  var args, i;
-  switch (len) {
-  case 0:
-  case 1:
-    return process.nextTick(fn);
-  case 2:
-    return process.nextTick(function afterTickOne() {
-      fn.call(null, arg1);
-    });
-  case 3:
-    return process.nextTick(function afterTickTwo() {
-      fn.call(null, arg1, arg2);
-    });
-  case 4:
-    return process.nextTick(function afterTickThree() {
-      fn.call(null, arg1, arg2, arg3);
-    });
-  default:
-    args = new Array(len - 1);
-    i = 0;
-    while (i < args.length) {
-      args[i++] = arguments[i];
-    }
-    return process.nextTick(function afterTick() {
-      fn.apply(null, args);
-    });
-  }
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* eslint-disable node/no-deprecated-api */
-var buffer = __webpack_require__(0)
-var Buffer = buffer.Buffer
-
-// alternative to using Object.keys for old browsers
-function copyProps (src, dst) {
-  for (var key in src) {
-    dst[key] = src[key]
-  }
-}
-if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
-  module.exports = buffer
-} else {
-  // Copy properties from require('buffer')
-  copyProps(buffer, exports)
-  exports.Buffer = SafeBuffer
-}
-
-function SafeBuffer (arg, encodingOrOffset, length) {
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-// Copy static methods from Buffer
-copyProps(Buffer, SafeBuffer)
-
-SafeBuffer.from = function (arg, encodingOrOffset, length) {
-  if (typeof arg === 'number') {
-    throw new TypeError('Argument must not be a number')
-  }
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-SafeBuffer.alloc = function (size, fill, encoding) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  var buf = Buffer(size)
-  if (fill !== undefined) {
-    if (typeof encoding === 'string') {
-      buf.fill(fill, encoding)
-    } else {
-      buf.fill(fill)
-    }
-  } else {
-    buf.fill(0)
-  }
-  return buf
-}
-
-SafeBuffer.allocUnsafe = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return Buffer(size)
-}
-
-SafeBuffer.allocUnsafeSlow = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return buffer.SlowBuffer(size)
-}
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-
-var TYPED_OK =  (typeof Uint8Array !== 'undefined') &&
-                (typeof Uint16Array !== 'undefined') &&
-                (typeof Int32Array !== 'undefined');
-
-function _has(obj, key) {
-  return Object.prototype.hasOwnProperty.call(obj, key);
-}
-
-exports.assign = function (obj /*from1, from2, from3, ...*/) {
-  var sources = Array.prototype.slice.call(arguments, 1);
-  while (sources.length) {
-    var source = sources.shift();
-    if (!source) { continue; }
-
-    if (typeof source !== 'object') {
-      throw new TypeError(source + 'must be non-object');
-    }
-
-    for (var p in source) {
-      if (_has(source, p)) {
-        obj[p] = source[p];
-      }
-    }
-  }
-
-  return obj;
-};
-
-
-// reduce buffer size, avoiding mem copy
-exports.shrinkBuf = function (buf, size) {
-  if (buf.length === size) { return buf; }
-  if (buf.subarray) { return buf.subarray(0, size); }
-  buf.length = size;
-  return buf;
-};
-
-
-var fnTyped = {
-  arraySet: function (dest, src, src_offs, len, dest_offs) {
-    if (src.subarray && dest.subarray) {
-      dest.set(src.subarray(src_offs, src_offs + len), dest_offs);
-      return;
-    }
-    // Fallback to ordinary array
-    for (var i = 0; i < len; i++) {
-      dest[dest_offs + i] = src[src_offs + i];
-    }
-  },
-  // Join array of chunks to single array.
-  flattenChunks: function (chunks) {
-    var i, l, len, pos, chunk, result;
-
-    // calculate data length
-    len = 0;
-    for (i = 0, l = chunks.length; i < l; i++) {
-      len += chunks[i].length;
-    }
-
-    // join chunks
-    result = new Uint8Array(len);
-    pos = 0;
-    for (i = 0, l = chunks.length; i < l; i++) {
-      chunk = chunks[i];
-      result.set(chunk, pos);
-      pos += chunk.length;
-    }
-
-    return result;
-  }
-};
-
-var fnUntyped = {
-  arraySet: function (dest, src, src_offs, len, dest_offs) {
-    for (var i = 0; i < len; i++) {
-      dest[dest_offs + i] = src[src_offs + i];
-    }
-  },
-  // Join array of chunks to single array.
-  flattenChunks: function (chunks) {
-    return [].concat.apply([], chunks);
-  }
-};
-
-
-// Enable/Disable typed arrays use, for testing
-//
-exports.setTyped = function (on) {
-  if (on) {
-    exports.Buf8  = Uint8Array;
-    exports.Buf16 = Uint16Array;
-    exports.Buf32 = Int32Array;
-    exports.assign(exports, fnTyped);
-  } else {
-    exports.Buf8  = Array;
-    exports.Buf16 = Array;
-    exports.Buf32 = Array;
-    exports.assign(exports, fnUntyped);
-  }
-};
-
-exports.setTyped(TYPED_OK);
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(13); // 超类型(子类型继承的对象)
 var Mask = __webpack_require__(71); // 遮罩
-var domAddPosition = __webpack_require__(17);
+var domAddPosition = __webpack_require__(18);
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -3211,14 +2778,508 @@ Sub.prototype.power = function () {
 module.exports = Sub;
 
 /***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(1); // 工具方法集合
+var applications = __webpack_require__(3); // 应用方法集合
+
+// 底层构造函数
+function Super(json) {
+    // 函数外部传来的参数
+    this.opts = tools.extend(
+    // 内部默认参数
+    {
+        // 父级
+        wrap: '.g-body', // 这个仅支持传入选择器和原生dom节点
+        // 回调
+        callback: {
+            // 内部模块创建之前的回调
+            moduleDomCreateBefore: function moduleDomCreateBefore(self) {},
+            // 内部模块创建之后的回调
+            moduleDomCreateAfter: function moduleDomCreateAfter(self) {},
+            // 内部模块渲染之前的回调
+            moduleDomRenderBefore: function moduleDomRenderBefore(self) {},
+            // 内部模块渲染之后的回调
+            moduleDomRenderAfter: function moduleDomRenderAfter(self) {},
+            // 内部模块移除之前的回调
+            moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {},
+            // 内部模块移除之后的回调
+            moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {},
+            // 内部模块显示之前的回调
+            moduleDomShowBefore: function moduleDomShowBefore(self) {},
+            // 内部模块显示之后的回调
+            moduleDomShowAfter: function moduleDomShowAfter(self) {},
+            // 内部模块隐藏之前的回调
+            moduleDomHideBefore: function moduleDomHideBefore(self) {},
+            // 内部模块隐藏之后的回调
+            moduleDomHideAfter: function moduleDomHideAfter(self) {},
+            // 外部容器获取之前的回调
+            wrapDomGetBefore: function wrapDomGetBefore(self) {},
+            // 外部容器获取之后的回调
+            wrapDomGetAfter: function wrapDomGetAfter(self) {},
+            // 外部容器移除之前的回调
+            wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {},
+            // 外部容器移除之后的回调
+            wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {}
+        },
+        // 配置
+        config: {
+            // 内部模块的自定义属性
+            moduleDomCustomAttribute: {},
+            // 内部模块插入到外部容器的方式
+            moduleDomRenderMethod: {
+                method: 'appendChild', // 'appendChild','insertBefore'
+                child: null
+            },
+            moduleDomStyle: {}, // 内部模块的样式
+            moduleDomIsRender: true, // 内部模块是否渲染
+            moduleDomIsClearTimer: true // 内部模块是否清除所有定时器(默认清除)
+        },
+        // 数据
+        data: {}
+    },
+    // 外部传入参数
+    json);
+    // 函数内部自带的属性
+    this.moduleDom = null; // 内部的模块
+    this.wrapDom = null; // 内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+    this.moduleDomTimer = {}; // 内部模块的定时器存储(假设内部模块有定时器)
+    this.init(); // 初始化
+}
+
+// 初始化
+Super.prototype.init = function () {
+    this.render();
+    this.power();
+};
+
+// 渲染
+Super.prototype.render = function () {
+    this.moduleDomRemove(); // 内部模块的移除(重新初始化的时候要移除掉以前有的内部模块)
+
+    var callback = this.opts.callback;
+    callback.moduleDomCreateBefore(this);
+    this.moduleDomCreate(); // 内部模块的创建
+    callback.moduleDomCreateAfter(this);
+
+    this.wrapDomGet(); // 外部容器的获取
+    this.moduleDomRender(); // 内部模块的渲染(如果外部容器存在,就把内部模块填充到外部容器里)
+};
+
+// (功)(覆)功能(这个方法需要在子类型里被覆盖掉)
+Super.prototype.power = function () {};
+
+// (建)(覆)内部模块的创建(这个方法需要在子类型里被覆盖掉)
+Super.prototype.moduleDomCreate = function () {
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-super-type',
+            innerHTML: '\n                <div class="g-super-type-text" style="text-align: center;">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsup-es5</div>\n            '
+        }
+    });
+};
+
+// 内部模块的渲染
+Super.prototype.moduleDomRender = function () {
+    var callback = this.opts.callback;
+    var config = this.opts.config;
+    if (config.moduleDomIsRender && this.wrapDom) {
+        callback.moduleDomRenderBefore(this);
+        var renderMethod = config.moduleDomRenderMethod;
+        if (renderMethod.method === 'insertBefore') {
+            var dom = applications.getDomArray(renderMethod.child)[0];
+            if (dom) {
+                this.wrapDom.insertBefore(this.moduleDom, dom);
+            } else {
+                this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
+            }
+        }
+        if (renderMethod.method === 'appendChild') {
+            this.wrapDom.appendChild(this.moduleDom);
+        }
+        callback.moduleDomRenderAfter(this);
+    }
+};
+
+// 内部模块的移除
+Super.prototype.moduleDomRemove = function () {
+    var callback = this.opts.callback;
+    if (this.moduleDom && this.moduleDom.parentNode) {
+        callback.moduleDomRemoveBefore(this);
+        this.moduleDom.parentNode.removeChild(this.moduleDom);
+        callback.moduleDomRemoveAfter(this);
+    }
+    this.moduleDomClearTimer();
+};
+
+// 内部模块的定时器清除(假设内部模块有定时器)
+Super.prototype.moduleDomClearTimer = function () {
+    var self = this;
+    if (self.opts.config.moduleDomIsClearTimer) {
+        Object.keys(self.moduleDomTimer).forEach(function (attr) {
+            clearInterval(self.moduleDomTimer[attr]);
+            clearTimeout(self.moduleDomTimer[attr]);
+        });
+    }
+};
+
+// 内部模块的隐藏(显示隐藏和是否清除定时器无关)
+Super.prototype.moduleDomHide = function () {
+    var callback = this.opts.callback;
+    if (this.moduleDom.parentNode) {
+        this.opts.config.moduleDomIsRender = false;
+        callback.moduleDomHideBefore(this);
+        this.moduleDom.parentNode.removeChild(this.moduleDom);
+        callback.moduleDomHideAfter(this);
+    }
+};
+
+// 内部模块的显示(显示隐藏和是否清除定时器无关)
+Super.prototype.moduleDomShow = function () {
+    var callback = this.opts.callback;
+    callback.moduleDomShowBefore(this);
+    if (this.wrapDom) {
+        this.opts.config.moduleDomIsRender = true;
+        this.moduleDomRender();
+    }
+    callback.moduleDomShowAfter(this);
+};
+
+// 外部容器的获取
+Super.prototype.wrapDomGet = function () {
+    var callback = this.opts.callback;
+    callback.wrapDomGetBefore(this);
+    this.wrapDom = applications.getDomArray(this.opts.wrap)[0];
+    callback.wrapDomGetAfter(this);
+};
+
+// 外部容器的移除
+Super.prototype.wrapDomRemove = function () {
+    var callback = this.opts.callback;
+    // 先移除内部的模块
+    this.moduleDomRemove();
+    // 再移除外部的容器
+    if (this.wrapDom) {
+        callback.wrapDomRemoveBefore(this);
+        this.wrapDom.parentNode.removeChild(this.wrapDom);
+        callback.wrapDomRemoveAfter(this);
+    }
+};
+
+// 获取内部模块的整体html结构
+Super.prototype.getModuleDomHtml = function () {
+    return this.moduleDom.outerHTML;
+};
+
+module.exports = Super;
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+if (!process.version ||
+    process.version.indexOf('v0.') === 0 ||
+    process.version.indexOf('v1.') === 0 && process.version.indexOf('v1.8.') !== 0) {
+  module.exports = nextTick;
+} else {
+  module.exports = process.nextTick;
+}
+
+function nextTick(fn, arg1, arg2, arg3) {
+  if (typeof fn !== 'function') {
+    throw new TypeError('"callback" argument must be a function');
+  }
+  var len = arguments.length;
+  var args, i;
+  switch (len) {
+  case 0:
+  case 1:
+    return process.nextTick(fn);
+  case 2:
+    return process.nextTick(function afterTickOne() {
+      fn.call(null, arg1);
+    });
+  case 3:
+    return process.nextTick(function afterTickTwo() {
+      fn.call(null, arg1, arg2);
+    });
+  case 4:
+    return process.nextTick(function afterTickThree() {
+      fn.call(null, arg1, arg2, arg3);
+    });
+  default:
+    args = new Array(len - 1);
+    i = 0;
+    while (i < args.length) {
+      args[i++] = arguments[i];
+    }
+    return process.nextTick(function afterTick() {
+      fn.apply(null, args);
+    });
+  }
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* eslint-disable node/no-deprecated-api */
+var buffer = __webpack_require__(0)
+var Buffer = buffer.Buffer
+
+// alternative to using Object.keys for old browsers
+function copyProps (src, dst) {
+  for (var key in src) {
+    dst[key] = src[key]
+  }
+}
+if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
+  module.exports = buffer
+} else {
+  // Copy properties from require('buffer')
+  copyProps(buffer, exports)
+  exports.Buffer = SafeBuffer
+}
+
+function SafeBuffer (arg, encodingOrOffset, length) {
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+// Copy static methods from Buffer
+copyProps(Buffer, SafeBuffer)
+
+SafeBuffer.from = function (arg, encodingOrOffset, length) {
+  if (typeof arg === 'number') {
+    throw new TypeError('Argument must not be a number')
+  }
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+SafeBuffer.alloc = function (size, fill, encoding) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  var buf = Buffer(size)
+  if (fill !== undefined) {
+    if (typeof encoding === 'string') {
+      buf.fill(fill, encoding)
+    } else {
+      buf.fill(fill)
+    }
+  } else {
+    buf.fill(0)
+  }
+  return buf
+}
+
+SafeBuffer.allocUnsafe = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return Buffer(size)
+}
+
+SafeBuffer.allocUnsafeSlow = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return buffer.SlowBuffer(size)
+}
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+
+var TYPED_OK =  (typeof Uint8Array !== 'undefined') &&
+                (typeof Uint16Array !== 'undefined') &&
+                (typeof Int32Array !== 'undefined');
+
+function _has(obj, key) {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
+
+exports.assign = function (obj /*from1, from2, from3, ...*/) {
+  var sources = Array.prototype.slice.call(arguments, 1);
+  while (sources.length) {
+    var source = sources.shift();
+    if (!source) { continue; }
+
+    if (typeof source !== 'object') {
+      throw new TypeError(source + 'must be non-object');
+    }
+
+    for (var p in source) {
+      if (_has(source, p)) {
+        obj[p] = source[p];
+      }
+    }
+  }
+
+  return obj;
+};
+
+
+// reduce buffer size, avoiding mem copy
+exports.shrinkBuf = function (buf, size) {
+  if (buf.length === size) { return buf; }
+  if (buf.subarray) { return buf.subarray(0, size); }
+  buf.length = size;
+  return buf;
+};
+
+
+var fnTyped = {
+  arraySet: function (dest, src, src_offs, len, dest_offs) {
+    if (src.subarray && dest.subarray) {
+      dest.set(src.subarray(src_offs, src_offs + len), dest_offs);
+      return;
+    }
+    // Fallback to ordinary array
+    for (var i = 0; i < len; i++) {
+      dest[dest_offs + i] = src[src_offs + i];
+    }
+  },
+  // Join array of chunks to single array.
+  flattenChunks: function (chunks) {
+    var i, l, len, pos, chunk, result;
+
+    // calculate data length
+    len = 0;
+    for (i = 0, l = chunks.length; i < l; i++) {
+      len += chunks[i].length;
+    }
+
+    // join chunks
+    result = new Uint8Array(len);
+    pos = 0;
+    for (i = 0, l = chunks.length; i < l; i++) {
+      chunk = chunks[i];
+      result.set(chunk, pos);
+      pos += chunk.length;
+    }
+
+    return result;
+  }
+};
+
+var fnUntyped = {
+  arraySet: function (dest, src, src_offs, len, dest_offs) {
+    for (var i = 0; i < len; i++) {
+      dest[dest_offs + i] = src[src_offs + i];
+    }
+  },
+  // Join array of chunks to single array.
+  flattenChunks: function (chunks) {
+    return [].concat.apply([], chunks);
+  }
+};
+
+
+// Enable/Disable typed arrays use, for testing
+//
+exports.setTyped = function (on) {
+  if (on) {
+    exports.Buf8  = Uint8Array;
+    exports.Buf16 = Uint16Array;
+    exports.Buf32 = Int32Array;
+    exports.assign(exports, fnTyped);
+  } else {
+    exports.Buf8  = Array;
+    exports.Buf16 = Array;
+    exports.Buf32 = Array;
+    exports.assign(exports, fnUntyped);
+  }
+};
+
+exports.setTyped(TYPED_OK);
+
+
+/***/ }),
 /* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var axios = __webpack_require__(25);
+var tools = __webpack_require__(1);
+var Dialog = __webpack_require__(12);
+
+module.exports = function (json) {
+    json.method = json.method || json.type || 'get'; // 这里和$.ajax是不一样的，这里以前使用$.ajax的习惯传入type
+    var opts = tools.extend({
+        method: 'get', // 请求方式默认get
+        isHandleError: true, // 是否处理错误
+        isHandleFailure: true, // 是否处理失败
+        timeout: 8000 // 超时
+    }, json);
+    /*
+    * javascript axios get params
+    * javascript axios post/put/delete data
+    * 把上述四种数据的传参方式进行统一化,统一使用data
+    * nodejs express get req.query
+    * nodejs express post/put/delete body-parser req.body
+    * 把上述四种数据的传参方式进行统一化,统一使用req.data
+    * */
+    if (opts.method.toLowerCase() === 'get') {
+        opts.params = opts.params || opts.data; // 这里和$.ajax是不一样的，这里以前使用$.ajax的习惯传入data
+    }
+    return axios(opts).catch(function (error) {
+        var response = {
+            data: {
+                status: 'error'
+            }
+        };
+        if (opts.isHandleError) {
+            new Dialog({
+                config: {
+                    alert: {
+                        content: error // 这里的error其实是一个Error类型的数据
+                    }
+                }
+            });
+        }
+        return response;
+    }).then(function (response) {
+        var dataInfo = response.data;
+        if (dataInfo.status === 'failure' && opts.isHandleFailure) {
+            new Dialog({
+                config: {
+                    alert: {
+                        content: '\u5931\u8D25: ' + dataInfo.message
+                    }
+                }
+            });
+        }
+        return dataInfo;
+    });
+};
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var getDomArray=__webpack_require__(4),DomPosition=__webpack_require__(72);function domAddPosition(o){var i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"relative",t=arguments.length>2&&void 0!==arguments[2]&&arguments[2],e=getDomArray(o)[0];e?t?e.style.position=i:new DomPosition(e).hasPosition()||(e.style.position=i):console.log("no find dom")}module.exports=domAddPosition;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -3526,20 +3587,20 @@ function isUndefined(arg) {
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(30);
 exports.Stream = exports;
 exports.Readable = exports;
-exports.Writable = __webpack_require__(20);
+exports.Writable = __webpack_require__(21);
 exports.Duplex = __webpack_require__(8);
 exports.Transform = __webpack_require__(34);
 exports.PassThrough = __webpack_require__(82);
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3572,7 +3633,7 @@ exports.PassThrough = __webpack_require__(82);
 
 /*<replacement>*/
 
-var processNextTick = __webpack_require__(13);
+var processNextTick = __webpack_require__(14);
 /*</replacement>*/
 
 module.exports = Writable;
@@ -3624,7 +3685,7 @@ var Stream = __webpack_require__(31);
 /*</replacement>*/
 
 /*<replacement>*/
-var Buffer = __webpack_require__(14).Buffer;
+var Buffer = __webpack_require__(15).Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -4210,7 +4271,7 @@ Writable.prototype._destroy = function (err, cb) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(27).setImmediate, __webpack_require__(5)))
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4221,7 +4282,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):window&&("object"!==Object.prototype.toString.call(window.zhf).slice(8,-1).toLowerCase()&&(window.zhf={}),window.zhf.objRemoveQuote=e())}(0,function(){return function o(e){var t=Object.prototype.toString.call(e).slice(8,-1).toLowerCase();if("object"!==t&&"array"!==t)return e;var n={};return"array"===t&&(n=[]),Object.keys(e).forEach(function(t){n[t]=o(e[t])}),n}});
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4232,7 +4293,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):window&&("object"!==Object.prototype.toString.call(window.zhf).slice(8,-1).toLowerCase()&&(window.zhf={}),window.zhf.secondsToTime=e())}(0,function(){return function(){var o=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0;return{day:Math.floor(o/3600/24),hours:Math.floor(o/3600%24),minutes:Math.floor(o%3600/60),seconds:Math.floor(o%60),allSeconds:o}}});
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4241,67 +4302,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
 				__WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):window&&("object"!==Object.prototype.toString.call(window.zhf).slice(8,-1).toLowerCase()&&(window.zhf={}),window.zhf.fillZero=t())}(0,function(){return function(){for(var o=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0,t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:2,e=t-o.toString().length,n=[],f=0;f<e;f++)n.push("0");var i=n.join("");return o<Math.pow(10,t)?""+i+o:""+o}});
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var axios = __webpack_require__(25);
-var tools = __webpack_require__(1);
-var Dialog = __webpack_require__(16);
-
-module.exports = function (json) {
-    json.method = json.method || json.type || 'get';
-    var opts = tools.extend({
-        method: 'get', // 请求方式默认get
-        isHandleError: true, // 是否处理错误
-        isHandleFailure: true, // 是否处理失败
-        timeout: 8000 // 超时
-    }, json);
-    /*
-    * javascript axios get params
-    * javascript axios post/put/delete data
-    * 把上述四种数据的传参方式进行统一化,统一使用data
-    * nodejs express get req.query
-    * nodejs express post/put/delete body-parser req.body
-    * 把上述四种数据的传参方式进行统一化,统一使用req.data
-    * */
-    if (opts.method.toLowerCase() === 'get') {
-        opts.params = opts.data || opts.params;
-    }
-    return axios(opts).catch(function (error) {
-        var response = {
-            data: {
-                status: 'error'
-            }
-        };
-        if (opts.isHandleError) {
-            new Dialog({
-                config: {
-                    alert: {
-                        content: error // 这里的error其实是一个Error类型的数据
-                    }
-                }
-            });
-        }
-        return response;
-    }).then(function (response) {
-        var dataInfo = response.data;
-        if (dataInfo.status === 'failure' && opts.isHandleFailure) {
-            new Dialog({
-                config: {
-                    alert: {
-                        content: '\u5931\u8D25: ' + dataInfo.message
-                    }
-                }
-            });
-        }
-        return dataInfo;
-    });
-};
 
 /***/ }),
 /* 25 */,
@@ -4344,11 +4344,11 @@ module.exports = Array.isArray || function (arr) {
 
 module.exports = Stream;
 
-var EE = __webpack_require__(18).EventEmitter;
+var EE = __webpack_require__(19).EventEmitter;
 var inherits = __webpack_require__(7);
 
 inherits(Stream, EE);
-Stream.Readable = __webpack_require__(19);
+Stream.Readable = __webpack_require__(20);
 Stream.Writable = __webpack_require__(83);
 Stream.Duplex = __webpack_require__(84);
 Stream.Transform = __webpack_require__(85);
@@ -4480,7 +4480,7 @@ Stream.prototype.pipe = function(dest, options) {
 
 /*<replacement>*/
 
-var processNextTick = __webpack_require__(13);
+var processNextTick = __webpack_require__(14);
 /*</replacement>*/
 
 module.exports = Readable;
@@ -4496,7 +4496,7 @@ var Duplex;
 Readable.ReadableState = ReadableState;
 
 /*<replacement>*/
-var EE = __webpack_require__(18).EventEmitter;
+var EE = __webpack_require__(19).EventEmitter;
 
 var EElistenerCount = function (emitter, type) {
   return emitter.listeners(type).length;
@@ -4510,7 +4510,7 @@ var Stream = __webpack_require__(31);
 // TODO(bmeurer): Change this back to const once hole checks are
 // properly optimized away early in Ignition+TurboFan.
 /*<replacement>*/
-var Buffer = __webpack_require__(14).Buffer;
+var Buffer = __webpack_require__(15).Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -5468,7 +5468,7 @@ function indexOf(xs, x) {
 /* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(18).EventEmitter;
+module.exports = __webpack_require__(19).EventEmitter;
 
 
 /***/ }),
@@ -5480,7 +5480,7 @@ module.exports = __webpack_require__(18).EventEmitter;
 
 /*<replacement>*/
 
-var processNextTick = __webpack_require__(13);
+var processNextTick = __webpack_require__(14);
 /*</replacement>*/
 
 // undocumented cb() API, needed for core, not for public API
@@ -5556,7 +5556,7 @@ module.exports = {
 "use strict";
 
 
-var Buffer = __webpack_require__(14).Buffer;
+var Buffer = __webpack_require__(15).Buffer;
 
 var isEncoding = Buffer.isEncoding || function (encoding) {
   encoding = '' + encoding;
@@ -7286,7 +7286,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var extend=__webpack_require__(6),objRemoveQuote=__webpack_require__(21);function constructorInherit(e){var o=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};if("function"!==Object.prototype.toString.call(e).toLowerCase().slice(8,-1))return console.log("no find Super or Super error"),!1;function t(t){e.call(this,extend(objRemoveQuote(o),t))}return Object.keys(e.prototype).forEach(function(o){t.prototype[o]=e.prototype[o]}),t}module.exports=constructorInherit;
+var extend=__webpack_require__(6),objRemoveQuote=__webpack_require__(22);function constructorInherit(e){var o=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};if("function"!==Object.prototype.toString.call(e).toLowerCase().slice(8,-1))return console.log("no find Super or Super error"),!1;function t(t){e.call(this,extend(objRemoveQuote(o),t))}return Object.keys(e.prototype).forEach(function(o){t.prototype[o]=e.prototype[o]}),t}module.exports=constructorInherit;
 
 /***/ }),
 /* 44 */
@@ -7304,7 +7304,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var extend=__webpack_require__(6),secondsToTime=__webpack_require__(22);function timeCountDown(e){var n=extend({seconds:0,isToTime:!0,isHandleRunWhenZero:!0,isHandleRunWhenOver:!0,callback:{run:function(){},over:function(){}}},e),o=n.seconds,s=o,i=n.callback.run,c=n.callback.over,r=function(){n.isToTime?i(secondsToTime(o)):i({day:0,hours:0,minutes:0,seconds:o,allSeconds:s})};if(0===Number(o)&&n.isHandleRunWhenZero&&r(),o>0){r();var t=setInterval(function(){--o<0?(clearInterval(t),c()):r()},1e3)}else console.log("倒计时的秒数不能小于0")}module.exports=timeCountDown;
+var extend=__webpack_require__(6),secondsToTime=__webpack_require__(23);function timeCountDown(e){var n=extend({seconds:0,isToTime:!0,isHandleRunWhenZero:!0,isHandleRunWhenOver:!0,callback:{run:function(){},over:function(){}}},e),o=n.seconds,s=o,i=n.callback.run,c=n.callback.over,r=function(){n.isToTime?i(secondsToTime(o)):i({day:0,hours:0,minutes:0,seconds:o,allSeconds:s})};if(0===Number(o)&&n.isHandleRunWhenZero&&r(),o>0){r();var t=setInterval(function(){--o<0?(clearInterval(t),c()):r()},1e3)}else console.log("倒计时的秒数不能小于0")}module.exports=timeCountDown;
 
 /***/ }),
 /* 46 */
@@ -7377,7 +7377,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var fillZero=__webpack_require__(23);function dateFormat(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0,t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"year/month/day hours:minutes:seconds",o=new Date;"date"==={}.toString.call(e).slice(8,-1).toLowerCase()&&(e=e.getTime()),o.setTime(e);var r={year:o.getFullYear(),month:fillZero(o.getMonth()+1,2),day:fillZero(o.getDate(),2),hours:fillZero(o.getHours(),2),minutes:fillZero(o.getMinutes(),2),seconds:fillZero(o.getSeconds(),2),milliseconds:o.getMilliseconds(),week1:"星期"+["日","一","二","三","四","五","六"][o.getDay()],week2:"周"+["日","一","二","三","四","五","六"][o.getDay()],week3:"礼拜"+["日","一","二","三","四","五","六"][o.getDay()]};return Object.keys(r).forEach(function(e){t=t.replace(new RegExp(e),r[e])}),r.result=t,r}module.exports=dateFormat;
+var fillZero=__webpack_require__(24);function dateFormat(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0,t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"year/month/day hours:minutes:seconds",o=new Date;"date"==={}.toString.call(e).slice(8,-1).toLowerCase()&&(e=e.getTime()),o.setTime(e);var r={year:o.getFullYear(),month:fillZero(o.getMonth()+1,2),day:fillZero(o.getDate(),2),hours:fillZero(o.getHours(),2),minutes:fillZero(o.getMinutes(),2),seconds:fillZero(o.getSeconds(),2),milliseconds:o.getMilliseconds(),week1:"星期"+["日","一","二","三","四","五","六"][o.getDay()],week2:"周"+["日","一","二","三","四","五","六"][o.getDay()],week3:"礼拜"+["日","一","二","三","四","五","六"][o.getDay()]};return Object.keys(r).forEach(function(e){t=t.replace(new RegExp(e),r[e])}),r.result=t,r}module.exports=dateFormat;
 
 /***/ }),
 /* 53 */
@@ -7558,8 +7558,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 
 var tools = __webpack_require__(1); // 工具方法集合
 var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
-var domAddPosition = __webpack_require__(17);
+var Super = __webpack_require__(13); // 超类型(子类型继承的对象)
+var domAddPosition = __webpack_require__(18);
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -7625,7 +7625,7 @@ var _createClass=function(){function t(t,i){for(var o=0;o<i.length;o++){var n=i[
 
 
 var tools = __webpack_require__(1);
-var Dialog = __webpack_require__(16);
+var Dialog = __webpack_require__(12);
 var queryString = tools.queryString;
 
 module.exports = function (json) {
@@ -8137,7 +8137,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Buffer = __webpack_require__(14).Buffer;
+var Buffer = __webpack_require__(15).Buffer;
 /*</replacement>*/
 
 function copyBuffer(src, target, offset) {
@@ -8337,7 +8337,7 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 /* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(20);
+module.exports = __webpack_require__(21);
 
 
 /***/ }),
@@ -8351,14 +8351,14 @@ module.exports = __webpack_require__(8);
 /* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(19).Transform
+module.exports = __webpack_require__(20).Transform
 
 
 /***/ }),
 /* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(19).PassThrough
+module.exports = __webpack_require__(20).PassThrough
 
 
 /***/ }),
@@ -10372,7 +10372,7 @@ module.exports = ZStream;
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils   = __webpack_require__(15);
+var utils   = __webpack_require__(16);
 var trees   = __webpack_require__(97);
 var adler32 = __webpack_require__(37);
 var crc32   = __webpack_require__(38);
@@ -12253,7 +12253,7 @@ exports.deflateTune = deflateTune;
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils = __webpack_require__(15);
+var utils = __webpack_require__(16);
 
 /* Public constants ==========================================================*/
 /* ===========================================================================*/
@@ -13519,7 +13519,7 @@ module.exports = {
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils         = __webpack_require__(15);
+var utils         = __webpack_require__(16);
 var adler32       = __webpack_require__(37);
 var crc32         = __webpack_require__(38);
 var inflate_fast  = __webpack_require__(100);
@@ -15434,7 +15434,7 @@ module.exports = function inflate_fast(strm, start) {
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils = __webpack_require__(15);
+var utils = __webpack_require__(16);
 
 var MAXBITS = 15;
 var ENOUGH_LENS = 852;
@@ -16224,7 +16224,7 @@ module.exports = {
 
 var tools = __webpack_require__(1); // 工具方法集合
 var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(13); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -16279,7 +16279,7 @@ module.exports = Sub;
 
 var tools = __webpack_require__(1); // 工具方法集合
 var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(13); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {

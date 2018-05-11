@@ -22,6 +22,24 @@ class Sub extends Super {
                 validateInput.validateInput(this);
             });
         }());
+
+        // ajax测试
+        const axios = require('../api/axios');
+        const ajax = require('../api/ajax');
+        axios({
+            url: dataInfo.api.list.route,
+            method: 'post',
+            data: {type: 'axios', obj: {key: 'obj'}, arr: ['a', 2, 'c']},
+        }).then(function (json) {
+            console.log('测试axios:->', json);
+        });
+        ajax({
+            url: dataInfo.api.list.route,
+            method: 'post',
+            data: {type: 'ajax', obj: {key: 'obj'}, arr: ['a', 2, 'c']},
+        }).then(function (json) {
+            console.log('测试ajax:->', json);
+        });
     }
 }
 
