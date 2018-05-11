@@ -3,7 +3,7 @@ const tools = require('zhf.tools');
 const Dialog = require('../components-dom/g-dialog');
 
 module.exports = function (json) {
-    json.method = json.method || json.type || 'get';
+    json.method = json.method || json.type || 'get'; // 这里和$.ajax是不一样的，这里以前使用$.ajax的习惯传入type
     const opts = tools.extend({
         method: 'get', // 请求方式默认get
         isHandleError: true, // 是否处理错误
@@ -19,7 +19,7 @@ module.exports = function (json) {
     * 把上述四种数据的传参方式进行统一化,统一使用req.data
     * */
     if (opts.method.toLowerCase() === 'get') {
-        opts.params = opts.data || opts.params; // 这里和$.ajax是不一样的，这里以前使用$.ajax的习惯传入data
+        opts.params = opts.params || opts.data; // 这里和$.ajax是不一样的，这里以前使用$.ajax的习惯传入data
     }
     return axios(opts).catch(function (error) {
         const response = {
