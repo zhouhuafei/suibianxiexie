@@ -20,6 +20,7 @@ class Route {
         const self = this;
         const app = self.opts.app;
         const appConfig = app.appConfig;
+        const logs = require(`${appConfig.projectDir}utils/logs`);
         Object.keys(apiConfig).forEach(function (attr) {
             try {
                 const Controller = require(`${controllerPath}${attr}`);
@@ -58,7 +59,6 @@ class Route {
                     });
                 }(Controller, attr));
             } catch (error) {
-                const logs = require(`${appConfig.projectDir}utils/logs`);
                 logs(error, `${appConfig.logsDir}admin.log`);
             }
         });

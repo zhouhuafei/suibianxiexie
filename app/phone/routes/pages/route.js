@@ -16,6 +16,8 @@ class Route {
     init() {
         const self = this;
         const app = self.opts.app;
+        const appConfig = app.appConfig;
+        const logs = require(`${appConfig.projectDir}utils/logs`);
         Object.keys(config).forEach(function (attr) {
             try {
                 const Controller = require(`${controllerPath}${attr}`);
@@ -31,8 +33,8 @@ class Route {
                         });
                     });
                 }(Controller, attr));
-            } catch (err) {
-                console.log(err);
+            } catch (error) {
+                logs(error, `${appConfig.logsDir}phone.log`);
             }
         });
     }
