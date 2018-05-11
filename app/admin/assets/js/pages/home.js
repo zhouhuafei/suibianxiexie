@@ -28,15 +28,15 @@ class Sub extends Super {
         const ajax = require('../api/ajax');
         axios({
             url: dataInfo.api.list.route,
-            method: 'post',
-            data: {type: 'axios', obj: {key: 'obj'}, arr: ['a', 2, 'c']},
+            method: 'get',
+            data: {type: 'axios', obj: {key: 'obj', b: {a: 1}}, arr: ['a', 2, 'c', {a: 1}]},
         }).then(function (json) {
             console.log('测试axios:->', json);
         });
         ajax({
             url: dataInfo.api.list.route,
-            method: 'post',
-            data: {type: 'ajax', obj: {key: 'obj'}, arr: ['a', 2, 'c']},
+            method: 'get',
+            data: {type: 'ajax', obj: {key: 'obj', b: {a: 1}}, arr: ['a', 2, 'c', {a: 1}]},
         }).then(function (json) {
             console.log('测试ajax:->', json);
         });

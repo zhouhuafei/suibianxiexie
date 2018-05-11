@@ -5,7 +5,6 @@ class Sub extends Super {
     postData() {
         const self = this;
         console.log(self.opts.req.data);
-        console.log(self.opts.req.data);
         self.render({
             status: 'success',
             message: '成功',
@@ -15,6 +14,7 @@ class Sub extends Super {
     // (删)(覆)删除数据(覆盖超类型)
     deleteData() {
         const self = this;
+        console.log(self.opts.req.data);
         self.render({
             status: 'success',
             message: '成功',
@@ -24,6 +24,7 @@ class Sub extends Super {
     // (改)(覆)修改数据(覆盖超类型)
     putData() {
         const self = this;
+        console.log(self.opts.req.data);
         self.render({
             status: 'success',
             message: '成功',
@@ -33,7 +34,6 @@ class Sub extends Super {
     // (查)(覆)查找数据(覆盖超类型)
     getData() {
         const self = this;
-        console.log(self.opts.req.data);
         console.log(self.opts.req.data);
         self.render({
             status: 'success',

@@ -11,33 +11,6 @@ module.exports = function (json) {
         timeout: 8000, // 超时
     }, json);
     /*
-    opts.success = function (dataInfo, mark, xhr) {
-        if (dataInfo.status === 'failure' && opts.isHandleFailure) {
-            new Dialog({
-                config: {
-                    alert: {
-                        content: `失败: ${dataInfo.message}`,
-                    },
-                },
-            });
-        }
-        if (typeof json.success === 'function') {
-            json.success(dataInfo, mark, xhr);
-        }
-    };
-    if (opts.isHandleError) {
-        opts.error = function (xhr, mark, message) {
-            new Dialog({
-                config: {
-                    alert: {
-                        content: `错误: ${message}`, // 这里的message就是error信息，只是一段普通的字符信息
-                    },
-                },
-            });
-        };
-    }
-    */
-    /*
     * javascript axios get params
     * javascript axios post/put/delete data
     * 把上述四种数据的传参方式进行统一化,统一使用data
@@ -46,11 +19,33 @@ module.exports = function (json) {
     * 把上述四种数据的传参方式进行统一化,统一使用req.data
     * */
     if (opts.method.toLowerCase() === 'get') {
-        opts.data = opts.data || opts.params; // 这里和axios是不一样的，这里以前使用axios的习惯传入params
+        opts.data = opts.data || opts.params || {}; // 这里和axios是不一样的，这里以前使用axios的习惯传入params
+        if (opts.data) {
+            // 把json格式的对象处理成json格式的字符串，让get请求保持和axios一致的数据格式
+            Object.keys(opts.data).forEach(function (keys) {
+                const obj = opts.data[keys];
+                const type = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+                if (type === 'object') {
+                    opts.data[keys] = JSON.stringify(obj);
+                }
+                if (type === 'array') {
+                    obj.forEach(function (v, i, a) {
+                        if (Object.prototype.toString.call(v).slice(8, -1).toLowerCase() === 'object') {
+                            a[i] = JSON.stringify(v);
+                        }
+                    });
+                }
+            });
+        }
+    }
+    if (tools.typeOf(opts.data) === 'formdata') { // formdata类型需要关闭下面,否则会报错
+        opts.processData = false;
+        opts.contentType = false;
     }
     return $.ajax(opts).catch(function (xhr, mark, message) {
-        const response = {
+        const dataInfo = {
             status: 'error',
+            message: message,
         };
         if (opts.isHandleError) {
             new Dialog({
@@ -61,7 +56,7 @@ module.exports = function (json) {
                 },
             });
         }
-        return response;
+        return dataInfo;
     }).then(function (dataInfo, mark, xhr) {
         if (dataInfo.status === 'failure' && opts.isHandleFailure) {
             new Dialog({

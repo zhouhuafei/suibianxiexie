@@ -40,7 +40,7 @@ app.use(express.static('static-no-cache-wrap')); // 托管资源文件(无缓存
 
 // 数据解析
 const bodyParser = require('body-parser'); // 可以对post delete update请求方式进行数据解析
-app.use(bodyParser.urlencoded({extended: false})); // parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({extended: true})); // parse application/x-www-form-urlencoded extended为true,可以解析$.ajax传入的对象
 app.use(bodyParser.json()); // parse application/json
 
 // cookie以及session
