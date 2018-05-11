@@ -13,6 +13,8 @@ class Sub extends Super {
         const password = data.password || ''; // 密码 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
         const repeatPassword = data['repeat-password'] || ''; // 密码二次确认 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
         const verifyCodeCanvas = data['verify-code-canvas'] || ''; // 验证码,图文随机
+        const sessionVerifyCodeCanvasAdmin = session.verifyCodeCanvasAdmin; // 先保存一份验证码，留着下面做验证。
+        delete session.verifyCodeCanvasAdmin; // 请求一次之后就清掉验证码，无论成功失败，都要让验证码无效。
         const checkStr = tools.checkStr;
         if (checkStr.isEmpty(username)) {
             self.render({
@@ -34,7 +36,7 @@ class Sub extends Super {
                 message: '验证码不能为空',
                 result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
             });
-        } else if (verifyCodeCanvas !== session.verifyCodeCanvasAdmin) {
+        } else if (verifyCodeCanvas !== sessionVerifyCodeCanvasAdmin) {
             self.render({
                 message: '验证码错误',
                 result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
@@ -67,7 +69,6 @@ class Sub extends Super {
                             });
                             return;
                         }
-                        delete session.verifyCodeCanvasAdmin; // 成功之后清掉验证码，验证码使用之后，让验证码无效。
                         self.render({
                             status: 'success',
                             message: '注册成功',

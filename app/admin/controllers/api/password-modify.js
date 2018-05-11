@@ -17,6 +17,8 @@ class Sub extends Super {
         const newPassword = data['new-password'] || ''; // 新密码 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
         const repeatNewPassword = data['repeat-new-password'] || ''; // 新密码二次确认 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
         const verifyCodeCanvas = data['verify-code-canvas'] || ''; // 验证码,图文随机
+        const sessionVerifyCodeCanvasAdmin = session.verifyCodeCanvasAdmin; // 先保存一份验证码，留着下面做验证。
+        delete session.verifyCodeCanvasAdmin; // 请求一次之后就清掉验证码，无论成功失败，都要让验证码无效。
         const checkStr = tools.checkStr;
         if (checkStr.isEmpty(oldUsername)) {
             self.render({
@@ -50,7 +52,7 @@ class Sub extends Super {
                 message: '验证码不能为空',
                 result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
             });
-        } else if (verifyCodeCanvas !== session.verifyCodeCanvasAdmin) {
+        } else if (verifyCodeCanvas !== sessionVerifyCodeCanvasAdmin) {
             self.render({
                 message: '验证码错误',
                 result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
@@ -109,7 +111,6 @@ class Sub extends Super {
                                         return;
                                     }
                                     delete session.adminInfo; // 不加这句话，改了密码，不会掉线，加了这句话也只是当前用户掉线，其他人不掉线，集体掉线需另做处理(数据库加loginStamp字段进行一系列处理)。
-                                    delete session.verifyCodeCanvasAdmin; // 成功之后清掉验证码，验证码使用之后，让验证码无效。
                                     self.render({
                                         status: 'success',
                                         message: '已成功修改密码',

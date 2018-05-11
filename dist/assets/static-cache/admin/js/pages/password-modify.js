@@ -78,6 +78,9 @@ var Sub = function (_Super) {
                             });
                             */
                         }
+                        if (json.status === 'failure') {
+                            document.querySelector('.g-verify-code-canvas img').click();
+                        }
                     });
                 });
             })();

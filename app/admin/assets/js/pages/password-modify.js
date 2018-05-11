@@ -51,6 +51,9 @@ class Sub extends Super {
                         });
                         */
                     }
+                    if (json.status === 'failure') {
+                        document.querySelector('.g-verify-code-canvas img').click();
+                    }
                 });
             });
         })();

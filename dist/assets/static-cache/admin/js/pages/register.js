@@ -66,6 +66,9 @@ var Sub = function (_Super) {
                         if (json.status === 'success') {
                             window.location.href = routes['login'].route;
                         }
+                        if (json.status === 'failure') {
+                            document.querySelector('.g-verify-code-canvas img').click();
+                        }
                     });
                 });
             })();
