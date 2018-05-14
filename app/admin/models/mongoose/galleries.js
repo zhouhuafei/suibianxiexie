@@ -52,6 +52,16 @@ const schema = new mongoose.Schema({
         type: String,
         default: null,
     },
+    // 图片分类名称
+    categoryName: {
+        type: String,
+        default: null,
+    },
+    // 图片分类id
+    categoryId: {
+        type: String,
+        default: null,
+    },
     // 图片是否被使用
     isUsed: {
         type: Boolean,
