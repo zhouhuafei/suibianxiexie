@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 113:
+/***/ 108:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82,7 +82,7 @@ module.exports = function (json) {
 
 /***/ }),
 
-/***/ 42:
+/***/ 39:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -96,7 +96,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(43);
+__webpack_require__(40);
 var Super = __webpack_require__(9);
 
 var Sub = function (_Super) {
@@ -134,17 +134,18 @@ var Sub = function (_Super) {
 
             // ajax测试
             var axios = __webpack_require__(17);
-            var ajax = __webpack_require__(113);
+            var ajax = __webpack_require__(108);
+            var method = 'get';
             axios({
                 url: dataInfo.api.list.route,
-                method: 'get',
+                method: method,
                 data: { type: 'axios', obj: { key: 'obj', b: { a: 1 } }, arr: ['a', 2, 'c', { a: 1 }] }
             }).then(function (json) {
                 console.log('测试axios:->', json);
             });
             ajax({
                 url: dataInfo.api.list.route,
-                method: 'get',
+                method: method,
                 data: { type: 'ajax', obj: { key: 'obj', b: { a: 1 } }, arr: ['a', 2, 'c', { a: 1 }] }
             }).then(function (json) {
                 console.log('测试ajax:->', json);
@@ -159,11 +160,11 @@ new Sub();
 
 /***/ }),
 
-/***/ 43:
+/***/ 40:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
 
-},[42]);
+},[39]);
