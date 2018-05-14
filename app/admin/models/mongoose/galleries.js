@@ -2,16 +2,6 @@ const mongoose = require('../../../../db/mongoose');
 
 // 数据格式
 const schema = new mongoose.Schema({
-    // 保存在 destination 中的文件名
-    fileName: {
-        type: String,
-        default: null,
-    },
-    // 用户计算机上的文件的名称
-    originalName: {
-        type: String,
-        default: null,
-    },
     // 文件编码
     encoding: {
         type: String,
@@ -19,6 +9,11 @@ const schema = new mongoose.Schema({
     },
     // 文件的mime类型
     mimeType: {
+        type: String,
+        default: null,
+    },
+    // 保存在 destination 中的文件名
+    fileName: {
         type: String,
         default: null,
     },
@@ -47,14 +42,19 @@ const schema = new mongoose.Schema({
         type: Number,
         default: null,
     },
-    // 文件在站点中可被使用的url
-    url: {
+    // 用户计算机上的文件的名称
+    originalName: {
         type: String,
         default: null,
     },
     // 文件创建的时间(上传的时间)
     createTime: {
         type: Date,
+        default: null,
+    },
+    // 文件在站点中正常使用时的url
+    url: {
+        type: String,
         default: null,
     },
 });
