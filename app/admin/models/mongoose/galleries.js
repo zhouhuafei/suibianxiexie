@@ -13,7 +13,7 @@ const schema = new mongoose.Schema({
         default: null,
     },
     // 保存在 destination 中的文件名
-    fileName: {
+    filename: {
         type: String,
         default: null,
     },
