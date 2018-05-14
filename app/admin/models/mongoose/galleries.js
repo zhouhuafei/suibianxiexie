@@ -47,6 +47,11 @@ const schema = new mongoose.Schema({
         type: String,
         default: null,
     },
+    // 所属用户的名称
+    username: {
+        type: String,
+        default: null,
+    },
 });
 
 module.exports = mongoose.model('galleries', schema);
