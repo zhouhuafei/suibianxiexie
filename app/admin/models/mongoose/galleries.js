@@ -28,17 +28,7 @@ const schema = new mongoose.Schema({
         default: null,
     },
     // 文件大小，多少字节
-    sizeB: {
-        type: Number,
-        default: null,
-    },
-    // 文件大小，多少千字节
-    sizeKB: {
-        type: Number,
-        default: null,
-    },
-    // 文件大小，多少兆
-    sizeM: {
+    size: {
         type: Number,
         default: null,
     },
@@ -52,8 +42,8 @@ const schema = new mongoose.Schema({
         type: Date,
         default: null,
     },
-    // 文件在站点中正常使用时的url
-    url: {
+    // 所属用户的id
+    userId: {
         type: String,
         default: null,
     },

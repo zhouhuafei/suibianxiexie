@@ -15,6 +15,7 @@ class Sub extends Super {
             self.render({message: '请选择图片'});
             return;
         }
+        console.log(req);
         self.render({
             status: 'success',
             message: '上传成功',
