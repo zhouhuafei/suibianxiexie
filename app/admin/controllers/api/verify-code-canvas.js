@@ -22,7 +22,7 @@ class Sub extends Super {
                 status: 'success',
                 message: '成功',
                 result: {
-                    data: [verifyCodeCanvas],
+                    verifyCodeCanvas: verifyCodeCanvas,
                 },
             });
         }

@@ -19,27 +19,27 @@ class Sub extends Super {
         if (checkStr.isEmpty(username)) {
             self.render({
                 message: '账号不能为空',
-                result: {data: [{username: username}]},
+                result: {username: username},
             });
         } else if (password === '' || repeatPassword === '') {
             self.render({
                 message: '密码不能为空',
-                result: {data: [{password: password, 'repeat-password': repeatPassword}]},
+                result: {password: password, 'repeat-password': repeatPassword},
             });
         } else if (password !== repeatPassword) {
             self.render({
                 message: '两次输入的密码不一致',
-                result: {data: [{password: password, 'repeat-password': repeatPassword}]},
+                result: {password: password, 'repeat-password': repeatPassword},
             });
         } else if (checkStr.isEmpty(verifyCodeCanvas)) {
             self.render({
                 message: '验证码不能为空',
-                result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
+                result: {'verify-code-canvas': verifyCodeCanvas},
             });
         } else if (verifyCodeCanvas !== sessionVerifyCodeCanvasAdmin) {
             self.render({
                 message: '验证码错误',
-                result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
+                result: {'verify-code-canvas': verifyCodeCanvas},
             });
         } else {
             const Admins = require('../../models/mongoose/admins');
@@ -47,14 +47,10 @@ class Sub extends Super {
             Admins.findOne({}, function (error, result) {
                 // 数据库查询出现错误
                 if (error) {
-                    self.render({
-                        message: '数据库查询出现错误',
-                    });
+                    self.render({message: '数据库查询出现错误'});
                 }
                 if (result) {
-                    self.render({
-                        message: '管理员账号已经存在',
-                    });
+                    self.render({message: '管理员账号已经存在'});
                 } else {
                     const admins = new Admins({
                         username: username,
@@ -72,7 +68,7 @@ class Sub extends Super {
                         self.render({
                             status: 'success',
                             message: '注册成功',
-                            result: {data: [{username: username}]},
+                            result: {username: username},
                         });
                     });
                 }

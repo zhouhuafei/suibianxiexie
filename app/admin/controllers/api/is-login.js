@@ -20,9 +20,7 @@ class Sub extends Super {
             self.render({
                 status: 'success',
                 message: `未登录`,
-                result: {
-                    data: [{isLogin: isLogin}],
-                },
+                result: {isLogin: isLogin},
             });
         } else {
             Admins.findOne({username: username}, function (error, result) {
@@ -35,9 +33,7 @@ class Sub extends Super {
                     self.render({
                         status: 'success',
                         message: `${isLogin ? '已' : '未'}登录`,
-                        result: {
-                            data: [{isLogin: isLogin}],
-                        },
+                        result: {isLogin: isLogin},
                     });
                 } else {
                     self.render({message: '账号不存在'});

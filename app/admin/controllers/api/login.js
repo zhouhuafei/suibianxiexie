@@ -20,31 +20,29 @@ class Sub extends Super {
         if (checkStr.isEmpty(username)) {
             self.render({
                 message: '账号不能为空',
-                result: {data: [{username: username}]},
+                result: {username: username},
             });
         } else if (password === '') {
             self.render({
                 message: '密码不能为空',
-                result: {data: [{password: password}]},
+                result: {password: password},
             });
         } else if (checkStr.isEmpty(verifyCodeCanvas)) {
             self.render({
                 message: '验证码不能为空',
-                result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
+                result: {'verify-code-canvas': verifyCodeCanvas},
             });
         } else if (verifyCodeCanvas !== sessionVerifyCodeCanvasAdmin) {
             self.render({
                 message: '验证码错误',
-                result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
+                result: {'verify-code-canvas': verifyCodeCanvas},
             });
         } else {
             const Admins = require('../../models/mongoose/admins');
             Admins.findOne({username: username}, function (error, result) {
                 // 数据库查询出现错误
                 if (error) {
-                    self.render({
-                        message: '数据库查询出现错误',
-                    });
+                    self.render({message: '数据库查询出现错误'});
                 }
                 if (result) {
                     const adminInfo = result;
@@ -72,30 +70,22 @@ class Sub extends Super {
                                     self.render({
                                         status: 'success',
                                         message: '登录成功',
-                                        result: {
-                                            data: [{username: adminInfo.username}],
-                                        },
+                                        result: {username: adminInfo.username},
                                     });
                                 });
                             } else {
                                 self.render({
                                     status: 'success',
                                     message: '登录成功',
-                                    result: {
-                                        data: [{username: adminInfo.username}],
-                                    },
+                                    result: {username: adminInfo.username},
                                 });
                             }
                         } else {
-                            self.render({
-                                message: '用户名和密码不匹配',
-                            });
+                            self.render({message: '用户名和密码不匹配'});
                         }
                     });
                 } else {
-                    self.render({
-                        message: '账号不存在',
-                    });
+                    self.render({message: '账号不存在'});
                 }
             });
         }

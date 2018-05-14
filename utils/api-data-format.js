@@ -13,8 +13,8 @@ module.exports = function (opts = {}) {
         failureInfo: null, // 错误信息
         failureCode: null, // 401 未授权,未登录
         result: {
-            // 数据集合(格式必须统一为数组,哪怕只有一条数据)
-            data: [
+            // 数据列表
+            list: [
                 /*
                 {
                     img: {

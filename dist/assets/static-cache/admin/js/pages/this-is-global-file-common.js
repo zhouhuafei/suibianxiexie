@@ -2132,7 +2132,7 @@ var Super = function () {
                         url: self.dataInfo.api['verify-code-canvas'].route
                     }).then(function (json) {
                         if (json.status === 'success') {
-                            img.src = json.result.data[0].base64;
+                            img.src = json.result.verifyCodeCanvas.base64;
                         }
                     });
                 };

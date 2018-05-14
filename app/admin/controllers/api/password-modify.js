@@ -23,39 +23,35 @@ class Sub extends Super {
         if (checkStr.isEmpty(oldUsername)) {
             self.render({
                 message: '账号不能为空',
-                result: {data: [{'old-username': oldUsername}]},
+                result: {'old-username': oldUsername},
             });
         } else if (oldPassword === '' || newPassword === '' || repeatNewPassword === '') {
             self.render({
                 message: '密码不能为空',
                 result: {
-                    data: [{
-                        'old-password': oldPassword,
-                        'new-password': newPassword,
-                        'repeat-new-password': repeatNewPassword,
-                    }],
+                    'old-password': oldPassword,
+                    'new-password': newPassword,
+                    'repeat-new-password': repeatNewPassword,
                 },
             });
         } else if (newPassword !== repeatNewPassword) {
             self.render({
                 message: '两次输入的新密码不一致',
                 result: {
-                    data: [{
-                        'old-password': oldPassword,
-                        'new-password': newPassword,
-                        'repeat-new-password': repeatNewPassword,
-                    }],
+                    'old-password': oldPassword,
+                    'new-password': newPassword,
+                    'repeat-new-password': repeatNewPassword,
                 },
             });
         } else if (checkStr.isEmpty(verifyCodeCanvas)) {
             self.render({
                 message: '验证码不能为空',
-                result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
+                result: {'verify-code-canvas': verifyCodeCanvas},
             });
         } else if (verifyCodeCanvas !== sessionVerifyCodeCanvasAdmin) {
             self.render({
                 message: '验证码错误',
-                result: {data: [{'verify-code-canvas': verifyCodeCanvas}]},
+                result: {'verify-code-canvas': verifyCodeCanvas},
             });
         } else {
             const Admins = require('../../models/mongoose/admins');
@@ -114,9 +110,6 @@ class Sub extends Super {
                                     self.render({
                                         status: 'success',
                                         message: '已成功修改密码',
-                                        result: {
-                                            data: [{username: adminInfo.username}],
-                                        },
                                     });
                                 });
                             }
