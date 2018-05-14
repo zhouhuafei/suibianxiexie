@@ -8,6 +8,9 @@ const routeName = [
         name: 'list', // 列表
     },
     {
+        name: 'gallery-categories', // 图片库里图片的分类
+    },
+    {
         name: 'galleries', // 图片库
     },
     {

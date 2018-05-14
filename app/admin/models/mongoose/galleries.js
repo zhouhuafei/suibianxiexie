@@ -42,18 +42,13 @@ const schema = new mongoose.Schema({
         type: Date,
         default: null,
     },
+    // 图片是否被使用
+    isUsed: {
+        type: Boolean,
+        default: false,
+    },
     // 所属用户的id
     userId: {
-        type: String,
-        default: null,
-    },
-    // 所属用户的名称
-    username: {
-        type: String,
-        default: null,
-    },
-    // 图片分类名称
-    categoryName: {
         type: String,
         default: null,
     },
@@ -61,11 +56,6 @@ const schema = new mongoose.Schema({
     categoryId: {
         type: String,
         default: null,
-    },
-    // 图片是否被使用
-    isUsed: {
-        type: Boolean,
-        default: false,
     },
 });
 
