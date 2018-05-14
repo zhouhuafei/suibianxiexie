@@ -8,9 +8,22 @@ class Sub extends Super {
         const opts = self.opts;
         const req = opts.req;
         const data = req.data;
-        self.render({
-            status: 'success',
-            message: '成功',
+        const name = data.name;
+        const galleryCategories = new GalleryCategories({name});
+        galleryCategories.save(function (error, result) {
+            // 数据库插入出现错误
+            if (error) {
+                self.render({
+                    message: '数据库插入出现错误',
+                    failureInfo: error,
+                });
+                return;
+            }
+            self.render({
+                status: 'success',
+                message: '成功',
+                result: {data: [result]},
+            });
         });
     }
 
