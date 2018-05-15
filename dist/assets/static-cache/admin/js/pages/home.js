@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 108:
+/***/ 113:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30,6 +30,8 @@ module.exports = function (json) {
         opts.data = opts.data || opts.params || {}; // 这里和axios是不一样的，这里以前使用axios的习惯传入params
         if (opts.data) {
             // 把json格式的对象处理成json格式的字符串，让get请求保持和axios一致的数据格式
+            // 其实按理来说应该让axios保持与这边的一致，但是axios的get请求没有提供对外的接口，所以只能让这个保持和axios一致。
+            // 现在post接收的全是字符串，即使你传的是对象，布尔值等，接收过来也会变成字符串，get处理之后，你传的里有布尔值，后端接收之后，布尔值还是布尔值，应该和post保持一致的。奈何axios的get没提供对外接口
             Object.keys(opts.data).forEach(function (keys) {
                 var obj = opts.data[keys];
                 var type = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
@@ -82,7 +84,7 @@ module.exports = function (json) {
 
 /***/ }),
 
-/***/ 39:
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -96,7 +98,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(40);
+__webpack_require__(42);
 var Super = __webpack_require__(9);
 
 var Sub = function (_Super) {
@@ -132,24 +134,42 @@ var Sub = function (_Super) {
                 });
             })();
 
-            // ajax测试
+            // 测试application/x-www-form-urlencoded
             var axios = __webpack_require__(17);
-            var ajax = __webpack_require__(108);
-            var method = 'post';
+            var ajax = __webpack_require__(113);
             axios({
                 url: dataInfo.api.list.route,
-                method: method,
-                data: { type: 'axios', obj: { key: 'obj', b: { a: 1 } }, arr: ['a', 2, 'c', { a: 1 }] }
+                method: 'post',
+                data: { type: 'axios', obj: { test: true, key: 'obj', b: { a: 1 } }, arr: ['a', 2, 'c', { a: 1 }] }
             }).then(function (json) {
-                console.log('测试axios:->', json);
+                console.log('axios测试application/x-www-form-urlencoded测试axios:->', json);
             });
             ajax({
                 url: dataInfo.api.list.route,
-                method: method,
-                data: { type: 'ajax', obj: { key: 'obj', b: { a: 1 } }, arr: ['a', 2, 'c', { a: 1 }] }
+                method: 'post',
+                data: { type: 'ajax', obj: { test: false, key: 'obj', b: { a: 1 } }, arr: ['a', 2, 'c', { a: 1 }] }
             }).then(function (json) {
-                console.log('测试ajax:->', json);
+                console.log('ajax测试application/x-www-form-urlencoded测试ajax:->', json);
             });
+            // 测试multipart/form-data
+            /*
+            const formData = new FormData();
+            formData.append('test', 'test');
+            axios({
+                url: dataInfo.api.list.route,
+                method: 'post',
+                data: formData,
+            }).then(function (json) {
+                console.log('axios测试multipart/form-data测试axios:->', json);
+            });
+            ajax({
+                url: dataInfo.api.list.route,
+                method: 'post',
+                data: formData,
+            }).then(function (json) {
+                console.log('ajax测试multipart/form-data测试ajax:->', json);
+            });
+            */
         }
     }]);
 
@@ -160,11 +180,11 @@ new Sub();
 
 /***/ }),
 
-/***/ 40:
+/***/ 42:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
 
-},[39]);
+},[41]);

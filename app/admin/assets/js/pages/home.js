@@ -23,24 +23,42 @@ class Sub extends Super {
             });
         }());
 
-        // ajax测试
+        // 测试application/x-www-form-urlencoded
         const axios = require('../api/axios');
         const ajax = require('../api/ajax');
-        const method = 'post';
         axios({
             url: dataInfo.api.list.route,
-            method: method,
-            data: {type: 'axios', obj: {key: 'obj', b: {a: 1}}, arr: ['a', 2, 'c', {a: 1}]},
+            method: 'post',
+            data: {type: 'axios', obj: {test: true, key: 'obj', b: {a: 1}}, arr: ['a', 2, 'c', {a: 1}]},
         }).then(function (json) {
-            console.log('测试axios:->', json);
+            console.log('axios测试application/x-www-form-urlencoded测试axios:->', json);
         });
         ajax({
             url: dataInfo.api.list.route,
-            method: method,
-            data: {type: 'ajax', obj: {key: 'obj', b: {a: 1}}, arr: ['a', 2, 'c', {a: 1}]},
+            method: 'post',
+            data: {type: 'ajax', obj: {test: false, key: 'obj', b: {a: 1}}, arr: ['a', 2, 'c', {a: 1}]},
         }).then(function (json) {
-            console.log('测试ajax:->', json);
+            console.log('ajax测试application/x-www-form-urlencoded测试ajax:->', json);
         });
+        // 测试multipart/form-data
+        /*
+        const formData = new FormData();
+        formData.append('test', 'test');
+        axios({
+            url: dataInfo.api.list.route,
+            method: 'post',
+            data: formData,
+        }).then(function (json) {
+            console.log('axios测试multipart/form-data测试axios:->', json);
+        });
+        ajax({
+            url: dataInfo.api.list.route,
+            method: 'post',
+            data: formData,
+        }).then(function (json) {
+            console.log('ajax测试multipart/form-data测试ajax:->', json);
+        });
+        */
     }
 }
 
