@@ -5,8 +5,8 @@ const schema = new mongoose.Schema({
     // 图片分类的名称
     name: {
         type: String,
-        unique: true,
-        required: [true, 'The name of the galleries-categories is required.'],
+        unique: [true, '分类名称已经存在'],
+        required: [true, '分类名称是必填项'],
     },
 });
 

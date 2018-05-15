@@ -3,9 +3,8 @@ const schema = new mongoose.Schema({
     // 用户名(账号)
     username: {
         type: String,
-        default: null,
         unique: true,
-        required: [true, 'username is required'],
+        required: [true, '用户名是必填项'],
     },
     // 账号密码
     password: {
