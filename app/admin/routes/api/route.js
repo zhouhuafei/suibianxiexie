@@ -29,7 +29,7 @@ class Route {
                 (function (Controller, attr) {
                     if (attr === 'galleries') {
                         upload = multer({
-                            dest: `${appConfig.projectDir}static-cache-wrap/static-cache/galleries/admin/`,
+                            dest: `${appConfig.projectDir}static-cache-wrap/static-cache/admin/galleries/`,
                             limits: {
                                 fileSize: 300 * 1024, // 单个文件的大小不能超过300kb。
                                 files: 6, // 每次最多上传6个文件。
