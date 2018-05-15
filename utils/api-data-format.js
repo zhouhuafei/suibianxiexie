@@ -12,12 +12,10 @@ module.exports = function (opts = {}) {
         message: '接口数据的基本格式', // 提示信息 - '参数错误'
         failureInfo: null, // 错误信息
         failureCode: null, // 401 未授权,未登录
-        /*
-        result: {}, // 其他的数据结构
-        */
-        /*
-        result: { // 列表的数据结构
-            list: [
+        result: {
+            // 其他的数据结构
+            /*
+            list: [ // 列表的数据结构
                 // {
                 //     img: {
                 //         width: 0,
@@ -32,7 +30,7 @@ module.exports = function (opts = {}) {
             nowPage: 1, // 当前页
             allCount: 0, // 数据总条数
             nowCount: 0, // 当前页的数据条数
+            */
         },
-        */
     }, opts);
 };
