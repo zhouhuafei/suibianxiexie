@@ -21,9 +21,7 @@ class Sub extends Super {
             this.render({
                 status: 'success',
                 message: '成功',
-                result: {
-                    verifyCodeCanvas: verifyCodeCanvas,
-                },
+                result: {verifyCodeCanvas},
             });
         }
     }

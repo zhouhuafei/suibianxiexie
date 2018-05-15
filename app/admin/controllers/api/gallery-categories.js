@@ -22,7 +22,6 @@ class Sub extends Super {
             self.render({
                 status: 'success',
                 message: '成功',
-                result: {data: [result]},
             });
         });
     }

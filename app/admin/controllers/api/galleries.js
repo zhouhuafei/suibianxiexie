@@ -18,7 +18,7 @@ class Sub extends Super {
         self.render({
             status: 'success',
             message: '上传成功',
-            result: {data: [data, req.files, req.file]},
+            result: {testData: [data, req.files, req.file]},
         });
         /*
         const galleries = new Galleries();
@@ -34,7 +34,6 @@ class Sub extends Super {
             self.render({
                 status: 'success',
                 message: '上传成功',
-                result: {data: []},
             });
         });
         */
