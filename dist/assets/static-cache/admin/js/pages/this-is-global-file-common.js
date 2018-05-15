@@ -3221,6 +3221,7 @@ var axios = __webpack_require__(25);
 var tools = __webpack_require__(1);
 var Dialog = __webpack_require__(12);
 var qs = __webpack_require__(75);
+
 module.exports = function (json) {
     json.method = json.method || json.type || 'get'; // 这里和$.ajax是不一样的，这里以前使用$.ajax的习惯传入type
     var opts = tools.extend({

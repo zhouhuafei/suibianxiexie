@@ -2,6 +2,7 @@ const axios = require('axios');
 const tools = require('zhf.tools');
 const Dialog = require('../components-dom/g-dialog');
 const qs = require('qs');
+
 module.exports = function (json) {
     json.method = json.method || json.type || 'get'; // 这里和$.ajax是不一样的，这里以前使用$.ajax的习惯传入type
     const opts = tools.extend({
