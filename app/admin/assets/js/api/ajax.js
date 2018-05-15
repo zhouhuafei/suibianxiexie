@@ -23,7 +23,7 @@ module.exports = function (json) {
         if (opts.data) {
             // 把json格式的对象处理成json格式的字符串，让get请求保持和axios一致的数据格式
             // 其实按理来说应该让axios保持与这边的一致，但是axios的get请求没有提供对外的接口，所以只能让这个保持和axios一致。
-            // 现在post接收的全是字符串，即使你传的是对象，布尔值等，接收过来也会变成字符串，get处理之后，你传的里有布尔值，后端接收之后，布尔值还是布尔值，应该和post保持一致的。奈何axios的get没提供对外接口
+            // $.ajax的post,put,delete接收的全是字符串，即使你传的是对象，对象里有布尔值等，接收过来也会变成字符串，$.ajax的get处理之后，你传的对象里有布尔值，后端接收之后，布尔值还是布尔值，应该和post保持一致的。奈何axios的get没提供对外接口
             Object.keys(opts.data).forEach(function (keys) {
                 const obj = opts.data[keys];
                 const type = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
