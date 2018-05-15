@@ -29,14 +29,14 @@ class Sub extends Super {
         axios({
             url: dataInfo.api.list.route,
             method: 'post',
-            data: {type: 'axios', obj: {test: true, key: 'obj', b: {a: 1}}, arr: ['a', 2, 'c', {a: 1}]},
+            data: {type: 'axios', obj: {test: true, key: 'obj', b: {a: 1}}, arr: ['a', 2, 'c', {a: 1}], arr2: []},
         }).then(function (json) {
             console.log('axios测试application/x-www-form-urlencoded测试axios:->', json);
         });
         ajax({
             url: dataInfo.api.list.route,
             method: 'post',
-            data: {type: 'ajax', obj: {test: false, key: 'obj', b: {a: 1}}, arr: ['a', 2, 'c', {a: 1}]},
+            data: {type: 'ajax', obj: {test: false, key: 'obj', b: {a: 1}}, arr: ['a', 2, 'c', {a: 1}], arr2: []},
         }).then(function (json) {
             console.log('ajax测试application/x-www-form-urlencoded测试ajax:->', json);
         });
