@@ -11,9 +11,9 @@ class Sub extends Super {
         const req = opts.req;
         const session = req.session;
         const data = req.data;
-        const username = data.username || ''; // 用户名
-        const password = data.password || ''; // 密码 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
-        const verifyCodeCanvas = data['verify-code-canvas'] || ''; // 验证码,图文随机
+        const username = (data.username || '').trim(); // 用户名
+        const password = (data.password || '').trim(); // 密码 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
+        const verifyCodeCanvas = (data['verify-code-canvas'] || '').trim(); // 验证码,图文随机
         const sessionVerifyCodeCanvasAdmin = session.verifyCodeCanvasAdmin; // 先保存一份验证码，留着下面做验证。
         delete session.verifyCodeCanvasAdmin; // 请求一次之后就清掉验证码，无论成功失败，都要让验证码无效。
         const checkStr = tools.checkStr;

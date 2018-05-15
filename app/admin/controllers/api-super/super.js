@@ -43,6 +43,7 @@ class Super {
         fnCrud();
 
         function fnCrud() {
+            self.handleData(); // 提前处理好数据,例如去除首尾空格
             if (method === 'post') {
                 self.postData(); // 获取数据(增)
             }
@@ -56,6 +57,10 @@ class Super {
                 self.getData(); // 查找数据(查)
             }
         }
+    }
+
+    // (处)(覆)处理数据(这个方法需要在子类型里被覆盖掉)
+    handleData() {
     }
 
     // (增)(覆)获取数据(这个方法需要在子类型里被覆盖掉)

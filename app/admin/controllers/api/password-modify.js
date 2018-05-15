@@ -11,12 +11,12 @@ class Sub extends Super {
         const req = opts.req;
         const session = req.session;
         const data = req.data;
-        const oldUsername = data['old-username'] || ''; // 旧用户名
-        const newUsername = data['new-username'] || ''; // 新用户名
-        const oldPassword = data['old-password'] || ''; // 旧密码 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
-        const newPassword = data['new-password'] || ''; // 新密码 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
-        const repeatNewPassword = data['repeat-new-password'] || ''; // 新密码二次确认 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
-        const verifyCodeCanvas = data['verify-code-canvas'] || ''; // 验证码,图文随机
+        const oldUsername = (data['old-username'] || '').trim(); // 旧用户名
+        const newUsername = (data['new-username'] || '').trim(); // 新用户名
+        const oldPassword = (data['old-password'] || '').trim(); // 旧密码 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
+        const newPassword = (data['new-password'] || '').trim(); // 新密码 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
+        const repeatNewPassword = (data['repeat-new-password'] || '').trim(); // 新密码二次确认 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
+        const verifyCodeCanvas = (data['verify-code-canvas'] || '').trim(); // 验证码,图文随机
         const sessionVerifyCodeCanvasAdmin = session.verifyCodeCanvasAdmin; // 先保存一份验证码，留着下面做验证。
         delete session.verifyCodeCanvasAdmin; // 请求一次之后就清掉验证码，无论成功失败，都要让验证码无效。
         const checkStr = tools.checkStr;
