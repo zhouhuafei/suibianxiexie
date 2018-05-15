@@ -26,7 +26,7 @@ class Sub extends Super {
         // ajax测试
         const axios = require('../api/axios');
         const ajax = require('../api/ajax');
-        const method = 'get';
+        const method = 'post';
         axios({
             url: dataInfo.api.list.route,
             method: method,
