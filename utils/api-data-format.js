@@ -14,15 +14,12 @@ module.exports = function (opts = {}) {
         failureCode: null, // 401 未授权,未登录
         result: {
             /*
-            // 其他的数据结构,允许自定义。
+            // 其他的数据结构。
             name: 'rookie',
             sex: 'male',
-            data: {
-                name: 'rookie',
-                sex: 'female',
-            },
             */
-            // 列表的数据结构,请保持和下面一致。
+            /*
+            // 列表的数据结构。
             list: [
                 // {
                 //     img: {
@@ -38,6 +35,7 @@ module.exports = function (opts = {}) {
             nowPage: 1, // 当前页
             allCount: 0, // 数据总条数
             nowCount: 0, // 当前页的数据条数
+            */
         },
     }, opts);
 };
