@@ -13,9 +13,14 @@ module.exports = function (opts = {}) {
         failureInfo: null, // 错误信息
         failureCode: null, // 401 未授权,未登录
         result: {
-            // 其他的数据结构
             /*
-            list: [ // 列表的数据结构
+            // 其他的数据结构
+            name: 'rookie',
+            sex: 'man',
+            */
+            /*
+            // 列表的数据结构
+            list: [
                 // {
                 //     img: {
                 //         width: 0,
