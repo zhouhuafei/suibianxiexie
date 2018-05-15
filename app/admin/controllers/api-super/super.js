@@ -38,16 +38,18 @@ class Super {
         if (method === 'get') {
             req.data = req.query;
         } else {
+            // 把接收到的数据全部都处理成字符串格式，无论你嵌套了多少层。数字1会变成字符串'1'。布尔值true会变成字符串'true'。
+            // 如果传输的时候是application/json，传输的对象是个字符串格式的，则内部该是什么类型的还是什么类型
+            // 如果传输的时候是application/x-www-form-urlencoded，传输的对象是个字符串格式的，则内部该是什么类型的还是什么类型
+            if (req.body) {
+                req.body = qs.parse(qs.stringify(req.body));
+            }
             req.data = req.body;
         }
 
         fnCrud();
 
         function fnCrud() {
-            // 把接收到的数据全部都处理成字符串格式，无论你嵌套了多少层。数字1会变成字符串'1'。布尔值true会变成字符串'true'。
-            // 如果传输的时候是application/json，传输的对象是个字符串格式的，则内部该是什么类型的还是什么类型
-            // 如果传输的时候是application/x-www-form-urlencoded，传输的对象是个字符串格式的，则内部该是什么类型的还是什么类型
-            req.data = qs.parse(qs.stringify(req.data));
             self.handleData(); // 提前处理数据,例如去除首尾空格
             if (method === 'post') {
                 self.postData(); // 获取数据(增)
