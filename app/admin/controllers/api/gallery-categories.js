@@ -51,6 +51,12 @@ class Sub extends Super {
         const opts = self.opts;
         const req = opts.req;
         const data = req.data;
+        const name = data.name || '';
+        const id = data.id || '';
+        if (name === '' && id === '') {
+            self.render({message: '分类名称和分类id至少存在一个'});
+            return;
+        }
         self.render({
             status: 'success',
             message: '成功',
