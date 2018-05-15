@@ -43,7 +43,7 @@ class Super {
         fnCrud();
 
         function fnCrud() {
-            self.handleData(); // 提前处理好数据,例如去除首尾空格
+            self.handleData(); // 提前处理数据,例如去除首尾空格
             if (method === 'post') {
                 self.postData(); // 获取数据(增)
             }
