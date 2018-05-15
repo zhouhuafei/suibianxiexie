@@ -16,7 +16,7 @@ module.exports = function (opts = {}) {
             /*
             // 其他的数据结构
             name: 'rookie',
-            sex: 'man',
+            sex: 'male', // male(男) female(女)
             */
             /*
             // 列表的数据结构
