@@ -4,10 +4,7 @@ const GalleryCategories = require('../../models/mongoose/gallery-categories'); /
 class Sub extends Super {
     // (处)(覆)处理数据(覆盖超类型)
     handleData() {
-        const self = this;
-        const opts = self.opts;
-        const req = opts.req;
-        const data = req.data;
+        const data = this.opts.req.data;
         data.name = (data.name || '').trim();
         data._id = (data._id || '').trim();
     }
