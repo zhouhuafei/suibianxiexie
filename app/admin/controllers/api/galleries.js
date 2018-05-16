@@ -43,6 +43,40 @@ class Sub extends Super {
         });
         */
     }
+
+    // (删)(覆)删除数据(覆盖超类型)
+    deleteData() {
+        const self = this;
+        console.log(self.opts.req.data);
+        self.render({
+            status: 'success',
+            message: '成功',
+        });
+    }
+
+    // (改)(覆)修改数据(覆盖超类型)
+    putData() {
+        const self = this;
+        console.log(self.opts.req.data);
+        self.render({
+            status: 'success',
+            message: '成功',
+        });
+    }
+
+    // (查)(覆)查找数据(覆盖超类型)
+    getData() {
+        const self = this;
+        console.log(self.opts.req.data);
+        // all 全部分类 - 数据库里找全部
+        // system 系统分类 - 读取硬盘里的文件
+        // default 默认分类 - 数据库里根据id找
+        // 一堆hash值 其他分类 - 数据库里根据id找
+        self.render({
+            status: 'success',
+            message: '成功',
+        });
+    }
 }
 
 module.exports = Sub;

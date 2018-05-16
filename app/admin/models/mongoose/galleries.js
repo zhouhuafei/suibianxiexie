@@ -42,6 +42,7 @@ const schema = new mongoose.Schema({
     // 文件所属分类的id
     categoryId: {
         type: String,
+        default: 'default',
         required: true,
         trim: true,
     },
