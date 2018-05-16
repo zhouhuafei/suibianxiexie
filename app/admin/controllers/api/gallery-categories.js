@@ -63,7 +63,7 @@ class Sub extends Super {
         GalleryCategories.deleteOne({_id}, function (error, result) {
             if (error) {
                 self.render({
-                    message: '数据库删除出现错误',
+                    message: '删除分类出现错误',
                     failureInfo: error,
                 });
             } else {
@@ -105,7 +105,7 @@ class Sub extends Super {
                 GalleryCategories.updateOne({_id}, {name}, function (error, result) {
                     if (error) {
                         self.render({
-                            message: '数据库删除出现错误',
+                            message: '数据库更新出现错误',
                             failureInfo: error,
                         });
                     } else {

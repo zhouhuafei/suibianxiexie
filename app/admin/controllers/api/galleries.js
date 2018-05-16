@@ -3,6 +3,13 @@ const fs = require('fs');
 const Galleries = require('../../models/mongoose/galleries');
 
 class Sub extends Super {
+    // (处)(覆)处理数据(覆盖超类型)
+    handleData() {
+        const data = this.opts.req.data;
+        data._id = (data._id || '').trim();
+        data.categoryId = (data.categoryId || 'all').trim(); // all(全部分类的) system(系统分类的) | default(默认分类的) hashId(其他分类的)
+    }
+
     // (增)(覆)获取数据(覆盖超类型)
     postData() {
         const self = this;
@@ -74,14 +81,36 @@ class Sub extends Super {
     // (查)(覆)查找数据(覆盖超类型)
     getData() {
         const self = this;
-        console.log(self.opts.req.data);
+        const opts = self.opts;
+        const req = opts.req;
+        const data = req.data;
+        const categoryId = data.data;
+        const condition = {categoryId: categoryId};
         // all 全部分类 - 数据库里找全部
         // system 系统分类 - 读取硬盘里的文件
         // default 默认分类 - 数据库里根据id找
         // 一堆hash值 其他分类 - 数据库里根据id找
-        self.render({
-            status: 'success',
-            message: '成功',
+        if (categoryId === 'system') { // 去硬盘里读取文件,然后反馈出去,但是保存的时候怎么判断,图片如果被多个地方使用呢？待续...
+            return;
+        }
+        // 除了system，其他都是去数据库里读取
+        if (categoryId === 'all') {
+            delete condition.categoryId;
+        }
+        Galleries.find({}, function (error, result) {
+            if (error) {
+                self.render({
+                    message: '数据库查询出现错误',
+                    failureInfo: error,
+                });
+            }
+            if (result) {
+                self.render({
+                    status: 'success',
+                    message: '上传成功',
+                    result,
+                });
+            }
         });
     }
 }

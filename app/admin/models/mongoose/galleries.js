@@ -32,10 +32,10 @@ const schema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    // 文件是否被使用
-    isUsed: {
-        type: Boolean,
-        default: false,
+    // 文件被使用的次数，只有使用次数为0的图片才可以被物理删除
+    beUsedNumber: {
+        type: Number,
+        default: 0,
         trim: true,
     },
     // 文件所属分类的id
