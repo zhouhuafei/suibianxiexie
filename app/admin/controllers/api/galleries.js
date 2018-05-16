@@ -101,6 +101,7 @@ class Sub extends Super {
         if (categoryId === 'all') {
             delete condition.categoryId;
         }
+        // 分页待续...
         Galleries.find({}, function (error, result) {
             if (error) {
                 self.render({
