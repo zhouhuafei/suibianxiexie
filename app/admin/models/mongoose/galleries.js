@@ -36,14 +36,12 @@ const schema = new mongoose.Schema({
     isUsed: {
         type: Boolean,
         default: false,
-        required: true,
         trim: true,
     },
     // 文件所属分类的id
     categoryId: {
         type: String,
         default: 'default',
-        required: true,
         trim: true,
     },
 });

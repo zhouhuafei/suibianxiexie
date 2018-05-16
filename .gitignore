@@ -17,4 +17,6 @@ yarn-error.log*
 selenium-debug.log
 test/unit/coverage
 test/e2e/reports
-static-cache-wrap/static-cache/galleries
+static-cache-wrap/static-cache/admin/galleries
+static-cache-wrap/static-cache/phone/galleries
+static-cache-wrap/static-cache/pc/galleries

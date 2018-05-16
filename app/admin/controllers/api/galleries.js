@@ -18,17 +18,23 @@ class Sub extends Super {
         }
         const dbFiles = [];
         files.forEach(function (file) {
+            const arr = file.originalname.split('.');
+            const len = arr.length;
+            const extName = arr[len - 1];
+            if (len > 1) {
+                const newPath = `${file.path}.${extName}`;
+                fs.renameSync(file.path, newPath);
+                file.path = newPath;
+            }
             dbFiles.push({
                 mimeType: file.mimetype,
                 size: file.size,
                 path: file.path,
-                originalName: file.originalName,
+                originalName: file.originalname,
                 createTime: new Date(),
             });
         });
-        console.log('dbFiles', dbFiles); // 待续...
-        const galleries = new Galleries();
-        galleries.save(function (error, result) {
+        Galleries.insertMany(dbFiles, function (error, result) {
             if (error) {
                 self.render({
                     message: '数据库插入出现错误',
