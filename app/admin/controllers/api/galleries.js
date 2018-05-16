@@ -26,6 +26,7 @@ class Sub extends Super {
                 createTime: new Date(),
             });
         });
+        console.log('dbFiles', dbFiles); // 待续...
         self.render({
             status: 'success',
             message: '上传成功',
