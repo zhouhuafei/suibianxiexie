@@ -44,6 +44,7 @@ class Sub extends Super {
                 categoryId,
                 width,
                 height,
+                url: file.path.split('static-cache-wrap')[1].replace(/\\/g, '/'),
             });
         });
         Galleries.insertMany(dbFiles, function (error, result) {
@@ -54,19 +55,13 @@ class Sub extends Super {
                 });
             }
             if (result) {
-                const result2 = [];
                 result.forEach(function (v) {
-                    result2.push({
-                        _id: v._id,
-                        url: v.path.split('static-cache-wrap')[1].replace(/\\/g, '/'),
-                        width: v.width,
-                        height: v.height,
-                    });
+                    v.path = undefined;
                 });
                 self.render({
                     status: 'success',
                     message: '上传成功',
-                    result: result2,
+                    result: result,
                 });
             }
         });
@@ -114,19 +109,13 @@ class Sub extends Super {
                 });
             }
             if (result) {
-                const result2 = [];
                 result.forEach(function (v) {
-                    result2.push({
-                        _id: v._id,
-                        url: v.path.split('static-cache-wrap')[1].replace(/\\/g, '/'),
-                        width: v.width,
-                        height: v.height,
-                    });
+                    v.path = undefined;
                 });
                 self.render({
                     status: 'success',
                     message: '上传成功',
-                    result: result2,
+                    result: result,
                 });
             }
         });

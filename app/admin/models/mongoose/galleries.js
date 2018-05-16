@@ -14,7 +14,7 @@ const schema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    // 图片的路径
+    // 图片的路径，考虑到安全因素，
     path: {
         type: String,
         required: true,
@@ -53,6 +53,12 @@ const schema = new mongoose.Schema({
     // 图片的高度
     height: {
         type: Number,
+        required: true,
+        trim: true,
+    },
+    // 图片的应用路径
+    url: {
+        type: String,
         required: true,
         trim: true,
     },
