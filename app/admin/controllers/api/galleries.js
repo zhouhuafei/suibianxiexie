@@ -1,4 +1,5 @@
 const Super = require('../api-super/super'); // 超类型
+const fs = require('fs');
 const Galleries = require('../../models/mongoose/galleries');
 
 class Sub extends Super {
@@ -15,6 +16,10 @@ class Sub extends Super {
             self.render({message: '请选择图片'});
             return;
         }
+        const dbFiles = [];
+        files.forEach(function (file) {
+            console.log('api-file', file);
+        });
         self.render({
             status: 'success',
             message: '上传成功',

@@ -8,50 +8,38 @@ const schema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    // 保存在 destination 中的文件名
-    filename: {
-        type: String,
-        required: true,
-        trim: true,
-    },
-    // 已上传文件所在的目录
-    destination: {
-        type: String,
-        required: true,
-        trim: true,
-    },
-    // 已上传文件的完整路径
-    path: {
-        type: String,
-        required: true,
-        trim: true,
-    },
-    // 文件大小，多少字节
+    // 文件的大小，多少字节
     size: {
         type: Number,
         required: true,
         trim: true,
     },
-    // 文件在用户计算机上的名称
+    // 文件的路径
+    path: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    // 文件的原名
     originalName: {
         type: String,
         required: true,
         trim: true,
     },
-    // 文件创建的时间(上传的时间)
+    // 文件被记录到数据库的时间
     createTime: {
         type: Date,
         required: true,
         trim: true,
     },
-    // 图片是否被使用
+    // 文件是否被使用
     isUsed: {
         type: Boolean,
         default: false,
         required: true,
         trim: true,
     },
-    // 图片分类id
+    // 文件所属分类的id
     categoryId: {
         type: String,
         required: true,
