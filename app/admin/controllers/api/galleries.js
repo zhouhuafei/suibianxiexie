@@ -1,6 +1,7 @@
 const Super = require('../api-super/super'); // 超类型
 const fs = require('fs');
 const Galleries = require('../../models/mongoose/galleries');
+const sizeOf = require('image-size');
 
 class Sub extends Super {
     // (处)(覆)处理数据(覆盖超类型)
@@ -33,6 +34,7 @@ class Sub extends Super {
                 fs.renameSync(file.path, newPath);
                 file.path = newPath;
             }
+            const {width, height} = sizeOf(file.path);
             dbFiles.push({
                 mimeType: file.mimetype,
                 size: file.size,
@@ -40,6 +42,8 @@ class Sub extends Super {
                 originalName: file.originalname,
                 createTime: new Date(),
                 categoryId,
+                width,
+                height,
             });
         });
         Galleries.insertMany(dbFiles, function (error, result) {
@@ -50,10 +54,19 @@ class Sub extends Super {
                 });
             }
             if (result) {
+                const result2 = [];
+                result.forEach(function (v) {
+                    result2.push({
+                        _id: v._id,
+                        url: v.path.split('static-cache-wrap')[1].replace(/\\/g, '/'),
+                        width: v.width,
+                        height: v.height,
+                    });
+                });
                 self.render({
                     status: 'success',
                     message: '上传成功',
-                    result,
+                    result: result2,
                 });
             }
         });
@@ -101,10 +114,19 @@ class Sub extends Super {
                 });
             }
             if (result) {
+                const result2 = [];
+                result.forEach(function (v) {
+                    result2.push({
+                        _id: v._id,
+                        url: v.path.split('static-cache-wrap')[1].replace(/\\/g, '/'),
+                        width: v.width,
+                        height: v.height,
+                    });
+                });
                 self.render({
                     status: 'success',
                     message: '上传成功',
-                    result,
+                    result: result2,
                 });
             }
         });

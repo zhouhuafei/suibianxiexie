@@ -13,11 +13,11 @@
                         <label class="g-form">
                             <span class="g-form-text">网站名称:</span>
                             <span class="g-form-body">
-                            <input class="g-input js-validate-form"
-                                   data-validate="no-empty no-zero yes-positive-integer"
-                                   data-hint="本项必填 本项不可为零 请输入正整数"
-                                   type="text" name="website-name" value="" placeholder="请输入网站标题">
-                        </span>
+                                <input class="g-input js-validate-form"
+                                       data-validate="no-empty no-zero yes-positive-integer"
+                                       data-hint="本项必填 本项不可为零 请输入正整数"
+                                       type="text" name="name" value="" placeholder="请输入网站标题">
+                            </span>
                             <span class="g-form-icon iconfont icon-clear"></span>
                             <span class="g-form-icon g-form-hint iconfont icon-required"></span>
                         </label>
@@ -26,11 +26,11 @@
                         <label class="g-form">
                             <span class="g-form-text">联系电话:</span>
                             <span class="g-form-body">
-                            <input class="g-input js-validate-form"
-                                   data-validate="no-empty no-zero yes-positive-integer"
-                                   data-hint="本项必填 本项不可为零 请输入正整数"
-                                   type="tel" name="website-phone" value="" placeholder="请输入联系电话">
-                        </span>
+                                <input class="g-input js-validate-form"
+                                       data-validate="no-empty no-zero yes-positive-integer"
+                                       data-hint="本项必填 本项不可为零 请输入正整数"
+                                       type="tel" name="phone" value="" placeholder="请输入联系电话">
+                            </span>
                             <span class="g-form-icon iconfont icon-clear"></span>
                             <span class="g-form-icon g-form-hint iconfont icon-required"></span>
                         </label>
@@ -45,9 +45,8 @@
                                            data-validate="no-empty yes-limit-length-1"
                                            data-hint="本项必传 最多上传1张图片"
                                            data-value="true"
-                                           multiple
                                            accept="image/gif, image/jpeg, image/png" type="file">
-                                    <input type="hidden" name="website-logo">
+                                    <input type="hidden" name="logo">
                                     <span class="g-upload-icon iconfont icon-upload-img"></span>
                                     <span class="g-upload-show"></span>
                                     <span class="g-upload-text">640*640</span>
@@ -70,7 +69,7 @@
                                            data-hint="本项必传 最多上传1张图片"
                                            data-value="true"
                                            accept="image/vnd.microsoft.icon" type="file">
-                                    <input type="hidden" name="website-favicon">
+                                    <input type="hidden" name="favicon">
                                     <span class="g-upload-icon iconfont icon-upload-img"></span>
                                     <span class="g-upload-show"></span>
                                     <span class="g-upload-text">32*32</span>

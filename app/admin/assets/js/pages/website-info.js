@@ -17,7 +17,11 @@ class Sub extends Super {
 
         // 上传
         document.querySelector('.js-upload').addEventListener('change', function () {
-            const files = [].slice.call(this.files);
+            const self = this;
+            const parent = this.parentNode;
+            const bg = parent.querySelector('.g-upload-show');
+            const text = parent.querySelector('.g-upload-text');
+            const files = [].slice.call(self.files);
             const formData = new FormData();
             files.forEach(function (file) {
                 formData.append('images', file);
@@ -35,6 +39,17 @@ class Sub extends Super {
                 },
             }).then(function (json) {
                 console.log('测试formData:->', json);
+                if (json.status === 'success') {
+                    const result = json.result[0];
+                    self.dataset.value = result.url;
+                    bg.style.backgroundImage = `url('${result.url}')`;
+                    text.innerText = `${result.width}*${result.height}`;
+                    parent.classList.add('g-upload-active');
+                    parent.querySelector('input[type=hidden]').value = JSON.stringify({
+                        _id: result._id,
+                        url: result.url,
+                    });
+                }
             });
         });
     }

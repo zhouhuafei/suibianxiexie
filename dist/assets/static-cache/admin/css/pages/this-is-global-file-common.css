@@ -929,7 +929,7 @@ textarea.g-textarea {
         -ms-flex-pack: center;
             justify-content: center;
     background: center center no-repeat;
-    background-size: 100% auto;
+    background-size: contain;
     display: none; }
   .g-upload .g-upload-text {
     display: -webkit-box;

@@ -44,7 +44,11 @@ var Sub = function (_Super) {
 
             // 上传
             document.querySelector('.js-upload').addEventListener('change', function () {
-                var files = [].slice.call(this.files);
+                var self = this;
+                var parent = this.parentNode;
+                var bg = parent.querySelector('.g-upload-show');
+                var text = parent.querySelector('.g-upload-text');
+                var files = [].slice.call(self.files);
                 var formData = new FormData();
                 files.forEach(function (file) {
                     formData.append('images', file);
@@ -63,6 +67,17 @@ var Sub = function (_Super) {
                     }
                 }).then(function (json) {
                     console.log('测试formData:->', json);
+                    if (json.status === 'success') {
+                        var result = json.result[0];
+                        self.dataset.value = result.url;
+                        bg.style.backgroundImage = 'url(\'' + result.url + '\')';
+                        text.innerText = result.width + '*' + result.height;
+                        parent.classList.add('g-upload-active');
+                        parent.querySelector('input[type=hidden]').value = JSON.stringify({
+                            _id: result._id,
+                            url: result.url
+                        });
+                    }
                 });
             });
         }
