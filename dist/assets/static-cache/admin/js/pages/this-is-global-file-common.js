@@ -3260,7 +3260,7 @@ module.exports = function (json) {
             new Dialog({
                 config: {
                     alert: {
-                        content: error // 这里的error其实是一个Error类型的数据
+                        content: response.data.message // 这里的error其实是一个Error类型的数据
                     }
                 }
             });

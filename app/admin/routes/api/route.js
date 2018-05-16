@@ -35,7 +35,6 @@ class Route {
                                 files: 6, // 每次最多上传6个文件。
                             },
                             fileFilter: function (req, file, cb) {
-                                console.log('route-file', file);
                                 const mimeType = file.mimetype;
                                 cb(null, mimeType.split('/')[0] === 'image');
                                 /*

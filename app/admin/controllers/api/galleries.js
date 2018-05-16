@@ -18,7 +18,13 @@ class Sub extends Super {
         }
         const dbFiles = [];
         files.forEach(function (file) {
-            console.log('api-file', file);
+            dbFiles.push({
+                mimeType: file.mimetype,
+                size: file.size,
+                path: file.path,
+                originalName: file.originalName,
+                createTime: new Date(),
+            });
         });
         self.render({
             status: 'success',
