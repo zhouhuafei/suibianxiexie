@@ -27,28 +27,22 @@ class Sub extends Super {
             });
         });
         console.log('dbFiles', dbFiles); // 待续...
-        self.render({
-            status: 'success',
-            message: '上传成功',
-            result: {testData: [data, req.files, req.file]},
-        });
-        /*
         const galleries = new Galleries();
         galleries.save(function (error, result) {
-            // 数据库插入出现错误
             if (error) {
                 self.render({
                     message: '数据库插入出现错误',
                     failureInfo: error,
                 });
-                return;
             }
-            self.render({
-                status: 'success',
-                message: '上传成功',
-            });
+            if (result) {
+                self.render({
+                    status: 'success',
+                    message: '上传成功',
+                    result,
+                });
+            }
         });
-        */
     }
 
     // (删)(覆)删除数据(覆盖超类型)
