@@ -1,6 +1,6 @@
 // 路径
 const pathConfig = {
-    route: '/admin/api/',
+    route: '/api/admin/',
 };
 // 路由的名字
 const routeName = [
