@@ -7,16 +7,16 @@ class Sub extends Super {
     handleData() {
         const data = this.opts.req.data;
         data._id = (data._id || '').trim();
-        data.categoryId = (data.categoryId || 'all').trim(); // all(全部分类的) system(系统分类的) | default(默认分类的) hashId(其他分类的)
+        data.categoryId = (data.categoryId || '').trim(); // all(全部分类的) | default(默认分类的) hashId(其他分类的)
     }
 
     // (增)(覆)获取数据(覆盖超类型)
     postData() {
         const self = this;
-        const tools = self.tools; // 工具方法集合
         const opts = self.opts;
         const req = opts.req;
         const data = req.data;
+        const categoryId = data.categoryId || 'default';
         const files = req.files;
         const length = files.length;
         if (length === 0) {
@@ -39,6 +39,7 @@ class Sub extends Super {
                 path: file.path,
                 originalName: file.originalname,
                 createTime: new Date(),
+                categoryId,
             });
         });
         Galleries.insertMany(dbFiles, function (error, result) {
@@ -84,16 +85,11 @@ class Sub extends Super {
         const opts = self.opts;
         const req = opts.req;
         const data = req.data;
-        const categoryId = data.data;
-        const condition = {categoryId: categoryId};
+        const categoryId = data.categoryId || 'all';
+        const condition = {categoryId};
         // all 全部分类 - 数据库里找全部
-        // system 系统分类 - 读取硬盘里的文件
         // default 默认分类 - 数据库里根据id找
         // 一堆hash值 其他分类 - 数据库里根据id找
-        if (categoryId === 'system') { // 去硬盘里读取文件,然后反馈出去,但是保存的时候怎么判断,图片如果被多个地方使用呢？待续...
-            return;
-        }
-        // 除了system，其他都是去数据库里读取
         if (categoryId === 'all') {
             delete condition.categoryId;
         }
