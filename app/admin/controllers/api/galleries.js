@@ -116,7 +116,13 @@ class Sub extends Super {
                 self.render({
                     status: 'success',
                     message: '上传成功',
-                    result: result,
+                    result: {
+                        list: result,
+                        allPage: 1, // 总页数
+                        nowPage: 1, // 当前页
+                        allCount: result.length, // 数据总条数
+                        nowCount: result.length, // 当前页的数据条数
+                    },
                 });
             }
         });
