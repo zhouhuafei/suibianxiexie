@@ -53,6 +53,9 @@ var Sub = function (_Super) {
                 files.forEach(function (file) {
                     formData.append('images', file);
                 });
+                if (!files.length) {
+                    return;
+                }
                 axios({
                     url: dataInfo.api.galleries.route,
                     method: 'post',

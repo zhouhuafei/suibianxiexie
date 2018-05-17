@@ -2431,7 +2431,7 @@ ValidateForm.prototype.validateInput = function (input) {
     var hintTxt = validateHintTxt.split(' ');
     var hintWrapDom = input.hintWrapDom;
     var inputType = input.type;
-    var inputName = input.name;
+    var inputName = input.name; // 这个不能使用，因为有些name名称是这种格式 hobby[] 此时通过name获取会报错
     var isPassword = inputType === 'password';
     var isRadio = inputType === 'radio';
     var isCheckbox = inputType === 'checkbox';
@@ -2471,7 +2471,7 @@ ValidateForm.prototype.validateInput = function (input) {
                 }
                 if (isRadio || isCheckbox) {
                     // input为radio类型和input为checkbox类型的进行特殊处理（这两种类型只验证是否必填就够用了，file类型和select下拉框也是只验证必填就够用了。）
-                    var isChecked = hintWrapDom.querySelector('input[name=' + inputName + ']:checked');
+                    var isChecked = hintWrapDom.querySelector('input:checked');
                     isEmpty = isChecked === null;
                 }
                 if (isEmpty) {
@@ -2509,7 +2509,7 @@ ValidateForm.prototype.validateInput = function (input) {
                 var isPassLimitLength = value.length > length;
                 if (isCheckbox) {
                     // input为checkbox类型的进行特殊处理
-                    var checkboxAll = hintWrapDom.querySelectorAll('input[name=' + inputName + ']:checked');
+                    var checkboxAll = hintWrapDom.querySelectorAll('input:checked');
                     isPassLimitLength = length >= checkboxAll.length;
                 }
                 if (isFile) {

@@ -78,7 +78,7 @@ ValidateForm.prototype.validateInput = function (input) {
     const hintTxt = validateHintTxt.split(' ');
     const hintWrapDom = input.hintWrapDom;
     const inputType = input.type;
-    const inputName = input.name;
+    const inputName = input.name; // 这个不能使用，因为有些name名称是这种格式 hobby[] 此时通过name获取会报错
     const isPassword = inputType === 'password';
     const isRadio = inputType === 'radio';
     const isCheckbox = inputType === 'checkbox';
@@ -112,7 +112,7 @@ ValidateForm.prototype.validateInput = function (input) {
                     isEmpty = value === ''; // 因为密码可以输入空格，所以没必要去除首尾空格。
                 }
                 if (isRadio || isCheckbox) { // input为radio类型和input为checkbox类型的进行特殊处理（这两种类型只验证是否必填就够用了，file类型和select下拉框也是只验证必填就够用了。）
-                    const isChecked = hintWrapDom.querySelector(`input[name=${inputName}]:checked`);
+                    const isChecked = hintWrapDom.querySelector(`input:checked`);
                     isEmpty = isChecked === null;
                 }
                 if (isEmpty) {
@@ -146,7 +146,7 @@ ValidateForm.prototype.validateInput = function (input) {
                 const length = yesLimitLength[1];
                 let isPassLimitLength = value.length > length;
                 if (isCheckbox) { // input为checkbox类型的进行特殊处理
-                    const checkboxAll = hintWrapDom.querySelectorAll(`input[name=${inputName}]:checked`);
+                    const checkboxAll = hintWrapDom.querySelectorAll(`input:checked`);
                     isPassLimitLength = length >= checkboxAll.length;
                 }
                 if (isFile) { // input为file类型的进行特殊处理

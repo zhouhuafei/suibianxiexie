@@ -3,6 +3,8 @@ const fs = require('fs');
 const Galleries = require('../../models/mongoose/galleries');
 const sizeOf = require('image-size');
 const multipleCalls = require('zhf.multiple-calls');
+const tools = require('zhf.tools');
+const typeOf = tools.typeOf;
 
 class Sub extends Super {
     // (处)(覆)处理数据(覆盖超类型)
@@ -10,8 +12,8 @@ class Sub extends Super {
         const data = this.opts.req.data;
         data._id = (data._id || '').trim();
         data.categoryId = (data.categoryId || '').trim(); // all(全部分类的) | default(默认分类的) hashId(其他分类的)
-        data.nowPage = Math.abs((data.nowPage || 1).trim()); // 当前页
-        data.nowCount = Math.abs((data.nowCount || 20).trim()); // 当前页的数据条数
+        data.nowPage = Math.abs((data.nowPage || '1').trim()); // 当前页
+        data.nowCount = Math.abs((data.nowCount || '20').trim()); // 当前页的数据条数
     }
 
     // (增)(覆)获取数据(覆盖超类型)
@@ -73,10 +75,42 @@ class Sub extends Super {
     // (删)(覆)删除数据(覆盖超类型)
     deleteData() {
         const self = this;
-        console.log(self.opts.req.data);
-        self.render({
-            status: 'success',
-            message: '成功',
+        const opts = self.opts;
+        const req = opts.req;
+        const data = req.data;
+        const url = data.url; // 数组
+        if (typeOf(url) !== 'array') {
+            self.render({message: '参数错误，url需要是一个数组'});
+            return;
+        }
+        const len = url.length;
+        // 根据传入的url，把被使用数为0的数据删除。
+        let initNum = 0;
+        url.forEach(function (v) {
+            Galleries.findOne({url: v, beUsedNumber: 0}, function (error, result) {
+                if (error) {
+                    self.render({
+                        message: '查询出错',
+                        failureInfo: error,
+                    });
+                }
+                if (result) {
+                    result.remove(function (error, doc) {
+                        if (!error) {
+                            fs.unlinkSync(doc.path);
+                        }
+                        initNum++;
+                    });
+                } else {
+                    initNum++;
+                }
+                if (initNum === len) {
+                    self.render({
+                        status: 'success',
+                        message: '删除成功',
+                    });
+                }
+            });
         });
     }
 
