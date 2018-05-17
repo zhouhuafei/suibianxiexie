@@ -48,7 +48,7 @@
         bottom: 0;
         width: 100%;
         background: rgba(0, 0, 0, 0.4);
-        color: #ffffff;
+        color: rgba(255, 255, 255, 0.8);
         padding: px2rem(4) 0;
         .g-upload-opts-item {
             margin: 0 px2rem(4);
@@ -59,7 +59,6 @@
     }
     &.g-upload-active {
         border: none;
-        background: $g-background-color-default;
         .g-upload-icon {
             display: none;
         }
@@ -73,7 +72,7 @@
             top: 0;
             width: 100%;
             background: rgba(0, 0, 0, 0.4);
-            color: #ffffff;
+            color: rgba(255, 255, 255, 0.8);
             padding: px2rem(4) 0;
         }
         .g-upload-opts {

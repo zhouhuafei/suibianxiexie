@@ -69,14 +69,11 @@ var Sub = function (_Super) {
                     console.log('测试formData:->', json);
                     if (json.status === 'success') {
                         var result = json.result[0];
-                        self.dataset.value = result.url;
+                        self.dataset.value = 'no-empty';
                         bg.style.backgroundImage = 'url(\'' + result.url + '\')';
                         text.innerText = result.width + '*' + result.height;
                         parent.classList.add('g-upload-active');
-                        parent.querySelector('input[type=hidden]').value = JSON.stringify({
-                            _id: result._id,
-                            url: result.url
-                        });
+                        parent.querySelector('input[type=hidden]').value = result.url;
                     }
                 });
             });

@@ -59,6 +59,7 @@ const schema = new mongoose.Schema({
     // 图片的应用路径
     url: {
         type: String,
+        unique: true,
         required: true,
         trim: true,
     },
