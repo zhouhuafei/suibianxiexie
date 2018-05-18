@@ -12,7 +12,6 @@ const routeName = [
     },
     {
         name: 'galleries', // 图片库
-        isValidateLogin: false,
     },
     {
         name: 'password-modify', // 更改密码,去修改
