@@ -92,33 +92,62 @@ class Sub extends Super {
         }
         // 根据传入的url，把被使用数为0的数据删除。
         let initNum = 0;
-        const errorResult = [];
+        const failureInfo = [];
+        const successResult = [];
         url.forEach(function (v) {
+            let myFailure = null;
+            let mySuccess = null;
             Galleries.findOne({url: v, beUsedNumber: 0}, function (error, result) {
-                const myError = [];
                 if (error) {
-                    myError.push(error);
+                    myFailure = {error};
                 }
                 if (result) {
-                    result.remove(function (error, doc) {
+                    result.remove(function (error, doc) { // 这里是异步的，导致后面走不下去了
                         if (error) {
-                            myError.push(error);
+                            result.path = undefined;
+                            myFailure = {error, result};
                         }
                         if (doc) {
                             fs.unlinkSync(doc.path);
+                            doc.path = undefined;
+                            mySuccess = doc;
                         }
                         initNum++;
+                        fnRes();
                     });
                 } else {
                     initNum++;
+                    myFailure = {error: '图片不存在'};
                 }
-                result.push(myError);
-                if (initNum === len) {
-                    self.render({
-                        status: 'success',
-                        message: '删除成功',
-                        failureInfo: errorResult,
-                    });
+                fnRes();
+
+                function fnRes() {
+                    myFailure && failureInfo.push(myFailure);
+                    mySuccess && successResult.push(mySuccess);
+                    if (initNum === len) {
+                        const errLen = failureInfo.length;
+                        if (errLen === 0) { // 无错误，完全删除成功
+                            self.render({
+                                status: 'success',
+                                message: '删除成功',
+                                failureInfo: failureInfo,
+                                result: successResult,
+                            });
+                        } else if (errLen === len) { // 全错，完全删除失败
+                            self.render({
+                                message: '删除失败',
+                                failureInfo: failureInfo,
+                                result: successResult,
+                            });
+                        } else { // 局部删除成功
+                            self.render({
+                                status: 'success',
+                                message: '局部删除成功',
+                                failureInfo: failureInfo,
+                                result: successResult,
+                            });
+                        }
+                    }
                 }
             });
         });
