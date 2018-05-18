@@ -86,8 +86,9 @@ class Sub extends Super {
             return;
         }
         const len = url.length;
-        if (len > 200) {
-            self.render({message: '每次最多删除200张'});
+        const maxLen = 20;
+        if (len > maxLen) {
+            self.render({message: `每次最多删除${maxLen}张`});
             return;
         }
         // 根据传入的url，把被使用数为0的数据删除。
@@ -195,7 +196,7 @@ class Sub extends Super {
             });
             self.render({
                 status: 'success',
-                message: '上传成功',
+                message: '查询成功',
                 result: {
                     list: result,
                     allPage: Math.ceil(allCount / reqNowCount), // 总页数

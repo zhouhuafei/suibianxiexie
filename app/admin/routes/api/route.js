@@ -52,27 +52,36 @@ class Route {
                         // 是否验证登录，如果验证，则继续验证是否登录了
                         const session = req.session;
                         const adminInfo = session.adminInfo;
-                        if (apiConfig[attr].isValidateLogin) { // 验证登录
-                            if (adminInfo === undefined) { // 未登录，管理端的接口都应该登陆后才有权调用。
-                                res.json(apiDataFormat({message: '未登录', failureCode: 401}));
-                            } else {
-                                Admins.findOne({username: adminInfo.username}, function (error, result) {
-                                    if (error) { // 数据库查询出现错误
-                                        res.json(apiDataFormat({message: '验证登录时,数据库查询出现错误'}));
-                                    }
-                                    if (result) {
-                                        if (result.loginStamp === adminInfo.loginStamp) { // 登录了
-                                            next();
-                                        } else { // 未登录
-                                            res.json(apiDataFormat({message: '未登录', failureCode: 401}));
-                                        }
-                                    } else { // 账号不存在
-                                        res.json(apiDataFormat({message: '验证登录时,发现管理员账号不存在'}));
-                                    }
-                                });
+                        let isLogin = false;
+                        if (adminInfo === undefined) {
+                            isLogin = false;
+                            fnIsLogin();
+                        } else {
+                            Admins.findOne({username: adminInfo.username}, function (error, result) {
+                                if (error) { // 数据库查询出现错误
+                                    res.json(apiDataFormat({message: '验证登录时,数据库查询出现错误'}));
+                                    return;
+                                }
+                                if (result) {
+                                    isLogin = result.loginStamp === adminInfo.loginStamp;
+                                    fnIsLogin();
+                                } else { // 账号不存在
+                                    res.json(apiDataFormat({message: '验证登录时,发现管理员账号不存在'}));
+                                }
+                            });
+                        }
+
+                        function fnIsLogin() {
+                            req.isLogin = isLogin;
+                            if (apiConfig[attr].isValidateLogin) { // 验证登录
+                                if (isLogin) {
+                                    next();
+                                } else {
+                                    res.json(apiDataFormat({message: '未登录', failureCode: 401}));
+                                }
+                            } else { // 不验证登录
+                                next();
                             }
-                        } else { // 不验证登录
-                            next();
                         }
                     }, upload, function (req, res) {
                         // 渲染数据

@@ -28,4 +28,4 @@ const schema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model('gallery-categories', schema);
+module.exports = mongoose.model('website-info', schema);
