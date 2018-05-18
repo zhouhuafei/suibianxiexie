@@ -68,6 +68,8 @@ class Sub extends Super {
                     message: '上传成功',
                     result: result,
                 });
+            } else {
+                self.render({message: '上传失败'});
             }
         });
     }
@@ -84,20 +86,25 @@ class Sub extends Super {
             return;
         }
         const len = url.length;
+        if (len > 200) {
+            self.render({message: '每次最多删除200张'});
+            return;
+        }
         // 根据传入的url，把被使用数为0的数据删除。
         let initNum = 0;
+        const errorResult = [];
         url.forEach(function (v) {
             Galleries.findOne({url: v, beUsedNumber: 0}, function (error, result) {
+                const myError = [];
                 if (error) {
-                    // 这里会导致直接结束，所以不能这样写。
-                    // self.render({
-                    //     message: '查询出错',
-                    //     failureInfo: error,
-                    // });
+                    myError.push(error);
                 }
                 if (result) {
                     result.remove(function (error, doc) {
-                        if (!error) {
+                        if (error) {
+                            myError.push(error);
+                        }
+                        if (doc) {
                             fs.unlinkSync(doc.path);
                         }
                         initNum++;
@@ -105,10 +112,12 @@ class Sub extends Super {
                 } else {
                     initNum++;
                 }
+                result.push(myError);
                 if (initNum === len) {
                     self.render({
                         status: 'success',
                         message: '删除成功',
+                        failureInfo: errorResult,
                     });
                 }
             });
