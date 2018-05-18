@@ -1,5 +1,6 @@
 const tools = require('zhf.tools'); // 工具方法集合
 const Dialog = require('./g-dialog'); // 弹窗
+const timeCountDown = require('zhf.time-count-down'); // 倒计时
 
 // 专门为请求成功写的跳转链接弹窗
 class Super {
@@ -47,7 +48,7 @@ class Super {
             },
         });
         const seconds = dialog.moduleDom.querySelector('.g-dialog-jump-link-body-seconds');
-        tools.timeCountDown({
+        timeCountDown({
             seconds: opts.seconds,
             callback: {
                 run: function (obj) {

@@ -1,5 +1,6 @@
 require('../../scss/pages/register.scss');
 const Super = require('../pages-super/super');
+const timeCountDown = require('zhf.time-count-down'); // 倒计时
 
 class Sub extends Super {
     // (功)(覆)功能(覆盖超类型)
@@ -37,7 +38,7 @@ class Sub extends Super {
                         const Dialog = require('../components-dom/g-dialog');
                         new Dialog({config: {alert: {icon: 'icon-success', content: '验证码已发送'}}});
                         domSelf.classList.add(domGetVerifyCodeInactive);
-                        self.tools.timeCountDown({
+                        timeCountDown({
                             seconds: 90,
                             isToTime: false,
                             callback: {
