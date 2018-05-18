@@ -10,8 +10,8 @@ module.exports = function (opts = {}) {
         * */
         status: 'failure', // 状态信息
         message: '接口数据的基本格式', // 提示信息 - '参数错误'
-        failureInfo: null, // 错误信息
-        failureCode: null, // 401 未授权,未登录
+        failureInfo: null, // 失败信息
+        failureCode: null, // 失败编码 401 未授权,未登录
         /*
         // result不放出来,是因为扩展extend的时候会进行循环比对,而mongoose里查询结果的get和set是被处理过的,如果把mongoose的查询结果直接替换result,比对赋值时,会导致数据出现在_doc上
         result: {
