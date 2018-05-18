@@ -99,13 +99,12 @@ class Sub extends Super {
             let mySuccess = null;
             Galleries.findOne({url: v, beUsedNumber: 0}, function (error, result) {
                 if (error) {
-                    myFailure = {error};
+                    myFailure = {error, url: v};
                 }
                 if (result) {
                     result.remove(function (error, doc) { // 这里是异步的，导致后面走不下去了
                         if (error) {
-                            result.path = undefined;
-                            myFailure = {error, result};
+                            myFailure = {error, url: v};
                         }
                         if (doc) {
                             fs.unlinkSync(doc.path);
@@ -117,7 +116,7 @@ class Sub extends Super {
                     });
                 } else {
                     initNum++;
-                    myFailure = {error: '图片不存在'};
+                    myFailure = {error: '图片不存在或正在被使用', url: v};
                 }
                 fnRes();
 
