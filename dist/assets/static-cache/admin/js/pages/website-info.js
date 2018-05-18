@@ -43,7 +43,7 @@ var Sub = function (_Super) {
             })();
 
             // 上传
-            document.querySelector('.js-upload').addEventListener('change', function () {
+            $('.js-upload').on('change', function () {
                 var self = this;
                 var parent = this.parentNode;
                 var bg = parent.querySelector('.g-upload-show');
@@ -72,12 +72,27 @@ var Sub = function (_Super) {
                     console.log('测试formData:->', json);
                     if (json.status === 'success') {
                         var result = json.result[0];
-                        self.dataset.value = 'no-empty';
-                        bg.style.backgroundImage = 'url(\'' + result.url + '\')';
-                        text.innerText = result.width + '*' + result.height;
+                        var url = result.url;
+                        var w = result.width;
+                        var h = result.height;
+                        self.dataset.value = url;
+                        bg.style.backgroundImage = 'url(\'' + url + '\')';
+                        text.innerText = w + '*' + h;
+                        parent.querySelector('input[type=hidden]').value = url;
                         parent.classList.add('g-upload-active');
-                        parent.querySelector('input[type=hidden]').value = result.url;
                     }
+                });
+            });
+
+            // 保存
+            document.querySelector('.js-save').addEventListener('click', function () {
+                axios({
+                    url: dataInfo.api['website-info'].route,
+                    method: 'put',
+                    data: new FormData(document.querySelector('form'))
+                }).then(function (json) {
+                    console.log('测试保存:->', json);
+                    if (json.status === 'success') {}
                 });
             });
         }

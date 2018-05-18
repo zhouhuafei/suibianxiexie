@@ -53,15 +53,14 @@ class Super {
             self.handleData(); // 提前处理数据,例如去除首尾空格
             if (method === 'post') {
                 self.postData(); // 获取数据(增)
-            }
-            if (method === 'delete') {
+            } else if (method === 'delete') {
                 self.deleteData(); // 删除数据(删)
-            }
-            if (method === 'put') {
+            } else if (method === 'put') {
                 self.putData(); // 修改数据(改)
-            }
-            if (method === 'get') {
+            } else if (method === 'get') {
                 self.getData(); // 查找数据(查)
+            } else {
+                self.render({message: '不支持此类型的请求方式'});
             }
         }
     }
