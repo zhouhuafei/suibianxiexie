@@ -89,10 +89,11 @@ class Sub extends Super {
         url.forEach(function (v) {
             Galleries.findOne({url: v, beUsedNumber: 0}, function (error, result) {
                 if (error) {
-                    self.render({
-                        message: '查询出错',
-                        failureInfo: error,
-                    });
+                    // 这里会导致直接结束，所以不能这样写。
+                    // self.render({
+                    //     message: '查询出错',
+                    //     failureInfo: error,
+                    // });
                 }
                 if (result) {
                     result.remove(function (error, doc) {
