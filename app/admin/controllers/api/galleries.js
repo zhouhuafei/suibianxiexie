@@ -125,15 +125,15 @@ class Sub extends Super {
                     myFailure && failureInfo.push(myFailure);
                     mySuccess && successResult.push(mySuccess);
                     if (initNum === len) {
-                        const errLen = failureInfo.length;
-                        if (errLen === 0) { // 无错误，完全删除成功
+                        const failLen = failureInfo.length;
+                        if (failLen === 0) { // 无错误，完全删除成功
                             self.render({
                                 status: 'success',
                                 message: '删除成功',
                                 failureInfo: failureInfo,
                                 result: successResult,
                             });
-                        } else if (errLen === len) { // 全错，完全删除失败
+                        } else if (failLen === len) { // 全错，完全删除失败
                             self.render({
                                 message: '删除失败',
                                 failureInfo: failureInfo,
