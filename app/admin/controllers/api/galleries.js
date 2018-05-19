@@ -2,8 +2,8 @@ const Super = require('../api-super/super'); // 超类型
 const fs = require('fs');
 const Galleries = require('../../models/mongoose/galleries');
 const sizeOf = require('image-size');
-const multipleCalls = require('zhf.multiple-calls');
 const tools = require('zhf.tools');
+const multipleCalls = tools.multipleCalls;
 const typeOf = tools.typeOf;
 
 class Sub extends Super {
