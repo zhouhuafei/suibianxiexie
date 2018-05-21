@@ -11,6 +11,11 @@ node_modules
 *.sln
 *.log
 *.log*
+*.tar
+*.rar
+*.zip
+*.gz
+*.7z
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
