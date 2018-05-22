@@ -61,14 +61,7 @@ class Sub extends Super {
                 callNum = 2;
             }
             // 调用callNum次才会触发这个更新数据库的方法。
-            const fnUpdateDB = multipleCalls(callNum, function (error, json) {
-                if (error) {
-                    self.render({
-                        message: 'multipleCalls函数调用时，传参有误。',
-                        failureInfo: error,
-                    });
-                    return;
-                }
+            const fnUpdateDB = multipleCalls(callNum, function (json) {
                 const adminInfo = json.data.update;
                 adminInfo.comparePassword(oldPassword, function (error, isMatch) {
                     if (error) {
