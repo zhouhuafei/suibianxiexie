@@ -21,7 +21,7 @@ class Route {
         const self = this;
         const app = self.opts.app;
         const appConfig = app.appConfig;
-        const logs = require(`${appConfig.utilsDir}logs`);
+        const logger = require(`${appConfig.utilsDir}log4js`);
         const apiDataFormat = require(`${appConfig.utilsDir}api-data-format`);
         Object.keys(apiConfig).forEach(function (attr) {
             try {
@@ -89,7 +89,7 @@ class Route {
                     });
                 }(Controller, attr));
             } catch (error) {
-                logs(error, `${appConfig.logsDir}admin.log`);
+                logger.error(error);
             }
         });
     }
