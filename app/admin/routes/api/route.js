@@ -27,34 +27,17 @@ class Route {
             try {
                 const Controller = require(`${controllerPath}${attr}`);
                 (function (Controller, attr) {
-                    if (attr === 'galleries') {
-                        upload = multer({
-                            dest: `${appConfig.projectDir}static-cache-wrap/static-cache/admin/galleries/`,
-                            limits: {
-                                fileSize: 300 * 1024, // 单个文件的大小不能超过300kb。
-                                files: 6, // 每次最多上传6个文件。
-                            },
-                            fileFilter: function (req, file, cb) {
-                                const mimeType = file.mimetype;
-                                cb(null, mimeType.split('/')[0] === 'image');
-                                /*
-                                // 拒绝这个文件，使用`false`，像这样:
-                                cb(null, false);
-                                // 接受这个文件，使用`true`，像这样:
-                                cb(null, true);
-                                // 如果有问题，你可以总是这样发送一个错误:
-                                cb(new Error('only receive image !'));
-                                */
-                            },
-                        }).array('images');
-                    }
                     const apiConfigNow = apiConfig[attr];
+                    if (typeof apiConfigNow.upload === 'function') {
+                        upload = apiConfigNow.upload;
+                        delete apiConfigNow.upload; // 这里不删除的话，其实转成json的时候，也会自动过滤掉。
+                    }
                     app.all(apiConfigNow.route, function (req, res, next) {
                         // 是否验证登录，如果验证，则继续验证是否登录了
                         const session = req.session;
                         const adminInfo = session.adminInfo;
                         const method = req.method.toLowerCase(); // 请求方式
-                        if (apiConfigNow.isValidateLogin && apiConfigNow.whichRequestMethodValidateLogin.indexOf(method) !== -1) { // 验证登录
+                        if (apiConfigNow.isValidateLogin && (apiConfigNow.whichRequestMethodNoValidateLogin === undefined || apiConfigNow.whichRequestMethodNoValidateLogin.indexOf(method) === -1)) { // 验证登录(当whichRequestMethodNoValidateLogin值为undefined时，表示所有请求方式都需要验证登陆，为数组时则数组里所属的请求方式不验证登陆)
                             if (adminInfo === undefined) { // 未登录，管理端的接口都应该登陆后才有权调用。
                                 res.json(apiDataFormat({message: '未登录', failureCode: 401}));
                             } else {
@@ -83,8 +66,8 @@ class Route {
                             req: req,
                             res: res,
                             routeName: attr,
-                            isValidateLogin: apiConfig[attr].isValidateLogin,
-                            isSupportJsonp: apiConfig[attr].isSupportJsonp,
+                            isValidateLogin: apiConfigNow.isValidateLogin,
+                            isSupportJsonp: apiConfigNow.isSupportJsonp,
                         });
                     });
                 }(Controller, attr));
