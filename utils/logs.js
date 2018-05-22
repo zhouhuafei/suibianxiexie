@@ -1,13 +1,21 @@
-const fs = require('fs');
-const tools = require('zhf.tools'); // 工具方法集合
+const log4js = require('log4js'); // 工具方法集合
 
-module.exports = function (errorInfo, filePath) {
-    const nowDate = tools.dateFormat(new Date(), 'year/month/day hours:minutes:seconds:milliseconds week1').result;
-    let content = `${errorInfo}\n---------------------------------------- ${nowDate}`;
-    fs.readFile(filePath, 'utf-8', function (err, data) {
-        if (!err) {
-            content += `\n${data || ''}`;
-            fs.writeFile(filePath, content);
-        }
-    });
-};
+log4js.configure({
+    appenders: {
+        cheese: {
+            type: 'file',
+            filename: './logs/cheese.log',
+        },
+    },
+    categories: {
+        default: {
+            appenders: ['cheese'],
+            level: 'error',
+        },
+    },
+});
+
+const logger = log4js.getLogger('cheese');
+logger.error(new Error('error'));
+
+module.exports = logger;
