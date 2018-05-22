@@ -69,7 +69,7 @@ class Super {
     handleData() {
     }
 
-    // (增)(覆)获取数据(这个方法需要在子类型里被覆盖掉)
+    // (增)(覆)增加数据(这个方法需要在子类型里被覆盖掉)
     postData() {
         console.log('postData:', this.opts.req.data);
         this.render();

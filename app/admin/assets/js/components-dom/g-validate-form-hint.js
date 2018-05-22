@@ -141,6 +141,42 @@ ValidateForm.prototype.validateInput = function (input) {
                     isValidateSuccess = false;
                 }
             }
+            if (isValidateSuccess && v === 'yes-positive-float') { // 设置了正浮点数验证
+                if (checkStr.isPositiveFloat(value)) {
+                    self.renderHintRemove({input: input});
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({txt: hintTxt[i], input: input});
+                    isValidateSuccess = false;
+                }
+            }
+            if (isValidateSuccess && v === 'yes-phone') { // 设置了电话验证
+                if (checkStr.isPhoneNumEasy(value)) {
+                    self.renderHintRemove({input: input});
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({txt: hintTxt[i], input: input});
+                    isValidateSuccess = false;
+                }
+            }
+            if (isValidateSuccess && v === 'yes-email') { // 设置了邮箱验证
+                if (checkStr.isEmail(value)) {
+                    self.renderHintRemove({input: input});
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({txt: hintTxt[i], input: input});
+                    isValidateSuccess = false;
+                }
+            }
+            if (isValidateSuccess && v === 'yes-url') { // 设置了网址验证
+                if (checkStr.isUrl(value)) {
+                    self.renderHintRemove({input: input});
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({txt: hintTxt[i], input: input});
+                    isValidateSuccess = false;
+                }
+            }
             const yesLimitLength = /yes-limit-length-(\d+)/.exec(v);
             if (isValidateSuccess && yesLimitLength) { // 设置了限制长度
                 const length = yesLimitLength[1];

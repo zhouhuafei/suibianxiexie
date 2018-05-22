@@ -2,9 +2,10 @@ const Super = require('../api-super/super'); // 超类型
 const WebsiteInfos = require('../../models/mongoose/website-infos');
 
 class Sub extends Super {
-    // (增)(覆)获取数据(覆盖超类型)
+    // (增)(覆)增加数据(覆盖超类型)
     postData() {
-        this.render({message: '请求方式请使用put'});
+        // this.render({message: '请求方式请使用put'});
+        this.putData();
     }
 
     // (改)(覆)修改数据(覆盖超类型)
@@ -18,7 +19,7 @@ class Sub extends Super {
         const logo = (data.logo || '').trim();
         const favicon = (data.favicon || '').trim();
         if (name === '') {
-            self.render({message: '网站名不能为空'});
+            self.render({message: '网站名称不能为空'});
             return;
         }
         if (phone === '') {

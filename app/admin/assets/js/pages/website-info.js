@@ -58,10 +58,11 @@ class Sub extends Super {
 
         // 保存
         document.querySelector('.js-save').addEventListener('click', function () {
+            const form = document.querySelector('form');
             axios({
-                url: dataInfo.api['website-info'].route,
-                method: 'put',
-                data: new FormData(document.querySelector('form')),
+                url: form.action,
+                method: form.method,
+                data: new FormData(form),
             }).then(function (json) {
                 console.log('测试保存:->', json);
                 if (json.status === 'success') {

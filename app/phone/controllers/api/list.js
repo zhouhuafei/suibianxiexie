@@ -1,7 +1,7 @@
 const Super = require('../api-super/super'); // 超类型
 
 class Sub extends Super {
-    // (增)(覆)获取数据(覆盖超类型)
+    // (增)(覆)增加数据(覆盖超类型)
     postData() {
         const self = this;
         self.render({

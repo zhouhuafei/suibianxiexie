@@ -1,1 +1,23 @@
-<% if(dataInfo.menu){ %> <div class="g-menu-wrap"><div class="g-menu"> <% dataInfo.menu.forEach(function (v) { %> <div class="g-menu-item <%= v.isHighlight ? 'g-menu-item-active' : '' %>"><div class="g-menu-item-title"><div class="g-menu-item-title-icon iconfont icon-right"></div><div class="g-menu-item-title-text"> <%= v.title %> </div></div><div class="g-menu-item-body"> <% v.items.forEach(function (v2) { %> <a href="<%= v2.route %>" class="g-menu-item-body-item <%= v2.isHighlight ? 'g-menu-item-body-item-active' : '' %> <%= v2.power %>"> <%= v2.title %> </a> <% }) %> </div></div> <% }) %> </div></div> <% } %>
+<% if(dataInfo.menu){ %>
+<div class="g-menu-wrap">
+    <div class="g-menu">
+        <% dataInfo.menu.forEach(function (v) { %>
+        <div class="g-menu-item  <%= v.isHighlight ? 'g-menu-item-active' : '' %>">
+            <div class="g-menu-item-title">
+                <div class="g-menu-item-title-icon iconfont icon-right"></div>
+                <div class="g-menu-item-title-text">
+                    <%= v.title %>
+                </div>
+            </div>
+            <div class="g-menu-item-body">
+                <% v.items.forEach(function (v2) { %>
+                <a href="<%= v2.route %>" class="g-menu-item-body-item <%= v2.isHighlight ? 'g-menu-item-body-item-active' : '' %> <%= v2.power %>">
+                    <%= v2.title %>
+                </a>
+                <% }) %>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+</div>
+<% } %>

@@ -16,7 +16,7 @@ class Sub extends Super {
         data.nowCount = Math.abs((data.nowCount || '20').trim()); // 当前页的数据条数
     }
 
-    // (增)(覆)获取数据(覆盖超类型)
+    // (增)(覆)增加数据(覆盖超类型)
     postData() {
         const self = this;
         const opts = self.opts;

@@ -8,15 +8,17 @@
         <div class="g-wrap">
             <% include ../commons/menu.ejs %>
             <div class="g-body">
-                <form action="" method="post">
+                <% var api = dataInfo.api; %>
+                <% var page = dataInfo.page || {}; %>
+                <form action="<%= api['website-info'].route %>" method="post">
                     <div class="g-form-wrap">
                         <label class="g-form">
                             <span class="g-form-text">网站名称:</span>
                             <span class="g-form-body">
                                 <input class="g-input js-validate-form"
-                                       data-validate="no-empty no-zero yes-positive-integer"
-                                       data-hint="本项必填 本项不可为零 请输入正整数"
-                                       type="text" name="name" value="" placeholder="请输入网站标题">
+                                       data-validate="no-empty"
+                                       data-hint="本项必填"
+                                       type="text" name="name" value="<%= page.name || '' %>" placeholder="请输入网站名称">
                             </span>
                             <span class="g-form-icon iconfont icon-clear"></span>
                             <span class="g-form-icon g-form-hint iconfont icon-required"></span>
@@ -27,9 +29,9 @@
                             <span class="g-form-text">联系电话:</span>
                             <span class="g-form-body">
                                 <input class="g-input js-validate-form"
-                                       data-validate="no-empty no-zero yes-positive-integer"
-                                       data-hint="本项必填 本项不可为零 请输入正整数"
-                                       type="tel" name="phone" value="" placeholder="请输入联系电话">
+                                       data-validate="no-empty yes-phone"
+                                       data-hint="本项必填 请输入手机号"
+                                       type="tel" name="phone" value="<%= page.phone || '' %>" placeholder="请输入手机号">
                             </span>
                             <span class="g-form-icon iconfont icon-clear"></span>
                             <span class="g-form-icon g-form-hint iconfont icon-required"></span>
@@ -39,16 +41,16 @@
                         <div class="g-form">
                             <div class="g-form-text">网站logo:</div>
                             <div class="g-form-body g-form-body-more-row">
-                                <label class="g-upload">
+                                <label class="g-upload <%= page.logo ? 'g-upload-active' : '' %>">
                                     <input class="g-upload-input js-validate-form js-upload"
                                            data-event="change"
                                            data-validate="no-empty yes-limit-length-1"
                                            data-hint="本项必传 最多上传1张图片"
-                                           data-value="true"
+                                           data-value="<%= page.logo ? 'true' : '' %>"
                                            accept="image/gif, image/jpeg, image/png" type="file">
-                                    <input type="hidden" name="logo">
+                                    <input type="hidden" name="logo" value="<%= page.logo || '' %>">
                                     <span class="g-upload-icon iconfont icon-upload-img"></span>
-                                    <span class="g-upload-show"></span>
+                                    <span class="g-upload-show" style="<%= page.logo ? `background-image: url(${page.logo})` : '' %>"></span>
                                     <span class="g-upload-text">640*640</span>
                                     <span class="g-upload-opts">
                                         <span class="g-upload-opts-item g-upload-opts-close iconfont icon-delete"></span>
@@ -62,22 +64,23 @@
                         <div class="g-form">
                             <div class="g-form-text">网站favicon:</div>
                             <div class="g-form-body g-form-body-more-row">
-                                <label class="g-upload">
+                                <label class="g-upload <%= page.favicon ? 'g-upload-active' : '' %>">
                                     <input class="g-upload-input js-validate-form js-upload"
                                            data-event="change"
                                            data-validate="no-empty yes-limit-length-1"
                                            data-hint="本项必传 最多上传1张图片"
-                                           data-value="true"
+                                           data-value="<%= page.favicon ? 'true' : '' %>"
                                            accept="image/vnd.microsoft.icon" type="file">
-                                    <input type="hidden" name="favicon">
+                                    <input type="hidden" name="favicon" value="<%= page.favicon || '' %>">
                                     <span class="g-upload-icon iconfont icon-upload-img"></span>
-                                    <span class="g-upload-show"></span>
+                                    <span class="g-upload-show" style="<%= page.favicon ? `background-image: url(${page.favicon})` : '' %>"></span>
                                     <span class="g-upload-text">32*32</span>
                                     <span class="g-upload-opts">
                                         <span class="g-upload-opts-item g-upload-opts-close iconfont icon-delete"></span>
                                     </span>
                                 </label>
                             </div>
+                            <div class="g-form-icon">此项仅支持上传ico格式的图片</div>
                             <div class="g-form-icon g-form-hint iconfont icon-required"></div>
                         </div>
                     </div>

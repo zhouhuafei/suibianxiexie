@@ -9,7 +9,7 @@ class Sub extends Super {
         data._id = (data._id || '').trim();
     }
 
-    // (增)(覆)获取数据(覆盖超类型)
+    // (增)(覆)增加数据(覆盖超类型)
     postData() {
         const self = this;
         const opts = self.opts;
