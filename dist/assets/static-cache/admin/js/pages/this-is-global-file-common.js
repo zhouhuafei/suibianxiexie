@@ -2177,6 +2177,13 @@ var Super = function () {
                     });
                 });
             })();
+
+            // input自动纠正的操作
+            (function () {
+                // 上面的其他事件绑定换成事件委托待续...
+                // js-g-positive-integer 转成正整数待续...
+                // js-g-positive-float2 转成正浮点数(保留两位小数)待续...
+            })();
         }
 
         // (渲)渲染
@@ -2362,12 +2369,7 @@ function ValidateForm(json) {
         fileActiveClass: 'g-upload-active', // 文件或者图片上传成功之后的class，做限制个数需要这个
         isBindEvent: true // 是否绑定事件
     }, json);
-    if (this.opts.element) {
-        this.element = getDomArray(this.opts.element);
-    }
-    if (this.element.length) {
-        this.init();
-    }
+    this.init();
 }
 
 ValidateForm.prototype.init = function () {
@@ -2378,15 +2380,21 @@ ValidateForm.prototype.init = function () {
 };
 ValidateForm.prototype.render = function () {
     var self = this;
+    self.element = getDomArray(this.opts.element); // 为了兼容未来动态创建的元素，此方法会被多次调用，元素要重新获取。
     self.element.forEach(function (v) {
-        var hintWrapDom = self.getHintWrapDom(v);
-        if (hintWrapDom) {
-            domAddPosition(hintWrapDom, 'relative');
-            v.hintWrapDom = hintWrapDom;
+        if (!v.hintWrapDom) {
+            // 为了兼容未来动态创建的元素，此方法会被多次调用，为了提高性能，所以这里不重新赋值，虽然此处可以重新赋值。
+            var hintWrapDom = self.getHintWrapDom(v);
+            if (hintWrapDom) {
+                domAddPosition(hintWrapDom, 'relative');
+                v.hintWrapDom = hintWrapDom;
+            }
         }
-        v.customValidateRule = {}; // 自定义规则
-        v.hintDom = document.createElement('span');
-        v.hintDom.classList.add(self.opts.hintClass);
+        if (!v.hintDom) {
+            // 为了兼容未来动态创建的元素，此方法会被多次调用，但是这里却不能重新赋值，否则会导致引用消失，以至于renderHintAdd时修改hintDom的innerHTML失效。
+            v.hintDom = document.createElement('span');
+            v.hintDom.classList.add(self.opts.hintClass);
+        }
     });
 };
 ValidateForm.prototype.getHintWrapDom = function (input) {
@@ -2406,13 +2414,14 @@ ValidateForm.prototype.renderHintAdd = function () {
     // 只有没被隐藏的才进行验证
     var input = opts.input;
     var hintDom = input.hintDom;
-    if (input.offsetWidth && hintDom) {
+    if (hintDom) {
         hintDom.innerHTML = opts.txt;
         var hintWrapDom = input.hintWrapDom;
         var hintDomIsExist = hintWrapDom.querySelector('.' + this.opts.hintClass);
         if (hintWrapDom && !hintDomIsExist) {
             hintWrapDom.appendChild(hintDom);
         }
+        console.log(opts, hintDom, hintWrapDom);
     }
 };
 ValidateForm.prototype.renderHintRemove = function () {
@@ -2428,6 +2437,10 @@ ValidateForm.prototype.renderHintRemove = function () {
 ValidateForm.prototype.validateInput = function (input) {
     var self = this;
     var opts = self.opts;
+    if (input.offsetWidth === 0) {
+        // 不验证宽度为0的input(display为none时不验证)
+        return;
+    }
     var validateType = input.dataset.validate || 'undefined';
     var validateHintTxt = input.dataset.hint || 'undefined';
     var type = validateType.split(' ');
@@ -2445,7 +2458,7 @@ ValidateForm.prototype.validateInput = function (input) {
         value = input.dataset.value;
     }
     // 验证自定义的规则
-    var customValidateRule = input.customValidateRule;
+    var customValidateRule = input.customValidateRule || {};
     Object.keys(customValidateRule).forEach(function (keys) {
         var obj = customValidateRule[keys];
         obj.isValidateSuccess = obj.fn(value);
@@ -2574,6 +2587,7 @@ ValidateForm.prototype.validateInput = function (input) {
 };
 ValidateForm.prototype.isAllPassValidate = function () {
     var self = this;
+    self.render(); // 为了兼容未来动态创建的元素，这里需要重新渲染并绑定属性
     var isValidateSuccess = true;
     self.element.forEach(function (v) {
         self.validateInput(v);
@@ -2585,17 +2599,28 @@ ValidateForm.prototype.isAllPassValidate = function () {
 };
 ValidateForm.prototype.power = function () {
     var self = this;
+    var eventIsRepeat = {};
     self.element.forEach(function (v) {
         var eventsType = v.dataset.event || 'blur';
-        v.addEventListener(eventsType, function () {
-            self.validateInput(this);
-        });
+        // js原生事件无法给未来动态创建的元素加事件，除非我用自己封装的那个事件委托进行绑定，但是代码上百行，还是直接用jq的吧。(jq的事件委托很奇葩，如果input里有值，清空之后失去焦点会触发两次，没有值触发一次。)
+        // jq的事件委托可以给未来动态创建的元素加事件，但是事件会被绑定多次，所以我定义了一个eventIsRepeat来进行过滤。
+        var name = eventsType + self.opts.element;
+        if (!eventIsRepeat[name]) {
+            eventIsRepeat[name] = true;
+            $(document).on(eventsType, self.opts.element, function () {
+                self.render(); // 为了兼容未来动态创建的元素，这里需要重新渲染并绑定属性
+                self.validateInput(this);
+            });
+        }
     });
 };
 
 // 自定义验证规则
 ValidateForm.prototype.setValidate = function (name, fn) {
     this.element.forEach(function (v) {
+        if (!v.customValidateRule) {
+            v.customValidateRule = {}; // 自定义规则
+        }
         v.customValidateRule[name] = {
             fn: fn,
             isValidateSuccess: false
@@ -16621,7 +16646,7 @@ function crc32(/* arguments */) {
 }
 
 module.exports = crc32;
-
+    
 })();
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(0).Buffer))

@@ -105,7 +105,7 @@ var Sub = function (_Super) {
                 });
             });
 
-            // 验证放在最后是为了保证执行顺序，动态生成的标签，只要重新new一下，element传入dom即可。
+            // 验证放在最后是为了保证执行顺序。动态生成的标签，只要重新new一下，element传入dom即可，然后存储实例对象，留着保存时再验证一下。或者不绑定事件，全部都留到保存时再验证，这样只需要保存的时候new一下验证组件，触发一下是否全部验证通过的方法即可。
             var ValidateInput = __webpack_require__(11);
             var validateInput = new ValidateInput({ element: '.js-validate-form' });
         }
