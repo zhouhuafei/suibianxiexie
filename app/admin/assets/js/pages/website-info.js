@@ -67,14 +67,16 @@ class Sub extends Super {
                     new Dialog({
                         config: {
                             type: 'alert',
-                            content: json.message || '保存成功',
+                            alert: {
+                                content: json.message || '保存成功',
+                            },
                         },
                     });
                 }
             });
         });
 
-        // 验证放在最后是为了保证执行顺序
+        // 验证放在最后是为了保证执行顺序，动态生成的标签，只要重新new一下，element传入dom即可。
         const ValidateInput = require('../components-dom/g-validate-form-hint');
         const validateInput = new ValidateInput({element: '.js-validate-form'});
     }
