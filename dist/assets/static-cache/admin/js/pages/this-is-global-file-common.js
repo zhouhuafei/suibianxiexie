@@ -2421,7 +2421,6 @@ ValidateForm.prototype.renderHintAdd = function () {
         if (hintWrapDom && !hintDomIsExist) {
             hintWrapDom.appendChild(hintDom);
         }
-        console.log(opts, hintDom, hintWrapDom);
     }
 };
 ValidateForm.prototype.renderHintRemove = function () {
@@ -2602,12 +2601,15 @@ ValidateForm.prototype.power = function () {
     var eventIsRepeat = {};
     self.element.forEach(function (v) {
         var eventsType = v.dataset.event || 'blur';
-        // js原生事件无法给未来动态创建的元素加事件，除非我用自己封装的那个事件委托进行绑定，但是代码上百行，还是直接用jq的吧。(jq的事件委托很奇葩，如果input里有值，清空之后失去焦点会触发两次，没有值触发一次。)
+        // js原生事件无法给未来动态创建的元素加事件，除非我用自己封装的那个事件委托进行绑定，但是代码上百行，还是直接用jq的吧。
+        // jq的事件委托很奇葩，如果input里有值，清空之后失去焦点会触发两次，没有值触发一次。
+        // 奇葩的原因是因为委托了blur和change事件，blur的时候如果value改变了，会触发blur和change，所以会触发两次，没毛病。
         // jq的事件委托可以给未来动态创建的元素加事件，但是事件会被绑定多次，所以我定义了一个eventIsRepeat来进行过滤。
         var name = eventsType + self.opts.element;
         if (!eventIsRepeat[name]) {
             eventIsRepeat[name] = true;
             $(document).on(eventsType, self.opts.element, function () {
+                console.log(123);
                 self.render(); // 为了兼容未来动态创建的元素，这里需要重新渲染并绑定属性
                 self.validateInput(this);
             });
