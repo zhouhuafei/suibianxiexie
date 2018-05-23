@@ -76,7 +76,7 @@ class Sub extends Super {
             });
         });
 
-        // 验证放在最后是为了保证执行顺序，动态生成的标签，只要重新new一下，element传入dom即可。
+        // 验证放在最后是为了保证执行顺序。动态生成的标签，只要重新new一下，element传入dom即可，然后保存实例对象，留着保存的再验证一下。jq的事件委托是没用的，因为dom上没绑定该有的东西，验证组件可能需要改写待续...。
         const ValidateInput = require('../components-dom/g-validate-form-hint');
         const validateInput = new ValidateInput({element: '.js-validate-form'});
     }
