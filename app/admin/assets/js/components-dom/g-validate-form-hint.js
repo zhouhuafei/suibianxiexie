@@ -51,7 +51,6 @@ ValidateForm.prototype.getHintWrapDom = function (input) {
     return parent;
 };
 ValidateForm.prototype.renderHintAdd = function (opts = {}) {
-    // 只有没被隐藏的才进行验证
     const input = opts.input;
     const hintDom = input.hintDom;
     if (hintDom) {
@@ -74,7 +73,7 @@ ValidateForm.prototype.renderHintRemove = function (opts = {}) {
 ValidateForm.prototype.validateInput = function (input) {
     const self = this;
     const opts = self.opts;
-    if (input.offsetWidth === 0) { // 不验证宽度为0的input(display为none时不验证)
+    if (input.offsetWidth === 0) { // 不验证宽度为0的input(display为none时不验证)(只有没被隐藏的才进行验证)
         return;
     }
     const validateType = input.dataset.validate || 'undefined';

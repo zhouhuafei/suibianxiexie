@@ -2411,7 +2411,6 @@ ValidateForm.prototype.getHintWrapDom = function (input) {
 ValidateForm.prototype.renderHintAdd = function () {
     var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-    // 只有没被隐藏的才进行验证
     var input = opts.input;
     var hintDom = input.hintDom;
     if (hintDom) {
@@ -2437,7 +2436,7 @@ ValidateForm.prototype.validateInput = function (input) {
     var self = this;
     var opts = self.opts;
     if (input.offsetWidth === 0) {
-        // 不验证宽度为0的input(display为none时不验证)
+        // 不验证宽度为0的input(display为none时不验证)(只有没被隐藏的才进行验证)
         return;
     }
     var validateType = input.dataset.validate || 'undefined';
