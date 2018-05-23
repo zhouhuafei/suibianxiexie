@@ -11,6 +11,7 @@ function ValidateForm(json) {
         hintClass: 'g-validate-form-hint',
         hintWrapClass: 'g-form', // 指定提示框的父级
         fileActiveClass: 'g-upload-active', // 文件或者图片上传成功之后的class，做限制个数需要这个
+        isBindEvent: true, // 是否绑定事件
     }, json);
     if (this.opts.element) {
         this.element = getDomArray(this.opts.element);
@@ -22,7 +23,9 @@ function ValidateForm(json) {
 
 ValidateForm.prototype.init = function () {
     this.render();
-    this.power();
+    if (this.opts.isBindEvent) {
+        this.power();
+    }
 };
 ValidateForm.prototype.render = function () {
     const self = this;
@@ -134,6 +137,42 @@ ValidateForm.prototype.validateInput = function (input) {
             }
             if (isValidateSuccess && v === 'yes-positive-integer') { // 设置了正整数验证
                 if (checkStr.isPositiveInteger(value)) {
+                    self.renderHintRemove({input: input});
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({txt: hintTxt[i], input: input});
+                    isValidateSuccess = false;
+                }
+            }
+            if (isValidateSuccess && v === 'yes-positive-float') { // 设置了正浮点数验证
+                if (checkStr.isPositiveFloat(value)) {
+                    self.renderHintRemove({input: input});
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({txt: hintTxt[i], input: input});
+                    isValidateSuccess = false;
+                }
+            }
+            if (isValidateSuccess && v === 'yes-phone') { // 设置了电话验证
+                if (checkStr.isPhoneNumEasy(value)) {
+                    self.renderHintRemove({input: input});
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({txt: hintTxt[i], input: input});
+                    isValidateSuccess = false;
+                }
+            }
+            if (isValidateSuccess && v === 'yes-email') { // 设置了邮箱验证
+                if (checkStr.isEmail(value)) {
+                    self.renderHintRemove({input: input});
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({txt: hintTxt[i], input: input});
+                    isValidateSuccess = false;
+                }
+            }
+            if (isValidateSuccess && v === 'yes-url') { // 设置了网址验证
+                if (checkStr.isUrl(value)) {
                     self.renderHintRemove({input: input});
                     isValidateSuccess = true;
                 } else {
