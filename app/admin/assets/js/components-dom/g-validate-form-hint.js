@@ -231,7 +231,6 @@ ValidateForm.prototype.power = function () {
         if (!eventIsRepeat[name]) {
             eventIsRepeat[name] = true;
             $(document).on(eventsType, self.opts.element, function () {
-                console.log(123);
                 self.render(); // 为了兼容未来动态创建的元素，这里需要重新渲染并绑定属性
                 self.validateInput(this);
             });
