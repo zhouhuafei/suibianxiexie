@@ -43,7 +43,7 @@
                             <div class="g-form-body g-form-body-more-row">
                                 <label class="g-upload <%= page.logo ? 'g-upload-active' : '' %>">
                                     <input class="g-upload-input js-validate-form js-upload"
-                                           data-event="change"
+                                           data-event="no-event"
                                            data-validate="no-empty yes-limit-length-1"
                                            data-hint="本项必传 最多上传1张图片"
                                            data-value="<%= page.logo ? 'true' : '' %>"
@@ -66,7 +66,7 @@
                             <div class="g-form-body g-form-body-more-row">
                                 <label class="g-upload <%= page.favicon ? 'g-upload-active' : '' %>">
                                     <input class="g-upload-input js-validate-form js-upload"
-                                           data-event="change"
+                                           data-event="no-event"
                                            data-validate="no-empty yes-limit-length-1"
                                            data-hint="本项必传 最多上传1张图片"
                                            data-value="<%= page.favicon ? 'true' : '' %>"
