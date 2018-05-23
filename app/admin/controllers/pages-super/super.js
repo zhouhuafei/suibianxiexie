@@ -137,7 +137,7 @@ class Super {
                             {
                                 name: 'logout',
                                 title: '退出',
-                                power: 'js-logout', // 功能型菜单
+                                power: 'js-g-logout', // 功能型菜单
                             },
                         ],
                     },

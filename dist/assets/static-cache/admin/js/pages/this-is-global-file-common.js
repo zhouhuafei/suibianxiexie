@@ -2095,7 +2095,7 @@ var Super = function () {
 
             // 账号退出
             (function () {
-                var btn = document.querySelector('.js-logout');
+                var btn = document.querySelector('.js-g-logout');
                 var api = self.dataInfo.api;
                 var routes = self.dataInfo.routes;
                 var Dialog = self.Dialog;
@@ -16621,7 +16621,7 @@ function crc32(/* arguments */) {
 }
 
 module.exports = crc32;
-    
+
 })();
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(0).Buffer))

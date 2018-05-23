@@ -83,7 +83,7 @@ class Super {
 
         // 账号退出
         (function () {
-            const btn = document.querySelector('.js-logout');
+            const btn = document.querySelector('.js-g-logout');
             const api = self.dataInfo.api;
             const routes = self.dataInfo.routes;
             const Dialog = self.Dialog;
@@ -164,6 +164,12 @@ class Super {
                     }
                 });
             });
+        })();
+
+        // input自动纠正的操作
+        (function () {
+            // js-g-positive-integer 转成正整数待续...
+            // js-g-positive-float2 转成正浮点数(保留两位小数)待续...
         })();
     }
 
