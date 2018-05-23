@@ -7,13 +7,8 @@ class Sub extends Super {
     power() {
         const superSelf = this;
         const dataInfo = superSelf.dataInfo;
+        const Dialog = superSelf.Dialog;
         const routes = dataInfo.routes;
-
-        // 验证
-        (function () {
-            const ValidateInput = require('../components-dom/g-validate-form-hint');
-            new ValidateInput({element: '.js-validate-form'});
-        }());
 
         // 上传
         $('.js-upload').on('change', function () {
@@ -41,7 +36,6 @@ class Sub extends Super {
                     }
                 },
             }).then(function (json) {
-                console.log('测试formData:->', json);
                 if (json.status === 'success') {
                     const result = json.result[0];
                     const url = result.url;
@@ -52,6 +46,7 @@ class Sub extends Super {
                     text.innerText = `${w}*${h}`;
                     parent.querySelector('input[type=hidden]').value = url;
                     parent.classList.add('g-upload-active');
+                    validateInput.validateInput(self);
                 }
             });
         });
@@ -59,6 +54,9 @@ class Sub extends Super {
         // 保存
         document.querySelector('.js-save').addEventListener('click', function () {
             const form = document.querySelector('form');
+            if (!validateInput.isAllPassValidate()) { // 如果不是全部都通过验证了，则不能提交。
+                return;
+            }
             axios({
                 url: form.action,
                 method: form.method,
@@ -66,9 +64,19 @@ class Sub extends Super {
             }).then(function (json) {
                 console.log('测试保存:->', json);
                 if (json.status === 'success') {
+                    new Dialog({
+                        config: {
+                            type: 'alert',
+                            content: json.message || '保存成功',
+                        },
+                    });
                 }
             });
         });
+
+        // 验证放在最后是为了保证执行顺序
+        const ValidateInput = require('../components-dom/g-validate-form-hint');
+        const validateInput = new ValidateInput({element: '.js-validate-form'});
     }
 }
 

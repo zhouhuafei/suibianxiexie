@@ -34,13 +34,8 @@ var Sub = function (_Super) {
         value: function power() {
             var superSelf = this;
             var dataInfo = superSelf.dataInfo;
+            var Dialog = superSelf.Dialog;
             var routes = dataInfo.routes;
-
-            // 验证
-            (function () {
-                var ValidateInput = __webpack_require__(11);
-                new ValidateInput({ element: '.js-validate-form' });
-            })();
 
             // 上传
             $('.js-upload').on('change', function () {
@@ -69,7 +64,6 @@ var Sub = function (_Super) {
                         }
                     }
                 }).then(function (json) {
-                    console.log('测试formData:->', json);
                     if (json.status === 'success') {
                         var result = json.result[0];
                         var url = result.url;
@@ -80,6 +74,7 @@ var Sub = function (_Super) {
                         text.innerText = w + '*' + h;
                         parent.querySelector('input[type=hidden]').value = url;
                         parent.classList.add('g-upload-active');
+                        validateInput.validateInput(self);
                     }
                 });
             });
@@ -87,15 +82,30 @@ var Sub = function (_Super) {
             // 保存
             document.querySelector('.js-save').addEventListener('click', function () {
                 var form = document.querySelector('form');
+                if (!validateInput.isAllPassValidate()) {
+                    // 如果不是全部都通过验证了，则不能提交。
+                    return;
+                }
                 axios({
                     url: form.action,
                     method: form.method,
                     data: new FormData(form)
                 }).then(function (json) {
                     console.log('测试保存:->', json);
-                    if (json.status === 'success') {}
+                    if (json.status === 'success') {
+                        new Dialog({
+                            config: {
+                                type: 'alert',
+                                content: json.message || '保存成功'
+                            }
+                        });
+                    }
                 });
             });
+
+            // 验证放在最后是为了保证执行顺序
+            var ValidateInput = __webpack_require__(11);
+            var validateInput = new ValidateInput({ element: '.js-validate-form' });
         }
     }]);
 
