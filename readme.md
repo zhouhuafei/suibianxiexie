@@ -63,10 +63,14 @@ assets/
     - 如果名字太长，可以使用简短的下划线命名，下划线表示是某个组件内部的结构
     ```
         .g-components ._item {}
-        .g-components ._item-on {}
-        .g-components ._item-off {}
-        .g-components ._item-active {}
-        .g-components ._item-inactive {}
+        .g-components ._item._item-on {}
+        .g-components ._item._item-off {}
+        .g-components ._item._item-active {}
+        .g-components ._item._item-inactive {}
+        .g-components ._item._on {}
+        .g-components ._item._off {}
+        .g-components ._item._active {}
+        .g-components ._item._inactive {}
     ```
 
 # 约定大于一切，规则至上-js
