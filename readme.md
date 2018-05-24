@@ -24,6 +24,7 @@ assets/
 │   ├── components-vue
 │   ├── pages // 存放页面对应的js
 │   ├── pages-super
+│   ├── plugs // 第三方插件
 │   └── utils // 实用工具
 ├── scss
 │   ├── commons
