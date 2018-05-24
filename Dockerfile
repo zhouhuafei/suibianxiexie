@@ -44,8 +44,8 @@ RUN npm install -g vue-cli
 # 安装npm的其他模块
 RUN npm install
 
-# 暴露80端口
-EXPOSE 80
+# 暴露5551端口
+EXPOSE 5551
 
 # 使用命令 pm2 start app.js 之后, pm2 默认在后台运行, 如果使用了Docker后,容器运行并立即退出,需要手动给“pm2”指定参数 --no-daemon
 CMD pm2 start pm2.json --no-daemon
