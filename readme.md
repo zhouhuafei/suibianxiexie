@@ -42,13 +42,10 @@ assets/
 * js-表示当前元素身上有对应的js操作。
 * 层级仅限于2-999之间,g-mask层级是500,g-mask-transparent层级是999,弹窗类型大于500即可,非弹窗类型请小于500。
 * css命名规范。
-    - 使用长链接方式表示容器。
+    - 使用长链接命名方式，就是使用中划线一直连接下去。
     ```
         .g-components .g-components-header {}
         .g-components .g-components-header-item {}
-    ```
-    - 使用长链接方式表示状态。
-    ```
         .g-components .g-components-header-item.g-components-header-item-on {}
         .g-components .g-components-header-item.g-components-header-item-off {}
         .g-components .g-components-header-item.g-components-header-item-active {}
@@ -60,18 +57,22 @@ assets/
         .g-components .g-components-header-item.g-components-header-item-col-3 {}
         .g-components .g-components-header-item.g-components-header-item-col-4 {}
     ```
-    - 如果名字太长，可以使用简短的下划线命名，下划线表示是属于某个组件内部的结构。
+    - 如果名字太长，可以使用简短的下划线命名，下划线表示此结构是属于一个外部容器所拥有的。
     ```
-        .g-components ._item {}
-        .g-components ._item._item-on {}
-        .g-components ._item._item-off {}
-        .g-components ._item._item-active {}
-        .g-components ._item._item-inactive {}
-        .g-components ._item._on {}
-        .g-components ._item._off {}
-        .g-components ._item._active {}
-        .g-components ._item._inactive {}
+        .g-components ._header {}
+        .g-components ._header ._item {}
+        .g-components ._header ._item._on {}
+        .g-components ._header ._item._off {}
+        .g-components ._header ._item._active {}
+        .g-components ._header ._item._inactive {}
+        .g-components ._header ._item._window {}
+        .g-components ._header ._item._list {}
+        .g-components ._header ._item._col-1 {}
+        .g-components ._header ._item._col-2 {}
+        .g-components ._header ._item._col-3 {}
+        .g-components ._header ._item._col-4 {}
     ```
+    - 简短命名，当不同的组件嵌套时，冲突的可能性很高(因为_item这种命名，在其他组件也可能被使用)。长连接命名方式冲突的可能性为零(因为每次都有组件名称连接着，不同的组件，名字不一样，则不会冲突)。
 
 # 约定大于一切，规则至上-js
 * 结构上有js-前缀或者js-g-前缀，表示这个结构具备js功能。
