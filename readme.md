@@ -60,7 +60,7 @@ assets/
         .g-components .g-components-header-item.g-components-header-item-col-3 {}
         .g-components .g-components-header-item.g-components-header-item-col-4 {}
     ```
-    - 如果名字太长，可以使用简短的下划线命名，下划线表示是某个组件内部的结构
+    - 如果名字太长，可以使用简短的下划线命名，下划线表示是属于某个组件内部的结构。
     ```
         .g-components ._item {}
         .g-components ._item._item-on {}
