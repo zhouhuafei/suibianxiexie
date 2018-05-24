@@ -60,6 +60,10 @@ assets/
         .g-components .g-components-header-item.g-components-header-item-col-3 {}
         .g-components .g-components-header-item.g-components-header-item-col-4 {}
     ```
+    - 如果名字太长，可以使用简短的下划线命名，下划线表示是某个组件内部的结构
+    ```
+        .g-components ._item {}
+    ```
 
 # 约定大于一切，规则至上-js
 * 结构上有js-前缀或者js-g-前缀，表示这个结构具备js功能。
