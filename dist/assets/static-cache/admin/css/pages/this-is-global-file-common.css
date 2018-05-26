@@ -2011,3 +2011,18 @@ textarea.g-textarea {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between; }
+
+.g-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+  .g-row .g-col {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    width: 0;
+    margin-right: 20px; }
+    .g-row .g-col:last-of-type {
+      margin-right: 0; }
