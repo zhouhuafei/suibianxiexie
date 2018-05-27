@@ -2136,53 +2136,58 @@ var Super = function () {
                         }
                     });
                 };
-                var verifyCode = document.querySelectorAll('.g-verify-code-canvas');
-                verifyCode.forEach(function (v) {
-                    v.querySelector('img').addEventListener('click', refreshVerifyCode);
-                });
+                $(document).on('click', '.g-verify-code-canvas img', refreshVerifyCode);
 
                 // 刷新输入框
-                document.querySelectorAll('.g-form-icon.iconfont.icon-clear').forEach(function (v) {
-                    v.addEventListener('click', function () {
-                        var parent = this.parentNode;
-                        var input = parent.querySelector('.g-input');
-                        if (input) {
-                            input.value = '';
-                        }
-                        var textarea = parent.querySelector('.g-textarea');
-                        if (textarea) {
-                            textarea.value = '';
-                        }
-                        var verifyCode = parent.querySelector('.g-verify-code-canvas img');
-                        if (verifyCode) {
-                            refreshVerifyCode.call(verifyCode);
-                        }
-                    });
+                $(document).on('click', '.g-form-icon.iconfont.icon-clear', function () {
+                    var parent = $(this).closest('.g-form')[0];
+                    var input = parent.querySelector('.g-input');
+                    if (input) {
+                        input.value = '';
+                    }
+                    var textarea = parent.querySelector('.g-textarea');
+                    if (textarea) {
+                        textarea.value = '';
+                    }
+                    var verifyCode = parent.querySelector('.g-verify-code-canvas img');
+                    if (verifyCode) {
+                        refreshVerifyCode.call(verifyCode);
+                    }
                 });
 
                 // 密码是否可视
-                document.querySelectorAll('.g-form-icon.iconfont.icon-eye-off').forEach(function (v) {
-                    v.addEventListener('click', function () {
-                        var parent = this.parentNode;
-                        var input = parent.querySelector('.g-input');
-                        if (this.classList.contains('icon-eye-off')) {
-                            this.classList.remove('icon-eye-off');
-                            this.classList.add('icon-eye-on');
-                            input && (input.type = 'text');
-                        } else {
-                            this.classList.remove('icon-eye-on');
-                            this.classList.add('icon-eye-off');
-                            input && (input.type = 'password');
-                        }
-                    });
+                $(document).on('click', '.g-form-icon.iconfont.icon-eye-off, .g-form-icon.iconfont.icon-eye-on', function () {
+                    var parent = $(this).closest('.g-form')[0];
+                    var input = parent.querySelector('.g-input');
+                    if (this.classList.contains('icon-eye-off')) {
+                        this.classList.remove('icon-eye-off');
+                        this.classList.add('icon-eye-on');
+                        input && (input.type = 'text');
+                    } else {
+                        this.classList.remove('icon-eye-on');
+                        this.classList.add('icon-eye-off');
+                        input && (input.type = 'password');
+                    }
                 });
             })();
 
             // input自动纠正的操作
             (function () {
-                // 上面的其他事件绑定换成事件委托待续...
-                // js-g-positive-integer 转成正整数待续...
-                // js-g-positive-float2 转成正浮点数(保留两位小数)待续...
+                var strTo = self.tools.strToNum;
+                // 格式化成正整数
+                $(document).on('blur', '.js-g-positive-integer', function () {
+                    this.value = strTo.toPositiveInteger(this.value);
+                });
+                // 格式化成保留2位小数的浮点数
+                $(document).on('blur', '.js-g-positive-float', function () {
+                    this.value = strTo.toPositiveFloat(this.value);
+                });
+                /*
+                // 格式化成保留3位小数的浮点数
+                $(document).on('blur', '.js-g-positive-float3', function () {
+                    this.value = strTo.toPositiveFloat(this.value, 3);
+                });
+                */
             })();
         }
 
