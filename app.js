@@ -55,6 +55,7 @@ app.use(session({
     secret: secret, // 用于签署sessionID cookie的密钥
     cookie: {
         maxAge: ms('7 days'), // cookie过期时间
+        // domain: '.suibianxiexie.top', // 可以跨子域做单点登录，共享session。
     },
     store: new RedisStore(configRedis), // session存redis
 }));
