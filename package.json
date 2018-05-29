@@ -9,6 +9,7 @@
         "precommit": "npm run codeLint",
         "serverDev": "nodemon app.js",
         "serverStart": "pm2 start pm2.json",
+        "serverStartDocker": "pm2 start pm2.json --no-daemon",
         "serverStop": "pm2 stop all",
         "serverRestart": "pm2 restart all",
         "serverReload": "pm2 reload all",
