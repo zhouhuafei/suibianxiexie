@@ -8,6 +8,7 @@
         "codeFix": "eslint --fix --ext .js,.vue,.html ./",
         "precommit": "npm run codeLint",
         "serverDev": "nodemon app.js",
+        "serverDevDocker": "nodemon app.js --legacy-watch",
         "serverStart": "pm2 start pm2.json",
         "serverStartDocker": "pm2 start pm2.json --no-daemon",
         "serverStop": "pm2 stop all",
