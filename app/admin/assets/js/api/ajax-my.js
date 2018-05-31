@@ -74,7 +74,7 @@ function Ajax(json) {
             url: '', // url
             dataType: 'json', // 数据类型(默认json)
             async: true, // 默认异步
-            timeout: 8000, // 超时时间(默认8秒)
+            timeout: 30000, // 超时时间(默认8秒)
             mark: '?', // 当请求类型为get时,url后面的数据用什么符号开头url:'index.php',1.?ctl=seller&act=setting,2.#ctl=seller&act=setting
         },
         // 数据
