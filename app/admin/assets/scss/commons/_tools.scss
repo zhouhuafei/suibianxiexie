@@ -1,5 +1,6 @@
 @import "../config/config";
 
+/* 字体颜色 */
 .g-font-color-highlight {
     color: $g-highlight-color;
 }
@@ -131,4 +132,18 @@
 
 .g-text-indent-0 {
     text-indent: 0 !important;
+}
+
+/* 系列 - 10 */
+.g-padding-top-bottom-10 {
+    $size: 10;
+    padding-top: px2rem($size) !important;
+    padding-bottom: px2rem($size) !important;
+}
+
+/* 系列 - 20 */
+.g-padding-top-bottom-20 {
+    $size: 20;
+    padding-top: px2rem($size) !important;
+    padding-bottom: px2rem($size) !important;
 }
