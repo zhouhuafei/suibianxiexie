@@ -111,7 +111,7 @@ img {
     border: none;
     vertical-align: middle;
     max-height: 100%;
-    max-width: 10rem;
+    max-width: 100%; /* 商品详情里第三方导入的，详情信息里img的max-width应该设置为10rem，因为他们的img父级可能有很大的width，此时100%对img没有意义 */
 }
 
 /* 修复浏览器记住密码时输入框内异常的背景色 */
