@@ -8,7 +8,7 @@ module.exports = function (json) {
         method: 'get', // 请求方式默认get
         isHandleError: true, // 是否处理错误
         isHandleFailure: true, // 是否处理失败
-        timeout: 8000, // 超时
+        timeout: 30000, // 超时
     }, json);
     /*
     * javascript axios get params
