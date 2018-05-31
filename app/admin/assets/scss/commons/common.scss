@@ -193,3 +193,72 @@
         }
     }
 }
+
+/* 网格待续...(测试) */
+.g-grid {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid $g-border-color-default;
+    background: white;
+    .g-grid-item {
+        width: 0;
+        flex: 1;
+        border-right: 1px solid $g-border-color-default;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        .g-grid-item-icon {
+            position: relative;
+            $size: 30;
+            height: px2rem($size);
+            font-size: px2rem($size);
+            margin: px2rem(20) 0 px2rem(10);
+            .g-grid-item-icon-hint {
+                position: absolute;
+                right: px2rem(40);
+                top: px2rem(-20);
+                height: px2rem(30);
+                font-size: px2rem(28);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: $g-highlight-color;
+            }
+        }
+        .g-grid-item-text {
+            margin-bottom: px2rem(20);
+        }
+        &:last-of-type {
+            border-right: none;
+        }
+    }
+    &:last-of-type {
+        border-bottom: none;
+    }
+    &._no-border {
+        border: none;
+        .g-grid-item {
+            border: none;
+        }
+    }
+    &._col2 {
+        .g-grid-item {
+            width: 50%;
+        }
+    }
+    &._col3 {
+        .g-grid-item {
+            width: 33.333333%;
+        }
+    }
+    &._col4 {
+        .g-grid-item {
+            width: 25%;
+        }
+    }
+    &._col5 {
+        .g-grid-item {
+            width: 20%;
+        }
+    }
+}
