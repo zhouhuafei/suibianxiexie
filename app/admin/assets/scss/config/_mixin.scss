@@ -35,9 +35,13 @@
 }
 
 //省略号
-@mixin text-ellipsis($lineClamp:1, $lineHeight:1) {
+@mixin text-ellipsis($lineClamp:1, $lineHeight:1, $height:0) {
     line-height: $lineHeight;
-    height: $lineHeight * $lineClamp;
+    @if $height == 0 {
+        height: $lineHeight * $lineClamp;
+    } @else {
+        height: $height;
+    }
     text-overflow: ellipsis;
     -webkit-line-clamp: $lineClamp;
     -webkit-box-orient: vertical;
