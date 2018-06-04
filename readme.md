@@ -91,3 +91,5 @@ assets/
 * 安装canvas(node-canvas)时，出现报错。请参阅 https://github.com/Automattic/node-canvas
     - 参阅之后，执行了操作，但是windows下依然报错。请使用 https://github.com/felixrieseberg/windows-build-tools
 
+# 待续...
+* static-cache放到各自项目的内部，为了以后配独立域名的时候方便。
