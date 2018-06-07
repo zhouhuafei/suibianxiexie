@@ -3,6 +3,7 @@
 /* 盒模型重置 */
 *, *:before, *:after {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 /* 主体重置 */
