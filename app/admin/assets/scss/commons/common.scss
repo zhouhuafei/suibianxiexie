@@ -193,3 +193,13 @@
         }
     }
 }
+
+// 标题
+.g-title {
+    height: px2rem(30);
+    font-size: px2rem(12);
+    font-weight: bold;
+    color: $g-font-color-default;
+    display: flex;
+    align-items: center;
+}

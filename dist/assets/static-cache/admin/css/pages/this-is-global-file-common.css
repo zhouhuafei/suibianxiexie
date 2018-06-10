@@ -202,7 +202,8 @@
 /* 盒模型重置 */
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box; }
+          box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent; }
 
 /* 主体重置 */
 body {
@@ -294,15 +295,14 @@ img {
   border: none;
   vertical-align: middle;
   max-height: 100%;
-  max-width: 10rem; }
+  max-width: 100%; }
 
 /* 修复浏览器记住密码时输入框内异常的背景色 */
 :-webkit-autofill {
-  /* 背景色会一直是白色的，其他背景色将统统失效 */
-  /*-webkit-box-shadow: 0 0 0 1000px white inset;*/
-  /* 延迟7天变背景色，7天后背景色还是会变的异常 */
-  -webkit-transition: background-color 604800s ease-in-out 0s;
-  transition: background-color 604800s ease-in-out 0s; }
+  /* 背景色会一直是白色的，其他背景色将统统失效，需要其他背景色，只需要单独进行重新覆盖即可 */
+  -webkit-box-shadow: 0 0 0 1000px white inset;
+  /* 延迟7天变背景色，7天后背景色还是会变的异常，切换input类型背景色还是会变异常 */
+  /*transition: background-color 604800s ease-in-out 0s;*/ }
 
 /* 字体图标 */
 .iconfont {
@@ -320,6 +320,7 @@ img {
     @return $px * 1px;
 }
 */
+/* 字体颜色 */
 .g-font-color-highlight {
   color: #0089ff; }
 
@@ -334,6 +335,13 @@ img {
 
 .g-font-color-ignore {
   color: #bfbfbf; }
+
+.g-font-color-white {
+  color: white; }
+
+/* 背景颜色 */
+.g-background-color-white {
+  background-color: white; }
 
 /* 工具样式 */
 .g-display-none {
@@ -435,6 +443,16 @@ img {
 
 .g-text-indent-0 {
   text-indent: 0 !important; }
+
+/* 系列 - 10 */
+.g-padding-top-bottom-10 {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important; }
+
+/* 系列 - 20 */
+.g-padding-top-bottom-20 {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。
@@ -2026,3 +2044,15 @@ textarea.g-textarea {
     margin-right: 20px; }
     .g-row .g-col:last-of-type {
       margin-right: 0; }
+
+.g-title {
+  height: 30px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #333333;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
