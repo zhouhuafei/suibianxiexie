@@ -13,7 +13,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            .g-list-body-icon {
+            .g-list-body-logo {
                 $size: 24;
                 width: px2rem($size);
                 height: px2rem($size);
@@ -24,11 +24,11 @@
             .g-list-body-text {
                 font-size: px2rem(12);
             }
-            .g-list-body-mark {
+            .g-list-body-value {
                 font-size: px2rem(12);
                 color: $g-ignore-color;
             }
-            .g-list-body-more {
+            .g-list-body-icon {
                 font-size: px2rem(14);
             }
         }
