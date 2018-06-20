@@ -684,8 +684,7 @@ textarea.g-textarea {
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center;
-  margin-left: 10px; }
+          align-items: center; }
   .g-radio .g-radio-body {
     position: relative;
     width: 20px;
@@ -752,8 +751,7 @@ textarea.g-textarea {
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center;
-  margin-left: 10px; }
+          align-items: center; }
   .g-checkbox .g-checkbox-body {
     width: 20px;
     height: 20px;
@@ -1950,6 +1948,8 @@ textarea.g-textarea {
       /* 重置g-upload */
       /* 重置g-input */
       /* 重置g-textarea */
+      /* 重置g-checkbox */
+      /* 重置g-radio */
       /* 重置g-select */
       /* 多行情况 */ }
       .g-form-wrap .g-form .g-form-body .g-upload {
@@ -1958,6 +1958,10 @@ textarea.g-textarea {
         border: none; }
       .g-form-wrap .g-form .g-form-body .g-textarea {
         border: none; }
+      .g-form-wrap .g-form .g-form-body .g-checkbox {
+        margin-left: 10px; }
+      .g-form-wrap .g-form .g-form-body .g-radio {
+        margin-left: 10px; }
       .g-form-wrap .g-form .g-form-body .g-select {
         border: none; }
         .g-form-wrap .g-form .g-form-body .g-select .g-select-mark {
