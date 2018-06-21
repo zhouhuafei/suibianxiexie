@@ -82,7 +82,7 @@ ValidateForm.prototype.validateInput = function (input) {
     const hintTxt = validateHintTxt.split(' ');
     const hintWrapDom = input.hintWrapDom;
     const inputType = input.type;
-    const inputName = input.name; // 这个不能使用，因为有些name名称是这种格式 hobby[] 此时通过name获取会报错
+    const inputName = input.name; // 这个不能使用，因为有些name名称是这种格式 hobby[] 此时通过name获取会报错 -> 纠正 其实不会报错 只需要 input[name=""] 把变量放在双引号里拼接一下就行了
     const isPassword = inputType === 'password';
     const isRadio = inputType === 'radio';
     const isCheckbox = inputType === 'checkbox';

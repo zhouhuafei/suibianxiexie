@@ -2139,7 +2139,7 @@ var Super = function () {
                 $(document).on('click', '.g-verify-code-canvas img', refreshVerifyCode);
 
                 // 刷新输入框
-                $(document).on('click', '.g-form-icon.iconfont.icon-clear', function () {
+                $(document).on('click', '.g-form-content-icon.iconfont.icon-clear', function () {
                     var parent = $(this).closest('.g-form')[0];
                     var input = parent.querySelector('.g-input');
                     if (input) {
@@ -2156,7 +2156,7 @@ var Super = function () {
                 });
 
                 // 密码是否可视
-                $(document).on('click', '.g-form-icon.iconfont.icon-eye-off, .g-form-icon.iconfont.icon-eye-on', function () {
+                $(document).on('click', '.g-form-content-icon.iconfont.icon-eye-off, .g-form-content-icon.iconfont.icon-eye-on', function () {
                     var parent = $(this).closest('.g-form')[0];
                     var input = parent.querySelector('.g-input');
                     if (this.classList.contains('icon-eye-off')) {

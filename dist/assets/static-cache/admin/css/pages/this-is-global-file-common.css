@@ -684,8 +684,7 @@ textarea.g-textarea {
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center;
-  margin-left: 10px; }
+          align-items: center; }
   .g-radio .g-radio-body {
     position: relative;
     width: 20px;
@@ -752,8 +751,7 @@ textarea.g-textarea {
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center;
-  margin-left: 10px; }
+          align-items: center; }
   .g-checkbox .g-checkbox-body {
     width: 20px;
     height: 20px;
@@ -1107,8 +1105,7 @@ textarea.g-textarea {
 */
 .g-list-wrap {
   width: 100%;
-  background: #fff;
-  margin-bottom: 10px; }
+  background: #fff; }
   .g-list-wrap .g-list {
     display: block;
     padding: 10px 10px;
@@ -1914,8 +1911,7 @@ textarea.g-textarea {
 .g-form-wrap {
   border: 1px solid #e6e7ed;
   border-left: none;
-  border-right: none;
-  margin-bottom: 10px; }
+  border-right: none; }
   .g-form-wrap .g-form {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1938,66 +1934,79 @@ textarea.g-textarea {
       padding: 0 10px;
       min-width: 120px;
       text-align: right; }
-    .g-form-wrap .g-form .g-form-body {
+    .g-form-wrap .g-form .g-form-content {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
       -webkit-box-flex: 1;
           -ms-flex: 1;
               flex: 1;
-      border-left: 1px solid #e6e7ed;
-      /* 重置g-upload */
-      /* 重置g-input */
-      /* 重置g-textarea */
-      /* 重置g-select */
-      /* 多行情况 */ }
-      .g-form-wrap .g-form .g-form-body .g-upload {
-        margin: 10px; }
-      .g-form-wrap .g-form .g-form-body .g-input {
-        border: none; }
-      .g-form-wrap .g-form .g-form-body .g-textarea {
-        border: none; }
-      .g-form-wrap .g-form .g-form-body .g-select {
-        border: none; }
-        .g-form-wrap .g-form .g-form-body .g-select .g-select-mark {
-          border-right: 1px dashed #e6e7ed; }
-      .g-form-wrap .g-form .g-form-body.g-form-body-more-row {
-        /* 重置g-form-body */
-        padding-bottom: 10px;
+      border-left: 1px solid #e6e7ed; }
+      .g-form-wrap .g-form .g-form-content .g-form-content-body {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-flex: 1;
+            -ms-flex: 1;
+                flex: 1;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
         /* 重置g-upload */
-        /* 重置g-checkbox */ }
-        .g-form-wrap .g-form .g-form-body.g-form-body-more-row .g-upload {
-          margin: 10px 0px 0px 10px; }
-        .g-form-wrap .g-form .g-form-body.g-form-body-more-row .g-checkbox {
-          margin: 10px 0px 0px 10px; }
-    .g-form-wrap .g-form .g-form-icon {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center;
-      min-width: 20px;
-      padding: 0 2px; }
-    .g-form-wrap .g-form .g-form-limit {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-box-pack: end;
-          -ms-flex-pack: end;
-              justify-content: flex-end;
-      min-width: 44px;
-      padding: 0 2px; }
-    .g-form-wrap .g-form .g-form-hint {
-      color: #fa5555; }
+        /* 重置g-input */
+        /* 重置g-checkbox */
+        /* 重置g-radio */
+        /* 重置g-select */
+        /* 重置g-textarea */
+        /* 多行情况 */ }
+        .g-form-wrap .g-form .g-form-content .g-form-content-body .g-upload {
+          margin: 10px; }
+        .g-form-wrap .g-form .g-form-content .g-form-content-body .g-input {
+          border: none; }
+        .g-form-wrap .g-form .g-form-content .g-form-content-body .g-checkbox {
+          margin-left: 10px; }
+        .g-form-wrap .g-form .g-form-content .g-form-content-body .g-radio {
+          margin-left: 10px; }
+        .g-form-wrap .g-form .g-form-content .g-form-content-body .g-select {
+          border: none; }
+          .g-form-wrap .g-form .g-form-content .g-form-content-body .g-select .g-select-mark {
+            border-right: 1px dashed #e6e7ed; }
+        .g-form-wrap .g-form .g-form-content .g-form-content-body .g-textarea {
+          border: none; }
+        .g-form-wrap .g-form .g-form-content .g-form-content-body.g-form-content-body-more-row {
+          /* 重置g-form-content-body */
+          padding-bottom: 10px;
+          /* 重置g-upload */
+          /* 重置g-checkbox */ }
+          .g-form-wrap .g-form .g-form-content .g-form-content-body.g-form-content-body-more-row .g-upload {
+            margin: 10px 0px 0px 10px; }
+          .g-form-wrap .g-form .g-form-content .g-form-content-body.g-form-content-body-more-row .g-checkbox {
+            margin: 10px 0px 0px 10px; }
+      .g-form-wrap .g-form .g-form-content .g-form-content-icon {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        min-width: 20px;
+        padding: 0 2px; }
+      .g-form-wrap .g-form .g-form-content .g-form-content-limit {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: end;
+            -ms-flex-pack: end;
+                justify-content: flex-end;
+        min-width: 44px;
+        padding: 0 2px; }
+      .g-form-wrap .g-form .g-form-content .g-form-content-hint {
+        color: #fa5555; }
     .g-form-wrap .g-form:last-of-type {
       border-bottom: none;
       margin-bottom: 0; }
