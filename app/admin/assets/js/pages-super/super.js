@@ -127,7 +127,7 @@ class Super {
             $(document).on('click', '.g-verify-code-canvas img', refreshVerifyCode);
 
             // 刷新输入框
-            $(document).on('click', '.g-form-icon.iconfont.icon-clear', function () {
+            $(document).on('click', '.g-form-content-icon.iconfont.icon-clear', function () {
                 const parent = $(this).closest('.g-form')[0];
                 const input = parent.querySelector('.g-input');
                 if (input) {
@@ -144,7 +144,7 @@ class Super {
             });
 
             // 密码是否可视
-            $(document).on('click', '.g-form-icon.iconfont.icon-eye-off, .g-form-icon.iconfont.icon-eye-on', function () {
+            $(document).on('click', '.g-form-content-icon.iconfont.icon-eye-off, .g-form-content-icon.iconfont.icon-eye-on', function () {
                 const parent = $(this).closest('.g-form')[0];
                 const input = parent.querySelector('.g-input');
                 if (this.classList.contains('icon-eye-off')) {
