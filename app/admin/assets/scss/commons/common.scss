@@ -83,6 +83,7 @@
         border-bottom: px2rem(1) solid $g-border-color-default;
         background: #ffffff;
         min-height: px2rem(40);
+        margin-bottom: px2rem(10);
         .g-form-text {
             display: flex;
             align-items: center;
@@ -148,6 +149,7 @@
         }
         &:last-of-type {
             border-bottom: none;
+            margin-bottom: 0;
         }
     }
 }
