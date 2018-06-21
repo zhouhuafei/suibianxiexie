@@ -90,68 +90,72 @@
             min-width: px2rem(120);
             text-align: right;
         }
-        .g-form-body {
+        .g-form-content {
             display: flex;
-            flex-wrap: wrap;
             flex: 1;
             border-left: px2rem(1) solid $g-border-color-default;
-            /* 重置g-upload */
-            .g-upload {
-                margin: px2rem(10);
-            }
-            /* 重置g-input */
-            .g-input {
-                border: none;
-            }
-            /* 重置g-checkbox */
-            .g-checkbox {
-                margin-left: px2rem(10);
-            }
-            /* 重置g-radio */
-            .g-radio {
-                margin-left: px2rem(10);
-            }
-            /* 重置g-select */
-            .g-select {
-                border: none;
-                .g-select-mark {
-                    border-right: px2rem(1) dashed $g-border-color-default;
-                }
-            }
-            /* 重置g-textarea */
-            .g-textarea {
-                border: none;
-            }
-            /* 多行情况 */
-            &.g-form-body-more-row {
-                /* 重置g-form-body */
-                padding-bottom: px2rem(10);
+            .g-form-content-body {
+                display: flex;
+                flex: 1;
+                flex-wrap: wrap;
                 /* 重置g-upload */
                 .g-upload {
-                    margin: px2rem(10) px2rem(0) px2rem(0) px2rem(10);
+                    margin: px2rem(10);
+                }
+                /* 重置g-input */
+                .g-input {
+                    border: none;
                 }
                 /* 重置g-checkbox */
                 .g-checkbox {
-                    margin: px2rem(10) px2rem(0) px2rem(0) px2rem(10);
+                    margin-left: px2rem(10);
+                }
+                /* 重置g-radio */
+                .g-radio {
+                    margin-left: px2rem(10);
+                }
+                /* 重置g-select */
+                .g-select {
+                    border: none;
+                    .g-select-mark {
+                        border-right: px2rem(1) dashed $g-border-color-default;
+                    }
+                }
+                /* 重置g-textarea */
+                .g-textarea {
+                    border: none;
+                }
+                /* 多行情况 */
+                &.g-form-content-body-more-row {
+                    /* 重置g-form-content-body */
+                    padding-bottom: px2rem(10);
+                    /* 重置g-upload */
+                    .g-upload {
+                        margin: px2rem(10) px2rem(0) px2rem(0) px2rem(10);
+                    }
+                    /* 重置g-checkbox */
+                    .g-checkbox {
+                        margin: px2rem(10) px2rem(0) px2rem(0) px2rem(10);
+                    }
                 }
             }
-        }
-        .g-form-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: px2rem($height / 2);
-            padding: 0 px2rem(2);
-        }
-        .g-form-limit {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            min-width: px2rem(44);
-            padding: 0 px2rem(2);
-        }
-        .g-form-hint {
-            color: $g-danger-color;
+            .g-form-content-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: px2rem($height / 2);
+                padding: 0 px2rem(2);
+            }
+            .g-form-content-limit {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                min-width: px2rem(44);
+                padding: 0 px2rem(2);
+            }
+            .g-form-content-hint {
+                color: $g-danger-color;
+            }
         }
         &:last-of-type {
             border-bottom: none;
