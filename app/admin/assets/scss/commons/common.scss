@@ -72,20 +72,12 @@
 
 // 表单
 .g-form-wrap {
-    border: px2rem(1) solid $g-border-color-default;
-    border-left: none;
-    border-right: none;
-    &.g-form-wrap-block {
-        border: none;
-        padding: px2rem(40) px2rem(20) px2rem(20) px2rem(10);
-        background: $g-background-color-block;
-        border-radius: px2rem(6);
+    &.g-form-wrap-type-1 {
         .g-form {
-            border: none;
-            .g-form-content {
-                border: 1px solid $g-border-color-default;
-                border-radius: px2rem(6);
-                overflow: hidden;
+            border: px2rem(1) solid $g-border-color-default;
+            border-radius: px2rem(6);
+            .g-form-text + .g-form-content {
+
             }
         }
     }
@@ -93,7 +85,9 @@
         $height: 40;
         display: flex;
         position: relative;
-        border-bottom: px2rem(1) solid $g-border-color-default;
+        border: px2rem(1) solid $g-border-color-default;
+        border-left: none;
+        border-right: none;
         background: #ffffff;
         min-height: px2rem(40);
         margin-bottom: px2rem(10);

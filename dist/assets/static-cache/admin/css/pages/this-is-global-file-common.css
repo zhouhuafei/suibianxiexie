@@ -1908,31 +1908,94 @@ textarea.g-textarea {
   .g-audio.g-audio-on .g-audio-icon .g-audio-icon-item.g-audio-icon-item-off {
     display: none; }
 
-.g-form-wrap {
+.g-form-wrap.g-form-wrap-type-1 .g-form {
+  border: 1px solid #e6e7ed;
+  border-radius: 6px; }
+
+.g-form-wrap .g-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
   border: 1px solid #e6e7ed;
   border-left: none;
-  border-right: none; }
-  .g-form-wrap.g-form-wrap-block {
-    border: none;
-    padding: 40px 20px 20px 10px;
-    background: #ffffff;
-    border-radius: 6px; }
-    .g-form-wrap.g-form-wrap-block .g-form {
-      border: none; }
-      .g-form-wrap.g-form-wrap-block .g-form .g-form-content {
-        border: 1px solid #e6e7ed;
-        border-radius: 6px;
-        overflow: hidden; }
-  .g-form-wrap .g-form {
+  border-right: none;
+  background: #ffffff;
+  min-height: 40px;
+  margin-bottom: 10px; }
+  .g-form-wrap .g-form .g-form-text {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    position: relative;
-    border-bottom: 1px solid #e6e7ed;
-    background: #ffffff;
-    min-height: 40px;
-    margin-bottom: 10px; }
-    .g-form-wrap .g-form .g-form-text {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding: 0 10px;
+    min-width: 120px;
+    text-align: right; }
+  .g-form-wrap .g-form .g-form-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    border-left: 1px solid #e6e7ed; }
+    .g-form-wrap .g-form .g-form-content .g-form-content-body {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+      /* 重置g-upload */
+      /* 重置g-input */
+      /* 重置g-checkbox */
+      /* 重置g-radio */
+      /* 重置g-select */
+      /* 重置g-textarea */
+      /* 多行情况 */ }
+      .g-form-wrap .g-form .g-form-content .g-form-content-body .g-upload {
+        margin: 10px; }
+      .g-form-wrap .g-form .g-form-content .g-form-content-body .g-input {
+        border: none; }
+      .g-form-wrap .g-form .g-form-content .g-form-content-body .g-checkbox {
+        margin-left: 10px; }
+      .g-form-wrap .g-form .g-form-content .g-form-content-body .g-radio {
+        margin-left: 10px; }
+      .g-form-wrap .g-form .g-form-content .g-form-content-body .g-select {
+        border: none; }
+        .g-form-wrap .g-form .g-form-content .g-form-content-body .g-select .g-select-mark {
+          border-right: 1px dashed #e6e7ed; }
+      .g-form-wrap .g-form .g-form-content .g-form-content-body .g-textarea {
+        border: none; }
+      .g-form-wrap .g-form .g-form-content .g-form-content-body.g-form-content-body-more-row {
+        /* 重置g-form-content-body */
+        padding-bottom: 10px;
+        /* 重置g-upload */
+        /* 重置g-checkbox */ }
+        .g-form-wrap .g-form .g-form-content .g-form-content-body.g-form-content-body-more-row .g-upload {
+          margin: 10px 0px 0px 10px; }
+        .g-form-wrap .g-form .g-form-content .g-form-content-body.g-form-content-body-more-row .g-checkbox {
+          margin: 10px 0px 0px 10px; }
+    .g-form-wrap .g-form .g-form-content .g-form-content-icon {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      min-width: 20px;
+      padding: 0 2px; }
+    .g-form-wrap .g-form .g-form-content .g-form-content-limit {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -1942,85 +2005,13 @@ textarea.g-textarea {
       -webkit-box-pack: end;
           -ms-flex-pack: end;
               justify-content: flex-end;
-      padding: 0 10px;
-      min-width: 120px;
-      text-align: right; }
-    .g-form-wrap .g-form .g-form-content {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-flex: 1;
-          -ms-flex: 1;
-              flex: 1;
-      border-left: 1px solid #e6e7ed; }
-      .g-form-wrap .g-form .g-form-content .g-form-content-body {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-flex: 1;
-            -ms-flex: 1;
-                flex: 1;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-        /* 重置g-upload */
-        /* 重置g-input */
-        /* 重置g-checkbox */
-        /* 重置g-radio */
-        /* 重置g-select */
-        /* 重置g-textarea */
-        /* 多行情况 */ }
-        .g-form-wrap .g-form .g-form-content .g-form-content-body .g-upload {
-          margin: 10px; }
-        .g-form-wrap .g-form .g-form-content .g-form-content-body .g-input {
-          border: none; }
-        .g-form-wrap .g-form .g-form-content .g-form-content-body .g-checkbox {
-          margin-left: 10px; }
-        .g-form-wrap .g-form .g-form-content .g-form-content-body .g-radio {
-          margin-left: 10px; }
-        .g-form-wrap .g-form .g-form-content .g-form-content-body .g-select {
-          border: none; }
-          .g-form-wrap .g-form .g-form-content .g-form-content-body .g-select .g-select-mark {
-            border-right: 1px dashed #e6e7ed; }
-        .g-form-wrap .g-form .g-form-content .g-form-content-body .g-textarea {
-          border: none; }
-        .g-form-wrap .g-form .g-form-content .g-form-content-body.g-form-content-body-more-row {
-          /* 重置g-form-content-body */
-          padding-bottom: 10px;
-          /* 重置g-upload */
-          /* 重置g-checkbox */ }
-          .g-form-wrap .g-form .g-form-content .g-form-content-body.g-form-content-body-more-row .g-upload {
-            margin: 10px 0px 0px 10px; }
-          .g-form-wrap .g-form .g-form-content .g-form-content-body.g-form-content-body-more-row .g-checkbox {
-            margin: 10px 0px 0px 10px; }
-      .g-form-wrap .g-form .g-form-content .g-form-content-icon {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        min-width: 20px;
-        padding: 0 2px; }
-      .g-form-wrap .g-form .g-form-content .g-form-content-limit {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        -webkit-box-pack: end;
-            -ms-flex-pack: end;
-                justify-content: flex-end;
-        min-width: 44px;
-        padding: 0 2px; }
-      .g-form-wrap .g-form .g-form-content .g-form-content-hint {
-        color: #fa5555; }
-    .g-form-wrap .g-form:last-of-type {
-      border-bottom: none;
-      margin-bottom: 0; }
+      min-width: 44px;
+      padding: 0 2px; }
+    .g-form-wrap .g-form .g-form-content .g-form-content-hint {
+      color: #fa5555; }
+  .g-form-wrap .g-form:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0; }
 
 .g-verify-code-canvas {
   width: 160px;
