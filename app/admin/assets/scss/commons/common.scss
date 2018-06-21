@@ -72,14 +72,14 @@
 
 // 表单
 .g-form-wrap {
-    //border: px2rem(1) solid $g-border-color-default;
-    //border-left: none;
-    //border-right: none;
+    border: px2rem(1) solid $g-border-color-default;
+    border-left: none;
+    border-right: none;
     .g-form {
         $height: 40;
         display: flex;
         position: relative;
-        //border-bottom: px2rem(1) solid $g-border-color-default;
+        border-bottom: px2rem(1) solid $g-border-color-default;
         background: #ffffff;
         min-height: px2rem(40);
         .g-form-text {
@@ -93,10 +93,7 @@
         .g-form-content {
             display: flex;
             flex: 1;
-            //border-left: px2rem(1) solid $g-border-color-default;
-            border-left: px2rem(1) solid $g-highlight-color;
-            border-radius: px2rem(10) 0 0 px2rem(10);
-            overflow: hidden;
+            border-left: px2rem(1) solid $g-border-color-default;
             .g-form-content-body {
                 display: flex;
                 flex: 1;
