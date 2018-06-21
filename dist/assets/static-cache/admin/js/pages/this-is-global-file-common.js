@@ -2450,7 +2450,7 @@ ValidateForm.prototype.validateInput = function (input) {
     var hintTxt = validateHintTxt.split(' ');
     var hintWrapDom = input.hintWrapDom;
     var inputType = input.type;
-    var inputName = input.name; // 这个不能使用，因为有些name名称是这种格式 hobby[] 此时通过name获取会报错
+    var inputName = input.name; // 这个不能使用，因为有些name名称是这种格式 hobby[] 此时通过name获取会报错 -> 纠正 其实不会报错 只需要 input[name=""] 把变量放在双引号里拼接一下就行了
     var isPassword = inputType === 'password';
     var isRadio = inputType === 'radio';
     var isCheckbox = inputType === 'checkbox';

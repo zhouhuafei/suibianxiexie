@@ -1912,6 +1912,17 @@ textarea.g-textarea {
   border: 1px solid #e6e7ed;
   border-left: none;
   border-right: none; }
+  .g-form-wrap.g-form-wrap-block {
+    border: none;
+    padding: 40px 20px 20px 10px;
+    background: #ffffff;
+    border-radius: 6px; }
+    .g-form-wrap.g-form-wrap-block .g-form {
+      border: none; }
+      .g-form-wrap.g-form-wrap-block .g-form .g-form-content {
+        border: 1px solid #e6e7ed;
+        border-radius: 6px;
+        overflow: hidden; }
   .g-form-wrap .g-form {
     display: -webkit-box;
     display: -ms-flexbox;

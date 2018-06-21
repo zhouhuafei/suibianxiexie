@@ -75,6 +75,20 @@
     border: px2rem(1) solid $g-border-color-default;
     border-left: none;
     border-right: none;
+    &.g-form-wrap-block {
+        border: none;
+        padding: px2rem(40) px2rem(20) px2rem(20) px2rem(10);
+        background: $g-background-color-block;
+        border-radius: px2rem(6);
+        .g-form {
+            border: none;
+            .g-form-content {
+                border: 1px solid $g-border-color-default;
+                border-radius: px2rem(6);
+                overflow: hidden;
+            }
+        }
+    }
     .g-form {
         $height: 40;
         display: flex;
