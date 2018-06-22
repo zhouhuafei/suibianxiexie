@@ -1911,6 +1911,11 @@ textarea.g-textarea {
 .g-form-wrap.g-form-wrap-type-1 .g-form {
   border: 1px solid #e6e7ed;
   border-radius: 6px; }
+  .g-form-wrap.g-form-wrap-type-1 .g-form .g-form-content {
+    border-radius: 6px 0 0 6px;
+    overflow: hidden; }
+  .g-form-wrap.g-form-wrap-type-1 .g-form .g-form-text + .g-form-content {
+    border-radius: 0 0 0 0; }
 
 .g-form-wrap .g-form {
   display: -webkit-box;
@@ -1936,14 +1941,15 @@ textarea.g-textarea {
     padding: 0 10px;
     min-width: 120px;
     text-align: right; }
+    .g-form-wrap .g-form .g-form-text + .g-form-content {
+      border-left: 1px solid #e6e7ed; }
   .g-form-wrap .g-form .g-form-content {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-flex: 1;
         -ms-flex: 1;
-            flex: 1;
-    border-left: 1px solid #e6e7ed; }
+            flex: 1; }
     .g-form-wrap .g-form .g-form-content .g-form-content-body {
       display: -webkit-box;
       display: -ms-flexbox;

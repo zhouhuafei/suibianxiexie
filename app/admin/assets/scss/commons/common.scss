@@ -76,8 +76,12 @@
         .g-form {
             border: px2rem(1) solid $g-border-color-default;
             border-radius: px2rem(6);
+            .g-form-content {
+                border-radius: px2rem(6) 0 0 px2rem(6);
+                overflow: hidden;
+            }
             .g-form-text + .g-form-content {
-
+                border-radius: 0 0 0 0;
             }
         }
     }
@@ -98,11 +102,13 @@
             padding: 0 px2rem(10);
             min-width: px2rem(120);
             text-align: right;
+            & + .g-form-content {
+                border-left: px2rem(1) solid $g-border-color-default;
+            }
         }
         .g-form-content {
             display: flex;
             flex: 1;
-            border-left: px2rem(1) solid $g-border-color-default;
             .g-form-content-body {
                 display: flex;
                 flex: 1;
