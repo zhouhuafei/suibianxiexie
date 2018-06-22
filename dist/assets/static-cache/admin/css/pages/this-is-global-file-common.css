@@ -210,7 +210,7 @@ body {
   margin: 0;
   font-family: "\5FAE\8F6F\96C5\9ED1", "Helvetica", "Arial", "sans-serif";
   font-size: 12px;
-  line-height: 1.5;
+  line-height: 1;
   color: #333333;
   background: #f4f4f4; }
 
@@ -1134,8 +1134,9 @@ textarea.g-textarea {
       .g-list-wrap .g-list .g-list-body .g-list-body-icon {
         font-size: 14px; }
     .g-list-wrap .g-list .g-list-info {
-      color: #bfbfbf;
-      font-size: 12px; }
+      font-size: 12px;
+      line-height: 1.3;
+      color: #bfbfbf; }
     .g-list-wrap .g-list:last-child {
       border-bottom: none; }
 
@@ -1908,16 +1909,16 @@ textarea.g-textarea {
   .g-audio.g-audio-on .g-audio-icon .g-audio-icon-item.g-audio-icon-item-off {
     display: none; }
 
-.g-form-wrap.g-form-wrap-type-1 .g-form {
+.g-form-wrap.g-form-wrap-type-1 .g-form .g-form-body {
   border: 1px solid #e6e7ed;
   border-radius: 6px; }
-  .g-form-wrap.g-form-wrap-type-1 .g-form .g-form-content {
+  .g-form-wrap.g-form-wrap-type-1 .g-form .g-form-body .g-form-body-content {
     border-radius: 6px 0 0 6px;
     overflow: hidden; }
-  .g-form-wrap.g-form-wrap-type-1 .g-form .g-form-text + .g-form-content {
+  .g-form-wrap.g-form-wrap-type-1 .g-form .g-form-body .g-form-body-text + .g-form-body-content {
     border-radius: 0 0 0 0; }
 
-.g-form-wrap .g-form {
+.g-form-wrap .g-form .g-form-body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1928,7 +1929,7 @@ textarea.g-textarea {
   background: #ffffff;
   min-height: 40px;
   margin-bottom: 10px; }
-  .g-form-wrap .g-form .g-form-text {
+  .g-form-wrap .g-form .g-form-body .g-form-body-text {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1941,16 +1942,16 @@ textarea.g-textarea {
     padding: 0 10px;
     min-width: 120px;
     text-align: right; }
-    .g-form-wrap .g-form .g-form-text + .g-form-content {
+    .g-form-wrap .g-form .g-form-body .g-form-body-text + .g-form-body-content {
       border-left: 1px solid #e6e7ed; }
-  .g-form-wrap .g-form .g-form-content {
+  .g-form-wrap .g-form .g-form-body .g-form-body-content {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-flex: 1;
         -ms-flex: 1;
             flex: 1; }
-    .g-form-wrap .g-form .g-form-content .g-form-content-body {
+    .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -1966,30 +1967,30 @@ textarea.g-textarea {
       /* 重置g-select */
       /* 重置g-textarea */
       /* 多行情况 */ }
-      .g-form-wrap .g-form .g-form-content .g-form-content-body .g-upload {
+      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-upload {
         margin: 10px; }
-      .g-form-wrap .g-form .g-form-content .g-form-content-body .g-input {
+      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-input {
         border: none; }
-      .g-form-wrap .g-form .g-form-content .g-form-content-body .g-checkbox {
+      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-checkbox {
         margin-left: 10px; }
-      .g-form-wrap .g-form .g-form-content .g-form-content-body .g-radio {
+      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-radio {
         margin-left: 10px; }
-      .g-form-wrap .g-form .g-form-content .g-form-content-body .g-select {
+      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-select {
         border: none; }
-        .g-form-wrap .g-form .g-form-content .g-form-content-body .g-select .g-select-mark {
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-select .g-select-mark {
           border-right: 1px dashed #e6e7ed; }
-      .g-form-wrap .g-form .g-form-content .g-form-content-body .g-textarea {
+      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-textarea {
         border: none; }
-      .g-form-wrap .g-form .g-form-content .g-form-content-body.g-form-content-body-more-row {
-        /* 重置g-form-content-body */
+      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row {
+        /* 重置g-form-body-content-body */
         padding-bottom: 10px;
         /* 重置g-upload */
         /* 重置g-checkbox */ }
-        .g-form-wrap .g-form .g-form-content .g-form-content-body.g-form-content-body-more-row .g-upload {
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row .g-upload {
           margin: 10px 0px 0px 10px; }
-        .g-form-wrap .g-form .g-form-content .g-form-content-body.g-form-content-body-more-row .g-checkbox {
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row .g-checkbox {
           margin: 10px 0px 0px 10px; }
-    .g-form-wrap .g-form .g-form-content .g-form-content-icon {
+    .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-icon {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -2001,7 +2002,7 @@ textarea.g-textarea {
               justify-content: center;
       min-width: 20px;
       padding: 0 2px; }
-    .g-form-wrap .g-form .g-form-content .g-form-content-limit {
+    .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-limit {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -2013,11 +2014,16 @@ textarea.g-textarea {
               justify-content: flex-end;
       min-width: 44px;
       padding: 0 2px; }
-    .g-form-wrap .g-form .g-form-content .g-form-content-hint {
+    .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-hint {
       color: #fa5555; }
-  .g-form-wrap .g-form:last-of-type {
+  .g-form-wrap .g-form .g-form-body:last-of-type {
     border-bottom: none;
     margin-bottom: 0; }
+
+.g-form-wrap .g-form .g-form-footer {
+  font-size: 12px;
+  line-height: 1.3;
+  color: #bfbfbf; }
 
 .g-verify-code-canvas {
   width: 160px;
