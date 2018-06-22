@@ -1751,91 +1751,19 @@ textarea.g-textarea {
   .g-form-wrap.g-form-wrap-type-1 .g-form .g-form-body .g-form-body-text + .g-form-body-content {
     border-radius: 0 0 0 0; }
 
-.g-form-wrap .g-form .g-form-body {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  position: relative;
-  border: 0.03125rem solid #e6e7ed;
-  border-left: none;
-  border-right: none;
-  background: #ffffff;
-  min-height: 1.25rem;
+.g-form-wrap .g-form {
   margin-bottom: 0.3125rem; }
-  .g-form-wrap .g-form .g-form-body .g-form-body-text {
+  .g-form-wrap .g-form .g-form-body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-    padding: 0 0.3125rem;
-    min-width: 3.75rem;
-    text-align: right; }
-    .g-form-wrap .g-form .g-form-body .g-form-body-text + .g-form-body-content {
-      border-left: 0.03125rem solid #e6e7ed; }
-  .g-form-wrap .g-form .g-form-body .g-form-body-content {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1; }
-    .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-flex: 1;
-          -ms-flex: 1;
-              flex: 1;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-      /* 重置g-upload */
-      /* 重置g-input */
-      /* 重置g-checkbox */
-      /* 重置g-radio */
-      /* 重置g-select */
-      /* 重置g-textarea */
-      /* 多行情况 */ }
-      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-upload {
-        margin: 0.3125rem; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-input {
-        border: none; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-checkbox {
-        margin-left: 0.3125rem; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-radio {
-        margin-left: 0.3125rem; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-select {
-        border: none; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-select .g-select-mark {
-          border-right: 0.03125rem dashed #e6e7ed; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-textarea {
-        border: none; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row {
-        /* 重置g-form-body-content-body */
-        padding-bottom: 0.3125rem;
-        /* 重置g-upload */
-        /* 重置g-checkbox */ }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row .g-upload {
-          margin: 0.3125rem 0rem 0rem 0.3125rem; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row .g-checkbox {
-          margin: 0.3125rem 0rem 0rem 0.3125rem; }
-    .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-icon {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center;
-      min-width: 0.625rem;
-      padding: 0 0.0625rem; }
-    .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-limit {
+    position: relative;
+    border: 0.03125rem solid #e6e7ed;
+    border-left: none;
+    border-right: none;
+    background: #ffffff;
+    min-height: 1.25rem; }
+    .g-form-wrap .g-form .g-form-body .g-form-body-text {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -1845,18 +1773,89 @@ textarea.g-textarea {
       -webkit-box-pack: end;
           -ms-flex-pack: end;
               justify-content: flex-end;
-      min-width: 1.375rem;
-      padding: 0 0.0625rem; }
-    .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-hint {
-      color: #fa5555; }
-  .g-form-wrap .g-form .g-form-body:last-of-type {
-    border-bottom: none;
+      padding: 0 0.3125rem;
+      min-width: 3.75rem;
+      text-align: right; }
+      .g-form-wrap .g-form .g-form-body .g-form-body-text + .g-form-body-content {
+        border-left: 0.03125rem solid #e6e7ed; }
+    .g-form-wrap .g-form .g-form-body .g-form-body-content {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-flex: 1;
+          -ms-flex: 1;
+              flex: 1; }
+      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-flex: 1;
+            -ms-flex: 1;
+                flex: 1;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        /* 重置g-upload */
+        /* 重置g-input */
+        /* 重置g-checkbox */
+        /* 重置g-radio */
+        /* 重置g-select */
+        /* 重置g-textarea */
+        /* 多行情况 */ }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-upload {
+          margin: 0.3125rem; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-input {
+          border: none; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-checkbox {
+          margin-left: 0.3125rem; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-radio {
+          margin-left: 0.3125rem; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-select {
+          border: none; }
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-select .g-select-mark {
+            border-right: 0.03125rem dashed #e6e7ed; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-textarea {
+          border: none; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row {
+          /* 重置g-form-body-content-body */
+          padding-bottom: 0.3125rem;
+          /* 重置g-upload */
+          /* 重置g-checkbox */ }
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row .g-upload {
+            margin: 0.3125rem 0rem 0rem 0.3125rem; }
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row .g-checkbox {
+            margin: 0.3125rem 0rem 0rem 0.3125rem; }
+      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-icon {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        min-width: 0.625rem;
+        padding: 0 0.0625rem; }
+      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-limit {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: end;
+            -ms-flex-pack: end;
+                justify-content: flex-end;
+        min-width: 1.375rem;
+        padding: 0 0.0625rem; }
+      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-hint {
+        color: #fa5555; }
+  .g-form-wrap .g-form .g-form-footer {
+    font-size: 0.375rem;
+    line-height: 2;
+    color: #333333; }
+  .g-form-wrap .g-form:last-of-type {
     margin-bottom: 0; }
-
-.g-form-wrap .g-form .g-form-footer {
-  font-size: 0.375rem;
-  line-height: 1.3;
-  color: #bfbfbf; }
 
 .g-verify-code-canvas {
   width: 5rem;
