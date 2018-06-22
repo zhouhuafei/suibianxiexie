@@ -14,7 +14,7 @@ const schema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    // 图片的路径，考虑到安全因素，
+    // 图片的路径，考虑到安全因素，查看图片列表时，此项不应该展示给用户。
     path: {
         type: String,
         required: true,
