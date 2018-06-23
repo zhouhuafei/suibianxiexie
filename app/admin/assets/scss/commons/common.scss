@@ -77,13 +77,7 @@
             .g-form-body {
                 border: px2rem(1) solid $g-border-color-default;
                 border-radius: px2rem(6);
-                .g-form-body-content {
-                    border-radius: px2rem(6) 0 0 px2rem(6);
-                    overflow: hidden;
-                }
-                .g-form-body-text + .g-form-body-content {
-                    border-radius: 0 0 0 0;
-                }
+                overflow: hidden;
             }
         }
     }
@@ -142,6 +136,12 @@
                     /* 重置g-textarea */
                     .g-textarea {
                         border: none;
+                    }
+                    /* 当尾部没有icon时 */
+                    &:last-of-type {
+                        .g-select .g-select-mark {
+                            border-right: none;
+                        }
                     }
                     /* 多行情况 */
                     &.g-form-body-content-body-more-row {

@@ -6,6 +6,7 @@
     display: flex;
     .g-menu-wrap {
         width: px2rem($w);
+        min-width: px2rem($w);
         position: relative;
         z-index: 2;
         .g-menu {
