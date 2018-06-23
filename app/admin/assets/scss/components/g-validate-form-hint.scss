@@ -2,31 +2,29 @@
 
 //表单验证失败的提示
 .g-validate-form-hint {
-    $height: 20;
+    $height: 16;
+    $triangleW: 4;
     $bgc: rgba(250, 85, 85, 0.8);
-    color: $g-danger-color;
-    //background-color: $bgc;
-    //height: px2rem($height);
-    //@include xy-center-flex;
+    color: #ffffff;
+    background-color: $bgc;
+    height: px2rem($height);
+    @include xy-center-flex;
     font-size: px2rem(12);
-    //padding: 0 px2rem(10);
-    //position: absolute;
-    //right: px2rem(6);
-    //top: px2rem(- $height - 10);
+    padding: 0 px2rem(10);
+    position: absolute;
+    right: px2rem(6);
+    top: px2rem(- $height - $triangleW);
     font-style: normal;
     font-weight: normal;
-    //border-radius: px2rem(100);
-    //&:after {
-    //    content: '';
-    //    position: absolute;
-    //    width: 0;
-    //    height: 0;
-    //    border: px2rem(6) solid transparent;
-    //    border-top-color: $bgc;
-    //    right: px2rem(10);
-    //    top: px2rem($height);
-    //}
-    text-align: right;
-    display: block;
-    padding: 0 px2rem(5) px2rem(2) 0;
+    border-radius: px2rem(100);
+    &:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border: px2rem($triangleW) solid transparent;
+        border-top-color: $bgc;
+        right: px2rem(10);
+        top: px2rem($height);
+    }
 }

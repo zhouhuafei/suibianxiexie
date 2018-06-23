@@ -15,11 +15,8 @@ class Sub extends Super {
             validateInput.setValidate('no-999', function (value) {
                 return Number(value) !== 999;
             });
-            const isAllPassValidate = validateInput.isAllPassValidate();
-            console.log('isAllPassValidate', isAllPassValidate);
-
-            document.querySelector('.js-upload-input').addEventListener('change', function () {
-                validateInput.validateInput(this);
+            document.querySelector('.js-button').addEventListener('click', function () {
+                console.log('isAllPassValidate', validateInput.isAllPassValidate());
             });
         }());
 

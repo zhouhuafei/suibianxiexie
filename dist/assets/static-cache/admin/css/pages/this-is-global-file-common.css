@@ -946,13 +946,38 @@ textarea.g-textarea {
 }
 */
 .g-validate-form-hint {
-  color: #fa5555;
+  color: #ffffff;
+  background-color: rgba(250, 85, 85, 0.8);
+  height: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  word-break: break-all;
   font-size: 12px;
+  padding: 0 10px;
+  position: absolute;
+  right: 6px;
+  top: -20px;
   font-style: normal;
   font-weight: normal;
-  text-align: right;
-  display: block;
-  padding: 0 5px 2px 0; }
+  border-radius: 100px; }
+  .g-validate-form-hint:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 4px solid transparent;
+    border-top-color: rgba(250, 85, 85, 0.8);
+    right: 10px;
+    top: 16px; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。
