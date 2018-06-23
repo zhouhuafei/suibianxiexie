@@ -945,38 +945,13 @@ textarea.g-textarea {
 }
 */
 .g-validate-form-hint {
-  color: #ffffff;
-  background-color: rgba(250, 85, 85, 0.9);
-  height: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  word-break: break-all;
+  color: #fa5555;
   font-size: 12px;
-  padding: 0 10px;
-  position: absolute;
-  right: 6px;
-  top: -30px;
   font-style: normal;
   font-weight: normal;
-  border-radius: 100px; }
-  .g-validate-form-hint:after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-    border-top-color: rgba(250, 85, 85, 0.9);
-    right: 10px;
-    top: 20px; }
+  text-align: right;
+  display: block;
+  padding: 0 5px 2px 0; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。

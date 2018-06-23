@@ -58,7 +58,8 @@ ValidateForm.prototype.renderHintAdd = function (opts = {}) {
         const hintWrapDom = input.hintWrapDom;
         const hintDomIsExist = hintWrapDom.querySelector(`.${this.opts.hintClass}`);
         if (hintWrapDom && !hintDomIsExist) {
-            hintWrapDom.appendChild(hintDom);
+            // hintWrapDom.appendChild(hintDom);
+            hintWrapDom.insertBefore(hintDom, hintWrapDom.children[0]);
         }
     }
 };
