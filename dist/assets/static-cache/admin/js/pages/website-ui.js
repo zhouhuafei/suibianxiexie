@@ -1,6 +1,6 @@
-webpackJsonp([3],{
+webpackJsonp([2],{
 
-/***/ 121:
+/***/ 123:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,9 +14,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(122);
+__webpack_require__(124);
 var Super = __webpack_require__(10);
-var axios = __webpack_require__(19);
 
 var Sub = function (_Super) {
     _inherits(Sub, _Super);
@@ -34,80 +33,59 @@ var Sub = function (_Super) {
         value: function power() {
             var superSelf = this;
             var dataInfo = superSelf.dataInfo;
-            var Dialog = superSelf.Dialog;
             var routes = dataInfo.routes;
 
-            // 上传
-            $('.js-upload').on('change', function () {
-                var self = this;
-                var parent = this.parentNode;
-                var bg = parent.querySelector('.g-upload-show');
-                var text = parent.querySelector('.g-upload-text');
-                var files = [].slice.call(self.files);
-                var formData = new FormData();
-                files.forEach(function (file) {
-                    formData.append('images', file);
+            // 验证
+            (function () {
+                var ValidateInput = __webpack_require__(4);
+                var validateInput = new ValidateInput({ element: '.js-validate-form' });
+                validateInput.setValidate('no-999', function (value) {
+                    return Number(value) !== 999;
                 });
-                if (!files.length) {
-                    return;
-                }
-                axios({
-                    url: dataInfo.api.galleries.route,
-                    method: 'post',
-                    data: formData,
-                    onUploadProgress: function onUploadProgress(progressEvent) {
-                        // 原生获取上传进度的事件
-                        if (progressEvent.lengthComputable) {
-                            // 属性lengthComputable主要表明总共需要完成的工作量和已经完成的工作是否可以被测量
-                            // 如果lengthComputable为false，就获取不到progressEvent.total和progressEvent.loaded
-                            console.log('上传进度:->', Math.ceil(progressEvent.loaded / progressEvent.total) * 100 + '%');
-                        }
-                    }
-                }).then(function (json) {
-                    if (json.status === 'success') {
-                        var result = json.result[0];
-                        var url = result.url;
-                        var w = result.width;
-                        var h = result.height;
-                        self.dataset.value = url;
-                        bg.style.backgroundImage = 'url(\'' + url + '\')';
-                        text.innerText = w + '*' + h;
-                        parent.querySelector('input[type=hidden]').value = url;
-                        parent.classList.add('g-upload-active');
-                        validateInput.validateInput(self);
-                    }
-                });
-            });
+                var isAllPassValidate = validateInput.isAllPassValidate();
+                console.log('isAllPassValidate', isAllPassValidate);
 
-            // 保存
-            document.querySelector('.js-save').addEventListener('click', function () {
-                var form = document.querySelector('form');
-                if (!validateInput.isAllPassValidate()) {
-                    // 如果不是全部都通过验证了，则不能提交。
-                    return;
-                }
-                axios({
-                    url: form.action,
-                    method: form.method,
-                    data: new FormData(form)
-                }).then(function (json) {
-                    console.log('测试保存:->', json);
-                    if (json.status === 'success') {
-                        new Dialog({
-                            config: {
-                                type: 'alert',
-                                alert: {
-                                    content: json.message || '保存成功'
-                                }
-                            }
-                        });
-                    }
+                document.querySelector('.js-upload-input').addEventListener('change', function () {
+                    validateInput.validateInput(this);
                 });
-            });
+            })();
 
-            // 验证放在最后是为了保证执行顺序。动态生成的标签，只要重新new一下，element传入dom即可，然后存储实例对象，留着保存时再验证一下。或者不绑定事件，全部都留到保存时再验证，这样只需要保存的时候new一下验证组件，触发一下是否全部验证通过的方法即可。
-            var ValidateInput = __webpack_require__(4);
-            var validateInput = new ValidateInput({ element: '.js-validate-form' });
+            // 测试application/x-www-form-urlencoded
+            var axios = __webpack_require__(19);
+            var ajax = __webpack_require__(125);
+            axios({
+                url: dataInfo.api.list.route,
+                method: 'post',
+                data: { type: 'axios', obj: { test: true, key: 'obj', b: { a: 1 } }, arr: ['a', 2, 'c', { a: 1 }], arr2: [] }
+            }).then(function (json) {
+                console.log('axios测试application/x-www-form-urlencoded测试axios:->', json);
+            });
+            ajax({
+                url: dataInfo.api.list.route,
+                method: 'post',
+                data: { type: 'ajax', obj: { test: false, key: 'obj', b: { a: 1 } }, arr: ['a', 2, 'c', { a: 1 }], arr2: [] }
+            }).then(function (json) {
+                console.log('ajax测试application/x-www-form-urlencoded测试ajax:->', json);
+            });
+            // 测试multipart/form-data
+            /*
+            const formData = new FormData();
+            formData.append('test', 'test');
+            axios({
+                url: dataInfo.api.list.route,
+                method: 'post',
+                data: formData,
+            }).then(function (json) {
+                console.log('axios测试multipart/form-data测试axios:->', json);
+            });
+            ajax({
+                url: dataInfo.api.list.route,
+                method: 'post',
+                data: formData,
+            }).then(function (json) {
+                console.log('ajax测试multipart/form-data测试ajax:->', json);
+            });
+            */
         }
     }]);
 
@@ -118,10 +96,94 @@ new Sub();
 
 /***/ }),
 
-/***/ 122:
+/***/ 124:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 125:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0);
+var Dialog = __webpack_require__(13);
+
+module.exports = function (json) {
+    json.method = json.type || json.method || 'get'; // 这里和axios是不一样的，这里以前使用axios的习惯传入method
+    json.dataType = json.dataType || 'json'; // 设置返回json格式的数据，axios默认就是返回json格式的
+    var opts = tools.extend({
+        method: 'get', // 请求方式默认get
+        isHandleError: true, // 是否处理错误
+        isHandleFailure: true, // 是否处理失败
+        timeout: 30000 // 超时
+    }, json);
+    /*
+    * javascript axios get params
+    * javascript axios post/put/delete data
+    * 把上述四种数据的传参方式进行统一化,统一使用data
+    * nodejs express get req.query
+    * nodejs express post/put/delete body-parser req.body
+    * 把上述四种数据的传参方式进行统一化,统一使用req.data
+    * */
+    if (opts.method.toLowerCase() === 'get') {
+        opts.data = opts.data || opts.params || {}; // 这里和axios是不一样的，这里以前使用axios的习惯传入params
+        if (opts.data) {
+            // 把json格式的对象处理成json格式的字符串，让get请求保持和axios一致的数据格式
+            // 其实按理来说应该让axios保持与这边的一致，但是axios的get请求没有提供对外的接口，所以只能让这个保持和axios一致。
+            // $.ajax的post,put,delete接收的全是字符串，即使你传的是对象，对象里有布尔值等，接收过来也会变成字符串，$.ajax的get处理之后，你传的对象里有布尔值，后端接收之后，布尔值还是布尔值，应该和post保持一致的。奈何axios的get没提供对外接口
+            Object.keys(opts.data).forEach(function (keys) {
+                var obj = opts.data[keys];
+                var type = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+                if (type === 'object') {
+                    opts.data[keys] = JSON.stringify(obj);
+                }
+                if (type === 'array') {
+                    obj.forEach(function (v, i, a) {
+                        if (Object.prototype.toString.call(v).slice(8, -1).toLowerCase() === 'object') {
+                            a[i] = JSON.stringify(v);
+                        }
+                    });
+                }
+            });
+        }
+    }
+    if (tools.typeOf(opts.data) === 'formdata') {
+        // formdata类型需要关闭下面,否则会报错
+        opts.processData = false;
+        opts.contentType = false;
+    }
+    return $.ajax(opts).catch(function (xhr, mark, message) {
+        var dataInfo = {
+            status: 'error',
+            message: message
+        };
+        if (opts.isHandleError) {
+            new Dialog({
+                config: {
+                    alert: {
+                        content: '\u9519\u8BEF: ' + message // 这里的message就是error信息，只是一段普通的字符信息
+                    }
+                }
+            });
+        }
+        return dataInfo;
+    }).then(function (dataInfo, mark, xhr) {
+        if (dataInfo.status === 'failure' && opts.isHandleFailure) {
+            new Dialog({
+                config: {
+                    alert: {
+                        content: '\u5931\u8D25: ' + dataInfo.message
+                    }
+                }
+            });
+        }
+        return dataInfo;
+    });
+};
 
 /***/ }),
 
@@ -409,4 +471,4 @@ module.exports = ValidateForm;
 
 /***/ })
 
-},[121]);
+},[123]);

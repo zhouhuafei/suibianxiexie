@@ -27,3 +27,8 @@
         cursor: not-allowed;
     }
 }
+
+input.g-submit, button.g-submit {
+    @extend .g-button;
+    border: none;
+}

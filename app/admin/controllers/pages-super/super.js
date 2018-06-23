@@ -110,6 +110,10 @@ class Super {
                         title: '网站',
                         items: [
                             {
+                                name: 'website-ui',
+                                title: 'ui',
+                            },
+                            {
                                 name: 'home',
                                 title: '首页',
                             },
