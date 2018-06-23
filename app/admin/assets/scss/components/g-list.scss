@@ -3,11 +3,20 @@
 // 列表
 .g-list-wrap {
     width: 100%;
-    background: #fff;
+    &.g-list-wrap-style-1 {
+        .g-list {
+            border: none;
+            margin-bottom: px2rem(10);
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
     .g-list {
         display: block;
         padding: px2rem(10) px2rem(10);
         border-bottom: px2rem(1) solid $g-border-color-default;
+        background: #fff;
         .g-list-body {
             display: flex;
             align-items: center;

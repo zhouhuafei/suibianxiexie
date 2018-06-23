@@ -2,32 +2,32 @@
 
 /* 字体颜色 */
 .g-font-color-highlight {
-    color: $g-highlight-color;
+    color: $g-highlight-color !important;
 }
 
 .g-font-color-success {
-    color: $g-success-color;
+    color: $g-success-color !important;
 }
 
 .g-font-color-warning {
-    color: $g-warning-color;
+    color: $g-warning-color !important;
 }
 
 .g-font-color-danger {
-    color: $g-danger-color;
+    color: $g-danger-color !important;
 }
 
 .g-font-color-ignore {
-    color: $g-ignore-color;
+    color: $g-ignore-color !important;
 }
 
 .g-font-color-white {
-    color: white;
+    color: white !important;
 }
 
 /* 背景颜色 */
 .g-background-color-white {
-    background-color: white;
+    background-color: white !important;
 }
 
 /* 工具样式 */
@@ -44,23 +44,54 @@
 }
 
 .g-flex-1 {
-    flex: 1;
+    flex: 1 !important;
 }
 
 .g-justify-content-center {
-    justify-content: center;
+    justify-content: center !important;
 }
 
 .g-align-items-center {
-    align-items: center;
+    align-items: center !important;
 }
 
 .g-float-left {
-    float: left;
+    float: left !important;
 }
 
 .g-float-right {
-    float: right;
+    float: right !important;
+}
+
+/* text-indent */
+.g-text-indent-0 {
+    text-indent: 0 !important;
+}
+
+/* margin 和 padding */
+@each $attr in margin, padding {
+    @each $value in 0, 5, 10, 20 {
+        .g-#{$attr}-top-#{$value} {
+            #{$attr}-top: px2rem($value) !important;
+        }
+        .g-#{$attr}-right-#{$value} {
+            #{$attr}-right: px2rem($value) !important;
+        }
+        .g-#{$attr}-bottom-#{$value} {
+            #{$attr}-bottom: px2rem($value) !important;
+        }
+        .g-#{$attr}-left-#{$value} {
+            #{$attr}-left: px2rem($value) !important;
+        }
+        .g-#{$attr}-top-bottom-#{$value} {
+            #{$attr}-top: px2rem($value) !important;
+            #{$attr}-bottom: px2rem($value) !important;
+        }
+        .g-#{$attr}-left-right-#{$value} {
+            #{$attr}-left: px2rem($value) !important;
+            #{$attr}-right: px2rem($value) !important;
+        }
+    }
 }
 
 // 清除浮动
@@ -104,62 +135,4 @@
     justify-content: center;
     flex-wrap: wrap;
     word-break: break-all;
-}
-
-/* margin */
-.g-margin-top-10 {
-    margin-top: px2rem(10) !important;
-}
-
-/* padding */
-
-/* 系列 - 0 */
-.g-margin-top-0 {
-    margin-top: 0 !important;
-}
-
-.g-margin-right-0 {
-    margin-right: 0 !important;
-}
-
-.g-margin-bottom-0 {
-    margin-bottom: 0 !important;
-}
-
-.g-margin-left-0 {
-    margin-left: 0 !important;
-}
-
-.g-padding-top-0 {
-    padding-top: 0 !important;
-}
-
-.g-padding-right-0 {
-    padding-right: 0 !important;
-}
-
-.g-padding-bottom-0 {
-    padding-bottom: 0 !important;
-}
-
-.g-padding-left-0 {
-    padding-left: 0 !important;
-}
-
-.g-text-indent-0 {
-    text-indent: 0 !important;
-}
-
-/* 系列 - 10 */
-.g-padding-top-bottom-10 {
-    $size: 10;
-    padding-top: px2rem($size) !important;
-    padding-bottom: px2rem($size) !important;
-}
-
-/* 系列 - 20 */
-.g-padding-top-bottom-20 {
-    $size: 20;
-    padding-top: px2rem($size) !important;
-    padding-bottom: px2rem($size) !important;
 }

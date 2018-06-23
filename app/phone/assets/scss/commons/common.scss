@@ -72,7 +72,7 @@
 
 // 表单
 .g-form-wrap {
-    &.g-form-wrap-type-1 {
+    &.g-form-wrap-style-1 {
         .g-form {
             .g-form-body {
                 border: px2rem(1) solid $g-border-color-default;
@@ -178,8 +178,10 @@
         }
         .g-form-footer {
             font-size: px2rem(12);
-            line-height: 2;
-            color: $g-font-color-default;
+            color: $g-warning-color;
+            padding: px2rem(5) px2rem(10);
+            line-height: 1.6;
+            text-align: justify;
         }
         &:last-of-type {
             margin-bottom: 0;

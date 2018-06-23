@@ -4,6 +4,11 @@
 *, *:before, *:after {
     box-sizing: border-box;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /*
+    当用户点击iOS的Safari浏览器中的链接或JavaScript的可点击的元素时，覆盖显示的高亮颜色。
+    iOS 1.1.1及更高版本的Safari浏览器可用
+    大部分android手机也是支持的，只是显示效果有所不同。
+    */
 }
 
 /* 主体重置 */
@@ -63,7 +68,7 @@ input[type=radio], input[type=checkbox], input[type=text], input[type=password],
     font-size: inherit;
     font-family: inherit;
     vertical-align: middle;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /*-webkit-tap-highlight-color: rgba(0, 0, 0, 0);*/
 }
 
 input[type=radio], input[type=checkbox] {
@@ -77,7 +82,7 @@ input[type=submit], input[type=reset], input[type=file], input[type=button], but
     font-size: inherit;
     font-family: inherit;
     vertical-align: middle;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /*-webkit-tap-highlight-color: rgba(0, 0, 0, 0);*/
 }
 
 /* 表格重置 */
@@ -94,7 +99,7 @@ a {
     color: inherit;
     outline: none;
     text-decoration: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /*-webkit-tap-highlight-color: rgba(0, 0, 0, 0);*/
 }
 
 /* 段落重置 */

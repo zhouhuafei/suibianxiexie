@@ -20,7 +20,7 @@ var Component = __webpack_require__(39)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\www\\suibianxiexie\\vue\\phone\\views\\home.vue"
+Component.options.__file = "/Users/zhouhuafei/Desktop/www/suibianxiexie/vue/phone/views/home.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] home.vue: functional components are not supported with templates, they should use render functions.")}
 
