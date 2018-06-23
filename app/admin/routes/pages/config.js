@@ -14,6 +14,10 @@ const routeName = [
         title: '网站信息',
     },
     {
+        name: 'website-ui', // 网站ui
+        title: '网站ui',
+    },
+    {
         name: 'password-modify', // 更改密码,去修改
         title: '更改密码,正在修改',
         isValidateLogin: false,
