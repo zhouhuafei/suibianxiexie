@@ -73,11 +73,22 @@
 // 表单
 .g-form-wrap {
     &.g-form-wrap-style-1 {
+        .g-form .g-form-body {
+            border: px2rem(1) solid $g-border-color-default;
+            border-radius: px2rem(6);
+        }
+    }
+    &.g-form-wrap-style-2 {
         .g-form {
+            margin-bottom: 0;
             .g-form-body {
-                border: px2rem(1) solid $g-border-color-default;
-                border-radius: px2rem(6);
-                overflow: hidden;
+                border-bottom: none;
+            }
+            .g-form-footer {
+                border-top: px2rem(1) solid $g-border-color-default;
+            }
+            &:last-of-type .g-form-body {
+                border-bottom: px2rem(1) solid $g-border-color-default;
             }
         }
     }
@@ -92,6 +103,7 @@
             border-right: none;
             background: #ffffff;
             min-height: px2rem(40);
+            overflow: hidden;
             .g-form-body-text {
                 display: flex;
                 align-items: center;
@@ -177,11 +189,13 @@
             }
         }
         .g-form-footer {
-            font-size: px2rem(12);
-            color: $g-warning-color;
-            padding: px2rem(5) px2rem(10);
-            line-height: 1.6;
-            text-align: justify;
+            padding: 0 px2rem(10);
+            .g-form-footer-text {
+                font-size: px2rem(12);
+                color: $g-warning-color;
+                line-height: 1.4;
+                text-align: justify;
+            }
         }
         &:last-of-type {
             margin-bottom: 0;

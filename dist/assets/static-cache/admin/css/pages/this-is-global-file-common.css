@@ -2053,8 +2053,16 @@ input.g-submit, button.g-submit {
 
 .g-form-wrap.g-form-wrap-style-1 .g-form .g-form-body {
   border: 1px solid #e6e7ed;
-  border-radius: 6px;
-  overflow: hidden; }
+  border-radius: 6px; }
+
+.g-form-wrap.g-form-wrap-style-2 .g-form {
+  margin-bottom: 0; }
+  .g-form-wrap.g-form-wrap-style-2 .g-form .g-form-body {
+    border-bottom: none; }
+  .g-form-wrap.g-form-wrap-style-2 .g-form .g-form-footer {
+    border-top: 1px solid #e6e7ed; }
+  .g-form-wrap.g-form-wrap-style-2 .g-form:last-of-type .g-form-body {
+    border-bottom: 1px solid #e6e7ed; }
 
 .g-form-wrap .g-form {
   margin-bottom: 10px; }
@@ -2067,7 +2075,8 @@ input.g-submit, button.g-submit {
     border-left: none;
     border-right: none;
     background: #ffffff;
-    min-height: 40px; }
+    min-height: 40px;
+    overflow: hidden; }
     .g-form-wrap .g-form .g-form-body .g-form-body-text {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -2159,11 +2168,12 @@ input.g-submit, button.g-submit {
       .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-hint {
         color: #fa5555; }
   .g-form-wrap .g-form .g-form-footer {
-    font-size: 12px;
-    color: #eb9e05;
-    padding: 5px 10px;
-    line-height: 1.6;
-    text-align: justify; }
+    padding: 0 10px; }
+    .g-form-wrap .g-form .g-form-footer .g-form-footer-text {
+      font-size: 12px;
+      color: #eb9e05;
+      line-height: 1.4;
+      text-align: justify; }
   .g-form-wrap .g-form:last-of-type {
     margin-bottom: 0; }
 
