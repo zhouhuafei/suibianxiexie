@@ -3,20 +3,26 @@
 // 列表
 .g-list-wrap {
     width: 100%;
-    &.g-list-wrap-style-1 {
+    &.g-list-wrap-style-yes-radius {
         .g-list {
-            border: none;
-            margin-bottom: px2rem(10);
+            border-radius: px2rem(6);
+        }
+    }
+    &.g-list-wrap-style-no-margin {
+        .g-list {
+            margin-bottom: 0;
+            border-bottom: px2rem(1) solid $g-border-color-default;
             &:last-child {
-                margin-bottom: 0;
+                border-bottom: none;
             }
         }
     }
     .g-list {
         display: block;
         padding: px2rem(10) px2rem(10);
-        border-bottom: px2rem(1) solid $g-border-color-default;
+        margin-bottom: px2rem(10);
         background: #fff;
+        overflow: hidden;
         .g-list-body {
             display: flex;
             align-items: center;
@@ -47,7 +53,7 @@
             text-align: justify;
         }
         &:last-child {
-            border-bottom: none;
+            margin-bottom: 0;
         }
     }
 }

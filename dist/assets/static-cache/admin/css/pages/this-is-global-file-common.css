@@ -1241,16 +1241,19 @@ input.g-submit, button.g-submit {
 */
 .g-list-wrap {
   width: 100%; }
-  .g-list-wrap.g-list-wrap-style-1 .g-list {
-    border: none;
-    margin-bottom: 10px; }
-    .g-list-wrap.g-list-wrap-style-1 .g-list:last-child {
-      margin-bottom: 0; }
+  .g-list-wrap.g-list-wrap-style-yes-radius .g-list {
+    border-radius: 6px; }
+  .g-list-wrap.g-list-wrap-style-no-margin .g-list {
+    margin-bottom: 0;
+    border-bottom: 1px solid #e6e7ed; }
+    .g-list-wrap.g-list-wrap-style-no-margin .g-list:last-child {
+      border-bottom: none; }
   .g-list-wrap .g-list {
     display: block;
     padding: 10px 10px;
-    border-bottom: 1px solid #e6e7ed;
-    background: #fff; }
+    margin-bottom: 10px;
+    background: #fff;
+    overflow: hidden; }
     .g-list-wrap .g-list .g-list-body {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -1280,7 +1283,7 @@ input.g-submit, button.g-submit {
       color: #bfbfbf;
       text-align: justify; }
     .g-list-wrap .g-list:last-child {
-      border-bottom: none; }
+      margin-bottom: 0; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。
@@ -2051,109 +2054,33 @@ input.g-submit, button.g-submit {
   .g-audio.g-audio-on .g-audio-icon .g-audio-icon-item.g-audio-icon-item-off {
     display: none; }
 
-.g-form-wrap.g-form-wrap-style-1 .g-form .g-form-body {
-  border: 1px solid #e6e7ed;
-  border-radius: 6px; }
-
-.g-form-wrap.g-form-wrap-style-2 .g-form {
-  margin-bottom: 0; }
-  .g-form-wrap.g-form-wrap-style-2 .g-form .g-form-body {
-    border-bottom: none; }
-  .g-form-wrap.g-form-wrap-style-2 .g-form .g-form-footer {
-    border-top: 1px solid #e6e7ed; }
-  .g-form-wrap.g-form-wrap-style-2 .g-form:last-of-type .g-form-body {
-    border-bottom: 1px solid #e6e7ed; }
-
-.g-form-wrap .g-form {
-  margin-bottom: 10px; }
-  .g-form-wrap .g-form .g-form-body {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    position: relative;
+.g-form-wrap {
+  font-size: 12px; }
+  .g-form-wrap.g-form-wrap-style-yes-radius .g-form .g-form-body {
     border: 1px solid #e6e7ed;
-    border-left: none;
-    border-right: none;
-    background: #ffffff;
-    min-height: 40px;
-    overflow: hidden; }
-    .g-form-wrap .g-form .g-form-body .g-form-body-text {
+    border-radius: 6px; }
+  .g-form-wrap.g-form-wrap-style-no-margin .g-form {
+    margin-bottom: 0; }
+    .g-form-wrap.g-form-wrap-style-no-margin .g-form .g-form-body {
+      border-bottom: none; }
+    .g-form-wrap.g-form-wrap-style-no-margin .g-form .g-form-footer {
+      border-top: 1px solid #e6e7ed; }
+    .g-form-wrap.g-form-wrap-style-no-margin .g-form:last-of-type .g-form-body {
+      border-bottom: 1px solid #e6e7ed; }
+  .g-form-wrap .g-form {
+    margin-bottom: 10px; }
+    .g-form-wrap .g-form .g-form-body {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-box-pack: end;
-          -ms-flex-pack: end;
-              justify-content: flex-end;
-      padding: 0 10px;
-      min-width: 120px;
-      text-align: right; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-text + .g-form-body-content {
-        border-left: 1px solid #e6e7ed; }
-    .g-form-wrap .g-form .g-form-body .g-form-body-content {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-flex: 1;
-          -ms-flex: 1;
-              flex: 1; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-flex: 1;
-            -ms-flex: 1;
-                flex: 1;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-        /* 重置g-upload */
-        /* 重置g-input */
-        /* 重置g-checkbox */
-        /* 重置g-radio */
-        /* 重置g-select */
-        /* 重置g-textarea */
-        /* 当尾部没有icon时 */
-        /* 多行情况 */ }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-upload {
-          margin: 10px; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-input {
-          border: none; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-checkbox {
-          margin-left: 10px; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-radio {
-          margin-left: 10px; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-select {
-          border: none; }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-select .g-select-mark {
-            border-right: 1px dashed #e6e7ed; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-textarea {
-          border: none; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body:last-of-type .g-select .g-select-mark {
-          border-right: none; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row {
-          /* 重置g-form-body-content-body */
-          padding-bottom: 10px;
-          /* 重置g-upload */
-          /* 重置g-checkbox */ }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row .g-upload {
-            margin: 10px 0 0 10px; }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row .g-checkbox {
-            margin: 10px 0 0 10px; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-icon {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        min-width: 20px;
-        padding: 0 2px; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-limit {
+      position: relative;
+      border: 1px solid #e6e7ed;
+      border-left: none;
+      border-right: none;
+      background: #ffffff;
+      min-height: 40px;
+      overflow: hidden; }
+      .g-form-wrap .g-form .g-form-body .g-form-body-text {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -2163,19 +2090,101 @@ input.g-submit, button.g-submit {
         -webkit-box-pack: end;
             -ms-flex-pack: end;
                 justify-content: flex-end;
-        min-width: 44px;
-        padding: 0 2px; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-hint {
-        color: #fa5555; }
-  .g-form-wrap .g-form .g-form-footer {
-    padding: 0 10px; }
-    .g-form-wrap .g-form .g-form-footer .g-form-footer-text {
-      font-size: 12px;
-      color: #eb9e05;
-      line-height: 1.4;
-      text-align: justify; }
-  .g-form-wrap .g-form:last-of-type {
-    margin-bottom: 0; }
+        padding: 0 10px;
+        min-width: 120px;
+        text-align: right; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-text + .g-form-body-content {
+          border-left: 1px solid #e6e7ed; }
+      .g-form-wrap .g-form .g-form-body .g-form-body-content {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-flex: 1;
+            -ms-flex: 1;
+                flex: 1; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-flex: 1;
+              -ms-flex: 1;
+                  flex: 1;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          /* 重置g-upload */
+          /* 重置g-input */
+          /* 重置g-checkbox */
+          /* 重置g-radio */
+          /* 重置g-select */
+          /* 重置g-textarea */
+          /* 当尾部没有icon时 */
+          /* 多行情况 */ }
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-form-body-content-body-text {
+            padding: 10px;
+            line-height: 1.2;
+            text-align: justify; }
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-upload {
+            margin: 10px; }
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-input {
+            border: none; }
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-checkbox {
+            margin-left: 10px; }
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-radio {
+            margin-left: 10px; }
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-select {
+            border: none; }
+            .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-select .g-select-mark {
+              border-right: 1px dashed #e6e7ed; }
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-textarea {
+            border: none; }
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body:last-of-type .g-select .g-select-mark {
+            border-right: none; }
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row {
+            /* 重置g-form-body-content-body */
+            padding-bottom: 10px;
+            /* 重置g-upload */
+            /* 重置g-checkbox */ }
+            .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row .g-upload {
+              margin: 10px 0 0 10px; }
+            .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row .g-checkbox {
+              margin: 10px 0 0 10px; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-icon {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          -webkit-box-pack: center;
+              -ms-flex-pack: center;
+                  justify-content: center;
+          min-width: 20px;
+          padding: 0 2px; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-limit {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          -webkit-box-pack: end;
+              -ms-flex-pack: end;
+                  justify-content: flex-end;
+          min-width: 44px;
+          padding: 0 2px; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-hint {
+          color: #fa5555; }
+    .g-form-wrap .g-form .g-form-footer {
+      padding: 0 10px; }
+      .g-form-wrap .g-form .g-form-footer .g-form-footer-text {
+        color: #eb9e05;
+        line-height: 1.4;
+        text-align: justify; }
+    .g-form-wrap .g-form:last-of-type {
+      margin-bottom: 0; }
 
 .g-verify-code-canvas {
   width: 160px;
@@ -2223,7 +2232,8 @@ input.g-submit, button.g-submit {
       margin-right: 0; }
 
 .g-title {
-  height: 30px;
+  height: 40px;
+  padding-top: 10px;
   font-size: 12px;
   font-weight: bold;
   color: #333333;

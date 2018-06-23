@@ -72,13 +72,14 @@
 
 // 表单
 .g-form-wrap {
-    &.g-form-wrap-style-1 {
+    font-size: px2rem(12);
+    &.g-form-wrap-style-yes-radius {
         .g-form .g-form-body {
             border: px2rem(1) solid $g-border-color-default;
             border-radius: px2rem(6);
         }
     }
-    &.g-form-wrap-style-2 {
+    &.g-form-wrap-style-no-margin {
         .g-form {
             margin-bottom: 0;
             .g-form-body {
@@ -122,6 +123,12 @@
                     display: flex;
                     flex: 1;
                     flex-wrap: wrap;
+                    align-items: center;
+                    .g-form-body-content-body-text {
+                        padding: px2rem(10);
+                        line-height: 1.2;
+                        text-align: justify;
+                    }
                     /* 重置g-upload */
                     .g-upload {
                         margin: px2rem(10);
@@ -191,7 +198,6 @@
         .g-form-footer {
             padding: 0 px2rem(10);
             .g-form-footer-text {
-                font-size: px2rem(12);
                 color: $g-warning-color;
                 line-height: 1.4;
                 text-align: justify;
@@ -247,7 +253,8 @@
 
 // 标题
 .g-title {
-    height: px2rem(30);
+    height: px2rem(40);
+    padding-top: px2rem(10);
     font-size: px2rem(12);
     font-weight: bold;
     color: $g-font-color-default;
