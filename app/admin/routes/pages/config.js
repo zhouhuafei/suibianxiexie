@@ -14,7 +14,7 @@ const routeName = [
         title: '网站信息',
     },
     {
-        name: 'website-ui', // 网站ui
+        name: 'ui', // 网站ui
         title: '网站ui',
     },
     {
