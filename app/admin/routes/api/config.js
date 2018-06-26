@@ -41,6 +41,9 @@ const routeName = [
         }).array('images'),
     },
     {
+        name: 'account-modify', // 更改账号,去修改
+    },
+    {
         name: 'password-modify', // 更改密码,去修改
     },
     {
