@@ -136,7 +136,11 @@ class Super {
                             },
                             {
                                 name: 'password-modify', // 更改密码,去修改
-                                title: '改密',
+                                title: '修改密码',
+                            },
+                            {
+                                name: 'account-modify', // 更改账号,去修改
+                                title: '修改账号',
                             },
                             {
                                 name: 'logout',
