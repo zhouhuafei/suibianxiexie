@@ -1,6 +1,6 @@
 webpackJsonp([5],{
 
-/***/ 117:
+/***/ 119:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,8 +14,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(118);
-var Super = __webpack_require__(10);
+__webpack_require__(120);
+var Super = __webpack_require__(7);
 
 var Sub = function (_Super) {
     _inherits(Sub, _Super);
@@ -84,18 +84,6 @@ var Sub = function (_Super) {
                     });
                 });
             })();
-
-            // 忘记密码,去删库
-            document.querySelector('.js-del-db').addEventListener('click', function () {
-                new superSelf.Dialog({
-                    config: {
-                        type: 'confirm', // 默认是提示框
-                        confirm: {
-                            content: '<div class="page-dialog-del-db">\n                            <div>1. \u94FE\u63A5\u4F60\u7684mongodb\u6570\u636E\u5E93\u3002</div>\n                            <div>2. \u627E\u5230\u540D\u4E3Asuibianxiexie\u7684\u6570\u636E\u5E93\u3002</div>\n                            <div>3. \u627E\u5230\u540D\u4E3Aadmins\u7684\u96C6\u5408\u3002</div>\n                            <div>4. \u5220\u9664\u540D\u4E3Aadmins\u7684\u96C6\u5408\u3002</div>\n                            <div>5. \u5728\u540E\u53F0\u7BA1\u7406\u7CFB\u7EDF\u91CC\u91CD\u65B0\u6CE8\u518C\u7BA1\u7406\u5458\u8D26\u53F7\u3002</div>\n                        </div>'
-                        }
-                    }
-                });
-            });
         }
     }]);
 
@@ -106,7 +94,7 @@ new Sub();
 
 /***/ }),
 
-/***/ 118:
+/***/ 120:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -121,7 +109,7 @@ new Sub();
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(2); // 应用方法集合
-var domAddPosition = __webpack_require__(7);
+var domAddPosition = __webpack_require__(8);
 var checkStr = tools.checkStr;
 var getParent = applications.getParent;
 var getDomArray = applications.getDomArray;
@@ -398,4 +386,4 @@ module.exports = ValidateForm;
 
 /***/ })
 
-},[117]);
+},[119]);

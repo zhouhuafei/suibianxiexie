@@ -1144,7 +1144,7 @@ textarea.g-textarea {
     @return $px * 1px;
 }
 */
-.g-button, input.g-submit, button.g-submit {
+.g-button, input.g-button, button.g-button {
   height: 40px;
   background: #0089ff;
   color: #fff;
@@ -1160,19 +1160,19 @@ textarea.g-textarea {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center; }
-  .g-button .g-button-icon, input.g-submit .g-button-icon, button.g-submit .g-button-icon {
+  .g-button .g-button-icon {
     font-size: 20px;
     margin: 0 2px; }
-  .g-button .g-button-text, input.g-submit .g-button-text, button.g-submit .g-button-text {
+  .g-button .g-button-text {
     margin: 0 2px; }
-  .g-button.g-button-cancel, input.g-button-cancel.g-submit, button.g-button-cancel.g-submit {
+  .g-button.g-button-cancel {
     background: #bbbbbb; }
-  .g-button.g-button-disable, input.g-button-disable.g-submit, button.g-button-disable.g-submit {
+  .g-button.g-button-disable {
     background: #ebebe4;
     color: #91918e;
     cursor: not-allowed; }
 
-input.g-submit, button.g-submit {
+input.g-button, button.g-button {
   border: none; }
 
 /*

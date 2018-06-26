@@ -2,32 +2,20 @@
 <html lang="en">
     <head>
         <% include ../commons/head.ejs %>
-    <link href="/static-cache/admin/css/pages/this-is-global-file-common.css" rel="stylesheet"><link href="/static-cache/admin/css/pages/register.css" rel="stylesheet"></head>
+    <link href="/static-cache/admin/css/pages/this-is-global-file-common.css" rel="stylesheet"><link href="/static-cache/admin/css/pages/account-modify.css" rel="stylesheet"></head>
     <body>
         <% include ../commons/top.ejs %>
         <div class="g-wrap">
             <% include ../commons/menu.ejs %>
             <div class="g-body">
-                <form id="form" method="post" action="<%= dataInfo.api.register.route %>">
+                <form id="form" method="post" action="<%= dataInfo.api['password-modify'].route %>">
                     <div class="g-form-wrap">
                         <div class="g-form">
                             <label class="g-form-body">
-                                <span class="g-form-body-text">用户名:</span>
-                                <span class="g-form-body-content">
-                                <span class="g-form-body-content-body">
-                                    <input class="g-input js-validate-form" data-validate="no-empty" data-hint="本项必填" type="text" name="username" id="username" value="" placeholder="请输入用户名">
-                                </span>
-                                <span class="g-form-body-content-icon iconfont icon-clear"></span>
-                                    <span class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></span>
-                                </span>
-                            </label>
-                        </div>
-                        <div class="g-form">
-                            <label class="g-form-body">
-                                <span class="g-form-body-text">密码:</span>
+                                <span class="g-form-body-text">旧用户名:</span>
                                 <span class="g-form-body-content">
                                     <span class="g-form-body-content-body">
-                                        <input class="g-input js-validate-form" data-validate="no-empty" data-hint="本项必填" type="password" name="password" id="password" value="" placeholder="请输入密码">
+                                        <input class="g-input js-validate-form" data-validate="no-empty" data-hint="本项必填" type="text" name="old-username" id="old-username" value="" placeholder="请输入旧用户名">
                                     </span>
                                     <span class="g-form-body-content-icon iconfont icon-clear"></span>
                                     <span class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></span>
@@ -36,13 +24,13 @@
                         </div>
                         <div class="g-form">
                             <label class="g-form-body">
-                                <span class="g-form-body-text">重复密码:</span>
+                                <span class="g-form-body-text">新用户名:</span>
                                 <span class="g-form-body-content">
                                     <span class="g-form-body-content-body">
-                                        <input class="g-input js-validate-form" data-validate="no-empty" data-hint="本项必填" type="password" name="repeat-password" id="repeat-password" value="" placeholder="请再次输入密码">
+                                        <input class="g-input" type="text" name="new-username" id="new-username" value="" placeholder="请输入新用户名">
                                     </span>
                                     <span class="g-form-body-content-icon iconfont icon-clear"></span>
-                                    <span class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></span>
+                                    <span class="g-form-body-content-icon g-form-body-content-hint iconfont"></span>
                                 </span>
                             </label>
                         </div>
@@ -60,10 +48,14 @@
                             </label>
                         </div>
                     </div>
-                    <div class="g-button js-button g-margin-top-10">注册</div>
+                    <div class="g-button js-button g-margin-top-10">修改</div>
                     <div class="g-jump-guide">
-                        <a href="<%= dataInfo.routes['login'].route %>" class="g-jump-guide-item">
-                            <span class="g-jump-guide-item-text">已有账号,去登陆</span>
+                        <div onclick="window.history.back();" class="g-jump-guide-item">
+                            <span class="g-jump-guide-item-text">放弃修改账号,回到上一步</span>
+                            <span class="g-jump-guide-item-icon iconfont icon-right"></span>
+                        </div>
+                        <a href="<%= dataInfo.routes['password-modify'].route %>" class="g-jump-guide-item">
+                            <span class="g-jump-guide-item-text">更改密码,去修改</span>
                             <span class="g-jump-guide-item-icon iconfont icon-right"></span>
                         </a>
                     </div>
@@ -71,5 +63,5 @@
             </div>
         </div>
         <% include ../commons/bottom.ejs %>
-    <script type="text/javascript" src="/static-cache/admin/js/pages/this-is-global-file-manifest.js"></script><script type="text/javascript" src="/static-cache/admin/js/pages/this-is-global-file-vendor.js"></script><script type="text/javascript" src="/static-cache/admin/js/pages/this-is-global-file-common.js"></script><script type="text/javascript" src="/static-cache/admin/js/pages/register.js"></script></body>
+    <script type="text/javascript" src="/static-cache/admin/js/pages/this-is-global-file-manifest.js"></script><script type="text/javascript" src="/static-cache/admin/js/pages/this-is-global-file-vendor.js"></script><script type="text/javascript" src="/static-cache/admin/js/pages/this-is-global-file-common.js"></script><script type="text/javascript" src="/static-cache/admin/js/pages/account-modify.js"></script></body>
 </html>

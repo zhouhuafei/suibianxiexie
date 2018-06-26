@@ -43,6 +43,24 @@ class Sub extends Super {
                 });
             });
         })();
+
+        // 忘记密码,去删库
+        document.querySelector('.js-del-db').addEventListener('click', function () {
+            new superSelf.Dialog({
+                config: {
+                    type: 'confirm', // 默认是提示框
+                    confirm: {
+                        content: `<div class="page-dialog-del-db">
+                            <div>1. 链接你的mongodb数据库。</div>
+                            <div>2. 找到名为suibianxiexie的数据库。</div>
+                            <div>3. 找到名为admins的集合。</div>
+                            <div>4. 删除名为admins的集合。</div>
+                            <div>5. 在后台管理系统里重新注册管理员账号。</div>
+                        </div>`,
+                    },
+                },
+            });
+        });
     }
 }
 

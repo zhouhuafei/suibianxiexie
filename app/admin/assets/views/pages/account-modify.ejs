@@ -30,55 +30,10 @@
                                 <span class="g-form-body-text">新用户名:</span>
                                 <span class="g-form-body-content">
                                     <span class="g-form-body-content-body">
-                                        <input class="g-input" type="text" name="new-username" id="new-username" value="" placeholder="请输入新用户名，此项是非必填项，不填则用户名不会被更改">
+                                        <input class="g-input" type="text" name="new-username" id="new-username" value="" placeholder="请输入新用户名">
                                     </span>
                                     <span class="g-form-body-content-icon iconfont icon-clear"></span>
                                     <span class="g-form-body-content-icon g-form-body-content-hint iconfont"></span>
-                                </span>
-                            </label>
-                        </div>
-                        <div class="g-form">
-                            <label class="g-form-body">
-                                <span class="g-form-body-text">旧密码:</span>
-                                <span class="g-form-body-content">
-                                    <span class="g-form-body-content-body">
-                                        <input class="g-input js-validate-form"
-                                               data-validate="no-empty"
-                                               data-hint="本项必填"
-                                               type="password" name="old-password" id="old-password" value="" placeholder="请输入旧密码">
-                                    </span>
-                                    <span class="g-form-body-content-icon iconfont icon-clear"></span>
-                                    <span class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></span>
-                                </span>
-                            </label>
-                        </div>
-                        <div class="g-form">
-                            <label class="g-form-body">
-                                <span class="g-form-body-text">新密码:</span>
-                                <span class="g-form-body-content">
-                                    <span class="g-form-body-content-body">
-                                        <input class="g-input js-validate-form"
-                                               data-validate="no-empty"
-                                               data-hint="本项必填"
-                                               type="password" name="new-password" id="new-password" value="" placeholder="请输入新密码">
-                                    </span>
-                                    <span class="g-form-body-content-icon iconfont icon-clear"></span>
-                                    <span class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></span>
-                                </span>
-                            </label>
-                        </div>
-                        <div class="g-form">
-                            <label class="g-form-body">
-                                <span class="g-form-body-text">重复新密码:</span>
-                                <span class="g-form-body-content">
-                                    <span class="g-form-body-content-body">
-                                        <input class="g-input js-validate-form"
-                                               data-validate="no-empty"
-                                               data-hint="本项必填"
-                                               type="password" name="repeat-new-password" id="repeat-new-password" value="" placeholder="请再次输入新密码">
-                                    </span>
-                                    <span class="g-form-body-content-icon iconfont icon-clear"></span>
-                                    <span class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></span>
                                 </span>
                             </label>
                         </div>
@@ -102,11 +57,11 @@
                     <div class="g-button js-button g-margin-top-10">修改</div>
                     <div class="g-jump-guide">
                         <div onclick="window.history.back();" class="g-jump-guide-item">
-                            <span class="g-jump-guide-item-text">放弃修改密码,回到上一步</span>
+                            <span class="g-jump-guide-item-text">放弃修改账号,回到上一步</span>
                             <span class="g-jump-guide-item-icon iconfont icon-right"></span>
                         </div>
-                        <a href="<%= dataInfo.routes['account-modify'].route %>" class="g-jump-guide-item">
-                            <span class="g-jump-guide-item-text">更改账号,去修改</span>
+                        <a href="<%= dataInfo.routes['password-modify'].route %>" class="g-jump-guide-item">
+                            <span class="g-jump-guide-item-text">更改密码,去修改</span>
                             <span class="g-jump-guide-item-icon iconfont icon-right"></span>
                         </a>
                     </div>
