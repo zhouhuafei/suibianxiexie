@@ -25,9 +25,9 @@ class Sub extends Super {
                 self.render({message: '数据库查询出现错误'});
             }
             if (result) {
-                self.render({message: '账号存在', isExist: true});
+                self.render({message: '账号存在', result: {isExist: true}});
             } else {
-                self.render({message: '账号不存在', isExist: false});
+                self.render({message: '账号不存在', result: {isExist: false}});
             }
         });
     }
