@@ -19,7 +19,7 @@ class Sub extends Super {
             return;
         }
         const Admins = require('../../models/mongoose/admins');
-        // 检测新用户名是否已经被注册。
+        // 检测账号是否存在。
         Admins.findOne({username: username}, function (error, result) {
             if (error) {
                 self.render({message: '数据库查询出现错误'});
