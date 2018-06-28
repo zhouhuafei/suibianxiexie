@@ -8,7 +8,7 @@ module.exports = function (opts = {}) {
         * 失败(failure)   服务端响应状态是200且不满足业务逻辑,则状态是failure,预定义的数据格式:{status: 'failure'}
         * 错误(error)     服务端响应状态不是200,则状态是error,预定义的数据格式:{status: 'error'}
         * */
-        status: 'failure', // 状态信息
+        status: 'failure', // 状态信息(可用此字段判断用户传入的参数是否合法，failure表示不合法，success表示合法。error用不到，客户端ajax接收到200才会执行成功回调，非200可以自动识别为error)
         message: '接口数据的基本格式', // 提示信息 - '参数错误'
         failureInfo: null, // 失败信息
         failureCode: null, // 失败编码 401 未授权,未登录
@@ -37,6 +37,24 @@ module.exports = function (opts = {}) {
             // allCount: 0, // 数据总条数
             // nowCount: 0, // 当前页的数据条数
         },
+        */
+        // 列表的数据结构。字段请和下面的字段保持一致。
+        /*
+        list: [
+            // {
+            //     img: {
+            //         width: 0,
+            //         height: 0,
+            //         src: '',
+            //     },
+            //     text: '接口格式保持一致',
+            //     href: '',
+            // },
+        ],
+        allPage: 1, // 总页数
+        nowPage: 1, // 当前页
+        allCount: 0, // 数据总条数
+        nowCount: 0, // 当前页的数据条数
         */
     }, opts);
 };
