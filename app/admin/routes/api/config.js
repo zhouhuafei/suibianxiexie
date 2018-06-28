@@ -41,6 +41,9 @@ const routeName = [
         }).array('images'),
     },
     {
+        name: 'account-whether-exist', // 账号是否存在
+    },
+    {
         name: 'account-modify', // 更改账号,去修改
     },
     {
