@@ -22,8 +22,8 @@ module.exports = function (opts = {}) {
             // data: {a: 'a', b: 'b', c: 'c'},
         },
         */
-        /*
         // 列表的数据结构。字段请和下面的字段保持一致。
+        /*
         list: [
             // {
             //     img: {
