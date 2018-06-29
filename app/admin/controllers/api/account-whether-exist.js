@@ -1,5 +1,4 @@
 const Super = require('../api-super/super'); // 超类型
-const tools = require('zhf.tools');
 
 class Sub extends Super {
     // (查)(覆)增加数据(覆盖超类型)
