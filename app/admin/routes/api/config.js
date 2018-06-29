@@ -41,20 +41,19 @@ const routeName = [
         }).array('images'),
     },
     {
-        name: 'account-whether-exist', // 账号是否存在
-    },
-    {
-        name: 'account-modify', // 更改账号,去修改
+        name: 'logout', // 退出
     },
     {
         name: 'password-modify', // 更改密码,去修改
     },
     {
-        name: 'register', // 注册
-        isValidateLogin: false,
+        name: 'account-modify', // 更改账号,去修改
     },
     {
-        name: 'is-login', // 是否登陆了
+        name: 'account-whether-exist', // 账号是否存在
+    },
+    {
+        name: 'account-whether-login', // 账号是否登陆了
         isValidateLogin: false,
     },
     {
@@ -62,11 +61,12 @@ const routeName = [
         isValidateLogin: false,
     },
     {
-        name: 'verify-code-canvas', // 验证码,图文随机
+        name: 'register', // 注册
         isValidateLogin: false,
     },
     {
-        name: 'logout', // 退出
+        name: 'verify-code-canvas', // 验证码,图文随机
+        isValidateLogin: false,
     },
 ];
 // 路由的配置
