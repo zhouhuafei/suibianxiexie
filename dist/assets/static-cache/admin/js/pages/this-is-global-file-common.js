@@ -3334,7 +3334,7 @@ module.exports = function (json) {
         method: 'get', // 请求方式默认get
         isHandleError: true, // 是否处理错误
         isHandleFailure: true, // 是否处理失败
-        isHandleSuccess: false, // 是否处理成功
+        isHandleSuccess: true, // 是否处理成功
         timeout: 30000, // 超时
         callbackSuccess: function callbackSuccess() {// 请求成功的回调
         },
