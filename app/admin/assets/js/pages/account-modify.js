@@ -7,8 +7,6 @@ class Sub extends Super {
         const superSelf = this;
         const dataInfo = superSelf.dataInfo;
         const routes = dataInfo.routes;
-        const api = dataInfo.api;
-        const axios = superSelf.axios;
         const form = document.querySelector('form');
         form.callbackFailure = function () {
             document.querySelector('.g-verify-code-canvas img').click();

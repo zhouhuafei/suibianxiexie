@@ -1,6 +1,6 @@
 webpackJsonp([8],{
 
-/***/ 43:
+/***/ 44:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,7 +14,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(44);
+__webpack_require__(45);
 var Super = __webpack_require__(6);
 
 var Sub = function (_Super) {
@@ -34,8 +34,6 @@ var Sub = function (_Super) {
             var superSelf = this;
             var dataInfo = superSelf.dataInfo;
             var routes = dataInfo.routes;
-            var api = dataInfo.api;
-            var axios = superSelf.axios;
             var form = document.querySelector('form');
             form.callbackFailure = function () {
                 document.querySelector('.g-verify-code-canvas img').click();
@@ -53,11 +51,11 @@ new Sub();
 
 /***/ }),
 
-/***/ 44:
+/***/ 45:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
 
-},[43]);
+},[44]);
