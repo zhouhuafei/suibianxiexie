@@ -9,6 +9,7 @@ module.exports = function (json) {
         method: 'get', // 请求方式默认get
         isHandleError: true, // 是否处理错误
         isHandleFailure: true, // 是否处理失败
+        isHandleSuccess: false, // 是否处理成功
         timeout: 30000, // 超时
     }, json);
     /*
@@ -48,11 +49,20 @@ module.exports = function (json) {
         return response;
     }).then(function (response) {
         const dataInfo = response.data;
-        if (dataInfo.status === 'failure' && opts.isHandleFailure) {
+        if (dataInfo.status === 'failure' && opts.isHandleFailure) { // 失败
             new Dialog({
                 config: {
                     alert: {
                         content: `失败: ${dataInfo.message}`,
+                    },
+                },
+            });
+        }
+        if (dataInfo.status === 'success' && opts.isHandleSuccess) { // 成功
+            new Dialog({
+                config: {
+                    alert: {
+                        content: dataInfo.message,
                     },
                 },
             });

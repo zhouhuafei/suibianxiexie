@@ -195,9 +195,7 @@ class Super {
 
         // 返回顶部
         const GoTop = require('../components-dom/g-go-top');
-        new GoTop({
-            wrap: '.page-go-top-wrap',
-        });
+        new GoTop({wrap: '.page-go-top-wrap'});
 
         // 版权
         if (dataInfo && dataInfo.isShowCopyright) {
@@ -215,6 +213,27 @@ class Super {
         if (spacingLoading) {
             spacingLoading.parentNode.removeChild(spacingLoading);
         }
+
+        // 表单验证
+        const ValidateInput = require('../components-dom/g-validate-form-hint');
+        const validateInput = new ValidateInput({element: '.js-validate-form'});
+        // 对submit进行拦截
+        $(document).on('submit', 'form', function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            if (!validateInput.isAllPassValidate()) {
+                return;
+            }
+            const method = this.dataset.method || 'get';
+            self.axios({
+                url: this.action,
+                method,
+                data: $(this).serialize(),
+            }).then(function (res) {
+
+            });
+            console.log(method);
+        });
     }
 }
 
