@@ -64,10 +64,8 @@ module.exports = function (json) {
                         },
                     },
                 });
-                // 这边在回调里触发失败回调待续...
-            } else {
-                (typeof opts.callbackFailure === 'function') && opts.callbackFailure(dataInfo);
             }
+            (typeof opts.callbackFailure === 'function') && opts.callbackFailure(dataInfo);
         }
         if (dataInfo.status === 'success') { // 成功
             if (opts.isHandleSuccess) {
@@ -78,10 +76,8 @@ module.exports = function (json) {
                         },
                     },
                 });
-                // 这边在回调里触发成功回调待续...
-            } else {
-                (typeof opts.callbackSuccess === 'function') && opts.callbackSuccess(dataInfo);
             }
+            (typeof opts.callbackSuccess === 'function') && opts.callbackSuccess(dataInfo);
         }
         (typeof opts.callbackComplete === 'function') && opts.callbackComplete(dataInfo);
         return dataInfo;
