@@ -185,7 +185,6 @@ class Super {
         $(document).on('submit', 'form', function (ev) {
             ev.preventDefault();
             ev.stopPropagation();
-            console.log(self.tools.extend({a: 1}, {a: undefined}));
             if (!self.validateInput.isAllPassValidate()) {
                 return;
             }
