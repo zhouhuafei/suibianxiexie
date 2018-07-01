@@ -52,7 +52,11 @@ class Super {
                 return value || {};
             }
         }());
-        // console.log('dataInfo:\n', self.dataInfo);
+
+        // 非生产环境
+        if (!self.dataInfo.isProduction) {
+            window.dataInfo = self.dataInfo;
+        }
 
         // 延迟加载 power方法里如果有切换也使用到延迟加载 那么放在尾部就无解了 放在这里power里可以调用self.lazyload.render方法触发
         const LazyLoad = require('../components-dom/g-lazy-load');
@@ -170,12 +174,6 @@ class Super {
             $(document).on('blur', '.js-g-positive-float', function () {
                 this.value = strTo.toPositiveFloat(this.value);
             });
-            /*
-            // 格式化成保留3位小数的浮点数
-            $(document).on('blur', '.js-g-positive-float3', function () {
-                this.value = strTo.toPositiveFloat(this.value, 3);
-            });
-            */
         })();
 
         // 表单验证
@@ -195,9 +193,7 @@ class Super {
                 method: method,
                 data: $(this).serialize(),
                 callbackSuccess: this.callbackSuccess, // 请求成功的回调
-                callbackSuccessDelayTriggerTime: this.callbackSuccessDelayTriggerTime, // 请求成功的回调延迟几秒触发(默认3秒)
                 callbackFailure: this.callbackFailure, // 请求失败的回调,
-                callbackFailureDelayTriggerTime: this.callbackFailureDelayTriggerTime, // 请求失败的回调延迟几秒触发(默认0秒)
                 callbackComplete: this.callbackComplete, // 请求完成的回调,
             });
         });

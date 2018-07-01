@@ -12,7 +12,9 @@ class Sub extends Super {
             document.querySelector('.g-verify-code-canvas img').click();
         };
         form.callbackSuccess = function () {
-            window.location.href = routes['login'].route;
+            setTimeout(function () {
+                window.location.href = routes['login'].route;
+            }, 1000);
         };
     }
 }

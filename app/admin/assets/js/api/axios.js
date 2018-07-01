@@ -7,16 +7,14 @@ module.exports = function (json) {
     json.method = json.method || json.type || 'get'; // 这里和$.ajax是不一样的，这里以前使用$.ajax的习惯传入type
     const opts = tools.extend({
         method: 'get', // 请求方式默认get
+        timeout: 30000, // 超时
         isHandleError: true, // 是否处理错误
         isHandleFailure: true, // 是否处理失败
         isHandleSuccess: false, // 是否处理成功
-        timeout: 30000, // 超时
         callbackSuccess: function () { // 请求成功的回调
         },
-        callbackSuccessDelayTriggerTime: 3000, // 请求成功的回调延迟几秒触发(默认3秒)
         callbackFailure: function () { // 请求失败的回调
         },
-        callbackFailureDelayTriggerTime: 0, // 请求失败的回调延迟几秒触发(默认0秒)
         callbackComplete: function () { // 请求完成的回调
         },
     }, json);
@@ -67,23 +65,19 @@ module.exports = function (json) {
                     },
                 });
             }
-            setTimeout(function () {
-                (typeof opts.callbackFailure === 'function') && opts.callbackFailure(dataInfo);
-            }, opts.callbackFailureDelayTriggerTime);
+            (typeof opts.callbackFailure === 'function') && opts.callbackFailure(dataInfo);
         }
         if (dataInfo.status === 'success') { // 成功
             if (opts.isHandleSuccess) {
                 new Dialog({
                     config: {
                         alert: {
-                            content: dataInfo.message,
+                            content: `成功: ${dataInfo.message}`,
                         },
                     },
                 });
             }
-            setTimeout(function () {
-                (typeof opts.callbackSuccess === 'function') && opts.callbackSuccess(dataInfo);
-            }, opts.callbackSuccessDelayTriggerTime);
+            (typeof opts.callbackSuccess === 'function') && opts.callbackSuccess(dataInfo);
         }
         (typeof opts.callbackComplete === 'function') && opts.callbackComplete(dataInfo);
         return dataInfo;

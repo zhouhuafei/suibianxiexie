@@ -127,25 +127,17 @@ class Super {
                         title: '账号',
                         items: [
                             {
-                                name: 'register',
-                                title: '注册',
-                            },
-                            {
-                                name: 'login',
-                                title: '登陆',
-                            },
-                            {
                                 name: 'logout',
-                                title: '退出',
+                                title: '退出账号',
                                 power: 'js-g-logout', // 功能型菜单
-                            },
-                            {
-                                name: 'password-modify', // 更改密码,去修改
-                                title: '修改密码',
                             },
                             {
                                 name: 'account-modify', // 更改账号,去修改
                                 title: '修改账号',
+                            },
+                            {
+                                name: 'password-modify', // 更改密码,去修改
+                                title: '修改密码',
                             },
                         ],
                     },
@@ -175,7 +167,7 @@ class Super {
         const opts = self.opts;
         const req = opts.req;
         const data = req.data;
-        self.render();// 渲染视图(渲染数据)
+        self.render(); // 渲染视图(渲染数据)
     }
 
     // (渲)渲染视图
@@ -202,9 +194,9 @@ class Super {
         const req = self.opts.req;
         self.dataInfo = self.tools.extend(self.dataInfo, json);
         if (req.data.isOnlyRenderData === 'true') {
-            self.renderData();// 渲染数据
+            self.renderData(); // 渲染数据
         } else {
-            self.renderView();// 渲染视图
+            self.renderView(); // 渲染视图
         }
     }
 }

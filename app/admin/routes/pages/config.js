@@ -20,12 +20,10 @@ const routeName = [
     {
         name: 'account-modify', // 更改账号,去修改
         title: '更改账号,正在修改',
-        isShowMenu: false,
     },
     {
         name: 'password-modify', // 更改密码,去修改
         title: '更改密码,正在修改',
-        isShowMenu: false,
     },
     {
         name: 'login', // 登陆

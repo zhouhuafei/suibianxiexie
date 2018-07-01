@@ -1898,7 +1898,11 @@ var Super = function () {
                     return value || {};
                 }
             }();
-            // console.log('dataInfo:\n', self.dataInfo);
+
+            // 非生产环境
+            if (!self.dataInfo.isProduction) {
+                window.dataInfo = self.dataInfo;
+            }
 
             // 延迟加载 power方法里如果有切换也使用到延迟加载 那么放在尾部就无解了 放在这里power里可以调用self.lazyload.render方法触发
             var LazyLoad = __webpack_require__(82);
@@ -2016,12 +2020,6 @@ var Super = function () {
                 $(document).on('blur', '.js-g-positive-float', function () {
                     this.value = strTo.toPositiveFloat(this.value);
                 });
-                /*
-                // 格式化成保留3位小数的浮点数
-                $(document).on('blur', '.js-g-positive-float3', function () {
-                    this.value = strTo.toPositiveFloat(this.value, 3);
-                });
-                */
             })();
 
             // 表单验证
@@ -2041,9 +2039,7 @@ var Super = function () {
                     method: method,
                     data: $(this).serialize(),
                     callbackSuccess: this.callbackSuccess, // 请求成功的回调
-                    callbackSuccessDelayTriggerTime: this.callbackSuccessDelayTriggerTime, // 请求成功的回调延迟几秒触发(默认3秒)
                     callbackFailure: this.callbackFailure, // 请求失败的回调,
-                    callbackFailureDelayTriggerTime: this.callbackFailureDelayTriggerTime, // 请求失败的回调延迟几秒触发(默认0秒)
                     callbackComplete: this.callbackComplete // 请求完成的回调,
                 });
             });
@@ -3337,16 +3333,14 @@ module.exports = function (json) {
     json.method = json.method || json.type || 'get'; // 这里和$.ajax是不一样的，这里以前使用$.ajax的习惯传入type
     var opts = tools.extend({
         method: 'get', // 请求方式默认get
+        timeout: 30000, // 超时
         isHandleError: true, // 是否处理错误
         isHandleFailure: true, // 是否处理失败
         isHandleSuccess: false, // 是否处理成功
-        timeout: 30000, // 超时
         callbackSuccess: function callbackSuccess() {// 请求成功的回调
         },
-        callbackSuccessDelayTriggerTime: 3000, // 请求成功的回调延迟几秒触发(默认3秒)
         callbackFailure: function callbackFailure() {// 请求失败的回调
         },
-        callbackFailureDelayTriggerTime: 0, // 请求失败的回调延迟几秒触发(默认0秒)
         callbackComplete: function callbackComplete() {// 请求完成的回调
         }
     }, json);
@@ -3399,9 +3393,7 @@ module.exports = function (json) {
                     }
                 });
             }
-            setTimeout(function () {
-                typeof opts.callbackFailure === 'function' && opts.callbackFailure(dataInfo);
-            }, opts.callbackFailureDelayTriggerTime);
+            typeof opts.callbackFailure === 'function' && opts.callbackFailure(dataInfo);
         }
         if (dataInfo.status === 'success') {
             // 成功
@@ -3409,14 +3401,12 @@ module.exports = function (json) {
                 new Dialog({
                     config: {
                         alert: {
-                            content: dataInfo.message
+                            content: '\u6210\u529F: ' + dataInfo.message
                         }
                     }
                 });
             }
-            setTimeout(function () {
-                typeof opts.callbackSuccess === 'function' && opts.callbackSuccess(dataInfo);
-            }, opts.callbackSuccessDelayTriggerTime);
+            typeof opts.callbackSuccess === 'function' && opts.callbackSuccess(dataInfo);
         }
         typeof opts.callbackComplete === 'function' && opts.callbackComplete(dataInfo);
         return dataInfo;
