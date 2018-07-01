@@ -230,9 +230,9 @@ class Super {
                 method,
                 data: $(this).serialize(),
                 callbackSuccess: this.callbackSuccess, // 请求成功的回调
-                callbackSuccessDelayTriggerTime: this.callbackSuccessDelayTriggerTime || 3000, // 请求成功的回调延迟几秒触发(默认3秒)
+                callbackSuccessDelayTriggerTime: this.callbackSuccessDelayTriggerTime, // 请求成功的回调延迟几秒触发(默认3秒)
                 callbackFailure: this.callbackFailure, // 请求失败的回调,
-                callbackFailureDelayTriggerTime: this.callbackFailureDelayTriggerTime || 0, // 请求失败的回调延迟几秒触发(默认0秒)
+                callbackFailureDelayTriggerTime: this.callbackFailureDelayTriggerTime, // 请求失败的回调延迟几秒触发(默认0秒)
                 callbackComplete: this.callbackComplete, // 请求完成的回调,
             });
         });

@@ -13,8 +13,10 @@ module.exports = function (json) {
         timeout: 30000, // 超时
         callbackSuccess: function () { // 请求成功的回调
         },
+        callbackSuccessDelayTriggerTime: 3000, // 请求成功的回调延迟几秒触发(默认3秒)
         callbackFailure: function () { // 请求失败的回调
         },
+        callbackFailureDelayTriggerTime: 0, // 请求失败的回调延迟几秒触发(默认0秒)
         callbackComplete: function () { // 请求完成的回调
         },
     }, json);
@@ -65,7 +67,9 @@ module.exports = function (json) {
                     },
                 });
             }
-            (typeof opts.callbackFailure === 'function') && opts.callbackFailure(dataInfo);
+            setTimeout(function () {
+                (typeof opts.callbackFailure === 'function') && opts.callbackFailure(dataInfo);
+            }, opts.callbackFailureDelayTriggerTime);
         }
         if (dataInfo.status === 'success') { // 成功
             if (opts.isHandleSuccess) {
@@ -77,7 +81,9 @@ module.exports = function (json) {
                     },
                 });
             }
-            (typeof opts.callbackSuccess === 'function') && opts.callbackSuccess(dataInfo);
+            setTimeout(function () {
+                (typeof opts.callbackSuccess === 'function') && opts.callbackSuccess(dataInfo);
+            }, opts.callbackSuccessDelayTriggerTime);
         }
         (typeof opts.callbackComplete === 'function') && opts.callbackComplete(dataInfo);
         return dataInfo;
