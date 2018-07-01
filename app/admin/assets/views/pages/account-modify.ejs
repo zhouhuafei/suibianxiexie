@@ -8,7 +8,7 @@
         <div class="g-wrap">
             <% include ../commons/menu.ejs %>
             <div class="g-body">
-                <form id="form" action="<%= dataInfo.api['account-modify'].route %>" data-method="put">
+                <form action="<%= dataInfo.api['account-modify'].route %>" data-method="put">
                     <div class="g-form-wrap">
                         <div class="g-form">
                             <label class="g-form-body">
@@ -30,7 +30,10 @@
                                 <span class="g-form-body-text">新用户名:</span>
                                 <span class="g-form-body-content">
                                     <span class="g-form-body-content-body">
-                                        <input class="g-input" type="text" name="new-username" id="new-username" value="" placeholder="请输入新用户名">
+                                        <input class="g-input js-validate-form"
+                                               data-validate="no-empty"
+                                               data-hint="本项必填"
+                                               type="text" name="new-username" value="" placeholder="请输入新用户名">
                                     </span>
                                     <span class="g-form-body-content-icon iconfont icon-clear"></span>
                                     <span class="g-form-body-content-icon g-form-body-content-hint iconfont"></span>
@@ -42,7 +45,10 @@
                                 <span class="g-form-body-text">重复新用户名:</span>
                                 <span class="g-form-body-content">
                                     <span class="g-form-body-content-body">
-                                        <input class="g-input" type="text" name="repeat-new-username" id="new-username" value="" placeholder="请再次输入新用户名">
+                                        <input class="g-input js-validate-form"
+                                               data-validate="no-empty"
+                                               data-hint="本项必填"
+                                               type="text" name="repeat-new-username" value="" placeholder="请再次输入新用户名">
                                     </span>
                                     <span class="g-form-body-content-icon iconfont icon-clear"></span>
                                     <span class="g-form-body-content-icon g-form-body-content-hint iconfont"></span>
@@ -57,7 +63,7 @@
                                         <input class="g-input js-validate-form"
                                                data-validate="no-empty"
                                                data-hint="本项必填"
-                                               type="text" name="verify-code-canvas" id="verify-code-canvas" value="" placeholder="请输入验证码">
+                                               type="text" name="verify-code-canvas" value="" placeholder="请输入验证码">
                                     </span>
                                     <span class="g-verify-code-canvas"><img src="<%= dataInfo.page.verifyCodeCanvas.base64 %>" alt=""></span>
                                     <span class="g-form-body-content-icon iconfont icon-clear"></span>
@@ -66,7 +72,7 @@
                             </label>
                         </div>
                     </div>
-                    <button type="submit" class="g-button js-button g-margin-top-10">修改</button>
+                    <button type="submit" class="g-button g-margin-top-10">修改</button>
                     <div class="g-jump-guide">
                         <div onclick="window.history.back();" class="g-jump-guide-item">
                             <span class="g-jump-guide-item-text">放弃修改账号,回到上一步</span>

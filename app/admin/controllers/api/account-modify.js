@@ -19,16 +19,16 @@ class Sub extends Super {
         const checkStr = tools.checkStr;
         if (checkStr.isEmpty(oldUsername)) {
             self.render({message: '旧用户名不能为空'});
+        } else if (oldUsername !== adminInfo.username) {
+            self.render({message: '旧用户名错误'});
         } else if (checkStr.isEmpty(newUsername)) {
             self.render({message: '新用户名不能为空'});
         } else if (checkStr.isEmpty(repeatNewUsername)) {
             self.render({message: '重复新用户名不能为空'});
         } else if (newUsername === oldUsername) {
-            self.render({message: '新用户名不能和旧用户名重复'});
+            self.render({message: '新用户名不能和旧用户名一样'});
         } else if (newUsername !== repeatNewUsername) {
             self.render({message: '两次输入的新用户名不一致'});
-        } else if (oldUsername !== adminInfo.username) {
-            self.render({message: '旧用户名错误'});
         } else if (checkStr.isEmpty(verifyCodeCanvas)) {
             self.render({message: '验证码不能为空'});
         } else if (verifyCodeCanvas !== sessionVerifyCodeCanvasAdmin) {
