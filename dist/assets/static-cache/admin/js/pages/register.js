@@ -15,7 +15,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 __webpack_require__(122);
-var Super = __webpack_require__(7);
+var Super = __webpack_require__(6);
 
 var Sub = function (_Super) {
     _inherits(Sub, _Super);
@@ -39,7 +39,7 @@ var Sub = function (_Super) {
 
             // 验证
             (function () {
-                var ValidateInput = __webpack_require__(4);
+                var ValidateInput = __webpack_require__(10);
                 new ValidateInput({ element: '.js-validate-form' });
             })();
 

@@ -27,7 +27,7 @@ class Sub extends Super {
             btn.addEventListener('click', function () {
                 axios({
                     url: form.action,
-                    method: form.method,
+                    method: 'put',
                     /*
                     data: {
                         username: username.value,

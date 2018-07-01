@@ -229,10 +229,10 @@ class Super {
                 url: this.action,
                 method,
                 data: $(this).serialize(),
-            }).then(function (res) {
-
+                callbackSuccess: this.callbackSuccess, // 请求成功的回调
+                callbackFailure: this.callbackFailure, // 请求失败的回调,
+                callbackComplete: this.callbackComplete, // 请求完成的回调,
             });
-            console.log(method);
         });
     }
 }

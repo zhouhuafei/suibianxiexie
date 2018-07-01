@@ -11,6 +11,12 @@ module.exports = function (json) {
         isHandleFailure: true, // 是否处理失败
         isHandleSuccess: false, // 是否处理成功
         timeout: 30000, // 超时
+        callbackSuccess: function () { // 请求成功的回调
+        },
+        callbackFailure: function () { // 请求失败的回调
+        },
+        callbackComplete: function () { // 请求完成的回调
+        },
     }, json);
     /*
     * javascript axios get params
@@ -49,24 +55,35 @@ module.exports = function (json) {
         return response;
     }).then(function (response) {
         const dataInfo = response.data;
-        if (dataInfo.status === 'failure' && opts.isHandleFailure) { // 失败
-            new Dialog({
-                config: {
-                    alert: {
-                        content: `失败: ${dataInfo.message}`,
+        if (dataInfo.status === 'failure') { // 失败
+            if (opts.isHandleFailure) {
+                new Dialog({
+                    config: {
+                        alert: {
+                            content: `失败: ${dataInfo.message}`,
+                        },
                     },
-                },
-            });
+                });
+                // 这边在回调里触发失败回调待续...
+            } else {
+                (typeof opts.callbackFailure === 'function') && opts.callbackFailure(dataInfo);
+            }
         }
-        if (dataInfo.status === 'success' && opts.isHandleSuccess) { // 成功
-            new Dialog({
-                config: {
-                    alert: {
-                        content: dataInfo.message,
+        if (dataInfo.status === 'success') { // 成功
+            if (opts.isHandleSuccess) {
+                new Dialog({
+                    config: {
+                        alert: {
+                            content: dataInfo.message,
+                        },
                     },
-                },
-            });
+                });
+                // 这边在回调里触发成功回调待续...
+            } else {
+                (typeof opts.callbackSuccess === 'function') && opts.callbackSuccess(dataInfo);
+            }
         }
+        (typeof opts.callbackComplete === 'function') && opts.callbackComplete(dataInfo);
         return dataInfo;
     });
 };

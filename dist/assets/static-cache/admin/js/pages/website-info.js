@@ -15,8 +15,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 __webpack_require__(127);
-var Super = __webpack_require__(7);
-var axios = __webpack_require__(19);
+var Super = __webpack_require__(6);
+var axios = __webpack_require__(18);
 
 var Sub = function (_Super) {
     _inherits(Sub, _Super);
@@ -106,7 +106,7 @@ var Sub = function (_Super) {
             });
 
             // 验证放在最后是为了保证执行顺序。动态生成的标签，只要重新new一下，element传入dom即可，然后存储实例对象，留着保存时再验证一下。或者不绑定事件，全部都留到保存时再验证，这样只需要保存的时候new一下验证组件，触发一下是否全部验证通过的方法即可。
-            var ValidateInput = __webpack_require__(4);
+            var ValidateInput = __webpack_require__(10);
             var validateInput = new ValidateInput({ element: '.js-validate-form' });
         }
     }]);

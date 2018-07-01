@@ -11,15 +11,20 @@ class Sub extends Super {
         const session = req.session;
         const adminInfo = session.adminInfo;
         const data = req.data;
+        const oldUsername = (data['old-username'] || '').trim(); // 老用户名
         const newUsername = (data['new-username'] || '').trim(); // 新用户名
         const verifyCodeCanvas = (data['verify-code-canvas'] || '').trim(); // 验证码,图文随机
         const sessionVerifyCodeCanvasAdmin = session.verifyCodeCanvasAdmin; // 先保存一份验证码，留着下面做验证。
         delete session.verifyCodeCanvasAdmin; // 请求一次之后就清掉验证码，无论成功失败，都要让验证码无效。
         const checkStr = tools.checkStr;
-        if (checkStr.isEmpty(newUsername)) {
+        if (checkStr.isEmpty(oldUsername)) {
+            self.render({message: '旧用户名不能为空'});
+        } else if (checkStr.isEmpty(newUsername)) {
             self.render({message: '新用户名不能为空'});
-        } else if (newUsername === adminInfo.username) {
+        } else if (newUsername === oldUsername) {
             self.render({message: '新用户名不能和旧用户名重复'});
+        } else if (oldUsername !== adminInfo.username) {
+            self.render({message: '旧用户名错误'});
         } else if (checkStr.isEmpty(verifyCodeCanvas)) {
             self.render({message: '验证码不能为空'});
         } else if (verifyCodeCanvas !== sessionVerifyCodeCanvasAdmin) {

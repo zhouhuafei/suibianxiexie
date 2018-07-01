@@ -1173,7 +1173,9 @@ textarea.g-textarea {
     cursor: not-allowed; }
 
 input.g-button, button.g-button {
-  border: none; }
+  border: none;
+  width: 100%;
+  padding: 0; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。

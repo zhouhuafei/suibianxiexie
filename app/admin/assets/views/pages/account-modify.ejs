@@ -8,7 +8,7 @@
         <div class="g-wrap">
             <% include ../commons/menu.ejs %>
             <div class="g-body">
-                <form id="form" method="post" action="<%= dataInfo.api['password-modify'].route %>">
+                <form id="form" action="<%= dataInfo.api['account-modify'].route %>" data-method="put">
                     <div class="g-form-wrap">
                         <div class="g-form">
                             <label class="g-form-body">
@@ -18,7 +18,7 @@
                                         <input class="g-input js-validate-form"
                                                data-validate="no-empty"
                                                data-hint="本项必填"
-                                               type="text" value="<%= dataInfo.page.username %>">
+                                               type="text" name="old-username" value="" placeholder="请输入旧用户名">
                                     </span>
                                     <span class="g-form-body-content-icon iconfont icon-clear"></span>
                                     <span class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></span>
@@ -54,7 +54,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="g-button js-button g-margin-top-10">修改</div>
+                    <button type="submit" class="g-button js-button g-margin-top-10">修改</button>
                     <div class="g-jump-guide">
                         <div onclick="window.history.back();" class="g-jump-guide-item">
                             <span class="g-jump-guide-item-text">放弃修改账号,回到上一步</span>

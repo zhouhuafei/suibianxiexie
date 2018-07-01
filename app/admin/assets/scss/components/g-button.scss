@@ -31,4 +31,6 @@
 input.g-button, button.g-button {
     @extend .g-button;
     border: none;
+    width: 100%;
+    padding: 0;
 }
