@@ -2023,6 +2023,10 @@ var Super = function () {
                 });
                 */
             })();
+
+            // 表单验证
+            var ValidateInput = __webpack_require__(10);
+            this.validateInput = new ValidateInput({ element: '.js-validate-form' });
         }
 
         // (渲)渲染
@@ -2062,15 +2066,11 @@ var Super = function () {
             if (spacingLoading) {
                 spacingLoading.parentNode.removeChild(spacingLoading);
             }
-
-            // 表单验证
-            var ValidateInput = __webpack_require__(10);
-            var validateInput = new ValidateInput({ element: '.js-validate-form' });
             // 对submit进行拦截
             $(document).on('submit', 'form', function (ev) {
                 ev.preventDefault();
                 ev.stopPropagation();
-                if (!validateInput.isAllPassValidate()) {
+                if (!self.validateInput.isAllPassValidate()) {
                     return;
                 }
                 var method = this.dataset.method || 'get';
@@ -2078,6 +2078,7 @@ var Super = function () {
                     url: this.action,
                     method: method,
                     data: $(this).serialize(),
+                    isHandleSuccess: true, // 是否处理成功
                     callbackSuccess: this.callbackSuccess, // 请求成功的回调
                     callbackSuccessDelayTriggerTime: this.callbackSuccessDelayTriggerTime, // 请求成功的回调延迟几秒触发(默认3秒)
                     callbackFailure: this.callbackFailure, // 请求失败的回调,
@@ -3334,7 +3335,7 @@ module.exports = function (json) {
         method: 'get', // 请求方式默认get
         isHandleError: true, // 是否处理错误
         isHandleFailure: true, // 是否处理失败
-        isHandleSuccess: true, // 是否处理成功
+        isHandleSuccess: false, // 是否处理成功
         timeout: 30000, // 超时
         callbackSuccess: function callbackSuccess() {// 请求成功的回调
         },

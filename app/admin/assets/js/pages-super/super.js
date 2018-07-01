@@ -177,6 +177,10 @@ class Super {
             });
             */
         })();
+
+        // 表单验证
+        const ValidateInput = require('../components-dom/g-validate-form-hint');
+        this.validateInput = new ValidateInput({element: '.js-validate-form'});
     }
 
     // (渲)渲染
@@ -213,15 +217,11 @@ class Super {
         if (spacingLoading) {
             spacingLoading.parentNode.removeChild(spacingLoading);
         }
-
-        // 表单验证
-        const ValidateInput = require('../components-dom/g-validate-form-hint');
-        const validateInput = new ValidateInput({element: '.js-validate-form'});
         // 对submit进行拦截
         $(document).on('submit', 'form', function (ev) {
             ev.preventDefault();
             ev.stopPropagation();
-            if (!validateInput.isAllPassValidate()) {
+            if (!self.validateInput.isAllPassValidate()) {
                 return;
             }
             const method = this.dataset.method || 'get';
@@ -229,6 +229,7 @@ class Super {
                 url: this.action,
                 method,
                 data: $(this).serialize(),
+                isHandleSuccess: true, // 是否处理成功
                 callbackSuccess: this.callbackSuccess, // 请求成功的回调
                 callbackSuccessDelayTriggerTime: this.callbackSuccessDelayTriggerTime, // 请求成功的回调延迟几秒触发(默认3秒)
                 callbackFailure: this.callbackFailure, // 请求失败的回调,

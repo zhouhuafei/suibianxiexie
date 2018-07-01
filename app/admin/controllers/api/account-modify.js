@@ -13,6 +13,7 @@ class Sub extends Super {
         const data = req.data;
         const oldUsername = (data['old-username'] || '').trim(); // 老用户名
         const newUsername = (data['new-username'] || '').trim(); // 新用户名
+        const repeatNewUsername = (data['repeat-new-username'] || '').trim(); // 重复新用户名
         const verifyCodeCanvas = (data['verify-code-canvas'] || '').trim(); // 验证码,图文随机
         const sessionVerifyCodeCanvasAdmin = session.verifyCodeCanvasAdmin; // 先保存一份验证码，留着下面做验证。
         delete session.verifyCodeCanvasAdmin; // 请求一次之后就清掉验证码，无论成功失败，都要让验证码无效。
@@ -21,8 +22,12 @@ class Sub extends Super {
             self.render({message: '旧用户名不能为空'});
         } else if (checkStr.isEmpty(newUsername)) {
             self.render({message: '新用户名不能为空'});
+        } else if (checkStr.isEmpty(repeatNewUsername)) {
+            self.render({message: '重复新用户名不能为空'});
         } else if (newUsername === oldUsername) {
             self.render({message: '新用户名不能和旧用户名重复'});
+        } else if (newUsername !== repeatNewUsername) {
+            self.render({message: '两次输入的新用户名不一致'});
         } else if (oldUsername !== adminInfo.username) {
             self.render({message: '旧用户名错误'});
         } else if (checkStr.isEmpty(verifyCodeCanvas)) {
