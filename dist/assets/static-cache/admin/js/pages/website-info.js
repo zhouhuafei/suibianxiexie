@@ -73,7 +73,7 @@ var Sub = function (_Super) {
                         bg.style.backgroundImage = 'url(\'' + url + '\')';
                         text.innerText = w + '*' + h;
                         parent.querySelector('input[type=hidden]').value = url;
-                        parent.classList.add('g-upload-active');
+                        parent.classList.add('g-upload_active');
                         validateInput.validateInput(self);
                     }
                 });

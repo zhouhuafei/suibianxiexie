@@ -43,7 +43,7 @@ assets/
 * js-表示当前元素身上有对应的js操作。
 * 层级仅限于2-999之间,g-mask层级是500,g-mask-transparent层级是999,弹窗类型大于500即可,非弹窗类型请小于500。
 * css命名规范。
-    - 使用长链接命名方式，就是使用中划线一直连接下去。修饰符使用一个下划线表示。
+    - 使用长链接命名方式，就是使用中划线一直连接下去。修饰符使用一个下划线进行表示。
     ```
         .g-components .g-components-header {}
         .g-components .g-components-header-item {}
@@ -58,7 +58,7 @@ assets/
         .g-components .g-components-header-item.g-components-header-item_col-3 {}
         .g-components .g-components-header-item.g-components-header-item_col-4 {}
     ```
-    - 如果名字太长，可以使用中划线命名，中划线表示此结构是属于一个外部容器所拥有的。
+    - 如果名字太长，可以使用中划线开头进行命名，中划线开头表示当前结构是属于某个外部容器所拥有的。
     ```
         .g-components .-header {}
         .g-components .-header .-item {}

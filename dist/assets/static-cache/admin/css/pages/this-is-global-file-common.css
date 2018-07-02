@@ -1111,15 +1111,15 @@ textarea.g-textarea {
       margin: 0 4px; }
       .g-upload .g-upload-opts .g-upload-opts-item.g-upload-opts-close {
         font-size: 16px; }
-  .g-upload.g-upload-active {
+  .g-upload.g-upload_active {
     border: none; }
-    .g-upload.g-upload-active .g-upload-icon {
+    .g-upload.g-upload_active .g-upload-icon {
       display: none; }
-    .g-upload.g-upload-active .g-upload-show {
+    .g-upload.g-upload_active .g-upload-show {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex; }
-    .g-upload.g-upload-active .g-upload-text {
+    .g-upload.g-upload_active .g-upload-text {
       margin-top: 0;
       position: absolute;
       left: 0;
@@ -1128,7 +1128,7 @@ textarea.g-textarea {
       background: rgba(0, 0, 0, 0.4);
       color: rgba(255, 255, 255, 0.8);
       padding: 4px 0; }
-    .g-upload.g-upload-active .g-upload-opts {
+    .g-upload.g-upload_active .g-upload-opts {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex; }

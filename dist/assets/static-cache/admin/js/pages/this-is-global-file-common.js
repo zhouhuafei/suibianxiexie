@@ -2279,7 +2279,7 @@ function ValidateForm(json) {
         element: '',
         hintClass: 'g-validate-form-hint',
         hintWrapClass: 'g-form', // 指定提示框的父级
-        fileActiveClass: 'g-upload-active', // 文件或者图片上传成功之后的class，做限制个数需要这个
+        fileActiveClass: 'g-upload_active', // 文件或者图片上传成功之后的class，做限制个数需要这个
         isBindEvent: true // 是否绑定事件
     }, json);
     this.init();
