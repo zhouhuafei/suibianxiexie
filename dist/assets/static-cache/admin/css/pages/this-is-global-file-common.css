@@ -2049,11 +2049,11 @@ input.g-button, button.g-button {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center; }
-    .g-audio .g-audio-icon .g-audio-icon-item.g-audio-icon-item-on {
+    .g-audio .g-audio-icon .g-audio-icon-item.g-audio-icon-item_on {
       display: none; }
-  .g-audio.g-audio-on .g-audio-icon .g-audio-icon-item.g-audio-icon-item-on {
+  .g-audio.g-audio_on .g-audio-icon .g-audio-icon-item.g-audio-icon-item_on {
     display: block; }
-  .g-audio.g-audio-on .g-audio-icon .g-audio-icon-item.g-audio-icon-item-off {
+  .g-audio.g-audio_on .g-audio-icon .g-audio-icon-item.g-audio-icon-item_off {
     display: none; }
 
 .g-form-wrap {

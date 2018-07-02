@@ -105,10 +105,10 @@ class Sub extends Super {
         for (let i = 0; i < 7; i++) {
             audioSrc.push(require(`../../audios/syllable/${i + 1}.mp3`));
         }
-        let hasSound = audioWrap.classList.contains('g-audio-on');
+        let hasSound = audioWrap.classList.contains('g-audio_on');
         audioWrap.addEventListener('click', function () {
             hasSound = !hasSound;
-            this.classList.toggle('g-audio-on');
+            this.classList.toggle('g-audio_on');
         });
         // 落子
         canvas.addEventListener('click', function (ev) {

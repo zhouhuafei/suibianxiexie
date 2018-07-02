@@ -51,18 +51,18 @@
         align-items: center;
         justify-content: center;
         .g-audio-icon-item {
-            &.g-audio-icon-item-on {
+            &.g-audio-icon-item_on {
                 display: none;
             }
         }
     }
-    &.g-audio-on {
+    &.g-audio_on {
         .g-audio-icon {
             .g-audio-icon-item {
-                &.g-audio-icon-item-on {
+                &.g-audio-icon-item_on {
                     display: block;
                 }
-                &.g-audio-icon-item-off {
+                &.g-audio-icon-item_off {
                     display: none;
                 }
             }

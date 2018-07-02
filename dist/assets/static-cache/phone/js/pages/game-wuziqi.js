@@ -132,10 +132,10 @@ var Sub = function (_Super) {
             for (var _i = 0; _i < 7; _i++) {
                 audioSrc.push(__webpack_require__(30)("./" + (_i + 1) + '.mp3'));
             }
-            var hasSound = audioWrap.classList.contains('g-audio-on');
+            var hasSound = audioWrap.classList.contains('g-audio_on');
             audioWrap.addEventListener('click', function () {
                 hasSound = !hasSound;
-                this.classList.toggle('g-audio-on');
+                this.classList.toggle('g-audio_on');
             });
             // 落子
             canvas.addEventListener('click', function (ev) {

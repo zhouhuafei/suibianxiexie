@@ -148,10 +148,10 @@ var Sub = function (_Super) {
             for (var i = 0; i < 7; i++) {
                 audioSrc.push(__webpack_require__(30)("./" + (i + 1) + '.mp3'));
             }
-            var hasSound = audioWrap.classList.contains('g-audio-on');
+            var hasSound = audioWrap.classList.contains('g-audio_on');
             audioWrap.addEventListener('click', function () {
                 hasSound = !hasSound;
-                this.classList.toggle('g-audio-on');
+                this.classList.toggle('g-audio_on');
             });
 
             var isPc = document.querySelector('html').classList.contains('g-pc');
