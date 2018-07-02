@@ -73,13 +73,13 @@
 // 表单
 .g-form-wrap {
     font-size: px2rem(12);
-    &.g-form-wrap-style-yes-radius {
+    &.g-form-wrap--style-yes-radius {
         .g-form .g-form-body {
             border: px2rem(1) solid $g-border-color-default;
             border-radius: px2rem(6);
         }
     }
-    &.g-form-wrap-style-no-margin {
+    &.g-form-wrap--style-no-margin {
         .g-form {
             margin-bottom: 0;
             .g-form-body {

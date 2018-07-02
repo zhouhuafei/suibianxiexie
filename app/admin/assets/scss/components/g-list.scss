@@ -3,12 +3,12 @@
 // 列表
 .g-list-wrap {
     width: 100%;
-    &.g-list-wrap-style-yes-radius {
+    &.g-list-wrap--style-yes-radius {
         .g-list {
             border-radius: px2rem(6);
         }
     }
-    &.g-list-wrap-style-no-margin {
+    &.g-list-wrap--style-no-margin {
         .g-list {
             margin-bottom: 0;
             border-bottom: px2rem(1) solid $g-border-color-default;
