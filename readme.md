@@ -39,8 +39,8 @@ assets/
 ```
 
 # 约定大于一切，规则至上-css
+* js-和js-g-两者都表示当前元素身上有对应的js操作。
 * g-表示全局级别,有这个前缀的样式是整站通用的样式。
-* js-表示当前元素身上有对应的js操作。
 * 层级仅限于2-999之间,g-mask层级是500,g-mask-transparent层级是999,弹窗类型大于500即可,非弹窗类型请小于500。
 * css命名规范。
     - 使用长链接命名方式，就是使用中划线一直连接下去。修饰符使用一个下划线进行表示。
@@ -57,6 +57,8 @@ assets/
         .g-components .g-components-header-item.g-components-header-item_col-2 {}
         .g-components .g-components-header-item.g-components-header-item_col-3 {}
         .g-components .g-components-header-item.g-components-header-item_col-4 {}
+        .g-components .g-components-header-item.g-components-header-item_cancel {}
+        .g-components .g-components-header-item.g-components-header-item_confirm {}
         .g-components .g-components-header-item.g-components-header-item_money-text {}
         .g-components .g-components-header-item.g-components-header-item_money-symbol {}
         .g-components .g-components-header-item.g-components-header-item_money-big {}
@@ -76,6 +78,8 @@ assets/
         .g-components .-header .-item._col-2 {}
         .g-components .-header .-item._col-3 {}
         .g-components .-header .-item._col-4 {}
+        .g-components .-header .-item._cancel {}
+        .g-components .-header .-item._confirm {}
         .g-components .-header .-item._money-text {}
         .g-components .-header .-item._money-symbol {}
         .g-components .-header .-item._money-big {}
