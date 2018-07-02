@@ -37,9 +37,9 @@ Sub.prototype.power = function () {
     window.addEventListener('scroll', function () {
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         if (scrollTop >= self.opts.config.showHeight) {
-            self.moduleDom.classList.add('g-go-top-active');
+            self.moduleDom.classList.add('g-go-top_active');
         } else {
-            self.moduleDom.classList.remove('g-go-top-active');
+            self.moduleDom.classList.remove('g-go-top_active');
         }
     });
 };

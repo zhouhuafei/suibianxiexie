@@ -25,7 +25,7 @@
 var TouchSlide = function (a) {
     a = a || {};
     var opts = {
-        slideCell: a.slideCell || '#touchSlide', //运行效果主对象，必须用id！，例如 slideCell:"#touchSlide"
+        slideCell: a.slideCell || '#touchSlide', // 运行效果主对象，必须用id！，例如 slideCell:"#touchSlide"
         titCell: a.titCell || '.hd li', // 导航对象，当自动分页设为true时为“导航对象包裹层”
         mainCell: a.mainCell || '.bd', // 切换对象包裹层
         effect: a.effect || 'left', // 效果，支持 left、leftLoop
@@ -41,15 +41,15 @@ var TouchSlide = function (a) {
         pnLoop: a.pnLoop == 'undefined ' ? true : a.pnLoop, // 前后按钮点击是否继续执行效果，当为最前/后页是会自动添加“prevStop”/“nextStop”控制样色
         startFun: a.startFun || null, // 每次切换效果开始时执行函数，用于处理特殊情况或创建更多效果。用法 satrtFun:function(i,c){ }； 其中i为当前分页，c为总页数
         endFun: a.endFun || null, // 每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
-        switchLoadClass: a.switchLoadClass || '.pre-load',//预加载的class
-        switchLoad: a.switchLoad || 'data-src' //预加载的属性
+        switchLoadClass: a.switchLoadClass || '.pre-load',// 预加载的class
+        switchLoad: a.switchLoad || 'data-src' // 预加载的属性
     };
     var slideCell = null;
-    //如果是字符串
+    // 如果是字符串
     if (Object.prototype.toString.call(opts.slideCell).slice(8, -1).toLowerCase() == 'string') {
         slideCell = document.querySelector(opts.slideCell);
     }
-    //如果是dom节点(一个元素)    原生的
+    // 如果是dom节点(一个元素)    原生的
     if (opts.slideCell.nodeType == 1) {
         slideCell = opts.slideCell;
     }
@@ -63,7 +63,7 @@ var TouchSlide = function (a) {
     if (!slideCell) {
         return;
     }
-    //简单模拟jquery选择器
+    // 简单模拟jquery选择器
     var obj = function (str, parEle) {
         str = str.split(' ');
         var par = [];
@@ -76,7 +76,7 @@ var TouchSlide = function (a) {
                 }
             }
         }
-        //去掉重复空格
+        // 去掉重复空格
         for (var i in par) {
             if (par.hasOwnProperty(i)) {
                 if (retn.length == 0) {
@@ -132,19 +132,19 @@ var TouchSlide = function (a) {
         }
         ele.className = ele.className.replace(new RegExp('\\s*\\b' + className + '\\b', 'g'), '');
     };
-    //全局对象
+    // 全局对象
     var effect = opts.effect;
     var prevBtn = obj(opts.prevCell, slideCell)[0];
     var nextBtn = obj(opts.nextCell, slideCell)[0];
     var pageState = obj(opts.pageStateCell)[0];
-    var conBox = obj(opts.mainCell, slideCell)[0];//内容元素父层对象
+    var conBox = obj(opts.mainCell, slideCell)[0]; // 内容元素父层对象
     if (!conBox) {
         return;
     }
     var conBoxSize = conBox.children.length;
-    var navObj = obj(opts.titCell, slideCell);//导航子元素结合
+    var navObj = obj(opts.titCell, slideCell); // 导航子元素结合
     var navObjSize = navObj ? navObj.length : conBoxSize;
-    /*字符串转换*/
+    /* 字符串转换 */
     var index = parseInt(opts.defaultIndex);
     var delayTime = parseInt(opts.delayTime);
     var interTime = parseInt(opts.interTime);
@@ -154,12 +154,12 @@ var TouchSlide = function (a) {
     var oldIndex = index;
     var inter = null;// autoPlay的setInterval
     var timeout = null; // leftLoop的setTimeout
-    var endTimeout = null;  //translate的setTimeout
+    var endTimeout = null;  // translate的setTimeout
     var startX = 0;
     var startY = 0;
     var distX = 0;
     var distY = 0;
-    //var dist = 0; //手指滑动距离
+    // var dist = 0; // 手指滑动距离
     var isTouchPad = (/hp-tablet/gi).test(navigator.appVersion);
     var hasTouch = 'ontouchstart' in window && !isTouchPad;
     var touchStart = hasTouch ? 'touchstart' : 'mousedown';
@@ -169,7 +169,7 @@ var TouchSlide = function (a) {
     var twCell;
     var scrollY;
     var tempSize = conBoxSize;
-    //处理分页
+    // 处理分页
     if (navObjSize == 0) {
         navObjSize = conBoxSize;
     }
@@ -190,7 +190,7 @@ var TouchSlide = function (a) {
             }
         }
         navObj.innerHTML = str;
-        navObj = navObj.children;//重置navObj
+        navObj = navObj.children; // 重置navObj
     }
     if (effect == 'leftLoop') {
         tempSize += 2;
@@ -212,7 +212,7 @@ var TouchSlide = function (a) {
             opts.endFun(index, navObjSize);
         }
     };
-    //动态设置滑动宽度
+    // 动态设置滑动宽度
     var orientationChange = function () {
         slideW = twCell.clientWidth;
         conBox.style.width = tempSize * slideW + 'px';
@@ -223,7 +223,7 @@ var TouchSlide = function (a) {
         translate(-ind * slideW, 0);
     };
     window.addEventListener('resize', orientationChange, false);
-    //滑动效果
+    // 滑动效果
     var translate = function (dist, speed, ele) {
         if (!!ele) {
             ele = ele.style;
@@ -234,7 +234,7 @@ var TouchSlide = function (a) {
         ele.webkitTransform = 'translate(' + dist + 'px,0)' + 'translateZ(0)';
         ele.msTransform = ele.MozTransform = ele.OTransform = 'translateX(' + dist + 'px)';
     };
-    //效果函数
+    // 效果函数
     var doPlay = function (isTouch) {
         switch (effect) {
             case 'left':
@@ -263,7 +263,7 @@ var TouchSlide = function (a) {
                 break;
 
         }
-        //预加载
+        // 预加载
         (function () {
             var nowIndex = effect == 'leftLoop' ? index + 1 : index;
             var allImage = conBox.querySelectorAll(opts.switchLoadClass);
@@ -290,7 +290,7 @@ var TouchSlide = function (a) {
         endTimeout = setTimeout(function () {
             doEndFun();
         }, delayTime);
-        //给按钮区域的切换每一项加上className
+        // 给按钮区域的切换每一项加上className
         for (var i = 0; i < navObjSize; i++) {
             removeClass(navObj[i], opts.titOnClassName);
             if (i == index) {
@@ -311,7 +311,7 @@ var TouchSlide = function (a) {
         //         }
         //     }
         // })();
-        //loop控制是否继续循环
+        // loop控制是否继续循环
         if (loop == false) {
             removeClass(nextBtn, 'nextStop');
             removeClass(prevBtn, 'prevStop');
@@ -325,16 +325,16 @@ var TouchSlide = function (a) {
             pageState.innerHTML = '<span>' + (index + 1) + '</span>/' + navObjSize;
         }
     };
-    //初始化执行
+    // 初始化执行
     doPlay();
-    //自动播放
+    // 自动播放
     if (autoPlay) {
         inter = setInterval(function () {
             index++;
             doPlay();
         }, interTime);
     }
-    //点击事件
+    // 点击事件
     if (navObj) {
         for (var z = 0; z < navObjSize; z++) {
             (function () {
@@ -368,7 +368,7 @@ var TouchSlide = function (a) {
             }
         });
     }
-    //触摸开始函数
+    // 触摸开始函数
     var tStart = function (e) {
         clearTimeout(timeout);
         clearTimeout(endTimeout);
@@ -377,19 +377,19 @@ var TouchSlide = function (a) {
         var point = hasTouch ? e.touches[0] : e;
         startX = point.pageX;
         startY = point.pageY;
-        //添加“触摸移动”事件监听
+        // 添加“触摸移动”事件监听
         conBox.addEventListener(touchMove, tMove, false);
-        //添加“触摸结束”事件监听
+        // 添加“触摸结束”事件监听
         conBox.addEventListener(touchEnd, tEnd, false);
     };
-    //触摸移动函数
+    // 触摸移动函数
     var tMove = function (e) {
         if (hasTouch) {
             if (e.touches.length > 1 || e.scale && e.scale !== 1) {
                 return;
             }
         }
-        //多点或缩放
+        // 多点或缩放
         var point = hasTouch ? e.touches[0] : e;
         distX = point.pageX - startX;
         distY = point.pageY - startY;
@@ -414,7 +414,7 @@ var TouchSlide = function (a) {
             }
         }
     };
-    //触摸结束函数
+    // 触摸结束函数
     var tEnd = function (e) {
         if (distX == 0) {
             return;
@@ -436,7 +436,7 @@ var TouchSlide = function (a) {
         conBox.removeEventListener(touchMove, tMove, false);
         conBox.removeEventListener(touchEnd, tEnd, false);
     };
-    //添加“触摸开始”事件监听
+    // 添加“触摸开始”事件监听
     conBox.addEventListener(touchStart, tStart, false);
 };
 

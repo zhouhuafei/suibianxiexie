@@ -443,7 +443,7 @@ var Sub = tools.constructorInherit(Super, {
 // (建)(覆)内部模块的创建(覆盖超类型)
 Sub.prototype.moduleDomCreate = function () {
     var config = this.opts.config;
-    this.moduleDomActiveClass = 'g-radio-switch-active';
+    this.moduleDomActiveClass = 'g-radio-switch_active';
     var isOn = '';
     if (config.status === 'on') {
         isOn = this.moduleDomActiveClass;

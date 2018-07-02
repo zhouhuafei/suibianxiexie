@@ -74,7 +74,7 @@ class Super {
         // 菜单
         (function () {
             const btn = document.querySelectorAll('.g-menu-item-title');
-            const activeClass = 'g-menu-item-active';
+            const activeClass = 'g-menu-item_active';
             btn.forEach(function (v) {
                 v.addEventListener('click', function () {
                     // btn.forEach(function (v) {

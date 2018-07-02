@@ -1,6 +1,6 @@
 @import "../config/config";
 
-//按钮
+// 按钮
 .g-button {
     height: px2rem(40);
     background: $g-highlight-color;
@@ -16,11 +16,11 @@
     .g-button-text {
         margin: 0 px2rem(2);
     }
-    //取消
+    // 取消
     &.g-button-cancel {
         background: $g-background-color-default;
     }
-    //禁用
+    // 禁用
     &.g-button-disable {
         background: $g-background-color-disabled;
         color: $g-font-color-disabled;

@@ -1,6 +1,6 @@
 @import "../config/config";
 
-//全局的容器
+// 全局的容器
 .g-wrap {
     $w: 200;
     display: flex;
@@ -47,7 +47,7 @@
                         cursor: pointer;
                         padding: 0 px2rem(5) 0 px2rem(30);
                         transition: 0.4s;
-                        &.g-menu-item-body-item-active, &.g-menu-item-body-item-active:hover {
+                        &.g-menu-item-body-item_active, &.g-menu-item-body-item_active:hover {
                             background: $g-background-color-floor;
                             color: #252834;
                         }
@@ -56,7 +56,7 @@
                         }
                     }
                 }
-                &.g-menu-item-active {
+                &.g-menu-item_active {
                     .g-menu-item-title-icon {
                         transform: rotate(90deg);
                     }

@@ -7488,7 +7488,7 @@ LazyLoad.prototype.render = function () {
                     v.style.backgroundImage = 'url(' + v.getAttribute(self.opts.srcAttr) + ')';
                 }
                 v.classList.remove('g-lazy-load');
-                v.classList.add('g-lazy-load-active');
+                v.classList.add('g-lazy-load_active');
             }
         }
     });
@@ -15611,7 +15611,7 @@ function crc32(/* arguments */) {
 }
 
 module.exports = crc32;
-    
+
 })();
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(4).Buffer))
@@ -15987,9 +15987,9 @@ Sub.prototype.power = function () {
     window.addEventListener('scroll', function () {
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         if (scrollTop >= self.opts.config.showHeight) {
-            self.moduleDom.classList.add('g-go-top-active');
+            self.moduleDom.classList.add('g-go-top_active');
         } else {
-            self.moduleDom.classList.remove('g-go-top-active');
+            self.moduleDom.classList.remove('g-go-top_active');
         }
     });
 };

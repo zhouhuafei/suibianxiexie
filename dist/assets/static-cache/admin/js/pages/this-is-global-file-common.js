@@ -1920,7 +1920,7 @@ var Super = function () {
             // 菜单
             (function () {
                 var btn = document.querySelectorAll('.g-menu-item-title');
-                var activeClass = 'g-menu-item-active';
+                var activeClass = 'g-menu-item_active';
                 btn.forEach(function (v) {
                     v.addEventListener('click', function () {
                         // btn.forEach(function (v) {
@@ -8583,7 +8583,7 @@ LazyLoad.prototype.render = function () {
                     v.style.backgroundImage = 'url(' + v.getAttribute(self.opts.srcAttr) + ')';
                 }
                 v.classList.remove('g-lazy-load');
-                v.classList.add('g-lazy-load-active');
+                v.classList.add('g-lazy-load_active');
             }
         }
     });
@@ -17082,9 +17082,9 @@ Sub.prototype.power = function () {
     window.addEventListener('scroll', function () {
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         if (scrollTop >= self.opts.config.showHeight) {
-            self.moduleDom.classList.add('g-go-top-active');
+            self.moduleDom.classList.add('g-go-top_active');
         } else {
-            self.moduleDom.classList.remove('g-go-top-active');
+            self.moduleDom.classList.remove('g-go-top_active');
         }
     });
 };

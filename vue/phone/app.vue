@@ -26,7 +26,7 @@
                     <template v-for="value in $store.state.footerNav.data">
                         <router-link
                             :to="value.href"
-                            :class="{'g-footer-nav-body-item-active': value.href === $route.path}"
+                            :class="{'g-footer-nav-body-item_active': value.href === $route.path}"
                             class="g-footer-nav-body-item">
                             <div
                                 :class="[value.icon]"

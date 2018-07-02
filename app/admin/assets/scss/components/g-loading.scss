@@ -19,13 +19,13 @@
         padding: px2rem(20) 0;
         box-sizing: border-box;
     }
-    //加载中
+    // 加载中
     &.g-loading-run {
         .g-loading-run-icon {
             font-size: px2rem(30);
             animation: run 1s linear infinite;
         }
-        //相对于文档居中
+        // 相对于文档居中
         &.g-loading-fixed {
             .g-loading-body {
                 position: fixed;
@@ -49,7 +49,7 @@
                 }
             }
         }
-        //相对于容器居中
+        // 相对于容器居中
         &.g-loading-absolute {
             .g-loading-body {
                 position: absolute;
@@ -76,7 +76,7 @@
         }
     }
 
-    //加载完毕
+    // 加载完毕
     &.g-loading-over {
         .g-loading-over-icon {
             font-size: px2rem(24);

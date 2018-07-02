@@ -54,7 +54,7 @@ LazyLoad.prototype.render = function () {
                     v.style.backgroundImage = `url(${v.getAttribute(self.opts.srcAttr)})`;
                 }
                 v.classList.remove('g-lazy-load');
-                v.classList.add('g-lazy-load-active');
+                v.classList.add('g-lazy-load_active');
             }
         }
     });

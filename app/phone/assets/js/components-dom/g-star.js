@@ -25,7 +25,7 @@ Sub.prototype.moduleDomCreate = function () {
     for (let i = 0; i < this.opts.config.allStarNum; i++) {
         let className = '';
         if (i < this.opts.config.nowStarNum) {
-            className = 'g-star-item-active';
+            className = 'g-star-item_active';
         }
         html += `<div data-index="${i}" class="iconfont icon-star g-star-item ${className}"></div>`;
     }
@@ -50,9 +50,9 @@ Sub.prototype.power = function () {
                 const index = target.dataset.index;
                 for (let j = 0; j < self.opts.config.allStarNum; j++) {
                     if (j <= index) {
-                        self.opts.star[j].classList.add('g-star-item-active');
+                        self.opts.star[j].classList.add('g-star-item_active');
                     } else {
-                        self.opts.star[j].classList.remove('g-star-item-active');
+                        self.opts.star[j].classList.remove('g-star-item_active');
                     }
                 }
                 self.opts.callback.click({element: this, index: index});

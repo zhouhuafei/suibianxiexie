@@ -7397,7 +7397,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return [_c('router-link', {
       staticClass: "g-footer-nav-body-item",
       class: {
-        'g-footer-nav-body-item-active': value.href === _vm.$route.path
+        'g-footer-nav-body-item_active': value.href === _vm.$route.path
       },
       attrs: {
         "to": value.href
@@ -7903,7 +7903,7 @@ LazyLoad.prototype.render = function () {
                     v.style.backgroundImage = 'url(' + v.getAttribute(self.opts.srcAttr) + ')';
                 }
                 v.classList.remove('g-lazy-load');
-                v.classList.add('g-lazy-load-active');
+                v.classList.add('g-lazy-load_active');
             }
         }
     });
@@ -16054,7 +16054,7 @@ function crc32(/* arguments */) {
 }
 
 module.exports = crc32;
-    
+
 })();
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(0).Buffer))

@@ -6,7 +6,7 @@
     $width-height-round: $height-wrap - 2;
     $top-round: 1;
     $left-round: 1;
-    $left-round-active: $width-wrap - $width-height-round - $left-round;
+    $left-round_active: $width-wrap - $width-height-round - $left-round;
     height: px2rem($height-wrap);
     cursor: pointer;
     display: flex;
@@ -33,11 +33,11 @@
     .g-radio-switch-text {
         margin-left: px2rem(4);
     }
-    &.g-radio-switch-active {
+    &.g-radio-switch_active {
         .g-radio-switch-body {
             background: $g-highlight-color;
             .g-radio-switch-body-round {
-                left: px2rem($left-round-active);
+                left: px2rem($left-round_active);
             }
         }
         .g-radio-switch-text {

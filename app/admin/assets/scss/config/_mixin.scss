@@ -1,4 +1,4 @@
-//清除浮动
+// 清除浮动
 @mixin clear-fix() {
     &:after {
         content: '';
@@ -9,7 +9,7 @@
     }
 }
 
-//垂直水平居中(伪类)
+// 垂直水平居中(伪类)
 @mixin xy-center-sham() {
     font-size: 0;
     text-align: center;
@@ -25,7 +25,7 @@
     }
 }
 
-//垂直水平居中(flex)
+// 垂直水平居中(flex)
 @mixin xy-center-flex() {
     display: flex;
     align-items: center;
@@ -34,7 +34,7 @@
     word-break: break-all;
 }
 
-//省略号
+// 省略号
 @mixin text-ellipsis($lineClamp:1, $lineHeight:1, $height:0) {
     line-height: $lineHeight;
     @if $height == 0 {

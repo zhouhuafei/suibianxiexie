@@ -31,7 +31,7 @@ Sub.prototype.moduleDomCreate = function () {
         const v = data[key];
         let highlightClass = '';
         if (v.isHighlight) {
-            highlightClass = 'g-footer-nav-body-item-active';
+            highlightClass = 'g-footer-nav-body-item_active';
         }
         let markHtml = '';
         if (v.isShowMark) {

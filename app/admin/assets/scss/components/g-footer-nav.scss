@@ -1,6 +1,6 @@
 @import "../config/config";
 
-//底部导航
+// 底部导航
 .g-footer-nav {
     $height: 44;
     width: inherit;
@@ -47,7 +47,7 @@
                 right: px2rem(4);
                 top: px2rem(4);
             }
-            &.g-footer-nav-body-item-active {
+            &.g-footer-nav-body-item_active {
                 .g-footer-nav-body-item-icon, .g-footer-nav-body-item-text {
                     color: $g-highlight-color;
                 }
