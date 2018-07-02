@@ -57,6 +57,10 @@ assets/
         .g-components .g-components-header-item.g-components-header-item_col-2 {}
         .g-components .g-components-header-item.g-components-header-item_col-3 {}
         .g-components .g-components-header-item.g-components-header-item_col-4 {}
+        .g-components .g-components-header-item.g-components-header-item_money-text {}
+        .g-components .g-components-header-item.g-components-header-item_money-symbol {}
+        .g-components .g-components-header-item.g-components-header-item_money-big {}
+        .g-components .g-components-header-item.g-components-header-item_money-small {}
     ```
     - 如果名字太长，可以使用中划线开头进行命名，中划线开头表示当前结构是属于某个外部容器所拥有的。
     ```
@@ -72,6 +76,10 @@ assets/
         .g-components .-header .-item._col-2 {}
         .g-components .-header .-item._col-3 {}
         .g-components .-header .-item._col-4 {}
+        .g-components .-header .-item._money-text {}
+        .g-components .-header .-item._money-symbol {}
+        .g-components .-header .-item._money-big {}
+        .g-components .-header .-item._money-small {}
     ```
     - 简短命名，当不同的组件嵌套时，冲突的可能性很高(因为-item这种命名，在其他组件也可能被使用)。长连接命名方式冲突的可能性为零(因为每次都有组件名称连接着，不同的组件，名字不一样，则不会冲突)。
 

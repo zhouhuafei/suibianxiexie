@@ -52,9 +52,7 @@
         padding: px2rem(4) 0;
         .g-upload-opts-item {
             margin: 0 px2rem(4);
-            &.g-upload-opts-close {
-                font-size: px2rem(16);
-            }
+            font-size: px2rem(16);
         }
     }
     &.g-upload_active {

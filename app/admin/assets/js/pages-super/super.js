@@ -148,16 +148,16 @@ class Super {
             });
 
             // 密码是否可视
-            $(document).on('click', '.g-form-body-content-icon.iconfont.icon-eye-off, .g-form-body-content-icon.iconfont.icon-eye-on', function () {
+            $(document).on('click', '.g-form-body-content-icon.iconfont.icon-eye_off, .g-form-body-content-icon.iconfont.icon-eye', function () {
                 const parent = $(this).closest('.g-form')[0];
                 const input = parent.querySelector('.g-input');
-                if (this.classList.contains('icon-eye-off')) {
-                    this.classList.remove('icon-eye-off');
-                    this.classList.add('icon-eye-on');
+                if (this.classList.contains('icon-eye_off')) {
+                    this.classList.remove('icon-eye_off');
+                    this.classList.add('icon-eye');
                     input && (input.type = 'text');
                 } else {
-                    this.classList.remove('icon-eye-on');
-                    this.classList.add('icon-eye-off');
+                    this.classList.remove('icon-eye');
+                    this.classList.add('icon-eye_off');
                     input && (input.type = 'password');
                 }
             });
