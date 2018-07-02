@@ -14,7 +14,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(121);
+__webpack_require__(45);
 var Super = __webpack_require__(6);
 
 var Sub = function (_Super) {
@@ -34,56 +34,15 @@ var Sub = function (_Super) {
             var superSelf = this;
             var dataInfo = superSelf.dataInfo;
             var routes = dataInfo.routes;
-            var api = dataInfo.api;
-            var axios = superSelf.axios;
-
-            // 验证
-            (function () {
-                var ValidateInput = __webpack_require__(10);
-                new ValidateInput({ element: '.js-validate-form' });
-            })();
-
-            // 修改
-            (function () {
-                var form = document.querySelector('#form');
-                var username = document.querySelector('#username');
-                var oldPassword = document.querySelector('#old-password');
-                var newPassword = document.querySelector('#new-password');
-                var repeatNewPassword = document.querySelector('#repeat-new-password');
-                var btn = document.querySelector('.js-button');
-                btn.addEventListener('click', function () {
-                    axios({
-                        url: form.action,
-                        method: 'put',
-                        /*
-                        data: {
-                            username: username.value,
-                            'old-password': oldPassword.value,
-                            'new-password': newPassword.value,
-                            'repeat-password': repeatNewPassword.value,
-                        },
-                        */
-                        data: $(form).serialize()
-                        // data: new FormData(form),
-                    }).then(function (json) {
-                        if (json.status === 'success') {
-                            window.location.href = routes['login'].route;
-                            /*
-                            const DialogJumpLink = require('../components-dom/g-dialog-jump-link');
-                            new DialogJumpLink({
-                                title: json.message,
-                                seconds: 3,
-                                pageTitle: routes['login'].title,
-                                href: routes['login'].route,
-                            });
-                            */
-                        }
-                        if (json.status === 'failure') {
-                            document.querySelector('.g-verify-code-canvas img').click();
-                        }
-                    });
-                });
-            })();
+            var form = document.querySelector('form');
+            form.callbackFailure = function () {
+                document.querySelector('.g-verify-code-canvas img').click();
+            };
+            form.callbackSuccess = function () {
+                setTimeout(function () {
+                    window.location.href = routes['login'].route;
+                }, 1000);
+            };
         }
     }]);
 
@@ -94,7 +53,7 @@ new Sub();
 
 /***/ }),
 
-/***/ 121:
+/***/ 45:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
