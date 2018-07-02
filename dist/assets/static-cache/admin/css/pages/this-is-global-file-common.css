@@ -1243,12 +1243,12 @@ input.g-button, button.g-button {
 */
 .g-list-wrap {
   width: 100%; }
-  .g-list-wrap.g-list-wrap--style-yes-radius .g-list {
+  .g-list-wrap.g-list-wrap_style-yes-radius .g-list {
     border-radius: 6px; }
-  .g-list-wrap.g-list-wrap--style-no-margin .g-list {
+  .g-list-wrap.g-list-wrap_style-no-margin .g-list {
     margin-bottom: 0;
     border-bottom: 1px solid #e6e7ed; }
-    .g-list-wrap.g-list-wrap--style-no-margin .g-list:last-child {
+    .g-list-wrap.g-list-wrap_style-no-margin .g-list:last-child {
       border-bottom: none; }
   .g-list-wrap .g-list {
     display: block;
@@ -2058,16 +2058,16 @@ input.g-button, button.g-button {
 
 .g-form-wrap {
   font-size: 12px; }
-  .g-form-wrap.g-form-wrap--style-yes-radius .g-form .g-form-body {
+  .g-form-wrap.g-form-wrap_style-yes-radius .g-form .g-form-body {
     border: 1px solid #e6e7ed;
     border-radius: 6px; }
-  .g-form-wrap.g-form-wrap--style-no-margin .g-form {
+  .g-form-wrap.g-form-wrap_style-no-margin .g-form {
     margin-bottom: 0; }
-    .g-form-wrap.g-form-wrap--style-no-margin .g-form .g-form-body {
+    .g-form-wrap.g-form-wrap_style-no-margin .g-form .g-form-body {
       border-bottom: none; }
-    .g-form-wrap.g-form-wrap--style-no-margin .g-form .g-form-footer {
+    .g-form-wrap.g-form-wrap_style-no-margin .g-form .g-form-footer {
       border-top: 1px solid #e6e7ed; }
-    .g-form-wrap.g-form-wrap--style-no-margin .g-form:last-of-type .g-form-body {
+    .g-form-wrap.g-form-wrap_style-no-margin .g-form:last-of-type .g-form-body {
       border-bottom: 1px solid #e6e7ed; }
   .g-form-wrap .g-form {
     margin-bottom: 10px; }

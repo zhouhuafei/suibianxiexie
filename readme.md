@@ -43,37 +43,37 @@ assets/
 * js-表示当前元素身上有对应的js操作。
 * 层级仅限于2-999之间,g-mask层级是500,g-mask-transparent层级是999,弹窗类型大于500即可,非弹窗类型请小于500。
 * css命名规范。
-    - 使用长链接命名方式，就是使用中划线一直连接下去。修饰符使用两个中划线表示。
+    - 使用长链接命名方式，就是使用中划线一直连接下去。修饰符使用一个下划线表示。
     ```
         .g-components .g-components-header {}
         .g-components .g-components-header-item {}
-        .g-components .g-components-header-item.g-components-header-item--on {}
-        .g-components .g-components-header-item.g-components-header-item--off {}
-        .g-components .g-components-header-item.g-components-header-item--active {}
-        .g-components .g-components-header-item.g-components-header-item--inactive {}
-        .g-components .g-components-header-item.g-components-header-item--window {}
-        .g-components .g-components-header-item.g-components-header-item--list {}
-        .g-components .g-components-header-item.g-components-header-item--col-1 {}
-        .g-components .g-components-header-item.g-components-header-item--col-2 {}
-        .g-components .g-components-header-item.g-components-header-item--col-3 {}
-        .g-components .g-components-header-item.g-components-header-item--col-4 {}
+        .g-components .g-components-header-item.g-components-header-item_on {}
+        .g-components .g-components-header-item.g-components-header-item_off {}
+        .g-components .g-components-header-item.g-components-header-item_active {}
+        .g-components .g-components-header-item.g-components-header-item_inactive {}
+        .g-components .g-components-header-item.g-components-header-item_window {}
+        .g-components .g-components-header-item.g-components-header-item_list {}
+        .g-components .g-components-header-item.g-components-header-item_col-1 {}
+        .g-components .g-components-header-item.g-components-header-item_col-2 {}
+        .g-components .g-components-header-item.g-components-header-item_col-3 {}
+        .g-components .g-components-header-item.g-components-header-item_col-4 {}
     ```
-    - 如果名字太长，可以使用双下划线命名，双下划线表示此结构是属于一个外部容器所拥有的。
+    - 如果名字太长，可以使用中划线命名，中划线表示此结构是属于一个外部容器所拥有的。
     ```
-        .g-components .__header {}
-        .g-components .__header .__item {}
-        .g-components .__header .__item.--on {}
-        .g-components .__header .__item.--off {}
-        .g-components .__header .__item.--active {}
-        .g-components .__header .__item.--inactive {}
-        .g-components .__header .__item.--window {}
-        .g-components .__header .__item.--list {}
-        .g-components .__header .__item.--col-1 {}
-        .g-components .__header .__item.--col-2 {}
-        .g-components .__header .__item.--col-3 {}
-        .g-components .__header .__item.--col-4 {}
+        .g-components .-header {}
+        .g-components .-header .-item {}
+        .g-components .-header .-item._on {}
+        .g-components .-header .-item._off {}
+        .g-components .-header .-item._active {}
+        .g-components .-header .-item._inactive {}
+        .g-components .-header .-item._window {}
+        .g-components .-header .-item._list {}
+        .g-components .-header .-item._col-1 {}
+        .g-components .-header .-item._col-2 {}
+        .g-components .-header .-item._col-3 {}
+        .g-components .-header .-item._col-4 {}
     ```
-    - 简短命名，当不同的组件嵌套时，冲突的可能性很高(因为__item这种命名，在其他组件也可能被使用)。长连接命名方式冲突的可能性为零(因为每次都有组件名称连接着，不同的组件，名字不一样，则不会冲突)。
+    - 简短命名，当不同的组件嵌套时，冲突的可能性很高(因为-item这种命名，在其他组件也可能被使用)。长连接命名方式冲突的可能性为零(因为每次都有组件名称连接着，不同的组件，名字不一样，则不会冲突)。
 
 # 约定大于一切，规则至上-js
 * 结构上有js-前缀或者js-g-前缀，表示这个结构具备js功能。
