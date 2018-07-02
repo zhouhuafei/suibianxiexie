@@ -58,22 +58,22 @@ assets/
         .g-components .g-components-header-item.g-components-header-item--col-3 {}
         .g-components .g-components-header-item.g-components-header-item--col-4 {}
     ```
-    - 如果名字太长，可以使用简短的下划线命名，下划线表示此结构是属于一个外部容器所拥有的。
+    - 如果名字太长，可以使用双下划线命名，双下划线表示此结构是属于一个外部容器所拥有的。
     ```
-        .g-components ._header {}
-        .g-components ._header ._item {}
-        .g-components ._header ._item.--on {}
-        .g-components ._header ._item.--off {}
-        .g-components ._header ._item.--active {}
-        .g-components ._header ._item.--inactive {}
-        .g-components ._header ._item.--window {}
-        .g-components ._header ._item.--list {}
-        .g-components ._header ._item.--col-1 {}
-        .g-components ._header ._item.--col-2 {}
-        .g-components ._header ._item.--col-3 {}
-        .g-components ._header ._item.--col-4 {}
+        .g-components .__header {}
+        .g-components .__header .__item {}
+        .g-components .__header .__item.--on {}
+        .g-components .__header .__item.--off {}
+        .g-components .__header .__item.--active {}
+        .g-components .__header .__item.--inactive {}
+        .g-components .__header .__item.--window {}
+        .g-components .__header .__item.--list {}
+        .g-components .__header .__item.--col-1 {}
+        .g-components .__header .__item.--col-2 {}
+        .g-components .__header .__item.--col-3 {}
+        .g-components .__header .__item.--col-4 {}
     ```
-    - 简短命名，当不同的组件嵌套时，冲突的可能性很高(因为_item这种命名，在其他组件也可能被使用)。长连接命名方式冲突的可能性为零(因为每次都有组件名称连接着，不同的组件，名字不一样，则不会冲突)。
+    - 简短命名，当不同的组件嵌套时，冲突的可能性很高(因为__item这种命名，在其他组件也可能被使用)。长连接命名方式冲突的可能性为零(因为每次都有组件名称连接着，不同的组件，名字不一样，则不会冲突)。
 
 # 约定大于一切，规则至上-js
 * 结构上有js-前缀或者js-g-前缀，表示这个结构具备js功能。
