@@ -15,11 +15,13 @@ const schema = new mongoose.Schema({
         trim: true,
     },
     // 图片的路径，考虑到安全因素，查看图片列表时，此项不应该展示给用户。
+    /*
     path: {
         type: String,
         required: true,
         trim: true,
     },
+    */
     // 图片的原名
     originalName: {
         type: String,
@@ -32,12 +34,14 @@ const schema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    // 图片被使用的次数，只有使用次数为0的图片才可以被物理删除
+    // 图片被使用的次数，只有使用次数为0的图片才可以被物理删除。这个里面涉及到细节太多，实现起来太艰辛，图片这种资源，还是不物理删除比较好。
+    /*
     beUsedNumber: {
         type: Number,
         default: 0,
         trim: true,
     },
+    */
     // 图片所属分类的id
     categoryId: {
         type: String,

@@ -43,7 +43,7 @@ class Sub extends Super {
             dbFiles.push({
                 mimeType: file.mimetype,
                 size: file.size,
-                path: file.path,
+                // path: file.path,
                 originalName: file.originalname,
                 createTime: new Date(),
                 categoryId,
@@ -98,7 +98,7 @@ class Sub extends Super {
         url.forEach(function (v) {
             let myFailure = null;
             let mySuccess = null;
-            Galleries.findOne({url: v, beUsedNumber: 0}, function (error, result) {
+            Galleries.findOne({url: v}, function (error, result) {
                 if (error) {
                     myFailure = {error, url: v};
                 }
@@ -191,9 +191,11 @@ class Sub extends Super {
             const result = data.result;
             const allCount = data.allCount;
             const nowCount = result.length;
+            /*
             result.forEach(function (v) {
                 v.path = undefined;
             });
+            */
             self.render({
                 status: 'success',
                 message: '查询成功',
