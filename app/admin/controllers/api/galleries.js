@@ -31,14 +31,14 @@ class Sub extends Super {
         }
         const dbFiles = [];
         files.forEach(function (file) {
-            // const arr = file.originalname.split('.');
-            // const len = arr.length;
-            // const extName = arr[len - 1];
-            // if (len > 1) {
-            //     const newPath = `${file.path}.${extName}`;
-            //     fs.renameSync(file.path, newPath);
-            //     file.path = newPath;
-            // }
+            const arr = file.originalname.split('.');
+            const len = arr.length;
+            const extName = arr[len - 1];
+            if (len > 1) {
+                const newPath = `${file.path}.${extName}`;
+                fs.renameSync(file.path, newPath);
+                file.path = newPath;
+            }
             const {width, height} = sizeOf(file.path);
             dbFiles.push({
                 mimeType: file.mimetype,

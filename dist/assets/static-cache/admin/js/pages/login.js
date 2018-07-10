@@ -39,7 +39,7 @@ var Sub = function (_Super) {
 
             // 验证
             (function () {
-                var ValidateInput = __webpack_require__(10);
+                var ValidateInput = __webpack_require__(13);
                 new ValidateInput({ element: '.js-validate-form' });
             })();
 

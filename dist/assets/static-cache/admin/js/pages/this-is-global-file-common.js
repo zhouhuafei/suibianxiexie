@@ -1844,7 +1844,7 @@ var Super = function () {
         self.applications = __webpack_require__(4); // 应用方法集合
         self.axios = __webpack_require__(19); // axios
         self.jsonp = __webpack_require__(81); // jsonp
-        self.Dialog = __webpack_require__(12); // 弹窗组件
+        self.Dialog = __webpack_require__(11); // 弹窗组件
         self.opts = self.tools.extend({
             lazyload: {
                 isInitRender: false
@@ -2023,7 +2023,7 @@ var Super = function () {
             })();
 
             // 表单验证
-            var ValidateInput = __webpack_require__(10);
+            var ValidateInput = __webpack_require__(13);
             this.validateInput = new ValidateInput({ element: '.js-validate-form' });
             // 对submit进行拦截
             $(document).on('submit', 'form', function (ev) {
@@ -2184,7 +2184,7 @@ var objectKeys = Object.keys || function (obj) {
 module.exports = Duplex;
 
 /*<replacement>*/
-var util = __webpack_require__(11);
+var util = __webpack_require__(10);
 util.inherits = __webpack_require__(7);
 /*</replacement>*/
 
@@ -2277,6 +2277,537 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 
 /***/ }),
 /* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// NOTE: These type checking functions intentionally don't use `instanceof`
+// because it is fragile and can be easily faked with `Object.create()`.
+
+function isArray(arg) {
+  if (Array.isArray) {
+    return Array.isArray(arg);
+  }
+  return objectToString(arg) === '[object Array]';
+}
+exports.isArray = isArray;
+
+function isBoolean(arg) {
+  return typeof arg === 'boolean';
+}
+exports.isBoolean = isBoolean;
+
+function isNull(arg) {
+  return arg === null;
+}
+exports.isNull = isNull;
+
+function isNullOrUndefined(arg) {
+  return arg == null;
+}
+exports.isNullOrUndefined = isNullOrUndefined;
+
+function isNumber(arg) {
+  return typeof arg === 'number';
+}
+exports.isNumber = isNumber;
+
+function isString(arg) {
+  return typeof arg === 'string';
+}
+exports.isString = isString;
+
+function isSymbol(arg) {
+  return typeof arg === 'symbol';
+}
+exports.isSymbol = isSymbol;
+
+function isUndefined(arg) {
+  return arg === void 0;
+}
+exports.isUndefined = isUndefined;
+
+function isRegExp(re) {
+  return objectToString(re) === '[object RegExp]';
+}
+exports.isRegExp = isRegExp;
+
+function isObject(arg) {
+  return typeof arg === 'object' && arg !== null;
+}
+exports.isObject = isObject;
+
+function isDate(d) {
+  return objectToString(d) === '[object Date]';
+}
+exports.isDate = isDate;
+
+function isError(e) {
+  return (objectToString(e) === '[object Error]' || e instanceof Error);
+}
+exports.isError = isError;
+
+function isFunction(arg) {
+  return typeof arg === 'function';
+}
+exports.isFunction = isFunction;
+
+function isPrimitive(arg) {
+  return arg === null ||
+         typeof arg === 'boolean' ||
+         typeof arg === 'number' ||
+         typeof arg === 'string' ||
+         typeof arg === 'symbol' ||  // ES6 symbol
+         typeof arg === 'undefined';
+}
+exports.isPrimitive = isPrimitive;
+
+exports.isBuffer = Buffer.isBuffer;
+
+function objectToString(o) {
+  return Object.prototype.toString.call(o);
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0).Buffer))
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(1); // 工具方法集合
+var applications = __webpack_require__(4); // 应用方法集合
+var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
+var Mask = __webpack_require__(76); // 遮罩
+var domAddPosition = __webpack_require__(20);
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    wrap: '.g-wrap',
+    // 回调
+    callback: {
+        moduleDomRenderBefore: function moduleDomRenderBefore(self) {
+            if (self.opts.config.type === 'confirm') {
+                if (self.opts.config.confirm.isShowMask && !self.mask) {
+                    self.mask = new Mask(self.opts.config.mask);
+                }
+                domAddPosition(self.wrapDom, 'relative');
+            }
+        },
+        moduleDomHideAfter: function moduleDomHideAfter(self) {
+            if (self.mask) {
+                self.mask.moduleDomHide();
+            }
+        },
+        // 确认
+        confirm: function confirm() {},
+        // 取消
+        cancel: function cancel() {},
+        // 关闭
+        close: function close() {}
+    },
+    // 配置
+    config: {
+        /*
+         * 弹窗类型
+         * `alert`  提示信息类型
+         * `confirm`    确认框类型
+         * */
+        type: 'alert', // 默认是提示框
+        /*
+         * 弹窗位置
+         * `center` 居中
+         * `bottom` 居下
+         * `top` 居上
+         * */
+        positionLocation: 'center', // 弹窗的定位位置    positionMethod定位方式强制fixed
+        // 提示框
+        alert: {
+            timer: null, // 定时器装载
+            time: 3000, // 展示的时间
+            isShowIcon: false, // 是否显示icon
+            isShowClose: true, // 是否显示关闭按钮
+            icon: 'icon-success', // icon的class
+            content: '成功' // 内容信息
+        },
+        // 确认框
+        confirm: {
+            isShowHeader: true, // 是否显示头部
+            headerContent: '提示:', // 头部内容
+            isShowBody: true, // 是否显示主体
+            content: '<div>确定要执行这个操作?</div>', // 主体内容
+            isShowFooter: true, // 是否显示尾部
+            footerContent: '', // 尾部内容
+            isShowClose: true, // 是否显示关闭按钮
+            closeContent: '<div class="iconfont icon-close"></div>', // 关闭按钮的内容
+            isShowConfirm: true, // 是否显示确认按钮
+            confirmContent: '确认', // 确认按钮的内容
+            isShowCancel: true, // 是否显示取消按钮
+            cancelContent: '取消', // 取消按钮的内容
+            isCustom: false, // 是否自定义
+            isShowIcon: false, // 是否显示icon
+            icon: 'icon-warning', // icon的类型
+            isShowMask: true, // 是否显示遮罩
+            isHandHide: false // 是否手动隐藏(一般只用于点击确认时)
+        },
+        // 遮罩
+        mask: {
+            config: {}
+        }
+    },
+    // 数据
+    data: {}
+});
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var type = 'g-dialog-' + config.type; // 弹窗类型
+    var positionLocation = 'g-dialog-' + config.positionLocation; // 弹窗的定位位置
+    // 弹窗结构
+    var html = '\n        ' + this.renderAlert() + '\n        ' + this.renderConfirm() + '\n    ';
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-dialog ' + type + ' ' + positionLocation,
+            innerHTML: html
+        }
+    });
+};
+
+// 提示框
+Sub.prototype.renderAlert = function () {
+    var config = this.opts.config;
+    if (config.type !== 'alert') {
+        return '';
+    }
+    var alert = config.alert;
+    var htmlIcon = '';
+    if (alert.isShowIcon) {
+        htmlIcon = '<div class="g-dialog-alert-icon iconfont ' + alert.icon + '"></div>';
+    }
+    var closeHtml = '';
+    if (alert.isShowClose) {
+        closeHtml = '<div class="g-dialog-alert-close iconfont icon-close" ></div>';
+    }
+    return '\n        ' + closeHtml + '\n        ' + htmlIcon + '\n        <div class="g-dialog-alert-text">' + alert.content + '</div>\n    ';
+};
+
+// 确认框
+Sub.prototype.renderConfirm = function () {
+    var config = this.opts.config;
+    if (config.type !== 'confirm') {
+        return '';
+    }
+    var confirm = config.confirm;
+    var htmlHeader = '';
+    if (confirm.isShowHeader) {
+        htmlHeader = '<div class="g-dialog-confirm-header">' + confirm.headerContent + '</div>';
+    }
+    var htmlBody = '';
+    if (confirm.isShowBody) {
+        var htmlIcon = '';
+        if (confirm.isShowIcon) {
+            htmlIcon = '<div class="g-dialog-confirm-body-system-icon iconfont ' + confirm.icon + '"></div>';
+        }
+        var bodyClass = 'g-dialog-confirm-body-system';
+        var bodyContent = '\n            ' + htmlIcon + '\n            <div class="g-dialog-confirm-body-system-text">' + confirm.content + '</div>\n        ';
+        if (confirm.isCustom) {
+            bodyClass = 'g-dialog-confirm-body-custom';
+            bodyContent = confirm.content;
+        }
+        htmlBody = '\n            <div class="g-dialog-confirm-body">\n                <div class="' + bodyClass + '">\n                    ' + bodyContent + '\n                </div>\n            </div>\n        ';
+    }
+    var htmlFooter = '';
+    if (confirm.isShowFooter) {
+        var htmlCancel = '';
+        if (confirm.isShowCancel) {
+            htmlCancel = '<div class="g-button g-button-cancel g-dialog-confirm-footer-cancel">' + confirm.cancelContent + '</div>';
+        }
+        var htmlConfirm = '';
+        if (confirm.isShowConfirm) {
+            htmlConfirm = '<div class="g-button g-dialog-confirm-footer-confirm">' + confirm.confirmContent + '</div>';
+        }
+        htmlFooter = '<div class="g-dialog-confirm-footer">' + htmlCancel + htmlConfirm + '</div>';
+    }
+    var htmlClose = '';
+    if (confirm.isShowClose) {
+        htmlClose = '<div class="g-dialog-confirm-close">' + confirm.closeContent + '</div>';
+    }
+    return '\n        ' + htmlHeader + '\n        ' + htmlBody + '\n        ' + htmlFooter + '\n        ' + htmlClose + ' \n    ';
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    var config = this.opts.config;
+    // 提示框
+    if (config.type === 'alert') {
+        var close = this.moduleDom.querySelector('.g-dialog-alert-close');
+        config.alert.timer = setTimeout(function () {
+            self.moduleDomHide();
+        }, config.alert.time);
+        close.addEventListener('click', function () {
+            clearTimeout(config.alert.timer);
+            self.moduleDomHide();
+        });
+    }
+    // 确认框
+    if (config.type === 'confirm') {
+        var _close = this.moduleDom.querySelector('.g-dialog-confirm-close');
+        if (_close) {
+            _close.addEventListener('click', function () {
+                self.moduleDomHide();
+                self.opts.callback.close();
+            });
+        }
+        var cancel = this.moduleDom.querySelector('.g-dialog-confirm-footer-cancel');
+        if (cancel) {
+            cancel.addEventListener('click', function () {
+                self.moduleDomHide();
+                self.opts.callback.cancel();
+            });
+        }
+        var confirm = this.moduleDom.querySelector('.g-dialog-confirm-footer-confirm');
+        if (confirm) {
+            confirm.addEventListener('click', function () {
+                if (!self.opts.config.confirm.isHandHide) {
+                    self.moduleDomHide();
+                }
+                self.opts.callback.confirm();
+            });
+        }
+    }
+};
+
+module.exports = Sub;
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(1); // 工具方法集合
+var applications = __webpack_require__(4); // 应用方法集合
+
+// 底层构造函数
+function Super(json) {
+    // 函数外部传来的参数
+    this.opts = tools.extend(
+    // 内部默认参数
+    {
+        // 父级
+        wrap: '.g-body', // 这个仅支持传入选择器和原生dom节点
+        // 回调
+        callback: {
+            // 内部模块创建之前的回调
+            moduleDomCreateBefore: function moduleDomCreateBefore(self) {},
+            // 内部模块创建之后的回调
+            moduleDomCreateAfter: function moduleDomCreateAfter(self) {},
+            // 内部模块渲染之前的回调
+            moduleDomRenderBefore: function moduleDomRenderBefore(self) {},
+            // 内部模块渲染之后的回调
+            moduleDomRenderAfter: function moduleDomRenderAfter(self) {},
+            // 内部模块移除之前的回调
+            moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {},
+            // 内部模块移除之后的回调
+            moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {},
+            // 内部模块显示之前的回调
+            moduleDomShowBefore: function moduleDomShowBefore(self) {},
+            // 内部模块显示之后的回调
+            moduleDomShowAfter: function moduleDomShowAfter(self) {},
+            // 内部模块隐藏之前的回调
+            moduleDomHideBefore: function moduleDomHideBefore(self) {},
+            // 内部模块隐藏之后的回调
+            moduleDomHideAfter: function moduleDomHideAfter(self) {},
+            // 外部容器获取之前的回调
+            wrapDomGetBefore: function wrapDomGetBefore(self) {},
+            // 外部容器获取之后的回调
+            wrapDomGetAfter: function wrapDomGetAfter(self) {},
+            // 外部容器移除之前的回调
+            wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {},
+            // 外部容器移除之后的回调
+            wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {}
+        },
+        // 配置
+        config: {
+            // 内部模块的自定义属性
+            moduleDomCustomAttribute: {},
+            // 内部模块插入到外部容器的方式
+            moduleDomRenderMethod: {
+                method: 'appendChild', // 'appendChild','insertBefore'
+                child: null
+            },
+            moduleDomStyle: {}, // 内部模块的样式
+            moduleDomIsRender: true, // 内部模块是否渲染
+            moduleDomIsClearTimer: true // 内部模块是否清除所有定时器(默认清除)
+        },
+        // 数据
+        data: {}
+    },
+    // 外部传入参数
+    json);
+    // 函数内部自带的属性
+    this.moduleDom = null; // 内部的模块
+    this.wrapDom = null; // 内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+    this.moduleDomTimer = {}; // 内部模块的定时器存储(假设内部模块有定时器)
+    this.init(); // 初始化
+}
+
+// 初始化
+Super.prototype.init = function () {
+    this.render();
+    this.power();
+};
+
+// 渲染
+Super.prototype.render = function () {
+    this.moduleDomRemove(); // 内部模块的移除(重新初始化的时候要移除掉以前有的内部模块)
+
+    var callback = this.opts.callback;
+    callback.moduleDomCreateBefore(this);
+    this.moduleDomCreate(); // 内部模块的创建
+    callback.moduleDomCreateAfter(this);
+
+    this.wrapDomGet(); // 外部容器的获取
+    this.moduleDomRender(); // 内部模块的渲染(如果外部容器存在,就把内部模块填充到外部容器里)
+};
+
+// (功)(覆)功能(这个方法需要在子类型里被覆盖掉)
+Super.prototype.power = function () {};
+
+// (建)(覆)内部模块的创建(这个方法需要在子类型里被覆盖掉)
+Super.prototype.moduleDomCreate = function () {
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-super-type',
+            innerHTML: '\n                <div class="g-super-type-text" style="text-align: center;">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsup-es5</div>\n            '
+        }
+    });
+};
+
+// 内部模块的渲染
+Super.prototype.moduleDomRender = function () {
+    var callback = this.opts.callback;
+    var config = this.opts.config;
+    if (config.moduleDomIsRender && this.wrapDom) {
+        callback.moduleDomRenderBefore(this);
+        var renderMethod = config.moduleDomRenderMethod;
+        if (renderMethod.method === 'insertBefore') {
+            var dom = applications.getDomArray(renderMethod.child)[0];
+            if (dom) {
+                this.wrapDom.insertBefore(this.moduleDom, dom);
+            } else {
+                this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
+            }
+        }
+        if (renderMethod.method === 'appendChild') {
+            this.wrapDom.appendChild(this.moduleDom);
+        }
+        callback.moduleDomRenderAfter(this);
+    }
+};
+
+// 内部模块的移除
+Super.prototype.moduleDomRemove = function () {
+    var callback = this.opts.callback;
+    if (this.moduleDom && this.moduleDom.parentNode) {
+        callback.moduleDomRemoveBefore(this);
+        this.moduleDom.parentNode.removeChild(this.moduleDom);
+        callback.moduleDomRemoveAfter(this);
+    }
+    this.moduleDomClearTimer();
+};
+
+// 内部模块的定时器清除(假设内部模块有定时器)
+Super.prototype.moduleDomClearTimer = function () {
+    var self = this;
+    if (self.opts.config.moduleDomIsClearTimer) {
+        Object.keys(self.moduleDomTimer).forEach(function (attr) {
+            clearInterval(self.moduleDomTimer[attr]);
+            clearTimeout(self.moduleDomTimer[attr]);
+        });
+    }
+};
+
+// 内部模块的隐藏(显示隐藏和是否清除定时器无关)
+Super.prototype.moduleDomHide = function () {
+    var callback = this.opts.callback;
+    if (this.moduleDom.parentNode) {
+        this.opts.config.moduleDomIsRender = false;
+        callback.moduleDomHideBefore(this);
+        this.moduleDom.parentNode.removeChild(this.moduleDom);
+        callback.moduleDomHideAfter(this);
+    }
+};
+
+// 内部模块的显示(显示隐藏和是否清除定时器无关)
+Super.prototype.moduleDomShow = function () {
+    var callback = this.opts.callback;
+    callback.moduleDomShowBefore(this);
+    if (this.wrapDom) {
+        this.opts.config.moduleDomIsRender = true;
+        this.moduleDomRender();
+    }
+    callback.moduleDomShowAfter(this);
+};
+
+// 外部容器的获取
+Super.prototype.wrapDomGet = function () {
+    var callback = this.opts.callback;
+    callback.wrapDomGetBefore(this);
+    this.wrapDom = applications.getDomArray(this.opts.wrap)[0];
+    callback.wrapDomGetAfter(this);
+};
+
+// 外部容器的移除
+Super.prototype.wrapDomRemove = function () {
+    var callback = this.opts.callback;
+    // 先移除内部的模块
+    this.moduleDomRemove();
+    // 再移除外部的容器
+    if (this.wrapDom) {
+        callback.wrapDomRemoveBefore(this);
+        this.wrapDom.parentNode.removeChild(this.wrapDom);
+        callback.wrapDomRemoveAfter(this);
+    }
+};
+
+// 获取内部模块的整体html结构
+Super.prototype.getModuleDomHtml = function () {
+    return this.moduleDom.outerHTML;
+};
+
+module.exports = Super;
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2560,537 +3091,6 @@ ValidateForm.prototype.setValidate = function (name, fn) {
 module.exports = ValidateForm;
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-// NOTE: These type checking functions intentionally don't use `instanceof`
-// because it is fragile and can be easily faked with `Object.create()`.
-
-function isArray(arg) {
-  if (Array.isArray) {
-    return Array.isArray(arg);
-  }
-  return objectToString(arg) === '[object Array]';
-}
-exports.isArray = isArray;
-
-function isBoolean(arg) {
-  return typeof arg === 'boolean';
-}
-exports.isBoolean = isBoolean;
-
-function isNull(arg) {
-  return arg === null;
-}
-exports.isNull = isNull;
-
-function isNullOrUndefined(arg) {
-  return arg == null;
-}
-exports.isNullOrUndefined = isNullOrUndefined;
-
-function isNumber(arg) {
-  return typeof arg === 'number';
-}
-exports.isNumber = isNumber;
-
-function isString(arg) {
-  return typeof arg === 'string';
-}
-exports.isString = isString;
-
-function isSymbol(arg) {
-  return typeof arg === 'symbol';
-}
-exports.isSymbol = isSymbol;
-
-function isUndefined(arg) {
-  return arg === void 0;
-}
-exports.isUndefined = isUndefined;
-
-function isRegExp(re) {
-  return objectToString(re) === '[object RegExp]';
-}
-exports.isRegExp = isRegExp;
-
-function isObject(arg) {
-  return typeof arg === 'object' && arg !== null;
-}
-exports.isObject = isObject;
-
-function isDate(d) {
-  return objectToString(d) === '[object Date]';
-}
-exports.isDate = isDate;
-
-function isError(e) {
-  return (objectToString(e) === '[object Error]' || e instanceof Error);
-}
-exports.isError = isError;
-
-function isFunction(arg) {
-  return typeof arg === 'function';
-}
-exports.isFunction = isFunction;
-
-function isPrimitive(arg) {
-  return arg === null ||
-         typeof arg === 'boolean' ||
-         typeof arg === 'number' ||
-         typeof arg === 'string' ||
-         typeof arg === 'symbol' ||  // ES6 symbol
-         typeof arg === 'undefined';
-}
-exports.isPrimitive = isPrimitive;
-
-exports.isBuffer = Buffer.isBuffer;
-
-function objectToString(o) {
-  return Object.prototype.toString.call(o);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0).Buffer))
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(4); // 应用方法集合
-var Super = __webpack_require__(13); // 超类型(子类型继承的对象)
-var Mask = __webpack_require__(76); // 遮罩
-var domAddPosition = __webpack_require__(20);
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    wrap: '.g-wrap',
-    // 回调
-    callback: {
-        moduleDomRenderBefore: function moduleDomRenderBefore(self) {
-            if (self.opts.config.type === 'confirm') {
-                if (self.opts.config.confirm.isShowMask && !self.mask) {
-                    self.mask = new Mask(self.opts.config.mask);
-                }
-                domAddPosition(self.wrapDom, 'relative');
-            }
-        },
-        moduleDomHideAfter: function moduleDomHideAfter(self) {
-            if (self.mask) {
-                self.mask.moduleDomHide();
-            }
-        },
-        // 确认
-        confirm: function confirm() {},
-        // 取消
-        cancel: function cancel() {},
-        // 关闭
-        close: function close() {}
-    },
-    // 配置
-    config: {
-        /*
-         * 弹窗类型
-         * `alert`  提示信息类型
-         * `confirm`    确认框类型
-         * */
-        type: 'alert', // 默认是提示框
-        /*
-         * 弹窗位置
-         * `center` 居中
-         * `bottom` 居下
-         * `top` 居上
-         * */
-        positionLocation: 'center', // 弹窗的定位位置    positionMethod定位方式强制fixed
-        // 提示框
-        alert: {
-            timer: null, // 定时器装载
-            time: 3000, // 展示的时间
-            isShowIcon: false, // 是否显示icon
-            isShowClose: true, // 是否显示关闭按钮
-            icon: 'icon-success', // icon的class
-            content: '成功' // 内容信息
-        },
-        // 确认框
-        confirm: {
-            isShowHeader: true, // 是否显示头部
-            headerContent: '提示:', // 头部内容
-            isShowBody: true, // 是否显示主体
-            content: '<div>确定要执行这个操作?</div>', // 主体内容
-            isShowFooter: true, // 是否显示尾部
-            footerContent: '', // 尾部内容
-            isShowClose: true, // 是否显示关闭按钮
-            closeContent: '<div class="iconfont icon-close"></div>', // 关闭按钮的内容
-            isShowConfirm: true, // 是否显示确认按钮
-            confirmContent: '确认', // 确认按钮的内容
-            isShowCancel: true, // 是否显示取消按钮
-            cancelContent: '取消', // 取消按钮的内容
-            isCustom: false, // 是否自定义
-            isShowIcon: false, // 是否显示icon
-            icon: 'icon-warning', // icon的类型
-            isShowMask: true, // 是否显示遮罩
-            isHandHide: false // 是否手动隐藏(一般只用于点击确认时)
-        },
-        // 遮罩
-        mask: {
-            config: {}
-        }
-    },
-    // 数据
-    data: {}
-});
-
-// (建)(覆)内部模块的创建(覆盖超类型)
-Sub.prototype.moduleDomCreate = function () {
-    var config = this.opts.config;
-    var type = 'g-dialog-' + config.type; // 弹窗类型
-    var positionLocation = 'g-dialog-' + config.positionLocation; // 弹窗的定位位置
-    // 弹窗结构
-    var html = '\n        ' + this.renderAlert() + '\n        ' + this.renderConfirm() + '\n    ';
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-dialog ' + type + ' ' + positionLocation,
-            innerHTML: html
-        }
-    });
-};
-
-// 提示框
-Sub.prototype.renderAlert = function () {
-    var config = this.opts.config;
-    if (config.type !== 'alert') {
-        return '';
-    }
-    var alert = config.alert;
-    var htmlIcon = '';
-    if (alert.isShowIcon) {
-        htmlIcon = '<div class="g-dialog-alert-icon iconfont ' + alert.icon + '"></div>';
-    }
-    var closeHtml = '';
-    if (alert.isShowClose) {
-        closeHtml = '<div class="g-dialog-alert-close iconfont icon-close" ></div>';
-    }
-    return '\n        ' + closeHtml + '\n        ' + htmlIcon + '\n        <div class="g-dialog-alert-text">' + alert.content + '</div>\n    ';
-};
-
-// 确认框
-Sub.prototype.renderConfirm = function () {
-    var config = this.opts.config;
-    if (config.type !== 'confirm') {
-        return '';
-    }
-    var confirm = config.confirm;
-    var htmlHeader = '';
-    if (confirm.isShowHeader) {
-        htmlHeader = '<div class="g-dialog-confirm-header">' + confirm.headerContent + '</div>';
-    }
-    var htmlBody = '';
-    if (confirm.isShowBody) {
-        var htmlIcon = '';
-        if (confirm.isShowIcon) {
-            htmlIcon = '<div class="g-dialog-confirm-body-system-icon iconfont ' + confirm.icon + '"></div>';
-        }
-        var bodyClass = 'g-dialog-confirm-body-system';
-        var bodyContent = '\n            ' + htmlIcon + '\n            <div class="g-dialog-confirm-body-system-text">' + confirm.content + '</div>\n        ';
-        if (confirm.isCustom) {
-            bodyClass = 'g-dialog-confirm-body-custom';
-            bodyContent = confirm.content;
-        }
-        htmlBody = '\n            <div class="g-dialog-confirm-body">\n                <div class="' + bodyClass + '">\n                    ' + bodyContent + '\n                </div>\n            </div>\n        ';
-    }
-    var htmlFooter = '';
-    if (confirm.isShowFooter) {
-        var htmlCancel = '';
-        if (confirm.isShowCancel) {
-            htmlCancel = '<div class="g-button g-button-cancel g-dialog-confirm-footer-cancel">' + confirm.cancelContent + '</div>';
-        }
-        var htmlConfirm = '';
-        if (confirm.isShowConfirm) {
-            htmlConfirm = '<div class="g-button g-dialog-confirm-footer-confirm">' + confirm.confirmContent + '</div>';
-        }
-        htmlFooter = '<div class="g-dialog-confirm-footer">' + htmlCancel + htmlConfirm + '</div>';
-    }
-    var htmlClose = '';
-    if (confirm.isShowClose) {
-        htmlClose = '<div class="g-dialog-confirm-close">' + confirm.closeContent + '</div>';
-    }
-    return '\n        ' + htmlHeader + '\n        ' + htmlBody + '\n        ' + htmlFooter + '\n        ' + htmlClose + ' \n    ';
-};
-
-// (功)(覆)功能(覆盖超类型)
-Sub.prototype.power = function () {
-    var self = this;
-    var config = this.opts.config;
-    // 提示框
-    if (config.type === 'alert') {
-        var close = this.moduleDom.querySelector('.g-dialog-alert-close');
-        config.alert.timer = setTimeout(function () {
-            self.moduleDomHide();
-        }, config.alert.time);
-        close.addEventListener('click', function () {
-            clearTimeout(config.alert.timer);
-            self.moduleDomHide();
-        });
-    }
-    // 确认框
-    if (config.type === 'confirm') {
-        var _close = this.moduleDom.querySelector('.g-dialog-confirm-close');
-        if (_close) {
-            _close.addEventListener('click', function () {
-                self.moduleDomHide();
-                self.opts.callback.close();
-            });
-        }
-        var cancel = this.moduleDom.querySelector('.g-dialog-confirm-footer-cancel');
-        if (cancel) {
-            cancel.addEventListener('click', function () {
-                self.moduleDomHide();
-                self.opts.callback.cancel();
-            });
-        }
-        var confirm = this.moduleDom.querySelector('.g-dialog-confirm-footer-confirm');
-        if (confirm) {
-            confirm.addEventListener('click', function () {
-                if (!self.opts.config.confirm.isHandHide) {
-                    self.moduleDomHide();
-                }
-                self.opts.callback.confirm();
-            });
-        }
-    }
-};
-
-module.exports = Sub;
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(4); // 应用方法集合
-
-// 底层构造函数
-function Super(json) {
-    // 函数外部传来的参数
-    this.opts = tools.extend(
-    // 内部默认参数
-    {
-        // 父级
-        wrap: '.g-body', // 这个仅支持传入选择器和原生dom节点
-        // 回调
-        callback: {
-            // 内部模块创建之前的回调
-            moduleDomCreateBefore: function moduleDomCreateBefore(self) {},
-            // 内部模块创建之后的回调
-            moduleDomCreateAfter: function moduleDomCreateAfter(self) {},
-            // 内部模块渲染之前的回调
-            moduleDomRenderBefore: function moduleDomRenderBefore(self) {},
-            // 内部模块渲染之后的回调
-            moduleDomRenderAfter: function moduleDomRenderAfter(self) {},
-            // 内部模块移除之前的回调
-            moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {},
-            // 内部模块移除之后的回调
-            moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {},
-            // 内部模块显示之前的回调
-            moduleDomShowBefore: function moduleDomShowBefore(self) {},
-            // 内部模块显示之后的回调
-            moduleDomShowAfter: function moduleDomShowAfter(self) {},
-            // 内部模块隐藏之前的回调
-            moduleDomHideBefore: function moduleDomHideBefore(self) {},
-            // 内部模块隐藏之后的回调
-            moduleDomHideAfter: function moduleDomHideAfter(self) {},
-            // 外部容器获取之前的回调
-            wrapDomGetBefore: function wrapDomGetBefore(self) {},
-            // 外部容器获取之后的回调
-            wrapDomGetAfter: function wrapDomGetAfter(self) {},
-            // 外部容器移除之前的回调
-            wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {},
-            // 外部容器移除之后的回调
-            wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {}
-        },
-        // 配置
-        config: {
-            // 内部模块的自定义属性
-            moduleDomCustomAttribute: {},
-            // 内部模块插入到外部容器的方式
-            moduleDomRenderMethod: {
-                method: 'appendChild', // 'appendChild','insertBefore'
-                child: null
-            },
-            moduleDomStyle: {}, // 内部模块的样式
-            moduleDomIsRender: true, // 内部模块是否渲染
-            moduleDomIsClearTimer: true // 内部模块是否清除所有定时器(默认清除)
-        },
-        // 数据
-        data: {}
-    },
-    // 外部传入参数
-    json);
-    // 函数内部自带的属性
-    this.moduleDom = null; // 内部的模块
-    this.wrapDom = null; // 内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
-    this.moduleDomTimer = {}; // 内部模块的定时器存储(假设内部模块有定时器)
-    this.init(); // 初始化
-}
-
-// 初始化
-Super.prototype.init = function () {
-    this.render();
-    this.power();
-};
-
-// 渲染
-Super.prototype.render = function () {
-    this.moduleDomRemove(); // 内部模块的移除(重新初始化的时候要移除掉以前有的内部模块)
-
-    var callback = this.opts.callback;
-    callback.moduleDomCreateBefore(this);
-    this.moduleDomCreate(); // 内部模块的创建
-    callback.moduleDomCreateAfter(this);
-
-    this.wrapDomGet(); // 外部容器的获取
-    this.moduleDomRender(); // 内部模块的渲染(如果外部容器存在,就把内部模块填充到外部容器里)
-};
-
-// (功)(覆)功能(这个方法需要在子类型里被覆盖掉)
-Super.prototype.power = function () {};
-
-// (建)(覆)内部模块的创建(这个方法需要在子类型里被覆盖掉)
-Super.prototype.moduleDomCreate = function () {
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-super-type',
-            innerHTML: '\n                <div class="g-super-type-text" style="text-align: center;">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsup-es5</div>\n            '
-        }
-    });
-};
-
-// 内部模块的渲染
-Super.prototype.moduleDomRender = function () {
-    var callback = this.opts.callback;
-    var config = this.opts.config;
-    if (config.moduleDomIsRender && this.wrapDom) {
-        callback.moduleDomRenderBefore(this);
-        var renderMethod = config.moduleDomRenderMethod;
-        if (renderMethod.method === 'insertBefore') {
-            var dom = applications.getDomArray(renderMethod.child)[0];
-            if (dom) {
-                this.wrapDom.insertBefore(this.moduleDom, dom);
-            } else {
-                this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
-            }
-        }
-        if (renderMethod.method === 'appendChild') {
-            this.wrapDom.appendChild(this.moduleDom);
-        }
-        callback.moduleDomRenderAfter(this);
-    }
-};
-
-// 内部模块的移除
-Super.prototype.moduleDomRemove = function () {
-    var callback = this.opts.callback;
-    if (this.moduleDom && this.moduleDom.parentNode) {
-        callback.moduleDomRemoveBefore(this);
-        this.moduleDom.parentNode.removeChild(this.moduleDom);
-        callback.moduleDomRemoveAfter(this);
-    }
-    this.moduleDomClearTimer();
-};
-
-// 内部模块的定时器清除(假设内部模块有定时器)
-Super.prototype.moduleDomClearTimer = function () {
-    var self = this;
-    if (self.opts.config.moduleDomIsClearTimer) {
-        Object.keys(self.moduleDomTimer).forEach(function (attr) {
-            clearInterval(self.moduleDomTimer[attr]);
-            clearTimeout(self.moduleDomTimer[attr]);
-        });
-    }
-};
-
-// 内部模块的隐藏(显示隐藏和是否清除定时器无关)
-Super.prototype.moduleDomHide = function () {
-    var callback = this.opts.callback;
-    if (this.moduleDom.parentNode) {
-        this.opts.config.moduleDomIsRender = false;
-        callback.moduleDomHideBefore(this);
-        this.moduleDom.parentNode.removeChild(this.moduleDom);
-        callback.moduleDomHideAfter(this);
-    }
-};
-
-// 内部模块的显示(显示隐藏和是否清除定时器无关)
-Super.prototype.moduleDomShow = function () {
-    var callback = this.opts.callback;
-    callback.moduleDomShowBefore(this);
-    if (this.wrapDom) {
-        this.opts.config.moduleDomIsRender = true;
-        this.moduleDomRender();
-    }
-    callback.moduleDomShowAfter(this);
-};
-
-// 外部容器的获取
-Super.prototype.wrapDomGet = function () {
-    var callback = this.opts.callback;
-    callback.wrapDomGetBefore(this);
-    this.wrapDom = applications.getDomArray(this.opts.wrap)[0];
-    callback.wrapDomGetAfter(this);
-};
-
-// 外部容器的移除
-Super.prototype.wrapDomRemove = function () {
-    var callback = this.opts.callback;
-    // 先移除内部的模块
-    this.moduleDomRemove();
-    // 再移除外部的容器
-    if (this.wrapDom) {
-        callback.wrapDomRemoveBefore(this);
-        this.wrapDom.parentNode.removeChild(this.wrapDom);
-        callback.wrapDomRemoveAfter(this);
-    }
-};
-
-// 获取内部模块的整体html结构
-Super.prototype.getModuleDomHtml = function () {
-    return this.moduleDom.outerHTML;
-};
-
-module.exports = Super;
-
-/***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3342,7 +3342,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 
 var axios = __webpack_require__(29);
 var tools = __webpack_require__(1);
-var Dialog = __webpack_require__(12);
+var Dialog = __webpack_require__(11);
 var qs = __webpack_require__(78);
 
 module.exports = function (json) {
@@ -3828,7 +3828,7 @@ var Duplex;
 Writable.WritableState = WritableState;
 
 /*<replacement>*/
-var util = __webpack_require__(11);
+var util = __webpack_require__(10);
 util.inherits = __webpack_require__(7);
 /*</replacement>*/
 
@@ -4942,7 +4942,7 @@ function _isUint8Array(obj) {
 /*</replacement>*/
 
 /*<replacement>*/
-var util = __webpack_require__(11);
+var util = __webpack_require__(10);
 util.inherits = __webpack_require__(7);
 /*</replacement>*/
 
@@ -6323,7 +6323,7 @@ module.exports = Transform;
 var Duplex = __webpack_require__(8);
 
 /*<replacement>*/
-var util = __webpack_require__(11);
+var util = __webpack_require__(10);
 util.inherits = __webpack_require__(7);
 /*</replacement>*/
 
@@ -7978,7 +7978,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 
 var tools = __webpack_require__(1); // 工具方法集合
 var applications = __webpack_require__(4); // 应用方法集合
-var Super = __webpack_require__(13); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
 var domAddPosition = __webpack_require__(20);
 
 // 子类型
@@ -8461,7 +8461,7 @@ module.exports = function (str, opts) {
 
 
 var tools = __webpack_require__(1);
-var Dialog = __webpack_require__(12);
+var Dialog = __webpack_require__(11);
 var queryString = tools.queryString;
 
 module.exports = function (json) {
@@ -9153,7 +9153,7 @@ module.exports = PassThrough;
 var Transform = __webpack_require__(40);
 
 /*<replacement>*/
-var util = __webpack_require__(11);
+var util = __webpack_require__(10);
 util.inherits = __webpack_require__(7);
 /*</replacement>*/
 
@@ -17060,7 +17060,7 @@ module.exports = {
 
 var tools = __webpack_require__(1); // 工具方法集合
 var applications = __webpack_require__(4); // 应用方法集合
-var Super = __webpack_require__(13); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -17115,7 +17115,7 @@ module.exports = Sub;
 
 var tools = __webpack_require__(1); // 工具方法集合
 var applications = __webpack_require__(4); // 应用方法集合
-var Super = __webpack_require__(13); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {

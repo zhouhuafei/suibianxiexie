@@ -37,7 +37,7 @@ var Sub = function (_Super) {
 
             // 验证
             (function () {
-                var ValidateInput = __webpack_require__(10);
+                var ValidateInput = __webpack_require__(13);
                 var validateInput = new ValidateInput({ element: '.js-validate-form' });
                 validateInput.setValidate('no-999', function (value) {
                     return Number(value) !== 999;
@@ -107,7 +107,7 @@ new Sub();
 
 
 var tools = __webpack_require__(1);
-var Dialog = __webpack_require__(12);
+var Dialog = __webpack_require__(11);
 
 module.exports = function (json) {
     json.method = json.type || json.method || 'get'; // 这里和axios是不一样的，这里以前使用axios的习惯传入method
