@@ -2029,19 +2029,34 @@ var Super = function () {
             $(document).on('submit', 'form', function (ev) {
                 ev.preventDefault();
                 ev.stopPropagation();
+                var form = this;
                 if (!self.validateInput.isAllPassValidate()) {
+                    // 防止验证未通过就提交
                     return;
                 }
-                var method = this.dataset.method || 'get';
-                self.axios({
-                    url: this.action,
-                    isHandleSuccess: true,
-                    method: method,
-                    data: $(this).serialize(),
-                    callbackSuccess: this.callbackSuccess, // 请求成功的回调
-                    callbackFailure: this.callbackFailure, // 请求失败的回调,
-                    callbackComplete: this.callbackComplete // 请求完成的回调,
-                });
+                if (!form.isSubmitting) {
+                    // 防止重复提交
+                    form.isSubmitting = true;
+                    self.axios({
+                        url: form.action,
+                        isHandleSuccess: true,
+                        method: form.dataset.method || 'get',
+                        data: $(form).serialize(),
+                        callbackSuccess: function callbackSuccess() {
+                            // 请求成功的回调
+                            form.callbackSuccess();
+                        },
+                        callbackFailure: function callbackFailure() {
+                            // 请求失败的回调
+                            form.callbackFailure();
+                        },
+                        callbackComplete: function callbackComplete() {
+                            // 请求完成的回调
+                            form.callbackComplete();
+                            delete form.isSubmitting;
+                        }
+                    });
+                }
             });
         }
 
