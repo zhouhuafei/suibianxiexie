@@ -16,8 +16,8 @@ class Sub extends Super {
         const data = req.data;
         const name = (data.name || '').trim();
         const phone = (data.phone || '').trim();
-        const logo = (data.logo || '').trim();
-        const favicon = (data.favicon || '').trim();
+        let logo = (data.logo || '').trim();
+        let favicon = (data.favicon || '').trim();
         if (name === '') {
             self.render({message: '网站名称不能为空'});
             return;
@@ -34,6 +34,8 @@ class Sub extends Super {
             self.render({message: '网站favicon不能为空'});
             return;
         }
+        logo = JSON.parse(logo);
+        favicon = JSON.parse(favicon);
         WebsiteInfos.updateOne({}, {name, phone, logo, favicon}, {upsert: true}, function (error, result) {
             if (error) {
                 self.render({

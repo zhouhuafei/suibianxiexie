@@ -34,8 +34,6 @@ var Sub = function (_Super) {
         value: function power() {
             var superSelf = this;
             var dataInfo = superSelf.dataInfo;
-            var Dialog = superSelf.Dialog;
-            var routes = dataInfo.routes;
 
             // 上传
             $('.js-upload').on('change', function () {
@@ -66,48 +64,19 @@ var Sub = function (_Super) {
                 }).then(function (json) {
                     if (json.status === 'success') {
                         var result = json.result[0];
+                        var resultStr = JSON.stringify(result);
                         var url = result.url;
                         var w = result.width;
                         var h = result.height;
-                        self.dataset.value = url;
+                        self.dataset.value = 'no-empty';
                         bg.style.backgroundImage = 'url(\'' + url + '\')';
                         text.innerText = w + '*' + h;
-                        parent.querySelector('input[type=hidden]').value = url;
+                        parent.querySelector('input[type=hidden]').value = resultStr;
                         parent.classList.add('g-upload_active');
-                        validateInput.validateInput(self);
+                        superSelf.validateInput.validateInput(self);
                     }
                 });
             });
-
-            // 保存
-            document.querySelector('.js-save').addEventListener('click', function () {
-                var form = document.querySelector('form');
-                if (!validateInput.isAllPassValidate()) {
-                    // 如果不是全部都通过验证了，则不能提交。
-                    return;
-                }
-                axios({
-                    url: form.action,
-                    method: form.method,
-                    data: new FormData(form)
-                }).then(function (json) {
-                    console.log('测试保存:->', json);
-                    if (json.status === 'success') {
-                        new Dialog({
-                            config: {
-                                type: 'alert',
-                                alert: {
-                                    content: json.message || '保存成功'
-                                }
-                            }
-                        });
-                    }
-                });
-            });
-
-            // 验证放在最后是为了保证执行顺序。动态生成的标签，只要重新new一下，element传入dom即可，然后存储实例对象，留着保存时再验证一下。或者不绑定事件，全部都留到保存时再验证，这样只需要保存的时候new一下验证组件，触发一下是否全部验证通过的方法即可。
-            var ValidateInput = __webpack_require__(10);
-            var validateInput = new ValidateInput({ element: '.js-validate-form' });
         }
     }]);
 

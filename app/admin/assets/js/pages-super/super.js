@@ -195,13 +195,13 @@ class Super {
                     method: form.dataset.method || 'get',
                     data: $(form).serialize(),
                     callbackSuccess: function () { // 请求成功的回调
-                        form.callbackSuccess();
+                        typeof form.callbackSuccess === 'function' && form.callbackSuccess();
                     },
                     callbackFailure: function () { // 请求失败的回调
-                        form.callbackFailure();
+                        typeof form.callbackFailure === 'function' && form.callbackFailure();
                     },
                     callbackComplete: function () { // 请求完成的回调
-                        form.callbackComplete();
+                        typeof form.callbackComplete === 'function' && form.callbackComplete();
                         delete form.isSubmitting;
                     },
                 });

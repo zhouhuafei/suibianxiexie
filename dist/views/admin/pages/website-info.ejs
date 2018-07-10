@@ -10,7 +10,7 @@
             <div class="g-body">
                 <% var api = dataInfo.api; %>
                 <% var page = dataInfo.page || {}; %>
-                <form action="<%= api['website-info'].route %>" method="post">
+                <form action="<%= api['website-info'].route %>" data-method="put">
                     <div class="g-form-wrap">
                         <div class="g-form">
                             <label class="g-form-body">
@@ -42,10 +42,10 @@
                                 <div class="g-form-body-content">
                                     <div class="g-form-body-content-body g-form-body-content-body-more-row">
                                         <label class="g-upload <%= page.logo ? 'g-upload_active' : '' %>">
-                                            <input class="g-upload-input js-validate-form js-upload" data-event="no-event" data-validate="no-empty yes-limit-length-1" data-hint="本项必传 最多上传1张图片" data-value="<%= page.logo ? 'true' : '' %>" accept="image/gif, image/jpeg, image/png" type="file">
-                                            <input type="hidden" name="logo" value="<%= page.logo || '' %>">
+                                            <input class="g-upload-input js-validate-form js-upload" data-event="no-event" data-validate="no-empty yes-limit-length-1" data-hint="本项必传 最多上传1张图片" data-value="<%= page.logo ? 'no-empty' : '' %>" accept="image/gif, image/jpeg, image/png" type="file">
+                                            <input type="hidden" name="logo" value="<%= page.logo ? JSON.stringify(page.logo) : '' %>">
                                             <span class="g-upload-icon iconfont icon-upload-img"></span>
-                                            <span class="g-upload-show" style="<%= page.logo ? `background-image: url(${page.logo})` : '' %>"></span>
+                                            <span class="g-upload-show" style="<%= page.logo ? `background-image: url(${page.logo.url})` : '' %>"></span>
                                             <span class="g-upload-text">640*640</span>
                                             <span class="g-upload-opts">
                                                 <span class="g-upload-opts-item iconfont icon-delete"></span>
@@ -62,10 +62,10 @@
                                 <div class="g-form-body-content">
                                     <div class="g-form-body-content-body g-form-body-content-body-more-row">
                                         <label class="g-upload <%= page.favicon ? 'g-upload_active' : '' %>">
-                                            <input class="g-upload-input js-validate-form js-upload" data-event="no-event" data-validate="no-empty yes-limit-length-1" data-hint="本项必传 最多上传1张图片" data-value="<%= page.favicon ? 'true' : '' %>" accept="image/vnd.microsoft.icon" type="file">
-                                            <input type="hidden" name="favicon" value="<%= page.favicon || '' %>">
+                                            <input class="g-upload-input js-validate-form js-upload" data-event="no-event" data-validate="no-empty yes-limit-length-1" data-hint="本项必传 最多上传1张图片" data-value="<%= page.favicon ? 'no-empty' : '' %>" accept="image/vnd.microsoft.icon" type="file">
+                                            <input type="hidden" name="favicon" value="<%= page.favicon ? JSON.stringify(page.favicon) : '' %>">
                                             <span class="g-upload-icon iconfont icon-upload-img"></span>
-                                            <span class="g-upload-show" style="<%= page.favicon ? `background-image: url(${page.favicon})` : '' %>"></span>
+                                            <span class="g-upload-show" style="<%= page.favicon ? `background-image: url(${page.favicon.url})` : '' %>"></span>
                                             <span class="g-upload-text">32*32</span>
                                             <span class="g-upload-opts">
                                                 <span class="g-upload-opts-item iconfont icon-delete"></span>
@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <div class="g-display-flex g-margin-top-10">
-                        <div class="g-button js-save">保存</div>
+                        <button type="submit" class="g-button js-save">保存</button>
                     </div>
                 </form>
             </div>

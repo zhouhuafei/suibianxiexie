@@ -2044,15 +2044,15 @@ var Super = function () {
                         data: $(form).serialize(),
                         callbackSuccess: function callbackSuccess() {
                             // 请求成功的回调
-                            form.callbackSuccess();
+                            typeof form.callbackSuccess === 'function' && form.callbackSuccess();
                         },
                         callbackFailure: function callbackFailure() {
                             // 请求失败的回调
-                            form.callbackFailure();
+                            typeof form.callbackFailure === 'function' && form.callbackFailure();
                         },
                         callbackComplete: function callbackComplete() {
                             // 请求完成的回调
-                            form.callbackComplete();
+                            typeof form.callbackComplete === 'function' && form.callbackComplete();
                             delete form.isSubmitting;
                         }
                     });

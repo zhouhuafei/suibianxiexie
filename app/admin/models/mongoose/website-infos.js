@@ -18,14 +18,14 @@ const schema = new mongoose.Schema({
     },
     // 网站logo
     logo: {
-        type: String,
+        type: Object,
         unique: true,
         required: true,
         trim: true,
     },
     // 网站favicon
     favicon: {
-        type: String,
+        type: Object,
         unique: true,
         required: true,
         trim: true,

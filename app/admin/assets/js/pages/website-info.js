@@ -7,8 +7,6 @@ class Sub extends Super {
     power() {
         const superSelf = this;
         const dataInfo = superSelf.dataInfo;
-        const Dialog = superSelf.Dialog;
-        const routes = dataInfo.routes;
 
         // 上传
         $('.js-upload').on('change', function () {
@@ -38,47 +36,19 @@ class Sub extends Super {
             }).then(function (json) {
                 if (json.status === 'success') {
                     const result = json.result[0];
+                    const resultStr = JSON.stringify(result);
                     const url = result.url;
                     const w = result.width;
                     const h = result.height;
-                    self.dataset.value = url;
+                    self.dataset.value = 'no-empty';
                     bg.style.backgroundImage = `url('${url}')`;
                     text.innerText = `${w}*${h}`;
-                    parent.querySelector('input[type=hidden]').value = url;
+                    parent.querySelector('input[type=hidden]').value = resultStr;
                     parent.classList.add('g-upload_active');
-                    validateInput.validateInput(self);
+                    superSelf.validateInput.validateInput(self);
                 }
             });
         });
-
-        // 保存
-        document.querySelector('.js-save').addEventListener('click', function () {
-            const form = document.querySelector('form');
-            if (!validateInput.isAllPassValidate()) { // 如果不是全部都通过验证了，则不能提交。
-                return;
-            }
-            axios({
-                url: form.action,
-                method: form.method,
-                data: new FormData(form),
-            }).then(function (json) {
-                console.log('测试保存:->', json);
-                if (json.status === 'success') {
-                    new Dialog({
-                        config: {
-                            type: 'alert',
-                            alert: {
-                                content: json.message || '保存成功',
-                            },
-                        },
-                    });
-                }
-            });
-        });
-
-        // 验证放在最后是为了保证执行顺序。动态生成的标签，只要重新new一下，element传入dom即可，然后存储实例对象，留着保存时再验证一下。或者不绑定事件，全部都留到保存时再验证，这样只需要保存的时候new一下验证组件，触发一下是否全部验证通过的方法即可。
-        const ValidateInput = require('../components-dom/g-validate-form-hint');
-        const validateInput = new ValidateInput({element: '.js-validate-form'});
     }
 }
 
