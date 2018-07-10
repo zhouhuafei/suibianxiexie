@@ -60,9 +60,11 @@ class Sub extends Super {
                 });
             }
             if (result) {
+                /*
                 result.forEach(function (v) {
                     v.path = undefined;
                 });
+                */
                 self.render({
                     status: 'success',
                     message: '上传成功',
