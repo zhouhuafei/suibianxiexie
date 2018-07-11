@@ -1,0 +1,51 @@
+@import "../config/config";
+
+.g-dialog-alert {
+    z-index: 505;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: px2rem(280*1.5);
+    padding: px2rem(16);
+    border-radius: px2rem(4);
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.8);
+    .g-dialog-alert-close {
+        position: absolute;
+        left: px2rem(4);
+        bottom: px2rem(4);
+        color: #ffffff;
+        font-size: px2rem(12);
+    }
+    .g-dialog-alert-icon {
+        margin-right: px2rem(10);
+        font-size: px2rem(24);
+    }
+    .g-dialog-alert-text {
+        color: #ffffff;
+        font-size: px2rem(14);
+        line-height: 1.2;
+    }
+    &.g-dialog-alert_center {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    &.g-dialog-alert_bottom {
+        width: 100%;
+        border-radius: 0;
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    &.g-dialog-alert_top {
+        width: 100%;
+        border-radius: 0;
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

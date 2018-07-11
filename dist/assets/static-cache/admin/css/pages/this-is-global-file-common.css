@@ -1412,6 +1412,70 @@ input.g-button, button.g-button {
     @return $px * 1px;
 }
 */
+.g-dialog-alert {
+  z-index: 505;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 420px;
+  padding: 16px;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.8); }
+  .g-dialog-alert .g-dialog-alert-close {
+    position: absolute;
+    left: 4px;
+    bottom: 4px;
+    color: #ffffff;
+    font-size: 12px; }
+  .g-dialog-alert .g-dialog-alert-icon {
+    margin-right: 10px;
+    font-size: 24px; }
+  .g-dialog-alert .g-dialog-alert-text {
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 1.2; }
+  .g-dialog-alert.g-dialog-alert_center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%); }
+  .g-dialog-alert.g-dialog-alert_bottom {
+    width: 100%;
+    border-radius: 0;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%); }
+  .g-dialog-alert.g-dialog-alert_top {
+    width: 100%;
+    border-radius: 0;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%); }
+
+/*
+// px转rem(phone) 这个是给手机端用的。
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+
+// px转px(phone) 这个是给手机端用的。当需要使用到px时，使用这个即可。pc端为什么不使用px2px而是重写了px2rem？原因是这样做pc组件和phone组件互转时比较方便。
+@function px2px($px) {
+    @return $px * 1px;
+}
+*/
 .g-dialog {
   z-index: 505; }
   .g-dialog.g-dialog-alert {
