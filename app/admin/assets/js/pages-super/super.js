@@ -7,7 +7,6 @@ class Super {
         self.applications = require('zhf.applications'); // 应用方法集合
         self.axios = require('../api/axios'); // axios
         self.jsonp = require('../api/jsonp'); // jsonp
-        self.Dialog = require('../components-dom/g-dialog'); // 弹窗组件
         self.DialogAlert = require('../components-dom/g-dialog-alert'); // 提示框
         self.DialogConfirm = require('../components-dom/g-dialog-confirm'); // 确认框
         self.opts = self.tools.extend({
@@ -92,14 +91,11 @@ class Super {
             const btn = document.querySelector('.js-g-logout');
             const api = self.dataInfo.api;
             const routes = self.dataInfo.routes;
-            const Dialog = self.Dialog;
+            const DialogConfirm = self.DialogConfirm;
             btn && btn.addEventListener('click', function () {
-                new Dialog({
+                new DialogConfirm({
                     config: {
-                        type: 'confirm', // 默认是提示框
-                        confirm: {
-                            content: '确认退出账号？',
-                        },
+                        content: '确认退出账号？',
                     },
                     callback: {
                         confirm: function () {

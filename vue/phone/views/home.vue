@@ -41,22 +41,20 @@
             */
         },
         mounted() {
-            const Dialog = require('../components-dom/g-dialog');
+            const DialogConfirm = require('../components-dom/g-dialog-confirm');
+            const DialogAlert = require('../components-dom/g-dialog-alert');
             document.querySelector('.js-dialog').addEventListener('click', function () {
-                new Dialog({
+                new DialogConfirm({
                     callback: {
                         confirm: function () {
-                            new Dialog({config: {alert: {icon: 'icon-success', content: '已确认'}}});
+                            new DialogAlert({config: {icon: 'icon-success', content: '已确认'}});
                         },
                         cancel: function () {
-                            new Dialog({config: {alert: {icon: 'icon-success', content: '已取消'}}});
+                            new DialogAlert({config: {icon: 'icon-success', content: '已取消'}});
                         },
                         close: function () {
-                            new Dialog({config: {alert: {icon: 'icon-success', content: '已关闭'}}});
+                            new DialogAlert({config: {icon: 'icon-success', content: '已关闭'}});
                         },
-                    },
-                    config: {
-                        type: 'confirm',
                     },
                 });
             });
