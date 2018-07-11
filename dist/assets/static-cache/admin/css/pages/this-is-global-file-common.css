@@ -1426,7 +1426,7 @@ input.g-button, button.g-button {
           justify-content: center;
   width: 420px;
   padding: 16px;
-  border-radius: 4px;
+  border-radius: 6px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   background: rgba(0, 0, 0, 0.8); }
@@ -1471,9 +1471,29 @@ input.g-button, button.g-button {
     @return $px * 1px;
 }
 */
-.g-dialog {
-  z-index: 505; }
-  .g-dialog.g-dialog-alert {
+.g-dialog-confirm {
+  z-index: 505;
+  background: #fff; }
+  .g-dialog-confirm .g-dialog-confirm-header {
+    background: #0089ff;
+    color: #ffffff;
+    height: 40px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: justify;
+    overflow: hidden; }
+  .g-dialog-confirm .g-dialog-confirm-body .g-dialog-confirm-body-system {
+    width: 420px;
+    min-height: 131.25px;
+    padding: 10px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1483,47 +1503,23 @@ input.g-button, button.g-button {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    width: 420px;
-    padding: 16px;
-    border-radius: 4px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.8); }
-    .g-dialog.g-dialog-alert .g-dialog-alert-close {
-      position: absolute;
-      left: 4px;
-      bottom: 4px;
-      color: #ffffff;
-      font-size: 12px; }
-    .g-dialog.g-dialog-alert .g-dialog-alert-icon {
-      margin-right: 10px;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    word-break: break-all; }
+    .g-dialog-confirm .g-dialog-confirm-body .g-dialog-confirm-body-system .g-dialog-confirm-body-system-icon {
+      margin-right: 6px;
       font-size: 24px; }
-    .g-dialog.g-dialog-alert .g-dialog-alert-text {
-      color: #ffffff;
+    .g-dialog-confirm .g-dialog-confirm-body .g-dialog-confirm-body-system .g-dialog-confirm-body-system-text {
       font-size: 14px;
       line-height: 1.2; }
-  .g-dialog.g-dialog-confirm {
-    background: #fff; }
-    .g-dialog.g-dialog-confirm .g-dialog-confirm-header {
-      background: #0089ff;
-      color: #ffffff;
-      height: 40px;
-      -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-      padding-left: 10px;
-      padding-right: 40px;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
-      text-align: justify;
-      overflow: hidden; }
-    .g-dialog.g-dialog-confirm .g-dialog-confirm-body .g-dialog-confirm-body-system {
-      width: 420px;
-      min-height: 131.25px;
-      padding: 10px;
+  .g-dialog-confirm .g-dialog-confirm-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+    .g-dialog-confirm .g-dialog-confirm-footer .g-dialog-confirm-footer-cancel, .g-dialog-confirm .g-dialog-confirm-footer .g-dialog-confirm-footer-confirm {
+      -webkit-box-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -1533,61 +1529,35 @@ input.g-button, button.g-button {
       -webkit-box-pack: center;
           -ms-flex-pack: center;
               justify-content: center;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-      word-break: break-all; }
-      .g-dialog.g-dialog-confirm .g-dialog-confirm-body .g-dialog-confirm-body-system .g-dialog-confirm-body-system-icon {
-        margin-right: 6px;
-        font-size: 24px; }
-      .g-dialog.g-dialog-confirm .g-dialog-confirm-body .g-dialog-confirm-body-system .g-dialog-confirm-body-system-text {
-        font-size: 14px;
-        line-height: 1.2; }
-    .g-dialog.g-dialog-confirm .g-dialog-confirm-footer {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex; }
-      .g-dialog.g-dialog-confirm .g-dialog-confirm-footer .g-dialog-confirm-footer-cancel, .g-dialog.g-dialog-confirm .g-dialog-confirm-footer .g-dialog-confirm-footer-confirm {
-        -webkit-box-flex: 1;
-            -ms-flex: 1;
-                flex: 1;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        height: 40px;
-        width: auto; }
-    .g-dialog.g-dialog-confirm .g-dialog-confirm-close {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 40px;
       height: 40px;
-      font-size: 14px;
-      color: #ffffff;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-      word-break: break-all; }
-  .g-dialog.g-dialog-center {
+      width: auto; }
+  .g-dialog-confirm .g-dialog-confirm-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    color: #ffffff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    word-break: break-all; }
+  .g-dialog-confirm.g-dialog-confirm_center {
     position: fixed;
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%); }
-  .g-dialog.g-dialog-bottom {
+  .g-dialog-confirm.g-dialog-confirm_bottom {
     width: 100%;
     border-radius: 0;
     position: fixed;
@@ -1595,7 +1565,7 @@ input.g-button, button.g-button {
     left: 50%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%); }
-  .g-dialog.g-dialog-top {
+  .g-dialog-confirm.g-dialog-confirm_top {
     width: 100%;
     border-radius: 0;
     position: fixed;

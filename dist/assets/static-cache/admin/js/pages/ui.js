@@ -221,7 +221,7 @@ var Sub = tools.constructorInherit(Super, {
         isShowClose: true, // 是否显示关闭按钮
         icon: 'icon-success', // icon的class
         content: '成功', // 内容信息
-        positionLocation: 'center' // 弹窗的定位位置    positionMethod定位方式强制fixed
+        positionLocation: 'center' // 弹窗的定位位置('top'，'center'，'bottom')。positionMethod定位方式强制fixed。
     },
     // 数据
     data: {}
@@ -234,8 +234,8 @@ Sub.prototype.moduleDomCreate = function () {
     // 弹窗结构
     var html = this.renderAlert();
     this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
         attribute: {
             className: 'g-dialog-alert ' + positionLocation,
             innerHTML: html
