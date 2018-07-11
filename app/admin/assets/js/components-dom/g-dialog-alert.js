@@ -13,7 +13,6 @@ const Sub = tools.constructorInherit(Super, {
     },
     // 配置
     config: {
-        timer: null, // 定时器装载
         time: 3000, // 展示的时间
         isShowIcon: false, // 是否显示icon
         isShowClose: true, // 是否显示关闭按钮
@@ -28,7 +27,7 @@ const Sub = tools.constructorInherit(Super, {
 // (建)(覆)内部模块的创建(覆盖超类型)
 Sub.prototype.moduleDomCreate = function () {
     const config = this.opts.config;
-    const positionLocation = `g-dialog-${config.positionLocation}`;// 弹窗的定位位置
+    const positionLocation = `g-dialog-alert_${config.positionLocation}`;// 弹窗的定位位置
     // 弹窗结构
     const html = this.renderAlert();
     this.moduleDom = applications.createElement({
@@ -63,13 +62,17 @@ Sub.prototype.renderAlert = function () {
 Sub.prototype.power = function () {
     const self = this;
     const config = this.opts.config;
+    const callback = this.opts.callback;
     const close = this.moduleDom.querySelector('.g-dialog-alert-close');
-    config.timer = setTimeout(function () {
+    let timer = null;
+    timer = setTimeout(function () {
         self.moduleDomHide();
+        callback.close();
     }, config.time);
     close.addEventListener('click', function () {
-        clearTimeout(config.timer);
+        clearTimeout(timer);
         self.moduleDomHide();
+        callback.close();
     });
 };
 

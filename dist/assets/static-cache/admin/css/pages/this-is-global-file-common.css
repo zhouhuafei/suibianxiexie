@@ -1437,7 +1437,8 @@ input.g-button, button.g-button {
     font-size: 12px; }
   .g-dialog-alert .g-dialog-alert-icon {
     margin-right: 10px;
-    font-size: 24px; }
+    font-size: 24px;
+    color: #eb9e05; }
   .g-dialog-alert .g-dialog-alert-text {
     color: #ffffff;
     font-size: 14px;

@@ -56,6 +56,18 @@ class Sub extends Super {
             console.log('ajax测试multipart/form-data测试ajax:->', json);
         });
         */
+        // 测试提示框
+        const DialogAlert = require('../components-dom/g-dialog-alert');
+        new DialogAlert({
+            config: {
+                time: 30000, // 展示的时间
+                isShowIcon: true, // 是否显示icon
+                isShowClose: true, // 是否显示关闭按钮
+                icon: 'icon-success', // icon的class
+                content: '测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试', // 内容信息
+                positionLocation: 'center', // 弹窗的定位位置    positionMethod定位方式强制fixed
+            },
+        });
     }
 }
 

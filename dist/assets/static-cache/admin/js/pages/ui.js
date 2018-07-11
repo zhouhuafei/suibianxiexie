@@ -83,6 +83,18 @@ var Sub = function (_Super) {
                 console.log('ajax测试multipart/form-data测试ajax:->', json);
             });
             */
+            // 测试提示框
+            var DialogAlert = __webpack_require__(143);
+            new DialogAlert({
+                config: {
+                    time: 30000, // 展示的时间
+                    isShowIcon: true, // 是否显示icon
+                    isShowClose: true, // 是否显示关闭按钮
+                    icon: 'icon-success', // icon的class
+                    content: '测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试', // 内容信息
+                    positionLocation: 'center' // 弹窗的定位位置    positionMethod定位方式强制fixed
+                }
+            });
         }
     }]);
 
@@ -181,6 +193,89 @@ module.exports = function (json) {
         return dataInfo;
     });
 };
+
+/***/ }),
+
+/***/ 143:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(1); // 工具方法集合
+var applications = __webpack_require__(4); // 应用方法集合
+var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    wrap: '.g-wrap',
+    // 回调
+    callback: {
+        // 关闭
+        close: function close() {}
+    },
+    // 配置
+    config: {
+        time: 3000, // 展示的时间
+        isShowIcon: false, // 是否显示icon
+        isShowClose: true, // 是否显示关闭按钮
+        icon: 'icon-success', // icon的class
+        content: '成功', // 内容信息
+        positionLocation: 'center' // 弹窗的定位位置    positionMethod定位方式强制fixed
+    },
+    // 数据
+    data: {}
+});
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var positionLocation = 'g-dialog-alert_' + config.positionLocation; // 弹窗的定位位置
+    // 弹窗结构
+    var html = this.renderAlert();
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-dialog-alert ' + positionLocation,
+            innerHTML: html
+        }
+    });
+};
+
+// 提示框
+Sub.prototype.renderAlert = function () {
+    var config = this.opts.config;
+    var htmlIcon = '';
+    if (config.isShowIcon) {
+        htmlIcon = '<div class="g-dialog-alert-icon iconfont ' + config.icon + '"></div>';
+    }
+    var closeHtml = '';
+    if (config.isShowClose) {
+        closeHtml = '<div class="g-dialog-alert-close iconfont icon-close" ></div>';
+    }
+    return '\n        ' + closeHtml + '\n        ' + htmlIcon + '\n        <div class="g-dialog-alert-text">' + config.content + '</div>\n    ';
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    var config = this.opts.config;
+    var callback = this.opts.callback;
+    var close = this.moduleDom.querySelector('.g-dialog-alert-close');
+    var timer = null;
+    timer = setTimeout(function () {
+        self.moduleDomHide();
+        callback.close();
+    }, config.time);
+    close.addEventListener('click', function () {
+        clearTimeout(timer);
+        self.moduleDomHide();
+        callback.close();
+    });
+};
+
+module.exports = Sub;
 
 /***/ })
 
