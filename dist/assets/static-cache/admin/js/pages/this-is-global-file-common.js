@@ -1808,18 +1808,18 @@ function Tools(){}Tools.prototype.typeOf=__webpack_require__(24),Tools.prototype
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};!function(e,t){"object"===( false?"undefined":_typeof(exports))&&"undefined"!=typeof module?module.exports=t(): true?!(__WEBPACK_AMD_DEFINE_FACTORY__ = (t),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):("object"!==Object.prototype.toString.call(window.zhf).slice(8,-1).toLowerCase()&&(window.zhf={}),window.zhf.getDomArray=t())}(0,function(){function e(e,t){for(var o=t;o!==e&&null!==o;)o=o.parentNode;return o===e}return function(t,o){var n=[],l=document;if(o&&(l="string"===Object.prototype.toString.call(o).slice(8,-1).toLowerCase()?document.querySelector(o):1===o.nodeType?o:o===document?o:"htmlcollection"===Object.prototype.toString.call(o).slice(8,-1).toLowerCase()||"nodelist"===Object.prototype.toString.call(o).slice(8,-1).toLowerCase()?[].slice.call(o)[0]:null),!l)return[];if(t)if("string"===Object.prototype.toString.call(t).slice(8,-1).toLowerCase())n=[].slice.call(l.querySelectorAll(t));else if(1===t.nodeType)n=[t],o&&(e(l,t)||(n=[]));else if(t===document)n=[t],o&&(n=[]);else if(("htmlcollection"===Object.prototype.toString.call(t).slice(8,-1).toLowerCase()||"nodelist"===Object.prototype.toString.call(t).slice(8,-1).toLowerCase())&&(n=[].slice.call(t),o)){var r=[];n.forEach(function(t){e(l,t)&&r.push(t)}),n=r}return n}});
+var extend=__webpack_require__(9);function Applications(){}Applications.prototype.extend=extend,Applications.prototype.cookie=__webpack_require__(63),Applications.prototype.createElement=__webpack_require__(64),Applications.prototype.AddSubtractInput=__webpack_require__(65),Applications.prototype.getDomArray=__webpack_require__(4),Applications.prototype.getParent=__webpack_require__(66),Applications.prototype.htmlToDom=__webpack_require__(67),Applications.prototype.domRemove=__webpack_require__(68),Applications.prototype.browserPlatform=__webpack_require__(69),Applications.prototype.offset=__webpack_require__(70),Applications.prototype.scrollMoveTo=__webpack_require__(71),Applications.prototype.SelectAll=__webpack_require__(72),Applications.prototype.WhenScrollBottom=__webpack_require__(74),Applications.prototype.whetherDisableScroll=__webpack_require__(75),module.exports=new Applications;
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var extend=__webpack_require__(9);function Applications(){}Applications.prototype.extend=extend,Applications.prototype.cookie=__webpack_require__(63),Applications.prototype.createElement=__webpack_require__(64),Applications.prototype.AddSubtractInput=__webpack_require__(65),Applications.prototype.getDomArray=__webpack_require__(3),Applications.prototype.getParent=__webpack_require__(66),Applications.prototype.htmlToDom=__webpack_require__(67),Applications.prototype.domRemove=__webpack_require__(68),Applications.prototype.browserPlatform=__webpack_require__(69),Applications.prototype.offset=__webpack_require__(70),Applications.prototype.scrollMoveTo=__webpack_require__(71),Applications.prototype.SelectAll=__webpack_require__(72),Applications.prototype.WhenScrollBottom=__webpack_require__(74),Applications.prototype.whetherDisableScroll=__webpack_require__(75),module.exports=new Applications;
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};!function(e,t){"object"===( false?"undefined":_typeof(exports))&&"undefined"!=typeof module?module.exports=t(): true?!(__WEBPACK_AMD_DEFINE_FACTORY__ = (t),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):("object"!==Object.prototype.toString.call(window.zhf).slice(8,-1).toLowerCase()&&(window.zhf={}),window.zhf.getDomArray=t())}(0,function(){function e(e,t){for(var o=t;o!==e&&null!==o;)o=o.parentNode;return o===e}return function(t,o){var n=[],l=document;if(o&&(l="string"===Object.prototype.toString.call(o).slice(8,-1).toLowerCase()?document.querySelector(o):1===o.nodeType?o:o===document?o:"htmlcollection"===Object.prototype.toString.call(o).slice(8,-1).toLowerCase()||"nodelist"===Object.prototype.toString.call(o).slice(8,-1).toLowerCase()?[].slice.call(o)[0]:null),!l)return[];if(t)if("string"===Object.prototype.toString.call(t).slice(8,-1).toLowerCase())n=[].slice.call(l.querySelectorAll(t));else if(1===t.nodeType)n=[t],o&&(e(l,t)||(n=[]));else if(t===document)n=[t],o&&(n=[]);else if(("htmlcollection"===Object.prototype.toString.call(t).slice(8,-1).toLowerCase()||"nodelist"===Object.prototype.toString.call(t).slice(8,-1).toLowerCase())&&(n=[].slice.call(t),o)){var r=[];n.forEach(function(t){e(l,t)&&r.push(t)}),n=r}return n}});
 
 /***/ }),
 /* 5 */,
@@ -1841,10 +1841,10 @@ var Super = function () {
 
         var self = this;
         self.tools = __webpack_require__(1); // 工具方法集合
-        self.applications = __webpack_require__(4); // 应用方法集合
+        self.applications = __webpack_require__(3); // 应用方法集合
         self.axios = __webpack_require__(19); // axios
         self.jsonp = __webpack_require__(81); // jsonp
-        self.Dialog = __webpack_require__(11); // 弹窗组件
+        self.Dialog = __webpack_require__(12); // 弹窗组件
         self.opts = self.tools.extend({
             lazyload: {
                 isInitRender: false
@@ -2184,7 +2184,7 @@ var objectKeys = Object.keys || function (obj) {
 module.exports = Duplex;
 
 /*<replacement>*/
-var util = __webpack_require__(10);
+var util = __webpack_require__(11);
 util.inherits = __webpack_require__(7);
 /*</replacement>*/
 
@@ -2277,6 +2277,208 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 
 /***/ }),
 /* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(1); // 工具方法集合
+var applications = __webpack_require__(3); // 应用方法集合
+
+// 底层构造函数
+function Super(json) {
+    // 函数外部传来的参数
+    this.opts = tools.extend(
+    // 内部默认参数
+    {
+        // 父级
+        wrap: '.g-body', // 这个仅支持传入选择器和原生dom节点
+        // 回调
+        callback: {
+            // 内部模块创建之前的回调
+            moduleDomCreateBefore: function moduleDomCreateBefore(self) {},
+            // 内部模块创建之后的回调
+            moduleDomCreateAfter: function moduleDomCreateAfter(self) {},
+            // 内部模块渲染之前的回调
+            moduleDomRenderBefore: function moduleDomRenderBefore(self) {},
+            // 内部模块渲染之后的回调
+            moduleDomRenderAfter: function moduleDomRenderAfter(self) {},
+            // 内部模块移除之前的回调
+            moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {},
+            // 内部模块移除之后的回调
+            moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {},
+            // 内部模块显示之前的回调
+            moduleDomShowBefore: function moduleDomShowBefore(self) {},
+            // 内部模块显示之后的回调
+            moduleDomShowAfter: function moduleDomShowAfter(self) {},
+            // 内部模块隐藏之前的回调
+            moduleDomHideBefore: function moduleDomHideBefore(self) {},
+            // 内部模块隐藏之后的回调
+            moduleDomHideAfter: function moduleDomHideAfter(self) {},
+            // 外部容器获取之前的回调
+            wrapDomGetBefore: function wrapDomGetBefore(self) {},
+            // 外部容器获取之后的回调
+            wrapDomGetAfter: function wrapDomGetAfter(self) {},
+            // 外部容器移除之前的回调
+            wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {},
+            // 外部容器移除之后的回调
+            wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {}
+        },
+        // 配置
+        config: {
+            // 内部模块的自定义属性
+            moduleDomCustomAttribute: {},
+            // 内部模块插入到外部容器的方式
+            moduleDomRenderMethod: {
+                method: 'appendChild', // 'appendChild','insertBefore'
+                child: null
+            },
+            moduleDomStyle: {}, // 内部模块的样式
+            moduleDomIsRender: true, // 内部模块是否渲染
+            moduleDomIsClearTimer: true // 内部模块是否清除所有定时器(默认清除)
+        },
+        // 数据
+        data: {}
+    },
+    // 外部传入参数
+    json);
+    // 函数内部自带的属性
+    this.moduleDom = null; // 内部的模块
+    this.wrapDom = null; // 内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
+    this.moduleDomTimer = {}; // 内部模块的定时器存储(假设内部模块有定时器)
+    this.init(); // 初始化
+}
+
+// 初始化
+Super.prototype.init = function () {
+    this.render();
+    this.power();
+};
+
+// 渲染
+Super.prototype.render = function () {
+    this.moduleDomRemove(); // 内部模块的移除(重新初始化的时候要移除掉以前有的内部模块)
+
+    var callback = this.opts.callback;
+    callback.moduleDomCreateBefore(this);
+    this.moduleDomCreate(); // 内部模块的创建
+    callback.moduleDomCreateAfter(this);
+
+    this.wrapDomGet(); // 外部容器的获取
+    this.moduleDomRender(); // 内部模块的渲染(如果外部容器存在,就把内部模块填充到外部容器里)
+};
+
+// (功)(覆)功能(这个方法需要在子类型里被覆盖掉)
+Super.prototype.power = function () {};
+
+// (建)(覆)内部模块的创建(这个方法需要在子类型里被覆盖掉)
+Super.prototype.moduleDomCreate = function () {
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-super-type',
+            innerHTML: '\n                <div class="g-super-type-text" style="text-align: center;">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsup-es5</div>\n            '
+        }
+    });
+};
+
+// 内部模块的渲染
+Super.prototype.moduleDomRender = function () {
+    var callback = this.opts.callback;
+    var config = this.opts.config;
+    if (config.moduleDomIsRender && this.wrapDom) {
+        callback.moduleDomRenderBefore(this);
+        var renderMethod = config.moduleDomRenderMethod;
+        if (renderMethod.method === 'insertBefore') {
+            var dom = applications.getDomArray(renderMethod.child)[0];
+            if (dom) {
+                this.wrapDom.insertBefore(this.moduleDom, dom);
+            } else {
+                this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
+            }
+        }
+        if (renderMethod.method === 'appendChild') {
+            this.wrapDom.appendChild(this.moduleDom);
+        }
+        callback.moduleDomRenderAfter(this);
+    }
+};
+
+// 内部模块的移除
+Super.prototype.moduleDomRemove = function () {
+    var callback = this.opts.callback;
+    if (this.moduleDom && this.moduleDom.parentNode) {
+        callback.moduleDomRemoveBefore(this);
+        this.moduleDom.parentNode.removeChild(this.moduleDom);
+        callback.moduleDomRemoveAfter(this);
+    }
+    this.moduleDomClearTimer();
+};
+
+// 内部模块的定时器清除(假设内部模块有定时器)
+Super.prototype.moduleDomClearTimer = function () {
+    var self = this;
+    if (self.opts.config.moduleDomIsClearTimer) {
+        Object.keys(self.moduleDomTimer).forEach(function (attr) {
+            clearInterval(self.moduleDomTimer[attr]);
+            clearTimeout(self.moduleDomTimer[attr]);
+        });
+    }
+};
+
+// 内部模块的隐藏(显示隐藏和是否清除定时器无关)
+Super.prototype.moduleDomHide = function () {
+    var callback = this.opts.callback;
+    if (this.moduleDom.parentNode) {
+        this.opts.config.moduleDomIsRender = false;
+        callback.moduleDomHideBefore(this);
+        this.moduleDom.parentNode.removeChild(this.moduleDom);
+        callback.moduleDomHideAfter(this);
+    }
+};
+
+// 内部模块的显示(显示隐藏和是否清除定时器无关)
+Super.prototype.moduleDomShow = function () {
+    var callback = this.opts.callback;
+    callback.moduleDomShowBefore(this);
+    if (this.wrapDom) {
+        this.opts.config.moduleDomIsRender = true;
+        this.moduleDomRender();
+    }
+    callback.moduleDomShowAfter(this);
+};
+
+// 外部容器的获取
+Super.prototype.wrapDomGet = function () {
+    var callback = this.opts.callback;
+    callback.wrapDomGetBefore(this);
+    this.wrapDom = applications.getDomArray(this.opts.wrap)[0];
+    callback.wrapDomGetAfter(this);
+};
+
+// 外部容器的移除
+Super.prototype.wrapDomRemove = function () {
+    var callback = this.opts.callback;
+    // 先移除内部的模块
+    this.moduleDomRemove();
+    // 再移除外部的容器
+    if (this.wrapDom) {
+        callback.wrapDomRemoveBefore(this);
+        this.wrapDom.parentNode.removeChild(this.wrapDom);
+        callback.wrapDomRemoveAfter(this);
+    }
+};
+
+// 获取内部模块的整体html结构
+Super.prototype.getModuleDomHtml = function () {
+    return this.moduleDom.outerHTML;
+};
+
+module.exports = Super;
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright Joyent, Inc. and other Node contributors.
@@ -2390,15 +2592,15 @@ function objectToString(o) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0).Buffer))
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(4); // 应用方法集合
-var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
+var applications = __webpack_require__(3); // 应用方法集合
+var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
 var Mask = __webpack_require__(76); // 遮罩
 var domAddPosition = __webpack_require__(20);
 
@@ -2605,208 +2807,6 @@ Sub.prototype.power = function () {
 module.exports = Sub;
 
 /***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(4); // 应用方法集合
-
-// 底层构造函数
-function Super(json) {
-    // 函数外部传来的参数
-    this.opts = tools.extend(
-    // 内部默认参数
-    {
-        // 父级
-        wrap: '.g-body', // 这个仅支持传入选择器和原生dom节点
-        // 回调
-        callback: {
-            // 内部模块创建之前的回调
-            moduleDomCreateBefore: function moduleDomCreateBefore(self) {},
-            // 内部模块创建之后的回调
-            moduleDomCreateAfter: function moduleDomCreateAfter(self) {},
-            // 内部模块渲染之前的回调
-            moduleDomRenderBefore: function moduleDomRenderBefore(self) {},
-            // 内部模块渲染之后的回调
-            moduleDomRenderAfter: function moduleDomRenderAfter(self) {},
-            // 内部模块移除之前的回调
-            moduleDomRemoveBefore: function moduleDomRemoveBefore(self) {},
-            // 内部模块移除之后的回调
-            moduleDomRemoveAfter: function moduleDomRemoveAfter(self) {},
-            // 内部模块显示之前的回调
-            moduleDomShowBefore: function moduleDomShowBefore(self) {},
-            // 内部模块显示之后的回调
-            moduleDomShowAfter: function moduleDomShowAfter(self) {},
-            // 内部模块隐藏之前的回调
-            moduleDomHideBefore: function moduleDomHideBefore(self) {},
-            // 内部模块隐藏之后的回调
-            moduleDomHideAfter: function moduleDomHideAfter(self) {},
-            // 外部容器获取之前的回调
-            wrapDomGetBefore: function wrapDomGetBefore(self) {},
-            // 外部容器获取之后的回调
-            wrapDomGetAfter: function wrapDomGetAfter(self) {},
-            // 外部容器移除之前的回调
-            wrapDomRemoveBefore: function wrapDomRemoveBefore(self) {},
-            // 外部容器移除之后的回调
-            wrapDomRemoveAfter: function wrapDomRemoveAfter(self) {}
-        },
-        // 配置
-        config: {
-            // 内部模块的自定义属性
-            moduleDomCustomAttribute: {},
-            // 内部模块插入到外部容器的方式
-            moduleDomRenderMethod: {
-                method: 'appendChild', // 'appendChild','insertBefore'
-                child: null
-            },
-            moduleDomStyle: {}, // 内部模块的样式
-            moduleDomIsRender: true, // 内部模块是否渲染
-            moduleDomIsClearTimer: true // 内部模块是否清除所有定时器(默认清除)
-        },
-        // 数据
-        data: {}
-    },
-    // 外部传入参数
-    json);
-    // 函数内部自带的属性
-    this.moduleDom = null; // 内部的模块
-    this.wrapDom = null; // 内部模块的外部承载容器,如果没有也没关系,不过不往里面append罢了
-    this.moduleDomTimer = {}; // 内部模块的定时器存储(假设内部模块有定时器)
-    this.init(); // 初始化
-}
-
-// 初始化
-Super.prototype.init = function () {
-    this.render();
-    this.power();
-};
-
-// 渲染
-Super.prototype.render = function () {
-    this.moduleDomRemove(); // 内部模块的移除(重新初始化的时候要移除掉以前有的内部模块)
-
-    var callback = this.opts.callback;
-    callback.moduleDomCreateBefore(this);
-    this.moduleDomCreate(); // 内部模块的创建
-    callback.moduleDomCreateAfter(this);
-
-    this.wrapDomGet(); // 外部容器的获取
-    this.moduleDomRender(); // 内部模块的渲染(如果外部容器存在,就把内部模块填充到外部容器里)
-};
-
-// (功)(覆)功能(这个方法需要在子类型里被覆盖掉)
-Super.prototype.power = function () {};
-
-// (建)(覆)内部模块的创建(这个方法需要在子类型里被覆盖掉)
-Super.prototype.moduleDomCreate = function () {
-    this.moduleDom = applications.createElement({
-        style: this.opts.config.moduleDomStyle,
-        customAttribute: this.opts.config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-super-type',
-            innerHTML: '\n                <div class="g-super-type-text" style="text-align: center;">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsup-es5</div>\n            '
-        }
-    });
-};
-
-// 内部模块的渲染
-Super.prototype.moduleDomRender = function () {
-    var callback = this.opts.callback;
-    var config = this.opts.config;
-    if (config.moduleDomIsRender && this.wrapDom) {
-        callback.moduleDomRenderBefore(this);
-        var renderMethod = config.moduleDomRenderMethod;
-        if (renderMethod.method === 'insertBefore') {
-            var dom = applications.getDomArray(renderMethod.child)[0];
-            if (dom) {
-                this.wrapDom.insertBefore(this.moduleDom, dom);
-            } else {
-                this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
-            }
-        }
-        if (renderMethod.method === 'appendChild') {
-            this.wrapDom.appendChild(this.moduleDom);
-        }
-        callback.moduleDomRenderAfter(this);
-    }
-};
-
-// 内部模块的移除
-Super.prototype.moduleDomRemove = function () {
-    var callback = this.opts.callback;
-    if (this.moduleDom && this.moduleDom.parentNode) {
-        callback.moduleDomRemoveBefore(this);
-        this.moduleDom.parentNode.removeChild(this.moduleDom);
-        callback.moduleDomRemoveAfter(this);
-    }
-    this.moduleDomClearTimer();
-};
-
-// 内部模块的定时器清除(假设内部模块有定时器)
-Super.prototype.moduleDomClearTimer = function () {
-    var self = this;
-    if (self.opts.config.moduleDomIsClearTimer) {
-        Object.keys(self.moduleDomTimer).forEach(function (attr) {
-            clearInterval(self.moduleDomTimer[attr]);
-            clearTimeout(self.moduleDomTimer[attr]);
-        });
-    }
-};
-
-// 内部模块的隐藏(显示隐藏和是否清除定时器无关)
-Super.prototype.moduleDomHide = function () {
-    var callback = this.opts.callback;
-    if (this.moduleDom.parentNode) {
-        this.opts.config.moduleDomIsRender = false;
-        callback.moduleDomHideBefore(this);
-        this.moduleDom.parentNode.removeChild(this.moduleDom);
-        callback.moduleDomHideAfter(this);
-    }
-};
-
-// 内部模块的显示(显示隐藏和是否清除定时器无关)
-Super.prototype.moduleDomShow = function () {
-    var callback = this.opts.callback;
-    callback.moduleDomShowBefore(this);
-    if (this.wrapDom) {
-        this.opts.config.moduleDomIsRender = true;
-        this.moduleDomRender();
-    }
-    callback.moduleDomShowAfter(this);
-};
-
-// 外部容器的获取
-Super.prototype.wrapDomGet = function () {
-    var callback = this.opts.callback;
-    callback.wrapDomGetBefore(this);
-    this.wrapDom = applications.getDomArray(this.opts.wrap)[0];
-    callback.wrapDomGetAfter(this);
-};
-
-// 外部容器的移除
-Super.prototype.wrapDomRemove = function () {
-    var callback = this.opts.callback;
-    // 先移除内部的模块
-    this.moduleDomRemove();
-    // 再移除外部的容器
-    if (this.wrapDom) {
-        callback.wrapDomRemoveBefore(this);
-        this.wrapDom.parentNode.removeChild(this.wrapDom);
-        callback.wrapDomRemoveAfter(this);
-    }
-};
-
-// 获取内部模块的整体html结构
-Super.prototype.getModuleDomHtml = function () {
-    return this.moduleDom.outerHTML;
-};
-
-module.exports = Super;
-
-/***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2814,7 +2814,7 @@ module.exports = Super;
 
 
 var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(4); // 应用方法集合
+var applications = __webpack_require__(3); // 应用方法集合
 var domAddPosition = __webpack_require__(20);
 var checkStr = tools.checkStr;
 var getParent = applications.getParent;
@@ -3342,7 +3342,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 
 var axios = __webpack_require__(29);
 var tools = __webpack_require__(1);
-var Dialog = __webpack_require__(11);
+var Dialog = __webpack_require__(12);
 var qs = __webpack_require__(78);
 
 module.exports = function (json) {
@@ -3434,7 +3434,7 @@ module.exports = function (json) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var getDomArray=__webpack_require__(3),DomPosition=__webpack_require__(77);function domAddPosition(o){var i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"relative",t=arguments.length>2&&void 0!==arguments[2]&&arguments[2],e=getDomArray(o)[0];e?t?e.style.position=i:new DomPosition(e).hasPosition()||(e.style.position=i):console.log("no find dom")}module.exports=domAddPosition;
+var getDomArray=__webpack_require__(4),DomPosition=__webpack_require__(77);function domAddPosition(o){var i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"relative",t=arguments.length>2&&void 0!==arguments[2]&&arguments[2],e=getDomArray(o)[0];e?t?e.style.position=i:new DomPosition(e).hasPosition()||(e.style.position=i):console.log("no find dom")}module.exports=domAddPosition;
 
 /***/ }),
 /* 21 */
@@ -3828,7 +3828,7 @@ var Duplex;
 Writable.WritableState = WritableState;
 
 /*<replacement>*/
-var util = __webpack_require__(10);
+var util = __webpack_require__(11);
 util.inherits = __webpack_require__(7);
 /*</replacement>*/
 
@@ -4942,7 +4942,7 @@ function _isUint8Array(obj) {
 /*</replacement>*/
 
 /*<replacement>*/
-var util = __webpack_require__(10);
+var util = __webpack_require__(11);
 util.inherits = __webpack_require__(7);
 /*</replacement>*/
 
@@ -6323,7 +6323,7 @@ module.exports = Transform;
 var Duplex = __webpack_require__(8);
 
 /*<replacement>*/
-var util = __webpack_require__(10);
+var util = __webpack_require__(11);
 util.inherits = __webpack_require__(7);
 /*</replacement>*/
 
@@ -7881,14 +7881,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var extend=__webpack_require__(9),getDomArray=__webpack_require__(3);function AddSubtractInput(a){this.opts=extend({add:null,subtract:null,input:null,step:1,min:1,value:1,max:99999999,offClass:"_off",isAsync:!1,asyncHandleValue:function(){},callback:function(){}},a),this.init()}AddSubtractInput.prototype.render=function(){var a=this.opts,t={};t.asyncHandleValue=a.asyncHandleValue,t.cbFn=a.callback,t.add=getDomArray(a.add)[0],t.subtract=getDomArray(a.subtract)[0],t.input=getDomArray(a.input)[0];var e=Number(a.step)||1;t.step=e<1?1:e;var n=Number(a.min)||1;t.min=n<1?1:n;var u=Number(a.value)||1;t.value=u<1?1:u,t.oldValue=t.value;var s=Number(a.max)||1;t.max=s<1?1:s,t.offClass=a.offClass,t.isAsync=a.isAsync,this.handleData=t},AddSubtractInput.prototype.init=function(){this.render(),this.power()},AddSubtractInput.prototype.power=function(){var a=this,t=a.handleData;t.input&&t.add&&t.subtract&&(t.input.value=a.handleValue(),a.handleStatus(),t.add.addEventListener("click",function(e){e.preventDefault(),e.stopPropagation(),t.oldValue=t.value,t.value+=t.step,a.setInputValue(this)}),t.subtract.addEventListener("click",function(e){e.preventDefault(),e.stopPropagation(),t.oldValue=t.value,t.value-=t.step,a.setInputValue(this)}),t.input.addEventListener("blur",function(e){e.preventDefault(),e.stopPropagation(),t.oldValue=t.value,t.value=Number(this.value)||1,a.setInputValue(this)}))},AddSubtractInput.prototype.redressValue=function(){var a=this.handleData,t=a.step,e=a.max,n=a.value;t>1&&(a.min=t,a.max=e-e%t,a.value=Math.floor(n/t)*t)},AddSubtractInput.prototype.handleValue=function(){this.redressValue();var a=this.handleData,t=a.value;return a.max<a.min&&(a.max=a.min),t<a.min&&(t=a.min),t>a.max&&(t=a.max),a.value=t,t},AddSubtractInput.prototype.handleStatus=function(){var a=this.handleData,t=a.value;a.add.classList.remove(a.offClass),a.subtract.classList.remove(a.offClass),t<=a.min&&a.subtract.classList.add(a.offClass),t>=a.max&&a.add.classList.add(a.offClass),a.min===a.max&&(a.add.classList.add(a.offClass),a.subtract.classList.add(a.offClass),a.input.readOnly=!0)},AddSubtractInput.prototype.setInputValue=function(a){var t=this,e=t.handleData;if(e.input&&e.add&&e.subtract){var n=t.handleValue();e.isAsync?e.isTriggerWhenAsync||(e.isTriggerWhenAsync=!0,t.handleData.asyncHandleValue({self:t,handleData:e,dom:a,theCallbackMustBeTriggered:function(a){a||(n=e.oldValue),e.value=n,t.handleStatus(),e.input.value=n,delete e.isTriggerWhenAsync,e.cbFn({min:e.min,max:e.max,value:n})}})):(t.handleStatus(),e.input.value=n,e.cbFn({min:e.min,max:e.max,value:n}))}},module.exports=AddSubtractInput;
+var extend=__webpack_require__(9),getDomArray=__webpack_require__(4);function AddSubtractInput(a){this.opts=extend({add:null,subtract:null,input:null,step:1,min:1,value:1,max:99999999,offClass:"_off",isAsync:!1,asyncHandleValue:function(){},callback:function(){}},a),this.init()}AddSubtractInput.prototype.render=function(){var a=this.opts,t={};t.asyncHandleValue=a.asyncHandleValue,t.cbFn=a.callback,t.add=getDomArray(a.add)[0],t.subtract=getDomArray(a.subtract)[0],t.input=getDomArray(a.input)[0];var e=Number(a.step)||1;t.step=e<1?1:e;var n=Number(a.min)||1;t.min=n<1?1:n;var u=Number(a.value)||1;t.value=u<1?1:u,t.oldValue=t.value;var s=Number(a.max)||1;t.max=s<1?1:s,t.offClass=a.offClass,t.isAsync=a.isAsync,this.handleData=t},AddSubtractInput.prototype.init=function(){this.render(),this.power()},AddSubtractInput.prototype.power=function(){var a=this,t=a.handleData;t.input&&t.add&&t.subtract&&(t.input.value=a.handleValue(),a.handleStatus(),t.add.addEventListener("click",function(e){e.preventDefault(),e.stopPropagation(),t.oldValue=t.value,t.value+=t.step,a.setInputValue(this)}),t.subtract.addEventListener("click",function(e){e.preventDefault(),e.stopPropagation(),t.oldValue=t.value,t.value-=t.step,a.setInputValue(this)}),t.input.addEventListener("blur",function(e){e.preventDefault(),e.stopPropagation(),t.oldValue=t.value,t.value=Number(this.value)||1,a.setInputValue(this)}))},AddSubtractInput.prototype.redressValue=function(){var a=this.handleData,t=a.step,e=a.max,n=a.value;t>1&&(a.min=t,a.max=e-e%t,a.value=Math.floor(n/t)*t)},AddSubtractInput.prototype.handleValue=function(){this.redressValue();var a=this.handleData,t=a.value;return a.max<a.min&&(a.max=a.min),t<a.min&&(t=a.min),t>a.max&&(t=a.max),a.value=t,t},AddSubtractInput.prototype.handleStatus=function(){var a=this.handleData,t=a.value;a.add.classList.remove(a.offClass),a.subtract.classList.remove(a.offClass),t<=a.min&&a.subtract.classList.add(a.offClass),t>=a.max&&a.add.classList.add(a.offClass),a.min===a.max&&(a.add.classList.add(a.offClass),a.subtract.classList.add(a.offClass),a.input.readOnly=!0)},AddSubtractInput.prototype.setInputValue=function(a){var t=this,e=t.handleData;if(e.input&&e.add&&e.subtract){var n=t.handleValue();e.isAsync?e.isTriggerWhenAsync||(e.isTriggerWhenAsync=!0,t.handleData.asyncHandleValue({self:t,handleData:e,dom:a,theCallbackMustBeTriggered:function(a){a||(n=e.oldValue),e.value=n,t.handleStatus(),e.input.value=n,delete e.isTriggerWhenAsync,e.cbFn({min:e.min,max:e.max,value:n})}})):(t.handleStatus(),e.input.value=n,e.cbFn({min:e.min,max:e.max,value:n}))}},module.exports=AddSubtractInput;
 
 /***/ }),
 /* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var getDomArray=__webpack_require__(3);function getParent(e,r){if(!(e=getDomArray(e)[0]))return console.log("第一个参数有误"),null;if(!r)return e.parentNode;if("string"==typeof r)switch(e=e.parentNode,r.charAt(0)){case".":for(;e;){if(!e.classList)return console.log("no find class"),null;if(e.classList.contains(r.substring(1)))return e;e=e.parentNode}break;case"#":for(;e;){if(e===document)return console.log("no find id"),null;if(e.id===r.substring(1))return e;e=e.parentNode}break;default:for(;e;){if(e===document)return console.log("no find tagName"),null;if(e.tagName.toLowerCase()===r)return e;e=e.parentNode}}return null}module.exports=getParent;
+var getDomArray=__webpack_require__(4);function getParent(e,r){if(!(e=getDomArray(e)[0]))return console.log("第一个参数有误"),null;if(!r)return e.parentNode;if("string"==typeof r)switch(e=e.parentNode,r.charAt(0)){case".":for(;e;){if(!e.classList)return console.log("no find class"),null;if(e.classList.contains(r.substring(1)))return e;e=e.parentNode}break;case"#":for(;e;){if(e===document)return console.log("no find id"),null;if(e.id===r.substring(1))return e;e=e.parentNode}break;default:for(;e;){if(e===document)return console.log("no find tagName"),null;if(e.tagName.toLowerCase()===r)return e;e=e.parentNode}}return null}module.exports=getParent;
 
 /***/ }),
 /* 67 */
@@ -7906,7 +7906,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var getDomArray=__webpack_require__(3);function domRemove(r){var e=[];return getDomArray(r).forEach(function(r){var o=r.parentNode;r&&o&&o.removeChild(r),e.push({dom:r,parent:o})}),e}module.exports=domRemove;
+var getDomArray=__webpack_require__(4);function domRemove(r){var e=[];return getDomArray(r).forEach(function(r){var o=r.parentNode;r&&o&&o.removeChild(r),e.push({dom:r,parent:o})}),e}module.exports=domRemove;
 
 /***/ }),
 /* 69 */
@@ -7924,7 +7924,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var getDomArray=__webpack_require__(3);function offset(e){var t=0,r=0;for(e=getDomArray(e)[0];e;)t+=e.offsetTop,r+=e.offsetLeft,e=e.offsetParent;return{top:t,left:r}}module.exports=offset;
+var getDomArray=__webpack_require__(4);function offset(e){var t=0,r=0;for(e=getDomArray(e)[0];e;)t+=e.offsetTop,r+=e.offsetLeft,e=e.offsetParent;return{top:t,left:r}}module.exports=offset;
 
 /***/ }),
 /* 71 */
@@ -7942,14 +7942,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var extend=__webpack_require__(9),getDomArray=__webpack_require__(3),eventDelegate=__webpack_require__(73);function SelectAll(e){this.opts=extend({items:null,isOpenEventDelegate:!1,isFilterDisabled:!0,callback:{click:function(){}}},e),this.init()}SelectAll.prototype.init=function(){this.itemsDom=getDomArray(this.opts.items),this.power()},SelectAll.prototype.selectNothing=function(){var e=this,t=e.opts;t.isOpenEventDelegate&&(e.itemsDom=getDomArray(t.items)),e.itemsDom.forEach(function(e){t.isFilterDisabled&&e.disabled||(e.checked=!1)})},SelectAll.prototype.selectAll=function(){var e=this,t=e.opts;t.isOpenEventDelegate&&(e.itemsDom=getDomArray(t.items)),e.itemsDom.forEach(function(e){t.isFilterDisabled&&e.disabled||(e.checked=!0)})},SelectAll.prototype.selectReverse=function(){var e=this,t=e.opts;t.isOpenEventDelegate&&(e.itemsDom=getDomArray(t.items)),e.itemsDom.forEach(function(e){t.isFilterDisabled&&e.disabled||(e.checked=!e.checked)})},SelectAll.prototype.isSelectAll=function(){var e=this,t=e.opts;t.isOpenEventDelegate&&(e.itemsDom=getDomArray(t.items));var i=!0;return e.itemsDom.forEach(function(e){t.isFilterDisabled&&e.disabled||!1===e.checked&&(i=!1)}),i},SelectAll.prototype.power=function(){var e=this,t=e.opts;if(t.isOpenEventDelegate){if(document.isBindSelectAllClick)return;eventDelegate.on(document,"click",t.items,function(){t.callback.click({element:this,isCheckedAll:e.isSelectAll()})}),document.isBindSelectAllClick=!0}else e.itemsDom.forEach(function(i){i.isBindSelectAllClick||(i.addEventListener("click",function(){t.callback.click({element:this,isCheckedAll:e.isSelectAll()})}),i.isBindSelectAllClick=!0)})},module.exports=SelectAll;
+var extend=__webpack_require__(9),getDomArray=__webpack_require__(4),eventDelegate=__webpack_require__(73);function SelectAll(e){this.opts=extend({items:null,isOpenEventDelegate:!1,isFilterDisabled:!0,callback:{click:function(){}}},e),this.init()}SelectAll.prototype.init=function(){this.itemsDom=getDomArray(this.opts.items),this.power()},SelectAll.prototype.selectNothing=function(){var e=this,t=e.opts;t.isOpenEventDelegate&&(e.itemsDom=getDomArray(t.items)),e.itemsDom.forEach(function(e){t.isFilterDisabled&&e.disabled||(e.checked=!1)})},SelectAll.prototype.selectAll=function(){var e=this,t=e.opts;t.isOpenEventDelegate&&(e.itemsDom=getDomArray(t.items)),e.itemsDom.forEach(function(e){t.isFilterDisabled&&e.disabled||(e.checked=!0)})},SelectAll.prototype.selectReverse=function(){var e=this,t=e.opts;t.isOpenEventDelegate&&(e.itemsDom=getDomArray(t.items)),e.itemsDom.forEach(function(e){t.isFilterDisabled&&e.disabled||(e.checked=!e.checked)})},SelectAll.prototype.isSelectAll=function(){var e=this,t=e.opts;t.isOpenEventDelegate&&(e.itemsDom=getDomArray(t.items));var i=!0;return e.itemsDom.forEach(function(e){t.isFilterDisabled&&e.disabled||!1===e.checked&&(i=!1)}),i},SelectAll.prototype.power=function(){var e=this,t=e.opts;if(t.isOpenEventDelegate){if(document.isBindSelectAllClick)return;eventDelegate.on(document,"click",t.items,function(){t.callback.click({element:this,isCheckedAll:e.isSelectAll()})}),document.isBindSelectAllClick=!0}else e.itemsDom.forEach(function(i){i.isBindSelectAllClick||(i.addEventListener("click",function(){t.callback.click({element:this,isCheckedAll:e.isSelectAll()})}),i.isBindSelectAllClick=!0)})},module.exports=SelectAll;
 
 /***/ }),
 /* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var _createClass=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}();function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var getDomArray=__webpack_require__(3),typeOf=__webpack_require__(24),EventDelegate=function(){function e(){_classCallCheck(this,e)}return _createClass(e,[{key:"on",value:function(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"click",r=arguments[2],o=arguments[3],f="function"===typeOf(r);"string"!==typeOf(n)||"string"!==typeOf(r)&&!f||!f&&"function"!==typeOf(o)?console.log("event-delegate on 方法参数错误"):getDomArray(t).forEach(function(t){var i=e.getName(n,r);if(!t[i]){t[i]={currentElement:r,fn:[]};var a=-1!==["focus","blur"].indexOf(n);t.addEventListener(n,function(e){var n=this;(e=e||window.event,"function"===typeOf(t[i].currentElement))?t[i].fn.forEach(function(t){t.call(n,e)}):getDomArray(t[i].currentElement,t).reverse().forEach(function(n){for(var r=e.target||e.srcElement,o=r===t;r!==n&&!o;)r===t?o=!0:r=r.parentNode;r===n&&t[i].fn.forEach(function(t){t.call(r,e)})})},a)}t[i].fn.push(f?r:o)})}},{key:"off",value:function(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"click",r=arguments[2],o=arguments[3];if(2===arguments.length){if("string"!==typeOf(n))return void console.log("event-delegate off 方法参数错误")}else if(3===arguments.length&&("string"!==typeOf(n)||"string"!==typeOf(r)))return void console.log("event-delegate off 方法参数错误");getDomArray(t).forEach(function(t){var f=e.getName(n,r);t[f]&&(isNaN(Number(o))?t[f].fn.length=0:t[f].fn.splice(o,1))})}},{key:"emit",value:function(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"click",r=arguments[2],o=arguments.length>3&&void 0!==arguments[3]?arguments[3]:{};if(2===arguments.length){if("string"!==typeOf(n))return void console.log("event-delegate emit 方法参数错误")}else if(3===arguments.length){var f="object"===typeOf(r);if("string"!==typeOf(n)||"string"!==typeOf(r)&&!f)return void console.log("event-delegate emit 方法参数错误");f&&(o=r,r=void 0)}else if(4===arguments.length){if("string"!==typeOf(n)||"string"!==typeOf(r))return void console.log("event-delegate emit 方法参数错误");"object"!==typeOf(o)&&console.log("event-delegate emit 第四参数错误 第四参数是数据必须为对象")}getDomArray(t).forEach(function(t){var f=e.getName(n,r);t[f]&&t[f].fn.forEach(function(e){e(t,o)})})}}],[{key:"getName",value:function(e,t){var n="unique"+e;return"function"!==typeOf(t)&&void 0!==t&&(n+=t),n}}]),e}(),eventDelegate=new EventDelegate;module.exports=eventDelegate;
+var _createClass=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}();function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var getDomArray=__webpack_require__(4),typeOf=__webpack_require__(24),EventDelegate=function(){function e(){_classCallCheck(this,e)}return _createClass(e,[{key:"on",value:function(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"click",r=arguments[2],o=arguments[3],f="function"===typeOf(r);"string"!==typeOf(n)||"string"!==typeOf(r)&&!f||!f&&"function"!==typeOf(o)?console.log("event-delegate on 方法参数错误"):getDomArray(t).forEach(function(t){var i=e.getName(n,r);if(!t[i]){t[i]={currentElement:r,fn:[]};var a=-1!==["focus","blur"].indexOf(n);t.addEventListener(n,function(e){var n=this;(e=e||window.event,"function"===typeOf(t[i].currentElement))?t[i].fn.forEach(function(t){t.call(n,e)}):getDomArray(t[i].currentElement,t).reverse().forEach(function(n){for(var r=e.target||e.srcElement,o=r===t;r!==n&&!o;)r===t?o=!0:r=r.parentNode;r===n&&t[i].fn.forEach(function(t){t.call(r,e)})})},a)}t[i].fn.push(f?r:o)})}},{key:"off",value:function(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"click",r=arguments[2],o=arguments[3];if(2===arguments.length){if("string"!==typeOf(n))return void console.log("event-delegate off 方法参数错误")}else if(3===arguments.length&&("string"!==typeOf(n)||"string"!==typeOf(r)))return void console.log("event-delegate off 方法参数错误");getDomArray(t).forEach(function(t){var f=e.getName(n,r);t[f]&&(isNaN(Number(o))?t[f].fn.length=0:t[f].fn.splice(o,1))})}},{key:"emit",value:function(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"click",r=arguments[2],o=arguments.length>3&&void 0!==arguments[3]?arguments[3]:{};if(2===arguments.length){if("string"!==typeOf(n))return void console.log("event-delegate emit 方法参数错误")}else if(3===arguments.length){var f="object"===typeOf(r);if("string"!==typeOf(n)||"string"!==typeOf(r)&&!f)return void console.log("event-delegate emit 方法参数错误");f&&(o=r,r=void 0)}else if(4===arguments.length){if("string"!==typeOf(n)||"string"!==typeOf(r))return void console.log("event-delegate emit 方法参数错误");"object"!==typeOf(o)&&console.log("event-delegate emit 第四参数错误 第四参数是数据必须为对象")}getDomArray(t).forEach(function(t){var f=e.getName(n,r);t[f]&&t[f].fn.forEach(function(e){e(t,o)})})}}],[{key:"getName",value:function(e,t){var n="unique"+e;return"function"!==typeOf(t)&&void 0!==t&&(n+=t),n}}]),e}(),eventDelegate=new EventDelegate;module.exports=eventDelegate;
 
 /***/ }),
 /* 74 */
@@ -7977,8 +7977,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 
 
 var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(4); // 应用方法集合
-var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
+var applications = __webpack_require__(3); // 应用方法集合
+var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
 var domAddPosition = __webpack_require__(20);
 
 // 子类型
@@ -8035,7 +8035,7 @@ module.exports = Sub;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var _createClass=function(){function t(t,i){for(var o=0;o<i.length;o++){var n=i[o];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(i,o,n){return o&&t(i.prototype,o),n&&t(i,n),i}}();function _classCallCheck(t,i){if(!(t instanceof i))throw new TypeError("Cannot call a class as a function")}var getDomArray=__webpack_require__(3),DomPosition=function(){function t(i){_classCallCheck(this,t);var o=getDomArray(i)[0];o?(this.dom=o,this.init()):console.log("no find dom")}return _createClass(t,[{key:"init",value:function(){this.domHasPosition=!1,this.domPositionType="static";var t=this.dom,i=getComputedStyle(t).position;"static"!==i&&""!==i&&(this.domHasPosition=!0,this.domPositionType=i)}},{key:"hasPosition",value:function(t){return this.init(),void 0===t?this.domHasPosition:this.domPositionType===t}},{key:"getPosition",value:function(){return this.init(),this.domPositionType}},{key:"setPosition",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"relative",i=arguments.length>1&&void 0!==arguments[1]&&arguments[1],o=this.dom;i?o.style.position=t:this.hasPosition()||(o.style.position=t)}}]),t}();module.exports=DomPosition;
+var _createClass=function(){function t(t,i){for(var o=0;o<i.length;o++){var n=i[o];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(i,o,n){return o&&t(i.prototype,o),n&&t(i,n),i}}();function _classCallCheck(t,i){if(!(t instanceof i))throw new TypeError("Cannot call a class as a function")}var getDomArray=__webpack_require__(4),DomPosition=function(){function t(i){_classCallCheck(this,t);var o=getDomArray(i)[0];o?(this.dom=o,this.init()):console.log("no find dom")}return _createClass(t,[{key:"init",value:function(){this.domHasPosition=!1,this.domPositionType="static";var t=this.dom,i=getComputedStyle(t).position;"static"!==i&&""!==i&&(this.domHasPosition=!0,this.domPositionType=i)}},{key:"hasPosition",value:function(t){return this.init(),void 0===t?this.domHasPosition:this.domPositionType===t}},{key:"getPosition",value:function(){return this.init(),this.domPositionType}},{key:"setPosition",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"relative",i=arguments.length>1&&void 0!==arguments[1]&&arguments[1],o=this.dom;i?o.style.position=t:this.hasPosition()||(o.style.position=t)}}]),t}();module.exports=DomPosition;
 
 /***/ }),
 /* 78 */
@@ -8461,7 +8461,7 @@ module.exports = function (str, opts) {
 
 
 var tools = __webpack_require__(1);
-var Dialog = __webpack_require__(11);
+var Dialog = __webpack_require__(12);
 var queryString = tools.queryString;
 
 module.exports = function (json) {
@@ -8543,7 +8543,7 @@ module.exports = function (json) {
 
 
 var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(4); // 应用方法集合
+var applications = __webpack_require__(3); // 应用方法集合
 
 // 延迟加载
 function LazyLoad(json) {
@@ -9153,7 +9153,7 @@ module.exports = PassThrough;
 var Transform = __webpack_require__(40);
 
 /*<replacement>*/
-var util = __webpack_require__(10);
+var util = __webpack_require__(11);
 util.inherits = __webpack_require__(7);
 /*</replacement>*/
 
@@ -17059,8 +17059,8 @@ module.exports = {
 
 
 var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(4); // 应用方法集合
-var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
+var applications = __webpack_require__(3); // 应用方法集合
+var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -17114,8 +17114,8 @@ module.exports = Sub;
 
 
 var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(4); // 应用方法集合
-var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
+var applications = __webpack_require__(3); // 应用方法集合
+var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {

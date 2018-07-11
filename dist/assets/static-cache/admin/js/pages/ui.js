@@ -84,7 +84,7 @@ var Sub = function (_Super) {
             });
             */
             // 测试提示框
-            var DialogAlert = __webpack_require__(143);
+            var DialogAlert = __webpack_require__(126);
             new DialogAlert({
                 config: {
                     time: 30000, // 展示的时间
@@ -119,7 +119,7 @@ new Sub();
 
 
 var tools = __webpack_require__(1);
-var Dialog = __webpack_require__(11);
+var Dialog = __webpack_require__(12);
 
 module.exports = function (json) {
     json.method = json.type || json.method || 'get'; // 这里和axios是不一样的，这里以前使用axios的习惯传入method
@@ -196,15 +196,15 @@ module.exports = function (json) {
 
 /***/ }),
 
-/***/ 143:
+/***/ 126:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(4); // 应用方法集合
-var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
+var applications = __webpack_require__(3); // 应用方法集合
+var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
