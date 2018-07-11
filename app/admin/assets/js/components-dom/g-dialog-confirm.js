@@ -20,21 +20,20 @@ const Sub = tools.constructorInherit(Super, {
     // 配置
     config: {
         positionLocation: 'center', // 弹窗的定位位置('top'，'center'，'bottom')。positionMethod定位方式强制fixed。
+        isShowClose: true, // 是否显示关闭按钮
+        closeContent: '<div class="iconfont icon-close"></div>', // 关闭按钮的内容
         isShowHeader: true, // 是否显示头部
         headerContent: '提示:', // 头部内容
         isShowBody: true, // 是否显示主体
+        isShowIcon: false, // 是否显示icon
+        icon: 'icon-warning', // icon的类型
+        isCustom: false, // 是否自定义
         content: '<div>确定要执行这个操作?</div>', // 主体内容
         isShowFooter: true, // 是否显示尾部
-        footerContent: '', // 尾部内容
-        isShowClose: true, // 是否显示关闭按钮
-        closeContent: '<div class="iconfont icon-close"></div>', // 关闭按钮的内容
         isShowConfirm: true, // 是否显示确认按钮
         confirmContent: '确认', // 确认按钮的内容
         isShowCancel: true, // 是否显示取消按钮
         cancelContent: '取消', // 取消按钮的内容
-        isCustom: false, // 是否自定义
-        isShowIcon: false, // 是否显示icon
-        icon: 'icon-warning', // icon的类型
         isShowMask: true, // 是否显示遮罩
         isHandHide: false, // 是否手动隐藏(一般只用于点击确认时)
     },
@@ -45,14 +44,14 @@ const Sub = tools.constructorInherit(Super, {
 // (建)(覆)内部模块的创建(覆盖超类型)
 Sub.prototype.moduleDomCreate = function () {
     const config = this.opts.config;
-    const positionLocation = `g-dialog-confirm_${config.positionLocation}`;// 弹窗的定位位置
+    const positionLocation = `g-dialog-confirm-wrap_${config.positionLocation}`;// 弹窗的定位位置
     // 弹窗结构
     const html = this.renderConfirm();
     this.moduleDom = applications.createElement({
         style: config.moduleDomStyle,
         customAttribute: config.moduleDomCustomAttribute,
         attribute: {
-            className: `g-dialog-confirm ${positionLocation}`,
+            className: `g-dialog-confirm-wrap ${positionLocation}`,
             innerHTML: html,
         },
     });
@@ -104,11 +103,18 @@ Sub.prototype.renderConfirm = function () {
     if (config.isShowClose) {
         htmlClose = `<div class="g-dialog-confirm-close">${config.closeContent}</div>`;
     }
+    let htmlMask = '';
+    if (config.isShowMask) {
+        htmlMask = `<div class="g-mask"></div>`;
+    }
     return `
-        ${htmlHeader}
-        ${htmlBody}
-        ${htmlFooter}
-        ${htmlClose} 
+        ${htmlMask}
+        <div class="g-dialog-confirm">
+            ${htmlHeader}
+            ${htmlBody}
+            ${htmlFooter}
+            ${htmlClose} 
+        </div>
     `;
 };
 
