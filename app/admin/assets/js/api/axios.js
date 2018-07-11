@@ -1,6 +1,6 @@
 const axios = require('axios');
 const tools = require('zhf.tools');
-const Dialog = require('../components-dom/g-dialog');
+const DialogAlert = require('../components-dom/g-dialog-alert');
 const qs = require('qs');
 
 module.exports = function (json) {
@@ -44,11 +44,9 @@ module.exports = function (json) {
             },
         };
         if (opts.isHandleError) {
-            new Dialog({
+            new DialogAlert({
                 config: {
-                    alert: {
-                        content: response.data.message, // 这里的error其实是一个Error类型的数据
-                    },
+                    content: response.data.message, // 这里的error其实是一个Error类型的数据
                 },
             });
         }
@@ -57,11 +55,9 @@ module.exports = function (json) {
         const dataInfo = response.data;
         if (dataInfo.status === 'failure') { // 失败
             if (opts.isHandleFailure) {
-                new Dialog({
+                new DialogAlert({
                     config: {
-                        alert: {
-                            content: `失败: ${dataInfo.message}`,
-                        },
+                        content: `失败: ${dataInfo.message}`,
                     },
                 });
             }
@@ -69,11 +65,9 @@ module.exports = function (json) {
         }
         if (dataInfo.status === 'success') { // 成功
             if (opts.isHandleSuccess) {
-                new Dialog({
+                new DialogAlert({
                     config: {
-                        alert: {
-                            content: `成功: ${dataInfo.message}`,
-                        },
+                        content: `成功: ${dataInfo.message}`,
                     },
                 });
             }

@@ -3342,7 +3342,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 
 var axios = __webpack_require__(29);
 var tools = __webpack_require__(1);
-var Dialog = __webpack_require__(12);
+var DialogAlert = __webpack_require__(126);
 var qs = __webpack_require__(78);
 
 module.exports = function (json) {
@@ -3387,11 +3387,9 @@ module.exports = function (json) {
             }
         };
         if (opts.isHandleError) {
-            new Dialog({
+            new DialogAlert({
                 config: {
-                    alert: {
-                        content: response.data.message // 这里的error其实是一个Error类型的数据
-                    }
+                    content: response.data.message // 这里的error其实是一个Error类型的数据
                 }
             });
         }
@@ -3401,11 +3399,9 @@ module.exports = function (json) {
         if (dataInfo.status === 'failure') {
             // 失败
             if (opts.isHandleFailure) {
-                new Dialog({
+                new DialogAlert({
                     config: {
-                        alert: {
-                            content: '\u5931\u8D25: ' + dataInfo.message
-                        }
+                        content: '\u5931\u8D25: ' + dataInfo.message
                     }
                 });
             }
@@ -3414,11 +3410,9 @@ module.exports = function (json) {
         if (dataInfo.status === 'success') {
             // 成功
             if (opts.isHandleSuccess) {
-                new Dialog({
+                new DialogAlert({
                     config: {
-                        alert: {
-                            content: '\u6210\u529F: ' + dataInfo.message
-                        }
+                        content: '\u6210\u529F: ' + dataInfo.message
                     }
                 });
             }
@@ -17143,6 +17137,98 @@ Sub.prototype.moduleDomCreate = function () {
 
 // (功)(覆)功能(覆盖超类型)
 Sub.prototype.power = function () {};
+
+module.exports = Sub;
+
+/***/ }),
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(1); // 工具方法集合
+var applications = __webpack_require__(3); // 应用方法集合
+var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    wrap: '.g-wrap',
+    // 回调
+    callback: {
+        // 关闭
+        close: function close() {}
+    },
+    // 配置
+    config: {
+        time: 3000, // 展示的时间
+        isShowIcon: false, // 是否显示icon
+        isShowClose: true, // 是否显示关闭按钮
+        icon: 'icon-success', // icon的class
+        content: '成功', // 内容信息
+        positionLocation: 'center' // 弹窗的定位位置('top'，'center'，'bottom')。positionMethod定位方式强制fixed。
+    },
+    // 数据
+    data: {}
+});
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var positionLocation = 'g-dialog-alert_' + config.positionLocation; // 弹窗的定位位置
+    // 弹窗结构
+    var html = this.renderAlert();
+    this.moduleDom = applications.createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-dialog-alert ' + positionLocation,
+            innerHTML: html
+        }
+    });
+};
+
+// 提示框
+Sub.prototype.renderAlert = function () {
+    var config = this.opts.config;
+    var htmlIcon = '';
+    if (config.isShowIcon) {
+        htmlIcon = '<div class="g-dialog-alert-icon iconfont ' + config.icon + '"></div>';
+    }
+    var closeHtml = '';
+    if (config.isShowClose) {
+        closeHtml = '<div class="g-dialog-alert-close iconfont icon-close" ></div>';
+    }
+    return '\n        ' + closeHtml + '\n        ' + htmlIcon + '\n        <div class="g-dialog-alert-text">' + config.content + '</div>\n    ';
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    var config = this.opts.config;
+    var callback = this.opts.callback;
+    var close = this.moduleDom.querySelector('.g-dialog-alert-close');
+    var timer = null;
+    timer = setTimeout(function () {
+        self.moduleDomHide();
+        callback.close();
+    }, config.time);
+    close.addEventListener('click', function () {
+        clearTimeout(timer);
+        self.moduleDomHide();
+        callback.close();
+    });
+};
 
 module.exports = Sub;
 

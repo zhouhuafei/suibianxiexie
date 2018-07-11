@@ -1,5 +1,5 @@
 const tools = require('zhf.tools');
-const Dialog = require('../components-dom/g-dialog');
+const DialogAlert = require('../components-dom/g-dialog-alert');
 
 module.exports = function (json) {
     json.type = json.type || json.method || 'get'; // 这里和axios是不一样的，这里以前使用axios的习惯传入method
@@ -57,11 +57,9 @@ module.exports = function (json) {
             message: message,
         };
         if (opts.isHandleError) {
-            new Dialog({
+            new DialogAlert({
                 config: {
-                    alert: {
-                        content: `错误: ${message}`, // 这里的message就是error信息，只是一段普通的字符信息
-                    },
+                    content: `错误: ${message}`, // 这里的message就是error信息，只是一段普通的字符信息
                 },
             });
         }
@@ -69,11 +67,9 @@ module.exports = function (json) {
     }).then(function (dataInfo, mark, xhr) {
         if (dataInfo.status === 'failure') { // 失败
             if (opts.isHandleFailure) {
-                new Dialog({
+                new DialogAlert({
                     config: {
-                        alert: {
-                            content: `失败: ${dataInfo.message}`,
-                        },
+                        content: `失败: ${dataInfo.message}`,
                     },
                 });
             }
@@ -81,11 +77,9 @@ module.exports = function (json) {
         }
         if (dataInfo.status === 'success') { // 成功
             if (opts.isHandleSuccess) {
-                new Dialog({
+                new DialogAlert({
                     config: {
-                        alert: {
-                            content: `成功: ${dataInfo.message}`,
-                        },
+                        content: `成功: ${dataInfo.message}`,
                     },
                 });
             }
