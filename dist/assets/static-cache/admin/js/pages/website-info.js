@@ -70,6 +70,7 @@ var Sub = function (_Super) {
                         var h = result.height;
                         self.dataset.value = 'no-empty';
                         bg.style.backgroundImage = 'url(\'' + url + '\')';
+                        // text.innerText = `${w}*${h}`;
                         parent.querySelector('input[type=hidden]').value = resultStr;
                         parent.classList.add('g-upload_active');
                         superSelf.validateInput.validateInput(self);
