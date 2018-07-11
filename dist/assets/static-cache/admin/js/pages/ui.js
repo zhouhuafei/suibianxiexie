@@ -177,10 +177,10 @@ var tools = __webpack_require__(1);
 var Dialog = __webpack_require__(12);
 
 module.exports = function (json) {
-    json.method = json.type || json.method || 'get'; // 这里和axios是不一样的，这里以前使用axios的习惯传入method
+    json.type = json.type || json.method || 'get'; // 这里和axios是不一样的，这里以前使用axios的习惯传入method
     json.dataType = json.dataType || 'json'; // 设置返回json格式的数据，axios默认就是返回json格式的
     var opts = tools.extend({
-        method: 'get', // 请求方式默认get
+        type: 'get', // 请求方式默认get
         timeout: 30000, // 超时
         isHandleError: true, // 是否处理错误
         isHandleFailure: true, // 是否处理失败
