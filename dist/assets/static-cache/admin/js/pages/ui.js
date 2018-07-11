@@ -126,22 +126,30 @@ var Sub = function (_Super) {
                 console.log('ajax测试application/x-www-form-urlencoded测试ajax:->', json);
             });
             // 测试multipart/form-data
-            var formData = new FormData();
-            formData.append('test', 'test');
-            axios({
-                url: dataInfo.api.list.route,
-                method: 'post',
-                data: formData
-            }).then(function (json) {
-                console.log('axios测试multipart/form-data测试axios:->', json);
-            });
-            ajax({
-                url: dataInfo.api.list.route,
-                method: 'post',
-                data: formData
-            }).then(function (json) {
-                console.log('ajax测试multipart/form-data测试ajax:->', json);
-            });
+            {
+                var formData = new FormData();
+                formData.append('json', JSON.stringify({ a: 1, b: 2, obj: { arr: ['a', 'b', 'c'] } }));
+                formData.append('type', 'axios');
+                axios({
+                    url: dataInfo.api.list.route,
+                    method: 'post',
+                    data: formData
+                }).then(function (json) {
+                    console.log('axios测试multipart/form-data测试axios:->', json);
+                });
+            }
+            {
+                var _formData = new FormData();
+                _formData.append('json', JSON.stringify({ a: 1, b: 2, obj: { arr: ['a', 'b', 'c'] } }));
+                _formData.append('type', 'ajax');
+                ajax({
+                    url: dataInfo.api.list.route,
+                    method: 'post',
+                    data: _formData
+                }).then(function (json) {
+                    console.log('ajax测试multipart/form-data测试ajax:->', json);
+                });
+            }
         }
     }]);
 
