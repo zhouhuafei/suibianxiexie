@@ -14,14 +14,12 @@ const schema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    // 图片的路径，考虑到安全因素，查看图片列表时，此项不应该展示给用户。
-    /*
+    // 图片的路径，考虑到安全因素，查看图片列表时，此项不应该展示给用户。展示了也没关系。如果别人没有你服务器权限，自然不用担心，如果有服务器权限，需要担心的又何止这一点。
     path: {
         type: String,
         required: true,
         trim: true,
     },
-    */
     // 图片的原名
     originalName: {
         type: String,

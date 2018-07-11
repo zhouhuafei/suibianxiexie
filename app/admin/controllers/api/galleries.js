@@ -43,7 +43,7 @@ class Sub extends Super {
             dbFiles.push({
                 mimeType: file.mimetype,
                 size: file.size,
-                // path: file.path,
+                path: file.path,
                 originalName: file.originalname,
                 createTime: new Date(),
                 categoryId,
