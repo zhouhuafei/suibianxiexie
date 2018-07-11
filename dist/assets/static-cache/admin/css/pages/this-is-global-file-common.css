@@ -1413,6 +1413,7 @@ input.g-button, button.g-button {
 }
 */
 .g-dialog-alert {
+  position: fixed;
   z-index: 505;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1444,24 +1445,17 @@ input.g-button, button.g-button {
     font-size: 14px;
     line-height: 1.2; }
   .g-dialog-alert.g-dialog-alert_center {
-    position: fixed;
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%); }
   .g-dialog-alert.g-dialog-alert_bottom {
-    width: 100%;
-    border-radius: 0;
-    position: fixed;
-    bottom: 0;
+    bottom: 2%;
     left: 50%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%); }
   .g-dialog-alert.g-dialog-alert_top {
-    width: 100%;
-    border-radius: 0;
-    position: fixed;
-    top: 0;
+    top: 2%;
     left: 50%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%); }
