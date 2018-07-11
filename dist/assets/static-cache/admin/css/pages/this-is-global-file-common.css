@@ -1473,7 +1473,8 @@ input.g-button, button.g-button {
 */
 .g-dialog-confirm {
   z-index: 505;
-  background: #fff; }
+  background: #fff;
+  position: fixed; }
   .g-dialog-confirm .g-dialog-confirm-header {
     background: #0089ff;
     color: #ffffff;
@@ -1502,10 +1503,7 @@ input.g-button, button.g-button {
             align-items: center;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
-            justify-content: center;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    word-break: break-all; }
+            justify-content: center; }
     .g-dialog-confirm .g-dialog-confirm-body .g-dialog-confirm-body-system .g-dialog-confirm-body-system-icon {
       margin-right: 6px;
       font-size: 24px; }
@@ -1547,32 +1545,26 @@ input.g-button, button.g-button {
             align-items: center;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
-            justify-content: center;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    word-break: break-all; }
+            justify-content: center; }
   .g-dialog-confirm.g-dialog-confirm_center {
-    position: fixed;
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%); }
   .g-dialog-confirm.g-dialog-confirm_bottom {
-    width: 100%;
-    border-radius: 0;
-    position: fixed;
     bottom: 0;
     left: 50%;
     -webkit-transform: translateX(-50%);
-            transform: translateX(-50%); }
-  .g-dialog-confirm.g-dialog-confirm_top {
-    width: 100%;
+            transform: translateX(-50%);
     border-radius: 0;
-    position: fixed;
+    width: 100%; }
+  .g-dialog-confirm.g-dialog-confirm_top {
     top: 0;
     left: 50%;
     -webkit-transform: translateX(-50%);
-            transform: translateX(-50%); }
+            transform: translateX(-50%);
+    border-radius: 0;
+    width: 100%; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。

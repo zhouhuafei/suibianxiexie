@@ -5,6 +5,7 @@
     $height: 40;
     $width: 280*1.5;
     background: #fff;
+    position: fixed;
     .g-dialog-confirm-header {
         background: $g-highlight-color;
         color: #ffffff;
@@ -22,7 +23,9 @@
             width: px2rem($width);
             min-height: px2rem($width / 3.2);
             padding: px2rem(10);
-            @include xy-center-flex;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             .g-dialog-confirm-body-system-icon {
                 margin-right: px2rem(6);
                 font-size: px2rem(24);
@@ -54,28 +57,27 @@
         height: px2rem($height);
         font-size: px2rem(14);
         color: #ffffff;
-        @include xy-center-flex;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     &.g-dialog-confirm_center {
-        position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
     &.g-dialog-confirm_bottom {
-        width: 100%;
-        border-radius: 0;
-        position: fixed;
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
+        border-radius: 0;
+        width: 100%;
     }
     &.g-dialog-confirm_top {
-        width: 100%;
-        border-radius: 0;
-        position: fixed;
         top: 0;
         left: 50%;
         transform: translateX(-50%);
+        border-radius: 0;
+        width: 100%;
     }
 }

@@ -61,28 +61,24 @@ Sub.prototype.moduleDomCreate = function () {
 // 确认框
 Sub.prototype.renderConfirm = function () {
     const config = this.opts.config;
-    if (config.type !== 'confirm') {
-        return '';
-    }
-    const confirm = config.confirm;
     let htmlHeader = '';
-    if (confirm.isShowHeader) {
-        htmlHeader = `<div class="g-dialog-confirm-header">${confirm.headerContent}</div>`;
+    if (config.isShowHeader) {
+        htmlHeader = `<div class="g-dialog-confirm-header">${config.headerContent}</div>`;
     }
     let htmlBody = '';
-    if (confirm.isShowBody) {
+    if (config.isShowBody) {
         let htmlIcon = '';
-        if (confirm.isShowIcon) {
-            htmlIcon = `<div class="g-dialog-confirm-body-system-icon iconfont ${confirm.icon}"></div>`;
+        if (config.isShowIcon) {
+            htmlIcon = `<div class="g-dialog-confirm-body-system-icon iconfont ${config.icon}"></div>`;
         }
         let bodyClass = 'g-dialog-confirm-body-system';
         let bodyContent = `
             ${htmlIcon}
-            <div class="g-dialog-confirm-body-system-text">${confirm.content}</div>
+            <div class="g-dialog-confirm-body-system-text">${config.content}</div>
         `;
-        if (confirm.isCustom) {
+        if (config.isCustom) {
             bodyClass = 'g-dialog-confirm-body-custom';
-            bodyContent = confirm.content;
+            bodyContent = config.content;
         }
         htmlBody = `
             <div class="g-dialog-confirm-body">
@@ -93,20 +89,20 @@ Sub.prototype.renderConfirm = function () {
         `;
     }
     let htmlFooter = '';
-    if (confirm.isShowFooter) {
+    if (config.isShowFooter) {
         let htmlCancel = '';
-        if (confirm.isShowCancel) {
-            htmlCancel = `<div class="g-button g-button-cancel g-dialog-confirm-footer-cancel">${confirm.cancelContent}</div>`;
+        if (config.isShowCancel) {
+            htmlCancel = `<div class="g-button g-button-cancel g-dialog-confirm-footer-cancel">${config.cancelContent}</div>`;
         }
         let htmlConfirm = '';
-        if (confirm.isShowConfirm) {
-            htmlConfirm = `<div class="g-button g-dialog-confirm-footer-confirm">${confirm.confirmContent}</div>`;
+        if (config.isShowConfirm) {
+            htmlConfirm = `<div class="g-button g-dialog-confirm-footer-confirm">${config.confirmContent}</div>`;
         }
         htmlFooter = `<div class="g-dialog-confirm-footer">${htmlCancel}${htmlConfirm}</div>`;
     }
     let htmlClose = '';
-    if (confirm.isShowClose) {
-        htmlClose = `<div class="g-dialog-confirm-close">${confirm.closeContent}</div>`;
+    if (config.isShowClose) {
+        htmlClose = `<div class="g-dialog-confirm-close">${config.closeContent}</div>`;
     }
     return `
         ${htmlHeader}
@@ -120,31 +116,32 @@ Sub.prototype.renderConfirm = function () {
 Sub.prototype.power = function () {
     const self = this;
     const config = this.opts.config;
-    // 确认框
-    if (config.type === 'confirm') {
-        const close = this.moduleDom.querySelector('.g-dialog-confirm-close');
-        if (close) {
-            close.addEventListener('click', function () {
+    const callback = this.opts.callback;
+    // 关闭
+    const close = this.moduleDom.querySelector('.g-dialog-confirm-close');
+    if (close) {
+        close.addEventListener('click', function () {
+            self.moduleDomHide();
+            callback.close();
+        });
+    }
+    // 取消
+    const cancel = this.moduleDom.querySelector('.g-dialog-confirm-footer-cancel');
+    if (cancel) {
+        cancel.addEventListener('click', function () {
+            self.moduleDomHide();
+            callback.cancel();
+        });
+    }
+    // 确认
+    const confirm = this.moduleDom.querySelector('.g-dialog-confirm-footer-confirm');
+    if (confirm) {
+        confirm.addEventListener('click', function () {
+            if (!config.isHandHide) {
                 self.moduleDomHide();
-                self.opts.callback.close();
-            });
-        }
-        const cancel = this.moduleDom.querySelector('.g-dialog-confirm-footer-cancel');
-        if (cancel) {
-            cancel.addEventListener('click', function () {
-                self.moduleDomHide();
-                self.opts.callback.cancel();
-            });
-        }
-        const confirm = this.moduleDom.querySelector('.g-dialog-confirm-footer-confirm');
-        if (confirm) {
-            confirm.addEventListener('click', function () {
-                if (!self.opts.config.confirm.isHandHide) {
-                    self.moduleDomHide();
-                }
-                self.opts.callback.confirm();
-            });
-        }
+            }
+            callback.confirm();
+        });
     }
 };
 
