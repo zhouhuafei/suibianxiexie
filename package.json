@@ -105,6 +105,6 @@
         "zhf.dom-add-position": "^1.0.5",
         "zhf.get-client-ip": "^1.1.3",
         "zhf.time-count-down": "^1.0.8",
-        "zhf.tools": "^2.0.4"
+        "zhf.tools": "^2.0.5"
     }
 }
