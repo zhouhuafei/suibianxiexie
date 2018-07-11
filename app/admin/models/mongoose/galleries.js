@@ -8,7 +8,7 @@ const schema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    // 图片的大小，多少字节
+    // 图片的大小，多少字节B，1kb = 1024B
     size: {
         type: Number,
         required: true,
