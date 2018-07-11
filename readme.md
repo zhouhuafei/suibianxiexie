@@ -103,7 +103,7 @@ assets/
 * 安装canvas(node-canvas)时，出现报错。请参阅 https://github.com/Automattic/node-canvas
     - 参阅之后，执行了操作，但是windows下依然报错。请使用 https://github.com/felixrieseberg/windows-build-tools
 
-# 待续
+# 待续...
 * 1、后台是所有数据登录了才可以查阅。所以先判断是否验证登录，再去查询是否登陆了，是最优解。
 * 2、前台的数据，例如列表，不登录也可以看，登录了根据会员等级看到的会有所不同，所以此时应该先查询是否登录了，再去判断是否验证登录才是最优解。
     - 这个解法的弊端是，不需要验证登录的接口也去查询了一次数据库。
