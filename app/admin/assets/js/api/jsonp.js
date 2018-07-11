@@ -1,5 +1,5 @@
 const tools = require('zhf.tools');
-const Dialog = require('../components-dom/g-dialog');
+const DialogAlert = require('../components-dom/g-dialog-alert');
 const queryString = tools.queryString;
 
 module.exports = function (json) {
@@ -25,11 +25,9 @@ module.exports = function (json) {
         };
         callback(dataInfo);
         if (opts.isHandleError) {
-            new Dialog({
+            new DialogAlert({
                 config: {
-                    alert: {
-                        content: `Error: ${dataInfo.error}`,
-                    },
+                    content: `错误: ${dataInfo.error}`,
                 },
             });
         }
@@ -44,11 +42,9 @@ module.exports = function (json) {
         window[fnName] = function (dataInfo) {
             callback(dataInfo);
             if (dataInfo.status === 'failure' && opts.isHandleFailure) {
-                new Dialog({
+                new DialogAlert({
                     config: {
-                        alert: {
-                            content: `失败: ${dataInfo.message}`,
-                        },
+                        content: `失败: ${dataInfo.message}`,
                     },
                 });
             }

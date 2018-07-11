@@ -16,10 +16,14 @@ function extend(defaults = {}, inherits = {}, isDeep = true) {
                     if (attrDefaultsType === 'object' || attrDefaultsType === 'array') { // 当为对象或者为数组
                         extend(defaults[attr], inherits[attr]);
                     } else {
-                        defaults[attr] = inherits[attr];
+                        if (inherits[attr] !== undefined) { // 过滤掉undefined
+                            defaults[attr] = inherits[attr];
+                        }
                     }
                 } else { // 类型不同,直接后面的覆盖前面的
-                    defaults[attr] = inherits[attr];
+                    if (inherits[attr] !== undefined) { // 过滤掉undefined
+                        defaults[attr] = inherits[attr];
+                    }
                 }
             });
         } else {

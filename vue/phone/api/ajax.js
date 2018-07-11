@@ -1,256 +1,91 @@
-/**
- * @description 对象的扩展
- * @param {*} defaults - 默认对象
- * @param {*} inherits - 继承对像
- * @param {Boolean} isDeep - 是否进行深拷贝(默认进行深拷贝)
- * */
-function extend(defaults = {}, inherits = {}, isDeep = true) {
-    const defaultsType = Object.prototype.toString.call(defaults).slice(8, -1).toLowerCase();
-    const inheritsType = Object.prototype.toString.call(inherits).slice(8, -1).toLowerCase();
-    if (defaultsType === inheritsType && isDeep) {
-        if (defaultsType === 'object' || defaultsType === 'array') { // 当为对象或者为数组
-            Object.keys(inherits).forEach(function (attr) {
-                const attrDefaultsType = Object.prototype.toString.call(defaults[attr]).slice(8, -1).toLowerCase();
-                const attrInheritsType = Object.prototype.toString.call(inherits[attr]).slice(8, -1).toLowerCase();
-                if (attrDefaultsType === attrInheritsType && isDeep) { // 类型相同
-                    if (attrDefaultsType === 'object' || attrDefaultsType === 'array') { // 当为对象或者为数组
-                        extend(defaults[attr], inherits[attr]);
-                    } else {
-                        defaults[attr] = inherits[attr];
-                    }
-                } else { // 类型不同,直接后面的覆盖前面的
-                    defaults[attr] = inherits[attr];
-                }
-            });
-        } else {
-            defaults = inherits;
-        }
-    } else {
-        defaults = inherits;
-    }
-    return defaults;
-}
+const tools = require('zhf.tools');
+const DialogAlert = require('../components-dom/g-dialog-alert');
 
-// ajax封装
-function Ajax(json) {
-    this.opts = extend({
-        // 回调
-        callback: {
-            // 上传期间持续不断地触发
-            uploadProgress: function () {
-            },
-            // 上传完成时触发
-            uploadLoad: function () {
-            },
-            // 在接收到响应数据的第一个字节时触发
-            loadStart: function () {
-            },
-            // 在接收响应期间持续不断地触发
-            progress: function () {
-            },
-            // 在请求发生错误时触发
-            error: function () {
-            },
-            // 在因为调用abort()方法而终止请求时触发
-            abort: function () {
-            },
-            // 在接收到完整的响应数据时触发
-            load: function () {
-            },
-            // 接收到完整的响应且响应状态为200
-            success: function () {
-            },
-            // 接收到完整的响应且响应状态不为200
-            failure: function () {
-            },
-            // 在通信完成或者触发error、abort或load事件后触发
-            loadEnd: function () {
-            },
-            // 等同于loadEnd
-            complete: function () {
-            },
-            // 请求超时
-            timeout: function () {
-            },
+module.exports = function (json) {
+    json.type = json.type || json.method || 'get'; // 这里和axios是不一样的，这里以前使用axios的习惯传入method
+    json.dataType = json.dataType || 'json'; // 设置返回json格式的数据，axios默认就是返回json格式的
+    const opts = tools.extend({
+        type: 'get', // 请求方式默认get
+        timeout: 30000, // 超时
+        isHandleError: true, // 是否处理错误
+        isHandleFailure: true, // 是否处理失败
+        isHandleSuccess: false, // 是否处理成功
+        callbackSuccess: function () { // 请求成功的回调
         },
-        // 配置
-        config: {
-            // ajax的配置
-            type: 'post', // 请求类型(默认post)
-            url: '', // url
-            dataType: 'json', // 数据类型(默认json)
-            async: true, // 默认异步
-            timeout: 8000, // 超时时间(默认8秒)
-            mark: '#', // 当请求类型为get时,url后面的数据用什么符号开头url:'index.php',1.?ctl=seller&act=setting,2.#ctl=seller&act=setting
+        callbackFailure: function () { // 请求失败的回调
         },
-        // 数据
-        data: {},
+        callbackComplete: function () { // 请求完成的回调
+        },
     }, json);
-    this.xhr = new XMLHttpRequest();// xhr
-    this.xhr.timeout = this.opts.config.timeout;// 超时设置
-    this.init();
-}
-
-Ajax.prototype.init = function () {
-    this.events();
-    this.open();
-    this.send();
-};
-Ajax.prototype.open = function () {
-    const opts = this.opts;
-    if (opts.config.type.toLowerCase() === 'get') {
-        // get
-        let search = '';
-        let num = 0;
-        const data = opts.data;
-        if (data) {
-            Object.keys(data).forEach(function (attr) {
-                if (num === 0) {
-                    search += `${attr}=${data[attr]}`;
-                } else {
-                    search += `&${attr}=${data[attr]}`;
+    /*
+    * javascript axios get params
+    * javascript axios post/put/delete data
+    * 把上述四种数据的传参方式进行统一化,统一使用data
+    * nodejs express get req.query
+    * nodejs express post/put/delete body-parser req.body
+    * 把上述四种数据的传参方式进行统一化,统一使用req.data
+    * */
+    if (opts.method.toLowerCase() === 'get') {
+        opts.data = opts.data || opts.params || {}; // 这里和axios是不一样的，这里以前使用axios的习惯传入params
+        if (opts.data) {
+            // 把json格式的对象处理成json格式的字符串，让get请求保持和axios一致的数据格式
+            // 其实按理来说应该让axios保持与这边的一致，但是axios的get请求没有提供对外的接口，所以只能让这个保持和axios一致。
+            // $.ajax的post,put,delete接收的全是字符串，即使你传的是对象，对象里有布尔值等，接收过来也会变成字符串，$.ajax的get处理之后，你传的对象里有布尔值，后端接收之后，布尔值还是布尔值，应该和post保持一致的。奈何axios的get没提供对外接口
+            Object.keys(opts.data).forEach(function (keys) {
+                const obj = opts.data[keys];
+                const type = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+                if (type === 'object') {
+                    opts.data[keys] = JSON.stringify(obj);
                 }
-                num++;
+                if (type === 'array') {
+                    obj.forEach(function (v, i, a) {
+                        if (Object.prototype.toString.call(v).slice(8, -1).toLowerCase() === 'object') {
+                            a[i] = JSON.stringify(v);
+                        }
+                    });
+                }
             });
         }
-        const url = opts.config.url + opts.config.mark + search;
-        this.xhr.open(opts.config.type, url);
-    } else if (opts.config.type.toLowerCase() === 'post') {
-        // post
-        this.xhr.open(opts.config.type, opts.config.url);
-    } else {
-        console.log('仅支持get和post请求');
     }
-};
-Ajax.prototype.send = function () {
-    const opts = this.opts;
-    const data = opts.data;
-    if (opts.config.type.toLowerCase() === 'get') {
-        // get
-        this.xhr.send(null);
-    } else if (opts.config.type.toLowerCase() === 'post') {
-        // post
-        if (data) {
-            if (Object.prototype.toString.call(data).slice(8, -1).toLocaleLowerCase() === 'formdata') {
-                this.xhr.send(data);
-            } else {
-                const formData = new FormData();
-                Object.keys(data).forEach(function (attr) {
-                    formData.append(attr, data[attr]);
-                });
-                this.xhr.send(formData);
-            }
-        } else {
-            this.xhr.send(null);
+    if (tools.typeOf(opts.data) === 'formdata') { // formdata类型需要关闭下面,否则会报错
+        opts.processData = false;
+        opts.contentType = false;
+    }
+    return $.ajax(opts).catch(function (xhr, mark, message) {
+        const dataInfo = {
+            status: 'error',
+            message: message,
+        };
+        if (opts.isHandleError) {
+            new DialogAlert({
+                config: {
+                    content: `错误: ${message}`, // 这里的message就是error信息，只是一段普通的字符信息
+                },
+            });
         }
-    } else {
-        console.log('仅支持get和post请求');
-    }
-};
-Ajax.prototype.events = function () {
-    const self = this;
-    // 上传期间持续不断地触发
-    this.xhr.upload.addEventListener('progress', function (ProgressEvent) {
-        self.uploadProgress();
-        console.log(ProgressEvent, 'uploadProgress');
-    });
-    // 上传完成时触发
-    this.xhr.upload.addEventListener('load', function (ProgressEvent) {
-        self.uploadLoad();
-        console.log(ProgressEvent, 'uploadLoad');
-    });
-    // 在接收到响应数据的第一个字节时触发
-    this.xhr.addEventListener('loadstart', function (ProgressEvent) {
-        self.loadStart();
-        console.log(ProgressEvent, 'loadStart');
-    });
-    // 在接收响应期间持续不断地触发
-    this.xhr.addEventListener('progress', function (ProgressEvent) {
-        self.progress();
-        console.log(ProgressEvent, 'progress');
-    });
-    // 在请求发生错误时触发
-    this.xhr.addEventListener('error', function (ProgressEvent) {
-        self.error();
-        console.log(ProgressEvent, 'error');
-    });
-    // 在因为调用abort()方法而终止请求时触发
-    this.xhr.addEventListener('abort', function (ProgressEvent) {
-        self.abort();
-        console.log(ProgressEvent, 'abort');
-    });
-    // 在接收到完整的响应数据时触发
-    this.xhr.addEventListener('load', function (ProgressEvent) {
-        self.load(ProgressEvent);
-        console.log(ProgressEvent, 'load', 999);
-    });
-    // 在通信完成或者触发error、abort或load事件后触发
-    this.xhr.addEventListener('loadend', function (ProgressEvent) {
-        self.loadEnd();
-        console.log(ProgressEvent, 'loadend');
-    });
-    // 请求超时
-    this.xhr.addEventListener('timeout', function (ProgressEvent) {
-        self.timeout();
-        console.log(ProgressEvent, 'timeout');
+        return dataInfo;
+    }).then(function (dataInfo, mark, xhr) {
+        if (dataInfo.status === 'failure') { // 失败
+            if (opts.isHandleFailure) {
+                new DialogAlert({
+                    config: {
+                        content: `失败: ${dataInfo.message}`,
+                    },
+                });
+            }
+            (typeof opts.callbackFailure === 'function') && opts.callbackFailure(dataInfo);
+        }
+        if (dataInfo.status === 'success') { // 成功
+            if (opts.isHandleSuccess) {
+                new DialogAlert({
+                    config: {
+                        content: `成功: ${dataInfo.message}`,
+                    },
+                });
+            }
+            (typeof opts.callbackSuccess === 'function') && opts.callbackSuccess(dataInfo);
+        }
+        (typeof opts.callbackComplete === 'function') && opts.callbackComplete(dataInfo);
+        return dataInfo;
     });
 };
-// 上传期间持续不断地触发
-Ajax.prototype.uploadProgress = function () {
-    this.opts.callback.uploadProgress();
-};
-// 上传完成时触发
-Ajax.prototype.uploadLoad = function () {
-    this.opts.callback.uploadLoad();
-};
-// 在接收到响应数据的第一个字节时触发
-Ajax.prototype.loadStart = function () {
-    this.opts.callback.loadStart();
-};
-// 在接收响应期间持续不断地触发
-Ajax.prototype.progress = function () {
-    this.opts.callback.progress();
-};
-// 在请求发生错误时触发
-Ajax.prototype.error = function () {
-    this.opts.callback.error();
-};
-// 在因为调用abort()方法而终止请求时触发
-Ajax.prototype.abort = function () {
-    this.opts.callback.abort();
-};
-// 在接收到完整的响应数据时触发
-Ajax.prototype.load = function () {
-    this.opts.callback.load();
-};
-// 接收到完整的响应且响应状态为200
-Ajax.prototype.success = function () {
-    this.opts.callback.success();
-};
-// 接收到完整的响应且响应状态不为200
-Ajax.prototype.failure = function () {
-    this.opts.callback.failure();
-};
-// 在通信完成或者触发error、abort或load事件后触发
-Ajax.prototype.loadEnd = function () {
-    this.opts.callback.loadEnd();
-    this.complete();
-};
-// 等同于loadEnd
-Ajax.prototype.complete = function () {
-    this.opts.callback.complete();
-};
-// 请求超时
-Ajax.prototype.timeout = function () {
-    this.opts.callback.timeout();
-};
-// 手动触发取消请求
-Ajax.prototype.triggerAbort = function () {
-    if (this.xhr.abort) {
-        this.xhr.abort();
-    } else {
-        console.log('浏览器不支持xhr2的abort');
-    }
-};
-
-module.exports = Ajax;

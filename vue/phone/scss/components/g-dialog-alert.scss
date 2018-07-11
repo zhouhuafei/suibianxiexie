@@ -1,0 +1,46 @@
+@import "../config/config";
+
+.g-dialog-alert {
+    position: fixed;
+    z-index: 506;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: px2rem(280*1.5);
+    padding: px2rem(16);
+    border-radius: px2rem(6);
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.8);
+    &.g-dialog-alert_center {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    &.g-dialog-alert_bottom {
+        bottom: 2%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    &.g-dialog-alert_top {
+        top: 2%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .g-dialog-alert-close {
+        position: absolute;
+        left: px2rem(4);
+        bottom: px2rem(4);
+        color: #ffffff;
+        font-size: px2rem(12);
+    }
+    .g-dialog-alert-icon {
+        margin-right: px2rem(10);
+        font-size: px2rem(24);
+        color: $g-warning-color;
+    }
+    .g-dialog-alert-text {
+        color: #ffffff;
+        font-size: px2rem(14);
+        line-height: 1.2;
+    }
+}
