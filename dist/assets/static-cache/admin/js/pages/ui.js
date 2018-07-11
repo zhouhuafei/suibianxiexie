@@ -181,9 +181,16 @@ module.exports = function (json) {
     json.dataType = json.dataType || 'json'; // 设置返回json格式的数据，axios默认就是返回json格式的
     var opts = tools.extend({
         method: 'get', // 请求方式默认get
+        timeout: 30000, // 超时
         isHandleError: true, // 是否处理错误
         isHandleFailure: true, // 是否处理失败
-        timeout: 30000 // 超时
+        isHandleSuccess: false, // 是否处理成功
+        callbackSuccess: function callbackSuccess() {// 请求成功的回调
+        },
+        callbackFailure: function callbackFailure() {// 请求失败的回调
+        },
+        callbackComplete: function callbackComplete() {// 请求完成的回调
+        }
     }, json);
     /*
     * javascript axios get params
@@ -236,15 +243,33 @@ module.exports = function (json) {
         }
         return dataInfo;
     }).then(function (dataInfo, mark, xhr) {
-        if (dataInfo.status === 'failure' && opts.isHandleFailure) {
-            new Dialog({
-                config: {
-                    alert: {
-                        content: '\u5931\u8D25: ' + dataInfo.message
+        if (dataInfo.status === 'failure') {
+            // 失败
+            if (opts.isHandleFailure) {
+                new Dialog({
+                    config: {
+                        alert: {
+                            content: '\u5931\u8D25: ' + dataInfo.message
+                        }
                     }
-                }
-            });
+                });
+            }
+            typeof opts.callbackFailure === 'function' && opts.callbackFailure(dataInfo);
         }
+        if (dataInfo.status === 'success') {
+            // 成功
+            if (opts.isHandleSuccess) {
+                new Dialog({
+                    config: {
+                        alert: {
+                            content: '\u6210\u529F: ' + dataInfo.message
+                        }
+                    }
+                });
+            }
+            typeof opts.callbackSuccess === 'function' && opts.callbackSuccess(dataInfo);
+        }
+        typeof opts.callbackComplete === 'function' && opts.callbackComplete(dataInfo);
         return dataInfo;
     });
 };
