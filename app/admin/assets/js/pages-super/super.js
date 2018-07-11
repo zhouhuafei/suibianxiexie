@@ -8,6 +8,8 @@ class Super {
         self.axios = require('../api/axios'); // axios
         self.jsonp = require('../api/jsonp'); // jsonp
         self.Dialog = require('../components-dom/g-dialog'); // 弹窗组件
+        self.DialogAlert = require('../components-dom/g-dialog-alert'); // 提示框
+        self.DialogConfirm = require('../components-dom/g-dialog-confirm'); // 确认框
         self.opts = self.tools.extend({
             lazyload: {
                 isInitRender: false,
