@@ -1590,6 +1590,52 @@ input.g-button, button.g-button {
     @return $px * 1px;
 }
 */
+.g-dialog-tooltip {
+  position: absolute;
+  z-index: 9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff; }
+  .g-dialog-tooltip:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.8); }
+  .g-dialog-tooltip.g-dialog-tooltip_top-left:after {
+    left: 10px;
+    top: 24px; }
+  .g-dialog-tooltip.g-dialog-tooltip_top-center:after {
+    left: 50%;
+    top: 24px;
+    margin-left: -6px; }
+  .g-dialog-tooltip.g-dialog-tooltip_top-right:after {
+    right: 10px;
+    top: 24px; }
+
+/*
+// px转rem(phone) 这个是给手机端用的。
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+
+// px转px(phone) 这个是给手机端用的。当需要使用到px时，使用这个即可。pc端为什么不使用px2px而是重写了px2rem？原因是这样做pc组件和phone组件互转时比较方便。
+@function px2px($px) {
+    @return $px * 1px;
+}
+*/
 .g-dialog-jump-link {
   line-height: 24px;
   text-align: center; }

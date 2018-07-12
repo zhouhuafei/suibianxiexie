@@ -1,0 +1,44 @@
+@import "../config/config";
+
+.g-dialog-tooltip {
+    $h: 24;
+    $triangleW: 6;
+    $bg: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: px2rem($h);
+    padding: 0 px2rem(10);
+    border-radius: px2rem(6);
+    background: $bg;
+    color: #ffffff;
+    &:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border: px2rem($triangleW) solid transparent;
+        border-top-color: $bg;
+    }
+    &.g-dialog-tooltip_top-left {
+        &:after {
+            left: px2rem(10);
+            top: px2rem($h);
+        }
+    }
+    &.g-dialog-tooltip_top-center {
+        &:after {
+            left: 50%;
+            top: px2rem($h);
+            margin-left: px2rem(-$triangleW);
+        }
+    }
+    &.g-dialog-tooltip_top-right {
+        &:after {
+            right: px2rem(10);
+            top: px2rem($h);
+        }
+    }
+}
