@@ -1,6 +1,6 @@
 require('../../scss/pages/ui.scss');
 const Super = require('../pages-super/super');
-const DialogTooltip = require('../components-dom/g-dialog-tooltip');
+const DialogTooltipApp = require('../components-dom/g-dialog-tooltip-app');
 
 class Sub extends Super {
     // (功)(覆)功能(覆盖超类型)
@@ -9,8 +9,9 @@ class Sub extends Super {
         const dataInfo = superSelf.dataInfo;
         const routes = dataInfo.routes;
 
-        // DialogTooltip
-        new DialogTooltip({element: '.g-upload', eventType: 'click', positionLocation: 'top-left'});
+        // DialogTooltipApp
+        new DialogTooltipApp({element: '.g-upload', eventType: 'click', positionLocation: 'top-left'});
+        new DialogTooltipApp({element: '.g-upload', eventType: 'mouseover', positionLocation: 'top-right'});
 
         // 验证
         (function () {

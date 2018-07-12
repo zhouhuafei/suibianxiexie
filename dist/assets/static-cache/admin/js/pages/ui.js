@@ -16,7 +16,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 __webpack_require__(124);
 var Super = __webpack_require__(6);
-var DialogTooltip = __webpack_require__(143);
+var DialogTooltipApp = __webpack_require__(144);
 
 var Sub = function (_Super) {
     _inherits(Sub, _Super);
@@ -36,8 +36,9 @@ var Sub = function (_Super) {
             var dataInfo = superSelf.dataInfo;
             var routes = dataInfo.routes;
 
-            // DialogTooltip
-            new DialogTooltip({ element: '.g-upload', eventType: 'click', positionLocation: 'top-left' });
+            // DialogTooltipApp
+            new DialogTooltipApp({ element: '.g-upload', eventType: 'click', positionLocation: 'top-left' });
+            new DialogTooltipApp({ element: '.g-upload', eventType: 'mouseover', positionLocation: 'top-right' });
 
             // 验证
             (function () {
@@ -274,112 +275,10 @@ module.exports = function (json) {
 
 /***/ }),
 
-/***/ 143:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 144:
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-var tools = __webpack_require__(1); // 工具方法集合
-var applications = __webpack_require__(4); // 应用方法集合
-var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    wrap: '.g-wrap',
-    // 回调
-    callback: {},
-    // 配置
-    config: {
-        positionLocation: 'top-left', // 弹窗的定位位置('top-left'，'top-center'，'top-right')。
-        content: '建议尺寸：640*640',
-        elementDom: null
-    },
-    // 数据
-    data: {}
-});
-
-// (建)(覆)内部模块的创建(覆盖超类型)
-Sub.prototype.moduleDomCreate = function () {
-    var config = this.opts.config;
-    var positionLocation = config.positionLocation;
-    var positionLocationClass = 'g-dialog-tooltip_' + positionLocation; // 弹窗的定位位置
-    // 弹窗结构
-    this.moduleDom = applications.createElement({
-        style: config.moduleDomStyle,
-        customAttribute: config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-dialog-tooltip ' + positionLocationClass,
-            innerHTML: config.content
-        }
-    });
-    var moduleDom = this.moduleDom;
-    var elementDom = config.elementDom;
-    if (!elementDom) {
-        return;
-    }
-    if (positionLocation === 'top-left') {
-        $(moduleDom).css({
-            left: $(elementDom).offset().left,
-            top: $(elementDom).offset().top - moduleDom.offsetHeight
-        });
-    }
-};
-
-// (功)(覆)功能(覆盖超类型)
-Sub.prototype.power = function () {};
-
-function Sub2(opts) {
-    this.opts = tools.extend({
-        element: '.js-g-tooltip',
-        eventType: 'click',
-        positionLocation: 'top-left' // 弹窗的定位位置('top-left'，'top-center'，'top-right')。
-    }, opts);
-    this.init();
-}
-
-Sub2.prototype.init = function () {
-    var self = this;
-    var opts = self.opts;
-    if (opts.eventType === 'mouseover' || opts.eventType === 'mouseenter') {
-        $(document).on('mouseenter', opts.element, function (ev) {
-            ev.preventDefault();
-            this.gDialogTooltipMouseenter = new Sub({
-                config: {
-                    positionLocation: opts.positionLocation,
-                    content: this.dataset.title,
-                    elementDom: this
-                }
-            });
-        });
-        $(document).on('mouseleave', opts.element, function (ev) {
-            ev.preventDefault();
-            this.gDialogTooltipMouseenter.moduleDomHide();
-        });
-    }
-    if (opts.eventType === 'click') {
-        $(document).on('click', opts.element, function (ev) {
-            ev.preventDefault();
-            if (!this.gDialogTooltipClick) {
-                this.gDialogTooltipClick = new Sub({
-                    config: {
-                        positionLocation: opts.positionLocation,
-                        content: this.dataset.title,
-                        elementDom: this
-                    }
-                });
-            } else {
-                if (this.gDialogTooltipClick.moduleDom.offsetWidth === 0) {
-                    this.gDialogTooltipClick.moduleDomShow();
-                } else {
-                    this.gDialogTooltipClick.moduleDomHide();
-                }
-            }
-        });
-    }
-};
-
-module.exports = Sub2;
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'E:\\www\\suibianxiexie\\app\\admin\\assets\\js\\components-dom\\g-dialog-tooltip-app.js'\n    at Error (native)");
 
 /***/ })
 

@@ -213,7 +213,7 @@
 /* 主体重置 */
 body {
   margin: 0;
-  font-family: "\5FAE\8F6F\96C5\9ED1", "Helvetica", "Arial", "sans-serif";
+  font-family: "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
   font-size: 12px;
   line-height: 1;
   color: #333333;
@@ -1595,35 +1595,59 @@ input.g-button, button.g-button {
   z-index: 9;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  height: 24px;
-  padding: 0 10px;
-  border-radius: 6px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #ffffff; }
-  .g-dialog-tooltip:after {
-    content: '';
-    position: absolute;
+  display: flex; }
+  .g-dialog-tooltip.g-dialog-tooltip_top-left {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start; }
+    .g-dialog-tooltip.g-dialog-tooltip_top-left .g-dialog-tooltip-icon {
+      margin-left: 10px; }
+  .g-dialog-tooltip.g-dialog-tooltip_top-center {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+  .g-dialog-tooltip.g-dialog-tooltip_top-right {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end; }
+    .g-dialog-tooltip.g-dialog-tooltip_top-right .g-dialog-tooltip-icon {
+      margin-right: 10px; }
+  .g-dialog-tooltip .g-dialog-tooltip-text {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+    height: 24px;
+    padding: 0 10px;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.8);
+    color: rgba(255, 255, 255, 0.8); }
+  .g-dialog-tooltip .g-dialog-tooltip-icon {
     width: 0;
     height: 0;
     border: 6px solid transparent;
     border-top-color: rgba(0, 0, 0, 0.8); }
-  .g-dialog-tooltip.g-dialog-tooltip_top-left:after {
-    left: 10px;
-    top: 24px; }
-  .g-dialog-tooltip.g-dialog-tooltip_top-center:after {
-    left: 50%;
-    top: 24px;
-    margin-left: -6px; }
-  .g-dialog-tooltip.g-dialog-tooltip_top-right:after {
-    right: 10px;
-    top: 24px; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。
