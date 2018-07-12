@@ -5,7 +5,7 @@ const DialogTooltip = require('../components-dom/g-dialog-tooltip'); // 工具�
 function Sub(opts) {
     this.opts = tools.extend({
         element: '.js-g-tooltip',
-        eventType: 'click',
+        eventType: 'mouseover',
         positionLocation: 'top-left', // 弹窗的定位位置('top-left'，'top-center'，'top-right')。
     }, opts);
     this.init();

@@ -16,7 +16,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 __webpack_require__(124);
 var Super = __webpack_require__(6);
-var DialogTooltipApp = __webpack_require__(144);
 
 var Sub = function (_Super) {
     _inherits(Sub, _Super);
@@ -35,10 +34,6 @@ var Sub = function (_Super) {
             var superSelf = this;
             var dataInfo = superSelf.dataInfo;
             var routes = dataInfo.routes;
-
-            // DialogTooltipApp
-            new DialogTooltipApp({ element: '.g-upload', eventType: 'click', positionLocation: 'top-left' });
-            new DialogTooltipApp({ element: '.g-upload', eventType: 'mouseover', positionLocation: 'top-right' });
 
             // 验证
             (function () {
@@ -272,13 +267,6 @@ module.exports = function (json) {
         return dataInfo;
     });
 };
-
-/***/ }),
-
-/***/ 144:
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'E:\\www\\suibianxiexie\\app\\admin\\assets\\js\\components-dom\\g-dialog-tooltip-app.js'\n    at Error (native)");
 
 /***/ })
 

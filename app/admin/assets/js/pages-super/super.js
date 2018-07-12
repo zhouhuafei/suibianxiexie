@@ -241,6 +241,10 @@ class Super {
         if (spacingLoading) {
             spacingLoading.parentNode.removeChild(spacingLoading);
         }
+
+        // 工具提示框(文本提示框)的应用
+        const DialogTooltipApp = require('../components-dom/g-dialog-tooltip-app');
+        new DialogTooltipApp({element: '.js-g-tooltip', eventType: 'mouseover', positionLocation: 'top-right'});
     }
 }
 

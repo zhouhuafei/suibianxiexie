@@ -11,7 +11,7 @@
                 <!--page start-->
                 <div class="g-title">列表系列</div>
                 <div class="g-list-wrap">
-                    <div class="g-list">
+                    <a href="<%= dataInfo.routes['home'].route %>" class="g-list js-g-tooltip" data-title="点击进入首页">
                         <div class="g-list-body">
                             <div class="g-list-body">
                                 <div class="g-list-body-logo iconfont icon-home"></div>
@@ -23,20 +23,20 @@
                             </div>
                         </div>
                         <div class="g-list-footer">首页啥都没有</div>
-                    </div>
-                    <div class="g-list">
+                    </a>
+                    <a href="<%= dataInfo.routes['website-info'].route %>" class="g-list js-g-tooltip" data-title="点击进入网站信息页面">
                         <div class="g-list-body">
                             <div class="g-list-body">
                                 <div class="g-list-body-logo iconfont icon-home"></div>
-                                <div class="g-list-body-text">我的</div>
+                                <div class="g-list-body-text">网站信息</div>
                             </div>
                             <div class="g-list-body">
                                 <div class="g-list-body-value">99</div>
                                 <div class="g-list-body-icon iconfont icon-more"></div>
                             </div>
                         </div>
-                        <div class="g-list-footer">我的页面也啥都没有</div>
-                    </div>
+                        <div class="g-list-footer">网站信息页有网站的基础信息</div>
+                    </a>
                 </div>
                 <div class="g-title">表单系列</div>
                 <form action="" data-method="get">

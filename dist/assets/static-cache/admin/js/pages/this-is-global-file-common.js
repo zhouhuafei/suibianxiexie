@@ -2095,6 +2095,10 @@ var Super = function () {
             if (spacingLoading) {
                 spacingLoading.parentNode.removeChild(spacingLoading);
             }
+
+            // 工具提示框(文本提示框)的应用
+            var DialogTooltipApp = __webpack_require__(144);
+            new DialogTooltipApp({ element: '.js-g-tooltip', eventType: 'mouseover', positionLocation: 'top-right' });
         }
     }]);
 
@@ -17079,6 +17083,165 @@ Sub.prototype.moduleDomCreate = function () {
 
 // (功)(覆)功能(覆盖超类型)
 Sub.prototype.power = function () {};
+
+module.exports = Sub;
+
+/***/ }),
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */,
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(1); // 工具方法集合
+var applications = __webpack_require__(4); // 应用方法集合
+var Super = __webpack_require__(12); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    wrap: '.g-wrap',
+    // 回调
+    callback: {},
+    // 配置
+    config: {
+        positionLocation: 'top-left', // 弹窗的定位位置('top-left'，'top-center'，'top-right')。
+        content: 'no tooltip text'
+    },
+    // 数据
+    data: {}
+});
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var positionLocation = 'g-dialog-tooltip_' + config.positionLocation; // 弹窗的定位位置
+    // 弹窗结构
+    this.moduleDom = applications.createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-dialog-tooltip ' + positionLocation,
+            innerHTML: '\n                <div class="g-dialog-tooltip-text">' + config.content + '</div>\n                <div class="g-dialog-tooltip-icon"></div>                \n            '
+        }
+    });
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {};
+
+module.exports = Sub;
+
+/***/ }),
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(1); // 工具方法集合
+var DialogTooltip = __webpack_require__(143); // 工具提示框(文本提示框)
+
+// 工具提示框(文本提示框)的应用
+function Sub(opts) {
+    this.opts = tools.extend({
+        element: '.js-g-tooltip',
+        eventType: 'mouseover',
+        positionLocation: 'top-left' // 弹窗的定位位置('top-left'，'top-center'，'top-right')。
+    }, opts);
+    this.init();
+}
+
+Sub.prototype.init = function () {
+    var self = this;
+    var opts = self.opts;
+    var positionLocation = opts.positionLocation;
+    if (opts.eventType === 'mouseover' || opts.eventType === 'mouseenter') {
+        $(document).on('mouseenter', opts.element, function (ev) {
+            ev.preventDefault();
+            this.gDialogTooltipMouseenter = new DialogTooltip({
+                config: {
+                    positionLocation: opts.positionLocation,
+                    content: this.dataset.title,
+                    elementDom: this
+                }
+            });
+            setCss(this.gDialogTooltipMouseenter.moduleDom, this);
+        });
+        $(document).on('mouseleave', opts.element, function (ev) {
+            ev.preventDefault();
+            this.gDialogTooltipMouseenter.moduleDomHide();
+        });
+    }
+    if (opts.eventType === 'click') {
+        $(document).on('click', opts.element, function (ev) {
+            ev.preventDefault();
+            if (!this.gDialogTooltipClick) {
+                this.gDialogTooltipClick = new DialogTooltip({
+                    config: {
+                        positionLocation: opts.positionLocation,
+                        content: this.dataset.title,
+                        elementDom: this
+                    }
+                });
+                setCss(this.gDialogTooltipClick.moduleDom, this);
+            } else {
+                if (this.gDialogTooltipClick.moduleDom.offsetWidth === 0) {
+                    this.gDialogTooltipClick.moduleDomShow();
+                } else {
+                    this.gDialogTooltipClick.moduleDomHide();
+                }
+            }
+        });
+    }
+
+    function setCss(moduleDom, eventDom) {
+        if (positionLocation === 'top-left') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left,
+                top: $(eventDom).offset().top - moduleDom.offsetHeight
+            });
+        }
+        if (positionLocation === 'top-center') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth) / 2,
+                top: $(eventDom).offset().top - moduleDom.offsetHeight
+            });
+        }
+        if (positionLocation === 'top-right') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth),
+                top: $(eventDom).offset().top - moduleDom.offsetHeight
+            });
+        }
+    }
+};
 
 module.exports = Sub;
 
