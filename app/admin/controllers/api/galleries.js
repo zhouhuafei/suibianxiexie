@@ -189,8 +189,7 @@ class Sub extends Super {
         if (categoryId === 'all') {
             delete condition.categoryId;
         }
-        const mulCalls = multipleCalls(2, function (json) {
-            const data = json.data;
+        const mulCalls = multipleCalls(2, function (data) {
             const result = data.result;
             const allCount = data.allCount;
             const nowCount = result.length;
