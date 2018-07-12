@@ -946,38 +946,46 @@ textarea.g-textarea {
 }
 */
 .g-validate-form-hint {
-  color: #ffffff;
-  background-color: rgba(250, 85, 85, 0.8);
-  height: 16px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  word-break: break-all;
-  font-size: 12px;
-  padding: 0 10px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   position: absolute;
   right: 6px;
-  top: -20px;
-  font-style: normal;
-  font-weight: normal;
-  border-radius: 100px; }
-  .g-validate-form-hint:after {
-    content: '';
-    position: absolute;
+  top: -22px; }
+  .g-validate-form-hint .g-validate-form-hint-text {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 16px;
+    padding: 0 10px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    color: #ffffff;
+    background-color: rgba(250, 85, 85, 0.8);
+    border-radius: 100px; }
+  .g-validate-form-hint .g-validate-form-hint-icon {
     width: 0;
     height: 0;
+    margin-right: 10px;
     border: 4px solid transparent;
-    border-top-color: rgba(250, 85, 85, 0.8);
-    right: 10px;
-    top: 16px; }
+    border-top-color: rgba(250, 85, 85, 0.8); }
 
 /*
 // px转rem(phone) 这个是给手机端用的。

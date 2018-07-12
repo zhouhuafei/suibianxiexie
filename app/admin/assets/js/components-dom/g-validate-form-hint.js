@@ -8,7 +8,6 @@ const getDomArray = applications.getDomArray;
 function ValidateForm(json) {
     this.opts = tools.extend({
         element: '',
-        hintClass: 'g-validate-form-hint',
         hintWrapClass: 'g-form', // 指定提示框的父级
         fileActiveClass: 'g-upload_active', // 文件或者图片上传成功之后的class，做限制个数需要这个
         isBindEvent: true, // 是否绑定事件
@@ -17,6 +16,7 @@ function ValidateForm(json) {
 }
 
 ValidateForm.prototype.init = function () {
+    this.hintClass = 'g-validate-form-hint';
     this.render();
     if (this.opts.isBindEvent) {
         this.power();
@@ -33,9 +33,13 @@ ValidateForm.prototype.render = function () {
                 v.hintWrapDom = hintWrapDom;
             }
         }
-        if (!v.hintDom) { // 为了兼容未来动态创建的元素，此方法会被多次调用，但是这里却不能重新赋值，否则会导致引用消失，以至于renderHintAdd时修改hintDom的innerHTML失效。
+        if (!v.hintDom) { // 为了兼容未来动态创建的元素，此方法会被多次调用，但是这里却不能重新赋值，否则会导致引用消失，以至于renderHintAdd时修改hintDom内g-validate-form-hint-text的innerHTML失效。
             v.hintDom = document.createElement('span');
-            v.hintDom.classList.add(self.opts.hintClass);
+            v.hintDom.innerHTML = `
+                <span class="g-validate-form-hint-text"></span>
+                <span class="g-validate-form-hint-icon"></span>
+            `;
+            v.hintDom.classList.add(self.hintClass);
         }
     });
 };
@@ -54,9 +58,9 @@ ValidateForm.prototype.renderHintAdd = function (opts = {}) {
     const input = opts.input;
     const hintDom = input.hintDom;
     if (hintDom) {
-        hintDom.innerHTML = opts.txt;
+        hintDom.querySelector('.g-validate-form-hint-text').innerHTML = opts.txt;
         const hintWrapDom = input.hintWrapDom;
-        const hintDomIsExist = hintWrapDom.querySelector(`.${this.opts.hintClass}`);
+        const hintDomIsExist = hintWrapDom.querySelector(`.${this.hintClass}`);
         if (hintWrapDom && !hintDomIsExist) {
             // hintWrapDom.appendChild(hintDom);
             hintWrapDom.insertBefore(hintDom, hintWrapDom.children[0]);
@@ -66,7 +70,7 @@ ValidateForm.prototype.renderHintAdd = function (opts = {}) {
 ValidateForm.prototype.renderHintRemove = function (opts = {}) {
     const input = opts.input;
     const hintWrapDom = input.hintWrapDom;
-    const hintDom = hintWrapDom.querySelector(`.${this.opts.hintClass}`);
+    const hintDom = hintWrapDom.querySelector(`.${this.hintClass}`);
     if (hintWrapDom && hintDom) {
         hintWrapDom.removeChild(hintDom);
     }
@@ -117,7 +121,7 @@ ValidateForm.prototype.validateInput = function (input) {
                     isEmpty = value === ''; // 因为密码可以输入空格，所以没必要去除首尾空格。
                 }
                 if (isRadio || isCheckbox) { // input为radio类型和input为checkbox类型的进行特殊处理（这两种类型只验证是否必填就够用了，file类型和select下拉框也是只验证必填就够用了。）
-                    const isChecked = hintWrapDom.querySelector(`input:checked`);
+                    const isChecked = hintWrapDom.querySelector(`input[name="${inputName}"]:checked`);
                     isEmpty = isChecked === null;
                 }
                 if (isEmpty) {
@@ -187,7 +191,7 @@ ValidateForm.prototype.validateInput = function (input) {
                 const length = yesLimitLength[1];
                 let isPassLimitLength = value.length > length;
                 if (isCheckbox) { // input为checkbox类型的进行特殊处理
-                    const checkboxAll = hintWrapDom.querySelectorAll(`input:checked`);
+                    const checkboxAll = hintWrapDom.querySelectorAll(`input[name="${inputName}"]:checked`);
                     isPassLimitLength = length >= checkboxAll.length;
                 }
                 if (isFile) { // input为file类型的进行特殊处理
