@@ -1,8 +1,7 @@
 @import "../config/config";
 
-//单选框
+// 单选框
 .g-radio {
-    text-align: center;
     display: flex;
     align-items: center;
     .g-radio-body {
@@ -31,6 +30,10 @@
                     align-items: center;
                     justify-content: center;
                 }
+            }
+            &:disabled {
+                background: $g-background-color-disabled;
+                border-color: $g-background-color-disabled;
             }
         }
         .g-radio-body-mark {

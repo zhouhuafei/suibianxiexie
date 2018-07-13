@@ -2,10 +2,10 @@
 
 // 多选框
 .g-checkbox {
-    $height: 20;
     display: flex;
     align-items: center;
     .g-checkbox-body {
+        $height: 20;
         width: px2rem($height);
         height: px2rem($height);
         border-radius: px2rem(4);
