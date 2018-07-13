@@ -33,6 +33,9 @@
         padding-left: px2rem($select-padding-left);
         padding-right: px2rem($select-padding-right);
         border: none;
+        &:disabled {
+            cursor: not-allowed;
+        }
     }
     .g-select-mark {
         display: flex;

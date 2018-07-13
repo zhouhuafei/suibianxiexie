@@ -742,6 +742,8 @@ input.g-input {
     padding-left: 10px;
     padding-right: 32px;
     border: none; }
+    .g-select select.g-select-body:disabled {
+      cursor: not-allowed; }
   .g-select .g-select-mark {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -855,7 +857,8 @@ textarea.g-textarea {
                   justify-content: center; }
       .g-radio .g-radio-body .g-radio-body-radio:disabled {
         background: #eeeeee;
-        border-color: #eeeeee; }
+        border-color: #eeeeee;
+        cursor: not-allowed; }
     .g-radio .g-radio-body .g-radio-body-mark {
       color: #0089ff;
       font-size: 16px;
@@ -925,7 +928,8 @@ textarea.g-textarea {
                   justify-content: center; }
       .g-checkbox .g-checkbox-body .g-checkbox-body-checkbox:disabled {
         background: #eeeeee;
-        border-color: #eeeeee; }
+        border-color: #eeeeee;
+        cursor: not-allowed; }
     .g-checkbox .g-checkbox-body .g-checkbox-body-mark {
       color: #0089ff;
       font-size: 16px;

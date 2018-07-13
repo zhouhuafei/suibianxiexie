@@ -34,6 +34,7 @@
             &:disabled {
                 background: $g-background-color-disabled;
                 border-color: $g-background-color-disabled;
+                cursor: not-allowed;
             }
         }
         .g-checkbox-body-mark {
