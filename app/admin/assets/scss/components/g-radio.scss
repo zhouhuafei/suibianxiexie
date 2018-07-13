@@ -32,6 +32,10 @@
                     justify-content: center;
                 }
             }
+            &:disabled {
+                background: $g-background-color-disabled;
+                border-color: $g-background-color-disabled;
+            }
         }
         .g-radio-body-mark {
             color: $g-highlight-color;

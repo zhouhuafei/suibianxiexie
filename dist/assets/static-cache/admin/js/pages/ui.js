@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 123:
+/***/ 125:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,7 +14,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(124);
+__webpack_require__(126);
 var Super = __webpack_require__(6);
 
 var Sub = function (_Super) {
@@ -110,7 +110,7 @@ var Sub = function (_Super) {
 
             // 测试application/x-www-form-urlencoded
             var axios = __webpack_require__(18);
-            var ajax = __webpack_require__(125);
+            var ajax = __webpack_require__(127);
             axios({
                 url: dataInfo.api.list.route,
                 method: 'post',
@@ -160,20 +160,20 @@ new Sub();
 
 /***/ }),
 
-/***/ 124:
+/***/ 126:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 125:
+/***/ 127:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var tools = __webpack_require__(1);
+var tools = __webpack_require__(0);
 var DialogAlert = __webpack_require__(10);
 
 module.exports = function (json) {
@@ -270,4 +270,4 @@ module.exports = function (json) {
 
 /***/ })
 
-},[123]);
+},[125]);

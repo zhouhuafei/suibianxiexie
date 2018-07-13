@@ -31,6 +31,10 @@
                     justify-content: center;
                 }
             }
+            &:disabled {
+                background: $g-background-color-disabled;
+                border-color: $g-background-color-disabled;
+            }
         }
         .g-checkbox-body-mark {
             color: $g-highlight-color;

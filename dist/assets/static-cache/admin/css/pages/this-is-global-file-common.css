@@ -854,6 +854,9 @@ textarea.g-textarea {
           -webkit-box-pack: center;
               -ms-flex-pack: center;
                   justify-content: center; }
+      .g-radio .g-radio-body .g-radio-body-radio:disabled {
+        background: #eeeeee;
+        border-color: #eeeeee; }
     .g-radio .g-radio-body .g-radio-body-mark {
       color: #0089ff;
       font-size: 16px;
@@ -921,6 +924,9 @@ textarea.g-textarea {
           -webkit-box-pack: center;
               -ms-flex-pack: center;
                   justify-content: center; }
+      .g-checkbox .g-checkbox-body .g-checkbox-body-checkbox:disabled {
+        background: #eeeeee;
+        border-color: #eeeeee; }
     .g-checkbox .g-checkbox-body .g-checkbox-body-mark {
       color: #0089ff;
       font-size: 16px;
@@ -1175,7 +1181,7 @@ textarea.g-textarea {
   .g-button.g-button-cancel {
     background: #bbbbbb; }
   .g-button.g-button-disable {
-    background: #ebebe4;
+    background: #eeeeee;
     color: #91918e;
     cursor: not-allowed; }
 
