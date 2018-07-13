@@ -690,7 +690,7 @@ input.g-input {
   height: 40px;
   padding: 0 10px;
   background: #ffffff;
-  border: 1px solid #e6e7ed;
+  border: 1px solid #e1e1e1;
   border-left: none;
   border-right: none;
   min-width: 50px; }
@@ -720,7 +720,7 @@ input.g-input {
   width: 100%;
   height: 40px;
   background: #ffffff;
-  border: 1px solid #e6e7ed;
+  border: 1px solid #e1e1e1;
   border-left: none;
   border-right: none; }
   .g-select select.g-select-body {
@@ -764,7 +764,7 @@ input.g-input {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     border-radius: inherit;
-    border-left: 1px dashed #e6e7ed; }
+    border-left: 1px dashed #e1e1e1; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。
@@ -797,7 +797,7 @@ textarea.g-textarea {
   height: 120px;
   background: #ffffff;
   padding: 10px;
-  border: 1px solid #e6e7ed;
+  border: 1px solid #e1e1e1;
   border-left: none;
   border-right: none; }
 
@@ -842,7 +842,7 @@ textarea.g-textarea {
       height: inherit;
       background: inherit;
       border-radius: inherit;
-      border: 1px solid #e6e7ed; }
+      border: 1px solid #e1e1e1; }
       .g-radio .g-radio-body .g-radio-body-radio:checked {
         border-color: #0089ff; }
         .g-radio .g-radio-body .g-radio-body-radio:checked + .g-radio-body-mark {
@@ -856,8 +856,8 @@ textarea.g-textarea {
               -ms-flex-pack: center;
                   justify-content: center; }
       .g-radio .g-radio-body .g-radio-body-radio:disabled {
-        background: #eeeeee;
-        border-color: #eeeeee;
+        background: #e6e6e6;
+        border-color: #e3e3e3;
         cursor: not-allowed; }
     .g-radio .g-radio-body .g-radio-body-mark {
       color: #0089ff;
@@ -913,7 +913,7 @@ textarea.g-textarea {
       height: inherit;
       background: inherit;
       border-radius: inherit;
-      border: 1px solid #e6e7ed; }
+      border: 1px solid #e1e1e1; }
       .g-checkbox .g-checkbox-body .g-checkbox-body-checkbox:checked {
         border-color: #0089ff; }
         .g-checkbox .g-checkbox-body .g-checkbox-body-checkbox:checked + .g-checkbox-body-mark {
@@ -927,8 +927,8 @@ textarea.g-textarea {
               -ms-flex-pack: center;
                   justify-content: center; }
       .g-checkbox .g-checkbox-body .g-checkbox-body-checkbox:disabled {
-        background: #eeeeee;
-        border-color: #eeeeee;
+        background: #e6e6e6;
+        border-color: #e3e3e3;
         cursor: not-allowed; }
     .g-checkbox .g-checkbox-body .g-checkbox-body-mark {
       color: #0089ff;
@@ -1184,8 +1184,8 @@ textarea.g-textarea {
   .g-button.g-button-cancel {
     background: #bbbbbb; }
   .g-button.g-button-disable {
-    background: #eeeeee;
-    color: #91918e;
+    background: #e6e6e6;
+    color: #c1c1c1;
     cursor: not-allowed; }
 
 input.g-button, button.g-button {
@@ -1213,7 +1213,7 @@ input.g-button, button.g-button {
     display: -ms-flexbox;
     display: flex;
     min-height: 44px;
-    border-bottom: 1px solid #e6e7ed; }
+    border-bottom: 1px solid #e1e1e1; }
     .g-table .g-table-row:nth-of-type(2n) {
       background: rgba(0, 0, 255, 0.04); }
     .g-table .g-table-row:hover {
@@ -1244,7 +1244,7 @@ input.g-button, button.g-button {
   .g-table .g-table-header {
     background: #0089ff;
     color: #ffffff;
-    border-top: 1px solid #e6e7ed; }
+    border-top: 1px solid #e1e1e1; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。
@@ -1263,7 +1263,7 @@ input.g-button, button.g-button {
     border-radius: 6px; }
   .g-list-wrap.g-list-wrap_style-no-margin .g-list {
     margin-bottom: 0;
-    border-bottom: 1px solid #e6e7ed; }
+    border-bottom: 1px solid #e1e1e1; }
     .g-list-wrap.g-list-wrap_style-no-margin .g-list:last-child {
       border-bottom: none; }
   .g-list-wrap .g-list {
@@ -1790,7 +1790,7 @@ input.g-button, button.g-button {
     .g-pagination .g-pagination-now-page .g-select {
       height: inherit;
       min-width: 57.6px;
-      border: 1px solid #e6e7ed; }
+      border: 1px solid #e1e1e1; }
       .g-pagination .g-pagination-now-page .g-select select.g-select-body {
         padding: 0 44px 0 20px; }
       .g-pagination .g-pagination-now-page .g-select .g-select-mark {
@@ -1810,7 +1810,7 @@ input.g-button, button.g-button {
     width: 24px;
     margin-left: 10px; }
     .g-pagination .g-pagination-btn.g-pagination-btn-inactive {
-      color: #91918e; }
+      color: #c1c1c1; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。
@@ -2073,7 +2073,7 @@ input.g-button, button.g-button {
     bottom: -1px;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    border-top: 1px solid #e6e7ed;
+    border-top: 1px solid #e1e1e1;
     background: #fff; }
     .g-footer-nav .g-footer-nav-body .g-footer-nav-body-item {
       -webkit-box-flex: 1;
@@ -2142,7 +2142,7 @@ input.g-button, button.g-button {
   .g-quick-enter .g-quick-enter-item {
     color: #bfbfbf;
     padding: 4px 6px;
-    border: 1px solid #e6e7ed;
+    border: 1px solid #e1e1e1;
     margin: 2px;
     background: #ffffff;
     border-radius: 2000px; }
@@ -2180,16 +2180,16 @@ input.g-button, button.g-button {
 .g-form-wrap {
   font-size: 12px; }
   .g-form-wrap.g-form-wrap_style-yes-radius .g-form .g-form-body {
-    border: 1px solid #e6e7ed;
+    border: 1px solid #e1e1e1;
     border-radius: 6px; }
   .g-form-wrap.g-form-wrap_style-no-margin .g-form {
     margin-bottom: 0; }
     .g-form-wrap.g-form-wrap_style-no-margin .g-form .g-form-body {
       border-bottom: none; }
     .g-form-wrap.g-form-wrap_style-no-margin .g-form .g-form-footer {
-      border-top: 1px solid #e6e7ed; }
+      border-top: 1px solid #e1e1e1; }
     .g-form-wrap.g-form-wrap_style-no-margin .g-form:last-of-type .g-form-body {
-      border-bottom: 1px solid #e6e7ed; }
+      border-bottom: 1px solid #e1e1e1; }
   .g-form-wrap .g-form {
     margin-bottom: 10px; }
     .g-form-wrap .g-form .g-form-body {
@@ -2197,7 +2197,7 @@ input.g-button, button.g-button {
       display: -ms-flexbox;
       display: flex;
       position: relative;
-      border: 1px solid #e6e7ed;
+      border: 1px solid #e1e1e1;
       border-left: none;
       border-right: none;
       background: #ffffff;
@@ -2217,7 +2217,7 @@ input.g-button, button.g-button {
         min-width: 120px;
         text-align: right; }
         .g-form-wrap .g-form .g-form-body .g-form-body-text + .g-form-body-content {
-          border-left: 1px solid #e6e7ed; }
+          border-left: 1px solid #e1e1e1; }
       .g-form-wrap .g-form .g-form-body .g-form-body-content {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -2260,7 +2260,7 @@ input.g-button, button.g-button {
           .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-select {
             border: none; }
             .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-select .g-select-mark {
-              border-right: 1px dashed #e6e7ed; }
+              border-right: 1px dashed #e1e1e1; }
           .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-textarea {
             border: none; }
           .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body:last-of-type .g-select .g-select-mark {

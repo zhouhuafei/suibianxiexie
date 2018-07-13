@@ -33,7 +33,8 @@
             }
             &:disabled {
                 background: $g-background-color-disabled;
-                border-color: $g-background-color-disabled;
+                border-color: $g-border-color-disabled;
+                cursor: not-allowed;
             }
         }
         .g-radio-body-mark {
