@@ -1698,7 +1698,8 @@ input.g-button, button.g-button {
   /* 水平居上 */
   /* 水平居下 */
   /* 垂直居左 */
-  /* 垂直居右 */ }
+  /* 垂直居右 */
+  /* 主体 */ }
   .g-dialog-popover.g-dialog-popover_top-left {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1708,11 +1709,11 @@ input.g-button, button.g-button {
         -ms-flex-align: start;
             align-items: flex-start; }
     .g-dialog-popover.g-dialog-popover_top-left .g-dialog-popover-icon {
-      margin-left: 10px;
       -webkit-transform: rotate(45deg);
               transform: rotate(45deg);
+      margin-bottom: 6px;
       margin-top: -4px;
-      margin-bottom: 6px; }
+      margin-left: 10px; }
   .g-dialog-popover.g-dialog-popover_top-center {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1727,8 +1728,8 @@ input.g-button, button.g-button {
     .g-dialog-popover.g-dialog-popover_top-center .g-dialog-popover-icon {
       -webkit-transform: rotate(45deg);
               transform: rotate(45deg);
-      margin-top: -4px;
-      margin-bottom: 6px; }
+      margin-bottom: 6px;
+      margin-top: -4px; }
   .g-dialog-popover.g-dialog-popover_top-right {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1738,11 +1739,11 @@ input.g-button, button.g-button {
         -ms-flex-align: end;
             align-items: flex-end; }
     .g-dialog-popover.g-dialog-popover_top-right .g-dialog-popover-icon {
-      margin-right: 10px;
       -webkit-transform: rotate(45deg);
               transform: rotate(45deg);
+      margin-bottom: 6px;
       margin-top: -4px;
-      margin-bottom: 6px; }
+      margin-right: 10px; }
   .g-dialog-popover.g-dialog-popover_bottom-left {
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
@@ -1752,11 +1753,11 @@ input.g-button, button.g-button {
         -ms-flex-align: start;
             align-items: flex-start; }
     .g-dialog-popover.g-dialog-popover_bottom-left .g-dialog-popover-icon {
-      margin-left: 10px;
       -webkit-transform: rotate(-135deg);
               transform: rotate(-135deg);
+      margin-top: 6px;
       margin-bottom: -4px;
-      margin-top: 6px; }
+      margin-left: 10px; }
   .g-dialog-popover.g-dialog-popover_bottom-center {
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
@@ -1771,8 +1772,8 @@ input.g-button, button.g-button {
     .g-dialog-popover.g-dialog-popover_bottom-center .g-dialog-popover-icon {
       -webkit-transform: rotate(-135deg);
               transform: rotate(-135deg);
-      margin-bottom: -4px;
-      margin-top: 6px; }
+      margin-top: 6px;
+      margin-bottom: -4px; }
   .g-dialog-popover.g-dialog-popover_bottom-right {
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
@@ -1782,11 +1783,87 @@ input.g-button, button.g-button {
         -ms-flex-align: end;
             align-items: flex-end; }
     .g-dialog-popover.g-dialog-popover_bottom-right .g-dialog-popover-icon {
-      margin-right: 10px;
       -webkit-transform: rotate(-135deg);
               transform: rotate(-135deg);
+      margin-top: 6px;
       margin-bottom: -4px;
-      margin-top: 6px; }
+      margin-right: 10px; }
+  .g-dialog-popover.g-dialog-popover_left-top {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start; }
+    .g-dialog-popover.g-dialog-popover_left-top .g-dialog-popover-icon {
+      -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+      margin-right: 6px;
+      margin-left: -4px;
+      margin-top: 10px; }
+  .g-dialog-popover.g-dialog-popover_left-center {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+    .g-dialog-popover.g-dialog-popover_left-center .g-dialog-popover-icon {
+      -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+      margin-right: 6px;
+      margin-left: -4px; }
+  .g-dialog-popover.g-dialog-popover_left-bottom {
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end; }
+    .g-dialog-popover.g-dialog-popover_left-bottom .g-dialog-popover-icon {
+      -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+      margin-right: 6px;
+      margin-left: -4px;
+      margin-bottom: 10px; }
+  .g-dialog-popover.g-dialog-popover_right-top {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start; }
+    .g-dialog-popover.g-dialog-popover_right-top .g-dialog-popover-icon {
+      -webkit-transform: rotate(-225deg);
+              transform: rotate(-225deg);
+      margin-left: 6px;
+      margin-right: -4px;
+      margin-top: 10px; }
+  .g-dialog-popover.g-dialog-popover_right-center {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+    .g-dialog-popover.g-dialog-popover_right-center .g-dialog-popover-icon {
+      -webkit-transform: rotate(-225deg);
+              transform: rotate(-225deg);
+      margin-left: 6px;
+      margin-right: -4px; }
+  .g-dialog-popover.g-dialog-popover_right-bottom {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end; }
+    .g-dialog-popover.g-dialog-popover_right-bottom .g-dialog-popover-icon {
+      -webkit-transform: rotate(-225deg);
+              transform: rotate(-225deg);
+      margin-left: 6px;
+      margin-right: -4px;
+      margin-bottom: 10px; }
   .g-dialog-popover .g-dialog-popover-content {
     display: -webkit-box;
     display: -ms-flexbox;

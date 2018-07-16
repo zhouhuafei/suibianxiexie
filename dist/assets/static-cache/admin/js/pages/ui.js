@@ -31,7 +31,7 @@ $('.js-popover').each(function () {
         config: {
             element: this,
             content: '建议尺寸：640*640',
-            eventType: 'mouseenter',
+            eventType: 'click',
             positionLocation: 'top-center'
         }
     });
@@ -320,8 +320,43 @@ Sub.prototype.power = function () {
             });
         }
         // 垂直居左
-
+        if (positionLocation === 'left-top') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - moduleDom.offsetWidth,
+                top: $(eventDom).offset().top
+            });
+        }
+        if (positionLocation === 'left-center') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - moduleDom.offsetWidth,
+                top: $(eventDom).offset().top - (moduleDom.offsetHeight - eventDom.offsetHeight) / 2
+            });
+        }
+        if (positionLocation === 'left-bottom') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - moduleDom.offsetWidth,
+                top: $(eventDom).offset().top - (moduleDom.offsetHeight - eventDom.offsetHeight)
+            });
+        }
         // 垂直居右
+        if (positionLocation === 'right-top') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left + eventDom.offsetWidth,
+                top: $(eventDom).offset().top
+            });
+        }
+        if (positionLocation === 'right-center') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left + eventDom.offsetWidth,
+                top: $(eventDom).offset().top - (moduleDom.offsetHeight - eventDom.offsetHeight) / 2
+            });
+        }
+        if (positionLocation === 'right-bottom') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left + eventDom.offsetWidth,
+                top: $(eventDom).offset().top - (moduleDom.offsetHeight - eventDom.offsetHeight)
+            });
+        }
     }
 };
 

@@ -15,7 +15,7 @@ $('.js-popover').each(function () {
         config: {
             element: this,
             content: '建议尺寸：640*640',
-            eventType: 'mouseenter',
+            eventType: 'click',
             positionLocation: 'top-center',
         },
     });
