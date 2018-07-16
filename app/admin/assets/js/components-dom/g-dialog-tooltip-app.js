@@ -18,23 +18,58 @@ Sub.prototype.init = function () {
     if (opts.eventType === 'mouseover' || opts.eventType === 'mouseenter') {
         $(document).on('mouseenter', opts.element, function (ev) {
             ev.preventDefault();
-            this.gDialogTooltipMouseenter = new DialogTooltip({
-                config: {
-                    positionLocation: opts.positionLocation,
-                    content: this.dataset.title,
-                    elementDom: this,
-                },
-            });
-            setCss(this.gDialogTooltipMouseenter.moduleDom, this);
+            ev.stopPropagation();
+            const dom = this;
+            clearTimeout(dom.gDialogTooltipMouseenterTimer);
+            if (!dom.gDialogTooltipMouseenter) {
+                dom.gDialogTooltipMouseenter = new DialogTooltip({
+                    config: {
+                        positionLocation: opts.positionLocation,
+                        content: dom.dataset.title,
+                        elementDom: dom,
+                    },
+                });
+                const moduleDom = dom.gDialogTooltipMouseenter.moduleDom;
+                setCss(moduleDom, dom);
+                moduleDom.classList.add('g-opacity-0');
+                setTimeout(function () {
+                    moduleDom.classList.add('g-transition');
+                    moduleDom.classList.add('g-opacity-1');
+                }, 200);
+                if (!moduleDom.hasEventMouseenter) {
+                    moduleDom.hasEventMouseenter = true;
+                    // 绑定事件
+                    $(moduleDom).on('mouseenter', function (ev) {
+                        ev.preventDefault();
+                        ev.stopPropagation();
+                        clearTimeout(dom.gDialogTooltipMouseenterTimer);
+                    });
+                    $(moduleDom).on('mouseleave', function (ev) {
+                        ev.preventDefault();
+                        ev.stopPropagation();
+                        moduleDomHide(dom);
+                    });
+                }
+            }
         });
         $(document).on('mouseleave', opts.element, function (ev) {
             ev.preventDefault();
-            this.gDialogTooltipMouseenter.moduleDomHide();
+            ev.stopPropagation();
+            moduleDomHide(this);
         });
     }
+
+    function moduleDomHide(dom) {
+        dom.gDialogTooltipMouseenterTimer = setTimeout(function () {
+            dom.gDialogTooltipMouseenter.moduleDomHide();
+            delete dom.gDialogTooltipMouseenter;
+        }, 60);
+    }
+
     if (opts.eventType === 'click') {
         $(document).on('click', opts.element, function (ev) {
             ev.preventDefault();
+            ev.stopPropagation();
             if (!this.gDialogTooltipClick) {
                 this.gDialogTooltipClick = new DialogTooltip({
                     config: {

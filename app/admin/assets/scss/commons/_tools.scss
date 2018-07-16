@@ -68,6 +68,20 @@
     text-indent: 0 !important;
 }
 
+/* transition */
+.g-transition {
+    transition: 0.4s;
+}
+
+/* opacity */
+.g-opacity-0 {
+    opacity: 0;
+}
+
+.g-opacity-1 {
+    opacity: 1;
+}
+
 /* margin 和 padding */
 @each $attr in margin, padding {
     @each $value in 0, 5, 10, 20 {

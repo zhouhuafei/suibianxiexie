@@ -385,6 +385,18 @@ img {
 .g-text-indent-0 {
   text-indent: 0 !important; }
 
+/* transition */
+.g-transition {
+  -webkit-transition: 0.4s;
+  transition: 0.4s; }
+
+/* opacity */
+.g-opacity-0 {
+  opacity: 0; }
+
+.g-opacity-1 {
+  opacity: 1; }
+
 /* margin 和 padding */
 .g-margin-top-0 {
   margin-top: 0 !important; }
