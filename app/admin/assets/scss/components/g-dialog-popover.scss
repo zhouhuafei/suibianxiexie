@@ -1,0 +1,57 @@
+@import "../config/config";
+
+.g-dialog-popover {
+    $triangleW: 6;
+    $bg: rgba(255, 255, 255, 1);
+    position: absolute;
+    z-index: 9;
+    display: flex;
+    &.g-dialog-popover_top-left {
+        flex-direction: column;
+        align-items: flex-start;
+        .g-dialog-popover-icon {
+            margin-left: px2rem(10);
+            margin-bottom: px2rem(6);
+        }
+    }
+    &.g-dialog-popover_top-center {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .g-dialog-popover-icon {
+            margin-bottom: px2rem(6);
+        }
+    }
+    &.g-dialog-popover_top-right {
+        flex-direction: column;
+        align-items: flex-end;
+        .g-dialog-popover-icon {
+            margin-right: px2rem(10);
+            margin-bottom: px2rem(6);
+        }
+    }
+    .g-dialog-popover-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: px2rem(10);
+        border-radius: px2rem(6);
+        background: $bg;
+        color: rgba(0, 0, 0, 0.8);
+        border: 1px solid $g-border-color-default;
+    }
+    .g-dialog-popover-icon {
+        $wh: 8;
+        width: px2rem($wh);
+        height: px2rem($wh);
+        border: 1px solid $g-border-color-default;
+        border-top: none;
+        border-left: none;
+        transform: rotate(45deg);
+        background: #fff;
+        position: relative;
+        z-index: 2;
+        margin-top: px2rem(-$wh/2);
+    }
+}

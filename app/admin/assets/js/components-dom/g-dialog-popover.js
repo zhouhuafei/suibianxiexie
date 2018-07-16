@@ -10,7 +10,7 @@ const Sub = tools.constructorInherit(Super, {
     // 配置
     config: {
         positionLocation: 'top-left', // 弹窗的定位位置('top-left'，'top-center'，'top-right')。
-        content: 'no tooltip content',
+        content: 'no popover content',
     },
     // 数据
     data: {},
@@ -19,16 +19,16 @@ const Sub = tools.constructorInherit(Super, {
 // (建)(覆)内部模块的创建(覆盖超类型)
 Sub.prototype.moduleDomCreate = function () {
     const config = this.opts.config;
-    const positionLocation = `g-dialog-tooltip_${config.positionLocation}`;// 弹窗的定位位置
+    const positionLocation = `g-dialog-popover_${config.positionLocation}`;// 弹窗的定位位置
     // 弹窗结构
     this.moduleDom = applications.createElement({
         style: config.moduleDomStyle,
         customAttribute: config.moduleDomCustomAttribute,
         attribute: {
-            className: `g-dialog-tooltip ${positionLocation}`,
+            className: `g-dialog-popover ${positionLocation}`,
             innerHTML: `
-                <div class="g-dialog-tooltip-content">${config.content}</div>
-                <div class="g-dialog-tooltip-icon"></div>                
+                <div class="g-dialog-popover-content">${config.content}</div>
+                <div class="g-dialog-popover-icon"></div>                
             `,
         },
     });

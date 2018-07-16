@@ -1803,14 +1803,14 @@ function isnan (val) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 2 */,
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var extend=__webpack_require__(9);function Applications(){}Applications.prototype.extend=extend,Applications.prototype.cookie=__webpack_require__(63),Applications.prototype.createElement=__webpack_require__(64),Applications.prototype.AddSubtractInput=__webpack_require__(65),Applications.prototype.getDomArray=__webpack_require__(4),Applications.prototype.getParent=__webpack_require__(66),Applications.prototype.htmlToDom=__webpack_require__(67),Applications.prototype.domRemove=__webpack_require__(68),Applications.prototype.browserPlatform=__webpack_require__(69),Applications.prototype.offset=__webpack_require__(70),Applications.prototype.scrollMoveTo=__webpack_require__(71),Applications.prototype.SelectAll=__webpack_require__(72),Applications.prototype.WhenScrollBottom=__webpack_require__(74),Applications.prototype.whetherDisableScroll=__webpack_require__(75),module.exports=new Applications;
 
 /***/ }),
+/* 3 */,
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1841,10 +1841,10 @@ var Super = function () {
 
         var self = this;
         self.tools = __webpack_require__(0); // 工具方法集合
-        self.applications = __webpack_require__(3); // 应用方法集合
+        self.applications = __webpack_require__(2); // 应用方法集合
         self.axios = __webpack_require__(18); // axios
         self.jsonp = __webpack_require__(79); // jsonp
-        self.DialogAlert = __webpack_require__(10); // 提示框
+        self.DialogAlert = __webpack_require__(11); // 提示框
         self.DialogConfirm = __webpack_require__(31); // 确认框
         self.opts = self.tools.extend({
             lazyload: {
@@ -2099,6 +2099,8 @@ var Super = function () {
             // 工具提示框(文本提示框)的应用
             var DialogTooltipApp = __webpack_require__(116);
             new DialogTooltipApp({ element: '.js-g-tooltip', eventType: 'mouseover', positionLocation: 'top-right' });
+            var DialogPopoverApp = __webpack_require__(118);
+            new DialogPopoverApp({ element: '.js-g-tooltip', eventType: 'click', positionLocation: 'top-center' });
         }
     }]);
 
@@ -2285,89 +2287,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 
 
 var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(11); // 超类型(子类型继承的对象)
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    wrap: '.g-wrap',
-    // 回调
-    callback: {
-        // 关闭
-        close: function close() {}
-    },
-    // 配置
-    config: {
-        time: 3000, // 展示的时间
-        isShowIcon: false, // 是否显示icon
-        isShowClose: true, // 是否显示关闭按钮
-        icon: 'icon-success', // icon的class
-        content: '成功', // 内容信息
-        positionLocation: 'center' // 弹窗的定位位置('top'，'center'，'bottom')。positionMethod定位方式强制fixed。
-    },
-    // 数据
-    data: {}
-});
-
-// (建)(覆)内部模块的创建(覆盖超类型)
-Sub.prototype.moduleDomCreate = function () {
-    var config = this.opts.config;
-    var positionLocation = 'g-dialog-alert_' + config.positionLocation; // 弹窗的定位位置
-    // 弹窗结构
-    var html = this.renderAlert();
-    this.moduleDom = applications.createElement({
-        style: config.moduleDomStyle,
-        customAttribute: config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-dialog-alert ' + positionLocation,
-            innerHTML: html
-        }
-    });
-};
-
-// 提示框
-Sub.prototype.renderAlert = function () {
-    var config = this.opts.config;
-    var htmlIcon = '';
-    if (config.isShowIcon) {
-        htmlIcon = '<div class="g-dialog-alert-icon iconfont ' + config.icon + '"></div>';
-    }
-    var closeHtml = '';
-    if (config.isShowClose) {
-        closeHtml = '<div class="g-dialog-alert-close iconfont icon-close" ></div>';
-    }
-    return '\n        ' + closeHtml + '\n        ' + htmlIcon + '\n        <div class="g-dialog-alert-text">' + config.content + '</div>\n    ';
-};
-
-// (功)(覆)功能(覆盖超类型)
-Sub.prototype.power = function () {
-    var self = this;
-    var config = this.opts.config;
-    var callback = this.opts.callback;
-    var close = this.moduleDom.querySelector('.g-dialog-alert-close');
-    var timer = null;
-    timer = setTimeout(function () {
-        self.moduleDomHide();
-        callback.close();
-    }, config.time);
-    close.addEventListener('click', function () {
-        clearTimeout(timer);
-        self.moduleDomHide();
-        callback.close();
-    });
-};
-
-module.exports = Sub;
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
+var applications = __webpack_require__(2); // 应用方法集合
 
 // 底层构造函数
 function Super(json) {
@@ -2562,6 +2482,88 @@ Super.prototype.getModuleDomHtml = function () {
 module.exports = Super;
 
 /***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(2); // 应用方法集合
+var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    wrap: '.g-wrap',
+    // 回调
+    callback: {
+        // 关闭
+        close: function close() {}
+    },
+    // 配置
+    config: {
+        time: 3000, // 展示的时间
+        isShowIcon: false, // 是否显示icon
+        isShowClose: true, // 是否显示关闭按钮
+        icon: 'icon-success', // icon的class
+        content: '成功', // 内容信息
+        positionLocation: 'center' // 弹窗的定位位置('top'，'center'，'bottom')。positionMethod定位方式强制fixed。
+    },
+    // 数据
+    data: {}
+});
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var positionLocation = 'g-dialog-alert_' + config.positionLocation; // 弹窗的定位位置
+    // 弹窗结构
+    var html = this.renderAlert();
+    this.moduleDom = applications.createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-dialog-alert ' + positionLocation,
+            innerHTML: html
+        }
+    });
+};
+
+// 提示框
+Sub.prototype.renderAlert = function () {
+    var config = this.opts.config;
+    var htmlIcon = '';
+    if (config.isShowIcon) {
+        htmlIcon = '<div class="g-dialog-alert-icon iconfont ' + config.icon + '"></div>';
+    }
+    var closeHtml = '';
+    if (config.isShowClose) {
+        closeHtml = '<div class="g-dialog-alert-close iconfont icon-close" ></div>';
+    }
+    return '\n        ' + closeHtml + '\n        ' + htmlIcon + '\n        <div class="g-dialog-alert-text">' + config.content + '</div>\n    ';
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    var config = this.opts.config;
+    var callback = this.opts.callback;
+    var close = this.moduleDom.querySelector('.g-dialog-alert-close');
+    var timer = null;
+    timer = setTimeout(function () {
+        self.moduleDomHide();
+        callback.close();
+    }, config.time);
+    close.addEventListener('click', function () {
+        clearTimeout(timer);
+        self.moduleDomHide();
+        callback.close();
+    });
+};
+
+module.exports = Sub;
+
+/***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2724,7 +2726,7 @@ function nextTick(fn, arg1, arg2, arg3) {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 14 */
@@ -2927,7 +2929,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 
 var axios = __webpack_require__(28);
 var tools = __webpack_require__(0);
-var DialogAlert = __webpack_require__(10);
+var DialogAlert = __webpack_require__(11);
 var qs = __webpack_require__(76);
 
 module.exports = function (json) {
@@ -3016,7 +3018,7 @@ module.exports = function (json) {
 
 
 var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
+var applications = __webpack_require__(2); // 应用方法集合
 var domAddPosition = __webpack_require__(82);
 var checkStr = tools.checkStr;
 var getParent = applications.getParent;
@@ -4283,7 +4285,7 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(33).setImmediate, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(33).setImmediate, __webpack_require__(5)))
 
 /***/ }),
 /* 23 */
@@ -4590,8 +4592,8 @@ module.exports = {
 
 
 var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(11); // 超类型(子类型继承的对象)
+var applications = __webpack_require__(2); // 应用方法集合
+var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -5882,7 +5884,7 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(3)))
 
 /***/ }),
 /* 37 */
@@ -7556,7 +7558,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(3)))
 
 /***/ }),
 /* 43 */
@@ -8392,7 +8394,7 @@ module.exports = function (str, opts) {
 
 
 var tools = __webpack_require__(0);
-var DialogAlert = __webpack_require__(10);
+var DialogAlert = __webpack_require__(11);
 var queryString = tools.queryString;
 
 module.exports = function (json) {
@@ -8470,7 +8472,7 @@ module.exports = function (json) {
 
 
 var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
+var applications = __webpack_require__(2); // 应用方法集合
 
 // 延迟加载
 function LazyLoad(json) {
@@ -8684,7 +8686,7 @@ module.exports = {
     svgObject: svg_object
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(1).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(1).Buffer))
 
 /***/ }),
 /* 85 */
@@ -10640,7 +10642,7 @@ util.inherits(Gunzip, Zlib);
 util.inherits(DeflateRaw, Zlib);
 util.inherits(InflateRaw, Zlib);
 util.inherits(Unzip, Zlib);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 101 */
@@ -11056,7 +11058,7 @@ Zlib.prototype._reset = function () {
 };
 
 exports.Zlib = Zlib;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1).Buffer, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1).Buffer, __webpack_require__(3)))
 
 /***/ }),
 /* 102 */
@@ -16665,7 +16667,7 @@ module.exports = crc32;
     
 })();
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(1).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(1).Buffer))
 
 /***/ }),
 /* 112 */
@@ -17000,8 +17002,8 @@ module.exports = {
 
 
 var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(11); // 超类型(子类型继承的对象)
+var applications = __webpack_require__(2); // 应用方法集合
+var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -17055,8 +17057,8 @@ module.exports = Sub;
 
 
 var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(11); // 超类型(子类型继承的对象)
+var applications = __webpack_require__(2); // 应用方法集合
+var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -17217,8 +17219,8 @@ module.exports = Sub;
 
 
 var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(3); // 应用方法集合
-var Super = __webpack_require__(11); // 超类型(子类型继承的对象)
+var applications = __webpack_require__(2); // 应用方法集合
+var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -17228,7 +17230,7 @@ var Sub = tools.constructorInherit(Super, {
     // 配置
     config: {
         positionLocation: 'top-left', // 弹窗的定位位置('top-left'，'top-center'，'top-right')。
-        content: 'no tooltip text'
+        content: 'no tooltip content'
     },
     // 数据
     data: {}
@@ -17244,7 +17246,174 @@ Sub.prototype.moduleDomCreate = function () {
         customAttribute: config.moduleDomCustomAttribute,
         attribute: {
             className: 'g-dialog-tooltip ' + positionLocation,
-            innerHTML: '\n                <div class="g-dialog-tooltip-text">' + config.content + '</div>\n                <div class="g-dialog-tooltip-icon"></div>                \n            '
+            innerHTML: '\n                <div class="g-dialog-tooltip-content">' + config.content + '</div>\n                <div class="g-dialog-tooltip-icon"></div>                \n            '
+        }
+    });
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {};
+
+module.exports = Sub;
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var DialogTooltip = __webpack_require__(119); // 工具提示框(文本提示框)
+
+// 工具提示框(文本提示框)的应用
+function Sub(opts) {
+    this.opts = tools.extend({
+        element: '.js-g-tooltip',
+        eventType: 'mouseover',
+        positionLocation: 'top-left' // 弹窗的定位位置('top-left'，'top-center'，'top-right')。
+    }, opts);
+    this.init();
+}
+
+Sub.prototype.init = function () {
+    var self = this;
+    var opts = self.opts;
+    var positionLocation = opts.positionLocation;
+    if (opts.eventType === 'mouseover' || opts.eventType === 'mouseenter') {
+        $(document).on('mouseenter', opts.element, function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            var dom = this;
+            clearTimeout(dom.gDialogPopoverMouseenterTimer);
+            if (!dom.gDialogPopoverMouseenter) {
+                dom.gDialogPopoverMouseenter = new DialogTooltip({
+                    config: {
+                        positionLocation: opts.positionLocation,
+                        content: opts.content,
+                        elementDom: dom
+                    }
+                });
+                var moduleDom = dom.gDialogPopoverMouseenter.moduleDom;
+                setCss(moduleDom, dom);
+                moduleDom.classList.add('g-opacity-0');
+                setTimeout(function () {
+                    moduleDom.classList.add('g-transition');
+                    moduleDom.classList.add('g-opacity-1');
+                }, 200);
+                if (!moduleDom.hasEventMouseenter) {
+                    moduleDom.hasEventMouseenter = true;
+                    // 绑定事件
+                    $(moduleDom).on('mouseenter', function (ev) {
+                        ev.preventDefault();
+                        ev.stopPropagation();
+                        clearTimeout(dom.gDialogPopoverMouseenterTimer);
+                    });
+                    $(moduleDom).on('mouseleave', function (ev) {
+                        ev.preventDefault();
+                        ev.stopPropagation();
+                        moduleDomHide(dom);
+                    });
+                }
+            }
+        });
+        $(document).on('mouseleave', opts.element, function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            moduleDomHide(this);
+        });
+    }
+
+    function moduleDomHide(dom) {
+        dom.gDialogPopoverMouseenterTimer = setTimeout(function () {
+            dom.gDialogPopoverMouseenter.moduleDomHide();
+            delete dom.gDialogPopoverMouseenter;
+        }, 60);
+    }
+
+    if (opts.eventType === 'click') {
+        $(document).on('click', opts.element, function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            if (!this.gDialogPopoverClick) {
+                this.gDialogPopoverClick = new DialogTooltip({
+                    config: {
+                        positionLocation: opts.positionLocation,
+                        content: opts.content,
+                        elementDom: this
+                    }
+                });
+                setCss(this.gDialogPopoverClick.moduleDom, this);
+            } else {
+                if (this.gDialogPopoverClick.moduleDom.offsetWidth === 0) {
+                    this.gDialogPopoverClick.moduleDomShow();
+                } else {
+                    this.gDialogPopoverClick.moduleDomHide();
+                }
+            }
+        });
+    }
+
+    function setCss(moduleDom, eventDom) {
+        if (positionLocation === 'top-left') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left,
+                top: $(eventDom).offset().top - moduleDom.offsetHeight
+            });
+        }
+        if (positionLocation === 'top-center') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth) / 2,
+                top: $(eventDom).offset().top - moduleDom.offsetHeight
+            });
+        }
+        if (positionLocation === 'top-right') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth),
+                top: $(eventDom).offset().top - moduleDom.offsetHeight
+            });
+        }
+    }
+};
+
+module.exports = Sub;
+
+/***/ }),
+/* 119 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(2); // 应用方法集合
+var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    wrap: '.g-wrap',
+    // 回调
+    callback: {},
+    // 配置
+    config: {
+        positionLocation: 'top-left', // 弹窗的定位位置('top-left'，'top-center'，'top-right')。
+        content: 'no popover content'
+    },
+    // 数据
+    data: {}
+});
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var positionLocation = 'g-dialog-popover_' + config.positionLocation; // 弹窗的定位位置
+    // 弹窗结构
+    this.moduleDom = applications.createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-dialog-popover ' + positionLocation,
+            innerHTML: '\n                <div class="g-dialog-popover-content">' + config.content + '</div>\n                <div class="g-dialog-popover-icon"></div>                \n            '
         }
     });
 };

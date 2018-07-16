@@ -245,6 +245,8 @@ class Super {
         // 工具提示框(文本提示框)的应用
         const DialogTooltipApp = require('../components-dom/g-dialog-tooltip-app');
         new DialogTooltipApp({element: '.js-g-tooltip', eventType: 'mouseover', positionLocation: 'top-right'});
+        const DialogPopoverApp = require('../components-dom/g-dialog-popover-app');
+        new DialogPopoverApp({element: '.js-g-tooltip', eventType: 'click', positionLocation: 'top-center'});
     }
 }
 

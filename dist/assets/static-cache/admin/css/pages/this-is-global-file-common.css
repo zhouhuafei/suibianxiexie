@@ -1656,7 +1656,7 @@ input.g-button, button.g-button {
             align-items: flex-end; }
     .g-dialog-tooltip.g-dialog-tooltip_top-right .g-dialog-tooltip-icon {
       margin-right: 10px; }
-  .g-dialog-tooltip .g-dialog-tooltip-text {
+  .g-dialog-tooltip .g-dialog-tooltip-content {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1677,6 +1677,87 @@ input.g-button, button.g-button {
     height: 0;
     border: 6px solid transparent;
     border-top-color: rgba(0, 0, 0, 0.8); }
+
+/*
+// px转rem(phone) 这个是给手机端用的。
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+
+// px转px(phone) 这个是给手机端用的。当需要使用到px时，使用这个即可。pc端为什么不使用px2px而是重写了px2rem？原因是这样做pc组件和phone组件互转时比较方便。
+@function px2px($px) {
+    @return $px * 1px;
+}
+*/
+.g-dialog-popover {
+  position: absolute;
+  z-index: 9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .g-dialog-popover.g-dialog-popover_top-left {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start; }
+    .g-dialog-popover.g-dialog-popover_top-left .g-dialog-popover-icon {
+      margin-left: 10px;
+      margin-bottom: 6px; }
+  .g-dialog-popover.g-dialog-popover_top-center {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+    .g-dialog-popover.g-dialog-popover_top-center .g-dialog-popover-icon {
+      margin-bottom: 6px; }
+  .g-dialog-popover.g-dialog-popover_top-right {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end; }
+    .g-dialog-popover.g-dialog-popover_top-right .g-dialog-popover-icon {
+      margin-right: 10px;
+      margin-bottom: 6px; }
+  .g-dialog-popover .g-dialog-popover-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    background: white;
+    color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #e1e1e1; }
+  .g-dialog-popover .g-dialog-popover-icon {
+    width: 8px;
+    height: 8px;
+    border: 1px solid #e1e1e1;
+    border-top: none;
+    border-left: none;
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+    background: #fff;
+    position: relative;
+    z-index: 2;
+    margin-top: -4px; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。
