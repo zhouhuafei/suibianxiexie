@@ -4,7 +4,7 @@ const DialogTooltip = require('../components-dom/g-dialog-popover'); // 工具�
 // 工具提示框(文本提示框)的应用
 function Sub(opts) {
     this.opts = tools.extend({
-        element: '.js-g-tooltip',
+        element: '.js-popover',
         eventType: 'mouseover',
         positionLocation: 'top-left', // 弹窗的定位位置('top-left'，'top-center'，'top-right')。
     }, opts);

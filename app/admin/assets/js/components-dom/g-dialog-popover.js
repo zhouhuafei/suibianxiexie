@@ -9,6 +9,8 @@ const Sub = tools.constructorInherit(Super, {
     callback: {},
     // 配置
     config: {
+        element: '.js-popover',
+        eventType: 'mouseover',
         positionLocation: 'top-left', // 弹窗的定位位置('top-left'，'top-center'，'top-right')。
         content: 'no popover content',
     },

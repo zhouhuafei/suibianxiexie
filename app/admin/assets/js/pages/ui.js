@@ -1,6 +1,14 @@
 require('../../scss/pages/ui.scss');
 const Super = require('../pages-super/super');
 
+const DialogPopoverApp = require('../components-dom/g-dialog-popover-app');
+new DialogPopoverApp({
+    element: '.js-popover',
+    content: '建议尺寸：640*640',
+    eventType: 'mouseenter',
+    positionLocation: 'top-center',
+});
+
 class Sub extends Super {
     // (功)(覆)功能(覆盖超类型)
     power() {
