@@ -34,7 +34,7 @@ Sub.prototype.init = function () {
                 moduleDom.classList.add('g-opacity-0');
                 setTimeout(function () {
                     moduleDom.classList.add('g-transition');
-                    moduleDom.classList.add('g-opacity-1');
+                    moduleDom.classList.remove('g-opacity-0');
                 }, 200);
                 if (!moduleDom.hasEventMouseenter) {
                     moduleDom.hasEventMouseenter = true;
