@@ -1670,13 +1670,13 @@ input.g-button, button.g-button {
     height: 24px;
     padding: 0 10px;
     border-radius: 6px;
-    background: rgba(0, 0, 0, 0.8);
-    color: rgba(255, 255, 255, 0.8); }
+    background: black;
+    color: white; }
   .g-dialog-tooltip .g-dialog-tooltip-icon {
     width: 0;
     height: 0;
     border: 6px solid transparent;
-    border-top-color: rgba(0, 0, 0, 0.8); }
+    border-top-color: black; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。
@@ -1744,7 +1744,7 @@ input.g-button, button.g-button {
     padding: 10px;
     border-radius: 6px;
     background: white;
-    color: rgba(0, 0, 0, 0.8);
+    color: black;
     border: 1px solid #e1e1e1; }
   .g-dialog-popover .g-dialog-popover-icon {
     width: 8px;

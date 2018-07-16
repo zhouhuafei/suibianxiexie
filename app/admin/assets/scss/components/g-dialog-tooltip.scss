@@ -3,7 +3,7 @@
 .g-dialog-tooltip {
     $h: 24;
     $triangleW: 6;
-    $bg: rgba(0, 0, 0, 0.8);
+    $bg: rgba(0, 0, 0, 1);
     position: absolute;
     z-index: 9;
     display: flex;
@@ -35,7 +35,7 @@
         padding: 0 px2rem(10);
         border-radius: px2rem(6);
         background: $bg;
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(255, 255, 255, 1);
     }
     .g-dialog-tooltip-icon {
         width: 0;
