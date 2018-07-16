@@ -387,15 +387,15 @@ img {
 
 /* transition */
 .g-transition {
-  -webkit-transition: 0.4s;
-  transition: 0.4s; }
+  -webkit-transition: 0.4s !important;
+  transition: 0.4s !important; }
 
 /* opacity */
 .g-opacity-0 {
-  opacity: 0; }
+  opacity: 0 !important; }
 
 .g-opacity-1 {
-  opacity: 1; }
+  opacity: 1 !important; }
 
 /* margin 和 padding */
 .g-margin-top-0 {
