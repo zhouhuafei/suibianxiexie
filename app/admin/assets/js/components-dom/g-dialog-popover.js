@@ -9,6 +9,7 @@ const Sub = tools.constructorInherit(Super, {
     callback: {},
     // 配置
     config: {
+        moduleDomIsRender: false,
         element: '.js-popover',
         eventType: 'mouseover',
         positionLocation: 'top-left', // 弹窗的定位位置('top-left'，'top-center'，'top-right')。
@@ -38,6 +39,75 @@ Sub.prototype.moduleDomCreate = function () {
 
 // (功)(覆)功能(覆盖超类型)
 Sub.prototype.power = function () {
+    const self = this;
+    const opts = self.opts;
+    const config = opts.config;
+    const positionLocation = config.positionLocation;
+    const moduleDom = self.moduleDom;
+    if (config.eventType === 'mouseover' || config.eventType === 'mouseenter') {
+        $(config.element).on('mouseenter', function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            self.moduleDomShow();
+            setCss(this);
+            clearTimeout(self.gDialogPopoverMouseenterTimer);
+        });
+        $(config.element).on('mouseleave', function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            fnModuleDomHide();
+        });
+        $(moduleDom).on('mouseenter', function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            clearTimeout(self.gDialogPopoverMouseenterTimer);
+        });
+        $(moduleDom).on('mouseleave', function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            fnModuleDomHide();
+        });
+    }
+
+    function fnModuleDomHide() {
+        self.gDialogPopoverMouseenterTimer = setTimeout(function () {
+            self.moduleDomHide();
+        }, 60);
+    }
+
+    if (config.eventType === 'click') {
+        $(config.element).on('click', function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            if (self.moduleDom.offsetWidth === 0) {
+                self.moduleDomShow();
+                setCss(this);
+            } else {
+                self.moduleDomHide();
+            }
+        });
+    }
+
+    function setCss(eventDom) {
+        if (positionLocation === 'top-left') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left,
+                top: $(eventDom).offset().top - moduleDom.offsetHeight,
+            });
+        }
+        if (positionLocation === 'top-center') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth) / 2,
+                top: $(eventDom).offset().top - moduleDom.offsetHeight,
+            });
+        }
+        if (positionLocation === 'top-right') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth),
+                top: $(eventDom).offset().top - moduleDom.offsetHeight,
+            });
+        }
+    }
 };
 
 module.exports = Sub;
