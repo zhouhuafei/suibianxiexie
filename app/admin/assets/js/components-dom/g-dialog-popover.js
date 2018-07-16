@@ -89,6 +89,7 @@ Sub.prototype.power = function () {
     }
 
     function setCss(eventDom) {
+        // 水平居上
         if (positionLocation === 'top-left') {
             $(moduleDom).css({
                 left: $(eventDom).offset().left,
@@ -107,6 +108,28 @@ Sub.prototype.power = function () {
                 top: $(eventDom).offset().top - moduleDom.offsetHeight,
             });
         }
+        // 水平居下
+        if (positionLocation === 'bottom-left') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left,
+                top: $(eventDom).offset().top + eventDom.offsetHeight,
+            });
+        }
+        if (positionLocation === 'bottom-center') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth) / 2,
+                top: $(eventDom).offset().top + eventDom.offsetHeight,
+            });
+        }
+        if (positionLocation === 'bottom-right') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth),
+                top: $(eventDom).offset().top + eventDom.offsetHeight,
+            });
+        }
+        // 垂直居左
+
+        // 垂直居右
     }
 };
 

@@ -1705,6 +1705,9 @@ input.g-button, button.g-button {
             align-items: flex-start; }
     .g-dialog-popover.g-dialog-popover_top-left .g-dialog-popover-icon {
       margin-left: 10px;
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+      margin-top: -4px;
       margin-bottom: 6px; }
   .g-dialog-popover.g-dialog-popover_top-center {
     -webkit-box-orient: vertical;
@@ -1718,6 +1721,9 @@ input.g-button, button.g-button {
         -ms-flex-pack: center;
             justify-content: center; }
     .g-dialog-popover.g-dialog-popover_top-center .g-dialog-popover-icon {
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+      margin-top: -4px;
       margin-bottom: 6px; }
   .g-dialog-popover.g-dialog-popover_top-right {
     -webkit-box-orient: vertical;
@@ -1729,7 +1735,54 @@ input.g-button, button.g-button {
             align-items: flex-end; }
     .g-dialog-popover.g-dialog-popover_top-right .g-dialog-popover-icon {
       margin-right: 10px;
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+      margin-top: -4px;
       margin-bottom: 6px; }
+  .g-dialog-popover.g-dialog-popover_bottom-left {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start; }
+    .g-dialog-popover.g-dialog-popover_bottom-left .g-dialog-popover-icon {
+      margin-left: 10px;
+      -webkit-transform: rotate(-135deg);
+              transform: rotate(-135deg);
+      margin-bottom: -4px;
+      margin-top: 6px; }
+  .g-dialog-popover.g-dialog-popover_bottom-center {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+    .g-dialog-popover.g-dialog-popover_bottom-center .g-dialog-popover-icon {
+      -webkit-transform: rotate(-135deg);
+              transform: rotate(-135deg);
+      margin-bottom: -4px;
+      margin-top: 6px; }
+  .g-dialog-popover.g-dialog-popover_bottom-right {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end; }
+    .g-dialog-popover.g-dialog-popover_bottom-right .g-dialog-popover-icon {
+      margin-right: 10px;
+      -webkit-transform: rotate(-135deg);
+              transform: rotate(-135deg);
+      margin-bottom: -4px;
+      margin-top: 6px; }
   .g-dialog-popover .g-dialog-popover-content {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1752,12 +1805,9 @@ input.g-button, button.g-button {
     border: 1px solid #e1e1e1;
     border-top: none;
     border-left: none;
-    -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
     background: #fff;
     position: relative;
-    z-index: 2;
-    margin-top: -4px; }
+    z-index: 2; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。

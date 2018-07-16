@@ -1,6 +1,7 @@
 @import "../config/config";
 
 .g-dialog-popover {
+    $icon-wh: 8;
     $triangleW: 6;
     $bg: rgba(255, 255, 255, 1);
     position: absolute;
@@ -11,6 +12,8 @@
         align-items: flex-start;
         .g-dialog-popover-icon {
             margin-left: px2rem(10);
+            transform: rotate(45deg);
+            margin-top: px2rem(-$icon-wh/2);
             margin-bottom: px2rem(6);
         }
     }
@@ -19,6 +22,8 @@
         align-items: center;
         justify-content: center;
         .g-dialog-popover-icon {
+            transform: rotate(45deg);
+            margin-top: px2rem(-$icon-wh/2);
             margin-bottom: px2rem(6);
         }
     }
@@ -27,7 +32,39 @@
         align-items: flex-end;
         .g-dialog-popover-icon {
             margin-right: px2rem(10);
+            transform: rotate(45deg);
+            margin-top: px2rem(-$icon-wh/2);
             margin-bottom: px2rem(6);
+        }
+    }
+    &.g-dialog-popover_bottom-left {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        .g-dialog-popover-icon {
+            margin-left: px2rem(10);
+            transform: rotate(-135deg);
+            margin-bottom: px2rem(-$icon-wh/2);
+            margin-top: px2rem(6);
+        }
+    }
+    &.g-dialog-popover_bottom-center {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        .g-dialog-popover-icon {
+            transform: rotate(-135deg);
+            margin-bottom: px2rem(-$icon-wh/2);
+            margin-top: px2rem(6);
+        }
+    }
+    &.g-dialog-popover_bottom-right {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+        .g-dialog-popover-icon {
+            margin-right: px2rem(10);
+            transform: rotate(-135deg);
+            margin-bottom: px2rem(-$icon-wh/2);
+            margin-top: px2rem(6);
         }
     }
     .g-dialog-popover-content {
@@ -42,16 +79,13 @@
         border: 1px solid $g-border-color-default;
     }
     .g-dialog-popover-icon {
-        $wh: 8;
-        width: px2rem($wh);
-        height: px2rem($wh);
+        width: px2rem($icon-wh);
+        height: px2rem($icon-wh);
         border: 1px solid $g-border-color-default;
         border-top: none;
         border-left: none;
-        transform: rotate(45deg);
         background: #fff;
         position: relative;
         z-index: 2;
-        margin-top: px2rem(-$wh/2);
     }
 }
