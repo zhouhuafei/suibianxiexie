@@ -1694,7 +1694,11 @@ input.g-button, button.g-button {
   z-index: 9;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  /* 水平居上 */
+  /* 水平居下 */
+  /* 垂直居左 */
+  /* 垂直居右 */ }
   .g-dialog-popover.g-dialog-popover_top-left {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;

@@ -7,6 +7,7 @@
     position: absolute;
     z-index: 9;
     display: flex;
+    /* 水平居上 */
     &.g-dialog-popover_top-left {
         flex-direction: column;
         align-items: flex-start;
@@ -37,6 +38,7 @@
             margin-bottom: px2rem(6);
         }
     }
+    /* 水平居下 */
     &.g-dialog-popover_bottom-left {
         flex-direction: column-reverse;
         align-items: flex-start;
@@ -67,6 +69,8 @@
             margin-top: px2rem(6);
         }
     }
+    /* 垂直居左 */
+    /* 垂直居右 */
     .g-dialog-popover-content {
         display: flex;
         align-items: center;
