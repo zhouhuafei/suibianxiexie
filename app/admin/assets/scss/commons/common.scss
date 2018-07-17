@@ -1,6 +1,7 @@
 @import "../reset/reset";
 @import "iconfont";
 @import "tools";
+// 普通组件
 @import "../components-dom/g-wrap";
 @import "../components-dom/g-input";
 @import "../components-dom/g-select";
@@ -30,6 +31,8 @@
 @import "../components-dom/g-lazy-load";
 @import "../components-dom/g-footer-nav";
 @import "../components-dom/g-quick-enter";
+// 业务组件(存在数据交互)
+@import "../components-dom-business/g-gallery";
 
 // 图片列表测试
 .g-img-test {

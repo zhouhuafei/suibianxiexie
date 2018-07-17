@@ -5,7 +5,7 @@ const Super = require('../components-dom-super/g-super'); // 超类型(子类型
 // 子类型
 const Sub = tools.constructorInherit(Super, {
     // 容器
-    wrap: '.g-footer',
+    wrap: '.g-wrap',
     // 回调
     callback: {},
     // 配置
