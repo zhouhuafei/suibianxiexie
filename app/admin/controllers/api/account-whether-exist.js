@@ -11,10 +11,7 @@ class Sub extends Super {
         const username = (data['username'] || '').trim(); // 用户名
         const checkStr = tools.checkStr;
         if (checkStr.isEmpty(username)) {
-            self.render({
-                message: '用户名不能为空',
-                result: {'username': username},
-            });
+            self.render({message: '用户名不能为空'});
             return;
         }
         const Admin = require('../../models/mongoose/admin');
