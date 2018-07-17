@@ -26,8 +26,8 @@ class Sub extends Super {
                 result: {data: [{password: password}]},
             });
         } else {
-            const Users = require('../../models/mongoose/users');
-            Users.find({username: username}, function (error, result) {
+            const User = require('../../models/mongoose/user');
+            User.find({username: username}, function (error, result) {
                 // 数据库查询出现错误
                 if (error) {
                     self.render({

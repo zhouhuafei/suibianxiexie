@@ -16,7 +16,7 @@ const routeName = [
         whichRequestMethodNoValidateLogin: ['get'], // 这个字段表示的意思是，当请求方式为get时不验证登录。
     },
     {
-        name: 'gallery-categories', // 图片库里图片的分类
+        name: 'gallery-category', // 图片库里图片的分类
     },
     {
         name: 'gallery', // 图片库

@@ -48,8 +48,8 @@ class Sub extends Super {
                 });
                 return;
             }
-            const Users = require('../../models/mongoose/users');
-            Users.find({username: username}, function (error, result) {
+            const User = require('../../models/mongoose/user');
+            User.find({username: username}, function (error, result) {
                 // 数据库查询出现错误
                 if (error) {
                     self.render({
@@ -67,12 +67,12 @@ class Sub extends Super {
                     return;
                 }
                 // 未被注册
-                const users = new Users({
+                const user = new User({
                     username: username,
                     password: password,
                     createTime: new Date(),
                 });
-                users.save(function (error, result) {
+                user.save(function (error, result) {
                     // 数据库插入出现错误
                     if (error) {
                         self.render({

@@ -1,5 +1,5 @@
 const Super = require('../api-super/super'); // 超类型
-const Admins = require(`../../models/mongoose/admins`);
+const Admin = require(`../../models/mongoose/admin`);
 
 class Sub extends Super {
     // (查)(覆)查找数据(覆盖超类型)
@@ -23,7 +23,7 @@ class Sub extends Super {
                 result: {isLogin},
             });
         } else {
-            Admins.findOne({username: username}, function (error, result) {
+            Admin.findOne({username: username}, function (error, result) {
                 // 数据库查询出现错误
                 if (error) {
                     self.render({message: '数据库查询出现错误'});

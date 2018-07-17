@@ -1,5 +1,5 @@
 const Super = require('../api-super/super'); // 超类型
-const WebsiteInfos = require('../../models/mongoose/website-infos');
+const WebsiteInfos = require('../../models/mongoose/website-info');
 
 class Sub extends Super {
     // (增)(覆)增加数据(覆盖超类型)

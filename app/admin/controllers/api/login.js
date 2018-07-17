@@ -38,8 +38,8 @@ class Sub extends Super {
                 result: {'verify-code-canvas': verifyCodeCanvas},
             });
         } else {
-            const Admins = require('../../models/mongoose/admins');
-            Admins.findOne({username: username}, function (error, result) {
+            const Admin = require('../../models/mongoose/admin');
+            Admin.findOne({username: username}, function (error, result) {
                 // 数据库查询出现错误
                 if (error) {
                     self.render({message: '数据库查询出现错误'});
@@ -57,7 +57,7 @@ class Sub extends Super {
                             session.adminInfo = adminInfo;
                             if (appConfig.isEnabledSingleDeviceLoginAdmin) { // 如果开启了单设备登录
                                 const loginStamp = `${Math.random()}`.split('.')[1];
-                                Admins.update({_id: adminInfo._id}, {$set: {loginStamp: loginStamp}}, function (error) {
+                                Admin.update({_id: adminInfo._id}, {$set: {loginStamp: loginStamp}}, function (error) {
                                     // 数据库更新出现错误
                                     if (error) {
                                         self.render({

@@ -1,5 +1,5 @@
 // 页面路由
-const Admins = require(`../../models/mongoose/admins`);
+const Admin = require(`../../models/mongoose/admin`);
 const tools = require('zhf.tools'); // 工具方法集合
 const apiConfig = require('./config');
 const controllerPath = '../../controllers/api/'; // 控制器的路径
@@ -41,7 +41,7 @@ class Route {
                             if (adminInfo === undefined) { // 未登录，管理端的接口都应该登陆后才有权调用。
                                 res.json(apiDataFormat({message: '未登录', failureCode: 401}));
                             } else {
-                                Admins.findOne({username: adminInfo.username}, function (error, result) {
+                                Admin.findOne({username: adminInfo.username}, function (error, result) {
                                     if (error) { // 数据库查询出现错误
                                         res.json(apiDataFormat({message: '验证登录时,数据库查询出现错误'}));
                                     }

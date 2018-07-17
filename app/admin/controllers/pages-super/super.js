@@ -3,7 +3,7 @@ const tools = require('zhf.tools'); // 工具方法集合
 const routesConfig = require('../../routes/pages/config'); // 路由配置
 const apiConfig = require('../../routes/api/config'); // 接口配置
 const getClientIp = require('zhf.get-client-ip');
-const Admins = require(`../../models/mongoose/admins`);
+const Admin = require(`../../models/mongoose/admin`);
 
 class Super {
     constructor(json) {
@@ -27,7 +27,7 @@ class Super {
             if (adminInfo === undefined) { // 未登录
                 res.redirect(routesConfig.login.route); // 重定向路由
             } else {
-                Admins.findOne({username: adminInfo.username}, function (error, result) {
+                Admin.findOne({username: adminInfo.username}, function (error, result) {
                     if (error) { // 数据库查询出现错误
                         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
                         res.end(`<div style="text-align: center;">

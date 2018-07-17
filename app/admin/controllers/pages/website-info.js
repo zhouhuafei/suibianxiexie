@@ -1,5 +1,5 @@
 const Super = require('../pages-super/super'); // 超类型
-const WebsiteInfos = require('../../models/mongoose/website-infos');
+const WebsiteInfos = require('../../models/mongoose/website-info');
 
 class Sub extends Super {
     // (处)(覆)处理数据(覆盖超类型)

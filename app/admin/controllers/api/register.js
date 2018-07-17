@@ -42,9 +42,9 @@ class Sub extends Super {
                 result: {'verify-code-canvas': verifyCodeCanvas},
             });
         } else {
-            const Admins = require('../../models/mongoose/admins');
+            const Admin = require('../../models/mongoose/admin');
             // 如果管理员账号存在则不可以注册
-            Admins.findOne({}, function (error, result) {
+            Admin.findOne({}, function (error, result) {
                 // 数据库查询出现错误
                 if (error) {
                     self.render({message: '数据库查询出现错误'});
@@ -52,11 +52,11 @@ class Sub extends Super {
                 if (result) {
                     self.render({message: '管理员账号已经存在'});
                 } else {
-                    const admins = new Admins({
+                    const admin = new Admin({
                         username: username,
                         password: password,
                     });
-                    admins.save(function (error, result) {
+                    admin.save(function (error, result) {
                         // 数据库插入出现错误
                         if (error) {
                             self.render({

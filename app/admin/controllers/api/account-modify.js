@@ -34,9 +34,9 @@ class Sub extends Super {
         } else if (verifyCodeCanvas !== sessionVerifyCodeCanvasAdmin) {
             self.render({message: '验证码错误'});
         } else {
-            const Admins = require('../../models/mongoose/admins');
+            const Admin = require('../../models/mongoose/admin');
             // 先检测新用户名是否已经被注册。
-            Admins.findOne({username: newUsername}, function (error, result) {
+            Admin.findOne({username: newUsername}, function (error, result) {
                 if (error) {
                     self.render({message: '数据库查询出现错误'});
                 }
@@ -48,7 +48,7 @@ class Sub extends Super {
                         username: newUsername,
                         loginStamp: `${Math.random()}`.split('.')[1], // 让所有用户掉线
                     };
-                    Admins.update({_id: adminInfo._id}, {$set: $set}, function (error) {
+                    Admin.update({_id: adminInfo._id}, {$set: $set}, function (error) {
                         // 数据库更新出现错误
                         if (error) {
                             self.render({
