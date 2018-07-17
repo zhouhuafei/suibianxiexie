@@ -20,6 +20,7 @@ assets/
 ├── js
 │   ├── api // 接口工具
 │   ├── components-dom // 存放组件
+│   ├── components-dom-business // 业务组件
 │   ├── components-dom-super
 │   ├── components-vue
 │   ├── pages // 存放页面对应的js
@@ -28,7 +29,8 @@ assets/
 │   └── utils // 实用工具
 ├── scss
 │   ├── commons
-│   ├── components
+│   ├── components-dom
+│   ├── components-dom-business
 │   ├── config
 │   ├── fonts
 │   ├── pages

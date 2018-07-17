@@ -17,14 +17,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 __webpack_require__(126);
 var Super = __webpack_require__(6);
 
-// const DialogPopoverApp = require('../components-dom/g-dialog-popover-app');
-// new DialogPopoverApp({
-//     element: '.js-popover',
-//     content: '建议尺寸：640*640',
-//     eventType: 'mouseenter',
-//     positionLocation: 'top-center',
-// });
-
 var DialogPopover = __webpack_require__(127);
 $('.js-popover').each(function () {
     new DialogPopover({
