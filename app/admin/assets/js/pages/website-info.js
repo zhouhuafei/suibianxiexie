@@ -23,7 +23,7 @@ class Sub extends Super {
                 return;
             }
             axios({
-                url: dataInfo.api.galleries.route,
+                url: dataInfo.api.gallery.route,
                 method: 'post',
                 data: formData,
                 onUploadProgress: function (progressEvent) { // 原生获取上传进度的事件

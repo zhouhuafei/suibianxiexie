@@ -65,6 +65,6 @@ const schema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-});
+}, {collection: 'gallery'});
 
-module.exports = mongoose.model('galleries', schema);
+module.exports = mongoose.model('Gallery', schema);

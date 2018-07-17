@@ -1,6 +1,6 @@
 const Super = require('../api-super/super'); // 超类型
 const fs = require('fs');
-const Galleries = require('../../models/mongoose/galleries');
+const Gallery = require('../../models/mongoose/gallery');
 const sizeOf = require('image-size');
 const tools = require('zhf.tools');
 const multipleCalls = tools.multipleCalls;
@@ -53,7 +53,7 @@ class Sub extends Super {
             });
         });
         // 检测是否存在相同的图片，如果存在，则用已存在的那张。待续...
-        Galleries.insertMany(dbFiles, function (error, result) {
+        Gallery.insertMany(dbFiles, function (error, result) {
             if (error) {
                 self.render({
                     message: '数据库插入出现错误',
@@ -101,7 +101,7 @@ class Sub extends Super {
         url.forEach(function (v) {
             let myFailure = null;
             let mySuccess = null;
-            Galleries.findOne({url: v}, function (error, result) {
+            Gallery.findOne({url: v}, function (error, result) {
                 if (error) {
                     myFailure = {error, url: v};
                 }
@@ -210,7 +210,7 @@ class Sub extends Super {
                 },
             });
         });
-        Galleries.count(condition, function (error, allCount) {
+        Gallery.count(condition, function (error, allCount) {
             if (error) {
                 self.render({
                     message: '数据库查询出现错误',
@@ -220,7 +220,7 @@ class Sub extends Super {
                 mulCalls('allCount', allCount);
             }
         });
-        Galleries.find(condition).sort({'_id': -1}).skip((reqNowPage - 1) * reqNowCount).limit(reqNowCount).exec(function (error, result) {
+        Gallery.find(condition).sort({'_id': -1}).skip((reqNowPage - 1) * reqNowCount).limit(reqNowCount).exec(function (error, result) {
             if (error) {
                 self.render({
                     message: '数据库查询失败',

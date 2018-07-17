@@ -50,7 +50,7 @@ var Sub = function (_Super) {
                     return;
                 }
                 axios({
-                    url: dataInfo.api.galleries.route,
+                    url: dataInfo.api.gallery.route,
                     method: 'post',
                     data: formData,
                     onUploadProgress: function onUploadProgress(progressEvent) {
