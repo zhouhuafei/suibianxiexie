@@ -16,10 +16,6 @@ class Sub extends Super {
         session.verifyCodeCanvasAdmin = verifyCodeCanvas.text;
         delete verifyCodeCanvas.text;
         page.verifyCodeCanvas = verifyCodeCanvas;
-        const adminInfo = session.adminInfo;
-        if (adminInfo) {
-            page.username = adminInfo.username;
-        }
         self.render(); // 渲染视图(渲染数据)
     }
 }
