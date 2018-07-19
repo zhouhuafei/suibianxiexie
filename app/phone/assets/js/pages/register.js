@@ -43,7 +43,7 @@ class Sub extends Super {
                             isToTime: false,
                             callback: {
                                 run: function (obj) {
-                                    domGetVerifyCode.innerHTML = `<span class="g-button">${obj.seconds}秒</span>`;
+                                    domGetVerifyCode.innerHTML = `<span class="g-button">${obj.allSeconds}秒</span>`;
                                 },
                                 over: function () {
                                     isCanGetVerifyCode = true;
