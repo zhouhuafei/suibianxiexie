@@ -78,6 +78,28 @@
 
 // 表单
 .g-form-wrap {
+    &.g-form-wrap_style-yes-radius {
+        .g-form .g-form-body {
+            border: px2rem(1) solid $g-border-color-default;
+            border-radius: px2rem(6);
+        }
+    }
+    &.g-form-wrap_style-no-margin {
+        .g-form {
+            margin-bottom: 0;
+            background: #ffffff;
+            border-top: px2rem(1) solid $g-border-color-default;
+            .g-form-body {
+                border: none;
+                .g-form-body-text + .g-form-body-content {
+                    border-left: none;
+                }
+            }
+            &:last-of-type {
+                border-bottom: px2rem(1) solid $g-border-color-default;
+            }
+        }
+    }
     .g-form {
         $height: 40;
         $text-width: 100;
