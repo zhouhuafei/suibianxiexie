@@ -2460,7 +2460,6 @@ input.g-button, button.g-button {
 
 .g-form-wrap .g-form {
   position: relative;
-  min-height: 40px;
   margin-bottom: 10px;
   font-size: 12px; }
   .g-form-wrap .g-form:last-of-type {
@@ -2469,7 +2468,8 @@ input.g-button, button.g-button {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    background: #ffffff; }
+    background: #ffffff;
+    min-height: 40px; }
     .g-form-wrap .g-form .g-form-body .g-form-body-text {
       display: -webkit-box;
       display: -ms-flexbox;
