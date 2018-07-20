@@ -2462,7 +2462,6 @@ input.g-button, button.g-button {
   font-size: 12px; }
   .g-form-wrap .g-form {
     position: relative;
-    background: #ffffff;
     min-height: 40px;
     margin-bottom: 10px; }
     .g-form-wrap .g-form:last-of-type {
@@ -2470,7 +2469,9 @@ input.g-button, button.g-button {
     .g-form-wrap .g-form .g-form-body {
       display: -webkit-box;
       display: -ms-flexbox;
-      display: flex; }
+      display: flex;
+      background: #ffffff;
+      border: 1px solid #e1e1e1; }
       .g-form-wrap .g-form .g-form-body .g-form-body-text {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -2484,6 +2485,8 @@ input.g-button, button.g-button {
         padding: 0 10px;
         min-width: 100px;
         text-align: right; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-text + .g-form-body-content {
+          border-left: 1px solid #e1e1e1; }
       .g-form-wrap .g-form .g-form-body .g-form-body-content {
         display: -webkit-box;
         display: -ms-flexbox;
