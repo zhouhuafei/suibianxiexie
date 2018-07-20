@@ -2495,7 +2495,7 @@ input.g-button, button.g-button {
             -ms-flex-pack: end;
                 justify-content: flex-end;
         padding: 0 10px;
-        min-width: 120px;
+        min-width: 130px;
         text-align: right; }
         .g-form-wrap .g-form .g-form-body .g-form-body-text + .g-form-body-content {
           border-left: 1px solid #e1e1e1; }
@@ -2506,7 +2506,7 @@ input.g-button, button.g-button {
         -webkit-box-flex: 1;
             -ms-flex: 1;
                 flex: 1; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body {
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main {
           display: -webkit-box;
           display: -ms-flexbox;
           display: flex;
@@ -2526,34 +2526,37 @@ input.g-button, button.g-button {
           /* 重置g-textarea */
           /* 当尾部没有icon时 */
           /* 多行情况 */ }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-form-body-content-body-text {
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-form-body-content-main-text {
             padding: 10px;
             line-height: 1.2;
             text-align: justify; }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-upload {
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-upload {
             margin: 10px; }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-input {
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-input {
             border: none; }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-checkbox {
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-checkbox {
             margin-left: 10px; }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-radio {
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-radio {
             margin-left: 10px; }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-select {
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-select {
             border: none; }
-            .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-select .g-select-mark {
+            .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-select .g-select-mark {
               border-right: 1px dashed #e1e1e1; }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body .g-textarea {
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-textarea {
             border: none; }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body:last-of-type .g-select .g-select-mark {
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main:last-of-type .g-select .g-select-mark {
             border-right: none; }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row {
-            /* 重置g-form-body-content-body */
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main.g-form-body-content-main-more-row {
+            /* 重置g-form-body-content-main */
             padding-bottom: 10px;
             /* 重置g-upload */
-            /* 重置g-checkbox */ }
-            .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row .g-upload {
+            /* 重置g-checkbox */
+            /* 重置g-radio */ }
+            .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main.g-form-body-content-main-more-row .g-upload {
               margin: 10px 0 0 10px; }
-            .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-body.g-form-body-content-body-more-row .g-checkbox {
+            .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main.g-form-body-content-main-more-row .g-checkbox {
+              margin: 10px 0 0 10px; }
+            .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main.g-form-body-content-main-more-row .g-radio {
               margin: 10px 0 0 10px; }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-icon {
           display: -webkit-box;

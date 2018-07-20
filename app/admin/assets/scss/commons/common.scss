@@ -116,7 +116,7 @@
                 align-items: center;
                 justify-content: flex-end;
                 padding: 0 px2rem(10);
-                min-width: px2rem(120);
+                min-width: px2rem(130);
                 text-align: right;
                 & + .g-form-body-content {
                     border-left: px2rem(1) solid $g-border-color-default;
@@ -125,12 +125,12 @@
             .g-form-body-content {
                 display: flex;
                 flex: 1;
-                .g-form-body-content-body {
+                .g-form-body-content-main {
                     display: flex;
                     flex: 1;
                     flex-wrap: wrap;
                     align-items: center;
-                    .g-form-body-content-body-text {
+                    .g-form-body-content-main-text {
                         padding: px2rem(10);
                         line-height: 1.2;
                         text-align: justify;
@@ -169,8 +169,8 @@
                         }
                     }
                     /* 多行情况 */
-                    &.g-form-body-content-body-more-row {
-                        /* 重置g-form-body-content-body */
+                    &.g-form-body-content-main-more-row {
+                        /* 重置g-form-body-content-main */
                         padding-bottom: px2rem(10);
                         /* 重置g-upload */
                         .g-upload {
@@ -178,6 +178,10 @@
                         }
                         /* 重置g-checkbox */
                         .g-checkbox {
+                            margin: px2rem(10) px2rem(0) px2rem(0) px2rem(10);
+                        }
+                        /* 重置g-radio */
+                        .g-radio {
                             margin: px2rem(10) px2rem(0) px2rem(0) px2rem(10);
                         }
                     }

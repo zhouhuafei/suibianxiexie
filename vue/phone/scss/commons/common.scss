@@ -73,18 +73,24 @@
 
 // 表单
 .g-form-wrap {
-    &.g-form-wrap-style-1 {
+    font-size: px2rem(12);
+    &.g-form-wrap_style-yes-radius {
+        .g-form .g-form-body {
+            border: px2rem(1) solid $g-border-color-default;
+            border-radius: px2rem(6);
+        }
+    }
+    &.g-form-wrap_style-no-margin {
         .g-form {
+            margin-bottom: 0;
             .g-form-body {
-                border: px2rem(1) solid $g-border-color-default;
-                border-radius: px2rem(6);
-                .g-form-body-content {
-                    border-radius: px2rem(6) 0 0 px2rem(6);
-                    overflow: hidden;
-                }
-                .g-form-body-text + .g-form-body-content {
-                    border-radius: 0 0 0 0;
-                }
+                border-bottom: none;
+            }
+            .g-form-footer {
+                border-top: px2rem(1) solid $g-border-color-default;
+            }
+            &:last-of-type .g-form-body {
+                border-bottom: px2rem(1) solid $g-border-color-default;
             }
         }
     }
@@ -99,12 +105,13 @@
             border-right: none;
             background: #ffffff;
             min-height: px2rem(40);
+            overflow: hidden;
             .g-form-body-text {
                 display: flex;
                 align-items: center;
                 justify-content: flex-end;
                 padding: 0 px2rem(10);
-                min-width: px2rem(120);
+                min-width: px2rem(130);
                 text-align: right;
                 & + .g-form-body-content {
                     border-left: px2rem(1) solid $g-border-color-default;
@@ -113,10 +120,16 @@
             .g-form-body-content {
                 display: flex;
                 flex: 1;
-                .g-form-body-content-body {
+                .g-form-body-content-main {
                     display: flex;
                     flex: 1;
                     flex-wrap: wrap;
+                    align-items: center;
+                    .g-form-body-content-main-text {
+                        padding: px2rem(10);
+                        line-height: 1.2;
+                        text-align: justify;
+                    }
                     /* 重置g-upload */
                     .g-upload {
                         margin: px2rem(10);
@@ -144,9 +157,15 @@
                     .g-textarea {
                         border: none;
                     }
+                    /* 当尾部没有icon时 */
+                    &:last-of-type {
+                        .g-select .g-select-mark {
+                            border-right: none;
+                        }
+                    }
                     /* 多行情况 */
-                    &.g-form-body-content-body-more-row {
-                        /* 重置g-form-body-content-body */
+                    &.g-form-body-content-main-more-row {
+                        /* 重置g-form-body-content-main */
                         padding-bottom: px2rem(10);
                         /* 重置g-upload */
                         .g-upload {
@@ -154,6 +173,10 @@
                         }
                         /* 重置g-checkbox */
                         .g-checkbox {
+                            margin: px2rem(10) px2rem(0) px2rem(0) px2rem(10);
+                        }
+                        /* 重置g-radio */
+                        .g-radio {
                             margin: px2rem(10) px2rem(0) px2rem(0) px2rem(10);
                         }
                     }
@@ -178,11 +201,12 @@
             }
         }
         .g-form-footer {
-            font-size: px2rem(12);
-            color: $g-warning-color;
-            padding: px2rem(5) px2rem(10);
-            line-height: 1.6;
-            text-align: justify;
+            padding: 0 px2rem(10);
+            .g-form-footer-text {
+                color: $g-warning-color;
+                line-height: 1.4;
+                text-align: justify;
+            }
         }
         &:last-of-type {
             margin-bottom: 0;

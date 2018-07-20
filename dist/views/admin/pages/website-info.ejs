@@ -16,7 +16,7 @@
                             <label class="g-form-body">
                                 <span class="g-form-body-text">网站名称:</span>
                                 <span class="g-form-body-content">
-                                    <span class="g-form-body-content-body">
+                                    <span class="g-form-body-content-main">
                                         <input class="g-input js-validate-form" data-validate="no-empty" data-hint="本项必填" type="text" name="name" value="<%= page.name || '' %>" placeholder="请输入网站名称">
                                     </span>
                                     <span class="g-form-body-content-icon iconfont icon-clear"></span>
@@ -28,7 +28,7 @@
                             <label class="g-form-body">
                                 <span class="g-form-body-text">联系电话:</span>
                                 <span class="g-form-body-content">
-                                    <span class="g-form-body-content-body">
+                                    <span class="g-form-body-content-main">
                                         <input class="g-input js-validate-form" data-validate="no-empty yes-phone" data-hint="本项必填 请输入手机号" type="tel" name="phone" value="<%= page.phone || '' %>" placeholder="请输入手机号">
                                     </span>
                                     <span class="g-form-body-content-icon iconfont icon-clear"></span>
@@ -40,7 +40,7 @@
                             <div class="g-form-body">
                                 <div class="g-form-body-text">网站logo:</div>
                                 <div class="g-form-body-content">
-                                    <div class="g-form-body-content-body g-form-body-content-body-more-row">
+                                    <div class="g-form-body-content-main g-form-body-content-main-more-row">
                                         <label class="g-upload <%= page.logo ? 'g-upload_active' : '' %>">
                                             <input class="g-upload-input js-validate-form js-upload" data-event="no-event" data-validate="no-empty yes-limit-length-1" data-hint="本项必传 最多上传1张图片" data-value="<%= page.logo ? 'no-empty' : '' %>" accept="image/gif, image/jpeg, image/png" type="file">
                                             <input type="hidden" name="logo" value="<%= page.logo ? JSON.stringify(page.logo) : '' %>">
@@ -60,7 +60,7 @@
                             <div class="g-form-body">
                                 <div class="g-form-body-text">网站favicon:</div>
                                 <div class="g-form-body-content">
-                                    <div class="g-form-body-content-body g-form-body-content-body-more-row">
+                                    <div class="g-form-body-content-main g-form-body-content-main-more-row">
                                         <label class="g-upload <%= page.favicon ? 'g-upload_active' : '' %>">
                                             <input class="g-upload-input js-validate-form js-upload" data-event="no-event" data-validate="no-empty yes-limit-length-1" data-hint="本项必传 最多上传1张图片" data-value="<%= page.favicon ? 'no-empty' : '' %>" accept="image/vnd.microsoft.icon" type="file">
                                             <input type="hidden" name="favicon" value="<%= page.favicon ? JSON.stringify(page.favicon) : '' %>">
