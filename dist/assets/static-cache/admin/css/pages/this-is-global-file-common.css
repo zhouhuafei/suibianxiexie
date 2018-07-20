@@ -2469,7 +2469,10 @@ input.g-button, button.g-button {
     display: -ms-flexbox;
     display: flex;
     background: #ffffff;
-    min-height: 40px; }
+    min-height: 40px;
+    border: 1px solid #e1e1e1;
+    border-left: none;
+    border-right: none; }
     .g-form-wrap .g-form .g-form-body .g-form-body-text {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -2482,18 +2485,16 @@ input.g-button, button.g-button {
               justify-content: flex-end;
       padding: 0 10px;
       min-width: 100px;
-      text-align: right;
-      border: 1px solid #e1e1e1;
-      border-right: none; }
+      text-align: right; }
+      .g-form-wrap .g-form .g-form-body .g-form-body-text + .g-form-body-content {
+        border-left: 1px solid #e1e1e1; }
     .g-form-wrap .g-form .g-form-body .g-form-body-content {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
       -webkit-box-flex: 1;
           -ms-flex: 1;
-              flex: 1;
-      overflow: hidden;
-      border: 1px solid #e1e1e1; }
+              flex: 1; }
       .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main {
         display: -webkit-box;
         display: -ms-flexbox;

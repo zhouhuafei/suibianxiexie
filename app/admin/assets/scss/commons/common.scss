@@ -91,6 +91,9 @@
             display: flex;
             background: #ffffff;
             min-height: px2rem($height);
+            border: 1px solid $g-border-color-default;
+            border-left: none;
+            border-right: none;
             .g-form-body-text {
                 display: flex;
                 align-items: center;
@@ -98,14 +101,13 @@
                 padding: 0 px2rem(10);
                 min-width: px2rem($text-width);
                 text-align: right;
-                border: 1px solid $g-border-color-default;
-                border-right: none;
+                & + .g-form-body-content {
+                    border-left: 1px solid $g-border-color-default;
+                }
             }
             .g-form-body-content {
                 display: flex;
                 flex: 1;
-                overflow: hidden;
-                border: 1px solid $g-border-color-default;
                 .g-form-body-content-main {
                     display: flex;
                     flex: 1;
