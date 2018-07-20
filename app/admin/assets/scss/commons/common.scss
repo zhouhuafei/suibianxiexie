@@ -79,9 +79,6 @@
 // 表单
 .g-form-wrap {
     font-size: px2rem(12);
-    background: #ffffff;
-    padding: px2rem(30);
-    border-radius: px2rem(10);
     .g-form {
         $height: 40;
         $text-width: 100;
@@ -105,8 +102,6 @@
             .g-form-body-content {
                 display: flex;
                 flex: 1;
-                border: 1px solid $g-border-color-default;
-                border-radius: px2rem(6);
                 overflow: hidden;
                 .g-form-body-content-main {
                     display: flex;

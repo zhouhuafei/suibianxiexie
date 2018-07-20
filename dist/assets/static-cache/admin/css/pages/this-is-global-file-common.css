@@ -2459,10 +2459,7 @@ input.g-button, button.g-button {
     display: none; }
 
 .g-form-wrap {
-  font-size: 12px;
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 10px; }
+  font-size: 12px; }
   .g-form-wrap .g-form {
     position: relative;
     background: #ffffff;
@@ -2494,8 +2491,6 @@ input.g-button, button.g-button {
         -webkit-box-flex: 1;
             -ms-flex: 1;
                 flex: 1;
-        border: 1px solid #e1e1e1;
-        border-radius: 6px;
         overflow: hidden; }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main {
           display: -webkit-box;

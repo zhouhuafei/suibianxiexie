@@ -74,11 +74,9 @@
 // 表单
 .g-form-wrap {
     font-size: px2rem(12);
-    background: #ffffff;
-    padding: px2rem(30);
-    border-radius: px2rem(10);
     .g-form {
         $height: 40;
+        $text-width: 100;
         position: relative;
         background: #ffffff;
         min-height: px2rem($height);
@@ -93,14 +91,12 @@
                 align-items: center;
                 justify-content: flex-end;
                 padding: 0 px2rem(10);
-                min-width: px2rem(100);
+                min-width: px2rem($text-width);
                 text-align: right;
             }
             .g-form-body-content {
                 display: flex;
                 flex: 1;
-                border: 1px solid $g-border-color-default;
-                border-radius: px2rem(6);
                 overflow: hidden;
                 .g-form-body-content-main {
                     display: flex;
@@ -181,7 +177,7 @@
             }
         }
         .g-form-footer {
-            padding: px2rem(5) px2rem(10);
+            padding: px2rem(5) px2rem(10) px2rem(5) px2rem($text-width + 10);
             .g-form-footer-text {
                 color: $g-warning-color;
                 line-height: 1.4;
