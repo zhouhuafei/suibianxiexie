@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../commons/head.ejs %>
+    <link href="/static-cache/admin/css/pages/this-is-global-file-common.css" rel="stylesheet"><link href="/static-cache/admin/css/pages/ui.css" rel="stylesheet"></head>
+    <body>
+        <% include ../commons/top.ejs %>
+        <div class="g-wrap">
+            <% include ../commons/menu.ejs %>
+            <div class="g-body">
+                <!--page start-->
+                <div class="g-title">列表系列</div>
+                <div class="g-list-wrap">
+                    <a href="<%= dataInfo.routes['home'].route %>" class="g-list js-g-tooltip" data-title="点击进入首页">
+                        <div class="g-list-body">
+                            <div class="g-list-body">
+                                <div class="g-list-body-logo iconfont icon-home"></div>
+                                <div class="g-list-body-text">首页</div>
+                            </div>
+                            <div class="g-list-body">
+                                <div class="g-list-body-value">有新的消息</div>
+                                <div class="g-list-body-icon iconfont icon-more"></div>
+                            </div>
+                        </div>
+                        <div class="g-list-footer">首页啥都没有</div>
+                    </a>
+                    <a href="<%= dataInfo.routes['website-info'].route %>" class="g-list js-g-tooltip" data-title="点击进入网站信息页面">
+                        <div class="g-list-body">
+                            <div class="g-list-body">
+                                <div class="g-list-body-logo iconfont icon-home"></div>
+                                <div class="g-list-body-text">网站信息</div>
+                            </div>
+                            <div class="g-list-body">
+                                <div class="g-list-body-value">99</div>
+                                <div class="g-list-body-icon iconfont icon-more"></div>
+                            </div>
+                        </div>
+                        <div class="g-list-footer">网站信息页有网站的基础信息</div>
+                    </a>
+                </div>
+                <div class="g-title">表单系列</div>
+                <form action="" data-method="get">
+                    <div class="g-form-wrap">
+                        <div class="g-form">
+                            <div class="g-form-text">密码:</div>
+                            <div class="g-form-body">
+                                <div class="g-form-body-content">
+                                    <div class="g-form-body-content-main">
+                                        <input class="g-input js-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="password" name="website-password" value="" placeholder="请输入网站标题">
+                                    </div>
+                                    <div class="g-form-body-content-icon iconfont icon-eye_off"></div>
+                                    <div class="g-form-body-content-icon iconfont icon-clear"></div>
+                                    <div class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="g-form">
+                            <div class="g-form-text">电话:</div>
+                            <div class="g-form-body">
+                                <div class="g-form-body-content">
+                                    <div class="g-form-body-content-main">
+                                        <input class="g-input js-validate-form js-g-positive-integer" data-validate="no-empty no-zero yes-positive-integer yes-phone" data-hint="本项必填 本项不可为零 请输入正整数 手机号码格式错误" type="tel" name="website-phone" value="" placeholder="请输入联系电话">
+                                    </div>
+                                    <div class="g-form-body-content-icon iconfont icon-clear"></div>
+                                    <div class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="g-form">
+                            <div class="g-form-text">信息展示:</div>
+                            <div class="g-form-body">
+                                <div class="g-form-body-content">
+                                    <div class="g-form-body-content-main">
+                                        <div class="g-form-body-content-main-text">信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="g-form">
+                            <div class="g-form-text">g-form-text:</div>
+                            <div class="g-form-body">
+                                <div class="g-form-body-content">
+                                    <div class="g-form-body-content-main">
+                                        <input placeholder="请输入" class="g-input js-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="text">
+                                    </div>
+                                    <div class="g-form-body-content-limit">0/100</div>
+                                    <div class="g-form-body-content-icon iconfont icon-clear"></div>
+                                    <div class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="g-form">
+                            <div class="g-form-text">g-form-text:</div>
+                            <div class="g-form-body">
+                                <div class="g-form-body-content">
+                                    <div class="g-form-body-content-main g-form-body-content-main-more-row">
+                                        <div class="g-radio">
+                                            <div class="g-radio-body">
+                                                <input title="" class="g-radio-body-radio js-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="radio" name="sex" value="male">
+                                                <div class="g-radio-body-mark iconfont icon-radio"></div>
+                                            </div>
+                                            <div class="g-radio-text">男</div>
+                                        </div>
+                                        <div class="g-radio">
+                                            <div class="g-radio-body">
+                                                <input title="" class="g-radio-body-radio js-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="radio" name="sex" value="female">
+                                                <div class="g-radio-body-mark iconfont icon-radio"></div>
+                                            </div>
+                                            <div class="g-radio-text">女</div>
+                                        </div>
+                                        <div class="g-radio">
+                                            <div class="g-radio-body">
+                                                <input disabled="disabled" title="" class="g-radio-body-radio js-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="radio" name="sex" value="female">
+                                                <div class="g-radio-body-mark iconfont icon-radio"></div>
+                                            </div>
+                                            <div class="g-radio-text">不男不女</div>
+                                        </div>
+                                    </div>
+                                    <div class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="g-form">
+                            <div class="g-form-text">g-form-text:</div>
+                            <div class="g-form-body">
+                                <div class="g-form-body-content">
+                                    <div class="g-form-body-content-main g-form-body-content-main-more-row">
+                                        <label class="g-checkbox">
+                                            <span class="g-checkbox-body">
+                                                <input checked="checked" title="" class="g-checkbox-body-checkbox js-validate-form" data-event="change" data-validate="no-empty yes-limit-length-2" data-hint="本项必选 仅能选择2个" type="checkbox" name="hobby[]" value="pingpangqiu">
+                                                <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
+                                            </span>
+                                            <span class="g-checkbox-text">金</span>
+                                        </label>
+                                        <label class="g-checkbox">
+                                            <span class="g-checkbox-body">
+                                                <input checked="checked" title="" class="g-checkbox-body-checkbox js-validate-form" data-event="change" data-validate="no-empty yes-limit-length-2" data-hint="本项必选 仅能选择2个" type="checkbox" name="hobby[]" value="lanqiu">
+                                                <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
+                                            </span>
+                                            <span class="g-checkbox-text">木</span>
+                                        </label>
+                                        <label class="g-checkbox">
+                                            <span class="g-checkbox-body">
+                                                <input checked="checked" title="" class="g-checkbox-body-checkbox js-validate-form" data-event="change" data-validate="no-empty yes-limit-length-2" data-hint="本项必选 仅能选择2个" type="checkbox" name="hobby[]" value="zuqiu">
+                                                <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
+                                            </span>
+                                            <span class="g-checkbox-text">水</span>
+                                        </label>
+                                        <label class="g-checkbox">
+                                            <span class="g-checkbox-body">
+                                                <input title="" class="g-checkbox-body-checkbox js-validate-form" data-event="change" data-validate="no-empty yes-limit-length-2" data-hint="本项必选 仅能选择2个" type="checkbox" name="hobby[]" value="zuqiu">
+                                                <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
+                                            </span>
+                                            <span class="g-checkbox-text">火</span>
+                                        </label>
+                                        <label class="g-checkbox">
+                                            <span class="g-checkbox-body">
+                                                <input disabled="disabled" title="" class="g-checkbox-body-checkbox js-validate-form" data-event="change" data-validate="no-empty yes-limit-length-2" data-hint="本项必选 仅能选择2个" type="checkbox" name="hobby[]" value="zuqiu">
+                                                <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
+                                            </span>
+                                            <span class="g-checkbox-text">土</span>
+                                        </label>
+                                    </div>
+                                    <div class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="g-form">
+                            <div class="g-form-text">g-form-text:</div>
+                            <div class="g-form-body">
+                                <div class="g-form-body-content">
+                                    <div class="g-form-body-content-main">
+                                    <span class="g-select">
+                                        <select class="g-select-body js-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" name="" title="请选择你喜欢的球类">
+                                            <option value="">请选择你喜欢的球类</option>
+                                            <option value="1">乒乓球</option>
+                                            <option value="2">篮球</option>
+                                        </select>
+                                        <span class="g-select-mark iconfont icon-select"></span>
+                                    </span>
+                                    </div>
+                                    <div class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="g-form">
+                            <div class="g-form-text">网站logo:</div>
+                            <div class="g-form-body">
+                                <div class="g-form-body-content">
+                                    <div class="g-form-body-content-main g-form-body-content-main-more-row">
+                                        <label class="g-upload g-upload_active js-popover">
+                                            <input class="g-upload-input" accept="image/gif, image/jpeg, image/png" type="file">
+                                            <input type="hidden" name="website-logo">
+                                            <span class="g-upload-icon iconfont icon-upload-img"></span>
+                                            <span class="g-upload-show"></span>
+                                            <span class="g-upload-text">640*640</span>
+                                            <span class="g-upload-opts">
+                                                <span class="g-upload-opts-item iconfont icon-delete"></span>
+                                            </span>
+                                        </label>
+                                        <label class="g-upload g-upload_active js-popover">
+                                            <input class="g-upload-input" accept="image/gif, image/jpeg, image/png" type="file">
+                                            <input type="hidden" name="website-logo">
+                                            <span class="g-upload-icon iconfont icon-upload-img"></span>
+                                            <span class="g-upload-show"></span>
+                                            <span class="g-upload-text">640*640</span>
+                                            <span class="g-upload-opts">
+                                                <span class="g-upload-opts-item iconfont icon-delete"></span>
+                                            </span>
+                                        </label>
+                                        <label class="g-upload js-popover">
+                                            <input class="g-upload-input js-validate-form js-upload-input" data-event="change" data-validate="no-empty yes-limit-length-1" data-hint="本项必传 最多上传1张图片" data-value="true" accept="image/gif, image/jpeg, image/png" type="file">
+                                            <input type="hidden" name="">
+                                            <span class="g-upload-icon iconfont icon-upload-img"></span>
+                                            <span class="g-upload-show"></span>
+                                            <span class="g-upload-text">640*640</span>
+                                            <span class="g-upload-opts">
+                                                <span class="g-upload-opts-item iconfont icon-delete"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></div>
+                                </div>
+                                <div class="g-form-body-footer">
+                                    <div class="g-form-body-footer-text">这里是补充信息，对此项进行补充说明。例如：请上传指定格式的图片。</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="g-form">
+                            <div class="g-form-text">g-form-text:</div>
+                            <div class="g-form-body">
+                                <div class="g-form-body-content">
+                                    <div class="g-form-body-content-main">
+                                    <textarea class="g-textarea js-validate-form" data-validate="no-empty no-zero yes-positive-integer no-999" data-hint="本项必填 本项不可为零 请输入正整数 不允许是999" placeholder="请输入">999</textarea>
+                                    </div>
+                                    <div class="g-form-body-content-limit">0/100</div>
+                                    <div class="g-form-body-content-icon iconfont icon-clear"></div>
+                                    <div class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="g-display-flex g-align-items-center g-margin-top-10">
+                        <input class="g-button g-margin-right-10" type="submit" value="submit">
+                        <div title="" class="g-button g-button-disable g-margin-right-10">禁用</div>
+                        <div title="" class="g-button g-button-cancel g-margin-right-10">取消</div>
+                        <div title="" class="g-button js-save">保存</div>
+                    </div>
+                </form>
+                <!--page end-->
+            </div>
+        </div>
+        <% include ../commons/bottom.ejs %>
+    <script type="text/javascript" src="/static-cache/admin/js/pages/this-is-global-file-manifest.js"></script><script type="text/javascript" src="/static-cache/admin/js/pages/this-is-global-file-vendor.js"></script><script type="text/javascript" src="/static-cache/admin/js/pages/this-is-global-file-common.js"></script><script type="text/javascript" src="/static-cache/admin/js/pages/ui.js"></script></body>
+</html>
