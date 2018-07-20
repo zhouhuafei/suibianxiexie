@@ -79,56 +79,41 @@
 // 表单
 .g-form-wrap {
     font-size: px2rem(12);
-    &.g-form-wrap_style-yes-radius {
-        .g-form {
-            border: px2rem(1) solid $g-border-color-default;
-            border-radius: px2rem(6);
-        }
-    }
-    &.g-form-wrap_style-no-margin {
-        .g-form {
-            margin-bottom: 0;
-            border-bottom: none;
-            &:last-of-type {
-                border-bottom: px2rem(1) solid $g-border-color-default;
-            }
-        }
-    }
+    background: #ffffff;
+    padding: px2rem(30);
+    border-radius: px2rem(10);
     .g-form {
         $height: 40;
-        display: flex;
+        $text-width: 100;
         position: relative;
-        border: px2rem(1) solid $g-border-color-default;
-        border-left: none;
-        border-right: none;
         background: #ffffff;
-        min-height: px2rem(40);
-        overflow: hidden;
+        min-height: px2rem($height);
         margin-bottom: px2rem(10);
         &:last-of-type {
             margin-bottom: 0;
         }
-        .g-form-text {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding: 0 px2rem(10);
-            min-width: px2rem(130);
-            text-align: right;
-            & + .g-form-body {
-                border-left: px2rem(1) solid $g-border-color-default;
-            }
-        }
         .g-form-body {
-            flex: 1;
+            display: flex;
+            .g-form-body-text {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                padding: 0 px2rem(10);
+                min-width: px2rem($text-width);
+                text-align: right;
+            }
             .g-form-body-content {
                 display: flex;
                 flex: 1;
+                border: 1px solid $g-border-color-default;
+                border-radius: px2rem(6);
+                overflow: hidden;
                 .g-form-body-content-main {
                     display: flex;
                     flex: 1;
                     flex-wrap: wrap;
                     align-items: center;
+                    min-height: px2rem($height);
                     .g-form-body-content-main-text {
                         padding: px2rem(10);
                         line-height: 1.2;
@@ -153,9 +138,6 @@
                     /* 重置g-select */
                     .g-select {
                         border: none;
-                        .g-select-mark {
-                            border-right: px2rem(1) dashed $g-border-color-default;
-                        }
                     }
                     /* 重置g-textarea */
                     .g-textarea {
@@ -189,7 +171,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    min-width: px2rem($height / 2);
+                    width: px2rem(20);
                     padding: 0 px2rem(2);
                 }
                 .g-form-body-content-limit {
@@ -203,13 +185,13 @@
                     color: $g-danger-color;
                 }
             }
-            .g-form-body-footer {
-                padding: 0 px2rem(10) px2rem(10);
-                .g-form-body-footer-text {
-                    color: $g-warning-color;
-                    line-height: 1.4;
-                    text-align: justify;
-                }
+        }
+        .g-form-footer {
+            padding: px2rem(5) px2rem(10) px2rem(5) px2rem($text-width + 10);
+            .g-form-footer-text {
+                color: $g-warning-color;
+                line-height: 1.4;
+                text-align: justify;
             }
         }
     }

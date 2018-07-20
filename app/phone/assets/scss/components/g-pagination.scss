@@ -21,6 +21,7 @@
             .g-select-mark {
                 width: px2rem($height);
                 font-size: px2rem(12);
+                border-left: px2rem(1) solid $g-border-color-default;
             }
         }
     }

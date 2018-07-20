@@ -4,7 +4,7 @@
 .g-select {
     $select-height: 40;
     $mark-font-size: 12;
-    $mark-width: $mark-font-size + 20;
+    $mark-width: 20;
     $select-padding-left: 10;
     $select-padding-right: $mark-width;
     position: relative;
@@ -42,7 +42,7 @@
         align-items: center;
         justify-content: center;
         font-size: px2rem($mark-font-size);
-        color: $g-ignore-color;
+        color: #000000;
         width: px2rem($mark-width);
         height: 100%;
         position: absolute;
@@ -50,6 +50,5 @@
         top: 0;
         box-sizing: border-box;
         border-radius: inherit;
-        border-left: px2rem(1) dashed $g-border-color-default;
     }
 }
