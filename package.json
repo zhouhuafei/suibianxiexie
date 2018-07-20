@@ -100,7 +100,7 @@
         "vue": "^2.4.4",
         "vue-router": "^2.8.0",
         "vuex": "^2.5.0",
-        "zhf.applications": "^2.0.11",
+        "zhf.applications": "^2.0.12",
         "zhf.create-file": "^1.1.1",
         "zhf.dom-add-position": "^1.0.5",
         "zhf.get-client-ip": "^1.1.3",
