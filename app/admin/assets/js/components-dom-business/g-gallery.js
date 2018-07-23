@@ -25,7 +25,8 @@ Sub.prototype.moduleDomCreate = function () {
                 <div class="g-mask"></div>
                 <div class="g-gallery">
                     <div class="g-gallery-category">
-                        <div class="g-gallery-category-item">默认</div>
+                        <div class="g-gallery-category-item">全部</div>
+                        <div class="g-gallery-category-item">无分类</div>
                         <div class="g-gallery-category-item"></div>
                     </div>
                     <div class="g-gallery-content">
