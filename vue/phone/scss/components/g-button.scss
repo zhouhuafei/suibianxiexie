@@ -17,11 +17,11 @@
         margin: 0 px2rem(2);
     }
     //取消
-    &.g-button-cancel {
+    &.g-button_cancel {
         background: $g-background-color-default;
     }
     //禁用
-    &.g-button-disable {
+    &.g-button_disable {
         background: $g-background-color-disabled;
         color: $g-font-color-disabled;
         cursor: not-allowed;

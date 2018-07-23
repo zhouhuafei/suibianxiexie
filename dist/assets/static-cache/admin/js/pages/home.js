@@ -1,10 +1,12 @@
-webpackJsonp([7],{
+webpackJsonp([3],{
 
 /***/ 118:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -16,15 +18,24 @@ __webpack_require__(119);
 var Super = __webpack_require__(6);
 
 var Sub = function (_Super) {
-  _inherits(Sub, _Super);
+    _inherits(Sub, _Super);
 
-  function Sub() {
-    _classCallCheck(this, Sub);
+    function Sub() {
+        _classCallCheck(this, Sub);
 
-    return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).apply(this, arguments));
-  }
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).apply(this, arguments));
+    }
 
-  return Sub;
+    _createClass(Sub, [{
+        key: 'power',
+        value: function power() {
+            // 测试图片库
+            var Gallery = __webpack_require__(120);
+            new Gallery();
+        }
+    }]);
+
+    return Sub;
 }(Super);
 
 new Sub();
@@ -35,6 +46,47 @@ new Sub();
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 120:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var tools = __webpack_require__(0); // 工具方法集合
+var applications = __webpack_require__(2); // 应用方法集合
+var Super = __webpack_require__(7); // 超类型(子类型继承的对象)
+
+// 子类型
+var Sub = tools.constructorInherit(Super, {
+    // 容器
+    wrap: '.g-wrap',
+    // 回调
+    callback: {},
+    // 配置
+    config: {},
+    // 数据
+    data: {}
+});
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+Sub.prototype.moduleDomCreate = function () {
+    this.moduleDom = applications.createElement({
+        style: this.opts.config.moduleDomStyle,
+        customAttribute: this.opts.config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-gallery-wrap',
+            innerHTML: '\n                <div class="g-mask"></div>\n                <div class="g-gallery">\n                    <div class="g-gallery-category">\n                        <div class="g-gallery-category-item">\u9ED8\u8BA4</div>\n                        <div class="g-gallery-category-item"></div>\n                    </div>\n                    <div class="g-gallery-content">\n                        <div class="g-gallery-content-header"></div>\n                        <div class="g-gallery-content-body"></div>\n                        <div class="g-gallery-content-footer"></div>\n                    </div>\n                    <div class="g-gallery-options"></div>                                        \n                </div>\n            '
+        }
+    });
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {};
+
+module.exports = Sub;
 
 /***/ })
 

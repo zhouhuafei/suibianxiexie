@@ -3,7 +3,7 @@ webpackJsonp([0],[
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-function Tools(){}Tools.prototype.typeOf=__webpack_require__(23),Tools.prototype.extend=__webpack_require__(9),Tools.prototype.objRemoveQuote=__webpack_require__(24),Tools.prototype.constructorInherit=__webpack_require__(47),Tools.prototype.arrayRemoveRepeat=__webpack_require__(48),Tools.prototype.secondsToTime=__webpack_require__(49),Tools.prototype.fillZero=__webpack_require__(25),Tools.prototype.jsonToArray=__webpack_require__(50),Tools.prototype.strToHump=__webpack_require__(51),Tools.prototype.randomNum=__webpack_require__(52),Tools.prototype.checkStr=__webpack_require__(53),Tools.prototype.queryString=__webpack_require__(54),Tools.prototype.dateFormat=__webpack_require__(55),Tools.prototype.isLeapYear=__webpack_require__(56),Tools.prototype.howManyDays=__webpack_require__(57),Tools.prototype.createUniqueChar=__webpack_require__(58),Tools.prototype.htmlEncode=__webpack_require__(59),Tools.prototype.dataType=__webpack_require__(60),Tools.prototype.multipleCalls=__webpack_require__(61),Tools.prototype.moneyFormat=__webpack_require__(17),Tools.prototype.strGetNum=__webpack_require__(26),Tools.prototype.keepDecimal=__webpack_require__(27),Tools.prototype.strToNum=__webpack_require__(62),module.exports=new Tools;
+function Tools(){}Tools.prototype.typeOf=__webpack_require__(23),Tools.prototype.extend=__webpack_require__(10),Tools.prototype.objRemoveQuote=__webpack_require__(24),Tools.prototype.constructorInherit=__webpack_require__(47),Tools.prototype.arrayRemoveRepeat=__webpack_require__(48),Tools.prototype.secondsToTime=__webpack_require__(49),Tools.prototype.fillZero=__webpack_require__(25),Tools.prototype.jsonToArray=__webpack_require__(50),Tools.prototype.strToHump=__webpack_require__(51),Tools.prototype.randomNum=__webpack_require__(52),Tools.prototype.checkStr=__webpack_require__(53),Tools.prototype.queryString=__webpack_require__(54),Tools.prototype.dateFormat=__webpack_require__(55),Tools.prototype.isLeapYear=__webpack_require__(56),Tools.prototype.howManyDays=__webpack_require__(57),Tools.prototype.createUniqueChar=__webpack_require__(58),Tools.prototype.htmlEncode=__webpack_require__(59),Tools.prototype.dataType=__webpack_require__(60),Tools.prototype.multipleCalls=__webpack_require__(61),Tools.prototype.moneyFormat=__webpack_require__(17),Tools.prototype.strGetNum=__webpack_require__(26),Tools.prototype.keepDecimal=__webpack_require__(27),Tools.prototype.strToNum=__webpack_require__(62),module.exports=new Tools;
 
 /***/ }),
 /* 1 */
@@ -1807,7 +1807,7 @@ function isnan (val) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var extend=__webpack_require__(9);function Applications(){}Applications.prototype.extend=extend,Applications.prototype.cookie=__webpack_require__(63),Applications.prototype.createElement=__webpack_require__(64),Applications.prototype.AddSubtractInput=__webpack_require__(65),Applications.prototype.getDomArray=__webpack_require__(4),Applications.prototype.getParent=__webpack_require__(66),Applications.prototype.htmlToDom=__webpack_require__(67),Applications.prototype.domRemove=__webpack_require__(68),Applications.prototype.browserPlatform=__webpack_require__(69),Applications.prototype.offset=__webpack_require__(70),Applications.prototype.scrollMoveTo=__webpack_require__(71),Applications.prototype.SelectAll=__webpack_require__(72),Applications.prototype.WhenScrollBottom=__webpack_require__(74),Applications.prototype.whetherDisableScroll=__webpack_require__(75),module.exports=new Applications;
+var extend=__webpack_require__(10);function Applications(){}Applications.prototype.extend=extend,Applications.prototype.cookie=__webpack_require__(63),Applications.prototype.createElement=__webpack_require__(64),Applications.prototype.AddSubtractInput=__webpack_require__(65),Applications.prototype.getDomArray=__webpack_require__(4),Applications.prototype.getParent=__webpack_require__(66),Applications.prototype.htmlToDom=__webpack_require__(67),Applications.prototype.domRemove=__webpack_require__(68),Applications.prototype.browserPlatform=__webpack_require__(69),Applications.prototype.offset=__webpack_require__(70),Applications.prototype.scrollMoveTo=__webpack_require__(71),Applications.prototype.SelectAll=__webpack_require__(72),Applications.prototype.WhenScrollBottom=__webpack_require__(74),Applications.prototype.whetherDisableScroll=__webpack_require__(75),module.exports=new Applications;
 
 /***/ }),
 /* 3 */,
@@ -2109,176 +2109,6 @@ module.exports = Super;
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports) {
-
-if (typeof Object.create === 'function') {
-  // implementation from standard node.js 'util' module
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    ctor.prototype = Object.create(superCtor.prototype, {
-      constructor: {
-        value: ctor,
-        enumerable: false,
-        writable: true,
-        configurable: true
-      }
-    });
-  };
-} else {
-  // old school shim for old browsers
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    var TempCtor = function () {}
-    TempCtor.prototype = superCtor.prototype
-    ctor.prototype = new TempCtor()
-    ctor.prototype.constructor = ctor
-  }
-}
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-// a duplex stream is just a stream that is both readable and writable.
-// Since JS doesn't have multiple prototypal inheritance, this class
-// prototypally inherits from Readable, and then parasitically from
-// Writable.
-
-
-
-/*<replacement>*/
-
-var processNextTick = __webpack_require__(13);
-/*</replacement>*/
-
-/*<replacement>*/
-var objectKeys = Object.keys || function (obj) {
-  var keys = [];
-  for (var key in obj) {
-    keys.push(key);
-  }return keys;
-};
-/*</replacement>*/
-
-module.exports = Duplex;
-
-/*<replacement>*/
-var util = __webpack_require__(12);
-util.inherits = __webpack_require__(7);
-/*</replacement>*/
-
-var Readable = __webpack_require__(36);
-var Writable = __webpack_require__(22);
-
-util.inherits(Duplex, Readable);
-
-var keys = objectKeys(Writable.prototype);
-for (var v = 0; v < keys.length; v++) {
-  var method = keys[v];
-  if (!Duplex.prototype[method]) Duplex.prototype[method] = Writable.prototype[method];
-}
-
-function Duplex(options) {
-  if (!(this instanceof Duplex)) return new Duplex(options);
-
-  Readable.call(this, options);
-  Writable.call(this, options);
-
-  if (options && options.readable === false) this.readable = false;
-
-  if (options && options.writable === false) this.writable = false;
-
-  this.allowHalfOpen = true;
-  if (options && options.allowHalfOpen === false) this.allowHalfOpen = false;
-
-  this.once('end', onend);
-}
-
-// the no-half-open enforcer
-function onend() {
-  // if we allow half-open state, or if the writable side ended,
-  // then we're ok.
-  if (this.allowHalfOpen || this._writableState.ended) return;
-
-  // no more data can be written.
-  // But allow more writes to happen in this tick.
-  processNextTick(onEndNT, this);
-}
-
-function onEndNT(self) {
-  self.end();
-}
-
-Object.defineProperty(Duplex.prototype, 'destroyed', {
-  get: function () {
-    if (this._readableState === undefined || this._writableState === undefined) {
-      return false;
-    }
-    return this._readableState.destroyed && this._writableState.destroyed;
-  },
-  set: function (value) {
-    // we ignore the value if the stream
-    // has not been initialized yet
-    if (this._readableState === undefined || this._writableState === undefined) {
-      return;
-    }
-
-    // backward compatibility, the user is explicitly
-    // managing destroyed
-    this._readableState.destroyed = value;
-    this._writableState.destroyed = value;
-  }
-});
-
-Duplex.prototype._destroy = function (err, cb) {
-  this.push(null);
-  this.end();
-
-  processNextTick(cb, err);
-};
-
-function forEach(xs, f) {
-  for (var i = 0, l = xs.length; i < l; i++) {
-    f(xs[i], i);
-  }
-}
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(o){return typeof o}:function(o){return o&&"function"==typeof Symbol&&o.constructor===Symbol&&o!==Symbol.prototype?"symbol":typeof o};!function(o,t){"object"===( false?"undefined":_typeof(exports))&&"undefined"!=typeof module?module.exports=t(): true?!(__WEBPACK_AMD_DEFINE_FACTORY__ = (t),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):("object"!==Object.prototype.toString.call(window.zhf).slice(8,-1).toLowerCase()&&(window.zhf={}),window.zhf.extend=t())}(0,function(){return function o(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],r=Object.prototype.toString.call(t).slice(8,-1).toLowerCase();return r!==Object.prototype.toString.call(e).slice(8,-1).toLowerCase()||!n||"object"!==r&&"array"!==r?t=e:Object.keys(e).forEach(function(r){var i=Object.prototype.toString.call(t[r]).slice(8,-1).toLowerCase();i!==Object.prototype.toString.call(e[r]).slice(8,-1).toLowerCase()||!n||"object"!==i&&"array"!==i?void 0!==e[r]&&(t[r]=e[r]):o(t[r],e[r])}),t}});
-
-/***/ }),
-/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2480,6 +2310,176 @@ Super.prototype.getModuleDomHtml = function () {
 module.exports = Super;
 
 /***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+if (typeof Object.create === 'function') {
+  // implementation from standard node.js 'util' module
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    ctor.prototype = Object.create(superCtor.prototype, {
+      constructor: {
+        value: ctor,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+  };
+} else {
+  // old school shim for old browsers
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    var TempCtor = function () {}
+    TempCtor.prototype = superCtor.prototype
+    ctor.prototype = new TempCtor()
+    ctor.prototype.constructor = ctor
+  }
+}
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// a duplex stream is just a stream that is both readable and writable.
+// Since JS doesn't have multiple prototypal inheritance, this class
+// prototypally inherits from Readable, and then parasitically from
+// Writable.
+
+
+
+/*<replacement>*/
+
+var processNextTick = __webpack_require__(13);
+/*</replacement>*/
+
+/*<replacement>*/
+var objectKeys = Object.keys || function (obj) {
+  var keys = [];
+  for (var key in obj) {
+    keys.push(key);
+  }return keys;
+};
+/*</replacement>*/
+
+module.exports = Duplex;
+
+/*<replacement>*/
+var util = __webpack_require__(12);
+util.inherits = __webpack_require__(8);
+/*</replacement>*/
+
+var Readable = __webpack_require__(36);
+var Writable = __webpack_require__(22);
+
+util.inherits(Duplex, Readable);
+
+var keys = objectKeys(Writable.prototype);
+for (var v = 0; v < keys.length; v++) {
+  var method = keys[v];
+  if (!Duplex.prototype[method]) Duplex.prototype[method] = Writable.prototype[method];
+}
+
+function Duplex(options) {
+  if (!(this instanceof Duplex)) return new Duplex(options);
+
+  Readable.call(this, options);
+  Writable.call(this, options);
+
+  if (options && options.readable === false) this.readable = false;
+
+  if (options && options.writable === false) this.writable = false;
+
+  this.allowHalfOpen = true;
+  if (options && options.allowHalfOpen === false) this.allowHalfOpen = false;
+
+  this.once('end', onend);
+}
+
+// the no-half-open enforcer
+function onend() {
+  // if we allow half-open state, or if the writable side ended,
+  // then we're ok.
+  if (this.allowHalfOpen || this._writableState.ended) return;
+
+  // no more data can be written.
+  // But allow more writes to happen in this tick.
+  processNextTick(onEndNT, this);
+}
+
+function onEndNT(self) {
+  self.end();
+}
+
+Object.defineProperty(Duplex.prototype, 'destroyed', {
+  get: function () {
+    if (this._readableState === undefined || this._writableState === undefined) {
+      return false;
+    }
+    return this._readableState.destroyed && this._writableState.destroyed;
+  },
+  set: function (value) {
+    // we ignore the value if the stream
+    // has not been initialized yet
+    if (this._readableState === undefined || this._writableState === undefined) {
+      return;
+    }
+
+    // backward compatibility, the user is explicitly
+    // managing destroyed
+    this._readableState.destroyed = value;
+    this._writableState.destroyed = value;
+  }
+});
+
+Duplex.prototype._destroy = function (err, cb) {
+  this.push(null);
+  this.end();
+
+  processNextTick(cb, err);
+};
+
+function forEach(xs, f) {
+  for (var i = 0, l = xs.length; i < l; i++) {
+    f(xs[i], i);
+  }
+}
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(o){return typeof o}:function(o){return o&&"function"==typeof Symbol&&o.constructor===Symbol&&o!==Symbol.prototype?"symbol":typeof o};!function(o,t){"object"===( false?"undefined":_typeof(exports))&&"undefined"!=typeof module?module.exports=t(): true?!(__WEBPACK_AMD_DEFINE_FACTORY__ = (t),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):("object"!==Object.prototype.toString.call(window.zhf).slice(8,-1).toLowerCase()&&(window.zhf={}),window.zhf.extend=t())}(0,function(){return function o(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],r=Object.prototype.toString.call(t).slice(8,-1).toLowerCase();return r!==Object.prototype.toString.call(e).slice(8,-1).toLowerCase()||!n||"object"!==r&&"array"!==r?t=e:Object.keys(e).forEach(function(r){var i=Object.prototype.toString.call(t[r]).slice(8,-1).toLowerCase();i!==Object.prototype.toString.call(e[r]).slice(8,-1).toLowerCase()||!n||"object"!==i&&"array"!==i?void 0!==e[r]&&(t[r]=e[r]):o(t[r],e[r])}),t}});
+
+/***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2488,7 +2488,7 @@ module.exports = Super;
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(2); // 应用方法集合
-var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(7); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -3609,7 +3609,7 @@ exports = module.exports = __webpack_require__(36);
 exports.Stream = exports;
 exports.Readable = exports;
 exports.Writable = __webpack_require__(22);
-exports.Duplex = __webpack_require__(8);
+exports.Duplex = __webpack_require__(9);
 exports.Transform = __webpack_require__(40);
 exports.PassThrough = __webpack_require__(90);
 
@@ -3686,7 +3686,7 @@ Writable.WritableState = WritableState;
 
 /*<replacement>*/
 var util = __webpack_require__(12);
-util.inherits = __webpack_require__(7);
+util.inherits = __webpack_require__(8);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -3717,7 +3717,7 @@ util.inherits(Writable, Stream);
 function nop() {}
 
 function WritableState(options, stream) {
-  Duplex = Duplex || __webpack_require__(8);
+  Duplex = Duplex || __webpack_require__(9);
 
   options = options || {};
 
@@ -3857,7 +3857,7 @@ if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.protot
 }
 
 function Writable(options) {
-  Duplex = Duplex || __webpack_require__(8);
+  Duplex = Duplex || __webpack_require__(9);
 
   // Writable ctor is applied to Duplexes, too.
   // `realHasInstance` is necessary because using plain `instanceof`
@@ -4591,7 +4591,7 @@ module.exports = {
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(2); // 应用方法集合
-var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(7); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -4670,7 +4670,7 @@ Sub.prototype.renderConfirm = function () {
     if (config.isShowFooter) {
         var htmlCancel = '';
         if (config.isShowCancel) {
-            htmlCancel = '<div class="g-button g-button-cancel g-dialog-confirm-footer-cancel">' + config.cancelContent + '</div>';
+            htmlCancel = '<div class="g-button g-button_cancel g-dialog-confirm-footer-cancel">' + config.cancelContent + '</div>';
         }
         var htmlConfirm = '';
         if (config.isShowConfirm) {
@@ -4765,7 +4765,7 @@ module.exports = Array.isArray || function (arr) {
 module.exports = Stream;
 
 var EE = __webpack_require__(20).EventEmitter;
-var inherits = __webpack_require__(7);
+var inherits = __webpack_require__(8);
 
 inherits(Stream, EE);
 Stream.Readable = __webpack_require__(21);
@@ -4942,7 +4942,7 @@ function _isUint8Array(obj) {
 
 /*<replacement>*/
 var util = __webpack_require__(12);
-util.inherits = __webpack_require__(7);
+util.inherits = __webpack_require__(8);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -4978,7 +4978,7 @@ function prependListener(emitter, event, fn) {
 }
 
 function ReadableState(options, stream) {
-  Duplex = Duplex || __webpack_require__(8);
+  Duplex = Duplex || __webpack_require__(9);
 
   options = options || {};
 
@@ -5046,7 +5046,7 @@ function ReadableState(options, stream) {
 }
 
 function Readable(options) {
-  Duplex = Duplex || __webpack_require__(8);
+  Duplex = Duplex || __webpack_require__(9);
 
   if (!(this instanceof Readable)) return new Readable(options);
 
@@ -6319,11 +6319,11 @@ function simpleEnd(buf) {
 
 module.exports = Transform;
 
-var Duplex = __webpack_require__(8);
+var Duplex = __webpack_require__(9);
 
 /*<replacement>*/
 var util = __webpack_require__(12);
-util.inherits = __webpack_require__(7);
+util.inherits = __webpack_require__(8);
 /*</replacement>*/
 
 util.inherits(Transform, Duplex);
@@ -7538,7 +7538,7 @@ exports.log = function() {
  *     prototype.
  * @param {function} superCtor Constructor function to inherit prototype from.
  */
-exports.inherits = __webpack_require__(7);
+exports.inherits = __webpack_require__(8);
 
 exports._extend = function(origin, add) {
   // Don't do anything if add isn't an object
@@ -7694,7 +7694,7 @@ module.exports = crc32;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var extend=__webpack_require__(9),objRemoveQuote=__webpack_require__(24);function constructorInherit(e){var o=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};if("function"!==Object.prototype.toString.call(e).toLowerCase().slice(8,-1))return console.log("no find Super or Super error"),!1;function t(t){e.call(this,extend(objRemoveQuote(o),t))}return Object.keys(e.prototype).forEach(function(o){t.prototype[o]=e.prototype[o]}),t}module.exports=constructorInherit;
+var extend=__webpack_require__(10),objRemoveQuote=__webpack_require__(24);function constructorInherit(e){var o=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};if("function"!==Object.prototype.toString.call(e).toLowerCase().slice(8,-1))return console.log("no find Super or Super error"),!1;function t(t){e.call(this,extend(objRemoveQuote(o),t))}return Object.keys(e.prototype).forEach(function(o){t.prototype[o]=e.prototype[o]}),t}module.exports=constructorInherit;
 
 /***/ }),
 /* 48 */
@@ -7880,7 +7880,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var extend=__webpack_require__(9),getDomArray=__webpack_require__(4);function AddSubtractInput(a){this.opts=extend({add:null,subtract:null,input:null,step:1,min:1,value:1,max:99999999,offClass:"_off",isAsync:!1,asyncHandleValue:function(){},callback:function(){}},a),this.init()}AddSubtractInput.prototype.render=function(){var a=this.opts,t={};t.asyncHandleValue=a.asyncHandleValue,t.cbFn=a.callback,t.add=getDomArray(a.add)[0],t.subtract=getDomArray(a.subtract)[0],t.input=getDomArray(a.input)[0];var e=Number(a.step)||1;t.step=e<1?1:e;var n=Number(a.min)||1;t.min=n<1?1:n;var u=Number(a.value)||1;t.value=u<1?1:u,t.oldValue=t.value;var s=Number(a.max)||1;t.max=s<1?1:s,t.offClass=a.offClass,t.isAsync=a.isAsync,this.handleData=t},AddSubtractInput.prototype.init=function(){this.render(),this.power()},AddSubtractInput.prototype.power=function(){var a=this,t=a.handleData;t.input&&t.add&&t.subtract&&(t.input.value=a.handleValue(),a.handleStatus(),t.add.addEventListener("click",function(e){e.preventDefault(),e.stopPropagation(),t.oldValue=t.value,t.value+=t.step,a.setInputValue(this)}),t.subtract.addEventListener("click",function(e){e.preventDefault(),e.stopPropagation(),t.oldValue=t.value,t.value-=t.step,a.setInputValue(this)}),t.input.addEventListener("blur",function(e){e.preventDefault(),e.stopPropagation(),t.oldValue=t.value,t.value=Number(this.value)||1,a.setInputValue(this)}))},AddSubtractInput.prototype.redressValue=function(){var a=this.handleData,t=a.step,e=a.max,n=a.value;t>1&&(a.min=t,a.max=e-e%t,a.value=Math.floor(n/t)*t)},AddSubtractInput.prototype.handleValue=function(){this.redressValue();var a=this.handleData,t=a.value;return a.max<a.min&&(a.max=a.min),t<a.min&&(t=a.min),t>a.max&&(t=a.max),a.value=t,t},AddSubtractInput.prototype.handleStatus=function(){var a=this.handleData,t=a.value;a.add.classList.remove(a.offClass),a.subtract.classList.remove(a.offClass),t<=a.min&&a.subtract.classList.add(a.offClass),t>=a.max&&a.add.classList.add(a.offClass),a.min===a.max&&(a.add.classList.add(a.offClass),a.subtract.classList.add(a.offClass),a.input.readOnly=!0)},AddSubtractInput.prototype.setInputValue=function(a){var t=this,e=t.handleData;if(e.input&&e.add&&e.subtract){var n=t.handleValue();e.isAsync?e.isTriggerWhenAsync||(e.isTriggerWhenAsync=!0,t.handleData.asyncHandleValue({self:t,handleData:e,dom:a,theCallbackMustBeTriggered:function(a){a||(n=e.oldValue),e.value=n,t.handleStatus(),e.input.value=n,delete e.isTriggerWhenAsync,e.cbFn({min:e.min,max:e.max,value:n})}})):(t.handleStatus(),e.input.value=n,e.cbFn({min:e.min,max:e.max,value:n}))}},module.exports=AddSubtractInput;
+var extend=__webpack_require__(10),getDomArray=__webpack_require__(4);function AddSubtractInput(a){this.opts=extend({add:null,subtract:null,input:null,step:1,min:1,value:1,max:99999999,offClass:"_off",isAsync:!1,asyncHandleValue:function(){},callback:function(){}},a),this.init()}AddSubtractInput.prototype.render=function(){var a=this.opts,t={};t.asyncHandleValue=a.asyncHandleValue,t.cbFn=a.callback,t.add=getDomArray(a.add)[0],t.subtract=getDomArray(a.subtract)[0],t.input=getDomArray(a.input)[0];var e=Number(a.step)||1;t.step=e<1?1:e;var n=Number(a.min)||1;t.min=n<1?1:n;var u=Number(a.value)||1;t.value=u<1?1:u,t.oldValue=t.value;var s=Number(a.max)||1;t.max=s<1?1:s,t.offClass=a.offClass,t.isAsync=a.isAsync,this.handleData=t},AddSubtractInput.prototype.init=function(){this.render(),this.power()},AddSubtractInput.prototype.power=function(){var a=this,t=a.handleData;t.input&&t.add&&t.subtract&&(t.input.value=a.handleValue(),a.handleStatus(),t.add.addEventListener("click",function(e){e.preventDefault(),e.stopPropagation(),t.oldValue=t.value,t.value+=t.step,a.setInputValue(this)}),t.subtract.addEventListener("click",function(e){e.preventDefault(),e.stopPropagation(),t.oldValue=t.value,t.value-=t.step,a.setInputValue(this)}),t.input.addEventListener("blur",function(e){e.preventDefault(),e.stopPropagation(),t.oldValue=t.value,t.value=Number(this.value)||1,a.setInputValue(this)}))},AddSubtractInput.prototype.redressValue=function(){var a=this.handleData,t=a.step,e=a.max,n=a.value;t>1&&(a.min=t,a.max=e-e%t,a.value=Math.floor(n/t)*t)},AddSubtractInput.prototype.handleValue=function(){this.redressValue();var a=this.handleData,t=a.value;return a.max<a.min&&(a.max=a.min),t<a.min&&(t=a.min),t>a.max&&(t=a.max),a.value=t,t},AddSubtractInput.prototype.handleStatus=function(){var a=this.handleData,t=a.value;a.add.classList.remove(a.offClass),a.subtract.classList.remove(a.offClass),t<=a.min&&a.subtract.classList.add(a.offClass),t>=a.max&&a.add.classList.add(a.offClass),a.min===a.max&&(a.add.classList.add(a.offClass),a.subtract.classList.add(a.offClass),a.input.readOnly=!0)},AddSubtractInput.prototype.setInputValue=function(a){var t=this,e=t.handleData;if(e.input&&e.add&&e.subtract){var n=t.handleValue();e.isAsync?e.isTriggerWhenAsync||(e.isTriggerWhenAsync=!0,t.handleData.asyncHandleValue({self:t,handleData:e,dom:a,theCallbackMustBeTriggered:function(a){a||(n=e.oldValue),e.value=n,t.handleStatus(),e.input.value=n,delete e.isTriggerWhenAsync,e.cbFn({min:e.min,max:e.max,value:n})}})):(t.handleStatus(),e.input.value=n,e.cbFn({min:e.min,max:e.max,value:n}))}},module.exports=AddSubtractInput;
 
 /***/ }),
 /* 66 */
@@ -7941,7 +7941,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var extend=__webpack_require__(9),getDomArray=__webpack_require__(4),eventDelegate=__webpack_require__(73);function SelectAll(e){this.opts=extend({items:null,isOpenEventDelegate:!1,isFilterDisabled:!0,isUseCheckboxBtnSelectAll:!1,checkboxBtn:null,callback:{click:function(){}}},e),this.init()}SelectAll.prototype.init=function(){this.itemsDom=getDomArray(this.opts.items),this.power()},SelectAll.prototype.selectNothing=function(){var e=this,t=e.opts;t.isOpenEventDelegate&&(e.itemsDom=getDomArray(t.items)),e.itemsDom.forEach(function(e){t.isFilterDisabled&&e.disabled||(e.checked=!1)})},SelectAll.prototype.selectAll=function(){var e=this,t=e.opts;t.isOpenEventDelegate&&(e.itemsDom=getDomArray(t.items)),e.itemsDom.forEach(function(e){t.isFilterDisabled&&e.disabled||(e.checked=!0)})},SelectAll.prototype.selectReverse=function(){var e=this,t=e.opts;t.isOpenEventDelegate&&(e.itemsDom=getDomArray(t.items)),e.itemsDom.forEach(function(e){t.isFilterDisabled&&e.disabled||(e.checked=!e.checked)})},SelectAll.prototype.isSelectAll=function(){var e=this,t=e.opts;t.isOpenEventDelegate&&(e.itemsDom=getDomArray(t.items));var l=!0;return e.itemsDom.forEach(function(e){t.isFilterDisabled&&e.disabled||!1===e.checked&&(l=!1)}),l},SelectAll.prototype.power=function(){var e=this,t=e.opts,l=t.isUseCheckboxBtnSelectAll,i=document.querySelector(t.checkboxBtn),c=!!i&&"checkbox"===i.type;l&&c&&(i.isBindSelectAllClick||(i.isBindSelectAllClick=!0,i.addEventListener("click",function(){this.checked?e.selectAll():e.selectNothing()}))),t.isOpenEventDelegate?document.isBindSelectAllClick||(document.isBindSelectAllClick=!0,eventDelegate.on(document,"click",t.items,function(){var s=e.isSelectAll();l&&c&&(i.checked=s),t.callback.click({element:this,isCheckedAll:s})})):e.itemsDom.forEach(function(s){s.isBindSelectAllClick||(s.isBindSelectAllClick=!0,s.addEventListener("click",function(){var s=e.isSelectAll();l&&c&&(i.checked=s),t.callback.click({element:this,isCheckedAll:s})}))})},module.exports=SelectAll;
+var extend=__webpack_require__(10),getDomArray=__webpack_require__(4),eventDelegate=__webpack_require__(73);function SelectAll(e){this.opts=extend({items:null,isOpenEventDelegate:!1,isFilterDisabled:!0,isUseCheckboxBtnSelectAll:!1,checkboxBtn:null,callback:{click:function(){}}},e),this.init()}SelectAll.prototype.init=function(){this.itemsDom=getDomArray(this.opts.items),this.power()},SelectAll.prototype.selectNothing=function(){var e=this,t=e.opts;t.isOpenEventDelegate&&(e.itemsDom=getDomArray(t.items)),e.itemsDom.forEach(function(e){t.isFilterDisabled&&e.disabled||(e.checked=!1)})},SelectAll.prototype.selectAll=function(){var e=this,t=e.opts;t.isOpenEventDelegate&&(e.itemsDom=getDomArray(t.items)),e.itemsDom.forEach(function(e){t.isFilterDisabled&&e.disabled||(e.checked=!0)})},SelectAll.prototype.selectReverse=function(){var e=this,t=e.opts;t.isOpenEventDelegate&&(e.itemsDom=getDomArray(t.items)),e.itemsDom.forEach(function(e){t.isFilterDisabled&&e.disabled||(e.checked=!e.checked)})},SelectAll.prototype.isSelectAll=function(){var e=this,t=e.opts;t.isOpenEventDelegate&&(e.itemsDom=getDomArray(t.items));var l=!0;return e.itemsDom.forEach(function(e){t.isFilterDisabled&&e.disabled||!1===e.checked&&(l=!1)}),l},SelectAll.prototype.power=function(){var e=this,t=e.opts,l=t.isUseCheckboxBtnSelectAll,i=document.querySelector(t.checkboxBtn),c=!!i&&"checkbox"===i.type;l&&c&&(i.isBindSelectAllClick||(i.isBindSelectAllClick=!0,i.addEventListener("click",function(){this.checked?e.selectAll():e.selectNothing()}))),t.isOpenEventDelegate?document.isBindSelectAllClick||(document.isBindSelectAllClick=!0,eventDelegate.on(document,"click",t.items,function(){var s=e.isSelectAll();l&&c&&(i.checked=s),t.callback.click({element:this,isCheckedAll:s})})):e.itemsDom.forEach(function(s){s.isBindSelectAllClick||(s.isBindSelectAllClick=!0,s.addEventListener("click",function(){var s=e.isSelectAll();l&&c&&(i.checked=s),t.callback.click({element:this,isCheckedAll:s})}))})},module.exports=SelectAll;
 
 /***/ }),
 /* 73 */
@@ -7955,7 +7955,7 @@ var _createClass=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var extend=__webpack_require__(9);function WhenScrollBottom(t){this.opts=extend({callback:{success:function(){},failure:function(){}},isBindScrollEvent:!0,isInitRender:!0,interval:80,errorHeight:0},t),this.timer=null,this.isLoadOver=!1,this.init()}WhenScrollBottom.prototype.init=function(){this.opts.isInitRender&&this.render(),this.power()},WhenScrollBottom.prototype.render=function(){var t=this.opts.callback,o=document.body.scrollHeight;(document.documentElement.scrollTop||document.body.scrollTop)+document.documentElement.clientHeight>=o-this.opts.errorHeight&&!this.isLoadOver?(this.isLoadOver=!0,t.success(this)):t.failure()},WhenScrollBottom.prototype.dataLoadContinue=function(){this.isLoadOver=!1},WhenScrollBottom.prototype.scroll=function(){var t=this;clearTimeout(t.timer),t.timer=setTimeout(function(){t.render()},t.opts.interval)},WhenScrollBottom.prototype.power=function(){var t=this;t.opts.isBindScrollEvent&&window.addEventListener("scroll",function(){t.scroll()})},module.exports=WhenScrollBottom;
+var extend=__webpack_require__(10);function WhenScrollBottom(t){this.opts=extend({callback:{success:function(){},failure:function(){}},isBindScrollEvent:!0,isInitRender:!0,interval:80,errorHeight:0},t),this.timer=null,this.isLoadOver=!1,this.init()}WhenScrollBottom.prototype.init=function(){this.opts.isInitRender&&this.render(),this.power()},WhenScrollBottom.prototype.render=function(){var t=this.opts.callback,o=document.body.scrollHeight;(document.documentElement.scrollTop||document.body.scrollTop)+document.documentElement.clientHeight>=o-this.opts.errorHeight&&!this.isLoadOver?(this.isLoadOver=!0,t.success(this)):t.failure()},WhenScrollBottom.prototype.dataLoadContinue=function(){this.isLoadOver=!1},WhenScrollBottom.prototype.scroll=function(){var t=this;clearTimeout(t.timer),t.timer=setTimeout(function(){t.render()},t.opts.interval)},WhenScrollBottom.prototype.power=function(){var t=this;t.opts.isBindScrollEvent&&window.addEventListener("scroll",function(){t.scroll()})},module.exports=WhenScrollBottom;
 
 /***/ }),
 /* 75 */
@@ -9095,7 +9095,7 @@ var Transform = __webpack_require__(40);
 
 /*<replacement>*/
 var util = __webpack_require__(12);
-util.inherits = __webpack_require__(7);
+util.inherits = __webpack_require__(8);
 /*</replacement>*/
 
 util.inherits(PassThrough, Transform);
@@ -9121,7 +9121,7 @@ module.exports = __webpack_require__(22);
 /* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(8);
+module.exports = __webpack_require__(9);
 
 
 /***/ }),
@@ -17001,7 +17001,7 @@ module.exports = {
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(2); // 应用方法集合
-var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(7); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -17056,7 +17056,7 @@ module.exports = Sub;
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(2); // 应用方法集合
-var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(7); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -17218,7 +17218,7 @@ module.exports = Sub;
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(2); // 应用方法集合
-var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(7); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {

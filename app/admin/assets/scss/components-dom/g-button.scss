@@ -9,22 +9,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    // 取消
+    &.g-button_cancel {
+        background: $g-background-color-default;
+    }
+    // 禁用
+    &.g-button_disable {
+        background: $g-background-color-disabled;
+        color: $g-font-color-disabled;
+        cursor: not-allowed;
+    }
     .g-button-icon {
         font-size: px2rem(20);
         margin: 0 px2rem(2);
     }
     .g-button-text {
         margin: 0 px2rem(2);
-    }
-    // 取消
-    &.g-button-cancel {
-        background: $g-background-color-default;
-    }
-    // 禁用
-    &.g-button-disable {
-        background: $g-background-color-disabled;
-        color: $g-font-color-disabled;
-        cursor: not-allowed;
     }
 }
 

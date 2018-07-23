@@ -24,8 +24,15 @@ Sub.prototype.moduleDomCreate = function () {
             innerHTML: `
                 <div class="g-mask"></div>
                 <div class="g-gallery">
-                    <div class="g-gallery-category"></div>
-                    <div class="g-gallery-content"></div>
+                    <div class="g-gallery-category">
+                        <div class="g-gallery-category-item">默认</div>
+                        <div class="g-gallery-category-item"></div>
+                    </div>
+                    <div class="g-gallery-content">
+                        <div class="g-gallery-content-header"></div>
+                        <div class="g-gallery-content-body"></div>
+                        <div class="g-gallery-content-footer"></div>
+                    </div>
                     <div class="g-gallery-options"></div>                                        
                 </div>
             `,

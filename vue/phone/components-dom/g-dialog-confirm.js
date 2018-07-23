@@ -91,7 +91,7 @@ Sub.prototype.renderConfirm = function () {
     if (config.isShowFooter) {
         let htmlCancel = '';
         if (config.isShowCancel) {
-            htmlCancel = `<div class="g-button g-button-cancel g-dialog-confirm-footer-cancel">${config.cancelContent}</div>`;
+            htmlCancel = `<div class="g-button g-button_cancel g-dialog-confirm-footer-cancel">${config.cancelContent}</div>`;
         }
         let htmlConfirm = '';
         if (config.isShowConfirm) {

@@ -5,6 +5,7 @@
     position: fixed;
     left: 0;
     top: 0;
+    z-index: 10;
     width: 100%;
     height: 100%;
     display: flex;
@@ -14,6 +15,9 @@
         width: 80%;
         height: 50%;
         display: flex;
+        background: #ffffff;
+        position: relative;
+        z-index: 501;
     }
     .g-gallery-category {
         overflow: auto;

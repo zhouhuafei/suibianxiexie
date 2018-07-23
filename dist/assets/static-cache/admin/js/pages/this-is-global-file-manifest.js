@@ -91,7 +91,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"this-is-global-file-common","1":"this-is-global-file-vendor","2":"ui","3":"website-info","4":"register","5":"password-modify","6":"login","7":"home","8":"account-modify"}[chunkId]||chunkId) + "." + chunkId + ".chunk.js";
+/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"this-is-global-file-common","1":"this-is-global-file-vendor","2":"ui","3":"home","4":"website-info","5":"register","6":"password-modify","7":"login","8":"account-modify"}[chunkId]||chunkId) + "." + chunkId + ".chunk.js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {

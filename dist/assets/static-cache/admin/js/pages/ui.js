@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 125:
+/***/ 126:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,10 +14,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(126);
+__webpack_require__(127);
 var Super = __webpack_require__(6);
 
-var DialogPopover = __webpack_require__(127);
+var DialogPopover = __webpack_require__(128);
 $('.js-popover').each(function () {
     new DialogPopover({
         config: {
@@ -122,7 +122,7 @@ var Sub = function (_Super) {
 
             // 测试application/x-www-form-urlencoded
             var axios = __webpack_require__(18);
-            var ajax = __webpack_require__(128);
+            var ajax = __webpack_require__(129);
             axios({
                 url: dataInfo.api.list.route,
                 method: 'post',
@@ -172,14 +172,14 @@ new Sub();
 
 /***/ }),
 
-/***/ 126:
+/***/ 127:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 127:
+/***/ 128:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -187,7 +187,7 @@ new Sub();
 
 var tools = __webpack_require__(0); // 工具方法集合
 var applications = __webpack_require__(2); // 应用方法集合
-var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(7); // 超类型(子类型继承的对象)
 
 // 子类型
 var Sub = tools.constructorInherit(Super, {
@@ -356,7 +356,7 @@ module.exports = Sub;
 
 /***/ }),
 
-/***/ 128:
+/***/ 129:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -459,4 +459,4 @@ module.exports = function (json) {
 
 /***/ })
 
-},[125]);
+},[126]);
