@@ -198,6 +198,20 @@
                         }
                     }
                 }
+                .g-form-body-content-symbol {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding-left: px2rem(10);
+                    padding-right: px2rem(2);
+                }
+                .g-form-body-content-text {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding-left: px2rem(2);
+                    padding-right: px2rem(2);
+                }
                 .g-form-body-content-icon {
                     display: flex;
                     align-items: center;
