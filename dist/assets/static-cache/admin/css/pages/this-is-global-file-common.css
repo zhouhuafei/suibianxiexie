@@ -2524,8 +2524,7 @@ input.g-button, button.g-button {
         -webkit-box-pack: center;
             -ms-flex-pack: center;
                 justify-content: center;
-        padding-left: 10px;
-        padding-right: 2px; }
+        padding-left: 10px; }
       .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main {
         display: -webkit-box;
         display: -ms-flexbox;
