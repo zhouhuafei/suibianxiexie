@@ -2026,9 +2026,11 @@ input.g-button, button.g-button {
         -ms-flex-pack: center;
             justify-content: center;
     height: inherit;
-    width: 24px; }
+    width: 24px;
+    color: #000; }
     .g-pagination .g-pagination-btn.g-pagination-btn-inactive {
-      color: #c1c1c1; }
+      color: #c1c1c1;
+      opacity: 0.6; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。
