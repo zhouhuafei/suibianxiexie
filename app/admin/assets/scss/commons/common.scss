@@ -34,6 +34,20 @@
 // 业务组件(存在数据交互)
 @import "../components-dom-business/g-gallery";
 
+// 模块
+.g-module {
+    background: #ffffff;
+    padding: px2rem(10) px2rem(10) px2rem(30);
+    .g-module-title {
+        height: px2rem(20);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .g-module-body {
+    }
+}
+
 // 图片列表测试
 .g-img-test {
     .g-img-test-big img {
@@ -78,28 +92,6 @@
 
 // 表单
 .g-form-wrap {
-    &.g-form-wrap_style-yes-radius {
-        .g-form .g-form-body {
-            border: px2rem(1) solid $g-border-color-default;
-            border-radius: px2rem(6);
-        }
-    }
-    &.g-form-wrap_style-no-margin {
-        .g-form {
-            margin-bottom: 0;
-            background: #ffffff;
-            border-top: px2rem(1) solid $g-border-color-default;
-            .g-form-body {
-                border: none;
-                .g-form-body-text + .g-form-body-content {
-                    border-left: none;
-                }
-            }
-            &:last-of-type {
-                border-bottom: px2rem(1) solid $g-border-color-default;
-            }
-        }
-    }
     .g-form {
         $height: 40;
         $text-width: 100;
@@ -111,11 +103,6 @@
         }
         .g-form-body {
             display: flex;
-            background: #ffffff;
-            min-height: px2rem($height);
-            border: 1px solid $g-border-color-default;
-            border-left: none;
-            border-right: none;
             .g-form-body-text {
                 display: flex;
                 align-items: center;
@@ -123,9 +110,6 @@
                 padding: 0 px2rem(10);
                 min-width: px2rem($text-width);
                 text-align: right;
-                & + .g-form-body-content {
-                    border-left: 1px solid $g-border-color-default;
-                }
             }
             .g-form-body-content {
                 display: flex;
@@ -141,7 +125,6 @@
                     flex: 1;
                     flex-wrap: wrap;
                     align-items: center;
-                    min-height: px2rem($height);
                     .g-form-body-content-main-text {
                         padding: px2rem(10);
                         line-height: 1.2;
@@ -151,40 +134,13 @@
                     .g-upload {
                         margin: px2rem(10);
                     }
-                    /* 重置g-input */
-                    .g-input {
-                        border: none;
-                        background: transparent;
-                    }
                     /* 重置g-checkbox */
                     .g-checkbox {
                         margin-left: px2rem(10);
-                        .g-checkbox-body {
-                            background: transparent;
-                        }
                     }
                     /* 重置g-radio */
                     .g-radio {
                         margin-left: px2rem(10);
-                        .g-radio-body {
-                            background: transparent;
-                        }
-                    }
-                    /* 重置g-select */
-                    .g-select {
-                        border: none;
-                        background: transparent;
-                    }
-                    /* 重置g-textarea */
-                    .g-textarea {
-                        border: none;
-                        background: transparent;
-                    }
-                    /* 当尾部没有icon时 */
-                    &:last-of-type {
-                        .g-select .g-select-mark {
-                            border-right: none;
-                        }
                     }
                     /* 多行情况 */
                     &.g-form-body-content-main-more-row {
@@ -192,15 +148,15 @@
                         padding-bottom: px2rem(10);
                         /* 重置g-upload */
                         .g-upload {
-                            margin: px2rem(10) px2rem(0) px2rem(0) px2rem(10);
+                            margin: px2rem(10) px2rem(10) px2rem(0) px2rem(0);
                         }
                         /* 重置g-checkbox */
                         .g-checkbox {
-                            margin: px2rem(10) px2rem(0) px2rem(0) px2rem(10);
+                            margin: px2rem(10) px2rem(10) px2rem(0) px2rem(0);
                         }
                         /* 重置g-radio */
                         .g-radio {
-                            margin: px2rem(10) px2rem(0) px2rem(0) px2rem(10);
+                            margin: px2rem(10) px2rem(10) px2rem(0) px2rem(0);
                         }
                     }
                 }
@@ -236,8 +192,10 @@
 
 // 验证码
 .g-verify-code-canvas {
-    width: px2rem(160);
-    height: px2rem(40);
+    width: px2rem(120);
+    height: px2rem(30);
+    box-sizing: content-box;
+    padding: 0 px2rem(2);
     img {
         width: 100%;
         height: 100%;

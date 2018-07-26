@@ -699,12 +699,10 @@ input.g-input {
       -ms-flex: 1;
           flex: 1;
   width: 100%;
-  height: 40px;
+  height: 30px;
   padding: 0 10px;
   background: #ffffff;
   border: 1px solid #e1e1e1;
-  border-left: none;
-  border-right: none;
   min-width: 50px; }
 
 /*
@@ -730,11 +728,9 @@ input.g-input {
       -ms-flex: 1;
           flex: 1;
   width: 100%;
-  height: 40px;
+  height: 30px;
   background: #ffffff;
-  border: 1px solid #e1e1e1;
-  border-left: none;
-  border-right: none; }
+  border: 1px solid #e1e1e1; }
   .g-select select.g-select-body {
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
@@ -808,9 +804,7 @@ textarea.g-textarea {
   height: 120px;
   background: #ffffff;
   padding: 10px;
-  border: 1px solid #e1e1e1;
-  border-left: none;
-  border-right: none; }
+  border: 1px solid #e1e1e1; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。
@@ -2432,6 +2426,21 @@ input.g-button, button.g-button {
     width: 200px;
     min-width: 200px; }
 
+.g-module {
+  background: #ffffff;
+  padding: 10px 10px 30px; }
+  .g-module .g-module-title {
+    height: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start; }
+
 .g-img-test .g-img-test-big img {
   height: 80px; }
 
@@ -2462,21 +2471,6 @@ input.g-button, button.g-button {
   .g-audio.g-audio_on .g-audio-icon .g-audio-icon-item.g-audio-icon-item_off {
     display: none; }
 
-.g-form-wrap.g-form-wrap_style-yes-radius .g-form .g-form-body {
-  border: 1px solid #e1e1e1;
-  border-radius: 6px; }
-
-.g-form-wrap.g-form-wrap_style-no-margin .g-form {
-  margin-bottom: 0;
-  background: #ffffff;
-  border-top: 1px solid #e1e1e1; }
-  .g-form-wrap.g-form-wrap_style-no-margin .g-form .g-form-body {
-    border: none; }
-    .g-form-wrap.g-form-wrap_style-no-margin .g-form .g-form-body .g-form-body-text + .g-form-body-content {
-      border-left: none; }
-  .g-form-wrap.g-form-wrap_style-no-margin .g-form:last-of-type {
-    border-bottom: 1px solid #e1e1e1; }
-
 .g-form-wrap .g-form {
   position: relative;
   margin-bottom: 10px;
@@ -2486,12 +2480,7 @@ input.g-button, button.g-button {
   .g-form-wrap .g-form .g-form-body {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
-    background: #ffffff;
-    min-height: 40px;
-    border: 1px solid #e1e1e1;
-    border-left: none;
-    border-right: none; }
+    display: flex; }
     .g-form-wrap .g-form .g-form-body .g-form-body-text {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -2505,8 +2494,6 @@ input.g-button, button.g-button {
       padding: 0 10px;
       min-width: 100px;
       text-align: right; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-text + .g-form-body-content {
-        border-left: 1px solid #e1e1e1; }
     .g-form-wrap .g-form .g-form-body .g-form-body-content {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -2537,14 +2524,9 @@ input.g-button, button.g-button {
         -webkit-box-align: center;
             -ms-flex-align: center;
                 align-items: center;
-        min-height: 40px;
         /* 重置g-upload */
-        /* 重置g-input */
         /* 重置g-checkbox */
         /* 重置g-radio */
-        /* 重置g-select */
-        /* 重置g-textarea */
-        /* 当尾部没有icon时 */
         /* 多行情况 */ }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-form-body-content-main-text {
           padding: 10px;
@@ -2552,25 +2534,10 @@ input.g-button, button.g-button {
           text-align: justify; }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-upload {
           margin: 10px; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-input {
-          border: none;
-          background: transparent; }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-checkbox {
           margin-left: 10px; }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-checkbox .g-checkbox-body {
-            background: transparent; }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-radio {
           margin-left: 10px; }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-radio .g-radio-body {
-            background: transparent; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-select {
-          border: none;
-          background: transparent; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-textarea {
-          border: none;
-          background: transparent; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main:last-of-type .g-select .g-select-mark {
-          border-right: none; }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main.g-form-body-content-main-more-row {
           /* 重置g-form-body-content-main */
           padding-bottom: 10px;
@@ -2578,11 +2545,11 @@ input.g-button, button.g-button {
           /* 重置g-checkbox */
           /* 重置g-radio */ }
           .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main.g-form-body-content-main-more-row .g-upload {
-            margin: 10px 0 0 10px; }
+            margin: 10px 10px 0 0; }
           .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main.g-form-body-content-main-more-row .g-checkbox {
-            margin: 10px 0 0 10px; }
+            margin: 10px 10px 0 0; }
           .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main.g-form-body-content-main-more-row .g-radio {
-            margin: 10px 0 0 10px; }
+            margin: 10px 10px 0 0; }
       .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-icon {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -2617,8 +2584,11 @@ input.g-button, button.g-button {
       text-align: justify; }
 
 .g-verify-code-canvas {
-  width: 160px;
-  height: 40px; }
+  width: 120px;
+  height: 30px;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  padding: 0 2px; }
   .g-verify-code-canvas img {
     width: 100%;
     height: 100%; }
