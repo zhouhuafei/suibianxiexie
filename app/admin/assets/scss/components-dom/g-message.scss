@@ -7,10 +7,11 @@
     align-items: center;
     justify-content: center;
     width: px2rem(260*1.5);
-    padding: px2rem(16);
+    padding: px2rem(10) px2rem(20);
     border-radius: px2rem(6);
     box-sizing: border-box;
     background: rgba(0, 0, 0, 0.8);
+    color: #fff;
     &.g-message_center {
         top: 50%;
         left: 50%;
@@ -30,7 +31,6 @@
         position: absolute;
         left: px2rem(4);
         bottom: px2rem(4);
-        color: #ffffff;
         font-size: px2rem(12);
     }
     .g-message-icon {
@@ -39,7 +39,6 @@
         color: $g-warning-color;
     }
     .g-message-text {
-        color: #ffffff;
         font-size: px2rem(14);
         line-height: 1.2;
     }

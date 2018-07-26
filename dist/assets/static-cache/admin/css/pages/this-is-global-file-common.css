@@ -1456,11 +1456,12 @@ input.g-button, button.g-button {
       -ms-flex-pack: center;
           justify-content: center;
   width: 390px;
-  padding: 16px;
+  padding: 10px 20px;
   border-radius: 6px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  background: rgba(0, 0, 0, 0.8); }
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff; }
   .g-message.g-message_center {
     top: 50%;
     left: 50%;
@@ -1480,14 +1481,12 @@ input.g-button, button.g-button {
     position: absolute;
     left: 4px;
     bottom: 4px;
-    color: #ffffff;
     font-size: 12px; }
   .g-message .g-message-icon {
     margin-right: 10px;
     font-size: 24px;
     color: #eb9e05; }
   .g-message .g-message-text {
-    color: #ffffff;
     font-size: 14px;
     line-height: 1.2; }
 
@@ -2514,7 +2513,7 @@ input.g-button, button.g-button {
       -webkit-box-flex: 1;
           -ms-flex: 1;
               flex: 1; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-title {
+      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-symbol {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -2524,7 +2523,11 @@ input.g-button, button.g-button {
         -webkit-box-pack: center;
             -ms-flex-pack: center;
                 justify-content: center;
-        padding-left: 10px; }
+        min-width: 20px;
+        padding: 0 2px;
+        border: 1px solid #e1e1e1; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-symbol + g-form-body-content-main .g-input, .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-symbol + g-form-body-content-main .g-select, .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-symbol + g-form-body-content-main .g-textarea {
+          border-left: none; }
       .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -2537,20 +2540,12 @@ input.g-button, button.g-button {
         -webkit-box-align: center;
             -ms-flex-align: center;
                 align-items: center;
+        /* 多行情况 */
         /* 重置g-upload */
         /* 重置g-checkbox */
-        /* 重置g-radio */
-        /* 多行情况 */ }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-form-body-content-main-text {
-          padding: 10px;
-          line-height: 1.2;
-          text-align: justify; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-upload {
-          margin: 10px; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-checkbox {
-          margin-left: 10px; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-radio {
-          margin-left: 10px; }
+        /* 重置g-radio */ }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main + g-form-body-content-symbol {
+          border-left: none; }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main.g-form-body-content-main-more-row {
           /* 重置g-form-body-content-main */
           padding-bottom: 10px;
@@ -2563,6 +2558,16 @@ input.g-button, button.g-button {
             margin: 10px 10px 0 0; }
           .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main.g-form-body-content-main-more-row .g-radio {
             margin: 10px 10px 0 0; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-form-body-content-main-text {
+          padding: 10px;
+          line-height: 1.2;
+          text-align: justify; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-upload {
+          margin: 10px; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-checkbox {
+          margin-left: 10px; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-radio {
+          margin-left: 10px; }
       .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-icon {
         display: -webkit-box;
         display: -ms-flexbox;

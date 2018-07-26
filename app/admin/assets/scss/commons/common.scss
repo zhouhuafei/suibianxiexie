@@ -117,33 +117,26 @@
             .g-form-body-content {
                 display: flex;
                 flex: 1;
-                .g-form-body-content-title {
+                .g-form-body-content-symbol {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    padding-left: px2rem(10);
+                    min-width: px2rem(20);
+                    padding: 0 px2rem(2);
+                    border: 1px solid $g-border-color-default;
+                    & + g-form-body-content-main {
+                        .g-input, .g-select, .g-textarea {
+                            border-left: none;
+                        }
+                    }
                 }
                 .g-form-body-content-main {
                     display: flex;
                     flex: 1;
                     flex-wrap: wrap;
                     align-items: center;
-                    .g-form-body-content-main-text {
-                        padding: px2rem(10);
-                        line-height: 1.2;
-                        text-align: justify;
-                    }
-                    /* 重置g-upload */
-                    .g-upload {
-                        margin: px2rem(10);
-                    }
-                    /* 重置g-checkbox */
-                    .g-checkbox {
-                        margin-left: px2rem(10);
-                    }
-                    /* 重置g-radio */
-                    .g-radio {
-                        margin-left: px2rem(10);
+                    & + g-form-body-content-symbol {
+                        border-left: none;
                     }
                     /* 多行情况 */
                     &.g-form-body-content-main-more-row {
@@ -161,6 +154,23 @@
                         .g-radio {
                             margin: px2rem(10) px2rem(10) px2rem(0) px2rem(0);
                         }
+                    }
+                    .g-form-body-content-main-text {
+                        padding: px2rem(10);
+                        line-height: 1.2;
+                        text-align: justify;
+                    }
+                    /* 重置g-upload */
+                    .g-upload {
+                        margin: px2rem(10);
+                    }
+                    /* 重置g-checkbox */
+                    .g-checkbox {
+                        margin-left: px2rem(10);
+                    }
+                    /* 重置g-radio */
+                    .g-radio {
+                        margin-left: px2rem(10);
                     }
                 }
                 .g-form-body-content-icon {

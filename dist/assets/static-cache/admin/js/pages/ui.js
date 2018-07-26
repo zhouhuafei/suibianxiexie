@@ -67,7 +67,7 @@ var Sub = function (_Super) {
                                         isShowClose: true, // 是否显示关闭按钮
                                         icon: 'icon-success', // icon的class
                                         content: '已取消', // 内容信息
-                                        positionLocation: 'center' // 弹窗的定位位置    positionMethod定位方式强制fixed
+                                        positionLocation: 'top' // 弹窗的定位位置    positionMethod定位方式强制fixed
                                     }
                                 });
                             },
@@ -80,7 +80,7 @@ var Sub = function (_Super) {
                                         isShowClose: true, // 是否显示关闭按钮
                                         icon: 'icon-success', // icon的class
                                         content: isAllPassValidate ? '验证已通过，可执行保存操作' : '验证尚未通过，不可执行保存操作', // 内容信息
-                                        positionLocation: 'center' // 弹窗的定位位置    positionMethod定位方式强制fixed
+                                        positionLocation: 'top' // 弹窗的定位位置    positionMethod定位方式强制fixed
                                     }
                                 });
                             },
@@ -92,7 +92,7 @@ var Sub = function (_Super) {
                                         isShowClose: true, // 是否显示关闭按钮
                                         icon: 'icon-success', // icon的class
                                         content: '已关闭', // 内容信息
-                                        positionLocation: 'center' // 弹窗的定位位置    positionMethod定位方式强制fixed
+                                        positionLocation: 'top' // 弹窗的定位位置    positionMethod定位方式强制fixed
                                     }
                                 });
                             }

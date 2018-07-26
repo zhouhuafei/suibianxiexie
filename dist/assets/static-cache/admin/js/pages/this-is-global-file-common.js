@@ -2505,7 +2505,7 @@ var Sub = tools.constructorInherit(Super, {
         isShowClose: true, // 是否显示关闭按钮
         icon: 'icon-success', // icon的class
         content: '成功', // 内容信息
-        positionLocation: 'center' // 弹窗的定位位置('top'，'center'，'bottom')。positionMethod定位方式强制fixed。
+        positionLocation: 'top' // 弹窗的定位位置('top'，'center'，'bottom')。positionMethod定位方式强制fixed。
     },
     // 数据
     data: {}
