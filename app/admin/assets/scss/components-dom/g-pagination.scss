@@ -20,10 +20,17 @@
         align-items: center;
         justify-content: center;
         height: inherit;
-        width: px2rem($height);
+        padding: 0 px2rem(5);
         &.g-pagination-btn-inactive {
             color: $g-font-color-disabled;
             opacity: 0.6;
         }
+    }
+    .g-pagination-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: inherit;
+        padding: 0 px2rem(5);
     }
 }
