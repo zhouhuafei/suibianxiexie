@@ -33,18 +33,18 @@ class Sub extends Super {
         // 弹窗测试
         (function () {
             const DialogConfirm = require('../components-dom/g-dialog-confirm');
-            const DialogAlert = require('../components-dom/g-dialog-alert');
+            const Message = require('../components-dom/g-message');
             document.querySelector('.js-button-dialog').addEventListener('click', function () {
                 new DialogConfirm({
                     callback: {
                         confirm: function () {
-                            new DialogAlert({config: {icon: 'icon-success', content: '已确认'}});
+                            new Message({config: {icon: 'icon-success', content: '已确认'}});
                         },
                         cancel: function () {
-                            new DialogAlert({config: {icon: 'icon-success', content: '已取消'}});
+                            new Message({config: {icon: 'icon-success', content: '已取消'}});
                         },
                         close: function () {
-                            new DialogAlert({config: {icon: 'icon-success', content: '已关闭'}});
+                            new Message({config: {icon: 'icon-success', content: '已关闭'}});
                         },
                     },
                 });

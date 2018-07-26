@@ -1443,7 +1443,7 @@ input.g-button, button.g-button {
     @return $px * 1px;
 }
 */
-.g-dialog-alert {
+.g-message {
   position: fixed;
   z-index: 599;
   display: -webkit-box;
@@ -1461,32 +1461,32 @@ input.g-button, button.g-button {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   background: rgba(0, 0, 0, 0.8); }
-  .g-dialog-alert.g-dialog-alert_center {
+  .g-message.g-message_center {
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%); }
-  .g-dialog-alert.g-dialog-alert_bottom {
+  .g-message.g-message_bottom {
     bottom: 2%;
     left: 50%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%); }
-  .g-dialog-alert.g-dialog-alert_top {
+  .g-message.g-message_top {
     top: 2%;
     left: 50%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%); }
-  .g-dialog-alert .g-dialog-alert-close {
+  .g-message .g-message-close {
     position: absolute;
     left: 4px;
     bottom: 4px;
     color: #ffffff;
     font-size: 12px; }
-  .g-dialog-alert .g-dialog-alert-icon {
+  .g-message .g-message-icon {
     margin-right: 10px;
     font-size: 24px;
     color: #eb9e05; }
-  .g-dialog-alert .g-dialog-alert-text {
+  .g-message .g-message-text {
     color: #ffffff;
     font-size: 14px;
     line-height: 1.2; }

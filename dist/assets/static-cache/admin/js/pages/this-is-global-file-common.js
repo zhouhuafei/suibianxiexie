@@ -1844,7 +1844,7 @@ var Super = function () {
         self.applications = __webpack_require__(2); // 应用方法集合
         self.axios = __webpack_require__(18); // axios
         self.jsonp = __webpack_require__(79); // jsonp
-        self.DialogAlert = __webpack_require__(11); // 提示框
+        self.Message = __webpack_require__(11); // 提示框
         self.DialogConfirm = __webpack_require__(31); // 确认框
         self.opts = self.tools.extend({
             lazyload: {
@@ -2514,14 +2514,14 @@ var Sub = tools.constructorInherit(Super, {
 // (建)(覆)内部模块的创建(覆盖超类型)
 Sub.prototype.moduleDomCreate = function () {
     var config = this.opts.config;
-    var positionLocation = 'g-dialog-alert_' + config.positionLocation; // 弹窗的定位位置
+    var positionLocation = 'g-message_' + config.positionLocation; // 弹窗的定位位置
     // 弹窗结构
     var html = this.renderAlert();
     this.moduleDom = applications.createElement({
         style: config.moduleDomStyle,
         customAttribute: config.moduleDomCustomAttribute,
         attribute: {
-            className: 'g-dialog-alert ' + positionLocation,
+            className: 'g-message ' + positionLocation,
             innerHTML: html
         }
     });
@@ -2532,13 +2532,13 @@ Sub.prototype.renderAlert = function () {
     var config = this.opts.config;
     var htmlIcon = '';
     if (config.isShowIcon) {
-        htmlIcon = '<div class="g-dialog-alert-icon iconfont ' + config.icon + '"></div>';
+        htmlIcon = '<div class="g-message-icon iconfont ' + config.icon + '"></div>';
     }
     var closeHtml = '';
     if (config.isShowClose) {
-        closeHtml = '<div class="g-dialog-alert-close iconfont icon-close" ></div>';
+        closeHtml = '<div class="g-message-close iconfont icon-close" ></div>';
     }
-    return '\n        ' + closeHtml + '\n        ' + htmlIcon + '\n        <div class="g-dialog-alert-text">' + config.content + '</div>\n    ';
+    return '\n        ' + closeHtml + '\n        ' + htmlIcon + '\n        <div class="g-message-text">' + config.content + '</div>\n    ';
 };
 
 // (功)(覆)功能(覆盖超类型)
@@ -2546,7 +2546,7 @@ Sub.prototype.power = function () {
     var self = this;
     var config = this.opts.config;
     var callback = this.opts.callback;
-    var close = this.moduleDom.querySelector('.g-dialog-alert-close');
+    var close = this.moduleDom.querySelector('.g-message-close');
     var timer = null;
     timer = setTimeout(function () {
         self.moduleDomHide();
@@ -2927,7 +2927,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 
 var axios = __webpack_require__(28);
 var tools = __webpack_require__(0);
-var DialogAlert = __webpack_require__(11);
+var Message = __webpack_require__(11);
 var qs = __webpack_require__(76);
 
 module.exports = function (json) {
@@ -2972,7 +2972,7 @@ module.exports = function (json) {
             }
         };
         if (opts.isHandleError) {
-            new DialogAlert({
+            new Message({
                 config: {
                     content: response.data.message // 这里的error其实是一个Error类型的数据
                 }
@@ -2984,7 +2984,7 @@ module.exports = function (json) {
         if (dataInfo.status === 'failure') {
             // 失败
             if (opts.isHandleFailure) {
-                new DialogAlert({
+                new Message({
                     config: {
                         content: '\u5931\u8D25: ' + dataInfo.message
                     }
@@ -2995,7 +2995,7 @@ module.exports = function (json) {
         if (dataInfo.status === 'success') {
             // 成功
             if (opts.isHandleSuccess) {
-                new DialogAlert({
+                new Message({
                     config: {
                         content: '\u6210\u529F: ' + dataInfo.message
                     }
@@ -8392,7 +8392,7 @@ module.exports = function (str, opts) {
 
 
 var tools = __webpack_require__(0);
-var DialogAlert = __webpack_require__(11);
+var Message = __webpack_require__(11);
 var queryString = tools.queryString;
 
 module.exports = function (json) {
@@ -8417,7 +8417,7 @@ module.exports = function (json) {
         };
         callback(dataInfo);
         if (opts.isHandleError) {
-            new DialogAlert({
+            new Message({
                 config: {
                     content: '\u9519\u8BEF: ' + dataInfo.error
                 }
@@ -8434,7 +8434,7 @@ module.exports = function (json) {
         window[fnName] = function (dataInfo) {
             callback(dataInfo);
             if (dataInfo.status === 'failure' && opts.isHandleFailure) {
-                new DialogAlert({
+                new Message({
                     config: {
                         content: '\u5931\u8D25: ' + dataInfo.message
                     }

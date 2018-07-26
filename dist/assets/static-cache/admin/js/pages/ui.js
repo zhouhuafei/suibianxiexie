@@ -55,12 +55,12 @@ var Sub = function (_Super) {
                 });
                 document.querySelector('.js-save').addEventListener('click', function () {
                     // 测试确认框和提示框
-                    var DialogAlert = __webpack_require__(11);
+                    var Message = __webpack_require__(11);
                     var DialogConfirm = __webpack_require__(31);
                     new DialogConfirm({
                         callback: {
                             cancel: function cancel() {
-                                new DialogAlert({
+                                new Message({
                                     config: {
                                         time: 3000, // 展示的时间
                                         isShowIcon: false, // 是否显示icon
@@ -73,7 +73,7 @@ var Sub = function (_Super) {
                             },
                             confirm: function confirm() {
                                 var isAllPassValidate = validateInput.isAllPassValidate();
-                                new DialogAlert({
+                                new Message({
                                     config: {
                                         time: 3000, // 展示的时间
                                         isShowIcon: false, // 是否显示icon
@@ -85,7 +85,7 @@ var Sub = function (_Super) {
                                 });
                             },
                             close: function close() {
-                                new DialogAlert({
+                                new Message({
                                     config: {
                                         time: 3000, // 展示的时间
                                         isShowIcon: false, // 是否显示icon
@@ -363,7 +363,7 @@ module.exports = Sub;
 
 
 var tools = __webpack_require__(0);
-var DialogAlert = __webpack_require__(11);
+var Message = __webpack_require__(11);
 
 module.exports = function (json) {
     json.type = json.type || json.method || 'get'; // 这里和axios是不一样的，这里以前使用axios的习惯传入method
@@ -422,7 +422,7 @@ module.exports = function (json) {
             message: message
         };
         if (opts.isHandleError) {
-            new DialogAlert({
+            new Message({
                 config: {
                     content: '\u9519\u8BEF: ' + message // 这里的message就是error信息，只是一段普通的字符信息
                 }
@@ -433,7 +433,7 @@ module.exports = function (json) {
         if (dataInfo.status === 'failure') {
             // 失败
             if (opts.isHandleFailure) {
-                new DialogAlert({
+                new Message({
                     config: {
                         content: '\u5931\u8D25: ' + dataInfo.message
                     }
@@ -444,7 +444,7 @@ module.exports = function (json) {
         if (dataInfo.status === 'success') {
             // 成功
             if (opts.isHandleSuccess) {
-                new DialogAlert({
+                new Message({
                     config: {
                         content: '\u6210\u529F: ' + dataInfo.message
                     }

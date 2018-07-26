@@ -1,6 +1,6 @@
 @import "../config/config";
 
-.g-dialog-alert {
+.g-message {
     position: fixed;
     z-index: 506;
     display: flex;
@@ -11,34 +11,34 @@
     border-radius: px2rem(6);
     box-sizing: border-box;
     background: rgba(0, 0, 0, 0.8);
-    &.g-dialog-alert_center {
+    &.g-message_center {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
-    &.g-dialog-alert_bottom {
+    &.g-message_bottom {
         bottom: 2%;
         left: 50%;
         transform: translateX(-50%);
     }
-    &.g-dialog-alert_top {
+    &.g-message_top {
         top: 2%;
         left: 50%;
         transform: translateX(-50%);
     }
-    .g-dialog-alert-close {
+    .g-message-close {
         position: absolute;
         left: px2rem(4);
         bottom: px2rem(4);
         color: #ffffff;
         font-size: px2rem(12);
     }
-    .g-dialog-alert-icon {
+    .g-message-icon {
         margin-right: px2rem(10);
         font-size: px2rem(24);
         color: $g-warning-color;
     }
-    .g-dialog-alert-text {
+    .g-message-text {
         color: #ffffff;
         font-size: px2rem(14);
         line-height: 1.2;

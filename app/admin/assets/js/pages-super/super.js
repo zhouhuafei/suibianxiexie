@@ -7,7 +7,7 @@ class Super {
         self.applications = require('zhf.applications'); // 应用方法集合
         self.axios = require('../api/axios'); // axios
         self.jsonp = require('../api/jsonp'); // jsonp
-        self.DialogAlert = require('../components-dom/g-dialog-alert'); // 提示框
+        self.Message = require('../components-dom/g-message'); // 提示框
         self.DialogConfirm = require('../components-dom/g-dialog-confirm'); // 确认框
         self.opts = self.tools.extend({
             lazyload: {

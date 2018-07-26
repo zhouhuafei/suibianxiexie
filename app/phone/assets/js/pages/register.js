@@ -35,8 +35,8 @@ class Sub extends Super {
                     },
                 }).then(function (json) {
                     if (json.status === 'success') {
-                        const DialogAlert = require('../components-dom/g-dialog-alert');
-                        new DialogAlert({config: {icon: 'icon-success', content: '验证码已发送'}});
+                        const Message = require('../components-dom/g-message');
+                        new Message({config: {icon: 'icon-success', content: '验证码已发送'}});
                         domSelf.classList.add(domGetVerifyCodeInactive);
                         timeCountDown({
                             seconds: 90,

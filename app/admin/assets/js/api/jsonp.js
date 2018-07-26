@@ -1,5 +1,5 @@
 const tools = require('zhf.tools');
-const DialogAlert = require('../components-dom/g-dialog-alert');
+const Message = require('../components-dom/g-message');
 const queryString = tools.queryString;
 
 module.exports = function (json) {
@@ -25,7 +25,7 @@ module.exports = function (json) {
         };
         callback(dataInfo);
         if (opts.isHandleError) {
-            new DialogAlert({
+            new Message({
                 config: {
                     content: `错误: ${dataInfo.error}`,
                 },
@@ -42,7 +42,7 @@ module.exports = function (json) {
         window[fnName] = function (dataInfo) {
             callback(dataInfo);
             if (dataInfo.status === 'failure' && opts.isHandleFailure) {
-                new DialogAlert({
+                new Message({
                     config: {
                         content: `失败: ${dataInfo.message}`,
                     },

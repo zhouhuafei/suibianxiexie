@@ -28,12 +28,12 @@ class Sub extends Super {
             });
             document.querySelector('.js-save').addEventListener('click', function () {
                 // 测试确认框和提示框
-                const DialogAlert = require('../components-dom/g-dialog-alert');
+                const Message = require('../components-dom/g-message');
                 const DialogConfirm = require('../components-dom/g-dialog-confirm');
                 new DialogConfirm({
                     callback: {
                         cancel: function () {
-                            new DialogAlert({
+                            new Message({
                                 config: {
                                     time: 3000, // 展示的时间
                                     isShowIcon: false, // 是否显示icon
@@ -46,7 +46,7 @@ class Sub extends Super {
                         },
                         confirm: function () {
                             const isAllPassValidate = validateInput.isAllPassValidate();
-                            new DialogAlert({
+                            new Message({
                                 config: {
                                     time: 3000, // 展示的时间
                                     isShowIcon: false, // 是否显示icon
@@ -58,7 +58,7 @@ class Sub extends Super {
                             });
                         },
                         close: function () {
-                            new DialogAlert({
+                            new Message({
                                 config: {
                                     time: 3000, // 展示的时间
                                     isShowIcon: false, // 是否显示icon

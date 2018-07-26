@@ -27,14 +27,14 @@ const Sub = tools.constructorInherit(Super, {
 // (建)(覆)内部模块的创建(覆盖超类型)
 Sub.prototype.moduleDomCreate = function () {
     const config = this.opts.config;
-    const positionLocation = `g-dialog-alert_${config.positionLocation}`;// 弹窗的定位位置
+    const positionLocation = `g-message_${config.positionLocation}`;// 弹窗的定位位置
     // 弹窗结构
     const html = this.renderAlert();
     this.moduleDom = applications.createElement({
         style: config.moduleDomStyle,
         customAttribute: config.moduleDomCustomAttribute,
         attribute: {
-            className: `g-dialog-alert ${positionLocation}`,
+            className: `g-message ${positionLocation}`,
             innerHTML: html,
         },
     });
@@ -45,16 +45,16 @@ Sub.prototype.renderAlert = function () {
     const config = this.opts.config;
     let htmlIcon = '';
     if (config.isShowIcon) {
-        htmlIcon = `<div class="g-dialog-alert-icon iconfont ${config.icon}"></div>`;
+        htmlIcon = `<div class="g-message-icon iconfont ${config.icon}"></div>`;
     }
     let closeHtml = '';
     if (config.isShowClose) {
-        closeHtml = '<div class="g-dialog-alert-close iconfont icon-close" ></div>';
+        closeHtml = '<div class="g-message-close iconfont icon-close" ></div>';
     }
     return `
         ${closeHtml}
         ${htmlIcon}
-        <div class="g-dialog-alert-text">${config.content}</div>
+        <div class="g-message-text">${config.content}</div>
     `;
 };
 
@@ -63,7 +63,7 @@ Sub.prototype.power = function () {
     const self = this;
     const config = this.opts.config;
     const callback = this.opts.callback;
-    const close = this.moduleDom.querySelector('.g-dialog-alert-close');
+    const close = this.moduleDom.querySelector('.g-message-close');
     let timer = null;
     timer = setTimeout(function () {
         self.moduleDomHide();
