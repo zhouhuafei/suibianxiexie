@@ -2550,11 +2550,11 @@ input.g-button, button.g-button {
           line-height: 1.2;
           text-align: justify; }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-upload {
-          margin-right: 10px; }
+          margin: 5px 10px 5px 0; }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-checkbox {
-          margin-right: 10px; }
+          margin: 5px 10px 5px 0; }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-radio {
-          margin-right: 10px; }
+          margin: 5px 10px 5px 0; }
       .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-icon {
         display: -webkit-box;
         display: -ms-flexbox;
