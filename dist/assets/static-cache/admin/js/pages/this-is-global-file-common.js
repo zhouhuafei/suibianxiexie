@@ -3025,7 +3025,7 @@ var getDomArray = applications.getDomArray;
 function ValidateForm(json) {
     this.opts = tools.extend({
         element: '',
-        hintWrapClass: 'g-form', // 指定提示框的父级
+        hintWrapClass: 'g-form-body-content-main', // 指定提示框的父级
         fileActiveClass: 'g-upload_active', // 文件或者图片上传成功之后的class，做限制个数需要这个
         isBindEvent: true // 是否绑定事件
     }, json);
