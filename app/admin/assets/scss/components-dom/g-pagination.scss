@@ -9,20 +9,10 @@
     justify-content: center;
     user-select: none;
     .g-pagination-now-page {
-        margin: 0 px2rem(4);
         height: inherit;
         .g-select {
             height: inherit;
             min-width: px2rem($height * 2.4);
-            border: px2rem(1) solid $g-border-color-default;
-            select.g-select-body {
-                padding: 0 px2rem($height + 20) 0 px2rem(20);
-            }
-            .g-select-mark {
-                width: px2rem($height);
-                font-size: px2rem(12);
-                border-left: px2rem(1) solid $g-border-color-default;
-            }
         }
     }
     .g-pagination-btn {
@@ -31,7 +21,6 @@
         justify-content: center;
         height: inherit;
         width: px2rem($height);
-        margin-left: px2rem(10);
         &.g-pagination-btn-inactive {
             color: $g-font-color-disabled;
         }

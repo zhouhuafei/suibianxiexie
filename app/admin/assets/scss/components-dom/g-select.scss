@@ -48,5 +48,6 @@
         top: 0;
         box-sizing: border-box;
         border-radius: inherit;
+        border-left: px2rem(1) solid $g-border-color-default;
     }
 }
