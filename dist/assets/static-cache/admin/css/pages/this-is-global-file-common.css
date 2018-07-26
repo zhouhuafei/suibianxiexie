@@ -2585,7 +2585,7 @@ input.g-button, button.g-button {
         -webkit-box-pack: end;
             -ms-flex-pack: end;
                 justify-content: flex-end;
-        min-width: 44px;
+        min-width: 52px;
         padding: 0 2px; }
       .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-hint {
         color: #fa5555; }
