@@ -2026,8 +2026,7 @@ input.g-button, button.g-button {
         -ms-flex-pack: center;
             justify-content: center;
     height: inherit;
-    width: 24px;
-    color: #000; }
+    width: 24px; }
     .g-pagination .g-pagination-btn.g-pagination-btn-inactive {
       color: #c1c1c1;
       opacity: 0.6; }
