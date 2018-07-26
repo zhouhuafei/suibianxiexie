@@ -117,60 +117,43 @@
             .g-form-body-content {
                 display: flex;
                 flex: 1;
-                .g-form-body-content-symbol {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    min-width: px2rem(20);
-                    padding: 0 px2rem(2);
-                    border: 1px solid $g-border-color-default;
-                    & + g-form-body-content-main {
-                        .g-input, .g-select, .g-textarea {
-                            border-left: none;
-                        }
-                    }
-                }
+                /* 主体 */
                 .g-form-body-content-main {
                     display: flex;
                     flex: 1;
                     flex-wrap: wrap;
-                    align-items: center;
-                    & + g-form-body-content-symbol {
+                    /* 符号标记 */
+                    .g-form-body-content-main-symbol {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: #ffffff;
+                        min-width: px2rem(20);
+                        padding: 0 px2rem(2);
+                        border: 1px solid $g-border-color-default;
+                        & + .g-input, & + .g-select, & + .g-textarea {
+                            border-left: none;
+                        }
+                    }
+                    .g-input + .g-form-body-content-main-symbol, .g-select + .g-form-body-content-main-symbol, .g-textarea + .g-form-body-content-main-symbol {
                         border-left: none;
                     }
-                    /* 多行情况 */
-                    &.g-form-body-content-main-more-row {
-                        /* 重置g-form-body-content-main */
-                        padding-bottom: px2rem(10);
-                        /* 重置g-upload */
-                        .g-upload {
-                            margin: px2rem(10) px2rem(10) px2rem(0) px2rem(0);
-                        }
-                        /* 重置g-checkbox */
-                        .g-checkbox {
-                            margin: px2rem(10) px2rem(10) px2rem(0) px2rem(0);
-                        }
-                        /* 重置g-radio */
-                        .g-radio {
-                            margin: px2rem(10) px2rem(10) px2rem(0) px2rem(0);
-                        }
-                    }
-                    .g-form-body-content-main-text {
-                        padding: px2rem(10);
+                    /* 展示文本 */
+                    .g-form-body-content-main-info {
                         line-height: 1.2;
                         text-align: justify;
                     }
                     /* 重置g-upload */
                     .g-upload {
-                        margin: px2rem(10);
+                        margin-right: px2rem(10);
                     }
                     /* 重置g-checkbox */
                     .g-checkbox {
-                        margin-left: px2rem(10);
+                        margin-right: px2rem(10);
                     }
                     /* 重置g-radio */
                     .g-radio {
-                        margin-left: px2rem(10);
+                        margin-right: px2rem(10);
                     }
                 }
                 .g-form-body-content-icon {
@@ -184,7 +167,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: flex-end;
-                    min-width: px2rem(52);
+                    min-width: px2rem(48);
                     padding: 0 px2rem(2);
                 }
                 .g-form-body-content-hint {
@@ -193,8 +176,9 @@
             }
         }
         .g-form-footer {
-            padding: px2rem(5) px2rem(10) px2rem(5) px2rem($text-width + 10);
-            .g-form-footer-text {
+            padding-left: px2rem($text-width);
+            .g-form-footer-item {
+                margin-top: px2rem(5);
                 color: $g-warning-color;
                 line-height: 1.4;
                 text-align: justify;

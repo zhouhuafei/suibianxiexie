@@ -43,15 +43,31 @@
                     <div class="g-form-wrap">
                         <div class="g-form">
                             <div class="g-form-body">
-                                <div class="g-form-body-text">密码:</div>
+                                <div class="g-form-body-text">金额:</div>
+                                <div class="g-form-body-content">
+                                    <div class="g-form-body-content-main">
+                                        <div class="g-form-body-content-main-symbol">¥</div>
+                                        <input placeholder="请输入" class="g-input js-validate-form"
+                                               data-validate="no-empty no-zero yes-positive-integer"
+                                               data-hint="本项必填 本项不可为零 请输入正整数"
+                                               type="text">
+                                    </div>
+                                    <div class="g-form-body-content-icon iconfont icon-clear"></div>
+                                    <div class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="g-form">
+                            <div class="g-form-body">
+                                <div class="g-form-body-text">搜索:</div>
                                 <div class="g-form-body-content">
                                     <div class="g-form-body-content-main">
                                         <input class="g-input js-validate-form"
                                                data-validate="no-empty no-zero yes-positive-integer"
                                                data-hint="本项必填 本项不可为零 请输入正整数"
-                                               type="password" name="website-password" value="" placeholder="请输入网站标题">
+                                               type="text" name="website-search" value="" placeholder="请输入网站标题">
+                                        <div class="g-form-body-content-main-symbol iconfont icon-search"></div>
                                     </div>
-                                    <div class="g-form-body-content-icon iconfont icon-eye_off"></div>
                                     <div class="g-form-body-content-icon iconfont icon-clear"></div>
                                     <div class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></div>
                                 </div>
@@ -74,37 +90,9 @@
                         </div>
                         <div class="g-form">
                             <div class="g-form-body">
-                                <div class="g-form-body-text">信息展示:</div>
-                                <div class="g-form-body-content">
-                                    <div class="g-form-body-content-main">
-                                        <div class="g-form-body-content-main-text">信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="g-form">
-                            <div class="g-form-body">
-                                <div class="g-form-body-text">金额:</div>
-                                <div class="g-form-body-content">
-                                    <div class="g-form-body-content-symbol">¥</div>
-                                    <div class="g-form-body-content-main">
-                                        <input placeholder="请输入" class="g-input js-validate-form"
-                                               data-validate="no-empty no-zero yes-positive-integer"
-                                               data-hint="本项必填 本项不可为零 请输入正整数"
-                                               type="text">
-                                    </div>
-                                    <div class="g-form-body-content-symbol">.00</div>
-                                    <div class="g-form-body-content-limit">0/100</div>
-                                    <div class="g-form-body-content-icon iconfont icon-clear"></div>
-                                    <div class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="g-form">
-                            <div class="g-form-body">
                                 <div class="g-form-body-text">性别:</div>
                                 <div class="g-form-body-content">
-                                    <div class="g-form-body-content-main g-form-body-content-main-more-row">
+                                    <div class="g-form-body-content-main">
                                         <div class="g-radio">
                                             <div class="g-radio-body">
                                                 <input title="" class="g-radio-body-radio js-validate-form"
@@ -147,7 +135,7 @@
                             <div class="g-form-body">
                                 <div class="g-form-body-text">属性:</div>
                                 <div class="g-form-body-content">
-                                    <div class="g-form-body-content-main g-form-body-content-main-more-row">
+                                    <div class="g-form-body-content-main">
                                         <label class="g-checkbox">
                                             <span class="g-checkbox-body">
                                                 <input checked title="" class="g-checkbox-body-checkbox js-validate-form"
@@ -229,7 +217,7 @@
                             <div class="g-form-body">
                                 <div class="g-form-body-text">网站logo:</div>
                                 <div class="g-form-body-content">
-                                    <div class="g-form-body-content-main g-form-body-content-main-more-row">
+                                    <div class="g-form-body-content-main">
                                         <label class="g-upload g-upload_active js-popover">
                                             <input class="g-upload-input" accept="image/gif, image/jpeg, image/png" type="file">
                                             <input type="hidden" name="website-logo">
@@ -270,7 +258,7 @@
                                 </div>
                             </div>
                             <div class="g-form-footer">
-                                <div class="g-form-footer-text">这里是补充信息，对此项进行补充说明。例如：请上传指定格式的图片。</div>
+                                <div class="g-form-footer-item">这里是补充信息，对此项进行补充说明。例如：请上传指定格式的图片。</div>
                             </div>
                         </div>
                         <div class="g-form">
@@ -286,6 +274,16 @@
                                     <div class="g-form-body-content-limit">0/100</div>
                                     <div class="g-form-body-content-icon iconfont icon-clear"></div>
                                     <div class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="g-form">
+                            <div class="g-form-body">
+                                <div class="g-form-body-text">信息展示:</div>
+                                <div class="g-form-body-content">
+                                    <div class="g-form-body-content-main">
+                                        <div class="g-form-body-content-main-info">信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示信息展示</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

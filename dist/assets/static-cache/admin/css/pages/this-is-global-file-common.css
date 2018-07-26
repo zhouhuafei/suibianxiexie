@@ -2512,22 +2512,8 @@ input.g-button, button.g-button {
       display: flex;
       -webkit-box-flex: 1;
           -ms-flex: 1;
-              flex: 1; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-symbol {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        min-width: 20px;
-        padding: 0 2px;
-        border: 1px solid #e1e1e1; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-symbol + g-form-body-content-main .g-input, .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-symbol + g-form-body-content-main .g-select, .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-symbol + g-form-body-content-main .g-textarea {
-          border-left: none; }
+              flex: 1;
+      /* 主体 */ }
       .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -2537,37 +2523,38 @@ input.g-button, button.g-button {
                 flex: 1;
         -ms-flex-wrap: wrap;
             flex-wrap: wrap;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        /* 多行情况 */
+        /* 符号标记 */
+        /* 展示文本 */
         /* 重置g-upload */
         /* 重置g-checkbox */
         /* 重置g-radio */ }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main + g-form-body-content-symbol {
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-form-body-content-main-symbol {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          -webkit-box-pack: center;
+              -ms-flex-pack: center;
+                  justify-content: center;
+          background: #ffffff;
+          min-width: 20px;
+          padding: 0 2px;
+          border: 1px solid #e1e1e1; }
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-form-body-content-main-symbol + .g-input, .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-form-body-content-main-symbol + .g-select, .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-form-body-content-main-symbol + .g-textarea {
+            border-left: none; }
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-input + .g-form-body-content-main-symbol, .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-select + .g-form-body-content-main-symbol, .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-textarea + .g-form-body-content-main-symbol {
           border-left: none; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main.g-form-body-content-main-more-row {
-          /* 重置g-form-body-content-main */
-          padding-bottom: 10px;
-          /* 重置g-upload */
-          /* 重置g-checkbox */
-          /* 重置g-radio */ }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main.g-form-body-content-main-more-row .g-upload {
-            margin: 10px 10px 0 0; }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main.g-form-body-content-main-more-row .g-checkbox {
-            margin: 10px 10px 0 0; }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main.g-form-body-content-main-more-row .g-radio {
-            margin: 10px 10px 0 0; }
-        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-form-body-content-main-text {
-          padding: 10px;
+        .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-form-body-content-main-info {
           line-height: 1.2;
           text-align: justify; }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-upload {
-          margin: 10px; }
+          margin-right: 10px; }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-checkbox {
-          margin-left: 10px; }
+          margin-right: 10px; }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-radio {
-          margin-left: 10px; }
+          margin-right: 10px; }
       .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-icon {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -2590,13 +2577,14 @@ input.g-button, button.g-button {
         -webkit-box-pack: end;
             -ms-flex-pack: end;
                 justify-content: flex-end;
-        min-width: 52px;
+        min-width: 48px;
         padding: 0 2px; }
       .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-hint {
         color: #fa5555; }
   .g-form-wrap .g-form .g-form-footer {
-    padding: 5px 10px 5px 110px; }
-    .g-form-wrap .g-form .g-form-footer .g-form-footer-text {
+    padding-left: 100px; }
+    .g-form-wrap .g-form .g-form-footer .g-form-footer-item {
+      margin-top: 5px;
       color: #eb9e05;
       line-height: 1.4;
       text-align: justify; }
