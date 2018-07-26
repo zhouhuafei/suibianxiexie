@@ -756,7 +756,7 @@ input.g-input {
             flex: 1;
     height: 100%;
     padding-left: 10px;
-    padding-right: 20px;
+    padding-right: 30px;
     border: none; }
     .g-select select.g-select-body:disabled {
       cursor: not-allowed; }
@@ -2014,7 +2014,7 @@ input.g-button, button.g-button {
     height: inherit; }
     .g-pagination .g-pagination-now-page .g-select {
       height: inherit;
-      min-width: 57.6px; }
+      min-width: 72px; }
   .g-pagination .g-pagination-btn {
     display: -webkit-box;
     display: -ms-flexbox;

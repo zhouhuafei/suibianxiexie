@@ -6,7 +6,7 @@
     $mark-font-size: 12;
     $mark-width: 20;
     $select-padding-left: 10;
-    $select-padding-right: $mark-width;
+    $select-padding-right: $mark-width + $select-padding-left;
     position: relative;
     display: flex;
     align-items: center;
