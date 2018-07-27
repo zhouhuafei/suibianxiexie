@@ -13,7 +13,7 @@
     justify-content: center;
     .g-gallery {
         width: 80%;
-        height: 50%;
+        height: px2rem(40*16);
         display: flex;
         background: #ffffff;
         position: relative;
@@ -21,14 +21,24 @@
     }
     .g-gallery-category {
         overflow: auto;
-        width: px2rem(120);
-        min-width: px2rem(120);
+        $size: 120;
+        width: px2rem($size);
+        min-width: px2rem($size);
+        background: #252834;
+        color: #ffffff;
         .g-gallery-category-item {
-            height: px2rem(30);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
+            $size: 40;
+            height: px2rem($size);
+            line-height: px2rem($size);
+            text-align: right;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            padding: 0 px2rem(10);
+            &.g-gallery-category-item_active {
+                color: #252834;
+                background: #ffffff;
+            }
         }
     }
     .g-gallery-content {
