@@ -2518,7 +2518,10 @@ input.g-button, button.g-button {
       border: 1px solid #e1e1e1;
       background: #ffffff;
       /* 符号标记，例如人民币符号￥，美元符号$ */
-      /* 主体 */ }
+      /* 主体 */
+      /* 字数限制 */
+      /* 图标展示 */
+      /* 图标提示色 */ }
       .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-symbol {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -2547,7 +2550,7 @@ input.g-button, button.g-button {
         /* 重置g-checkbox */
         /* 重置g-radio */ }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-form-body-content-main-info {
-          padding: 10px;
+          padding: 5px 10px;
           line-height: 1.4;
           text-align: justify; }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-input {
@@ -2569,6 +2572,17 @@ input.g-button, button.g-button {
           margin: 5px 0 5px 10px; }
           .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-radio .g-radio-body {
             background: transparent; }
+      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-limit {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: end;
+            -ms-flex-pack: end;
+                justify-content: flex-end;
+        padding: 0 2px; }
       .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-icon {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -2581,26 +2595,18 @@ input.g-button, button.g-button {
                 justify-content: center;
         min-width: 20px;
         padding: 0 2px; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-limit {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        -webkit-box-pack: end;
-            -ms-flex-pack: end;
-                justify-content: flex-end;
-        padding: 0 2px; }
       .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-hint {
         color: #fa5555; }
   .g-form-wrap .g-form .g-form-footer {
-    padding-left: 110px; }
+    border: 1px solid #e1e1e1;
+    border-top: none;
+    padding: 0 10px 5px 110px;
+    background: #ffffff; }
     .g-form-wrap .g-form .g-form-footer .g-form-footer-item {
-      padding-top: 5px;
       color: #eb9e05;
       line-height: 1.4;
-      text-align: justify; }
+      text-align: justify;
+      padding-top: 5px; }
 
 .g-verify-code-canvas {
   width: 120px;
