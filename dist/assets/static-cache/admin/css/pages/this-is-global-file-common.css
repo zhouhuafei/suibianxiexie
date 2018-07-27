@@ -711,7 +711,7 @@ input.g-input {
       -ms-flex: 1;
           flex: 1;
   width: 100%;
-  height: 40px;
+  height: 30px;
   padding: 0 10px;
   background: #ffffff;
   border: 1px solid #e1e1e1;
@@ -740,7 +740,7 @@ input.g-input {
       -ms-flex: 1;
           flex: 1;
   width: 100%;
-  height: 40px;
+  height: 30px;
   background: #ffffff;
   border: 1px solid #e1e1e1; }
   .g-select select.g-select-body {
@@ -2481,10 +2481,7 @@ input.g-button, button.g-button {
   .g-form-wrap .g-form .g-form-body {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
-    border: 1px solid #e1e1e1;
-    border-left: none;
-    border-right: none; }
+    display: flex; }
     .g-form-wrap .g-form .g-form-body .g-form-body-text {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -2497,11 +2494,7 @@ input.g-button, button.g-button {
               justify-content: flex-end;
       padding: 0 10px;
       min-width: 100px;
-      text-align: right;
-      background: #ffffff;
-      border-right: none; }
-      .g-form-wrap .g-form .g-form-body .g-form-body-text + .g-form-body-content {
-        border-left: 1px solid #e1e1e1; }
+      text-align: right; }
     .g-form-wrap .g-form .g-form-body .g-form-body-content {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -2511,6 +2504,7 @@ input.g-button, button.g-button {
               flex: 1;
       background: #ffffff;
       padding: 0 10px;
+      border: 1px solid #e1e1e1;
       /* 符号标记，例如人民币符号￥，美元符号$ */
       /* 主体 */
       /* 字数限制 */
@@ -2606,8 +2600,8 @@ input.g-button, button.g-button {
       text-align: justify; }
 
 .g-verify-code-canvas {
-  width: 160px;
-  height: 40px; }
+  width: 120px;
+  height: 30px; }
   .g-verify-code-canvas img {
     width: 100%;
     height: 100%; }
