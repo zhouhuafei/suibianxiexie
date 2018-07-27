@@ -101,14 +101,14 @@
         position: relative;
         margin-bottom: px2rem(10);
         font-size: px2rem(12);
-        border: 1px solid $g-border-color-default;
-        border-left: none;
-        border-right: none;
         &:last-of-type {
             margin-bottom: 0;
         }
         .g-form-body {
             display: flex;
+            border: 1px solid $g-border-color-default;
+            border-left: none;
+            border-right: none;
             .g-form-body-text {
                 display: flex;
                 align-items: center;
@@ -212,11 +212,9 @@
             }
         }
         .g-form-footer {
-            border-top: 1px solid $g-border-color-default;
-            padding: 0 px2rem(10) px2rem(10) px2rem($text-width);
-            background: #ffffff;
+            padding: 0 px2rem(10) 0 px2rem($text-width + 10);
             .g-form-footer-item {
-                padding: px2rem(10) 0 0 px2rem(10);
+                padding-top: px2rem(4);
                 color: $g-warning-color;
                 line-height: 1.4;
                 text-align: justify;

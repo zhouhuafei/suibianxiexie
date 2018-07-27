@@ -2490,16 +2490,16 @@ input.g-button, button.g-button {
 .g-form-wrap .g-form {
   position: relative;
   margin-bottom: 10px;
-  font-size: 12px;
-  border: 1px solid #e1e1e1;
-  border-left: none;
-  border-right: none; }
+  font-size: 12px; }
   .g-form-wrap .g-form:last-of-type {
     margin-bottom: 0; }
   .g-form-wrap .g-form .g-form-body {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex; }
+    display: flex;
+    border: 1px solid #e1e1e1;
+    border-left: none;
+    border-right: none; }
     .g-form-wrap .g-form .g-form-body .g-form-body-text {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -2613,11 +2613,9 @@ input.g-button, button.g-button {
       .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-hint {
         color: #fa5555; }
   .g-form-wrap .g-form .g-form-footer {
-    border-top: 1px solid #e1e1e1;
-    padding: 0 10px 10px 100px;
-    background: #ffffff; }
+    padding: 0 10px 0 110px; }
     .g-form-wrap .g-form .g-form-footer .g-form-footer-item {
-      padding: 10px 0 0 10px;
+      padding-top: 4px;
       color: #eb9e05;
       line-height: 1.4;
       text-align: justify; }
