@@ -37,20 +37,6 @@
 // 业务组件(存在数据交互)
 @import "../components-dom-business/g-gallery";
 
-// 模块
-.g-module {
-    background: #ffffff;
-    padding: px2rem(10) px2rem(10) px2rem(30);
-    .g-module-title {
-        height: px2rem(20);
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-    }
-    .g-module-body {
-    }
-}
-
 // 图片列表测试
 .g-img-test {
     .g-img-test-big img {

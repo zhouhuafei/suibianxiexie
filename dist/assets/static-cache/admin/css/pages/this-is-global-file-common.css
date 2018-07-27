@@ -2442,21 +2442,6 @@ input.g-button, button.g-button {
     width: 200px;
     min-width: 200px; }
 
-.g-module {
-  background: #ffffff;
-  padding: 10px 10px 30px; }
-  .g-module .g-module-title {
-    height: 20px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start; }
-
 .g-img-test .g-img-test-big img {
   height: 80px; }
 
