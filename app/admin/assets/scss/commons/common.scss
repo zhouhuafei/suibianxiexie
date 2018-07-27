@@ -117,43 +117,58 @@
             .g-form-body-content {
                 display: flex;
                 flex: 1;
+                border: 1px solid $g-border-color-default;
+                background: #ffffff;
+                /* 符号标记，例如人民币符号￥，美元符号$ */
+                .g-form-body-content-symbol {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding-left: px2rem(10);
+                }
                 /* 主体 */
                 .g-form-body-content-main {
                     display: flex;
                     flex: 1;
                     flex-wrap: wrap;
-                    /* 符号标记 */
-                    .g-form-body-content-main-symbol {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        background: #ffffff;
-                        min-width: px2rem(20);
-                        padding: 0 px2rem(2);
-                        border: 1px solid $g-border-color-default;
-                        & + .g-input, & + .g-select, & + .g-textarea {
-                            border-left: none;
-                        }
-                    }
-                    .g-input + .g-form-body-content-main-symbol, .g-select + .g-form-body-content-main-symbol, .g-textarea + .g-form-body-content-main-symbol {
-                        border-left: none;
-                    }
                     /* 展示文本 */
                     .g-form-body-content-main-info {
-                        line-height: 1.2;
+                        padding: px2rem(10);
+                        line-height: 1.4;
                         text-align: justify;
+                    }
+                    /* 重置g-input */
+                    .g-input {
+                        border: none;
+                        background: transparent;
+                    }
+                    /* 重置g-select */
+                    .g-select {
+                        border: none;
+                        background: transparent;
+                    }
+                    /* 重置g-textarea */
+                    .g-textarea {
+                        border: none;
+                        background: transparent;
                     }
                     /* 重置g-upload */
                     .g-upload {
-                        margin: px2rem(5) px2rem(10) px2rem(5) 0;
+                        margin: px2rem(5) 0 px2rem(5) px2rem(10);
                     }
                     /* 重置g-checkbox */
                     .g-checkbox {
-                        margin: px2rem(5) px2rem(10) px2rem(5) 0;
+                        margin: px2rem(5) 0 px2rem(5) px2rem(10);
+                        .g-checkbox-body {
+                            background: transparent;
+                        }
                     }
                     /* 重置g-radio */
                     .g-radio {
-                        margin: px2rem(5) px2rem(10) px2rem(5) 0;
+                        margin: px2rem(5) 0 px2rem(5) px2rem(10);
+                        .g-radio-body {
+                            background: transparent;
+                        }
                     }
                 }
                 .g-form-body-content-icon {
@@ -167,7 +182,6 @@
                     display: flex;
                     align-items: center;
                     justify-content: flex-end;
-                    min-width: px2rem(48);
                     padding: 0 px2rem(2);
                 }
                 .g-form-body-content-hint {
@@ -176,7 +190,7 @@
             }
         }
         .g-form-footer {
-            padding-left: px2rem($text-width);
+            padding-left: px2rem($text-width + 10);
             .g-form-footer-item {
                 margin-top: px2rem(5);
                 color: $g-warning-color;
@@ -191,8 +205,6 @@
 .g-verify-code-canvas {
     width: px2rem(120);
     height: px2rem(30);
-    box-sizing: content-box;
-    padding: 0 px2rem(2);
     img {
         width: 100%;
         height: 100%;

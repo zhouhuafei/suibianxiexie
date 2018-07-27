@@ -6,7 +6,7 @@
     $mark-font-size: 12;
     $mark-width: 20;
     $select-padding-left: 10;
-    $select-padding-right: $mark-width + $select-padding-left;
+    $select-padding-right: $mark-width;
     position: relative;
     display: flex;
     align-items: center;
@@ -48,6 +48,5 @@
         top: 0;
         box-sizing: border-box;
         border-radius: inherit;
-        border-left: px2rem(1) solid $g-border-color-default;
     }
 }
