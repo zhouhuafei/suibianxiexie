@@ -10,6 +10,7 @@
     align-items: center;
     justify-content: center;
     border-radius: px2rem(6);
+    padding: 0 px2rem(20);
     // 默认按钮(确认按钮)空心的
     &.g-button_hollow {
         background: transparent;

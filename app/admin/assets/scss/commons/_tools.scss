@@ -31,12 +31,20 @@
 }
 
 /* 工具样式 */
-.g-display-none {
-    display: none !important;
+.g-display-inline {
+    display: inline !important;
+}
+
+.g-display-inline-block {
+    display: inline-block !important;
 }
 
 .g-display-block {
     display: block !important;
+}
+
+.g-display-none {
+    display: none !important;
 }
 
 .g-display-flex {
@@ -45,6 +53,10 @@
 
 .g-flex-1 {
     flex: 1 !important;
+}
+
+.g-flex-0 {
+    flex: none !important;
 }
 
 .g-justify-content-center {
@@ -82,6 +94,36 @@
     opacity: 1 !important;
 }
 
+/* width */
+.g-width-80 {
+    width: px2rem(80) !important;
+}
+
+.g-width-100 {
+    width: px2rem(100) !important;
+}
+
+.g-width-120 {
+    width: px2rem(120) !important;
+}
+
+.g-width-140 {
+    width: px2rem(140) !important;
+}
+
+.g-width-160 {
+    width: px2rem(160) !important;
+}
+
+/* height */
+.g-height-30 {
+    height: px2rem(30) !important;
+}
+
+.g-height-40 {
+    height: px2rem(40) !important;
+}
+
 /* margin 和 padding */
 @each $attr in margin, padding {
     @each $value in 0, 5, 10, 20 {
@@ -108,7 +150,7 @@
     }
 }
 
-// 清除浮动
+/* 清除浮动 */
 .g-clear-fix {
     &:after {
         content: '';
@@ -119,7 +161,7 @@
     }
 }
 
-// 文字超出显示省略号
+/* 文字超出显示省略号 */
 .g-text-ellipsis {
     overflow: hidden;
     white-space: nowrap;

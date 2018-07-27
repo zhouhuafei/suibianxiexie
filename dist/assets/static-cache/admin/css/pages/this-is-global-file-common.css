@@ -363,11 +363,17 @@ img {
   background-color: white !important; }
 
 /* 工具样式 */
-.g-display-none {
-  display: none !important; }
+.g-display-inline {
+  display: inline !important; }
+
+.g-display-inline-block {
+  display: inline-block !important; }
 
 .g-display-block {
   display: block !important; }
+
+.g-display-none {
+  display: none !important; }
 
 .g-display-flex {
   display: -webkit-box !important;
@@ -378,6 +384,11 @@ img {
   -webkit-box-flex: 1 !important;
       -ms-flex: 1 !important;
           flex: 1 !important; }
+
+.g-flex-0 {
+  -webkit-box-flex: 0 !important;
+      -ms-flex: none !important;
+          flex: none !important; }
 
 .g-justify-content-center {
   -webkit-box-pack: center !important;
@@ -410,6 +421,29 @@ img {
 
 .g-opacity-1 {
   opacity: 1 !important; }
+
+/* width */
+.g-width-80 {
+  width: 80px !important; }
+
+.g-width-100 {
+  width: 100px !important; }
+
+.g-width-120 {
+  width: 120px !important; }
+
+.g-width-140 {
+  width: 140px !important; }
+
+.g-width-160 {
+  width: 160px !important; }
+
+/* height */
+.g-height-30 {
+  height: 30px !important; }
+
+.g-height-40 {
+  height: 40px !important; }
 
 /* margin 和 padding */
 .g-margin-top-0 {
@@ -572,6 +606,7 @@ img {
   padding-left: 20px !important;
   padding-right: 20px !important; }
 
+/* 清除浮动 */
 .g-clear-fix:after {
   content: '';
   clear: both;
@@ -579,6 +614,7 @@ img {
   height: 0;
   overflow: hidden; }
 
+/* 文字超出显示省略号 */
 .g-text-ellipsis {
   overflow: hidden;
   white-space: nowrap;
@@ -1199,7 +1235,8 @@ textarea.g-textarea {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border-radius: 6px; }
+  border-radius: 6px;
+  padding: 0 20px; }
   .g-button.g-button_hollow {
     background: transparent;
     border: 1px solid #0089ff;
