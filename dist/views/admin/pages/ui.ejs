@@ -38,9 +38,9 @@
                         <div class="g-list-footer">网站信息页有网站的基础信息</div>
                     </a>
                 </div>
-                <div class="g-title">表单系列</div>
+                <div class="g-title g-margin-top-10">表单系列</div>
                 <form action="" data-method="get">
-                    <div class="g-form-wrap g-form-wrap_no-margin">
+                    <div class="g-form-wrap">
                         <div class="g-form">
                             <div class="g-form-body">
                                 <div class="g-form-body-text">金额:</div>
@@ -84,27 +84,27 @@
                                 <div class="g-form-body-text">性别:</div>
                                 <div class="g-form-body-content">
                                     <div class="g-form-body-content-main g-form-body-content-main_more-row">
-                                        <div class="g-radio">
-                                            <div class="g-radio-body">
+                                        <label class="g-radio">
+                                            <span class="g-radio-body">
                                                 <input title="" class="g-radio-body-radio js-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="radio" name="sex" value="male">
-                                                <div class="g-radio-body-mark iconfont icon-radio"></div>
-                                            </div>
-                                            <div class="g-radio-text">男</div>
-                                        </div>
-                                        <div class="g-radio">
-                                            <div class="g-radio-body">
+                                                <span class="g-radio-body-mark iconfont icon-radio"></span>
+                                            </span>
+                                            <span class="g-radio-text">男</span>
+                                        </label>
+                                        <label class="g-radio">
+                                            <span class="g-radio-body">
                                                 <input title="" class="g-radio-body-radio js-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="radio" name="sex" value="female">
-                                                <div class="g-radio-body-mark iconfont icon-radio"></div>
-                                            </div>
-                                            <div class="g-radio-text">女</div>
-                                        </div>
-                                        <div class="g-radio">
-                                            <div class="g-radio-body">
+                                                <span class="g-radio-body-mark iconfont icon-radio"></span>
+                                            </span>
+                                            <span class="g-radio-text">女</span>
+                                        </label>
+                                        <label class="g-radio">
+                                            <span class="g-radio-body">
                                                 <input disabled="disabled" title="" class="g-radio-body-radio js-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="radio" name="sex" value="female">
-                                                <div class="g-radio-body-mark iconfont icon-radio"></div>
-                                            </div>
-                                            <div class="g-radio-text">不男不女</div>
-                                        </div>
+                                                <span class="g-radio-body-mark iconfont icon-radio"></span>
+                                            </span>
+                                            <span class="g-radio-text">不男不女</span>
+                                        </label>
                                     </div>
                                     <div class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></div>
                                 </div>
@@ -213,7 +213,27 @@
                                 </div>
                             </div>
                             <div class="g-form-footer">
-                                <div class="g-form-footer-item">建议尺寸：640*640（这里是补充信息，对此项进行补充说明）。</div>
+                                <div class="g-form-footer-item">
+                                    <div class="g-margin-right-5">是否显示：</div>
+                                    <label class="g-radio g-margin-right-10">
+                                        <span class="g-radio-body">
+                                            <input checked="checked" title="" class="g-radio-body-radio" type="radio" name="is-show" value="yes">
+                                            <span class="g-radio-body-mark iconfont icon-radio"></span>
+                                        </span>
+                                        <span class="g-radio-text">是</span>
+                                    </label>
+                                    <label class="g-radio">
+                                        <span class="g-radio-body">
+                                            <input title="" class="g-radio-body-radio" type="radio" name="is-show" value="no">
+                                            <span class="g-radio-body-mark iconfont icon-radio"></span>
+                                        </span>
+                                        <span class="g-radio-text">否</span>
+                                    </label>
+                                </div>
+                                <div class="g-form-footer-item g-font-color-warning">
+                                    <div class="g-margin-right-5">建议尺寸：</div>
+                                    <div>640*640（这里是补充信息，对此项进行补充说明）。</div>
+                                </div>
                             </div>
                         </div>
                         <div class="g-form">
@@ -240,7 +260,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="g-pagination g-margin-top-20">
+                    <div class="g-pagination g-margin-top-10">
                         <div class="g-pagination-btn g-pagination-btn-inactive">首页</div>
                         <div class="g-pagination-btn g-pagination-btn-inactive">上一页</div>
                         <div class="g-pagination-text">第</div>
@@ -258,7 +278,7 @@
                         <div class="g-pagination-btn">下一页</div>
                         <div class="g-pagination-btn">尾页</div>
                     </div>
-                    <div class="g-display-flex g-align-items-center g-margin-top-20">
+                    <div class="g-display-flex g-align-items-center g-margin-top-10">
                         <input class="g-button g-margin-right-10" type="submit" value="submit">
                         <div title="" class="g-button g-button_disable g-margin-right-10">禁用</div>
                         <div title="" class="g-button g-button_cancel g-margin-right-10">取消</div>

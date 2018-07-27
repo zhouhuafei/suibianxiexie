@@ -711,7 +711,7 @@ input.g-input {
       -ms-flex: 1;
           flex: 1;
   width: 100%;
-  height: 30px;
+  height: 40px;
   padding: 0 10px;
   background: #ffffff;
   border: 1px solid #e1e1e1;
@@ -740,7 +740,7 @@ input.g-input {
       -ms-flex: 1;
           flex: 1;
   width: 100%;
-  height: 30px;
+  height: 40px;
   background: #ffffff;
   border: 1px solid #e1e1e1; }
   .g-select select.g-select-body {
@@ -2472,6 +2472,13 @@ input.g-button, button.g-button {
   .g-audio.g-audio_on .g-audio-icon .g-audio-icon-item.g-audio-icon-item_off {
     display: none; }
 
+.g-form-wrap.g-form-wrap_no-margin .g-form {
+  margin-bottom: 0; }
+  .g-form-wrap.g-form-wrap_no-margin .g-form:first-of-type {
+    border-top: 1px solid #e1e1e1; }
+  .g-form-wrap.g-form-wrap_no-margin .g-form .g-form-body {
+    border-top: none; }
+
 .g-form-wrap .g-form {
   position: relative;
   margin-bottom: 10px;
@@ -2481,7 +2488,10 @@ input.g-button, button.g-button {
   .g-form-wrap .g-form .g-form-body {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex; }
+    display: flex;
+    border: 1px solid #e1e1e1;
+    border-left: none;
+    border-right: none; }
     .g-form-wrap .g-form .g-form-body .g-form-body-text {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -2494,7 +2504,10 @@ input.g-button, button.g-button {
               justify-content: flex-end;
       padding: 0 10px;
       min-width: 100px;
-      text-align: right; }
+      text-align: right;
+      background: #ffffff; }
+      .g-form-wrap .g-form .g-form-body .g-form-body-text + .g-form-body-content {
+        border-left: 1px solid #e1e1e1; }
     .g-form-wrap .g-form .g-form-body .g-form-body-content {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -2504,7 +2517,6 @@ input.g-button, button.g-button {
               flex: 1;
       background: #ffffff;
       padding: 0 10px;
-      border: 1px solid #e1e1e1;
       /* 符号标记，例如人民币符号￥，美元符号$ */
       /* 主体 */
       /* 字数限制 */
@@ -2592,16 +2604,25 @@ input.g-button, button.g-button {
       .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-hint {
         color: #fa5555; }
   .g-form-wrap .g-form .g-form-footer {
-    padding: 0 10px 0 110px; }
+    padding: 0 10px 0 110px;
+    background: #ffffff;
+    border-bottom: 1px solid #e1e1e1; }
     .g-form-wrap .g-form .g-form-footer .g-form-footer-item {
-      padding-top: 4px;
-      color: #eb9e05;
+      padding-top: 10px;
       line-height: 1.4;
-      text-align: justify; }
+      text-align: justify;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center; }
+      .g-form-wrap .g-form .g-form-footer .g-form-footer-item:last-of-type {
+        padding-bottom: 10px; }
 
 .g-verify-code-canvas {
-  width: 120px;
-  height: 30px; }
+  width: 160px;
+  height: 40px; }
   .g-verify-code-canvas img {
     width: 100%;
     height: 100%; }
@@ -2645,8 +2666,7 @@ input.g-button, button.g-button {
       margin-right: 0; }
 
 .g-title {
-  height: 40px;
-  padding-top: 10px;
+  height: 30px;
   font-size: 12px;
   font-weight: bold;
   color: #333333;
