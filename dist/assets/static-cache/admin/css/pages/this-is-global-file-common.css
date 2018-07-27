@@ -2567,7 +2567,7 @@ input.g-button, button.g-button {
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-select {
           border: none;
           background: transparent; }
-          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-select.g-select-body {
+          .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-select .g-select-body {
             padding-left: 0; }
         .g-form-wrap .g-form .g-form-body .g-form-body-content .g-form-body-content-main .g-textarea {
           border: none;
