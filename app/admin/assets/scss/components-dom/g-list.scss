@@ -43,7 +43,9 @@
                 color: $g-ignore-color;
             }
             .g-list-body-icon {
-                font-size: px2rem(14);
+                $size: 14;
+                font-size: px2rem($size);
+                min-width: px2rem($size);
             }
         }
         .g-list-footer {

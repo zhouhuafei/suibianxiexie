@@ -40,12 +40,12 @@
                 </div>
                 <div class="g-title">表单系列</div>
                 <form action="" data-method="get">
-                    <div class="g-form-wrap">
+                    <div class="g-form-wrap g-form-wrap_no-margin">
                         <div class="g-form">
                             <div class="g-form-body">
                                 <div class="g-form-body-text">金额:</div>
                                 <div class="g-form-body-content">
-                                    <div class="g-form-body-content-symbol">¥</div>
+                                    <div class="g-form-body-content-symbol iconfont icon-rmb"></div>
                                     <div class="g-form-body-content-main">
                                         <input placeholder="请输入" class="g-input js-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="text">
                                     </div>
@@ -58,10 +58,10 @@
                             <div class="g-form-body">
                                 <div class="g-form-body-text">搜索:</div>
                                 <div class="g-form-body-content">
+                                    <div class="g-form-body-content-symbol iconfont icon-search"></div>
                                     <div class="g-form-body-content-main">
-                                        <input class="g-input js-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="text" name="website-search" value="" placeholder="请输入网站标题">
+                                        <input class="g-input js-validate-form" data-validate="no-empty no-zero yes-positive-integer" data-hint="本项必填 本项不可为零 请输入正整数" type="text" name="website-search" value="" placeholder="请输入搜索内容">
                                     </div>
-                                    <div class="g-form-body-content-icon iconfont icon-search"></div>
                                     <div class="g-form-body-content-icon iconfont icon-clear"></div>
                                     <div class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></div>
                                 </div>
@@ -83,7 +83,7 @@
                             <div class="g-form-body">
                                 <div class="g-form-body-text">性别:</div>
                                 <div class="g-form-body-content">
-                                    <div class="g-form-body-content-main">
+                                    <div class="g-form-body-content-main g-form-body-content-main_more-row">
                                         <div class="g-radio">
                                             <div class="g-radio-body">
                                                 <input title="" class="g-radio-body-radio js-validate-form" data-event="change" data-validate="no-empty" data-hint="本项必选" type="radio" name="sex" value="male">
@@ -114,7 +114,7 @@
                             <div class="g-form-body">
                                 <div class="g-form-body-text">属性:</div>
                                 <div class="g-form-body-content">
-                                    <div class="g-form-body-content-main">
+                                    <div class="g-form-body-content-main g-form-body-content-main_more-row">
                                         <label class="g-checkbox">
                                             <span class="g-checkbox-body">
                                                 <input checked="checked" title="" class="g-checkbox-body-checkbox js-validate-form" data-event="change" data-validate="no-empty yes-limit-length-2" data-hint="本项必选 仅能选择2个" type="checkbox" name="hobby[]" value="pingpangqiu">
@@ -177,7 +177,7 @@
                             <div class="g-form-body">
                                 <div class="g-form-body-text">网站logo:</div>
                                 <div class="g-form-body-content">
-                                    <div class="g-form-body-content-main">
+                                    <div class="g-form-body-content-main g-form-body-content-main_more-row">
                                         <label class="g-upload g-upload_active js-popover">
                                             <input class="g-upload-input" accept="image/gif, image/jpeg, image/png" type="file">
                                             <input type="hidden" name="website-logo">
