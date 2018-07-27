@@ -34,7 +34,27 @@ Sub.prototype.moduleDomCreate = function () {
                         <div class="g-gallery-content-body"></div>
                         <div class="g-gallery-content-footer"></div>
                     </div>
-                    <div class="g-gallery-options"></div>                                        
+                    <div class="g-gallery-options">
+                        <div class="g-button">上传图片</div>
+                        <div class="g-form-wrap">
+                            <div class="g-form">
+                                <div class="g-form-body">
+                                    <div class="g-form-body-text">手机:</div>
+                                    <div class="g-form-body-content">
+                                        <div class="g-form-body-content-symbol iconfont icon-phone"></div>
+                                        <div class="g-form-body-content-main">
+                                            <input class="g-input js-validate-form js-g-positive-integer"
+                                                   data-validate="no-empty no-zero yes-positive-integer yes-phone"
+                                                   data-hint="本项必填 本项不可为零 请输入正整数 手机号码格式错误"
+                                                   type="tel" name="website-phone" value="" placeholder="请输入手机号码">
+                                        </div>
+                                        <div class="g-form-body-content-icon iconfont icon-clear"></div>
+                                        <div class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             `,
         },
