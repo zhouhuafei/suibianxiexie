@@ -2484,7 +2484,7 @@ input.g-button, button.g-button {
           justify-content: center; }
   .g-gallery-wrap .g-gallery {
     width: 80%;
-    height: 640px;
+    height: 400px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
