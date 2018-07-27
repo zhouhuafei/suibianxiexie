@@ -9,8 +9,7 @@
     width: 100%;
     height: 100%;
     z-index: 500;
-    &.g-mask-transparent {
-        z-index: 999;
+    &.g-mask_transparent {
         background-color: transparent;
     }
     &.g-mask-fixed {

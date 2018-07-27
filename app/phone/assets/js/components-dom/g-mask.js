@@ -27,7 +27,7 @@ Sub.prototype.moduleDomCreate = function () {
     const config = this.opts.config;
     let className = '';
     if (config.isTransparent) {
-        className = 'g-mask-transparent';
+        className = 'g-mask_transparent';
     }
     if (config.positionMethod === 'fixed') {
         className = 'g-mask-fixed';

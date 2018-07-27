@@ -1504,8 +1504,7 @@ input.g-button, button.g-button {
   width: 100%;
   height: 100%;
   z-index: 500; }
-  .g-mask.g-mask-transparent {
-    z-index: 999;
+  .g-mask.g-mask_transparent {
     background-color: transparent; }
   .g-mask.g-mask-fixed {
     position: fixed; }
