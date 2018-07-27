@@ -1186,7 +1186,7 @@ textarea.g-textarea {
 .g-button, input.g-button, button.g-button {
   height: 40px;
   background: #0089ff;
-  color: #fff;
+  color: #ffffff;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -1198,10 +1198,10 @@ textarea.g-textarea {
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
-          justify-content: center; }
+          justify-content: center;
+  border-radius: 6px; }
   .g-button.g-button_hollow {
     background: transparent;
-    border-radius: 6px;
     border: 1px solid #0089ff;
     color: #0089ff; }
   .g-button.g-button_cancel {
@@ -1210,6 +1210,13 @@ textarea.g-textarea {
       background: transparent;
       border: 1px solid #e1e1e1;
       color: #333333; }
+  .g-button.g-button_create {
+    background: #06bf04;
+    color: #ffffff; }
+    .g-button.g-button_create.g-button_hollow {
+      background: transparent;
+      border: 1px solid #06bf04;
+      color: #06bf04; }
   .g-button.g-button_disabled {
     background: #e6e6e6;
     color: #c1c1c1;
@@ -1221,7 +1228,16 @@ textarea.g-textarea {
   .g-button.g-button_small {
     height: 30px; }
   .g-button .g-button-icon {
-    font-size: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    min-width: 12px;
     margin: 0 2px; }
   .g-button .g-button-text {
     margin: 0 2px; }
@@ -1615,7 +1631,8 @@ input.g-button, button.g-button {
             -ms-flex-pack: center;
                 justify-content: center;
         height: 40px;
-        width: auto; }
+        width: auto;
+        border-radius: 0; }
     .g-dialog-confirm-wrap .g-dialog-confirm .g-dialog-confirm-close {
       position: absolute;
       top: 0;
