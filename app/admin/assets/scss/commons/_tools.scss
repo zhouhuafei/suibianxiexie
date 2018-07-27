@@ -95,33 +95,17 @@
 }
 
 /* width */
-.g-width-80 {
-    width: px2rem(80) !important;
-}
-
-.g-width-100 {
-    width: px2rem(100) !important;
-}
-
-.g-width-120 {
-    width: px2rem(120) !important;
-}
-
-.g-width-140 {
-    width: px2rem(140) !important;
-}
-
-.g-width-160 {
-    width: px2rem(160) !important;
+@each $value in 80, 100, 120, 140, 160 {
+    .g-width-#{$value} {
+        width: px2rem($value) !important;
+    }
 }
 
 /* height */
-.g-height-30 {
-    height: px2rem(30) !important;
-}
-
-.g-height-40 {
-    height: px2rem(40) !important;
+@each $value in 30, 40 {
+    .g-height-#{$value} {
+        height: px2rem($value) !important;
+    }
 }
 
 /* margin 和 padding */
