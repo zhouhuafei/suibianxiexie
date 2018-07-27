@@ -718,6 +718,8 @@ input.g-input {
   background: #ffffff;
   border: 1px solid #e1e1e1;
   min-width: 50px; }
+  input.g-input.g-input_small {
+    height: 30px; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。
@@ -745,6 +747,8 @@ input.g-input {
   height: 40px;
   background: #ffffff;
   border: 1px solid #e1e1e1; }
+  .g-select.g-select_small {
+    height: 30px; }
   .g-select select.g-select-body {
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
@@ -1195,12 +1199,27 @@ textarea.g-textarea {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center; }
+  .g-button.g-button_hollow {
+    background: transparent;
+    border-radius: 6px;
+    border: 1px solid #0089ff;
+    color: #0089ff; }
   .g-button.g-button_cancel {
     background: #bbbbbb; }
-  .g-button.g-button_disable {
+    .g-button.g-button_cancel.g-button_hollow {
+      background: transparent;
+      border: 1px solid #e1e1e1;
+      color: #333333; }
+  .g-button.g-button_disabled {
     background: #e6e6e6;
     color: #c1c1c1;
     cursor: not-allowed; }
+    .g-button.g-button_disabled.g-button_hollow {
+      background: transparent;
+      border: 1px solid #e3e3e3;
+      color: #c1c1c1; }
+  .g-button.g-button_small {
+    height: 30px; }
   .g-button .g-button-icon {
     font-size: 20px;
     margin: 0 2px; }

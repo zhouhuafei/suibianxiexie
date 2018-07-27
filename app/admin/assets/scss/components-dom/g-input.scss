@@ -16,4 +16,8 @@ input.g-input {
     background: #ffffff;
     border: px2rem(1) solid $g-border-color-default;
     min-width: px2rem(50);
+    // 小的输入框
+    &.g-input_small {
+        height: px2rem(30);
+    }
 }

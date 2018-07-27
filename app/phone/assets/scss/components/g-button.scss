@@ -21,7 +21,7 @@
         background: $g-background-color-default;
     }
     //禁用
-    &.g-button_disable {
+    &.g-button_disabled {
         background: $g-background-color-disabled;
         color: $g-font-color-disabled;
         cursor: not-allowed;
