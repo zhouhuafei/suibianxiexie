@@ -2504,7 +2504,10 @@ input.g-button, button.g-button {
               justify-content: flex-end;
       padding: 0 10px;
       min-width: 100px;
-      text-align: right; }
+      text-align: right;
+      background: #ffffff;
+      border: 1px solid #e1e1e1;
+      border-right: none; }
     .g-form-wrap .g-form .g-form-body .g-form-body-content {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -2594,7 +2597,7 @@ input.g-button, button.g-button {
   .g-form-wrap .g-form .g-form-footer {
     padding-left: 110px; }
     .g-form-wrap .g-form .g-form-footer .g-form-footer-item {
-      margin-top: 5px;
+      padding-top: 5px;
       color: #eb9e05;
       line-height: 1.4;
       text-align: justify; }

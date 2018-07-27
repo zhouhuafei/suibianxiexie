@@ -113,6 +113,9 @@
                 padding: 0 px2rem(10);
                 min-width: px2rem($text-width);
                 text-align: right;
+                background: #ffffff;
+                border: 1px solid $g-border-color-default;
+                border-right: none;
             }
             .g-form-body-content {
                 display: flex;
@@ -192,7 +195,7 @@
         .g-form-footer {
             padding-left: px2rem($text-width + 10);
             .g-form-footer-item {
-                margin-top: px2rem(5);
+                padding-top: px2rem(5);
                 color: $g-warning-color;
                 line-height: 1.4;
                 text-align: justify;
