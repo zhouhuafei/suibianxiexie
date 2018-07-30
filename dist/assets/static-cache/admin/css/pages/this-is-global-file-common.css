@@ -1223,9 +1223,6 @@ textarea.g-textarea {
   height: 40px;
   background: #0089ff;
   color: #ffffff;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1236,7 +1233,7 @@ textarea.g-textarea {
       -ms-flex-pack: center;
           justify-content: center;
   border-radius: 6px;
-  padding: 0 20px; }
+  width: 100px; }
   .g-button.g-button_hollow {
     background: transparent;
     border: 1px solid #0089ff;
@@ -1281,7 +1278,6 @@ textarea.g-textarea {
 
 input.g-button, button.g-button {
   border: none;
-  width: 100%;
   padding: 0; }
 
 /*
@@ -2512,9 +2508,21 @@ input.g-button, button.g-button {
     -webkit-box-flex: 1;
         -ms-flex: 1;
             flex: 1; }
-  .g-gallery-wrap .g-gallery-options {
-    width: 200px;
-    min-width: 200px; }
+    .g-gallery-wrap .g-gallery-content .g-gallery-content-header {
+      padding: 10px; }
+    .g-gallery-wrap .g-gallery-content .g-gallery-content-body {
+      height: 250px; }
+    .g-gallery-wrap .g-gallery-content .g-gallery-content-footer {
+      height: 100px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center; }
 
 .g-img-test .g-img-test-big img {
   height: 80px; }

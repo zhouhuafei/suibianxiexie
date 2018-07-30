@@ -44,14 +44,16 @@
     .g-gallery-content {
         flex: 1;
         .g-gallery-content-header {
+            padding: px2rem(10);
         }
         .g-gallery-content-body {
+            height: px2rem(250);
         }
         .g-gallery-content-footer {
+            height: px2rem(100);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-    }
-    .g-gallery-options {
-        width: px2rem(200);
-        min-width: px2rem(200);
     }
 }

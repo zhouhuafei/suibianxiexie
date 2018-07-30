@@ -30,13 +30,24 @@ Sub.prototype.moduleDomCreate = function () {
                         <div class="g-gallery-category-item">640*640</div>
                     </div>
                     <div class="g-gallery-content">
-                        <div class="g-gallery-content-header"></div>
+                        <div class="g-gallery-content-header">
+                            <div class="g-display-flex">                            
+                                <div class="g-button g-button_small g-button_create g-margin-right-10 g-flex-0">
+                                    <div class="g-button-icon iconfont icon-plus"></div>
+                                    <div class="g-button-text">上传图片</div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="g-gallery-content-body"></div>
-                        <div class="g-gallery-content-footer"></div>
-                    </div>
-                    <div class="g-gallery-options">
-                        <div class="g-button g-button_small">上传图片</div>
-                        <div class="g-button g-button_small">新增分类</div>
+                        <div class="g-gallery-content-footer">
+                            <div>
+                                
+                            </div>
+                            <div class="g-xy-center-flex">
+                                <div class="g-button g-button_small g-button_hollow g-button_cancel g-width-100">取消</div>
+                                <div class="g-button g-button_small g-button_hollow g-width-100 g-margin-left-10">确认</div>                            
+                            </div>
+                        </div>
                     </div>
                 </div>
             `,

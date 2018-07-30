@@ -5,12 +5,11 @@
     height: px2rem(40);
     background: $g-highlight-color;
     color: #ffffff;
-    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: px2rem(6);
-    padding: 0 px2rem(20);
+    width: px2rem(100);
     // 默认按钮(确认按钮)空心的
     &.g-button_hollow {
         background: transparent;
@@ -70,6 +69,5 @@
 input.g-button, button.g-button {
     @extend .g-button;
     border: none;
-    width: 100%;
     padding: 0;
 }
