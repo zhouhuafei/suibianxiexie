@@ -4,6 +4,16 @@
 .g-checkbox {
     display: flex;
     align-items: center;
+    &.g-checkbox_small {
+        .g-checkbox-body {
+            $height: 16;
+            width: px2rem($height);
+            height: px2rem($height);
+            .g-checkbox-body-mark {
+                font-size: px2rem(12);
+            }
+        }
+    }
     .g-checkbox-body {
         $height: 20;
         width: px2rem($height);

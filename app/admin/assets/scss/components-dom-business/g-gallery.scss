@@ -43,17 +43,20 @@
     }
     .g-gallery-content {
         flex: 1;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin: 0 px2rem(10);
         .g-gallery-content-header {
-            padding: px2rem(10);
+            padding: px2rem(10) 0;
         }
         .g-gallery-content-body {
-            height: px2rem(250);
+            flex: 1;
+            overflow: auto;
         }
         .g-gallery-content-footer {
-            height: px2rem(100);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @extend .g-xy-center-flex;
+            padding: px2rem(10) 0;
         }
     }
 }

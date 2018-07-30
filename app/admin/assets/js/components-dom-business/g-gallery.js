@@ -36,17 +36,30 @@ Sub.prototype.moduleDomCreate = function () {
                                     <div class="g-button-icon iconfont icon-plus"></div>
                                     <div class="g-button-text">上传图片</div>
                                 </div>
+                                <label class="g-checkbox g-checkbox_small">
+                                    <span class="g-checkbox-body">
+                                        <input class="g-checkbox-body-checkbox" type="checkbox">
+                                        <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
+                                    </span>
+                                    <span class="g-checkbox-text">全选</span>
+                                </label>
                             </div>
                         </div>
-                        <div class="g-gallery-content-body"></div>
+                        <div class="g-gallery-content-body">
+                            <div class="g-gallery-content-body-item">
+                                <img src="" alt="">                            
+                                <label class="g-checkbox g-checkbox_small">
+                                    <span class="g-checkbox-body">
+                                        <input class="g-checkbox-body-checkbox" type="checkbox">
+                                        <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
+                                    </span>
+                                    <span class="g-checkbox-text">全选</span>
+                                </label>
+                            </div>
+                        </div>
                         <div class="g-gallery-content-footer">
-                            <div>
-                                
-                            </div>
-                            <div class="g-xy-center-flex">
-                                <div class="g-button g-button_small g-button_hollow g-button_cancel g-width-100">取消</div>
-                                <div class="g-button g-button_small g-button_hollow g-width-100 g-margin-left-10">确认</div>                            
-                            </div>
+                            <div class="g-button g-button_small g-button_hollow g-button_cancel g-width-100">取消</div>
+                            <div class="g-button g-button_small g-button_hollow g-width-100 g-margin-left-10">确认</div>
                         </div>
                     </div>
                 </div>
