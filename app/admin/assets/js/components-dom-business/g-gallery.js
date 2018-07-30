@@ -27,7 +27,10 @@ Sub.prototype.moduleDomCreate = function () {
                     <div class="g-gallery-category">
                         <div class="g-gallery-category-item">全部</div>
                         <div class="g-gallery-category-item g-gallery-category-item_active">无分类</div>
+                        <div class="g-gallery-category-item">320*320</div>
                         <div class="g-gallery-category-item">640*640</div>
+                        <div class="g-gallery-category-item">375*375</div>
+                        <div class="g-gallery-category-item">750*750</div>
                     </div>
                     <div class="g-gallery-content">
                         <div class="g-gallery-content-header">
@@ -46,26 +49,26 @@ Sub.prototype.moduleDomCreate = function () {
                             </div>
                         </div>
                         <div class="g-gallery-content-body">
-                            <div class="g-gallery-content-body-item">
+                            <label class="g-gallery-content-body-item">
                                 <img src="" alt="">
-                                <label class="g-checkbox g-checkbox_small">
+                                <span class="g-checkbox g-checkbox_small">
                                     <span class="g-checkbox-body">
                                         <input class="g-checkbox-body-main" type="checkbox">
                                         <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
                                     </span>
                                     <span class="g-checkbox-text">图片1</span>
-                                </label>
-                            </div>
-                            <div class="g-gallery-content-body-item">
+                                </span>
+                            </label>
+                            <label class="g-gallery-content-body-item">
                                 <img src="" alt="">
-                                <label class="g-radio g-radio_small">
+                                <span class="g-radio g-radio_small">
                                     <span class="g-radio-body">
                                         <input class="g-radio-body-main" type="radio">
                                         <span class="g-radio-body-mark iconfont icon-radio"></span>
                                     </span>
                                     <span class="g-radio-text">图片2</span>
-                                </label>
-                            </div>
+                                </span>
+                            </label>
                         </div>
                         <div class="g-gallery-content-footer">
                             <div class="g-button g-button_small g-button_hollow g-button_cancel g-width-100">取消</div>
