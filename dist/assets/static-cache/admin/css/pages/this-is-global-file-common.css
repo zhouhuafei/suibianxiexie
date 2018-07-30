@@ -878,6 +878,11 @@ textarea.g-textarea {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center; }
+  .g-radio.g-radio_small .g-radio-body {
+    width: 16px;
+    height: 16px; }
+    .g-radio.g-radio_small .g-radio-body .g-radio-body-mark {
+      font-size: 12px; }
   .g-radio .g-radio-body {
     position: relative;
     width: 20px;
@@ -893,7 +898,7 @@ textarea.g-textarea {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center; }
-    .g-radio .g-radio-body .g-radio-body-radio {
+    .g-radio .g-radio-body .g-radio-body-main {
       -webkit-appearance: none;
       -webkit-tap-highlight-color: transparent;
       outline: none;
@@ -902,9 +907,9 @@ textarea.g-textarea {
       background: inherit;
       border-radius: inherit;
       border: 1px solid #e1e1e1; }
-      .g-radio .g-radio-body .g-radio-body-radio:checked {
+      .g-radio .g-radio-body .g-radio-body-main:checked {
         border-color: #0089ff; }
-        .g-radio .g-radio-body .g-radio-body-radio:checked + .g-radio-body-mark {
+        .g-radio .g-radio-body .g-radio-body-main:checked + .g-radio-body-mark {
           display: -webkit-box;
           display: -ms-flexbox;
           display: flex;
@@ -914,7 +919,7 @@ textarea.g-textarea {
           -webkit-box-pack: center;
               -ms-flex-pack: center;
                   justify-content: center; }
-      .g-radio .g-radio-body .g-radio-body-radio:disabled {
+      .g-radio .g-radio-body .g-radio-body-main:disabled {
         background: #e6e6e6;
         border-color: #e3e3e3;
         cursor: not-allowed; }
@@ -969,7 +974,7 @@ textarea.g-textarea {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center; }
-    .g-checkbox .g-checkbox-body .g-checkbox-body-checkbox {
+    .g-checkbox .g-checkbox-body .g-checkbox-body-main {
       -webkit-appearance: none;
       -webkit-tap-highlight-color: transparent;
       outline: none;
@@ -978,9 +983,9 @@ textarea.g-textarea {
       background: inherit;
       border-radius: inherit;
       border: 1px solid #e1e1e1; }
-      .g-checkbox .g-checkbox-body .g-checkbox-body-checkbox:checked {
+      .g-checkbox .g-checkbox-body .g-checkbox-body-main:checked {
         border-color: #0089ff; }
-        .g-checkbox .g-checkbox-body .g-checkbox-body-checkbox:checked + .g-checkbox-body-mark {
+        .g-checkbox .g-checkbox-body .g-checkbox-body-main:checked + .g-checkbox-body-mark {
           display: -webkit-box;
           display: -ms-flexbox;
           display: flex;
@@ -990,7 +995,7 @@ textarea.g-textarea {
           -webkit-box-pack: center;
               -ms-flex-pack: center;
                   justify-content: center; }
-      .g-checkbox .g-checkbox-body .g-checkbox-body-checkbox:disabled {
+      .g-checkbox .g-checkbox-body .g-checkbox-body-main:disabled {
         background: #e6e6e6;
         border-color: #e3e3e3;
         cursor: not-allowed; }

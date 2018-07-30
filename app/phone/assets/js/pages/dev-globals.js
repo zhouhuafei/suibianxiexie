@@ -12,7 +12,7 @@ class Sub extends Super {
             // 测试全选
             const SelectAll = applications.SelectAll;
             new SelectAll({
-                items: '.g-checkbox-body-checkbox',
+                items: '.g-checkbox-body-main',
                 callback: {
                     click: function (obj) {
                         console.log(obj);

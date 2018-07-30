@@ -38,7 +38,7 @@ Sub.prototype.moduleDomCreate = function () {
                                 </div>
                                 <label class="g-checkbox g-checkbox_small">
                                     <span class="g-checkbox-body">
-                                        <input class="g-checkbox-body-checkbox" type="checkbox">
+                                        <input class="g-checkbox-body-main" type="checkbox">
                                         <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
                                     </span>
                                     <span class="g-checkbox-text">全选</span>
@@ -50,10 +50,17 @@ Sub.prototype.moduleDomCreate = function () {
                                 <img src="" alt="">                            
                                 <label class="g-checkbox g-checkbox_small">
                                     <span class="g-checkbox-body">
-                                        <input class="g-checkbox-body-checkbox" type="checkbox">
+                                        <input class="g-checkbox-body-main" type="checkbox">
                                         <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
                                     </span>
-                                    <span class="g-checkbox-text">全选</span>
+                                    <span class="g-checkbox-text">图片1</span>
+                                </label>                      
+                                <label class="g-radio g-radio_small">
+                                    <span class="g-radio-body">
+                                        <input class="g-radio-body-main" type="radio">
+                                        <span class="g-radio-body-mark iconfont icon-checkbox"></span>
+                                    </span>
+                                    <span class="g-radio-text">图片2</span>
                                 </label>
                             </div>
                         </div>
