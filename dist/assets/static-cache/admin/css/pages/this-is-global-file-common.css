@@ -438,12 +438,24 @@ img {
 .g-width-160 {
   width: 160px !important; }
 
+.g-width-auto {
+  width: auto !important; }
+
+.g-width-100p {
+  width: 100% !important; }
+
 /* height */
 .g-height-30 {
   height: 30px !important; }
 
 .g-height-40 {
   height: 40px !important; }
+
+.g-height-auto {
+  height: auto !important; }
+
+.g-height-100p {
+  height: 100% !important; }
 
 /* margin 和 padding */
 .g-margin-top-0 {
@@ -605,6 +617,41 @@ img {
 .g-padding-left-right-20 {
   padding-left: 20px !important;
   padding-right: 20px !important; }
+
+/* border */
+.g-border-top-none {
+  border-top: none !important; }
+
+.g-border-right-none {
+  border-right: none !important; }
+
+.g-border-bottom-none {
+  border-bottom: none !important; }
+
+.g-border-left-none {
+  border-left: none !important; }
+
+.g-border-none {
+  border: none !important; }
+
+/* border-radius */
+.g-border-radius-0 {
+  border-radius: 0 !important; }
+
+.g-border-radius-4 {
+  border-radius: 4px !important; }
+
+.g-border-radius-6 {
+  border-radius: 6px !important; }
+
+.g-border-radius-8 {
+  border-radius: 8px !important; }
+
+.g-border-radius-10 {
+  border-radius: 10px !important; }
+
+.g-border-radius-2000 {
+  border-radius: 2000px !important; }
 
 /* 清除浮动 */
 .g-clear-fix:after {

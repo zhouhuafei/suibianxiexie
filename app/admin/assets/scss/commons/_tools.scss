@@ -101,11 +101,27 @@
     }
 }
 
+.g-width-auto {
+    width: auto !important;
+}
+
+.g-width-100p {
+    width: 100% !important;
+}
+
 /* height */
 @each $value in 30, 40 {
     .g-height-#{$value} {
         height: px2rem($value) !important;
     }
+}
+
+.g-height-auto {
+    height: auto !important;
+}
+
+.g-height-100p {
+    height: 100% !important;
 }
 
 /* margin 和 padding */
@@ -131,6 +147,24 @@
             #{$attr}-left: px2rem($value) !important;
             #{$attr}-right: px2rem($value) !important;
         }
+    }
+}
+
+/* border */
+@each $attr in top, right, bottom, left {
+    .g-border-#{$attr}-none {
+        border-#{$attr}: none !important;
+    }
+}
+
+.g-border-none {
+    border: none !important;
+}
+
+/* border-radius */
+@each $value in 0, 4, 6, 8, 10, 2000 {
+    .g-border-radius-#{$value} {
+        border-radius: px2rem($value) !important;
     }
 }
 
