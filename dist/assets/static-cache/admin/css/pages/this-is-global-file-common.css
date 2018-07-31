@@ -877,7 +877,11 @@ textarea.g-textarea {
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center; }
+          align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
   .g-radio.g-radio_small .g-radio-body {
     width: 16px;
     height: 16px; }
@@ -906,32 +910,39 @@ textarea.g-textarea {
       height: inherit;
       background: inherit;
       border-radius: inherit;
-      border: 1px solid #e1e1e1; }
+      border: 1px solid #e1e1e1;
+      -webkit-transition: 0.2s;
+      transition: 0.2s; }
       .g-radio .g-radio-body .g-radio-body-main:checked {
         border-color: #0089ff; }
         .g-radio .g-radio-body .g-radio-body-main:checked + .g-radio-body-mark {
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-box-align: center;
-              -ms-flex-align: center;
-                  align-items: center;
-          -webkit-box-pack: center;
-              -ms-flex-pack: center;
-                  justify-content: center; }
+          -webkit-transform: scale(1);
+                  transform: scale(1); }
       .g-radio .g-radio-body .g-radio-body-main:disabled {
         background: #e6e6e6;
         border-color: #e3e3e3;
         cursor: not-allowed; }
     .g-radio .g-radio-body .g-radio-body-mark {
-      color: #0089ff;
-      font-size: 16px;
+      -webkit-transition: 0.2s;
+      transition: 0.2s;
+      -webkit-transform: scale(0);
+              transform: scale(0);
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
       position: absolute;
       left: 0;
       top: 0;
       width: inherit;
       height: inherit;
-      display: none; }
+      color: #0089ff;
+      font-size: 16px; }
   .g-radio .g-radio-text {
     line-height: 1;
     margin-left: 4px; }
@@ -953,7 +964,11 @@ textarea.g-textarea {
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center; }
+          align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
   .g-checkbox.g-checkbox_small .g-checkbox-body {
     width: 16px;
     height: 16px; }
@@ -982,32 +997,39 @@ textarea.g-textarea {
       height: inherit;
       background: inherit;
       border-radius: inherit;
-      border: 1px solid #e1e1e1; }
+      border: 1px solid #e1e1e1;
+      -webkit-transition: 0.2s;
+      transition: 0.2s; }
       .g-checkbox .g-checkbox-body .g-checkbox-body-main:checked {
         border-color: #0089ff; }
         .g-checkbox .g-checkbox-body .g-checkbox-body-main:checked + .g-checkbox-body-mark {
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-box-align: center;
-              -ms-flex-align: center;
-                  align-items: center;
-          -webkit-box-pack: center;
-              -ms-flex-pack: center;
-                  justify-content: center; }
+          -webkit-transform: scale(1);
+                  transform: scale(1); }
       .g-checkbox .g-checkbox-body .g-checkbox-body-main:disabled {
         background: #e6e6e6;
         border-color: #e3e3e3;
         cursor: not-allowed; }
     .g-checkbox .g-checkbox-body .g-checkbox-body-mark {
-      color: #0089ff;
-      font-size: 16px;
+      -webkit-transition: 0.2s;
+      transition: 0.2s;
+      -webkit-transform: scale(0);
+              transform: scale(0);
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
       position: absolute;
       left: 0;
       top: 0;
       width: inherit;
       height: inherit;
-      display: none; }
+      color: #0089ff;
+      font-size: 16px; }
   .g-checkbox .g-checkbox-text {
     line-height: 1;
     margin-left: 4px; }
