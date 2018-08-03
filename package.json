@@ -16,7 +16,7 @@
         "serverReload": "pm2 reload all",
         "serverSave": "pm2 save",
         "serverStartup": "pm2 startup",
-        "serverProxy": "browser-sync start --proxy 127.0.0.1:5555 --files dist/assets/**/*.*",
+        "serverProxy": "browser-sync start --proxy 127.0.0.1:5551 --files dist/assets/**/*.*",
         "webpack": "webpack --colors --profile --progress --display-modules",
         "appPhoneDev": "cross-env NODE_ENV=development-app/phone npm run webpack",
         "appPhoneBuild": "cross-env NODE_ENV=production-app/phone npm run webpack",
