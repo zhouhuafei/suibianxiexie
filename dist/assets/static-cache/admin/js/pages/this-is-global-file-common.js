@@ -2977,6 +2977,8 @@ module.exports = function (json) {
                     content: response.data.message // 这里的error其实是一个Error类型的数据
                 }
             });
+            /* 此处应该有错误回调。优先级：错误回调>失败回调>成功回调>完成回调。待续... */
+            /* 调用方法时，要么用回调的方式走异步，要么用Promise的方式。用Promise的方式，还请自己去判断dataInfo.status字段，是否出错，失败，成功，完成。 */
         }
         return response;
     }).then(function (response) {
