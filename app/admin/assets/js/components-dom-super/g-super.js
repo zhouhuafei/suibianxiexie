@@ -206,7 +206,7 @@ Super.prototype.wrapDomRemove = function () {
 
 // 获取内部模块的整体html结构
 Super.prototype.getModuleDomHtml = function () {
-    return this.moduleDom.outerHTML;
+    return this.moduleDom ? this.moduleDom.outerHTML : '';
 };
 
 module.exports = Super;
