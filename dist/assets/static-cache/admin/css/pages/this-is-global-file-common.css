@@ -787,8 +787,10 @@ input.g-input {
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
   outline: none;
-  color: inherit;
+  font-family: inherit;
   font-size: inherit;
+  line-height: inherit;
+  color: inherit;
   border-radius: inherit;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -836,8 +838,10 @@ input.g-input {
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
     outline: none;
-    color: inherit;
+    font-family: inherit;
     font-size: inherit;
+    line-height: inherit;
+    color: inherit;
     background: transparent;
     border-radius: inherit;
     -webkit-box-sizing: border-box;
@@ -890,10 +894,10 @@ textarea.g-textarea {
   -webkit-tap-highlight-color: transparent;
   resize: none;
   outline: none;
-  color: inherit;
-  font-size: inherit;
   font-family: inherit;
+  font-size: inherit;
   line-height: inherit;
+  color: inherit;
   border-radius: inherit;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -1357,7 +1361,11 @@ textarea.g-textarea {
 
 input.g-button, button.g-button {
   border: none;
-  padding: 0; }
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit; }
 
 /*
 // px转rem(phone) 这个是给手机端用的。
