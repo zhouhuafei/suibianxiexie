@@ -17239,14 +17239,14 @@ var Sub = tools.constructorInherit(Super, {
 // (建)(覆)内部模块的创建(覆盖超类型)
 Sub.prototype.moduleDomCreate = function () {
     var config = this.opts.config;
-    var positionLocation = 'g-dialog-tooltip_' + config.positionLocation; // 弹窗的定位位置
+    var positionLocation = 'g-tooltip_' + config.positionLocation; // 弹窗的定位位置
     // 弹窗结构
     this.moduleDom = applications.createElement({
         style: config.moduleDomStyle,
         customAttribute: config.moduleDomCustomAttribute,
         attribute: {
-            className: 'g-dialog-tooltip ' + positionLocation,
-            innerHTML: '\n                <div class="g-dialog-tooltip-content">' + config.content + '</div>\n                <div class="g-dialog-tooltip-icon"></div>                \n            '
+            className: 'g-tooltip ' + positionLocation,
+            innerHTML: '\n                <div class="g-tooltip-content">' + config.content + '</div>\n                <div class="g-tooltip-icon"></div>                \n            '
         }
     });
 };

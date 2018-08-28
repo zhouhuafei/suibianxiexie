@@ -82,7 +82,7 @@
             font-size: px2rem(24);
         }
         .g-loading-over-text {
-            font-size: px2rem(12);
+            font-size: px2rem($g-font-size-default);
         }
         &.g-loading-fixed {
             .g-loading-body {
