@@ -2792,10 +2792,15 @@ input.g-button, button.g-button {
   .g-title:before, .g-title:after {
     content: '';
     display: block;
-    width: 2px;
-    height: 40%;
-    background: #0089ff; }
+    width: 1px;
+    height: 60%;
+    background: #0089ff;
+    border-radius: 20px; }
   .g-title:before {
-    margin-right: 10px; }
+    margin-right: 10px;
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg); }
   .g-title:after {
-    margin-left: 10px; }
+    margin-left: 10px;
+    -webkit-transform: rotate(15deg);
+            transform: rotate(15deg); }
