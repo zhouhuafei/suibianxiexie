@@ -2757,7 +2757,8 @@ input.g-button, button.g-button {
       -ms-flex-pack: justify;
           justify-content: space-between;
   height: 30px;
-  padding: 0 10px; }
+  padding: 0 10px;
+  font-size: 12px; }
   .g-jump-guide .g-jump-guide-item {
     display: -webkit-box;
     display: -ms-flexbox;

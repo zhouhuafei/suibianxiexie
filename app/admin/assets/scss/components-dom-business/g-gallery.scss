@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: px2rem(12);
+    font-size: px2rem($g-font-size-default);
     .g-gallery {
         display: flex;
         background: #ffffff;

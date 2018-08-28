@@ -9,7 +9,7 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    font-size: px2rem(12);
+    font-size: px2rem($g-font-size-default);
     &.g-dialog-confirm-wrap_center {
         align-items: center;
     }

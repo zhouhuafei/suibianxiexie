@@ -2,7 +2,7 @@
 
 // 默认按钮(确认按钮)
 .g-button {
-    font-size: px2rem(12);
+    font-size: px2rem($g-font-size-default);
     height: px2rem(40);
     background: $g-highlight-color;
     color: #ffffff;

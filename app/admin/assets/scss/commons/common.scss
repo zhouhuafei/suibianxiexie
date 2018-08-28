@@ -97,7 +97,7 @@
         $text-width: 100;
         position: relative;
         margin-bottom: px2rem(10);
-        font-size: px2rem(12);
+        font-size: px2rem($g-font-size-default);
         &:last-of-type {
             margin-bottom: 0;
         }
@@ -242,6 +242,7 @@
     justify-content: space-between;
     height: px2rem(30);
     padding: 0 px2rem(10);
+    font-size: px2rem($g-font-size-default);
     .g-jump-guide-item {
         display: flex;
         align-items: center;
@@ -270,7 +271,7 @@
 // 标题
 .g-title {
     height: px2rem(18);
-    font-size: px2rem(12);
+    font-size: px2rem($g-font-size-default);
     color: #000;
     display: flex;
     align-items: center;
