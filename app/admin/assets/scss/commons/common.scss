@@ -269,10 +269,23 @@
 
 // 标题
 .g-title {
-    height: px2rem(30);
+    height: px2rem(18);
     font-size: px2rem(12);
-    font-weight: bold;
-    color: $g-font-color-default;
+    color: #000;
     display: flex;
     align-items: center;
+    padding: px2rem(10) 0 px2rem(5);
+    &:before, &:after {
+        content: '';
+        display: block;
+        width: px2rem(2);
+        height: 40%;
+        background: $g-highlight-color;
+    }
+    &:before {
+        margin-right: px2rem(10);
+    }
+    &:after {
+        margin-left: px2rem(10);
+    }
 }
