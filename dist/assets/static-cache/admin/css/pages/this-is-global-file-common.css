@@ -2800,7 +2800,7 @@ input.g-button, button.g-button {
     display: block;
     width: 1px;
     height: 60%;
-    background: #0089ff;
+    background: #bfbfbf;
     border-radius: 20px;
     -webkit-transition: 0.4s;
     transition: 0.4s; }
