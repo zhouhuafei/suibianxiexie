@@ -215,6 +215,7 @@
 */
 /* 主体重置 */
 body {
+  font-size: 100px;
   margin: 0;
   font-family: "iconfont", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", "Helvetica Neue", "Helvetica", "PingFang SC", "Hiragino Sans GB", "SimSun", "Arial", "sans-serif";
   background: #f4f4f4; }
@@ -1595,7 +1596,8 @@ input.g-button, button.g-button {
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
-          justify-content: center; }
+          justify-content: center;
+  font-size: 12px; }
   .g-dialog-confirm-wrap.g-dialog-confirm-wrap_center {
     -webkit-box-align: center;
         -ms-flex-align: center;
@@ -1652,7 +1654,6 @@ input.g-button, button.g-button {
         font-size: 24px;
         color: #eb9e05; }
       .g-dialog-confirm-wrap .g-dialog-confirm .g-dialog-confirm-body .g-dialog-confirm-body-system .g-dialog-confirm-body-system-text {
-        font-size: 14px;
         line-height: 1.2; }
     .g-dialog-confirm-wrap .g-dialog-confirm .g-dialog-confirm-footer {
       display: -webkit-box;
@@ -1708,7 +1709,8 @@ input.g-button, button.g-button {
   z-index: 9;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  font-size: 12px; }
   .g-dialog-tooltip.g-dialog-tooltip_top-left {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1779,6 +1781,7 @@ input.g-button, button.g-button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  font-size: 12px;
   /* 水平居上 */
   /* 水平居下 */
   /* 垂直居左 */
@@ -1987,7 +1990,8 @@ input.g-button, button.g-button {
 */
 .g-dialog-jump-link {
   line-height: 24px;
-  text-align: center; }
+  text-align: center;
+  font-size: 12px; }
   .g-dialog-jump-link .g-dialog-jump-link-title {
     color: #0089ff; }
   .g-dialog-jump-link .g-dialog-jump-link-body {
@@ -2091,7 +2095,8 @@ input.g-button, button.g-button {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
-          user-select: none; }
+          user-select: none;
+  font-size: 12px; }
   .g-pagination .g-pagination-now-page {
     height: inherit; }
     .g-pagination .g-pagination-now-page .g-select {
@@ -2486,7 +2491,8 @@ input.g-button, button.g-button {
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
-          justify-content: center; }
+          justify-content: center;
+  font-size: 12px; }
   .g-gallery-wrap .g-gallery {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2795,7 +2801,9 @@ input.g-button, button.g-button {
     width: 1px;
     height: 60%;
     background: #0089ff;
-    border-radius: 20px; }
+    border-radius: 20px;
+    -webkit-transition: 0.4s;
+    transition: 0.4s; }
   .g-title:before {
     margin-right: 10px;
     -webkit-transform: rotate(-15deg);
@@ -2804,3 +2812,9 @@ input.g-button, button.g-button {
     margin-left: 10px;
     -webkit-transform: rotate(15deg);
             transform: rotate(15deg); }
+  .g-title:hover:before {
+    -webkit-transform: rotate(-375deg);
+            transform: rotate(-375deg); }
+  .g-title:hover:after {
+    -webkit-transform: rotate(375deg);
+            transform: rotate(375deg); }

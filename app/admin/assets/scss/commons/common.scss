@@ -282,6 +282,7 @@
         height: 60%;
         background: $g-highlight-color;
         border-radius: px2rem(20);
+        transition: 0.4s;
     }
     &:before {
         margin-right: px2rem(10);
@@ -290,5 +291,13 @@
     &:after {
         margin-left: px2rem(10);
         transform: rotate(15deg);
+    }
+    &:hover {
+        &:before {
+            transform: rotate(-15-360deg);
+        }
+        &:after {
+            transform: rotate(15+360deg);
+        }
     }
 }

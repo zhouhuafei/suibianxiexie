@@ -9,6 +9,7 @@
     height: 100%;
     display: flex;
     justify-content: center;
+    font-size: px2rem(12);
     &.g-dialog-confirm-wrap_center {
         align-items: center;
     }
@@ -58,7 +59,6 @@
                     color: $g-warning-color;
                 }
                 .g-dialog-confirm-body-system-text {
-                    font-size: px2rem(14);
                     line-height: 1.2;
                 }
             }
