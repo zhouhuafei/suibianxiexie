@@ -9,6 +9,7 @@
         min-width: px2rem($w);
         position: relative;
         z-index: 2;
+        font-size: px2rem(12);
         .g-menu {
             width: inherit;
             background: #252834;
