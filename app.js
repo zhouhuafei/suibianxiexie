@@ -70,8 +70,8 @@ app.set('view cache', true);
 设置跨域访问：此处配置的是全部请求('*')都允许跨域，其实应该指定某些接口允许跨域。
 可以去api-super里，响应之前设置某一类接口都允许跨域。
 也可以去某一个控制器里，单独对某一个接口设置跨域。
-app.all的第一个参数'*'号换成特定的路由，也是可以的。例如：'/admin/'，'/admin/*'，'/admin/log*'
-app.all的第一个参数'*'号换成数组匹配多个路由，也是可以的。例如：['/admin/', '/admin/login/']
+app.all的第一个参数'*'号换成特定的路由，也是可以的。例如：'/admin/'，'/admin/*'，'/admin/log*n/'，'/a*n/login/'。
+app.all的第一个参数'*'号换成数组匹配多个路由，也是可以的。例如：['/admin/', '/admin/login/']。
 app.all的第一个参数'*'号表示任意可有可无的单个或多个字符。
 */
 app.all('*', function (req, res, next) {
