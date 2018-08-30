@@ -109,7 +109,13 @@ class Super {
             const dataInfo = apiDataFormat(json);
             self.opts.callback(self);
             if (self.opts.isTriggerEnd) {
+                // 允许跨域 -> 开始
+                res.header('Access-Control-Allow-Origin', '*');
+                res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+                res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+                res.header('Access-Control-Allow-Headers', 'Content-Type');
                 res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'}); // res.json默认返回的就是200和application/json
+                // 允许跨域 -> 结束
                 if (isJsonp && self.opts.isSupportJsonp) {
                     res.end(`${req.query.callback || 'jsonpCallback'}(${JSON.stringify(dataInfo)})`);
                 } else {
