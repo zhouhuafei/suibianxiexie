@@ -68,10 +68,14 @@ app.set('view cache', true);
 
 // 设置跨域访问
 app.all('*', function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+    res.header('Access-Control-Allow-Origin', 'http://s438520.m.whd.weishangye.com'); // 允许指定域名跨域
+    // res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
     res.header('X-Powered-By', '3.2.1');
+    res.header('Access-Control-Allow-Credentials', true); // 允许带cookie(则Access-Control-Allow-Origin不允许是*号)
+    // res.header('Content-Type', 'application/json;charset=utf-8');
+    console.log(req);
     next();
 });
 
