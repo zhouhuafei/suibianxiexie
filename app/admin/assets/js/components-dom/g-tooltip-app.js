@@ -1,5 +1,5 @@
 const tools = require('zhf.tools'); // 工具方法集合
-const DialogTooltip = require('../components-dom/g-dialog-tooltip'); // 工具提示框(文本提示框)
+const DialogTooltip = require('../components-dom/g-tooltip'); // 工具提示框(文本提示框)
 
 // 工具提示框(文本提示框)的应用
 function Sub(opts) {

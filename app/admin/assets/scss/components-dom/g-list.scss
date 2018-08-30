@@ -36,10 +36,10 @@
                 color: $g-highlight-color;
             }
             .g-list-body-text {
-                font-size: px2rem(12);
+                font-size: px2rem($g-font-size-default);
             }
             .g-list-body-value {
-                font-size: px2rem(12);
+                font-size: px2rem($g-font-size-default);
                 color: $g-ignore-color;
             }
             .g-list-body-icon {
@@ -49,7 +49,7 @@
             }
         }
         .g-list-footer {
-            font-size: px2rem(12);
+            font-size: px2rem($g-font-size-default);
             line-height: 1.3;
             color: $g-ignore-color;
             text-align: justify;

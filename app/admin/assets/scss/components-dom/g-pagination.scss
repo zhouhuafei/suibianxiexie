@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     user-select: none;
-    font-size: px2rem(12);
+    font-size: px2rem($g-font-size-default);
     .g-pagination-now-page {
         height: inherit;
         .g-select {

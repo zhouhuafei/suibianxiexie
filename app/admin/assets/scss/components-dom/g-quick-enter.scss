@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    font-size: px2rem(12);
+    font-size: px2rem($g-font-size-default);
     overflow: hidden;
     .g-quick-enter-item {
         color: $g-ignore-color;

@@ -25,7 +25,7 @@
             color: $g-highlight-color;
         }
         .g-navigation-item-text {
-            font-size: px2rem(12);
+            font-size: px2rem($g-font-size-default);
             margin-top: px2rem(6);
         }
         .g-navigation-item-mark {
