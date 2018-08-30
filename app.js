@@ -75,7 +75,6 @@ app.all('*', function (req, res, next) {
     res.header('X-Powered-By', '3.2.1');
     res.header('Access-Control-Allow-Credentials', true); // 允许带cookie(则Access-Control-Allow-Origin不允许是*号)
     // res.header('Content-Type', 'application/json;charset=utf-8');
-    res.cookie('test', 'test set cookie');
     next();
 });
 
