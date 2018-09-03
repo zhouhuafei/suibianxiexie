@@ -107,7 +107,7 @@ allPagesViews.forEach(function (v) {
     plugins.push(new HtmlWebpackPlugin({
         template: `${configPath.viewsEntryPath}pages/${v}`, // 模板
         filename: `${configPath.viewsOutputPath}pages/${v}`, // 文件名
-        // 需要引入的chunk,不配置就会引入所有页面的资源,模板视图文件里js的引入顺序和chunks里的排序无关,和CommonsChunkPlugin里的顺序有关(倒叙)
+        // 需要引入的chunk,不配置就会引入所有被CommonsChunkPlugin提取出的公共js和所有入口js,模板视图文件里js的引入顺序和chunks里的排序无关,和CommonsChunkPlugin里的顺序有关(倒叙)
         chunks: [fileName, 'this-is-global-file-common', 'this-is-global-file-vendor', 'this-is-global-file-manifest'],
         minify: configEnvironment.minView, // 压缩视图模板文件
     }));
