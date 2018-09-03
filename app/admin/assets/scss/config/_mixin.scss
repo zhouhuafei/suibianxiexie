@@ -42,10 +42,10 @@
     } @else {
         height: $height;
     }
+    white-space: normal;
+    overflow: hidden;
     text-overflow: ellipsis;
+    display: -webkit-box;
     -webkit-line-clamp: $lineClamp;
     -webkit-box-orient: vertical;
-    display: -webkit-box;
-    overflow: hidden;
-    white-space: normal;
 }
