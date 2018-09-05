@@ -1,3 +1,4 @@
+/* webpack3 */
 const myConfig = process.env.NODE_ENV.split('-');
 myConfig.forEach(function (v, i, a) {
     a[i] = v.trim();
