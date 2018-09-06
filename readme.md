@@ -1,6 +1,7 @@
 ```
 # 安装依赖
 npm i
+bower i
 # 开发环境
 npm run serverDev
 npm run appPhoneDev
