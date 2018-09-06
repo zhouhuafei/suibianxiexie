@@ -63,6 +63,15 @@ const output = {
     path: configPath.output, // 出口路径----用来存放打包后文件的输出目录
     publicPath: configEnvironment.publicPath, // 出口路径----指定资源文件引用的目录
     filename: `js/pages/[name].${configEnvironment.chunkhash}js`,
+    /*
+    chunkFilename用来打包require.ensure方法中引入的模块,如果该方法中没有引入任何模块则不会生成任何chunk块文件
+    比如在main.js文件中,require.ensure([],function(require){alert(11);}),这样不会打包块文件
+    只有这样才会打包生成块文件require.ensure([],function(require){alert(11);require('./greeter')})
+    或者这样require.ensure(['./greeter'],function(require){alert(11);})
+    chunk的hash值只有在require.ensure中引入的模块发生变化,hash值才会改变
+    注意1：对于不是在ensure方法中引入的模块,此属性不会生效,只能用CommonsChunkPlugin插件来提取。
+    注意2：CommonsChunkPlugin在webpack4中不支持了，支持使用optimization.splitChunks属性进行公共模块(chunks)的提取。
+    */
     chunkFilename: `js/chunks/[name].[id].chunk.${configEnvironment.chunkhash}js`,
 };
 // 插件----集合
