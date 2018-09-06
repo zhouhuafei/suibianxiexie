@@ -220,7 +220,7 @@ const webpackConfig = {
         output.publicPath是：/phone-vue/
         output.path是：`${__dirname}/dist/assets/phone-vue/`
         正确的访问路径是：output.publicPath 拼接上 output.path之后的路径
-        所以路径是：/phone-vue/index.html
+        所以访问路径是：/phone-vue/index.html。但是使用openPage配置时，前面不要带反斜杠，否则浏览器上会出现两个反斜杠。
         */
         openPage: `${projectDirname}/index.html`,
         // 代理实现接口跨域
