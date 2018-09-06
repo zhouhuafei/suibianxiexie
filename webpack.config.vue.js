@@ -56,7 +56,7 @@ const alias = {
 const entry = {
     app: `${configPath.entry}/app.js`,
     'this-is-global-file-vendor': ['vue', 'vue-router', 'vuex', 'axios'],
-    'this-is-global-file-common': ['zhf.tools', 'zhf.applications'],
+    'this-is-global-file-common': ['zhf.extend', 'zhf.type-of'],
 };
 // 出口----配置
 const output = {
