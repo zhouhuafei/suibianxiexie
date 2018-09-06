@@ -81,7 +81,7 @@ const output = {
     或者这样require.ensure(['./greeter'],function(require){alert(11);})
     chunk的hash值只有在require.ensure中引入的模块发生变化,hash值才会改变
     注意1：对于不是在ensure方法中引入的模块,此属性不会生效,只能用CommonsChunkPlugin插件来提取。
-    注意2：CommonsChunkPlugin在webpack4中不支持了，支持使用optimization.splitChunks属性进行公共模块(chunks)的提取。
+    注意2：CommonsChunkPlugin在webpack4中不支持了，支持使用optimization.splitChunks属性进行公共模块(chunks)的提取。css使用mini-css-extract-plugin模块进行提取。
     */
     chunkFilename: `js/chunks/[name].[id].chunk.${configEnvironment.chunkhash}js`,
 };
