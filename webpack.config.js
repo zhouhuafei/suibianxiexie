@@ -71,8 +71,8 @@ allJs.forEach(function (v) {
 entry['this-is-global-file-vendor'] = ['vue', 'axios'];// 公用的第三方库
 // 出口----配置
 const output = {
-    path: `${configPath.assetsOutputPath}`,
-    publicPath: `/static-cache/${configPath.projectDirname}/`,
+    path: `${configPath.assetsOutputPath}`, // 出口目录路径，此处必须是绝对路径。
+    publicPath: `/static-cache/${configPath.projectDirname}/`, // 引入静态资源文件时，资源的前缀路径。
     filename: `js/pages/[name].${configEnvironment.chunkhash}js`,
     chunkFilename: `js/chunks/[name].[id].chunk.${configEnvironment.chunkhash}js`,
 };

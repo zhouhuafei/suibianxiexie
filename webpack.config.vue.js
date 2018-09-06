@@ -13,16 +13,12 @@ const CleanWebpackPlugin = require('clean-webpack-plugin'); // 清空目录
 const ImageminPlugin = require('imagemin-webpack-plugin').default; // 压缩图片
 // 配置入口路径和出口路径
 const configPath = {
-    entry: `${__dirname}/${projectDirPath}`,
-    // output: `${__dirname}/dist/assets/${projectDirname}/`,
-    // 为了保证开发环境和生产环境的路径一致,上面一行需要修改为下面一行
-    output: `${__dirname}/dist/assets/${projectDirname}/`,
+    entry: `${__dirname}/${projectDirPath}`, // 入口目录路径
+    output: `${__dirname}/dist/assets/${projectDirname}/`, // 出口目录路径，此处必须是绝对路径。
 };
 // 环境----开发环境
 let configEnvironment = {
-    // publicPath: `/dist/assets/${projectDirname}/`, // 出口路径----指定资源文件引用的目录
-    // 为了保证开发环境和生产环境的路径一致,上面一行需要修改为下面一行
-    publicPath: `/${projectDirname}/`, // 出口路径----指定资源文件引用的目录
+    publicPath: `/${projectDirname}/`, // 引入静态资源文件时，资源的前缀路径。
     hash: '[hash:8].', // 图片和字体用到了这个hash
     chunkhash: '', // js用到了这个chunkhash
     contenthash: '', // css用到了这个contenthash
@@ -35,7 +31,7 @@ let configEnvironment = {
 // 环境----生产环境
 if (isProduction) {
     configEnvironment = {
-        publicPath: `/${projectDirname}/`, // 出口路径----指定资源文件引用的目录
+        publicPath: `/${projectDirname}/`, // 引入静态资源文件时，资源的前缀路径。
         hash: '[hash:8].', // 图片和字体用到了这个hash
         chunkhash: '[chunkhash].', // js用到了这个chunkhash
         contenthash: '[contenthash].', // css用到了这个contenthash
@@ -211,9 +207,13 @@ const webpackConfig = {
         inline: true,
         open: true,
         port: 1555,
-        // openPage: `dist/assets/${projectDirname}/`,
-        // 为了保证开发环境和生产环境的路径一致,上面一行需要修改为下面一行
-        openPage: `${projectDirname}/`,
+        /*
+        output.publicPath是：/phone-vue/
+        output.path是：`${__dirname}/dist/assets/phone-vue/`
+        正确的访问路径是：output.publicPath 拼接上 output.path之后的路径
+        所以路径是：/phone-vue/index.html
+        */
+        openPage: `${projectDirname}/index.html`,
         // 代理实现接口跨域
         proxy: {
             '/': { // 需要代理的路径
