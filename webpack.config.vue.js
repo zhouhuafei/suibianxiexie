@@ -212,17 +212,17 @@ const webpackConfig = {
     },
     // 重载----自动刷新
     devServer: {
-        historyApiFallback: true,
-        inline: true,
-        open: true,
-        port: 1555,
+        historyApiFallback: true, // 对于单页应用，如果路由不是hash方式，防止回退404，所有的路径都执行index.html。
+        inline: true, // 设置为true，代码有变化，浏览器端刷新。
+        open: true, // 打开浏览器
+        port: 1555, // 端口
         /*
         output.publicPath是：/phone-vue/
         output.path是：`${__dirname}/dist/assets/phone-vue/`
         正确的访问路径是：output.publicPath 拼接上 output.path之后的路径
         所以访问路径是：/phone-vue/index.html。但是使用openPage配置时，前面不要带反斜杠，否则浏览器上会出现两个反斜杠。
         */
-        openPage: `${projectDirname}/index.html`,
+        openPage: `${projectDirname}/index.html`, // 打开指定的路径
         // 代理实现接口跨域
         proxy: {
             '/': { // 需要代理的路径
