@@ -2,8 +2,9 @@ node_modules
 .svn
 .idea
 .vscode
-.sass-cache
 .DS_Store
+.wepycache
+.sass-cache
 .git-credentials
 *.suo
 *.ntvs*
