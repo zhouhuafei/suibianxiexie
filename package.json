@@ -4,8 +4,8 @@
     "description": "suibianxiexie",
     "main": "",
     "scripts": {
-        "codeLint": "eslint --ext .js,.vue,.html ./",
-        "codeFix": "eslint --fix --ext .js,.vue,.html ./",
+        "codeLint": "cross-env NODE_ENV=production eslint --ext .js,.vue,.html ./",
+        "codeFix": "cross-env NODE_ENV=production eslint --fix --ext .js,.vue,.html ./",
         "precommit": "npm run codeLint",
         "serverDev": "nodemon app.js",
         "serverDevDocker": "nodemon app.js --legacy-watch",

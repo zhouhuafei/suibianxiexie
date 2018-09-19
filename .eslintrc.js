@@ -33,5 +33,6 @@ module.exports = {
         'comma-dangle': [2, 'always-multiline'], // 要求或禁止使用拖尾逗号
         'space-before-function-paren': 0, // 要求或禁止函数圆括号之前有一个空格
         'generator-star-spacing': 0, // 强制 generator 函数中 * 号周围使用一致的空格
+        'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0, // 生产环境不允许使用debugger
     },
 };
