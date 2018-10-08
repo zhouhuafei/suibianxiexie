@@ -50,8 +50,8 @@ window.addEventListener('load', function () {
             el: '#app',
             router,
             store,
-            template: '<app></app>',
             components: {app},
+            template: '<app></app>',
         });
     }, 0);
 });
