@@ -7,7 +7,7 @@
             "instances": 2,
             "ignore_watch": [
                 "logs",
-                "app/phone/assets",
+                "app/h5/assets",
                 "app/pc/assets",
                 "app/admin/assets",
                 "dist",

@@ -33,7 +33,7 @@ if (projectDirname === 'admin') {
     </body>
 </html>
 `;
-} else if (projectDirname === 'phone') {
+} else if (projectDirname === 'h5') {
     viewContent = `<!DOCTYPE html>
 <html lang="en">
     <head>

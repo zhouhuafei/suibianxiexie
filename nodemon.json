@@ -1,7 +1,7 @@
 {
     "ignore": [
         "logs",
-        "app/phone/assets",
+        "app/h5/assets",
         "app/pc/assets",
         "app/admin/assets",
         "dist",

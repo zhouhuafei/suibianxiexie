@@ -96,8 +96,8 @@ app.all('*', function (req, res, next) {
 
 // 路由
 [
-    './app/phone/routes/pages/route',
-    './app/phone/routes/api/route',
+    './app/h5/routes/pages/route',
+    './app/h5/routes/api/route',
     // './app/pc/routes/pages/route',
     // './app/pc/routes/api/route',
     './app/admin/routes/pages/route',

@@ -24,5 +24,5 @@ selenium-debug.log
 test/unit/coverage
 test/e2e/reports
 static-cache-wrap/static-cache/admin/gallery
-static-cache-wrap/static-cache/phone/gallery
+static-cache-wrap/static-cache/h5/gallery
 static-cache-wrap/static-cache/pc/gallery

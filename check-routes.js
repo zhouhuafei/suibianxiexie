@@ -6,13 +6,13 @@ const fs = require('fs');
 
 class Phone {
     constructor(opt = {
-        apiConfig: require('./app/phone/routes/api/config'),
-        pagesConfig: require('./app/phone/routes/pages/config'),
-        apiFilesPath: './app/phone/controllers/api/',
-        pagesFilesPath: './app/phone/controllers/pages/',
-        pagesViewsPath: './app/phone/assets/views/pages/',
-        pagesScssPath: './app/phone/assets/scss/pages/',
-        pagesJsPath: './app/phone/assets/js/pages/',
+        apiConfig: require('./app/h5/routes/api/config'),
+        pagesConfig: require('./app/h5/routes/pages/config'),
+        apiFilesPath: './app/h5/controllers/api/',
+        pagesFilesPath: './app/h5/controllers/pages/',
+        pagesViewsPath: './app/h5/assets/views/pages/',
+        pagesScssPath: './app/h5/assets/scss/pages/',
+        pagesJsPath: './app/h5/assets/js/pages/',
     }) {
         this.apiConfig = opt.apiConfig;
         this.pagesConfig = opt.pagesConfig;
