@@ -77,10 +77,10 @@ const file = {
         extendName: '.scss',
     },
     js: {
-        path: `${assetsPath}js/pages/`,
-        fileName: fileName,
-        content: `require('../../scss/pages/${fileName}.scss');
-const Super = require('../pages-super/super');
+        path: `${assetsPath}js/pages/${fileName}/`,
+        fileName: 'index',
+        content: `require('../../../scss/pages/${fileName}.scss');
+const Super = require('../../pages-super/super');
 
 class Sub extends Super {
 }

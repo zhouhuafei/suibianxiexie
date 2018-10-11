@@ -65,8 +65,8 @@ const alias = {
 const entry = {};
 const allJs = fs.readdirSync(`${configPath.jsEntryPath}pages/`);
 allJs.forEach(function (v) {
-    const fileName = path.basename(v, '.js');
-    entry[fileName] = `${configPath.assetsEntryPath}js/pages/${v}`;
+    // const fileName = path.basename(v, '.js');
+    entry[v] = `${configPath.assetsEntryPath}js/pages/${v}/index.js`;
 });
 entry['this-is-global-file-vendor'] = ['vue', 'axios'];// 公用的第三方库
 // 出口----配置
