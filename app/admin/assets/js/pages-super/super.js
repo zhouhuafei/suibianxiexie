@@ -21,11 +21,11 @@ class Super {
     init() {
         const self = this;
         window.addEventListener('load', function () {
-            setTimeout(function () {
-                self.renderHeader();
-                self.power();
-                self.renderFooter();
-            }, 0);
+            // setTimeout(function () { // 不加定时器，即使是js渲染的结构，chrome浏览器回退也可以回到指定位置。
+            self.renderHeader();
+            self.power();
+            self.renderFooter();
+            // }, 0);
         });
     }
 
