@@ -20,13 +20,13 @@ class Super {
     // (初)初始化数据
     init() {
         const self = this;
-        window.addEventListener('load', function () {
-            // setTimeout(function () { // 不加定时器，即使是js渲染的结构，chrome浏览器回退也可以回到指定位置。
-            self.renderHeader();
-            self.power();
-            self.renderFooter();
-            // }, 0);
-        });
+        // window.addEventListener('load', function () {
+        // setTimeout(function () { // 不加定时器和window的load事件，即使是js渲染的结构，chrome浏览器回退也可以回到指定位置。
+        self.renderHeader();
+        self.power();
+        self.renderFooter();
+        // }, 0);
+        // });
     }
 
     // (功)(覆)功能(这个方法需要在子类型里被覆盖掉)
