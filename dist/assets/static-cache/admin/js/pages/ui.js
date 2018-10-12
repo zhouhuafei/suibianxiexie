@@ -56,8 +56,8 @@ var Sub = function (_Super) {
                 document.querySelector('.js-save').addEventListener('click', function () {
                     // 测试确认框和提示框
                     var Message = __webpack_require__(11);
-                    var DialogConfirm = __webpack_require__(32);
-                    new DialogConfirm({
+                    var Confirm = __webpack_require__(32);
+                    new Confirm({
                         callback: {
                             cancel: function cancel() {
                                 new Message({

@@ -8,7 +8,7 @@ class Super {
         self.axios = require('../api/axios'); // axios
         self.jsonp = require('../api/jsonp'); // jsonp
         self.Message = require('../components-dom/g-message'); // 提示框
-        self.DialogConfirm = require('../components-dom/g-dialog-confirm'); // 确认框
+        self.Confirm = require('../components-dom/g-dialog-confirm'); // 确认框
         self.opts = self.tools.extend({
             lazyload: {
                 isInitRender: false,
@@ -91,9 +91,9 @@ class Super {
             const btn = document.querySelector('.js-g-logout');
             const api = self.dataInfo.api;
             const routes = self.dataInfo.routes;
-            const DialogConfirm = self.DialogConfirm;
+            const Confirm = self.Confirm;
             btn && btn.addEventListener('click', function () {
-                new DialogConfirm({
+                new Confirm({
                     config: {
                         content: '确认退出账号？',
                     },

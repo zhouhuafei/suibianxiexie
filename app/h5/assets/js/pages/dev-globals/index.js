@@ -32,10 +32,10 @@ class Sub extends Super {
 
         // 弹窗测试
         (function () {
-            const DialogConfirm = require('../../components-dom/g-dialog-confirm');
+            const Confirm = require('../../components-dom/g-dialog-confirm');
             const Message = require('../../components-dom/g-message');
             document.querySelector('.js-button-dialog').addEventListener('click', function () {
-                new DialogConfirm({
+                new Confirm({
                     callback: {
                         confirm: function () {
                             new Message({config: {icon: 'icon-success', content: '已确认'}});

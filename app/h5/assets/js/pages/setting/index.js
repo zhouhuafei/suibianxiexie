@@ -7,11 +7,11 @@ class Sub extends Super {
         const self = this;
         const dataInfo = self.dataInfo;
         const axios = self.axios;
-        const DialogConfirm = require('../../components-dom/g-dialog-confirm');
+        const Confirm = require('../../components-dom/g-dialog-confirm');
 
         // 退出账号
         document.querySelector('.page-logout').addEventListener('click', function () {
-            new DialogConfirm({
+            new Confirm({
                 callback: {
                     confirm: function () {
                         axios({

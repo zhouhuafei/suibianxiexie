@@ -1856,7 +1856,7 @@ var Super = function () {
         self.axios = __webpack_require__(19); // axios
         self.jsonp = __webpack_require__(79); // jsonp
         self.Message = __webpack_require__(11); // 提示框
-        self.DialogConfirm = __webpack_require__(32); // 确认框
+        self.Confirm = __webpack_require__(32); // 确认框
         self.opts = self.tools.extend({
             lazyload: {
                 isInitRender: false
@@ -1948,9 +1948,9 @@ var Super = function () {
                 var btn = document.querySelector('.js-g-logout');
                 var api = self.dataInfo.api;
                 var routes = self.dataInfo.routes;
-                var DialogConfirm = self.DialogConfirm;
+                var Confirm = self.Confirm;
                 btn && btn.addEventListener('click', function () {
-                    new DialogConfirm({
+                    new Confirm({
                         config: {
                             content: '确认退出账号？'
                         },

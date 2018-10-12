@@ -29,8 +29,8 @@ class Sub extends Super {
             document.querySelector('.js-save').addEventListener('click', function () {
                 // 测试确认框和提示框
                 const Message = require('../../components-dom/g-message');
-                const DialogConfirm = require('../../components-dom/g-dialog-confirm');
-                new DialogConfirm({
+                const Confirm = require('../../components-dom/g-dialog-confirm');
+                new Confirm({
                     callback: {
                         cancel: function () {
                             new Message({

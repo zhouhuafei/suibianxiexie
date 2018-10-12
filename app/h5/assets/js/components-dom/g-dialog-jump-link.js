@@ -1,5 +1,5 @@
 const tools = require('zhf.tools'); // 工具方法集合
-const DialogConfirm = require('./g-dialog-confirm'); // 弹窗
+const Confirm = require('./g-dialog-confirm'); // 弹窗
 const timeCountDown = require('zhf.time-count-down'); // 倒计时
 
 // 专门为请求成功写的跳转链接弹窗
@@ -20,7 +20,7 @@ class Super {
             </div>
             <a href="${opts.href}" class="g-dialog-jump-link-footer">点击此处手动跳转</a>
         </div>`;
-        const dialogConfirm = new DialogConfirm({
+        const oConfirm = new Confirm({
             config: {
                 positionLocation: 'center', // 弹窗的定位位置
                 isShowHeader: false, // 是否显示头部
@@ -41,7 +41,7 @@ class Super {
                 isHandHide: false, // 是否手动隐藏(一般只用于点击确认时)
             },
         });
-        const seconds = dialogConfirm.moduleDom.querySelector('.g-dialog-jump-link-body-seconds');
+        const seconds = oConfirm.moduleDom.querySelector('.g-dialog-jump-link-body-seconds');
         timeCountDown({
             seconds: opts.seconds,
             callback: {

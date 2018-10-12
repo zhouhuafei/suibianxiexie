@@ -46,7 +46,7 @@ class Sub extends Super {
 
         // 忘记密码,去删库
         document.querySelector('.js-del-db').addEventListener('click', function () {
-            new superSelf.DialogConfirm({
+            new superSelf.Confirm({
                 config: {
                     content: `<div class="page-dialog-del-db">
                         <div>1. 链接你的mongodb数据库。</div>
