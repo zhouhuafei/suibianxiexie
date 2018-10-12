@@ -1848,7 +1848,7 @@ var Super = function () {
         self.jsonp = __webpack_require__(80); // jsonp
         self.Message = __webpack_require__(11); // 提示框
         self.Confirm = __webpack_require__(81); // 确认框
-        new self.Confirm({ config: { content: '123' } });
+        // new self.Confirm({config: {content: '123'}});
         self.opts = self.tools.extend({
             lazyload: {
                 isInitRender: false
