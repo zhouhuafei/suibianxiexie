@@ -270,38 +270,3 @@ $g-is_h5: false;
         }
     }
 }
-
-// 标题
-.g-title {
-    height: px2rem(18);
-    font-size: px2rem($g-font-size-default);
-    color: #000;
-    display: flex;
-    align-items: center;
-    padding: px2rem(10) 0 px2rem(5);
-    &:before, &:after {
-        content: '';
-        display: block;
-        width: 1px;
-        height: 60%;
-        background: $g-ignore-color;
-        border-radius: px2rem(20);
-        transition: 0.4s;
-    }
-    &:before {
-        margin-right: px2rem(10);
-        transform: rotate(-15deg);
-    }
-    &:after {
-        margin-left: px2rem(10);
-        transform: rotate(15deg);
-    }
-    &:hover {
-        &:before {
-            transform: rotate(-15-360deg);
-        }
-        &:after {
-            transform: rotate(15+360deg);
-        }
-    }
-}
