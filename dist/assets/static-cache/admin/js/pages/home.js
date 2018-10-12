@@ -1,6 +1,6 @@
-webpackJsonp([2],{
+webpackJsonp([3],{
 
-/***/ 118:
+/***/ 117:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,7 +14,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(119);
+__webpack_require__(118);
 var Super = __webpack_require__(7);
 
 var Sub = function (_Super) {
@@ -30,7 +30,7 @@ var Sub = function (_Super) {
         key: 'power',
         value: function power() {
             // 测试图片库
-            var Gallery = __webpack_require__(120);
+            var Gallery = __webpack_require__(119);
             new Gallery();
         }
     }]);
@@ -42,14 +42,14 @@ new Sub();
 
 /***/ }),
 
-/***/ 119:
+/***/ 118:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 120:
+/***/ 119:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63,7 +63,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var extend = __webpack_require__(5); // 对象的扩展
 var createElement = __webpack_require__(18); // 创建元素
-var Super = __webpack_require__(121); // 超类型(子类型继承的对象)
+var Super = __webpack_require__(120); // 超类型(子类型继承的对象)
 
 // 子类型
 
@@ -107,7 +107,7 @@ module.exports = Sub;
 
 /***/ }),
 
-/***/ 121:
+/***/ 120:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115,4 +115,4 @@ var _createClass=function(){function e(e,o){for(var t=0;t<o.length;t++){var m=o[
 
 /***/ })
 
-},[118]);
+},[117]);

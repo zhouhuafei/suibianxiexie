@@ -58,6 +58,8 @@ if (isProduction) {
 }
 // 别名----配置
 const alias = {
+    '@': __dirname,
+    'zhf.g-ui': `${__dirname}/node_modules/zhf.g-ui`,
     vue: `vue/dist/vue.${configEnvironment.min}js`,
     axios: `axios/dist/axios.min.js`,
 };
