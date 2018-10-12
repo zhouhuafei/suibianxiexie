@@ -8,7 +8,8 @@ class Super {
         self.axios = require('../api/axios'); // axios
         self.jsonp = require('../api/jsonp'); // jsonp
         self.Message = require('../components-dom/g-message'); // 提示框
-        self.Confirm = require('zhf.g-ui/src/js/components-dom/g-confirm/index.js'); // 确认框
+        self.Confirm = require('zhf.g-ui/src/js/components_dom/g-confirm/index.js'); // 确认框
+        new self.Confirm({config: {content: '123'}});
         self.opts = self.tools.extend({
             lazyload: {
                 isInitRender: false,

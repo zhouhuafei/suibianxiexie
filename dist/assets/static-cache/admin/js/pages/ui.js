@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 126:
+/***/ 128:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,10 +14,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(127);
+__webpack_require__(129);
 var Super = __webpack_require__(7);
 
-var DialogPopover = __webpack_require__(128);
+var DialogPopover = __webpack_require__(130);
 $('.js-popover').each(function () {
     new DialogPopover({
         config: {
@@ -56,7 +56,7 @@ var Sub = function (_Super) {
                 document.querySelector('.js-save').addEventListener('click', function () {
                     // 测试确认框和提示框
                     var Message = __webpack_require__(11);
-                    var Confirm = __webpack_require__(129);
+                    var Confirm = __webpack_require__(131);
                     new Confirm({
                         callback: {
                             cancel: function cancel() {
@@ -122,7 +122,7 @@ var Sub = function (_Super) {
 
             // 测试application/x-www-form-urlencoded
             var axios = __webpack_require__(19);
-            var ajax = __webpack_require__(130);
+            var ajax = __webpack_require__(132);
             axios({
                 url: dataInfo.api.list.route,
                 method: 'post',
@@ -172,14 +172,14 @@ new Sub();
 
 /***/ }),
 
-/***/ 127:
+/***/ 129:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 128:
+/***/ 130:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -356,7 +356,7 @@ module.exports = Sub;
 
 /***/ }),
 
-/***/ 129:
+/***/ 131:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -499,7 +499,7 @@ module.exports = Sub;
 
 /***/ }),
 
-/***/ 130:
+/***/ 132:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -602,4 +602,4 @@ module.exports = function (json) {
 
 /***/ })
 
-},[126]);
+},[128]);
