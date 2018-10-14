@@ -16,6 +16,15 @@
 </template>
 
 <script>
+    const {
+        Message,
+        Confirm,
+        Validate,
+        GoTop,
+        TooltipApp,
+        Copyright,
+        LazyLoad,
+    } = require('zhf.g-ui/src/js/commons_dom/g-common.js');
     export default {
         name: 'home',
         data() {
@@ -25,7 +34,7 @@
         components: {
             'g-img-test': function (resolve) {
                 require.ensure([], function () {
-                    resolve(require('../components-vue/g-img-test.vue'));
+                    resolve(require('../components_vue/g-img-test.vue'));
                 }, 'g-img-test');
             },
         },
@@ -41,8 +50,6 @@
             */
         },
         mounted() {
-            const Confirm = require('../components-dom/g-dialog-confirm');
-            const Message = require('../components-dom/g-message');
             document.querySelector('.js-dialog').addEventListener('click', function () {
                 new Confirm({
                     callback: {

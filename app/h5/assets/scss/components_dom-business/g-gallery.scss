@@ -1,0 +1,89 @@
+@import "../config/config";
+
+// 按钮
+.g-gallery-wrap {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 501;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: px2rem($g-font-size-default);
+    .g-gallery {
+        display: flex;
+        background: #ffffff;
+        position: relative;
+        z-index: 501;
+    }
+    .g-gallery-category {
+        overflow: auto;
+        $size: 120;
+        width: px2rem($size);
+        min-width: px2rem($size);
+        background: #252834;
+        color: #ffffff;
+    }
+    .g-gallery-category-item {
+        $size: 40;
+        height: px2rem($size);
+        line-height: px2rem($size);
+        text-align: right;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding: 0 px2rem(10);
+        &.g-gallery-category-item_active {
+            color: #252834;
+            background: #ffffff;
+        }
+    }
+    .g-gallery-content {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        .g-gallery-content-header {
+            padding: px2rem(10);
+        }
+        .g-gallery-content-body {
+            overflow: auto;
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: px2rem(10);
+            $item-size: 120;
+            $row-num: 4;
+            $gap: 10;
+            $col-num: 5;
+            width: px2rem($item-size*$col-num + $col-num*$gap);
+            height: px2rem($item-size*$row-num + $row-num*$gap);
+            .g-gallery-content-body-item {
+                width: px2rem($item-size);
+                height: px2rem($item-size);
+                position: relative;
+                background: $g-background-color-default;
+                margin: 0 px2rem($gap) px2rem($gap) 0;
+                @extend .g-xy-center-flex;
+                .g-checkbox, .g-radio {
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    padding: px2rem(4) px2rem(6);
+                    background: rgba(0, 0, 0, 0.4);
+                    color: #ffffff;
+                }
+                .g-checkbox .g-checkbox-text, .g-radio .g-radio-text {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+        }
+        .g-gallery-content-footer {
+            @extend .g-xy-center-flex;
+            padding: 0 px2rem(10) px2rem(10);
+        }
+    }
+}

@@ -1,24 +1,27 @@
+// 公共的样式
+require('./scss/commons/common.scss');
+
 import Vue from 'vue';
 import app from './app.vue';
 import router from './routes/route';
 import store from './vuex/store';
-import tools from 'zhf.tools';
-import applications from 'zhf.applications';
 import axios from './api/axios';
 import jsonp from './api/jsonp';
-import Lazyload from './components-dom/g-lazy-load';
-
+const {
+    Message,
+    Confirm,
+    Validate,
+    GoTop,
+    TooltipApp,
+    Copyright,
+    LazyLoad,
+} = require('zhf.g-ui/src/js/commons_dom/g-common.js');
 const qr = require('qr-image');
 
-// 公共的样式
-require('./scss/commons/common.scss');
-
 // 工具方法
-Vue.prototype.$tools = tools;
-Vue.prototype.$applications = applications;
 Vue.prototype.$axios = axios;
 Vue.prototype.$jsonp = jsonp;
-Vue.prototype.$lazyload = new Lazyload({isInitRender: false});
+Vue.prototype.$lazyload = new LazyLoad({isInitRender: false});
 
 // 路由处理
 router.beforeEach(function (to, from, next) {

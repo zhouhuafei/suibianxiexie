@@ -1,13 +1,25 @@
 require('../../scss/commons/common.scss');
+window['g-is_h5'] = true;
+const qr = require('qr-image');
+const extend = require('zhf.extend');
+const axios = require('../api/axios');
+const jsonp = require('../api/jsonp');
+const {
+    Message,
+    Confirm,
+    Validate,
+    GoTop,
+    TooltipApp,
+    Copyright,
+    LazyLoad,
+} = require('zhf.g-ui/src/js/commons_dom/g-common.js');
 
 class Super {
     constructor(json) {
         const self = this;
-        self.tools = require('zhf.tools'); // 工具方法集合
-        self.applications = require('zhf.applications'); // 应用方法集合
-        self.axios = require('../api/axios'); // axios
-        self.jsonp = require('../api/jsonp'); // jsonp
-        self.opts = self.tools.extend({
+        self.axios = axios;
+        self.jsonp = jsonp;
+        self.opts = extend({
             lazyload: {
                 isInitRender: false,
             },
@@ -54,15 +66,10 @@ class Super {
         // console.log('dataInfo:\n', self.dataInfo);
 
         // 延迟加载 power方法里如果有切换也使用到延迟加载 那么放在尾部就无解了 放在这里power里可以调用self.lazyload.render方法触发
-        const LazyLoad = require('../components-dom/g-lazy-load');
         self.lazyload = new LazyLoad(self.opts.lazyload);
 
         // Vue
         const Vue = require('vue');
-        Vue.prototype.$tools = self.tools;
-        Vue.prototype.$applications = self.applications;
-        Vue.prototype.$axios = self.axios;
-        Vue.prototype.$jsonp = self.jsonp;
         Vue.prototype.$lazyload = self.lazyload;
         self.Vue = Vue;
     }
@@ -82,14 +89,12 @@ class Super {
         }
 
         // 返回顶部
-        const GoTop = require('../components-dom/g-go-top');
         new GoTop({
             wrap: '.g-go-top-wrap',
         });
 
         // 版权
         if (dataInfo && dataInfo.isShowCopyright) {
-            const Copyright = require('../components-dom/g-copyright');
             new Copyright({
                 wrap: '.g-copyright-wrap',
             });

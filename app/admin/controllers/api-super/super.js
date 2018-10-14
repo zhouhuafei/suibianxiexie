@@ -1,11 +1,10 @@
 // 接口数据
-const tools = require('zhf.tools'); // 工具方法集合
+const extend = require('zhf.extend'); // 工具方法集合
 const qs = require('qs');
 
 class Super {
     constructor(json) {
-        this.tools = tools; // 工具方法集合
-        this.opts = tools.extend({
+        this.opts = extend({
             app: null,
             req: null,
             res: null,

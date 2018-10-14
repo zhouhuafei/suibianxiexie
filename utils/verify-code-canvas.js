@@ -1,6 +1,6 @@
 const Canvas = require('canvas');
-const tools = require('zhf.tools');
-const fnRandomNum = tools.randomNum;
+const extend = require('zhf.extend');
+const fnRandomNum = require('zhf.random-num');
 
 module.exports = function () {
     const randomNum = fnRandomNum(100000, 999999);

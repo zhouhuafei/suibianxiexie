@@ -1,6 +1,6 @@
-webpackJsonp([3],{
+webpackJsonp([2],{
 
-/***/ 120:
+/***/ 111:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,8 +14,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(121);
-var Super = __webpack_require__(7);
+__webpack_require__(112);
+var Super = __webpack_require__(6);
+var Gallery = __webpack_require__(113);
 
 var Sub = function (_Super) {
     _inherits(Sub, _Super);
@@ -30,7 +31,6 @@ var Sub = function (_Super) {
         key: 'power',
         value: function power() {
             // 测试图片库
-            var Gallery = __webpack_require__(122);
             new Gallery();
         }
     }]);
@@ -42,14 +42,14 @@ new Sub();
 
 /***/ }),
 
-/***/ 121:
+/***/ 112:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 122:
+/***/ 113:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61,9 +61,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var extend = __webpack_require__(5); // 对象的扩展
-var createElement = __webpack_require__(13); // 创建元素
-var Super = __webpack_require__(32); // 超类型(子类型继承的对象)
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
 
 // 子类型
 
@@ -107,4 +107,4 @@ module.exports = Sub;
 
 /***/ })
 
-},[120]);
+},[111]);

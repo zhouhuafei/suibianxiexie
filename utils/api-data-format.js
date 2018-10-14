@@ -1,7 +1,7 @@
-const tools = require('zhf.tools');
+const extend = require('zhf.extend');
 
 module.exports = function (opts = {}) {
-    return tools.extend({
+    return extend({
         /*
         * 状态信息:
         * 成功(success)   服务端响应状态是200且满足业务逻辑,则状态是success,预定义的数据格式:{status: 'success'}

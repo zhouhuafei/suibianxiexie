@@ -1,5 +1,8 @@
 require('../../../scss/pages/game-biecaibaikuai.scss');
 const Super = require('../../pages-super/super');
+const randomNum = require('zhf.random-num');
+const createElement = require('zhf.create-element');
+const offset = require('zhf.offset');
 
 class Sub extends Super {
     // (功)(覆)功能(覆盖超类型)
@@ -8,12 +11,10 @@ class Sub extends Super {
         if (window.orientation === 90 || window.orientation === -90) {
             alert('请竖屏之后，刷新页面进行游戏');
         }
-        const tools = this.tools;
-        const applications = this.applications;
         const canvasWrap = document.querySelector('.canvas-wrap');
         const w = canvasWrap.offsetWidth;
         const h = document.documentElement.clientHeight;
-        const canvas = applications.createElement({
+        const canvas = createElement({
             elementName: 'canvas',
             attribute: {
                 width: w,
@@ -38,7 +39,7 @@ class Sub extends Super {
         function randomMap() {
             const result = [];
             const max = 10;
-            const randomRow = tools.randomNum(0, max);
+            const randomRow = randomNum(0, max);
             let colNum = 1;
             if (randomRow === max) { // 当随机数等于max的时候,一行3个
                 colNum = 3;
@@ -48,10 +49,10 @@ class Sub extends Super {
             }
             const randomResult = [];
             // 随机2个时,这2个不允许被随机到同一个位置
-            let random = tools.randomNum(0, col - 1); // 当前这个在这一行是第几个
+            let random = randomNum(0, col - 1); // 当前这个在这一行是第几个
             while (randomResult.indexOf(random) === -1 && randomResult.length < colNum) {
                 randomResult.push(random);
-                random = tools.randomNum(0, col - 1); // 当前这个在这一行是第几个
+                random = randomNum(0, col - 1); // 当前这个在这一行是第几个
             }
             randomResult.forEach(function (v) {
                 result.push([v * item.w + v * gap, -item.h, item.w, item.h]);
@@ -130,7 +131,7 @@ class Sub extends Super {
             ev.preventDefault();
             ev.stopPropagation();
             ev = isPc ? ev : ev.changedTouches[0];
-            const clientX = ev.clientX - applications.offset(canvasWrap).left;
+            const clientX = ev.clientX - offset(canvasWrap).left;
             const clientY = ev.clientY;
             let isClickSuccess = false;
             map.forEach(function (row, index) {
@@ -140,9 +141,9 @@ class Sub extends Super {
                         score++;
                         // 音乐
                         if (hasSound) {
-                            let audioDom = applications.createElement({elementName: 'audio'});
+                            let audioDom = createElement({elementName: 'audio'});
                             // audioDom.setAttribute('src', audioSrc[score % audioSrc.length]);
-                            audioDom.setAttribute('src', audioSrc[tools.randomNum(0, audioSrc.length - 1)]);
+                            audioDom.setAttribute('src', audioSrc[randomNum(0, audioSrc.length - 1)]);
                             audioDom.play();
                             audioDom = null;
                         }

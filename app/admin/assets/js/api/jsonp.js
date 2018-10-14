@@ -1,9 +1,10 @@
-const tools = require('zhf.tools');
-const Message = require('../components-dom/g-message');
-const queryString = tools.queryString;
+const extend = require('zhf.extend');
+const typeOf = require('zhf.type-of');
+const queryString = require('zhf.query-string');
+const Message = require('zhf.g-ui/src/js/components_dom/g-message/index.js');
 
 module.exports = function (json) {
-    const opts = tools.extend({
+    const opts = extend({
         url: '',
         data: {},
         isHandleError: true, // 是否处理错误
@@ -36,7 +37,7 @@ module.exports = function (json) {
     if (url) {
         const random = ('' + Math.random()).substring(2);
         let fnName = `jsonpCallback${new Date().getTime()}${random}`;
-        if (callbackName && tools.typeOf(callbackName) === 'string') {
+        if (callbackName && typeOf(callbackName) === 'string') {
             fnName = callbackName;
         }
         window[fnName] = function (dataInfo) {

@@ -1,0 +1,11 @@
+@charset "UTF-8";
+/*
+// px转rem(pc) 这个是给电脑端用的。
+@function px2rem($px) {
+    @if $px == 0 {
+        @return 0;
+    } @else {
+        @return $px * 1px;
+    }
+}
+*/

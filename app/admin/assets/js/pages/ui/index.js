@@ -1,9 +1,18 @@
 require('../../../scss/pages/ui.scss');
 const Super = require('../../pages-super/super');
+const {
+    Message,
+    Confirm,
+    Validate,
+    GoTop,
+    TooltipApp,
+    Copyright,
+    LazyLoad,
+    Popover,
+} = require('zhf.g-ui/src/js/commons_dom/g-common.js');
 
-const DialogPopover = require('../../components-dom/g-dialog-popover');
 $('.js-popover').each(function () {
-    new DialogPopover({
+    new Popover({
         config: {
             element: this,
             content: '建议尺寸：640*640',
@@ -28,8 +37,6 @@ class Sub extends Super {
             });
             document.querySelector('.js-save').addEventListener('click', function () {
                 // 测试确认框和提示框
-                const Message = require('../../components-dom/g-message');
-                const Confirm = require('../../components-dom/g-dialog-confirm');
                 new Confirm({
                     callback: {
                         cancel: function () {

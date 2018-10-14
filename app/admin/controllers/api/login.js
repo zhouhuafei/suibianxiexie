@@ -1,10 +1,10 @@
 const Super = require('../api-super/super'); // 超类型
+const checkStr = require('zhf.check-str');
 
 class Sub extends Super {
     // (增)(覆)增加数据(覆盖超类型)
     postData() {
         const self = this;
-        const tools = self.tools; // 工具方法集合
         const opts = self.opts;
         const app = opts.app;
         const appConfig = app.appConfig;
@@ -16,7 +16,6 @@ class Sub extends Super {
         const verifyCodeCanvas = (data['verify-code-canvas'] || '').trim(); // 验证码,图文随机
         const sessionVerifyCodeCanvasAdmin = session.verifyCodeCanvasAdmin; // 先保存一份验证码，留着下面做验证。
         delete session.verifyCodeCanvasAdmin; // 请求一次之后就清掉验证码，无论成功失败，都要让验证码无效。
-        const checkStr = tools.checkStr;
         if (checkStr.isEmpty(username)) {
             self.render({
                 message: '账号不能为空',

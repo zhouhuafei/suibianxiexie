@@ -1,5 +1,14 @@
 require('../../../scss/pages/setting.scss');
 const Super = require('../../pages-super/super');
+const {
+    Message,
+    Confirm,
+    Validate,
+    GoTop,
+    TooltipApp,
+    Copyright,
+    LazyLoad,
+} = require('zhf.g-ui/src/js/commons_dom/g-common.js');
 
 class Sub extends Super {
     // (功)(覆)功能(覆盖超类型)
@@ -7,7 +16,6 @@ class Sub extends Super {
         const self = this;
         const dataInfo = self.dataInfo;
         const axios = self.axios;
-        const Confirm = require('../../components-dom/g-dialog-confirm');
 
         // 退出账号
         document.querySelector('.page-logout').addEventListener('click', function () {

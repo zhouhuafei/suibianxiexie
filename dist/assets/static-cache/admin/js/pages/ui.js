@@ -1,6 +1,6 @@
-webpackJsonp([2],{
+webpackJsonp([3],{
 
-/***/ 128:
+/***/ 119:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,12 +14,21 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(129);
-var Super = __webpack_require__(7);
+__webpack_require__(120);
+var Super = __webpack_require__(6);
 
-var DialogPopover = __webpack_require__(130);
+var _require = __webpack_require__(15),
+    Message = _require.Message,
+    Confirm = _require.Confirm,
+    Validate = _require.Validate,
+    GoTop = _require.GoTop,
+    TooltipApp = _require.TooltipApp,
+    Copyright = _require.Copyright,
+    LazyLoad = _require.LazyLoad,
+    Popover = _require.Popover;
+
 $('.js-popover').each(function () {
-    new DialogPopover({
+    new Popover({
         config: {
             element: this,
             content: '建议尺寸：640*640',
@@ -55,8 +64,6 @@ var Sub = function (_Super) {
                 });
                 document.querySelector('.js-save').addEventListener('click', function () {
                     // 测试确认框和提示框
-                    var Message = __webpack_require__(11);
-                    var Confirm = __webpack_require__(131);
                     new Confirm({
                         callback: {
                             cancel: function cancel() {
@@ -121,8 +128,8 @@ var Sub = function (_Super) {
             })();
 
             // 测试application/x-www-form-urlencoded
-            var axios = __webpack_require__(19);
-            var ajax = __webpack_require__(132);
+            var axios = __webpack_require__(17);
+            var ajax = __webpack_require__(121);
             axios({
                 url: dataInfo.api.list.route,
                 method: 'post',
@@ -172,346 +179,27 @@ new Sub();
 
 /***/ }),
 
-/***/ 129:
+/***/ 120:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 130:
+/***/ 121:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(2); // 应用方法集合
-var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    wrap: '.g-wrap',
-    // 回调
-    callback: {},
-    // 配置
-    config: {
-        moduleDomIsRender: false,
-        element: '.js-popover',
-        eventType: 'mouseover',
-        positionLocation: 'top-left', // 弹窗的定位位置('top-left'，'top-center'，'top-right')。
-        content: 'no popover content'
-    },
-    // 数据
-    data: {}
-});
-
-// (建)(覆)内部模块的创建(覆盖超类型)
-Sub.prototype.moduleDomCreate = function () {
-    var config = this.opts.config;
-    var positionLocation = 'g-dialog-popover_' + config.positionLocation; // 弹窗的定位位置
-    // 弹窗结构
-    this.moduleDom = applications.createElement({
-        style: config.moduleDomStyle,
-        customAttribute: config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-dialog-popover ' + positionLocation,
-            innerHTML: '\n                <div class="g-dialog-popover-content">' + config.content + '</div>\n                <div class="g-dialog-popover-icon"></div>                \n            '
-        }
-    });
-};
-
-// (功)(覆)功能(覆盖超类型)
-Sub.prototype.power = function () {
-    var self = this;
-    var opts = self.opts;
-    var config = opts.config;
-    var positionLocation = config.positionLocation;
-    var moduleDom = self.moduleDom;
-    if (config.eventType === 'mouseover' || config.eventType === 'mouseenter') {
-        $(config.element).on('mouseenter', function (ev) {
-            ev.preventDefault();
-            ev.stopPropagation();
-            self.moduleDomShow();
-            setCss(this);
-            clearTimeout(self.gDialogPopoverMouseenterTimer);
-        });
-        $(config.element).on('mouseleave', function (ev) {
-            ev.preventDefault();
-            ev.stopPropagation();
-            fnModuleDomHide();
-        });
-        $(moduleDom).on('mouseenter', function (ev) {
-            ev.preventDefault();
-            ev.stopPropagation();
-            clearTimeout(self.gDialogPopoverMouseenterTimer);
-        });
-        $(moduleDom).on('mouseleave', function (ev) {
-            ev.preventDefault();
-            ev.stopPropagation();
-            fnModuleDomHide();
-        });
-    }
-
-    function fnModuleDomHide() {
-        self.gDialogPopoverMouseenterTimer = setTimeout(function () {
-            self.moduleDomHide();
-        }, 60);
-    }
-
-    if (config.eventType === 'click') {
-        $(config.element).on('click', function (ev) {
-            ev.preventDefault();
-            ev.stopPropagation();
-            if (self.moduleDom.offsetWidth === 0) {
-                self.moduleDomShow();
-                setCss(this);
-            } else {
-                self.moduleDomHide();
-            }
-        });
-    }
-
-    function setCss(eventDom) {
-        // 水平居上
-        if (positionLocation === 'top-left') {
-            $(moduleDom).css({
-                left: $(eventDom).offset().left,
-                top: $(eventDom).offset().top - moduleDom.offsetHeight
-            });
-        }
-        if (positionLocation === 'top-center') {
-            $(moduleDom).css({
-                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth) / 2,
-                top: $(eventDom).offset().top - moduleDom.offsetHeight
-            });
-        }
-        if (positionLocation === 'top-right') {
-            $(moduleDom).css({
-                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth),
-                top: $(eventDom).offset().top - moduleDom.offsetHeight
-            });
-        }
-        // 水平居下
-        if (positionLocation === 'bottom-left') {
-            $(moduleDom).css({
-                left: $(eventDom).offset().left,
-                top: $(eventDom).offset().top + eventDom.offsetHeight
-            });
-        }
-        if (positionLocation === 'bottom-center') {
-            $(moduleDom).css({
-                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth) / 2,
-                top: $(eventDom).offset().top + eventDom.offsetHeight
-            });
-        }
-        if (positionLocation === 'bottom-right') {
-            $(moduleDom).css({
-                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth),
-                top: $(eventDom).offset().top + eventDom.offsetHeight
-            });
-        }
-        // 垂直居左
-        if (positionLocation === 'left-top') {
-            $(moduleDom).css({
-                left: $(eventDom).offset().left - moduleDom.offsetWidth,
-                top: $(eventDom).offset().top
-            });
-        }
-        if (positionLocation === 'left-center') {
-            $(moduleDom).css({
-                left: $(eventDom).offset().left - moduleDom.offsetWidth,
-                top: $(eventDom).offset().top - (moduleDom.offsetHeight - eventDom.offsetHeight) / 2
-            });
-        }
-        if (positionLocation === 'left-bottom') {
-            $(moduleDom).css({
-                left: $(eventDom).offset().left - moduleDom.offsetWidth,
-                top: $(eventDom).offset().top - (moduleDom.offsetHeight - eventDom.offsetHeight)
-            });
-        }
-        // 垂直居右
-        if (positionLocation === 'right-top') {
-            $(moduleDom).css({
-                left: $(eventDom).offset().left + eventDom.offsetWidth,
-                top: $(eventDom).offset().top
-            });
-        }
-        if (positionLocation === 'right-center') {
-            $(moduleDom).css({
-                left: $(eventDom).offset().left + eventDom.offsetWidth,
-                top: $(eventDom).offset().top - (moduleDom.offsetHeight - eventDom.offsetHeight) / 2
-            });
-        }
-        if (positionLocation === 'right-bottom') {
-            $(moduleDom).css({
-                left: $(eventDom).offset().left + eventDom.offsetWidth,
-                top: $(eventDom).offset().top - (moduleDom.offsetHeight - eventDom.offsetHeight)
-            });
-        }
-    }
-};
-
-module.exports = Sub;
-
-/***/ }),
-
-/***/ 131:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0); // 工具方法集合
-var applications = __webpack_require__(2); // 应用方法集合
-var Super = __webpack_require__(10); // 超类型(子类型继承的对象)
-
-// 子类型
-var Sub = tools.constructorInherit(Super, {
-    wrap: '.g-wrap',
-    // 回调
-    callback: {
-        // 确认
-        confirm: function confirm() {},
-        // 取消
-        cancel: function cancel() {},
-        // 关闭
-        close: function close() {}
-    },
-    // 配置
-    config: {
-        positionLocation: 'center', // 弹窗的定位位置('top'，'center'，'bottom')。positionMethod定位方式强制fixed。
-        isShowClose: true, // 是否显示关闭按钮
-        closeContent: '<div class="iconfont icon-close"></div>', // 关闭按钮的内容
-        isShowHeader: true, // 是否显示头部
-        headerContent: '提示:', // 头部内容
-        isShowBody: true, // 是否显示主体
-        isShowIcon: false, // 是否显示icon
-        icon: 'icon-warning', // icon的类型
-        isCustom: false, // 是否自定义
-        content: '<div>确定要执行这个操作?</div>', // 主体内容
-        isShowFooter: true, // 是否显示尾部
-        isShowConfirm: true, // 是否显示确认按钮
-        confirmContent: '确认', // 确认按钮的内容
-        isShowCancel: true, // 是否显示取消按钮
-        cancelContent: '取消', // 取消按钮的内容
-        isShowMask: true, // 是否显示遮罩
-        isHandHide: false // 是否手动隐藏(一般只用于点击确认时)
-    },
-    // 数据
-    data: {}
-});
-
-// (建)(覆)内部模块的创建(覆盖超类型)
-Sub.prototype.moduleDomCreate = function () {
-    var config = this.opts.config;
-    var positionLocation = 'g-dialog-confirm-wrap_' + config.positionLocation; // 弹窗的定位位置
-    // 弹窗结构
-    var html = this.renderConfirm();
-    this.moduleDom = applications.createElement({
-        style: config.moduleDomStyle,
-        customAttribute: config.moduleDomCustomAttribute,
-        attribute: {
-            className: 'g-dialog-confirm-wrap ' + positionLocation,
-            innerHTML: html
-        }
-    });
-};
-
-// 确认框
-Sub.prototype.renderConfirm = function () {
-    var config = this.opts.config;
-    var htmlHeader = '';
-    if (config.isShowHeader) {
-        htmlHeader = '<div class="g-dialog-confirm-header">' + config.headerContent + '</div>';
-    }
-    var htmlBody = '';
-    if (config.isShowBody) {
-        var htmlIcon = '';
-        if (config.isShowIcon) {
-            htmlIcon = '<div class="g-dialog-confirm-body-system-icon iconfont ' + config.icon + '"></div>';
-        }
-        var bodyClass = 'g-dialog-confirm-body-system';
-        var bodyContent = '\n            ' + htmlIcon + '\n            <div class="g-dialog-confirm-body-system-text">' + config.content + '</div>\n        ';
-        if (config.isCustom) {
-            bodyClass = 'g-dialog-confirm-body-custom';
-            bodyContent = config.content;
-        }
-        htmlBody = '\n            <div class="g-dialog-confirm-body">\n                <div class="' + bodyClass + '">\n                    ' + bodyContent + '\n                </div>\n            </div>\n        ';
-    }
-    var htmlFooter = '';
-    if (config.isShowFooter) {
-        var htmlCancel = '';
-        if (config.isShowCancel) {
-            htmlCancel = '<div class="g-button g-button_cancel g-dialog-confirm-footer-cancel">' + config.cancelContent + '</div>';
-        }
-        var htmlConfirm = '';
-        if (config.isShowConfirm) {
-            htmlConfirm = '<div class="g-button g-dialog-confirm-footer-confirm">' + config.confirmContent + '</div>';
-        }
-        htmlFooter = '<div class="g-dialog-confirm-footer">' + htmlCancel + htmlConfirm + '</div>';
-    }
-    var htmlClose = '';
-    if (config.isShowClose) {
-        htmlClose = '<div class="g-dialog-confirm-close">' + config.closeContent + '</div>';
-    }
-    var htmlMask = '';
-    if (config.isShowMask) {
-        htmlMask = '<div class="g-mask"></div>';
-    }
-    return '\n        ' + htmlMask + '\n        <div class="g-dialog-confirm">\n            ' + htmlHeader + '\n            ' + htmlBody + '\n            ' + htmlFooter + '\n            ' + htmlClose + ' \n        </div>\n    ';
-};
-
-// (功)(覆)功能(覆盖超类型)
-Sub.prototype.power = function () {
-    var self = this;
-    var config = this.opts.config;
-    var callback = this.opts.callback;
-    // 关闭
-    var close = this.moduleDom.querySelector('.g-dialog-confirm-close');
-    if (close) {
-        close.addEventListener('click', function () {
-            self.moduleDomHide();
-            callback.close();
-        });
-    }
-    // 取消
-    var cancel = this.moduleDom.querySelector('.g-dialog-confirm-footer-cancel');
-    if (cancel) {
-        cancel.addEventListener('click', function () {
-            self.moduleDomHide();
-            callback.cancel();
-        });
-    }
-    // 确认
-    var confirm = this.moduleDom.querySelector('.g-dialog-confirm-footer-confirm');
-    if (confirm) {
-        confirm.addEventListener('click', function () {
-            if (!config.isHandHide) {
-                self.moduleDomHide();
-            }
-            callback.confirm();
-        });
-    }
-};
-
-module.exports = Sub;
-
-/***/ }),
-
-/***/ 132:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var tools = __webpack_require__(0);
+var extend = __webpack_require__(0);
+var typeOf = __webpack_require__(18);
 var Message = __webpack_require__(11);
 
 module.exports = function (json) {
     json.type = json.type || json.method || 'get'; // 这里和axios是不一样的，这里以前使用axios的习惯传入method
     json.dataType = json.dataType || 'json'; // 设置返回json格式的数据，axios默认就是返回json格式的
-    var opts = tools.extend({
+    var opts = extend({
         type: 'get', // 请求方式默认get
         timeout: 30000, // 超时
         isHandleError: true, // 是否处理错误
@@ -554,7 +242,7 @@ module.exports = function (json) {
             });
         }
     }
-    if (tools.typeOf(opts.data) === 'formdata') {
+    if (typeOf(opts.data) === 'formdata') {
         // formdata类型需要关闭下面,否则会报错
         opts.processData = false;
         opts.contentType = false;
@@ -602,4 +290,4 @@ module.exports = function (json) {
 
 /***/ })
 
-},[128]);
+},[119]);

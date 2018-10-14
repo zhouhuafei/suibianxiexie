@@ -1,10 +1,10 @@
 const Super = require('../api-super/super'); // 超类型
+const checkStr = require('zhf.check-str');
 
 class Sub extends Super {
     // (增)(覆)增加数据(覆盖超类型)
     postData() {
         const self = this;
-        const tools = self.tools;// 工具方法集合
         const opts = self.opts;
         const req = opts.req;
         const data = req.data;
@@ -12,7 +12,6 @@ class Sub extends Super {
         const password = data.password;// 密码
         const verifyCode = data.verifyCode;// 验证码
         const session = req.session;
-        const checkStr = tools.checkStr;
         if (!checkStr.isEmail(username)) {
             self.render({
                 status: 'failure',

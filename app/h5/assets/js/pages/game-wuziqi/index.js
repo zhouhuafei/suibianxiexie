@@ -1,5 +1,8 @@
 require('../../../scss/pages/game-wuziqi.scss');
 const Super = require('../../pages-super/super');
+const offset = require('zhf.offset');
+const createElement = require('zhf.create-element');
+const randomNum = require('zhf.random-num');
 
 class Sub extends Super {
     // (功)(覆)功能(覆盖超类型)
@@ -8,8 +11,6 @@ class Sub extends Super {
         if (window.orientation === 90 || window.orientation === -90) {
             alert('请竖屏之后，刷新页面进行游戏');
         }
-        const tools = this.tools;
-        const applications = this.applications;
         const canvasWrap = document.querySelector('.canvas-wrap');
         const w = canvasWrap.offsetWidth;
         const h = document.documentElement.clientHeight;
@@ -36,7 +37,7 @@ class Sub extends Super {
                 type: 'transparent',
             });
         }
-        const canvas = applications.createElement({
+        const canvas = createElement({
             elementName: 'canvas',
             attribute: {
                 width: w,
@@ -112,7 +113,7 @@ class Sub extends Super {
         });
         // 落子
         canvas.addEventListener('click', function (ev) {
-            const clientX = ev.clientX - applications.offset(canvasWrap).left;
+            const clientX = ev.clientX - offset(canvasWrap).left;
             const clientY = ev.clientY;
             let nowX = null;
             let nowY = null;
@@ -122,9 +123,9 @@ class Sub extends Super {
                     if (v.type === 'transparent') {
                         // 音乐
                         if (hasSound) {
-                            let audioDom = applications.createElement({elementName: 'audio'});
+                            let audioDom = createElement({elementName: 'audio'});
                             // audioDom.setAttribute('src', audioSrc[(game.blackNum + game.whiteNum) % audioSrc.length]);
-                            audioDom.setAttribute('src', audioSrc[tools.randomNum(0, audioSrc.length - 1)]);
+                            audioDom.setAttribute('src', audioSrc[randomNum(0, audioSrc.length - 1)]);
                             audioDom.play();
                             audioDom = null;
                         }

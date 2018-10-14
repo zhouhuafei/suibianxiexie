@@ -1,10 +1,11 @@
-const tools = require('zhf.tools');
-const Message = require('../components-dom/g-message');
+const extend = require('zhf.extend');
+const typeOf = require('zhf.type-of');
+const Message = require('zhf.g-ui/src/js/components_dom/g-message/index.js');
 
 module.exports = function (json) {
     json.type = json.type || json.method || 'get'; // 这里和axios是不一样的，这里以前使用axios的习惯传入method
     json.dataType = json.dataType || 'json'; // 设置返回json格式的数据，axios默认就是返回json格式的
-    const opts = tools.extend({
+    const opts = extend({
         type: 'get', // 请求方式默认get
         timeout: 30000, // 超时
         isHandleError: true, // 是否处理错误
@@ -47,7 +48,7 @@ module.exports = function (json) {
             });
         }
     }
-    if (tools.typeOf(opts.data) === 'formdata') { // formdata类型需要关闭下面,否则会报错
+    if (typeOf(opts.data) === 'formdata') { // formdata类型需要关闭下面,否则会报错
         opts.processData = false;
         opts.contentType = false;
     }

@@ -1,5 +1,5 @@
 // 页面路由
-const tools = require('zhf.tools'); // 工具方法集合
+const extend = require('zhf.extend'); // 工具方法集合
 const apiConfig = require('./config');
 const controllerPath = '../../controllers/api/'; // 控制器的路径
 const multer = require('multer'); // 用于处理 multipart/form-data 类型的表单数据，它主要用于上传文件。
@@ -7,7 +7,7 @@ let upload = multer().array(); // 只要array后面不传参数，其他接口�
 
 class Route {
     constructor(json) {
-        this.opts = tools.extend({
+        this.opts = extend({
             app: null,
         }, json);
         if (!this.opts.app) {

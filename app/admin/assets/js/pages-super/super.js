@@ -1,16 +1,25 @@
 require('../../scss/commons/common.scss');
+const extend = require('zhf.extend');
+const axios = require('../api/axios');
+const jsonp = require('../api/jsonp');
+const strTo = require('zhf.str-to-num');
+const qr = require('qr-image');
+const {
+    Message,
+    Confirm,
+    Validate,
+    GoTop,
+    TooltipApp,
+    Copyright,
+    LazyLoad,
+} = require('zhf.g-ui/src/js/commons_dom/g-common.js');
 
 class Super {
     constructor(json) {
         const self = this;
-        self.tools = require('zhf.tools'); // 工具方法集合
-        self.applications = require('zhf.applications'); // 应用方法集合
-        self.axios = require('../api/axios'); // axios
-        self.jsonp = require('../api/jsonp'); // jsonp
-        self.Message = require('../components-dom/g-message'); // 提示框
-        self.Confirm = require('zhf.g-ui/src/js/components_dom/g-confirm/index.js'); // 确认框
-        // new self.Confirm({config: {content: '123'}});
-        self.opts = self.tools.extend({
+        this.axios = axios;
+        this.jsonp = jsonp;
+        self.opts = extend({
             lazyload: {
                 isInitRender: false,
             },
@@ -61,17 +70,7 @@ class Super {
         }
 
         // 延迟加载 power方法里如果有切换也使用到延迟加载 那么放在尾部就无解了 放在这里power里可以调用self.lazyload.render方法触发
-        const LazyLoad = require('../components-dom/g-lazy-load');
         self.lazyload = new LazyLoad(self.opts.lazyload);
-
-        // Vue
-        const Vue = require('vue');
-        Vue.prototype.$tools = self.tools;
-        Vue.prototype.$applications = self.applications;
-        Vue.prototype.$axios = self.axios;
-        Vue.prototype.$jsonp = self.jsonp;
-        Vue.prototype.$lazyload = self.lazyload;
-        self.Vue = Vue;
 
         // 菜单
         (function () {
@@ -92,7 +91,6 @@ class Super {
             const btn = document.querySelector('.js-g-logout');
             const api = self.dataInfo.api;
             const routes = self.dataInfo.routes;
-            const Confirm = self.Confirm;
             btn && btn.addEventListener('click', function () {
                 new Confirm({
                     config: {
@@ -164,7 +162,6 @@ class Super {
 
         // input自动纠正的操作
         (function () {
-            const strTo = self.tools.strToNum;
             // 格式化成正整数
             $(document).on('blur', '.js-g-positive-integer', function () {
                 this.value = strTo.toPositiveInteger(this.value);
@@ -176,8 +173,7 @@ class Super {
         })();
 
         // 表单验证
-        const ValidateInput = require('../components-dom/g-validate-form-hint');
-        this.validateInput = new ValidateInput({element: '.js-validate-form'});
+        this.validateInput = new Validate({element: '.js-validate-form'});
         // 对submit进行拦截
         $(document).on('submit', 'form', function (ev) {
             ev.preventDefault();
@@ -206,6 +202,11 @@ class Super {
                 });
             }
         });
+
+        // Vue
+        const Vue = require('vue');
+        Vue.prototype.$lazyload = self.lazyload;
+        self.Vue = Vue;
     }
 
     // (渲)渲染
@@ -215,7 +216,6 @@ class Super {
 
         // 二维码
         if (dataInfo && dataInfo.isShowQrCode) {
-            const qr = require('qr-image');
             const qrDom = document.querySelector('.g-qr-code-svg');
             if (qrDom) {
                 qrDom.innerHTML = qr.imageSync(window.location.href, {type: 'svg'});
@@ -223,12 +223,10 @@ class Super {
         }
 
         // 返回顶部
-        const GoTop = require('../components-dom/g-go-top');
         new GoTop({wrap: '.page-go-top-wrap'});
 
         // 版权
         if (dataInfo && dataInfo.isShowCopyright) {
-            const Copyright = require('../components-dom/g-copyright');
             new Copyright({
                 wrap: '.page-copyright-wrap',
             });
@@ -244,8 +242,7 @@ class Super {
         }
 
         // 工具提示框(文本提示框)的应用
-        const DialogTooltipApp = require('../components-dom/g-tooltip-app');
-        new DialogTooltipApp({element: '.js-g-tooltip', eventType: 'mouseover', positionLocation: 'top-right'});
+        new TooltipApp({element: '.js-g-tooltip', eventType: 'mouseover', positionLocation: 'top-right'});
     }
 }
 

@@ -1,10 +1,10 @@
 // 页面路由
-const tools = require('zhf.tools'); // 工具方法集合
+const extend = require('zhf.extend'); // 工具方法集合
 const config = require('./config');
 const controllerPath = '../../controllers/pages/'; // 控制器的路径
 class Route {
     constructor(json) {
-        this.opts = tools.extend({
+        this.opts = extend({
             app: null,
         }, json);
         if (!this.opts.app) {

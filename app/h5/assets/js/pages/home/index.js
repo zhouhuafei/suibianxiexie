@@ -1,5 +1,15 @@
 require('../../../scss/pages/home.scss');
 const Super = require('../../pages-super/super');
+const {
+    Message,
+    Confirm,
+    Validate,
+    GoTop,
+    TooltipApp,
+    Copyright,
+    LazyLoad,
+    Navigation,
+} = require('zhf.g-ui/src/js/commons_dom/g-common.js');
 
 class Sub extends Super {
     // (功)(覆)功能(覆盖超类型)
@@ -10,10 +20,10 @@ class Sub extends Super {
 
         // slide切换
         (function () {
-            const Slide = require('../../components-dom/g-slide');
+            const Slide = require('../../components_dom/g-slide');
             new Slide({
                 wrap: '.page-slide',
-                data: {
+                config: {
                     items: [
                         {
                             img: {
@@ -62,7 +72,6 @@ class Sub extends Super {
 
         // 导航
         (function () {
-            const Navigation = require('../../components-dom/g-navigation');
             new Navigation({
                 wrap: '.page-navigation',
                 data: {
@@ -106,7 +115,7 @@ class Sub extends Super {
         (function () {
             const Vue = superSelf.Vue;
             require.ensure([], function (require) {
-                require('../../components-vue/g-img-test')(Vue);
+                require('../../components_vue/g-img-test')(Vue);
                 new Vue({
                     el: '.page-vue-app',
                     template: `<div class="page-vue">

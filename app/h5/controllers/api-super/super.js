@@ -1,10 +1,9 @@
 // 接口数据
-const tools = require('zhf.tools'); // 工具方法集合
+const extend = require('zhf.extend'); // 工具方法集合
 
 class Super {
     constructor(json) {
-        this.tools = tools; // 工具方法集合
-        this.opts = tools.extend({
+        this.opts = extend({
             app: null,
             req: null,
             res: null,
@@ -143,7 +142,7 @@ class Super {
             const res = opts.res;
             const data = req.data;
             const isJsonp = data.isJsonp === 'true'; // 是否是jsonp(jsonp only supports the get method)
-            self.dataInfo = self.tools.extend(self.dataInfo, json);
+            self.dataInfo = extend(self.dataInfo, json);
             self.opts.callback(self);
             if (self.opts.isTriggerEnd) {
                 res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'}); // res.json默认返回的就是200和application/json

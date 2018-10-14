@@ -4,7 +4,6 @@ class Sub extends Super {
     // (处)(覆)处理数据(覆盖超类型)
     handleData() {
         const self = this;
-        const tools = self.tools; // 工具方法集合
         const opts = self.opts;
         const req = opts.req;
         const session = req.session;

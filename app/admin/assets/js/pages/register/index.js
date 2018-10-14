@@ -1,5 +1,14 @@
 require('../../../scss/pages/register.scss');
 const Super = require('../../pages-super/super');
+const {
+    Message,
+    Confirm,
+    Validate,
+    GoTop,
+    TooltipApp,
+    Copyright,
+    LazyLoad,
+} = require('zhf.g-ui/src/js/commons_dom/g-common.js');
 
 class Sub extends Super {
     // (功)(覆)功能(覆盖超类型)
@@ -12,8 +21,7 @@ class Sub extends Super {
 
         // 验证
         (function () {
-            const ValidateInput = require('../../components-dom/g-validate-form-hint');
-            new ValidateInput({element: '.js-validate-form'});
+            new Validate({element: '.js-validate-form'});
         }());
 
         // 注册

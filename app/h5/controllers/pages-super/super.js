@@ -1,13 +1,12 @@
 // 模版渲染
-const tools = require('zhf.tools'); // 工具方法集合
+const extend = require('zhf.extend'); // 工具方法集合
 const routesConfig = require('../../routes/pages/config'); // 路由配置
 const apiConfig = require('../../routes/api/config'); // 接口配置
 const getClientIp = require('zhf.get-client-ip');
 
 class Super {
     constructor(json) {
-        this.tools = tools; // 工具方法集合
-        this.opts = tools.extend({
+        this.opts = extend({
             app: null,
             req: null,
             res: null,
@@ -124,7 +123,6 @@ class Super {
     // (处)(覆)处理数据(这个方法需要在子类型里被覆盖掉)
     handleData() {
         const self = this;
-        const tools = self.tools; // 工具方法集合
         const opts = self.opts;
         const req = opts.req;
         const data = req.data;
@@ -153,7 +151,7 @@ class Super {
     render(json = {}) {
         const self = this;
         const req = self.opts.req;
-        self.dataInfo = self.tools.extend(self.dataInfo, json);
+        self.dataInfo = extend(self.dataInfo, json);
         if (req.data.isOnlyRenderData === 'true') {
             self.renderData();// 渲染数据
         } else {

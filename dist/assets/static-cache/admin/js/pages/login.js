@@ -1,6 +1,6 @@
 webpackJsonp([7],{
 
-/***/ 123:
+/***/ 114:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,8 +14,17 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(124);
-var Super = __webpack_require__(7);
+__webpack_require__(115);
+var Super = __webpack_require__(6);
+
+var _require = __webpack_require__(15),
+    Message = _require.Message,
+    Confirm = _require.Confirm,
+    Validate = _require.Validate,
+    GoTop = _require.GoTop,
+    TooltipApp = _require.TooltipApp,
+    Copyright = _require.Copyright,
+    LazyLoad = _require.LazyLoad;
 
 var Sub = function (_Super) {
     _inherits(Sub, _Super);
@@ -38,10 +47,7 @@ var Sub = function (_Super) {
             var axios = superSelf.axios;
 
             // 验证
-            (function () {
-                var ValidateInput = __webpack_require__(20);
-                new ValidateInput({ element: '.js-validate-form' });
-            })();
+            new Validate({ element: '.js-validate-form' });
 
             // 登陆
             (function () {
@@ -89,11 +95,11 @@ new Sub();
 
 /***/ }),
 
-/***/ 124:
+/***/ 115:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
 
-},[123]);
+},[114]);

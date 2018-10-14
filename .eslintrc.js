@@ -15,6 +15,7 @@ module.exports = {
     },
     globals: {
         $: true,
+        Vue: true,
     },
     plugins: ['html'],
     /*

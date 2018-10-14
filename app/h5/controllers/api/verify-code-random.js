@@ -1,23 +1,23 @@
 const Super = require('../api-super/super'); // 超类型
 const nodemailer = require('nodemailer');// 邮箱模块
+const checkStr = require('zhf.check-str');
+const randomNum = require('zhf.random-num');
 
 class Sub extends Super {
     // (查)(覆)查找数据(覆盖超类型)
     getData() {
         const self = this;
-        const tools = this.tools;// 工具方法集合
         const opts = this.opts;
         const req = opts.req;
         const data = req.data;
         const username = data.username;
-        const checkStr = tools.checkStr;
         if (!checkStr.isEmail(username)) { // 用户名不是邮箱
             self.render({
                 status: 'failure',
                 message: '账号需要是一个邮箱',
             });
         } else { // 用户名是邮箱
-            const verifyCode = tools.randomNum(100000, 999999);// random随机验证码
+            const verifyCode = randomNum(100000, 999999);// random随机验证码
             const expirationDate = 10;// 有效期,单位是分钟
             const autoUser = 'this-is-a-code@foxmail.com';
             const transporter = nodemailer.createTransport({

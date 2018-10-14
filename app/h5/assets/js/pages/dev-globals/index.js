@@ -1,16 +1,24 @@
 require('../../../scss/pages/dev-globals.scss');
 const Super = require('../../pages-super/super');
+const SelectAll = require('zhf.select-all');
+const {
+    Message,
+    Confirm,
+    Validate,
+    GoTop,
+    TooltipApp,
+    Copyright,
+    LazyLoad,
+} = require('zhf.g-ui/src/js/commons_dom/g-common.js');
 
 class Sub extends Super {
     // (功)(覆)功能(覆盖超类型)
     power() {
         const self = this;
-        const applications = self.applications;
 
         // base函数测试
         (function () {
             // 测试全选
-            const SelectAll = applications.SelectAll;
             new SelectAll({
                 items: '.g-checkbox-body-main',
                 callback: {
@@ -23,8 +31,7 @@ class Sub extends Super {
 
         // 验证
         (function () {
-            const ValidateInput = require('../../components-dom/g-validate-form-hint');
-            const validateInput = new ValidateInput({element: '.js-validate-form'});
+            const validateInput = new Validate({element: '.js-validate-form'});
             validateInput.setValidate('no-999', function (value) {
                 return Number(value) !== 999;
             });
@@ -32,8 +39,6 @@ class Sub extends Super {
 
         // 弹窗测试
         (function () {
-            const Confirm = require('../../components-dom/g-dialog-confirm');
-            const Message = require('../../components-dom/g-message');
             document.querySelector('.js-button-dialog').addEventListener('click', function () {
                 new Confirm({
                     callback: {

@@ -1,7 +1,6 @@
 const multer = require('multer'); // 用于处理 multipart/form-data 类型的表单数据，它主要用于上传文件。
 const appConfig = require('../../../../app-config'); // 应用全局的配置
-const tools = require('zhf.tools');
-const typeOf = tools.typeOf;
+const typeOf = require('zhf.type-of');
 // 路径
 const pathConfig = {
     route: '/admin/api/',

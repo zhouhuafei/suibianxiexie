@@ -1,6 +1,15 @@
 require('../../../scss/pages/register.scss');
 const Super = require('../../pages-super/super');
 const timeCountDown = require('zhf.time-count-down'); // 倒计时
+const {
+    Message,
+    Confirm,
+    Validate,
+    GoTop,
+    TooltipApp,
+    Copyright,
+    LazyLoad,
+} = require('zhf.g-ui/src/js/commons_dom/g-common.js');
 
 class Sub extends Super {
     // (功)(覆)功能(覆盖超类型)
@@ -35,7 +44,6 @@ class Sub extends Super {
                     },
                 }).then(function (json) {
                     if (json.status === 'success') {
-                        const Message = require('../../components-dom/g-message');
                         new Message({config: {icon: 'icon-success', content: '验证码已发送'}});
                         domSelf.classList.add(domGetVerifyCodeInactive);
                         timeCountDown({
