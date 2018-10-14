@@ -30,6 +30,9 @@
 
 //pc展示
 html.g-pc {
+    @function px2rem($px) {
+        @return $px * 1px;
+    }
     height: 100%;
     body {
         height: inherit;
@@ -39,21 +42,21 @@ html.g-pc {
         $width-wrap: 414;
         min-height: 100%;
         margin: 0 auto;
-        width: px2px($width-wrap);
-        box-shadow: px2px(1) 0 px2px(4) $g-border-color-default, px2px(-1) 0 px2px(4) $g-border-color-default;
+        width: px2rem($width-wrap);
+        box-shadow: px2rem(1) 0 px2rem(4) $g-border-color-default, px2rem(-1) 0 px2rem(4) $g-border-color-default;
         .g-header {
             // 二维码(扫码手机观看)
             .g-qr-code {
                 $width: 144;
                 display: block;
-                padding: px2px(20);
+                padding: px2rem(20);
                 background: #fff;
-                border: px2px(1) solid $g-border-color-default;
+                border: px2rem(1) solid $g-border-color-default;
                 position: fixed;
-                top: px2px(20);
+                top: px2rem(20);
                 left: 50%;
-                margin-left: px2px(- 20 - $width - $width-wrap/2);
-                font-size: px2px(12);
+                margin-left: px2rem(- 20 - $width - $width-wrap/2);
+                font-size: px2rem(12);
                 .g-qr-code-text {
                     display: flex;
                     align-items: center;
@@ -61,8 +64,8 @@ html.g-pc {
                 }
                 .g-qr-code-svg {
                     $width-height: 102;
-                    width: px2px($width-height);
-                    height: px2px($width-height);
+                    width: px2rem($width-height);
+                    height: px2rem($width-height);
                     svg {
                         vertical-align: middle;
                     }
