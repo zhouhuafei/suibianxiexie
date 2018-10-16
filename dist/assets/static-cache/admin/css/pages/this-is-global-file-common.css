@@ -2332,7 +2332,7 @@ input[type=submit].g-button, input[type=reset].g-button, input[type=button].g-bu
           -ms-flex-pack: end;
               justify-content: flex-end;
       padding: 0 10px;
-      min-width: 90px;
+      min-width: 100px;
       text-align: right;
       background: #ffffff; }
       .g-form-wrap .g-form .g-form-body .g-form-body-text + .g-form-body-content {

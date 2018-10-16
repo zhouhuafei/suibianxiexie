@@ -18,7 +18,7 @@ const routeName = [
         isValidateLogin: false,
     },
     {
-        name: 'password-find', // 忘记密码,去找回
+        name: 'password-reset', // 忘记密码,去找回
         isValidateLogin: false,
     },
     {

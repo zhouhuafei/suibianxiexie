@@ -155,6 +155,10 @@ class Super {
                                 name: 'password-modify', // 更改密码,去修改
                                 title: '修改密码',
                             },
+                            {
+                                name: 'password-reset', // 更改密码,去修改
+                                title: '重置密码',
+                            },
                         ],
                     },
                 ];

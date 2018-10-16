@@ -8,21 +8,21 @@ class Phone {
     constructor(opt = {
         apiConfig: require('./app/h5/routes/api/config'),
         pagesConfig: require('./app/h5/routes/pages/config'),
-        apiFilesPath: './app/h5/controllers/api/',
-        pagesFilesPath: './app/h5/controllers/pages/',
+        apiControllersPath: './app/h5/controllers/api/',
+        pagesControllersPath: './app/h5/controllers/pages/',
         pagesViewsPath: './app/h5/assets/views/pages/',
         pagesScssPath: './app/h5/assets/scss/pages/',
         pagesJsPath: './app/h5/assets/js/pages/',
     }) {
         this.apiConfig = opt.apiConfig;
         this.pagesConfig = opt.pagesConfig;
-        this.apiFilesPath = opt.apiFilesPath;
-        this.pagesFilesPath = opt.pagesFilesPath;
+        this.apiControllersPath = opt.apiControllersPath;
+        this.pagesControllersPath = opt.pagesControllersPath;
         this.pagesViewsPath = opt.pagesViewsPath;
         this.pagesScssPath = opt.pagesScssPath;
         this.pagesJsPath = opt.pagesJsPath;
-        this.apiFiles = fs.readdirSync(this.apiFilesPath);
-        this.pagesFiles = fs.readdirSync(this.pagesFilesPath);
+        this.apiControllers = fs.readdirSync(this.apiControllersPath);
+        this.pagesControllers = fs.readdirSync(this.pagesControllersPath);
         this.pagesViews = fs.readdirSync(this.pagesViewsPath);
         this.pagesScss = fs.readdirSync(this.pagesScssPath);
         this.pagesJs = fs.readdirSync(this.pagesJsPath);
@@ -35,8 +35,8 @@ class Pc extends Phone {
         super({
             apiConfig: require('./app/pc/routes/api/config'),
             pagesConfig: require('./app/pc/routes/pages/config'),
-            apiFilesPath: './app/pc/controllers/api/',
-            pagesFilesPath: './app/pc/controllers/pages/',
+            apiControllersPath: './app/pc/controllers/api/',
+            pagesControllersPath: './app/pc/controllers/pages/',
             pagesViewsPath: './app/pc/assets/views/pages/',
             pagesScssPath: './app/pc/assets/scss/pages/',
             pagesJsPath: './app/pc/assets/js/pages/',
@@ -50,8 +50,8 @@ class Admin extends Phone {
         super({
             apiConfig: require('./app/admin/routes/api/config'),
             pagesConfig: require('./app/admin/routes/pages/config'),
-            apiFilesPath: './app/admin/controllers/api/',
-            pagesFilesPath: './app/admin/controllers/pages/',
+            apiControllersPath: './app/admin/controllers/api/',
+            pagesControllersPath: './app/admin/controllers/pages/',
             pagesViewsPath: './app/admin/assets/views/pages/',
             pagesScssPath: './app/admin/assets/scss/pages/',
             pagesJsPath: './app/admin/assets/js/pages/',
@@ -62,15 +62,16 @@ class Admin extends Phone {
 function check(obj) {
     Object.keys(obj.apiConfig).forEach(function (k) {
         const name = `${k}.js`;
-        if (obj.apiFiles.indexOf(name) === -1) {
-            console.log(`文件缺失 ${obj.apiFilesPath}${name}`);
+        if (obj.apiControllers.indexOf(name) === -1) {
+            console.log(`文件缺失 ${obj.apiControllersPath}${name}`);
         }
     });
     Object.keys(obj.pagesConfig).forEach(function (k) {
         let name = `${k}.js`;
-        if (obj.pagesFiles.indexOf(name) === -1) {
-            console.log(`文件缺失 ${obj.pagesFilesPath}${name}`);
+        if (obj.pagesControllers.indexOf(name) === -1) {
+            console.log(`文件缺失 ${obj.pagesControllersPath}${name}`);
         }
+        name = k;
         if (obj.pagesJs.indexOf(name) === -1) {
             console.log(`文件缺失 ${obj.pagesJsPath}${name}`);
         }

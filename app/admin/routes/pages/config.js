@@ -6,6 +6,18 @@ const pathConfig = {
 // 路由的名字
 const routeName = [
     {
+        name: 'article-category', // 文章分类
+        title: '文章分类',
+    },
+    {
+        name: 'article-edit', // 文章编辑
+        title: '文章编辑',
+    },
+    {
+        name: 'article-list', // 文章列表
+        title: '文章列表',
+    },
+    {
         name: 'home', // 首页
         title: '首页',
     },
@@ -20,6 +32,10 @@ const routeName = [
     {
         name: 'account-modify', // 更改账号,去修改
         title: '更改账号,正在修改',
+    },
+    {
+        name: 'password-reset', // 忘记密码,去找回
+        title: '忘记密码,正在找回',
     },
     {
         name: 'password-modify', // 更改密码,去修改

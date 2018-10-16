@@ -1,6 +1,6 @@
-webpackJsonp([6],{
+webpackJsonp([7],{
 
-/***/ 113:
+/***/ 119:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,8 +14,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(114);
-var Super = __webpack_require__(6);
+__webpack_require__(120);
+var Super = __webpack_require__(4);
 
 var _require = __webpack_require__(15),
     Message = _require.Message,
@@ -95,11 +95,11 @@ new Sub();
 
 /***/ }),
 
-/***/ 114:
+/***/ 120:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
 
-},[113]);
+},[119]);

@@ -1,6 +1,6 @@
 webpackJsonp([3],{
 
-/***/ 118:
+/***/ 126:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,8 +14,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(119);
-var Super = __webpack_require__(6);
+__webpack_require__(127);
+var Super = __webpack_require__(4);
 
 var _require = __webpack_require__(15),
     Message = _require.Message,
@@ -129,7 +129,7 @@ var Sub = function (_Super) {
 
             // 测试application/x-www-form-urlencoded
             var axios = __webpack_require__(17);
-            var ajax = __webpack_require__(120);
+            var ajax = __webpack_require__(128);
             axios({
                 url: dataInfo.api.list.route,
                 method: 'post',
@@ -179,14 +179,14 @@ new Sub();
 
 /***/ }),
 
-/***/ 119:
+/***/ 127:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 120:
+/***/ 128:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -290,4 +290,4 @@ module.exports = function (json) {
 
 /***/ })
 
-},[118]);
+},[126]);
