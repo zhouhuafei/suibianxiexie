@@ -130,7 +130,7 @@ const webpackConfig = {
             // loader----处理sass
             {
                 test: /\.(css|scss)$/,
-                exclude: /(node_modules|bower_components)/,
+                // exclude: /(node_modules|bower_components)/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [
@@ -148,13 +148,13 @@ const webpackConfig = {
             // loader----es6转成es5
             {
                 test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
+                // exclude: /(node_modules|bower_components)/,
                 use: ['babel-loader'],
             },
             // loader----处理图片
             {
                 test: /\.(png|jp(e)?g|gif|svg|ico)(\?.*)?$/,
-                exclude: /(node_modules|bower_components)/,
+                // exclude: /(node_modules|bower_components)/,
                 use: [
                     {
                         loader: 'url-loader',
@@ -168,7 +168,7 @@ const webpackConfig = {
             // loader----处理字体
             {
                 test: /\.(woff|eot|ttf)(\?.*)?$/,
-                exclude: /(node_modules|bower_components)/,
+                // exclude: /(node_modules|bower_components)/,
                 use: [
                     {
                         loader: 'url-loader',
@@ -182,7 +182,7 @@ const webpackConfig = {
             // loader----处理vue单文件
             {
                 test: /\.vue$/,
-                exclude: /(node_modules|bower_components)/,
+                // exclude: /(node_modules|bower_components)/,
                 use: [
                     {
                         loader: 'vue-loader',
@@ -198,7 +198,7 @@ const webpackConfig = {
             // loader----处理视图模板文件里的src
             {
                 test: /\.html/,
-                exclude: /(node_modules|bower_components)/,
+                // exclude: /(node_modules|bower_components)/,
                 use: [
                     {
                         loader: 'html-loader',

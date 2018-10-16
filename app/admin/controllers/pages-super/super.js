@@ -123,6 +123,23 @@ class Super {
                         ],
                     },
                     {
+                        title: '文章',
+                        items: [
+                            {
+                                name: 'article-list',
+                                title: '列表',
+                            },
+                            {
+                                name: 'article-edit',
+                                title: '编辑',
+                            },
+                            {
+                                name: 'article-category',
+                                title: '分类',
+                            },
+                        ],
+                    },
+                    {
                         title: '账号',
                         items: [
                             {
