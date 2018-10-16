@@ -144,20 +144,16 @@ class Super {
                         items: [
                             {
                                 name: 'logout',
-                                title: '退出账号',
+                                title: '账号退出',
                                 power: 'js-g-logout', // 功能型菜单
                             },
                             {
-                                name: 'account-modify', // 更改账号,去修改
-                                title: '修改账号',
-                            },
-                            {
                                 name: 'password-modify', // 更改密码,去修改
-                                title: '修改密码',
+                                title: '密码修改',
                             },
                             {
-                                name: 'password-reset', // 更改密码,去修改
-                                title: '重置密码',
+                                name: 'password-reset', // 忘记密码,去重置
+                                title: '密码重置',
                             },
                         ],
                     },

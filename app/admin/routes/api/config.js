@@ -46,9 +46,6 @@ const routeName = [
         name: 'password-modify', // 更改密码,去修改
     },
     {
-        name: 'account-modify', // 更改账号,去修改
-    },
-    {
         name: 'account-whether-exist', // 账号是否存在
     },
     {

@@ -30,12 +30,8 @@ const routeName = [
         title: '网站ui',
     },
     {
-        name: 'account-modify', // 更改账号,去修改
-        title: '更改账号,正在修改',
-    },
-    {
-        name: 'password-reset', // 忘记密码,去找回
-        title: '忘记密码,正在找回',
+        name: 'password-reset', // 忘记密码,去重置
+        title: '忘记密码,正在重置',
     },
     {
         name: 'password-modify', // 更改密码,去修改
