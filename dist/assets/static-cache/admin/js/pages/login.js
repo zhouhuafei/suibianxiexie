@@ -76,15 +76,6 @@ var Sub = function (_Super) {
                     });
                 });
             })();
-
-            // 忘记密码,去删库
-            document.querySelector('.js-del-db').addEventListener('click', function () {
-                new superSelf.Confirm({
-                    config: {
-                        content: '<div class="page-dialog-del-db">\n                        <div>1. \u94FE\u63A5\u4F60\u7684mongodb\u6570\u636E\u5E93\u3002</div>\n                        <div>2. \u627E\u5230\u540D\u4E3Asuibianxiexie\u7684\u6570\u636E\u5E93\u3002</div>\n                        <div>3. \u627E\u5230\u540D\u4E3Aadmin\u7684\u96C6\u5408\u3002</div>\n                        <div>4. \u5220\u9664\u540D\u4E3Aadmin\u7684\u96C6\u5408\u3002</div>\n                        <div>5. \u5728\u540E\u53F0\u7BA1\u7406\u7CFB\u7EDF\u91CC\u91CD\u65B0\u6CE8\u518C\u7BA1\u7406\u5458\u8D26\u53F7\u3002</div>\n                    </div>'
-                    }
-                });
-            });
         }
     }]);
 

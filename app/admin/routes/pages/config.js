@@ -32,6 +32,8 @@ const routeName = [
     {
         name: 'password-reset', // 忘记密码,去重置
         title: '忘记密码,正在重置',
+        isValidateLogin: false,
+        isShowMenu: false,
     },
     {
         name: 'password-modify', // 更改密码,去修改

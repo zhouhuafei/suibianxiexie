@@ -68,6 +68,7 @@ class Super {
         const self = this;
         const opts = self.opts;
         const req = opts.req;
+        const session = req.session;
         /*
         * javascript axios get params
         * javascript axios post/put/delete data
@@ -151,10 +152,6 @@ class Super {
                                 name: 'password-modify', // 更改密码,去修改
                                 title: '密码修改',
                             },
-                            {
-                                name: 'password-reset', // 忘记密码,去重置
-                                title: '密码重置',
-                            },
                         ],
                     },
                 ];
@@ -171,6 +168,7 @@ class Super {
                     });
                 });
                 dataInfo.menu = menu;
+                dataInfo.adminInfo = session.adminInfo || {};
             }
         })();
         self.handleData(); // 处理数据
