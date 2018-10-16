@@ -36,12 +36,12 @@ Sub.prototype.moduleDomCreate = function () {
                     </div>
                     <div class="g-gallery-content">
                         <div class="g-gallery-content-header">
-                            <div class="g-display-flex">                            
-                                <div class="g-button g-button_small g-button_create g-margin-right-10 g-flex-0">
+                            <div class="g-display_flex">                            
+                                <div class="g-button g-button_small g-button_create g-margin-right_10 g-flex_0">
                                     <div class="g-button-icon iconfont icon-plus"></div>
                                     <div class="g-button-text">上传图片</div>
                                 </div>
-                                <label class="g-checkbox g-checkbox_small">
+                                <label class="g-checkbox g-checkbox_small g-margin-top_10">
                                     <span class="g-checkbox-body">
                                         <input class="g-checkbox-body-main" type="checkbox">
                                         <span class="g-checkbox-body-mark iconfont icon-checkbox"></span>
@@ -73,8 +73,8 @@ Sub.prototype.moduleDomCreate = function () {
                             </label>
                         </div>
                         <div class="g-gallery-content-footer">
-                            <div class="g-button g-button_small g-button_hollow g-button_cancel g-width-100">取消</div>
-                            <div class="g-button g-button_small g-button_hollow g-width-100 g-margin-left-10">确认</div>
+                            <div class="g-button g-button_small g-button_hollow g-button_cancel g-width_100 js-button_cancel">取消</div>
+                            <div class="g-button g-button_small g-button_hollow g-width_100 g-margin-left_10 js-button_confirm">确认</div>
                         </div>
                     </div>
                 </div>
@@ -85,6 +85,14 @@ Sub.prototype.moduleDomCreate = function () {
 
 // (功)(覆)功能(覆盖超类型)
 Sub.prototype.power = function () {
+    const self = this;
+    const moduleDom = this.moduleDom;
+    $(moduleDom).find('.js-button_cancel').on('click', function () {
+        self.moduleDomHide();
+    });
+    $(moduleDom).find('.js-button_confirm').on('click', function () {
+        self.moduleDomHide();
+    });
 };
 
 module.exports = Sub;

@@ -42,7 +42,12 @@
                                 <div class="g-form-body-content">
                                     <div class="g-form-body-content-main g-form-body-content-main-more-row">
                                         <label class="g-upload <%= page.logo ? 'g-upload_active' : '' %>">
-                                            <input class="g-upload-input js-validate-form js-upload" data-event="no-event" data-validate="no-empty yes-limit-length-1" data-hint="本项必传 最多上传1张图片" data-value="<%= page.logo ? 'no-empty' : '' %>" accept="image/gif, image/jpeg, image/png" type="file">
+                                            <!--<input class="g-upload-input js-validate-form js-upload"
+                                                   data-event="no-event"
+                                                   data-validate="no-empty yes-limit-length-1"
+                                                   data-hint="本项必传 最多上传1张图片"
+                                                   data-value="<%= page.logo ? 'no-empty' : '' %>"
+                                                   accept="image/gif, image/jpeg, image/png" type="file">-->
                                             <input type="hidden" name="logo" value="<%= page.logo ? JSON.stringify(page.logo) : '' %>">
                                             <span class="g-upload-icon iconfont icon-upload-img"></span>
                                             <span class="g-upload-show" style="<%= page.logo ? `background-image: url(${page.logo.url})` : '' %>"></span>
@@ -62,7 +67,12 @@
                                 <div class="g-form-body-content">
                                     <div class="g-form-body-content-main g-form-body-content-main-more-row">
                                         <label class="g-upload <%= page.favicon ? 'g-upload_active' : '' %>">
-                                            <input class="g-upload-input js-validate-form js-upload" data-event="no-event" data-validate="no-empty yes-limit-length-1" data-hint="本项必传 最多上传1张图片" data-value="<%= page.favicon ? 'no-empty' : '' %>" accept="image/vnd.microsoft.icon" type="file">
+                                            <!--<input class="g-upload-input js-validate-form js-upload"
+                                                   data-event="no-event"
+                                                   data-validate="no-empty yes-limit-length-1"
+                                                   data-hint="本项必传 最多上传1张图片"
+                                                   data-value="<%= page.favicon ? 'no-empty' : '' %>"
+                                                   accept="image/vnd.microsoft.icon" type="file">-->
                                             <input type="hidden" name="favicon" value="<%= page.favicon ? JSON.stringify(page.favicon) : '' %>">
                                             <span class="g-upload-icon iconfont icon-upload-img"></span>
                                             <span class="g-upload-show" style="<%= page.favicon ? `background-image: url(${page.favicon.url})` : '' %>"></span>
@@ -78,8 +88,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="g-display-flex g-margin-top-10">
-                        <button type="submit" class="g-button g-width-100p g-border-radius-0 js-save">保存</button>
+                    <div class="g-display_flex g-margin-top_10">
+                        <button type="submit" class="g-button g-width_100p g-border-radius-0 js-save">保存</button>
                     </div>
                 </form>
             </div>

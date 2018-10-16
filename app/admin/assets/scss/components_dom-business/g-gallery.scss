@@ -64,7 +64,9 @@
                 position: relative;
                 background: $g-background-color-default;
                 margin: 0 px2rem($gap) px2rem($gap) 0;
-                @extend .g-xy-center-flex;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 .g-checkbox, .g-radio {
                     position: absolute;
                     left: 0;
@@ -82,7 +84,9 @@
             }
         }
         .g-gallery-content-footer {
-            @extend .g-xy-center-flex;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 0 px2rem(10) px2rem(10);
         }
     }

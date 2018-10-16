@@ -1,6 +1,7 @@
 require('../../../scss/pages/website-info.scss');
 const Super = require('../../pages-super/super');
 const axios = require('../../api/axios');
+const Gallery = require('../../components_dom-business/g-gallery');
 
 class Sub extends Super {
     // (功)(覆)功能(覆盖超类型)
@@ -8,7 +9,13 @@ class Sub extends Super {
         const superSelf = this;
         const dataInfo = superSelf.dataInfo;
 
+        // 测试图片库
+        $('.g-upload').on('click', function () {
+            new Gallery();
+        });
+
         // 上传
+        /*
         $('.js-upload').on('change', function () {
             const self = this;
             const parent = this.parentNode;
@@ -49,6 +56,7 @@ class Sub extends Super {
                 }
             });
         });
+        */
     }
 }
 

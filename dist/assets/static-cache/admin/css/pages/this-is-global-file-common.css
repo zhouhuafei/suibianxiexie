@@ -2749,362 +2749,6 @@ img {
     @return $px / $psd * 10rem;
 }
 */
-/* 字体颜色 */
-.g-font-color-highlight {
-  color: #0089ff !important; }
-
-.g-font-color-success {
-  color: #67C23A !important; }
-
-.g-font-color-warning {
-  color: #eb9e05 !important; }
-
-.g-font-color-danger {
-  color: #fa5555 !important; }
-
-.g-font-color-ignore {
-  color: #bfbfbf !important; }
-
-.g-font-color-white {
-  color: white !important; }
-
-/* 背景颜色 */
-.g-background-color-white {
-  background-color: white !important; }
-
-/* 工具样式 */
-.g-display-inline {
-  display: inline !important; }
-
-.g-display-inline-block {
-  display: inline-block !important; }
-
-.g-display-block {
-  display: block !important; }
-
-.g-display-none {
-  display: none !important; }
-
-.g-display-flex {
-  display: -webkit-box !important;
-  display: -ms-flexbox !important;
-  display: flex !important; }
-
-.g-flex-1 {
-  -webkit-box-flex: 1 !important;
-      -ms-flex: 1 !important;
-          flex: 1 !important; }
-
-.g-flex-0 {
-  -webkit-box-flex: 0 !important;
-      -ms-flex: none !important;
-          flex: none !important; }
-
-.g-justify-content-center {
-  -webkit-box-pack: center !important;
-      -ms-flex-pack: center !important;
-          justify-content: center !important; }
-
-.g-align-items-center {
-  -webkit-box-align: center !important;
-      -ms-flex-align: center !important;
-          align-items: center !important; }
-
-.g-float-left {
-  float: left !important; }
-
-.g-float-right {
-  float: right !important; }
-
-/* text-indent */
-.g-text-indent-0 {
-  text-indent: 0 !important; }
-
-/* transition */
-.g-transition {
-  -webkit-transition: 0.4s !important;
-  transition: 0.4s !important; }
-
-/* opacity */
-.g-opacity-0 {
-  opacity: 0 !important; }
-
-.g-opacity-1 {
-  opacity: 1 !important; }
-
-/* width */
-.g-width-80 {
-  width: 80px !important; }
-
-.g-width-100 {
-  width: 100px !important; }
-
-.g-width-120 {
-  width: 120px !important; }
-
-.g-width-140 {
-  width: 140px !important; }
-
-.g-width-160 {
-  width: 160px !important; }
-
-.g-width-auto {
-  width: auto !important; }
-
-.g-width-100p {
-  width: 100% !important; }
-
-/* height */
-.g-height-30 {
-  height: 30px !important; }
-
-.g-height-40 {
-  height: 40px !important; }
-
-.g-height-auto {
-  height: auto !important; }
-
-.g-height-100p {
-  height: 100% !important; }
-
-/* margin 和 padding */
-.g-margin-top-0 {
-  margin-top: 0 !important; }
-
-.g-margin-right-0 {
-  margin-right: 0 !important; }
-
-.g-margin-bottom-0 {
-  margin-bottom: 0 !important; }
-
-.g-margin-left-0 {
-  margin-left: 0 !important; }
-
-.g-margin-top-bottom-0 {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important; }
-
-.g-margin-left-right-0 {
-  margin-left: 0 !important;
-  margin-right: 0 !important; }
-
-.g-margin-top-5 {
-  margin-top: 5px !important; }
-
-.g-margin-right-5 {
-  margin-right: 5px !important; }
-
-.g-margin-bottom-5 {
-  margin-bottom: 5px !important; }
-
-.g-margin-left-5 {
-  margin-left: 5px !important; }
-
-.g-margin-top-bottom-5 {
-  margin-top: 5px !important;
-  margin-bottom: 5px !important; }
-
-.g-margin-left-right-5 {
-  margin-left: 5px !important;
-  margin-right: 5px !important; }
-
-.g-margin-top-10 {
-  margin-top: 10px !important; }
-
-.g-margin-right-10 {
-  margin-right: 10px !important; }
-
-.g-margin-bottom-10 {
-  margin-bottom: 10px !important; }
-
-.g-margin-left-10 {
-  margin-left: 10px !important; }
-
-.g-margin-top-bottom-10 {
-  margin-top: 10px !important;
-  margin-bottom: 10px !important; }
-
-.g-margin-left-right-10 {
-  margin-left: 10px !important;
-  margin-right: 10px !important; }
-
-.g-margin-top-20 {
-  margin-top: 20px !important; }
-
-.g-margin-right-20 {
-  margin-right: 20px !important; }
-
-.g-margin-bottom-20 {
-  margin-bottom: 20px !important; }
-
-.g-margin-left-20 {
-  margin-left: 20px !important; }
-
-.g-margin-top-bottom-20 {
-  margin-top: 20px !important;
-  margin-bottom: 20px !important; }
-
-.g-margin-left-right-20 {
-  margin-left: 20px !important;
-  margin-right: 20px !important; }
-
-.g-padding-top-0 {
-  padding-top: 0 !important; }
-
-.g-padding-right-0 {
-  padding-right: 0 !important; }
-
-.g-padding-bottom-0 {
-  padding-bottom: 0 !important; }
-
-.g-padding-left-0 {
-  padding-left: 0 !important; }
-
-.g-padding-top-bottom-0 {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important; }
-
-.g-padding-left-right-0 {
-  padding-left: 0 !important;
-  padding-right: 0 !important; }
-
-.g-padding-top-5 {
-  padding-top: 5px !important; }
-
-.g-padding-right-5 {
-  padding-right: 5px !important; }
-
-.g-padding-bottom-5 {
-  padding-bottom: 5px !important; }
-
-.g-padding-left-5 {
-  padding-left: 5px !important; }
-
-.g-padding-top-bottom-5 {
-  padding-top: 5px !important;
-  padding-bottom: 5px !important; }
-
-.g-padding-left-right-5 {
-  padding-left: 5px !important;
-  padding-right: 5px !important; }
-
-.g-padding-top-10 {
-  padding-top: 10px !important; }
-
-.g-padding-right-10 {
-  padding-right: 10px !important; }
-
-.g-padding-bottom-10 {
-  padding-bottom: 10px !important; }
-
-.g-padding-left-10 {
-  padding-left: 10px !important; }
-
-.g-padding-top-bottom-10 {
-  padding-top: 10px !important;
-  padding-bottom: 10px !important; }
-
-.g-padding-left-right-10 {
-  padding-left: 10px !important;
-  padding-right: 10px !important; }
-
-.g-padding-top-20 {
-  padding-top: 20px !important; }
-
-.g-padding-right-20 {
-  padding-right: 20px !important; }
-
-.g-padding-bottom-20 {
-  padding-bottom: 20px !important; }
-
-.g-padding-left-20 {
-  padding-left: 20px !important; }
-
-.g-padding-top-bottom-20 {
-  padding-top: 20px !important;
-  padding-bottom: 20px !important; }
-
-.g-padding-left-right-20 {
-  padding-left: 20px !important;
-  padding-right: 20px !important; }
-
-/* border */
-.g-border-top-none {
-  border-top: none !important; }
-
-.g-border-right-none {
-  border-right: none !important; }
-
-.g-border-bottom-none {
-  border-bottom: none !important; }
-
-.g-border-left-none {
-  border-left: none !important; }
-
-.g-border-none {
-  border: none !important; }
-
-/* border-radius */
-.g-border-radius-0 {
-  border-radius: 0 !important; }
-
-.g-border-radius-4 {
-  border-radius: 4px !important; }
-
-.g-border-radius-6 {
-  border-radius: 6px !important; }
-
-.g-border-radius-8 {
-  border-radius: 8px !important; }
-
-.g-border-radius-10 {
-  border-radius: 10px !important; }
-
-.g-border-radius-2000 {
-  border-radius: 2000px !important; }
-
-/* 清除浮动 */
-.g-clear-fix:after {
-  content: '';
-  clear: both;
-  display: block;
-  height: 0;
-  overflow: hidden; }
-
-/* 文字超出显示省略号 */
-.g-text-ellipsis {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis; }
-
-/* 水平垂直居中 - 伪类 */
-.g-xy-center-sham {
-  font-size: 0;
-  text-align: center; }
-  .g-xy-center-sham > :nth-child(n) {
-    display: inline-block;
-    vertical-align: middle; }
-  .g-xy-center-sham:before {
-    content: '';
-    height: 100%;
-    display: inline-block;
-    vertical-align: middle; }
-
-/* 水平垂直居中 - flex */
-.g-xy-center-flex, .g-gallery-wrap .g-gallery-content .g-gallery-content-body .g-gallery-content-body-item, .g-gallery-wrap .g-gallery-content .g-gallery-content-footer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  word-break: break-all; }
-
 /*
 // px转rem(h5) 这个是给手机端用的。
 @function px2rem($px, $psd:320) {
@@ -3317,7 +2961,16 @@ img {
         height: 120px;
         position: relative;
         background: #bbbbbb;
-        margin: 0 10px 10px 0; }
+        margin: 0 10px 10px 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center; }
         .g-gallery-wrap .g-gallery-content .g-gallery-content-body .g-gallery-content-body-item .g-checkbox, .g-gallery-wrap .g-gallery-content .g-gallery-content-body .g-gallery-content-body-item .g-radio {
           position: absolute;
           left: 0;
@@ -3331,6 +2984,15 @@ img {
           text-overflow: ellipsis;
           white-space: nowrap; }
     .g-gallery-wrap .g-gallery-content .g-gallery-content-footer {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
       padding: 0 10px 10px; }
 
 .g-img-test .g-img-test-big img {
