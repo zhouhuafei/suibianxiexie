@@ -97,8 +97,8 @@ class Super {
             query: req.query, // 参数
             isShowQrCode: routesConfig[opts.routeName].isShowQrCode, // 是否显示二维码
             isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
-            // 当前视图的数据
-            page: {},
+            page: {}, // 当前视图的数据
+            userInfo: session.adminInfo || {}, // 用户信息
         };
         const dataInfo = self.dataInfo;
         // 菜单的数据
@@ -168,7 +168,6 @@ class Super {
                     });
                 });
                 dataInfo.menu = menu;
-                dataInfo.adminInfo = session.adminInfo || {};
             }
         })();
         self.handleData(); // 处理数据
