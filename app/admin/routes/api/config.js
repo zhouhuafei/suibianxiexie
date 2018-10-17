@@ -61,7 +61,11 @@ const routeName = [
         isValidateLogin: false,
     },
     {
-        name: 'verify-code-canvas', // 验证码,图文随机
+        name: 'verify-code-canvas', // 验证码,图文验证码
+        isValidateLogin: false,
+    },
+    {
+        name: 'verify-code-random_register', // 验证码,短信验证码_注册
         isValidateLogin: false,
     },
 ];

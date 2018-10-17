@@ -8,7 +8,7 @@
         <div class="g-wrap">
             <% include ../commons/menu.ejs %>
             <div class="g-body">
-                <form id="form" method="post" action="<%= dataInfo.api.register.route %>">
+                <form class="form" method="post" action="<%= dataInfo.api.register.route %>">
                     <div class="g-form-wrap">
                         <div class="g-form">
                             <label class="g-form-body">
@@ -18,7 +18,7 @@
                                     <input class="g-input js-validate-form"
                                            data-validate="no-empty"
                                            data-hint="本项必填"
-                                           type="text" name="username" id="username" value="" placeholder="请输入用户名">
+                                           type="text" name="username" value="" placeholder="请输入用户名，用户名需要是一个有效的邮箱">
                                 </span>
                                 <span class="g-form-body-content-icon iconfont icon-clear"></span>
                                     <span class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></span>
@@ -33,7 +33,7 @@
                                         <input class="g-input js-validate-form"
                                                data-validate="no-empty"
                                                data-hint="本项必填"
-                                               type="password" name="password" id="password" value="" placeholder="请输入密码">
+                                               type="password" name="password" value="" placeholder="请输入密码">
                                     </span>
                                     <span class="g-form-body-content-icon iconfont icon-clear"></span>
                                     <span class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></span>
@@ -48,7 +48,7 @@
                                         <input class="g-input js-validate-form"
                                                data-validate="no-empty"
                                                data-hint="本项必填"
-                                               type="password" name="repeat-password" id="repeat-password" value="" placeholder="请再次输入密码">
+                                               type="password" name="repeat-password" value="" placeholder="请再次输入密码">
                                     </span>
                                     <span class="g-form-body-content-icon iconfont icon-clear"></span>
                                     <span class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></span>
@@ -57,13 +57,29 @@
                         </div>
                         <div class="g-form">
                             <label class="g-form-body">
-                                <span class="g-form-body-text">验证码:</span>
+                                <span class="g-form-body-text">随机验证码:</span>
                                 <span class="g-form-body-content">
                                     <span class="g-form-body-content-main">
                                         <input class="g-input js-validate-form"
                                                data-validate="no-empty"
                                                data-hint="本项必填"
-                                               type="text" name="verify-code-canvas" id="verify-code-canvas" value="" placeholder="请输入验证码">
+                                               type="text" name="verify-code-random" value="" placeholder="请输入随机验证码">
+                                    </span>
+                                    <span class="g-verify-code-random js-verify-code-random">往邮箱里发送验证码</span>
+                                    <span class="g-form-body-content-icon iconfont icon-clear"></span>
+                                    <span class="g-form-body-content-icon g-form-body-content-hint iconfont icon-required"></span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="g-form">
+                            <label class="g-form-body">
+                                <span class="g-form-body-text">图片验证码:</span>
+                                <span class="g-form-body-content">
+                                    <span class="g-form-body-content-main">
+                                        <input class="g-input js-validate-form"
+                                               data-validate="no-empty"
+                                               data-hint="本项必填"
+                                               type="text" name="verify-code-canvas" value="" placeholder="请输入图片验证码">
                                     </span>
                                     <span class="g-verify-code-canvas"><img src="<%= dataInfo.page.verifyCodeCanvas.base64 %>" alt=""></span>
                                     <span class="g-form-body-content-icon iconfont icon-clear"></span>
@@ -72,7 +88,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="g-button g-width_100p g-border-radius-0 g-margin-top_10 js-button">注册</div>
+                    <button type="submit" class="g-button g-width_100p g-border-radius-0 g-margin-top_10">注册</button>
                     <div class="g-jump-guide">
                         <a href="<%= dataInfo.routes['login'].route %>" class="g-jump-guide-item">
                             <span class="g-jump-guide-item-text">已有账号,去登陆</span>

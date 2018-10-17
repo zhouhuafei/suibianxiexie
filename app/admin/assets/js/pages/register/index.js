@@ -1,13 +1,14 @@
 require('../../../scss/pages/register.scss');
 const Super = require('../../pages-super/super');
+const form = document.querySelector('.form');
+const verifyCodeCanvas = document.querySelector('.g-verify-code-canvas img');
+const verifyCodeRandom = document.querySelector('.g-verify-code-random');
+const verifyCodeRandomHtml = verifyCodeRandom.innerHTML;
+const ajax = require('../../api/ajax');
+const userName = $('input[name=username]');
+const timeCountDown = require('zhf.time-count-down');
 const {
     Message,
-    Confirm,
-    Validate,
-    GoTop,
-    TooltipApp,
-    Copyright,
-    LazyLoad,
 } = require('zhf.g-ui/src/js/commons_dom/g-common.js');
 
 class Sub extends Super {
@@ -17,42 +18,50 @@ class Sub extends Super {
         const dataInfo = superSelf.dataInfo;
         const routes = dataInfo.routes;
         const api = dataInfo.api;
-        const axios = superSelf.axios;
 
-        // 验证
-        (function () {
-            new Validate({element: '.js-validate-form'});
-        }());
-
-        // 注册
-        (function () {
-            const form = document.querySelector('#form');
-            const username = document.querySelector('#username');
-            const password = document.querySelector('#password');
-            const repeatPassword = document.querySelector('#repeat-password');
-            const btn = document.querySelector('.js-button');
-            btn.addEventListener('click', function () {
-                axios({
-                    url: form.action,
-                    method: form.method,
-                    /*
-                    data: {
-                        username: username.value,
-                        password: password.value,
-                        'repeat-password': repeatPassword.value,
-                    },
-                    */
-                    data: $(form).serialize(),
-                }).then(function (json) {
-                    if (json.status === 'success') {
-                        window.location.href = routes['login'].route;
-                    }
-                    if (json.status === 'failure') {
-                        document.querySelector('.g-verify-code-canvas img').click();
-                    }
-                });
+        // 发送验证码
+        $('.js-verify-code-random').on('click', function () {
+            const randomDom = this;
+            if (randomDom.isSending) {
+                return;
+            }
+            randomDom.isSending = true;
+            ajax({
+                url: api['verify-code-random_register'].route,
+                method: 'get',
+                data: {username: userName.val().trim()},
+            }).then(function (json) {
+                if (json.status === 'success') { // success
+                    timeCountDown({
+                        seconds: 90,
+                        isToTime: true, // 是否转换成时间
+                        callback: {
+                            run: function (json) {
+                                verifyCodeRandom.innerHTML = json.allSeconds;
+                                verifyCodeRandom.classList.add('.g-verify-code-random_inactive');
+                            },
+                            over: function () {
+                                delete randomDom.isSending;
+                                verifyCodeRandom.innerHTML = verifyCodeRandomHtml;
+                                verifyCodeRandom.classList.remove('.g-verify-code-random_inactive');
+                            },
+                        },
+                    });
+                } else { // error、failure
+                    delete randomDom.isSending;
+                }
             });
-        })();
+        });
+
+        // 注册成功
+        form.callbackSuccess = function () {
+            window.location.href = routes['login'].route;
+        };
+
+        // 注册失败
+        form.callbackFailure = function () {
+            verifyCodeCanvas.click();
+        };
     }
 }
 
