@@ -2828,6 +2828,11 @@ module.exports = function (json) {
         isHandleError: true, // 是否处理错误
         isHandleFailure: true, // 是否处理失败
         isHandleSuccess: false, // 是否处理成功
+        /*
+        优先级：错误回调>失败回调>成功回调>完成回调。
+        调用方法时，要么用回调的方式走异步，要么用Promise的方式。
+        用Promise的方式，还请自己去判断dataInfo.status字段，是否出错，失败，成功，完成。
+        */
         callbackError: function callbackError() {// 请求错误的回调
         },
         callbackFailure: function callbackFailure() {// 请求失败的回调
@@ -2870,9 +2875,7 @@ module.exports = function (json) {
                     content: response.data.message // 这里的error其实是一个Error类型的数据
                 }
             });
-            /* 优先级：错误回调>失败回调>成功回调>完成回调。 */
             typeof opts.callbackError === 'function' && opts.callbackError(dataInfo);
-            /* 调用方法时，要么用回调的方式走异步，要么用Promise的方式。用Promise的方式，还请自己去判断dataInfo.status字段，是否出错，失败，成功，完成。 */
         }
         return response;
     }).then(function (response) {
@@ -3923,9 +3926,16 @@ module.exports = function (json) {
         isHandleError: true, // 是否处理错误
         isHandleFailure: true, // 是否处理失败
         isHandleSuccess: false, // 是否处理成功
-        callbackSuccess: function callbackSuccess() {// 请求成功的回调
+        /*
+        优先级：错误回调>失败回调>成功回调>完成回调。
+        调用方法时，要么用回调的方式走异步，要么用Promise的方式。
+        用Promise的方式，还请自己去判断dataInfo.status字段，是否出错，失败，成功，完成。
+        */
+        callbackError: function callbackError() {// 请求错误的回调
         },
         callbackFailure: function callbackFailure() {// 请求失败的回调
+        },
+        callbackSuccess: function callbackSuccess() {// 请求成功的回调
         },
         callbackComplete: function callbackComplete() {// 请求完成的回调
         }
@@ -3976,6 +3986,7 @@ module.exports = function (json) {
                     content: '\u9519\u8BEF: ' + message // 这里的message就是error信息，只是一段普通的字符信息
                 }
             });
+            typeof opts.callbackError === 'function' && opts.callbackError(dataInfo);
         }
         return dataInfo;
     }).then(function (dataInfo, mark, xhr) {

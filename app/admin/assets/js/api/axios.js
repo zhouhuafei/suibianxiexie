@@ -12,6 +12,11 @@ module.exports = function (json) {
         isHandleError: true, // 是否处理错误
         isHandleFailure: true, // 是否处理失败
         isHandleSuccess: false, // 是否处理成功
+        /*
+        优先级：错误回调>失败回调>成功回调>完成回调。
+        调用方法时，要么用回调的方式走异步，要么用Promise的方式。
+        用Promise的方式，还请自己去判断dataInfo.status字段，是否出错，失败，成功，完成。
+        */
         callbackError: function () { // 请求错误的回调
         },
         callbackFailure: function () { // 请求失败的回调
@@ -53,9 +58,7 @@ module.exports = function (json) {
                     content: response.data.message, // 这里的error其实是一个Error类型的数据
                 },
             });
-            /* 优先级：错误回调>失败回调>成功回调>完成回调。 */
             (typeof opts.callbackError === 'function') && opts.callbackError(dataInfo);
-            /* 调用方法时，要么用回调的方式走异步，要么用Promise的方式。用Promise的方式，还请自己去判断dataInfo.status字段，是否出错，失败，成功，完成。 */
         }
         return response;
     }).then(function (response) {
