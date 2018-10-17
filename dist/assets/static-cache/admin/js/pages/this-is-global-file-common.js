@@ -29,8 +29,91 @@ var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterato
 });
 
 /***/ }),
-/* 1 */,
-/* 2 */,
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterator) ? function (t) {
+  return typeof t === "undefined" ? "undefined" : _typeof2(t);
+} : function (t) {
+  return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t === "undefined" ? "undefined" : _typeof2(t);
+};!function (t, e) {
+  "object" === ( false ? "undefined" : _typeof(exports)) && "undefined" != typeof module ? module.exports = e() :  true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (e),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : ("object" !== Object.prototype.toString.call(window.zhf).slice(8, -1).toLowerCase() && (window.zhf = {}), window.zhf.createElement = e());
+}(0, function () {
+  return function (t) {
+    var e = t || {};e.elementName = e.elementName || "div", e.style = e.style || {}, e.customAttribute = e.customAttribute || {}, e.attribute = e.attribute || {};var o = document.createElement(e.elementName);return Object.keys(e.style).forEach(function (t) {
+      o.style[t] = e.style[t];
+    }), Object.keys(e.customAttribute).forEach(function (t) {
+      o.setAttribute("data-" + t, e.customAttribute[t]);
+    }), Object.keys(e.attribute).forEach(function (t) {
+      o[t] = e.attribute[t];
+    }), o;
+  };
+});
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var _createClass = function () {
+  function e(e, o) {
+    for (var t = 0; t < o.length; t++) {
+      var m = o[t];m.enumerable = m.enumerable || !1, m.configurable = !0, "value" in m && (m.writable = !0), Object.defineProperty(e, m.key, m);
+    }
+  }return function (o, t, m) {
+    return t && e(o.prototype, t), m && e(o, m), o;
+  };
+}();function _classCallCheck(e, o) {
+  if (!(e instanceof o)) throw new TypeError("Cannot call a class as a function");
+}var extend = __webpack_require__(0),
+    getDomArray = __webpack_require__(9),
+    createElement = __webpack_require__(1),
+    Super = function () {
+  function e(o) {
+    _classCallCheck(this, e), this.opts = extend({ wrap: "body", callback: { moduleDomCreateBefore: function moduleDomCreateBefore(e) {}, moduleDomCreateAfter: function moduleDomCreateAfter(e) {}, moduleDomRenderBefore: function moduleDomRenderBefore(e) {}, moduleDomRenderAfter: function moduleDomRenderAfter(e) {}, moduleDomRemoveBefore: function moduleDomRemoveBefore(e) {}, moduleDomRemoveAfter: function moduleDomRemoveAfter(e) {}, moduleDomShowBefore: function moduleDomShowBefore(e) {}, moduleDomShowAfter: function moduleDomShowAfter(e) {}, moduleDomHideBefore: function moduleDomHideBefore(e) {}, moduleDomHideAfter: function moduleDomHideAfter(e) {}, wrapDomGetBefore: function wrapDomGetBefore(e) {}, wrapDomGetAfter: function wrapDomGetAfter(e) {}, wrapDomRemoveBefore: function wrapDomRemoveBefore(e) {}, wrapDomRemoveAfter: function wrapDomRemoveAfter(e) {} }, config: { moduleDomAttribute: {}, moduleDomCustomAttribute: {}, moduleDomRenderMethod: { method: "appendChild", child: null }, moduleDomStyle: {}, moduleDomIsRender: !0, moduleDomIsClearTimer: !0 } }, o), this.moduleDom = null, this.wrapDom = null, this.moduleDomTimer = {}, this.init();
+  }return _createClass(e, [{ key: "init", value: function value() {
+      this.render(), this.power();
+    } }, { key: "render", value: function value() {
+      this.wrapDomGet(), this.moduleDomRemove();var e = this.opts.callback;e.moduleDomCreateBefore(this), this.moduleDomCreate(), e.moduleDomCreateAfter(this), this.moduleDomRender();
+    } }, { key: "power", value: function value() {} }, { key: "moduleDomCreate", value: function value() {
+      var e = this.opts.config;this.moduleDom = createElement({ style: e.moduleDomStyle, customAttribute: e.moduleDomCustomAttribute, attribute: extend({}, e.moduleDomAttribute) });
+    } }, { key: "moduleDomRender", value: function value() {
+      var e = this.opts.callback,
+          o = this.opts.config;if (o.moduleDomIsRender && this.wrapDom && this.moduleDom) {
+        e.moduleDomRenderBefore(this);var t = o.moduleDomRenderMethod;if ("insertBefore" === t.method) {
+          var m = getDomArray(t.child)[0];m ? this.wrapDom.insertBefore(this.moduleDom, m) : this.wrapDom.insertBefore(this.moduleDom, this.wrapDom.children[0]);
+        }"appendChild" === t.method && this.wrapDom.appendChild(this.moduleDom), e.moduleDomRenderAfter(this);
+      }
+    } }, { key: "moduleDomRemove", value: function value() {
+      var e = this.opts.callback;this.moduleDom && this.moduleDom.parentNode && (e.moduleDomRemoveBefore(this), this.moduleDom.parentNode.removeChild(this.moduleDom), e.moduleDomRemoveAfter(this)), this.moduleDomClearTimer();
+    } }, { key: "moduleDomClearTimer", value: function value() {
+      var e = this;e.opts.config.moduleDomIsClearTimer && Object.keys(e.moduleDomTimer).forEach(function (o) {
+        clearInterval(e.moduleDomTimer[o]), clearTimeout(e.moduleDomTimer[o]);
+      });
+    } }, { key: "moduleDomHide", value: function value() {
+      var e = this.opts.callback;this.moduleDom && this.moduleDom.parentNode && (this.opts.config.moduleDomIsRender = !1, e.moduleDomHideBefore(this), this.moduleDom.parentNode.removeChild(this.moduleDom), e.moduleDomHideAfter(this));
+    } }, { key: "moduleDomShow", value: function value() {
+      var e = this.opts.callback;e.moduleDomShowBefore(this), this.wrapDom && (this.opts.config.moduleDomIsRender = !0, this.moduleDomRender()), e.moduleDomShowAfter(this);
+    } }, { key: "wrapDomGet", value: function value() {
+      var e = this.opts.callback;e.wrapDomGetBefore(this), this.wrapDom = getDomArray(this.opts.wrap)[0], e.wrapDomGetAfter(this);
+    } }, { key: "wrapDomRemove", value: function value() {
+      var e = this.opts.callback;this.moduleDomRemove(), this.wrapDom && this.wrapDom.parentNode && (e.wrapDomRemoveBefore(this), this.wrapDom.parentNode.removeChild(this.wrapDom), e.wrapDomRemoveAfter(this));
+    } }, { key: "getModuleDomHtml", value: function value() {
+      return this.moduleDom ? this.moduleDom.outerHTML : "";
+    } }]), e;
+}();module.exports = Super;
+
+/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -45,9 +128,9 @@ var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterato
 
 
 
-var base64 = __webpack_require__(53);
-var ieee754 = __webpack_require__(54);
-var isArray = __webpack_require__(25);
+var base64 = __webpack_require__(55);
+var ieee754 = __webpack_require__(56);
+var isArray = __webpack_require__(26);
 
 exports.Buffer = Buffer;
 exports.SlowBuffer = SlowBuffer;
@@ -1785,15 +1868,15 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-__webpack_require__(42);
+__webpack_require__(44);
 var extend = __webpack_require__(0);
-var ajax = __webpack_require__(127);
+var ajax = __webpack_require__(21);
 var axios = __webpack_require__(16);
-var jsonp = __webpack_require__(47);
-var strTo = __webpack_require__(49);
-var qr = __webpack_require__(52);
+var jsonp = __webpack_require__(49);
+var strTo = __webpack_require__(51);
+var qr = __webpack_require__(54);
 
-var _require = __webpack_require__(15),
+var _require = __webpack_require__(20),
     Message = _require.Message,
     Confirm = _require.Confirm,
     Validate = _require.Validate,
@@ -2009,7 +2092,7 @@ var Super = function () {
             });
 
             // Vue
-            var Vue = __webpack_require__(39);
+            var Vue = __webpack_require__(41);
             Vue.prototype.$lazyload = self.lazyload;
             self.Vue = Vue;
         }
@@ -2146,8 +2229,8 @@ var util = __webpack_require__(10);
 util.inherits = __webpack_require__(7);
 /*</replacement>*/
 
-var Readable = __webpack_require__(27);
-var Writable = __webpack_require__(20);
+var Readable = __webpack_require__(28);
+var Writable = __webpack_require__(19);
 
 util.inherits(Duplex, Readable);
 
@@ -2223,7 +2306,40 @@ function forEach(xs, f) {
 }
 
 /***/ }),
-/* 9 */,
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterator) ? function (e) {
+  return typeof e === "undefined" ? "undefined" : _typeof2(e);
+} : function (e) {
+  return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e === "undefined" ? "undefined" : _typeof2(e);
+};!function (e, t) {
+  "object" === ( false ? "undefined" : _typeof(exports)) && "undefined" != typeof module ? module.exports = t() :  true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (t),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : ("object" !== Object.prototype.toString.call(window.zhf).slice(8, -1).toLowerCase() && (window.zhf = {}), window.zhf.getDomArray = t());
+}(0, function () {
+  function e(e, t) {
+    for (var o = t; o !== e && null !== o;) {
+      o = o.parentNode;
+    }return o === e;
+  }return function (t, o) {
+    var n = [],
+        l = document;if (o && (l = "string" === Object.prototype.toString.call(o).slice(8, -1).toLowerCase() ? document.querySelector(o) : 1 === o.nodeType ? o : o === document ? o : "htmlcollection" === Object.prototype.toString.call(o).slice(8, -1).toLowerCase() || "nodelist" === Object.prototype.toString.call(o).slice(8, -1).toLowerCase() ? [].slice.call(o)[0] : null), !l) return [];if (t) if ("string" === Object.prototype.toString.call(t).slice(8, -1).toLowerCase()) n = [].slice.call(l.querySelectorAll(t));else if (1 === t.nodeType) n = [t], o && (e(l, t) || (n = []));else if (t === document) n = [t], o && (n = []);else if (("htmlcollection" === Object.prototype.toString.call(t).slice(8, -1).toLowerCase() || "nodelist" === Object.prototype.toString.call(t).slice(8, -1).toLowerCase()) && (n = [].slice.call(t), o)) {
+      var r = [];n.forEach(function (t) {
+        e(l, t) && r.push(t);
+      }), n = r;
+    }return n;
+  };
+});
+
+/***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2339,9 +2455,101 @@ function objectToString(o) {
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'E:\\www\\suibianxiexie\\node_modules\\zhf.g-ui\\src\\js\\components_dom\\g-message\\index.js'\n    at Error (native)");
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {
+                // 关闭
+                close: function close() {}
+            },
+            // 配置
+            config: {
+                time: 3000, // 展示的时间
+                isShowIcon: false, // 是否显示icon
+                isShowClose: true, // 是否显示关闭按钮
+                icon: 'g-icon-success', // icon的class
+                content: '成功', // 内容信息
+                positionLocation: 'center' // 弹窗的定位位置('top'，'center'，'bottom')。positionMethod定位方式强制fixed。
+            }
+        }, opts)));
+    }
+
+    return Sub;
+}(Super);
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+
+
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var positionLocation = 'g-message_' + config.positionLocation; // 弹窗的定位位置
+    // 弹窗结构
+    var html = this.renderAlert();
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-message ' + positionLocation,
+            innerHTML: html
+        }
+    });
+};
+
+// 提示框
+Sub.prototype.renderAlert = function () {
+    var config = this.opts.config;
+    var htmlIcon = '';
+    if (config.isShowIcon) {
+        htmlIcon = '<div class="g-message-icon g-iconfont ' + config.icon + '"></div>';
+    }
+    var closeHtml = '';
+    if (config.isShowClose) {
+        closeHtml = '<div class="g-message-close g-iconfont g-icon-close" ></div>';
+    }
+    return '\n        ' + closeHtml + '\n        ' + htmlIcon + '\n        <div class="g-message-text">' + config.content + '</div>\n    ';
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    var config = this.opts.config;
+    var callback = this.opts.callback;
+    var close = this.moduleDom.querySelector('.g-message-close');
+    var timer = null;
+    timer = setTimeout(function () {
+        self.moduleDomHide();
+        callback.close();
+    }, config.time);
+    close.addEventListener('click', function () {
+        clearTimeout(timer);
+        self.moduleDomHide();
+        callback.close();
+    });
+};
+
+module.exports = Sub;
 
 /***/ }),
 /* 12 */
@@ -2576,9 +2784,28 @@ exports.setTyped(TYPED_OK);
 
 /***/ }),
 /* 15 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'E:\\www\\suibianxiexie\\node_modules\\zhf.g-ui\\src\\js\\commons_dom\\g-common.js'\n    at Error (native)");
+"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterator) ? function (o) {
+  return typeof o === "undefined" ? "undefined" : _typeof2(o);
+} : function (o) {
+  return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o === "undefined" ? "undefined" : _typeof2(o);
+};!function (o, t) {
+  "object" === ( false ? "undefined" : _typeof(exports)) && "undefined" != typeof module ? module.exports = t() :  true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (t),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : window && ("object" !== Object.prototype.toString.call(window.zhf).slice(8, -1).toLowerCase() && (window.zhf = {}), window.zhf.typeOf = t());
+}(0, function () {
+  return function (o) {
+    return Object.prototype.toString.call(o).slice(8, -1).toLowerCase();
+  };
+});
 
 /***/ }),
 /* 16 */
@@ -2587,11 +2814,11 @@ throw new Error("Module build failed: Error: ENOENT: no such file or directory, 
 "use strict";
 
 
-var axios = __webpack_require__(21);
+var axios = __webpack_require__(22);
 var extend = __webpack_require__(0);
-var typeOf = __webpack_require__(17);
+var typeOf = __webpack_require__(15);
 var Message = __webpack_require__(11);
-var qs = __webpack_require__(44);
+var qs = __webpack_require__(46);
 
 module.exports = function (json) {
     json.method = json.method || json.type || 'get'; // 这里和$.ajax是不一样的，这里以前使用$.ajax的习惯传入type
@@ -2675,31 +2902,6 @@ module.exports = function (json) {
 
 /***/ }),
 /* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;
-
-var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterator) ? function (o) {
-  return typeof o === "undefined" ? "undefined" : _typeof2(o);
-} : function (o) {
-  return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o === "undefined" ? "undefined" : _typeof2(o);
-};!function (o, t) {
-  "object" === ( false ? "undefined" : _typeof(exports)) && "undefined" != typeof module ? module.exports = t() :  true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (t),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : window && ("object" !== Object.prototype.toString.call(window.zhf).slice(8, -1).toLowerCase() && (window.zhf = {}), window.zhf.typeOf = t());
-}(0, function () {
-  return function (o) {
-    return Object.prototype.toString.call(o).slice(8, -1).toLowerCase();
-  };
-});
-
-/***/ }),
-/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2978,22 +3180,22 @@ function isUndefined(arg) {
 }
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports = module.exports = __webpack_require__(27);
+exports = module.exports = __webpack_require__(28);
 exports.Stream = exports;
 exports.Readable = exports;
-exports.Writable = __webpack_require__(20);
+exports.Writable = __webpack_require__(19);
 exports.Duplex = __webpack_require__(8);
-exports.Transform = __webpack_require__(32);
-exports.PassThrough = __webpack_require__(59);
+exports.Transform = __webpack_require__(33);
+exports.PassThrough = __webpack_require__(61);
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3069,12 +3271,12 @@ util.inherits = __webpack_require__(7);
 
 /*<replacement>*/
 var internalUtil = {
-  deprecate: __webpack_require__(58)
+  deprecate: __webpack_require__(60)
 };
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = __webpack_require__(28);
+var Stream = __webpack_require__(29);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -3088,7 +3290,7 @@ function _isUint8Array(obj) {
 }
 /*</replacement>*/
 
-var destroyImpl = __webpack_require__(29);
+var destroyImpl = __webpack_require__(30);
 
 util.inherits(Writable, Stream);
 
@@ -3661,11 +3863,148 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(30).setImmediate, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(31).setImmediate, __webpack_require__(6)))
 
 /***/ }),
-/* 21 */,
-/* 22 */
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = {
+    Confirm: __webpack_require__(38),
+    Copyright: __webpack_require__(85),
+    FooterNav: __webpack_require__(86),
+    GoTop: __webpack_require__(87),
+    JumpLink: __webpack_require__(89),
+    LazyLoad: __webpack_require__(91),
+    Loading: __webpack_require__(93),
+    LoadingOver: __webpack_require__(94),
+    LoadingDialog: __webpack_require__(95),
+    Mask: __webpack_require__(96),
+    Message: __webpack_require__(11),
+    Navigation: __webpack_require__(97),
+    NoData: __webpack_require__(98),
+    Pagination: __webpack_require__(99),
+    Popover: __webpack_require__(100),
+    ProgressBar: __webpack_require__(101),
+    RadioSwitch: __webpack_require__(103),
+    SortTab: __webpack_require__(104),
+    Star: __webpack_require__(105),
+    Sub: __webpack_require__(106),
+    Table: __webpack_require__(107),
+    Tooltip: __webpack_require__(40),
+    TooltipApp: __webpack_require__(108),
+    Validate: __webpack_require__(109)
+};
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var extend = __webpack_require__(0);
+var typeOf = __webpack_require__(15);
+var Message = __webpack_require__(11);
+
+module.exports = function (json) {
+    json.type = json.type || json.method || 'get'; // 这里和axios是不一样的，这里以前使用axios的习惯传入method
+    json.dataType = json.dataType || 'json'; // 设置返回json格式的数据，axios默认就是返回json格式的
+    var opts = extend({
+        type: 'get', // 请求方式默认get
+        timeout: 30000, // 超时
+        isHandleError: true, // 是否处理错误
+        isHandleFailure: true, // 是否处理失败
+        isHandleSuccess: false, // 是否处理成功
+        callbackSuccess: function callbackSuccess() {// 请求成功的回调
+        },
+        callbackFailure: function callbackFailure() {// 请求失败的回调
+        },
+        callbackComplete: function callbackComplete() {// 请求完成的回调
+        }
+    }, json);
+    /*
+    * javascript axios get params
+    * javascript axios post/put/delete data
+    * 把上述四种数据的传参方式进行统一化,统一使用data
+    * nodejs express get req.query
+    * nodejs express post/put/delete body-parser req.body
+    * 把上述四种数据的传参方式进行统一化,统一使用req.data
+    * */
+    if (opts.method.toLowerCase() === 'get') {
+        opts.data = opts.data || opts.params || {}; // 这里和axios是不一样的，这里以前使用axios的习惯传入params
+        if (opts.data) {
+            // 把json格式的对象处理成json格式的字符串，让get请求保持和axios一致的数据格式
+            // 其实按理来说应该让axios保持与这边的一致，但是axios的get请求没有提供对外的接口，所以只能让这个保持和axios一致。
+            // $.ajax的post,put,delete接收的全是字符串，即使你传的是对象，对象里有布尔值等，接收过来也会变成字符串，$.ajax的get处理之后，你传的对象里有布尔值，后端接收之后，布尔值还是布尔值，应该和post保持一致的。奈何axios的get没提供对外接口
+            Object.keys(opts.data).forEach(function (keys) {
+                var obj = opts.data[keys];
+                var type = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+                if (type === 'object') {
+                    opts.data[keys] = JSON.stringify(obj);
+                }
+                if (type === 'array') {
+                    obj.forEach(function (v, i, a) {
+                        if (Object.prototype.toString.call(v).slice(8, -1).toLowerCase() === 'object') {
+                            a[i] = JSON.stringify(v);
+                        }
+                    });
+                }
+            });
+        }
+    }
+    if (typeOf(opts.data) === 'formdata') {
+        // formdata类型需要关闭下面,否则会报错
+        opts.processData = false;
+        opts.contentType = false;
+    }
+    return $.ajax(opts).catch(function (xhr, mark, message) {
+        var dataInfo = {
+            status: 'error',
+            message: message
+        };
+        if (opts.isHandleError) {
+            new Message({
+                config: {
+                    content: '\u9519\u8BEF: ' + message // 这里的message就是error信息，只是一段普通的字符信息
+                }
+            });
+        }
+        return dataInfo;
+    }).then(function (dataInfo, mark, xhr) {
+        if (dataInfo.status === 'failure') {
+            // 失败
+            if (opts.isHandleFailure) {
+                new Message({
+                    config: {
+                        content: '\u5931\u8D25: ' + dataInfo.message
+                    }
+                });
+            }
+            typeof opts.callbackFailure === 'function' && opts.callbackFailure(dataInfo);
+        }
+        if (dataInfo.status === 'success') {
+            // 成功
+            if (opts.isHandleSuccess) {
+                new Message({
+                    config: {
+                        content: '\u6210\u529F: ' + dataInfo.message
+                    }
+                });
+            }
+            typeof opts.callbackSuccess === 'function' && opts.callbackSuccess(dataInfo);
+        }
+        typeof opts.callbackComplete === 'function' && opts.callbackComplete(dataInfo);
+        return dataInfo;
+    });
+};
+
+/***/ }),
+/* 22 */,
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3882,7 +4221,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3906,7 +4245,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3931,7 +4270,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterato
 });
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3944,7 +4283,7 @@ module.exports = Array.isArray || function (arr) {
 };
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3973,15 +4312,15 @@ module.exports = Array.isArray || function (arr) {
 
 module.exports = Stream;
 
-var EE = __webpack_require__(18).EventEmitter;
+var EE = __webpack_require__(17).EventEmitter;
 var inherits = __webpack_require__(7);
 
 inherits(Stream, EE);
-Stream.Readable = __webpack_require__(19);
-Stream.Writable = __webpack_require__(60);
-Stream.Duplex = __webpack_require__(61);
-Stream.Transform = __webpack_require__(62);
-Stream.PassThrough = __webpack_require__(63);
+Stream.Readable = __webpack_require__(18);
+Stream.Writable = __webpack_require__(62);
+Stream.Duplex = __webpack_require__(63);
+Stream.Transform = __webpack_require__(64);
+Stream.PassThrough = __webpack_require__(65);
 
 // Backwards-compat with node 0.4.x
 Stream.Stream = Stream;
@@ -4076,7 +4415,7 @@ Stream.prototype.pipe = function (dest, options) {
 };
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4111,7 +4450,7 @@ var processNextTick = __webpack_require__(12);
 module.exports = Readable;
 
 /*<replacement>*/
-var isArray = __webpack_require__(25);
+var isArray = __webpack_require__(26);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -4121,7 +4460,7 @@ var Duplex;
 Readable.ReadableState = ReadableState;
 
 /*<replacement>*/
-var EE = __webpack_require__(18).EventEmitter;
+var EE = __webpack_require__(17).EventEmitter;
 
 var EElistenerCount = function EElistenerCount(emitter, type) {
   return emitter.listeners(type).length;
@@ -4129,7 +4468,7 @@ var EElistenerCount = function EElistenerCount(emitter, type) {
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = __webpack_require__(28);
+var Stream = __webpack_require__(29);
 /*</replacement>*/
 
 // TODO(bmeurer): Change this back to const once hole checks are
@@ -4151,7 +4490,7 @@ util.inherits = __webpack_require__(7);
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = __webpack_require__(55);
+var debugUtil = __webpack_require__(57);
 var debug = void 0;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -4160,8 +4499,8 @@ if (debugUtil && debugUtil.debuglog) {
 }
 /*</replacement>*/
 
-var BufferList = __webpack_require__(56);
-var destroyImpl = __webpack_require__(29);
+var BufferList = __webpack_require__(58);
+var destroyImpl = __webpack_require__(30);
 var StringDecoder;
 
 util.inherits(Readable, Stream);
@@ -4244,7 +4583,7 @@ function ReadableState(options, stream) {
   this.decoder = null;
   this.encoding = null;
   if (options.encoding) {
-    if (!StringDecoder) StringDecoder = __webpack_require__(31).StringDecoder;
+    if (!StringDecoder) StringDecoder = __webpack_require__(32).StringDecoder;
     this.decoder = new StringDecoder(options.encoding);
     this.encoding = options.encoding;
   }
@@ -4400,7 +4739,7 @@ Readable.prototype.isPaused = function () {
 
 // backwards compatibility.
 Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = __webpack_require__(31).StringDecoder;
+  if (!StringDecoder) StringDecoder = __webpack_require__(32).StringDecoder;
   this._readableState.decoder = new StringDecoder(enc);
   this._readableState.encoding = enc;
   return this;
@@ -5090,16 +5429,16 @@ function indexOf(xs, x) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(5)))
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__(18).EventEmitter;
+module.exports = __webpack_require__(17).EventEmitter;
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5177,8 +5516,8 @@ module.exports = {
 };
 
 /***/ }),
-/* 30 */,
-/* 31 */
+/* 31 */,
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5456,7 +5795,7 @@ function simpleEnd(buf) {
 }
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5676,7 +6015,7 @@ function done(stream, er, data) {
 }
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5751,7 +6090,7 @@ function isBuffer(b) {
 // ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var util = __webpack_require__(34);
+var util = __webpack_require__(35);
 var hasOwn = Object.prototype.hasOwnProperty;
 var pSlice = Array.prototype.slice;
 var functionsHaveNames = function () {
@@ -6154,7 +6493,7 @@ var objectKeys = Object.keys || function (obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6652,7 +6991,7 @@ function isPrimitive(arg) {
 }
 exports.isPrimitive = isPrimitive;
 
-exports.isBuffer = __webpack_require__(71);
+exports.isBuffer = __webpack_require__(73);
 
 function objectToString(o) {
   return Object.prototype.toString.call(o);
@@ -6709,7 +7048,7 @@ function hasOwnProperty(obj, prop) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(5)))
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6765,7 +7104,7 @@ function adler32(adler, buf, len, pos) {
 module.exports = adler32;
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6830,27 +7169,264 @@ function crc32(crc, buf, len, pos) {
 module.exports = crc32;
 
 /***/ }),
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: ModuleBuildError: Module build failed: \r\nundefined\r\n^\r\n      File to import not found or unreadable: E:\\www\\suibianxiexie\\node_modules\\zhf.g-ui\\src\\scss\\commons\\g-common.scss.\nParent style sheet: stdin\r\n      in E:\\www\\suibianxiexie\\app\\admin\\assets\\scss\\commons\\common.scss (line 3, column 1)\n    at runLoaders (E:\\www\\suibianxiexie\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at E:\\www\\suibianxiexie\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at E:\\www\\suibianxiexie\\node_modules\\loader-runner\\lib\\LoaderRunner.js:230:18\n    at context.callback (E:\\www\\suibianxiexie\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (E:\\www\\suibianxiexie\\node_modules\\sass-loader\\lib\\loader.js:55:13)\n    at Object.<anonymous> (E:\\www\\suibianxiexie\\node_modules\\sass-loader\\node_modules\\async\\dist\\async.js:2257:31)\n    at Object.callback (E:\\www\\suibianxiexie\\node_modules\\sass-loader\\node_modules\\async\\dist\\async.js:958:16)\n    at options.error (E:\\www\\suibianxiexie\\node_modules\\node-sass\\lib\\index.js:294:32)");
-
-/***/ }),
-/* 43 */,
-/* 44 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var stringify = __webpack_require__(45);
-var parse = __webpack_require__(46);
-var formats = __webpack_require__(23);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {
+                // 确认
+                confirm: function confirm() {},
+                // 取消
+                cancel: function cancel() {},
+                // 关闭
+                close: function close() {}
+            },
+            // 配置
+            config: {
+                positionLocation: 'center', // 弹窗的定位位置('top'，'center'，'bottom')。positionMethod定位方式强制fixed。
+                isShowClose: true, // 是否显示关闭按钮
+                closeContent: '<div class="g-iconfont g-icon-close"></div>', // 关闭按钮的内容
+                isShowHeader: true, // 是否显示头部
+                headerContent: '提示:', // 头部内容
+                isShowBody: true, // 是否显示主体
+                isShowIcon: false, // 是否显示icon
+                icon: 'g-icon-warning', // icon的类型
+                isCustom: false, // 是否自定义
+                content: '<div>确定要执行这个操作?</div>', // 主体内容
+                isShowFooter: true, // 是否显示尾部
+                isShowConfirm: true, // 是否显示确认按钮
+                confirmContent: '确认', // 确认按钮的内容
+                isShowCancel: true, // 是否显示取消按钮
+                cancelContent: '取消', // 取消按钮的内容
+                isShowMask: true, // 是否显示遮罩
+                isHandHide: false // 是否手动隐藏(一般只用于点击确认时)
+            }
+        }, opts)));
+    }
+
+    return Sub;
+}(Super);
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+
+
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var positionLocation = 'g-confirm-wrap_' + config.positionLocation; // 弹窗的定位位置
+    // 弹窗结构
+    var html = this.renderConfirm();
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-confirm-wrap ' + positionLocation,
+            innerHTML: html
+        }
+    });
+};
+
+// 确认框
+Sub.prototype.renderConfirm = function () {
+    var config = this.opts.config;
+    var htmlHeader = '';
+    if (config.isShowHeader) {
+        htmlHeader = '<div class="g-confirm-header">' + config.headerContent + '</div>';
+    }
+    var htmlBody = '';
+    if (config.isShowBody) {
+        var htmlIcon = '';
+        if (config.isShowIcon) {
+            htmlIcon = '<div class="g-confirm-body-system-icon g-iconfont ' + config.icon + '"></div>';
+        }
+        var bodyClass = 'g-confirm-body-system';
+        var bodyContent = '\n            ' + htmlIcon + '\n            <div class="g-confirm-body-system-text">' + config.content + '</div>\n        ';
+        if (config.isCustom) {
+            bodyClass = 'g-confirm-body-custom';
+            bodyContent = config.content;
+        }
+        htmlBody = '\n            <div class="g-confirm-body">\n                <div class="' + bodyClass + '">\n                    ' + bodyContent + '\n                </div>\n            </div>\n        ';
+    }
+    var htmlFooter = '';
+    if (config.isShowFooter) {
+        var htmlCancel = '';
+        if (config.isShowCancel) {
+            htmlCancel = '<div class="g-button g-button_cancel g-confirm-footer-cancel">' + config.cancelContent + '</div>';
+        }
+        var htmlConfirm = '';
+        if (config.isShowConfirm) {
+            htmlConfirm = '<div class="g-button g-confirm-footer-confirm">' + config.confirmContent + '</div>';
+        }
+        htmlFooter = '<div class="g-confirm-footer">' + htmlCancel + htmlConfirm + '</div>';
+    }
+    var htmlClose = '';
+    if (config.isShowClose) {
+        htmlClose = '<div class="g-confirm-close">' + config.closeContent + '</div>';
+    }
+    var htmlMask = '';
+    if (config.isShowMask) {
+        htmlMask = '<div class="g-mask"></div>';
+    }
+    return '\n        ' + htmlMask + '\n        <div class="g-confirm">\n            ' + htmlHeader + '\n            ' + htmlBody + '\n            ' + htmlFooter + '\n            ' + htmlClose + ' \n        </div>\n    ';
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    var config = this.opts.config;
+    var callback = this.opts.callback;
+    // 关闭
+    var close = this.moduleDom.querySelector('.g-confirm-close');
+    if (close) {
+        close.addEventListener('click', function () {
+            self.moduleDomHide();
+            callback.close();
+        });
+    }
+    // 取消
+    var cancel = this.moduleDom.querySelector('.g-confirm-footer-cancel');
+    if (cancel) {
+        cancel.addEventListener('click', function () {
+            self.moduleDomHide();
+            callback.cancel();
+        });
+    }
+    // 确认
+    var confirm = this.moduleDom.querySelector('.g-confirm-footer-confirm');
+    if (confirm) {
+        confirm.addEventListener('click', function () {
+            if (!config.isHandHide) {
+                self.moduleDomHide();
+            }
+            callback.confirm();
+        });
+    }
+};
+
+module.exports = Sub;
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var extend = __webpack_require__(0),
+    secondsToTime = __webpack_require__(90);function timeCountDown(e) {
+  var n = extend({ seconds: 0, isToTime: !0, isHandleRunWhenZero: !1, isHandleOverWhenZero: !1, isHandleRunWhenOver: !1, callback: { run: function run() {}, over: function over() {} } }, e),
+      o = Number(n.seconds) || 0;o < 0 && (o = 0);var r = n.callback.run,
+      s = n.callback.over,
+      i = function i() {
+    n.isToTime ? r(secondsToTime(o)) : r({ day: 0, hours: 0, minutes: 0, seconds: 0, allSeconds: o });
+  };if (0 === o && (n.isHandleRunWhenZero && i(), n.isHandleOverWhenZero && s()), 0 < o) {
+    i();var a = setInterval(function () {
+      0 === --o ? (clearInterval(a), n.isHandleRunWhenOver && i(), s()) : i();
+    }, 1e3);
+  }
+}module.exports = timeCountDown;
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {},
+            // 配置
+            config: {
+                positionLocation: 'top-left', // 弹窗的定位位置('top-left'，'top-center'，'top-right')。
+                content: 'no tooltip content'
+            }
+        }, opts)));
+    }
+
+    return Sub;
+}(Super);
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+
+
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var positionLocation = 'g-tooltip_' + config.positionLocation; // 弹窗的定位位置
+    // 弹窗结构
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-tooltip ' + positionLocation,
+            innerHTML: '\n                <div class="g-tooltip-content">' + config.content + '</div>\n                <div class="g-tooltip-icon"></div>                \n            '
+        }
+    });
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {};
+
+module.exports = Sub;
+
+/***/ }),
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 45 */,
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var stringify = __webpack_require__(47);
+var parse = __webpack_require__(48);
+var formats = __webpack_require__(24);
 
 module.exports = {
     formats: formats,
@@ -6859,7 +7435,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6867,8 +7443,8 @@ module.exports = {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var utils = __webpack_require__(22);
-var formats = __webpack_require__(23);
+var utils = __webpack_require__(23);
+var formats = __webpack_require__(24);
 
 var arrayPrefixGenerators = {
     brackets: function brackets(prefix) {
@@ -7030,13 +7606,13 @@ module.exports = function (object, opts) {
 };
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(22);
+var utils = __webpack_require__(23);
 
 var has = Object.prototype.hasOwnProperty;
 
@@ -7204,15 +7780,15 @@ module.exports = function (str, opts) {
 };
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var extend = __webpack_require__(0);
-var typeOf = __webpack_require__(17);
-var queryString = __webpack_require__(48);
+var typeOf = __webpack_require__(15);
+var queryString = __webpack_require__(50);
 var Message = __webpack_require__(11);
 
 module.exports = function (json) {
@@ -7283,7 +7859,7 @@ module.exports = function (json) {
 };
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7325,13 +7901,13 @@ var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterato
 });
 
 /***/ }),
-/* 49 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var keepDecimal = __webpack_require__(50),
-    moneyFormat = __webpack_require__(24);function StrToNum() {}StrToNum.prototype.toInteger = function (t) {
+var keepDecimal = __webpack_require__(52),
+    moneyFormat = __webpack_require__(25);function StrToNum() {}StrToNum.prototype.toInteger = function (t) {
   var e = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];return keepDecimal(t, 0, e);
 }, StrToNum.prototype.toPositiveInteger = function (t) {
   var e = arguments.length > 1 && void 0 !== arguments[1] && arguments[1],
@@ -7353,13 +7929,13 @@ var keepDecimal = __webpack_require__(50),
 }, module.exports = new StrToNum();
 
 /***/ }),
-/* 50 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var strGetNum = __webpack_require__(51),
-    moneyFormat = __webpack_require__(24);function createZero(e) {
+var strGetNum = __webpack_require__(53),
+    moneyFormat = __webpack_require__(25);function createZero(e) {
   for (var r = [], t = 0; t < e; t++) {
     r.push("0");
   }return r.join("");
@@ -7377,7 +7953,7 @@ var strGetNum = __webpack_require__(51),
 }module.exports = keepDecimal;
 
 /***/ }),
-/* 51 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7406,17 +7982,17 @@ var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterato
 });
 
 /***/ }),
-/* 52 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process, Buffer) {
 
-var Readable = __webpack_require__(26).Readable;
+var Readable = __webpack_require__(27).Readable;
 
-var QR = __webpack_require__(64).QR;
-var png = __webpack_require__(68);
-var vector = __webpack_require__(82);
+var QR = __webpack_require__(66).QR;
+var png = __webpack_require__(70);
+var vector = __webpack_require__(84);
 
 var fn_noop = function fn_noop() {};
 
@@ -7534,7 +8110,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(3).Buffer))
 
 /***/ }),
-/* 53 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7654,7 +8230,7 @@ function fromByteArray(uint8) {
 }
 
 /***/ }),
-/* 54 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7746,13 +8322,13 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 };
 
 /***/ }),
-/* 55 */
+/* 57 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 56 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7836,8 +8412,8 @@ module.exports = function () {
 }();
 
 /***/ }),
-/* 57 */,
-/* 58 */
+/* 59 */,
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7912,7 +8488,7 @@ function config(name) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 59 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7945,7 +8521,7 @@ function config(name) {
 
 module.exports = PassThrough;
 
-var Transform = __webpack_require__(32);
+var Transform = __webpack_require__(33);
 
 /*<replacement>*/
 var util = __webpack_require__(10);
@@ -7965,31 +8541,13 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 };
 
 /***/ }),
-/* 60 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(20);
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(8);
-
-/***/ }),
 /* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__(19).Transform;
+module.exports = __webpack_require__(19);
 
 /***/ }),
 /* 63 */
@@ -7998,18 +8556,36 @@ module.exports = __webpack_require__(19).Transform;
 "use strict";
 
 
-module.exports = __webpack_require__(19).PassThrough;
+module.exports = __webpack_require__(8);
 
 /***/ }),
 /* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+module.exports = __webpack_require__(18).Transform;
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(18).PassThrough;
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {
 
-var encode = __webpack_require__(65);
-var calculateEC = __webpack_require__(66);
-var matrix = __webpack_require__(67);
+var encode = __webpack_require__(67);
+var calculateEC = __webpack_require__(68);
+var matrix = __webpack_require__(69);
 
 function _deepCopy(obj) {
     return JSON.parse(JSON.stringify(obj));
@@ -8153,7 +8729,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
 
 /***/ }),
-/* 65 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8337,7 +8913,7 @@ module.exports = encode;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
 
 /***/ }),
-/* 66 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8422,7 +8998,7 @@ module.exports = function calculate_ec(msg, ec_len) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
 
 /***/ }),
-/* 67 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8798,15 +9374,15 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
 
 /***/ }),
-/* 68 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {
 
-var zlib = __webpack_require__(69);
+var zlib = __webpack_require__(71);
 
-var crc32 = __webpack_require__(80);
+var crc32 = __webpack_require__(82);
 
 var PNG_HEAD = new Buffer([137, 80, 78, 71, 13, 10, 26, 10]);
 var PNG_IHDR = new Buffer([0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0]);
@@ -8865,17 +9441,17 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
 
 /***/ }),
-/* 69 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var Buffer = __webpack_require__(3).Buffer;
-var Transform = __webpack_require__(26).Transform;
-var binding = __webpack_require__(70);
-var util = __webpack_require__(34);
-var assert = __webpack_require__(33).ok;
+var Transform = __webpack_require__(27).Transform;
+var binding = __webpack_require__(72);
+var util = __webpack_require__(35);
+var assert = __webpack_require__(34).ok;
 var kMaxLength = __webpack_require__(3).kMaxLength;
 var kRangeErrorMessage = 'Cannot create final Buffer. It would be larger ' + 'than 0x' + kMaxLength.toString(16) + ' bytes';
 
@@ -9481,19 +10057,19 @@ util.inherits(Unzip, Zlib);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 70 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer, process) {
 /* eslint camelcase: "off" */
 
-var assert = __webpack_require__(33);
+var assert = __webpack_require__(34);
 
-var Zstream = __webpack_require__(72);
-var zlib_deflate = __webpack_require__(73);
-var zlib_inflate = __webpack_require__(76);
-var constants = __webpack_require__(79);
+var Zstream = __webpack_require__(74);
+var zlib_deflate = __webpack_require__(75);
+var zlib_inflate = __webpack_require__(78);
+var constants = __webpack_require__(81);
 
 for (var key in constants) {
   exports[key] = constants[key];
@@ -9897,7 +10473,7 @@ exports.Zlib = Zlib;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer, __webpack_require__(5)))
 
 /***/ }),
-/* 71 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9910,7 +10486,7 @@ module.exports = function isBuffer(arg) {
 };
 
 /***/ }),
-/* 72 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9963,7 +10539,7 @@ function ZStream() {
 module.exports = ZStream;
 
 /***/ }),
-/* 73 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9989,10 +10565,10 @@ module.exports = ZStream;
 // 3. This notice may not be removed or altered from any source distribution.
 
 var utils = __webpack_require__(14);
-var trees = __webpack_require__(74);
-var adler32 = __webpack_require__(35);
-var crc32 = __webpack_require__(36);
-var msg = __webpack_require__(75);
+var trees = __webpack_require__(76);
+var adler32 = __webpack_require__(36);
+var crc32 = __webpack_require__(37);
+var msg = __webpack_require__(77);
 
 /* Public constants ==========================================================*/
 /* ===========================================================================*/
@@ -11793,7 +12369,7 @@ exports.deflateTune = deflateTune;
 */
 
 /***/ }),
-/* 74 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12995,7 +13571,7 @@ exports._tr_tally = _tr_tally;
 exports._tr_align = _tr_align;
 
 /***/ }),
-/* 75 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13033,7 +13609,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 76 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13059,10 +13635,10 @@ module.exports = {
 // 3. This notice may not be removed or altered from any source distribution.
 
 var utils = __webpack_require__(14);
-var adler32 = __webpack_require__(35);
-var crc32 = __webpack_require__(36);
-var inflate_fast = __webpack_require__(77);
-var inflate_table = __webpack_require__(78);
+var adler32 = __webpack_require__(36);
+var crc32 = __webpack_require__(37);
+var inflate_fast = __webpack_require__(79);
+var inflate_table = __webpack_require__(80);
 
 var CODES = 0;
 var LENS = 1;
@@ -14682,7 +15258,7 @@ exports.inflateUndermine = inflateUndermine;
 */
 
 /***/ }),
-/* 77 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15037,7 +15613,7 @@ module.exports = function inflate_fast(strm, start) {
 };
 
 /***/ }),
-/* 78 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15372,7 +15948,7 @@ module.exports = function inflate_table(type, lens, lens_index, codes, table, ta
 };
 
 /***/ }),
-/* 79 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15445,7 +16021,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 80 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15457,7 +16033,7 @@ module.exports = {
     // https://code.google.com/p/v8/issues/detail?id=3757
     // https://github.com/alexeyten/qr-image/issues/13
     if (process.arch === 'arm') {
-        module.exports = __webpack_require__(81);
+        module.exports = __webpack_require__(83);
         return;
     }
 
@@ -15500,7 +16076,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(3).Buffer))
 
 /***/ }),
-/* 81 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15557,7 +16133,7 @@ module.exports = crc32;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
 
 /***/ }),
-/* 82 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15804,151 +16380,2469 @@ module.exports = {
 };
 
 /***/ }),
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */,
-/* 114 */,
-/* 115 */,
-/* 116 */,
-/* 117 */,
-/* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */,
-/* 126 */,
-/* 127 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var extend = __webpack_require__(0);
-var typeOf = __webpack_require__(17);
-var Message = __webpack_require__(11);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-module.exports = function (json) {
-    json.type = json.type || json.method || 'get'; // 这里和axios是不一样的，这里以前使用axios的习惯传入method
-    json.dataType = json.dataType || 'json'; // 设置返回json格式的数据，axios默认就是返回json格式的
-    var opts = extend({
-        type: 'get', // 请求方式默认get
-        timeout: 30000, // 超时
-        isHandleError: true, // 是否处理错误
-        isHandleFailure: true, // 是否处理失败
-        isHandleSuccess: false, // 是否处理成功
-        callbackSuccess: function callbackSuccess() {// 请求成功的回调
-        },
-        callbackFailure: function callbackFailure() {// 请求失败的回调
-        },
-        callbackComplete: function callbackComplete() {// 请求完成的回调
-        }
-    }, json);
-    /*
-    * javascript axios get params
-    * javascript axios post/put/delete data
-    * 把上述四种数据的传参方式进行统一化,统一使用data
-    * nodejs express get req.query
-    * nodejs express post/put/delete body-parser req.body
-    * 把上述四种数据的传参方式进行统一化,统一使用req.data
-    * */
-    if (opts.method.toLowerCase() === 'get') {
-        opts.data = opts.data || opts.params || {}; // 这里和axios是不一样的，这里以前使用axios的习惯传入params
-        if (opts.data) {
-            // 把json格式的对象处理成json格式的字符串，让get请求保持和axios一致的数据格式
-            // 其实按理来说应该让axios保持与这边的一致，但是axios的get请求没有提供对外的接口，所以只能让这个保持和axios一致。
-            // $.ajax的post,put,delete接收的全是字符串，即使你传的是对象，对象里有布尔值等，接收过来也会变成字符串，$.ajax的get处理之后，你传的对象里有布尔值，后端接收之后，布尔值还是布尔值，应该和post保持一致的。奈何axios的get没提供对外接口
-            Object.keys(opts.data).forEach(function (keys) {
-                var obj = opts.data[keys];
-                var type = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
-                if (type === 'object') {
-                    opts.data[keys] = JSON.stringify(obj);
-                }
-                if (type === 'array') {
-                    obj.forEach(function (v, i, a) {
-                        if (Object.prototype.toString.call(v).slice(8, -1).toLowerCase() === 'object') {
-                            a[i] = JSON.stringify(v);
-                        }
-                    });
-                }
-            });
-        }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {},
+            // 配置
+            config: {}
+        }, opts)));
     }
-    if (typeOf(opts.data) === 'formdata') {
-        // formdata类型需要关闭下面,否则会报错
-        opts.processData = false;
-        opts.contentType = false;
-    }
-    return $.ajax(opts).catch(function (xhr, mark, message) {
-        var dataInfo = {
-            status: 'error',
-            message: message
-        };
-        if (opts.isHandleError) {
-            new Message({
-                config: {
-                    content: '\u9519\u8BEF: ' + message // 这里的message就是error信息，只是一段普通的字符信息
-                }
-            });
+
+    return Sub;
+}(Super);
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+
+
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-copyright',
+            innerHTML: '\n                <div class="g-copyright-icon g-iconfont g-icon-logo"></div>\n                <div class="g-copyright-text">\u7248\u6743\u4FE1\u606F\u54DF</div>\n            '
         }
-        return dataInfo;
-    }).then(function (dataInfo, mark, xhr) {
-        if (dataInfo.status === 'failure') {
-            // 失败
-            if (opts.isHandleFailure) {
-                new Message({
-                    config: {
-                        content: '\u5931\u8D25: ' + dataInfo.message
-                    }
-                });
-            }
-            typeof opts.callbackFailure === 'function' && opts.callbackFailure(dataInfo);
-        }
-        if (dataInfo.status === 'success') {
-            // 成功
-            if (opts.isHandleSuccess) {
-                new Message({
-                    config: {
-                        content: '\u6210\u529F: ' + dataInfo.message
-                    }
-                });
-            }
-            typeof opts.callbackSuccess === 'function' && opts.callbackSuccess(dataInfo);
-        }
-        typeof opts.callbackComplete === 'function' && opts.callbackComplete(dataInfo);
-        return dataInfo;
     });
 };
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {};
+
+module.exports = Sub;
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {},
+            // 配置
+            config: {
+                items: [
+                    // {
+                    //     routeName: 'home',
+                    //     href: '/',
+                    //     text: '首页',
+                    //     icon: 'g-icon-home',
+                    //     isHighlight: false,
+                    //     isShowMark: false
+                    // }
+                ]
+            }
+        }, opts)));
+    }
+
+    return Sub;
+}(Super);
+
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var items = config.items;
+    this.moduleDomClass = 'g-footer-nav';
+    var moduleDomHtml = '';
+    Object.keys(items).forEach(function (key) {
+        var v = items[key];
+        var highlightClass = '';
+        if (v.isHighlight) {
+            highlightClass = 'g-footer-nav-body-item_active';
+        }
+        var markHtml = '';
+        if (v.isShowMark) {
+            markHtml = '<div class="g-footer-nav-body-item-mark"></div>';
+        }
+        moduleDomHtml += '\n            <a class="g-footer-nav-body-item ' + highlightClass + '" href="' + v.href + '">\n                <div class="g-footer-nav-body-item-icon g-iconfont ' + v.icon + '"></div>\n                <div class="g-footer-nav-body-item-text">' + v.text + '</div>\n                ' + markHtml + '\n            </a>\n        ';
+    });
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: this.moduleDomClass,
+            innerHTML: '<div class="g-footer-nav-body">' + moduleDomHtml + '</div>'
+        }
+    });
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {};
+
+module.exports = Sub;
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+var scrollMoveTo = __webpack_require__(88);
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {},
+            // 配置
+            config: {
+                showHeight: 200
+            }
+        }, opts)));
+    }
+
+    return Sub;
+}(Super);
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+
+
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-go-top',
+            innerHTML: '<div class="g-go-top-icon g-iconfont g-icon-up"></div>'
+        }
+    });
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    this.moduleDom.addEventListener('click', function () {
+        scrollMoveTo(0, 0);
+    });
+    window.addEventListener('scroll', function () {
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop >= self.opts.config.showHeight) {
+            self.moduleDom.classList.add('g-go-top_active');
+        } else {
+            self.moduleDom.classList.remove('g-go-top_active');
+        }
+    });
+};
+
+module.exports = Sub;
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterator) ? function (o) {
+  return typeof o === "undefined" ? "undefined" : _typeof2(o);
+} : function (o) {
+  return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o === "undefined" ? "undefined" : _typeof2(o);
+};!function (o, e) {
+  "object" === ( false ? "undefined" : _typeof(exports)) && "undefined" != typeof module ? module.exports = e() :  true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (e),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : ("object" !== Object.prototype.toString.call(window.zhf).slice(8, -1).toLowerCase() && (window.zhf = {}), window.zhf.scrollMoveTo = e());
+}(0, function () {
+  return function () {
+    var o = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0,
+        e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 0,
+        t = arguments[2],
+        n = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 6,
+        i = document.documentElement.scrollLeft || document.body.scrollLeft,
+        l = document.documentElement.scrollTop || document.body.scrollTop,
+        c = 0,
+        r = 0,
+        f = null,
+        u = o - i > 0,
+        d = e - l > 0;requestAnimationFrame(function m() {
+      c = Math.ceil(Math.abs((o - i) / n)), r = Math.ceil(Math.abs((e - l) / n)), i += c = u ? c : -c, l += r = d ? r : -r, window.scrollTo(i, l), t && t(i, l), f = requestAnimationFrame(m), i === Number(o) && l === Number(e) && cancelAnimationFrame(f);
+    });
+  };
+});
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var timeCountDown = __webpack_require__(39); // 倒计时
+var Confirm = __webpack_require__(38);
+
+// 专门为请求成功写的跳转链接弹窗
+
+var Super = function Super(opts) {
+    _classCallCheck(this, Super);
+
+    opts = extend({
+        title: '操作成功',
+        seconds: 3,
+        pageTitle: '登录',
+        href: 'javascript:;'
+    }, opts);
+    var content = '<div class="g-jump-link">\n            <div class="g-jump-link-title">' + opts.title + '</div>\n            <div class="g-jump-link-body">\n                <div class="g-jump-link-body-seconds">' + opts.seconds + '</div>\n                <div>\u79D2\u540E\u81EA\u52A8\u8DF3\u8F6C\u5230</div>\n                <a href="' + opts.href + '" class="g-jump-link-body-page-title">' + opts.pageTitle + '\u9875</a>\n            </div>\n            <a href="' + opts.href + '" class="g-jump-link-footer">\u70B9\u51FB\u6B64\u5904\u624B\u52A8\u8DF3\u8F6C</a>\n        </div>';
+    var oConfirm = new Confirm({
+        config: {
+            positionLocation: 'center', // 弹窗的定位位置
+            isShowHeader: false, // 是否显示头部
+            headerContent: '提示:', // 头部内容
+            isShowBody: true, // 是否显示主体
+            content: content, // 主体内容
+            isShowFooter: false, // 是否显示尾部
+            isShowClose: false, // 是否显示关闭按钮
+            closeContent: '<div class="g-iconfont g-icon-close"></div>', // 关闭按钮的内容
+            isShowConfirm: false, // 是否显示确认按钮
+            confirmContent: '确认', // 确认按钮的内容
+            isShowCancel: false, // 是否显示取消按钮
+            cancelContent: '取消', // 取消按钮的内容
+            isCustom: false, // 是否自定义
+            isShowIcon: false, // 是否显示icon
+            icon: 'g-icon-warning', // icon的类型
+            isShowMask: true, // 是否显示遮罩
+            isHandHide: false // 是否手动隐藏(一般只用于点击确认时)
+        }
+    });
+    var seconds = oConfirm.moduleDom.querySelector('.g-jump-link-body-seconds');
+    timeCountDown({
+        seconds: opts.seconds,
+        callback: {
+            run: function run(obj) {
+                seconds.innerHTML = obj.seconds;
+            },
+            over: function over() {
+                window.location.href = opts.href;
+            }
+        }
+    });
+};
+
+module.exports = Super;
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterator) ? function (o) {
+  return typeof o === "undefined" ? "undefined" : _typeof2(o);
+} : function (o) {
+  return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o === "undefined" ? "undefined" : _typeof2(o);
+};!function (o, e) {
+  "object" === ( false ? "undefined" : _typeof(exports)) && "undefined" != typeof module ? module.exports = e() :  true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (e),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : window && ("object" !== Object.prototype.toString.call(window.zhf).slice(8, -1).toLowerCase() && (window.zhf = {}), window.zhf.secondsToTime = e());
+}(0, function () {
+  return function () {
+    var o = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0;return { day: Math.floor(o / 3600 / 24), hours: Math.floor(o / 3600 % 24), minutes: Math.floor(o % 3600 / 60), seconds: Math.floor(o % 60), allSeconds: o };
+  };
+});
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var extend = __webpack_require__(0); // 对象的扩展
+var offset = __webpack_require__(92);
+var getDomArray = __webpack_require__(9);
+
+// 延迟加载
+function LazyLoad(json) {
+    this.opts = extend({
+        element: '.g-lazy-load', // 哪些元素进行懒加载
+        srcAttr: 'data-src', // 默认获取哪里的属性值当做src
+        moreHeight: 0, // 多加载一部分高度的图片
+        interval: 80, // 函数节流时间(延迟时间)
+        isInitRender: true // 是否初始化的时候就进行render
+    }, json);
+    this.clientHeight = document.documentElement.clientHeight;
+    this.init();
+}
+
+LazyLoad.prototype.init = function () {
+    if (this.opts.isInitRender) {
+        this.render();
+    }
+    this.power();
+};
+LazyLoad.prototype.render = function () {
+    var self = this;
+    var moreHeight = this.opts.moreHeight;
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    var minTop = scrollTop - moreHeight;
+    var maxTop = this.clientHeight + minTop + moreHeight;
+    var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC';
+    var aDom = getDomArray(this.opts.element);
+    aDom.forEach(function (v) {
+        if (v.tagName.toLowerCase() === 'img') {
+            if (!v.getAttribute('src')) {
+                v.src = src;
+            }
+            v.setAttribute('height', '100%');
+            v.setAttribute('width', '100%');
+        }
+    });
+    aDom.forEach(function (v) {
+        // 排除那些被none掉的元素(被none掉的元素,通过offsetWidth和offsetHeight获取到的值是0)
+        if (v.offsetWidth) {
+            var elementTop = offset(v).top;
+            var elementBottom = elementTop + v.offsetHeight;
+            // 出现在可视区才进行处理
+            if (elementBottom >= minTop && elementTop <= maxTop) {
+                if (v.tagName.toLowerCase() === 'img') {
+                    if (v.getAttribute(self.opts.srcAttr)) {
+                        v.src = v.getAttribute(self.opts.srcAttr);
+                    }
+                    v.removeAttribute('height');
+                    v.removeAttribute('width');
+                } else if (v.getAttribute(self.opts.srcAttr)) {
+                    v.style.backgroundImage = 'url(' + v.getAttribute(self.opts.srcAttr) + ')';
+                }
+                v.classList.remove('g-lazy-load');
+                v.classList.add('g-lazy-load_active');
+            }
+        }
+    });
+};
+LazyLoad.prototype.power = function () {
+    var self = this;
+    var timer = null;
+    window.addEventListener('scroll', function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            self.render();
+        }, self.opts.interval);
+    });
+};
+module.exports = LazyLoad;
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var getDomArray = __webpack_require__(9);function offset(e) {
+  var t = 0,
+      r = 0;for (e = getDomArray(e)[0]; e;) {
+    t += e.offsetTop, r += e.offsetLeft, e = e.offsetParent;
+  }return { top: t, left: r };
+}module.exports = offset;
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {},
+            // 配置
+            config: {}
+        }, opts)));
+    }
+
+    return Sub;
+}(Super);
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+
+
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-loading-dialog',
+            innerHTML: '<div class="g-loading-dialog-icon g-iconfont g-icon-loading"></div>'
+        }
+    });
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {};
+
+module.exports = Sub;
+
+/***/ }),
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {},
+            // 配置
+            config: {}
+        }, opts)));
+    }
+
+    return Sub;
+}(Super);
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+
+
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-loading-over',
+            innerHTML: '<div class="g-loading-over-icon g-iconfont g-icon-no-data"></div><div class="g-loading-over-text">\u6570\u636E\u52A0\u8F7D\u5B8C\u6BD5</div>'
+        }
+    });
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {};
+
+module.exports = Sub;
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {},
+            // 配置
+            config: {
+                icon: ''
+            }
+        }, opts)));
+    }
+
+    return Sub;
+}(Super);
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+
+
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-loading',
+            innerHTML: '<div class="g-loading-icon g-iconfont g-icon-loading"></div>'
+        }
+    });
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {};
+
+module.exports = Sub;
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {
+                click: function click() {}
+            },
+            // 配置
+            config: {
+                isTransparent: false, // 是不是透明的(默认不透明)
+                positionMethod: 'fixed' // 模块的定位方式 'fixed'(相对于整个文档) 'absolute'(相对于外部容器)
+            }
+        }, opts)));
+    }
+
+    return Sub;
+}(Super);
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+
+
+Sub.prototype.moduleDomCreate = function () {
+    var self = this;
+    var config = this.opts.config;
+    var className = '';
+    if (config.isTransparent) {
+        className = 'g-mask_transparent';
+    }
+    if (config.positionMethod === 'fixed') {
+        className = 'g-mask-fixed';
+    }
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-mask ' + className,
+            innerHTML: ''
+        }
+    });
+    // 如果外部容器没有定位，则给外部容器增加一个定位。
+    if (self.wrapDom && getComputedStyle(self.wrapDom).position === 'static') {
+        self.wrapDom.style.position = 'relative';
+    }
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    this.moduleDom.addEventListener('click', function (ev) {
+        self.opts.callback.click();
+        ev.stopPropagation();
+    });
+};
+
+module.exports = Sub;
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {},
+            // 配置
+            config: {
+                items: [
+                    /*
+                    {
+                        href: route,
+                        icon: 'g-icon-home',
+                        text: '首页',
+                        isShowMark: false,
+                    },
+                    {
+                        href: `${route}dev-globals/`,
+                        icon: 'g-icon-dev',
+                        text: '开发全局',
+                        isShowMark: false,
+                    },
+                    {
+                        href: `${route}dev-components/`,
+                        icon: 'g-icon-dev',
+                        text: '开发组件',
+                        isShowMark: false,
+                    },
+                    {
+                        href: `${route}dev-words/`,
+                        icon: 'g-icon-dev',
+                        text: '开发词汇',
+                        isShowMark: false,
+                    },
+                    {
+                        href: `${route}mine/`,
+                        icon: 'g-icon-mine',
+                        text: '我的',
+                        isShowMark: false,
+                    },
+                    */
+                ]
+            }
+        }, opts)));
+    }
+
+    return Sub;
+}(Super);
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+
+
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var items = config.items;
+    var html = '';
+    items.forEach(function (v) {
+        var markHtml = '';
+        if (v.isShowMark) {
+            markHtml = '<div class="g-navigation-item-mark"></div>';
+        }
+        html += '\n            <a href="' + v.href + '" class="g-navigation-item">\n                <div class="g-navigation-item-icon g-iconfont ' + v.icon + '"></div>\n                <div class="g-navigation-item-text">' + v.text + '</div>\n                ' + markHtml + '\n            </a>\n        ';
+    });
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-navigation',
+            innerHTML: html
+        }
+    });
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {};
+
+module.exports = Sub;
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {},
+            // 配置
+            config: {
+                icon: 'g-iconfont g-icon-no-data',
+                text: '没有数据',
+                button: {
+                    isShowIcon: false,
+                    icon: 'g-icon-home',
+                    text: '回首页',
+                    href: '/'
+                }
+            }
+        }, opts)));
+    }
+
+    return Sub;
+}(Super);
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+
+
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var data = config;
+    var buttonIconHtml = '';
+    if (this.opts.config.button.isShowIcon) {
+        buttonIconHtml = '<div class="g-button-icon ' + data.button.icon + '"></div>';
+    }
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-no-data',
+            innerHTML: '\n                <div class="g-no-data-icon g-iconfont ' + data.icon + '"></div>\n                <div class="g-no-data-text">' + data.text + '</div>\n                <a class="g-no-data-button g-button" href="' + data.button.href + '">\n                    ' + buttonIconHtml + '\n                    <div class="g-button-text">' + data.button.text + '</div>\n                </a>\n            '
+        }
+    });
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {};
+
+module.exports = Sub;
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 默认数据
+var defaultData = {
+    nowCount: 10, // 当前页的数据条数
+    allCount: 100, // 数据总条数
+    nowPage: 1, // 当前页
+    allPage: null // 总页数
+};
+defaultData.allPage = Math.ceil(defaultData.allCount / defaultData.nowCount);
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {
+                // 上一页的回调
+                prevPage: function prevPage() {},
+                // 下一页的回调
+                nextPage: function nextPage() {},
+                // 选择某一页的回调
+                selectPage: function selectPage() {},
+                // 页码改变就触发
+                changePage: function changePage() {}
+            },
+            // 配置
+            config: {
+                nowCount: defaultData.nowCount,
+                allCount: defaultData.allCount,
+                nowPage: defaultData.nowPage,
+                allPage: defaultData.allPage
+            }
+        }, opts)));
+    }
+
+    return Sub;
+}(Super);
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+
+
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-pagination',
+            innerHTML: '\n                <div class="g-pagination-text">\u7B2C</div>\n                <div class="g-pagination-now-page">\n                    <label class="g-select">\n                        <select class="g-select-body">\n                            ' + this.renderOption() + '\n                        </select>\n                        <span class="g-select-mark g-iconfont g-icon-select"></span>\n                    </label>\n                </div>\n                <div class="g-pagination-text">\u9875</div>\n                <a href="javascript:;" class="g-pagination-btn g-pagination-btn-inactive g-iconfont g-icon-prev"></a>\n                <a href="javascript:;" class="g-pagination-btn g-iconfont g-icon-next"></a>\n            '
+        }
+    });
+    this.prevDom = this.moduleDom.querySelectorAll('.g-pagination-btn')[0]; // 上一页的按钮
+    this.nextDom = this.moduleDom.querySelectorAll('.g-pagination-btn')[1]; // 下一页的按钮
+    this.btnInactiveClass = 'g-pagination-btn-inactive'; // 上一页和下一页的禁用状态
+    this.selectDom = this.moduleDom.querySelector('.g-pagination-now-page .g-select-body'); // 选择某一页的按钮
+};
+
+// 渲染第几页里面的页码
+Sub.prototype.renderOption = function () {
+    var html = '';
+    for (var i = 0; i < this.opts.config.allPage; i++) {
+        html += '<option value="' + (i + 1) + '">' + (i + 1) + '</option>';
+    }
+    return html;
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    var data = this.opts.config;
+    if (data.nowPage === 1) {
+        this.prevPageDisable();
+    }
+    if (data.nowPage === data.allPage) {
+        this.nextPageDisable();
+    }
+
+    this.prevDom.addEventListener('click', function () {
+        if (!this.classList.contains(self.btnInactiveClass)) {
+            self.prevPage();
+        }
+    });
+
+    this.nextDom.addEventListener('click', function () {
+        if (!this.classList.contains(self.btnInactiveClass)) {
+            self.nextPage();
+        }
+    });
+
+    this.selectDom.addEventListener('change', function () {
+        self.selectPage();
+    });
+};
+
+// 上一页
+Sub.prototype.prevPage = function () {
+    var data = this.opts.config;
+    if (data.nowPage > 1) {
+        data.nowPage--;
+        var oldChecked = this.selectDom.querySelector('option:checked');
+        if (oldChecked.previousElementSibling) {
+            oldChecked.selected = false;
+            oldChecked.previousElementSibling.selected = true;
+        }
+        this.nextPageEnable();
+        this.opts.callback.prevPage(this);
+        this.opts.callback.changePage(this);
+    }
+    if (data.nowPage === 1) {
+        this.prevPageDisable();
+    }
+};
+
+// 下一页
+Sub.prototype.nextPage = function () {
+    var data = this.opts.config;
+    if (data.nowPage < data.allPage) {
+        data.nowPage++;
+        var oldChecked = this.selectDom.querySelector('option:checked');
+        if (oldChecked.nextElementSibling) {
+            oldChecked.selected = false;
+            oldChecked.nextElementSibling.selected = true;
+        }
+        this.prevPageEnable();
+        this.opts.callback.nextPage(this);
+        this.opts.callback.changePage(this);
+    }
+    if (data.nowPage === data.allPage) {
+        this.nextPageDisable();
+    }
+};
+
+// 选择第几页
+Sub.prototype.selectPage = function () {
+    var data = this.opts.config;
+    data.nowPage = this.selectDom.value;
+    this.nextPageEnable();
+    this.prevPageEnable();
+    if (data.nowPage === 1) {
+        this.prevPageDisable();
+    }
+    if (data.nowPage === data.allPage) {
+        this.nextPageDisable();
+    }
+    this.opts.callback.selectPage(this);
+    this.opts.callback.changePage(this);
+};
+
+// 上一页禁用
+Sub.prototype.prevPageDisable = function () {
+    this.prevDom.classList.add(this.btnInactiveClass);
+};
+
+// 上一页启用
+Sub.prototype.prevPageEnable = function () {
+    this.prevDom.classList.remove(this.btnInactiveClass);
+};
+
+// 下一页禁用
+Sub.prototype.nextPageDisable = function () {
+    this.nextDom.classList.add(this.btnInactiveClass);
+};
+
+// 下一页启用
+Sub.prototype.nextPageEnable = function () {
+    this.nextDom.classList.remove(this.btnInactiveClass);
+};
+
+module.exports = Sub;
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {},
+            // 配置
+            config: {
+                moduleDomIsRender: false,
+                element: '.js-popover',
+                eventType: 'mouseover',
+                positionLocation: 'top-left', // 弹窗的定位位置('top-left'，'top-center'，'top-right')。
+                content: 'no popover content'
+            }
+        }, opts)));
+    }
+
+    return Sub;
+}(Super);
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+
+
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var positionLocation = 'g-popover_' + config.positionLocation; // 弹窗的定位位置
+    // 弹窗结构
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-popover ' + positionLocation,
+            innerHTML: '\n                <div class="g-popover-content">' + config.content + '</div>\n                <div class="g-popover-icon"></div>                \n            '
+        }
+    });
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    var opts = self.opts;
+    var config = opts.config;
+    var positionLocation = config.positionLocation;
+    var moduleDom = self.moduleDom;
+    if (config.eventType === 'mouseover' || config.eventType === 'mouseenter') {
+        $(config.element).on('mouseenter', function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            self.moduleDomShow();
+            setCss(this);
+            clearTimeout(self.gPopoverMouseenterTimer);
+        });
+        $(config.element).on('mouseleave', function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            fnModuleDomHide();
+        });
+        $(moduleDom).on('mouseenter', function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            clearTimeout(self.gPopoverMouseenterTimer);
+        });
+        $(moduleDom).on('mouseleave', function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            fnModuleDomHide();
+        });
+    }
+    if (config.eventType === 'click') {
+        $(config.element).on('click', function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            if (self.moduleDom.offsetWidth === 0) {
+                self.moduleDomShow();
+                setCss(this);
+            } else {
+                self.moduleDomHide();
+            }
+        });
+        $(document).on('click', function () {
+            self.moduleDomHide();
+        });
+    }
+
+    function fnModuleDomHide() {
+        self.gPopoverMouseenterTimer = setTimeout(function () {
+            self.moduleDomHide();
+        }, 60);
+    }
+
+    function setCss(eventDom) {
+        // 水平居上
+        if (positionLocation === 'top-left') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left,
+                top: $(eventDom).offset().top - moduleDom.offsetHeight
+            });
+        }
+        if (positionLocation === 'top-center') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth) / 2,
+                top: $(eventDom).offset().top - moduleDom.offsetHeight
+            });
+        }
+        if (positionLocation === 'top-right') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth),
+                top: $(eventDom).offset().top - moduleDom.offsetHeight
+            });
+        }
+        // 水平居下
+        if (positionLocation === 'bottom-left') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left,
+                top: $(eventDom).offset().top + eventDom.offsetHeight
+            });
+        }
+        if (positionLocation === 'bottom-center') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth) / 2,
+                top: $(eventDom).offset().top + eventDom.offsetHeight
+            });
+        }
+        if (positionLocation === 'bottom-right') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth),
+                top: $(eventDom).offset().top + eventDom.offsetHeight
+            });
+        }
+        // 垂直居左
+        if (positionLocation === 'left-top') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - moduleDom.offsetWidth,
+                top: $(eventDom).offset().top
+            });
+        }
+        if (positionLocation === 'left-center') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - moduleDom.offsetWidth,
+                top: $(eventDom).offset().top - (moduleDom.offsetHeight - eventDom.offsetHeight) / 2
+            });
+        }
+        if (positionLocation === 'left-bottom') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - moduleDom.offsetWidth,
+                top: $(eventDom).offset().top - (moduleDom.offsetHeight - eventDom.offsetHeight)
+            });
+        }
+        // 垂直居右
+        if (positionLocation === 'right-top') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left + eventDom.offsetWidth,
+                top: $(eventDom).offset().top
+            });
+        }
+        if (positionLocation === 'right-center') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left + eventDom.offsetWidth,
+                top: $(eventDom).offset().top - (moduleDom.offsetHeight - eventDom.offsetHeight) / 2
+            });
+        }
+        if (positionLocation === 'right-bottom') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left + eventDom.offsetWidth,
+                top: $(eventDom).offset().top - (moduleDom.offsetHeight - eventDom.offsetHeight)
+            });
+        }
+    }
+};
+
+module.exports = Sub;
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+var globalConfig = __webpack_require__(102); // 全局配置
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(json) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {},
+            // 配置
+            config: {}
+        }, json)));
+    }
+
+    // (建)(覆)内部模块的创建(覆盖超类型)
+
+
+    _createClass(Sub, [{
+        key: 'moduleDomCreate',
+        value: function moduleDomCreate() {
+            var config = this.opts.config;
+            this.moduleDom = createElement({
+                style: config.moduleDomStyle,
+                customAttribute: config.moduleDomCustomAttribute,
+                attribute: {
+                    className: 'g-progress-bar',
+                    innerHTML: '\n                    <canvas class="g-progress-bar-canvas"></canvas>\n                    <div class="g-progress-bar-text">0%</div>    \n                '
+                }
+            });
+        }
+
+        // (功)(覆)功能(覆盖超类型)
+
+    }, {
+        key: 'power',
+        value: function power() {
+            var self = this;
+            self.canvas = self.moduleDom.querySelector('.g-progress-bar-canvas');
+            self.canvasContext = self.canvas.getContext('2d');
+            self.radian = Math.PI / 180; // 弧度
+            self.canvasSetVar(); // 设置变量
+            self.canvasSetScale(0); // 设置比例
+            window.addEventListener('resize', function () {
+                self.canvasSetVar(); // 设置变量
+                self.canvasSetScale(self.canvasScaleNum || 0); // 设置比例
+            });
+        }
+    }, {
+        key: 'canvasSetVar',
+        value: function canvasSetVar() {
+            // 设置变量
+            var moduleDom = this.moduleDom;
+            var canvas = this.canvas;
+            var canvasContext = this.canvasContext;
+            this.canvasW = moduleDom.offsetWidth;
+            this.canvasH = moduleDom.offsetHeight;
+            canvas.width = this.canvasW; // 宽
+            canvas.height = this.canvasH; // 高
+            this.canvasRadius = this.canvasW / 2; // 半径
+            canvasContext.translate(this.canvasRadius, this.canvasRadius); // 平移中心点
+            canvasContext.rotate(-90 * this.radian); // 旋转90弧度
+            this.canvasCenterX = 0; // 中心点x
+            this.canvasCenterY = 0; // 中心点y
+            this.canvasBorderW = globalConfig.px2remCanvas(5); // 边框
+        }
+    }, {
+        key: 'canvasDrawCircle',
+        value: function canvasDrawCircle(strokeStyle, angle) {
+            // 画圆
+            var ctx = this.canvasContext;
+            ctx.strokeStyle = strokeStyle || '#dddddd';
+            var temporaryRadius = this.canvasRadius; // 临时半径
+            for (var i = 0; i < this.canvasBorderW; i++) {
+                ctx.beginPath();
+                ctx.arc(this.canvasCenterX, this.canvasCenterY, temporaryRadius, 0, '' + (!isNaN(angle) ? angle * this.radian : 360 * this.radian), false);
+                ctx.stroke();
+                temporaryRadius--;
+            }
+        }
+
+        // 设置比例
+
+    }, {
+        key: 'canvasSetScale',
+        value: function canvasSetScale() {
+            var num = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+            this.canvasScaleNum = num;
+            this.canvasContext.clearRect(0, 0, this.canvasW, this.canvasH); // 清理画布
+            this.canvasDrawCircle(); // 画圆
+            this.canvasDrawCircle('#67C23A', num * 3.6); // 画圆
+            this.moduleDom.querySelector('.g-progress-bar-text').innerHTML = num + '%';
+        }
+    }]);
+
+    return Sub;
+}(Super);
+
+module.exports = Sub;
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var GlobalConfig = function GlobalConfig() {
+    var _this = this;
+
+    _classCallCheck(this, GlobalConfig);
+
+    this.isH5 = window['g-is_h5'] === true; // 这里需要手动配置(默认false)。是否是手机自适应页面(canvas自适应用到了这个，手机端才有canvas自适应)。
+    this.psdWidth = window['g-psd_width'] || 320; // 这里需要手动配置(默认320)。设计图的宽。(如果是手机自适应站点，这里才会被使用到)。
+    this.psdSplit = window['g-psd_split'] || 10; // 这里需要手动配置(默认10)。页面分割数量。在此处表达的意思是：将最外层容器的宽度分成10份，则一份就是outermostContainerMaxWidth/10像素，把结果设置给html的fontSize属性，则1rem就是outermostContainerMaxWidth/10像素。
+    this.wrapDom = document.querySelector(window['g-wrap'] || 'body'); // 最外层容器的dom节点。默认body。仅支持选择器格式，例如：'.wrap'，'#container'。
+    this.wrapMaxWidth = this.wrapDom.offsetWidth; // 最外层容器的最大宽度。
+    this.resetWrapMaxWidth = function () {
+        this.wrapMaxWidth = this.wrapDom.offsetWidth; // 最外层容器的最大宽度。
+    };
+    this.px2remCanvas = function (px) {
+        // canvas自适应
+        if (this.isH5) {
+            // 如果是h5，canvas才有自适应功能
+            return px * this.wrapMaxWidth / this.psdWidth;
+        } else {
+            return px;
+        }
+    };
+    this.px2rem = function (px) {
+        // rem自适应
+        if (this.isH5) {
+            // 如果是h5，才有自适应功能
+            return px / this.psdWidth * this.psdSplit;
+        } else {
+            return px;
+        }
+    };
+    window.addEventListener('resize', function () {
+        // 重置最大宽度
+        _this.resetWrapMaxWidth();
+    });
+};
+
+module.exports = new GlobalConfig();
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {
+                click: function click() {}
+            },
+            // 配置
+            config: {
+                isHand: false, // 是否手动控制
+                status: 'on', // 状态
+                text: {
+                    on: '已开启',
+                    off: '已关闭'
+                }
+            }
+        }, opts)));
+    }
+
+    return Sub;
+}(Super);
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+
+
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    this.moduleDomActiveClass = 'g-radio-switch_active';
+    var isOn = '';
+    if (config.status === 'on') {
+        isOn = this.moduleDomActiveClass;
+    }
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-radio-switch ' + isOn,
+            innerHTML: '\n                <div class="g-radio-switch-body">\n                    <div class="g-radio-switch-body-round"></div>\n                </div>\n                <div class="g-radio-switch-text">' + config.text[config.status] + '</div>\n            '
+        }
+    });
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    var config = this.opts.config;
+    this.moduleDom.addEventListener('click', function () {
+        if (!config.isHand) {
+            if (!self.isOn()) {
+                self.on();
+            } else {
+                self.off();
+            }
+        }
+        self.opts.callback.click({ status: config.status });
+    });
+};
+
+// 是否处于开启状态
+Sub.prototype.isOn = function () {
+    return this.moduleDom.classList.contains(this.moduleDomActiveClass);
+};
+
+// 开启
+Sub.prototype.on = function () {
+    var config = this.opts.config;
+    if (!this.isOn()) {
+        this.moduleDom.classList.add(this.moduleDomActiveClass);
+        config.status = 'on';
+        this.moduleDom.querySelector('.g-radio-switch-text').innerHTML = '' + config.text[config.status];
+    }
+};
+
+// 关闭
+Sub.prototype.off = function () {
+    var config = this.opts.config;
+    if (this.isOn()) {
+        this.moduleDom.classList.remove(this.moduleDomActiveClass);
+        config.status = 'off';
+        this.moduleDom.querySelector('.g-radio-switch-text').innerHTML = '' + config.text[config.status];
+    }
+};
+
+module.exports = Sub;
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(json) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {
+                click: function click(json) {}
+            },
+            // 配置
+            config: {
+                items: [],
+                /*
+                items: [
+                    {
+                        name: 'synthesize',
+                        text: '综合',
+                        hasSort: false,
+                    },
+                    {
+                        name: 'sale',
+                        text: '销量',
+                        hasSort: true,
+                    },
+                    {
+                        name: 'price',
+                        text: '价格',
+                        hasSort: true,
+                    },
+                ],
+                */
+                defaultIndex: 0,
+                defaultSortMethod: 'asc' // asc升序 desc降序
+            }
+        }, json)));
+    }
+
+    // (建)(覆)内部模块的创建(覆盖超类型)
+
+
+    _createClass(Sub, [{
+        key: 'moduleDomCreate',
+        value: function moduleDomCreate() {
+            var innerHTML = '';
+            var config = this.opts.config;
+            var items = config.items || [];
+            var defaultIndex = config.defaultIndex;
+            var defaultSortMethod = config.defaultSortMethod;
+            if (!items.length) {
+                return;
+            }
+            items.forEach(function (v, i) {
+                innerHTML += '\n                <div data-name="' + v.name + '" class="g-sort-tab-item ' + (defaultIndex === i ? 'g-sort-tab-item_active' : '') + '">\n                    <div class="g-sort-tab-item-text">' + v.text + '</div>\n                    ' + (v.hasSort ? '<div class="g-sort-tab-item-icon">\n                        <div data-sort-method="asc" class="g-sort-tab-item-icon-item ' + (defaultSortMethod === 'asc' && defaultIndex === i ? 'g-sort-tab-item-icon-item_active' : '') + '"></div>\n                        <div data-sort-method="desc" class="g-sort-tab-item-icon-item ' + (defaultSortMethod === 'desc' && defaultIndex === i ? 'g-sort-tab-item-icon-item_active' : '') + '"></div>\n                    </div>' : '') + '\n                </div>\n            ';
+            });
+            this.moduleDom = createElement({
+                style: config.moduleDomStyle,
+                customAttribute: config.moduleDomCustomAttribute,
+                attribute: {
+                    className: 'g-sort-tab',
+                    innerHTML: innerHTML
+                }
+            });
+        }
+
+        // (功)(覆)功能(覆盖超类型)
+
+    }, {
+        key: 'power',
+        value: function power() {
+            var opts = this.opts;
+            var config = opts.config;
+            var callback = opts.callback;
+            var defaultSortMethod = config.defaultSortMethod;
+            var moduleDom = this.moduleDom;
+            var items = moduleDom.querySelectorAll('.g-sort-tab-item');
+            var itemClass = 'g-sort-tab-item';
+            var itemActiveClass = 'g-sort-tab-item_active';
+            var sortClass = 'g-sort-tab-item-icon-item';
+            var sortActiveClass = 'g-sort-tab-item-icon-item_active';
+            items.forEach(function (v) {
+                v.addEventListener('click', function () {
+                    if (this.classList.contains(itemActiveClass)) {
+                        var _sortActiveDom = this.querySelector('.' + sortActiveClass);
+                        if (_sortActiveDom) {
+                            _sortActiveDom.classList.remove(sortActiveClass);
+                            _sortActiveDom.nextElementSibling && _sortActiveDom.nextElementSibling.classList.add(sortActiveClass);
+                            _sortActiveDom.previousElementSibling && _sortActiveDom.previousElementSibling.classList.add(sortActiveClass);
+                        }
+                    } else {
+                        moduleDom.querySelectorAll('.' + itemClass).forEach(function (v2) {
+                            v2.classList.remove(itemActiveClass);
+                            v2.querySelectorAll('.' + sortClass).forEach(function (v3) {
+                                v3.classList.remove(sortActiveClass);
+                            });
+                        });
+                        this.classList.add(itemActiveClass);
+                        var sortDomAll = this.querySelectorAll('.' + sortClass);
+                        if (defaultSortMethod === 'asc') {
+                            sortDomAll[0] && sortDomAll[0].classList.add(sortActiveClass);
+                        } else {
+                            sortDomAll[1] && sortDomAll[1].classList.add(sortActiveClass);
+                        }
+                    }
+                    var itemActiveDom = moduleDom.querySelector('.' + itemActiveClass);
+                    var sortActiveDom = itemActiveDom.querySelector('.' + sortActiveClass);
+                    callback.click({
+                        name: itemActiveDom.dataset.name,
+                        sortMethod: sortActiveDom ? sortActiveDom.dataset.sortMethod : ''
+                    });
+                });
+            });
+        }
+    }]);
+
+    return Sub;
+}(Super);
+
+module.exports = Sub;
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {
+                click: function click(obj) {}
+            },
+            // 配置
+            config: {
+                isHaveEvent: true, // 是否具备事件(默认具备)
+                allStarNum: 5, // 所有的星星数
+                nowStarNum: 4 // 当前被选择的星星数
+            }
+        }, opts)));
+    }
+
+    return Sub;
+}(Super);
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+
+
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    var html = '';
+    for (var i = 0; i < this.opts.config.allStarNum; i++) {
+        var className = '';
+        if (i < this.opts.config.nowStarNum) {
+            className = 'g-star-item_active';
+        }
+        html += '<div data-index="' + i + '" class="g-iconfont g-icon-star g-star-item ' + className + '"></div>';
+    }
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-star',
+            innerHTML: html
+        }
+    });
+    this.opts.star = this.moduleDom.children;
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {
+    var self = this;
+    if (this.opts.config.isHaveEvent) {
+        this.moduleDom.addEventListener('click', function (ev) {
+            var target = ev.target;
+            if (target.classList.contains('g-star-item')) {
+                var index = target.dataset.index;
+                for (var j = 0; j < self.opts.config.allStarNum; j++) {
+                    if (j <= index) {
+                        self.opts.star[j].classList.add('g-star-item_active');
+                    } else {
+                        self.opts.star[j].classList.remove('g-star-item_active');
+                    }
+                }
+                self.opts.callback.click({ element: this, index: index });
+            }
+        });
+    }
+};
+
+module.exports = Sub;
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(json) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {},
+            // 配置
+            config: {}
+        }, json)));
+    }
+
+    // (建)(覆)内部模块的创建(覆盖超类型)
+
+
+    _createClass(Sub, [{
+        key: 'moduleDomCreate',
+        value: function moduleDomCreate() {
+            var config = this.opts.config;
+            this.moduleDom = createElement({
+                style: config.moduleDomStyle,
+                customAttribute: config.moduleDomCustomAttribute,
+                attribute: {
+                    className: 'g-sub-type',
+                    innerHTML: '\n                    <div class="g-sub-type-text" style="text-align: center;">\u5468\u534E\u98DE\u7231\u4FAF\u4E3D\u6770,\u4FAF\u4E3D\u6770\u7231\u5468\u534E\u98DEsub-es6</div>\n                '
+                }
+            });
+        }
+
+        // (功)(覆)功能(覆盖超类型)
+
+    }, {
+        key: 'power',
+        value: function power() {}
+    }]);
+
+    return Sub;
+}(Super);
+
+module.exports = Sub;
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var extend = __webpack_require__(0); // 对象的扩展
+var createElement = __webpack_require__(1); // 创建元素
+var Super = __webpack_require__(2); // 超类型(子类型继承的对象)
+
+// 子类型
+
+var Sub = function (_Super) {
+    _inherits(Sub, _Super);
+
+    function Sub(opts) {
+        _classCallCheck(this, Sub);
+
+        return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).call(this, extend({
+            // 回调
+            callback: {},
+            // 配置
+            config: {
+                header: [{ content: 'undefined-header0' }, { content: 'undefined-header1' }, { content: 'undefined-header2' }],
+                body: [[{ content: 'undefined-body0-0' }, { content: 'undefined-body0-1' }, { content: 'undefined-body0-2' }]],
+                footer: ''
+            }
+        }, opts)));
+    }
+
+    return Sub;
+}(Super);
+
+// (建)(覆)内部模块的创建(覆盖超类型)
+
+
+Sub.prototype.moduleDomCreate = function () {
+    var config = this.opts.config;
+    this.moduleDom = createElement({
+        style: config.moduleDomStyle,
+        customAttribute: config.moduleDomCustomAttribute,
+        attribute: {
+            className: 'g-table',
+            innerHTML: '\n                <div class="g-table-header">\n                    <div class="g-table-row">\n                        ' + this.moduleDomCreateHeader() + '\n                    </div>\n                </div>\n                <div class="g-table-body">\n                    ' + this.moduleDomCreateBody() + '\n                </div>\n                <div class="g-table-footer">\n                    ' + this.moduleDomCreateFooter() + '\n                </div>\n            '
+        }
+    });
+};
+
+Sub.prototype.moduleDomCreateHeader = function () {
+    var html = '';
+    this.opts.config.header.forEach(function (v) {
+        html += '\n            <div class="g-table-col">\n                <div class="g-table-col-body">\n                    ' + v.content + '\n                </div>\n            </div>\n        ';
+    });
+    return html;
+};
+
+Sub.prototype.moduleDomCreateBody = function () {
+    var html = '';
+    this.opts.config.body.forEach(function (v0) {
+        var row = '';
+        v0.forEach(function (v1) {
+            row += '\n                <div class="g-table-col">\n                    <div class="g-table-col-body">\n                        ' + v1.content + '\n                    </div>\n                </div>\n            ';
+        });
+        html += '<div class="g-table-row">' + row + '</div>';
+    });
+    return html;
+};
+
+Sub.prototype.moduleDomCreateFooter = function () {
+    return this.opts.config.footer;
+};
+
+// (功)(覆)功能(覆盖超类型)
+Sub.prototype.power = function () {};
+
+module.exports = Sub;
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var extend = __webpack_require__(0); // 对象的扩展
+var Tooltip = __webpack_require__(40); // 工具提示框(文本提示框)
+
+// 工具提示框(文本提示框)的应用
+function Sub(opts) {
+    this.opts = extend({
+        element: '.js-g-tooltip',
+        eventType: 'mouseover',
+        positionLocation: 'top-left' // 弹窗的定位位置('top-left'，'top-center'，'top-right')。
+    }, opts);
+    this.init();
+}
+
+Sub.prototype.init = function () {
+    var self = this;
+    var opts = self.opts;
+    var positionLocation = opts.positionLocation;
+    if (opts.eventType === 'mouseover' || opts.eventType === 'mouseenter') {
+        $(document).on('mouseenter', opts.element, function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            var dom = this;
+            clearTimeout(dom.gTooltipMouseenterTimer);
+            if (!dom.gTooltipMouseenter) {
+                dom.gTooltipMouseenter = new Tooltip({
+                    config: {
+                        positionLocation: opts.positionLocation,
+                        content: dom.dataset.title,
+                        elementDom: dom
+                    }
+                });
+                var moduleDom = dom.gTooltipMouseenter.moduleDom;
+                setCss(moduleDom, dom);
+                moduleDom.classList.add('g-opacity-0');
+                setTimeout(function () {
+                    moduleDom.classList.add('g-transition');
+                    moduleDom.classList.remove('g-opacity-0');
+                }, 200);
+                if (!moduleDom.hasEventMouseenter) {
+                    moduleDom.hasEventMouseenter = true;
+                    // 绑定事件
+                    $(moduleDom).on('mouseenter', function (ev) {
+                        ev.preventDefault();
+                        ev.stopPropagation();
+                        clearTimeout(dom.gTooltipMouseenterTimer);
+                    });
+                    $(moduleDom).on('mouseleave', function (ev) {
+                        ev.preventDefault();
+                        ev.stopPropagation();
+                        moduleDomHide(dom);
+                    });
+                }
+            }
+        });
+        $(document).on('mouseleave', opts.element, function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            moduleDomHide(this);
+        });
+    }
+
+    function moduleDomHide(dom) {
+        dom.gTooltipMouseenterTimer = setTimeout(function () {
+            dom.gTooltipMouseenter.moduleDomHide();
+            delete dom.gTooltipMouseenter;
+        }, 60);
+    }
+
+    if (opts.eventType === 'click') {
+        $(document).on('click', opts.element, function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            if (!this.gTooltipClick) {
+                this.gTooltipClick = new Tooltip({
+                    config: {
+                        positionLocation: opts.positionLocation,
+                        content: this.dataset.title,
+                        elementDom: this
+                    }
+                });
+                setCss(this.gTooltipClick.moduleDom, this);
+            } else {
+                if (this.gTooltipClick.moduleDom.offsetWidth === 0) {
+                    this.gTooltipClick.moduleDomShow();
+                } else {
+                    this.gTooltipClick.moduleDomHide();
+                }
+            }
+        });
+    }
+
+    function setCss(moduleDom, eventDom) {
+        if (positionLocation === 'top-left') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left,
+                top: $(eventDom).offset().top - moduleDom.offsetHeight
+            });
+        }
+        if (positionLocation === 'top-center') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth) / 2,
+                top: $(eventDom).offset().top - moduleDom.offsetHeight
+            });
+        }
+        if (positionLocation === 'top-right') {
+            $(moduleDom).css({
+                left: $(eventDom).offset().left - (moduleDom.offsetWidth - eventDom.offsetWidth),
+                top: $(eventDom).offset().top - moduleDom.offsetHeight
+            });
+        }
+    }
+};
+
+module.exports = Sub;
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var extend = __webpack_require__(0); // 工具方法集合
+var checkStr = __webpack_require__(110);
+var getParent = __webpack_require__(111);
+var getDomArray = __webpack_require__(9);
+
+function Validate(json) {
+    this.opts = extend({
+        element: '',
+        hintWrapClass: 'g-form', // 指定提示框的父级
+        fileActiveClass: 'g-upload_active', // 文件或者图片上传成功之后的class，做限制个数需要这个
+        isBindEvent: true // 是否绑定事件
+    }, json);
+    this.init();
+}
+
+Validate.prototype.init = function () {
+    this.hintClass = 'g-validate';
+    this.render();
+    if (this.opts.isBindEvent) {
+        this.power();
+    }
+};
+Validate.prototype.render = function () {
+    var self = this;
+    self.element = getDomArray(this.opts.element); // 为了兼容未来动态创建的元素，此方法会被多次调用，元素要重新获取。
+    self.element.forEach(function (v) {
+        if (!v.hintWrapDom) {
+            // 为了兼容未来动态创建的元素，此方法会被多次调用，为了提高性能，所以这里不重新赋值，虽然此处可以重新赋值。
+            var hintWrapDom = self.getHintWrapDom(v);
+            if (hintWrapDom) {
+                // 如果外部容器没有定位，则给外部容器增加一个定位。
+                if (getComputedStyle(hintWrapDom).position === 'static') {
+                    hintWrapDom.style.position = 'relative';
+                }
+                v.hintWrapDom = hintWrapDom;
+            }
+        }
+        if (!v.hintDom) {
+            // 为了兼容未来动态创建的元素，此方法会被多次调用，但是这里却不能重新赋值，否则会导致引用消失，以至于renderHintAdd时修改hintDom内g-validate-text的innerHTML失效。
+            v.hintDom = document.createElement('span');
+            v.hintDom.innerHTML = '\n                <span class="g-validate-text"></span>\n                <span class="g-validate-icon"></span>\n            ';
+            v.hintDom.classList.add(self.hintClass);
+        }
+    });
+};
+Validate.prototype.getHintWrapDom = function (input) {
+    var hintWrapClass = this.opts.hintWrapClass;
+    var parent = getParent(input, '.' + hintWrapClass); // 把这个放上面，是为了少调用一次getParent方法，因为g-form布局用的居多，g-validate-wrap没怎么使用。
+    if (!parent) {
+        parent = getParent(input, '.g-validate-wrap');
+    }
+    if (!parent) {
+        parent = input.parentNode;
+    }
+    return parent;
+};
+Validate.prototype.renderHintAdd = function () {
+    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    var input = opts.input;
+    var hintDom = input.hintDom;
+    if (hintDom) {
+        hintDom.querySelector('.g-validate-text').innerHTML = opts.txt;
+        var hintWrapDom = input.hintWrapDom;
+        var hintDomIsExist = hintWrapDom.querySelector('.' + this.hintClass);
+        if (hintWrapDom && !hintDomIsExist) {
+            // hintWrapDom.appendChild(hintDom);
+            hintWrapDom.insertBefore(hintDom, hintWrapDom.children[0]);
+        }
+    }
+};
+Validate.prototype.renderHintRemove = function () {
+    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    var input = opts.input;
+    var hintWrapDom = input.hintWrapDom;
+    var hintDom = hintWrapDom.querySelector('.' + this.hintClass);
+    if (hintWrapDom && hintDom) {
+        hintWrapDom.removeChild(hintDom);
+    }
+};
+Validate.prototype.validateInput = function (input) {
+    var self = this;
+    var opts = self.opts;
+    if (input.offsetWidth === 0) {
+        // 不验证宽度为0的input(display为none时不验证)(只有没被隐藏的才进行验证)
+        return;
+    }
+    var validateType = input.dataset.validate || 'undefined';
+    var validateHintTxt = input.dataset.hint || 'undefined';
+    var type = validateType.split(' ');
+    var hintTxt = validateHintTxt.split(' ');
+    var hintWrapDom = input.hintWrapDom;
+    var inputType = input.type;
+    var inputName = input.name; // 这个不能使用，因为有些name名称是这种格式 hobby[] 此时通过name获取会报错 -> 纠正 其实不会报错 只需要 input[name=""] 把变量放在双引号里拼接一下就行了
+    var isPassword = inputType === 'password';
+    var isRadio = inputType === 'radio';
+    var isCheckbox = inputType === 'checkbox';
+    var isFile = input.dataset.type === 'file' || inputType === 'file'; // 如果是file类型的input
+    var value = input.value;
+    if (isFile) {
+        // 如果是file类型的input，值就是input身上的自定义属性data-value
+        value = input.dataset.value;
+    }
+    // 处理自定义规则(每次验证都处理，可以保证setValidate对未来元素也有效)
+    if (this.customValidateRule) {
+        this.element.forEach(function (v1) {
+            if (!v1.customValidateRule) {
+                v1.customValidateRule = {}; // 自定义规则
+            }
+            Object.values(self.customValidateRule).forEach(function (v2) {
+                v1.customValidateRule[v2.name] = {
+                    fn: v2.fn,
+                    isValidateSuccess: false
+                };
+            });
+        });
+    }
+    // 验证自定义的规则
+    var customValidateRule = input.customValidateRule || {};
+    Object.keys(customValidateRule).forEach(function (keys) {
+        var obj = customValidateRule[keys];
+        obj.isValidateSuccess = obj.fn(value);
+    });
+    // 验证非自定义的规则
+    var isValidateSuccess = true; // 是否验证成功了，假设验证通过了。
+    type.forEach(function (v, i) {
+        if (isValidateSuccess && customValidateRule[v]) {
+            // 验证通过了且自定义验证存在则校验自定义的规则是否通过了
+            if (isValidateSuccess && customValidateRule[v].isValidateSuccess) {
+                self.renderHintRemove({ input: input });
+                isValidateSuccess = true;
+            } else {
+                self.renderHintAdd({ txt: hintTxt[i], input: input });
+                isValidateSuccess = false;
+            }
+        }
+        if (isValidateSuccess && !customValidateRule[v]) {
+            // 验证通过了且自定义验证不存在则校验非自定义的规则是否通过了
+            if (isValidateSuccess && v === 'no-empty') {
+                // 设置了非空验证
+                var isEmpty = checkStr.isEmpty(value);
+                if (isPassword) {
+                    // input为password类型的进行特殊处理
+                    isEmpty = value === ''; // 因为密码可以输入空格，所以没必要去除首尾空格。
+                }
+                if (isRadio || isCheckbox) {
+                    // input为radio类型和input为checkbox类型的进行特殊处理（这两种类型只验证是否必填就够用了，file类型和select下拉框也是只验证必填就够用了。）
+                    var isChecked = hintWrapDom.querySelector('input[name="' + inputName + '"]:checked');
+                    isEmpty = isChecked === null;
+                }
+                if (isEmpty) {
+                    self.renderHintAdd({ txt: hintTxt[i], input: input });
+                    isValidateSuccess = false;
+                } else {
+                    self.renderHintRemove({ input: input });
+                    isValidateSuccess = true;
+                }
+            }
+            if (isValidateSuccess && v === 'no-zero') {
+                // 设置了非零验证
+                if (checkStr.isZero(value)) {
+                    self.renderHintAdd({ txt: hintTxt[i], input: input });
+                    isValidateSuccess = false;
+                } else {
+                    self.renderHintRemove({ input: input });
+                    isValidateSuccess = true;
+                }
+            }
+            if (isValidateSuccess && v === 'yes-positive-integer') {
+                // 设置了正整数验证
+                if (checkStr.isPositiveInteger(value)) {
+                    self.renderHintRemove({ input: input });
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({ txt: hintTxt[i], input: input });
+                    isValidateSuccess = false;
+                }
+            }
+            if (isValidateSuccess && v === 'yes-positive-float') {
+                // 设置了正浮点数验证
+                if (checkStr.isPositiveFloat(value)) {
+                    self.renderHintRemove({ input: input });
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({ txt: hintTxt[i], input: input });
+                    isValidateSuccess = false;
+                }
+            }
+            if (isValidateSuccess && v === 'yes-phone') {
+                // 设置了电话验证
+                if (checkStr.isPhoneNumEasy(value)) {
+                    self.renderHintRemove({ input: input });
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({ txt: hintTxt[i], input: input });
+                    isValidateSuccess = false;
+                }
+            }
+            if (isValidateSuccess && v === 'yes-email') {
+                // 设置了邮箱验证
+                if (checkStr.isEmail(value)) {
+                    self.renderHintRemove({ input: input });
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({ txt: hintTxt[i], input: input });
+                    isValidateSuccess = false;
+                }
+            }
+            if (isValidateSuccess && v === 'yes-url') {
+                // 设置了网址验证
+                if (checkStr.isUrl(value)) {
+                    self.renderHintRemove({ input: input });
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({ txt: hintTxt[i], input: input });
+                    isValidateSuccess = false;
+                }
+            }
+            var yesLimitLength = /yes-limit-length-(\d+)/.exec(v);
+            if (isValidateSuccess && yesLimitLength) {
+                // 设置了限制长度
+                var length = yesLimitLength[1];
+                var isPassLimitLength = value.length > length;
+                if (isCheckbox) {
+                    // input为checkbox类型的进行特殊处理
+                    var checkboxAll = hintWrapDom.querySelectorAll('input[name="' + inputName + '"]:checked');
+                    isPassLimitLength = length >= checkboxAll.length;
+                }
+                if (isFile) {
+                    // input为file类型的进行特殊处理
+                    var fileAll = hintWrapDom.querySelectorAll('.' + opts.fileActiveClass); // 这个class应该放到opts里，是可配置的。
+                    isPassLimitLength = length >= fileAll.length;
+                }
+                if (isPassLimitLength) {
+                    self.renderHintRemove({ input: input });
+                    isValidateSuccess = true;
+                } else {
+                    self.renderHintAdd({ txt: hintTxt[i], input: input });
+                    isValidateSuccess = false;
+                }
+            }
+        }
+    });
+    input.isValidateSuccess = isValidateSuccess;
+};
+Validate.prototype.isAllPassValidate = function () {
+    var self = this;
+    self.render(); // 为了兼容未来动态创建的元素，这里需要重新渲染并绑定属性
+    var isValidateSuccess = true;
+    self.element.forEach(function (v) {
+        self.validateInput(v);
+        if (v.isValidateSuccess !== true) {
+            isValidateSuccess = false;
+        }
+    });
+    return isValidateSuccess;
+};
+Validate.prototype.power = function () {
+    var self = this;
+    var eventIsRepeat = {};
+    self.element.forEach(function (v) {
+        var eventsType = v.dataset.event || 'blur';
+        // js原生事件无法给未来动态创建的元素加事件，除非我用自己封装的那个事件委托进行绑定，但是代码上百行，还是直接用jq的吧。
+        // jq的事件委托很奇葩，如果input里有值，清空之后失去焦点会触发两次，没有值触发一次。
+        // 奇葩的原因是因为委托了blur和change事件，blur的时候如果value改变了，会触发blur和change，所以会触发两次，没毛病。
+        // jq的事件委托可以给未来动态创建的元素加事件，但是事件会被绑定多次(因为外部的forEach循环)，所以我定义了一个eventIsRepeat来进行过滤。
+        var name = eventsType + self.opts.element;
+        if (!eventIsRepeat[name]) {
+            eventIsRepeat[name] = true;
+            $(document).on(eventsType, self.opts.element, function () {
+                self.render(); // 为了兼容未来动态创建的元素，这里需要重新渲染并绑定属性
+                self.validateInput(this);
+            });
+        }
+    });
+};
+
+// 自定义验证规则
+Validate.prototype.setValidate = function (name, fn) {
+    if (!this.customValidateRule) {
+        this.customValidateRule = {}; // 自定义规则
+    }
+    this.customValidateRule[name] = {
+        name: name,
+        fn: fn
+    };
+};
+
+module.exports = Validate;
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterator) ? function (t) {
+  return typeof t === "undefined" ? "undefined" : _typeof2(t);
+} : function (t) {
+  return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t === "undefined" ? "undefined" : _typeof2(t);
+};!function (t, e) {
+  "object" === ( false ? "undefined" : _typeof(exports)) && "undefined" != typeof module ? module.exports = e() :  true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (e),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : window && ("object" !== Object.prototype.toString.call(window.zhf).slice(8, -1).toLowerCase() && (window.zhf = {}), window.zhf.checkStr = e());
+}(0, function () {
+  function t(t) {
+    return String(t).trim();
+  }function e(e, n) {
+    n = t(n);var i = !1;return e && ("+" !== n[0] && "-" !== n[0] || (n = n.substring(1)), (n = n.split("."))[0].length > 1 && "0" !== n[0][0] && (i = !0), 1 === n[0].length && (i = !0)), i;
+  }return { isEmpty: function isEmpty(e) {
+      return "" === t(e);
+    }, isZero: function isZero(e) {
+      return "" !== (e = t(e)) && (e = Number(e).toString()), "0" === e;
+    }, isNumberDefault: function isNumberDefault(e) {
+      return (/^[-+]?\d+(\.\d+)?$/.test(t(e))
+      );
+    }, isNumberNoPlusSign: function isNumberNoPlusSign(e) {
+      return (/^[-]?\d+(\.\d+)?$/.test(t(e))
+      );
+    }, isNumberNoZeroPrefix: function isNumberNoZeroPrefix(t) {
+      return e(this.isNumberDefault(t), t);
+    }, isNumber: function isNumber(t) {
+      return this.isNumberNoPlusSign(t) && this.isNumberNoZeroPrefix(t);
+    }, isIntegerDefault: function isIntegerDefault(e) {
+      return (/^[-+]?\d+$/.test(t(e))
+      );
+    }, isIntegerNoPlusSign: function isIntegerNoPlusSign(e) {
+      return (/^(-)?\d+$/.test(t(e))
+      );
+    }, isIntegerNoZeroPrefix: function isIntegerNoZeroPrefix(t) {
+      return e(this.isIntegerDefault(t), t);
+    }, isInteger: function isInteger(t) {
+      return this.isIntegerNoPlusSign(t) && this.isIntegerNoZeroPrefix(t);
+    }, isPositiveIntegerDefault: function isPositiveIntegerDefault(e) {
+      return (/^[+]?0*[1-9]\d*$/.test(t(e))
+      );
+    }, isPositiveIntegerNoPlusSign: function isPositiveIntegerNoPlusSign(e) {
+      return (/^0*[1-9]\d*$/.test(t(e))
+      );
+    }, isPositiveIntegerNoZeroPrefix: function isPositiveIntegerNoZeroPrefix(e) {
+      return (/^[+]?[1-9]\d*$/.test(t(e))
+      );
+    }, isPositiveInteger: function isPositiveInteger(e) {
+      return (/^[1-9]\d*$/.test(t(e))
+      );
+    }, isNegativeIntegerDefault: function isNegativeIntegerDefault(e) {
+      return (/^-0*[1-9]\d*$/.test(t(e))
+      );
+    }, isNegativeInteger: function isNegativeInteger(e) {
+      return (/^-[1-9]\d*$/.test(t(e))
+      );
+    }, isFloatDefault: function isFloatDefault(e, n) {
+      return (isNaN(n) || !isNaN(n) && Number(n) < 1) && (n = "1,"), new RegExp("^[-+]?\\d+\\.\\d{" + n + "}$").test(t(e));
+    }, isFloatNoPlusSign: function isFloatNoPlusSign(e, n) {
+      return (isNaN(n) || !isNaN(n) && Number(n) < 1) && (n = "1,"), new RegExp("^[-]?\\d+\\.\\d{" + n + "}$").test(t(e));
+    }, isFloatNoZeroPrefix: function isFloatNoZeroPrefix(t, n) {
+      return e(this.isFloatDefault(t, n), t);
+    }, isFloat: function isFloat(t, e) {
+      return this.isFloatNoPlusSign(t, e) && this.isFloatNoZeroPrefix(t, e);
+    }, isPositiveFloatDefault: function isPositiveFloatDefault(e, n) {
+      (isNaN(n) || !isNaN(n) && Number(n) < 1) && (n = "1,");var i = new RegExp("^[+]?\\d+\\.\\d{" + n + "}$"),
+          r = t(e);return 0 !== Number(r) && i.test(r);
+    }, isPositiveFloatNoPlusSign: function isPositiveFloatNoPlusSign(e, n) {
+      (isNaN(n) || !isNaN(n) && Number(n) < 1) && (n = "1,");var i = new RegExp("^\\d+\\.\\d{" + n + "}$"),
+          r = t(e);return 0 !== Number(r) && i.test(r);
+    }, isPositiveFloatNoZeroPrefix: function isPositiveFloatNoZeroPrefix(t, n) {
+      return e(this.isPositiveFloatDefault(t, n), t);
+    }, isPositiveFloat: function isPositiveFloat(t, e) {
+      return this.isPositiveFloatNoPlusSign(t, e) && this.isPositiveFloatNoZeroPrefix(t, e);
+    }, isNegativeFloatDefault: function isNegativeFloatDefault(e, n) {
+      (isNaN(n) || !isNaN(n) && Number(n) < 1) && (n = "1,");var i = new RegExp("^-\\d+\\.\\d{" + n + "}$"),
+          r = t(e);return 0 !== Number(r) && i.test(r);
+    }, isNegativeFloat: function isNegativeFloat(t, n) {
+      return e(this.isNegativeFloatDefault(t, n), t);
+    }, isPhoneNum: function isPhoneNum(e) {
+      return (/^1[3456789]\d{9}$/.test(t(e))
+      );
+    }, isPhoneNumEasy: function isPhoneNumEasy(e) {
+      return (/^1\d{10}$/.test(t(e))
+      );
+    }, isEmail: function isEmail(e) {
+      return (/^([0-9A-Za-z\-_.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/.test(t(e))
+      );
+    }, isIp: function isIp(e) {
+      return (/^(?:(?:2[0-4][0-9]\.)|(?:25[0-5]\.)|(?:1[0-9][0-9]\.)|(?:[1-9][0-9]\.)|(?:[0-9]\.)){3}(?:(?:2[0-5][0-5])|(?:25[0-5])|(?:1[0-9][0-9])|(?:[1-9][0-9])|(?:[0-9]))$/.test(t(e))
+      );
+    }, isIdCardNum: function isIdCardNum(e) {
+      return (/(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/.test(t(e))
+      );
+    }, isIdCardNumEasy: function isIdCardNumEasy(e) {
+      return (/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(t(e))
+      );
+    }, isChinese: function isChinese(e) {
+      return (/^[\u4e00-\u9fa5]+$/.test(t(e))
+      );
+    }, isEnglish: function isEnglish(e) {
+      return (/^[a-zA-Z]+$/.test(t(e))
+      );
+    }, isDoubleByteChar: function isDoubleByteChar(e) {
+      return (/^[^\x00-\xff]+$/.test(t(e))
+      );
+    }, isLowercase: function isLowercase(e) {
+      return (/^[a-z]+$/.test(t(e))
+      );
+    }, isUppercase: function isUppercase(e) {
+      return (/^[A-Z]+$/.test(t(e))
+      );
+    }, isUrl: function isUrl(e) {
+      return (/^(?:http(?:s|):\/\/|)(?:(?:\w*?)\.|)(?:\w*?)\.(?:\w{2,4})(?:\?.*|\/.*|)$/.test(t(e))
+      );
+    }, isPostalCode: function isPostalCode(e) {
+      return (/^[1-9]\d{5}$/.test(t(e))
+      );
+    }, isDate: function isDate(e) {
+      return (/(^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$)|(^[1-9]\d{3}\/(0[1-9]|1[0-2])\/(0[1-9]|[1-2][0-9]|3[0-1])$)/.test(t(e))
+      );
+    }, isTime: function isTime(e) {
+      return (/^(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d$/.test(t(e))
+      );
+    }, isDateTime: function isDateTime(e) {
+      return (/^([1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]))|([1-9]\d{3}\/(0[1-9]|1[0-2])\/(0[1-9]|[1-2][0-9]|3[0-1]))\s+(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d$/.test(t(e))
+      );
+    } };
+});
+
+/***/ }),
+/* 111 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var getDomArray = __webpack_require__(9);function getParent(e, r) {
+  if (!(e = getDomArray(e)[0])) return console.log("第一个参数有误"), null;if (!r) return e.parentNode;if ("string" == typeof r) switch (e = e.parentNode, r.charAt(0)) {case ".":
+      for (; e;) {
+        if (!e.classList) return console.log("no find class"), null;if (e.classList.contains(r.substring(1))) return e;e = e.parentNode;
+      }break;case "#":
+      for (; e;) {
+        if (e === document) return console.log("no find id"), null;if (e.id === r.substring(1)) return e;e = e.parentNode;
+      }break;default:
+      for (; e;) {
+        if (e === document) return console.log("no find tagName"), null;if (e.tagName.toLowerCase() === r) return e;e = e.parentNode;
+      }}return null;
+}module.exports = getParent;
 
 /***/ })
 ]);
