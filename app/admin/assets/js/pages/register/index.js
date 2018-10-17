@@ -4,12 +4,8 @@ const form = document.querySelector('.form');
 const verifyCodeCanvas = document.querySelector('.g-verify-code-canvas img');
 const verifyCodeRandom = document.querySelector('.g-verify-code-random');
 const verifyCodeRandomHtml = verifyCodeRandom.innerHTML;
-const ajax = require('../../api/ajax');
 const userName = $('input[name=username]');
 const timeCountDown = require('zhf.time-count-down');
-const {
-    Message,
-} = require('zhf.g-ui/src/js/commons_dom/g-common.js');
 
 class Sub extends Super {
     // (功)(覆)功能(覆盖超类型)
@@ -18,6 +14,7 @@ class Sub extends Super {
         const dataInfo = superSelf.dataInfo;
         const routes = dataInfo.routes;
         const api = dataInfo.api;
+        const ajax = superSelf.ajax;
 
         // 发送验证码
         $('.js-verify-code-random').on('click', function () {
