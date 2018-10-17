@@ -138,6 +138,5 @@ const redisClient = require('./db/redis');
 redisClient.on('connect', function () {
     // 把redis的客户端应用到全局的app上使用
     app.redisClient = redisClient;
-    redisClient.set('zhou01', 'huafei0待续...');
     server();
 });
