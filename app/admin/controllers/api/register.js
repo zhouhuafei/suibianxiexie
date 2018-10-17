@@ -81,6 +81,7 @@ class Sub extends Super {
                                 return;
                             }
                             // 数据库插入成功
+                            redisClient.del(`admin-${username}_verify-code-random_register-sending`);
                             redisClient.del(`admin-${username}_verify-code-random_register`, function (error, value) {
                                 if (error) {
                                     self.render({
