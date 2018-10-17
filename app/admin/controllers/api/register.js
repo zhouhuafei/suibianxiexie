@@ -1,5 +1,6 @@
 const Super = require('../api-super/super'); // 超类型
 const checkStr = require('zhf.check-str');
+const Admin = require('../../models/mongoose/admin');
 
 class Sub extends Super {
     // (增)(覆)增加数据(覆盖超类型)
@@ -41,7 +42,6 @@ class Sub extends Super {
                 result: {'verify-code-canvas': verifyCodeCanvas},
             });
         } else {
-            const Admin = require('../../models/mongoose/admin');
             // 如果管理员账号存在则不可以注册
             Admin.findOne({}, function (error, result) {
                 // 数据库查询出现错误
