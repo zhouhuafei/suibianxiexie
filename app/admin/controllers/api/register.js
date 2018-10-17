@@ -37,7 +37,7 @@ class Sub extends Super {
             });
         } else if (verifyCodeCanvas !== sessionVerifyCodeCanvasAdmin) {
             self.render({
-                message: '验证码错误',
+                message: '图文验证码错误',
                 result: {'verify-code-canvas': verifyCodeCanvas},
             });
         } else {
