@@ -28,7 +28,7 @@ class Sub extends Super {
                 if (result !== null) {
                     self.render({
                         message: `${result}分钟之内只允许发送一次`,
-                        failureInfo: error,
+                        failureCode: 'not expired',
                     });
                     return;
                 }
