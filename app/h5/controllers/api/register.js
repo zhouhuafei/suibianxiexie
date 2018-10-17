@@ -45,7 +45,7 @@ class Sub extends Super {
                 result: {'verify-code-canvas': verifyCodeCanvas},
             });
         } else {
-            const verifyCodeRandomKey = `admin-${username}_verify-code-random_register`;
+            const verifyCodeRandomKey = `user-${username}_verify-code-random_register`;
             const verifyCodeRandomSendingKey = `${verifyCodeRandomKey}-sending`;
             redisClient.get(verifyCodeRandomKey, function (error, value) {
                 if (error) {
@@ -69,11 +69,11 @@ class Sub extends Super {
                     if (result) {
                         self.render({message: '管理员账号已经存在'});
                     } else {
-                        const admin = new User({
+                        const user = new User({
                             username: username,
                             password: password,
                         });
-                        admin.save(function (error, result) {
+                        user.save(function (error, result) {
                             // 数据库插入出现错误
                             if (error) {
                                 self.render({
