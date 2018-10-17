@@ -2479,7 +2479,11 @@ input[type=submit].g-button, input[type=reset].g-button, input[type=button].g-bu
           justify-content: center;
   background: #eb9e05;
   color: #ffffff;
-  cursor: pointer; }
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
   .g-verify-code-random.g-verify-code-random_inactive {
     background: #e1e1e1;
     color: #333333; }

@@ -16,8 +16,8 @@ class Sub extends Super {
         if (!checkStr.isEmail(username)) { // 用户名不是邮箱
             self.render({message: '账号需要是一个邮箱'});
         } else { // 用户名是邮箱
-            redisClient.get(`admin-${username}_verify-code-random_register-sending`, function (error, result) { // 规定期间内，只允许发送一次验证码
-                console.log(`admin-${username}_verify-code-random_register-sending`, result);
+            const sendingName = `admin-${username}_verify-code-random_register-sending`;
+            redisClient.get(sendingName, function (error, result, e) { // 规定期间内，只允许发送一次验证码
                 if (error) {
                     self.render({
                         message: '查询邮箱(短信)验证码是否在有效期内时出现错误',
@@ -26,9 +26,21 @@ class Sub extends Super {
                     return;
                 }
                 if (result !== null) {
-                    self.render({
-                        message: `${result}分钟之内只允许发送一次`,
-                        failureCode: 'not expired',
+                    redisClient.ttl(sendingName, function (error, ttl) { // 剩余时间
+                        if (error) {
+                            self.render({
+                                message: '查询邮箱(短信)验证码是否在有效期内时出现错误',
+                                failureInfo: error,
+                            });
+                            return;
+                        }
+                        self.render({
+                            message: `${result / 60}分钟之内只允许发送一次`,
+                            failureCode: 'not expired',
+                            result: {
+                                remainingTime: ttl,
+                            },
+                        });
                     });
                     return;
                 }
@@ -59,10 +71,13 @@ class Sub extends Super {
                         });
                     } else {
                         redisClient.set(`admin-${username}_verify-code-random_register`, verifyCode, 'ex', expirationDate * 60);
-                        redisClient.set(`admin-${username}_verify-code-random_register-sending`, expirationDate, 'ex', expirationDate * 60); // 10分钟内只允许发送一次
+                        redisClient.set(sendingName, expirationDate * 60, 'ex', expirationDate * 60); // 10分钟内只允许发送一次
                         self.render({
                             status: 'success',
                             message: '验证码发送成功',
+                            result: {
+                                remainingTime: expirationDate * 60,
+                            },
                         });
                     }
                 });

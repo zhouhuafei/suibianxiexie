@@ -28,11 +28,11 @@ class Sub extends Super {
                 method: 'get',
                 data: {username: userName.val().trim()},
                 isHandleSuccess: true,
-            }).then(function (json) {
-                if (json.status === 'success') { // success
+            }).then(function (res) {
+                function fn() {
                     verifyCodeRandom.classList.add('g-verify-code-random_inactive');
                     timeCountDown({
-                        seconds: 90,
+                        seconds: res.result.remainingTime,
                         isToTime: true, // 是否转换成时间
                         callback: {
                             run: function (json) {
@@ -45,7 +45,15 @@ class Sub extends Super {
                             },
                         },
                     });
+                }
+
+                if (res.status === 'success') { // success
+                    fn();
                 } else { // error、failure
+                    if (res.status === 'failure' && res.failureCode === 'not expired') {
+                        fn();
+                        return;
+                    }
                     delete randomDom.isSending;
                 }
             });
