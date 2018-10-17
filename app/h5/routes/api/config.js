@@ -9,11 +9,11 @@ const routeName = [
         isValidateLogin: false,
     },
     {
-        name: 'verify-code-canvas', // 验证码,图文随机
+        name: 'verify-code-canvas', // 验证码,图文验证码
         isValidateLogin: false,
     },
     {
-        name: 'verify-code-random', // 验证码,数字随机
+        name: 'verify-code-random_register', // 验证码,邮箱(短信)验证码_注册
         isSupportJsonp: true, // 是否支持jsonp
         isValidateLogin: false,
     },
