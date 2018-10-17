@@ -45,7 +45,9 @@ class Sub extends Super {
                 result: {'verify-code-canvas': verifyCodeCanvas},
             });
         } else {
-            redisClient.get(`admin-${username}_verify-code-random_register`, function (error, value) {
+            const verifyCodeRandomKey = `admin-${username}_verify-code-random_register`;
+            const verifyCodeRandomSendingKey = `${verifyCodeRandomKey}-sending`;
+            redisClient.get(verifyCodeRandomKey, function (error, value) {
                 if (error) {
                     self.render({
                         status: 'failure',
@@ -81,22 +83,14 @@ class Sub extends Super {
                                 return;
                             }
                             // 数据库插入成功
-                            redisClient.del(`admin-${username}_verify-code-random_register-sending`);
-                            redisClient.del(`admin-${username}_verify-code-random_register`, function (error, value) {
-                                if (error) {
-                                    self.render({
-                                        status: 'success',
-                                        message: '虽然redis删除验证码失败,但是注册依然成功了',
-                                        result: {data: [{username: username}]},
-                                    });
-                                } else {
-                                    self.render({
-                                        status: 'success',
-                                        message: '注册成功',
-                                        result: {data: [{username: username}]},
-                                    });
-                                }
+                            self.render({
+                                status: 'success',
+                                message: '注册成功',
+                                result: {data: [{username: username}]},
                             });
+                            // 删除redis上的记录
+                            redisClient.del(verifyCodeRandomSendingKey);
+                            redisClient.del(verifyCodeRandomKey);
                         });
                     }
                 });

@@ -16,8 +16,9 @@ class Sub extends Super {
         if (!checkStr.isEmail(username)) { // 用户名不是邮箱
             self.render({message: '账号需要是一个邮箱'});
         } else { // 用户名是邮箱
-            const sendingName = `admin-${username}_verify-code-random_register-sending`;
-            redisClient.get(sendingName, function (error, result, e) { // 规定期间内，只允许发送一次验证码
+            const verifyCodeRandomKey = `admin-${username}_verify-code-random_register`;
+            const verifyCodeRandomSendingKey = `${verifyCodeRandomKey}-sending`;
+            redisClient.get(verifyCodeRandomSendingKey, function (error, result) { // 规定期间内，只允许发送一次验证码
                 if (error) {
                     self.render({
                         message: '查询邮箱(短信)验证码是否在有效期内时出现错误',
@@ -26,7 +27,7 @@ class Sub extends Super {
                     return;
                 }
                 if (result !== null) {
-                    redisClient.ttl(sendingName, function (error, ttl) { // 剩余时间
+                    redisClient.ttl(verifyCodeRandomSendingKey, function (error, ttl) { // 剩余时间
                         if (error) {
                             self.render({
                                 message: '查询邮箱(短信)验证码是否在有效期内时出现错误',
@@ -70,8 +71,8 @@ class Sub extends Super {
                             failureInfo: error,
                         });
                     } else {
-                        redisClient.set(`admin-${username}_verify-code-random_register`, verifyCode, 'ex', expirationDate * 60);
-                        redisClient.set(sendingName, expirationDate * 60, 'ex', expirationDate * 60); // 10分钟内只允许发送一次
+                        redisClient.set(verifyCodeRandomKey, verifyCode, 'ex', expirationDate * 60);
+                        redisClient.set(verifyCodeRandomSendingKey, expirationDate * 60, 'ex', expirationDate * 60); // 10分钟内只允许发送一次
                         self.render({
                             status: 'success',
                             message: '验证码发送成功',
