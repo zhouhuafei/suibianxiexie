@@ -82,15 +82,15 @@ class Sub extends Super {
                                 });
                                 return;
                             }
+                            // 从redis里删除掉注册验证码的数据(异步的)(删除失败了也没关系)
+                            redisClient.del(verifyCodeRandomSendingKey);
+                            redisClient.del(verifyCodeRandomKey);
                             // 数据库插入成功
                             self.render({
                                 status: 'success',
                                 message: '注册成功',
                                 result: {data: [{username: username}]},
                             });
-                            // 删除redis上的记录
-                            redisClient.del(verifyCodeRandomSendingKey);
-                            redisClient.del(verifyCodeRandomKey);
                         });
                     }
                 });

@@ -71,6 +71,7 @@ class Sub extends Super {
                             failureInfo: error,
                         });
                     } else {
+                        // 在redis里设置上注册验证码的数据(异步的)(此处假设百分百设置成功)
                         redisClient.set(verifyCodeRandomKey, verifyCode, 'ex', expirationDate * 60);
                         redisClient.set(verifyCodeRandomSendingKey, expirationDate * 60, 'ex', expirationDate * 60); // 10分钟内只允许发送一次
                         self.render({
