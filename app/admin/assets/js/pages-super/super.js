@@ -1,5 +1,6 @@
 require('../../scss/commons/common.scss');
 const extend = require('zhf.extend');
+const ajax = require('../api/ajax');
 const axios = require('../api/axios');
 const jsonp = require('../api/jsonp');
 const strTo = require('zhf.str-to-num');
@@ -17,6 +18,7 @@ const {
 class Super {
     constructor(json) {
         const self = this;
+        this.ajax = ajax;
         this.axios = axios;
         this.jsonp = jsonp;
         self.opts = extend({
@@ -186,7 +188,7 @@ class Super {
                 form.isSubmitting = true;
                 self.axios({
                     url: form.action,
-                    isHandleSuccess: true,
+                    // isHandleSuccess: true,
                     method: form.dataset.method || 'get',
                     data: $(form).serialize(),
                     callbackSuccess: function () { // 请求成功的回调

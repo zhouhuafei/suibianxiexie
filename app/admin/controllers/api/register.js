@@ -55,7 +55,7 @@ class Sub extends Super {
                     return;
                 }
                 if (value !== verifyCodeRandom) {
-                    self.render({message: '验证码有误,请重新输入或重新获取并输入'});
+                    self.render({message: '邮箱(短信)验证码有误,请重新输入或重新获取并输入'});
                     return;
                 }
                 // 如果管理员账号存在则不可以注册

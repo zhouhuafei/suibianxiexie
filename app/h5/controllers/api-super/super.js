@@ -15,37 +15,11 @@ class Super {
             callback: function (self) {
             },
         }, json);
-        this.dataInfo = {
-            /*
-            * 状态信息:
-            * 成功(success)   有返回结果,结果的状态是success,预定义的数据格式:{status: 'success'}
-            * 失败(failure)   有返回结果,结果的状态是failure,预定义的数据格式:{status: 'failure'}
-            * */
-            status: 'failure', // 状态信息
-            message: '接口数据的基本格式', // 提示信息 - '参数错误'
-            failureInfo: null, // 错误信息
-            failureCode: null, // 401 未授权,未登录
-            result: {
-                // 数据集合(格式必须统一为数组,哪怕只有一条数据)
-                data: [
-                    /*
-                    {
-                        img: {
-                            width: 0,
-                            height: 0,
-                            src: '',
-                        },
-                        text: '接口格式保持一致',
-                        href: '',
-                    },
-                    */
-                ],
-                allPage: 1, // 总页数
-                nowPage: 1, // 当前页
-                allCount: 0, // 数据总条数
-                nowCount: 0, // 当前页的数据条数
-            },
-        };
+        const opts = self.opts;
+        const app = opts.app;
+        const appConfig = app.appConfig;
+        const apiDataFormat = require(`${appConfig.utilsDir}api-data-format`);
+        this.dataInfo = apiDataFormat(json);
         this.isRendered = false; // 是否已经响应过了结果 一次请求只能响应一次结果 多次响应(render)会报错 Can't set headers after they are sent.
         this.init();
     }
@@ -99,10 +73,7 @@ class Super {
             // 未登录
             if (req.session.userInfo === undefined) {
                 isContinue = false;
-                self.render({
-                    message: '未登录',
-                    failureCode: 401,
-                });
+                self.render({message: '未登录', failureCode: 'not logged'});
             }
         }
         return isContinue;

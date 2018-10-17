@@ -39,7 +39,7 @@ class Route {
                         const method = req.method.toLowerCase(); // 请求方式
                         if (apiConfigNow.isValidateLogin && (apiConfigNow.whichRequestMethodNoValidateLogin === undefined || apiConfigNow.whichRequestMethodNoValidateLogin.indexOf(method) === -1)) { // 验证登录(当whichRequestMethodNoValidateLogin值为undefined时，表示所有请求方式都需要验证登陆，为数组时则数组里所属的请求方式不验证登陆)
                             if (adminInfo === undefined) { // 未登录，管理端的接口都应该登陆后才有权调用。
-                                res.json(apiDataFormat({message: '未登录', failureCode: 401}));
+                                res.json(apiDataFormat({message: '未登录', failureCode: 'not logged'}));
                             } else {
                                 Admin.findOne({username: adminInfo.username}, function (error, result) {
                                     if (error) { // 数据库查询出现错误
@@ -49,7 +49,7 @@ class Route {
                                         if (result.loginStamp === adminInfo.loginStamp) { // 登录了
                                             next();
                                         } else { // 未登录
-                                            res.json(apiDataFormat({message: '未登录', failureCode: 401}));
+                                            res.json(apiDataFormat({message: '未登录', failureCode: 'not logged'}));
                                         }
                                     } else { // 账号不存在
                                         res.json(apiDataFormat({message: '验证登录时,发现管理员账号不存在'}));

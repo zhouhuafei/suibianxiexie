@@ -53,22 +53,23 @@ var Sub = function (_Super) {
                 ajax({
                     url: api['verify-code-random_register'].route,
                     method: 'get',
-                    data: { username: userName.val().trim() }
+                    data: { username: userName.val().trim() },
+                    isHandleSuccess: true
                 }).then(function (json) {
                     if (json.status === 'success') {
                         // success
+                        verifyCodeRandom.classList.add('g-verify-code-random_inactive');
                         timeCountDown({
                             seconds: 90,
                             isToTime: true, // 是否转换成时间
                             callback: {
                                 run: function run(json) {
                                     verifyCodeRandom.innerHTML = json.allSeconds;
-                                    verifyCodeRandom.classList.add('.g-verify-code-random_inactive');
                                 },
                                 over: function over() {
                                     delete randomDom.isSending;
                                     verifyCodeRandom.innerHTML = verifyCodeRandomHtml;
-                                    verifyCodeRandom.classList.remove('.g-verify-code-random_inactive');
+                                    verifyCodeRandom.classList.remove('g-verify-code-random_inactive');
                                 }
                             }
                         });

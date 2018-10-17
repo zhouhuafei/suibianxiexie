@@ -11,7 +11,13 @@ module.exports = function (opts = {}) {
         status: 'failure', // 状态信息(可用此字段判断用户传入的参数是否合法，failure表示不合法，success表示合法。error用不到，客户端ajax接收到200才会执行成功回调，非200可以自动识别为error)
         message: '接口数据的基本格式', // 提示信息 - '参数错误'
         failureInfo: null, // 失败信息
-        failureCode: null, // 失败编码 401 未授权,未登录
+        /*
+        失败编码：
+        'not logged'：没有登录
+        'not expired'：没有过期
+        'not authorized'：没有权限
+        */
+        failureCode: null,
         /*
         // result不放出来,是因为扩展extend的时候会进行循环比对,而mongoose里查询结果的get和set是被处理过的,如果把mongoose的查询结果直接替换result,比对赋值时,会导致数据出现在_doc上。
         result: {
