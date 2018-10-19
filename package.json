@@ -85,7 +85,7 @@
         "zhf.create-file": "^1.1.1",
         "zhf.dom-add-position": "^1.0.5",
         "zhf.dom-components-super": "^1.1.3",
-        "zhf.g-ui": "^1.0.3",
+        "zhf.g-ui": "^1.0.4",
         "zhf.offset": "^1.0.4",
         "zhf.query-string": "^1.0.3",
         "zhf.select-all": "^1.0.8",
