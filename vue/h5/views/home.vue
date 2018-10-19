@@ -42,7 +42,7 @@
             /*
             // 接口跨域测试
             this.$axios({
-                url: '/h5/api/verify-code-random_register/', // 代理进行了跨域
+                url: '/h5/api/verify-code-random/', // 代理进行了跨域
                 data: {
                     username: '1123486116@qq.com',
                 },

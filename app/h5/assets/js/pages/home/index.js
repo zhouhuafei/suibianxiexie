@@ -140,7 +140,7 @@ class Sub extends Super {
         // jsonp错误测试
         /*
         this.jsonp({
-            url: '/h5/api/verify-code-random_register2/',
+            url: '/h5/api/verify-code-random2/',
             data: {
                 isJsonp: true,
             },
@@ -149,7 +149,7 @@ class Sub extends Super {
             },
         });
         this.jsonp({
-            url: '/h5/api/verify-code-random_register2/',
+            url: '/h5/api/verify-code-random2/',
             data: {
                 isJsonp: true,
             },
@@ -162,7 +162,7 @@ class Sub extends Super {
         // axios错误测试
         /*
         this.axios({
-            url: '/h5/api/verify-code-random_register2/',
+            url: '/h5/api/verify-code-random2/',
             method: 'get',
         }).then(function (dataInfo) {
             console.log('axios error test:\n', dataInfo);

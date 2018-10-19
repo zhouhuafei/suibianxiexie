@@ -45,7 +45,7 @@ class Sub extends Super {
                 result: {'verify-code-canvas': verifyCodeCanvas},
             });
         } else {
-            const verifyCodeRandomKey = `user-${username}_verify-code-random_register`;
+            const verifyCodeRandomKey = `user-${username}_verify-code-random`;
             const verifyCodeRandomSendingKey = `${verifyCodeRandomKey}-sending`;
             redisClient.get(verifyCodeRandomKey, function (error, value) {
                 if (error) {

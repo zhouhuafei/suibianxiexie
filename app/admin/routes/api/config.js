@@ -65,7 +65,7 @@ const routeName = [
         isValidateLogin: false,
     },
     {
-        name: 'verify-code-random_register', // 验证码,邮箱(短信)验证码_注册
+        name: 'verify-code-random', // 验证码,邮箱(短信)验证码_注册
         isValidateLogin: false,
     },
 ];

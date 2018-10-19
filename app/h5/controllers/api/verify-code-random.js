@@ -16,7 +16,7 @@ class Sub extends Super {
         if (!checkStr.isEmail(username)) { // 用户名不是邮箱
             self.render({message: '账号需要是一个邮箱'});
         } else { // 用户名是邮箱
-            const verifyCodeRandomKey = `admin-${username}_verify-code-random_register`;
+            const verifyCodeRandomKey = `user-${username}_verify-code-random`;
             const verifyCodeRandomSendingKey = `${verifyCodeRandomKey}-sending`;
             redisClient.get(verifyCodeRandomSendingKey, function (error, result) { // 规定期间内，只允许发送一次验证码
                 if (error) {
@@ -45,7 +45,7 @@ class Sub extends Super {
                     });
                     return;
                 }
-                const verifyCode = randomNum(100000, 999999);// random随机验证码
+                const verifyCode = randomNum(100000, 999999); // random随机验证码
                 const expirationDate = 10;// 有效期,单位是分钟
                 const autoUser = 'this-is-a-code@foxmail.com';
                 const transporter = nodemailer.createTransport({

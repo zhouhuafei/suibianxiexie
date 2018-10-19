@@ -24,9 +24,9 @@ class Sub extends Super {
             }
             randomDom.isSending = true;
             ajax({
-                url: api['verify-code-random_register'].route,
+                url: api['verify-code-random'].route,
                 method: 'get',
-                data: {username: userName.val().trim()},
+                data: {username: userName.val().trim(), type: 'register'},
                 isHandleSuccess: true,
             }).then(function (res) {
                 function fn() {
