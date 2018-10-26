@@ -29,16 +29,16 @@ class Super {
         const self = this;
         const opts = self.opts;
         const req = opts.req;
-        const method = req.method.toLowerCase(); // 请求方式
+        const method = req.method.toUpperCase(); // 请求方式
         /*
-        * javascript axios get params
-        * javascript axios post/put/delete data
+        * javascript axios GET params
+        * javascript axios POST/PUT/DELETE data
         * 把上述四种数据的传参方式进行统一化,统一使用data
-        * nodejs express get req.query
-        * nodejs express post/put/delete body-parser req.body
+        * nodejs express GET req.query
+        * nodejs express POST/PUT/DELETE body-parser req.body
         * 把上述四种数据的传参方式进行统一化,统一使用req.data
         * */
-        if (method === 'get') {
+        if (method === 'GET') {
             req.data = req.query;
         } else {
             req.data = req.body;
@@ -48,16 +48,16 @@ class Super {
         if (!isContinue) {
             return;
         }
-        if (method === 'post') {
+        if (method === 'POST') {
             this.postData(); // 获取数据(增)
         }
-        if (method === 'delete') {
+        if (method === 'DELETE') {
             this.deleteData(); // 删除数据(删)
         }
-        if (method === 'put') {
+        if (method === 'PUT') {
             this.putData(); // 修改数据(改)
         }
-        if (method === 'get') {
+        if (method === 'GET') {
             this.getData(); // 查找数据(查)
         }
     }
@@ -112,7 +112,7 @@ class Super {
             const req = opts.req;
             const res = opts.res;
             const data = req.data;
-            const isJsonp = data.isJsonp === 'true'; // 是否是jsonp(jsonp only supports the get method)
+            const isJsonp = data.isJsonp === 'true'; // 是否是jsonp(jsonp only supports the GET method)
             self.dataInfo = extend(self.dataInfo, json);
             self.opts.callback(self);
             if (self.opts.isTriggerEnd) {

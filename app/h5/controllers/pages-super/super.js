@@ -26,16 +26,16 @@ class Super {
         }
         const opts = self.opts;
         const req = opts.req;
-        const method = req.method.toLowerCase(); // 请求方式
+        const method = req.method.toUpperCase(); // 请求方式
         /*
-        * javascript axios get params
-        * javascript axios post/put/delete data
+        * javascript axios GET params
+        * javascript axios POST/PUT/DELETE data
         * 把上述四种数据的传参方式进行统一化,统一使用data
-        * nodejs express get req.query
-        * nodejs express post/put/delete body-parser req.body
+        * nodejs express GET req.query
+        * nodejs express POST/PUT/DELETE body-parser req.body
         * 把上述四种数据的传参方式进行统一化,统一使用req.data
         * */
-        if (method === 'get') {
+        if (method === 'GET') {
             req.data = req.query;
         } else {
             req.data = req.body;

@@ -12,7 +12,7 @@ const routeName = [
     },
     {
         name: 'website-info', // 网站信息
-        whichRequestMethodNoValidateLogin: ['get'], // 这个字段表示的意思是，当请求方式为get时不验证登录。
+        whichRequestMethodNoValidateLogin: ['GET'], // 这个字段表示的意思是，当请求方式为GET时不验证登录。
     },
     {
         name: 'gallery-category', // 图片库里图片的分类

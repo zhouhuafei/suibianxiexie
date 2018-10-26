@@ -24,7 +24,7 @@ class Sub extends Super {
                     confirm: function () {
                         axios({
                             url: dataInfo.api.logout.route,
-                            method: 'get',
+                            method: 'GET',
                         }).then(function (json) {
                             if (json.status === 'success') {
                                 window.location.href = dataInfo.routes.login.route;

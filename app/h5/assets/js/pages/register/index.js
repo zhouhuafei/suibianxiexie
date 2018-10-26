@@ -38,7 +38,7 @@ class Sub extends Super {
                 formData.append('accountnum', 123456); // 数字 123456 会被立即转换成字符串 "123456"
                 axios({
                     url: dataInfo.api['verify-code-random'].route,
-                    method: 'get',
+                    method: 'GET',
                     data: {
                         username: username,
                     },
@@ -80,7 +80,7 @@ class Sub extends Super {
             }
             axios({
                 url: dataInfo.api.register.route,
-                method: 'post',
+                method: 'POST',
                 data: userInfo,
             }).then(function (json) {
                 if (json.status === 'success') {

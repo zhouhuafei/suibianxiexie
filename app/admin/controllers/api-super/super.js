@@ -26,15 +26,15 @@ class Super {
         const opts = self.opts;
         const req = opts.req;
         /*
-        * javascript axios get params
-        * javascript axios post/put/delete data
+        * javascript axios GET params
+        * javascript axios POST/PUT/DELETE data
         * 把上述四种数据的传参方式进行统一化,统一使用data
-        * nodejs express get req.query
-        * nodejs express post/put/delete body-parser req.body
+        * nodejs express GET req.query
+        * nodejs express POST/PUT/DELETE body-parser req.body
         * 把上述四种数据的传参方式进行统一化,统一使用req.data
         * */
-        const method = req.method.toLowerCase(); // 请求方式
-        if (method === 'get') {
+        const method = req.method.toUpperCase(); // 请求方式
+        if (method === 'GET') {
             req.data = req.query;
         } else {
             // 把接收到的数据全部都处理成字符串格式，无论你嵌套了多少层。数字1会变成字符串'1'。布尔值true会变成字符串'true'。
@@ -50,13 +50,13 @@ class Super {
 
         function fnCrud() {
             self.handleData(); // 提前处理数据,例如去除首尾空格
-            if (method === 'post') {
+            if (method === 'POST') {
                 self.postData(); // 获取数据(增)
-            } else if (method === 'delete') {
+            } else if (method === 'DELETE') {
                 self.deleteData(); // 删除数据(删)
-            } else if (method === 'put') {
+            } else if (method === 'PUT') {
                 self.putData(); // 修改数据(改)
-            } else if (method === 'get') {
+            } else if (method === 'GET') {
                 self.getData(); // 查找数据(查)
             } else {
                 self.render({message: '不支持此类型的请求方式'});
@@ -103,7 +103,7 @@ class Super {
             const req = opts.req;
             const res = opts.res;
             const data = req.data;
-            const isJsonp = data.isJsonp === 'true'; // 是否是jsonp(jsonp only supports the get method)
+            const isJsonp = data.isJsonp === 'true'; // 是否是jsonp(jsonp only supports the GET method)
             const apiDataFormat = require(`${appConfig.utilsDir}api-data-format`);
             const dataInfo = apiDataFormat(json);
             self.opts.callback(self);

@@ -163,7 +163,7 @@ class Sub extends Super {
         /*
         this.axios({
             url: '/h5/api/verify-code-random2/',
-            method: 'get',
+            method: 'GET',
         }).then(function (dataInfo) {
             console.log('axios error test:\n', dataInfo);
         });

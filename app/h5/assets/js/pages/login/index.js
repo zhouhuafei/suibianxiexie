@@ -15,7 +15,7 @@ class Sub extends Super {
         function login() {
             axios({
                 url: dataInfo.api.login.route,
-                method: 'post',
+                method: 'POST',
                 data: {
                     username: domUsername.value,
                     password: domPassword.value,

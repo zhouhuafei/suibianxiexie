@@ -105,14 +105,14 @@ class Sub extends Super {
         const ajax = require('../../api/ajax');
         axios({
             url: dataInfo.api.list.route,
-            method: 'post',
+            method: 'POST',
             data: {type: 'axios', obj: {test: true, key: 'obj', b: {a: 1}}, arr: ['a', 2, 'c', {a: 1}], arr2: []},
         }).then(function (json) {
             console.log('axios测试application/x-www-form-urlencoded测试axios:->', json);
         });
         ajax({
             url: dataInfo.api.list.route,
-            method: 'post',
+            method: 'POST',
             data: {type: 'ajax', obj: {test: true, key: 'obj', b: {a: 1}}, arr: ['a', 2, 'c', {a: 1}], arr2: []},
         }).then(function (json) {
             console.log('ajax测试application/x-www-form-urlencoded测试ajax:->', json);
@@ -124,7 +124,7 @@ class Sub extends Super {
             formData.append('type', 'axios');
             axios({
                 url: dataInfo.api.list.route,
-                method: 'post',
+                method: 'POST',
                 data: formData,
             }).then(function (json) {
                 console.log('axios测试multipart/form-data测试axios:->', json);
@@ -136,7 +136,7 @@ class Sub extends Super {
             formData.append('type', 'ajax');
             ajax({
                 url: dataInfo.api.list.route,
-                method: 'post',
+                method: 'POST',
                 data: formData,
             }).then(function (json) {
                 console.log('ajax测试multipart/form-data测试ajax:->', json);

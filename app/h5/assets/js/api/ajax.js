@@ -3,10 +3,10 @@ const typeOf = require('zhf.type-of');
 const Message = require('zhf.g-ui/src/js/components_dom/g-message/index.js');
 
 module.exports = function (json) {
-    json.type = json.type || json.method || 'get'; // 这里和axios是不一样的，这里以前使用axios的习惯传入method
+    json.type = (json.type || json.method || 'GET').toUpperCase(); // 这里和axios是不一样的，这里以前使用axios的习惯传入method
     json.dataType = json.dataType || 'json'; // 设置返回json格式的数据，axios默认就是返回json格式的
     const opts = extend({
-        type: 'get', // 请求方式默认get
+        type: 'GET', // 请求方式默认GET
         timeout: 30000, // 超时
         isHandleError: true, // 是否处理错误
         isHandleFailure: true, // 是否处理失败
@@ -26,19 +26,19 @@ module.exports = function (json) {
         },
     }, json);
     /*
-    * javascript axios get params
-    * javascript axios post/put/delete data
+    * javascript axios GET params
+    * javascript axios POST/PUT/DELETE data
     * 把上述四种数据的传参方式进行统一化,统一使用data
-    * nodejs express get req.query
-    * nodejs express post/put/delete body-parser req.body
+    * nodejs express GET req.query
+    * nodejs express POST/PUT/DELETE body-parser req.body
     * 把上述四种数据的传参方式进行统一化,统一使用req.data
     * */
-    if (opts.method.toLowerCase() === 'get') {
+    if (opts.method.toUpperCase() === 'GET') {
         opts.data = opts.data || opts.params || {}; // 这里和axios是不一样的，这里以前使用axios的习惯传入params
         if (opts.data) {
             // 把json格式的对象处理成json格式的字符串，让get请求保持和axios一致的数据格式
-            // 其实按理来说应该让axios保持与这边的一致，但是axios的get请求没有提供对外的接口，所以只能让这个保持和axios一致。
-            // $.ajax的post,put,delete接收的全是字符串，即使你传的是对象，对象里有布尔值等，接收过来也会变成字符串，$.ajax的get处理之后，你传的对象里有布尔值，后端接收之后，布尔值还是布尔值，应该和post保持一致的。奈何axios的get没提供对外接口
+            // 其实按理来说应该让axios保持与这边的一致，但是axios的GET请求没有提供对外的接口，所以只能让这个保持和axios一致。
+            // $.ajax的POST,PUT,DELETE接收的全是字符串，即使你传的是对象，对象里有布尔值等，接收过来也会变成字符串，$.ajax的GET处理之后，你传的对象里有布尔值，后端接收之后，布尔值还是布尔值，应该和POST保持一致的。奈何axios的GET没提供对外接口
             Object.keys(opts.data).forEach(function (keys) {
                 const obj = opts.data[keys];
                 const type = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();

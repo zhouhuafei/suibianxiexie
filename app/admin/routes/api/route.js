@@ -36,7 +36,7 @@ class Route {
                         // 是否验证登录，如果验证，则继续验证是否登录了
                         const session = req.session;
                         const adminInfo = session.adminInfo;
-                        const method = req.method.toLowerCase(); // 请求方式
+                        const method = req.method.toUpperCase(); // 请求方式
                         if (apiConfigNow.isValidateLogin && (apiConfigNow.whichRequestMethodNoValidateLogin === undefined || apiConfigNow.whichRequestMethodNoValidateLogin.indexOf(method) === -1)) { // 验证登录(当whichRequestMethodNoValidateLogin值为undefined时，表示所有请求方式都需要验证登陆，为数组时则数组里所属的请求方式不验证登陆)
                             if (adminInfo === undefined) { // 未登录，管理端的接口都应该登陆后才有权调用。
                                 res.json(apiDataFormat({message: '未登录', failureCode: 'not logged'}));

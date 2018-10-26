@@ -74,12 +74,12 @@ function Ajax(json) {
         // 配置
         config: {
             // ajax的配置
-            type: 'get', // 请求类型(默认get)
+            type: 'GET', // 请求类型(默认GET)
             url: '', // url
             dataType: 'json', // 数据类型(默认json)
             async: true, // 默认异步
             timeout: 30000, // 超时时间(默认30秒)
-            mark: '?', // 当请求类型为get时,url后面的数据用什么符号开头url:'index.php',1.?ctl=seller&act=setting,2.#ctl=seller&act=setting
+            mark: '?', // 当请求类型为GET时,url后面的数据用什么符号开头url:'index.php',1.?ctl=seller&act=setting,2.#ctl=seller&act=setting
         },
         // 数据
         data: {},
@@ -96,8 +96,8 @@ Ajax.prototype.init = function () {
 };
 Ajax.prototype.open = function () {
     const opts = this.opts;
-    if (opts.config.type.toLowerCase() === 'get') {
-        // get
+    if (opts.config.type.toUpperCase() === 'GET') {
+        // GET
         let search = '';
         let num = 0;
         const data = opts.data;
@@ -113,21 +113,21 @@ Ajax.prototype.open = function () {
         }
         const url = opts.config.url + opts.config.mark + search;
         this.xhr.open(opts.config.type, url);
-    } else if (opts.config.type.toLowerCase() === 'post') {
-        // post
+    } else if (opts.config.type.toUpperCase() === 'POST') {
+        // POST
         this.xhr.open(opts.config.type, opts.config.url);
     } else {
-        console.log('仅支持get和post请求');
+        console.log('仅支持GET和POST请求');
     }
 };
 Ajax.prototype.send = function () {
     const opts = this.opts;
     const data = opts.data;
-    if (opts.config.type.toLowerCase() === 'get') {
-        // get
+    if (opts.config.type.toUpperCase() === 'GET') {
+        // GET
         this.xhr.send(null);
-    } else if (opts.config.type.toLowerCase() === 'post') {
-        // post
+    } else if (opts.config.type.toUpperCase() === 'POST') {
+        // POST
         if (data) {
             if (Object.prototype.toString.call(data).slice(8, -1).toLocaleLowerCase() === 'formdata') {
                 this.xhr.send(data);
@@ -142,7 +142,7 @@ Ajax.prototype.send = function () {
             this.xhr.send(null);
         }
     } else {
-        console.log('仅支持get和post请求');
+        console.log('仅支持GET和POST请求');
     }
 };
 Ajax.prototype.events = function () {

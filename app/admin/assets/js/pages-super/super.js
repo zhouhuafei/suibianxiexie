@@ -102,7 +102,7 @@ class Super {
                         confirm: function () {
                             self.axios({
                                 url: api.logout.route,
-                                method: 'post',
+                                method: 'POST',
                             }).then(function (json) {
                                 if (json.status === 'success') {
                                     window.location.href = routes['login'].route;
@@ -189,7 +189,7 @@ class Super {
                 self.axios({
                     url: form.action,
                     // isHandleSuccess: true,
-                    method: form.dataset.method || 'get',
+                    method: form.dataset.method || 'GET',
                     data: $(form).serialize(),
                     callbackSuccess: function () { // 请求成功的回调
                         typeof form.callbackSuccess === 'function' && form.callbackSuccess();

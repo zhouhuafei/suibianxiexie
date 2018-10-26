@@ -58,7 +58,7 @@ var Sub = function (_Super) {
                 }
                 axios({
                     url: dataInfo.api.gallery.route,
-                    method: 'post',
+                    method: 'POST',
                     data: formData,
                     onUploadProgress: function (progressEvent) { // 原生获取上传进度的事件
                         if (progressEvent.lengthComputable) {

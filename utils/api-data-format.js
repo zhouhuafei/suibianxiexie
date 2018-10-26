@@ -19,7 +19,7 @@ module.exports = function (opts = {}) {
         */
         failureCode: null,
         /*
-        // result不放出来,是因为扩展extend的时候会进行循环比对,而mongoose里查询结果的get和set是被处理过的,如果把mongoose的查询结果直接替换result,比对赋值时,会导致数据出现在_doc上。
+        // result不放出来,是因为扩展extend的时候会进行循环比对,而mongoose里查询结果的GET和set是被处理过的,如果把mongoose的查询结果直接替换result,比对赋值时,会导致数据出现在_doc上。
         result: {
             // 其他的数据结构。字段请自行定义。
             // 列表的数据结构。字段请和下面的字段保持一致。
