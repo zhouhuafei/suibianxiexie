@@ -73,7 +73,7 @@ class Super {
             // 未登录
             if (req.session.userInfo === undefined) {
                 isContinue = false;
-                self.render({message: '未登录', failureCode: 'not logged'});
+                self.render({message: '未登录', failureCode: 'no login'});
             }
         }
         return isContinue;

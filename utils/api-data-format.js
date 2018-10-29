@@ -13,7 +13,7 @@ module.exports = function (opts = {}) {
         failureInfo: null, // 失败信息
         /*
         失败编码：
-        'not logged'：没有登录
+        'no login'：没有登录
         'not expired'：没有过期
         'not authorized'：没有权限
         */
