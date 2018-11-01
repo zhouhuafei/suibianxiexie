@@ -15,71 +15,17 @@
         <div class="components-simulator">
             <div class="simulator-wrap">
                 <div class="simulator">
-                    <div class="simulator-item simulator-item_active">
-                        <div class="simulator-item-hint">请编辑组件内容</div>
-                        <div class="simulator-item-edit">编辑</div>
-                        <div class="simulator-item-mask"></div>
-                    </div>
-                    <div class="simulator-item">
-                        <div class="simulator-item-hint">请编辑组件内容</div>
-                        <div class="simulator-item-edit">编辑</div>
-                        <div class="simulator-item-mask"></div>
-                    </div>
-                    <div class="simulator-item">
-                        <div class="simulator-item-hint">请编辑组件内容</div>
-                        <div class="simulator-item-edit">编辑</div>
-                        <div class="simulator-item-mask"></div>
-                    </div>
-                    <div class="simulator-item">
-                        <div class="simulator-item-hint">请编辑组件内容</div>
-                        <div class="simulator-item-edit">编辑</div>
-                        <div class="simulator-item-mask"></div>
-                    </div>
-                    <div class="simulator-item">
-                        <div class="simulator-item-hint">请编辑组件内容</div>
-                        <div class="simulator-item-edit">编辑</div>
-                        <div class="simulator-item-mask"></div>
-                    </div>
-                    <div class="simulator-item">
-                        <div class="simulator-item-hint">请编辑组件内容</div>
-                        <div class="simulator-item-edit">编辑</div>
-                        <div class="simulator-item-mask"></div>
-                    </div>
-                    <div class="simulator-item">
-                        <div class="simulator-item-hint">请编辑组件内容</div>
-                        <div class="simulator-item-edit">编辑</div>
-                        <div class="simulator-item-mask"></div>
-                    </div>
-                    <div class="simulator-item">
-                        <div class="simulator-item-hint">请编辑组件内容</div>
-                        <div class="simulator-item-edit">编辑</div>
-                        <div class="simulator-item-mask"></div>
-                    </div>
-                    <div class="simulator-item">
-                        <div class="simulator-item-hint">请编辑组件内容</div>
-                        <div class="simulator-item-edit">编辑</div>
-                        <div class="simulator-item-mask"></div>
-                    </div>
-                    <div class="simulator-item">
-                        <div class="simulator-item-hint">请编辑组件内容</div>
-                        <div class="simulator-item-edit">编辑</div>
-                        <div class="simulator-item-mask"></div>
-                    </div>
-                    <div class="simulator-item">
-                        <div class="simulator-item-hint">请编辑组件内容</div>
-                        <div class="simulator-item-edit">编辑</div>
-                        <div class="simulator-item-mask"></div>
-                    </div>
-                    <div class="simulator-item">
-                        <div class="simulator-item-hint">请编辑组件内容</div>
-                        <div class="simulator-item-edit">编辑</div>
-                        <div class="simulator-item-mask"></div>
-                    </div>
-                    <div class="simulator-item">
-                        <div class="simulator-item-hint">请编辑组件内容</div>
-                        <div class="simulator-item-edit">编辑</div>
-                        <div class="simulator-item-mask"></div>
-                    </div>
+                    <draggable
+                        v-for="(v, i) in components"
+                    >
+                        <div class="simulator-item"
+                             :class="v.isHighlight ? ['simulator-item_active'] : ''"
+                        >
+                            <div class="simulator-item-hint">请编辑组件内容{{i}}</div>
+                            <div class="simulator-item-edit">编辑</div>
+                            <div class="simulator-item-mask"></div>
+                        </div>
+                    </draggable>
                 </div>
             </div>
         </div>
@@ -93,8 +39,31 @@
 </template>
 
 <script>
+    import draggable from 'vuedraggable';
+
     export default {
         name: 'decorate-edit',
+        data() {
+            return {
+                components: [
+                    {
+                        isHighlight: true,
+                    },
+                    {
+                        isHighlight: false,
+                    },
+                    {
+                        isHighlight: false,
+                    },
+                    {
+                        isHighlight: false,
+                    },
+                ],
+            };
+        },
+        components: {
+            draggable,
+        },
     };
 </script>
 

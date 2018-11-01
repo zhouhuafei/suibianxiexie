@@ -19,7 +19,7 @@ html, body, .g-wrap, .g-body, #app {
     width: px2rem($w);
     min-width: px2rem($w);
     height: 100%;
-    background: #777777;
+    background: #666666;
     overflow: hidden;
     .components-wrap {
         display: flex;
@@ -51,6 +51,7 @@ html, body, .g-wrap, .g-body, #app {
     width: px2rem($w + 100);
     min-width: px2rem($w);
     height: 100%;
+    background: #777777;
     .simulator-wrap {
         height: px2rem($h);
         overflow: auto;
