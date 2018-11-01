@@ -121,6 +121,13 @@ class Super {
                                 name: 'website-info',
                                 title: '信息',
                             },
+                            {
+                                name: 'decorate-edit',
+                                title: '自定义装修',
+                                query: {
+                                    type: 'custom',
+                                },
+                            },
                         ],
                     },
                     {

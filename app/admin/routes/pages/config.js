@@ -6,6 +6,20 @@ const pathConfig = {
 // 路由的名字
 const routeName = [
     {
+        name: 'decorate-list', // 装修列表
+        title: '自定义页面装修列表',
+        query: {
+            type: 'custom', // 自定义页面装修
+        },
+    },
+    {
+        name: 'decorate-edit', // 装修编辑
+        title: '自定义页面装修编辑',
+        query: {
+            type: 'custom', // 自定义页面装修
+        },
+    },
+    {
         name: 'article-category', // 文章分类
         title: '文章分类',
     },
@@ -58,6 +72,10 @@ routeName.forEach(function (v) {
     let route = `${pathConfig.route}${v.name}/`;
     if (v.name === 'home') {
         route = `${pathConfig.route}`;
+    }
+    const query = v.query;
+    if (query && Object.keys(v.query).length) {
+        route += `?type=hehe`;
     }
     routeConfig[v.name] = {
         name: v.name, // 路由名称
