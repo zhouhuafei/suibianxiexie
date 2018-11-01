@@ -159,6 +159,8 @@ const webpackConfig = {
         modules: [`${__dirname}/node_modules/`],
         // 别名----引入开发版本还是生产版本
         alias: alias,
+        // 后缀----如果不加后缀，则默认按以下后缀查找文件。
+        extensions: ['.js', '.vue', '.scss', '.css', '.json'],
     },
     // 忽略----从输出的bundle中排除依赖
     externals: {

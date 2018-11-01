@@ -91,7 +91,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"this-is-global-file-common","1":"this-is-global-file-vendor","2":"website-info","3":"ui","4":"register","5":"password-reset","6":"password-modify","7":"login","8":"home","9":"decorate-list","10":"decorate-edit","11":"article-list","12":"article-edit","13":"article-category"}[chunkId]||chunkId) + "." + chunkId + ".chunk.js";
+/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"this-is-global-file-common","1":"decorate-edit","2":"this-is-global-file-vendor","3":"website-info","4":"ui","5":"register","6":"password-reset","7":"password-modify","8":"login","9":"home","10":"decorate-list","11":"article-list","12":"article-edit","13":"article-category"}[chunkId]||chunkId) + "." + chunkId + ".chunk.js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
