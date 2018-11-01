@@ -574,7 +574,6 @@ exports.default = {
 //
 //
 //
-//
 
 /***/ }),
 
@@ -1024,8 +1023,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "simulator-wrap"
   }, [_c('div', {
     staticClass: "simulator"
-  }, _vm._l((_vm.components), function(v, i) {
-    return _c('draggable', [_c('div', {
+  }, [_c('draggable', _vm._l((_vm.components), function(v, i) {
+    return _c('div', {
       staticClass: "simulator-item",
       class: v.isHighlight ? ['simulator-item_active'] : ''
     }, [_c('div', {
@@ -1034,8 +1033,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "simulator-item-edit"
     }, [_vm._v("编辑")]), _vm._v(" "), _c('div', {
       staticClass: "simulator-item-mask"
-    })])])
-  }))])]), _vm._v(" "), _vm._m(1)])
+    })])
+  }))], 1)])]), _vm._v(" "), _vm._m(1)])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "components-collection"

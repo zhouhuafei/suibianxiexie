@@ -15,10 +15,9 @@
         <div class="components-simulator">
             <div class="simulator-wrap">
                 <div class="simulator">
-                    <draggable
-                        v-for="(v, i) in components"
-                    >
+                    <draggable>
                         <div class="simulator-item"
+                             v-for="(v, i) in components"
                              :class="v.isHighlight ? ['simulator-item_active'] : ''"
                         >
                             <div class="simulator-item-hint">请编辑组件内容{{i}}</div>
