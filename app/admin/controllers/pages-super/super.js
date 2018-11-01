@@ -4,6 +4,7 @@ const routesConfig = require('../../routes/pages/config'); // 路由配置
 const apiConfig = require('../../routes/api/config'); // 接口配置
 const getClientIp = require('zhf.get-client-ip');
 const Admin = require(`../../models/mongoose/admin`);
+const queryString = require('zhf.query-string');
 
 class Super {
     constructor(json) {
@@ -114,16 +115,23 @@ class Super {
                                 title: 'ui',
                             },
                             {
-                                name: 'home',
-                                title: '首页',
-                            },
-                            {
                                 name: 'website-info',
                                 title: '信息',
                             },
                             {
+                                name: 'home',
+                                title: '首页',
+                            },
+                            {
                                 name: 'decorate-edit',
-                                title: '自定义装修',
+                                title: '首页装修',
+                                query: {
+                                    type: 'home',
+                                },
+                            },
+                            {
+                                name: 'decorate-edit',
+                                title: '自定义页面装修',
                                 query: {
                                     type: 'custom',
                                 },
@@ -168,9 +176,19 @@ class Super {
                         v2.isHighlight = false;
                         v2.power = v2.power || ''; // 功能型菜单
                         v2.route = (v2.power || !routesConfig[v2.name]) ? 'javascript:;' : routesConfig[v2.name].route; // 功能型菜单无跳转
+                        if (v2.query && Object.keys(v2.query).length) {
+                            v2.route += '?' + queryString.queryStringify(v2.query);
+                        }
                         if (v2.name === opts.routeName) {
-                            v.isHighlight = true;
-                            v2.isHighlight = true;
+                            if (v2.name === 'decorate-edit') { // 有query时，对query进行处理。
+                                if (v2.query.type === req.query.type) {
+                                    v.isHighlight = true;
+                                    v2.isHighlight = true;
+                                }
+                            } else {
+                                v.isHighlight = true;
+                                v2.isHighlight = true;
+                            }
                         }
                     });
                 });
