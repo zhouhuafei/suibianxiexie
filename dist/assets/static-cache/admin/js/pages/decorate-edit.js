@@ -12,7 +12,7 @@ var _super = __webpack_require__(4);
 
 var _super2 = _interopRequireDefault(_super);
 
-var _vue = __webpack_require__(22);
+var _vue = __webpack_require__(15);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -28,7 +28,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(128);
+__webpack_require__(129);
 
 var Sub = function (_Super) {
     _inherits(Sub, _Super);
@@ -69,7 +69,7 @@ var Component = __webpack_require__(123)(
   /* script */
   __webpack_require__(124),
   /* template */
-  __webpack_require__(126),
+  __webpack_require__(128),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -132,12 +132,12 @@ if(false) {
 /***/ 120:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(147)(undefined);
+exports = module.exports = __webpack_require__(148)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "\n@charset \"UTF-8\";\n/*\r\n// px转rem(h5) 这个是给手机端用的。\r\n@function px2rem($px, $psd:320) {\r\n    @return $px / $psd * 10rem;\r\n}\r\n*/\nhtml[data-v-232fccf7], body[data-v-232fccf7], .g-wrap[data-v-232fccf7], .g-body[data-v-232fccf7], #app[data-v-232fccf7] {\n  height: 100%;\n}\n.g-wrap .g-body[data-v-232fccf7] {\n  padding: 0;\n}\n#app[data-v-232fccf7] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.components-collection[data-v-232fccf7] {\n  width: 300px;\n  min-width: 300px;\n  height: 100%;\n  background: #666666;\n  overflow: hidden;\n}\n.components-collection .components-wrap[data-v-232fccf7] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -ms-flex-wrap: wrap;\n        flex-wrap: wrap;\n}\n.components-collection .components[data-v-232fccf7] {\n    width: 50px;\n    height: 50px;\n    background: #ffffff;\n    margin: 10px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    cursor: move;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.components-collection .components.components_active[data-v-232fccf7] {\n      background: #fe313c;\n      color: #ffffff;\n}\n.components-simulator[data-v-232fccf7] {\n  width: 475px;\n  min-width: 375px;\n  height: 100%;\n  background: #777777;\n}\n.components-simulator .simulator-wrap[data-v-232fccf7] {\n    height: 667px;\n    overflow: auto;\n}\n.components-simulator .simulator[data-v-232fccf7] {\n    width: 375px;\n    background: #888888;\n    height: 100%;\n}\n.components-simulator .simulator-item[data-v-232fccf7] {\n    position: relative;\n    height: 80px;\n    background: #f8f8f8;\n    cursor: move;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.components-simulator .simulator-item.simulator-item_active .simulator-item-mask[data-v-232fccf7] {\n      display: block;\n      border: 2px dashed rgba(255, 0, 0, 0.5);\n}\n.components-simulator .simulator-item-hint[data-v-232fccf7] {\n    position: absolute;\n    left: 0;\n    top: 0;\n    width: 100%;\n    height: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    z-index: 2;\n}\n.components-simulator .simulator-item-mask[data-v-232fccf7] {\n    position: absolute;\n    left: 0;\n    top: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(231, 91, 69, 0.5);\n    display: none;\n    z-index: 3;\n}\n.components-simulator .simulator-item-edit[data-v-232fccf7] {\n    height: 40px;\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    width: 50%;\n    border-radius: 1000px;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    display: none;\n    background: #ffffff;\n    z-index: 4;\n}\n.components-editor[data-v-232fccf7] {\n  background: #999999;\n  height: 100%;\n  width: 0;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n}\n", ""]);
+exports.push([module.i, "\n@charset \"UTF-8\";\n/*\r\n// px转rem(h5) 这个是给手机端用的。\r\n@function px2rem($px, $psd:320) {\r\n    @return $px / $psd * 10rem;\r\n}\r\n*/\nhtml[data-v-232fccf7], body[data-v-232fccf7], .g-wrap[data-v-232fccf7], .g-body[data-v-232fccf7], #app[data-v-232fccf7] {\n  height: 100%;\n}\n.g-wrap .g-body[data-v-232fccf7] {\n  padding: 0;\n}\n#app[data-v-232fccf7] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.components-collection[data-v-232fccf7] {\n  width: 300px;\n  min-width: 300px;\n  height: 100%;\n  background: #666666;\n  overflow: hidden;\n}\n.components[data-v-232fccf7] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n}\n.components-item[data-v-232fccf7] {\n  width: 50px;\n  height: 50px;\n  background: #ffffff;\n  margin: 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  cursor: move;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.components-item.components-item_active[data-v-232fccf7] {\n    background: #fe313c;\n    color: #ffffff;\n}\n.components-simulator[data-v-232fccf7] {\n  width: 392px;\n  min-width: 375px;\n  height: 100%;\n  background: #777777;\n}\n.simulator[data-v-232fccf7] {\n  background: #888888;\n  height: 667px;\n  overflow: auto;\n}\n.simulator-item[data-v-232fccf7] {\n  position: relative;\n  height: 80px;\n  background: #f8f8f8;\n  cursor: move;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  z-index: 5;\n}\n.simulator-item.simulator-item_active .simulator-item-mask[data-v-232fccf7] {\n    display: block;\n    border: 2px dashed rgba(255, 0, 0, 0.5);\n}\n.simulator-item-hint[data-v-232fccf7] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  z-index: 2;\n}\n.simulator-item-mask[data-v-232fccf7] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(231, 91, 69, 0.5);\n  display: none;\n  z-index: 3;\n}\n.simulator-item-edit[data-v-232fccf7] {\n  height: 40px;\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  width: 50%;\n  border-radius: 1000px;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  display: none;\n  background: #ffffff;\n  z-index: 4;\n}\n.components-editor[data-v-232fccf7] {\n  background: #999999;\n  height: 100%;\n  width: 0;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n}\n.editor-item[data-v-232fccf7] {\n  display: none;\n}\n.editor-item.editor-item_active[data-v-232fccf7] {\n    display: block;\n}\n", ""]);
 
 // exports
 
@@ -510,22 +510,23 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vue = __webpack_require__(22);
+var _vue = __webpack_require__(15);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _vueDragula = __webpack_require__(127);
+var _vueDragula = __webpack_require__(125);
 
 var _vueDragula2 = _interopRequireDefault(_vueDragula);
 
-var _vuedraggable = __webpack_require__(125);
+var _vuedraggable = __webpack_require__(126);
 
 var _vuedraggable2 = _interopRequireDefault(_vuedraggable);
 
-var _vueSlicksort = __webpack_require__(167);
+var _vueSlicksort = __webpack_require__(127);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
 //
 //
 //
@@ -576,52 +577,45 @@ _vue2.default.use(_vueDragula2.default);
 
 var SortableList = {
     mixins: [_vueSlicksort.ContainerMixin],
-    template: '<div class="simulator"><slot /></div>'
+    template: '<div class="simulator">\n        <slot></slot>\n    </div>'
 };
 
 var SortableItem = {
     mixins: [_vueSlicksort.ElementMixin],
     props: ['item'],
-    template: '<div class="simulator-item" :class="[item.isHighlight ? \'simulator-item_active\' : \'\']">\n        <div class="simulator-item-hint">\u8BF7\u7F16\u8F91{{item.data.text}}\u7EC4\u4EF6\u5185\u5BB9</div>\n        <div class="simulator-item-edit">\u7F16\u8F91</div>\n        <div class="simulator-item-mask"></div>\n    </div>'
+    template: '<div class="simulator-item"\n        :class="[item.isHighlight ? \'simulator-item_active\' : \'\']"\n    >\n        <div class="simulator-item-hint">\u8BF7\u7F16\u8F91{{item.text}}\u7EC4\u4EF6\u5185\u5BB9</div>\n        <div class="simulator-item-edit">\u7F16\u8F91</div>\n        <div class="simulator-item-mask"></div>\n    </div>'
 };
 
 exports.default = {
     name: 'decorate-edit',
     data: function data() {
         return {
+            // 所有的组件集合
             components: [{
                 isHighlight: true,
-                data: {
-                    config: {},
-                    id: null,
-                    name: 'swiper',
-                    text: '轮播'
-                }
+                name: 'swiper',
+                text: '轮播'
             }, {
                 isHighlight: false,
-                data: {
-                    config: {},
-                    id: null,
-                    name: 'cut',
-                    text: '切图'
-                }
+                name: 'cut',
+                text: '切图'
             }, {
                 isHighlight: false,
-                data: {
-                    config: {},
-                    id: null,
-                    name: 'gap',
-                    text: '间隔'
-                }
+                name: 'gap',
+                text: '间隔'
             }, {
                 isHighlight: false,
-                data: {
-                    config: {},
-                    id: null,
-                    name: 'goods',
-                    text: '商品'
-                }
-            }]
+                name: 'goods',
+                text: '商品'
+            }, {
+                isHighlight: false,
+                name: 'nav',
+                text: '导航'
+            }],
+            // 页面中选择了哪些组件
+            pageSelectedComponents: [],
+            // 当前选中的是哪一个组件
+            nowSelectedComponents: []
         };
     },
 
@@ -640,507 +634,6 @@ exports.default = {
 /***/ }),
 
 /***/ 125:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }return target;
-};
-
-function _toConsumableArray(arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
-      arr2[i] = arr[i];
-    }return arr2;
-  } else {
-    return Array.from(arr);
-  }
-}
-
-(function () {
-  "use strict";
-
-  if (!Array.from) {
-    Array.from = function (object) {
-      return [].slice.call(object);
-    };
-  }
-
-  function buildAttribute(object, propName, value) {
-    if (value == undefined) {
-      return object;
-    }
-    object = object == null ? {} : object;
-    object[propName] = value;
-    return object;
-  }
-
-  function buildDraggable(Sortable) {
-    function removeNode(node) {
-      node.parentElement.removeChild(node);
-    }
-
-    function insertNodeAt(fatherNode, node, position) {
-      var refNode = position === 0 ? fatherNode.children[0] : fatherNode.children[position - 1].nextSibling;
-      fatherNode.insertBefore(node, refNode);
-    }
-
-    function computeVmIndex(vnodes, element) {
-      return vnodes.map(function (elt) {
-        return elt.elm;
-      }).indexOf(element);
-    }
-
-    function _computeIndexes(slots, children, isTransition) {
-      if (!slots) {
-        return [];
-      }
-
-      var elmFromNodes = slots.map(function (elt) {
-        return elt.elm;
-      });
-      var rawIndexes = [].concat(_toConsumableArray(children)).map(function (elt) {
-        return elmFromNodes.indexOf(elt);
-      });
-      return isTransition ? rawIndexes.filter(function (ind) {
-        return ind !== -1;
-      }) : rawIndexes;
-    }
-
-    function emit(evtName, evtData) {
-      var _this = this;
-
-      this.$nextTick(function () {
-        return _this.$emit(evtName.toLowerCase(), evtData);
-      });
-    }
-
-    function delegateAndEmit(evtName) {
-      var _this2 = this;
-
-      return function (evtData) {
-        if (_this2.realList !== null) {
-          _this2['onDrag' + evtName](evtData);
-        }
-        emit.call(_this2, evtName, evtData);
-      };
-    }
-
-    var eventsListened = ['Start', 'Add', 'Remove', 'Update', 'End'];
-    var eventsToEmit = ['Choose', 'Sort', 'Filter', 'Clone'];
-    var readonlyProperties = ['Move'].concat(eventsListened, eventsToEmit).map(function (evt) {
-      return 'on' + evt;
-    });
-    var draggingElement = null;
-
-    var props = {
-      options: Object,
-      list: {
-        type: Array,
-        required: false,
-        default: null
-      },
-      value: {
-        type: Array,
-        required: false,
-        default: null
-      },
-      noTransitionOnDrag: {
-        type: Boolean,
-        default: false
-      },
-      clone: {
-        type: Function,
-        default: function _default(original) {
-          return original;
-        }
-      },
-      element: {
-        type: String,
-        default: 'div'
-      },
-      move: {
-        type: Function,
-        default: null
-      },
-      componentData: {
-        type: Object,
-        required: false,
-        default: null
-      }
-    };
-
-    var draggableComponent = {
-      name: 'draggable',
-
-      props: props,
-
-      data: function data() {
-        return {
-          transitionMode: false,
-          noneFunctionalComponentMode: false,
-          init: false
-        };
-      },
-      render: function render(h) {
-        var slots = this.$slots.default;
-        if (slots && slots.length === 1) {
-          var child = slots[0];
-          if (child.componentOptions && child.componentOptions.tag === "transition-group") {
-            this.transitionMode = true;
-          }
-        }
-        var children = slots;
-        var footer = this.$slots.footer;
-
-        if (footer) {
-          children = slots ? [].concat(_toConsumableArray(slots), _toConsumableArray(footer)) : [].concat(_toConsumableArray(footer));
-        }
-        var attributes = null;
-        var update = function update(name, value) {
-          attributes = buildAttribute(attributes, name, value);
-        };
-        update('attrs', this.$attrs);
-        if (this.componentData) {
-          var _componentData = this.componentData,
-              on = _componentData.on,
-              _props = _componentData.props;
-
-          update('on', on);
-          update('props', _props);
-        }
-        return h(this.element, attributes, children);
-      },
-      mounted: function mounted() {
-        var _this3 = this;
-
-        this.noneFunctionalComponentMode = this.element.toLowerCase() !== this.$el.nodeName.toLowerCase();
-        if (this.noneFunctionalComponentMode && this.transitionMode) {
-          throw new Error('Transition-group inside component is not supported. Please alter element value or remove transition-group. Current element value: ' + this.element);
-        }
-        var optionsAdded = {};
-        eventsListened.forEach(function (elt) {
-          optionsAdded['on' + elt] = delegateAndEmit.call(_this3, elt);
-        });
-
-        eventsToEmit.forEach(function (elt) {
-          optionsAdded['on' + elt] = emit.bind(_this3, elt);
-        });
-
-        var options = _extends({}, this.options, optionsAdded, { onMove: function onMove(evt, originalEvent) {
-            return _this3.onDragMove(evt, originalEvent);
-          } });
-        !('draggable' in options) && (options.draggable = '>*');
-        this._sortable = new Sortable(this.rootContainer, options);
-        this.computeIndexes();
-      },
-      beforeDestroy: function beforeDestroy() {
-        this._sortable.destroy();
-      },
-
-      computed: {
-        rootContainer: function rootContainer() {
-          return this.transitionMode ? this.$el.children[0] : this.$el;
-        },
-        isCloning: function isCloning() {
-          return !!this.options && !!this.options.group && this.options.group.pull === 'clone';
-        },
-        realList: function realList() {
-          return !!this.list ? this.list : this.value;
-        }
-      },
-
-      watch: {
-        options: {
-          handler: function handler(newOptionValue) {
-            for (var property in newOptionValue) {
-              if (readonlyProperties.indexOf(property) == -1) {
-                this._sortable.option(property, newOptionValue[property]);
-              }
-            }
-          },
-
-          deep: true
-        },
-
-        realList: function realList() {
-          this.computeIndexes();
-        }
-      },
-
-      methods: {
-        getChildrenNodes: function getChildrenNodes() {
-          if (!this.init) {
-            this.noneFunctionalComponentMode = this.noneFunctionalComponentMode && this.$children.length == 1;
-            this.init = true;
-          }
-
-          if (this.noneFunctionalComponentMode) {
-            return this.$children[0].$slots.default;
-          }
-          var rawNodes = this.$slots.default;
-          return this.transitionMode ? rawNodes[0].child.$slots.default : rawNodes;
-        },
-        computeIndexes: function computeIndexes() {
-          var _this4 = this;
-
-          this.$nextTick(function () {
-            _this4.visibleIndexes = _computeIndexes(_this4.getChildrenNodes(), _this4.rootContainer.children, _this4.transitionMode);
-          });
-        },
-        getUnderlyingVm: function getUnderlyingVm(htmlElt) {
-          var index = computeVmIndex(this.getChildrenNodes() || [], htmlElt);
-          if (index === -1) {
-            //Edge case during move callback: related element might be
-            //an element different from collection
-            return null;
-          }
-          var element = this.realList[index];
-          return { index: index, element: element };
-        },
-        getUnderlyingPotencialDraggableComponent: function getUnderlyingPotencialDraggableComponent(_ref) {
-          var __vue__ = _ref.__vue__;
-
-          if (!__vue__ || !__vue__.$options || __vue__.$options._componentTag !== "transition-group") {
-            return __vue__;
-          }
-          return __vue__.$parent;
-        },
-        emitChanges: function emitChanges(evt) {
-          var _this5 = this;
-
-          this.$nextTick(function () {
-            _this5.$emit('change', evt);
-          });
-        },
-        alterList: function alterList(onList) {
-          if (!!this.list) {
-            onList(this.list);
-          } else {
-            var newList = [].concat(_toConsumableArray(this.value));
-            onList(newList);
-            this.$emit('input', newList);
-          }
-        },
-        spliceList: function spliceList() {
-          var _arguments = arguments;
-
-          var spliceList = function spliceList(list) {
-            return list.splice.apply(list, _arguments);
-          };
-          this.alterList(spliceList);
-        },
-        updatePosition: function updatePosition(oldIndex, newIndex) {
-          var updatePosition = function updatePosition(list) {
-            return list.splice(newIndex, 0, list.splice(oldIndex, 1)[0]);
-          };
-          this.alterList(updatePosition);
-        },
-        getRelatedContextFromMoveEvent: function getRelatedContextFromMoveEvent(_ref2) {
-          var to = _ref2.to,
-              related = _ref2.related;
-
-          var component = this.getUnderlyingPotencialDraggableComponent(to);
-          if (!component) {
-            return { component: component };
-          }
-          var list = component.realList;
-          var context = { list: list, component: component };
-          if (to !== related && list && component.getUnderlyingVm) {
-            var destination = component.getUnderlyingVm(related);
-            if (destination) {
-              return _extends(destination, context);
-            }
-          }
-
-          return context;
-        },
-        getVmIndex: function getVmIndex(domIndex) {
-          var indexes = this.visibleIndexes;
-          var numberIndexes = indexes.length;
-          return domIndex > numberIndexes - 1 ? numberIndexes : indexes[domIndex];
-        },
-        getComponent: function getComponent() {
-          return this.$slots.default[0].componentInstance;
-        },
-        resetTransitionData: function resetTransitionData(index) {
-          if (!this.noTransitionOnDrag || !this.transitionMode) {
-            return;
-          }
-          var nodes = this.getChildrenNodes();
-          nodes[index].data = null;
-          var transitionContainer = this.getComponent();
-          transitionContainer.children = [];
-          transitionContainer.kept = undefined;
-        },
-        onDragStart: function onDragStart(evt) {
-          this.context = this.getUnderlyingVm(evt.item);
-          evt.item._underlying_vm_ = this.clone(this.context.element);
-          draggingElement = evt.item;
-        },
-        onDragAdd: function onDragAdd(evt) {
-          var element = evt.item._underlying_vm_;
-          if (element === undefined) {
-            return;
-          }
-          removeNode(evt.item);
-          var newIndex = this.getVmIndex(evt.newIndex);
-          this.spliceList(newIndex, 0, element);
-          this.computeIndexes();
-          var added = { element: element, newIndex: newIndex };
-          this.emitChanges({ added: added });
-        },
-        onDragRemove: function onDragRemove(evt) {
-          insertNodeAt(this.rootContainer, evt.item, evt.oldIndex);
-          if (this.isCloning) {
-            removeNode(evt.clone);
-            return;
-          }
-          var oldIndex = this.context.index;
-          this.spliceList(oldIndex, 1);
-          var removed = { element: this.context.element, oldIndex: oldIndex };
-          this.resetTransitionData(oldIndex);
-          this.emitChanges({ removed: removed });
-        },
-        onDragUpdate: function onDragUpdate(evt) {
-          removeNode(evt.item);
-          insertNodeAt(evt.from, evt.item, evt.oldIndex);
-          var oldIndex = this.context.index;
-          var newIndex = this.getVmIndex(evt.newIndex);
-          this.updatePosition(oldIndex, newIndex);
-          var moved = { element: this.context.element, oldIndex: oldIndex, newIndex: newIndex };
-          this.emitChanges({ moved: moved });
-        },
-        computeFutureIndex: function computeFutureIndex(relatedContext, evt) {
-          if (!relatedContext.element) {
-            return 0;
-          }
-          var domChildren = [].concat(_toConsumableArray(evt.to.children)).filter(function (el) {
-            return el.style['display'] !== 'none';
-          });
-          var currentDOMIndex = domChildren.indexOf(evt.related);
-          var currentIndex = relatedContext.component.getVmIndex(currentDOMIndex);
-          var draggedInList = domChildren.indexOf(draggingElement) != -1;
-          return draggedInList || !evt.willInsertAfter ? currentIndex : currentIndex + 1;
-        },
-        onDragMove: function onDragMove(evt, originalEvent) {
-          var onMove = this.move;
-          if (!onMove || !this.realList) {
-            return true;
-          }
-
-          var relatedContext = this.getRelatedContextFromMoveEvent(evt);
-          var draggedContext = this.context;
-          var futureIndex = this.computeFutureIndex(relatedContext, evt);
-          _extends(draggedContext, { futureIndex: futureIndex });
-          _extends(evt, { relatedContext: relatedContext, draggedContext: draggedContext });
-          return onMove(evt, originalEvent);
-        },
-        onDragEnd: function onDragEnd(evt) {
-          this.computeIndexes();
-          draggingElement = null;
-        }
-      }
-    };
-    return draggableComponent;
-  }
-
-  if (( false ? 'undefined' : _typeof(exports)) == "object") {
-    var Sortable = __webpack_require__(42);
-    module.exports = buildDraggable(Sortable);
-  } else if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(42)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (Sortable) {
-      return buildDraggable(Sortable);
-    }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if (window && window.Vue && window.Sortable) {
-    var draggable = buildDraggable(window.Sortable);
-    Vue.component('draggable', draggable);
-  }
-})();
-
-/***/ }),
-
-/***/ 126:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    attrs: {
-      "id": "app"
-    }
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "components-simulator"
-  }, [_c('div', {
-    staticClass: "simulator-wrap"
-  }, [_c('SortableList', {
-    attrs: {
-      "lockAxis": "y"
-    },
-    model: {
-      value: (_vm.components),
-      callback: function($$v) {
-        _vm.components = $$v
-      },
-      expression: "components"
-    }
-  }, _vm._l((_vm.components), function(item, index) {
-    return _c('SortableItem', {
-      key: index,
-      attrs: {
-        "index": index,
-        "item": item
-      }
-    })
-  }))], 1)]), _vm._v(" "), _vm._m(1)])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "components-collection"
-  }, [_c('div', {
-    staticClass: "components-wrap"
-  }, [_c('div', {
-    staticClass: "components"
-  }, [_vm._v("切图")]), _vm._v(" "), _c('div', {
-    staticClass: "components"
-  }, [_vm._v("轮播")]), _vm._v(" "), _c('div', {
-    staticClass: "components"
-  }, [_vm._v("间隔")]), _vm._v(" "), _c('div', {
-    staticClass: "components"
-  }, [_vm._v("商品")]), _vm._v(" "), _c('div', {
-    staticClass: "components"
-  }, [_vm._v("橱窗")]), _vm._v(" "), _c('div', {
-    staticClass: "components"
-  }, [_vm._v("导航")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "components-editor"
-  }, [_c('div', {
-    staticClass: "editor-wrap"
-  }, [_c('div', {
-    staticClass: "editor"
-  })])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-232fccf7", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 127:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2538,101 +2031,443 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   return plugin;
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(20).setImmediate, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(21).setImmediate, __webpack_require__(5)))
 
 /***/ }),
 
-/***/ 128:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 147:
+/***/ 126:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function (useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if (item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function (modules, mediaQuery) {
-		if (typeof modules === "string") modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for (var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if (typeof id === "number") alreadyImportedModules[id] = true;
-		}
-		for (i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if (mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if (mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
 };
 
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */';
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
+function _toConsumableArray(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }return arr2;
+  } else {
+    return Array.from(arr);
+  }
 }
 
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+(function () {
+  "use strict";
 
-	return '/*# ' + data + ' */';
-}
+  if (!Array.from) {
+    Array.from = function (object) {
+      return [].slice.call(object);
+    };
+  }
+
+  function buildAttribute(object, propName, value) {
+    if (value == undefined) {
+      return object;
+    }
+    object = object == null ? {} : object;
+    object[propName] = value;
+    return object;
+  }
+
+  function buildDraggable(Sortable) {
+    function removeNode(node) {
+      node.parentElement.removeChild(node);
+    }
+
+    function insertNodeAt(fatherNode, node, position) {
+      var refNode = position === 0 ? fatherNode.children[0] : fatherNode.children[position - 1].nextSibling;
+      fatherNode.insertBefore(node, refNode);
+    }
+
+    function computeVmIndex(vnodes, element) {
+      return vnodes.map(function (elt) {
+        return elt.elm;
+      }).indexOf(element);
+    }
+
+    function _computeIndexes(slots, children, isTransition) {
+      if (!slots) {
+        return [];
+      }
+
+      var elmFromNodes = slots.map(function (elt) {
+        return elt.elm;
+      });
+      var rawIndexes = [].concat(_toConsumableArray(children)).map(function (elt) {
+        return elmFromNodes.indexOf(elt);
+      });
+      return isTransition ? rawIndexes.filter(function (ind) {
+        return ind !== -1;
+      }) : rawIndexes;
+    }
+
+    function emit(evtName, evtData) {
+      var _this = this;
+
+      this.$nextTick(function () {
+        return _this.$emit(evtName.toLowerCase(), evtData);
+      });
+    }
+
+    function delegateAndEmit(evtName) {
+      var _this2 = this;
+
+      return function (evtData) {
+        if (_this2.realList !== null) {
+          _this2['onDrag' + evtName](evtData);
+        }
+        emit.call(_this2, evtName, evtData);
+      };
+    }
+
+    var eventsListened = ['Start', 'Add', 'Remove', 'Update', 'End'];
+    var eventsToEmit = ['Choose', 'Sort', 'Filter', 'Clone'];
+    var readonlyProperties = ['Move'].concat(eventsListened, eventsToEmit).map(function (evt) {
+      return 'on' + evt;
+    });
+    var draggingElement = null;
+
+    var props = {
+      options: Object,
+      list: {
+        type: Array,
+        required: false,
+        default: null
+      },
+      value: {
+        type: Array,
+        required: false,
+        default: null
+      },
+      noTransitionOnDrag: {
+        type: Boolean,
+        default: false
+      },
+      clone: {
+        type: Function,
+        default: function _default(original) {
+          return original;
+        }
+      },
+      element: {
+        type: String,
+        default: 'div'
+      },
+      move: {
+        type: Function,
+        default: null
+      },
+      componentData: {
+        type: Object,
+        required: false,
+        default: null
+      }
+    };
+
+    var draggableComponent = {
+      name: 'draggable',
+
+      props: props,
+
+      data: function data() {
+        return {
+          transitionMode: false,
+          noneFunctionalComponentMode: false,
+          init: false
+        };
+      },
+      render: function render(h) {
+        var slots = this.$slots.default;
+        if (slots && slots.length === 1) {
+          var child = slots[0];
+          if (child.componentOptions && child.componentOptions.tag === "transition-group") {
+            this.transitionMode = true;
+          }
+        }
+        var children = slots;
+        var footer = this.$slots.footer;
+
+        if (footer) {
+          children = slots ? [].concat(_toConsumableArray(slots), _toConsumableArray(footer)) : [].concat(_toConsumableArray(footer));
+        }
+        var attributes = null;
+        var update = function update(name, value) {
+          attributes = buildAttribute(attributes, name, value);
+        };
+        update('attrs', this.$attrs);
+        if (this.componentData) {
+          var _componentData = this.componentData,
+              on = _componentData.on,
+              _props = _componentData.props;
+
+          update('on', on);
+          update('props', _props);
+        }
+        return h(this.element, attributes, children);
+      },
+      mounted: function mounted() {
+        var _this3 = this;
+
+        this.noneFunctionalComponentMode = this.element.toLowerCase() !== this.$el.nodeName.toLowerCase();
+        if (this.noneFunctionalComponentMode && this.transitionMode) {
+          throw new Error('Transition-group inside component is not supported. Please alter element value or remove transition-group. Current element value: ' + this.element);
+        }
+        var optionsAdded = {};
+        eventsListened.forEach(function (elt) {
+          optionsAdded['on' + elt] = delegateAndEmit.call(_this3, elt);
+        });
+
+        eventsToEmit.forEach(function (elt) {
+          optionsAdded['on' + elt] = emit.bind(_this3, elt);
+        });
+
+        var options = _extends({}, this.options, optionsAdded, { onMove: function onMove(evt, originalEvent) {
+            return _this3.onDragMove(evt, originalEvent);
+          } });
+        !('draggable' in options) && (options.draggable = '>*');
+        this._sortable = new Sortable(this.rootContainer, options);
+        this.computeIndexes();
+      },
+      beforeDestroy: function beforeDestroy() {
+        this._sortable.destroy();
+      },
+
+      computed: {
+        rootContainer: function rootContainer() {
+          return this.transitionMode ? this.$el.children[0] : this.$el;
+        },
+        isCloning: function isCloning() {
+          return !!this.options && !!this.options.group && this.options.group.pull === 'clone';
+        },
+        realList: function realList() {
+          return !!this.list ? this.list : this.value;
+        }
+      },
+
+      watch: {
+        options: {
+          handler: function handler(newOptionValue) {
+            for (var property in newOptionValue) {
+              if (readonlyProperties.indexOf(property) == -1) {
+                this._sortable.option(property, newOptionValue[property]);
+              }
+            }
+          },
+
+          deep: true
+        },
+
+        realList: function realList() {
+          this.computeIndexes();
+        }
+      },
+
+      methods: {
+        getChildrenNodes: function getChildrenNodes() {
+          if (!this.init) {
+            this.noneFunctionalComponentMode = this.noneFunctionalComponentMode && this.$children.length == 1;
+            this.init = true;
+          }
+
+          if (this.noneFunctionalComponentMode) {
+            return this.$children[0].$slots.default;
+          }
+          var rawNodes = this.$slots.default;
+          return this.transitionMode ? rawNodes[0].child.$slots.default : rawNodes;
+        },
+        computeIndexes: function computeIndexes() {
+          var _this4 = this;
+
+          this.$nextTick(function () {
+            _this4.visibleIndexes = _computeIndexes(_this4.getChildrenNodes(), _this4.rootContainer.children, _this4.transitionMode);
+          });
+        },
+        getUnderlyingVm: function getUnderlyingVm(htmlElt) {
+          var index = computeVmIndex(this.getChildrenNodes() || [], htmlElt);
+          if (index === -1) {
+            //Edge case during move callback: related element might be
+            //an element different from collection
+            return null;
+          }
+          var element = this.realList[index];
+          return { index: index, element: element };
+        },
+        getUnderlyingPotencialDraggableComponent: function getUnderlyingPotencialDraggableComponent(_ref) {
+          var __vue__ = _ref.__vue__;
+
+          if (!__vue__ || !__vue__.$options || __vue__.$options._componentTag !== "transition-group") {
+            return __vue__;
+          }
+          return __vue__.$parent;
+        },
+        emitChanges: function emitChanges(evt) {
+          var _this5 = this;
+
+          this.$nextTick(function () {
+            _this5.$emit('change', evt);
+          });
+        },
+        alterList: function alterList(onList) {
+          if (!!this.list) {
+            onList(this.list);
+          } else {
+            var newList = [].concat(_toConsumableArray(this.value));
+            onList(newList);
+            this.$emit('input', newList);
+          }
+        },
+        spliceList: function spliceList() {
+          var _arguments = arguments;
+
+          var spliceList = function spliceList(list) {
+            return list.splice.apply(list, _arguments);
+          };
+          this.alterList(spliceList);
+        },
+        updatePosition: function updatePosition(oldIndex, newIndex) {
+          var updatePosition = function updatePosition(list) {
+            return list.splice(newIndex, 0, list.splice(oldIndex, 1)[0]);
+          };
+          this.alterList(updatePosition);
+        },
+        getRelatedContextFromMoveEvent: function getRelatedContextFromMoveEvent(_ref2) {
+          var to = _ref2.to,
+              related = _ref2.related;
+
+          var component = this.getUnderlyingPotencialDraggableComponent(to);
+          if (!component) {
+            return { component: component };
+          }
+          var list = component.realList;
+          var context = { list: list, component: component };
+          if (to !== related && list && component.getUnderlyingVm) {
+            var destination = component.getUnderlyingVm(related);
+            if (destination) {
+              return _extends(destination, context);
+            }
+          }
+
+          return context;
+        },
+        getVmIndex: function getVmIndex(domIndex) {
+          var indexes = this.visibleIndexes;
+          var numberIndexes = indexes.length;
+          return domIndex > numberIndexes - 1 ? numberIndexes : indexes[domIndex];
+        },
+        getComponent: function getComponent() {
+          return this.$slots.default[0].componentInstance;
+        },
+        resetTransitionData: function resetTransitionData(index) {
+          if (!this.noTransitionOnDrag || !this.transitionMode) {
+            return;
+          }
+          var nodes = this.getChildrenNodes();
+          nodes[index].data = null;
+          var transitionContainer = this.getComponent();
+          transitionContainer.children = [];
+          transitionContainer.kept = undefined;
+        },
+        onDragStart: function onDragStart(evt) {
+          this.context = this.getUnderlyingVm(evt.item);
+          evt.item._underlying_vm_ = this.clone(this.context.element);
+          draggingElement = evt.item;
+        },
+        onDragAdd: function onDragAdd(evt) {
+          var element = evt.item._underlying_vm_;
+          if (element === undefined) {
+            return;
+          }
+          removeNode(evt.item);
+          var newIndex = this.getVmIndex(evt.newIndex);
+          this.spliceList(newIndex, 0, element);
+          this.computeIndexes();
+          var added = { element: element, newIndex: newIndex };
+          this.emitChanges({ added: added });
+        },
+        onDragRemove: function onDragRemove(evt) {
+          insertNodeAt(this.rootContainer, evt.item, evt.oldIndex);
+          if (this.isCloning) {
+            removeNode(evt.clone);
+            return;
+          }
+          var oldIndex = this.context.index;
+          this.spliceList(oldIndex, 1);
+          var removed = { element: this.context.element, oldIndex: oldIndex };
+          this.resetTransitionData(oldIndex);
+          this.emitChanges({ removed: removed });
+        },
+        onDragUpdate: function onDragUpdate(evt) {
+          removeNode(evt.item);
+          insertNodeAt(evt.from, evt.item, evt.oldIndex);
+          var oldIndex = this.context.index;
+          var newIndex = this.getVmIndex(evt.newIndex);
+          this.updatePosition(oldIndex, newIndex);
+          var moved = { element: this.context.element, oldIndex: oldIndex, newIndex: newIndex };
+          this.emitChanges({ moved: moved });
+        },
+        computeFutureIndex: function computeFutureIndex(relatedContext, evt) {
+          if (!relatedContext.element) {
+            return 0;
+          }
+          var domChildren = [].concat(_toConsumableArray(evt.to.children)).filter(function (el) {
+            return el.style['display'] !== 'none';
+          });
+          var currentDOMIndex = domChildren.indexOf(evt.related);
+          var currentIndex = relatedContext.component.getVmIndex(currentDOMIndex);
+          var draggedInList = domChildren.indexOf(draggingElement) != -1;
+          return draggedInList || !evt.willInsertAfter ? currentIndex : currentIndex + 1;
+        },
+        onDragMove: function onDragMove(evt, originalEvent) {
+          var onMove = this.move;
+          if (!onMove || !this.realList) {
+            return true;
+          }
+
+          var relatedContext = this.getRelatedContextFromMoveEvent(evt);
+          var draggedContext = this.context;
+          var futureIndex = this.computeFutureIndex(relatedContext, evt);
+          _extends(draggedContext, { futureIndex: futureIndex });
+          _extends(evt, { relatedContext: relatedContext, draggedContext: draggedContext });
+          return onMove(evt, originalEvent);
+        },
+        onDragEnd: function onDragEnd(evt) {
+          this.computeIndexes();
+          draggingElement = null;
+        }
+      }
+    };
+    return draggableComponent;
+  }
+
+  if (( false ? 'undefined' : _typeof(exports)) == "object") {
+    var Sortable = __webpack_require__(42);
+    module.exports = buildDraggable(Sortable);
+  } else if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(42)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (Sortable) {
+      return buildDraggable(Sortable);
+    }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (window && window.Vue && window.Sortable) {
+    var draggable = buildDraggable(window.Sortable);
+    Vue.component('draggable', draggable);
+  }
+})();
 
 /***/ }),
 
-/***/ 167:
+/***/ 127:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3610,6 +3445,160 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   Object.defineProperty(exports, '__esModule', { value: true });
 });
+
+/***/ }),
+
+/***/ 128:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": "app"
+    }
+  }, [_c('div', {
+    staticClass: "components-collection"
+  }, [_c('div', {
+    staticClass: "components-wrap"
+  }, [_c('div', {
+    staticClass: "components"
+  }, _vm._l((_vm.components), function(item, index) {
+    return _c('div', {
+      staticClass: "components-item"
+    }, [_vm._v("\n                    " + _vm._s(item.text) + "\n                ")])
+  }))])]), _vm._v(" "), _c('div', {
+    staticClass: "components-simulator"
+  }, [_c('div', {
+    staticClass: "simulator-wrap"
+  }, [_c('SortableList', {
+    attrs: {
+      "lockAxis": "y"
+    },
+    model: {
+      value: (_vm.pageSelectedComponents),
+      callback: function($$v) {
+        _vm.pageSelectedComponents = $$v
+      },
+      expression: "pageSelectedComponents"
+    }
+  }, _vm._l((_vm.pageSelectedComponents), function(item, index) {
+    return _c('SortableItem', {
+      key: index,
+      attrs: {
+        "index": index,
+        "item": item
+      }
+    })
+  }))], 1)]), _vm._v(" "), _c('div', {
+    staticClass: "components-editor"
+  }, [_c('div', {
+    staticClass: "editor-wrap"
+  }, [_c('div', {
+    staticClass: "editor"
+  }, _vm._l((_vm.pageSelectedComponents), function(item, index) {
+    return _c('div', {
+      staticClass: "editor-item",
+      class: [item.isHighlight ? 'editor-item_active' : '']
+    }, [_vm._v("\n                    " + _vm._s(item.text) + "编辑区域\n                ")])
+  }))])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-232fccf7", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 129:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 148:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function (useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if (item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function (modules, mediaQuery) {
+		if (typeof modules === "string") modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for (var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if (typeof id === "number") alreadyImportedModules[id] = true;
+		}
+		for (i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if (mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if (mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */';
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
 
 /***/ }),
 

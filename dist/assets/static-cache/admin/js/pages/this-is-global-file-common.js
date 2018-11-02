@@ -1871,12 +1871,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 __webpack_require__(45);
 var extend = __webpack_require__(0);
 var ajax = __webpack_require__(23);
-var axios = __webpack_require__(16);
+var axios = __webpack_require__(17);
 var jsonp = __webpack_require__(50);
 var strTo = __webpack_require__(52);
 var qr = __webpack_require__(55);
 
-var _require = __webpack_require__(21),
+var _require = __webpack_require__(22),
     Message = _require.Message,
     Confirm = _require.Confirm,
     Validate = _require.Validate,
@@ -2092,7 +2092,7 @@ var Super = function () {
             });
 
             // Vue
-            var Vue = __webpack_require__(22);
+            var Vue = __webpack_require__(15);
             Vue.prototype.$lazyload = self.lazyload;
             self.Vue = Vue;
         }
@@ -2230,7 +2230,7 @@ util.inherits = __webpack_require__(7);
 /*</replacement>*/
 
 var Readable = __webpack_require__(30);
-var Writable = __webpack_require__(19);
+var Writable = __webpack_require__(20);
 
 util.inherits(Duplex, Readable);
 
@@ -2783,7 +2783,8 @@ exports.setTyped = function (on) {
 exports.setTyped(TYPED_OK);
 
 /***/ }),
-/* 15 */
+/* 15 */,
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2808,7 +2809,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterato
 });
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2816,7 +2817,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterato
 
 var axios = __webpack_require__(24);
 var extend = __webpack_require__(0);
-var typeOf = __webpack_require__(15);
+var typeOf = __webpack_require__(16);
 var Message = __webpack_require__(11);
 var qs = __webpack_require__(47);
 
@@ -2908,7 +2909,7 @@ module.exports = function (json) {
 };
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3187,7 +3188,7 @@ function isUndefined(arg) {
 }
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3196,13 +3197,13 @@ function isUndefined(arg) {
 exports = module.exports = __webpack_require__(30);
 exports.Stream = exports;
 exports.Readable = exports;
-exports.Writable = __webpack_require__(19);
+exports.Writable = __webpack_require__(20);
 exports.Duplex = __webpack_require__(8);
 exports.Transform = __webpack_require__(34);
 exports.PassThrough = __webpack_require__(62);
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3870,11 +3871,11 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(20).setImmediate, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(21).setImmediate, __webpack_require__(6)))
 
 /***/ }),
-/* 20 */,
-/* 21 */
+/* 21 */,
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3908,7 +3909,6 @@ module.exports = {
 };
 
 /***/ }),
-/* 22 */,
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3916,7 +3916,7 @@ module.exports = {
 
 
 var extend = __webpack_require__(0);
-var typeOf = __webpack_require__(15);
+var typeOf = __webpack_require__(16);
 var Message = __webpack_require__(11);
 
 module.exports = function (json) {
@@ -4329,11 +4329,11 @@ module.exports = Array.isArray || function (arr) {
 
 module.exports = Stream;
 
-var EE = __webpack_require__(17).EventEmitter;
+var EE = __webpack_require__(18).EventEmitter;
 var inherits = __webpack_require__(7);
 
 inherits(Stream, EE);
-Stream.Readable = __webpack_require__(18);
+Stream.Readable = __webpack_require__(19);
 Stream.Writable = __webpack_require__(63);
 Stream.Duplex = __webpack_require__(64);
 Stream.Transform = __webpack_require__(65);
@@ -4477,7 +4477,7 @@ var Duplex;
 Readable.ReadableState = ReadableState;
 
 /*<replacement>*/
-var EE = __webpack_require__(17).EventEmitter;
+var EE = __webpack_require__(18).EventEmitter;
 
 var EElistenerCount = function EElistenerCount(emitter, type) {
   return emitter.listeners(type).length;
@@ -5452,7 +5452,7 @@ function indexOf(xs, x) {
 "use strict";
 
 
-module.exports = __webpack_require__(17).EventEmitter;
+module.exports = __webpack_require__(18).EventEmitter;
 
 /***/ }),
 /* 32 */
@@ -7803,7 +7803,7 @@ module.exports = function (str, opts) {
 
 
 var extend = __webpack_require__(0);
-var typeOf = __webpack_require__(15);
+var typeOf = __webpack_require__(16);
 var queryString = __webpack_require__(51);
 var Message = __webpack_require__(11);
 
@@ -8563,7 +8563,7 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 "use strict";
 
 
-module.exports = __webpack_require__(19);
+module.exports = __webpack_require__(20);
 
 /***/ }),
 /* 64 */
@@ -8581,7 +8581,7 @@ module.exports = __webpack_require__(8);
 "use strict";
 
 
-module.exports = __webpack_require__(18).Transform;
+module.exports = __webpack_require__(19).Transform;
 
 /***/ }),
 /* 66 */
@@ -8590,7 +8590,7 @@ module.exports = __webpack_require__(18).Transform;
 "use strict";
 
 
-module.exports = __webpack_require__(18).PassThrough;
+module.exports = __webpack_require__(19).PassThrough;
 
 /***/ }),
 /* 67 */

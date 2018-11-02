@@ -14,114 +14,140 @@ html, body, .g-wrap, .g-body, #app {
     justify-content: center;
 }
 
+// 组件区域的样式
+$w: 300;
 .components-collection {
-    $w: 300;
     width: px2rem($w);
     min-width: px2rem($w);
     height: 100%;
     background: #666666;
     overflow: hidden;
-    .components-wrap {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-    .components {
-        $w: 50;
-        $h: $w;
-        width: px2rem($w);
-        height: px2rem($h);
-        background: #ffffff;
-        margin: px2rem(10);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: move;
-        user-select: none;
-        &.components_active {
-            background: #fe313c;
-            color: #ffffff;
-        }
+}
+
+.components-wrap {
+}
+
+.components {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.components-item {
+    $w: 50;
+    $h: $w;
+    width: px2rem($w);
+    height: px2rem($h);
+    background: #ffffff;
+    margin: px2rem(10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: move;
+    user-select: none;
+    &.components-item_active {
+        background: #fe313c;
+        color: #ffffff;
     }
 }
 
+// 模拟器区域的样式
+$w: 375;
+$h: 667;
 .components-simulator {
-    $w: 375;
-    $h: 667;
-    width: px2rem($w + 100);
+    width: px2rem($w + 17);
     min-width: px2rem($w);
     height: 100%;
     background: #777777;
-    .simulator-wrap {
-        height: px2rem($h);
-        overflow: auto;
-    }
-    .simulator {
-        width: px2rem($w);
-        background: #888888;
-        height: 100%;
-    }
-    .simulator-item {
-        position: relative;
-        height: px2rem(80);
-        background: #f8f8f8;
-        cursor: move;
-        user-select: none;
-        &.simulator-item_active {
-            .simulator-item-mask {
-                display: block;
-                border: px2rem(2) dashed rgba(255, 0, 0, 0.5);
-            }
-        }
-        //&:hover {
-        //    .simulator-item-mask {
-        //        display: block;
-        //    }
-        //    .simulator-item-edit {
-        //        display: flex;
-        //    }
-        //}
-    }
-    .simulator-item-hint {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 2;
-    }
-    .simulator-item-mask {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(231, 91, 69, 0.5);
-        display: none;
-        z-index: 3;
-    }
-    .simulator-item-edit {
-        height: px2rem(40);
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 50%;
-        border-radius: px2rem(1000);
-        transform: translate(-50%, -50%);
-        align-items: center;
-        justify-content: center;
-        display: none;
-        background: #ffffff;
-        z-index: 4;
-    }
 }
 
+.simulator-wrap {
+}
+
+.simulator {
+    background: #888888;
+    height: px2rem($h);
+    overflow: auto;
+}
+
+.simulator-item {
+    position: relative;
+    height: px2rem(80);
+    background: #f8f8f8;
+    cursor: move;
+    user-select: none;
+    z-index: 5;
+    &.simulator-item_active {
+        .simulator-item-mask {
+            display: block;
+            border: px2rem(2) dashed rgba(255, 0, 0, 0.5);
+        }
+    }
+    //&:hover {
+    //    .simulator-item-mask {
+    //        display: block;
+    //    }
+    //    .simulator-item-edit {
+    //        display: flex;
+    //    }
+    //}
+}
+
+.simulator-item-hint {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.simulator-item-mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(231, 91, 69, 0.5);
+    display: none;
+    z-index: 3;
+}
+
+.simulator-item-edit {
+    height: px2rem(40);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 50%;
+    border-radius: px2rem(1000);
+    transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center;
+    display: none;
+    background: #ffffff;
+    z-index: 4;
+}
+
+// 编辑区域的样式
 .components-editor {
     background: #999999;
     height: 100%;
     width: 0;
     flex: 1;
+}
+
+.editor-wrap {
+}
+
+.editor {
+}
+
+.editor-item {
+    display: none;
+    &.editor-item_active {
+        display: block;
+    }
 }

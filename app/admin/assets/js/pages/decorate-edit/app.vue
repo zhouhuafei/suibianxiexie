@@ -3,41 +3,42 @@
         <!--组件集合区域-->
         <div class="components-collection">
             <div class="components-wrap">
-                <div class="components">切图</div>
-                <div class="components">轮播</div>
-                <div class="components">间隔</div>
-                <div class="components">商品</div>
-                <div class="components">橱窗</div>
-                <div class="components">导航</div>
+                <div class="components">
+                    <div class="components-item"
+                         v-for="(item, index) in components"
+                    >
+                        {{item.text}}
+                    </div>
+                </div>
             </div>
         </div>
         <!--模拟器区域-->
         <div class="components-simulator">
             <div class="simulator-wrap">
-                <SortableList lockAxis="y" v-model="components">
-                    <SortableItem v-for="(item, index) in components" :index="index" :key="index" :item="item"/>
+                <SortableList
+                    lockAxis="y"
+                    v-model="pageSelectedComponents"
+                >
+                    <SortableItem
+                        v-for="(item, index) in pageSelectedComponents"
+                        :index="index"
+                        :key="index"
+                        :item="item"
+                    />
                 </SortableList>
             </div>
-            <!--<div class="simulator-wrap">
-                &lt;!&ndash;<div class="simulator" v-dragula="components" bag="my-bag">&ndash;&gt;
-                &lt;!&ndash;<draggable>&ndash;&gt;
-                <div class="simulator-item"
-                     v-for="(v, i) in components"
-                     :key="i"
-                     :class="v.isHighlight ? ['simulator-item_active'] : ''"
-                >
-                    <div class="simulator-item-hint">请编辑{{v.data.text}}组件内容{{i}}</div>
-                    <div class="simulator-item-edit">编辑</div>
-                    <div class="simulator-item-mask"></div>
-                </div>
-                &lt;!&ndash;</draggable>&ndash;&gt;
-                &lt;!&ndash;</div>&ndash;&gt;
-            </div>-->
         </div>
         <!--编辑区域-->
         <div class="components-editor">
             <div class="editor-wrap">
-                <div class="editor"></div>
+                <div class="editor">
+                    <div class="editor-item"
+                         :class="[item.isHighlight ? 'editor-item_active' : '']"
+                         v-for="(item, index) in pageSelectedComponents"
+                    >
+                        {{item.text}}编辑区域
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -53,14 +54,18 @@
 
     const SortableList = {
         mixins: [ContainerMixin],
-        template: `<div class="simulator"><slot /></div>`,
+        template: `<div class="simulator">
+            <slot></slot>
+        </div>`,
     };
 
     const SortableItem = {
         mixins: [ElementMixin],
         props: ['item'],
-        template: `<div class="simulator-item" :class="[item.isHighlight ? 'simulator-item_active' : '']">
-            <div class="simulator-item-hint">请编辑{{item.data.text}}组件内容</div>
+        template: `<div class="simulator-item"
+            :class="[item.isHighlight ? 'simulator-item_active' : '']"
+        >
+            <div class="simulator-item-hint">请编辑{{item.text}}组件内容</div>
             <div class="simulator-item-edit">编辑</div>
             <div class="simulator-item-mask"></div>
         </div>`,
@@ -70,44 +75,38 @@
         name: 'decorate-edit',
         data() {
             return {
+                // 所有的组件集合
                 components: [
                     {
                         isHighlight: true,
-                        data: {
-                            config: {},
-                            id: null,
-                            name: 'swiper',
-                            text: '轮播',
-                        },
+                        name: 'swiper',
+                        text: '轮播',
                     },
                     {
                         isHighlight: false,
-                        data: {
-                            config: {},
-                            id: null,
-                            name: 'cut',
-                            text: '切图',
-                        },
+                        name: 'cut',
+                        text: '切图',
                     },
                     {
                         isHighlight: false,
-                        data: {
-                            config: {},
-                            id: null,
-                            name: 'gap',
-                            text: '间隔',
-                        },
+                        name: 'gap',
+                        text: '间隔',
                     },
                     {
                         isHighlight: false,
-                        data: {
-                            config: {},
-                            id: null,
-                            name: 'goods',
-                            text: '商品',
-                        },
+                        name: 'goods',
+                        text: '商品',
+                    },
+                    {
+                        isHighlight: false,
+                        name: 'nav',
+                        text: '导航',
                     },
                 ],
+                // 页面中选择了哪些组件
+                pageSelectedComponents: [],
+                // 当前选中的是哪一个组件
+                nowSelectedComponents: [],
             };
         },
         components: {
