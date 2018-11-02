@@ -14,20 +14,25 @@
         <!--模拟器区域-->
         <div class="components-simulator">
             <div class="simulator-wrap">
-                <div class="simulator" v-dragula="components" bag="my-bag">
-                    <!--<draggable>-->
-                    <div class="simulator-item"
-                         v-for="(v, i) in components"
-                         :key="i"
-                         :class="v.isHighlight ? ['simulator-item_active'] : ''"
-                    >
-                        <div class="simulator-item-hint">请编辑{{v.data.text}}组件内容{{i}}</div>
-                        <div class="simulator-item-edit">编辑</div>
-                        <div class="simulator-item-mask"></div>
-                    </div>
-                    <!--</draggable>-->
-                </div>
+                <SortableList lockAxis="y" v-model="components">
+                    <SortableItem v-for="(item, index) in components" :index="index" :key="index" :item="item"/>
+                </SortableList>
             </div>
+            <!--<div class="simulator-wrap">
+                &lt;!&ndash;<div class="simulator" v-dragula="components" bag="my-bag">&ndash;&gt;
+                &lt;!&ndash;<draggable>&ndash;&gt;
+                <div class="simulator-item"
+                     v-for="(v, i) in components"
+                     :key="i"
+                     :class="v.isHighlight ? ['simulator-item_active'] : ''"
+                >
+                    <div class="simulator-item-hint">请编辑{{v.data.text}}组件内容{{i}}</div>
+                    <div class="simulator-item-edit">编辑</div>
+                    <div class="simulator-item-mask"></div>
+                </div>
+                &lt;!&ndash;</draggable>&ndash;&gt;
+                &lt;!&ndash;</div>&ndash;&gt;
+            </div>-->
         </div>
         <!--编辑区域-->
         <div class="components-editor">
@@ -42,8 +47,24 @@
     import Vue from 'vue';
     import VueDragula from 'vue-dragula';
     import draggable from 'vuedraggable';
+    import {ContainerMixin, ElementMixin} from 'vue-slicksort';
 
     Vue.use(VueDragula);
+
+    const SortableList = {
+        mixins: [ContainerMixin],
+        template: `<div class="simulator"><slot /></div>`,
+    };
+
+    const SortableItem = {
+        mixins: [ElementMixin],
+        props: ['item'],
+        template: `<div class="simulator-item" :class="[item.isHighlight ? 'simulator-item_active' : '']">
+            <div class="simulator-item-hint">请编辑{{item.data.text}}组件内容</div>
+            <div class="simulator-item-edit">编辑</div>
+            <div class="simulator-item-mask"></div>
+        </div>`,
+    };
 
     export default {
         name: 'decorate-edit',
@@ -91,6 +112,8 @@
         },
         components: {
             draggable,
+            SortableList,
+            SortableItem,
         },
         mounted() {
             Vue.vueDragula.options('my-bag', {
