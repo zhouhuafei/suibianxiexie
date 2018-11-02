@@ -14,17 +14,17 @@
         <!--模拟器区域-->
         <div class="components-simulator">
             <div class="simulator-wrap">
-                <div class="simulator">
-                    <draggable>
-                        <div class="simulator-item"
-                             v-for="(v, i) in components"
-                             :class="v.isHighlight ? ['simulator-item_active'] : ''"
-                        >
-                            <div class="simulator-item-hint">请编辑组件内容{{i}}</div>
-                            <div class="simulator-item-edit">编辑</div>
-                            <div class="simulator-item-mask"></div>
-                        </div>
-                    </draggable>
+                <div class="simulator" v-dragula="colTwo" bag="first-bag">
+                    <!--<draggable>-->
+                    <div class="simulator-item"
+                         v-for="(v, i) in components"
+                         :class="v.isHighlight ? ['simulator-item_active'] : ''"
+                    >
+                        <div class="simulator-item-hint">请编辑组件内容{{i}}</div>
+                        <div class="simulator-item-edit">编辑</div>
+                        <div class="simulator-item-mask"></div>
+                    </div>
+                    <!--</draggable>-->
                 </div>
             </div>
         </div>
@@ -47,21 +47,50 @@
                 components: [
                     {
                         isHighlight: true,
+                        data: {
+                            config: {},
+                            id: null,
+                            name: 'swiper',
+                            text: '轮播组件',
+                        },
                     },
                     {
                         isHighlight: false,
+                        data: {
+                            config: {},
+                            id: null,
+                            name: 'swiper',
+                            text: '轮播组件',
+                        },
                     },
                     {
                         isHighlight: false,
+                        data: {
+                            config: {},
+                            id: null,
+                            name: 'swiper',
+                            text: '轮播组件',
+                        },
                     },
                     {
                         isHighlight: false,
+                        data: {
+                            config: {},
+                            id: null,
+                            name: 'swiper',
+                            text: '轮播组件',
+                        },
                     },
                 ],
             };
         },
         components: {
             draggable,
+        },
+        created() {
+            Vue.vueDragula.options('my-bag', {
+                direction: 'vertical',
+            });
         },
     };
 </script>

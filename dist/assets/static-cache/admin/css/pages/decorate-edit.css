@@ -81,15 +81,6 @@ html, body, .g-wrap, .g-body, #app {
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none; }
-    .components-simulator .simulator-item.simulator-item_active .simulator-item-mask {
-      display: block;
-      border: 2px dashed rgba(255, 0, 0, 0.5); }
-    .components-simulator .simulator-item:hover .simulator-item-mask {
-      display: block; }
-    .components-simulator .simulator-item:hover .simulator-item-edit {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex; }
   .components-simulator .simulator-item-hint {
     position: absolute;
     left: 0;

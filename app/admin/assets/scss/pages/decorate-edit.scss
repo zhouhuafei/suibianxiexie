@@ -67,20 +67,20 @@ html, body, .g-wrap, .g-body, #app {
         background: #f8f8f8;
         cursor: move;
         user-select: none;
-        &.simulator-item_active {
-            .simulator-item-mask {
-                display: block;
-                border: px2rem(2) dashed rgba(255, 0, 0, 0.5);
-            }
-        }
-        &:hover {
-            .simulator-item-mask {
-                display: block;
-            }
-            .simulator-item-edit {
-                display: flex;
-            }
-        }
+        //&.simulator-item_active {
+        //    .simulator-item-mask {
+        //        display: block;
+        //        border: px2rem(2) dashed rgba(255, 0, 0, 0.5);
+        //    }
+        //}
+        //&:hover {
+        //    .simulator-item-mask {
+        //        display: block;
+        //    }
+        //    .simulator-item-edit {
+        //        display: flex;
+        //    }
+        //}
     }
     .simulator-item-hint {
         position: absolute;
