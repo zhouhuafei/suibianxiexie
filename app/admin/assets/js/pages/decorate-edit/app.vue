@@ -14,13 +14,14 @@
         <!--模拟器区域-->
         <div class="components-simulator">
             <div class="simulator-wrap">
-                <div class="simulator" v-dragula="colTwo" bag="first-bag">
+                <div class="simulator" v-dragula="components" bag="my-bag">
                     <!--<draggable>-->
                     <div class="simulator-item"
                          v-for="(v, i) in components"
+                         :key="i"
                          :class="v.isHighlight ? ['simulator-item_active'] : ''"
                     >
-                        <div class="simulator-item-hint">请编辑组件内容{{i}}</div>
+                        <div class="simulator-item-hint">请编辑{{v.data.text}}组件内容{{i}}</div>
                         <div class="simulator-item-edit">编辑</div>
                         <div class="simulator-item-mask"></div>
                     </div>
@@ -38,7 +39,11 @@
 </template>
 
 <script>
+    import Vue from 'vue';
+    import VueDragula from 'vue-dragula';
     import draggable from 'vuedraggable';
+
+    Vue.use(VueDragula);
 
     export default {
         name: 'decorate-edit',
@@ -51,7 +56,7 @@
                             config: {},
                             id: null,
                             name: 'swiper',
-                            text: '轮播组件',
+                            text: '轮播',
                         },
                     },
                     {
@@ -59,8 +64,8 @@
                         data: {
                             config: {},
                             id: null,
-                            name: 'swiper',
-                            text: '轮播组件',
+                            name: 'cut',
+                            text: '切图',
                         },
                     },
                     {
@@ -68,8 +73,8 @@
                         data: {
                             config: {},
                             id: null,
-                            name: 'swiper',
-                            text: '轮播组件',
+                            name: 'gap',
+                            text: '间隔',
                         },
                     },
                     {
@@ -77,8 +82,8 @@
                         data: {
                             config: {},
                             id: null,
-                            name: 'swiper',
-                            text: '轮播组件',
+                            name: 'goods',
+                            text: '商品',
                         },
                     },
                 ],
@@ -87,7 +92,7 @@
         components: {
             draggable,
         },
-        created() {
+        mounted() {
             Vue.vueDragula.options('my-bag', {
                 direction: 'vertical',
             });

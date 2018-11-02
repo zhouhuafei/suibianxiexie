@@ -12,17 +12,13 @@ var _super = __webpack_require__(4);
 
 var _super2 = _interopRequireDefault(_super);
 
-var _vue = __webpack_require__(21);
+var _vue = __webpack_require__(22);
 
 var _vue2 = _interopRequireDefault(_vue);
 
 var _app = __webpack_require__(118);
 
 var _app2 = _interopRequireDefault(_app);
-
-var _vueDragula = __webpack_require__(166);
-
-var _vueDragula2 = _interopRequireDefault(_vueDragula);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,10 +28,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(127);
-
-
-_vue2.default.use(_vueDragula2.default);
+__webpack_require__(128);
 
 var Sub = function (_Super) {
     _inherits(Sub, _Super);
@@ -139,7 +132,7 @@ if(false) {
 /***/ 120:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(146)(undefined);
+exports = module.exports = __webpack_require__(147)(undefined);
 // imports
 
 
@@ -517,11 +510,60 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _vue = __webpack_require__(22);
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _vueDragula = __webpack_require__(127);
+
+var _vueDragula2 = _interopRequireDefault(_vueDragula);
+
 var _vuedraggable = __webpack_require__(125);
 
 var _vuedraggable2 = _interopRequireDefault(_vuedraggable);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_vue2.default.use(_vueDragula2.default); //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     name: 'decorate-edit',
@@ -533,31 +575,31 @@ exports.default = {
                     config: {},
                     id: null,
                     name: 'swiper',
-                    text: '轮播组件'
+                    text: '轮播'
                 }
             }, {
                 isHighlight: false,
                 data: {
                     config: {},
                     id: null,
-                    name: 'swiper',
-                    text: '轮播组件'
+                    name: 'cut',
+                    text: '切图'
                 }
             }, {
                 isHighlight: false,
                 data: {
                     config: {},
                     id: null,
-                    name: 'swiper',
-                    text: '轮播组件'
+                    name: 'gap',
+                    text: '间隔'
                 }
             }, {
                 isHighlight: false,
                 data: {
                     config: {},
                     id: null,
-                    name: 'swiper',
-                    text: '轮播组件'
+                    name: 'goods',
+                    text: '商品'
                 }
             }]
         };
@@ -566,50 +608,12 @@ exports.default = {
     components: {
         draggable: _vuedraggable2.default
     },
-    created: function created() {
-        Vue.vueDragula.options('my-bag', {
+    mounted: function mounted() {
+        _vue2.default.vueDragula.options('my-bag', {
             direction: 'vertical'
         });
     }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+};
 
 /***/ }),
 
@@ -1061,20 +1065,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "dragula",
       rawName: "v-dragula",
-      value: (_vm.colTwo),
-      expression: "colTwo"
+      value: (_vm.components),
+      expression: "components"
     }],
     staticClass: "simulator",
     attrs: {
-      "bag": "first-bag"
+      "bag": "my-bag"
     }
   }, _vm._l((_vm.components), function(v, i) {
     return _c('div', {
+      key: i,
       staticClass: "simulator-item",
       class: v.isHighlight ? ['simulator-item_active'] : ''
     }, [_c('div', {
       staticClass: "simulator-item-hint"
-    }, [_vm._v("请编辑组件内容" + _vm._s(i))]), _vm._v(" "), _c('div', {
+    }, [_vm._v("请编辑" + _vm._s(v.data.text) + "组件内容" + _vm._s(i))]), _vm._v(" "), _c('div', {
       staticClass: "simulator-item-edit"
     }, [_vm._v("编辑")]), _vm._v(" "), _c('div', {
       staticClass: "simulator-item-mask"
@@ -1118,96 +1123,6 @@ if (false) {
 /***/ }),
 
 /***/ 127:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 146:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function (useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if (item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function (modules, mediaQuery) {
-		if (typeof modules === "string") modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for (var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if (typeof id === "number") alreadyImportedModules[id] = true;
-		}
-		for (i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if (mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if (mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */';
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-/***/ }),
-
-/***/ 166:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2605,7 +2520,97 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   return plugin;
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(32).setImmediate, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(20).setImmediate, __webpack_require__(5)))
+
+/***/ }),
+
+/***/ 128:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 147:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function (useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if (item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function (modules, mediaQuery) {
+		if (typeof modules === "string") modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for (var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if (typeof id === "number") alreadyImportedModules[id] = true;
+		}
+		for (i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if (mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if (mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */';
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
 
 /***/ }),
 
