@@ -45,9 +45,14 @@ $w: 300;
     justify-content: center;
     cursor: move;
     user-select: none;
-    &.components-item_active {
+    &.components-item_highlight {
         background: #fe313c;
         color: #ffffff;
+    }
+    &.components-item_selected {
+        background: #fe313c;
+        color: #ffffff;
+        border: px2rem(2) dashed rgba(255, 0, 0, 0.5);
     }
 }
 

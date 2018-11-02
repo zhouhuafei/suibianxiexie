@@ -58,9 +58,13 @@ html, body, .g-wrap, .g-body, #app {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none; }
-  .components-item.components-item_active {
+  .components-item.components-item_highlight {
     background: #fe313c;
     color: #ffffff; }
+  .components-item.components-item_selected {
+    background: #fe313c;
+    color: #ffffff;
+    border: 2px dashed rgba(255, 0, 0, 0.5); }
 
 .components-simulator {
   width: 392px;
