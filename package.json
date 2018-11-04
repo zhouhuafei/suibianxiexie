@@ -55,6 +55,7 @@
         "clean-webpack-plugin": "^0.1.16",
         "cross-env": "^5.0.1",
         "css-loader": "^0.28.4",
+        "dragula": "^3.7.2",
         "eslint": "^4.11.0",
         "eslint-config-standard": "^10.2.1",
         "eslint-plugin-html": "^3.2.2",
