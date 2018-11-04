@@ -6,8 +6,6 @@ webpackJsonp([1],{
 "use strict";
 
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _super = __webpack_require__(4);
 
 var _super2 = _interopRequireDefault(_super);
@@ -30,6 +28,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 __webpack_require__(129);
 
+
+new _vue2.default({
+    el: '#app',
+    components: { app: _app2.default },
+    template: '<app></app>'
+});
+
 var Sub = function (_Super) {
     _inherits(Sub, _Super);
 
@@ -38,17 +43,6 @@ var Sub = function (_Super) {
 
         return _possibleConstructorReturn(this, (Sub.__proto__ || Object.getPrototypeOf(Sub)).apply(this, arguments));
     }
-
-    _createClass(Sub, [{
-        key: 'power',
-        value: function power() {
-            new _vue2.default({
-                el: '#app',
-                components: { app: _app2.default },
-                template: '<app></app>'
-            });
-        }
-    }]);
 
     return Sub;
 }(_super2.default);
