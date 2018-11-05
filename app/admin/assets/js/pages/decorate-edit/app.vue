@@ -181,11 +181,13 @@
             drake.on('drag', function (el, source) {
                 console.log('drag');
             });
-            drake.on('shadow', function (el, target, source, sibling) {
+            drake.on('shadow', function (el, container, source) {
                 console.log('shadow');
+                // 处理滚动条待续...
             });
             drake.on('drop', function (el, target, source, sibling) {
                 console.log('drop');
+                // 业务逻辑待续...
                 // simulator.removeChild(el);
             });
             drake.on('dragend', function (el) {
