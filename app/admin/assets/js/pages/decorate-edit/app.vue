@@ -178,20 +178,20 @@
                     return source === components;
                 },
             });
-            drake.on('drag', function (el, source) {
+            drake.on('drag', function (el, source) { // 这里的el是指components里的块
                 console.log('drag');
+                el.style.background = '#0f0';
             });
-            drake.on('shadow', function (el, container, source) {
+            drake.on('shadow', function (el, container, source) { // 这里的el是指simulator内的块
                 console.log('shadow');
-                // 处理滚动条待续...
+                el.scrollIntoViewIfNeeded(); // 处理滚动条
+                el.style.background = '#f00';
             });
-            drake.on('drop', function (el, target, source, sibling) {
+            drake.on('drop', function (el, target, source, sibling) { // 这里的el是指simulator内的块
                 console.log('drop');
+                el.style.background = '#00f';
                 // 业务逻辑待续...
                 // simulator.removeChild(el);
-            });
-            drake.on('dragend', function (el) {
-                console.log('dragend');
             });
         },
     };
