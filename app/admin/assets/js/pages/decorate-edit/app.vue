@@ -178,10 +178,18 @@
                     return source === components;
                 },
             });
+            drake.on('drag', function (el, source) {
+                console.log('drag');
+            });
+            drake.on('shadow', function (el, target, source, sibling) {
+                console.log('shadow');
+            });
             drake.on('drop', function (el, target, source, sibling) {
-                console.log(el);
+                console.log('drop');
                 // simulator.removeChild(el);
-                console.log(this, el, target, source, sibling);
+            });
+            drake.on('dragend', function (el) {
+                console.log('dragend');
             });
         },
     };
