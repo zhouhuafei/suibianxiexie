@@ -22,8 +22,8 @@ const routeName = [
         upload: multer({
             dest: `${appConfig.projectDir}/static-cache-wrap/static-cache/admin/gallery/`,
             limits: {
-                fileSize: 300 * 1024, // 单个文件的大小不能超过300kb。
-                files: 6, // 每次最多上传6个文件。
+                fileSize: 2 * 1024 * 1024, // 单个文件的大小不能超过2M。
+                files: 5, // 每次最多上传5个文件。
             },
             fileFilter: function (req, file, cb) {
                 const mimeType = file.mimetype;
@@ -37,7 +37,7 @@ const routeName = [
                 cb(new Error('only receive image !'));
                 */
             },
-        }).array('images'),
+        }).array('images'), // .single('images')
     },
     {
         name: 'logout', // 退出
