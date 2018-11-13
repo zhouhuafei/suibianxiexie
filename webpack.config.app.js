@@ -186,12 +186,16 @@ const webpackConfigApp = {
                 // exclude: /(node_modules|bower_components)/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: [{
-                        loader: 'css-loader',
-                        options: {
-                            minimize: configEnvironment.isMinCss, // css压缩
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                minimize: configEnvironment.isMinCss, // css压缩
+                            },
                         },
-                    }, 'postcss-loader', 'sass-loader'],
+                        'postcss-loader',
+                        'sass-loader',
+                    ],
                 }),
             },
             // loader----es6转成es5

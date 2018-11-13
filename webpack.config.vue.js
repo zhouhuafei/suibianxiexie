@@ -221,7 +221,7 @@ const webpackConfig = {
                     {
                         loader: 'html-loader',
                         options: {
-                            attrs: ['img:src', 'img:data-src', 'link:href'],
+                            attrs: ['img:src', 'img:data-src', 'link:href', 'audio:src'],
                         },
                     },
                 ],
