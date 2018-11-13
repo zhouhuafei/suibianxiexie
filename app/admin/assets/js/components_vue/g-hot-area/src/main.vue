@@ -1,14 +1,12 @@
 <template>
-    <div class="g-hot-area">
+    <div class="g-hot-area" ref="g-hot-area">
         <slot></slot>
-        <div v-for="(item, index) in items"
+        <div class="g-hot-area-item"
+             v-for="(item, index) in items"
              :key="index"
-             class="g-hot-area-item"
              :class="{'g-hot-area-item_active':item.isSelected}"
-             :style="{left:item.l,top:item.t}"
-             @mousedown="mousedown"
-             @mouseup="mouseup"
-             @mousemove="mousemove"
+             :style="{left:`${item.l}px`,top:`${item.t}px`}"
+             @mousedown="mouseDown(item, index, items, $event)"
         >
             <div class="g-hot-area-item-zoom"></div>
         </div>
@@ -16,37 +14,71 @@
 </template>
 
 <script>
+    import offset from 'zhf.offset';
+
+    let downL = 0;
+    let downT = 0;
+    let disL = 0;
+    let disT = 0;
+
     export default {
         name: 'g-hot-area',
         props: {
-            items: {
+            data: {
                 type: Array,
                 default: function () {
-                    return [
-                        {
-                            isSelected: false,
-                            l: 0,
-                            t: 0,
-                            w: 100,
-                            h: 100,
-                        },
-                        {
-                            isSelected: true,
-                            l: 150,
-                            t: 150,
-                            w: 100,
-                            h: 100,
-                        },
-                    ];
+                    return [];
                 },
             },
         },
+        data() {
+            return {
+                items: [
+                    {
+                        isSelected: false,
+                        l: 0,
+                        t: 0,
+                        w: 100,
+                        h: 100,
+                    },
+                    {
+                        isSelected: false,
+                        l: 0,
+                        t: 0,
+                        w: 100,
+                        h: 100,
+                    },
+                ],
+            };
+        },
         methods: {
-            mousedown() {
-            },
-            mousemove() {
-            },
-            mouseup() {
+            mouseDown(v, i, a, ev) {
+                const vm = this;
+                a.forEach(function (v) {
+                    v.isSelected = false;
+                });
+                v.isSelected = true;
+                downL = ev.clientX;
+                downT = ev.clientY;
+                v.initL = v.l;
+                v.initT = v.t;
+                document.addEventListener('mousemove', mouseMove);
+                document.addEventListener('mouseup', mouseUp);
+
+                function mouseMove(ev) {
+                    disL = ev.clientX - downL;
+                    disT = ev.clientY - downT;
+                    v.l = v.initL + disL;
+                    v.t = v.initT + disT;
+                    console.log(disL, disT);
+                }
+
+                function mouseUp() {
+                    v.initL = v.l;
+                    v.initT = v.t;
+                    document.removeEventListener('mousemove', mouseMove);
+                    document.removeEventListener('mouseup', mouseUp);
+                }
             },
         },
         mounted() {
@@ -73,6 +105,8 @@
         border: 1px solid #24baab;
         z-index: 2;
         overflow: hidden;
+        cursor: move;
+        user-select: none;
     }
 
     .g-hot-area-item.g-hot-area-item_active {

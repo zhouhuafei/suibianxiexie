@@ -37,8 +37,10 @@
                          :class="[item.isHighlight ? 'editor-item_active' : '']"
                          v-for="(item, index) in pageSelectedComponents"
                     >
-                        {{item.text}}编辑区域
-                        <g-hot-area style="width: 500px;height: 500px;background: #eeeeee;"></g-hot-area>
+                        <div>{{item.text}}编辑区域</div>
+                        <div style="margin: 20px;">
+                            <g-hot-area style="width: 500px;height: 500px;background: #eeeeee;"></g-hot-area>
+                        </div>
                     </div>
                 </div>
             </div>

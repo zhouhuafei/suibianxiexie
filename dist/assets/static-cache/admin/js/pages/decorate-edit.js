@@ -236,6 +236,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
 
 var SortableList = {
     mixins: [_vueSlicksort.ContainerMixin],
@@ -2495,7 +2497,7 @@ exports = module.exports = __webpack_require__(42)(false);
 
 
 // module
-exports.push([module.i, "\n.g-hot-area[data-v-0186be78] {\n    position: relative;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    overflow: hidden;\n}\n.g-hot-area-item[data-v-0186be78] {\n    position: absolute;\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box;\n    width: 80px;\n    height: 80px;\n    left: 0;\n    top: 0;\n    background: rgba(36, 186, 171, 0.4);\n    border: 1px solid #24baab;\n    z-index: 2;\n    overflow: hidden;\n}\n.g-hot-area-item.g-hot-area-item_active[data-v-0186be78] {\n    background: rgba(255, 0, 0, 0.4);\n    border-color: #E75C45;\n}\n.g-hot-area-item-zoom[data-v-0186be78] {\n    position: absolute;\n    right: -8px;\n    bottom: -8px;\n    z-index: 3;\n    width: 0;\n    height: 0;\n    border: 8px solid transparent;\n    border-top-color: rgba(255, 255, 255, 0.96);\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg);\n    cursor: nwse-resize;\n}\n", ""]);
+exports.push([module.i, "\n.g-hot-area[data-v-0186be78] {\n    position: relative;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    overflow: hidden;\n}\n.g-hot-area-item[data-v-0186be78] {\n    position: absolute;\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box;\n    width: 80px;\n    height: 80px;\n    left: 0;\n    top: 0;\n    background: rgba(36, 186, 171, 0.4);\n    border: 1px solid #24baab;\n    z-index: 2;\n    overflow: hidden;\n    cursor: move;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.g-hot-area-item.g-hot-area-item_active[data-v-0186be78] {\n    background: rgba(255, 0, 0, 0.4);\n    border-color: #E75C45;\n}\n.g-hot-area-item-zoom[data-v-0186be78] {\n    position: absolute;\n    right: -8px;\n    bottom: -8px;\n    z-index: 3;\n    width: 0;\n    height: 0;\n    border: 8px solid transparent;\n    border-top-color: rgba(255, 255, 255, 0.96);\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg);\n    cursor: nwse-resize;\n}\n", ""]);
 
 // exports
 
@@ -2511,9 +2513,14 @@ exports.push([module.i, "\n.g-hot-area[data-v-0186be78] {\n    position: relativ
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-//
-//
-//
+
+var _zhf = __webpack_require__(89);
+
+var _zhf2 = _interopRequireDefault(_zhf);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var downL = 0; //
 //
 //
 //
@@ -2529,32 +2536,67 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 
+var downT = 0;
+var disL = 0;
+var disT = 0;
+
 exports.default = {
     name: 'g-hot-area',
     props: {
-        items: {
+        data: {
             type: Array,
             default: function _default() {
-                return [{
-                    isSelected: false,
-                    l: 0,
-                    t: 0,
-                    w: 100,
-                    h: 100
-                }, {
-                    isSelected: true,
-                    l: 150,
-                    t: 150,
-                    w: 100,
-                    h: 100
-                }];
+                return [];
             }
         }
     },
+    data: function data() {
+        return {
+            items: [{
+                isSelected: false,
+                l: 0,
+                t: 0,
+                w: 100,
+                h: 100
+            }, {
+                isSelected: false,
+                l: 0,
+                t: 0,
+                w: 100,
+                h: 100
+            }]
+        };
+    },
+
     methods: {
-        mousedown: function mousedown() {},
-        mousemove: function mousemove() {},
-        mouseup: function mouseup() {}
+        mouseDown: function mouseDown(v, i, a, ev) {
+            var vm = this;
+            a.forEach(function (v) {
+                v.isSelected = false;
+            });
+            v.isSelected = true;
+            downL = ev.clientX;
+            downT = ev.clientY;
+            v.initL = v.l;
+            v.initT = v.t;
+            document.addEventListener('mousemove', mouseMove);
+            document.addEventListener('mouseup', mouseUp);
+
+            function mouseMove(ev) {
+                disL = ev.clientX - downL;
+                disT = ev.clientY - downT;
+                v.l = v.initL + disL;
+                v.t = v.initT + disT;
+                console.log(disL, disT);
+            }
+
+            function mouseUp() {
+                v.initL = v.l;
+                v.initT = v.t;
+                document.removeEventListener('mousemove', mouseMove);
+                document.removeEventListener('mouseup', mouseUp);
+            }
+        }
     },
     mounted: function mounted() {
         console.log(this.items);
@@ -2568,6 +2610,7 @@ exports.default = {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
+    ref: "g-hot-area",
     staticClass: "g-hot-area"
   }, [_vm._t("default"), _vm._v(" "), _vm._l((_vm.items), function(item, index) {
     return _c('div', {
@@ -2577,13 +2620,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         'g-hot-area-item_active': item.isSelected
       },
       style: ({
-        left: item.l,
-        top: item.t
+        left: ((item.l) + "px"),
+        top: ((item.t) + "px")
       }),
       on: {
-        "mousedown": _vm.mousedown,
-        "mouseup": _vm.mouseup,
-        "mousemove": _vm.mousemove
+        "mousedown": function($event) {
+          _vm.mouseDown(item, index, _vm.items, $event)
+        }
       }
     }, [_c('div', {
       staticClass: "g-hot-area-item-zoom"
@@ -2652,13 +2695,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('div', {
       staticClass: "editor-item",
       class: [item.isHighlight ? 'editor-item_active' : '']
-    }, [_vm._v("\n                    " + _vm._s(item.text) + "编辑区域\n                    "), _c('g-hot-area', {
+    }, [_c('div', [_vm._v(_vm._s(item.text) + "编辑区域")]), _vm._v(" "), _c('div', {
+      staticStyle: {
+        "margin": "20px"
+      }
+    }, [_c('g-hot-area', {
       staticStyle: {
         "width": "500px",
         "height": "500px",
         "background": "#eeeeee"
       }
-    })], 1)
+    })], 1)])
   }))])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
