@@ -33,26 +33,26 @@
         <div class="components-editor">
             <div class="editor-wrap">
                 <div class="editor">
-                    <div style="margin: 20px;width: 500px;height: 500px;background: #eeeeee;">
-                        <vue-draggable-resizable
-                            :w="100"
-                            :h="100"
-                            v-on:dragging="onDrag"
-                            v-on:resizing="onResize"
-                            :parent="true"
-                        >
-                            <p>
-                                Hello! I'm a flexible component. You can drag me around and you can resize me.
-                                <br>
-                                X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}
-                            </p>
-                        </vue-draggable-resizable>
-                    </div>
                     <div class="editor-item"
                          :class="[item.isHighlight ? 'editor-item_active' : '']"
                          v-for="(item, index) in pageSelectedComponents"
                     >
                         <div>{{item.text}}编辑区域</div>
+                        <div style="margin: 20px;width: 500px;height: 500px;background: #eeeeee;position: relative;">
+                            <vue-draggable-resizable
+                                :w="100"
+                                :h="100"
+                                :parent="true"
+                                v-on:dragging="onDrag"
+                                v-on:resizing="onResize"
+                            >
+                                <p>
+                                    Hello! I'm a flexible component. You can drag me around and you can resize me.
+                                    <br>
+                                    X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}
+                                </p>
+                            </vue-draggable-resizable>
+                        </div>
                         <!--
                         <div style="margin: 20px;">
                             <g-hot-area style="width: 500px;height: 500px;background: #eeeeee;"></g-hot-area>

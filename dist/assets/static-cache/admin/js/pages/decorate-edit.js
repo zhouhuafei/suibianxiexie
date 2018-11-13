@@ -2676,29 +2676,30 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "editor-wrap"
   }, [_c('div', {
     staticClass: "editor"
-  }, [_c('div', {
-    staticStyle: {
-      "margin": "20px",
-      "width": "500px",
-      "height": "500px",
-      "background": "#eeeeee"
-    }
-  }, [_c('vue-draggable-resizable', {
-    attrs: {
-      "w": 100,
-      "h": 100,
-      "parent": true
-    },
-    on: {
-      "dragging": _vm.onDrag,
-      "resizing": _vm.onResize
-    }
-  }, [_c('p', [_vm._v("\n                            Hello! I'm a flexible component. You can drag me around and you can resize me.\n                            "), _c('br'), _vm._v("\n                            X: " + _vm._s(_vm.x) + " / Y: " + _vm._s(_vm.y) + " - Width: " + _vm._s(_vm.width) + " / Height: " + _vm._s(_vm.height) + "\n                        ")])])], 1), _vm._v(" "), _vm._l((_vm.pageSelectedComponents), function(item, index) {
+  }, _vm._l((_vm.pageSelectedComponents), function(item, index) {
     return _c('div', {
       staticClass: "editor-item",
       class: [item.isHighlight ? 'editor-item_active' : '']
-    }, [_c('div', [_vm._v(_vm._s(item.text) + "编辑区域")])])
-  })], 2)])])])
+    }, [_c('div', [_vm._v(_vm._s(item.text) + "编辑区域")]), _vm._v(" "), _c('div', {
+      staticStyle: {
+        "margin": "20px",
+        "width": "500px",
+        "height": "500px",
+        "background": "#eeeeee",
+        "position": "relative"
+      }
+    }, [_c('vue-draggable-resizable', {
+      attrs: {
+        "w": 100,
+        "h": 100,
+        "parent": true
+      },
+      on: {
+        "dragging": _vm.onDrag,
+        "resizing": _vm.onResize
+      }
+    }, [_c('p', [_vm._v("\n                                Hello! I'm a flexible component. You can drag me around and you can resize me.\n                                "), _c('br'), _vm._v("\n                                X: " + _vm._s(_vm.x) + " / Y: " + _vm._s(_vm.y) + " - Width: " + _vm._s(_vm.width) + " / Height: " + _vm._s(_vm.height) + "\n                            ")])])], 1)])
+  }))])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

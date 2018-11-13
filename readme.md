@@ -129,3 +129,4 @@ assets/
     - 如果注释掉webpack的loader中exclude的过滤功能，某些包使用的时候就会报错。各种奇葩的报错。
     - 所以至少es6转es5时，这里要过滤。
 * 使用```vue-draggable-resizable```包时报错了。也是因为注释掉过滤导致的。
+* 配置重新审视。待续...
