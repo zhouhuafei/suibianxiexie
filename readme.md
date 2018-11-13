@@ -20,18 +20,18 @@ assets/
 │   └── home
 ├── js
 │   ├── api // 接口工具
-│   ├── components-dom // 存放组件
-│   ├── components-dom-business // 业务组件
-│   ├── components-dom-super
-│   ├── components-vue
+│   ├── components_dom // 存放组件
+│   ├── components_dom-business // 业务组件
+│   ├── components_dom-super
+│   ├── components_vue
 │   ├── pages // 存放页面对应的js
 │   ├── pages-super
 │   ├── plugs // 第三方插件
 │   └── utils // 实用工具
 ├── scss
 │   ├── commons
-│   ├── components-dom
-│   ├── components-dom-business
+│   ├── components_dom
+│   ├── components_dom-business
 │   ├── config
 │   ├── fonts
 │   ├── pages

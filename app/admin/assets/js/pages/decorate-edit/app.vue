@@ -38,6 +38,7 @@
                          v-for="(item, index) in pageSelectedComponents"
                     >
                         {{item.text}}编辑区域
+                        <g-hot-area style="width: 500px;height: 500px;background: #eeeeee;"></g-hot-area>
                     </div>
                 </div>
             </div>
@@ -49,6 +50,7 @@
     import Vue from 'vue';
     import dragula from 'dragula';
     import {ContainerMixin, ElementMixin} from 'vue-slicksort';
+    import gHotArea from '../../components_vue/g-hot-area/index';
 
     const SortableList = {
         mixins: [ContainerMixin],
@@ -164,6 +166,7 @@
             };
         },
         components: {
+            gHotArea,
             SortableList,
             SortableItem,
         },
