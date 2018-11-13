@@ -17,7 +17,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 __webpack_require__(152);
 var Super = __webpack_require__(4);
 
-var _require = __webpack_require__(19),
+var _require = __webpack_require__(18),
     Message = _require.Message,
     Confirm = _require.Confirm,
     Validate = _require.Validate,
@@ -128,7 +128,7 @@ var Sub = function (_Super) {
             })();
 
             // 测试application/x-www-form-urlencoded
-            var axios = __webpack_require__(16);
+            var axios = __webpack_require__(15);
             var ajax = __webpack_require__(20);
             axios({
                 url: dataInfo.api.list.route,

@@ -16,7 +16,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 __webpack_require__(154);
 var Super = __webpack_require__(4);
-var axios = __webpack_require__(16);
+var axios = __webpack_require__(15);
 var Gallery = __webpack_require__(155);
 
 var Sub = function (_Super) {

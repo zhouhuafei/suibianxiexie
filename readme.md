@@ -123,3 +123,9 @@ assets/
     - 加了判断后缀是否一样，可以过滤部分不一样后缀的，但是又会错过那些被手动改了后缀的。这个需要衡量得失，我个人建议是加后缀判定的。
     - h5和pc的图片上传应该存在```./static-cache-wrap/static-cache/user/gallery/```目录下并以用户名区分开。
 * 4、生产环境如果配置独立域名，则进行路由更改。去掉/admin/和/h5/以及/pc/。
+
+# 报错
+* 我如果注释掉webpack配置中的```// exclude: /(node_modules|bower_components)/,```，引入某些包时会报错。
+    - 如果注释掉webpack的loader中exclude的过滤功能，某些包使用的时候就会报错。各种奇葩的报错。
+    - 所以至少es6转es5时，这里要过滤。
+* 使用```vue-draggable-resizable```包时报错了。也是因为注释掉过滤导致的。

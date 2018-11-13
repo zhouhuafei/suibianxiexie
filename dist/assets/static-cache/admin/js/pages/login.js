@@ -17,7 +17,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 __webpack_require__(144);
 var Super = __webpack_require__(4);
 
-var _require = __webpack_require__(19),
+var _require = __webpack_require__(18),
     Message = _require.Message,
     Confirm = _require.Confirm,
     Validate = _require.Validate,
