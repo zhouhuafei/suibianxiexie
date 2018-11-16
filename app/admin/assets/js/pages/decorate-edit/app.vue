@@ -47,7 +47,10 @@
                                 v-on:dragging="onDrag"
                                 v-on:resizing="onResize"
                             >
-                                <p>X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
+                                <div>X: {{ x }}</div>
+                                <div>Y: {{ y }}</div>
+                                <div>Width: {{ width }}</div>
+                                <div>Height: {{ height }}</div>
                             </vue-draggable-resizable>
                         </div>
                         <!--
