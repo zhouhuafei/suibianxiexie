@@ -38,21 +38,30 @@
                          v-for="(item, index) in pageSelectedComponents"
                     >
                         <div>{{item.text}}编辑区域</div>
-                        <div style="margin: 20px;width: 500px;height: 500px;background: #eeeeee;position: relative;">
-                            <vue-draggable-resizable
-                                class="vue-draggable-resizable"
-                                :w="100"
-                                :h="100"
-                                :parent="true"
-                                v-on:dragging="onDrag"
-                                v-on:resizing="onResize"
-                            >
-                                <div>X: {{ x }}</div>
-                                <div>Y: {{ y }}</div>
-                                <div>Width: {{ width }}</div>
-                                <div>Height: {{ height }}</div>
-                            </vue-draggable-resizable>
-                        </div>
+
+                        <!--切图组件-->
+                        <template v-if="item.name === 'cut'">
+                            <div style="margin: 20px;width: 500px;height: 500px;background: #eeeeee;position: relative;">
+                                <vue-draggable-resizable
+                                    class="vue-draggable-resizable"
+                                    v-for="(item2, index2) in item.config.items"
+                                    :key=""
+                                    :x="item2.x"
+                                    :y="item2.y"
+                                    :w="item2.w"
+                                    :h="item2.h"
+                                    :parent="true"
+                                    v-on:dragging="onDrag"
+                                    v-on:resizing="onResize"
+                                >
+                                    <div>X: {{ x }}</div>
+                                    <div>Y: {{ y }}</div>
+                                    <div>Width: {{ width }}</div>
+                                    <div>Height: {{ height }}</div>
+                                </vue-draggable-resizable>
+                            </div>
+                        </template>
+
                         <!--
                         <div style="margin: 20px;">
                             <g-hot-area style="width: 500px;height: 500px;background: #eeeeee;"></g-hot-area>
@@ -134,12 +143,22 @@
                 pageSelectedComponents: [
                     {
                         isHighlight: true,
-                        name: 'gap',
+                        name: 'cut',
                         text: '间隔',
+                        config: {
+                            items: [
+                                {
+                                    x: 10,
+                                    y: 10,
+                                    w: 100,
+                                    h: 100,
+                                },
+                            ],
+                        },
                     },
                     {
                         isHighlight: false,
-                        name: 'nav',
+                        name: 'gap',
                         text: '导航',
                     },
                     {

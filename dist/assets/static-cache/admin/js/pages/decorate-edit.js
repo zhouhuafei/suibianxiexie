@@ -747,6 +747,15 @@ var SortableList = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var SortableItem = {
     mixins: [_vueSlicksort.ElementMixin],
@@ -798,11 +807,19 @@ exports.default = {
             // 页面中选择了哪些组件
             pageSelectedComponents: [{
                 isHighlight: true,
-                name: 'gap',
-                text: '间隔'
+                name: 'cut',
+                text: '间隔',
+                config: {
+                    items: [{
+                        x: 10,
+                        y: 10,
+                        w: 100,
+                        h: 100
+                    }]
+                }
             }, {
                 isHighlight: false,
-                name: 'nav',
+                name: 'gap',
                 text: '导航'
             }, {
                 isHighlight: false,
@@ -3160,7 +3177,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('div', {
       staticClass: "editor-item",
       class: [item.isHighlight ? 'editor-item_active' : '']
-    }, [_c('div', [_vm._v(_vm._s(item.text) + "编辑区域")]), _vm._v(" "), _c('div', {
+    }, [_c('div', [_vm._v(_vm._s(item.text) + "编辑区域")]), _vm._v(" "), (item.name === 'cut') ? [_c('div', {
       staticStyle: {
         "margin": "20px",
         "width": "500px",
@@ -3168,18 +3185,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "background": "#eeeeee",
         "position": "relative"
       }
-    }, [_c('vue-draggable-resizable', {
-      staticClass: "vue-draggable-resizable",
-      attrs: {
-        "w": 100,
-        "h": 100,
-        "parent": true
-      },
-      on: {
-        "dragging": _vm.onDrag,
-        "resizing": _vm.onResize
-      }
-    }, [_c('div', [_vm._v("X: " + _vm._s(_vm.x))]), _vm._v(" "), _c('div', [_vm._v("Y: " + _vm._s(_vm.y))]), _vm._v(" "), _c('div', [_vm._v("Width: " + _vm._s(_vm.width))]), _vm._v(" "), _c('div', [_vm._v("Height: " + _vm._s(_vm.height))])])], 1)])
+    }, _vm._l((item.config.items), function(item2, index2) {
+      return _c('vue-draggable-resizable', {
+        staticClass: "vue-draggable-resizable",
+        attrs: {
+          "x": item2.x,
+          "y": item2.y,
+          "w": item2.w,
+          "h": item2.h,
+          "parent": true
+        },
+        on: {
+          "dragging": _vm.onDrag,
+          "resizing": _vm.onResize
+        }
+      }, [_c('div', [_vm._v("X: " + _vm._s(_vm.x))]), _vm._v(" "), _c('div', [_vm._v("Y: " + _vm._s(_vm.y))]), _vm._v(" "), _c('div', [_vm._v("Width: " + _vm._s(_vm.width))]), _vm._v(" "), _c('div', [_vm._v("Height: " + _vm._s(_vm.height))])])
+    }))] : _vm._e()], 2)
   }))])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
