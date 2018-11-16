@@ -40,6 +40,7 @@
                         <div>{{item.text}}编辑区域</div>
                         <div style="margin: 20px;width: 500px;height: 500px;background: #eeeeee;position: relative;">
                             <vue-draggable-resizable
+                                class="vue-draggable-resizable"
                                 :w="100"
                                 :h="100"
                                 :parent="true"
@@ -236,4 +237,19 @@
 
 <style scoped lang="scss">
     @import "../../../scss/pages/decorate-edit";
+
+    .vue-draggable-resizable {
+        cursor: move;
+        background: rgba(36, 186, 171, 0.4);
+        /*border: 1px solid #24baab;*/
+        &.active {
+            background: rgba(255, 0, 0, 0.4);
+            border-color: #e75c45;
+        }
+    }
+
+    .vue-draggable-resizable /deep/ .handle {
+        /*border-radius: 50%;*/
+        border-color: #e75c45;
+    }
 </style>
