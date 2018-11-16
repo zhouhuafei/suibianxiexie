@@ -78,6 +78,12 @@ const output = {
 const plugins = [
     // 插件----清空dist/assets目录下对应的项目文件
     new CleanWebpackPlugin([projectDirname], {root: `${__dirname}/dist/assets/`, verbose: true, dry: false}),
+    // 插件----编译时期可以创建全局变量
+    new webpack.DefinePlugin({
+        'process.env': {
+            NODE_ENV: myConfig[0],
+        },
+    }),
     // 插件----提取css样式到文件
     new ExtractTextPlugin(`css/[name].${configEnvironment.contenthash}css`),
     // 插件----处理视图模板页面文件

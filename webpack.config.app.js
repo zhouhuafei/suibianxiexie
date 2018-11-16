@@ -101,6 +101,12 @@ const plugins = [
         verbose: true,
         dry: false,
     }),
+    // 插件----编译时期可以创建全局变量
+    new webpack.DefinePlugin({
+        'process.env': {
+            NODE_ENV: myConfig[0],
+        },
+    }),
     // 插件----提取css样式到文件
     new ExtractTextPlugin(`css/pages/[name].${configEnvironment.contenthash}css`),
     // 插件----把每个入口都有用到的js和css分别提取为this-is-global-file-common.js和this-is-global-file-common.css
