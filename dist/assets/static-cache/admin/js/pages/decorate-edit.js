@@ -744,10 +744,6 @@ var SortableList = {
 //
 //
 //
-//
-//
-//
-//
 
 var SortableItem = {
     mixins: [_vueSlicksort.ElementMixin],
@@ -3180,7 +3176,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "dragging": _vm.onDrag,
         "resizing": _vm.onResize
       }
-    }, [_c('p', [_vm._v("\n                                Hello! I'm a flexible component. You can drag me around and you can resize me.\n                                "), _c('br'), _vm._v("\n                                X: " + _vm._s(_vm.x) + " / Y: " + _vm._s(_vm.y) + " - Width: " + _vm._s(_vm.width) + " / Height: " + _vm._s(_vm.height) + "\n                            ")])])], 1)])
+    }, [_c('p', [_vm._v("X: " + _vm._s(_vm.x) + " / Y: " + _vm._s(_vm.y) + " - Width: " + _vm._s(_vm.width) + " / Height: " + _vm._s(_vm.height))])])], 1)])
   }))])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true

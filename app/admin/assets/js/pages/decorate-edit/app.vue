@@ -47,11 +47,7 @@
                                 v-on:dragging="onDrag"
                                 v-on:resizing="onResize"
                             >
-                                <p>
-                                    Hello! I'm a flexible component. You can drag me around and you can resize me.
-                                    <br>
-                                    X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}
-                                </p>
+                                <p>X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
                             </vue-draggable-resizable>
                         </div>
                         <!--
