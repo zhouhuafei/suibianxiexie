@@ -15,7 +15,7 @@ const {
     Pagination,
     NoData,
     Navigation,
-} = require('zhf.g-ui/src/js/commons_dom/g-common.js');
+} = require('zhf.g-ui/dist/js/commons_dom/g-common/index.js');
 const WhenScrollBottom = require('zhf.when-scroll-bottom');
 
 class Sub extends Super {

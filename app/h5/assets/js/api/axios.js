@@ -1,7 +1,7 @@
 const axios = require('axios');
 const extend = require('zhf.extend');
 const typeOf = require('zhf.type-of');
-const Message = require('zhf.g-ui/src/js/components_dom/g-message/index.js');
+const Message = require('zhf.g-ui/dist/js/components_dom/g-message/index.js');
 const qs = require('qs');
 
 module.exports = function (json) {

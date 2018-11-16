@@ -1,7 +1,7 @@
 const extend = require('zhf.extend');
 const typeOf = require('zhf.type-of');
 const queryString = require('zhf.query-string');
-const Message = require('zhf.g-ui/src/js/components_dom/g-message/index.js');
+const Message = require('zhf.g-ui/dist/js/components_dom/g-message/index.js');
 
 module.exports = function (json) {
     const opts = extend({

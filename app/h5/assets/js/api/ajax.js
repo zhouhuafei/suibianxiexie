@@ -1,6 +1,6 @@
 const extend = require('zhf.extend');
 const typeOf = require('zhf.type-of');
-const Message = require('zhf.g-ui/src/js/components_dom/g-message/index.js');
+const Message = require('zhf.g-ui/dist/js/components_dom/g-message/index.js');
 
 module.exports = function (json) {
     json.type = (json.type || json.method || 'GET').toUpperCase(); // 这里和axios是不一样的，这里以前使用axios的习惯传入method

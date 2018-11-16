@@ -9,7 +9,7 @@ const {
     TooltipApp,
     Copyright,
     LazyLoad,
-} = require('zhf.g-ui/src/js/commons_dom/g-common.js');
+} = require('zhf.g-ui/dist/js/commons_dom/g-common/index.js');
 
 class Sub extends Super {
     // (功)(覆)功能(覆盖超类型)

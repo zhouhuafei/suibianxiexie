@@ -12,7 +12,7 @@ const {
     TooltipApp,
     Copyright,
     LazyLoad,
-} = require('zhf.g-ui/src/js/commons_dom/g-common.js');
+} = require('zhf.g-ui/dist/js/commons_dom/g-common/index.js');
 
 class Super {
     constructor(json) {
