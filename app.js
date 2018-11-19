@@ -1,3 +1,7 @@
+// http和https
+const http = require('http');
+const https = require('https');
+
 // express应用
 const express = require('express'); // express
 const app = express(); // app
@@ -122,9 +126,17 @@ app.use(function (err, req, res, next) {
 
 const multipleCalls = require('zhf.multiple-calls');
 const server = multipleCalls(2, function () {
+    // http
     const server = app.listen('5551', function () {
         console.log('server connection open to:\n', `http://localhost:${server.address().port}`);
     });
+    // https
+    /*
+    https.createServer({
+        key: '',
+        cert: '',
+    }, app).listen(443);
+    */
 });
 
 // mongodb数据库链接
