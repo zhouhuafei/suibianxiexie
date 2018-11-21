@@ -6,6 +6,13 @@ const pathConfig = {
 // 路由的名字
 const routeName = [
     {
+        name: 'game-shidishui', // 游戏-十滴水
+        title: '五子棋',
+        isValidateLogin: false,
+        isShowCopyright: false,
+        isShowFooterNav: false,
+    },
+    {
         name: 'game-wuziqi', // 游戏-五子棋
         title: '五子棋',
         isValidateLogin: false,

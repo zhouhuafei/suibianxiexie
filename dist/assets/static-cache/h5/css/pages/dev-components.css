@@ -1,0 +1,25 @@
+@charset "UTF-8";
+/*
+// px转rem(pc) 这个是给电脑端用的。
+@function px2rem($px) {
+    @if $px == 0 {
+        @return 0;
+    } @else {
+        @return $px * 1px;
+    }
+}
+*/
+.page-pagination {
+  margin-top: 0.3125rem; }
+
+.page-star {
+  margin-top: 0.3125rem; }
+
+.page-radio-switch {
+  margin-top: 0.3125rem; }
+
+.page-table {
+  margin-top: 0.3125rem; }
+
+.page-super-type {
+  text-align: center; }

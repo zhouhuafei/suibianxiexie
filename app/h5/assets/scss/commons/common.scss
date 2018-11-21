@@ -1,6 +1,4 @@
 $g-is_h5: true;
-// zhf.g-ui组件
-@import "../../../../../node_modules/zhf.g-ui/dist/scss/commons/g-common.scss";
 // 清零样式
 @import "../reset/reset";
 // 字体图标
@@ -12,6 +10,8 @@ $g-is_h5: true;
 @import "../components_dom/g-slide";
 // 业务组件(存在数据交互)
 @import "../components_dom-business/g-gallery";
+// zhf.g-ui组件
+@import "../../../../../node_modules/zhf.g-ui/dist/scss/commons/g-common.scss";
 
 // 图片列表测试
 .g-img-test {
