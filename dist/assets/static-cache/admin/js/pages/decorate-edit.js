@@ -370,88 +370,7 @@ module.exports = function normalizeComponent (
 /* 35 */,
 /* 36 */,
 /* 37 */,
-/* 38 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
+/* 38 */,
 /* 39 */,
 /* 40 */,
 /* 41 */,
@@ -558,7 +477,7 @@ var Component = __webpack_require__(34)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\www\\github-zhouhuafei\\suibianxiexie\\app\\admin\\assets\\js\\pages\\decorate-edit\\app.vue"
+Component.options.__file = "/Users/zhouhuafei/Desktop/www/github-zhouhuafei/suibianxiexie/app/admin/assets/js/pages/decorate-edit/app.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] app.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -592,7 +511,7 @@ var content = __webpack_require__(85);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(33)("2c06cf11", content, false, {});
+var update = __webpack_require__(33)("49c03bf6", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -616,7 +535,7 @@ exports = module.exports = __webpack_require__(38)(false);
 
 
 // module
-exports.push([module.i, "\n@charset \"UTF-8\";\n/*\r\n// px转rem(h5) 这个是给手机端用的。\r\n@function px2rem($px, $psd:320) {\r\n    @return $px / $psd * 10rem;\r\n}\r\n*/\nhtml[data-v-232fccf7], body[data-v-232fccf7], .g-wrap[data-v-232fccf7], .g-body[data-v-232fccf7], #app[data-v-232fccf7] {\n  height: 100%;\n}\n.g-wrap .g-body[data-v-232fccf7] {\n  padding: 0;\n}\n#app[data-v-232fccf7] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.components-collection[data-v-232fccf7] {\n  width: 300px;\n  min-width: 300px;\n  height: 100%;\n  background: #666666;\n  overflow: hidden;\n}\n.components[data-v-232fccf7] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n}\n.components-item[data-v-232fccf7] {\n  width: 50px;\n  height: 50px;\n  background: #ffffff;\n  margin: 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  cursor: move;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.components-item.components-item_highlight[data-v-232fccf7] {\n    background: #fe313c;\n    color: #ffffff;\n}\n.components-item.components-item_selected[data-v-232fccf7] {\n    background: #fe313c;\n    color: #ffffff;\n    border: 2px dashed rgba(255, 0, 0, 0.5);\n}\n.components-item-drag[data-v-232fccf7] {\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.components-simulator[data-v-232fccf7] {\n  width: 392px;\n  min-width: 375px;\n  height: 100%;\n  background: #777777;\n}\n.simulator[data-v-232fccf7] {\n  background: #888888;\n  height: 667px;\n  overflow: auto;\n}\n.simulator-item[data-v-232fccf7] {\n  position: relative;\n  height: 80px;\n  background: #f8f8f8;\n  cursor: move;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  z-index: 5;\n}\n.simulator-item.simulator-item_active .simulator-item-mask[data-v-232fccf7] {\n    display: block;\n    border: 2px dashed rgba(255, 0, 0, 0.5);\n}\n.simulator-item-hint[data-v-232fccf7] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  z-index: 2;\n}\n.simulator-item-mask[data-v-232fccf7] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(231, 91, 69, 0.5);\n  display: none;\n  z-index: 3;\n}\n.simulator-item-edit[data-v-232fccf7] {\n  height: 40px;\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  width: 50%;\n  border-radius: 1000px;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  display: none;\n  background: #ffffff;\n  z-index: 4;\n}\n.components-editor[data-v-232fccf7] {\n  background: #999999;\n  height: 100%;\n  width: 0;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n}\n.editor-item[data-v-232fccf7] {\n  display: none;\n}\n.editor-item.editor-item_active[data-v-232fccf7] {\n    display: block;\n}\n.vue-draggable-resizable[data-v-232fccf7] {\n  cursor: move;\n  background: rgba(36, 186, 171, 0.4);\n  /*border: 1px solid #24baab;*/\n}\n.vue-draggable-resizable.active[data-v-232fccf7] {\n    background: rgba(255, 0, 0, 0.4);\n    border-color: #e75c45;\n}\n.vue-draggable-resizable[data-v-232fccf7] .handle {\n  /*border-radius: 50%;*/\n  border-color: #e75c45;\n}\n", ""]);
+exports.push([module.i, "\n@charset \"UTF-8\";\n/*\n// px转rem(h5) 这个是给手机端用的。\n@function px2rem($px, $psd:320) {\n    @return $px / $psd * 10rem;\n}\n*/\nhtml[data-v-232fccf7], body[data-v-232fccf7], .g-wrap[data-v-232fccf7], .g-body[data-v-232fccf7], #app[data-v-232fccf7] {\n  height: 100%;\n}\n.g-wrap .g-body[data-v-232fccf7] {\n  padding: 0;\n}\n#app[data-v-232fccf7] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.components-collection[data-v-232fccf7] {\n  width: 300px;\n  min-width: 300px;\n  height: 100%;\n  background: #666666;\n  overflow: hidden;\n}\n.components[data-v-232fccf7] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n}\n.components-item[data-v-232fccf7] {\n  width: 50px;\n  height: 50px;\n  background: #ffffff;\n  margin: 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  cursor: move;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.components-item.components-item_highlight[data-v-232fccf7] {\n    background: #fe313c;\n    color: #ffffff;\n}\n.components-item.components-item_selected[data-v-232fccf7] {\n    background: #fe313c;\n    color: #ffffff;\n    border: 2px dashed rgba(255, 0, 0, 0.5);\n}\n.components-item-drag[data-v-232fccf7] {\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.components-simulator[data-v-232fccf7] {\n  width: 392px;\n  min-width: 375px;\n  height: 100%;\n  background: #777777;\n}\n.simulator[data-v-232fccf7] {\n  background: #888888;\n  height: 667px;\n  overflow: auto;\n}\n.simulator-item[data-v-232fccf7] {\n  position: relative;\n  height: 80px;\n  background: #f8f8f8;\n  cursor: move;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  z-index: 5;\n}\n.simulator-item.simulator-item_active .simulator-item-mask[data-v-232fccf7] {\n    display: block;\n    border: 2px dashed rgba(255, 0, 0, 0.5);\n}\n.simulator-item-hint[data-v-232fccf7] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  z-index: 2;\n}\n.simulator-item-mask[data-v-232fccf7] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(231, 91, 69, 0.5);\n  display: none;\n  z-index: 3;\n}\n.simulator-item-edit[data-v-232fccf7] {\n  height: 40px;\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  width: 50%;\n  border-radius: 1000px;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  display: none;\n  background: #ffffff;\n  z-index: 4;\n}\n.components-editor[data-v-232fccf7] {\n  background: #999999;\n  height: 100%;\n  width: 0;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n}\n.editor-item[data-v-232fccf7] {\n  display: none;\n}\n.editor-item.editor-item_active[data-v-232fccf7] {\n    display: block;\n}\n.vue-draggable-resizable[data-v-232fccf7] {\n  cursor: move;\n  background: rgba(36, 186, 171, 0.4);\n  /*border: 1px solid #24baab;*/\n}\n.vue-draggable-resizable.active[data-v-232fccf7] {\n    background: rgba(255, 0, 0, 0.4);\n    border-color: #e75c45;\n}\n.vue-draggable-resizable[data-v-232fccf7] .handle {\n  /*border-radius: 50%;*/\n  border-color: #e75c45;\n}\n", ""]);
 
 // exports
 
@@ -2917,7 +2836,7 @@ var Component = __webpack_require__(34)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\www\\github-zhouhuafei\\suibianxiexie\\app\\admin\\assets\\js\\components_vue\\g-hot-area\\src\\main.vue"
+Component.options.__file = "/Users/zhouhuafei/Desktop/www/github-zhouhuafei/suibianxiexie/app/admin/assets/js/components_vue/g-hot-area/src/main.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] main.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2951,7 +2870,7 @@ var content = __webpack_require__(101);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(33)("411e272a", content, false, {});
+var update = __webpack_require__(33)("27e0e9c3", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags

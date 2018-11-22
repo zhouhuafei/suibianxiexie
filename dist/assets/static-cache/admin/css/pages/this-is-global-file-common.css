@@ -202,6 +202,379 @@
 .icon-phone:before { content: "\E6A8"; }
 
 @charset "UTF-8";
+/*
+// px转rem(h5) 这个是给手机端用的。
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
+/* 盒模型重置 */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /*
+    当用户点击iOS的Safari浏览器中的链接或JavaScript的可点击的元素时，覆盖显示的高亮颜色。
+    iOS 1.1.1及更高版本的Safari浏览器可用
+    大部分android手机也是支持的，只是显示效果有所不同。
+    */ }
+
+/* 主体重置 */
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", "PingFang SC", "Hiragino Sans GB", "SimSun", "Arial", "sans-serif";
+  font-size: 12px;
+  line-height: 1;
+  color: #333333;
+  background: #f4f4f4; }
+
+/* 内联标签重置 */
+small, sub, sup {
+  font-size: inherit; }
+
+i, em {
+  font-style: normal; }
+
+/* 标题重置 */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-size: inherit; }
+
+/* 列表重置 */
+ul, ol, menu {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; }
+
+dl, dd {
+  margin: 0; }
+
+/* 表单重置 */
+label {
+  display: inline-block;
+  vertical-align: middle; }
+
+textarea {
+  resize: none; }
+
+input[type=radio], input[type=checkbox], input[type=text], input[type=password], input[type=tel], input[type=number], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime-local], input[type=month], input[type=week], input[type=color], textarea, select {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  border: 1px solid #9b9b9b;
+  outline: none;
+  color: inherit;
+  line-height: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  vertical-align: middle;
+  /*-webkit-tap-highlight-color: rgba(0, 0, 0, 0);*/ }
+
+input[type=radio], input[type=checkbox] {
+  border: none; }
+
+input[type=submit], input[type=reset], input[type=file], input[type=button], button {
+  outline: none;
+  color: inherit;
+  line-height: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  vertical-align: middle;
+  /*-webkit-tap-highlight-color: rgba(0, 0, 0, 0);*/ }
+
+/* 表格重置 */
+table {
+  border-collapse: collapse; }
+
+td {
+  padding: 0; }
+
+/* 超链接重置 */
+a {
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+  /*-webkit-tap-highlight-color: rgba(0, 0, 0, 0);*/ }
+
+/* 段落重置 */
+p {
+  margin: 0; }
+
+/* 画布重置 */
+canvas {
+  vertical-align: middle; }
+
+/* 图片重置 */
+img {
+  border: none;
+  vertical-align: middle;
+  max-height: 100%;
+  max-width: 100%; }
+
+/* 修复浏览器记住密码时输入框内异常的背景色 */
+:-webkit-autofill {
+  /* 背景色会一直是白色的，其他背景色将统统失效，需要其他背景色，只需要单独进行重新覆盖即可 */
+  -webkit-box-shadow: 0 0 0 1000px white inset;
+  /* 延迟7天变背景色，7天后背景色还是会变的异常，切换input类型背景色还是会变异常 */
+  /*transition: background-color 604800s ease-in-out 0s;*/ }
+
+/* 字体图标 */
+.iconfont {
+  font-size: inherit;
+  line-height: 1; }
+
+/*
+// px转rem(h5) 这个是给手机端用的。
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
+/*
+// px转rem(h5) 这个是给手机端用的。
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
+.g-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .g-wrap .g-menu-wrap {
+    width: 200px;
+    min-width: 200px;
+    position: relative;
+    z-index: 2;
+    font-size: 12px; }
+    .g-wrap .g-menu-wrap .g-menu {
+      width: inherit;
+      background: #252834;
+      color: #8a8d96;
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100%;
+      overflow: auto;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none; }
+      .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-title {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        padding: 0 5px;
+        line-height: 30px;
+        cursor: pointer;
+        font-weight: bold; }
+        .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-title .g-menu-item-title-text {
+          -webkit-transition: 0.2s;
+          transition: 0.2s; }
+        .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-title .g-menu-item-title-icon {
+          -webkit-transition: 0.2s;
+          transition: 0.2s;
+          width: 14px;
+          margin-right: 5px; }
+        .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-title:hover .g-menu-item-title-text, .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-title:hover .g-menu-item-title-icon {
+          color: #eb9e05; }
+      .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-body {
+        display: none;
+        line-height: 30px; }
+        .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-body .g-menu-item-body-item {
+          display: block;
+          cursor: pointer;
+          padding: 0 5px 0 30px;
+          -webkit-transition: 0.4s;
+          transition: 0.4s; }
+          .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-body .g-menu-item-body-item.g-menu-item-body-item_active, .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-body .g-menu-item-body-item.g-menu-item-body-item_active:hover {
+            background: #f4f4f4;
+            color: #252834; }
+          .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-body .g-menu-item-body-item:hover {
+            background: #383c49; }
+      .g-wrap .g-menu-wrap .g-menu .g-menu-item.g-menu-item_active .g-menu-item-title-icon {
+        -webkit-transform: rotate(90deg);
+                transform: rotate(90deg); }
+      .g-wrap .g-menu-wrap .g-menu .g-menu-item.g-menu-item_active .g-menu-item-body {
+        display: block; }
+  .g-wrap .g-body {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    padding: 30px 20px 20px;
+    position: relative;
+    z-index: 1; }
+
+/*
+// px转rem(h5) 这个是给手机端用的。
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
+.g-slide {
+  background: #fff;
+  min-height: 50px;
+  height: inherit;
+  position: relative;
+  overflow: hidden; }
+  .g-slide .tempWrap {
+    height: inherit; }
+  .g-slide .g-slide-body {
+    height: inherit;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+    .g-slide .g-slide-body .g-slide-body-item {
+      height: inherit;
+      -webkit-box-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
+      display: -webkit-box !important;
+      display: -ms-flexbox !important;
+      display: flex !important;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      background: center center no-repeat;
+      background-size: 100% auto; }
+  .g-slide .g-slide-header {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    height: 14px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+    .g-slide .g-slide-header .g-slide-header-item {
+      margin: 0 4px;
+      background-color: #bbbbbb;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%; }
+      .g-slide .g-slide-header .g-slide-header-item.on {
+        background-color: #0089ff; }
+
+/*
+// px转rem(h5) 这个是给手机端用的。
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/
+.g-gallery-wrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 501;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 12px; }
+  .g-gallery-wrap .g-gallery {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background: #ffffff;
+    position: relative;
+    z-index: 501; }
+  .g-gallery-wrap .g-gallery-category {
+    overflow: auto;
+    width: 120px;
+    min-width: 120px;
+    background: #252834;
+    color: #ffffff; }
+  .g-gallery-wrap .g-gallery-category-item {
+    height: 40px;
+    line-height: 40px;
+    text-align: right;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 10px; }
+    .g-gallery-wrap .g-gallery-category-item.g-gallery-category-item_active {
+      color: #252834;
+      background: #ffffff; }
+  .g-gallery-wrap .g-gallery-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column; }
+    .g-gallery-wrap .g-gallery-content .g-gallery-content-header {
+      padding: 10px; }
+    .g-gallery-wrap .g-gallery-content .g-gallery-content-body {
+      overflow: auto;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+      margin-left: 10px;
+      width: 650px;
+      height: 520px; }
+      .g-gallery-wrap .g-gallery-content .g-gallery-content-body .g-gallery-content-body-item {
+        width: 120px;
+        height: 120px;
+        position: relative;
+        background: #bbbbbb;
+        margin: 0 10px 10px 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center; }
+        .g-gallery-wrap .g-gallery-content .g-gallery-content-body .g-gallery-content-body-item .g-checkbox, .g-gallery-wrap .g-gallery-content .g-gallery-content-body .g-gallery-content-body-item .g-radio {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          padding: 4px 6px;
+          background: rgba(0, 0, 0, 0.4);
+          color: #ffffff; }
+        .g-gallery-wrap .g-gallery-content .g-gallery-content-body .g-gallery-content-body-item .g-checkbox .g-checkbox-text, .g-gallery-wrap .g-gallery-content .g-gallery-content-body .g-gallery-content-body-item .g-radio .g-radio-text {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap; }
+    .g-gallery-wrap .g-gallery-content .g-gallery-content-footer {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      padding: 0 10px 10px; }
+
 /*----------【var】----------*/
 /*----------【function】----------*/
 /*----------【mixin】----------*/
@@ -2793,379 +3166,6 @@ input.g-button[type=submit], input.g-button[type=reset], input.g-button[type=but
     font-weight: bold;
     color: #eb9e05;
     margin-bottom: 10px; }
-
-/*
-// px转rem(h5) 这个是给手机端用的。
-@function px2rem($px, $psd:320) {
-    @return $px / $psd * 10rem;
-}
-*/
-/* 盒模型重置 */
-*, *:before, *:after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  /*
-    当用户点击iOS的Safari浏览器中的链接或JavaScript的可点击的元素时，覆盖显示的高亮颜色。
-    iOS 1.1.1及更高版本的Safari浏览器可用
-    大部分android手机也是支持的，只是显示效果有所不同。
-    */ }
-
-/* 主体重置 */
-body {
-  margin: 0;
-  font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", "PingFang SC", "Hiragino Sans GB", "SimSun", "Arial", "sans-serif";
-  font-size: 12px;
-  line-height: 1;
-  color: #333333;
-  background: #f4f4f4; }
-
-/* 内联标签重置 */
-small, sub, sup {
-  font-size: inherit; }
-
-i, em {
-  font-style: normal; }
-
-/* 标题重置 */
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  font-size: inherit; }
-
-/* 列表重置 */
-ul, ol, menu {
-  margin: 0;
-  padding: 0;
-  list-style-type: none; }
-
-dl, dd {
-  margin: 0; }
-
-/* 表单重置 */
-label {
-  display: inline-block;
-  vertical-align: middle; }
-
-textarea {
-  resize: none; }
-
-input[type=radio], input[type=checkbox], input[type=text], input[type=password], input[type=tel], input[type=number], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime-local], input[type=month], input[type=week], input[type=color], textarea, select {
-  margin: 0;
-  padding: 0;
-  background: #ffffff;
-  border: 1px solid #9b9b9b;
-  outline: none;
-  color: inherit;
-  line-height: inherit;
-  font-size: inherit;
-  font-family: inherit;
-  vertical-align: middle;
-  /*-webkit-tap-highlight-color: rgba(0, 0, 0, 0);*/ }
-
-input[type=radio], input[type=checkbox] {
-  border: none; }
-
-input[type=submit], input[type=reset], input[type=file], input[type=button], button {
-  outline: none;
-  color: inherit;
-  line-height: inherit;
-  font-size: inherit;
-  font-family: inherit;
-  vertical-align: middle;
-  /*-webkit-tap-highlight-color: rgba(0, 0, 0, 0);*/ }
-
-/* 表格重置 */
-table {
-  border-collapse: collapse; }
-
-td {
-  padding: 0; }
-
-/* 超链接重置 */
-a {
-  color: inherit;
-  outline: none;
-  text-decoration: none;
-  /*-webkit-tap-highlight-color: rgba(0, 0, 0, 0);*/ }
-
-/* 段落重置 */
-p {
-  margin: 0; }
-
-/* 画布重置 */
-canvas {
-  vertical-align: middle; }
-
-/* 图片重置 */
-img {
-  border: none;
-  vertical-align: middle;
-  max-height: 100%;
-  max-width: 100%; }
-
-/* 修复浏览器记住密码时输入框内异常的背景色 */
-:-webkit-autofill {
-  /* 背景色会一直是白色的，其他背景色将统统失效，需要其他背景色，只需要单独进行重新覆盖即可 */
-  -webkit-box-shadow: 0 0 0 1000px white inset;
-  /* 延迟7天变背景色，7天后背景色还是会变的异常，切换input类型背景色还是会变异常 */
-  /*transition: background-color 604800s ease-in-out 0s;*/ }
-
-/* 字体图标 */
-.iconfont {
-  font-size: inherit;
-  line-height: 1; }
-
-/*
-// px转rem(h5) 这个是给手机端用的。
-@function px2rem($px, $psd:320) {
-    @return $px / $psd * 10rem;
-}
-*/
-/*
-// px转rem(h5) 这个是给手机端用的。
-@function px2rem($px, $psd:320) {
-    @return $px / $psd * 10rem;
-}
-*/
-.g-wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex; }
-  .g-wrap .g-menu-wrap {
-    width: 200px;
-    min-width: 200px;
-    position: relative;
-    z-index: 2;
-    font-size: 12px; }
-    .g-wrap .g-menu-wrap .g-menu {
-      width: inherit;
-      background: #252834;
-      color: #8a8d96;
-      position: fixed;
-      left: 0;
-      top: 0;
-      height: 100%;
-      overflow: auto;
-      -webkit-user-select: none;
-         -moz-user-select: none;
-          -ms-user-select: none;
-              user-select: none; }
-      .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-title {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        padding: 0 5px;
-        line-height: 30px;
-        cursor: pointer;
-        font-weight: bold; }
-        .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-title .g-menu-item-title-text {
-          -webkit-transition: 0.2s;
-          transition: 0.2s; }
-        .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-title .g-menu-item-title-icon {
-          -webkit-transition: 0.2s;
-          transition: 0.2s;
-          width: 14px;
-          margin-right: 5px; }
-        .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-title:hover .g-menu-item-title-text, .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-title:hover .g-menu-item-title-icon {
-          color: #eb9e05; }
-      .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-body {
-        display: none;
-        line-height: 30px; }
-        .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-body .g-menu-item-body-item {
-          display: block;
-          cursor: pointer;
-          padding: 0 5px 0 30px;
-          -webkit-transition: 0.4s;
-          transition: 0.4s; }
-          .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-body .g-menu-item-body-item.g-menu-item-body-item_active, .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-body .g-menu-item-body-item.g-menu-item-body-item_active:hover {
-            background: #f4f4f4;
-            color: #252834; }
-          .g-wrap .g-menu-wrap .g-menu .g-menu-item .g-menu-item-body .g-menu-item-body-item:hover {
-            background: #383c49; }
-      .g-wrap .g-menu-wrap .g-menu .g-menu-item.g-menu-item_active .g-menu-item-title-icon {
-        -webkit-transform: rotate(90deg);
-                transform: rotate(90deg); }
-      .g-wrap .g-menu-wrap .g-menu .g-menu-item.g-menu-item_active .g-menu-item-body {
-        display: block; }
-  .g-wrap .g-body {
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    padding: 30px 20px 20px;
-    position: relative;
-    z-index: 1; }
-
-/*
-// px转rem(h5) 这个是给手机端用的。
-@function px2rem($px, $psd:320) {
-    @return $px / $psd * 10rem;
-}
-*/
-.g-slide {
-  background: #fff;
-  min-height: 50px;
-  height: inherit;
-  position: relative;
-  overflow: hidden; }
-  .g-slide .tempWrap {
-    height: inherit; }
-  .g-slide .g-slide-body {
-    height: inherit;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex; }
-    .g-slide .g-slide-body .g-slide-body-item {
-      height: inherit;
-      -webkit-box-flex: 1;
-          -ms-flex: 1;
-              flex: 1;
-      display: -webkit-box !important;
-      display: -ms-flexbox !important;
-      display: flex !important;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center;
-      background: center center no-repeat;
-      background-size: 100% auto; }
-  .g-slide .g-slide-header {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    bottom: 0;
-    z-index: 2;
-    height: 14px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center; }
-    .g-slide .g-slide-header .g-slide-header-item {
-      margin: 0 4px;
-      background-color: #bbbbbb;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%; }
-      .g-slide .g-slide-header .g-slide-header-item.on {
-        background-color: #0089ff; }
-
-/*
-// px转rem(h5) 这个是给手机端用的。
-@function px2rem($px, $psd:320) {
-    @return $px / $psd * 10rem;
-}
-*/
-.g-gallery-wrap {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 501;
-  width: 100%;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  font-size: 12px; }
-  .g-gallery-wrap .g-gallery {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    background: #ffffff;
-    position: relative;
-    z-index: 501; }
-  .g-gallery-wrap .g-gallery-category {
-    overflow: auto;
-    width: 120px;
-    min-width: 120px;
-    background: #252834;
-    color: #ffffff; }
-  .g-gallery-wrap .g-gallery-category-item {
-    height: 40px;
-    line-height: 40px;
-    text-align: right;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    padding: 0 10px; }
-    .g-gallery-wrap .g-gallery-category-item.g-gallery-category-item_active {
-      color: #252834;
-      background: #ffffff; }
-  .g-gallery-wrap .g-gallery-content {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column; }
-    .g-gallery-wrap .g-gallery-content .g-gallery-content-header {
-      padding: 10px; }
-    .g-gallery-wrap .g-gallery-content .g-gallery-content-body {
-      overflow: auto;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-      margin-left: 10px;
-      width: 650px;
-      height: 520px; }
-      .g-gallery-wrap .g-gallery-content .g-gallery-content-body .g-gallery-content-body-item {
-        width: 120px;
-        height: 120px;
-        position: relative;
-        background: #bbbbbb;
-        margin: 0 10px 10px 0;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center; }
-        .g-gallery-wrap .g-gallery-content .g-gallery-content-body .g-gallery-content-body-item .g-checkbox, .g-gallery-wrap .g-gallery-content .g-gallery-content-body .g-gallery-content-body-item .g-radio {
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          width: 100%;
-          padding: 4px 6px;
-          background: rgba(0, 0, 0, 0.4);
-          color: #ffffff; }
-        .g-gallery-wrap .g-gallery-content .g-gallery-content-body .g-gallery-content-body-item .g-checkbox .g-checkbox-text, .g-gallery-wrap .g-gallery-content .g-gallery-content-body .g-gallery-content-body-item .g-radio .g-radio-text {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap; }
-    .g-gallery-wrap .g-gallery-content .g-gallery-content-footer {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center;
-      padding: 0 10px 10px; }
 
 .g-img-test .g-img-test-big img {
   height: 80px; }
