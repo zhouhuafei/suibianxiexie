@@ -133,7 +133,7 @@ app.use(function (err, req, res, next) {
 const multipleCalls = require('zhf.multiple-calls');
 const server = multipleCalls(2, function () {
     // http
-    const serverHttp = httpServer.listen('5551', function () {
+    const serverHttp = app.listen('5551', function () {
         console.log('server connection open to:\n', `http://localhost:${serverHttp.address().port}`);
     });
     // https
