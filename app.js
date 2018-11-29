@@ -1,10 +1,16 @@
-// http和https
-const http = require('http');
-const https = require('https');
-
 // express应用
 const express = require('express'); // express
 const app = express(); // app
+
+// http和https
+const fs = require('fs');
+const http = require('http');
+const https = require('https');
+const httpServer = http.createServer(app);
+const privateKey = fs.readFileSync('./https/index.key', 'utf8');
+const certificate = fs.readFileSync('./https/index.pem', 'utf8');
+const credentials = {key: privateKey, cert: certificate};
+const httpsServer = https.createServer(credentials, app);
 
 // app的配置
 const appConfig = require('./app-config');
@@ -127,16 +133,13 @@ app.use(function (err, req, res, next) {
 const multipleCalls = require('zhf.multiple-calls');
 const server = multipleCalls(2, function () {
     // http
-    const server = app.listen('5551', function () {
-        console.log('server connection open to:\n', `http://localhost:${server.address().port}`);
+    const serverHttp = httpServer.listen('5551', function () {
+        console.log('server connection open to:\n', `http://localhost:${serverHttp.address().port}`);
     });
     // https
-    /*
-    https.createServer({
-        key: '',
-        cert: '',
-    }, app).listen(443);
-    */
+    const serverHttps = httpsServer.listen('55551', function () {
+        console.log('server connection open to:\n', `https://localhost:${serverHttps.address().port}`);
+    });
 });
 
 // mongodb数据库链接
