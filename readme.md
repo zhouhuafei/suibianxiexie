@@ -131,3 +131,8 @@ assets/
     - 例如使用```vue-draggable-resizable```包时就报错了。原因就是因为注释掉了exclude，导致es6转es5时对node_modules中的包进行了二次babel导致的。
     - 主要原因是es6转es5或者vue单文件转js导致的，所以该过滤还是要过滤的。
     - 最佳实践方案：npm上发布的包，es6和vue文件要转成es5文件。个人项目中的css-loader不使用exclude过滤(如此可以使用scss)。
+
+# dependencies和devDependencies
+* 因此项目以api为主。
+* 所以在```package.json```中，我只把api需要的依赖包放到了属性dependencies里。
+* 而交互层(ui层，前端层)需要的包，我放到了属性devDependencies里。
