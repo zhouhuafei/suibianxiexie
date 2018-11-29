@@ -65,7 +65,7 @@ app.use(session({
     secret: secret, // 用于签署sessionID cookie的密钥
     cookie: {
         maxAge: ms('7 days'), // cookie过期时间
-        domain: isProduction ? '.suibianxiexie.top' : undefined, // 可以跨子域做单点登录，共享session。
+        domain: isProduction ? '.sbxx.top' : undefined, // 可以跨子域做单点登录，共享session。
     },
     store: new RedisStore(configRedis), // session默认存在服务器端的内存中。此处存redis是为了持久化存储。否则程序重启session也会被重置。
 }));
