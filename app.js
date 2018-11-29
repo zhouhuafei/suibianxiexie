@@ -7,10 +7,10 @@ const fs = require('fs');
 const http = require('http');
 const https = require('https');
 const httpServer = http.createServer(app);
-const privateKey = fs.readFileSync('./https/index.key', 'utf8');
-const certificate = fs.readFileSync('./https/index.pem', 'utf8');
-const credentials = {key: privateKey, cert: certificate};
-const httpsServer = https.createServer(credentials, app);
+// const privateKey = fs.readFileSync('./https/index.key', 'utf8');
+// const certificate = fs.readFileSync('./https/index.pem', 'utf8');
+// const credentials = {key: privateKey, cert: certificate};
+// const httpsServer = https.createServer(credentials, app);
 
 // app的配置
 const appConfig = require('./app-config');
