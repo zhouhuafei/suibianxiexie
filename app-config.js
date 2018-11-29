@@ -11,7 +11,7 @@ class Config {
         this.isEnabledSingleDeviceLoginAdmin = true; // 后台管理系统是否启用单设备登录
         // 邮箱(短信)验证码，目前使用的qq邮箱进发送邮件，账号和授权码都是在qq邮箱申请的。
         this.verifyCodeRandomUser = 'this-is-a-code@foxmail.com'; // 发送者
-        this.verifyCodeRandomPass = 'paudrqaxbntmigfe'; // 授权码
+        this.verifyCodeRandomPass = 'oclyahdhdgepfjhb'; // 授权码
     }
 }
 
