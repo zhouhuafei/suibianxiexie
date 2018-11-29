@@ -7,10 +7,10 @@ const fs = require('fs');
 const http = require('http');
 const https = require('https');
 const httpServer = http.createServer(app);
-// const privateKey = fs.readFileSync('./https/index.key', 'utf8');
-// const certificate = fs.readFileSync('./https/index.pem', 'utf8');
-// const credentials = {key: privateKey, cert: certificate};
-// const httpsServer = https.createServer(credentials, app);
+const privateKey = fs.readFileSync('./https/index.key', 'utf8');
+const certificate = fs.readFileSync('./https/index.pem', 'utf8');
+const credentials = {key: privateKey, cert: certificate};
+const httpsServer = https.createServer(credentials, app);
 
 // app的配置
 const appConfig = require('./app-config');
@@ -133,13 +133,13 @@ app.use(function (err, req, res, next) {
 const multipleCalls = require('zhf.multiple-calls');
 const server = multipleCalls(2, function () {
     // http
-    const serverHttp = app.listen('5551', function () {
+    const serverHttp = httpServer.listen('5551', function () {
         console.log('server connection open to:\n', `http://localhost:${serverHttp.address().port}`);
     });
     // https
-    // const serverHttps = httpsServer.listen('55551', function () {
-    //     console.log('server connection open to:\n', `https://localhost:${serverHttps.address().port}`);
-    // });
+    const serverHttps = httpsServer.listen('55551', function () {
+        console.log('server connection open to:\n', `https://localhost:${serverHttps.address().port}`);
+    });
 });
 
 // mongodb数据库链接
