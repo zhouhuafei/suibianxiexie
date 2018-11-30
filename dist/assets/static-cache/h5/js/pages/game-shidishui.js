@@ -56,9 +56,22 @@ var Sub = function (_Super) {
                     x: x,
                     y: y,
                     left: left,
-                    top: top,
-                    radius: colWidth / 2.4,
-                    type: 'transparent'
+                    top: top
+                });
+            }
+            var gameMap = [];
+            var gameColNum = colNum - 1;
+            for (var _i = 0; _i < Math.pow(gameColNum, 2); _i++) {
+                var _x = _i % gameColNum;
+                var _y = Math.floor(_i / gameColNum);
+                var _left = _x * colWidth + initX;
+                var _top = _y * colWidth + initY;
+                gameMap.push({
+                    x: _x,
+                    y: _y,
+                    left: _left,
+                    top: _top,
+                    type: 1
                 });
             }
             var canvas = createElement({
@@ -69,22 +82,46 @@ var Sub = function (_Super) {
                 }
             });
             var ctx = canvas.getContext('2d');
+            var drawBg = function drawBg() {
+                ctx.save();
+                ctx.beginPath();
+                ctx.fillStyle = '#b8e2f6';
+                ctx.rect(0, 0, w, h);
+                ctx.fill();
+                ctx.closePath();
+                ctx.restore();
+            };
+            drawBg();
             var drawLine = function drawLine(startX, startY, endX, endY) {
                 ctx.save();
                 ctx.beginPath();
-                ctx.strokeStyle = '#000';
+                ctx.strokeStyle = '#66ccff';
                 ctx.moveTo(startX, startY);
                 ctx.lineTo(endX, endY);
                 ctx.stroke();
                 ctx.closePath();
                 ctx.restore();
             };
-            var drawCircle = function drawCircle(x, y, r, fillStyle) {
+            var drawDrip = function drawDrip(x, y) {
+                var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+
+                var img = document.createElement('img');
+                img.addEventListener('load', function () {
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.drawImage(img, x, y, colWidth, colWidth);
+                    ctx.closePath();
+                    ctx.restore();
+                });
+                img.src = __webpack_require__(155)("./" + type + '.png');
+            };
+            var drawCoordinate = function drawCoordinate(v) {
                 ctx.save();
                 ctx.beginPath();
-                ctx.fillStyle = fillStyle;
-                ctx.arc(x, y, r, 0, Math.PI * 2, false);
-                ctx.fill();
+                ctx.font = '10px 微软雅黑';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(v.x + ',' + v.y, v.left, v.top);
                 ctx.closePath();
                 ctx.restore();
             };
@@ -97,10 +134,10 @@ var Sub = function (_Super) {
                     var _target = map[colNum * colNum - 1 - (colNum - 1) + v.x];
                     drawLine(parseInt(v.left) + 0.5, parseInt(v.top) + 0.5, parseInt(_target.left) + 0.5, parseInt(_target.top) + 0.5);
                 }
-                if (i === Math.floor(map.length / 2)) {
-                    drawCircle(v.left + colWidth / 2, v.top + colWidth / 2, v.radius / 2, 'black');
-                }
-                // drawCoordinate(v); // 画坐标
+                drawCoordinate(v); // 画坐标
+            });
+            gameMap.forEach(function (v) {
+                drawDrip(v.left, v.top, v.type);
             });
             canvasWrap.appendChild(canvas);
         }
@@ -137,6 +174,101 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 
 "use strict";
 var getDomArray=__webpack_require__(2);function offset(e){var t=0,r=0;for(e=getDomArray(e)[0];e;)t+=e.offsetTop,r+=e.offsetLeft,e=e.offsetParent;return{top:t,left:r}}module.exports=offset;
+
+/***/ }),
+
+/***/ 155:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./0.png": 156,
+	"./1.png": 157,
+	"./2.png": 158,
+	"./3.png": 159,
+	"./4.png": 160,
+	"./d.png": 161,
+	"./l.png": 162,
+	"./r.png": 163,
+	"./u.png": 164
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 155;
+
+/***/ }),
+
+/***/ 156:
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAADMCAYAAAA/IkzyAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjUxOTA0Q0MzOTlDMzExRTJBOUZGRjEzMDg3QTU3RTg4IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjUxOTA0Q0M0OTlDMzExRTJBOUZGRjEzMDg3QTU3RTg4Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NTE5MDRDQzE5OUMzMTFFMkE5RkZGMTMwODdBNTdFODgiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NTE5MDRDQzI5OUMzMTFFMkE5RkZGMTMwODdBNTdFODgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5v6yzcAAAByElEQVR42uzTQQ0AAAjEMMC/58MCb9JKWLJOUsDNSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAOGAcNIAIYBw4BhwDBgGDCMBGAYMAwYBgwDhgHDSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAOGAcNIAIYBw4BhwDBgGDCMBGAYMAwYBgwDhgHDSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAOGAcNIAIYBw4BhwDBgGDCMBGAYMAwYBgwDhgHDSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAOGAcNIAIYBw4BhwDBgGDCMBGAYMAwYBgwDhgHDSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAOGAcNIAIYBw4BhwDBgGDCMBGAYMAwYBgwDhgHDSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAM/rQADAGYLBJWQ2EwsAAAAAElFTkSuQmCC"
+
+/***/ }),
+
+/***/ 157:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/1.f9915047.png";
+
+/***/ }),
+
+/***/ 158:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/2.23db019d.png";
+
+/***/ }),
+
+/***/ 159:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/3.d031563a.png";
+
+/***/ }),
+
+/***/ 160:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/4.be38886f.png";
+
+/***/ }),
+
+/***/ 161:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/d.3ae26a75.png";
+
+/***/ }),
+
+/***/ 162:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/l.802ad42e.png";
+
+/***/ }),
+
+/***/ 163:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/r.5ec323aa.png";
+
+/***/ }),
+
+/***/ 164:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/u.a531ed5d.png";
 
 /***/ }),
 

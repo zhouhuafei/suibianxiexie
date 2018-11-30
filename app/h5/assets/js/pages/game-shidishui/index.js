@@ -30,8 +30,21 @@ class Sub extends Super {
                 y: y,
                 left: left,
                 top: top,
-                radius: colWidth / 2.4,
-                type: 'transparent',
+            });
+        }
+        const gameMap = [];
+        const gameColNum = colNum - 1;
+        for (let i = 0; i < Math.pow(gameColNum, 2); i++) {
+            const x = i % gameColNum;
+            const y = Math.floor(i / gameColNum);
+            const left = x * colWidth + initX;
+            const top = y * colWidth + initY;
+            gameMap.push({
+                x: x,
+                y: y,
+                left: left,
+                top: top,
+                type: 1,
             });
         }
         const canvas = createElement({
@@ -42,22 +55,44 @@ class Sub extends Super {
             },
         });
         const ctx = canvas.getContext('2d');
+        const drawBg = function () {
+            ctx.save();
+            ctx.beginPath();
+            ctx.fillStyle = '#b8e2f6';
+            ctx.rect(0, 0, w, h);
+            ctx.fill();
+            ctx.closePath();
+            ctx.restore();
+        };
+        drawBg();
         const drawLine = function (startX, startY, endX, endY) {
             ctx.save();
             ctx.beginPath();
-            ctx.strokeStyle = '#000';
+            ctx.strokeStyle = '#66ccff';
             ctx.moveTo(startX, startY);
             ctx.lineTo(endX, endY);
             ctx.stroke();
             ctx.closePath();
             ctx.restore();
         };
-        const drawCircle = function (x, y, r, fillStyle) {
+        const drawDrip = function (x, y, type = 0) {
+            const img = document.createElement('img');
+            img.addEventListener('load', function () {
+                ctx.save();
+                ctx.beginPath();
+                ctx.drawImage(img, x, y, colWidth, colWidth);
+                ctx.closePath();
+                ctx.restore();
+            });
+            img.src = require(`../../../images/game-shidishui/${type}.png`);
+        };
+        const drawCoordinate = function (v) {
             ctx.save();
             ctx.beginPath();
-            ctx.fillStyle = fillStyle;
-            ctx.arc(x, y, r, 0, Math.PI * 2, false);
-            ctx.fill();
+            ctx.font = '10px 微软雅黑';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(`${v.x},${v.y}`, v.left, v.top);
             ctx.closePath();
             ctx.restore();
         };
@@ -70,10 +105,10 @@ class Sub extends Super {
                 const target = map[(colNum * colNum - 1) - (colNum - 1) + v.x];
                 drawLine(parseInt(v.left) + 0.5, parseInt(v.top) + 0.5, parseInt(target.left) + 0.5, parseInt(target.top) + 0.5);
             }
-            if (i === Math.floor(map.length / 2)) {
-                drawCircle(v.left + colWidth / 2, v.top + colWidth / 2, v.radius / 2, 'black');
-            }
-            // drawCoordinate(v); // 画坐标
+            drawCoordinate(v); // 画坐标
+        });
+        gameMap.forEach(function (v) {
+            drawDrip(v.left, v.top, v.type);
         });
         canvasWrap.appendChild(canvas);
     }
