@@ -28,7 +28,7 @@ class Sub extends Super {
         const gap = 10;
         const step = 10;
         let score = 0;
-        let hp = 100;
+        let hp = 2;
         const item = {
             w: (w - (col - 1) * gap) / col,
             h: (h - (row - 1) * gap) / row,
@@ -105,7 +105,7 @@ class Sub extends Super {
                 map.forEach(function (row, index) {
                     if (row[0][1] >= h) {
                         map.splice(index, 1);
-                        hp--;
+                        hp -= row.length;
                     }
                 });
                 move();

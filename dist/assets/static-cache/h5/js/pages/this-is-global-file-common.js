@@ -12,7 +12,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 __webpack_require__(53);
 window['g-is_h5'] = true;
 var qr = __webpack_require__(35);
-var extend = __webpack_require__(4);
+var extend = __webpack_require__(5);
 var axios = __webpack_require__(82);
 var jsonp = __webpack_require__(86);
 
@@ -1950,7 +1950,8 @@ function isnan (val) {
 /***/ }),
 /* 2 */,
 /* 3 */,
-/* 4 */
+/* 4 */,
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1961,7 +1962,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):("object"!==Object.prototype.toString.call(window.zhf).slice(8,-1).toLowerCase()&&(window.zhf={}),window.zhf.extend=t())}(0,function(){return function o(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],r=Object.prototype.toString.call(t).slice(8,-1).toLowerCase();return r!==Object.prototype.toString.call(e).slice(8,-1).toLowerCase()||!n||"object"!==r&&"array"!==r?t=e:Object.keys(e).forEach(function(r){var i=Object.prototype.toString.call(t[r]).slice(8,-1).toLowerCase();i!==Object.prototype.toString.call(e[r]).slice(8,-1).toLowerCase()||!n||"object"!==i&&"array"!==i?void 0!==e[r]&&(t[r]=e[r]):o(t[r],e[r])}),t}});
 
 /***/ }),
-/* 5 */,
 /* 6 */
 /***/ (function(module, exports) {
 
@@ -2037,7 +2037,7 @@ util.inherits = __webpack_require__(6);
 /*</replacement>*/
 
 var Readable = __webpack_require__(38);
-var Writable = __webpack_require__(15);
+var Writable = __webpack_require__(25);
 
 util.inherits(Duplex, Readable);
 
@@ -2342,7 +2342,17 @@ function objectToString(o) {
 
 /***/ }),
 /* 12 */,
-/* 13 */
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2454,7 +2464,7 @@ exports.setTyped(TYPED_OK);
 
 
 /***/ }),
-/* 14 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2465,7 +2475,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):window&&("object"!==Object.prototype.toString.call(window.zhf).slice(8,-1).toLowerCase()&&(window.zhf={}),window.zhf.typeOf=t())}(0,function(){return function(o){return Object.prototype.toString.call(o).slice(8,-1).toLowerCase()}});
 
 /***/ }),
-/* 15 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -2949,7 +2959,7 @@ function endWritable(stream, state, cb) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 16 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -3164,16 +3174,6 @@ function done(stream, er) {
 
 
 /***/ }),
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
 /* 27 */,
 /* 28 */,
 /* 29 */,
@@ -4918,7 +4918,7 @@ function simpleEnd(buf) {
 
 module.exports = PassThrough;
 
-var Transform = __webpack_require__(16);
+var Transform = __webpack_require__(26);
 
 /*<replacement>*/
 var util = __webpack_require__(11);
@@ -6643,9 +6643,9 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 /* WEBPACK VAR INJECTION */(function(process) {exports = module.exports = __webpack_require__(38);
 exports.Stream = __webpack_require__(9);
 exports.Readable = exports;
-exports.Writable = __webpack_require__(15);
+exports.Writable = __webpack_require__(25);
 exports.Duplex = __webpack_require__(7);
-exports.Transform = __webpack_require__(16);
+exports.Transform = __webpack_require__(26);
 exports.PassThrough = __webpack_require__(40);
 if (!process.browser && Object({"NODE_ENV":development}).READABLE_STREAM === 'disable') {
   module.exports = __webpack_require__(9);
@@ -6731,7 +6731,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 /* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(15)
+module.exports = __webpack_require__(25)
 
 
 /***/ }),
@@ -6745,7 +6745,7 @@ module.exports = __webpack_require__(7)
 /* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(16)
+module.exports = __webpack_require__(26)
 
 
 /***/ }),
@@ -8766,7 +8766,7 @@ module.exports = ZStream;
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils   = __webpack_require__(13);
+var utils   = __webpack_require__(23);
 var trees   = __webpack_require__(73);
 var adler32 = __webpack_require__(43);
 var crc32   = __webpack_require__(44);
@@ -10647,7 +10647,7 @@ exports.deflateTune = deflateTune;
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils = __webpack_require__(13);
+var utils = __webpack_require__(23);
 
 /* Public constants ==========================================================*/
 /* ===========================================================================*/
@@ -11913,7 +11913,7 @@ module.exports = {
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils         = __webpack_require__(13);
+var utils         = __webpack_require__(23);
 var adler32       = __webpack_require__(43);
 var crc32         = __webpack_require__(44);
 var inflate_fast  = __webpack_require__(76);
@@ -13828,7 +13828,7 @@ module.exports = function inflate_fast(strm, start) {
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils = __webpack_require__(13);
+var utils = __webpack_require__(23);
 
 var MAXBITS = 15;
 var ENOUGH_LENS = 852;
@@ -14617,8 +14617,8 @@ module.exports = {
 
 
 var axios = __webpack_require__(45);
-var extend = __webpack_require__(4);
-var typeOf = __webpack_require__(14);
+var extend = __webpack_require__(5);
+var typeOf = __webpack_require__(24);
 var Message = __webpack_require__(46);
 var qs = __webpack_require__(83);
 
@@ -15132,8 +15132,8 @@ module.exports = function (str, opts) {
 "use strict";
 
 
-var extend = __webpack_require__(4);
-var typeOf = __webpack_require__(14);
+var extend = __webpack_require__(5);
+var typeOf = __webpack_require__(24);
 var queryString = __webpack_require__(87);
 var Message = __webpack_require__(46);
 
