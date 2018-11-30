@@ -1,5 +1,4 @@
 node_modules
-https
 .svn
 .idea
 .vscode
@@ -24,6 +23,9 @@ yarn-error.log*
 selenium-debug.log
 test/unit/coverage
 test/e2e/reports
+
+# 以下和业务有关
 static-cache-wrap/static-cache/admin/gallery
 static-cache-wrap/static-cache/h5/gallery
 static-cache-wrap/static-cache/pc/gallery
+https
