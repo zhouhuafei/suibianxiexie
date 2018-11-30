@@ -42,7 +42,7 @@ var Sub = function (_Super) {
             var w = canvasWrap.offsetWidth;
             var h = document.documentElement.clientHeight;
             var padding = 20.5;
-            var colNum = 6; // 6*6
+            var colNum = 7; // 7*7条线 6*6格
             var colWidth = (w - padding * 2) / (colNum - 1);
             var initX = padding;
             var initY = (h - w) / 2 + padding;
@@ -59,27 +59,54 @@ var Sub = function (_Super) {
                     top: top
                 });
             }
-            var gameNowPass = 1; // 当前关卡
-            var gameTypeMap = {
-                pass1: [// 第一关
-                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+            var gameNowLevel = 1; // 当前关卡
+            var sortLevel = function sortLevel() {
+                var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'diff';
+                var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+                // 随机关卡
+                type = String(type);
+                var arr = [];
+                if (type === 'easy') {
+                    for (var _i = 0; _i < 36; _i++) {
+                        arr.push(Math.floor(Math.random() * 5));
+                    }
+                } else if (type === 'diff') {
+                    for (var _i2 = 0; _i2 < 8 - level; _i2++) {
+                        arr.push(4);
+                    }
+                    for (var _i3 = 0; _i3 < 8 + level; _i3++) {
+                        arr.push(3);
+                    }
+                    for (var _i4 = 0; _i4 < 10 - level; _i4++) {
+                        arr.push(2);
+                    }
+                    for (var _i5 = 0; _i5 < 5 + level; _i5++) {
+                        arr.push(1);
+                    }
+                    for (var _i6 = 31; _i6 < 36; _i6++) {
+                        arr.push(0);
+                    }
+                    arr.sort(function () {
+                        return Math.random() - 0.5;
+                    });
+                }
+                return arr;
             };
-            // 关卡随机待续...
             var gameMap = [];
             var gameColNum = colNum - 1;
-            for (var _i = 0; _i < Math.pow(gameColNum, 2); _i++) {
-                var _x = _i % gameColNum;
-                var _y = Math.floor(_i / gameColNum);
-                var _left = _x * colWidth + initX;
+            for (var _i7 = 0; _i7 < Math.pow(gameColNum, 2); _i7++) {
+                var _x3 = _i7 % gameColNum;
+                var _y = Math.floor(_i7 / gameColNum);
+                var _left = _x3 * colWidth + initX;
                 var _top = _y * colWidth + initY;
                 gameMap.push({
-                    x: _x,
+                    x: _x3,
                     y: _y,
                     left: _left,
                     top: _top
                 });
             }
-            gameTypeMap['pass' + gameNowPass].forEach(function (v, i) {
+            sortLevel('easy', gameNowLevel).forEach(function (v, i) {
                 gameMap[i].type = v || 0;
             });
             var canvas = createElement({
@@ -117,7 +144,7 @@ var Sub = function (_Super) {
                 img.addEventListener('load', function () {
                     ctx.save();
                     ctx.beginPath();
-                    var scale = 0.7;
+                    var scale = 0.8;
                     var wh = colWidth * scale;
                     var diff = colWidth - wh;
                     x += diff / 2;

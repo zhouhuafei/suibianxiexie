@@ -15,7 +15,7 @@ class Sub extends Super {
         const w = canvasWrap.offsetWidth;
         const h = document.documentElement.clientHeight;
         const padding = 20.5;
-        const colNum = 6; // 6*6
+        const colNum = 7; // 7*7条线 6*6格
         const colWidth = (w - padding * 2) / (colNum - 1);
         const initX = padding;
         const initY = (h - w) / 2 + padding;
@@ -32,17 +32,36 @@ class Sub extends Super {
                 top: top,
             });
         }
-        const gameNowPass = 1; // 当前关卡
-        const gameTypeMap = {
-            pass1: [ // 第一关
-                1, 1, 1, 1, 1,
-                1, 1, 1, 1, 1,
-                1, 1, 1, 1, 1,
-                1, 1, 1, 1, 1,
-                1, 1, 1, 1, 1,
-            ],
+        const gameNowLevel = 1; // 当前关卡
+        const sortLevel = function (type = 'diff', level = 1) { // 随机关卡
+            type = String(type);
+            const arr = [];
+            if (type === 'easy') {
+                for (let i = 0; i < 36; i++) {
+                    arr.push(Math.floor(Math.random() * 5));
+                }
+            } else if (type === 'diff') {
+                for (let i = 0; i < 8 - level; i++) {
+                    arr.push(4);
+                }
+                for (let i = 0; i < 8 + level; i++) {
+                    arr.push(3);
+                }
+                for (let i = 0; i < 10 - level; i++) {
+                    arr.push(2);
+                }
+                for (let i = 0; i < 5 + level; i++) {
+                    arr.push(1);
+                }
+                for (let i = 31; i < 36; i++) {
+                    arr.push(0);
+                }
+                arr.sort(function () {
+                    return Math.random() - 0.5;
+                });
+            }
+            return arr;
         };
-        // 关卡随机待续...
         const gameMap = [];
         const gameColNum = colNum - 1;
         for (let i = 0; i < Math.pow(gameColNum, 2); i++) {
@@ -57,7 +76,7 @@ class Sub extends Super {
                 top: top,
             });
         }
-        gameTypeMap[`pass${gameNowPass}`].forEach(function (v, i) {
+        sortLevel('easy', gameNowLevel).forEach(function (v, i) {
             gameMap[i].type = v || 0;
         });
         const canvas = createElement({
@@ -93,7 +112,7 @@ class Sub extends Super {
             img.addEventListener('load', function () {
                 ctx.save();
                 ctx.beginPath();
-                const scale = 0.7;
+                const scale = 0.8;
                 const wh = colWidth * scale;
                 const diff = colWidth - wh;
                 x += diff / 2;
