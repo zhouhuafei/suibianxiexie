@@ -50,11 +50,13 @@ var Sub = function (_Super) {
             for (var i = 0; i < Math.pow(colNum, 2); i++) {
                 var x = i % colNum;
                 var y = Math.floor(i / colNum);
+                var left = x * colWidth + initX;
+                var top = y * colWidth + initY;
                 map.push({
                     x: x,
                     y: y,
-                    left: x * colWidth + initX,
-                    top: y * colWidth + initY,
+                    left: left,
+                    top: top,
                     radius: colWidth / 2.4,
                     type: 'transparent'
                 });
@@ -89,11 +91,11 @@ var Sub = function (_Super) {
             map.forEach(function (v, i) {
                 if (v.x === 0) {
                     var target = map[i + colNum - 1];
-                    drawLine(v.left, v.top, target.left, target.top);
+                    drawLine(parseInt(v.left) + 0.5, parseInt(v.top) + 0.5, parseInt(target.left) + 0.5, parseInt(target.top) + 0.5);
                 }
                 if (v.y === 0) {
                     var _target = map[colNum * colNum - 1 - (colNum - 1) + v.x];
-                    drawLine(v.left, v.top, _target.left, _target.top);
+                    drawLine(parseInt(v.left) + 0.5, parseInt(v.top) + 0.5, parseInt(_target.left) + 0.5, parseInt(_target.top) + 0.5);
                 }
                 if (i === Math.floor(map.length / 2)) {
                     drawCircle(v.left + colWidth / 2, v.top + colWidth / 2, v.radius / 2, 'black');

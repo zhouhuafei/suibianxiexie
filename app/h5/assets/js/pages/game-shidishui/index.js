@@ -23,11 +23,13 @@ class Sub extends Super {
         for (let i = 0; i < Math.pow(colNum, 2); i++) {
             const x = i % colNum;
             const y = Math.floor(i / colNum);
+            const left = x * colWidth + initX;
+            const top = y * colWidth + initY;
             map.push({
                 x: x,
                 y: y,
-                left: x * colWidth + initX,
-                top: y * colWidth + initY,
+                left: left,
+                top: top,
                 radius: colWidth / 2.4,
                 type: 'transparent',
             });
@@ -62,11 +64,11 @@ class Sub extends Super {
         map.forEach(function (v, i) {
             if (v.x === 0) {
                 const target = map[i + colNum - 1];
-                drawLine(v.left, v.top, target.left, target.top);
+                drawLine(parseInt(v.left) + 0.5, parseInt(v.top) + 0.5, parseInt(target.left) + 0.5, parseInt(target.top) + 0.5);
             }
             if (v.y === 0) {
                 const target = map[(colNum * colNum - 1) - (colNum - 1) + v.x];
-                drawLine(v.left, v.top, target.left, target.top);
+                drawLine(parseInt(v.left) + 0.5, parseInt(v.top) + 0.5, parseInt(target.left) + 0.5, parseInt(target.top) + 0.5);
             }
             if (i === Math.floor(map.length / 2)) {
                 drawCircle(v.left + colWidth / 2, v.top + colWidth / 2, v.radius / 2, 'black');
