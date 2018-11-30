@@ -59,6 +59,12 @@ var Sub = function (_Super) {
                     top: top
                 });
             }
+            var gameNowPass = 1; // 当前关卡
+            var gameTypeMap = {
+                pass1: [// 第一关
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+            };
+            // 关卡随机待续...
             var gameMap = [];
             var gameColNum = colNum - 1;
             for (var _i = 0; _i < Math.pow(gameColNum, 2); _i++) {
@@ -70,10 +76,12 @@ var Sub = function (_Super) {
                     x: _x,
                     y: _y,
                     left: _left,
-                    top: _top,
-                    type: 1
+                    top: _top
                 });
             }
+            gameTypeMap['pass' + gameNowPass].forEach(function (v, i) {
+                gameMap[i].type = v || 0;
+            });
             var canvas = createElement({
                 elementName: 'canvas',
                 attribute: {
@@ -109,7 +117,12 @@ var Sub = function (_Super) {
                 img.addEventListener('load', function () {
                     ctx.save();
                     ctx.beginPath();
-                    ctx.drawImage(img, x, y, colWidth, colWidth);
+                    var scale = 0.7;
+                    var wh = colWidth * scale;
+                    var diff = colWidth - wh;
+                    x += diff / 2;
+                    y += diff / 2;
+                    ctx.drawImage(img, x, y, wh, wh);
                     ctx.closePath();
                     ctx.restore();
                 });

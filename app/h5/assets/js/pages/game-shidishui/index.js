@@ -32,6 +32,17 @@ class Sub extends Super {
                 top: top,
             });
         }
+        const gameNowPass = 1; // 当前关卡
+        const gameTypeMap = {
+            pass1: [ // 第一关
+                1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1,
+            ],
+        };
+        // 关卡随机待续...
         const gameMap = [];
         const gameColNum = colNum - 1;
         for (let i = 0; i < Math.pow(gameColNum, 2); i++) {
@@ -44,9 +55,11 @@ class Sub extends Super {
                 y: y,
                 left: left,
                 top: top,
-                type: 1,
             });
         }
+        gameTypeMap[`pass${gameNowPass}`].forEach(function (v, i) {
+            gameMap[i].type = v || 0;
+        });
         const canvas = createElement({
             elementName: 'canvas',
             attribute: {
@@ -80,7 +93,12 @@ class Sub extends Super {
             img.addEventListener('load', function () {
                 ctx.save();
                 ctx.beginPath();
-                ctx.drawImage(img, x, y, colWidth, colWidth);
+                const scale = 0.7;
+                const wh = colWidth * scale;
+                const diff = colWidth - wh;
+                x += diff / 2;
+                y += diff / 2;
+                ctx.drawImage(img, x, y, wh, wh);
                 ctx.closePath();
                 ctx.restore();
             });
