@@ -20,6 +20,11 @@ var offset = __webpack_require__(14);
 var createElement = __webpack_require__(4);
 var randomNum = __webpack_require__(13);
 
+/*
+十滴水共6x6=36个格。
+每次连续破裂3滴加1滴水。
+*/
+
 var Sub = function (_Super) {
     _inherits(Sub, _Super);
 

@@ -4,6 +4,11 @@ const offset = require('zhf.offset');
 const createElement = require('zhf.create-element');
 const randomNum = require('zhf.random-num');
 
+/*
+十滴水共6x6=36个格。
+每次连续破裂3滴加1滴水。
+*/
+
 class Sub extends Super {
     // (功)(覆)功能(覆盖超类型)
     power() {
