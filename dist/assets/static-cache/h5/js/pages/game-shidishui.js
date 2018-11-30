@@ -122,6 +122,7 @@ var Sub = function (_Super) {
                 }
             });
             var ctx = canvas.getContext('2d');
+            // 画背景
             var drawBg = function drawBg() {
                 ctx.save();
                 ctx.beginPath();
@@ -131,7 +132,7 @@ var Sub = function (_Super) {
                 ctx.closePath();
                 ctx.restore();
             };
-            drawBg();
+            // 画线
             var drawLine = function drawLine(startX, startY, endX, endY) {
                 ctx.save();
                 ctx.beginPath();
@@ -142,6 +143,7 @@ var Sub = function (_Super) {
                 ctx.closePath();
                 ctx.restore();
             };
+            // 画水滴
             var drawDrip = function drawDrip(x, y) {
                 var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
 
@@ -160,6 +162,7 @@ var Sub = function (_Super) {
                 });
                 img.src = __webpack_require__(106)("./" + type + '.png');
             };
+            // 画坐标
             var drawCoordinate = function drawCoordinate(v) {
                 ctx.save();
                 ctx.beginPath();
@@ -170,20 +173,25 @@ var Sub = function (_Super) {
                 ctx.closePath();
                 ctx.restore();
             };
-            map.forEach(function (v, i) {
-                if (v.x === 0) {
-                    var target = map[i + colNum - 1];
-                    drawLine(parseInt(v.left) + 0.5, parseInt(v.top) + 0.5, parseInt(target.left) + 0.5, parseInt(target.top) + 0.5);
-                }
-                if (v.y === 0) {
-                    var _target = map[colNum * colNum - 1 - (colNum - 1) + v.x];
-                    drawLine(parseInt(v.left) + 0.5, parseInt(v.top) + 0.5, parseInt(_target.left) + 0.5, parseInt(_target.top) + 0.5);
-                }
-                drawCoordinate(v); // 画坐标
-            });
-            gameMap.forEach(function (v) {
-                drawDrip(v.left, v.top, v.type);
-            });
+            // 画全部
+            var draw = function draw() {
+                drawBg();
+                map.forEach(function (v, i) {
+                    if (v.x === 0) {
+                        var target = map[i + colNum - 1];
+                        drawLine(parseInt(v.left) + 0.5, parseInt(v.top) + 0.5, parseInt(target.left) + 0.5, parseInt(target.top) + 0.5);
+                    }
+                    if (v.y === 0) {
+                        var _target = map[colNum * colNum - 1 - (colNum - 1) + v.x];
+                        drawLine(parseInt(v.left) + 0.5, parseInt(v.top) + 0.5, parseInt(_target.left) + 0.5, parseInt(_target.top) + 0.5);
+                    }
+                    drawCoordinate(v); // 画坐标
+                });
+                gameMap.forEach(function (v) {
+                    drawDrip(v.left, v.top, v.type);
+                });
+            };
+            draw();
             canvasWrap.appendChild(canvas);
         }
     }]);

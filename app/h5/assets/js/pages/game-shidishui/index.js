@@ -92,6 +92,7 @@ class Sub extends Super {
             },
         });
         const ctx = canvas.getContext('2d');
+        // 画背景
         const drawBg = function () {
             ctx.save();
             ctx.beginPath();
@@ -101,7 +102,7 @@ class Sub extends Super {
             ctx.closePath();
             ctx.restore();
         };
-        drawBg();
+        // 画线
         const drawLine = function (startX, startY, endX, endY) {
             ctx.save();
             ctx.beginPath();
@@ -112,6 +113,7 @@ class Sub extends Super {
             ctx.closePath();
             ctx.restore();
         };
+        // 画水滴
         const drawDrip = function (x, y, type = 0) {
             const img = document.createElement('img');
             img.addEventListener('load', function () {
@@ -128,6 +130,7 @@ class Sub extends Super {
             });
             img.src = require(`../../../images/game-shidishui/${type}.png`);
         };
+        // 画坐标
         const drawCoordinate = function (v) {
             ctx.save();
             ctx.beginPath();
@@ -138,20 +141,25 @@ class Sub extends Super {
             ctx.closePath();
             ctx.restore();
         };
-        map.forEach(function (v, i) {
-            if (v.x === 0) {
-                const target = map[i + colNum - 1];
-                drawLine(parseInt(v.left) + 0.5, parseInt(v.top) + 0.5, parseInt(target.left) + 0.5, parseInt(target.top) + 0.5);
-            }
-            if (v.y === 0) {
-                const target = map[(colNum * colNum - 1) - (colNum - 1) + v.x];
-                drawLine(parseInt(v.left) + 0.5, parseInt(v.top) + 0.5, parseInt(target.left) + 0.5, parseInt(target.top) + 0.5);
-            }
-            drawCoordinate(v); // 画坐标
-        });
-        gameMap.forEach(function (v) {
-            drawDrip(v.left, v.top, v.type);
-        });
+        // 画全部
+        const draw = function () {
+            drawBg();
+            map.forEach(function (v, i) {
+                if (v.x === 0) {
+                    const target = map[i + colNum - 1];
+                    drawLine(parseInt(v.left) + 0.5, parseInt(v.top) + 0.5, parseInt(target.left) + 0.5, parseInt(target.top) + 0.5);
+                }
+                if (v.y === 0) {
+                    const target = map[(colNum * colNum - 1) - (colNum - 1) + v.x];
+                    drawLine(parseInt(v.left) + 0.5, parseInt(v.top) + 0.5, parseInt(target.left) + 0.5, parseInt(target.top) + 0.5);
+                }
+                drawCoordinate(v); // 画坐标
+            });
+            gameMap.forEach(function (v) {
+                drawDrip(v.left, v.top, v.type);
+            });
+        };
+        draw();
         canvasWrap.appendChild(canvas);
     }
 }
