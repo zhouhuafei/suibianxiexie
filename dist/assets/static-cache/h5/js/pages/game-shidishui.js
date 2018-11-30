@@ -1,4 +1,4 @@
-webpackJsonp([4],{
+webpackJsonp([2],{
 
 /***/ 104:
 /***/ (function(module, exports, __webpack_require__) {
@@ -153,7 +153,7 @@ var Sub = function (_Super) {
                     ctx.closePath();
                     ctx.restore();
                 });
-                img.src = __webpack_require__(155)("./" + type + '.png');
+                img.src = __webpack_require__(106)("./" + type + '.png');
             };
             var drawCoordinate = function drawCoordinate(v) {
                 ctx.save();
@@ -197,6 +197,101 @@ new Sub();
 
 /***/ }),
 
+/***/ 106:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./0.png": 107,
+	"./1.png": 108,
+	"./2.png": 109,
+	"./3.png": 110,
+	"./4.png": 111,
+	"./d.png": 112,
+	"./l.png": 113,
+	"./r.png": 114,
+	"./u.png": 115
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 106;
+
+/***/ }),
+
+/***/ 107:
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAADMCAYAAAA/IkzyAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjUxOTA0Q0MzOTlDMzExRTJBOUZGRjEzMDg3QTU3RTg4IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjUxOTA0Q0M0OTlDMzExRTJBOUZGRjEzMDg3QTU3RTg4Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NTE5MDRDQzE5OUMzMTFFMkE5RkZGMTMwODdBNTdFODgiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NTE5MDRDQzI5OUMzMTFFMkE5RkZGMTMwODdBNTdFODgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5v6yzcAAAByElEQVR42uzTQQ0AAAjEMMC/58MCb9JKWLJOUsDNSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAOGAcNIAIYBw4BhwDBgGDCMBGAYMAwYBgwDhgHDSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAOGAcNIAIYBw4BhwDBgGDCMBGAYMAwYBgwDhgHDSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAOGAcNIAIYBw4BhwDBgGDCMBGAYMAwYBgwDhgHDSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAOGAcNIAIYBw4BhwDBgGDCMBGAYMAwYBgwDhgHDSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAOGAcNIAIYBw4BhwDBgGDCMBGAYMAwYBgwDhgHDSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAM/rQADAGYLBJWQ2EwsAAAAAElFTkSuQmCC"
+
+/***/ }),
+
+/***/ 108:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/1.f9915047.png";
+
+/***/ }),
+
+/***/ 109:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/2.23db019d.png";
+
+/***/ }),
+
+/***/ 110:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/3.d031563a.png";
+
+/***/ }),
+
+/***/ 111:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/4.be38886f.png";
+
+/***/ }),
+
+/***/ 112:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/d.3ae26a75.png";
+
+/***/ }),
+
+/***/ 113:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/l.802ad42e.png";
+
+/***/ }),
+
+/***/ 114:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/r.5ec323aa.png";
+
+/***/ }),
+
+/***/ 115:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/u.a531ed5d.png";
+
+/***/ }),
+
 /***/ 13:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -214,101 +309,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 
 "use strict";
 var getDomArray=__webpack_require__(2);function offset(e){var t=0,r=0;for(e=getDomArray(e)[0];e;)t+=e.offsetTop,r+=e.offsetLeft,e=e.offsetParent;return{top:t,left:r}}module.exports=offset;
-
-/***/ }),
-
-/***/ 155:
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./0.png": 156,
-	"./1.png": 157,
-	"./2.png": 158,
-	"./3.png": 159,
-	"./4.png": 160,
-	"./d.png": 161,
-	"./l.png": 162,
-	"./r.png": 163,
-	"./u.png": 164
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 155;
-
-/***/ }),
-
-/***/ 156:
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAADMCAYAAAA/IkzyAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjUxOTA0Q0MzOTlDMzExRTJBOUZGRjEzMDg3QTU3RTg4IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjUxOTA0Q0M0OTlDMzExRTJBOUZGRjEzMDg3QTU3RTg4Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NTE5MDRDQzE5OUMzMTFFMkE5RkZGMTMwODdBNTdFODgiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NTE5MDRDQzI5OUMzMTFFMkE5RkZGMTMwODdBNTdFODgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5v6yzcAAAByElEQVR42uzTQQ0AAAjEMMC/58MCb9JKWLJOUsDNSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAOGAcNIAIYBw4BhwDBgGDCMBGAYMAwYBgwDhgHDSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAOGAcNIAIYBw4BhwDBgGDCMBGAYMAwYBgwDhgHDSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAOGAcNIAIYBw4BhwDBgGDCMBGAYMAwYBgwDhgHDSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAOGAcNIAIYBw4BhwDBgGDCMBGAYMAwYBgwDhgHDSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAOGAcNIAIYBw4BhwDBgGDCMBGAYMAwYBgwDhgHDSACGAcOAYcAwYBgwjARgGDAMGAYMA4YBw0gAhgHDgGHAMGAYMIwEYBgwDBgGDAM/rQADAGYLBJWQ2EwsAAAAAElFTkSuQmCC"
-
-/***/ }),
-
-/***/ 157:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/1.f9915047.png";
-
-/***/ }),
-
-/***/ 158:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/2.23db019d.png";
-
-/***/ }),
-
-/***/ 159:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/3.d031563a.png";
-
-/***/ }),
-
-/***/ 160:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/4.be38886f.png";
-
-/***/ }),
-
-/***/ 161:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/d.3ae26a75.png";
-
-/***/ }),
-
-/***/ 162:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/l.802ad42e.png";
-
-/***/ }),
-
-/***/ 163:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/r.5ec323aa.png";
-
-/***/ }),
-
-/***/ 164:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/u.a531ed5d.png";
 
 /***/ }),
 

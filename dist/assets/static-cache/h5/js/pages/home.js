@@ -1,6 +1,6 @@
 webpackJsonp([6],{
 
-/***/ 108:
+/***/ 118:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14,7 +14,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(109);
+__webpack_require__(119);
 var Super = __webpack_require__(0);
 
 var _require = __webpack_require__(10),
@@ -47,7 +47,7 @@ var Sub = function (_Super) {
 
             // slide切换
             (function () {
-                var Slide = __webpack_require__(27);
+                var Slide = __webpack_require__(19);
                 new Slide({
                     wrap: '.page-slide',
                     config: {
@@ -62,28 +62,28 @@ var Sub = function (_Super) {
                             img: {
                                 width: 0,
                                 height: 0,
-                                src: __webpack_require__(31)
+                                src: __webpack_require__(23)
                             },
                             href: ''
                         }, {
                             img: {
                                 width: 0,
                                 height: 0,
-                                src: __webpack_require__(32)
+                                src: __webpack_require__(24)
                             },
                             href: ''
                         }, {
                             img: {
                                 width: 0,
                                 height: 0,
-                                src: __webpack_require__(33)
+                                src: __webpack_require__(25)
                             },
                             href: ''
                         }, {
                             img: {
                                 width: 0,
                                 height: 0,
-                                src: __webpack_require__(34)
+                                src: __webpack_require__(26)
                             },
                             href: ''
                         }]
@@ -130,7 +130,7 @@ var Sub = function (_Super) {
             (function () {
                 var Vue = superSelf.Vue;
                 __webpack_require__.e/* require.ensure */(0).then((function (require) {
-                    __webpack_require__(127)(Vue);
+                    __webpack_require__(137)(Vue);
                     new Vue({
                         el: '.page-vue-app',
                         template: '<div class="page-vue">\n                        <g-img-test></g-img-test>\n                        <g-img-test></g-img-test>\n                        <g-img-test></g-img-test>\n                        <g-img-test></g-img-test>\n                        <g-img-test></g-img-test>\n                        <g-img-test></g-img-test>\n                        <g-img-test></g-img-test>\n                        <g-img-test></g-img-test>\n                        <g-img-test></g-img-test>\n                        <g-img-test></g-img-test>\n                    </div>',
@@ -182,7 +182,7 @@ new Sub();
 
 /***/ }),
 
-/***/ 109:
+/***/ 119:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -196,19 +196,7 @@ module.exports = __webpack_require__.p + "images/slide1.76c52cf8.jpg";
 
 /***/ }),
 
-/***/ 2:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};!function(e,t){"object"===( false?"undefined":_typeof(exports))&&"undefined"!=typeof module?module.exports=t(): true?!(__WEBPACK_AMD_DEFINE_FACTORY__ = (t),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):("object"!==Object.prototype.toString.call(window.zhf).slice(8,-1).toLowerCase()&&(window.zhf={}),window.zhf.getDomArray=t())}(0,function(){function e(e,t){for(var o=t;o!==e&&null!==o;)o=o.parentNode;return o===e}return function(t,o){var n=[],l=document;if(o&&(l="string"===Object.prototype.toString.call(o).slice(8,-1).toLowerCase()?document.querySelector(o):1===o.nodeType?o:o===document?o:"htmlcollection"===Object.prototype.toString.call(o).slice(8,-1).toLowerCase()||"nodelist"===Object.prototype.toString.call(o).slice(8,-1).toLowerCase()?[].slice.call(o)[0]:null),!l)return[];if(t)if("string"===Object.prototype.toString.call(t).slice(8,-1).toLowerCase())n=[].slice.call(l.querySelectorAll(t));else if(1===t.nodeType)n=[t],o&&(e(l,t)||(n=[]));else if(t===document)n=[t],o&&(n=[]);else if(("htmlcollection"===Object.prototype.toString.call(t).slice(8,-1).toLowerCase()||"nodelist"===Object.prototype.toString.call(t).slice(8,-1).toLowerCase())&&(n=[].slice.call(t),o)){var r=[];n.forEach(function(t){e(l,t)&&r.push(t)}),n=r}return n}});
-
-/***/ }),
-
-/***/ 27:
+/***/ 19:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -222,9 +210,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var extend = __webpack_require__(5);
 var createElement = __webpack_require__(4);
-var Super = __webpack_require__(28); // 超类型(子类型继承的对象)
-var TouchSlide = __webpack_require__(29); // 轮播图插件
-var px2rem = __webpack_require__(30);
+var Super = __webpack_require__(20); // 超类型(子类型继承的对象)
+var TouchSlide = __webpack_require__(21); // 轮播图插件
+var px2rem = __webpack_require__(22);
 
 // 子类型
 
@@ -353,7 +341,19 @@ module.exports = Sub;
 
 /***/ }),
 
-/***/ 28:
+/***/ 2:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};!function(e,t){"object"===( false?"undefined":_typeof(exports))&&"undefined"!=typeof module?module.exports=t(): true?!(__WEBPACK_AMD_DEFINE_FACTORY__ = (t),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):("object"!==Object.prototype.toString.call(window.zhf).slice(8,-1).toLowerCase()&&(window.zhf={}),window.zhf.getDomArray=t())}(0,function(){function e(e,t){for(var o=t;o!==e&&null!==o;)o=o.parentNode;return o===e}return function(t,o){var n=[],l=document;if(o&&(l="string"===Object.prototype.toString.call(o).slice(8,-1).toLowerCase()?document.querySelector(o):1===o.nodeType?o:o===document?o:"htmlcollection"===Object.prototype.toString.call(o).slice(8,-1).toLowerCase()||"nodelist"===Object.prototype.toString.call(o).slice(8,-1).toLowerCase()?[].slice.call(o)[0]:null),!l)return[];if(t)if("string"===Object.prototype.toString.call(t).slice(8,-1).toLowerCase())n=[].slice.call(l.querySelectorAll(t));else if(1===t.nodeType)n=[t],o&&(e(l,t)||(n=[]));else if(t===document)n=[t],o&&(n=[]);else if(("htmlcollection"===Object.prototype.toString.call(t).slice(8,-1).toLowerCase()||"nodelist"===Object.prototype.toString.call(t).slice(8,-1).toLowerCase())&&(n=[].slice.call(t),o)){var r=[];n.forEach(function(t){e(l,t)&&r.push(t)}),n=r}return n}});
+
+/***/ }),
+
+/***/ 20:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -361,7 +361,7 @@ var _createClass=function(){function e(e,o){for(var t=0;t<o.length;t++){var m=o[
 
 /***/ }),
 
-/***/ 29:
+/***/ 21:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -812,7 +812,7 @@ module.exports = TouchSlide;
 
 /***/ }),
 
-/***/ 30:
+/***/ 22:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -828,28 +828,28 @@ module.exports = px2rem;
 
 /***/ }),
 
-/***/ 31:
+/***/ 23:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/slide2.99e5fe46.jpg";
 
 /***/ }),
 
-/***/ 32:
+/***/ 24:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/slide3.15e38f76.jpg";
 
 /***/ }),
 
-/***/ 33:
+/***/ 25:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/slide4.b37b64b3.jpg";
 
 /***/ }),
 
-/***/ 34:
+/***/ 26:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/slide5.3102c0c0.jpg";
@@ -868,4 +868,4 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 
 /***/ })
 
-},[108]);
+},[118]);
