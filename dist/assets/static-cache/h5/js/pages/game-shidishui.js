@@ -42,12 +42,7 @@ var Sub = function (_Super) {
             var w = canvasWrap.offsetWidth;
             var h = document.documentElement.clientHeight;
             var padding = 20.5;
-            var colNum = 6; // 正规应该是15列
-            var game = {
-                nextColor: 'black', // 下一颗棋子的颜色
-                blackNum: 0, // 黑色棋子个数
-                whiteNum: 0 // 白色棋子个数
-            };
+            var colNum = 6; // 6*6
             var colWidth = (w - padding * 2) / (colNum - 1);
             var initX = padding;
             var initY = (h - w) / 2 + padding;
@@ -91,28 +86,6 @@ var Sub = function (_Super) {
                 ctx.closePath();
                 ctx.restore();
             };
-            var drawTxt = function drawTxt() {
-                ctx.save();
-                ctx.beginPath();
-                ctx.clearRect(0, 0, w, initY / 1.4);
-                ctx.font = '16px 微软雅黑';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText('\u8BF7' + (game.nextColor === 'black' ? '黑色' : '白色') + '\u68CB\u5B50\u843D\u5B50', w / 2, initY / 2);
-                ctx.closePath();
-                ctx.restore();
-            };
-            drawTxt();
-            var drawCoordinate = function drawCoordinate(v) {
-                ctx.save();
-                ctx.beginPath();
-                ctx.font = '10px 微软雅黑';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText(v.x + ',' + v.y, v.left, v.top);
-                ctx.closePath();
-                ctx.restore();
-            };
             map.forEach(function (v, i) {
                 if (v.x === 0) {
                     var target = map[i + colNum - 1];
@@ -123,102 +96,9 @@ var Sub = function (_Super) {
                     drawLine(v.left, v.top, _target.left, _target.top);
                 }
                 if (i === Math.floor(map.length / 2)) {
-                    drawCircle(v.left, v.top, v.radius / 4, 'black');
+                    drawCircle(v.left + colWidth / 2, v.top + colWidth / 2, v.radius / 2, 'black');
                 }
                 // drawCoordinate(v); // 画坐标
-            });
-            // 声音
-            var audioWrap = document.querySelector('.g-audio');
-            var audioSrc = [];
-            for (var _i = 0; _i < 7; _i++) {
-                audioSrc.push(__webpack_require__(15)("./" + (_i + 1) + '.mp3'));
-            }
-            var hasSound = audioWrap.classList.contains('g-audio_on');
-            audioWrap.addEventListener('click', function () {
-                hasSound = !hasSound;
-                this.classList.toggle('g-audio_on');
-            });
-            // 落子
-            canvas.addEventListener('click', function (ev) {
-                var clientX = ev.clientX - offset(canvasWrap).left;
-                var clientY = ev.clientY;
-                var nowX = null;
-                var nowY = null;
-                map.forEach(function (v) {
-                    if (clientX >= v.left - v.radius && clientX <= v.left + v.radius && clientY >= v.top - v.radius && clientY <= v.top + v.radius) {
-                        // 判断点击范围是否是正确的区域
-                        if (v.type === 'transparent') {
-                            // 音乐
-                            if (hasSound) {
-                                var audioDom = createElement({ elementName: 'audio' });
-                                // audioDom.setAttribute('src', audioSrc[(game.blackNum + game.whiteNum) % audioSrc.length]);
-                                audioDom.setAttribute('src', audioSrc[randomNum(0, audioSrc.length - 1)]);
-                                audioDom.play();
-                                audioDom = null;
-                            }
-                            drawCircle(v.left, v.top, v.radius, game.nextColor);
-                            v.type = game.nextColor;
-                            nowX = v.x;
-                            nowY = v.y;
-                            if (game.nextColor === 'black') {
-                                game.blackNum++;
-                                game.nextColor = 'white';
-                            } else {
-                                game.whiteNum++;
-                                game.nextColor = 'black';
-                            }
-                        }
-                    }
-                });
-                // 提示信息
-                drawTxt();
-                // 判断输赢
-                var result = ['', '', '', ''];
-                map.forEach(function (v) {
-                    var str = '';
-                    if (v.type === 'transparent') {
-                        str = 't';
-                    }
-                    if (v.type === 'black') {
-                        str = 'b';
-                    }
-                    if (v.type === 'white') {
-                        str = 'w';
-                    }
-                    if (v.x === nowX) {
-                        //  垂直
-                        result[0] += str;
-                    }
-                    if (v.y === nowY) {
-                        //  水平
-                        result[1] += str;
-                    }
-                    if (v.x + v.y === nowX + nowY) {
-                        // 左斜
-                        result[2] += str;
-                    }
-                    if (v.x - v.y === nowX - nowY) {
-                        // 右斜
-                        result[3] += str;
-                    }
-                });
-                var victory = [{
-                    k: 'bbbbb',
-                    v: '黑棋获胜'
-                }, {
-                    k: 'wwwww',
-                    v: '白棋获胜'
-                }];
-                result.forEach(function (v1) {
-                    victory.forEach(function (v2) {
-                        if (v1.indexOf(v2.k) !== -1) {
-                            setTimeout(function () {
-                                alert(v2.v);
-                                window.location.reload();
-                            }, 60);
-                        }
-                    });
-                });
             });
             canvasWrap.appendChild(canvas);
         }
@@ -258,64 +138,6 @@ var getDomArray=__webpack_require__(2);function offset(e){var t=0,r=0;for(e=getD
 
 /***/ }),
 
-/***/ 15:
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./1.mp3": 16,
-	"./2.mp3": 17,
-	"./3.mp3": 18,
-	"./4.mp3": 19,
-	"./5.mp3": 20,
-	"./6.mp3": 21,
-	"./7.mp3": 22
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 15;
-
-/***/ }),
-
-/***/ 16:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "audios/1.38e46759.mp3";
-
-/***/ }),
-
-/***/ 17:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "audios/2.5576c20e.mp3";
-
-/***/ }),
-
-/***/ 18:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "audios/3.25e1d33d.mp3";
-
-/***/ }),
-
-/***/ 19:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "audios/4.220478be.mp3";
-
-/***/ }),
-
 /***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -325,27 +147,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="f
 				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
 				__WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):("object"!==Object.prototype.toString.call(window.zhf).slice(8,-1).toLowerCase()&&(window.zhf={}),window.zhf.getDomArray=t())}(0,function(){function e(e,t){for(var o=t;o!==e&&null!==o;)o=o.parentNode;return o===e}return function(t,o){var n=[],l=document;if(o&&(l="string"===Object.prototype.toString.call(o).slice(8,-1).toLowerCase()?document.querySelector(o):1===o.nodeType?o:o===document?o:"htmlcollection"===Object.prototype.toString.call(o).slice(8,-1).toLowerCase()||"nodelist"===Object.prototype.toString.call(o).slice(8,-1).toLowerCase()?[].slice.call(o)[0]:null),!l)return[];if(t)if("string"===Object.prototype.toString.call(t).slice(8,-1).toLowerCase())n=[].slice.call(l.querySelectorAll(t));else if(1===t.nodeType)n=[t],o&&(e(l,t)||(n=[]));else if(t===document)n=[t],o&&(n=[]);else if(("htmlcollection"===Object.prototype.toString.call(t).slice(8,-1).toLowerCase()||"nodelist"===Object.prototype.toString.call(t).slice(8,-1).toLowerCase())&&(n=[].slice.call(t),o)){var r=[];n.forEach(function(t){e(l,t)&&r.push(t)}),n=r}return n}});
-
-/***/ }),
-
-/***/ 20:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "audios/5.ab15dc12.mp3";
-
-/***/ }),
-
-/***/ 21:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "audios/6.44295654.mp3";
-
-/***/ }),
-
-/***/ 22:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "audios/7.c04a5503.mp3";
 
 /***/ }),
 

@@ -7,7 +7,7 @@ const pathConfig = {
 const routeName = [
     {
         name: 'game-shidishui', // 游戏-十滴水
-        title: '五子棋',
+        title: '十滴水',
         isValidateLogin: false,
         isShowCopyright: false,
         isShowFooterNav: false,
