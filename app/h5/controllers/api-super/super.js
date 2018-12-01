@@ -118,7 +118,6 @@ class Super {
                 if (isJsonp && self.opts.isSupportJsonp) {
                     res.end(`${req.query.callback || 'jsonpCallback'}(${JSON.stringify(dataInfo)})`);
                 } else {
-                    console.log('7890');
                     res.end(JSON.stringify(dataInfo));
                 }
             }
