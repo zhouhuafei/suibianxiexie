@@ -113,10 +113,10 @@ class Super {
         self.lazyload.render();
 
         // spacing-loading移除
-        const spacingLoading = document.querySelector('#spacing-loading');
-        if (spacingLoading) {
-            spacingLoading.parentNode.removeChild(spacingLoading);
-        }
+        // const spacingLoading = document.querySelector('#spacing-loading');
+        // if (spacingLoading) {
+        //     spacingLoading.parentNode.removeChild(spacingLoading);
+        // }
     }
 }
 

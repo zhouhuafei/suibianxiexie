@@ -127,7 +127,7 @@ class Sub extends Super {
                     items: [
                         {
                             href: routes['home'].route,
-                            icon: 'icon-home',
+                            icon: 'iconfont icon-home',
                             text: '首页',
                             isShowMark: false,
                         },
@@ -139,19 +139,19 @@ class Sub extends Super {
                         },
                         {
                             href: routes['dev-components'].route,
-                            icon: 'icon-dev',
+                            icon: 'iconfont icon-dev',
                             text: '开发组件',
                             isShowMark: false,
                         },
                         {
                             href: routes['dev-words'].route,
-                            icon: 'icon-dev',
+                            icon: 'iconfont icon-dev',
                             text: '开发词汇',
                             isShowMark: false,
                         },
                         {
                             href: routes['mine'].route,
-                            icon: 'icon-mine',
+                            icon: 'iconfont icon-mine',
                             text: '我的',
                             isShowMark: false,
                         },
