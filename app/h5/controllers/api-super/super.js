@@ -15,11 +15,6 @@ class Super {
             callback: function (self) {
             },
         }, json);
-        const opts = self.opts;
-        const app = opts.app;
-        const appConfig = app.appConfig;
-        const apiDataFormat = require(`${appConfig.utilsDir}api-data-format`);
-        this.dataInfo = apiDataFormat(json);
         this.isRendered = false; // 是否已经响应过了结果 一次请求只能响应一次结果 多次响应(render)会报错 Can't set headers after they are sent.
         this.init();
     }
@@ -109,18 +104,22 @@ class Super {
         if (!self.isRendered) {
             self.isRendered = true;
             const opts = self.opts;
+            const app = opts.app;
+            const appConfig = app.appConfig;
             const req = opts.req;
             const res = opts.res;
             const data = req.data;
             const isJsonp = data.isJsonp === 'true'; // 是否是jsonp(jsonp only supports the GET method)
-            self.dataInfo = extend(self.dataInfo, json);
+            const apiDataFormat = require(`${appConfig.utilsDir}api-data-format`);
+            const dataInfo = apiDataFormat(json);
             self.opts.callback(self);
             if (self.opts.isTriggerEnd) {
                 res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'}); // res.json默认返回的就是200和application/json
                 if (isJsonp && self.opts.isSupportJsonp) {
-                    res.end(`${req.query.callback || 'jsonpCallback'}(${JSON.stringify(self.dataInfo)})`);
+                    res.end(`${req.query.callback || 'jsonpCallback'}(${JSON.stringify(dataInfo)})`);
                 } else {
-                    res.end(JSON.stringify(self.dataInfo));
+                    console.log('7890');
+                    res.end(JSON.stringify(dataInfo));
                 }
             }
         }
