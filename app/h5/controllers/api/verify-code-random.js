@@ -52,7 +52,7 @@ class Sub extends Super {
                     service: 'qq',
                     auth: {
                         user: autoUser, // 发送者
-                        pass: 'paudrqaxbntmigfe', // 授权码,通过QQ获取
+                        pass: 'oclyahdhdgepfjhb', // 授权码,通过QQ获取
                     },
                 });
                 const mailOptions = {

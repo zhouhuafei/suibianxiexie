@@ -39,14 +39,17 @@ const routeName = [
     {
         name: 'dev-globals', // 开发-全局页
         title: '开发全局',
+        isValidateLogin: false,
     },
     {
         name: 'dev-components', // 开发-模块页
         title: '开发组件',
+        isValidateLogin: false,
     },
     {
         name: 'dev-words', // 开发-标准词汇页
         title: '开发词汇',
+        isValidateLogin: false,
     },
     {
         name: 'setting', // 设置页

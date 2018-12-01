@@ -13,7 +13,7 @@ class Sub extends Super {
         const session = req.session;
         const data = req.data;
         const username = (data.username || '').trim(); // 用户名
-        const password = (data.password || '').trim(); // 密码 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
+        const password = (data.password || ''); // 密码 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
         const repeatPassword = (data['repeat-password'] || '').trim(); // 密码二次确认 -> isEmpty方法内部去掉了首尾空格,不适用于验证密码是否为空
         const verifyCodeRandom = (data['verify-code-random'] || '').trim(); // 验证码,邮箱(短信)验证码
         const verifyCodeCanvas = (data['verify-code-canvas'] || '').trim(); // 验证码,图文验证码
