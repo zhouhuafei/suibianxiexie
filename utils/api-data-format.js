@@ -14,8 +14,8 @@ module.exports = function (opts = {}) {
         /*
         失败编码：
         'no login'：没有登录
-        'not expired'：没有过期
-        'not authorized'：没有权限
+        'no expired'：没有过期
+        'no authorized'：没有权限
         */
         failureCode: null,
         /*
