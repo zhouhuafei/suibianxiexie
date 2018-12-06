@@ -133,7 +133,7 @@ class Sub extends Super {
                         },
                         {
                             href: routes['dev-globals'].route,
-                            icon: 'icon-dev',
+                            icon: 'iconfont icon-dev',
                             text: '开发全局',
                             isShowMark: false,
                         },
