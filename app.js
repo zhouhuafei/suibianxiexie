@@ -74,7 +74,7 @@ app.use(session({
 const ejs = require('ejs');
 app.set('views', 'dist/views/');
 app.set('view engine', 'ejs');
-app.set('view cache', true); // true的话，如果项目不重启view更改了会无效。除非不忽略dist/views目录。
+app.set('view cache', true); // true的话，如果项目不重启view更改了会无效。除非nodemon和pm2不忽略dist/views目录。
 
 /*
 设置跨域访问：此处配置的是全部请求('*')都允许跨域，其实应该指定某些接口允许跨域。
