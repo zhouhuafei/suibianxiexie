@@ -74,7 +74,13 @@ app.use(session({
 const ejs = require('ejs');
 app.set('views', 'dist/views/');
 app.set('view engine', 'ejs');
-app.set('view cache', true); // true的话，如果项目不重启view更改了会无效。除非nodemon和pm2不忽略dist/views目录。
+/*
+# 开启模板缓存(true)时：
+* pm2不忽略dist/views目录。views更新时有效。
+* nodemon不忽略dist/views目录。views更新时无效。
+* 所以开发环境时就不进行模板的缓存了。
+*/
+app.set('view cache', isProduction);
 
 /*
 设置跨域访问：此处配置的是全部请求('*')都允许跨域，其实应该指定某些接口允许跨域。

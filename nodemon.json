@@ -4,7 +4,7 @@
         "app/h5/assets",
         "app/pc/assets",
         "app/admin/assets",
-        "dist/assets",
+        "dist",
         "static-cache-wrap",
         "static-no-cache-wrap",
         "vue"
