@@ -108,7 +108,10 @@ const plugins = [
         },
     }),
     // 插件----提取css样式到文件
-    new ExtractTextPlugin(`css/pages/[name].${configEnvironment.contenthash}css`),
+    new ExtractTextPlugin({
+        filename: `css/pages/[name].${configEnvironment.contenthash}css`,
+        allChunks: true,
+    }),
     // 插件----把每个入口都有用到的js和css分别提取为this-is-global-file-common.js和this-is-global-file-common.css
     new webpack.optimize.CommonsChunkPlugin({
         // 0.这里的打包方式是倒叙的

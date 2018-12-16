@@ -85,7 +85,10 @@ const plugins = [
         },
     }),
     // 插件----提取css样式到文件
-    new ExtractTextPlugin(`css/[name].${configEnvironment.contenthash}css`),
+    new ExtractTextPlugin({
+        filename: `css/[name].${configEnvironment.contenthash}css`,
+        allChunks: true,
+    }),
     // 插件----处理视图模板页面文件
     new HtmlWebpackPlugin({
         template: `${configPath.entry}index.html`,
