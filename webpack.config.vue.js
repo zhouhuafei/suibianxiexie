@@ -81,7 +81,7 @@ const plugins = [
     // 插件----编译时期可以创建全局变量
     new webpack.DefinePlugin({
         'process.env': {
-            NODE_ENV: myConfig[0],
+            NODE_ENV: JSON.stringify(myConfig[0]),
         },
     }),
     // 插件----提取css样式到文件
