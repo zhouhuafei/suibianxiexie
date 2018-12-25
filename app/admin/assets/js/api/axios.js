@@ -12,6 +12,9 @@ module.exports = function (json) {
         isHandleError: true, // 是否处理错误
         isHandleFailure: true, // 是否处理失败
         isHandleSuccess: false, // 是否处理成功
+        headers: {
+            Authorization: localStorage.getItem('token') || undefined,
+        },
         /*
         优先级：错误回调>失败回调>成功回调>完成回调。
         调用方法时，要么用回调的方式走异步，要么用Promise的方式。

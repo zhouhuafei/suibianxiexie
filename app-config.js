@@ -12,6 +12,9 @@ class Config {
         // 邮箱(短信)验证码，目前使用的qq邮箱进发送邮件，账号和授权码都是在qq邮箱申请的。
         this.verifyCodeRandomUser = 'this-is-a-code@foxmail.com'; // 发送者
         this.verifyCodeRandomPass = 'oclyahdhdgepfjhb'; // 授权码
+        // token
+        this.tokenSecret = 'sbxx'; // 这个应该存在服务器上。不应该写死在这里。
+        this.tokenExpiresIn = 60 * 2;
     }
 }
 

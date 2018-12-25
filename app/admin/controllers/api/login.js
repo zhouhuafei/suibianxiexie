@@ -1,5 +1,8 @@
 const Super = require('../api-super/super'); // 超类型
 const checkStr = require('zhf.check-str');
+const jwt = require('jsonwebtoken');
+const secret = 'sbxx';
+const expiresIn = 60 * 2;
 
 class Sub extends Super {
     // (增)(覆)增加数据(覆盖超类型)
@@ -54,6 +57,7 @@ class Sub extends Super {
                         }
                         if (isMatch) {
                             session.adminInfo = adminInfo;
+                            const token = jwt.sign({username: '1123486116@qq.com'}, secret, {expiresIn: expiresIn});
                             if (appConfig.isEnabledSingleDeviceLoginAdmin) { // 如果开启了单设备登录
                                 const loginStamp = `${Math.random()}`.split('.')[1];
                                 Admin.update({_id: adminInfo._id}, {$set: {loginStamp: loginStamp}}, function (error) {
@@ -69,14 +73,26 @@ class Sub extends Super {
                                     self.render({
                                         status: 'success',
                                         message: '登录成功',
-                                        result: {username: adminInfo.username},
+                                        result: {
+                                            username: adminInfo.username,
+                                            adminInfoStringify: JSON.stringify(adminInfo),
+                                            adminInfoParse: JSON.parse(JSON.stringify(adminInfo)),
+                                            adminInfo: adminInfo,
+                                            token: token,
+                                        },
                                     });
                                 });
                             } else {
                                 self.render({
                                     status: 'success',
                                     message: '登录成功',
-                                    result: {username: adminInfo.username},
+                                    result: {
+                                        username: adminInfo.username,
+                                        adminInfoStringify: JSON.stringify(adminInfo),
+                                        adminInfoParse: JSON.parse(JSON.stringify(adminInfo)),
+                                        adminInfo: adminInfo,
+                                        token: token,
+                                    },
                                 });
                             }
                         } else {
