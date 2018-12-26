@@ -12,9 +12,7 @@ module.exports = function (json) {
         isHandleError: true, // 是否处理错误
         isHandleFailure: true, // 是否处理失败
         isHandleSuccess: false, // 是否处理成功
-        headers: {
-            Authorization: localStorage.getItem('token') || undefined,
-        },
+        headers: {},
         /*
         优先级：错误回调>失败回调>成功回调>完成回调。
         调用方法时，要么用回调的方式走异步，要么用Promise的方式。
@@ -29,6 +27,10 @@ module.exports = function (json) {
         callbackComplete: function () { // 请求完成的回调
         },
     }, json);
+    const token = localStorage.getItem('token');
+    if (token) {
+        opts.headers.Authorization = localStorage.getItem('token');
+    }
     /*
     * javascript axios GET params
     * javascript axios POST/PUT/DELETE data
