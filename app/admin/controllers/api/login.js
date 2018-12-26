@@ -57,7 +57,7 @@ class Sub extends Super {
                         }
                         if (isMatch) {
                             session.adminInfo = adminInfo;
-                            const token = jwt.sign({username: '1123486116@qq.com'}, secret, {expiresIn: expiresIn});
+                            const token = 'Bearer ' + jwt.sign({username: '1123486116@qq.com'}, secret, {expiresIn: expiresIn});
                             if (appConfig.isEnabledSingleDeviceLoginAdmin) { // 如果开启了单设备登录
                                 const loginStamp = `${Math.random()}`.split('.')[1];
                                 Admin.update({_id: adminInfo._id}, {$set: {loginStamp: loginStamp}}, function (error) {

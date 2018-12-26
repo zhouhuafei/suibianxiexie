@@ -44,8 +44,9 @@ class Route {
                                 res.json(apiDataFormat({message: '未登录', failureCode: 'no login'}));
                             } else {
                                 // token被破解了怎么办
-                                console.log('req.headers.authorization', req.headers.authorization);
-                                jwt.verify(req.headers.authorization, secret, function (error, decoded) {
+                                const authorization = req.headers.authorization.split('Bearer ')[1];
+                                console.log('req.headers.authorization', authorization);
+                                jwt.verify(authorization, secret, function (error, decoded) {
                                     console.log('decoded', decoded);
                                     if (error) {
                                         throw error;
