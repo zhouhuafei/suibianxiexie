@@ -48,7 +48,9 @@ class Route {
                                 jwt.verify(req.headers.authorization, secret, function (error, decoded) {
                                     console.log('decoded', decoded);
                                     if (error) {
-                                        res.json(apiDataFormat({message: 'token有误或已过期', failureCode: 'no login'}));
+                                        throw error;
+                                        // new Error(error); // 如果error是obj：Error: [object Object]
+                                        // res.json(apiDataFormat({message: 'token有误或已过期', failureCode: 'no login'}));
                                     } else {
                                         res.json(apiDataFormat({status: 'success', message: 'token正确'}));
                                     }
