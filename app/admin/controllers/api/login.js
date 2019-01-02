@@ -2,7 +2,7 @@ const Super = require('../api-super/super'); // 超类型
 const checkStr = require('zhf.check-str');
 const jwt = require('jsonwebtoken');
 const secret = 'sbxx';
-const expiresIn = 60 * 2;
+const expiresIn = 60 * 60;
 
 class Sub extends Super {
     // (增)(覆)增加数据(覆盖超类型)

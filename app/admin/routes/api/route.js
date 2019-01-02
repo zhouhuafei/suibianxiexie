@@ -36,22 +36,21 @@ class Route {
                     }
                     app.all(apiConfigNow.route, function (req, res, next) {
                         // 是否验证登录，如果验证，则继续验证是否登录了
-                        const session = req.session;
-                        const adminInfo = session.adminInfo;
                         const method = req.method.toUpperCase(); // 请求方式
                         if (apiConfigNow.isValidateLogin && (apiConfigNow.whichRequestMethodNoValidateLogin === undefined || apiConfigNow.whichRequestMethodNoValidateLogin.indexOf(method) === -1)) { // 验证登录(当whichRequestMethodNoValidateLogin值为undefined时，表示所有请求方式都需要验证登陆，为数组时则数组里所属的请求方式不验证登陆)
-                            if (adminInfo === undefined) { // 未登录，管理端的接口都应该登陆后才有权调用。
+                            const reqAuthorization = req.headers.authorization;
+                            if (!reqAuthorization) { // 未登录，管理端的接口都应该登陆后才有权调用。
                                 res.json(apiDataFormat({message: '未登录', failureCode: 'no login'}));
                             } else {
-                                // token被破解了怎么办
-                                const authorization = req.headers.authorization.split('Bearer ')[1];
+                                // token被破解了怎么办。只能祈求别被破解了。
+                                const authorization = reqAuthorization.split('Bearer ')[1];
                                 console.log('req.headers.authorization', authorization);
                                 jwt.verify(authorization, secret, function (error, decoded) {
                                     console.log('decoded', decoded);
                                     if (error) {
-                                        throw error;
+                                        // throw error;
                                         // new Error(error); // 如果error是obj：Error: [object Object]
-                                        // res.json(apiDataFormat({message: 'token有误或已过期', failureCode: 'no login'}));
+                                        res.json(apiDataFormat({message: 'token有误或已过期', failureCode: 'no login'}));
                                     } else {
                                         res.json(apiDataFormat({status: 'success', message: 'token正确'}));
                                     }
