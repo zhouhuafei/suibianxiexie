@@ -125,14 +125,14 @@ app.all('*', function (req, res, next) {
 
 // 404
 app.use(function (req, res, next) {
-    res.status(404).send('404 - not found');
+    res.status(404).send('404 - not found'); // 我觉的这里返回json会不会更好一点？如此前端不就可以统一管理响应！{status: 'error'}
 });
 
 // 500
 app.use(function (err, req, res, next) {
     if (err) {
         console.error(err.stack);
-        res.status(500).send(`500 - server error\n${err.stack}`);
+        res.status(500).send(`500 - server error\n${err.stack}`); // 我觉的这里返回json会不会更好一点？如此前端不就可以统一管理响应！{status: 'error'}
     }
 });
 
