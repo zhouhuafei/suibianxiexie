@@ -58,7 +58,7 @@ const cookieParser = require('cookie-parser'); // cookie数据解析
 const session = require('express-session'); // session
 const RedisStore = require('connect-redis')(session); // session存redis
 const secret = 'suibianxiexie'; // sessionID cookie的密钥
-app.use(cookieParser(secret)); // cookie
+app.use(cookieParser(secret)); // 初始化中间件，第一个参数是签名秘钥。后续如果使用签名cookie，则可以使用res.cookie(key,val,{signed:true})中的signed字段开启签名cookie功能。
 app.use(session({
     resave: false, // 是指每次请求都重新设置session cookie，假设你的cookie是10分钟过期，每次请求都会再设置10分钟
     saveUninitialized: false, // 是指无论有没有session cookie，每次请求都设置个session cookie ，默认给个标识为 connect.sid
