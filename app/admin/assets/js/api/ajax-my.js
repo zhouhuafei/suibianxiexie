@@ -178,7 +178,7 @@ Ajax.prototype.events = function () {
         console.log(ProgressEvent, 'abort');
     });
     // 在接收到完整的响应数据时触发
-    this.xhr.addEventListener('load', function (ProgressEvent) {
+    this.xhr.addEventListener('load', function (ProgressEvent) { // readyState状态为4对应xhr2中的load事件。
         self.load(ProgressEvent);
         console.log(ProgressEvent, 'load', 999);
     });
