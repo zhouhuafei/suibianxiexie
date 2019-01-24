@@ -54,8 +54,8 @@ class Sub extends Super {
                     });
                     return;
                 }
-                const verifyCode = randomNum(100000, 999999);// random随机验证码
-                const expirationDate = 10;// 有效期,单位是分钟
+                const verifyCode = randomNum(100000, 999999); // random随机验证码
+                const expirationDate = 10; // 有效期,单位是分钟
                 const autoUser = verifyCodeRandomUser;
                 const transporter = nodemailer.createTransport({
                     service: 'qq',
