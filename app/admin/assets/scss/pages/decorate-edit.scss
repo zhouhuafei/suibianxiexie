@@ -65,11 +65,12 @@ $w: 300;
 }
 
 // 模拟器区域的样式
-$w: 375;
-$h: 667;
+$w: 320;
+$h: 480;
+$moreW: 17 + 100;
 .components-simulator {
-    width: px2rem($w + 17);
-    min-width: px2rem($w);
+    width: px2rem($w + $moreW);
+    min-width: px2rem($w + $moreW);
     height: 100%;
     background: #777777;
 }
@@ -84,6 +85,7 @@ $h: 667;
 }
 
 .simulator-item {
+    width: px2rem($w);
     position: relative;
     height: px2rem(80);
     background: #f8f8f8;

@@ -80,17 +80,18 @@ html, body, .g-wrap, .g-body, #app {
           justify-content: center; }
 
 .components-simulator {
-  width: 392px;
-  min-width: 375px;
+  width: 437px;
+  min-width: 437px;
   height: 100%;
   background: #777777; }
 
 .simulator {
   background: #888888;
-  height: 667px;
+  height: 480px;
   overflow: auto; }
 
 .simulator-item {
+  width: 320px;
   position: relative;
   height: 80px;
   background: #f8f8f8;
