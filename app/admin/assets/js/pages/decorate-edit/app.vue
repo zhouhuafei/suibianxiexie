@@ -118,7 +118,7 @@
                         isHighlight: false,
                         isSelected: false,
                         name: 'cut',
-                        text: '切图',
+                        text: '热区',
                     },
                     gap: {
                         isHighlight: false,
