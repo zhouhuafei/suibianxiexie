@@ -15,10 +15,7 @@ class Config {
         this.verifyCodeRandomUser = 'this-is-a-code@foxmail.com'; // 发送者。
         this.verifyCodeRandomPass = 'oclyahdhdgepfjhb'; // 授权码。
         // cookie
-        this.cookieSecret = 'suibianxiexie'; // cookie的秘钥。应该使用此处的秘钥。待续...
-        // token
-        this.tokenSecret = 'suibianxiexie'; // token的秘钥。应该使用此处的秘钥。待续...
-        this.tokenExpiresIn = 60 * 2;
+        this.cookieSecret = 'suibianxiexie'; // cookie的秘钥。应该使用此处的秘钥。
     }
 }
 

@@ -5,8 +5,6 @@ const apiConfig = require('./config');
 const controllerPath = '../../controllers/api/'; // 控制器的路径
 const multer = require('multer'); // 用于处理 multipart/form-data 类型的表单数据，它主要用于上传文件。
 let upload = multer().array(); // 只要array后面不传参数，其他接口如果你传文件就报错，这是对的，如果传的是multipart/form-data类型的文本域表单，则是可以接收到的，这是对的。
-// const jwt = require('jsonwebtoken');
-// const secret = 'sbxx';
 
 class Route {
     constructor(json) {
@@ -59,27 +57,6 @@ class Route {
                                     }
                                 });
                             }
-                            /*
-                            // jwt验证身份
-                            const reqAuthorization = req.headers.authorization;
-                            if (!reqAuthorization) { // 未登录，管理端的接口都应该登陆后才有权调用。
-                                res.json(apiDataFormat({message: '未登录', failureCode: 'no login'}));
-                            } else {
-                                // token被破解了怎么办。只能祈求别被破解了。
-                                const authorization = reqAuthorization.split('Bearer ')[1];
-                                console.log('req.headers.authorization', authorization);
-                                jwt.verify(authorization, secret, function (error, decoded) {
-                                    console.log('decoded', decoded);
-                                    if (error) {
-                                        // throw error;
-                                        // new Error(error); // 如果error是obj：Error: [object Object]
-                                        res.json(apiDataFormat({message: 'token有误或已过期', failureCode: 'no login'}));
-                                    } else {
-                                        res.json(apiDataFormat({status: 'success', message: 'token正确'}));
-                                    }
-                                });
-                            }
-                            */
                         } else { // 不验证登录
                             next();
                         }

@@ -68,7 +68,6 @@ var Sub = function (_Super) {
                         data: $(form).serialize()
                     }).then(function (json) {
                         if (json.status === 'success') {
-                            // localStorage.setItem('token', json.result.token);
                             window.location.href = routes['website-info'].route;
                         }
                         if (json.status === 'failure') {

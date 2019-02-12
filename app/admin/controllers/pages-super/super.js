@@ -99,7 +99,6 @@ class Super {
             isShowQrCode: routesConfig[opts.routeName].isShowQrCode, // 是否显示二维码
             isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
             page: {}, // 当前视图的数据
-            userInfo: session.adminInfo || {}, // 用户信息(应该在需要使用的地方重新查一下数据库)。待续...
         };
         const dataInfo = self.dataInfo;
         // 菜单的数据
