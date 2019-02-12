@@ -2630,10 +2630,6 @@ module.exports = function (json) {
         callbackComplete: function callbackComplete() {// 请求完成的回调
         }
     }, json);
-    var token = localStorage.getItem('token');
-    if (token) {
-        opts.headers.Authorization = localStorage.getItem('token');
-    }
     /*
     * javascript axios GET params
     * javascript axios POST/PUT/DELETE data
@@ -3441,10 +3437,6 @@ module.exports = function (json) {
         callbackComplete: function callbackComplete() {// 请求完成的回调
         }
     }, json);
-    var token = localStorage.getItem('token');
-    if (token) {
-        opts.headers.Authorization = localStorage.getItem('token');
-    }
     /*
     * javascript axios GET params
     * javascript axios POST/PUT/DELETE data

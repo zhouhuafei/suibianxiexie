@@ -1,6 +1,7 @@
 // 接口数据
 const extend = require('zhf.extend'); // 工具方法集合
 const qs = require('qs');
+const globalConfig = require('../../../../app-config');
 
 class Super {
     constructor(json) {
@@ -44,6 +45,12 @@ class Super {
                 req.body = qs.parse(qs.stringify(req.body));
             }
             req.data = req.body;
+        }
+
+        if (globalConfig.isProduction) {
+            if (req.host.indexOf('sbxx') === -1) {
+                self.render({message: '此接口不支持在非sbxx域名下调用'});
+            }
         }
 
         fnCrud();

@@ -41,8 +41,8 @@ class Sub extends Super {
                     data: $(form).serialize(),
                 }).then(function (json) {
                     if (json.status === 'success') {
-                        localStorage.setItem('token', json.result.token);
-                        // window.location.href = routes['website-info'].route;
+                        // localStorage.setItem('token', json.result.token);
+                        window.location.href = routes['website-info'].route;
                     }
                     if (json.status === 'failure') {
                         document.querySelector('.g-verify-code-canvas img').click();
