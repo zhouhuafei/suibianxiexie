@@ -27,10 +27,6 @@ module.exports = function (json) {
         callbackComplete: function () { // 请求完成的回调
         },
     }, json);
-    const token = localStorage.getItem('token');
-    if (token) {
-        opts.headers.Authorization = localStorage.getItem('token');
-    }
     /*
     * javascript axios GET params
     * javascript axios POST/PUT/DELETE data
