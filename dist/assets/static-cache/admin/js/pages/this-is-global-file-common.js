@@ -3458,6 +3458,7 @@ module.exports = function (json) {
                     opts.data[keys] = JSON.stringify(obj);
                 }
                 if (type === 'array') {
+                    // 此处之所以如下处理是为了保持和axios一致。
                     obj.forEach(function (v, i, a) {
                         if (Object.prototype.toString.call(v).slice(8, -1).toLowerCase() === 'object') {
                             a[i] = JSON.stringify(v);
