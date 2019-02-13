@@ -44,7 +44,7 @@ class Route {
                                 cb(new Error('only receive image !'));
                                 */
                             },
-                        }).array('images');
+                        }).array('file');
                     }
                     app.all(apiConfig[attr].route, upload, function (req, res) {
                         // 渲染数据

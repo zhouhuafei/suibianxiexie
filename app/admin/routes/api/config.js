@@ -37,7 +37,7 @@ const routeName = [
                 cb(new Error('only receive image !'));
                 */
             },
-        }).array('images'),
+        }).array('file'),
     },
     {
         name: 'logout', // 退出

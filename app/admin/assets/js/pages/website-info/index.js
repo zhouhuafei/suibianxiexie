@@ -24,7 +24,7 @@ class Sub extends Super {
             const files = [].slice.call(self.files);
             const formData = new FormData();
             files.forEach(function (file) {
-                formData.append('images', file);
+                formData.append('file', file);
             });
             if (!files.length) {
                 return;
