@@ -1,4 +1,5 @@
 const log4js = require('log4js'); // 工具方法集合
+const appConfig = require('../app-config');
 
 log4js.configure({
     appenders: {
@@ -15,7 +16,7 @@ log4js.configure({
         */
         ruleDateFile: {
             type: 'dateFile', // 输出到文件内，以pattern属性的时间格式，以时间的生成文件
-            filename: './logs/error', // 文件路径加文件名称前半部分('../logs/error'会导致logs文件夹创建到项目的外部)
+            filename: `${appConfig.logsPath}error`, // 文件路径加文件名称前半部分('../logs/error'会导致logs文件夹创建到项目的外部)
             pattern: '_yyyy-MM-dd.log', // 文件名称后半部分加文件后缀
             maxLogSize: 10 * 1024 * 1024, // 单位字节(b)
             backups: 10, // 日志文件最多保留几个
