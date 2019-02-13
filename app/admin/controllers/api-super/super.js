@@ -47,8 +47,8 @@ class Super {
             req.data = req.body;
         }
 
-        if (appConfig.isProduction) {
-            if (req.host.indexOf('sbxx') === -1) {
+        if (appConfig.isProduction) { // 生产环境下防止CSRF攻击。
+            if (req.headers.referer.indexOf('sbxx') === -1) {
                 self.render({message: '此接口不支持在非sbxx域名下调用'});
             }
         }
