@@ -111,7 +111,7 @@ class Super {
             const res = opts.res;
             const data = req.data;
             const isJsonp = data.isJsonp === 'true'; // 是否是jsonp(jsonp only supports the GET method)
-            const apiDataFormat = require(`${appConfig.utilsDir}api-data-format`);
+            const apiDataFormat = require(`${appConfig.utilsPath}api-data-format`);
             const dataInfo = apiDataFormat(json);
             self.opts.callback(self);
             if (self.opts.isTriggerEnd) {

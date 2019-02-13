@@ -21,8 +21,8 @@ class Route {
         const self = this;
         const app = self.opts.app;
         const appConfig = app.appConfig;
-        const logger = require(`${appConfig.utilsDir}log4js`);
-        const apiDataFormat = require(`${appConfig.utilsDir}api-data-format`);
+        const logger = require(`${appConfig.utilsPath}log4js`);
+        const apiDataFormat = require(`${appConfig.utilsPath}api-data-format`);
         Object.keys(apiConfig).forEach(function (attr) {
             try {
                 const Controller = require(`${controllerPath}${attr}`);

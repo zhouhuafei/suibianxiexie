@@ -20,14 +20,14 @@ class Route {
         const self = this;
         const app = self.opts.app;
         const appConfig = app.appConfig;
-        const logger = require(`${appConfig.utilsDir}log4js`);
+        const logger = require(`${appConfig.utilsPath}log4js`);
         Object.keys(apiConfig).forEach(function (attr) {
             try {
                 const Controller = require(`${controllerPath}${attr}`);
                 (function (Controller, attr) {
                     if (attr === 'gallery') {
                         upload = multer({
-                            dest: `${appConfig.projectDir}static-cache-wrap/static-cache/h5/gallery/`,
+                            dest: `${appConfig.rootPath}static-cache-wrap/static-cache/h5/gallery/`,
                             limits: {
                                 fileSize: 300 * 1024, // 单个文件的大小不能超过300kb。
                                 files: 6, // 每次最多上传6个文件。

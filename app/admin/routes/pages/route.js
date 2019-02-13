@@ -17,7 +17,7 @@ class Route {
         const self = this;
         const app = self.opts.app;
         const appConfig = app.appConfig;
-        const logger = require(`${appConfig.utilsDir}log4js`);
+        const logger = require(`${appConfig.utilsPath}log4js`);
         Object.keys(config).forEach(function (attr) {
             try {
                 const Controller = require(`${controllerPath}${attr}`);
