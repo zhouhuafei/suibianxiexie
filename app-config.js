@@ -8,7 +8,7 @@ class Config {
         this.rootPath = `${__dirname}/`; // 项目根目录
         this.utilsPath = `${this.rootPath}utils/`; // utils目录。
         // 可配置
-        this.logsDir = `${this.rootPath}logs/`; // 日志的目录。
+        this.logsPath = `${this.rootPath}logs/`; // 日志的目录。
         this.isEnabledSingleDeviceLoginUser = true; // 前台站点是否启用单设备登录。
         this.isEnabledSingleDeviceLoginAdmin = true; // 后台管理系统是否启用单设备登录。
         // 邮箱(短信)验证码，目前使用的qq邮箱进发送邮件，账号和授权码都是在qq邮箱申请的。
