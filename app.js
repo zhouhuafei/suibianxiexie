@@ -6,11 +6,13 @@ const app = express(); // app
 const appConfig = require('./app-config');
 app.appConfig = appConfig;
 
-// http和https
-const fs = require('fs');
+// http
 const http = require('http');
-const https = require('https');
 const httpServer = http.createServer(app);
+
+// https
+const fs = require('fs');
+const https = require('https');
 const privateKey = fs.readFileSync('./https/index.key', 'utf8');
 const certificate = fs.readFileSync('./https/index.pem', 'utf8');
 const credentials = {key: privateKey, cert: certificate};
