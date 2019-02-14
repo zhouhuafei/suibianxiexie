@@ -29,16 +29,18 @@ const schema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    // 昵称
+    /*
+    // 昵称(建议单独放一个表)
     nickname: {
         type: String,
         default: '',
     },
-    // 性别
+    // 性别(建议单独放一个表)
     sex: {
         type: String,
         default: '', // 'boy'和'girl'
     },
+    */
 }, {collection: 'admin'});
 
 // 使用pre中间件在用户信息存储前进行密码加密
