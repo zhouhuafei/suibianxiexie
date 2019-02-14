@@ -2,7 +2,7 @@ const mongoose = require('../../../../db/mongoose');
 
 // 数据格式
 const schema = new mongoose.Schema({
-    // 用户名(账号)。
+    // (不可修改)用户名(账号)。
     username: {
         type: String,
         default: null,
@@ -14,7 +14,7 @@ const schema = new mongoose.Schema({
         type: String,
         default: null,
     },
-    // 账号创建的时间。
+    // (不可修改)账号创建的时间。
     createTime: {
         type: Date,
         default: null,
@@ -28,6 +28,16 @@ const schema = new mongoose.Schema({
     isAdmin: {
         type: Boolean,
         default: false,
+    },
+    // 昵称
+    nickname: {
+        type: String,
+        default: '',
+    },
+    // 性别
+    sex: {
+        type: String,
+        default: '', // 'boy'和'girl'
     },
 }, {collection: 'admin'});
 
