@@ -30,6 +30,7 @@ const schema = new mongoose.Schema({
         default: false,
     },
     /*
+    // account表放账号密码和权限。user表(admin换成user)放个人信息。待续...
     // 昵称(建议单独放一个表)
     nickname: {
         type: String,
