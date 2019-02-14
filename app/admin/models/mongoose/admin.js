@@ -2,19 +2,19 @@ const mongoose = require('../../../../db/mongoose');
 
 // 数据格式
 const schema = new mongoose.Schema({
-    // 用户名(账号)
+    // 用户名(账号)。
     username: {
         type: String,
         default: null,
         unique: true,
         required: [true, 'username is required'],
     },
-    // 账号密码
+    // 账号密码。
     password: {
         type: String,
         default: null,
     },
-    // 账号创建的时间
+    // 账号创建的时间。
     createTime: {
         type: Date,
         default: null,
@@ -23,6 +23,11 @@ const schema = new mongoose.Schema({
     loginStamp: {
         type: String,
         default: null,
+    },
+    // 是否是管理员。
+    isAdmin: {
+        type: Boolean,
+        default: false,
     },
 }, {collection: 'admin'});
 
