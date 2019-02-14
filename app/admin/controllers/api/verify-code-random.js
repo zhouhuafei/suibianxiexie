@@ -16,7 +16,7 @@ class Sub extends Super {
         const username = data.username.trim() || '';
         const type = data.type.trim() || '';
         const typeArr = ['register', 'password-reset'];
-        const typeObj = {
+        const typeText = {
             register: '注册',
             'password-reset': '密码重置',
         };
@@ -68,7 +68,7 @@ class Sub extends Super {
                     from: autoUser, // 发送者
                     to: username, // 接受者,可以同时发送多个,以逗号隔开
                     subject: verifyCode, // 标题
-                    text: `这是一条验证码,有效期${expirationDate}分钟,此验证码仅用于账号${typeObj[type]}`, // 文本
+                    text: `这是一条验证码,有效期${expirationDate}分钟,此验证码仅用于账号${typeText[type]}`, // 文本
                     html: '', // html
                 };
                 // 验证码存redis里(不存session，是因为session主要用来存用户登录的有效期，时间比较长，验证码过期期限比较短，过期时间不一致，所以不能存到一起。)
