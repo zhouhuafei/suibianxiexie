@@ -27,7 +27,7 @@ class Super {
             if (adminInfo === undefined) { // 未登录
                 res.redirect(routesConfig.login.route); // 重定向路由
             } else {
-                Admin.findOne({username: adminInfo.username}, function (error, result) {
+                Admin.findOne({_id: adminInfo._id}, function (error, result) {
                     if (error) { // 数据库查询出现错误
                         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
                         res.end(`<div style="text-align: center;">
@@ -69,7 +69,6 @@ class Super {
         const self = this;
         const opts = self.opts;
         const req = opts.req;
-        const session = req.session;
         /*
         * javascript axios GET params
         * javascript axios POST/PUT/DELETE data

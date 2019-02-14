@@ -42,7 +42,7 @@ class Route {
                             if (adminInfo === undefined) { // 未登录，管理端的接口都应该登陆后才有权调用。
                                 res.json(apiDataFormat({message: '未登录', failureCode: 'no login'}));
                             } else {
-                                Admin.findOne({username: adminInfo.username}, function (error, result) {
+                                Admin.findOne({_id: adminInfo._id}, function (error, result) {
                                     if (error) { // 数据库查询出现错误
                                         res.json(apiDataFormat({message: '验证登录时,数据库查询出现错误'}));
                                     }
