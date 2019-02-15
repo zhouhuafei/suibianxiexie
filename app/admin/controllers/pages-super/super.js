@@ -21,7 +21,7 @@ class Super {
         const opts = self.opts;
         const req = opts.req;
         const res = opts.res;
-        const session = req.session;
+        const session = req.session; // 就算没有cookie(sessionId)关联，session也会是一个对象。所以不用担心访问session的属性会抛出错误。访问不存在的属性会得到```undefined```。
         const adminInfo = session.adminInfo;
         if (opts.isValidateLogin) { // 验证登录
             if (adminInfo === undefined) { // 未登录
@@ -69,6 +69,8 @@ class Super {
         const self = this;
         const opts = self.opts;
         const req = opts.req;
+        const session = req.session;
+        const adminInfo = session.adminInfo;
         /*
         * javascript axios GET params
         * javascript axios POST/PUT/DELETE data
@@ -98,6 +100,7 @@ class Super {
             isShowQrCode: routesConfig[opts.routeName].isShowQrCode, // 是否显示二维码
             isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
             page: {}, // 当前视图的数据
+            username: adminInfo ? adminInfo.username : '',
         };
         const dataInfo = self.dataInfo;
         // 菜单的数据
