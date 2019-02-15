@@ -140,3 +140,7 @@ assets/
 # 注意和建议
 * 注意：session上的数据是缓存数据。例如用户信息。后续如果修改了，session上的不同步的话，那就和数据库里的不一致。
     - 建议：需要使用用户信息的数据时，从数据库里重新查。
+
+# 其他
+* express动态路由解析用的什么包？
+    - https://github.com/pillarjs/path-to-regexp
