@@ -3,12 +3,12 @@ const mongoose = require('../../../../db/mongoose');
 
 // 数据格式
 const schema = new mongoose.Schema({
-    // (不可修改)用户名(账号)。
-    username: {
+    // (不可修改)用户id。
+    uid: {
         type: String,
         default: null,
         unique: true,
-        required: [true, 'username is required'],
+        required: [true, 'uid is required'],
     },
     // 昵称(建议单独放一个表)
     nickname: {
