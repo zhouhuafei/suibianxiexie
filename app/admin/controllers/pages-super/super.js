@@ -69,6 +69,7 @@ class Super {
         const self = this;
         const opts = self.opts;
         const req = opts.req;
+        console.log(req.params);
         const session = req.session;
         const adminInfo = session.adminInfo;
         /*
@@ -97,7 +98,8 @@ class Super {
             meta: routesConfig[opts.routeName].meta, // 网页头部的meta信息
             title: routesConfig[opts.routeName].title || '没有配置标题', // 标题(需要从配置里读取)
             routeName: opts.routeName, // 路由名称
-            query: req.query, // 参数
+            query: req.query, // 查询字符串的参数
+            params: req.params, // 动态路由的参数
             isShowQrCode: routesConfig[opts.routeName].isShowQrCode, // 是否显示二维码
             isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
             page: {}, // 当前视图的数据
