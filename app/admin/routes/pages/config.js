@@ -77,6 +77,7 @@ routeName.forEach(function (v) {
         isShowCopyright: v.isShowCopyright !== false, // 是否显示版权信息(默认显示)
         isShowQrCode: v.isShowQrCode !== false, // 是否显示二维码(默认显示)
         isShowMenu: v.isShowMenu !== false, // 是否显示左侧菜单(默认显示)
+        meta: v.meta || {}, // 网页头部的meta信息
     };
 });
 module.exports = routeConfig;

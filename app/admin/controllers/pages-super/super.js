@@ -94,6 +94,7 @@ class Super {
             isProduction: isProduction, // 是否是生产环境
             api: apiConfig, // 接口配置
             routes: routesConfig, // 路由的配置
+            meta: routesConfig[opts.routeName].meta, // 网页头部的meta信息
             title: routesConfig[opts.routeName].title || '没有配置标题', // 标题(需要从配置里读取)
             routeName: opts.routeName, // 路由名称
             query: req.query, // 参数
