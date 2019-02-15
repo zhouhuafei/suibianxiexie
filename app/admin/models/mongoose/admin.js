@@ -1,3 +1,4 @@
+// 账号密码表
 const mongoose = require('../../../../db/mongoose');
 
 // 数据格式
@@ -24,24 +25,6 @@ const schema = new mongoose.Schema({
         type: String,
         default: null,
     },
-    // 是否是管理员。
-    isAdmin: {
-        type: Boolean,
-        default: false,
-    },
-    /*
-    // account表放账号密码和权限。user表(admin换成user)放个人信息。待续...
-    // 昵称(建议单独放一个表)
-    nickname: {
-        type: String,
-        default: '',
-    },
-    // 性别(建议单独放一个表)
-    sex: {
-        type: String,
-        default: '', // 'boy'和'girl'
-    },
-    */
 }, {collection: 'admin'});
 
 // 使用pre中间件在用户信息存储前进行密码加密
