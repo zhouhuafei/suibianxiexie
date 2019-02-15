@@ -231,12 +231,14 @@ class Super {
     render(json = {}) {
         const self = this;
         const req = self.opts.req;
+        console.log(self.opts.res.get('status code'));
         self.dataInfo = extend(self.dataInfo, json);
         if (req.data.isOnlyRenderData === 'true') {
             self.renderData(); // 渲染数据
         } else {
             self.renderView(); // 渲染视图
         }
+        // 应该再加个判断。如果响应头上的状态是404。则走渲染404模板的逻辑。待续...
     }
 }
 
