@@ -231,7 +231,6 @@ class Super {
     render(json = {}) {
         const self = this;
         const req = self.opts.req;
-        console.log(self.opts.res.get('status code'));
         self.dataInfo = extend(self.dataInfo, json);
         if (req.data.isOnlyRenderData === 'true') {
             self.renderData(); // 渲染数据
