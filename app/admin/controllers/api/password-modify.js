@@ -61,7 +61,7 @@ class Sub extends Super {
                                     // 更新数据库
                                     const $set = {
                                         password: hash,
-                                        loginStamp: `${Math.random()}`.split('.')[1],
+                                        loginStampSession: `${Math.random()}`.split('.')[1],
                                     };
                                     Admin.update({_id: result._id}, {$set: $set}, function (error) {
                                         // 数据库更新出现错误
@@ -72,7 +72,7 @@ class Sub extends Super {
                                             });
                                             return;
                                         }
-                                        delete session.adminInfo; // 不加这句话，改了密码，不会掉线，加了这句话也只是当前用户掉线，其他人不掉线，集体掉线需另做处理(数据库加loginStamp字段进行一系列处理)。
+                                        delete session.adminInfo; // 不加这句话，改了密码，不会掉线，加了这句话也只是当前用户掉线，其他人不掉线，集体掉线需另做处理(数据库加loginStampSession字段进行一系列处理)。
                                         self.render({
                                             status: 'success',
                                             message: '已成功修改密码',

@@ -49,7 +49,7 @@ class Super {
                         </div>`);
                     }
                     if (result) {
-                        if (result.loginStamp === adminInfo.loginStamp) { // 登录了
+                        if (result.loginStampSession === adminInfo.loginStampSession) { // 登录了
                             self.init();
                         } else { // 未登录
                             res.redirect(routesConfig.login.route); // 重定向路由

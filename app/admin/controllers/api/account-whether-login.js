@@ -30,7 +30,7 @@ class Sub extends Super {
                     self.render({message: '数据库查询出现错误'});
                 }
                 if (result) {
-                    isLogin = result.loginStamp === session.adminInfo.loginStamp;
+                    isLogin = result.loginStampSession === session.adminInfo.loginStampSession;
                     self.render({
                         status: 'success',
                         message: `${isLogin ? '已' : '未'}登录`,

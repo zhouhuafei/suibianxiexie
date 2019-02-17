@@ -47,7 +47,7 @@ class Route {
                                         res.json(apiDataFormat({message: '验证登录时,数据库查询出现错误'}));
                                     }
                                     if (result) {
-                                        if (result.loginStamp === adminInfo.loginStamp) { // 登录了
+                                        if (result.loginStampSession === adminInfo.loginStampSession) { // 登录了
                                             next();
                                         } else { // 未登录
                                             res.json(apiDataFormat({message: '未登录', failureCode: 'no login'}));

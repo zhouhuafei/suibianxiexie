@@ -1,3 +1,4 @@
+// 此表作废，用户应该统一存到admin(账号密码)表中。毕竟是做平台。后续应该将admin表改名为account表。如果历史遗留太重，就不改了。待续...
 const mongoose = require('../../../../db/mongoose');
 const schema = new mongoose.Schema({
     // 用户名(账号)
@@ -37,10 +38,21 @@ const schema = new mongoose.Schema({
         default: null,
     },
     // 登录戳，用来做修改密码集体下线以及单设备登录的。
-    loginStamp: {
+    loginStampSession: { // session开发方式时使用
         type: String,
         default: null,
     },
+    // 登录戳，用来做修改密码集体下线以及单设备登录的。
+    loginStampAccessToken: { // jwt开发方式时使用
+        type: String,
+        default: null,
+    },
+    // 登录戳，用来做修改密码集体下线以及单设备登录的。
+    loginStampRefreshToken: { // jwt开发方式时使用
+        type: String,
+        default: null,
+    },
+    // 以下应该放到personal(个人信息)表中
     // 邮箱
     email: {
         type: String,
