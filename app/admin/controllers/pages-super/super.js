@@ -69,7 +69,8 @@ class Super {
         const self = this;
         const opts = self.opts;
         const req = opts.req;
-        console.log(req.params);
+        // console.log('req.route', req.route);
+        // console.log('req.params', req.params);
         const session = req.session;
         const adminInfo = session.adminInfo;
         /*
