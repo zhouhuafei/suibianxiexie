@@ -11,6 +11,7 @@
                 <% var api = dataInfo.api; %>
                 <% var page = dataInfo.page || {}; %>
                 <form action="<%= api['website-info'].route %>" data-method="put">
+                    <%= dataInfo.getRoutePath(dataInfo.routes['website-info'], {uid: 999}) %>
                     <div class="g-form-wrap">
                         <div class="g-form">
                             <label class="g-form-body">

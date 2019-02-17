@@ -94,8 +94,8 @@ class Super {
             ip: getClientIp(req, isProduction ? 'nginx' : ''), // 公网ip
             env: env, // 环境
             isProduction: isProduction, // 是否是生产环境
-            api: apiConfig, // 接口配置
-            routes: routesConfig, // 路由的配置
+            api: apiConfig, // 接口配置(可以封装一个解析动态路由的方法解析出这个字段中正确的动态路由路径)
+            routes: routesConfig, // 路由的配置(可以封装一个解析动态路由的方法解析出这个字段中正确的动态路由路径)
             meta: routesConfig[opts.routeName].meta, // 网页头部的meta信息
             title: routesConfig[opts.routeName].title || '没有配置标题', // 标题(需要从配置里读取)
             routeName: opts.routeName, // 路由名称
@@ -105,6 +105,14 @@ class Super {
             isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
             page: {}, // 当前视图的数据
             username: adminInfo ? adminInfo.username : '',
+            getRoutePath: function (route, params) { // 获取动态路由的正确路径，只在ejs模版中有效。
+                const routeFormat = route.routeFormat;
+                let path = routeFormat;
+                Object.keys(params).forEach((key) => {
+                    path = routeFormat.replace(`/:${key}`, `/${params[key]}`);
+                });
+                return path;
+            },
         };
         const dataInfo = self.dataInfo;
         // 菜单的数据
