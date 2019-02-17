@@ -76,7 +76,7 @@ routeName.forEach(function (v) {
         params.forEach((v, i, a) => {
             a[i] = ':' + v;
         });
-        routeFormat += params.join('/') + '/'; // 动态路由部分建议放到末尾。
+        routeFormat += params.join('/') + '/'; // 动态路由部分建议放到末尾。如此，跳转路径时进行路由路径(route)拼接会方便一点。
     }
     routeConfig[v.name] = {
         name: v.name, // 路由名称
