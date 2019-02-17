@@ -104,7 +104,8 @@ class Super {
             isShowQrCode: routesConfig[opts.routeName].isShowQrCode, // 是否显示二维码
             isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
             page: {}, // 当前视图的数据
-            username: adminInfo ? adminInfo.username : '',
+            username: adminInfo ? adminInfo.username : '', // 用户名
+            uid: adminInfo ? adminInfo._id : '', // 用户id
             getRoutePath: function (route, params) { // 获取动态路由的正确路径，只在ejs模版中有效。
                 const routeFormat = route.routeFormat;
                 let path = routeFormat;
