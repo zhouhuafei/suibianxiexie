@@ -33,7 +33,7 @@ const routeName = [
     {
         name: 'website-info', // 网站信息
         title: '网站信息',
-        params: ['uid'], // 配置动态路由
+        params: ['uid'], // 配置动态路由，此处是假设需要动态路由。其实配置后台系统时，并不需要动态路由。无需登录就可以浏览的地方才需要动态路由。
     },
     {
         name: 'ui', // 网站ui
