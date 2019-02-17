@@ -106,8 +106,7 @@ class Super {
             page: {}, // 当前视图的数据
             username: adminInfo ? adminInfo.username : '', // 用户名
             uid: adminInfo ? adminInfo._id : '', // 用户id
-            getRoutePath: function (route, params) { // 获取动态路由的正确路径，只在ejs模版中有效。
-                const routeFormat = route.route;
+            getRoutePath: function (routeFormat, params) { // 获取动态路由的正确路径，只在ejs模版中有效。
                 let path = routeFormat;
                 Object.keys(params).forEach((key) => {
                     path = routeFormat.replace(`/:${key}`, `/${params[key]}`);
@@ -131,6 +130,9 @@ class Super {
                             {
                                 name: 'website-info',
                                 title: '信息',
+                                params: {
+                                    uid: dataInfo.uid,
+                                },
                             },
                             {
                                 name: 'home',
@@ -190,8 +192,11 @@ class Super {
                         v2.isHighlight = false;
                         v2.power = v2.power || ''; // 功能型菜单
                         v2.route = (v2.power || !routesConfig[v2.name]) ? 'javascript:;' : routesConfig[v2.name].route; // 功能型菜单无跳转
-                        if (v2.query && Object.keys(v2.query).length) {
+                        if (v2.query && Object.keys(v2.query).length) { // 拼接上查询字符串
                             v2.route += '?' + queryString.queryStringify(v2.query);
+                        }
+                        if (v2.params && Object.keys(v2.params).length) { // 拼接上动态路由
+                            v2.route = dataInfo.getRoutePath(v2.route, v2.params);
                         }
                         if (v2.name === opts.routeName) {
                             if (v2.name === 'decorate-edit') { // 有query时，对query进行处理。
