@@ -77,6 +77,7 @@ routeName.forEach(function (v) {
             a[i] = ':' + v;
         });
         routeFormat += params.join('/') + '/'; // 动态路由部分建议放到末尾。如此，跳转路径时进行路由路径(route)拼接会方便一点。
+        // vue-router进行动态路由跳转时，是根据name和params参数的数据配合路由格式生成的路径。如果不嫌麻烦，可以封装一个。
     }
     routeConfig[v.name] = {
         name: v.name, // 路由名称
