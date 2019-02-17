@@ -81,8 +81,8 @@ routeName.forEach(function (v) {
     routeConfig[v.name] = {
         name: v.name, // 路由名称
         title: v.title, // 标题
-        routeFormat: routeFormat, // 路由格式(涉及到动态路由)
         route: route, // 路由路径(可直接用来跳转)
+        routeFormat: routeFormat, // 路由格式(涉及到动态路由)
         view: `${pathConfig.view}${v.name}`, // 视图
         isValidateLogin: v.isValidateLogin !== false, // 是否验证登陆信息(默认验证)
         isShowCopyright: v.isShowCopyright !== false, // 是否显示版权信息(默认显示)
