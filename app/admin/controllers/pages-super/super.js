@@ -107,7 +107,7 @@ class Super {
             username: adminInfo ? adminInfo.username : '', // 用户名
             uid: adminInfo ? adminInfo._id : '', // 用户id
             getRoutePath: function (route, params) { // 获取动态路由的正确路径，只在ejs模版中有效。
-                const routeFormat = route.routeFormat;
+                const routeFormat = route.route;
                 let path = routeFormat;
                 Object.keys(params).forEach((key) => {
                     path = routeFormat.replace(`/:${key}`, `/${params[key]}`);
