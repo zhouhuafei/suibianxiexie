@@ -106,14 +106,25 @@ class Super {
             page: {}, // 当前视图的数据
             username: adminInfo ? adminInfo.username : '', // 用户名
             uid: adminInfo ? adminInfo._id : '', // 用户id
-            getRoutePath: function (routeFormat, params) { // 获取动态路由的正确路径，只在ejs模版中有效。
+            getRoutePath: function (routeFormat, opts) { // 获取动态路由的正确路径，只在ejs模版中有效。
+                opts = opts || {};
+                const params = opts.params || {};
+                const query = opts.query || {};
                 let path = routeFormat;
                 Object.keys(params).forEach((key) => {
                     path = routeFormat.replace(`/:${key}`, `/${params[key]}`);
                 });
+                let queryStr = '';
+                Object.keys(query).forEach((key) => {
+                    queryStr += `&${key}=${query[key]}`;
+                });
+                if (queryStr !== '') {
+                    path += `?${queryStr.substring(1)}`;
+                }
                 return path;
             },
-            // 疑问：如果是查询字符串跳转呢？不也是要封装一个方法？或者两个方法合并！待续...
+            // 疑问：如果是查询字符串跳转呢？不也是要封装一个方法？或者两个方法合并！
+            // vue-router提供跳转方法直接就可以进行拼接。这点是赞的。express中使用ejs模版渲染路由路径时还需要自己封装方法并调用。
         };
         const dataInfo = self.dataInfo;
         // 菜单的数据
@@ -193,11 +204,12 @@ class Super {
                         v2.isHighlight = false;
                         v2.power = v2.power || ''; // 功能型菜单
                         v2.route = (v2.power || !routesConfig[v2.name]) ? 'javascript:;' : routesConfig[v2.name].route; // 功能型菜单无跳转
-                        if (v2.query && Object.keys(v2.query).length) { // 拼接上查询字符串
-                            v2.route += '?' + queryString.queryStringify(v2.query);
-                        }
                         if (v2.params && Object.keys(v2.params).length) { // 拼接上动态路由
-                            v2.route = dataInfo.getRoutePath(v2.route, v2.params);
+                            v2.route = dataInfo.getRoutePath(v2.route, {params: v2.params});
+                        }
+                        if (v2.query && Object.keys(v2.query).length) { // 拼接上查询字符串
+                            // v2.route += '?' + queryString.queryStringify(v2.query);
+                            v2.route = dataInfo.getRoutePath(v2.route, {query: v2.query});
                         }
                         if (v2.name === opts.routeName) {
                             if (v2.name === 'decorate-edit') { // 有query时，对query进行处理。
