@@ -22,7 +22,7 @@ class Route {
             try {
                 const Controller = require(`${controllerPath}${attr}`);
                 (function (Controller, attr) {
-                    app.get(config[attr].route, function (req, res) {
+                    app.get(config[attr].routeFormat, function (req, res) {
                         // 渲染数据
                         new Controller({
                             app: app,

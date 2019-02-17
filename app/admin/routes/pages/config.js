@@ -33,7 +33,7 @@ const routeName = [
     {
         name: 'website-info', // 网站信息
         title: '网站信息',
-        // params: ['uid'], // 配置动态路由
+        params: ['uid'], // 配置动态路由
     },
     {
         name: 'ui', // 网站ui
@@ -70,17 +70,19 @@ routeName.forEach(function (v) {
         route = `${pathConfig.route}`;
     }
     // 问：有些链接需要标识用户身份，那就需要动态路由(建议)或查询字符串。如此怎么配置动态路由呢？答：检查配置中有没有```{params:['key1','key2']}```的配置，如果有的话就循环加上```route += ':key1/:key2'```。
+    let routeFormat = route;
     const params = v.params;
     if (params && params.length) {
         params.forEach((v, i, a) => {
             a[i] = ':' + v;
         });
-        route += params.join('/') + '/';
+        routeFormat += params.join('/') + '/'; // 动态路由部分建议放到末尾。
     }
     routeConfig[v.name] = {
         name: v.name, // 路由名称
         title: v.title, // 标题
-        route: route, // 路由
+        routeFormat: routeFormat, // 路由格式(涉及到动态路由)
+        route: route, // 路由路径(可直接用来跳转)
         view: `${pathConfig.view}${v.name}`, // 视图
         isValidateLogin: v.isValidateLogin !== false, // 是否验证登陆信息(默认验证)
         isShowCopyright: v.isShowCopyright !== false, // 是否显示版权信息(默认显示)
