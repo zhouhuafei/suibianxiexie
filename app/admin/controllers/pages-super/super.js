@@ -113,6 +113,7 @@ class Super {
                 });
                 return path;
             },
+            // 疑问：如果是查询字符串跳转呢？不也是要封装一个方法？或者两个方法合并！待续...
         };
         const dataInfo = self.dataInfo;
         // 菜单的数据
