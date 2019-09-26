@@ -236,7 +236,7 @@ class Super {
         const opts = self.opts;
         const req = opts.req;
         const data = req.data;
-        self.render(); // 渲染视图(渲染数据)。这个方法没必要放到handleData中调用吧。handleData只处理数据不就行了？待续...
+        self.render(); // 渲染视图(渲染数据)。这个方法没必要放到handleData中调用吧。handleData只处理数据不就行了？答：因为异步，所以需要手动调用。
     }
 
     // (渲)渲染视图
