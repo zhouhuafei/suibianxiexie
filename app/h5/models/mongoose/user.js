@@ -1,4 +1,3 @@
-// 此表作废，用户应该统一存到admin(账号密码)表中。毕竟是做平台。后续应该将admin表改名为account表。如果历史遗留太重，就不改了。待续...
 const mongoose = require('../../../../db/mongoose');
 const schema = new mongoose.Schema({
     // 用户名(账号)

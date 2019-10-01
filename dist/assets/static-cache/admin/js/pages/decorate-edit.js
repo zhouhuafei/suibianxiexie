@@ -904,7 +904,7 @@ exports.default = {
             // 这里的el是指simulator内的块
             console.log('drop');
             el.style.background = '#00f';
-            // 业务逻辑待续...
+            // 业务逻辑
             // simulator.removeChild(el);
         });
     }

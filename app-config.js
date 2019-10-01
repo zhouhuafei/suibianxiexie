@@ -1,5 +1,5 @@
-// 本文件不应该被git记录。应该有个app-config.sample.js文件被git记录。待续...
-// 代码内部的一些配置都应该从这个文件中读取。待续...
+// 本文件不应该被git记录。应该有个app-config.sample.js文件被git记录。
+// 代码内部的一些配置都应该从这个文件中读取。
 class Config {
     constructor() {
         // 不可配置
