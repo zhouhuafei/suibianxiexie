@@ -11,6 +11,7 @@ module.exports = function (json) {
         isHandleError: true, // 是否处理错误
         isHandleFailure: true, // 是否处理失败
         isHandleSuccess: false, // 是否处理成功
+        headers: {},
         /*
         优先级：错误回调>失败回调>成功回调>完成回调。
         调用方法时，要么用回调的方式走异步，要么用Promise的方式。
@@ -45,7 +46,7 @@ module.exports = function (json) {
                 if (type === 'object') {
                     opts.data[keys] = JSON.stringify(obj);
                 }
-                if (type === 'array') {
+                if (type === 'array') { // 此处之所以如下处理是为了保持和axios一致。
                     obj.forEach(function (v, i, a) {
                         if (Object.prototype.toString.call(v).slice(8, -1).toLowerCase() === 'object') {
                             a[i] = JSON.stringify(v);

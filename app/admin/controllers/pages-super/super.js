@@ -21,13 +21,13 @@ class Super {
         const opts = self.opts;
         const req = opts.req;
         const res = opts.res;
-        const session = req.session;
+        const session = req.session; // 就算没有cookie(sessionId)关联，session也会是一个对象。所以不用担心访问session的属性会抛出错误。访问不存在的属性会得到```undefined```。
         const adminInfo = session.adminInfo;
         if (opts.isValidateLogin) { // 验证登录
             if (adminInfo === undefined) { // 未登录
                 res.redirect(routesConfig.login.route); // 重定向路由
             } else {
-                Admin.findOne({username: adminInfo.username}, function (error, result) {
+                Admin.findOne({_id: adminInfo._id}, function (error, result) {
                     if (error) { // 数据库查询出现错误
                         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
                         res.end(`<div style="text-align: center;">
@@ -49,7 +49,7 @@ class Super {
                         </div>`);
                     }
                     if (result) {
-                        if (result.loginStamp === adminInfo.loginStamp) { // 登录了
+                        if (result.loginStampSession === adminInfo.loginStampSession) { // 登录了
                             self.init();
                         } else { // 未登录
                             res.redirect(routesConfig.login.route); // 重定向路由
@@ -69,7 +69,10 @@ class Super {
         const self = this;
         const opts = self.opts;
         const req = opts.req;
+        // console.log('req.route', req.route);
+        // console.log('req.params', req.params);
         const session = req.session;
+        const adminInfo = session.adminInfo;
         /*
         * javascript axios GET params
         * javascript axios POST/PUT/DELETE data
@@ -91,15 +94,37 @@ class Super {
             ip: getClientIp(req, isProduction ? 'nginx' : ''), // 公网ip
             env: env, // 环境
             isProduction: isProduction, // 是否是生产环境
-            api: apiConfig, // 接口配置
-            routes: routesConfig, // 路由的配置
+            api: apiConfig, // 接口配置(可以封装一个解析动态路由的方法解析出这个字段中正确的动态路由路径)
+            routes: routesConfig, // 路由的配置(可以封装一个解析动态路由的方法解析出这个字段中正确的动态路由路径)
+            meta: routesConfig[opts.routeName].meta, // 网页头部的meta信息
             title: routesConfig[opts.routeName].title || '没有配置标题', // 标题(需要从配置里读取)
             routeName: opts.routeName, // 路由名称
-            query: req.query, // 参数
+            query: req.query, // 查询字符串的参数
+            params: req.params, // 动态路由的参数
             isShowQrCode: routesConfig[opts.routeName].isShowQrCode, // 是否显示二维码
             isShowCopyright: routesConfig[opts.routeName].isShowCopyright, // 是否显示版权(需要从数据库里读取,暂时先从配置里读取)
             page: {}, // 当前视图的数据
-            userInfo: session.adminInfo || {}, // 用户信息
+            username: adminInfo ? adminInfo.username : '', // 用户名
+            uid: adminInfo ? adminInfo._id : '', // 用户id
+            getRoutePath: function (routeFormat, opts) { // 获取动态路由的正确路径，只在ejs模版中有效。
+                opts = opts || {};
+                const params = opts.params || {};
+                const query = opts.query || {};
+                let path = routeFormat;
+                Object.keys(params).forEach((key) => {
+                    path = routeFormat.replace(`/:${key}`, `/${params[key]}`);
+                });
+                let queryStr = '';
+                Object.keys(query).forEach((key) => {
+                    queryStr += `&${key}=${query[key]}`;
+                });
+                if (queryStr !== '') {
+                    path += `?${queryStr.substring(1)}`;
+                }
+                return path;
+            },
+            // 疑问：如果是查询字符串跳转呢？不也是要封装一个方法？或者两个方法合并！
+            // vue-router提供跳转方法直接就可以进行拼接。这点是赞的。express中使用ejs模版渲染路由路径时还需要自己封装方法并调用。
         };
         const dataInfo = self.dataInfo;
         // 菜单的数据
@@ -117,6 +142,9 @@ class Super {
                             {
                                 name: 'website-info',
                                 title: '信息',
+                                params: {
+                                    uid: dataInfo.uid,
+                                },
                             },
                             {
                                 name: 'home',
@@ -176,8 +204,12 @@ class Super {
                         v2.isHighlight = false;
                         v2.power = v2.power || ''; // 功能型菜单
                         v2.route = (v2.power || !routesConfig[v2.name]) ? 'javascript:;' : routesConfig[v2.name].route; // 功能型菜单无跳转
-                        if (v2.query && Object.keys(v2.query).length) {
-                            v2.route += '?' + queryString.queryStringify(v2.query);
+                        if (v2.params && Object.keys(v2.params).length) { // 拼接上动态路由
+                            v2.route = dataInfo.getRoutePath(v2.route, {params: v2.params});
+                        }
+                        if (v2.query && Object.keys(v2.query).length) { // 拼接上查询字符串
+                            // v2.route += '?' + queryString.queryStringify(v2.query);
+                            v2.route = dataInfo.getRoutePath(v2.route, {query: v2.query});
                         }
                         if (v2.name === opts.routeName) {
                             if (v2.name === 'decorate-edit') { // 有query时，对query进行处理。
@@ -204,7 +236,7 @@ class Super {
         const opts = self.opts;
         const req = opts.req;
         const data = req.data;
-        self.render(); // 渲染视图(渲染数据)
+        self.render(); // 渲染视图(渲染数据)。这个方法没必要放到handleData中调用吧。handleData只处理数据不就行了？答：因为异步，所以需要手动调用。
     }
 
     // (渲)渲染视图
@@ -235,6 +267,7 @@ class Super {
         } else {
             self.renderView(); // 渲染视图
         }
+        // 应该再加个判断。如果响应头上的状态是404。则走渲染404模板的逻辑。
     }
 }
 

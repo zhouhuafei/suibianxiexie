@@ -2,6 +2,13 @@ const mongoose = require('../../../../db/mongoose');
 
 // 数据格式
 const schema = new mongoose.Schema({
+    // (不可修改)用户id。
+    uid: {
+        type: String,
+        default: null,
+        unique: true,
+        required: [true, 'uid is required'],
+    },
     // 图片的mime类型
     mimeType: {
         type: String,

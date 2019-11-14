@@ -55,8 +55,8 @@ class Sub extends Super {
                         if (isMatch) {
                             session.adminInfo = adminInfo;
                             if (appConfig.isEnabledSingleDeviceLoginAdmin) { // 如果开启了单设备登录
-                                const loginStamp = `${Math.random()}`.split('.')[1];
-                                Admin.update({_id: adminInfo._id}, {$set: {loginStamp: loginStamp}}, function (error) {
+                                const loginStampSession = `${Math.random()}`.split('.')[1];
+                                Admin.update({_id: adminInfo._id}, {$set: {loginStampSession: loginStampSession}}, function (error) {
                                     // 数据库更新出现错误
                                     if (error) {
                                         self.render({
@@ -65,18 +65,18 @@ class Sub extends Super {
                                         });
                                         return;
                                     }
-                                    session.adminInfo.loginStamp = loginStamp; // 登录成功更改登录戳。
+                                    session.adminInfo.loginStampSession = loginStampSession; // 登录成功更改登录戳。
                                     self.render({
                                         status: 'success',
                                         message: '登录成功',
-                                        result: {username: adminInfo.username},
+                                        result: {},
                                     });
                                 });
                             } else {
                                 self.render({
                                     status: 'success',
                                     message: '登录成功',
-                                    result: {username: adminInfo.username},
+                                    result: {},
                                 });
                             }
                         } else {

@@ -1,0 +1,7 @@
+@charset "UTF-8";
+/*
+// px转rem(h5) 这个是给手机端用的。
+@function px2rem($px, $psd:320) {
+    @return $px / $psd * 10rem;
+}
+*/

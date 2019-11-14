@@ -37,10 +37,21 @@ const schema = new mongoose.Schema({
         default: null,
     },
     // 登录戳，用来做修改密码集体下线以及单设备登录的。
-    loginStamp: {
+    loginStampSession: { // session开发方式时使用
         type: String,
         default: null,
     },
+    // 登录戳，用来做修改密码集体下线以及单设备登录的。
+    loginStampAccessToken: { // jwt开发方式时使用
+        type: String,
+        default: null,
+    },
+    // 登录戳，用来做修改密码集体下线以及单设备登录的。
+    loginStampRefreshToken: { // jwt开发方式时使用
+        type: String,
+        default: null,
+    },
+    // 以下应该放到personal(个人信息)表中
     // 邮箱
     email: {
         type: String,

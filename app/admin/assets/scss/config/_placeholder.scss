@@ -1,0 +1,30 @@
+// display
+%df {
+    display: flex;
+}
+
+%db {
+    display: block;
+}
+
+%dn {
+    display: none;
+}
+
+%dib {
+    display: inline-block;
+}
+
+// opacity
+%o0 {
+    opacity: 0;
+}
+
+%o1 {
+    opacity: 1;
+}
+
+// font-size
+%fsize12 {
+    font-size: 12px;
+}

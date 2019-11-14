@@ -51,7 +51,7 @@ class Sub extends Super {
                 url: file.path.split('static-cache-wrap')[1].replace(/\\/g, '/'),
             });
         });
-        // 检测是否存在相同的图片，如果存在，则用已存在的那张。待续...
+        // 检测是否存在相同的图片，如果存在，则用已存在的那张。
         Gallery.insertMany(dbFiles, function (error, result) {
             if (error) {
                 self.render({

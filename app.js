@@ -2,23 +2,25 @@
 const express = require('express'); // express
 const app = express(); // app
 
-// http和https
-const fs = require('fs');
+// app的配置
+const appConfig = require('./app-config');
+app.appConfig = appConfig;
+
+// http
 const http = require('http');
-const https = require('https');
 const httpServer = http.createServer(app);
+
+// https
+const fs = require('fs');
+const https = require('https');
 const privateKey = fs.readFileSync('./https/index.key', 'utf8');
 const certificate = fs.readFileSync('./https/index.pem', 'utf8');
 const credentials = {key: privateKey, cert: certificate};
 const httpsServer = https.createServer(credentials, app);
 
-// app的配置
-const appConfig = require('./app-config');
-app.appConfig = appConfig;
-
 // 环境以及配置
 const env = process.env.NODE_ENV; // 开发环境 or 生产环境
-const isProduction = env !== 'development'; // 是否是生产环境
+const isProduction = appConfig.isProduction; // 是否是生产环境
 const configDb = require('./db/config'); // 数据库配置
 const configRedis = configDb.redis[env]; // redis的配置
 const ms = require('ms'); // 转成毫秒数
@@ -57,12 +59,12 @@ app.use(bodyParser.json()); // parse application/json
 const cookieParser = require('cookie-parser'); // cookie数据解析
 const session = require('express-session'); // session
 const RedisStore = require('connect-redis')(session); // session存redis
-const secret = 'suibianxiexie'; // sessionID cookie的密钥
-app.use(cookieParser(secret)); // cookie
+const cookieSecret = appConfig.cookieSecret; // sessionID cookie的密钥
+app.use(cookieParser(cookieSecret)); // 初始化中间件，第一个参数是签名秘钥。后续如果使用签名cookie，则可以使用res.cookie(key,val,{signed:true})中的signed字段开启签名cookie功能。
 app.use(session({
     resave: false, // 是指每次请求都重新设置session cookie，假设你的cookie是10分钟过期，每次请求都会再设置10分钟
     saveUninitialized: false, // 是指无论有没有session cookie，每次请求都设置个session cookie ，默认给个标识为 connect.sid
-    secret: secret, // 用于签署sessionID cookie的密钥
+    secret: cookieSecret, // 用于签署sessionID cookie的密钥
     cookie: {
         maxAge: ms('7 days'), // cookie过期时间
         domain: isProduction ? '.sbxx.top' : undefined, // 可以跨子域做单点登录，共享session。
@@ -125,14 +127,14 @@ app.all('*', function (req, res, next) {
 
 // 404
 app.use(function (req, res, next) {
-    res.status(404).send('404 - not found');
+    res.status(404).send('404 - not found'); // 我觉的这里返回json会不会更好一点？如此前端不就可以统一管理响应！{status: 'error'}
 });
 
 // 500
 app.use(function (err, req, res, next) {
     if (err) {
         console.error(err.stack);
-        res.status(500).send(`500 - server error\n${err.stack}`);
+        res.status(500).send(`500 - server error\n${err.stack}`); // 我觉的这里返回json会不会更好一点？如此前端不就可以统一管理响应！{status: 'error'}
     }
 });
 

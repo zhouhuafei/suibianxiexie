@@ -108,22 +108,9 @@ assets/
     - 所以应该先进行包的新增操作，然后更新业务代码，在业务代码未使用到废包的情况下，最后单独做一次删除废包的操作。
 * 总结：废包删除需在业务代码未使用到废包的情况下进行。
 
-
 # 坑点
 * 安装canvas(node-canvas)时，出现报错。请参阅 https://github.com/Automattic/node-canvas
     - 参阅之后，执行了操作，但是windows下依然报错。请使用 https://github.com/felixrieseberg/windows-build-tools
-
-# 待续...
-* 1、后台是所有数据登录了才可以查阅。所以先判断是否验证登录，再去查询是否登陆了，是最优解。
-* 2、前台的数据，例如列表，不登录也可以看，登录了根据会员等级看到的会有所不同，所以此时应该先查询是否登录了，再去判断是否验证登录才是最优解。
-    - 这个解法的弊端是，不需要验证登录的接口也去查询了一次数据库。
-    - 如果按照1、的解法，则需要接口内部去查询一次是否登录了。
-* 3、gallery(图片库)上传时检测数据库的最近100张图片中，是否存在完全相同的图片，如果存在则用已存在的那张。
-    - 图片的width和height以及size一样才进行比对，至于后缀是否要判定，这个再看吧。因为手动改后缀，其实图片并没有变化。
-    - 加了判断后缀是否一样，可以过滤部分不一样后缀的，但是又会错过那些被手动改了后缀的。这个需要衡量得失，我个人建议是加后缀判定的。
-    - h5和pc的图片上传应该存在```./static-cache-wrap/static-cache/user/gallery/```目录下并以用户名区分开。
-* 4、生产环境如果配置独立域名，则进行路由更改。去掉/admin/和/h5/以及/pc/。
-* webpack3升级为webpack4。待续...
 
 # 报错
 * 我如果注释掉webpack配置中的```// exclude: /(node_modules|bower_components)/,```，引入某些包时会报错。
@@ -136,3 +123,18 @@ assets/
 * 因此项目以api为主。
 * 所以在```package.json```中，我只把api需要的依赖包放到了属性dependencies里。
 * 而交互层(ui层，前端层)需要的包，我放到了属性devDependencies里。
+
+# 注意和建议
+* 注意：session上的数据是缓存数据。例如用户信息。后续如果修改了，session上的不同步的话，那就和数据库里的不一致。
+    - 建议：需要使用用户信息的数据时，从数据库里重新查。
+
+# 其他
+* express动态路由解析用的什么包？
+    - https://github.com/pillarjs/path-to-regexp
+
+# 本项目停更
+> 以下也不进行处理了
+* `./app/admin/controllers/pages-super/super.js`404模板渲染。
+* `./app-config.js`文件不应该被git记录。应该有个`app-config.sample.js`文件被git记录。
+* `./app/admin/controllers/api/gallery.js`检测是否存在相同的图片，如果存在，则用已存在的那张。
+* `./app/h5/assets/js/pages/game-shidishui/index.js`十滴水尚未开发完毕。

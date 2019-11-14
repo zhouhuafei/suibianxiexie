@@ -1,6 +1,7 @@
 // 接口数据
 const extend = require('zhf.extend'); // 工具方法集合
 const qs = require('qs');
+const appConfig = require('../../../../app-config');
 
 class Super {
     constructor(json) {
@@ -44,6 +45,12 @@ class Super {
                 req.body = qs.parse(qs.stringify(req.body));
             }
             req.data = req.body;
+        }
+
+        if (appConfig.isProduction) { // 生产环境下防止CSRF攻击。
+            if (req.headers.referer.indexOf('sbxx') === -1) {
+                self.render({message: '此接口不支持在非sbxx域名下调用'});
+            }
         }
 
         fnCrud();
@@ -104,7 +111,7 @@ class Super {
             const res = opts.res;
             const data = req.data;
             const isJsonp = data.isJsonp === 'true'; // 是否是jsonp(jsonp only supports the GET method)
-            const apiDataFormat = require(`${appConfig.utilsDir}api-data-format`);
+            const apiDataFormat = require(`${appConfig.utilsPath}api-data-format`);
             const dataInfo = apiDataFormat(json);
             self.opts.callback(self);
             if (self.opts.isTriggerEnd) {

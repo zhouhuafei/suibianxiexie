@@ -33,6 +33,7 @@ const routeName = [
     {
         name: 'website-info', // 网站信息
         title: '网站信息',
+        params: ['uid'], // 配置动态路由，此处是假设需要动态路由。其实配置后台系统时，并不需要动态路由。无需登录就可以浏览的地方才需要动态路由。
     },
     {
         name: 'ui', // 网站ui
@@ -68,15 +69,25 @@ routeName.forEach(function (v) {
     if (v.name === 'home') {
         route = `${pathConfig.route}`;
     }
+    // 问：有些链接需要标识用户身份，那就需要动态路由(建议)或查询字符串。如此怎么配置动态路由呢？答：检查配置中有没有```{params:['key1','key2']}```的配置，如果有的话就循环加上```route += ':key1/:key2'```。
+    const params = v.params;
+    if (params && params.length) {
+        params.forEach((v, i, a) => {
+            a[i] = ':' + v;
+        });
+        route += params.join('/') + '/'; // 动态路由部分建议放到末尾(此处证实如此做法)。如此，跳转路径时进行路由路径(route)拼接会方便一点。
+        // vue-router进行动态路由跳转时，是根据name和params参数的数据配合路由格式生成的路径。如果不嫌麻烦，可以封装一个。如果是通过方法兼容处理，动态路由部分放到哪里都行。
+    }
     routeConfig[v.name] = {
         name: v.name, // 路由名称
         title: v.title, // 标题
-        route: route, // 路由
+        route: route, // 路由格式(跳转页面时，不可直接拿此字段当作路由路径进行跳转。因涉及到动态路由时路径应该动态拼接而成，可封装一个方法用来处理此字段。方法名我都想好了，就叫getRoutePath)
         view: `${pathConfig.view}${v.name}`, // 视图
         isValidateLogin: v.isValidateLogin !== false, // 是否验证登陆信息(默认验证)
         isShowCopyright: v.isShowCopyright !== false, // 是否显示版权信息(默认显示)
         isShowQrCode: v.isShowQrCode !== false, // 是否显示二维码(默认显示)
         isShowMenu: v.isShowMenu !== false, // 是否显示左侧菜单(默认显示)
+        meta: v.meta || {}, // 网页头部的meta信息
     };
 });
 module.exports = routeConfig;

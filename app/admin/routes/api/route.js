@@ -21,8 +21,8 @@ class Route {
         const self = this;
         const app = self.opts.app;
         const appConfig = app.appConfig;
-        const logger = require(`${appConfig.utilsDir}log4js`);
-        const apiDataFormat = require(`${appConfig.utilsDir}api-data-format`);
+        const logger = require(`${appConfig.utilsPath}log4js`);
+        const apiDataFormat = require(`${appConfig.utilsPath}api-data-format`);
         Object.keys(apiConfig).forEach(function (attr) {
             try {
                 const Controller = require(`${controllerPath}${attr}`);
@@ -38,15 +38,16 @@ class Route {
                         const adminInfo = session.adminInfo;
                         const method = req.method.toUpperCase(); // 请求方式
                         if (apiConfigNow.isValidateLogin && (apiConfigNow.whichRequestMethodNoValidateLogin === undefined || apiConfigNow.whichRequestMethodNoValidateLogin.indexOf(method) === -1)) { // 验证登录(当whichRequestMethodNoValidateLogin值为undefined时，表示所有请求方式都需要验证登陆，为数组时则数组里所属的请求方式不验证登陆)
+                            // session验证身份
                             if (adminInfo === undefined) { // 未登录，管理端的接口都应该登陆后才有权调用。
                                 res.json(apiDataFormat({message: '未登录', failureCode: 'no login'}));
                             } else {
-                                Admin.findOne({username: adminInfo.username}, function (error, result) {
+                                Admin.findOne({_id: adminInfo._id}, function (error, result) {
                                     if (error) { // 数据库查询出现错误
                                         res.json(apiDataFormat({message: '验证登录时,数据库查询出现错误'}));
                                     }
                                     if (result) {
-                                        if (result.loginStamp === adminInfo.loginStamp) { // 登录了
+                                        if (result.loginStampSession === adminInfo.loginStampSession) { // 登录了
                                             next();
                                         } else { // 未登录
                                             res.json(apiDataFormat({message: '未登录', failureCode: 'no login'}));

@@ -1,26 +1,37 @@
+// 账号密码表
 const mongoose = require('../../../../db/mongoose');
 
 // 数据格式
 const schema = new mongoose.Schema({
-    // 用户名(账号)
+    // (不可修改)用户名(账号)。
     username: {
         type: String,
         default: null,
         unique: true,
         required: [true, 'username is required'],
     },
-    // 账号密码
+    // 账号密码。
     password: {
         type: String,
         default: null,
     },
-    // 账号创建的时间
+    // (不可修改)账号创建的时间。
     createTime: {
         type: Date,
         default: null,
     },
     // 登录戳，用来做修改密码集体下线以及单设备登录的。
-    loginStamp: {
+    loginStampSession: { // session开发方式时使用
+        type: String,
+        default: null,
+    },
+    // 登录戳，用来做修改密码集体下线以及单设备登录的。
+    loginStampAccessToken: { // jwt开发方式时使用
+        type: String,
+        default: null,
+    },
+    // 登录戳，用来做修改密码集体下线以及单设备登录的。
+    loginStampRefreshToken: { // jwt开发方式时使用
         type: String,
         default: null,
     },

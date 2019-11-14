@@ -118,7 +118,7 @@
                         isHighlight: false,
                         isSelected: false,
                         name: 'cut',
-                        text: '切图',
+                        text: '热区',
                     },
                     gap: {
                         isHighlight: false,
@@ -246,7 +246,7 @@
             drake.on('drop', function (el, target, source, sibling) { // 这里的el是指simulator内的块
                 console.log('drop');
                 el.style.background = '#00f';
-                // 业务逻辑待续...
+                // 业务逻辑
                 // simulator.removeChild(el);
             });
         },
