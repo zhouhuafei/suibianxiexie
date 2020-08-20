@@ -98,7 +98,7 @@
         "zhf.when-scroll-bottom": "^1.0.2"
     },
     "dependencies": {
-        "bcrypt": "^3.0.2",
+        "bcrypt": "^5.0.0",
         "body-parser": "^1.18.2",
         "canvas": "^1.6.10",
         "compression": "^1.7.1",
